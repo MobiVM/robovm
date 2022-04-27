@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,6 +56,16 @@ import org.robovm.apple.corelocation.*;
     /*<properties>*/
     @Property(selector = "code")
     public native INGetCarPowerLevelStatusIntentResponseCode getCode();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "carIdentifier")
+    public native String getCarIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setCarIdentifier:")
+    public native void setCarIdentifier(String v);
     @Property(selector = "fuelPercentRemaining")
     public native NSNumber getFuelPercentRemaining();
     @Property(selector = "setFuelPercentRemaining:")
@@ -87,6 +98,128 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setMinutesToFull:")
     public native void setMinutesToFull(NSNumber v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumDistance")
+    public native NSMeasurement<NSUnitLength> getMaximumDistance();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMaximumDistance:")
+    public native void setMaximumDistance(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "distanceRemainingElectric")
+    public native NSMeasurement<NSUnitLength> getDistanceRemainingElectric();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDistanceRemainingElectric:")
+    public native void setDistanceRemainingElectric(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumDistanceElectric")
+    public native NSMeasurement<NSUnitLength> getMaximumDistanceElectric();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMaximumDistanceElectric:")
+    public native void setMaximumDistanceElectric(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "distanceRemainingFuel")
+    public native NSMeasurement<NSUnitLength> getDistanceRemainingFuel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDistanceRemainingFuel:")
+    public native void setDistanceRemainingFuel(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumDistanceFuel")
+    public native NSMeasurement<NSUnitLength> getMaximumDistanceFuel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMaximumDistanceFuel:")
+    public native void setMaximumDistanceFuel(NSMeasurement<NSUnitLength> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "consumptionFormulaArguments")
+    public native NSDictionary<NSString, ?> getConsumptionFormulaArguments();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setConsumptionFormulaArguments:")
+    public native void setConsumptionFormulaArguments(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "chargingFormulaArguments")
+    public native NSDictionary<NSString, ?> getChargingFormulaArguments();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setChargingFormulaArguments:")
+    public native void setChargingFormulaArguments(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dateOfLastStateUpdate")
+    public native NSDateComponents getDateOfLastStateUpdate();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDateOfLastStateUpdate:")
+    public native void setDateOfLastStateUpdate(NSDateComponents v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "activeConnector")
+    public native INCarChargingConnectorType getActiveConnector();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setActiveConnector:")
+    public native void setActiveConnector(INCarChargingConnectorType v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumBatteryCapacity")
+    public native NSMeasurement<NSUnitEnergy> getMaximumBatteryCapacity();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMaximumBatteryCapacity:")
+    public native void setMaximumBatteryCapacity(NSMeasurement<NSUnitEnergy> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "currentBatteryCapacity")
+    public native NSMeasurement<NSUnitEnergy> getCurrentBatteryCapacity();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setCurrentBatteryCapacity:")
+    public native void setCurrentBatteryCapacity(NSMeasurement<NSUnitEnergy> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "minimumBatteryCapacity")
+    public native NSMeasurement<NSUnitEnergy> getMinimumBatteryCapacity();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMinimumBatteryCapacity:")
+    public native void setMinimumBatteryCapacity(NSMeasurement<NSUnitEnergy> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

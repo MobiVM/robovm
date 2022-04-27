@@ -52,13 +52,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNUpsamplingGradient(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNUpsamplingGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNUpsamplingGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleFactorX")
     public native double getScaleFactorX();
     @Property(selector = "scaleFactorY")
     public native double getScaleFactorY();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

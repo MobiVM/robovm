@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INMassResolutionResult disambiguation(NSArray<?> massToDisambiguate);
     @Method(selector = "confirmationRequiredWithMassToConfirm:")
     public static native INMassResolutionResult confirmationRequired(NSMeasurement<NSUnitMass> massToConfirm);
+    @Method(selector = "needsValue")
+    public static native INMassResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INMassResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INMassResolutionResult unsupported();
     /*</methods>*/
 }

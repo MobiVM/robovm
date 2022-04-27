@@ -83,6 +83,56 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxTotalThreadsPerThreadgroup:")
     public native void setMaxTotalThreadsPerThreadgroup(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "binaryArchives")
+    public native NSArray<?> getBinaryArchives();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBinaryArchives:")
+    public native void setBinaryArchives(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preloadedLibraries")
+    public native NSArray<?> getPreloadedLibraries();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreloadedLibraries:")
+    public native void setPreloadedLibraries(NSArray<?> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "linkedFunctions")
+    public native MTLLinkedFunctions getLinkedFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setLinkedFunctions:")
+    public native void setLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportAddingBinaryFunctions")
+    public native boolean isSupportAddingBinaryFunctions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSupportAddingBinaryFunctions:")
+    public native void setSupportAddingBinaryFunctions(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "maxCallStackDepth")
+    public native @MachineSizedUInt long getMaxCallStackDepth();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setMaxCallStackDepth:")
+    public native void setMaxCallStackDepth(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

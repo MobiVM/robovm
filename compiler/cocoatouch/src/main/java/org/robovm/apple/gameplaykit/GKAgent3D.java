@@ -66,6 +66,8 @@ import org.robovm.apple.uikit.*;
     public native @ByVal MatrixFloat3x4 getRotation();
     @Property(selector = "setRotation:")
     public native void setRotation(@ByVal MatrixFloat3x4 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

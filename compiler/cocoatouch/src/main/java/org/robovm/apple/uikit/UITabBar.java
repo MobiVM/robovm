@@ -149,6 +149,19 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setStandardAppearance:")
     public native void setStandardAppearance(UITabBarAppearance v);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "scrollEdgeAppearance")
+    public native UITabBarAppearance getScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setScrollEdgeAppearance:")
+    public native void setScrollEdgeAppearance(UITabBarAppearance v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isSpringLoaded")
@@ -167,5 +180,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void beginCustomizing(NSArray<UITabBarItem> items);
     @Method(selector = "endCustomizingAnimated:")
     public native boolean endCustomizing(boolean animated);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

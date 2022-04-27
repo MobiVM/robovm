@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("ExposureNotification")/*</annotations>*/
 public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
@@ -52,7 +54,8 @@ public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     RateLimited(13L),
     Restricted(14L),
     BadFormat(15L),
-    DataInaccessible(16L);
+    DataInaccessible(16L),
+    TravelStatusNotAvailable(17L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ENErrorCode.class); }/*</bind>*/
@@ -60,7 +63,7 @@ public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.5 and later.
+     * @since Available in iOS 12.5 and later.
      */
     @GlobalValue(symbol="ENErrorDomain", optional=true)
     public static native String getClassDomain();

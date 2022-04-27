@@ -16,6 +16,7 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.hooks.HookConsts;
 import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.runtime.ValueManipulator;
@@ -185,8 +186,10 @@ public class InstanceUtils {
         // is resolved already ?
         ClassInfo fieldTypeInfo = fi.typeInfo();
         // check from known signatures
-        if (fieldTypeInfo == null)
+        if (fieldTypeInfo == null) {
             fieldTypeInfo = runtimeClassInfoLoader.loader().classInfoBySignature(signature);
+            fi.setTypeInfo(fieldTypeInfo);
+        }
         // try to build signature
         if (fieldTypeInfo == null) {
             if (ClassInfoLoader.isArraySignature(signature)) {
@@ -272,20 +275,21 @@ public class InstanceUtils {
             ci = instance.classInfo();
         }
 
-        // fields has to be loaded so no need to parse them just make a run to check if these exists
+        // fields have to be loaded so no need to parse them just make a run to check if these exist
+        List<FieldInfo> resolvedFields = new ArrayList<>(fields.length);
         for (long fieldId : fields) {
             FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
             if (fieldInfo == null)
                 throw new DebuggerException(JdwpConsts.Error.INVALID_FIELDID);
             if (fieldInfo.isStatic() != isStatic)
                 throw new DebuggerException(JdwpConsts.Error.INVALID_FIELDID);
+            resolvedFields.add(fieldInfo);
         }
 
         // perform read
-        for (long fieldId : fields) {
-            FieldInfo fieldInfo = delegates.state().fieldRefIdHolder().objectById(fieldId);
-            getFieldValue(baseDataPointer, ci, fieldInfo, packet);
-
+        for (FieldInfo fieldInfo : resolvedFields) {
+            long fieldOwnerPtr = isStatic ? fieldInfo.getOwnerClass().clazzPtr() : baseDataPointer;
+            getFieldValue(fieldOwnerPtr, ci, fieldInfo, packet);
         }
     }
 
@@ -511,6 +515,8 @@ public class InstanceUtils {
         if (thread == null)
             throw new DebuggerException(JdwpConsts.Error.INVALID_THREAD);
         if (thread.suspendCount() == 0)
+            throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
+        if (thread.getHookSuspendStatus() != HookConsts.threadSuspendStatus.SUSPENDED_SOFT)
             throw new DebuggerException(JdwpConsts.Error.THREAD_NOT_SUSPENDED);
 
         // get method

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INTemporalEventTriggerResolutionResult disambiguation(NSArray<INTemporalEventTrigger> temporalEventTriggersToDisambiguate);
     @Method(selector = "confirmationRequiredWithTemporalEventTriggerToConfirm:")
     public static native INTemporalEventTriggerResolutionResult confirmationRequired(INTemporalEventTrigger temporalEventTriggerToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTemporalEventTriggerResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTemporalEventTriggerResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTemporalEventTriggerResolutionResult unsupported();
     /*</methods>*/
 }

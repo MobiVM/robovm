@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObjectProtocol observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasConnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -63,7 +63,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObjectProtocol observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasDisconnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +74,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObjectProtocol observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SubjectAreaDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -99,8 +99,18 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getModelID();
     @Property(selector = "localizedName")
     public native String getLocalizedName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "manufacturer")
+    public native String getManufacturer();
     @Property(selector = "isConnected")
     public native boolean isConnected();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isSuspended")
+    public native boolean isSuspended();
     @Property(selector = "formats")
     public native NSArray<AVCaptureDeviceFormat> getFormats();
     @Property(selector = "activeFormat")
@@ -142,6 +152,46 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "virtualDeviceSwitchOverVideoZoomFactors")
     public native NSArray<NSNumber> getVirtualDeviceSwitchOverVideoZoomFactors();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceSwitchingBehavior")
+    public native AVCapturePrimaryConstituentDeviceSwitchingBehavior getPrimaryConstituentDeviceSwitchingBehavior();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions")
+    public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDeviceSwitchingBehavior")
+    public native AVCapturePrimaryConstituentDeviceSwitchingBehavior getActivePrimaryConstituentDeviceSwitchingBehavior();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions")
+    public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getActivePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activePrimaryConstituentDevice")
+    public native AVCaptureDevice getActivePrimaryConstituentDevice();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportedFallbackPrimaryConstituentDevices")
+    public native NSArray<AVCaptureDevice> getSupportedFallbackPrimaryConstituentDevices();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "fallbackPrimaryConstituentDevices")
+    public native NSArray<AVCaptureDevice> getFallbackPrimaryConstituentDevices();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFallbackPrimaryConstituentDevices:")
+    public native void setFallbackPrimaryConstituentDevices(NSArray<AVCaptureDevice> v);
     @Property(selector = "hasFlash")
     public native boolean hasFlash();
     @Property(selector = "isFlashAvailable")
@@ -205,8 +255,33 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isSmoothAutoFocusEnabled();
     @Property(selector = "setSmoothAutoFocusEnabled:")
     public native void setSmoothAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoFocusEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoFocusEnabled")
+    public native boolean isFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoFocusEnabled:")
+    public native void setFaceDrivenAutoFocusEnabled(boolean v);
     @Property(selector = "lensPosition")
     public native float getLensPosition();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "minimumFocusDistance")
+    public native @MachineSizedSInt long getMinimumFocusDistance();
     @Property(selector = "exposureMode")
     public native AVCaptureExposureMode getExposureMode();
     @Property(selector = "setExposureMode:")
@@ -217,6 +292,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGPoint getExposurePointOfInterest();
     @Property(selector = "setExposurePointOfInterest:")
     public native void setExposurePointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoExposureEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoExposureEnabled")
+    public native boolean isFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoExposureEnabled:")
+    public native void setFaceDrivenAutoExposureEnabled(boolean v);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -358,6 +453,51 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setGeometricDistortionCorrectionEnabled:")
     public native void setGeometricDistortionCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "centerStageControlMode")
+    public static native AVCaptureCenterStageControlMode getCenterStageControlMode();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setCenterStageControlMode:")
+    public static native void setCenterStageControlMode(AVCaptureCenterStageControlMode v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isCenterStageEnabled")
+    public static native boolean isCenterStageEnabled();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setCenterStageEnabled:")
+    public static native void setCenterStageEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isCenterStageActive")
+    public native boolean isCenterStageActive();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPortraitEffectEnabled")
+    public static native boolean isPortraitEffectEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPortraitEffectActive")
+    public native boolean isPortraitEffectActive();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredMicrophoneMode")
+    public static native AVCaptureMicrophoneMode getPreferredMicrophoneMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "activeMicrophoneMode")
+    public static native AVCaptureMicrophoneMode getActiveMicrophoneMode();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -416,6 +556,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "defaultDeviceWithDeviceType:mediaType:position:")
     public static native AVCaptureDevice getDefaultDevice(String deviceType, AVMediaType mediaType, AVCaptureDevicePosition position);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:")
+    public native void setPrimaryConstituentDeviceSwitchingBehavior(AVCapturePrimaryConstituentDeviceSwitchingBehavior switchingBehavior, AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions restrictedSwitchingBehaviorConditions);
+    /**
      * @deprecated Deprecated in iOS 10.0. Use AVCapturePhotoOutput's -supportedFlashModes instead.
      */
     @Deprecated
@@ -434,17 +579,17 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "isFocusModeSupported:")
     public native boolean isFocusModeSupported(AVCaptureFocusMode focusMode);
     @Method(selector = "setFocusModeLockedWithLensPosition:completionHandler:")
-    public native void setFocusModeLocked(float lensPosition, @Block VoidBlock1<CMTime> handler);
+    public native void setFocusModeLocked(float lensPosition, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isExposureModeSupported:")
     public native boolean isExposureModeSupported(AVCaptureExposureMode exposureMode);
     @Method(selector = "setExposureModeCustomWithDuration:ISO:completionHandler:")
-    public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block VoidBlock1<CMTime> handler);
+    public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setExposureTargetBias:completionHandler:")
-    public native void setExposureTargetBias(float bias, @Block VoidBlock1<CMTime> handler);
+    public native void setExposureTargetBias(float bias, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isWhiteBalanceModeSupported:")
     public native boolean isWhiteBalanceModeSupported(AVCaptureWhiteBalanceMode whiteBalanceMode);
     @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:")
-    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block VoidBlock1<CMTime> handler);
+    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "chromaticityValuesForDeviceWhiteBalanceGains:")
     public native @ByVal AVCaptureWhiteBalanceChromaticityValues convertDeviceWhiteBalanceGainsToChromaticityValues(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains);
     @Method(selector = "deviceWhiteBalanceGainsForChromaticityValues:")
@@ -466,5 +611,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "extrinsicMatrixFromDevice:toDevice:")
     public static native NSData getExtrinsicMatrix(AVCaptureDevice fromDevice, AVCaptureDevice toDevice);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "showSystemUserInterface:")
+    public static native void showSystemUserInterface(AVCaptureSystemUserInterface systemUserInterface);
     /*</methods>*/
 }

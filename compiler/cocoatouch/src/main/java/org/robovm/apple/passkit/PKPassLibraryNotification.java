@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -145,6 +147,11 @@ import org.robovm.apple.contacts.*;
         public static native NSString ReplacementPasses();
         @GlobalValue(symbol="PKPassLibraryRemovedPassInfosUserInfoKey", optional=true)
         public static native NSString RemovedPassInfos();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="PKPassLibraryRecoveredPassesUserInfoKey", optional=true)
+        public static native NSString RecoveredPasses();
     }
     /*</keys>*/
 }

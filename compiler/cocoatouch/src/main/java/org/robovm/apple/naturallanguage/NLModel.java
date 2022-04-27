@@ -91,6 +91,16 @@ import org.robovm.apple.coreml.*;
     @Method(selector = "predictedLabelsForTokens:")
     public native NSArray<NSString> predictedLabelsForTokens(NSArray<NSString> tokens);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "predictedLabelHypothesesForString:maximumCount:")
+    public native NSDictionary<NSString, NSNumber> getPredictedLabelHypothesesForString(String string, @MachineSizedUInt long maximumCount);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "predictedLabelHypothesesForTokens:maximumCount:")
+    public native NSArray<?> getPredictedLabelHypothesesForTokens(NSArray<NSString> tokens, @MachineSizedUInt long maximumCount);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "modelWithContentsOfURL:error:")

@@ -39,7 +39,15 @@ public enum /*<name>*/MTLFunctionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Vertex(1L),
     Fragment(2L),
-    Kernel(3L);
+    Kernel(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Visible(5L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Intersection(6L);
     /*</values>*/
 
     /*<bind>*/

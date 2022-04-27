@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INFileResolutionResult disambiguation(NSArray<INFile> filesToDisambiguate);
     @Method(selector = "confirmationRequiredWithFileToConfirm:")
     public static native INFileResolutionResult confirmationRequired(INFile fileToConfirm);
+    @Method(selector = "needsValue")
+    public static native INFileResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INFileResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INFileResolutionResult unsupported();
     /*</methods>*/
 }

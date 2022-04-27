@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,5 +74,11 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INMessageAttributeOptionsResolutionResult confirmationRequiredForValue(INMessageAttributeOptions valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INMessageAttributeOptionsResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INMessageAttributeOptionsResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INMessageAttributeOptionsResolutionResult unsupported();
     /*</methods>*/
 }

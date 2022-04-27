@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixNeuron(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixNeuron(NSCoder decoder) { super(decoder); }
+    public MPSMatrixNeuron(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceNumberOfFeatureVectors")
@@ -69,6 +69,8 @@ import org.robovm.apple.metal.*;
     public native double getAlpha();
     @Property(selector = "setAlpha:")
     public native void setAlpha(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

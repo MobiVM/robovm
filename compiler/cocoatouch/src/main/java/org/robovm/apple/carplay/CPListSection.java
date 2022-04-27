@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,28 +52,65 @@ import org.robovm.apple.mapkit.*;
     protected CPListSection(Handle h, long handle) { super(h, handle); }
     protected CPListSection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    public CPListSection(NSArray<CPListItem> items, String header, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, sectionIndexTitle)); }
+    public CPListSection(NSArray<?> items, String header, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, sectionIndexTitle)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithItems:header:headerSubtitle:headerImage:headerButton:sectionIndexTitle:")
+    public CPListSection(NSArray<?> items, String header, String headerSubtitle, UIImage headerImage, CPButton headerButton, String sectionIndexTitle) { super((SkipInit) null); initObject(init(items, header, headerSubtitle, headerImage, headerButton, sectionIndexTitle)); }
     @Method(selector = "initWithItems:")
-    public CPListSection(NSArray<CPListItem> items) { super((SkipInit) null); initObject(init(items)); }
+    public CPListSection(NSArray<?> items) { super((SkipInit) null); initObject(init(items)); }
     @Method(selector = "initWithCoder:")
     public CPListSection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "header")
     public native String getHeader();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "headerSubtitle")
+    public native String getHeaderSubtitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "headerImage")
+    public native UIImage getHeaderImage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setHeaderImage:")
+    public native void setHeaderImage(UIImage v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "headerButton")
+    public native CPButton getHeaderButton();
     @Property(selector = "sectionIndexTitle")
     public native String getSectionIndexTitle();
     @Property(selector = "items")
-    public native NSArray<CPListItem> getItems();
+    public native NSArray<?> getItems();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @GlobalValue(symbol="CPMaximumListSectionImageSize", optional=true)
+    public static native @ByVal CGSize getMaximumListSectionImageSize();
+    
     @Method(selector = "initWithItems:header:sectionIndexTitle:")
-    protected native @Pointer long init(NSArray<CPListItem> items, String header, String sectionIndexTitle);
+    protected native @Pointer long init(NSArray<?> items, String header, String sectionIndexTitle);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithItems:header:headerSubtitle:headerImage:headerButton:sectionIndexTitle:")
+    protected native @Pointer long init(NSArray<?> items, String header, String headerSubtitle, UIImage headerImage, CPButton headerButton, String sectionIndexTitle);
     @Method(selector = "initWithItems:")
-    protected native @Pointer long init(NSArray<CPListItem> items);
+    protected native @Pointer long init(NSArray<?> items);
+    @Method(selector = "indexOfItem:")
+    public native @MachineSizedUInt long indexOfItem(CPListTemplateItem item);
+    @Method(selector = "itemAtIndex:")
+    public native CPListTemplateItem itemAtIndex(@MachineSizedUInt long index);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

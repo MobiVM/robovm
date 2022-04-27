@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,6 +85,8 @@ import org.robovm.apple.corelocation.*;
     public native String getGuestProvidedSpecialRequestText();
     @Property(selector = "setGuestProvidedSpecialRequestText:")
     public native void setGuestProvidedSpecialRequestText(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

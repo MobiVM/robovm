@@ -49,12 +49,16 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property
      */
+    @Deprecated
     @GlobalValue(symbol="kSecUseAuthenticationUIAllow", optional=true)
     public static native CFType UseAuthenticationUIAllow();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Instead of kSecUseAuthenticationUI, use kSecUseAuthenticationContext and set LAContext.interactionNotAllowed property
      */
+    @Deprecated
     @GlobalValue(symbol="kSecUseAuthenticationUIFail", optional=true)
     public static native CFType UseAuthenticationUIFail();
     /**

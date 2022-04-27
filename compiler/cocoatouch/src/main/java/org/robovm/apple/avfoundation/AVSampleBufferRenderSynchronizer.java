@@ -65,6 +65,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getRate();
     @Property(selector = "setRate:")
     public native void setRate(float v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "delaysRateChangeUntilHasSufficientMediaData")
+    public native boolean delaysRateChangeUntilHasSufficientMediaData();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setDelaysRateChangeUntilHasSufficientMediaData:")
+    public native void setDelaysRateChangeUntilHasSufficientMediaData(boolean v);
     @Property(selector = "renderers")
     public native NSArray<?> getRenderers();
     /*</properties>*/
@@ -83,12 +93,17 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime currentTime();
     @Method(selector = "setRate:time:")
     public native void setRate(float rate, @ByVal CMTime time);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "setRate:time:atHostTime:")
+    public native void setRate(float rate, @ByVal CMTime time, @ByVal CMTime hostTime);
     @Method(selector = "addRenderer:")
     public native void addRenderer(AVQueuedSampleBufferRendering renderer);
     @Method(selector = "removeRenderer:atTime:completionHandler:")
     public native void removeRenderer(AVQueuedSampleBufferRendering renderer, @ByVal CMTime time, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "addPeriodicTimeObserverForInterval:queue:usingBlock:")
-    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block VoidBlock1<CMTime> block);
+    public native NSObject addPeriodicTimeObserver(@ByVal CMTime interval, DispatchQueue queue, @Block("(@ByVal)") VoidBlock1<CMTime> block);
     @Method(selector = "addBoundaryTimeObserverForTimes:queue:usingBlock:")
     public native NSObject addBoundaryTimeObserver(NSArray<NSValue> times, DispatchQueue queue, @Block Runnable block);
     @Method(selector = "removeTimeObserver:")

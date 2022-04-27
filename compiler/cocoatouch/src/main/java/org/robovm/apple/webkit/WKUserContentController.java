@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,10 +64,35 @@ import org.robovm.apple.security.*;
     public native void addUserScript(WKUserScript userScript);
     @Method(selector = "removeAllUserScripts")
     public native void removeAllUserScripts();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "addScriptMessageHandler:contentWorld:name:")
+    public native void addScriptMessageHandler(WKScriptMessageHandler scriptMessageHandler, WKContentWorld world, String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "addScriptMessageHandlerWithReply:contentWorld:name:")
+    public native void addScriptMessageHandler(WKScriptMessageHandlerWithReply scriptMessageHandlerWithReply, WKContentWorld contentWorld, String name);
     @Method(selector = "addScriptMessageHandler:name:")
     public native void addScriptMessageHandler(WKScriptMessageHandler scriptMessageHandler, String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "removeScriptMessageHandlerForName:contentWorld:")
+    public native void removeScriptMessageHandler(String name, WKContentWorld contentWorld);
     @Method(selector = "removeScriptMessageHandlerForName:")
     public native void removeScriptMessageHandler(String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "removeAllScriptMessageHandlersFromContentWorld:")
+    public native void removeAllScriptMessageHandlersFromContentWorld(WKContentWorld contentWorld);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "removeAllScriptMessageHandlers")
+    public native void removeAllScriptMessageHandlers();
     /**
      * @since Available in iOS 11.0 and later.
      */

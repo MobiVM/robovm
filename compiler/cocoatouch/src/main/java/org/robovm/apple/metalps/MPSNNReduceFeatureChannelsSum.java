@@ -54,13 +54,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNReduceFeatureChannelsSum(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNReduceFeatureChannelsSum(NSCoder decoder) { super(decoder); }
+    public MPSNNReduceFeatureChannelsSum(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "weight")
     public native float getWeight();
     @Property(selector = "setWeight:")
     public native void setWeight(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -149,8 +149,15 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVAudioSessionInterruptionOptionKey", optional=true)
         public static native NSString Option();
         /**
-         * @since Available in iOS 10.3 and later.
+         * @since Available in iOS 14.5 and later.
          */
+        @GlobalValue(symbol="AVAudioSessionInterruptionReasonKey", optional=true)
+        public static native NSString Reason();
+        /**
+         * @since Available in iOS 10.3 and later.
+         * @deprecated Deprecated in iOS 14.5. No longer supported - see AVAudioSessionInterruptionReasonKey
+         */
+        @Deprecated
         @GlobalValue(symbol="AVAudioSessionInterruptionWasSuspendedKey", optional=true)
         public static native NSString WasSuspended();
     }

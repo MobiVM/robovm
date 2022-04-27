@@ -48,16 +48,27 @@ import org.robovm.apple.foundation.*;
     protected UNTextInputNotificationAction(Handle h, long handle) { super(h, handle); }
     protected UNTextInputNotificationAction(SkipInit skipInit) { super(skipInit); }
     public UNTextInputNotificationAction(String identifier, String title, UNNotificationActionOptions options, String textInputButtonTitle, String textInputPlaceholder) { super((Handle) null, create(identifier, title, options, textInputButtonTitle, textInputPlaceholder)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public UNTextInputNotificationAction(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon, String textInputButtonTitle, String textInputPlaceholder) { super((Handle) null, create(identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textInputButtonTitle")
     public native String getTextInputButtonTitle();
     @Property(selector = "textInputPlaceholder")
     public native String getTextInputPlaceholder();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:")
     protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options, String textInputButtonTitle, String textInputPlaceholder);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:")
+    protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon, String textInputButtonTitle, String textInputPlaceholder);
     /*</methods>*/
 }

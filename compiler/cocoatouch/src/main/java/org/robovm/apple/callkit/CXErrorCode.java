@@ -38,7 +38,7 @@ import org.robovm.apple.avfoundation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("CallKit")/*</annotations>*/
-public enum /*<name>*/CXErrorCode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CXErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     UnknownError(0L),
     /**
@@ -48,11 +48,16 @@ public enum /*<name>*/CXErrorCode/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.2 and later.
      */
-    InvalidArgument(2L);
+    InvalidArgument(2L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    MissingVoIPBackgroundMode(3L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CXErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
@@ -71,7 +76,27 @@ public enum /*<name>*/CXErrorCode/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/CXErrorCode/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/CXErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be inserted in value section */
+            return /*<name>*/CXErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }

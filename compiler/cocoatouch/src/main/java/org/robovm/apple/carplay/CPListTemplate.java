@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,16 +53,81 @@ import org.robovm.apple.mapkit.*;
     protected CPListTemplate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:sections:")
     public CPListTemplate(String title, NSArray<CPListSection> sections) { super((SkipInit) null); initObject(init(title, sections)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
+    public CPListTemplate(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration) { super((SkipInit) null); initObject(init(title, sections, assistantCellConfiguration)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
+     */
+    @Deprecated
     @Property(selector = "delegate")
     public native CPListTemplateDelegate getDelegate();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
+     */
+    @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPListTemplateDelegate v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumItemCount")
+    public static native @MachineSizedUInt long getMaximumItemCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumSectionCount")
+    public static native @MachineSizedUInt long getMaximumSectionCount();
     @Property(selector = "sections")
     public native NSArray<CPListSection> getSections();
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sectionCount")
+    public native @MachineSizedUInt long getSectionCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "itemCount")
+    public native @MachineSizedUInt long getItemCount();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "emptyViewTitleVariants")
+    public native NSArray<NSString> getEmptyViewTitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setEmptyViewTitleVariants:")
+    public native void setEmptyViewTitleVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "emptyViewSubtitleVariants")
+    public native NSArray<NSString> getEmptyViewSubtitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setEmptyViewSubtitleVariants:")
+    public native void setEmptyViewSubtitleVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "assistantCellConfiguration")
+    public native CPAssistantCellConfiguration getAssistantCellConfiguration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAssistantCellConfiguration:")
+    public native void setAssistantCellConfiguration(CPAssistantCellConfiguration v);
     @Property(selector = "leadingNavigationBarButtons")
     public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
     @Property(selector = "setLeadingNavigationBarButtons:")
@@ -74,12 +140,24 @@ import org.robovm.apple.mapkit.*;
     public native CPBarButton getBackButton();
     @Property(selector = "setBackButton:")
     public native void setBackButton(CPBarButton v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTitle:sections:")
     protected native @Pointer long init(String title, NSArray<CPListSection> sections);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
+    protected native @Pointer long init(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration);
     @Method(selector = "updateSections:")
     public native void updateSections(NSArray<CPListSection> sections);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "indexPathForItem:")
+    public native NSIndexPath indexPathForItem(CPListTemplateItem item);
     /*</methods>*/
 }

@@ -54,10 +54,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayGatherGradient(NSCoder coder, MTLDevice device) { super(coder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayGatherGradient(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayGatherGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

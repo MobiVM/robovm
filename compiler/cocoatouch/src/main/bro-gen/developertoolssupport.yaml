@@ -1,0 +1,38 @@
+package: org.robovm.apple.devtoolssupport
+include: [foundation]
+library: DeveloperToolsSupport
+framework: DeveloperToolsSupport
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/DeveloperToolsSupport.framework/Headers/DeveloperToolsSupport-Swift.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+
+protocols:
+    PreviewDisplaying: {} #since 14.0
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?D.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?D.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?D.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

@@ -60,7 +60,7 @@ import org.robovm.apple.avfoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("addAnimation:forKey:")
-    public void addAnimation(SCNAnimation animation, String key) {}
+    public void addAnimation(SCNAnimationProtocol animation, String key) {}
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -68,18 +68,23 @@ import org.robovm.apple.avfoundation.*;
     public void addAnimationPlayer(SCNAnimationPlayer player, String key) {}
     @NotImplemented("removeAllAnimations")
     public void removeAllAnimations() {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("removeAllAnimationsWithBlendOutDuration:")
+    public void removeAllAnimations(@MachineSizedFloat double duration) {}
     @NotImplemented("removeAnimationForKey:")
     public void removeAnimation(String key) {}
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @NotImplemented("animationPlayerForKey:")
-    public SCNAnimationPlayer animationPlayerForKey(String key) { return null; }
+    @NotImplemented("removeAnimationForKey:blendOutDuration:")
+    public void removeAnimationForKey(String key, @MachineSizedFloat double duration) {}
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @NotImplemented("removeAnimationForKey:blendOutDuration:")
-    public void removeAnimationForKey(String key, @MachineSizedFloat double duration) {}
+    @NotImplemented("animationPlayerForKey:")
+    public SCNAnimationPlayer animationPlayerForKey(String key) { return null; }
     /**
      * @deprecated Deprecated in iOS 11.0. Use -removeAnimationForKey:blendOutDuration:
      */

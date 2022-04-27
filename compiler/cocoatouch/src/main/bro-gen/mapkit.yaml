@@ -1,5 +1,5 @@
 package: org.robovm.apple.mapkit
-include: [foundation.yaml, coregraphics.yaml, corelocation.yaml, uikit.yaml, dispatch.yaml]
+include: [foundation, coregraphics, corelocation, uikit, dispatch, coreanimation]
 library: MapKit
 framework: MapKit
 clang_args: ['-x', 'objective-c']
@@ -8,7 +8,7 @@ headers:
     - /System/Library/Frameworks/MapKit.framework/Headers/MKFoundation.h
 typedefs:
     'void (^)(NSData *, NSError *)': '@Block VoidBlock2<NSData, NSError>'
-    
+
 enums:
     MKAnnotationViewDragState: {}
     MKDirectionsTransportType: {}
@@ -31,7 +31,6 @@ typed_enums:
         enum: MKPointOfInterestCategory
         prefix: MKPointOfInterestCategory
         type: NSString
-
 categories:
     NSValueMapKitGeometryExtensions: # DONE
         methods:
@@ -123,6 +122,8 @@ classes:
     MKLocalSearch: # DONE
         methods:
             '-initWithRequest:':
+                name: init
+            '-initWithPointsOfInterestRequest:':
                 name: init
             '-startWithCompletionHandler:':
                 name: start
@@ -573,6 +574,17 @@ classes:
                 static_constructor_name: createIncludingCategories
             '-initExcludingCategories:':
                 static_constructor_name: createExcludingCategories
+    MKGradientPolylineRenderer: #since 14.0
+        methods:
+            '-setColors:atLocations:':
+                name: setColors
+    MKLocalPointsOfInterestRequest: #since 14.0
+        methods:
+            '-initWithCenterCoordinate:radius:':
+                name: init
+            '-initWithCoordinateRegion:':
+                name: init
+    MKUserLocationView: {} #since 14.0
 protocols:
     MKAnnotation: {} # DONE
     MKMapViewDelegate: # DONE
@@ -835,6 +847,10 @@ values:
         class: MKMapCameraZoomRange
         name: getCameraZoomDefault
 
+    MKPointsOfInterestRequestMaxRadius:
+        class: MKPointsOfInterestRequest
+        name: getMaxRadius
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MK.*):
         class: MapKit
@@ -843,6 +859,9 @@ values:
 constants:
     MKFeatureDisplayPriority(.*):
         class: MKFeatureDisplayPriority
+        name: '#{g[0]}'
+    MKAnnotationViewZPriority(.*):
+        class: MKAnnotationViewZPriority
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

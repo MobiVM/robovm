@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,7 +62,8 @@ import org.robovm.apple.imageio.*;
     public ARSCNPlaneGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -68,5 +71,9 @@ import org.robovm.apple.imageio.*;
     public native void updateFromPlaneGeometry(ARPlaneGeometry planeGeometry);
     @Method(selector = "planeGeometryWithDevice:")
     protected static native @Pointer long create(MTLDevice device);
+    @Method(selector = "geometry")
+    public static native ARSCNPlaneGeometry createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native ARSCNPlaneGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

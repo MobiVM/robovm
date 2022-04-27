@@ -60,6 +60,11 @@ import org.robovm.apple.fileprovider.*;
     public native CKRecordZoneID getZoneID();
     @Property(selector = "capabilities")
     public native CKRecordZoneCapabilities getCapabilities();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "share")
+    public native CKReference getShare();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

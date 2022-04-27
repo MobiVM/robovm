@@ -12,14 +12,22 @@ enums:
     NFCTagType: {}
     NFCTypeNameFormat: {}
     NFCPollingOption: {prefix: NFCPolling}
-    RequestFlag: {}
     NFCNDEFStatus: {}
-    PollingRequestCode: {}
-    PollingTimeSlot: {}
-    EncryptionId: {}
     NFCMiFareFamily: {prefix: NFCMiFare}
-    VASMode: {}
-    VASErrorCode: {}
+    NFCISO15693RequestFlag: {'NFCISO15693RequestFlag(.*)' : '#{g[0]}', ignore: '^RequestFlag(.*)'} #since 14.0
+    NFCISO15693ResponseFlag: {} #since 14.0
+    NFCFeliCaPollingRequestCode:  {'NFCFeliCaPollingRequestCode(.*)' : '#{g[0]}', ignore: '^PollingRequestCode(.*)'} #since 14.0
+    NFCFeliCaPollingTimeSlot: {'NFCFeliCaPollingTimeSlot(.*)' : '#{g[0]}', ignore: '^PollingTimeSlot(.*)'} #since 14.0
+    NFCFeliCaEncryptionId: {'NFCFeliCaEncryptionId(.*)' : '#{g[0]}', ignore: '^EncryptionId(.*)'}
+    NFCVASMode: {} #since 13.0
+    NFCVASErrorCode: {'NFCVASErrorCode(.*)' : '#{g[0]}', ignore: '^VASErrorCode(.*)'} #since 13.0
+
+    PollingRequestCode: { exclude: true }  # as api changed to NFCFeliCaPollingRequestCode
+    PollingTimeSlot: { exclude: true }  # as api changed to NFCFeliCaPollingTimeSlot
+    RequestFlag: { exclude: true }  # as api changed to NFCISO15693RequestFlag
+    EncryptionId: { exclude: true }  # as api changed to NFCFeliCaEncryptionId
+    VASMode: { exclude: true }       # as api changed to NFCVASMode
+    VASErrorCode: { exclude: true }  # as api changed to NFCVASErrorCode
 
 categories:
     NSUserActivity: {}
@@ -144,6 +152,28 @@ protocols:
                 name: extendedLockBlock
             '-extendedReadMultipleBlocksWithRequestFlags:blockRange:completionHandler:':
                 name: extendedReadMultipleBlocks
+            '-lockDSFIDWithRequestFlag:completionHandler:':
+                name: lockDSFID
+            '-getSystemInfoAndUIDWithRequestFlag:completionHandler:':
+                name: getSystemInfoAndUID
+            '-fastReadMultipleBlocksWithRequestFlag:blockRange:completionHandler:':
+                name: fastReadMultipleBlocks
+            '-extendedWriteMultipleBlocksWithRequestFlags:blockRange:dataBlocks:completionHandler:':
+                name: extendedWriteMultipleBlocks
+            '-authenticateWithRequestFlags:cryptoSuiteIdentifier:message:completionHandler:':
+                name: authenticate
+            '-keyUpdateWithRequestFlags:keyIdentifier:message:completionHandler:':
+                name: keyUpdate
+            '-challengeWithRequestFlags:cryptoSuiteIdentifier:message:completionHandler:':
+                name: challenge
+            '-readBufferWithRequestFlags:completionHandler:':
+                name: readBuffer
+            '-extendedGetMultipleBlockSecurityStatusWithRequestFlag:blockRange:completionHandler:':
+                name: extendedGetMultipleBlockSecurityStatus
+            '-extendedFastReadMultipleBlocksWithRequestFlag:blockRange:completionHandler:':
+                name: extendedFastReadMultipleBlocks
+            '-sendRequestWithFlag:commandCode:data:completionHandler:':
+                name: sendRequest
     NFCNDEFReaderSessionDelegate: #since 11.0
         methods:
             '-readerSession:didInvalidateWithError:':

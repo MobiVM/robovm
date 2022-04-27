@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,26 +57,26 @@ import org.robovm.apple.uikit.*;
      */
     @NotImplemented("match:didReceiveData:forRecipient:fromRemotePlayer:")
     public void didReceiveData(GKMatch match, NSData data, GKPlayer recipient, GKPlayer player) {}
-    /**
-     * @deprecated Deprecated in iOS 8.0. use match:didReceiveData:fromRemotePlayer:
-     */
-    @Deprecated
-    @NotImplemented("match:didReceiveData:fromPlayer:")
-    public void didReceiveData(GKMatch match, NSData data, String playerID) {}
     @NotImplemented("match:player:didChangeConnectionState:")
     public void didChangeConnectionState(GKMatch match, GKPlayer player, GKPlayerConnectionState state) {}
-    /**
-     * @deprecated Deprecated in iOS 8.0. use match:player:didChangeConnectionState:
-     */
-    @Deprecated
-    @NotImplemented("match:player:didChangeState:")
-    public void didChangeState(GKMatch match, String playerID, GKPlayerConnectionState state) {}
     @NotImplemented("match:didFailWithError:")
     public void didFail(GKMatch match, NSError error) {}
     @NotImplemented("match:shouldReinviteDisconnectedPlayer:")
     public boolean shouldReinviteDisconnectedPlayer(GKMatch match, GKPlayer player) { return false; }
     /**
-     * @deprecated Deprecated in iOS 8.0. use shouldReinviteDisconnectedPlayer:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use match:didReceiveData:fromRemotePlayer:
+     */
+    @Deprecated
+    @NotImplemented("match:didReceiveData:fromPlayer:")
+    public void didReceiveData(GKMatch match, NSData data, String playerID) {}
+    /**
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use match:player:didChangeConnectionState:
+     */
+    @Deprecated
+    @NotImplemented("match:player:didChangeState:")
+    public void didChangeState(GKMatch match, String playerID, GKPlayerConnectionState state) {}
+    /**
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use shouldReinviteDisconnectedPlayer:
      */
     @Deprecated
     @NotImplemented("match:shouldReinvitePlayer:")

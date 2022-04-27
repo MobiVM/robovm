@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INNoteContentResolutionResult disambiguation(NSArray<INNoteContent> noteContentsToDisambiguate);
     @Method(selector = "confirmationRequiredWithNoteContentToConfirm:")
     public static native INNoteContentResolutionResult confirmation(INNoteContent noteContentToConfirm);
+    @Method(selector = "needsValue")
+    public static native INNoteContentResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INNoteContentResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INNoteContentResolutionResult unsupported();
     /*</methods>*/
 }

@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithSize:")
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
-    public SKScene(NSCoder decoder) { super(decoder); }
+    public SKScene(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")
@@ -109,6 +110,8 @@ import org.robovm.apple.metal.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.Marshaler.class) SKPhysicsWorld getPhysicsWorld();
     @Property(selector = "view")
     public native SKView getView();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

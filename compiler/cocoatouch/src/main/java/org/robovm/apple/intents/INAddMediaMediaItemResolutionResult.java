@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,7 +60,21 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithMediaItemResolutionResult:")
     protected native @Pointer long init(INMediaItemResolutionResult mediaItemResolutionResult);
+    @Method(selector = "successesWithResolvedMediaItems:")
+    public static native NSArray<INAddMediaMediaItemResolutionResult> successes(NSArray<INMediaItem> resolvedMediaItems);
     @Method(selector = "unsupportedForReason:")
     public static native INAddMediaMediaItemResolutionResult unsupportedForReason(INAddMediaMediaItemUnsupportedReason reason);
+    @Method(selector = "successWithResolvedMediaItem:")
+    public static native INAddMediaMediaItemResolutionResult success(INMediaItem resolvedMediaItem);
+    @Method(selector = "disambiguationWithMediaItemsToDisambiguate:")
+    public static native INAddMediaMediaItemResolutionResult disambiguation(NSArray<INMediaItem> mediaItemsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithMediaItemToConfirm:")
+    public static native INAddMediaMediaItemResolutionResult confirmationRequired(INMediaItem mediaItemToConfirm);
+    @Method(selector = "needsValue")
+    public static native INAddMediaMediaItemResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INAddMediaMediaItemResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INAddMediaMediaItemResolutionResult unsupported();
     /*</methods>*/
 }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -41,7 +42,11 @@ import org.robovm.apple.corelocation.*;
 public enum /*<name>*/INMediaReference/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
-    CurrentlyPlaying(1L);
+    CurrentlyPlaying(1L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    My(2L);
     /*</values>*/
 
     /*<bind>*/

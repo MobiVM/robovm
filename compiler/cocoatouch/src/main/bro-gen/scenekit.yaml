@@ -1,5 +1,5 @@
 package: org.robovm.apple.scenekit
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml, coreanimation.yaml, dispatch.yaml, glkit.yaml, spritekit.yaml, opengles.yaml, metal.yaml, avfoundation.yaml]
+include: [foundation, uikit, coregraphics, coreanimation, dispatch, glkit, spritekit, opengles, metal, avfoundation, coreanimation]
 library: SceneKit
 framework: SceneKit
 clang_args: ['-x', 'objective-c']
@@ -58,7 +58,9 @@ categories:
         properties:
             'animationEvents':
                 type: NSArray<SCNAnimationEvent>
-        
+        methods:
+            '+animationWithSCNAnimation:':
+                name: createCAAnimation
 classes:
     SCNReferenceNode: #since 9.0
         methods:
@@ -209,9 +211,9 @@ classes:
             '-geometryElementAtIndex:':
                 name: getGeometryElement
             '+geometry':
-                name: create
+                name: createGeometry
             '+geometryWithSources:elements:':
-                name: create
+                name: createGeometry
                 parameters:
                     sources:
                         type: NSArray<SCNGeometrySource>
@@ -278,6 +280,8 @@ classes:
     SCNGeometryElement: # DONE
         methods:
             '+geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:':
+                name: create
+            '+geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:':
                 name: create
     SCNGeometrySource: # DONE
         properties:
@@ -860,6 +864,8 @@ protocols:
                 name: removeAnimation
             '-setSpeed:forAnimationKey:':
                 name: setSpeed
+            '-removeAllAnimationsWithBlendOutDuration:':
+                name: removeAllAnimations
     SCNBoundingVolume: # DONE
         methods:
             '-getBoundingBoxMin:max:':

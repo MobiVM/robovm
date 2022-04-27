@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/ENDiagnosisReportType/*</name>*/ implements ValuedEnum {

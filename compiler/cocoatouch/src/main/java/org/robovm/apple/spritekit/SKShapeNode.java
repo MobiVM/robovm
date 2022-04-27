@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKShapeNode(Handle h, long handle) { super(h, handle); }
     protected SKShapeNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKShapeNode(NSCoder decoder) { super(decoder); }
+    public SKShapeNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "path")
@@ -126,6 +127,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setAttributeValues:")
     public native void setAttributeValues(NSDictionary<NSString, SKAttributeValue> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

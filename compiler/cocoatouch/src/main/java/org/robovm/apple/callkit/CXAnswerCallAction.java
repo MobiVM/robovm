@@ -55,7 +55,8 @@ import org.robovm.apple.avfoundation.*;
     public CXAnswerCallAction(NSCoder aDecoder) { super(aDecoder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

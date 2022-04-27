@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "storefront")
     public native SKStorefront getStorefront();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "transactionObservers")
+    public native NSArray<?> getTransactionObservers();
     @Property(selector = "transactions")
     public native NSArray<SKPaymentTransaction> getTransactions();
     /*</properties>*/
@@ -93,6 +99,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "showPriceConsentIfNeeded")
     public native void showPriceConsentIfNeeded();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "presentCodeRedemptionSheet")
+    public native void presentCodeRedemptionSheet();
     @Method(selector = "defaultQueue")
     public static native SKPaymentQueue getDefaultQueue();
     @Method(selector = "canMakePayments")

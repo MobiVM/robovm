@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageNormalizedHistogram(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageNormalizedHistogram(NSCoder decoder) { super(decoder); }
+    public MPSImageNormalizedHistogram(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native void setZeroHistogram(boolean v);
     @Property(selector = "histogramInfo")
     public native @ByVal MPSImageHistogramInfo getHistogramInfo();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -58,6 +58,11 @@ import org.robovm.apple.foundation.*;
     @Deprecated
     @Method(selector = "initWithType:predicate:anchor:limit:completionHandler:")
     public HKAnchoredObjectQuery(HKSampleType type, NSPredicate predicate, @MachineSizedUInt long anchor, @MachineSizedUInt long limit, @Block("(,,@MachineSizedUInt,)") VoidBlock4<HKAnchoredObjectQuery, NSArray<HKSample>, Long, NSError> handler) { super((SkipInit) null); initObject(init(type, predicate, anchor, limit, handler)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:anchor:limit:resultsHandler:")
+    public HKAnchoredObjectQuery(NSArray<HKQueryDescriptor> queryDescriptors, HKQueryAnchor anchor, @MachineSizedSInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler) { super((SkipInit) null); initObject(init(queryDescriptors, anchor, limit, handler)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -84,5 +89,10 @@ import org.robovm.apple.foundation.*;
     @Deprecated
     @Method(selector = "initWithType:predicate:anchor:limit:completionHandler:")
     protected native @Pointer long init(HKSampleType type, NSPredicate predicate, @MachineSizedUInt long anchor, @MachineSizedUInt long limit, @Block("(,,@MachineSizedUInt,)") VoidBlock4<HKAnchoredObjectQuery, NSArray<HKSample>, Long, NSError> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:anchor:limit:resultsHandler:")
+    protected native @Pointer long init(NSArray<HKQueryDescriptor> queryDescriptors, HKQueryAnchor anchor, @MachineSizedSInt long limit, @Block VoidBlock5<HKAnchoredObjectQuery, NSArray<HKSample>, NSArray<HKDeletedObject>, HKQueryAnchor, NSError> handler);
     /*</methods>*/
 }

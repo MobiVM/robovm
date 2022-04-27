@@ -68,6 +68,21 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<SectionIdentifierType> getSectionIdentifiers();
     @Property(selector = "itemIdentifiers")
     public native NSArray<ItemIdentifierType> getItemIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "reloadedSectionIdentifiers")
+    public native NSArray<SectionIdentifierType> getReloadedSectionIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "reloadedItemIdentifiers")
+    public native NSArray<ItemIdentifierType> getReloadedItemIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "reconfiguredItemIdentifiers")
+    public native NSArray<ItemIdentifierType> getReconfiguredItemIdentifiers();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -99,8 +114,13 @@ import org.robovm.apple.linkpresentation.*;
     public native void moveItemAfterItem(ItemIdentifierType fromIdentifier, ItemIdentifierType toIdentifier);
     @Method(selector = "reloadItemsWithIdentifiers:")
     public native void reloadItems(NSArray<ItemIdentifierType> identifiers);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "reconfigureItemsWithIdentifiers:")
+    public native void reconfigureItems(NSArray<ItemIdentifierType> identifiers);
     @Method(selector = "appendSectionsWithIdentifiers:")
-    public native void appendSections(NSArray<?> sectionIdentifiers);
+    public native void appendSections(NSArray<SectionIdentifierType> sectionIdentifiers);
     @Method(selector = "insertSectionsWithIdentifiers:beforeSectionWithIdentifier:")
     public native void insertSectionsBeforeSection(NSArray<SectionIdentifierType> sectionIdentifiers, SectionIdentifierType toSectionIdentifier);
     @Method(selector = "insertSectionsWithIdentifiers:afterSectionWithIdentifier:")

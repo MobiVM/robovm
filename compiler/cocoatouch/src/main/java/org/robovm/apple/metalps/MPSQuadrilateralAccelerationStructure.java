@@ -58,13 +58,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSQuadrilateralAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super(aDecoder, group); }
     @Method(selector = "initWithCoder:")
-    public MPSQuadrilateralAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSQuadrilateralAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "quadrilateralCount")
     public native @MachineSizedUInt long getQuadrilateralCount();
     @Property(selector = "setQuadrilateralCount:")
     public native void setQuadrilateralCount(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

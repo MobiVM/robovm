@@ -86,7 +86,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSObject addObserver(String name, NSObject object, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block) {
+    public NSObjectProtocol addObserver(String name, NSObject object, NSOperationQueue queue, @Block VoidBlock1<NSNotification> block) {
         return addObserver(new NSString(name), object, queue, block);
     }
     /*<methods>*/

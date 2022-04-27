@@ -43,6 +43,7 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -364,7 +365,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     }
 
     protected String getRoboVMVersion() {
-        return Version.getVersion();
+        return Version.getCompilerVersion();
     }
 
     protected File unpackRoboVMDist() throws MojoExecutionException {

@@ -65,10 +65,14 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitConcentrationMass getGramsPerLiter();
     @Property(selector = "milligramsPerDeciliter")
     public static native NSUnitConcentrationMass getMilligramsPerDeciliter();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "millimolesPerLiterWithGramsPerMole:")
     public static native NSUnitConcentrationMass convertGramsPerMoleToMillimolesPerLiter(double gramsPerMole);
+    @Method(selector = "baseUnit")
+    public static native NSUnitConcentrationMass getBaseUnit();
     /*</methods>*/
 }

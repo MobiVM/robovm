@@ -1,0 +1,45 @@
+package: org.robovm.apple.appclip
+include: [foundation, corelocation]
+library: AppClip
+framework: AppClip
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AppClip.framework/Headers/AppClip.h
+
+typedefs:
+    
+enums:
+    APActivationPayloadErrorCode: {nserror: true} #since 14.0
+
+categories:
+    AppClip@NSUserActivity: {}
+
+classes:
+    APActivationPayload: #since 14.0
+        methods:
+            '-confirmAcquiredInRegion:completionHandler:':
+                name: confirmAcquiredInRegion
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AP.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    APActivationPayloadErrorDomain:
+        class: APActivationPayloadErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AP.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AP.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

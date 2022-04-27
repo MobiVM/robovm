@@ -102,10 +102,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedFloat double getReflectionResolutionScaleFactor();
     @Property(selector = "setReflectionResolutionScaleFactor:")
     public native void setReflectionResolutionScaleFactor(@MachineSizedFloat double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "floor")
     public static native SCNFloor create();
+    @Method(selector = "geometry")
+    public static native SCNFloor createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNFloor createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

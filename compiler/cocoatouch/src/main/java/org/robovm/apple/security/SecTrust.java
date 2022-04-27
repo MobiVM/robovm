@@ -254,8 +254,17 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 12.0 and later.
      */
+    public boolean evaluateWithError() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = evaluateWithError(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     @Bridge(symbol="SecTrustEvaluateWithError", optional=true)
-    public native boolean evaluateWithError(NSError error);
+    private native boolean evaluateWithError(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -263,16 +272,33 @@ import org.robovm.apple.dispatch.*;
     public native OSStatus evaluateAsyncWithError(DispatchQueue queue, @Block VoidBlock3<SecTrust, Boolean, NSError> result);
     @Bridge(symbol="SecTrustGetTrustResult", optional=true)
     protected native OSStatus getTrustResult0(IntPtr result);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use SecTrustCopyKey
+     */
+    @Deprecated
     @Bridge(symbol="SecTrustCopyPublicKey", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) SecKey getPublicKey();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="SecTrustCopyKey", optional=true)
+    public native SecKey copyKey();
     @Bridge(symbol="SecTrustGetCertificateCount", optional=true)
     public native @MachineSizedSInt long getCertificateCount();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecTrustCopyCertificateChain
+     */
+    @Deprecated
     @Bridge(symbol="SecTrustGetCertificateAtIndex", optional=true)
     public native SecCertificate getCertificate(@MachineSizedSInt long ix);
     @Bridge(symbol="SecTrustCopyExceptions", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getExceptions();
     @Bridge(symbol="SecTrustSetExceptions", optional=true)
     public native boolean setExceptions(NSData exceptions);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use SecTrustEvaluateWithError
+     */
+    @Deprecated
     @Bridge(symbol="SecTrustCopyProperties", optional=true)
     public native SecTrustProperties getProperties();
     @Bridge(symbol="SecTrustCopyResult", optional=true)
@@ -280,6 +306,11 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecTrustSetOCSPResponse", optional=true)
     protected native OSStatus setOCSPResponse0(CFType responseData);
     @Bridge(symbol="SecTrustSetSignedCertificateTimestamps", optional=true)
-    public native OSStatus setSignedCertificateTimestamps(NSArray<?> sctArray);
+    public native OSStatus setSignedCertificateTimestamps(NSArray sctArray);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="SecTrustCopyCertificateChain", optional=true)
+    public native NSArray copyCertificateChain();
     /*</methods>*/
 }

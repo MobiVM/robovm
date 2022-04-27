@@ -29,9 +29,11 @@ import org.gradle.api.GradleException;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.TaskAction;
+import org.gradle.api.tasks.Internal;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -73,6 +75,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     protected final RepositorySystem repositorySystem;
     protected final RepositorySystemSession repositorySystemSession;
     protected final List<RemoteRepository> remoteRepositories;
+    @Internal
     protected Logger roboVMLogger;
 
     public AbstractRoboVMTask() {
@@ -240,8 +243,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             if (getLogger().isDebugEnabled()) {
                 getLogger().debug("Including classpath element for RoboVM app: " + classpathEntry.getAbsolutePath());
             }
-
-            builder.addClasspathEntry(classpathEntry);
+            if(classpathEntry.exists()) {
+                builder.addClasspathEntry(classpathEntry);
+            }
         }
 
         return builder;

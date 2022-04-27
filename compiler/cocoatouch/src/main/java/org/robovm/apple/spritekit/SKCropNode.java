@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,13 +56,15 @@ import org.robovm.apple.metal.*;
     protected SKCropNode(Handle h, long handle) { super(h, handle); }
     protected SKCropNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKCropNode(NSCoder decoder) { super(decoder); }
+    public SKCropNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "maskNode")
     public native SKNode getMaskNode();
     @Property(selector = "setMaskNode:")
     public native void setMaskNode(SKNode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

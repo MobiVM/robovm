@@ -70,10 +70,14 @@ import org.robovm.apple.metal.*;
     public native CAValueFunction getValueFunction();
     @Property(selector = "setValueFunction:")
     public native void setValueFunction(CAValueFunction v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "animationWithKeyPath:")
     protected static native @Pointer long create(String path);
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

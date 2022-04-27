@@ -111,9 +111,33 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVAudioSessionPort BluetoothHFP = new AVAudioSessionPort("BluetoothHFP");
     public static final AVAudioSessionPort USBAudio = new AVAudioSessionPort("USBAudio");
     public static final AVAudioSessionPort CarAudio = new AVAudioSessionPort("CarAudio");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort Virtual = new AVAudioSessionPort("Virtual");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort PCI = new AVAudioSessionPort("PCI");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort FireWire = new AVAudioSessionPort("FireWire");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort DisplayPort = new AVAudioSessionPort("DisplayPort");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort AVB = new AVAudioSessionPort("AVB");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVAudioSessionPort Thunderbolt = new AVAudioSessionPort("Thunderbolt");
     /*</constants>*/
     
-    private static /*<name>*/AVAudioSessionPort/*</name>*/[] values = new /*<name>*/AVAudioSessionPort/*</name>*/[] {/*<value_list>*/LineIn, BuiltInMic, HeadsetMic, LineOut, Headphones, BluetoothA2DP, BuiltInReceiver, BuiltInSpeaker, HDMI, AirPlay, BluetoothLE, BluetoothHFP, USBAudio, CarAudio/*</value_list>*/};
+    private static /*<name>*/AVAudioSessionPort/*</name>*/[] values = new /*<name>*/AVAudioSessionPort/*</name>*/[] {/*<value_list>*/LineIn, BuiltInMic, HeadsetMic, LineOut, Headphones, BluetoothA2DP, BuiltInReceiver, BuiltInSpeaker, HDMI, AirPlay, BluetoothLE, BluetoothHFP, USBAudio, CarAudio, Virtual, PCI, FireWire, DisplayPort, AVB, Thunderbolt/*</value_list>*/};
     
     /*<name>*/AVAudioSessionPort/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -164,6 +188,36 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString USBAudio();
         @GlobalValue(symbol="AVAudioSessionPortCarAudio", optional=true)
         public static native NSString CarAudio();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortVirtual", optional=true)
+        public static native NSString Virtual();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortPCI", optional=true)
+        public static native NSString PCI();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortFireWire", optional=true)
+        public static native NSString FireWire();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortDisplayPort", optional=true)
+        public static native NSString DisplayPort();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortAVB", optional=true)
+        public static native NSString AVB();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortThunderbolt", optional=true)
+        public static native NSString Thunderbolt();
         /*</values>*/
     }
 }

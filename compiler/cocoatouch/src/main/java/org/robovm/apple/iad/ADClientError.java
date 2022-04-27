@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.mediaplayer.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.avkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +60,10 @@ import org.robovm.apple.avkit.*;
         }
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 15.0.
+     */
+    @Deprecated
     @GlobalValue(symbol="ADClientErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -9,12 +9,11 @@ typedefs:
 
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
-    '__CFRunLoop *': NSRunLoop
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
+    '__CFRunLoop': NSRunLoop
 
 enums:
     AudioBytePacketTranslationFlags: {prefix: kBytePacketTranslationFlag_, bits: true}
@@ -73,12 +72,12 @@ enums:
     AudioSessionProperty: {first: kAudioSessionProperty_PreferredHardwareSampleRate}
     AUGraphErrorCode: {first: kAUGraphErr_NodeNotFound}
     AUNodeInteractionType: {first: kAUNodeInteraction_Connection}
-    CAFFileHeaderInfo: {first: kCAF_FileType}
-    CAFChunkType: {first: kCAF_StreamDescriptionChunkID}
-    CAFFormatFlags: {kCAF(LinearPCM)FormatFlag(.*): '#{g[0]}#{g[1]}'}
-    CAFMarkerType: {first: kCAFMarkerType_Generic}
+    CAFFileHeaderInfo: {first: kCAF_FileType, exclude: true}
+    CAFChunkType: {first: kCAF_StreamDescriptionChunkID, exclude: true}
+    CAFFormatFlags: {kCAF(LinearPCM)FormatFlag(.*): '#{g[0]}#{g[1]}', exclude: true}
+    CAFMarkerType: {first: kCAFMarkerType_Generic, exclude: true}
     CAFSMPTETimeType: {first: kCAF_SMPTE_TimeTypeNone}
-    CAFRegionFlags: {}
+    CAFRegionFlags: { exclude: true }
     ExtAudioFileProperty: {first: kExtAudioFileProperty_FileDataFormat}
     ExtAudioFileErrorCode: {first: kExtAudioFileError_CodecUnavailableInputConsumed}
     MusicEventType: {first: kMusicEventType_NULL}
@@ -99,6 +98,7 @@ enums:
     AUTypeMusicDevice: {first: kAudioUnitSubType_Sampler}
     AUTypeConverter: {first: kAudioUnitSubType_AUConverter}
     AUTypeConverter2: {first: kAudioUnitSubType_AUiPodTime, prefix: kAudioUnitSubType_, merge_with: AUTypeConverter}
+    AUTypeConverter3: {first: kAudioUnitSubType_TimePitch, prefix: kAudioUnitSubType_, merge_with: AUTypeConverter}
     AUTypeEffect: {first: kAudioUnitSubType_PeakLimiter}
     AUTypeEffect2: {first: kAudioUnitSubType_Reverb2, merge_with: AUTypeEffect}
     AUTypeEffect3: {prefix: kAudioUnitSubType_, first: kAudioUnitSubType_AUiPodEQ, merge_with: AUTypeEffect}
@@ -147,6 +147,7 @@ enums:
     AUVoiceIOProperty: {first: kAUVoiceIOProperty_BypassVoiceProcessing}
     AUVoiceIOProperty2: {first: kAUVoiceIOProperty_DuckNonVoiceAudio, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
     AUVoiceIOProperty3: {first: kAUVoiceIOProperty_VoiceProcessingQuality, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
+    AUVoiceIOProperty4: {first: kAUVoiceIOProperty_MutedSpeechActivityEventListener, prefix: kAUVoiceIOProperty_, merge_with: AUVoiceIOProperty}
     AUNBandEQProperty: {first: kAUNBandEQProperty_NumberOfBands}
     AUMIDISynthProperty: {first: kAUMIDISynthProperty_EnablePreload, prefix: kAUMIDISynthProperty_}
     AUSamplerProperty: {first: kAUSamplerProperty_LoadInstrument}
@@ -169,7 +170,7 @@ enums:
     AUSamplerBank: {first: kAUSampler_DefaultPercussionBankMSB}
     MusicDeviceSelector: {first: kMusicDeviceRange, suffix: Select, ignore: kMusicDeviceRange}
     AudioComponentValidationResult: {}
-    AudioComponentInstantiationOptions: {}
+    AudioComponentInstantiationOptions: {prefix: kAudioComponentInstantiation_}
     AUAudioUnitBusType: {}
     AUHostTransportStateFlags: {bits: true}
     AURenderEventType: {}
@@ -178,6 +179,7 @@ enums:
     AUErrors: {first: kAudioUnitErr_IllegalInstrument, prefix: kAudioUnitErr_}
     AudioFileStreamParseFlags: {prefix: kAudioFileStreamParseFlag_}
     AudioFileStreamSeekFlags: {prefix: kAudioFileStreamSeekFlag_}
+    ExtAudioFilePacketTableInfoOverride: {prefix: kExtAudioFilePacketTableInfoOverride_UseFileValue, first: kExtAudioFilePacketTableInfoOverride_UseFileValue}
     # ios13 activities
     AudioCodecGlobalProperty: {prefix: kAudioCodecProperty, first: kAudioCodecPropertySupportedInputFormats}
     AudioCodecInstanceProperty: {prefix: kAudioCodecProperty, first: kAudioCodecPropertyInputBufferSize}
@@ -199,6 +201,11 @@ enums:
     AudioCodecOutputPrecedence: {prefix: kAudioCodecOutputPrecedence, first: kAudioCodecOutputPrecedenceNone}
     AudioCodecSettingsHint: {prefix: kHint, first: kHintBasic}
     ExtAudioFileError: {prefix: kExtAudioFileError_, first: kExtAudioFileError_InvalidProperty}
+    AUVoiceIOSpeechActivityEvent: { prefix: kAUVoiceIOSpeechActivity }
+    AUSpatialMixerSourceMode: {prefix: kSpatialMixerSourceMode_}
+    AUSpatialMixerOutputType: {prefix: kSpatialMixerOutputType_}
+    AUSpatialMixerPointSourceInHeadMode: {prefix: kSpatialMixerPointSourceInHeadMode_}
+
     # excludes as either deprecated or not to be used
     Excluded2: {prefix: kNumberOfResponseFrequencies, first: kNumberOfResponseFrequencies, exclude: true}
     # Excluded3: {prefix: kAudioUnitParameterName_Full, first: kAudioUnitParameterName_Full, exclude: true} -- will convert to constant
@@ -253,6 +260,8 @@ classes:
     MusicTrack: {}
 
     # Structs
+    AUMIDIEventList:
+        annotations: ['@Packed(4)']
     AURecordedParameterEvent: {}
     AUMIDIEvent:
         annotations: ['@Packed(4)']
@@ -470,191 +479,27 @@ classes:
     CABarBeatTime: # DONE
         reserved:
             visibility: private
-    CAFAudioDescription: # DONE
-        mSampleRate:
-            name: sampleRate
-        mFormatID:
-            name: format
-            type: AudioFormat
-        mFormatFlags:
-            name: formatFlags
-            type: CAFFormatFlags
-        mBytesPerPacket:
-            name: bytesPerPacket
-        mFramesPerPacket:
-            name: framesPerPacket
-        mChannelsPerFrame:
-            name: channelsPerFrame
-        mBitsPerChannel:
-            name: bitsPerChannel
-    CAFAudioFormatListItem: # DONE
-        mFormat:
-            name: format
-        mChannelLayoutTag:
-            name: channelLayoutTag
-    CAFChunkHeader: # DONE
-        mChunkType:
-            name: chunkType
-            type: CAFChunkType
-        mChunkSize:
-            name: chunkSize
-    CAFDataChunk: # DONE
-        mEditCount:
-            name: editCount
-        mData:
-            exclude: true
-            name: data
-            type: BytePtr
-            visibility: protected
-    CAFFileHeader: # DONE
-        skip_def_constructor: true
-        mFileType:
-            exclude: true
-            name: fileType
-            type: AudioFileType
-        mFileVersion:
-            exclude: true
-            name: fileVersion
-        mFileFlags:
-            exclude: true
-            name: fileFlags
-    CAFInfoStrings: # DONE
-        exclude: true
-    CAFInstrumentChunk: # DONE
-        mBaseNote:
-            name: baseNote
-        mMIDILowNote:
-            name: MIDILowNote
-        mMIDIHighNote:
-            name: MIDIHighNote
-        mMIDILowVelocity:
-            name: MIDILowVelocity
-        mMIDIHighVelocity:
-            name: MIDIHighVelocity
-        mdBGain:
-            name: dBGain
-        mStartRegionID:
-            name: startRegionID
-        mSustainRegionID:
-            name: sustainRegionID
-        mReleaseRegionID:
-            name: releaseRegionID
-        mInstrumentID:
-            name: instrumentID
-    CAFMarker: # DONE
-        mType:
-            name: type
-            type: CAFMarkerType
-        mFramePosition:
-            name: framePosition
-        mMarkerID:
-            name: markerID
-        mSMPTETime:
-            name: SMPTETime
-        mChannel:
-            name: channel
-    CAFMarkerChunk: # DONE
-        mSMPTE_TimeType:
-            name: SMPTETimeType
-            type: CAFSMPTETimeType
-        mNumberMarkers:
-            name: numberMarkers
-            visibility: protected
-        mMarkers:
-            name: markers0
-            type: CAFMarker.CAFMarkerPtr
-            visibility: protected
-    CAFOverviewChunk: # DONE
-        mEditCount:
-            name: editCount
-        mNumFramesPerOVWSample:
-            name: numFramesPerOVWSample
-        mData:
-            exclude: true
-            name: data
-            type: CAFOverviewSample.CAFOverviewSamplePtr
-            visibility: protected
-    CAFOverviewSample: # DONE
-        mMinValue:
-            name: minValue
-        mMaxValue:
-            name: maxValue
-    CAFPacketTableHeader: # DONE
-        mNumberPackets:
-            name: numberPackets
-            visibility: protected
-        mNumberValidFrames:
-            name: numberValidFrames
-        mPrimingFrames:
-            name: primingFrames
-        mRemainderFrames:
-            name: remainderFrames
-        mPacketDescriptions:
-            name: packetDescriptions0
-            type: BytePtr
-            visibility: protected
-    CAFPeakChunk: # DONE
-        mEditCount:
-            name: editCount
-        mPeaks:
-            exclude: true
-            name: peaks
-            type: CAFPositionPeak.CAFPositionPeakPtr
-            visibility: protected
-    CAFPositionPeak: # DONE
-        mValue:
-            name: value
-        mFrameNumber:
-            name: frameNumber
-    CAFRegion: # DONE
-        mRegionID:
-            name: regionID
-        mFlags:
-            name: flags
-            type: CAFRegionFlags
-        mNumberMarkers:
-            name: numberMarkers
-            visibility: protected
-        mMarkers:
-            name: markers0
-            type: CAFMarker.CAFMarkerPtr
-            visibility: protected
-    CAFRegionChunk: # DONE
-        mSMPTE_TimeType:
-            name: SMPTETimeType
-            type: CAFSMPTETimeType
-        mNumberRegions:
-            name: numberRegions
-            visibility: protected
-        mRegions:
-            name: regions0
-            type: CAFRegion.CAFRegionPtr
-            visibility: protected
-    CAF_SMPTE_Time: # DONE
-        name: CAFSMPTETime
-        mHours:
-            name: hours
-        mMinutes:
-            name: minutes
-        mSeconds:
-            name: seconds
-        mFrames:
-            name: frames
-        mSubFrameSampleOffset:
-            name: subFrameSampleOffset
-    CAFStringID: # DONE
-        exclude: true
-    CAFStrings: # DONE
-        exclude: true
-    CAFUMIDChunk: # DONE
-        mBytes:
-            name: bytes
-    CAF_UUID_ChunkHeader: # DONE
-        name: CAFUUIDChunkHeader
-        mHeader:
-            name: header
-        mUUID:
-            name: UUID
+    # CAFFile.h entries excluded as low level entries are hard to bind (and these were not usable anyway)
+    CAFAudioDescription: { exclude: true }
+    CAFAudioFormatListItem: { exclude: true }
+    CAFDataChunk: { exclude: true }
+    CAFFileHeader: { exclude: true }
+    CAFInfoStrings: { exclude: true }
+    CAFInstrumentChunk: { exclude: true }
+    CAFMarker: { exclude: true }
+    CAFMarkerChunk: { exclude: true }
+    CAFOverviewChunk: { exclude: true }
+    CAFOverviewSample: { exclude: true }
+    CAFPacketTableHeader: { exclude: true }
+    CAFPeakChunk: { exclude: true }
+    CAFPositionPeak: { exclude: true }
+    CAFRegion: { exclude: true }
+    CAFRegionChunk: { exclude: true }
+    CAF_SMPTE_Time: { exclude: true }
+    CAFStringID: { exclude: true }
+    CAFStrings: { exclude: true }
+    CAFUMIDChunk: { exclude: true }
+    CAF_UUID_ChunkHeader: { exclude: true }
     ExtendedAudioFormatInfo: # DONE
         mASBD:
             name: ASBD
@@ -896,6 +741,11 @@ classes:
             exclude: true
     # added during ios11 bindings
     AUAudioUnit: #since 9.0
+        properties:
+            osWorkgroup:
+                exclude: true # TODO: not supported yet (check dispatch)
+            renderContextObserver:
+                exclude: true # TODO: not supported yet (check dispatch)
         methods:
             '-initWithComponentDescription:options:error:':
                 throws: NSErrorException
@@ -1680,6 +1530,9 @@ functions:
         name: '#{g[0]}0'
         visibility: protected
 
+    AudioWorkIntervalCreate:
+        exclude: true # as workgroups are not supported
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AU.*):
         class: AudioUnitGlobals
@@ -1734,7 +1587,29 @@ constants:
         class: AUParameterNameInfo
         name: FullNameLength
 
+    kSampleDelayParam_DelayFrames:
+        exclude: true
+
+    kAUPreset(.*):
+        class: AudioToolbox
+        static_class: Presets
+        name: '#{g[0]}'
+
+    kInstrumentInfoKey_(.*):
+        class: AudioToolbox
+        static_class: InstrumentInfoKeys
+        name: '#{g[0]}'
+
+    kAFInfoDictionary_(.*):
+        class: AudioFile
+        static_class: InfoDictionaryKeys
+        name: '#{g[0]}'
+
+    kMusicTimeStamp_EndOfTrack:
+        class: AudioToolbox
+        name: EndOfTrackTimeStamp
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?Audio.*):
+    (k.*):
         class: AudioToolbox
         name: 'Constant__#{g[0]}'

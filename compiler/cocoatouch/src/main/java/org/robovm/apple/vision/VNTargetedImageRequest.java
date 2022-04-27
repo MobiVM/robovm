@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -93,9 +94,43 @@ import org.robovm.apple.imageio.*;
     public VNTargetedImageRequest(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(imageData, orientation, options)); }
     @Method(selector = "initWithTargetedImageData:orientation:options:completionHandler:")
     public VNTargetedImageRequest(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(imageData, orientation, options, completionHandler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:")
+    public VNTargetedImageRequest(CMSampleBuffer sampleBuffer, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, options)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:completionHandler:")
+    public VNTargetedImageRequest(CMSampleBuffer sampleBuffer, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(sampleBuffer, options, completionHandler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:")
+    public VNTargetedImageRequest(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, orientation, options)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:completionHandler:")
+    public VNTargetedImageRequest(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(sampleBuffer, orientation, options, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -139,5 +174,25 @@ import org.robovm.apple.imageio.*;
     protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithTargetedImageData:orientation:options:completionHandler:")
     protected native @Pointer long init(NSData imageData, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, VNImageOption options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:options:completionHandler:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTargetedCMSampleBuffer:orientation:options:completionHandler:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options, @Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

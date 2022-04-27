@@ -199,6 +199,11 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "HEIFRepresentationOfImage:format:colorSpace:options:")
     public native NSData HEIFRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "HEIF10RepresentationOfImage:colorSpace:options:error:")
+    public native NSData getHEIF10Representation(CIImage image, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "PNGRepresentationOfImage:format:colorSpace:options:")
@@ -224,6 +229,11 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "writeHEIFRepresentationOfImage:toURL:format:colorSpace:options:error:")
     public native boolean writeHEIFRepresentationOfImage(CIImage image, NSURL url, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:")
+    public native boolean writeHEIF10Representation(CIImage image, NSURL url, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "depthBlurEffectFilterForImageURL:options:")
@@ -243,6 +253,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:")
     public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CIImage hairSemanticSegmentation, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Method(selector = "depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:")
+    public native CIFilter depthBlurEffectFilter(CIImage image, CIImage disparityImage, CIImage portraitEffectsMatte, CIImage hairSemanticSegmentation, CIImage glassesMatte, CIImage gainMap, CGImagePropertyOrientation orientation, NSDictionary<?, ?> options);
     /**
      * @since Available in iOS 11.0 and later.
      */

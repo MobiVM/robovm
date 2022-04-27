@@ -42,7 +42,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObject observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
+        public static NSObjectProtocol observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UserPreferencesDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -196,6 +196,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "wheelchairUseWithError:")
     private native HKWheelchairUseObject getWheelchairUse(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "activityMoveModeWithError:")
+    public native HKActivityMoveModeObject getActivityMoveMode(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
     @Method(selector = "addSamples:toWorkout:completion:")
@@ -216,5 +221,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "preferredUnitsForQuantityTypes:completion:")
     public native void getPreferredUnitsForQuantityTypes(NSSet<HKQuantityType> quantityTypes, @Block VoidBlock2<NSDictionary<HKQuantityType, HKUnit>, NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "recalibrateEstimatesForSampleType:atDate:completion:")
+    public native void recalibrateEstimates(HKSampleType sampleType, NSDate date, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

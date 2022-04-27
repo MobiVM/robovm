@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -105,9 +107,29 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "detectedBody")
     public native ARBody2D getDetectedBody();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "geoTrackingStatus")
+    public native ARGeoTrackingStatus getGeoTrackingStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sceneDepth")
+    public native ARDepthData getSceneDepth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "smoothedSceneDepth")
+    public native ARDepthData getSmoothedSceneDepth();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use [ARSession raycast:]
+     */
+    @Deprecated
     @Method(selector = "hitTest:types:")
     public native NSArray<ARHitTestResult> hitTest(@ByVal CGPoint point, ARHitTestResultType types);
     /**

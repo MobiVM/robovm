@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,6 +49,9 @@ import org.robovm.apple.coregraphics.*;
     public NSFileProviderDomain() {}
     protected NSFileProviderDomain(Handle h, long handle) { super(h, handle); }
     protected NSFileProviderDomain(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithIdentifier:displayName:pathRelativeToDocumentStorage:")
     public NSFileProviderDomain(String identifier, String displayName, String pathRelativeToDocumentStorage) { super((SkipInit) null); initObject(init(identifier, displayName, pathRelativeToDocumentStorage)); }
     /*</constructors>*/
@@ -56,11 +60,17 @@ import org.robovm.apple.coregraphics.*;
     public native String getIdentifier();
     @Property(selector = "displayName")
     public native String getDisplayName();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "pathRelativeToDocumentStorage")
     public native String getPathRelativeToDocumentStorage();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Method(selector = "initWithIdentifier:displayName:pathRelativeToDocumentStorage:")
     protected native @Pointer long init(String identifier, String displayName, String pathRelativeToDocumentStorage);
     /*</methods>*/

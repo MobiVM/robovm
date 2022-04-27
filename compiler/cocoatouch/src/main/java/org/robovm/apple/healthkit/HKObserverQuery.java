@@ -47,6 +47,11 @@ import org.robovm.apple.foundation.*;
     protected HKObserverQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSampleType:predicate:updateHandler:")
     public HKObserverQuery(HKSampleType sampleType, NSPredicate predicate, @Block("(,@Block,)") VoidBlock3<HKObserverQuery, Runnable, NSError> updateHandler) { super((SkipInit) null); initObject(init(sampleType, predicate, updateHandler)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:updateHandler:")
+    public HKObserverQuery(NSArray<HKQueryDescriptor> queryDescriptors, @Block("(,,@Block,)") VoidBlock4<HKObserverQuery, NSSet<HKSampleType>, Runnable, NSError> updateHandler) { super((SkipInit) null); initObject(init(queryDescriptors, updateHandler)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -55,5 +60,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithSampleType:predicate:updateHandler:")
     protected native @Pointer long init(HKSampleType sampleType, NSPredicate predicate, @Block("(,@Block,)") VoidBlock3<HKObserverQuery, Runnable, NSError> updateHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithQueryDescriptors:updateHandler:")
+    protected native @Pointer long init(NSArray<HKQueryDescriptor> queryDescriptors, @Block("(,,@Block,)") VoidBlock4<HKObserverQuery, NSSet<HKSampleType>, Runnable, NSError> updateHandler);
     /*</methods>*/
 }

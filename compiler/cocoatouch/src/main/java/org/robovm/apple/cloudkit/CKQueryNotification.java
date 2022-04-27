@@ -57,12 +57,6 @@ import org.robovm.apple.fileprovider.*;
     @Property(selector = "recordID")
     public native CKRecordID getRecordID();
     /**
-     * @deprecated Deprecated in iOS 10.0. Use databaseScope instead
-     */
-    @Deprecated
-    @Property(selector = "isPublicDatabase")
-    public native boolean isPublicDatabase();
-    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "databaseScope")

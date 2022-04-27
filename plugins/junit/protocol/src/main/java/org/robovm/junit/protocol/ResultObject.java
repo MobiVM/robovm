@@ -30,7 +30,7 @@ public class ResultObject {
 
     static Gson gson = new GsonBuilder()
         .registerTypeAdapter(Description.class, new DescriptionTypeAdapter())
-        .registerTypeAdapter(Throwable.class, new ThrowableTypeAdapter())
+        .registerTypeHierarchyAdapter(Throwable.class, new ThrowableTypeAdapter())
         .create();
     
     ResultType resultType;

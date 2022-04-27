@@ -41,7 +41,21 @@ public enum /*<name>*/ILMessageFilterAction/*</name>*/ implements ValuedEnum {
     /*<values>*/
     None(0L),
     Allow(1L),
-    Filter(2L);
+    Junk(2L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use ILMessageFilterActionJunk
+     */
+    @Deprecated
+    Filter(2L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Promotion(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Transaction(4L);
     /*</values>*/
 
     /*<bind>*/

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,6 +52,16 @@ import org.robovm.apple.coregraphics.*;
     public NSString getParentItemIdentifier() { return null; }
     @NotImplemented("filename")
     public String getFilename() { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("contentType")
+    public UTType getContentType() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use contentType
+     */
+    @Deprecated
     @NotImplemented("typeIdentifier")
     public String getTypeIdentifier() { return null; }
     @NotImplemented("capabilities")
@@ -67,8 +78,14 @@ import org.robovm.apple.coregraphics.*;
     public NSDate getLastUsedDate() { return null; }
     @NotImplemented("tagData")
     public NSData getTagData() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("favoriteRank")
     public NSNumber getFavoriteRank() { return null; }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @NotImplemented("isTrashed")
     public boolean isTrashed() { return false; }
     @NotImplemented("isUploaded")
@@ -95,9 +112,7 @@ import org.robovm.apple.coregraphics.*;
     public NSPersonNameComponents getMostRecentEditorNameComponents() { return null; }
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. itemVersion
      */
-    @Deprecated
     @NotImplemented("versionIdentifier")
     public NSData getVersionIdentifier() { return null; }
     @NotImplemented("userInfo")

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +50,11 @@ import org.robovm.apple.coregraphics.*;
     public PKDrawing() {}
     protected PKDrawing(Handle h, long handle) { super(h, handle); }
     protected PKDrawing(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithStrokes:")
+    public PKDrawing(NSArray<PKStroke> strokes) { super((SkipInit) null); initObject(init(strokes)); }
     @Method(selector = "initWithData:error:")
     public PKDrawing(NSData data) throws NSErrorException {
        super((SkipInit) null);
@@ -61,6 +67,11 @@ import org.robovm.apple.coregraphics.*;
     public PKDrawing(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "strokes")
+    public native NSArray<PKStroke> getStrokes();
     @Property(selector = "bounds")
     public native @ByVal CGRect getBounds();
     @Property(selector = "supportsSecureCoding")
@@ -74,6 +85,11 @@ import org.robovm.apple.coregraphics.*;
     @GlobalValue(symbol="PKAppleDrawingTypeIdentifier", optional=true)
     public static native String getAppleDrawingTypeIdentifier();
     
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithStrokes:")
+    protected native @Pointer long init(NSArray<PKStroke> strokes);
     @Method(selector = "initWithData:error:")
     private native @Pointer long init(NSData data, NSError.NSErrorPtr error);
     @Method(selector = "dataRepresentation")
@@ -84,6 +100,11 @@ import org.robovm.apple.coregraphics.*;
     public native PKDrawing drawingByApplyingTransform(@ByVal CGAffineTransform transform);
     @Method(selector = "drawingByAppendingDrawing:")
     public native PKDrawing drawingByAppendingDrawing(PKDrawing drawing);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "drawingByAppendingStrokes:")
+    public native PKDrawing drawingByAppendingStrokes(NSArray<PKStroke> strokes);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

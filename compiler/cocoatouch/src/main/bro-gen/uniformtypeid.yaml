@@ -1,0 +1,78 @@
+package: org.robovm.apple.uniformtypeid
+include: [foundation, uikit]
+library: UniformTypeIdentifiers
+framework: UniformTypeIdentifiers
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/UniformTypeIdentifiers.framework/Headers/UniformTypeIdentifiers.h
+
+typedefs:
+    
+enums:
+
+categories:
+    UTAdditions@NSString:
+        methods:
+            '-stringByAppendingPathComponent:conformingToType:':
+                name: stringByAppendingPathComponent
+                return_type: NSString
+            '-stringByAppendingPathExtensionForType:':
+                return_type: NSString
+    UTAdditions@NSURL:
+        methods:
+            '-URLByAppendingPathComponent:conformingToType:':
+                name: URLByAppendingPathComponent
+classes:
+    UTType: #since 14.0
+        methods:
+            '+typeWithIdentifier:':
+                name: createUsingIdentifier
+            '+typeWithFilenameExtension:':
+                name: createUsingFilenameExtension
+            '+typeWithFilenameExtension:conformingToType:':
+                name: createUsingFilenameExtension
+            '+typeWithMIMEType:':
+                name: createUsingMIMEType
+            '+typeWithMIMEType:conformingToType:':
+                name: createUsingMIMEType
+            '+typeWithTag:tagClass:conformingToType:':
+                name: createUsingTagClass
+            '+typesWithTag:tagClass:conformingToType:':
+                name: createTypesUsingTagClass
+            '+exportedTypeWithIdentifier:':
+                name: getExportedType
+            '+exportedTypeWithIdentifier:conformingToType:':
+                name: getExportedType
+            '+importedTypeWithIdentifier:':
+                name: getImportedType
+            '+importedTypeWithIdentifier:conformingToType:':
+                name: getImportedType
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?UT.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    UTType(.*):
+        class: UTType
+        static_class: CoreTypes
+        name: '#{g[0]}'
+
+    UTTagClass(.*):
+        class: UTType
+        static_class: TagClasses
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?UT.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?UT.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

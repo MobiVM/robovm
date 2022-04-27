@@ -62,6 +62,11 @@ import org.robovm.apple.linkpresentation.*;
     public UISearchTextField(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UISearchTextField(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UISearchTextField(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tokens")
@@ -82,6 +87,9 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean allowsCopyingTokens();
     @Property(selector = "setAllowsCopyingTokens:")
     public native void setAllowsCopyingTokens(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -95,5 +103,15 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<UISearchToken> tokensInRange(UITextRange textRange);
     @Method(selector = "replaceTextualPortionOfRange:withToken:atIndex:")
     public native void replaceTextualPortionOfRange(UITextRange textRange, UISearchToken token, @MachineSizedUInt long tokenIndex);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

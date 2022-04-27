@@ -70,6 +70,26 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "availableVideoCodecTypes")
     public native NSArray<NSString> getAvailableVideoCodecTypes();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled")
+    public native boolean isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled:")
+    public native void setPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceSwitchingBehaviorForRecording")
+    public native AVCapturePrimaryConstituentDeviceSwitchingBehavior getPrimaryConstituentDeviceSwitchingBehaviorForRecording();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording")
+    public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -98,6 +118,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setRecordsVideoOrientationAndMirroringChanges:asMetadataTrackForConnection:")
     public native void setRecordsVideoOrientationAndMirroringChangesAsMetadataTrack(boolean doRecordChanges, AVCaptureConnection connection);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:")
+    public native void setPrimaryConstituentDeviceSwitchingBehaviorForRecording(AVCapturePrimaryConstituentDeviceSwitchingBehavior switchingBehavior, AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions restrictedSwitchingBehaviorConditions);
     @Method(selector = "new")
     protected static native @Pointer long create();
     /*</methods>*/

@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observePowerStateDidChange(final Runnable block) {
+        public static NSObjectProtocol observePowerStateDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PowerStateDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -111,6 +111,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isMacCatalystApp")
     public native boolean isMacCatalystApp();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isiOSAppOnMac")
+    public native boolean isIOSAppOnMac();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

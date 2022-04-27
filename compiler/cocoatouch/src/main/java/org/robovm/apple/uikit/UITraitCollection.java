@@ -90,6 +90,10 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public UITraitCollection(UILegibilityWeight legibilityWeight) { super((Handle) null, create(legibilityWeight)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public UITraitCollection(UIUserInterfaceActiveAppearance userInterfaceActiveAppearance) { super((Handle) null, create(userInterfaceActiveAppearance)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userInterfaceIdiom")
@@ -140,6 +144,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "legibilityWeight")
     public native UILegibilityWeight getLegibilityWeight();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "activeAppearance")
+    public native UIUserInterfaceActiveAppearance getActiveAppearance();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -214,6 +223,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "traitCollectionWithLegibilityWeight:")
     protected static native @Pointer long create(UILegibilityWeight legibilityWeight);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "traitCollectionWithActiveAppearance:")
+    protected static native @Pointer long create(UIUserInterfaceActiveAppearance userInterfaceActiveAppearance);
     /**
      * @since Available in iOS 13.0 and later.
      */

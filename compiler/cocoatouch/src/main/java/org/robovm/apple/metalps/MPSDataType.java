@@ -35,7 +35,7 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
@@ -73,6 +73,10 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      */
     Int32(536870944L),
     /**
+     * @since Available in iOS 14.1 and later.
+     */
+    Int64(536870976L),
+    /**
      * @since Available in iOS 10.0 and later.
      */
     UInt8(8L),
@@ -84,6 +88,18 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 10.0 and later.
      */
     UInt32(32L),
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    UInt64(64L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AlternateEncodingBit(2147483648L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Bool(2147483656L),
     /**
      * @since Available in iOS 11.0 and later.
      */

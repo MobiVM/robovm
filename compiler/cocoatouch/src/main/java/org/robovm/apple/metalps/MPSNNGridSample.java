@@ -54,13 +54,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNGridSample(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNGridSample(NSCoder decoder) { super(decoder); }
+    public MPSNNGridSample(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "useGridValueAsInputCoordinate")
     public native boolean isUseGridValueAsInputCoordinate();
     @Property(selector = "setUseGridValueAsInputCoordinate:")
     public native void setUseGridValueAsInputCoordinate(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,5 +61,11 @@ import org.robovm.apple.corelocation.*;
     public static native INNoteContentTypeResolutionResult success(INNoteContentType resolvedNoteContentType);
     @Method(selector = "confirmationRequiredWithNoteContentTypeToConfirm:")
     public static native INNoteContentTypeResolutionResult confirmation(INNoteContentType noteContentTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INNoteContentTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INNoteContentTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INNoteContentTypeResolutionResult unsupported();
     /*</methods>*/
 }

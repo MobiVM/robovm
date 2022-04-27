@@ -1,5 +1,5 @@
 package: org.robovm.apple.arkit
-include: [foundation, avfoundation, coregraphics, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal, imageio]
+include: [foundation, avfoundation, coregraphics, corelocation, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal, imageio, coreanimation]
 library: ARKit
 framework: ARKit
 clang_args: ['-x', 'objective-c']
@@ -29,8 +29,14 @@ enums:
     ARCoachingGoal: {}
     ARMatteResolution: {}
     ARSceneReconstruction: {}
+    ARGeoTrackingState: {}
+    ARGeoTrackingAccuracy: {}
+    ARGeoTrackingStateReason: {}
+    ARConfidenceLevel: {} #since 14.0
     ARGeometryPrimitiveType: {}
     ARMeshClassification: {}
+    ARAltitudeSource: {}
+    ARAppClipCodeURLDecodingState: {}
 typed_enums:
     ARSkeletonJointName:
         enum: ARSkeletonJointName
@@ -120,6 +126,8 @@ classes:
                 name: trackedRaycast
             '-updateWithCollaborationData:':
                 name: update
+            '-getGeoLocationForPoint:completionHandler:':
+                name: getGeoLocation
     ARWorldTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:
@@ -209,10 +217,31 @@ classes:
     ARSkeleton3D: {} #since 13.0
     ARSkeletonDefinition: {} #since 13.0
     ARTrackedRaycast: {} #since 13.0
+    ARDepthData: {} #since 14.0
+    ARGeoAnchor: #since 14.0
+        methods:
+            '-initWithCoordinate:':
+                name: init
+            '-initWithCoordinate:altitude:':
+                name: init
+            '-initWithName:coordinate:':
+                name: init
+            '-initWithName:coordinate:altitude:':
+                name: init
+    ARGeoTrackingConfiguration: #since 14.0
+        methods:
+            '+checkAvailabilityWithCompletionHandler:':
+                name: checkAvailability
+            '+checkAvailabilityAtCoordinate:completionHandler:':
+                name: checkAvailability
+            '+new':
+                exclude: true
+    ARGeoTrackingStatus: {} #since 14.0
     ARGeometryElement: {} #since 13.4
     ARGeometrySource: {} #since 13.4
     ARMeshAnchor: {} #since 13.4
     ARMeshGeometry: {} #since 13.4
+    ARAppClipCodeAnchor: {} #since 14.3
 protocols:
     ARSCNViewDelegate: #since 11.0
         methods:
@@ -258,6 +287,8 @@ protocols:
                 name: didOutputAudioSampleBuffer
             '-session:didOutputCollaborationData:':
                 name: didOutputCollaborationData
+            '-session:didChangeGeoTrackingStatus:':
+                name: didChangeGeoTrackingStatus
     ARTrackable: {} #since 11.0
     ARAnchorCopying:  #since 12.0
         skip_adapter: true
@@ -265,6 +296,10 @@ protocols:
     ARSessionProviding: {}
 
 functions:
+    ARSkeletonJointNameForRecognizedPointKey:
+        class: ARSkeletonJointName
+        name: create
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (AR.*):
         class: ARKit

@@ -65,6 +65,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<NSNumber> getAvailablePhotoPixelFormatTypes();
     @Property(selector = "availablePhotoCodecTypes")
     public native NSArray<NSString> getAvailablePhotoCodecTypes();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "isAppleProRAWSupported")
+    public native boolean isAppleProRAWSupported();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "isAppleProRAWEnabled")
+    public native boolean isAppleProRAWEnabled();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "setAppleProRAWEnabled:")
+    public native void setAppleProRAWEnabled(boolean v);
     @Property(selector = "availableRawPhotoPixelFormatTypes")
     public native NSArray<NSNumber> getAvailableRawPhotoPixelFormatTypes();
     /**
@@ -195,6 +210,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "availableLivePhotoVideoCodecTypes")
     public native NSArray<NSString> getAvailableLivePhotoVideoCodecTypes();
     /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isContentAwareDistortionCorrectionSupported")
+    public native boolean isContentAwareDistortionCorrectionSupported();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isContentAwareDistortionCorrectionEnabled")
+    public native boolean isContentAwareDistortionCorrectionEnabled();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "setContentAwareDistortionCorrectionEnabled:")
+    public native void setContentAwareDistortionCorrectionEnabled(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isDepthDataDeliverySupported")
@@ -263,6 +293,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<NSNumber> supportedRawPhotoPixelFormatTypesForFileType(String fileType);
     @Method(selector = "new")
     protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Method(selector = "isBayerRAWPixelFormat:")
+    public static native boolean isBayerRAWPixelFormat(int pixelFormat);
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Method(selector = "isAppleProRAWPixelFormat:")
+    public static native boolean isAppleProRAWPixelFormat(int pixelFormat);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -[AVCapturePhoto fileDataRepresentation]

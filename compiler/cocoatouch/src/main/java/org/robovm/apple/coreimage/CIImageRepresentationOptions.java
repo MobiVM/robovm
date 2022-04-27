@@ -164,6 +164,16 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationTeethMatteImage", optional=true)
         public static native NSString SemanticSegmentationTeethMatteImage();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationGlassesMatteImage", optional=true)
+        public static native NSString SemanticSegmentationGlassesMatteImage();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationSkyMatteImage", optional=true)
+        public static native NSString SemanticSegmentationSkyMatteImage();
     }
     /*</keys>*/
 }

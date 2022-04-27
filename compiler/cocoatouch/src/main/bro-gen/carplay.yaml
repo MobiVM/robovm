@@ -1,12 +1,12 @@
 package: org.robovm.apple.carplay
-include: [foundation, uikit, coregraphics, mapkit]
+include: [foundation, uikit, coregraphics, mapkit, coreanimation]
 library: CarPlay
 framework: CarPlay
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CarPlay.framework/Headers/CarPlay.h
 typedefs: {}
-    
+
 enums:
     CPAlertActionStyle: {} #since 12.0
     CPBarButtonType: {} #since 12.0
@@ -18,7 +18,17 @@ enums:
     CPTripEstimateStyle: {} #since 12.0
     CPLimitableUserInterface: {} #since 12.0
     CPContentStyle: {} #since 13.0
-
+    CPBarButtonStyle: {} #since 14.0
+    CPTextButtonStyle: {} #since 14.0
+    CPInformationTemplateLayout: {} #since 14.0
+    CPListItemAccessoryType: {}
+    CPListItemPlayingIndicatorLocation: {}
+    CPMessageLeadingItem: {}
+    CPMessageTrailingItem: {}
+    CPAssistantCellActionType: {} #since 15.0
+    CPAssistantCellVisibility: {} #since 15.0
+    CPAssistantCellPosition: {} #since 15.0
+    CPInstrumentClusterSetting: {} #since 15.4
 classes:
     CPActionSheetTemplate: #since 12.0
         methods:
@@ -35,6 +45,10 @@ classes:
     CPBarButton: #since 12.0
         methods:
             '-initWithType:handler:':
+                name: init
+            '-initWithImage:handler:':
+                name: init
+            '-initWithTitle:handler:':
                 name: init
     CPGridButton: #since 12.0
         methods:
@@ -58,6 +72,20 @@ classes:
                 trim_after_first_colon: true
             '-presentTemplate:animated:':
                 trim_after_first_colon: true
+            '-setRootTemplate:animated:completion:':
+                name: setRootTemplate
+            '-pushTemplate:animated:completion:':
+                name: pushTemplate
+            '-popTemplateAnimated:completion:':
+                name: popTemplate
+            '-popToRootTemplateAnimated:completion:':
+                name: popToRootTemplate
+            '-popToTemplate:animated:completion:':
+                name: popToTemplate
+            '-presentTemplate:animated:completion:':
+                name: presentTemplate
+            '-dismissTemplateAnimated:completion:':
+                name: dismissTemplate
     CPListItem: #since 12.0
         methods:
             '-initWithText:detailText:image:showsDisclosureIndicator:':
@@ -66,15 +94,21 @@ classes:
                 name: init
             '-initWithText:detailText:':
                 name: init
+            '-initWithText:detailText:image:accessoryImage:accessoryType:':
+                name: init
     CPListSection: #since 12.0
         methods:
             '-initWithItems:header:sectionIndexTitle:':
                 name: init
             '-initWithItems:':
                 name: init
+            '-initWithItems:header:headerSubtitle:headerImage:headerButton:sectionIndexTitle:':
+                name: init
     CPListTemplate: #since 12.0
         methods:
             '-initWithTitle:sections:':
+                name: init
+            '-initWithTitle:sections:assistantCellConfiguration:':
                 name: init
     CPManeuver: {} #since 12.0
     CPMapButton: #since 12.0
@@ -95,6 +129,8 @@ classes:
                 trim_after_first_colon: true
             '-dismissNavigationAlertAnimated:completion:':
                 trim_after_first_colon: true
+            '-showTripPreviews:selectedTrip:textConfiguration:':
+                name: showTripPreviews
     CPNavigationAlert: #since 12.0
         methods:
             '-initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:':
@@ -109,6 +145,8 @@ classes:
                 name: pauseTrip
             '-updateTravelEstimates:forManeuver:':
                 trim_after_first_colon: true
+            '-pauseTripForReason:description:turnCardColor:':
+                name: pauseTripForReason
     CPRouteChoice: #since 12.0
         methods:
             '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:':
@@ -149,6 +187,107 @@ classes:
                 name: init
     CPDashboardController: {} #since 13.4
     CPTemplateApplicationDashboardScene: {} #since 13.4
+    CPBaseListItem: {} #since 14.0
+    CPButton: #since 14.0
+        methods:
+            '-initWithImage:handler:':
+                name: init
+    CPContact: #since 14.0
+        methods:
+            '-initWithName:image:':
+                name: init
+    CPContactCallButton: #since 14.0
+        methods:
+            '-initWithHandler:':
+                name: init
+    CPContactDirectionsButton: #since 14.0
+        methods:
+            '-initWithHandler:':
+                name: init
+    CPContactMessageButton: #since 14.0
+        methods:
+            '-initWithPhoneOrEmail:':
+                name: init
+    CPContactTemplate: #since 14.0
+        methods:
+            '-initWithContact:':
+                name: init
+    CPEntity: {} #since 14.0
+    CPInformationItem: #since 14.0
+        methods:
+            '-initWithTitle:detail:':
+                name: init
+    CPInformationRatingItem: #since 14.0
+        methods:
+            '-initWithRating:maximumRating:title:detail:':
+                name: init
+    CPInformationTemplate: #since 14.0
+        methods:
+            '-initWithTitle:layout:items:actions:':
+                name: init
+    CPListImageRowItem: #since 14.0
+        methods:
+            '-initWithText:images:':
+                name: init
+    CPMessageComposeBarButton: #since 14.0
+        methods:
+            '-initWithImage:':
+                name: init
+            '+new':
+                exclude: true
+    CPMessageListItem: #since 14.0
+        methods:
+            '-initWithConversationIdentifier:text:leadingConfiguration:trailingConfiguration:detailText:trailingText:':
+                static_constructor_name: createUsingConversationIdentifier
+                name: initUsingConversationIdentifier
+            '-initWithFullName:phoneOrEmailAddress:leadingConfiguration:trailingConfiguration:detailText:trailingText:':
+                name: init
+    CPMessageListItemLeadingConfiguration: #since 14.0
+        methods:
+            '-initWithLeadingItem:leadingImage:unread:':
+                name: init
+    CPMessageListItemTrailingConfiguration: #since 14.0
+        methods:
+            '-initWithTrailingItem:trailingImage:':
+                name: init
+    CPNowPlayingAddToLibraryButton: {}
+    CPNowPlayingButton: #since 14.0
+        methods:
+            '-initWithHandler:':
+                name: init
+    CPNowPlayingImageButton:
+        methods:
+            '-initWithImage:handler:':
+                name: init
+    CPNowPlayingMoreButton: {}
+    CPNowPlayingPlaybackRateButton: {}
+    CPNowPlayingRepeatButton: {}
+    CPNowPlayingShuffleButton: {}
+    CPNowPlayingTemplate: {} #since 14.0
+    CPPointOfInterest: #since 14.0
+        methods:
+            '-initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:':
+                name: init
+    CPPointOfInterestTemplate: #since 14.0
+        methods:
+            '-initWithTitle:pointsOfInterest:selectedIndex:':
+                name: init
+            '-setPointsOfInterest:selectedIndex:':
+                name: setPointsOfInterest
+    CPTabBarTemplate: #since 14.0
+        methods:
+            '-initWithTemplates:':
+                name: init
+    CPTextButton: #since 14.0
+        methods:
+            '-initWithTitle:textStyle:handler:':
+                name: init
+    CPAssistantCellConfiguration: #since 15.0
+        methods:
+            '-initWithPosition:visibility:assistantAction:':
+                name: init
+    CPInstrumentClusterController: {} #since 15.4
+    CPTemplateApplicationInstrumentClusterScene: {} #since 15.4
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -229,13 +368,46 @@ protocols:
                 name: didSelectNavigationAlert
             '-templateApplicationScene:didSelectManeuver:':
                 name: didSelectManeuver
+            '-templateApplicationScene:didConnectInterfaceController:':
+                name: didConnectInterfaceController
+            '-templateApplicationScene:didDisconnectInterfaceController:':
+                name: didDisconnectInterfaceController
     CPTemplateApplicationDashboardSceneDelegate: #since 13.4
         methods:
             '-templateApplicationDashboardScene:didConnectDashboardController:toWindow:':
                 name: didConnectDashboardController
             '-templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:':
                 name: didDisconnectDashboardController
-
+    CPListTemplateItem: {} #since 14.0
+    CPNowPlayingTemplateObserver:  #since 14.0
+        methods:
+            '-nowPlayingTemplateUpNextButtonTapped:':
+                name: upNextButtonTapped
+            '-nowPlayingTemplateAlbumArtistButtonTapped:':
+                name: albumArtistButtonTapped
+    CPPointOfInterestTemplateDelegate: #since 14.0
+        methods:
+            '-pointOfInterestTemplate:didChangeMapRegion:':
+                name: didChangeMapRegion
+            '-pointOfInterestTemplate:didSelectPointOfInterest:':
+                name: didSelectPointOfInterest
+    CPSelectableListItem: {} #since 14.0
+    CPTabBarTemplateDelegate: #since 14.0
+        methods:
+            '-tabBarTemplate:didSelectTemplate:':
+                name: didSelectTemplate
+    CPInstrumentClusterControllerDelegate: #since 15.4
+        methods:
+            '-instrumentClusterController:didChangeCompassSetting:':
+                name: didChangeCompassSetting
+            '-instrumentClusterController:didChangeSpeedLimitSetting:':
+                name: didChangeSpeedLimitSetting
+    CPTemplateApplicationInstrumentClusterSceneDelegate: #since 15.4
+        methods:
+            '-templateApplicationInstrumentClusterScene:didConnectInstrumentClusterController:':
+                name: didConnectInstrumentClusterController
+            '-templateApplicationInstrumentClusterScene:didDisconnectInstrumentClusterController:':
+                name: didDisconnectInstrumentClusterController
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CP.*):
@@ -251,6 +423,27 @@ values:
         name: getSceneSessionRole
     CPTemplateApplicationDashboardSceneSessionRoleApplication:
         class: CPTemplateApplicationDashboardScene
+        name: getSceneSessionRole
+    CPButtonMaximumImageSize:
+        class: CPButton
+        name: getMaximumImageSize
+    CPMaximumNumberOfGridImages:
+        class: CPListImageRowItem
+        name: getMaximumNumberOfGridImages
+    CPMaximumMessageItemImageSize:
+        class: CPMessageListItem
+        name: getMaximumImageSize
+    CPNowPlayingButtonMaximumImageSize:
+        class: CPNowPlayingButton
+        name: getMaximumImageSize
+    CPGridTemplateMaximumItems:
+        class: CPGridTemplate
+        name: getMaximumItems
+    CPMaximumListSectionImageSize:
+        class: CPListSection
+        name: getMaximumListSectionImageSize
+    CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication:
+        class: CPTemplateApplicationInstrumentClusterScene
         name: getSceneSessionRole
 
     # Make sure we don't miss any values if new ones are introduced in a later version

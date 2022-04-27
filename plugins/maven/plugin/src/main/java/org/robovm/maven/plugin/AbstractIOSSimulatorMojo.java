@@ -21,6 +21,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
@@ -51,9 +52,11 @@ public abstract class AbstractIOSSimulatorMojo extends AbstractRoboVMMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            Arch arch = Arch.x86_64;
-            if (super.arch != null && super.arch.equals(Arch.x86.toString())) {
-                arch = Arch.x86;
+            Arch arch = new Arch(DeviceType.DEFAULT_HOST_ARCH, Environment.Simulator);
+            if (super.arch != null) {
+                arch = Arch.parse(super.arch).promoteTo(OS.ios);
+                if (arch.getEnv() != Environment.Simulator)
+                    throw new MojoExecutionException("Not simulator arch specified " + arch);
             }
 
             AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);

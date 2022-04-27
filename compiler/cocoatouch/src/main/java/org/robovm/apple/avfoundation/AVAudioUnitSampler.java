@@ -64,8 +64,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getStereoPan();
     @Property(selector = "setStereoPan:")
     public native void setStereoPan(float v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "overallGain")
+    public native float getOverallGain();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setOverallGain:")
+    public native void setOverallGain(float v);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use overallGain
+     */
+    @Deprecated
     @Property(selector = "masterGain")
     public native float getMasterGain();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use overallGain
+     */
+    @Deprecated
     @Property(selector = "setMasterGain:")
     public native void setMasterGain(float v);
     @Property(selector = "globalTuning")
@@ -99,5 +117,10 @@ import org.robovm.apple.audiotoolbox.*;
     }
     @Method(selector = "loadAudioFilesAtURLs:error:")
     private native boolean loadAudioFiles(NSArray<NSURL> audioFiles, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
+    public static native void instantiate(@ByVal AudioComponentDescription audioComponentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AVAudioUnit, NSError> completionHandler);
     /*</methods>*/
 }

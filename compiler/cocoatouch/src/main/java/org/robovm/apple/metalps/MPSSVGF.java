@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSSVGF(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSSVGF(NSCoder decoder) { super(decoder); }
+    public MPSSVGF(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "depthWeight")
@@ -117,6 +117,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getChannelCount2();
     @Property(selector = "setChannelCount2:")
     public native void setChannelCount2(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

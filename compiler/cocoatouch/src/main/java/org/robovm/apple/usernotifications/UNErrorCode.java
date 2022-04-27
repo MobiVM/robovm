@@ -46,7 +46,9 @@ public enum /*<name>*/UNErrorCode/*</name>*/ implements ValuedEnum {
     AttachmentMoveIntoDataStoreFailed(104L),
     AttachmentCorrupt(105L),
     NotificationInvalidNoDate(1400L),
-    NotificationInvalidNoContent(1401L);
+    NotificationInvalidNoContent(1401L),
+    ContentProvidingObjectNotAllowed(1500L),
+    ContentProvidingInvalid(1501L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(UNErrorCode.class); }/*</bind>*/

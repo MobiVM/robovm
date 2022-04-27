@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,14 +52,34 @@ import org.robovm.apple.coregraphics.*;
     protected MPTimedMetadata(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "key")
     public native String getKey();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "keyspace")
     public native String getKeyspace();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "value")
     public native NSObject getValue();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "timestamp")
     public native double getTimestamp();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "allMetadata")
     public native NSDictionary getAllMetadata();
     /*</properties>*/

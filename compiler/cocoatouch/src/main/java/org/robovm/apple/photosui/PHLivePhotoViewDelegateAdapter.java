@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.photos.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @NotImplemented("livePhotoView:canBeginPlaybackWithStyle:")
+    public boolean canBeginPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle) { return false; }
     /**
      * @since Available in iOS 9.1 and later.
      */

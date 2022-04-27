@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,8 +57,15 @@ import org.robovm.apple.mapkit.*;
     /*<properties>*/
     @Property(selector = "titleVariants")
     public native NSArray<NSString> getTitleVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumActionCount")
+    public static native @MachineSizedUInt long getMaximumActionCount();
     @Property(selector = "actions")
     public native NSArray<CPAlertAction> getActions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -169,6 +171,21 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "setUserFaceTrackingEnabled:")
     public native void setUserFaceTrackingEnabled(boolean v);
     /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "appClipCodeTrackingEnabled")
+    public native boolean isAppClipCodeTrackingEnabled();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "setAppClipCodeTrackingEnabled:")
+    public native void setAppClipCodeTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "supportsAppClipCodeTracking")
+    public static native boolean supportsAppClipCodeTracking();
+    /**
      * @since Available in iOS 13.4 and later.
      */
     @Property(selector = "sceneReconstruction")
@@ -178,6 +195,13 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "setSceneReconstruction:")
     public native void setSceneReconstruction(ARSceneReconstruction v);
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Property(selector = "supportedVideoFormats")
+    public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -188,5 +212,10 @@ import org.robovm.apple.imageio.*;
     public static native boolean supportsSceneReconstruction(ARSceneReconstruction sceneReconstruction);
     @Method(selector = "new")
     protected static native @Pointer long create();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "supportsFrameSemantics:")
+    public static native boolean supportsFrameSemantics(ARFrameSemantics frameSemantics);
     /*</methods>*/
 }

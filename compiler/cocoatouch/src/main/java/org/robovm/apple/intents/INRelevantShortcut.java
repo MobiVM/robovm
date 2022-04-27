@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +47,7 @@ import org.robovm.apple.corelocation.*;
     /*<bind>*/static { ObjCRuntime.bind(INRelevantShortcut.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected INRelevantShortcut() {}
+    public INRelevantShortcut() {}
     protected INRelevantShortcut(Handle h, long handle) { super(h, handle); }
     protected INRelevantShortcut(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithShortcut:")
@@ -63,6 +64,16 @@ import org.robovm.apple.corelocation.*;
     public native INDefaultCardTemplate getWatchTemplate();
     @Property(selector = "setWatchTemplate:")
     public native void setWatchTemplate(INDefaultCardTemplate v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "widgetKind")
+    public native String getWidgetKind();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setWidgetKind:")
+    public native void setWidgetKind(String v);
     @Property(selector = "shortcutRole")
     public native INRelevantShortcutRole getShortcutRole();
     @Property(selector = "setShortcutRole:")

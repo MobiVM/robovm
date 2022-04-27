@@ -26,26 +26,20 @@ import com.dd.plist.PropertyListFormatException;
 import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.AndFileFilter;
 import org.apache.commons.io.filefilter.PrefixFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
-import org.robovm.compiler.config.AppExtension;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.config.Resource;
-import org.robovm.compiler.config.WatchKitApp;
+import org.robovm.compiler.config.*;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.AbstractTarget;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.target.ios.ProvisioningProfile.Type;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.PList;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
 import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
@@ -61,19 +55,13 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author niklas
@@ -100,8 +88,6 @@ public class IOSTarget extends AbstractTarget {
     );
 
     public static final String TYPE = "ios";
-
-    private static File iosSimPath;
 
     private Arch arch;
     private SDK sdk;
@@ -131,11 +117,16 @@ public class IOSTarget extends AbstractTarget {
     }
 
     public static boolean isSimulatorArch(Arch arch) {
-        return arch == Arch.x86 || arch == Arch.x86_64;
+        Environment env = arch.getEnv();
+        CpuArch cpuArch = arch.getCpuArch();
+        return env == Environment.Simulator &&
+                (cpuArch == CpuArch.x86 || cpuArch == CpuArch.x86_64 || cpuArch == CpuArch.arm64);
     }
 
     public static boolean isDeviceArch(Arch arch) {
-        return arch == Arch.thumbv7 || arch == Arch.arm64;
+        Environment env = arch.getEnv();
+        CpuArch cpuArch = arch.getCpuArch();
+        return env == Environment.Native &&  (cpuArch == CpuArch.thumbv7 || cpuArch == CpuArch.arm64);
     }
 
     /**
@@ -293,35 +284,29 @@ public class IOSTarget extends AbstractTarget {
             throw new CompilerException("Failed to get major version number from "
                     + "MinimumOSVersion string '" + minVersion + "'");
         }
+
+        ccArgs.add("--target=" + config.getClangTriple(getMinimumOSVersion()));
+
         if (isDeviceArch(arch)) {
-            ccArgs.add("-miphoneos-version-min=" + minVersion);
-            if (config.isDebug()) {
-                ccArgs.add("-Wl,-no_pie");
-            }
             if (config.isEnableBitcode()) {
                 // tells clang to keep bitcode while linking
                 ccArgs.add("-fembed-bitcode");
             }
         } else {
-            ccArgs.add("-mios-simulator-version-min=" + minVersion);
-            if (config.getArch() == Arch.x86 || config.isDebug()) {
+            if (config.getArch().getCpuArch() == CpuArch.x86) {
                 ccArgs.add("-Wl,-no_pie");
             }
         }
         ccArgs.add("-isysroot");
         ccArgs.add(sdk.getRoot().getAbsolutePath());
 
-        // specify sdk version for linker
-        libArgs.add("-Xlinker");
-        libArgs.add("-sdk_version");
-        libArgs.add("-Xlinker");
-        libArgs.add(sdk.getVersion());
-
         // add runtime path to swift libs first to support swift-5 libs location
-        libArgs.add("-Xlinker");
-        libArgs.add("-rpath");
-        libArgs.add("-Xlinker");
-        libArgs.add("/usr/lib/swift");
+        if (config.hasSwiftSupport()) {
+            libArgs.add("-Xlinker");
+            libArgs.add("-rpath");
+            libArgs.add("-Xlinker");
+            libArgs.add("/usr/lib/swift");
+        }
         // specify dynamic library loading path
         libArgs.add("-Xlinker");
         libArgs.add("-rpath");
@@ -646,7 +631,15 @@ public class IOSTarget extends AbstractTarget {
         codesign(identity, entitlementsPList, false, false, true, extensionDir);
     }
 
-    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata, boolean verbose, boolean allocate, File target) throws IOException {
+    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata,
+                          boolean verbose, boolean allocate, File target) throws IOException {
+        // just a wrapper that forces "--generate-entitlement-der" for all kind of signing
+        boolean generateDerEntitlement = true;
+        codesign(identity, entitlementsPList, preserveMetadata, generateDerEntitlement, verbose, allocate, target);
+    }
+
+    private void codesign(SigningIdentity identity, File entitlementsPList, boolean preserveMetadata,
+                          boolean generateDerEntitlement, boolean verbose, boolean allocate, File target) throws IOException {
         List<Object> args = new ArrayList<>();
         args.add("-f");
         args.add("-s");
@@ -657,6 +650,9 @@ public class IOSTarget extends AbstractTarget {
         }
         if (preserveMetadata) {
             args.add("--preserve-metadata=identifier,entitlements");
+        }
+        if (generateDerEntitlement) {
+            args.add("--generate-entitlement-der");
         }
         if (verbose) {
             args.add("--verbose");
@@ -675,7 +671,7 @@ public class IOSTarget extends AbstractTarget {
     }
 
     /**
-     * creates simple entitlement plist from scratch that only containts get-task-allow
+     * creates simple entitlement plist from scratch that only contains get-task-allow
      * used to sign binary for simulator
      */
     private File createEntitlementsPList(boolean getTaskAllow) throws IOException {
@@ -698,12 +694,27 @@ public class IOSTarget extends AbstractTarget {
      */
     private File createSimulatedEntitlementsPList(String bundleId) throws IOException {
         try {
-            // generate random group id as there is no one real available when compiling for simulator
-            String groupId = RandomStringUtils.randomAlphanumeric(10).toUpperCase();
+            // there is no provisioning profile in simulator to pick teamId. check if user have provided in properties
+            String teamID = config.getProperties().getProperty("teamID");
+            if (teamID == null) {
+                // generate team ID from bundle id. use MD5 hash from bundle, then convert it to base-36
+                teamID = new BigInteger(MessageDigest.getInstance("MD5").digest(bundleId.getBytes())).toString(36).toUpperCase();
+                if (teamID.length() > 10)
+                    teamID = teamID.substring(0, 10);
+            }
+
             File destFile = new File(config.getTmpDir(), "Entitlements-Simulated.plist");
-            NSDictionary dict = new NSDictionary();
-            dict.put("application-identifier", groupId + "." + bundleId);
-            dict.put("keychain-access-groups", new NSArray(new NSString(groupId + "." + bundleId)));
+            NSDictionary dict;
+            if (entitlementsPList != null) {
+                // use properties. this allows teamID (and other placeholders) to be used in entitlements
+                Properties properties = new Properties(config.getProperties());
+                properties.setProperty("teamID", teamID);
+                dict = new PList(entitlementsPList).parse(properties).getDictionary();
+            } else {
+                dict = new NSDictionary();
+            }
+
+            dict.put("application-identifier", teamID + "." + bundleId);
             PropertyListParser.saveAsXML(dict, destFile);
             return destFile;
         } catch (IOException e) {
@@ -717,20 +728,27 @@ public class IOSTarget extends AbstractTarget {
         try {
             File destFile = new File(config.getTmpDir(), "Entitlements.plist");
             NSDictionary dict = null;
-            if (entitlementsPList != null) {
-                dict = (NSDictionary) PropertyListParser.parse(entitlementsPList);
-            } else {
-                dict = (NSDictionary) PropertyListParser.parse(IOUtils.toByteArray(getClass().getResourceAsStream(
-                        "/Entitlements.plist")));
-            }
             if (provisioningProfile != null) {
+                String teamID = provisioningProfile.getAppIdPrefix();
+                if (entitlementsPList != null) {
+                    // use properties. this allows teamID (and other placeholders) to be used in entitlements
+                    Properties properties = new Properties(config.getProperties());
+                    properties.setProperty("teamID", teamID);
+                    dict = new PList(entitlementsPList).parse(properties).getDictionary();
+                } else {
+                    dict = new NSDictionary();
+                }
+
                 NSDictionary profileEntitlements = provisioningProfile.getEntitlements();
                 for (String key : profileEntitlements.allKeys()) {
                     if (dict.objectForKey(key) == null && !excludedKeys.contains(key)) {
                         dict.put(key, profileEntitlements.objectForKey(key));
                     }
                 }
-                dict.put("application-identifier", provisioningProfile.getAppIdPrefix() + "." + bundleId);
+                dict.put("application-identifier", teamID + "." + bundleId);
+            } else {
+                // should not happen
+                dict = entitlementsPList == null ? new NSDictionary() : (NSDictionary) PropertyListParser.parse(entitlementsPList);
             }
             dict.put("get-task-allow", getTaskAllow);
             PropertyListParser.saveAsXML(dict, destFile);
@@ -787,7 +805,7 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     public List<Arch> getDefaultArchs() {
-        return Arrays.asList(Arch.thumbv7, Arch.arm64);
+        return Arrays.asList(new Arch(CpuArch.thumbv7), new Arch(CpuArch.arm64));
     }
 
     public void archive() throws IOException {
@@ -817,7 +835,7 @@ public class IOSTarget extends AbstractTarget {
                 .exec();
 
         File frameworksDir = new File(appDir, "Frameworks");
-        if (frameworksDir.exists()){
+        if (frameworksDir.exists() && config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()){
             String[] swiftLibs = frameworksDir.list(new AndFileFilter(
                     new PrefixFileFilter("libswift"),
                     new SuffixFileFilter(".dylib")));
@@ -908,43 +926,59 @@ public class IOSTarget extends AbstractTarget {
     }
 
     @Override
-    protected boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-        if (dir.getName().endsWith(".atlas")) {
-            destDir.mkdirs();
+    protected void copyResources(File destDir) throws IOException {
+        // all xcassets should be processed in one call. otherwise each call will produce Assets.car
+        // that will override results of previous one
+        List<File> xcassets = new ArrayList<>();
+        Resource.Walker walker = new Resource.Walker() {
+            @Override
+            public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
+                if (dir.getName().endsWith(".atlas")) {
+                    destDir.mkdirs();
 
-            ToolchainUtil.textureatlas(config, dir, destDir);
-            return false;
-        } else if (dir.getName().endsWith(".xcassets")) {
-            ToolchainUtil.actool(config, createPartialInfoPlistFile(dir), dir, getAppDir());
-            return false;
+                    ToolchainUtil.textureatlas(config, dir, destDir);
+                    return false;
+                } else if (dir.getName().endsWith(".xcassets")) {
+                    xcassets.add(dir);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public void processFile(Resource resource, File file, File destDir) throws IOException {
+                if (isDeviceArch(arch) && !resource.isSkipPngCrush()
+                        && file.getName().toLowerCase().endsWith(".png")) {
+                    destDir.mkdirs();
+                    File outFile = new File(destDir, file.getName());
+                    ToolchainUtil.pngcrush(config, file, outFile);
+                } else if (file.getName().toLowerCase().endsWith(".strings")) {
+                    destDir.mkdirs();
+                    File outFile = new File(destDir, file.getName());
+                    ToolchainUtil.compileStrings(config, file, outFile);
+                } else if (file.getName().toLowerCase().endsWith(".storyboard")) {
+                    destDir.mkdirs();
+                    ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, destDir);
+                } else if (file.getName().toLowerCase().endsWith(".xib")) {
+                    destDir.mkdirs();
+                    String fileName = file.getName();
+                    fileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".nib";
+                    File outFile = new File(destDir, fileName);
+                    ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, outFile);
+                } else {
+                    copyFile(resource, file, destDir);
+                }
+            }
+        };
+
+        for (Resource res : config.getResources()) {
+            res.walk(walker, destDir);
         }
-        return super.processDir(resource, dir, destDir);
-    }
 
-    @Override
-    protected void copyFile(Resource resource, File file, File destDir)
-            throws IOException {
-
-        if (isDeviceArch(arch) && !resource.isSkipPngCrush()
-                && file.getName().toLowerCase().endsWith(".png")) {
-            destDir.mkdirs();
-            File outFile = new File(destDir, file.getName());
-            ToolchainUtil.pngcrush(config, file, outFile);
-        } else if (file.getName().toLowerCase().endsWith(".strings")) {
-            destDir.mkdirs();
-            File outFile = new File(destDir, file.getName());
-            ToolchainUtil.compileStrings(config, file, outFile);
-        } else if (file.getName().toLowerCase().endsWith(".storyboard")) {
-            destDir.mkdirs();
-            ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, destDir);
-        } else if (file.getName().toLowerCase().endsWith(".xib")) {
-            destDir.mkdirs();
-            String fileName = file.getName();
-            fileName = fileName.substring(0, fileName.lastIndexOf('.')) + ".nib";
-            File outFile = new File(destDir, fileName);
-            ToolchainUtil.ibtool(config, createPartialInfoPlistFile(file), file, outFile);
-        } else {
-            super.copyFile(resource, file, destDir);
+        // process all collected xcassets
+        if (!xcassets.isEmpty()) {
+            ToolchainUtil.actool(config, createPartialInfoPlistFile(xcassets.get(0)), getAppDir(), xcassets);
         }
     }
 
@@ -1148,7 +1182,7 @@ public class IOSTarget extends AbstractTarget {
         super.init(config);
 
         if (config.getArch() == null) {
-            arch = Arch.thumbv7;
+            arch = new Arch(CpuArch.arm64, Environment.Native);
         } else {
             if (!isSimulatorArch(config.getArch()) && !isDeviceArch(config.getArch())) {
                 throw new IllegalArgumentException("Arch '" + config.getArch()
@@ -1156,7 +1190,6 @@ public class IOSTarget extends AbstractTarget {
             }
             arch = config.getArch();
         }
-
         if (config.getIosInfoPList() != null) {
             config.getIosInfoPList().parse(config.getProperties());
         }

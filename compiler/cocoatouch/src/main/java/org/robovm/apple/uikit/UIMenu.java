@@ -60,6 +60,10 @@ import org.robovm.apple.linkpresentation.*;
     protected UIMenu(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
     public UIMenu(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public UIMenu(NSArray<UIMenuElement> children) { super((Handle) null, create(children)); retain(getHandle()); }
     public UIMenu(String title, NSArray<UIMenuElement> children) { super((Handle) null, create(title, children)); retain(getHandle()); }
     public UIMenu(String title, UIImage image, UIMenuIdentifier identifier, UIMenuOptions options, NSArray<UIMenuElement> children) { super((Handle) null, create(title, image, identifier, options, children)); retain(getHandle()); }
     /*</constructors>*/
@@ -70,6 +74,13 @@ import org.robovm.apple.linkpresentation.*;
     public native UIMenuOptions getOptions();
     @Property(selector = "children")
     public native NSArray<UIMenuElement> getChildren();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "selectedElements")
+    public native NSArray<UIMenuElement> getSelectedElements();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -77,6 +88,11 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "menuByReplacingChildren:")
     public native UIMenu menuByReplacingChildren(NSArray<UIMenuElement> newChildren);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "menuWithChildren:")
+    protected static native @Pointer long create(NSArray<UIMenuElement> children);
     @Method(selector = "menuWithTitle:children:")
     protected static native @Pointer long create(String title, NSArray<UIMenuElement> children);
     @Method(selector = "menuWithTitle:image:identifier:options:children:")

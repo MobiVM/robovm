@@ -10,7 +10,7 @@
 //
 // Calculator class
 //
-@interface Calculator
+@interface Calculator: NSObject
 -(id)init;
 -(id)initWithValue:(int)startValue;
 -(int)reset;
@@ -22,7 +22,7 @@
 //
 // ${appName}Demo class with basic API demonstration
 //
-@interface ${appName}Demo
+@interface ${appName}Demo: NSObject
 -(id)init;
 -(id)initWithText:(NSString*)text;
 +(void)hello;

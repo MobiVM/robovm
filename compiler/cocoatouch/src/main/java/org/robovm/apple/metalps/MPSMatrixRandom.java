@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSMatrixRandom(Handle h, long handle) { super(h, handle); }
     protected MPSMatrixRandom(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixRandom(NSCoder decoder) { super(decoder); }
+    public MPSMatrixRandom(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getBatchSize();
     @Property(selector = "setBatchSize:")
     public native void setBatchSize(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INTimeIntervalResolutionResult success(double resolvedTimeInterval);
     @Method(selector = "confirmationRequiredWithTimeIntervalToConfirm:")
     public static native INTimeIntervalResolutionResult confirmationRequired(double timeIntervalToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTimeIntervalResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTimeIntervalResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTimeIntervalResolutionResult unsupported();
     /*</methods>*/
 }

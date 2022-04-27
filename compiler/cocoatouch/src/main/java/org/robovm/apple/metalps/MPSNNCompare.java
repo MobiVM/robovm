@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNCompare(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNNCompare(NSCoder decoder) { super(decoder); }
+    public MPSNNCompare(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "comparisonType")
@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native float getThreshold();
     @Property(selector = "setThreshold:")
     public native void setThreshold(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

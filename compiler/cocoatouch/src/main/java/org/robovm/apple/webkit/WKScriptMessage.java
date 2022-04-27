@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,11 @@ import org.robovm.apple.security.*;
     public native WKFrameInfo getFrameInfo();
     @Property(selector = "name")
     public native String getName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "world")
+    public native WKContentWorld getWorld();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

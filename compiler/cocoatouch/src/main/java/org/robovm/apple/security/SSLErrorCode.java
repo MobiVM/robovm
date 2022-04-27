@@ -110,7 +110,8 @@ public enum /*<name>*/SSLErrorCode/*</name>*/ implements ValuedEnum {
     ATSMinimumKeySizeViolation(-9883L),
     ATSLeafCertificateHashAlgorithmViolation(-9884L),
     ATSCertificateHashAlgorithmViolation(-9885L),
-    ATSCertificateTrustViolation(-9886L);
+    ATSCertificateTrustViolation(-9886L),
+    EarlyDataRejected(-9890L);
     /*</values>*/
 
     /*<bind>*/

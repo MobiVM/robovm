@@ -32,13 +32,24 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/CTCellularPlanProvisioningAddPlanResult/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     Unknown(0L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     Fail(1L),
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
     Success(2L);
     /*</values>*/
 

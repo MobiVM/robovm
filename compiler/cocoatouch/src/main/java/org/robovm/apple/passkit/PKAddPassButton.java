@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,12 +58,20 @@ import org.robovm.apple.contacts.*;
     public PKAddPassButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public PKAddPassButton(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public PKAddPassButton(@ByVal org.robovm.apple.coregraphics.CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "addPassButtonStyle")
     public native PKAddPassButtonStyle getAddPassButtonStyle();
     @Property(selector = "setAddPassButtonStyle:")
     public native void setAddPassButtonStyle(PKAddPassButtonStyle v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,5 +79,25 @@ import org.robovm.apple.contacts.*;
     protected native @Pointer long init(PKAddPassButtonStyle style);
     @Method(selector = "addPassButtonWithStyle:")
     public static native PKAddPassButton addPassButton(PKAddPassButtonStyle addPassButtonStyle);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "systemButtonWithImage:target:action:")
+    public static native PKAddPassButton getSystemButtonWithImage(UIImage image, NSObject target, Selector action);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "systemButtonWithPrimaryAction:")
+    public static native PKAddPassButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

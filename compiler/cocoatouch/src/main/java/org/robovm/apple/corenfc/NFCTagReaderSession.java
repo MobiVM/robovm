@@ -60,6 +60,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "connectedTag")
     public native NFCTag getConnectedTag();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "readingAvailable")
+    public static native boolean isReadingAvailable();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

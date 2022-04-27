@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +44,7 @@ import org.robovm.apple.contacts.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
+        public static NSObjectProtocol observeDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -55,7 +57,7 @@ import org.robovm.apple.contacts.*;
                 }
             });
         }
-        public static NSObject observeRemotePaymentPassesDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
+        public static NSObjectProtocol observeRemotePaymentPassesDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RemotePaymentPassesDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -135,7 +137,7 @@ import org.robovm.apple.contacts.*;
     public native void openPaymentSetup();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use -[PKPassLibrary presentSecureElementPass] instead
+     * @deprecated Use -[PKPassLibrary presentSecureElementPass:] instead
      */
     @Deprecated
     @Method(selector = "presentPaymentPass:")
@@ -184,6 +186,11 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "signData:withSecureElementPass:completion:")
     public native void signData(NSData signData, PKSecureElementPass secureElementPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "serviceProviderDataForSecureElementPass:completion:")
+    public native void serviceProviderDataForSecureElementPass(PKSecureElementPass secureElementPass, @Block VoidBlock2<NSData, NSError> completion);
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**

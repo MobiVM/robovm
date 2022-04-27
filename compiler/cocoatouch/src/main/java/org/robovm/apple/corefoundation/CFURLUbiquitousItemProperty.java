@@ -104,9 +104,13 @@ import org.robovm.apple.coretext.*;
     public static final CFURLUbiquitousItemProperty DownloadingStatus = new CFURLUbiquitousItemProperty("DownloadingStatus");
     public static final CFURLUbiquitousItemProperty DownloadingError = new CFURLUbiquitousItemProperty("DownloadingError");
     public static final CFURLUbiquitousItemProperty UploadingError = new CFURLUbiquitousItemProperty("UploadingError");
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final CFURLUbiquitousItemProperty IsExcludedFromSync = new CFURLUbiquitousItemProperty("IsExcludedFromSync");
     /*</constants>*/
     
-    private static /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError/*</value_list>*/};
+    private static /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, IsExcludedFromSync/*</value_list>*/};
     
     /*<name>*/CFURLUbiquitousItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,6 +155,11 @@ import org.robovm.apple.coretext.*;
         public static native CFString DownloadingError();
         @GlobalValue(symbol="kCFURLUbiquitousItemUploadingErrorKey", optional=true)
         public static native CFString UploadingError();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="kCFURLUbiquitousItemIsExcludedFromSyncKey", optional=true)
+        public static native CFString IsExcludedFromSync();
         /*</values>*/
     }
 }

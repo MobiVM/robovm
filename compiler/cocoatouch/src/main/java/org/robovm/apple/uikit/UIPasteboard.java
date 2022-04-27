@@ -50,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeChanged(UIPasteboard object, final VoidBlock2<UIPasteboard, UIPasteboardChangedNotification> block) {
+        public static NSObjectProtocol observeChanged(UIPasteboard object, final VoidBlock2<UIPasteboard, UIPasteboardChangedNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
             });
         }
         
-        public static NSObject observeRemoved(UIPasteboard object, final VoidBlock1<UIPasteboard> block) {
+        public static NSObjectProtocol observeRemoved(UIPasteboard object, final VoidBlock1<UIPasteboard> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RemovedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -217,18 +217,78 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UIPasteboardRemovedNotification", optional=true)
     public static native NSString RemovedNotification();
     @GlobalValue(symbol="UIPasteboardTypeListString", optional=true)
-    public static native List<String> getStringTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getStringTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListURL", optional=true)
-    public static native List<String> getURLTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getURLTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListImage", optional=true)
-    public static native List<String> getImageTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getImageTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListColor", optional=true)
-    public static native List<String> getColorTypeList();
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getColorTypeList();
     /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="UIPasteboardTypeAutomatic", optional=true)
     public static native String getAutomaticType();
+    @Library("UIKit")
+    public static class DetectionPatterns {
+        static { Bro.bind(DetectionPatterns.class); }
+
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternProbableWebURL", optional=true)
+        public static native NSString ProbableWebURL();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternProbableWebSearch", optional=true)
+        public static native NSString ProbableWebSearch();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternNumber", optional=true)
+        public static native NSString Number();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternLink", optional=true)
+        public static native NSString Link();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternPhoneNumber", optional=true)
+        public static native NSString PhoneNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternEmailAddress", optional=true)
+        public static native NSString EmailAddress();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternPostalAddress", optional=true)
+        public static native NSString PostalAddress();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternCalendarEvent", optional=true)
+        public static native NSString CalendarEvent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternShipmentTrackingNumber", optional=true)
+        public static native NSString ShipmentTrackingNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternFlightNumber", optional=true)
+        public static native NSString FlightNumber();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="UIPasteboardDetectionPatternMoneyAmount", optional=true)
+        public static native NSString MoneyAmount();
+    }
     
     /**
      * @since Available in iOS 11.0 and later.
@@ -272,6 +332,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "setItems:options:")
     private native void setItems0(NSArray<NSDictionary> items, UIPasteboardOptions options);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectPatternsForPatterns:completionHandler:")
+    public native void detectPatternsForPatterns(NSSet<NSString> patterns, @Block VoidBlock2<NSSet<NSString>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectPatternsForPatterns:inItemSet:completionHandler:")
+    public native void detectPatternsForPatterns(NSSet<NSString> patterns, NSIndexSet itemSet, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectValuesForPatterns:completionHandler:")
+    public native void detectValuesForPatterns(NSSet<NSString> patterns, @Block VoidBlock2<NSDictionary<NSString, ?>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "detectValuesForPatterns:inItemSet:completionHandler:")
+    public native void detectValuesForPatterns(NSSet<NSString> patterns, NSIndexSet itemSet, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "pasteboardWithName:create:")
     public static native UIPasteboard getPasteboard(String pasteboardName, boolean create);
     @Method(selector = "pasteboardWithUniqueName")

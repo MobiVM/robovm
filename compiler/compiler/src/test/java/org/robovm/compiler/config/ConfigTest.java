@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -163,11 +164,48 @@ public class ConfigTest {
         builder.write(out, wd);
         assertEquals(IOUtils.toString(getClass().getResourceAsStream("ConfigTest.ios.xml")), out.toString());
     }
-    
+
+    @Test
+    public void testVariantFiltering() throws Exception {
+        // three different target of same ARM64
+        Config.Builder builder = new Config.Builder();
+        builder.home(fakeHome);
+        builder.targetType(ConsoleTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addClasspathEntry(new File("foo1.jar"));
+        Config.Lib lib1 = new Config.Lib("ios_arm64", true, new OS[]{OS.ios},
+                new PlatformVariant[]{PlatformVariant.device}, new Arch[]{Arch.arm64} );
+        Config.Lib lib2 = new Config.Lib("iossim_arm64", true, new OS[]{OS.ios},
+                new PlatformVariant[]{PlatformVariant.simulator}, new Arch[]{Arch.arm64.copy(Environment.Simulator)} );
+        Config.Lib lib3 = new Config.Lib("mac_arm64", true, new OS[]{OS.macosx},
+                new PlatformVariant[]{PlatformVariant.device}, new Arch[]{Arch.arm64} );
+        builder.addLib(lib1);
+        builder.addLib(lib2);
+        builder.addLib(lib3);
+
+        // case 1
+        builder.os(OS.ios);
+        builder.archs(Arch.arm64);
+        Config config = builder.build();
+        assertEquals(Collections.singletonList(lib1), config.getLibs());
+
+        // case 2
+        builder.os(OS.ios);
+        builder.archs(Arch.arm64.copy(Environment.Simulator));
+        config = builder.build();
+        assertEquals(Collections.singletonList(lib2), config.getLibs());
+
+        // case 3
+        builder.os(OS.macosx);
+        builder.archs(Arch.arm64);
+        config = builder.build();
+        assertEquals(Collections.singletonList(lib3), config.getLibs());
+    }
+
     private File createMergeConfig(File tmpDir, String dir, String id, OS os, Arch arch, boolean jar) throws Exception {
         File p = new File(tmpDir, dir);
         for (OS os2 : OS.values()) {
-            for (Arch arch2 : Arch.values()) {
+            for (Arch arch2 : Arch.supported(os2)) {
                 File root = new File(p, "META-INF/robovm/" + os2 + "/" + arch2);
                 root.mkdirs();
                 if (!new File(root, "robovm.xml").exists()) {

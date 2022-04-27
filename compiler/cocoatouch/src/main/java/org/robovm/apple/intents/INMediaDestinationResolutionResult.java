@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INMediaDestinationResolutionResult disambiguation(NSArray<INMediaDestination> mediaDestinationsToDisambiguate);
     @Method(selector = "confirmationRequiredWithMediaDestinationToConfirm:")
     public static native INMediaDestinationResolutionResult confirmationRequired(INMediaDestination mediaDestinationToConfirm);
+    @Method(selector = "needsValue")
+    public static native INMediaDestinationResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INMediaDestinationResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INMediaDestinationResolutionResult unsupported();
     /*</methods>*/
 }

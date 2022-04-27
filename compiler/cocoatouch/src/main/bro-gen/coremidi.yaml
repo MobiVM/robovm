@@ -20,11 +20,10 @@ typedefs:
     MIDINotifyBlock: '@Block VoidBlock1<MIDINotification>'
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
     CFPropertyListRef: CFPropertyList
     
 enums:
@@ -34,7 +33,12 @@ enums:
     MIDINotificationMessageID: {}
     MIDITransformType: {}
     MIDITransformControlType: {}
-        
+    MIDIProtocolID: {prefix: kMIDIProtocol_}
+    MIDIMessageType: {prefix: kMIDIMessageType}
+    MIDICVStatus: {prefix: kMIDICVStatus}
+    MIDISystemStatus: {prefix: kMIDIStatus}
+    MIDISysExStatus: {prefix: kMIDISysExStatus}
+
 classes:
     MIDINetworkConnection: # DONE
         methods:
@@ -124,13 +128,19 @@ classes:
         methods:
             '-initWithData:name:':
                 name: init
+            '-initWithData:':
+                name: init
     MIDICIProfileState: #since 12.0
         methods:
             '-initWithEnabledProfiles:disabledProfiles:':
                 name: init
+            '-initWithChannel:enabledProfiles:disabledProfiles:':
+                name: init
     MIDICISession: #since 12.0
         methods:
             '-initWithMIDIEntity:dataReadyHandler:':
+                name: init
+            '-initWithDiscoveredNode:dataReadyHandler:disconnectHandler:':
                 name: init
             '-enableProfile:onChannel:error:':
                 trim_after_first_colon: true
@@ -142,8 +152,10 @@ classes:
                 trim_after_first_colon: true
             '-setProperty:onChannel:responseHandler:':
                 trim_after_first_colon: true
+            '-sendProfile:onChannel:profileData:':
+                name: sendProfile
 
-        # Structs
+    # Structs
     MIDIPacketList:
         annotations: ['@Packed(4)']
         skip_def_constructor: true
@@ -161,9 +173,34 @@ classes:
     MIDIThruConnectionEndpoint: {}
     MIDIThruConnectionParams: {}
     MIDICIDeviceIdentification: {}
-
-protocols: {}
-
+    MIDICIDeviceInfo: #since 14.0
+        methods:
+            '-initWithDestination:manufacturer:family:model:revision:':
+                name: init
+    MIDICIDiscoveredNode: {} #since 14.0
+    MIDICIDiscoveryManager: #since 14.0
+        methods:
+            '-discoverWithHandler:':
+                name: discover
+    MIDICIResponder: #since 14.0
+        methods:
+            '-initWithDeviceInfo:profileDelegate:profileStates:supportProperties:':
+                name: init
+            '-notifyProfile:onChannel:isEnabled:':
+                name: notifyProfile
+            '-sendProfile:onChannel:profileData:':
+                name: sendProfile
+    MIDIEventList: {}
+    MIDIEventPacket: {}
+protocols:
+    MIDICIProfileResponderDelegate: #since 14.0
+        methods:
+            '-connectInitiator:withDeviceInfo:':
+                name: connectInitiator
+            '-willSetProfile:onChannel:enabled:':
+                name: willSetProfile
+            '-handleDataForProfile:onChannel:data:':
+                name: handleDataForProfile
 functions:
     # MIDI
     MIDI(Send):
@@ -195,6 +232,9 @@ functions:
         class: MIDI
         name: "#{g[0]}"
     MIDI(GetNumberOfSources|GetSource|GetNumberOfDestinations|GetDestination):
+        class: MIDI
+        name: "#{g[0]}"
+    MIDI(SendEventList|ReceivedEventList|EventListInit|EventListAdd):
         class: MIDI
         name: "#{g[0]}"
 
@@ -247,6 +287,11 @@ functions:
             refCon:
                 type: "@Pointer long"
     MIDIInputPortCreateWithBlock:
+        class: MIDIPort
+        name: "createInputPort"
+        visibility: protected
+        return_type: MIDIError
+    MIDIInputPortCreateWithProtocol:
         class: MIDIPort
         name: "createInputPort"
         visibility: protected
@@ -344,7 +389,17 @@ functions:
         name: "createDestination"
         visibility: protected
         return_type: MIDIError
+    MIDIDestinationCreateWithProtocol:
+        class: MIDIPort
+        name: "createDestination"
+        visibility: protected
+        return_type: MIDIError
     MIDISourceCreate:
+        class: MIDIEndpoint
+        name: "createSource"
+        visibility: protected
+        return_type: MIDIError
+    MIDISourceCreateWithProtocol:
         class: MIDIEndpoint
         name: "createSource"
         visibility: protected
@@ -448,6 +503,9 @@ functions:
         class: MIDIThruConnection
         name: "#{g[0]}"
         return_type: MIDIError
+    MIDIEventListForEachEvent:
+        class: MIDIEventList
+        name: forEachEvent
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (MIDI.*):

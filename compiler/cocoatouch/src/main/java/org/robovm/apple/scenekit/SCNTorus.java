@@ -72,10 +72,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getPipeSegmentCount();
     @Property(selector = "setPipeSegmentCount:")
     public native void setPipeSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "torusWithRingRadius:pipeRadius:")
     public static native SCNTorus create(@MachineSizedFloat double ringRadius, @MachineSizedFloat double pipeRadius);
+    @Method(selector = "geometry")
+    public static native SCNTorus createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNTorus createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

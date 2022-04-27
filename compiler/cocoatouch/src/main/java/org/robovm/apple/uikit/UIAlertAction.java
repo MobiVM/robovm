@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAlertAction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIAlertActionPtr extends Ptr<UIAlertAction, UIAlertActionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIAlertAction.class); }/*</bind>*/
@@ -67,6 +67,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
+    @Property(selector = "accessibilityIdentifier")
+    public native String getAccessibilityIdentifier();
+    @Property(selector = "setAccessibilityIdentifier:")
+    public native void setAccessibilityIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

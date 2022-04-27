@@ -25,6 +25,7 @@ import org.robovm.compiler.clazz.Dependency;
 import org.robovm.compiler.clazz.MethodInfo;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.llvm.Alias;
 import org.robovm.compiler.llvm.AliasRef;
@@ -51,7 +52,6 @@ import org.robovm.compiler.llvm.Linkage;
 import org.robovm.compiler.llvm.Load;
 import org.robovm.compiler.llvm.NullConstant;
 import org.robovm.compiler.llvm.Ordering;
-import org.robovm.compiler.llvm.PackedStructureConstantBuilder;
 import org.robovm.compiler.llvm.PointerType;
 import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Store;
@@ -296,7 +296,8 @@ public class ClassCompiler {
         OS os = config.getOs();
 
         try {
-            config.getLogger().info("Compiling %s (%s %s %s)", clazz, os, arch, config.isDebug() ? "debug" : "release");
+            config.getLogger().info("Compiling %s (%s %s %s)", clazz, os, arch,
+                    config.isDebug() ? "debug" : "release");
             output.reset();
             compile(clazz, output);
         } catch (Throwable t) {
@@ -812,7 +813,7 @@ public class ClassCompiler {
             sootClass.addMethod(offset);
         }
         
-        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch())));
+        mb.addInclude(getClass().getClassLoader().getResource(String.format("header-%s-%s.ll", config.getOs().getFamily(), config.getArch().getCpuArch())));
         mb.addInclude(getClass().getClassLoader().getResource("header.ll"));
 
         mb.addFunction(createLdcClass());
@@ -1302,7 +1303,7 @@ public class ClassCompiler {
         header.add(new IntegerConstant((short) countReferences(classFields)));
         header.add(new IntegerConstant((short) countReferences(instanceFields)));
 
-        PackedStructureConstantBuilder body = new PackedStructureConstantBuilder();
+        StructureConstantBuilder body = new StructureConstantBuilder();
         body.add(new IntegerConstant((short) sootClass.getInterfaceCount()));
         body.add(new IntegerConstant((short) sootClass.getFieldCount()));
         body.add(new IntegerConstant((short) sootClass.getMethodCount()));
@@ -1613,7 +1614,7 @@ public class ClassCompiler {
         if (Modifier.isVolatile(field.getModifiers())) {
             fn.add(new Fence(Ordering.seq_cst));
             if (LongType.v().equals(field.getType())) {
-                fn.add(new Load(result, fieldPtr, false, Ordering.unordered, 8));
+                fn.add(new Load(result, fieldPtr, false, Ordering.monotonic, 8));
             } else {
                 fn.add(new Load(result, fieldPtr));
             }
@@ -1645,7 +1646,7 @@ public class ClassCompiler {
         }
         if (Modifier.isVolatile(field.getModifiers()) || !field.isStatic() && Modifier.isFinal(field.getModifiers())) {
             if (LongType.v().equals(field.getType())) {
-                fn.add(new Store(value, fieldPtr, false, Ordering.unordered, 8));
+                fn.add(new Store(value, fieldPtr, false, Ordering.monotonic, 8));
             } else {
                 fn.add(new Store(value, fieldPtr));
             }

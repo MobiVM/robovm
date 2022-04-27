@@ -52,6 +52,7 @@ public final class /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ extends Bit
     public static final NSURLBookmarkCreationOptions PreferFileIDResolution = new NSURLBookmarkCreationOptions(256L);
     public static final NSURLBookmarkCreationOptions MinimalBookmark = new NSURLBookmarkCreationOptions(512L);
     public static final NSURLBookmarkCreationOptions SuitableForBookmarkFile = new NSURLBookmarkCreationOptions(1024L);
+    public static final NSURLBookmarkCreationOptions WithoutImplicitSecurityScope = new NSURLBookmarkCreationOptions(536870912L);
     /*</values>*/
 
     private static final /*<name>*/NSURLBookmarkCreationOptions/*</name>*/[] values = _values(/*<name>*/NSURLBookmarkCreationOptions/*</name>*/.class);

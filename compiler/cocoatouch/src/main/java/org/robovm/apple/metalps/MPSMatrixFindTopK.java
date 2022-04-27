@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixFindTopK(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixFindTopK(NSCoder decoder) { super(decoder); }
+    public MPSMatrixFindTopK(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceRows")
@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getNumberOfTopKValues();
     @Property(selector = "setNumberOfTopKValues:")
     public native void setNumberOfTopKValues(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

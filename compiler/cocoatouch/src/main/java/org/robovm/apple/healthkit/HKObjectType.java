@@ -87,6 +87,11 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "audiogramSampleType")
     public static native HKAudiogramSampleType audiogramSampleType();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "electrocardiogramType")
+    public static native HKElectrocardiogramType electrocardiogramType();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "clinicalTypeForIdentifier:")

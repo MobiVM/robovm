@@ -697,7 +697,7 @@ import org.robovm.apple.dispatch.*;
      */
     @Deprecated
     @Bridge(symbol="SSLSetALPNProtocols", optional=true)
-    protected native OSStatus setALPNProtocols0(NSArray<?> protocols);
+    protected native OSStatus setALPNProtocols0(NSArray protocols);
     /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 13.0. No longer supported. Use Network.framework.

@@ -46,7 +46,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeRegistrationsChanged(final Runnable block) {
+        public static NSObjectProtocol observeRegistrationsChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RegistrationsChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -116,7 +116,7 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="AudioComponentGetVersion", optional=true)
     protected native OSStatus getVersion0(IntPtr outVersion);
     /**
-     * @deprecated Deprecated in iOS 13.0. Inter-App Audio API is deprecated in favor of Audio Units
+     * @deprecated Deprecated in iOS 14.0. Use AudioComponentCopyIcon
      */
     @Deprecated
     @WeaklyLinked
@@ -128,5 +128,10 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Bridge(symbol="AudioComponentGetLastActiveTime", optional=true)
     public native double getLastActiveTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="AudioComponentCopyIcon", optional=true)
+    public native UIImage copyIcon();
     /*</methods>*/
 }

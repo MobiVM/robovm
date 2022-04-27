@@ -80,10 +80,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getCornerSegmentCount();
     @Property(selector = "setCornerSegmentCount:")
     public native void setCornerSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "planeWithWidth:height:")
     public static native SCNPlane create(@MachineSizedFloat double width, @MachineSizedFloat double height);
+    @Method(selector = "geometry")
+    public static native SCNPlane createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNPlane createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

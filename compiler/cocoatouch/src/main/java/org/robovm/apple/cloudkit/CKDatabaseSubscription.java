@@ -52,16 +52,22 @@ import org.robovm.apple.fileprovider.*;
     protected CKDatabaseSubscription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSubscriptionID:")
     public CKDatabaseSubscription(String subscriptionID) { super((SkipInit) null); initObject(init(subscriptionID)); }
+    @Method(selector = "initWithCoder:")
+    public CKDatabaseSubscription(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordType")
     public native String getRecordType();
     @Property(selector = "setRecordType:")
     public native void setRecordType(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithSubscriptionID:")
     protected native @Pointer long init(String subscriptionID);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

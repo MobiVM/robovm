@@ -60,9 +60,6 @@ import org.robovm.apple.corelocation.*;
     void didAddHome(HMHomeManager manager, HMHome home);
     @Method(selector = "homeManager:didRemoveHome:")
     void didRemoveHome(HMHomeManager manager, HMHome home);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
     @Method(selector = "homeManager:didReceiveAddAccessoryRequest:")
     void didReceiveAddAccessoryRequest(HMHomeManager manager, HMAddAccessoryRequest request);
     /*</methods>*/

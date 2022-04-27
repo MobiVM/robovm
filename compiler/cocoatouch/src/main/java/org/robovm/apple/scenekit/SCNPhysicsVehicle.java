@@ -62,6 +62,8 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<SCNPhysicsVehicleWheel> getWheels();
     @Property(selector = "chassisBody")
     public native SCNPhysicsBody getChassisBody();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

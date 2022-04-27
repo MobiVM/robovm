@@ -207,10 +207,20 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIApplicationOpenURLOptionsOpenInPlaceKey", optional=true)
         public static native NSString OpenInPlace();
         /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="UIApplicationOpenURLOptionsEventAttributionKey", optional=true)
+        public static native NSString EventAttribution();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="UIApplicationOpenURLOptionUniversalLinksOnly", optional=true)
         public static native NSString UniversalLinksOnly();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="UIApplicationOpenExternalURLOptionsEventAttributionKey", optional=true)
+        public static native NSString ExternalURLEventAttribution();
     }
     /*</keys>*/
 }

@@ -1,5 +1,5 @@
 package: org.robovm.apple.webkit
-include: [foundation.yaml, uikit.yaml, coregraphics.yaml, security.yaml]
+include: [foundation, uikit, coregraphics, security, coreanimation]
 library: WebKit
 framework: WebKit
 clang_args: ['-x', 'objective-c']
@@ -21,7 +21,23 @@ enums:
     WKDataDetectorTypes: {}
     WKAudiovisualMediaTypes: {}
     WKContentMode: {} #since 13.0
-
+    WKDownloadRedirectPolicy: {} #since 14.5
+    WKMediaPlaybackState: {} #since 14.5
+    WKMediaCaptureState: {} #since 15.0
+    WKPermissionDecision: {} #since 15.0
+    WKMediaCaptureType: {} #since 15.0
+    WKFullscreenState: {} #since 15.0
+categories:
+    NSAttributedString:
+        methods:
+            '+loadFromHTMLWithRequest:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithFileURL:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithString:options:completionHandler:':
+                name: loadFromHTML
+            '+loadFromHTMLWithData:options:completionHandler:':
+                name: loadFromHTML
 classes:
     WKError:
         extends: NSError
@@ -61,6 +77,12 @@ classes:
             '-addScriptMessageHandler:name:':
                 trim_after_first_colon: true
             '-removeScriptMessageHandlerForName:':
+                name: removeScriptMessageHandler
+            '-addScriptMessageHandler:contentWorld:name:':
+                name: addScriptMessageHandler
+            '-addScriptMessageHandlerWithReply:contentWorld:name:':
+                name: addScriptMessageHandler
+            '-removeScriptMessageHandlerForName:contentWorld:':
                 name: removeScriptMessageHandler
     WKUserScript: # DONE
         methods:
@@ -154,6 +176,40 @@ classes:
                 name: createWebArchiveData
             '-findString:withConfiguration:completionHandler:':
                 name: findString
+            '-evaluateJavaScript:inFrame:inContentWorld:completionHandler:':
+                name: evaluateJavaScript
+            '-callAsyncJavaScript:arguments:inFrame:inContentWorld:completionHandler:':
+                name: callAsyncJavaScript
+            '-startDownloadUsingRequest:completionHandler:':
+                name: startDownload
+            '-resumeDownloadFromResumeData:completionHandler:':
+                name: resumeDownload
+            '-closeAllMediaPresentationsWithCompletionHandler:':
+                name: closeAllMediaPresentations
+            '-pauseAllMediaPlayback:':
+                exclude: true
+            '-pauseAllMediaPlaybackWithCompletionHandler:':
+                name: pauseAllMediaPlayback
+            '-setAllMediaPlaybackSuspended:completionHandler:':
+                name: setAllMediaPlaybackSuspended
+            '-requestMediaPlaybackState:':
+                exclude: true
+            '-requestMediaPlaybackStateWithCompletionHandler:':
+                name: requestMediaPlaybackState
+            '-setCameraCaptureState:completionHandler:':
+                name: setCameraCaptureState
+            '-setMicrophoneCaptureState:completionHandler:':
+                name: setMicrophoneCaptureState
+            '-loadSimulatedRequest:response:responseData:':
+                name: loadSimulatedRequest
+            '-loadSimulatedRequest:withResponse:responseData:':
+                exclude: true
+            '-loadFileRequest:allowingReadAccessToURL:':
+                name: loadFileRequest
+            '-loadSimulatedRequest:responseHTMLString:':
+                name: loadSimulatedRequest
+            '-loadSimulatedRequest:withResponseHTMLString:':
+                name: loadSimulatedReques
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -179,6 +235,12 @@ classes:
     WKFindConfiguration: {} #since 13.0
     WKFindResult: {} #since 13.0
     WKPDFConfiguration: {} #since 13.0
+    WKContentWorld: #since 14.0
+        methods:
+            '+worldWithName:':
+                name: create
+                constructor: true
+    WKDownload: {} #since 14.5
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -204,6 +266,12 @@ protocols:
                 name: webContentProcessDidTerminate
             '-webView:decidePolicyForNavigationAction:preferences:decisionHandler:':
                 name: decidePolicyForNavigationAction
+            '-webView:authenticationChallenge:shouldAllowDeprecatedTLS:':
+                name: shouldAllowDeprecatedTLS
+            '-webView:navigationAction:didBecomeDownload:':
+                name: didBecomeDownload
+            '-webView:navigationResponse:didBecomeDownload:':
+                name: didBecomeDownload
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -234,6 +302,10 @@ protocols:
                 name: contextMenuWillPresent
             '-webView:contextMenuDidEndForElement:':
                 name: contextMenuDidEnd
+            '-webView:requestMediaCapturePermissionForOrigin:initiatedByFrame:type:decisionHandler:':
+                name: requestMediaCapturePermission
+            '-webView:requestDeviceOrientationAndMotionPermissionForOrigin:initiatedByFrame:decisionHandler:':
+                name: requestDeviceOrientationAndMotionPermission
     WKHTTPCookieStoreObserver: {} #since 11.0
     WKPreviewActionItem: {} #since 10.0
     WKURLSchemeHandler: #since 11.0
@@ -246,6 +318,22 @@ protocols:
         methods:
             '-didFailWithError:':
                 name: didFail
+    WKScriptMessageHandlerWithReply:
+        methods:
+            '-userContentController:didReceiveScriptMessage:replyHandler:':
+                name: didReceiveScriptMessage
+    WKDownloadDelegate:
+        methods:
+            '-download:decideDestinationUsingResponse:suggestedFilename:completionHandler:':
+                name: decideDestinationUsingResponse
+            '-download:willPerformHTTPRedirection:newRequest:decisionHandler:':
+                name: willPerformHTTPRedirection
+            '-download:didReceiveAuthenticationChallenge:completionHandler:':
+                name: didReceiveAuthenticationChallenge
+            '-download:didFailWithError:resumeData:':
+                name: didFailWithError
+            '-downloadDidFinish:':
+                name: didFinish
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?WK.*):

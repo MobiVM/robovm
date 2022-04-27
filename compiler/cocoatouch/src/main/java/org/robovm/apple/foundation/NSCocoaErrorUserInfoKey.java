@@ -96,6 +96,10 @@ import org.robovm.apple.dispatch.*;
 
     /*<constants>*/
     public static final NSCocoaErrorUserInfoKey UnderlyingError = new NSCocoaErrorUserInfoKey("UnderlyingError");
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static final NSCocoaErrorUserInfoKey MultipleUnderlyingErrors = new NSCocoaErrorUserInfoKey("MultipleUnderlyingErrors");
     public static final NSCocoaErrorUserInfoKey LocalizedDescription = new NSCocoaErrorUserInfoKey("LocalizedDescription");
     public static final NSCocoaErrorUserInfoKey LocalizedFailureReason = new NSCocoaErrorUserInfoKey("LocalizedFailureReason");
     public static final NSCocoaErrorUserInfoKey LocalizedRecoverySuggestion = new NSCocoaErrorUserInfoKey("LocalizedRecoverySuggestion");
@@ -112,7 +116,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSCocoaErrorUserInfoKey FilePath = new NSCocoaErrorUserInfoKey("FilePath");
     /*</constants>*/
     
-    private static /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] {/*<value_list>*/UnderlyingError, LocalizedDescription, LocalizedFailureReason, LocalizedRecoverySuggestion, LocalizedRecoveryOptions, RecoveryAttempter, HelpAnchor, DebugDescription, LocalizedFailure, StringEncoding, URL, FilePath/*</value_list>*/};
+    private static /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/[] {/*<value_list>*/UnderlyingError, MultipleUnderlyingErrors, LocalizedDescription, LocalizedFailureReason, LocalizedRecoverySuggestion, LocalizedRecoveryOptions, RecoveryAttempter, HelpAnchor, DebugDescription, LocalizedFailure, StringEncoding, URL, FilePath/*</value_list>*/};
     
     /*<name>*/NSCocoaErrorUserInfoKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -137,6 +141,11 @@ import org.robovm.apple.dispatch.*;
         /*<values>*/
         @GlobalValue(symbol="NSUnderlyingErrorKey", optional=true)
         public static native NSString UnderlyingError();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="NSMultipleUnderlyingErrorsKey", optional=true)
+        public static native NSString MultipleUnderlyingErrors();
         @GlobalValue(symbol="NSLocalizedDescriptionKey", optional=true)
         public static native NSString LocalizedDescription();
         @GlobalValue(symbol="NSLocalizedFailureReasonErrorKey", optional=true)

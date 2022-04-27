@@ -45,6 +45,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.eclipse.RoboVMPlugin;
@@ -54,16 +55,16 @@ import org.robovm.eclipse.RoboVMPlugin;
  */
 public class CreateIPADialog extends TitleAreaDialog {
 
-    private static final Arch[][] POSSIBLE_ARCH_VALUES;
+    private static final CpuArch[][] POSSIBLE_ARCH_VALUES;
     private static final String[] POSSIBLE_ARCH_NAMES;
 
     static {
-        POSSIBLE_ARCH_VALUES = new Arch[RoboVMPlugin.IOS_DEVICE_ARCH_VALUES.length + 1][];
+        POSSIBLE_ARCH_VALUES = new CpuArch[RoboVMPlugin.IOS_DEVICE_ARCH_VALUES.length + 1][];
         POSSIBLE_ARCH_NAMES = new String[RoboVMPlugin.IOS_DEVICE_ARCH_NAMES.length + 1];
         POSSIBLE_ARCH_VALUES[0] = RoboVMPlugin.IOS_DEVICE_ARCH_VALUES;
         POSSIBLE_ARCH_NAMES[0] = "All - " + join(RoboVMPlugin.IOS_DEVICE_ARCH_NAMES);
         for (int i = 0; i < RoboVMPlugin.IOS_DEVICE_ARCH_VALUES.length; i++) {
-            POSSIBLE_ARCH_VALUES[i + 1] = new Arch[] {RoboVMPlugin.IOS_DEVICE_ARCH_VALUES[i]}; 
+            POSSIBLE_ARCH_VALUES[i + 1] = new CpuArch[] {RoboVMPlugin.IOS_DEVICE_ARCH_VALUES[i]}; 
             POSSIBLE_ARCH_NAMES[i + 1] = RoboVMPlugin.IOS_DEVICE_ARCH_NAMES[i]; 
         }
     }
@@ -88,13 +89,13 @@ public class CreateIPADialog extends TitleAreaDialog {
     private String destinationDir;
     private String signingIdentity;
     private String provisioningProfile;
-    private List<Arch> archs;
+    private List<CpuArch> archs;
 
     private List<ProvisioningProfile> provisioningProfiles;
     
     public CreateIPADialog(Shell parentShell) {
         super(parentShell);
-        archs = new ArrayList<Arch>(Arrays.asList(RoboVMPlugin.IOS_DEVICE_ARCH_VALUES));
+        archs = new ArrayList<>(Arrays.asList(RoboVMPlugin.IOS_DEVICE_ARCH_VALUES));
     }
 
     @Override
@@ -280,7 +281,7 @@ public class CreateIPADialog extends TitleAreaDialog {
         return provisioningProfile;
     }
     
-    public List<Arch> getArchs() {
+    public List<CpuArch> getArchs() {
         return archs;
     }
     

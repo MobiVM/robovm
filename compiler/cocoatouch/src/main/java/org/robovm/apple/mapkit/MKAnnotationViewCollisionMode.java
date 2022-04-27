@@ -32,6 +32,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,7 +44,11 @@ import org.robovm.apple.dispatch.*;
 public enum /*<name>*/MKAnnotationViewCollisionMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Rectangle(0L),
-    Circle(1L);
+    Circle(1L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    None(2L);
     /*</values>*/
 
     /*<bind>*/

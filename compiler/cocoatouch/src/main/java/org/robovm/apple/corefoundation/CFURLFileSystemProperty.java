@@ -110,8 +110,32 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty ContentAccessDate = new CFURLFileSystemProperty("ContentAccessDate");
     public static final CFURLFileSystemProperty ContentModificationDate = new CFURLFileSystemProperty("ContentModificationDate");
     public static final CFURLFileSystemProperty AttributeModificationDate = new CFURLFileSystemProperty("AttributeModificationDate");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLFileSystemProperty FileContentIdentifier = new CFURLFileSystemProperty("FileContentIdentifier");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLFileSystemProperty MayShareFileContent = new CFURLFileSystemProperty("MayShareFileContent");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLFileSystemProperty MayHaveExtendedAttributes = new CFURLFileSystemProperty("MayHaveExtendedAttributes");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLFileSystemProperty IsPurgeable = new CFURLFileSystemProperty("IsPurgeable");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final CFURLFileSystemProperty IsSparse = new CFURLFileSystemProperty("IsSparse");
     public static final CFURLFileSystemProperty LinkCount = new CFURLFileSystemProperty("LinkCount");
     public static final CFURLFileSystemProperty ParentDirectoryURL = new CFURLFileSystemProperty("ParentDirectoryURL");
+    /**
+     * @deprecated Use NSURLContentTypeKey instead
+     */
+    @Deprecated
     public static final CFURLFileSystemProperty TypeIdentifier = new CFURLFileSystemProperty("TypeIdentifier");
     public static final CFURLFileSystemProperty LocalizedTypeDescription = new CFURLFileSystemProperty("LocalizedTypeDescription");
     public static final CFURLFileSystemProperty LabelNumber = new CFURLFileSystemProperty("LabelNumber");
@@ -152,7 +176,7 @@ import org.robovm.apple.coretext.*;
     public static final CFURLFileSystemProperty FileProtection = new CFURLFileSystemProperty("FileProtection");
     /*</constants>*/
     
-    private static /*<name>*/CFURLFileSystemProperty/*</name>*/[] values = new /*<name>*/CFURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileProtection/*</value_list>*/};
+    private static /*<name>*/CFURLFileSystemProperty/*</name>*/[] values = new /*<name>*/CFURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, FileContentIdentifier, MayShareFileContent, MayHaveExtendedAttributes, IsPurgeable, IsSparse, LinkCount, ParentDirectoryURL, TypeIdentifier, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileProtection/*</value_list>*/};
     
     /*<name>*/CFURLFileSystemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -210,10 +234,39 @@ import org.robovm.apple.coretext.*;
         public static native CFString ContentModificationDate();
         @GlobalValue(symbol="kCFURLAttributeModificationDateKey", optional=true)
         public static native CFString AttributeModificationDate();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLFileContentIdentifierKey", optional=true)
+        public static native CFString FileContentIdentifier();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLMayShareFileContentKey", optional=true)
+        public static native CFString MayShareFileContent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLMayHaveExtendedAttributesKey", optional=true)
+        public static native CFString MayHaveExtendedAttributes();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLIsPurgeableKey", optional=true)
+        public static native CFString IsPurgeable();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLIsSparseKey", optional=true)
+        public static native CFString IsSparse();
         @GlobalValue(symbol="kCFURLLinkCountKey", optional=true)
         public static native CFString LinkCount();
         @GlobalValue(symbol="kCFURLParentDirectoryURLKey", optional=true)
         public static native CFString ParentDirectoryURL();
+        /**
+         * @deprecated Use NSURLContentTypeKey instead
+         */
+        @Deprecated
         @GlobalValue(symbol="kCFURLTypeIdentifierKey", optional=true)
         public static native CFString TypeIdentifier();
         @GlobalValue(symbol="kCFURLLocalizedTypeDescriptionKey", optional=true)

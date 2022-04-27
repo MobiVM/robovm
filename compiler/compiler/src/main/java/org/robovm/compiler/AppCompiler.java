@@ -24,12 +24,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.robovm.compiler.clazz.*;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Config.TreeShakerMode;
-import org.robovm.compiler.config.ForceLinkMethodsConfig;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.LaunchPlugin;
@@ -47,8 +43,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.concurrent.*;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -57,9 +51,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -785,16 +776,14 @@ public class AppCompiler {
                 } else if ("-arch".equals(args[i])) {
                     String s = args[++i];
                     if (!"auto".equals(s)) {
-                        archs.add(Arch.valueOf(s));
+                        archs.add(Arch.parse(s));
                     }
                 } else if ("-archs".equals(args[i])) {
                     for (String s : args[++i].split(":")) {
                         if (!"auto".equals(s)) {
-                            archs.add(Arch.valueOf(s));
+                            archs.add(Arch.parse(s));
                         }
                     }
-//                } else if ("-cpu".equals(args[i])) {
-//                    builder.cpu(args[++i]);
                 } else if ("-target".equals(args[i])) {
                     String s = args[++i];
                     builder.targetType("auto".equals(s) ? null : s);
@@ -872,7 +861,7 @@ public class AppCompiler {
                 } else if ("-ipaarchs".equals(args[i])) {
                     for (String s : args[++i].split(":")) {
                         if (!"auto".equals(s)) {
-                            archs.add(Arch.valueOf(s));
+                            archs.add(Arch.parse(s));
                         }
                     }
                 } else if (args[i].startsWith("-D")) {
@@ -1083,7 +1072,7 @@ public class AppCompiler {
     }
 
     private static void printVersionAndExit() {
-        System.err.println(Version.getVersion());
+        System.err.println(Version.getCompilerVersion());
         System.exit(0);
     }
 
@@ -1141,9 +1130,9 @@ public class AppCompiler {
         System.err.println("  -archs <list>         : separated list of archs. Used to build a fat binary which\n" 
                          + "                        includes all the specified archs. Allowed values\n" 
                          + "                        are 'x86', 'x86_64', 'thumbv7', 'arm64'.");
-        System.err.println("  -cpu <name>           The name of the LLVM cpu to compile for. The LLVM default\n" 
-                         + "                        is used if not specified. Use llc to determine allowed values.");
-        System.err.println("  -target <name>        The target to build for. One of:\n" 
+        System.err.println("  -env <name>           The name platform environment. Allowed values\n"
+                         + "                        are 'Native', 'Simulator'. Default is 'Native'");
+        System.err.println("  -target <name>        The target to build for. One of:\n"
                          + "                          'auto', '" + StringUtils.join(targets, "', '") + "'\n" 
                          + "                        The default is 'auto' which means use -os to decide.");
         System.err.println("  -forcelinkclasses <list>\n" 
@@ -1323,7 +1312,7 @@ public class AppCompiler {
             String osVersion = System.getProperty("os.version", "Unknown");
             UpdateChecker t = new UpdateChecker("http://robovm.mobidevelop.com/version?"
                     + "uuid=" + URLEncoder.encode(uuid, "UTF-8") + "&"
-                    + "version=" + URLEncoder.encode(Version.getVersion(), "UTF-8") + "&"
+                    + "version=" + URLEncoder.encode(Version.getCompilerVersion(), "UTF-8") + "&"
                     + "osName=" + URLEncoder.encode(osName, "UTF-8") + "&"
                     + "osArch=" + URLEncoder.encode(osArch, "UTF-8") + "&"
                     + "osVersion=" + URLEncoder.encode(osVersion, "UTF-8"));
@@ -1332,9 +1321,9 @@ public class AppCompiler {
             JSONObject result = t.result;
             if (result != null) {
                 String version = (String) result.get("version");
-                if (version != null && Version.isOlderThan(version)) {
+                if (version != null && Version.isOlderThan(Version.getCompilerVersion(), version)) {
                     config.getLogger().info("A new version of RoboVM is available. "
-                            + "Current version: %s. New version: %s.", Version.getVersion(), version);
+                            + "Current version: %s. New version: %s.", Version.getCompilerVersion(), version);
                 }
             }
         } catch (Throwable t) {

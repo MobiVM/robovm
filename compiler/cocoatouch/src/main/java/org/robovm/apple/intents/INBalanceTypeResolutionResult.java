@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INBalanceTypeResolutionResult success(INBalanceType resolvedBalanceType);
     @Method(selector = "confirmationRequiredWithBalanceTypeToConfirm:")
     public static native INBalanceTypeResolutionResult confirmationRequired(INBalanceType balanceTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INBalanceTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INBalanceTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INBalanceTypeResolutionResult unsupported();
     /*</methods>*/
 }

@@ -44,7 +44,7 @@ import org.robovm.apple.messages.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeTextMessageAvailabilityDidChange(final VoidBlock1<Boolean> block) {
+        public static NSObjectProtocol observeTextMessageAvailabilityDidChange(final VoidBlock1<Boolean> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TextMessageAvailabilityDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -73,7 +73,7 @@ import org.robovm.apple.messages.*;
     @Method(selector = "initWithNibName:bundle:")
     public MFMessageComposeViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public MFMessageComposeViewController(NSCoder decoder) { super(decoder); }
+    public MFMessageComposeViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "messageComposeDelegate")

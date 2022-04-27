@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNLocalContrastNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNLocalContrastNormalization(NSCoder decoder) { super(decoder); }
+    public MPSCNNLocalContrastNormalization(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -84,6 +84,8 @@ import org.robovm.apple.metal.*;
     public native float getPs();
     @Property(selector = "setPs:")
     public native void setPs(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

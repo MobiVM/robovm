@@ -56,17 +56,59 @@ import org.robovm.apple.linkpresentation.*;
     public UIDocumentPickerViewController() {}
     protected UIDocumentPickerViewController(Handle h, long handle) { super(h, handle); }
     protected UIDocumentPickerViewController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Deprecated in iOS 14.0. use initForOpeningContentTypes:asCopy: or initForOpeningContentTypes: instead
+     */
+    @Deprecated
     @Method(selector = "initWithDocumentTypes:inMode:")
     public UIDocumentPickerViewController(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(allowedUTIs, mode)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:asCopy:")
+    public static  UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes, boolean asCopy) {
+       UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
+       res.initObject(res.initForOpeningContentTypesAsCopy(contentTypes, asCopy));
+       return res;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:")
+    public static  UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+       UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
+       res.initObject(res.initForOpeningContentTypes(contentTypes));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
     public UIDocumentPickerViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
+     */
+    @Deprecated
     @Method(selector = "initWithURL:inMode:")
     public UIDocumentPickerViewController(NSURL url, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(url, mode)); }
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
      */
+    @Deprecated
     @Method(selector = "initWithURLs:inMode:")
     public UIDocumentPickerViewController(NSArray<NSURL> urls, UIDocumentPickerMode mode) { super((SkipInit) null); initObject(init(urls, mode)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForExportingURLs:asCopy:")
+    public static  UIDocumentPickerViewController createForExportingURLs(NSArray<NSURL> urls, boolean asCopy) {
+       UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
+       res.initObject(res.initForExportingURLsAsCopy(urls, asCopy));
+       return res;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForExportingURLs:")
+    public UIDocumentPickerViewController(NSArray<NSURL> urls) { super((SkipInit) null); initObject(initForExportingURLs(urls)); }
     @Method(selector = "initWithNibName:bundle:")
     public UIDocumentPickerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     /*</constructors>*/
@@ -75,6 +117,10 @@ import org.robovm.apple.linkpresentation.*;
     public native UIDocumentPickerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UIDocumentPickerDelegate v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use appropriate initializers instead
+     */
+    @Deprecated
     @Property(selector = "documentPickerMode")
     public native UIDocumentPickerMode getDocumentPickerMode();
     /**
@@ -110,16 +156,46 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 14.0. use initForOpeningContentTypes:asCopy: or initForOpeningContentTypes: instead
+     */
+    @Deprecated
     @Method(selector = "initWithDocumentTypes:inMode:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> allowedUTIs, UIDocumentPickerMode mode);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:asCopy:")
+    protected native @Pointer long initForOpeningContentTypesAsCopy(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes, boolean asCopy);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForOpeningContentTypes:")
+    protected native @Pointer long initForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
+     */
+    @Deprecated
     @Method(selector = "initWithURL:inMode:")
     protected native @Pointer long init(NSURL url, UIDocumentPickerMode mode);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. use initForExportingURLs:asCopy: or initForExportingURLs: instead
      */
+    @Deprecated
     @Method(selector = "initWithURLs:inMode:")
     protected native @Pointer long init(NSArray<NSURL> urls, UIDocumentPickerMode mode);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForExportingURLs:asCopy:")
+    protected native @Pointer long initForExportingURLsAsCopy(NSArray<NSURL> urls, boolean asCopy);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initForExportingURLs:")
+    protected native @Pointer long initForExportingURLs(NSArray<NSURL> urls);
     /*</methods>*/
 }

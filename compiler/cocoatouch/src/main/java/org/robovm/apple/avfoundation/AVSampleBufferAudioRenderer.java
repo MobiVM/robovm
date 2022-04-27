@@ -67,6 +67,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getAudioTimePitchAlgorithm();
     @Property(selector = "setAudioTimePitchAlgorithm:")
     public native void setAudioTimePitchAlgorithm(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowedAudioSpatializationFormats")
+    public native AVAudioSpatializationFormats getAllowedAudioSpatializationFormats();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowedAudioSpatializationFormats:")
+    public native void setAllowedAudioSpatializationFormats(AVAudioSpatializationFormats v);
     @Property(selector = "volume")
     public native float getVolume();
     @Property(selector = "setVolume:")
@@ -79,6 +89,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native CMTimebase getTimebase();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
+    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

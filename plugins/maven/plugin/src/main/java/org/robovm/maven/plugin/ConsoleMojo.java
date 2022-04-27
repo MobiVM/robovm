@@ -23,6 +23,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
@@ -39,10 +40,9 @@ public class ConsoleMojo extends AbstractRoboVMMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         try {
-
             Arch arch = Arch.getDefaultArch();
             if (super.arch != null) {
-                arch = Arch.valueOf(super.arch);
+                arch = Arch.parse(super.arch);
             }
 
             AppCompiler compiler = build(OS.getDefaultOS(), arch, ConsoleTarget.TYPE);

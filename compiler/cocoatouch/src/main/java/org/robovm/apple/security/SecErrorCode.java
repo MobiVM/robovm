@@ -56,6 +56,7 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     InternalComponent(-2070L),
     CoreFoundationUnknown(-4960L),
     MissingEntitlement(-34018L),
+    RestrictedAPI(-34020L),
     NotAvailable(-25291L),
     ReadOnly(-25292L),
     AuthFailed(-25293L),
@@ -345,6 +346,11 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     InvalidAuthority(-67824L),
     VerifyActionFailed(-67825L),
     InvalidCertAuthority(-67826L),
+    InvalidCRLAuthority(-67827L),
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use errSecInvalidCRLAuthority
+     */
+    @Deprecated
     InvaldCRLAuthority(-67827L),
     InvalidCRLEncoding(-67828L),
     InvalidCRLType(-67829L),
@@ -370,6 +376,11 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     UnsupportedService(-67849L),
     InvalidTupleGroup(-67850L),
     InvalidBaseACLs(-67851L),
+    InvalidTupleCredentials(-67852L),
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use errSecInvalidTupleCredentials
+     */
+    @Deprecated
     InvalidTupleCredendtials(-67852L),
     InvalidEncoding(-67853L),
     InvalidValidityPeriod(-67854L),
@@ -419,7 +430,9 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     TimestampRevocationNotification(-67898L),
     CertificatePolicyNotAllowed(-67899L),
     CertificateNameNotAllowed(-67900L),
-    CertificateValidityPeriodTooLong(-67901L);
+    CertificateValidityPeriodTooLong(-67901L),
+    CertificateIsCA(-67902L),
+    CertificateDuplicateExtension(-67903L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SecErrorCode.class); }/*</bind>*/

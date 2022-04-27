@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -50,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNDetectFaceCaptureQualityRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     public VNDetectFaceCaptureQualityRequest() {}
@@ -59,6 +61,23 @@ import org.robovm.apple.imageio.*;
     public VNDetectFaceCaptureQualityRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "results")
+    public native NSArray<VNFaceObservation> getResults();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "supportedRevisions")
+    public static native NSIndexSet getSupportedRevisions();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "defaultRevision")
+    public static native @MachineSizedUInt long getDefaultRevision();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Property(selector = "currentRevision")
+    public static native @MachineSizedUInt long getCurrentRevision();
     @Property(selector = "inputFaceObservations")
     public native NSArray<VNFaceObservation> getInputFaceObservations();
     @Property(selector = "setInputFaceObservations:")

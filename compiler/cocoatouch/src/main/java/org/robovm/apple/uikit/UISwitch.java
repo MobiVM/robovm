@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UISwitch(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
     public UISwitch(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UISwitch(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "onTintColor")
@@ -78,10 +83,38 @@ import org.robovm.apple.linkpresentation.*;
     public native UIImage getOffImage();
     @Property(selector = "setOffImage:")
     public native void setOffImage(UIImage v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "title")
+    public native String getTitle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setTitle:")
+    public native void setTitle(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "style")
+    public native UISwitchStyle getStyle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredStyle")
+    public native UISwitchStyle getPreferredStyle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredStyle:")
+    public native void setPreferredStyle(UISwitchStyle v);
     @Property(selector = "isOn")
     public native boolean isOn();
     @Property(selector = "setOn:")
     public native void setOn(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -91,5 +124,15 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "setOn:animated:")
     public native void setOn(boolean on, boolean animated);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

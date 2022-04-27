@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +53,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithName:estimatedPickupDate:")
     public INRideOption(String name, NSDate estimatedPickupDate) { super((SkipInit) null); initObject(init(name, estimatedPickupDate)); }
     @Method(selector = "initWithCoder:")
-    public INRideOption(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public INRideOption(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
@@ -111,7 +112,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithName:estimatedPickupDate:")
     protected native @Pointer long init(String name, NSDate estimatedPickupDate);
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

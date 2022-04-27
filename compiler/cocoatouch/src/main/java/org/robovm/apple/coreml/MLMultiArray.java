@@ -43,7 +43,7 @@ import org.robovm.apple.metal.*;
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLMultiArray/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MLMultiArrayPtr extends Ptr<MLMultiArray, MLMultiArrayPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MLMultiArray.class); }/*</bind>*/
@@ -68,6 +68,12 @@ import org.robovm.apple.metal.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public MLMultiArray(NSArray<MLMultiArray> multiArrays, @MachineSizedSInt long axis, MLMultiArrayDataType dataType) { super((Handle) null, multiArrayByConcatenatingMultiArrays(multiArrays, axis, dataType)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MLMultiArray(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dataPointer")
@@ -80,6 +86,8 @@ import org.robovm.apple.metal.*;
     public native NSArray<NSNumber> getStrides();
     @Property(selector = "count")
     public native @MachineSizedSInt long getCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -87,6 +95,11 @@ import org.robovm.apple.metal.*;
     private native @Pointer long init(NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSError.NSErrorPtr error);
     @Method(selector = "initWithDataPointer:shape:dataType:strides:deallocator:error:")
     private native @Pointer long init(VoidPtr dataPointer, NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides, @Block VoidBlock1<VoidPtr> deallocator, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "multiArrayByConcatenatingMultiArrays:alongAxis:dataType:")
+    protected static native @Pointer long multiArrayByConcatenatingMultiArrays(NSArray<MLMultiArray> multiArrays, @MachineSizedSInt long axis, MLMultiArrayDataType dataType);
     @Method(selector = "objectAtIndexedSubscript:")
     public native NSNumber objectAtIndexedSubscript(@MachineSizedSInt long idx);
     @Method(selector = "objectForKeyedSubscript:")
@@ -95,5 +108,9 @@ import org.robovm.apple.metal.*;
     public native void setObject(NSNumber obj, @MachineSizedSInt long idx);
     @Method(selector = "setObject:forKeyedSubscript:")
     public native void setObject(NSNumber obj, NSArray<NSNumber> key);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

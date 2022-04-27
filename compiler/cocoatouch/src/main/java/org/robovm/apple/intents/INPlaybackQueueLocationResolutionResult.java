@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INPlaybackQueueLocationResolutionResult success(INPlaybackQueueLocation resolvedPlaybackQueueLocation);
     @Method(selector = "confirmationRequiredWithPlaybackQueueLocationToConfirm:")
     public static native INPlaybackQueueLocationResolutionResult confirmationRequired(INPlaybackQueueLocation playbackQueueLocationToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPlaybackQueueLocationResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPlaybackQueueLocationResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPlaybackQueueLocationResolutionResult unsupported();
     /*</methods>*/
 }

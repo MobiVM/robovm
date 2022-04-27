@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INDoubleResolutionResult success(double resolvedValue);
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INDoubleResolutionResult confirmationRequired(NSNumber valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDoubleResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDoubleResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDoubleResolutionResult unsupported();
     /*</methods>*/
 }

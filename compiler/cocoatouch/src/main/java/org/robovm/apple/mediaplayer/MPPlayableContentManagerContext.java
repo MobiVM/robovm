@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 8.4 and later.
+ * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MediaPlayer") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPPlayableContentManagerContext/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

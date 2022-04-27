@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -90,7 +91,7 @@ import org.robovm.apple.coremedia.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 10.0. Use microphoneEnabaled property
+     * @deprecated Deprecated in iOS 10.0. Use microphoneEnabled property
      */
     @Deprecated
     @Method(selector = "startRecordingWithMicrophoneEnabled:handler:")
@@ -102,6 +103,11 @@ import org.robovm.apple.coremedia.*;
     public native void startRecording(@Block VoidBlock1<NSError> handler);
     @Method(selector = "stopRecordingWithHandler:")
     public native void stopRecording(@Block VoidBlock2<RPPreviewViewController, NSError> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "stopRecordingWithOutputURL:completionHandler:")
+    public native void stopRecording(NSURL url, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "discardRecordingWithHandler:")
     public native void discardRecording(@Block Runnable handler);
     /**
@@ -114,6 +120,21 @@ import org.robovm.apple.coremedia.*;
      */
     @Method(selector = "stopCaptureWithHandler:")
     public native void stopCapture(@Block VoidBlock1<NSError> handler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "startClipBufferingWithCompletionHandler:")
+    public native void startClipBuffering(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "stopClipBufferingWithCompletionHandler:")
+    public native void stopClipBuffering(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "exportClipToURL:duration:completionHandler:")
+    public native void exportClipToURL(NSURL url, double duration, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "sharedRecorder")
     public static native RPScreenRecorder getSharedRecorder();
     /*</methods>*/

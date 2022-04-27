@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INPlaybackRepeatModeResolutionResult success(INPlaybackRepeatMode resolvedPlaybackRepeatMode);
     @Method(selector = "confirmationRequiredWithPlaybackRepeatModeToConfirm:")
     public static native INPlaybackRepeatModeResolutionResult confirmationRequired(INPlaybackRepeatMode playbackRepeatModeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPlaybackRepeatModeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPlaybackRepeatModeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPlaybackRepeatModeResolutionResult unsupported();
     /*</methods>*/
 }

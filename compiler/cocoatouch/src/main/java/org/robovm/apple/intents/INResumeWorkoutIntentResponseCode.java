@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,11 +43,6 @@ public enum /*<name>*/INResumeWorkoutIntentResponseCode/*</name>*/ implements Va
     /*<values>*/
     Unspecified(0L),
     Ready(1L),
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 11.0. INResumeWorkoutIntentResponseCodeContinueInApp is deprecated on iOS. Please use INResumeWorkoutIntentResponseCodeHandleInApp instead
-     */
-    @Deprecated
     ContinueInApp(2L),
     Failure(3L),
     FailureRequiringAppLaunch(4L),

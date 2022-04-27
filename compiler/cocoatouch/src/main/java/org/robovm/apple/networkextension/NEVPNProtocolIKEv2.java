@@ -165,6 +165,18 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setEnableFallback:")
     public native void setEnableFallback(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "mtu")
+    public native @MachineSizedUInt long getMtu();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMtu:")
+    public native void setMtu(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

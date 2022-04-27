@@ -51,8 +51,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "mifareFamily")
     NFCMiFareFamily getMifareFamily();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "identifier")
     NSData getIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "historicalBytes")
     NSData getHistoricalBytes();
     /*</properties>*/

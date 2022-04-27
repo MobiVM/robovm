@@ -104,6 +104,9 @@ import org.robovm.apple.linkpresentation.*;
     public native UIAlertViewStyle getAlertViewStyle();
     @Property(selector = "setAlertViewStyle:")
     public native void setAlertViewStyle(UIAlertViewStyle v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -121,5 +124,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void dismiss(@MachineSizedSInt long buttonIndex, boolean animated);
     @Method(selector = "textFieldAtIndex:")
     public native UITextField getTextField(@MachineSizedSInt long textFieldIndex);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

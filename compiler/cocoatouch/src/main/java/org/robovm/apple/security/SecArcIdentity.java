@@ -60,7 +60,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_identity_create_with_certificates", optional=true)
-    public static native SecArcIdentity createWithCertificates(SecIdentity identity, NSArray<?> certificates);
+    public static native SecArcIdentity createWithCertificates(SecIdentity identity, NSArray certificates);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -75,7 +75,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="sec_identity_copy_certificates_ref", optional=true)
-    public native NSArray<?> copyCertificatesRef();
+    public native NSArray copyCertificatesRef();
     
     
     /*</methods>*/

@@ -365,6 +365,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "decodeTopLevelObjectOfClass:forKey:error:")
     private native NSObject decodeTopLevelObject(Class<? extends NSObject> aClass, String key, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "decodeArrayOfObjectsOfClass:forKey:")
+    protected native NSArray<?> decodeArray(Class<?> cls, String key);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "decodeDictionaryWithKeysOfClass:objectsOfClass:forKey:")
+    protected native NSDictionary<?, ?> decodeDictionary(Class<?> keyCls, Class<?> objectCls, String key);
     @Method(selector = "decodeObjectOfClasses:forKey:")
     protected native NSObject decodeObject0(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<ObjCClass> classes, String key);
     /**
@@ -381,6 +391,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "decodeTopLevelObjectOfClasses:forKey:error:")
     private native NSObject decodeTopLevelObject(NSSet<?> classes, String key, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "decodeArrayOfObjectsOfClasses:forKey:")
+    protected native NSArray<?> decodeArray(NSSet<?> classes, String key);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:")
+    protected native NSDictionary<?, ?> decodeDictionary(NSSet<?> keyClasses, NSSet<?> objectClasses, String key);
     @Method(selector = "decodePropertyListForKey:")
     protected native NSObject decodePropertyList0(String key);
     /**

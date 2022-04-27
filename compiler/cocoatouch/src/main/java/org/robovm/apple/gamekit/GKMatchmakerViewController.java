@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,7 +58,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithNibName:bundle:")
     public GKMatchmakerViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public GKMatchmakerViewController(NSCoder decoder) { super(decoder); }
+    public GKMatchmakerViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "matchmakerDelegate")
@@ -70,6 +71,20 @@ import org.robovm.apple.uikit.*;
     public native boolean isHosted();
     @Property(selector = "setHosted:")
     public native void setHosted(boolean v);
+    @Property(selector = "matchmakingMode")
+    public native GKMatchmakingMode getMatchmakingMode();
+    @Property(selector = "setMatchmakingMode:")
+    public native void setMatchmakingMode(GKMatchmakingMode v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "canStartWithMinimumPlayers")
+    public native boolean canStartWithMinimumPlayers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCanStartWithMinimumPlayers:")
+    public native void setCanStartWithMinimumPlayers(boolean v);
     /**
      * @deprecated Deprecated in iOS 7.0.
      */
@@ -91,13 +106,13 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(GKInvite invite);
     @Method(selector = "addPlayersToMatch:")
     public native void addPlayersToMatch(GKMatch match);
+    @Method(selector = "setHostedPlayer:didConnect:")
+    public native void setHostedPlayer(GKPlayer player, boolean connected);
     /**
-     * @deprecated Deprecated in iOS 8.0. use setHostedPlayer:didConnect:
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use setHostedPlayer:didConnect:
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")
     public native void setHostedPlayer(String playerID, boolean connected);
-    @Method(selector = "setHostedPlayer:didConnect:")
-    public native void setHostedPlayer(GKPlayer player, boolean connected);
     /*</methods>*/
 }

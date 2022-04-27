@@ -30,8 +30,10 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,6 +53,11 @@ import org.robovm.apple.iad.*;
     public AVPictureInPictureController() {}
     protected AVPictureInPictureController(Handle h, long handle) { super(h, handle); }
     protected AVPictureInPictureController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithContentSource:")
+    public AVPictureInPictureController(AVPictureInPictureControllerContentSource contentSource) { super((SkipInit) null); initObject(init(contentSource)); }
     @Method(selector = "initWithPlayerLayer:")
     public AVPictureInPictureController(AVPlayerLayer playerLayer) { super((SkipInit) null); initObject(init(playerLayer)); }
     /*</constructors>*/
@@ -65,6 +72,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "pictureInPictureButtonStopImage")
     public static native UIImage getPictureInPictureButtonStopImage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "contentSource")
+    public native AVPictureInPictureControllerContentSource getContentSource();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setContentSource:")
+    public native void setContentSource(AVPictureInPictureControllerContentSource v);
     @Property(selector = "playerLayer")
     public native AVPlayerLayer getPlayerLayer();
     @Property(selector = "delegate")
@@ -77,9 +94,34 @@ import org.robovm.apple.iad.*;
     public native boolean isPictureInPictureActive();
     @Property(selector = "isPictureInPictureSuspended")
     public native boolean isPictureInPictureSuspended();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "requiresLinearPlayback")
+    public native boolean requiresLinearPlayback();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setRequiresLinearPlayback:")
+    public native void setRequiresLinearPlayback(boolean v);
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "canStartPictureInPictureAutomaticallyFromInline")
+    public native boolean canStartPictureInPictureAutomaticallyFromInline();
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "setCanStartPictureInPictureAutomaticallyFromInline:")
+    public native void setCanStartPictureInPictureAutomaticallyFromInline(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithContentSource:")
+    protected native @Pointer long init(AVPictureInPictureControllerContentSource contentSource);
     @Method(selector = "initWithPlayerLayer:")
     protected native @Pointer long init(AVPlayerLayer playerLayer);
     @Method(selector = "startPictureInPicture")
@@ -92,5 +134,10 @@ import org.robovm.apple.iad.*;
     public static native UIImage getPictureInPictureButtonStartImage(UITraitCollection traitCollection);
     @Method(selector = "pictureInPictureButtonStopImageCompatibleWithTraitCollection:")
     public static native UIImage getPictureInPictureButtonStopImage(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "invalidatePlaybackState")
+    public native void invalidatePlaybackState();
     /*</methods>*/
 }

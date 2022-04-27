@@ -48,11 +48,18 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(0) public native int getNumPackets();
     @StructMember(0) public native MIDIPacketList setNumPackets(int numPackets);
     @StructMember(1) public native @Array({1}) MIDIPacket getPacket();
-    @StructMember(1) public native MIDIPacketList setPacket(@Array({1}) MIDIPacket packet);
     /*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use MIDIEventListInit
+     */
+    @Deprecated
     @Bridge(symbol="MIDIPacketListInit", optional=true)
     public native MIDIPacket init();
+    /**
+     * @deprecated Use MIDIEventListAdd
+     */
+    @Deprecated
     @Bridge(symbol="MIDIPacketListAdd", optional=true)
     protected native MIDIPacket add(@MachineSizedUInt long listSize, MIDIPacket curPacket, long time, @MachineSizedUInt long nData, BytePtr data);
     /*</methods>*/

@@ -23,9 +23,9 @@ import org.robovm.rt.bro.annotation.GlobalValue;
 /**
  * Reads a {@link GlobalValue} lazily and optionally caches the result.
  */
-public class LazyGlobalValue<T> {
+public class LazyGlobalValue<T> extends GlobalValueSupplier<T>{
     private final static Object NO_VALUE = new Object();
-
+    private final static Object NOT_LINKED = new Object();
     private final Method getter;
     private final boolean constant;
     @SuppressWarnings("unchecked")
@@ -74,21 +74,38 @@ public class LazyGlobalValue<T> {
         }
     }
 
+    @Override
+    public boolean isAvailable() {
+        if (cachedValue != NOT_LINKED) {
+            try {
+                value();
+                return true;
+            } catch (Throwable ignored) {
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Returns the value of the {@link GlobalValue}.
      * 
      * @return the value.
      */
     @SuppressWarnings("unchecked")
+    @Override
     public T value() {
         try {
             if (!constant) {
                 return (T) getter.invoke(null);
             }
-            if (cachedValue == NO_VALUE) {
+            if (cachedValue == NO_VALUE || cachedValue == NOT_LINKED) {
                 cachedValue = (T) getter.invoke(null);
             }
             return cachedValue;
+        } catch (UnsatisfiedLinkError e) {
+            cachedValue = (T)NOT_LINKED;
+            throw e;
         } catch (Error | RuntimeException e) {
             throw e;
         } catch (IllegalAccessException | InvocationTargetException e) {

@@ -110,14 +110,28 @@ import org.robovm.apple.metal.*;
     public native void setFrameInterval(@MachineSizedSInt long v);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use preferredFrameRateRange
      */
+    @Deprecated
     @Property(selector = "preferredFramesPerSecond")
     public native @MachineSizedSInt long getPreferredFramesPerSecond();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use preferredFrameRateRange
      */
+    @Deprecated
     @Property(selector = "setPreferredFramesPerSecond:")
     public native void setPreferredFramesPerSecond(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredFrameRateRange")
+    public native @ByVal CAFrameRateRange getPreferredFrameRateRange();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredFrameRateRange:")
+    public native void setPreferredFrameRateRange(@ByVal CAFrameRateRange v);
     /*</properties>*/
     /*<members>*//*</members>*/
     public void addToRunLoop(NSRunLoop runloop, NSRunLoopMode mode) {

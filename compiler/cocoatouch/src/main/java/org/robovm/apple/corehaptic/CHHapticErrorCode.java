@@ -49,6 +49,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
     InvalidPatternData(-4813L),
     InvalidPatternDictionary(-4814L),
     InvalidAudioSession(-4815L),
+    InvalidEngineParameter(-4816L),
     InvalidParameterType(-4820L),
     InvalidEventType(-4821L),
     InvalidEventTime(-4822L),
@@ -58,6 +59,8 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
     BadEventEntry(-4830L),
     BadParameterEntry(-4831L),
     InvalidTime(-4840L),
+    FileNotFound(-4851L),
+    InsufficientPower(-4897L),
     UnknownError(-4898L),
     MemoryError(-4899L);
     /*</values>*/
@@ -89,7 +92,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
         return ClassDomain;
     }
 
-    // bind wrap to include it in compilation as long as nserror enum is used 
+    // bind wrap to include it in compilation as long as nserror enum is used
     static { Bro.bind(NSErrorWrap.class); }
     @StronglyLinked
     public static class NSErrorWrap extends NSError {
@@ -104,7 +107,7 @@ public enum /*<name>*/CHHapticErrorCode/*</name>*/ implements NSErrorCode {
          }
 
         public static String getClassDomain() {
-            /** must be incerted in value section */
+            /** must be inserted in value section */
             return /*<name>*/CHHapticErrorCode/*</name>*/.getClassDomain();
         }
     }

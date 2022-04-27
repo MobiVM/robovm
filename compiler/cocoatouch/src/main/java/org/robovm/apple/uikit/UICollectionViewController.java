@@ -120,19 +120,19 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public native void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath);
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @Method(selector = "collectionView:shouldShowMenuForItemAtIndexPath:")
     public native boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath);
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @Method(selector = "collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public native boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender);
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @Method(selector = "collectionView:performAction:forItemAtIndexPath:withSender:")
@@ -160,15 +160,32 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "indexPathForPreferredFocusedViewInCollectionView:")
     public native NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
+    @Method(selector = "collectionView:selectionFollowsFocusForItemAtIndexPath:")
+    public native boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:")
+    public native NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:
+     */
+    @Deprecated
     @Method(selector = "collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
-    public native NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath);
+    public native NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "collectionView:targetContentOffsetForProposedContentOffset:")
     public native @ByVal CGPoint getTargetContentOffsetForProposedContentOffset(UICollectionView collectionView, @ByVal CGPoint proposedContentOffset);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "collectionView:canEditItemAtIndexPath:")
+    public native boolean canEditItem(UICollectionView collectionView, NSIndexPath indexPath);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -209,6 +226,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public native void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "collectionView:willDisplayContextMenuWithConfiguration:animator:")
+    public native void willDisplayContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Method(selector = "collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
+    public native void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "collectionView:sceneActivationConfigurationForItemAtIndexPath:point:")
+    public native UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")
@@ -258,8 +290,14 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "collectionView:moveItemAtIndexPath:toIndexPath:")
     public native void moveItemAt(UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Method(selector = "indexTitlesForCollectionView:")
     public native NSArray<NSString> indexTitlesForCollectionView(UICollectionView collectionView);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Method(selector = "collectionView:indexPathForIndexTitle:atIndex:")
     public native NSIndexPath indexPathForIndexTitle(UICollectionView collectionView, String title, @MachineSizedSInt long index);
     /*</methods>*/

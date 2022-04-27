@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INCurrencyAmountResolutionResult currencyAmountResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INRequestPaymentCurrencyAmountResolutionResult unsupportedForReason(INRequestPaymentCurrencyAmountUnsupportedReason reason);
+    @Method(selector = "successWithResolvedCurrencyAmount:")
+    public static native INRequestPaymentCurrencyAmountResolutionResult success(INCurrencyAmount resolvedCurrencyAmount);
+    @Method(selector = "disambiguationWithCurrencyAmountsToDisambiguate:")
+    public static native INRequestPaymentCurrencyAmountResolutionResult disambiguation(NSArray<INCurrencyAmount> currencyAmountsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithCurrencyAmountToConfirm:")
+    public static native INRequestPaymentCurrencyAmountResolutionResult confirmationRequired(INCurrencyAmount currencyAmountToConfirm);
+    @Method(selector = "needsValue")
+    public static native INRequestPaymentCurrencyAmountResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INRequestPaymentCurrencyAmountResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INRequestPaymentCurrencyAmountResolutionResult unsupported();
     /*</methods>*/
 }

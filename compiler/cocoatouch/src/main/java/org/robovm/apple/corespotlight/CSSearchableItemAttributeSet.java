@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,8 +48,18 @@ import org.robovm.apple.foundation.*;
     public CSSearchableItemAttributeSet() {}
     protected CSSearchableItemAttributeSet(Handle h, long handle) { super(h, handle); }
     protected CSSearchableItemAttributeSet(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use initWithContentType instead
+     */
+    @Deprecated
     @Method(selector = "initWithItemContentType:")
     public CSSearchableItemAttributeSet(String itemContentType) { super((SkipInit) null); initObject(init(itemContentType)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithContentType:")
+    public CSSearchableItemAttributeSet(UTType contentType) { super((SkipInit) null); initObject(init(contentType)); }
     @Method(selector = "initWithCoder:")
     public CSSearchableItemAttributeSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -77,6 +88,10 @@ import org.robovm.apple.foundation.*;
     public native NSData getThumbnailData();
     @Property(selector = "setThumbnailData:")
     public native void setThumbnailData(NSData v);
+    @Property(selector = "darkThumbnailURL")
+    public native NSURL getDarkThumbnailURL();
+    @Property(selector = "setDarkThumbnailURL:")
+    public native void setDarkThumbnailURL(NSURL v);
     @Property(selector = "relatedUniqueIdentifier")
     public native String getRelatedUniqueIdentifier();
     @Property(selector = "setRelatedUniqueIdentifier:")
@@ -173,6 +188,26 @@ import org.robovm.apple.foundation.*;
     public native NSNumber getSupportsNavigation();
     @Property(selector = "setSupportsNavigation:")
     public native void setSupportsNavigation(NSNumber v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "actionIdentifiers")
+    public native NSArray<NSString> getActionIdentifiers();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setActionIdentifiers:")
+    public native void setActionIdentifiers(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sharedItemContentType")
+    public native UTType getSharedItemContentType();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSharedItemContentType:")
+    public native void setSharedItemContentType(UTType v);
     @Property(selector = "containerTitle")
     public native String getContainerTitle();
     @Property(selector = "setContainerTitle:")
@@ -879,8 +914,18 @@ import org.robovm.apple.foundation.*;
     @GlobalValue(symbol="CSMailboxArchive", optional=true)
     public static native String MailboxArchive();
     
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use initWithContentType instead
+     */
+    @Deprecated
     @Method(selector = "initWithItemContentType:")
     protected native @Pointer long init(String itemContentType);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithContentType:")
+    protected native @Pointer long init(UTType contentType);
     @Method(selector = "setValue:forCustomKey:")
     public native void setValue(NSSecureCoding value, CSCustomAttributeKey key);
     @Method(selector = "valueForCustomKey:")

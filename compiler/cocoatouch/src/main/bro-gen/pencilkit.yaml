@@ -1,5 +1,5 @@
 package: org.robovm.apple.pencilkit
-include: [foundation, uikit, coregraphics]
+include: [foundation, uikit, coregraphics, coreanimation]
 library: PencilKit
 framework: PencilKit
 clang_args: ['-x', 'objective-c']
@@ -12,7 +12,7 @@ typedefs:
 
 enums:
     PKEraserType: {}
-
+    PKCanvasViewDrawingPolicy: {}
 typed_enums:
     PKInkType:
         enum: PKInkType
@@ -27,6 +27,8 @@ classes:
             '-initWithData:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithStrokes:':
+                name: init
             '-imageFromRect:scale:':
                 name: getImageFromRect
     PKEraserTool: #since 13.0
@@ -39,6 +41,8 @@ classes:
                 name: init
             '-initWithInkType:color:':
                 name: init
+            '-initWithInk:width:':
+                name: init
             '+convertColor:fromUserInterfaceStyle:to:':
                 name: convertColor
     PKLassoTool: {} #since 13.0
@@ -47,6 +51,36 @@ classes:
         methods:
             '-setVisible:forFirstResponder:':
                 name: setVisible
+    PKFloatRange: #since 14.0
+        methods:
+            '-initWithLowerBound:upperBound:':
+                name: init
+    PKInk: #since 14.0
+        methods:
+            '-initWithInkType:color:':
+                name: init
+    PKStroke:
+        methods:
+            '-initWithInk:strokePath:transform:mask:':
+                name: init
+    PKStrokePath: #since 14.0
+        methods:
+            '-initWithControlPoints:creationDate:':
+                name: init
+            '-enumerateInterpolatedPointsInRange:strideByDistance:usingBlock:':
+                name: enumerateInterpolatedPointsStrideByDistance
+            '-enumerateInterpolatedPointsInRange:strideByTime:usingBlock:':
+                name: enumerateInterpolatedPointsStrideByTime
+            '-enumerateInterpolatedPointsInRange:strideByParametricStep:usingBlock:':
+                name: enumerateInterpolatedPointsStrideByParametricStep
+            '-parametricValue:offsetByDistance:':
+                name: getParametricValueOffsetByDistance
+            '-parametricValue:offsetByTime:':
+                name: getParametricValueOffsetByTime
+    PKStrokePoint: #since 14.0
+        methods:
+            '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:':
+                name: init
 protocols:
     PKCanvasViewDelegate: {} #since 13.0
     PKToolPickerObserver: {} #since 13.0

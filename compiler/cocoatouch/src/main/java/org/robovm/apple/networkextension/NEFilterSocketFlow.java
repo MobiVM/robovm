@@ -57,6 +57,11 @@ import org.robovm.apple.network.*;
     @Property(selector = "remoteEndpoint")
     public native NWEndpoint getRemoteEndpoint();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "remoteHostname")
+    public native String getRemoteHostname();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "localEndpoint")
@@ -76,6 +81,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "socketProtocol")
     public native int getSocketProtocol();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

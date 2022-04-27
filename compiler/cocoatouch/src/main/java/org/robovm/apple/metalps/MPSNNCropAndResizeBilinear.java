@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNCropAndResizeBilinear(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNCropAndResizeBilinear(NSCoder decoder) { super(decoder); }
+    public MPSNNCropAndResizeBilinear(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resizeWidth")
@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getNumberOfRegions();
     @Property(selector = "regions")
     public native MPSRegion getRegions();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

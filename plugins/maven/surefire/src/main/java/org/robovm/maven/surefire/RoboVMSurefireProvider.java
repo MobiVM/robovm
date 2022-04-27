@@ -41,6 +41,7 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.LaunchParameters;
@@ -174,9 +175,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
                 DeviceType type = DeviceType.getDeviceType(System.getProperty(PROP_IOS_SIMULATOR_NAME));
                 ((IOSSimulatorLaunchParameters) launchParameters).setDeviceType(type);
             } else if(launchParameters instanceof IOSSimulatorLaunchParameters) {
-                if(config.getArch() == Arch.x86_64) {
-                    ((IOSSimulatorLaunchParameters) launchParameters).setDeviceType(DeviceType.getBestDeviceType(config.getArch(), null, null, null));
-                }
+                ((IOSSimulatorLaunchParameters) launchParameters).setDeviceType(DeviceType.getBestDeviceType(config.getArch(), null, null, null));
             }
             process = appCompiler.launchAsync(launchParameters);
             
@@ -276,7 +275,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
             home = Home.find();
         } catch (Throwable t) {}
         if (home == null || !home.isDev()) {
-            home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getVersion()));
+            home = new Home(roboVMResolver.resolveAndUnpackRoboVMDistArtifact(Version.getCompilerVersion()));
         }
         configBuilder.home(home);
         if (home.isDev()) {
@@ -314,7 +313,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
             configBuilder.os(OS.valueOf(System.getProperty(PROP_OS)));
         }
         if (System.getProperty(PROP_ARCH) != null) {
-            configBuilder.arch(Arch.valueOf(System.getProperty(PROP_ARCH)));
+            configBuilder.arch(Arch.parse(System.getProperty(PROP_ARCH)));
         }
         if (Boolean.getBoolean(PROP_IOS_SKIP_SIGNING)) {
             configBuilder.iosSkipSigning(true);
@@ -342,11 +341,11 @@ public class RoboVMSurefireProvider extends AbstractProvider {
         // Ignore any classpath entries in the loaded robovm.xml file.
         configBuilder.clearClasspathEntries();
         
-        configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-junit-server:" + Version.getVersion()).asFile());
+        configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-junit-server:" + Version.getCompilerVersion()).asFile());
         if(isIOS()) {
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-rt:" + Version.getVersion()).asFile());
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-objc:" + Version.getVersion()).asFile());
-            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-cocoatouch:" + Version.getVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-rt:" + Version.getCompilerVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-objc:" + Version.getCompilerVersion()).asFile());
+            configBuilder.addClasspathEntry(roboVMResolver.resolveArtifact("com.mobidevelop.robovm:robovm-cocoatouch:" + Version.getCompilerVersion()).asFile());
         }
         for (String p : System.getProperty("java.class.path").split(File.pathSeparator)) {
             configBuilder.addClasspathEntry(new File(p));

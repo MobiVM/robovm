@@ -81,6 +81,7 @@ import org.osgi.framework.BundleContext;
 import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.log.Logger;
@@ -106,23 +107,24 @@ public class RoboVMPlugin extends AbstractUIPlugin implements IStartup {
     public static final String IMAGE_NEW_IOS_VIEW_CONTROLLER_BANNER = PLUGIN_ID + ".image.newIOSViewControllerBanner";
     public static final String IMAGE_NEW_IOS_VIEW_BANNER = PLUGIN_ID + ".image.newIOSViewBanner";
 
-    public static final Arch[] ALL_ARCH_VALUES = new Arch[] { Arch.thumbv7, Arch.arm64, Arch.x86, Arch.x86_64 };
+    public static final CpuArch[] ALL_ARCH_VALUES = new CpuArch[] { CpuArch.thumbv7, CpuArch.arm64, CpuArch.x86, CpuArch.x86_64 };
     public static final String[] ALL_ARCH_NAMES =
             new String[] {
-                "32-bit ARM (" + Arch.thumbv7 + ")",
-                "64-bit ARM (" + Arch.arm64 + ")",
-                "32-bit x86 (" + Arch.x86 + ")",
-                "64-bit x86 (" + Arch.x86_64 + ")" };
-    public static final Arch[] IOS_DEVICE_ARCH_VALUES = new Arch[] { Arch.thumbv7, Arch.arm64 };
+                "32-bit ARM (" + CpuArch.thumbv7 + ")",
+                "64-bit ARM (" + CpuArch.arm64 + ")",
+                "32-bit x86 (" + CpuArch.x86 + ")",
+                "64-bit x86 (" + CpuArch.x86_64 + ")" };
+    public static final CpuArch[] IOS_DEVICE_ARCH_VALUES = new CpuArch[] { CpuArch.thumbv7, CpuArch.arm64 };
     public static final String[] IOS_DEVICE_ARCH_NAMES =
             new String[] {
-                "32-bit (" + Arch.thumbv7 + ")",
-                "64-bit (" + Arch.arm64 + ")" };
-    public static final Arch[] IOS_SIM_ARCH_VALUES = new Arch[] { Arch.x86, Arch.x86_64 };
+                "32-bit (" + CpuArch.thumbv7 + ")",
+                "64-bit (" + CpuArch.arm64 + ")" };
+    public static final CpuArch[] IOS_SIM_ARCH_VALUES = new CpuArch[] { CpuArch.x86, CpuArch.x86_64, CpuArch.arm64 };
     public static final String[] IOS_SIM_ARCH_NAMES =
             new String[] {
-                "32-bit (" + Arch.x86 + ")",
-                "64-bit (" + Arch.x86_64 + ")" };
+                "32-bit (" + CpuArch.x86 + ")",
+                "64-bit (" + CpuArch.x86_64 + ")",
+                "64-bit (" + CpuArch.arm64 + ")" };
 
     private static RoboVMPlugin plugin;
     private static IPreferenceStore pluginPreferencesStore;
@@ -270,7 +272,7 @@ public class RoboVMPlugin extends AbstractUIPlugin implements IStartup {
             if (System.getenv("ROBOVM_DEV_ROOT") != null) {
                 roboVMHome = Config.Home.find();
             } else {
-                String version = Version.getVersion();
+                String version = Version.getCompilerVersion();
                 File homeDir = new File(getMetadataDir(), "robovm-" + version);
                 File distFile = new File(getMetadataDir(), "robovm-dist-" + version + ".tar.gz");
                 URL distUrl = RoboVMPlugin.class.getResource("/lib/robovm-dist.tar.gz");
@@ -475,15 +477,15 @@ public class RoboVMPlugin extends AbstractUIPlugin implements IStartup {
         return digest.digest();
     }
 
-    public static Arch getDefaultArch() {
-        return Arch.getDefaultArch();
+    public static CpuArch getDefaultArch() {
+        return CpuArch.getDefaultArch();
     }
 
-    public static Arch getArch(String s) {
+    public static CpuArch getArch(String s) {
         if (ARCH_AUTO.equals(s)) {
             return getDefaultArch();
         }
-        return Arch.valueOf(s);
+        return CpuArch.valueOf(s);
     }
 
     public static OS getDefaultOS() {

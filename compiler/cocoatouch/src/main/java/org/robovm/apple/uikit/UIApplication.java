@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeDidEnterBackground(final Runnable block) {
+        public static NSObjectProtocol observeDidEnterBackground(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEnterBackgroundNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeWillEnterForeground(final Runnable block) {
+        public static NSObjectProtocol observeWillEnterForeground(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillEnterForegroundNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidFinishLaunching(final VoidBlock1<UIApplicationLaunchOptions> block) {
+        public static NSObjectProtocol observeDidFinishLaunching(final VoidBlock1<UIApplicationLaunchOptions> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidFinishLaunchingNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -84,7 +84,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidBecomeActive(final Runnable block) {
+        public static NSObjectProtocol observeDidBecomeActive(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeActiveNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -92,7 +92,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeWillResignActive(final Runnable block) {
+        public static NSObjectProtocol observeWillResignActive(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillResignActiveNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -100,7 +100,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidReceiveMemoryWarning(final Runnable block) {
+        public static NSObjectProtocol observeDidReceiveMemoryWarning(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidReceiveMemoryWarningNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -108,7 +108,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeWillTerminate(final Runnable block) {
+        public static NSObjectProtocol observeWillTerminate(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillTerminateNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -116,7 +116,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeSignificantTimeChange(final Runnable block) {
+        public static NSObjectProtocol observeSignificantTimeChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SignificantTimeChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -124,7 +124,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeWillChangeStatusBarOrientation(final VoidBlock1<UIInterfaceOrientation> block) {
+        public static NSObjectProtocol observeWillChangeStatusBarOrientation(final VoidBlock1<UIInterfaceOrientation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillChangeStatusBarOrientationNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -133,7 +133,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidChangeStatusBarOrientation(final VoidBlock1<UIInterfaceOrientation> block) {
+        public static NSObjectProtocol observeDidChangeStatusBarOrientation(final VoidBlock1<UIInterfaceOrientation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeStatusBarOrientationNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -142,7 +142,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeWillChangeStatusBarFrame(final VoidBlock1<CGRect> block) {
+        public static NSObjectProtocol observeWillChangeStatusBarFrame(final VoidBlock1<CGRect> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillChangeStatusBarFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -151,7 +151,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObject observeDidChangeStatusBarFrame(final VoidBlock1<CGRect> block) {
+        public static NSObjectProtocol observeDidChangeStatusBarFrame(final VoidBlock1<CGRect> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeStatusBarFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -163,7 +163,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeBackgroundRefreshStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeBackgroundRefreshStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(BackgroundRefreshStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -174,7 +174,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeProtectedDataWillBecomeUnavailable(final Runnable block) {
+        public static NSObjectProtocol observeProtectedDataWillBecomeUnavailable(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ProtectedDataWillBecomeUnavailableNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -185,7 +185,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeProtectedDataDidBecomeAvailable(final Runnable block) {
+        public static NSObjectProtocol observeProtectedDataDidBecomeAvailable(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ProtectedDataDidBecomeAvailableNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -196,7 +196,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeContentSizeCategoryDidChange(final VoidBlock1<UIContentSizeCategory> block) {
+        public static NSObjectProtocol observeContentSizeCategoryDidChange(final VoidBlock1<UIContentSizeCategory> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ContentSizeCategoryDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -208,7 +208,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeUserDidTakeScreenshot(final Runnable block) {
+        public static NSObjectProtocol observeUserDidTakeScreenshot(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UserDidTakeScreenshotNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -217,9 +217,6 @@ import org.robovm.apple.linkpresentation.*;
             });
         }
     }
-    
-    /* Used to preserve the key window from being released. */
-    private static UIWindow KEY_WINDOW = null;
     
     /*<ptr>*/public static class UIApplicationPtr extends Ptr<UIApplication, UIApplicationPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIApplication.class); }/*</bind>*/
@@ -252,6 +249,10 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "keyWindow")
     public native UIWindow getKeyWindow();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use UIWindowScene.windows on a relevant window scene instead
+     */
+    @Deprecated
     @Property(selector = "windows")
     public native NSArray<UIWindow> getWindows();
     /**
@@ -423,20 +424,6 @@ import org.robovm.apple.linkpresentation.*;
             }
         }
         
-        // Observe the key UIWindow and keep a strong reference to it.
-        NSNotificationCenter.getDefaultCenter().addObserver(UIWindow.DidBecomeKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-            @Override
-            public void invoke(NSNotification a) {
-                KEY_WINDOW = (UIWindow) a.getObject();
-            }
-        });
-        NSNotificationCenter.getDefaultCenter().addObserver(UIWindow.DidResignKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
-            @Override
-            public void invoke(NSNotification a) {
-                if (a.getObject() == KEY_WINDOW) KEY_WINDOW = null;
-            }
-        });
-        
         try {
             preloadClasses();
         } catch (UnsupportedEncodingException e) {
@@ -544,6 +531,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString ProtectedDataDidBecomeAvailableNotification();
     @GlobalValue(symbol="UIApplicationOpenSettingsURLString", optional=true)
     public static native String getOpenSettingsURLString();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="UIApplicationOpenNotificationSettingsURLString", optional=true)
+    public static native String getOpenNotificationSettingsURLString();
     @GlobalValue(symbol="UIApplicationUserDidTakeScreenshotNotification", optional=true)
     public static native NSString UserDidTakeScreenshotNotification();
     

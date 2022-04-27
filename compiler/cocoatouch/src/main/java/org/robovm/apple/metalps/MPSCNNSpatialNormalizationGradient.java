@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNSpatialNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNSpatialNormalizationGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNSpatialNormalizationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native float getDelta();
     @Property(selector = "setDelta:")
     public native void setDelta(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

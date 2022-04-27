@@ -106,12 +106,12 @@ import org.robovm.rt.bro.ptr.*;
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="dispatch_queue_attr_make_with_autorelease_frequency", optional=true)
-    public static native DispatchQueueAttr attrMakeWithAutoreleaseFrequency(DispatchQueueAttr attr, long frequency);
+    public static native DispatchQueueAttr attrMakeWithAutoreleaseFrequency(DispatchQueueAttr attr, AutoreleaseFrequency frequency);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Bridge(symbol="dispatch_queue_create_with_target", optional=true)
-    public static native DispatchQueue createWithTarget(BytePtr label, DispatchQueueAttr attr, DispatchQueue target);
+    public static native DispatchQueue createWithTarget(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String label, DispatchQueueAttr attr, DispatchQueue target);
     @Bridge(symbol="dispatch_queue_create", optional=true)
     public static native DispatchQueue create(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String label, DispatchQueueAttr attr);
     @Bridge(symbol="dispatch_queue_get_label", optional=true)
@@ -127,10 +127,26 @@ import org.robovm.rt.bro.ptr.*;
      */
     @Bridge(symbol="dispatch_barrier_async_and_wait", optional=true)
     public native void barrierAsyncAndWait(@Block Runnable block);
+    @Bridge(symbol="dispatch_queue_set_specific", optional=true)
+    public native void setSpecific(VoidPtr key, VoidPtr context, FunctionPtr destructor);
+    @Bridge(symbol="dispatch_queue_get_specific", optional=true)
+    public native VoidPtr getSpecific(VoidPtr key);
+    @Bridge(symbol="dispatch_get_specific", optional=true)
+    public static native VoidPtr getCurrentSpecific(VoidPtr key);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 10.0 and later.
      */
-    @Bridge(symbol="dispatch_barrier_async_and_wait_f", optional=true)
-    public native void barrierAsyncAndWaitF(VoidPtr context, FunctionPtr work);
+    @Bridge(symbol="dispatch_assert_queue", optional=true)
+    public native void assertQueue();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_assert_queue_barrier", optional=true)
+    public native void assertQueueBarrier();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Bridge(symbol="dispatch_assert_queue_not", optional=true)
+    public native void assertQueueNot();
     /*</methods>*/
 }

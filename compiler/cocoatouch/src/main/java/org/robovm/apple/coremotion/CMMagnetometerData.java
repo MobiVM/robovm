@@ -49,6 +49,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "magneticField")
     public native @ByVal CMMagneticField getMagneticField();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

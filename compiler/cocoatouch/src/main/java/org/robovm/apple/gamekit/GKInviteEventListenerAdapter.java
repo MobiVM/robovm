@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,7 +55,7 @@ import org.robovm.apple.uikit.*;
     @NotImplemented("player:didRequestMatchWithRecipients:")
     public void didRequestMatch(GKPlayer player, NSArray<GKPlayer> recipientPlayers) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. use player:didRequestMatchWithRecipients:
+     * @deprecated Deprecated in iOS 8.0. This method is obsolete.  It will never be invoked its implementation does nothing, use player:didRequestMatchWithRecipients:
      */
     @Deprecated
     @NotImplemented("player:didRequestMatchWithPlayers:")

@@ -54,10 +54,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:sourceCount:sourceGradientIndex:")
     public MPSNDArrayMultiaryGradientKernel(MTLDevice device, @MachineSizedUInt long count, @MachineSizedUInt long sourceGradientIndex) { super((SkipInit) null); initObject(init(device, count, sourceGradientIndex)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayMultiaryGradientKernel(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayMultiaryGradientKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

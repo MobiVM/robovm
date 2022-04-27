@@ -55,7 +55,11 @@ import org.robovm.apple.dispatch.*;
     public NFCNDEFReaderSession(NFCNDEFReaderSessionDelegate delegate, DispatchQueue queue, boolean invalidateAfterFirstRead) { super((SkipInit) null); initObject(init(delegate, queue, invalidateAfterFirstRead)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "readingAvailable")
+    public static native boolean isReadingAvailable();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -66,6 +66,11 @@ import org.robovm.apple.linkpresentation.*;
     public native NSObject getAnnotation();
     @Property(selector = "openInPlace")
     public native boolean isOpenInPlace();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "eventAttribution")
+    public native UIEventAttribution getEventAttribution();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

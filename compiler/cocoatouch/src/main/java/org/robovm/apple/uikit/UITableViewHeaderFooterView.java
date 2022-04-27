@@ -64,18 +64,84 @@ import org.robovm.apple.linkpresentation.*;
     public UITableViewHeaderFooterView(@ByVal CGRect frame) { super(frame); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "textLabel")
-    public native UILabel getTextLabel();
-    @Property(selector = "detailTextLabel")
-    public native UILabel getDetailTextLabel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "configurationState")
+    public native UIViewConfigurationState getConfigurationState();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "configurationUpdateHandler")
+    public native @Block VoidBlock2<UITableViewHeaderFooterView, UIViewConfigurationState> getConfigurationUpdateHandler();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setConfigurationUpdateHandler:")
+    public native void setConfigurationUpdateHandler(@Block VoidBlock2<UITableViewHeaderFooterView, UIViewConfigurationState> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentConfiguration")
+    public native UIContentConfiguration getContentConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setContentConfiguration:")
+    public native void setContentConfiguration(UIContentConfiguration v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "automaticallyUpdatesContentConfiguration")
+    public native boolean automaticallyUpdatesContentConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAutomaticallyUpdatesContentConfiguration:")
+    public native void setAutomaticallyUpdatesContentConfiguration(boolean v);
     @Property(selector = "contentView")
     public native UIView getContentView();
+    /**
+     * @deprecated Use UIListContentConfiguration instead, this property will be deprecated in a future release.
+     */
+    @Deprecated
+    @Property(selector = "textLabel")
+    public native UILabel getTextLabel();
+    /**
+     * @deprecated Use UIListContentConfiguration instead, this property will be deprecated in a future release.
+     */
+    @Deprecated
+    @Property(selector = "detailTextLabel")
+    public native UILabel getDetailTextLabel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "backgroundConfiguration")
+    public native UIBackgroundConfiguration getBackgroundConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBackgroundConfiguration:")
+    public native void setBackgroundConfiguration(UIBackgroundConfiguration v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "automaticallyUpdatesBackgroundConfiguration")
+    public native boolean automaticallyUpdatesBackgroundConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAutomaticallyUpdatesBackgroundConfiguration:")
+    public native void setAutomaticallyUpdatesBackgroundConfiguration(boolean v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
     public native void setBackgroundView(UIView v);
     @Property(selector = "reuseIdentifier")
     public native String getReuseIdentifier();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -83,7 +149,32 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(String reuseIdentifier);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateConfiguration")
+    public native void setNeedsUpdateConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "updateConfigurationUsingState:")
+    public native void updateConfigurationUsingState(UIViewConfigurationState state);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "defaultContentConfiguration")
+    public native UIListContentConfiguration defaultContentConfiguration();
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

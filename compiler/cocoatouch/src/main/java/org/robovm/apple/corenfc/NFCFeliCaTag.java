@@ -62,7 +62,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "pollingWithSystemCode:requestCode:timeSlot:completionHandler:")
-    void pollingUsingSystemCode(NSData systemCode, PollingRequestCode requestCode, PollingTimeSlot timeSlot, @Block VoidBlock3<NSData, NSData, NSError> completionHandler);
+    void pollingUsingSystemCode(NSData systemCode, NFCFeliCaPollingRequestCode requestCode, NFCFeliCaPollingTimeSlot timeSlot, @Block VoidBlock3<NSData, NSData, NSError> completionHandler);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -92,7 +92,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "requestServiceV2WithNodeCodeList:completionHandler:")
-    void requestServiceV2(NSArray<NSData> nodeCodeList, @Block("(@MachineSizedSInt,@MachineSizedSInt,,,,)") VoidBlock6<Long, Long, EncryptionId, NSArray<NSData>, NSArray<NSData>, NSError> completionHandler);
+    void requestServiceV2(NSArray<NSData> nodeCodeList, @Block("(@MachineSizedSInt,@MachineSizedSInt,,,,)") VoidBlock6<Long, Long, NFCFeliCaEncryptionId, NSArray<NSData>, NSArray<NSData>, NSError> completionHandler);
     /**
      * @since Available in iOS 13.0 and later.
      */

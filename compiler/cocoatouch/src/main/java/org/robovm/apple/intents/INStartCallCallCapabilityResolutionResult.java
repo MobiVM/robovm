@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,15 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INCallCapabilityResolutionResult callCapabilityResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INStartCallCallCapabilityResolutionResult unsupportedForReason(INStartCallCallCapabilityUnsupportedReason reason);
+    @Method(selector = "successWithResolvedCallCapability:")
+    public static native INStartCallCallCapabilityResolutionResult success(INCallCapability resolvedCallCapability);
+    @Method(selector = "confirmationRequiredWithCallCapabilityToConfirm:")
+    public static native INStartCallCallCapabilityResolutionResult confirmationRequired(INCallCapability callCapabilityToConfirm);
+    @Method(selector = "needsValue")
+    public static native INStartCallCallCapabilityResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INStartCallCallCapabilityResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INStartCallCallCapabilityResolutionResult unsupported();
     /*</methods>*/
 }

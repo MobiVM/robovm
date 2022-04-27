@@ -53,13 +53,15 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithSeed:")
     public GKARC4RandomSource(NSData seed) { super((SkipInit) null); initObject(init(seed)); }
     @Method(selector = "initWithCoder:")
-    public GKARC4RandomSource(NSCoder decoder) { super(decoder); }
+    public GKARC4RandomSource(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "seed")
     public native NSData getSeed();
     @Property(selector = "setSeed:")
     public native void setSeed(NSData v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,5 +69,7 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSData seed);
     @Method(selector = "dropValuesWithCount:")
     public native void dropValues(@MachineSizedUInt long count);
+    @Method(selector = "sharedRandom")
+    public static native GKRandomSource getSharedRandom();
     /*</methods>*/
 }

@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNLocalCorrelation(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNLocalCorrelation(NSCoder decoder) { super(decoder); }
+    public MPSNNLocalCorrelation(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "windowInX")
@@ -75,6 +75,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getStrideInY();
     @Property(selector = "setStrideInY:")
     public native void setStrideInY(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

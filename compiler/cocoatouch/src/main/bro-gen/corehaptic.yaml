@@ -14,23 +14,43 @@ enums:
 
 typed_enums:
     CHHapticPatternKey:
-        readonly: true # as declared without const
-        class: CHHapticPatternKey
+        dictionary: CHHapticPatternDict
         type: NSString
         prefix: CHHapticPatternKey
+        methods:
+            Version:
+                type: double
+            Pattern:
+                type: NSArray<?>
+            Event:
+                type: CHHapticPatternDict
+            EventType:
+                type: CHHapticEventType
+            EventDuration:
+                type: double
+            EventParameters:
+                type: NSArray<?>
+            Parameter:
+                type: NSDictionary<?, ?>
+            ParameterID:
+                type: CHHapticEventParameterID
+            ParameterValue:
+                type: double
+            Time:
+                type: double
+            EventWaveformPath:
+                type: String
+
     CHHapticEventType:
-        readonly: true # as declared without const
-        class: CHHapticEventType
+        enum: CHHapticEventType
         type: NSString
         prefix: CHHapticEventType
     CHHapticEventParameterID:
-        readonly: true # as declared without const
-        class: CHHapticEventParameterID
+        enum: CHHapticEventParameterID
         type: NSString
         prefix: CHHapticEventParameterID
     CHHapticDynamicParameterID:
-        readonly: true # as declared without const
-        class: CHHapticDynamicParameterID
+        enum: CHHapticDynamicParameterID
         type: NSString
         prefix: CHHapticDynamicParameterID
 
@@ -40,9 +60,14 @@ classes:
             '-initWithParameterID:value:relativeTime:':
                 name: init
     CHHapticEngine: #since 13.0
+        skip_def_constructor: true
         methods:
             '-initWithAudioSession:error:':
                 name: init
+                throws: NSErrorException
+            '-initAndReturnError:':
+                name: init
+                throws: NSErrorException
             '-startWithCompletionHandler:':
                 name: start
             '-stopWithCompletionHandler:':
@@ -134,6 +159,12 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
+    CHHapticAudioResourceKey(.*):
+        readonly: true
+        class: CHHapticEngine
+        static_class: AudioResourceKeys
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CH.*):
         class: !!!FixMe

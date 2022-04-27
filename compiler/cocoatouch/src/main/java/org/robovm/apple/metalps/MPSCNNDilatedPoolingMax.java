@@ -58,13 +58,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:")
     public MPSCNNDilatedPoolingMax(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInPixelsX, @MachineSizedUInt long strideInPixelsY) { super(device, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNDilatedPoolingMax(NSCoder decoder) { super(decoder); }
+    public MPSCNNDilatedPoolingMax(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "dilationRateX")
     public native @MachineSizedUInt long getDilationRateX();
     @Property(selector = "dilationRateY")
     public native @MachineSizedUInt long getDilationRateY();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

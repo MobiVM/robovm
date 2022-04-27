@@ -38,7 +38,13 @@ enums:
     nw_ws_close_code_t: {prefix: nw_ws_close_code_, name: NWWsCoseCode}
     nw_ws_version_t: {prefix: nw_ws_, name: NWWsVersion}
     nw_ws_response_status_t: {prefix: nw_ws_response_status_, name: NWWsResponseStatus}
-
+    nw_connection_group_state_t: {prefix: nw_connection_group_state_, name: NWConnectionGroupState}
+    nw_report_resolution_protocol_t: {prefix: nw_report_resolution_protocol_, name: NWReportResolutionProtocol}
+    nw_path_unsatisfied_reason_t: {prefix: nw_path_unsatisfied_reason_, name: NWPathUnsatisfiedReason}
+    nw_interface_radio_type_t: {prefix: nw_interface_radio_type_, name: NWInterfaceRadioType }
+    nw_parameters_attribution_t: {prefix: nw_parameters_attribution_, name: NWParametersAttribution}
+    nw_quic_stream_type_t: {prefix: nw_quic_stream_type_, name: NWQuicStreamType}
+    nw_multipath_version_t: {prefix: nw_multipath_version_, name: NWMultipathVersion}
 classes:
     NWFramerMessage:
         extends: NWProtocolMetadata
@@ -236,6 +242,46 @@ protocols:
         extends: NWObject
         visibility: 'public final'
     NWWsResponse:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeClass("NSObject")']
+
+    OS_nw_connection_group:
+        class: true
+        name: NWConnectionGroup
+        extends: NWObject
+        visibility: 'public final'
+    NWConnectionGroup:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeClass("NSObject")']
+
+    OS_nw_group_descriptor:
+        class: true
+        name: NWGroupDescriptor
+        extends: NWObject
+        visibility: 'public final'
+    NWGroupDescriptor:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeClass("NSObject")']
+
+    OS_nw_privacy_context:
+        class: true
+        name: NWPrivacyContext
+        extends: NWObject
+        visibility: 'public final'
+    NWPrivacyContext:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeClass("NSObject")']
+
+    OS_nw_resolution_report:
+        class: true
+        name: NWResolutionReport
+        extends: NWObject
+        visibility: 'public final'
+    NWResolutionReport:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
+        annotations: ['@NativeClass("NSObject")']
+
+    OS_nw_resolver_config:
+        class: true
+        name: NWResolverConfig
+        extends: NWObject
+        visibility: 'public final'
+    NWResolverConfig:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
         annotations: ['@NativeClass("NSObject")']
 
 functions:
@@ -562,6 +608,56 @@ functions:
         class: NWWsResponse
         name: '#{g[0].downcase_first_camelize}'
 
+    # iOS14
+    nw_resolver_config_(.*):
+        class: NWResolverConfig
+        name: '#{g[0].downcase_first_camelize}'
+
+    # NWPrivacyContext
+    nw_privacy_context_(create):
+        class: NWPrivacyContext
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
+        parameters:
+            description: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_privacy_context_(.*):
+        class: NWPrivacyContext
+        name: '#{g[0].downcase_first_camelize}'
+
+    # NWGroupDescriptor
+    nw_group_descriptor_(create_multicast):
+        class: NWGroupDescriptor
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
+    nw_group_descriptor_(.*):
+        class: NWGroupDescriptor
+        name: '#{g[0].downcase_first_camelize}'
+    nw_multicast_group_descriptor_(.*):
+        class: NWGroupDescriptor
+        name: '#{g[0].downcase_first_camelize}'
+
+    # NWResolutionReport
+    nw_resolution_report_(.*):
+        class: NWResolutionReport
+        name: '#{g[0].downcase_first_camelize}'
+
+    # iOS15
+    nw_quic_(add|copy|get|set)_(tls_application_protocol|sec_protocol_options|stream_is_unidirectional|initial_max_data|max_udp_payload_size):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(idle_timeout|initial_max_streams_bidirectional|initial_max_streams_unidirectional|initial_max_stream_data_bidirectional_local|initial_max_stream_data_bidirectional_remote):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(initial_max_stream_data_unidirectional):
+        class: NWProtocolOptions
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+
+    nw_quic_(add|copy|get|set)_(sec_protocol_metadata|stream_id|stream_application_error|local_max_streams_bidirectional|local_max_streams_unidirectional):
+        class: NWProtocolMetadata
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+    nw_quic_(add|copy|get|set)_(remote_max_streams_bidirectional|remote_max_streams_unidirectional|application_error|application_error_reason|keepalive_interval|remote_idle_timeout):
+        class: NWProtocolMetadata
+        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?nw_.*):
@@ -584,6 +680,12 @@ values:
     _nw_data_transfer_report_(.*):
         class: NWDataTransferReport
         name: '#{g[0].downcase_first_camelize}'
+
+    # NWResolverConfig
+    _nw_privacy_context_default_context:
+        class: NWResolverConfig
+        name: getDefaultContext
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?nw_.*):

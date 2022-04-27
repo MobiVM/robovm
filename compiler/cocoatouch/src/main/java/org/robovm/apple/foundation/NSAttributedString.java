@@ -59,6 +59,39 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(String str, NSDictionary<NSString, ?> attrs) { super((SkipInit) null); initObject(init(str, attrs)); }
     @Method(selector = "initWithAttributedString:")
     public NSAttributedString(NSAttributedString attrStr) { super((SkipInit) null); initObject(init(attrStr)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithContentsOfMarkdownFileAtURL:options:baseURL:error:")
+    public NSAttributedString(NSURL markdownFile, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(markdownFile, options, baseURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithMarkdown:options:baseURL:error:")
+    public NSAttributedString(NSData markdown, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(markdown, options, baseURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithMarkdownString:options:baseURL:error:")
+    public NSAttributedString(String markdownString, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(markdownString, options, baseURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     @Method(selector = "initWithCoder:")
     public NSAttributedString(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -366,6 +399,63 @@ import org.robovm.apple.dispatch.*;
         throw new UnsupportedOperationException("NSAttributedString is immutable");
     }
     /*<methods>*/
+    @Library("Foundation")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSReplacementIndexAttributeName", optional=true)
+        public static native NSString ReplacementIndex();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSMorphologyAttributeName", optional=true)
+        public static native NSString Morphology();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionRuleAttributeName", optional=true)
+        public static native NSString InflectionRule();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAlternativeAttributeName", optional=true)
+        public static native NSString InflectionAlternative();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSPresentationIntentAttributeName", optional=true)
+        public static native NSString PresentationIntent();
+    }
+
+    @Library("Foundation")
+    public static class KeysNSBundle {
+        static { Bro.bind(KeysNSBundle.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSInlinePresentationIntentAttributeName", optional=true)
+        public static native NSString InlinePresentationIntent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSAlternateDescriptionAttributeName", optional=true)
+        public static native NSString AlternateDescription();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSImageURLAttributeName", optional=true)
+        public static native NSString ImageURL();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSLanguageIdentifierAttributeName", optional=true)
+        public static native NSString LanguageIdentifier();
+    }
+    
     @Method(selector = "attributesAtIndex:effectiveRange:")
     public native NSDictionary<NSString, ?> getAttributesDictionary(@MachineSizedUInt long location, NSRange range);
     @Method(selector = "attribute:atIndex:effectiveRange:")
@@ -388,6 +478,26 @@ import org.robovm.apple.dispatch.*;
     public native void enumerateAttributes(@ByVal NSRange enumerationRange, NSAttributedStringEnumerationOptions opts, @Block("(,@ByVal,)") VoidBlock3<NSDictionary<NSString, ?>, NSRange, BooleanPtr> block);
     @Method(selector = "enumerateAttribute:inRange:options:usingBlock:")
     public native void enumerateAttribute(NSString attrName, @ByVal NSRange enumerationRange, NSAttributedStringEnumerationOptions opts, @Block("(,@ByVal,)") VoidBlock3<NSObject, NSRange, BooleanPtr> block);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithContentsOfMarkdownFileAtURL:options:baseURL:error:")
+    private native @Pointer long init(NSURL markdownFile, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithMarkdown:options:baseURL:error:")
+    private native @Pointer long init(NSData markdown, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithMarkdownString:options:baseURL:error:")
+    private native @Pointer long init(String markdownString, NSAttributedStringMarkdownParsingOptions options, NSURL baseURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "attributedStringByInflectingString")
+    public native NSAttributedString attributedStringByInflectingString();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

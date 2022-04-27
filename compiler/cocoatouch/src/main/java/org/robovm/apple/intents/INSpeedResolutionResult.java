@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INSpeedResolutionResult disambiguation(NSArray<?> speedToDisambiguate);
     @Method(selector = "confirmationRequiredWithSpeedToConfirm:")
     public static native INSpeedResolutionResult confirmationRequired(NSMeasurement<NSUnitSpeed> speedToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSpeedResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSpeedResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSpeedResolutionResult unsupported();
     /*</methods>*/
 }

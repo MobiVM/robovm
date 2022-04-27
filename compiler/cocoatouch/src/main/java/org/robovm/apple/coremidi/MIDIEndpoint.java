@@ -88,12 +88,29 @@ import org.robovm.apple.corefoundation.*;
     /*<methods>*/
     @Bridge(symbol="MIDIEndpointGetEntity", optional=true)
     protected native MIDIError getEntity(MIDIEntity.MIDIEntityPtr outEntity);
+    /**
+     * @deprecated Use MIDIDestinationCreateWithProtocol
+     */
+    @Deprecated
     @Bridge(symbol="MIDIDestinationCreate", optional=true)
     protected static native MIDIError createDestination(MIDIClient client, String name, FunctionPtr readProc, @Pointer long refCon, MIDIEndpoint.MIDIEndpointPtr outDest);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDISourceCreateWithProtocol", optional=true)
+    protected static native MIDIError createSource(MIDIClient client, String name, MIDIProtocolID protocol, MIDIEndpoint.MIDIEndpointPtr outSrc);
+    /**
+     * @deprecated Use MIDISourceCreateWithProtocol
+     */
+    @Deprecated
     @Bridge(symbol="MIDISourceCreate", optional=true)
     protected static native MIDIError createSource(MIDIClient client, String name, MIDIEndpoint.MIDIEndpointPtr outSrc);
     @Bridge(symbol="MIDIEndpointDispose", optional=true)
     public native MIDIError dispose();
+    /**
+     * @deprecated Use MIDIReceivedEventList
+     */
+    @Deprecated
     @Bridge(symbol="MIDIReceived", optional=true)
     public native MIDIError received(MIDIPacketList pktlist);
     @Bridge(symbol="MIDIEndpointSetRefCons", optional=true)

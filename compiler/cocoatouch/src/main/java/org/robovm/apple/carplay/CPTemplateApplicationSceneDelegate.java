@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,12 +54,27 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @Method(selector = "templateApplicationScene:didConnectInterfaceController:toWindow:")
     void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "templateApplicationScene:didConnectInterfaceController:")
+    void didConnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController);
     @Method(selector = "templateApplicationScene:didDisconnectInterfaceController:fromWindow:")
     void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController, CPWindow window);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "templateApplicationScene:didDisconnectInterfaceController:")
+    void didDisconnectInterfaceController(CPTemplateApplicationScene templateApplicationScene, CPInterfaceController interfaceController);
     @Method(selector = "templateApplicationScene:didSelectNavigationAlert:")
     void didSelectNavigationAlert(CPTemplateApplicationScene templateApplicationScene, CPNavigationAlert navigationAlert);
     @Method(selector = "templateApplicationScene:didSelectManeuver:")
     void didSelectManeuver(CPTemplateApplicationScene templateApplicationScene, CPManeuver maneuver);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "contentStyleDidChange:")
+    void contentStyleDidChange(UIUserInterfaceStyle contentStyle);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

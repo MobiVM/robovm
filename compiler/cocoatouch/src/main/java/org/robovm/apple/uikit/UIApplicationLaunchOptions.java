@@ -284,6 +284,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIApplicationLaunchOptionsShortcutItemKey", optional=true)
         public static native NSString ShortcutItem();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="UIApplicationLaunchOptionsEventAttributionKey", optional=true)
+        public static native NSString EventAttribution();
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityDictionaryKey", optional=true)
         public static native NSString UserActivityDictionary();
         /**

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,16 +65,26 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "isMultiplayerGamingRestricted")
     public native boolean isMultiplayerGamingRestricted();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isPersonalizedCommunicationRestricted")
+    public native boolean isPersonalizedCommunicationRestricted();
+    /**
+     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use loadFriendPlayersWithCompletionHandler: instead
+     */
+    @Deprecated
+    @Property(selector = "friends")
+    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFriends();
     @Property(selector = "authenticateHandler")
     public native @Block VoidBlock2<UIViewController, NSError> getAuthenticateHandler();
     @Property(selector = "setAuthenticateHandler:")
     public native void setAuthenticateHandler(@Block VoidBlock2<UIViewController, NSError> v);
     /**
-     * @deprecated Deprecated in iOS 8.0. use loadFriendPlayersWithCompletionHandler: instead
+     * @since Available in iOS 15.0 and later.
      */
-    @Deprecated
-    @Property(selector = "friends")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getFriends();
+    @Property(selector = "isPresentingFriendRequestViewController")
+    public native boolean isPresentingFriendRequestViewController();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -86,7 +97,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadRecentPlayersWithCompletionHandler:")
     public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "loadChallengableFriendsWithCompletionHandler:")
-    public native void loadChallengableFriendsWithCompletionHandler(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    public native void loadChallengableFriends(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "setDefaultLeaderboardIdentifier:completionHandler:")
     public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
@@ -96,6 +107,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "fetchItemsForIdentityVerificationSignature:")
     public native void fetchItemsForIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "anonymousGuestPlayerWithIdentifier:")
+    public static native GKLocalPlayer getAnonymousGuestPlayer(String guestIdentifier);
     @Method(selector = "registerListener:")
     public native void registerListener(GKLocalPlayerListener listener);
     @Method(selector = "unregisterListener:")
@@ -115,12 +131,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadDefaultLeaderboardCategoryIDWithCompletionHandler:")
     public native void loadDefaultLeaderboardCategoryID(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. use loadRecentPlayersWithCompletionHandler: instead
-     */
-    @Deprecated
-    @Method(selector = "loadFriendsWithCompletionHandler:")
-    public native void loadFriends(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
-    /**
      * @deprecated Deprecated in iOS 10.0.
      */
     @Deprecated
@@ -132,6 +142,41 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use loadRecentPlayersWithCompletionHandler: instead
+     */
+    @Deprecated
+    @Method(selector = "loadFriendsWithCompletionHandler:")
+    public native void loadFriends(@Block VoidBlock2<NSArray<NSString>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriendsAuthorizationStatus:")
+    public native void loadFriendsAuthorizationStatus(@Block VoidBlock2<GKFriendsAuthorizationStatus, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriends:")
+    public native void loadFriends2(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "loadFriendsWithIdentifiers:completionHandler:")
+    public native void loadFriends(NSArray<NSString> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public boolean presentFriendRequestCreator(UIViewController viewController) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = presentFriendRequestCreator(viewController, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "presentFriendRequestCreatorFromViewController:error:")
+    private native boolean presentFriendRequestCreator(UIViewController viewController, NSError.NSErrorPtr error);
     @Method(selector = "fetchSavedGamesWithCompletionHandler:")
     public native void fetchSavedGames(@Block VoidBlock2<NSArray<GKSavedGame>, NSError> handler);
     @Method(selector = "saveGameData:withName:completionHandler:")

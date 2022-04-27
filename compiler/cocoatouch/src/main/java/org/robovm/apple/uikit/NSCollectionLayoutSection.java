@@ -59,6 +59,10 @@ import org.robovm.apple.linkpresentation.*;
     protected NSCollectionLayoutSection(Handle h, long handle) { super(h, handle); }
     protected NSCollectionLayoutSection(SkipInit skipInit) { super(skipInit); }
     public NSCollectionLayoutSection(NSCollectionLayoutGroup group) { super((Handle) null, create(group)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public NSCollectionLayoutSection(UICollectionLayoutListConfiguration configuration, NSCollectionLayoutEnvironment layoutEnvironment) { super((Handle) null, create(configuration, layoutEnvironment)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "contentInsets")
@@ -69,6 +73,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getInterGroupSpacing();
     @Property(selector = "setInterGroupSpacing:")
     public native void setInterGroupSpacing(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentInsetsReference")
+    public native UIContentInsetsReference getContentInsetsReference();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setContentInsetsReference:")
+    public native void setContentInsetsReference(UIContentInsetsReference v);
     @Property(selector = "orthogonalScrollingBehavior")
     public native UICollectionLayoutSectionOrthogonalScrollingBehavior getOrthogonalScrollingBehavior();
     @Property(selector = "setOrthogonalScrollingBehavior:")
@@ -94,5 +108,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "sectionWithGroup:")
     protected static native @Pointer long create(NSCollectionLayoutGroup group);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sectionWithListConfiguration:layoutEnvironment:")
+    protected static native @Pointer long create(UICollectionLayoutListConfiguration configuration, NSCollectionLayoutEnvironment layoutEnvironment);
     /*</methods>*/
 }

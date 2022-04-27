@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INTaskResolutionResult taskResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSnoozeTasksTaskResolutionResult unsupportedForReason(INSnoozeTasksTaskUnsupportedReason reason);
+    @Method(selector = "successWithResolvedTask:")
+    public static native INSnoozeTasksTaskResolutionResult success(INTask resolvedTask);
+    @Method(selector = "disambiguationWithTasksToDisambiguate:")
+    public static native INSnoozeTasksTaskResolutionResult disambiguation(NSArray<INTask> tasksToDisambiguate);
+    @Method(selector = "confirmationRequiredWithTaskToConfirm:")
+    public static native INSnoozeTasksTaskResolutionResult confirmationRequired(INTask taskToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSnoozeTasksTaskResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSnoozeTasksTaskResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSnoozeTasksTaskResolutionResult unsupported();
     /*</methods>*/
 }

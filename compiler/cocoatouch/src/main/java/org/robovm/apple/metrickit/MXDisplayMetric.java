@@ -51,6 +51,8 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "averagePixelLuminance")
     public native MXAverage<MXUnitAveragePixelLuminance> getAveragePixelLuminance();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

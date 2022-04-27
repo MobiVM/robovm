@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -106,6 +107,6 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 9.3 and later.
      */
     @Method(selector = "requestAuthorization:")
-    public static native void requestAuthorization(@Block VoidBlock1<SKCloudServiceAuthorizationStatus> handler);
+    public static native void requestAuthorization(@Block VoidBlock1<SKCloudServiceAuthorizationStatus> completionHandler);
     /*</methods>*/
 }

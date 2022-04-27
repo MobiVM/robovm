@@ -48,9 +48,7 @@ import org.robovm.apple.dispatch.*;
 
     /*<ptr>*/public static class NSDateComponentsPtr extends Ptr<NSDateComponents, NSDateComponentsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSDateComponents.class); }/*</bind>*/
-    /*<constants>*/
-    public static final long UndefinedComponent = Bro.IS_32BIT ? 0x7fffffffL : 0x7fffffffffffffffL;
-    /*</constants>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSDateComponents() {}
     protected NSDateComponents(Handle h, long handle) { super(h, handle); }

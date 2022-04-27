@@ -62,6 +62,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "preferredTapAction")
     public static native UIPencilPreferredAction getPreferredTapAction();
+    @Property(selector = "prefersPencilOnlyDrawing")
+    public static native boolean prefersPencilOnlyDrawing();
     @Property(selector = "delegate")
     public native UIPencilInteractionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)

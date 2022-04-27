@@ -21,6 +21,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
@@ -44,10 +46,22 @@ public class DeviceType implements Comparable<DeviceType> {
 
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
     public static final Version ONLY_64BIT_IOS_VERSION = new Version(11, 0, 0);
+    public static final Version ARM64_IOS_VERSION = new Version(14, 0, 0);
 
     public enum DeviceFamily {
         iPhone,
         iPad
+    }
+
+    // depending on x86_64 or m1 CPU use different host simulator arches
+    public final static CpuArch DEFAULT_HOST_ARCH;
+    static {
+        String archProp = System.getProperty("os.arch").toLowerCase();
+        if (archProp.matches("aarch64|arm64")) {
+            DEFAULT_HOST_ARCH = CpuArch.arm64;
+        } else {
+            DEFAULT_HOST_ARCH = CpuArch.x86_64;
+        }
     }
 
     private final String deviceName;
@@ -182,10 +196,16 @@ public class DeviceType implements Comparable<DeviceType> {
                         final String deviceName = device.get("name").toString();
                         final Version version = Version.parse(versionKey);
                         Set<Arch> archs = new HashSet<>();
-                        if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName))
-                            archs.add(Arch.x86_64);
-                        if (!version.isSameOrBetter(ONLY_64BIT_IOS_VERSION))
-                            archs.add(Arch.x86);
+                        if (!Arrays.asList(ONLY_32BIT_DEVICES).contains(deviceName)) {
+                            // This is assumption that on M1 ios versions starting from ios14 can run arm64 target
+                            if (DEFAULT_HOST_ARCH == CpuArch.arm64 && version.isSameOrBetter(ARM64_IOS_VERSION))
+                                archs.add(new Arch(CpuArch.arm64, Environment.Simulator));
+                            archs.add(new Arch(CpuArch.x86_64, Environment.Simulator));
+                        }
+                        if (DEFAULT_HOST_ARCH != CpuArch.arm64 && !version.isSameOrBetter(ONLY_64BIT_IOS_VERSION)) {
+                            // 32 bit device. not supported on Arm
+                            archs.add(new Arch(CpuArch.x86, Environment.Simulator));
+                        }
 
                         String udid = device.get("udid").toString();
                         DeviceType watchPair = pairs.get(udid);

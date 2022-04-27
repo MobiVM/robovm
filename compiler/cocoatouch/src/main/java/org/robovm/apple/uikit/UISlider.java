@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UISlider(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UISlider(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UISlider(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "value")
@@ -104,6 +109,24 @@ import org.robovm.apple.linkpresentation.*;
     public native UIImage getCurrentMinimumTrackImage();
     @Property(selector = "currentMaximumTrackImage")
     public native UIImage getCurrentMaximumTrackImage();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "behavioralStyle")
+    public native UIBehavioralStyle getBehavioralStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "preferredBehavioralStyle")
+    public native UIBehavioralStyle getPreferredBehavioralStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPreferredBehavioralStyle:")
+    public native void setPreferredBehavioralStyle(UIBehavioralStyle v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -129,5 +152,15 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGRect getTrackRect(@ByVal CGRect bounds);
     @Method(selector = "thumbRectForBounds:trackRect:value:")
     public native @ByVal CGRect getThumbRect(@ByVal CGRect bounds, @ByVal CGRect rect, float value);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

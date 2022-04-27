@@ -54,6 +54,11 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "defaultSound")
     public static native UNNotificationSound getDefaultSound();
     /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "defaultRingtoneSound")
+    public static native UNNotificationSound getDefaultRingtoneSound();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "defaultCriticalSound")
@@ -70,6 +75,11 @@ import org.robovm.apple.foundation.*;
     public static native UNNotificationSound getDefaultCriticalSound(float volume);
     @Method(selector = "soundNamed:")
     public static native UNNotificationSound soundNamed(String name);
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Method(selector = "ringtoneSoundNamed:")
+    public static native UNNotificationSound ringtoneSoundNamed(String name);
     /**
      * @since Available in iOS 12.0 and later.
      */

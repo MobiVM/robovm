@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,11 @@ public enum /*<name>*/INPlayMediaIntentResponseCode/*</name>*/ implements Valued
     FailureRequiringAppLaunch(7L),
     FailureUnknownMediaType(8L),
     FailureNoUnplayedContent(9L),
-    FailureRestrictedContent(10L);
+    FailureRestrictedContent(10L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    FailureMaxStreamLimitReached(11L);
     /*</values>*/
 
     /*<bind>*/

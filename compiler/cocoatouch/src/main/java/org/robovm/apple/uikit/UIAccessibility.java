@@ -52,7 +52,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeElementFocused(final Runnable block) {
+        public static NSObjectProtocol observeElementFocused(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.ElementFocusedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeAnnouncementDidFinish(final VoidBlock2<String, Boolean> block) {
+        public static NSObjectProtocol observeAnnouncementDidFinish(final VoidBlock2<String, Boolean> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.AnnouncementDidFinishNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -77,7 +77,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeMonoAudioStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeMonoAudioStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.MonoAudioStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -88,7 +88,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeClosedCaptioningStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeClosedCaptioningStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.ClosedCaptioningStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -99,7 +99,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeInvertColorsStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeInvertColorsStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.InvertColorsStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -110,7 +110,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeGuidedAccessStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeGuidedAccessStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.GuidedAccessStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -121,7 +121,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeVoiceOverStatusChanged(final Runnable block) {
+        public static NSObjectProtocol observeVoiceOverStatusChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.VoiceOverStatusChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -132,7 +132,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeBoldTextStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeBoldTextStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.BoldTextStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -143,7 +143,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeGrayscaleStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeGrayscaleStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.GrayscaleStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -154,7 +154,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeReduceTransparencyStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeReduceTransparencyStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.ReduceTransparencyStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -165,7 +165,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeReduceMotionStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeReduceMotionStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.ReduceMotionStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -176,7 +176,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeDarkerSystemColorsStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeDarkerSystemColorsStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.DarkerSystemColorsStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -187,7 +187,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeSwitchControlStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeSwitchControlStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.SwitchControlStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -198,7 +198,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeSpeakSelectionStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeSpeakSelectionStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.SpeakSelectionStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -209,7 +209,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeSpeakScreenStatusDidChange(final Runnable block) {
+        public static NSObjectProtocol observeSpeakScreenStatusDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.SpeakScreenStatusDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -220,7 +220,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeShakeToUndoDidChange(final Runnable block) {
+        public static NSObjectProtocol observeShakeToUndoDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.ShakeToUndoDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

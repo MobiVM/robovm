@@ -49,6 +49,14 @@ public final class /*<name>*/NSStringEnumerationOptions/*</name>*/ extends Bits<
     public static final NSStringEnumerationOptions ByComposedCharacterSequences = new NSStringEnumerationOptions(2L);
     public static final NSStringEnumerationOptions ByWords = new NSStringEnumerationOptions(3L);
     public static final NSStringEnumerationOptions BySentences = new NSStringEnumerationOptions(4L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSStringEnumerationOptions ByCaretPositions = new NSStringEnumerationOptions(5L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final NSStringEnumerationOptions ByDeletionClusters = new NSStringEnumerationOptions(6L);
     public static final NSStringEnumerationOptions Reverse = new NSStringEnumerationOptions(256L);
     public static final NSStringEnumerationOptions SubstringNotRequired = new NSStringEnumerationOptions(512L);
     public static final NSStringEnumerationOptions Localized = new NSStringEnumerationOptions(1024L);

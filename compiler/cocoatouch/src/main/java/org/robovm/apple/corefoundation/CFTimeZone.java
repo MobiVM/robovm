@@ -43,7 +43,7 @@ import org.robovm.apple.coretext.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public NSObject observeSystemTimeZoneDidChangeNotification(final Runnable block) {
+        public NSObjectProtocol observeSystemTimeZoneDidChangeNotification(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SystemTimeZoneDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

@@ -30,12 +30,13 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 import org.robovm.rt.annotation.WeaklyLinked;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+ * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass @Deprecated/*</annotations>*/
@@ -47,7 +48,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeIsPreparedToPlayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMediaPlayback> block) {
+        public static NSObjectProtocol observeIsPreparedToPlayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMediaPlayback> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(IsPreparedToPlayDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -58,7 +59,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDurationAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDurationAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DurationAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -69,7 +70,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeMediaTypesAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeMediaTypesAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaTypesAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -80,7 +81,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNaturalSizeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNaturalSizeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NaturalSizeAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -91,7 +92,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidEnterFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDidEnterFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEnterFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -102,7 +103,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidExitFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeDidExitFullscreen(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidExitFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -113,7 +114,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeIsAirPlayVideoActiveDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeIsAirPlayVideoActiveDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(IsAirPlayVideoActiveDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -124,7 +125,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeLoadStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeLoadStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(LoadStateDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -135,7 +136,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNowPlayingMovieDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNowPlayingMovieDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NowPlayingMovieDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -143,7 +144,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
                 }
             });
         }
-        public static NSObject observePlaybackDidFinish(MPMoviePlayerController object, final VoidBlock3<MPMoviePlayerController, MPMovieFinishReason, NSError> block) {
+        public static NSObjectProtocol observePlaybackDidFinish(MPMoviePlayerController object, final VoidBlock3<MPMoviePlayerController, MPMovieFinishReason, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackDidFinishNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -157,7 +158,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observePlaybackStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observePlaybackStateDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackStateDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -168,7 +169,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeScalingModeDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeScalingModeDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ScalingModeDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -179,7 +180,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeThumbnailImageRequestDidFinish(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerThumbnailRequest> block) {
+        public static NSObjectProtocol observeThumbnailImageRequestDidFinish(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerThumbnailRequest> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ThumbnailImageRequestDidFinishNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -190,7 +191,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeWillEnterFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
+        public static NSObjectProtocol observeWillEnterFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillEnterFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -201,7 +202,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeWillExitFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
+        public static NSObjectProtocol observeWillExitFullscreen(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, MPMoviePlayerFullscreenAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillExitFullscreenNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -212,7 +213,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeNewSourceTypeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeNewSourceTypeAvailable(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SourceTypeAvailableNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -223,7 +224,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObject observeReadyForDisplayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
+        public static NSObjectProtocol observeReadyForDisplayDidChange(MPMoviePlayerController object, final VoidBlock1<MPMoviePlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ReadyForDisplayDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -234,7 +235,7 @@ import org.robovm.rt.annotation.WeaklyLinked;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeTimedMetadataUpdated(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, NSArray<MPTimedMetadata>> block) {
+        public static NSObjectProtocol observeTimedMetadataUpdated(MPMoviePlayerController object, final VoidBlock2<MPMoviePlayerController, NSArray<MPTimedMetadata>> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TimedMetadataUpdatedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @SuppressWarnings("unchecked")
                 @Override
@@ -254,68 +255,188 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public MPMoviePlayerController() {}
     protected MPMoviePlayerController(Handle h, long handle) { super(h, handle); }
     protected MPMoviePlayerController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Method(selector = "initWithContentURL:")
     public MPMoviePlayerController(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "contentURL")
     public native NSURL getContentURL();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setContentURL:")
     public native void setContentURL(NSURL v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "view")
     public native UIView getView();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "playbackState")
     public native MPMoviePlaybackState getPlaybackState();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "loadState")
     public native MPMovieLoadState getLoadState();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "controlStyle")
     public native MPMovieControlStyle getControlStyle();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setControlStyle:")
     public native void setControlStyle(MPMovieControlStyle v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "repeatMode")
     public native MPMovieRepeatMode getRepeatMode();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setRepeatMode:")
     public native void setRepeatMode(MPMovieRepeatMode v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "shouldAutoplay")
     public native boolean shouldAutoplay();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setShouldAutoplay:")
     public native void setShouldAutoplay(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "isFullscreen")
     public native boolean isFullscreen();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setFullscreen:")
     public native void setFullscreen(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "scalingMode")
     public native MPMovieScalingMode getScalingMode();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setScalingMode:")
     public native void setScalingMode(MPMovieScalingMode v);
     @Property(selector = "readyForDisplay")
     public native boolean isReadyForDisplay();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "movieMediaTypes")
     public native MPMovieMediaTypeMask getMovieMediaTypes();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "movieSourceType")
     public native MPMovieSourceType getMovieSourceType();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setMovieSourceType:")
     public native void setMovieSourceType(MPMovieSourceType v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "playableDuration")
     public native double getPlayableDuration();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "naturalSize")
     public native @ByVal CGSize getNaturalSize();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "initialPlaybackTime")
     public native double getInitialPlaybackTime();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setInitialPlaybackTime:")
     public native void setInitialPlaybackTime(double v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "endPlaybackTime")
     public native double getEndPlaybackTime();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setEndPlaybackTime:")
     public native void setEndPlaybackTime(double v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "allowsAirPlay")
     public native boolean allowsAirPlay();
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "setAllowsAirPlay:")
     public native void setAllowsAirPlay(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Property(selector = "isAirPlayVideoActive")
     public native boolean isAirPlayVideoActive();
     /**
@@ -391,67 +512,67 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public static native NSString IsPreparedToPlayDidChangeNotification();
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerScalingModeDidChangeNotification", optional=true)
     public static native NSString ScalingModeDidChangeNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackDidFinishNotification", optional=true)
     public static native NSString PlaybackDidFinishNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackDidFinishReasonUserInfoKey", optional=true)
     protected static native NSString PlaybackDidFinishReasonUserInfoKey();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerPlaybackStateDidChangeNotification", optional=true)
     public static native NSString PlaybackStateDidChangeNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerLoadStateDidChangeNotification", optional=true)
     public static native NSString LoadStateDidChangeNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerNowPlayingMovieDidChangeNotification", optional=true)
     public static native NSString NowPlayingMovieDidChangeNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerWillEnterFullscreenNotification", optional=true)
     public static native NSString WillEnterFullscreenNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerDidEnterFullscreenNotification", optional=true)
     public static native NSString DidEnterFullscreenNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerWillExitFullscreenNotification", optional=true)
     public static native NSString WillExitFullscreenNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerDidExitFullscreenNotification", optional=true)
     public static native NSString DidExitFullscreenNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification", optional=true)
@@ -463,31 +584,31 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @GlobalValue(symbol="MPMoviePlayerReadyForDisplayDidChangeNotification", optional=true)
     public static native NSString ReadyForDisplayDidChangeNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMovieMediaTypesAvailableNotification", optional=true)
     public static native NSString MediaTypesAvailableNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMovieSourceTypeAvailableNotification", optional=true)
     public static native NSString SourceTypeAvailableNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMovieDurationAvailableNotification", optional=true)
     public static native NSString DurationAvailableNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMovieNaturalSizeAvailableNotification", optional=true)
     public static native NSString NaturalSizeAvailableNotification();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @GlobalValue(symbol="MPMoviePlayerThumbnailImageRequestDidFinishNotification", optional=true)
@@ -505,24 +626,32 @@ import org.robovm.rt.annotation.WeaklyLinked;
     @GlobalValue(symbol="MPMoviePlayerTimedMetadataUserInfoKey", optional=true)
     protected static native NSString TimedMetadataUserInfoKey();
     
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Method(selector = "initWithContentURL:")
     protected native @Pointer long init(NSURL url);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     @Method(selector = "setFullscreen:animated:")
     public native void setFullscreen(boolean fullscreen, boolean animated);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @Method(selector = "thumbnailImageAtTime:timeOption:")
     public native UIImage getThumbnailImage(double playbackTime, MPMovieTimeOption option);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @Method(selector = "requestThumbnailImagesAtTimes:timeOption:")
     public native void requestThumbnailImages(NSArray<NSNumber> playbackTimes, MPMovieTimeOption option);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVFoundation.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     @Method(selector = "cancelAllThumbnailImageRequests")

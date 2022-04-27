@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -79,7 +80,31 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 12.2 and later.
      */
-    InvalidOfferPrice(14L);
+    InvalidOfferPrice(14L),
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    OverlayCancelled(15L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    OverlayInvalidConfiguration(16L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    OverlayTimeout(17L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    IneligibleForOffer(18L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    UnsupportedPlatform(19L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    OverlayPresentedInBackgroundScene(20L);
     /*</values>*/
 
     /*<bind>*/

@@ -170,6 +170,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
     NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tableView:selectionFollowsFocusForRowAtIndexPath:")
+    boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")
@@ -209,6 +214,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tableView:willDisplayContextMenuWithConfiguration:animator:")
+    void willDisplayContextMenu(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tableView:willEndContextMenuInteractionWithConfiguration:animator:")
+    void willEndContextMenuInteraction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

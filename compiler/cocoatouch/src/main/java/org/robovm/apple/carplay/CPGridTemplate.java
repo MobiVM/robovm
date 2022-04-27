@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,10 +71,28 @@ import org.robovm.apple.mapkit.*;
     public native CPBarButton getBackButton();
     @Property(selector = "setBackButton:")
     public native void setBackButton(CPBarButton v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CPGridTemplateMaximumItems", optional=true)
+    public static native @MachineSizedUInt long getMaximumItems();
+    
     @Method(selector = "initWithTitle:gridButtons:")
     protected native @Pointer long init(String title, NSArray<CPGridButton> gridButtons);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "updateGridButtons:")
+    public native void updateGridButtons(NSArray<CPGridButton> gridButtons);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "updateTitle:")
+    public native void updateTitle(String title);
     /*</methods>*/
 }

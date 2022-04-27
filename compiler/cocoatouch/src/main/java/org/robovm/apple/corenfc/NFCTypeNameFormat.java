@@ -37,12 +37,33 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NFCTypeNameFormat/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Empty(0L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     NFCWellKnown(1L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Media(2L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     AbsoluteURI(3L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     NFCExternal(4L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Unknown(5L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     Unchanged(6L);
     /*</values>*/
 

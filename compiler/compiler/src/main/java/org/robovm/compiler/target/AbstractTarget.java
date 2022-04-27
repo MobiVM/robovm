@@ -16,40 +16,25 @@
  */
 package org.robovm.compiler.target;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
-
 import com.dd.plist.NSDictionary;
 import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.robovm.compiler.Version;
 import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.AppExtension;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.OS;
-import org.robovm.compiler.config.Resource;
+import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Resource.Walker;
-import org.robovm.compiler.config.StripArchivesConfig;
-import org.robovm.compiler.config.WatchKitApp;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
+
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 /**
  * @author niklas
@@ -221,7 +206,13 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
-        File[] swiftLibLocations = null;
+        if (config.hasSwiftSupport()) {
+            // add swift lib locations to library search path
+            File[] swiftLibLocations = getSwiftDirs(config);
+            for (File dir : swiftLibLocations)
+                ccArgs.add("-L" + dir.getAbsolutePath());
+        }
+
         if (!config.getLibs().isEmpty()) {
             objectFiles = new ArrayList<File>(objectFiles);
             for (Config.Lib lib : config.getLibs()) {
@@ -244,20 +235,11 @@ public abstract class AbstractTarget implements Target {
                             libs.add("-Wl,--no-whole-archive");
                         }
                     }
-                } else if (p.startsWith("libswift") && p.endsWith(".dylib") && ! new File(p).exists()) {
-                    // workaround:
-                    // if project links against static swift library it requires
-                    // dynamic swift libraries to be included. and these are not automatically
-                    // resolved yet, allow user to specify them in library list
-                    // link via -l by removing prefix "lib" and sufix ".dylib"
-                    libs.add("-l" + p.substring(3, p.length() - 6));
-                    if (swiftLibLocations == null) {
-                        swiftLibLocations = getSwiftDirs(config);
-                        for (File dir : swiftLibLocations)
-                            ccArgs.add("-L" + dir.getAbsolutePath());
-                    }
                 } else if (p.endsWith(".dylib") || p.endsWith(".so")) {
-                    libs.add(new File(p).getAbsolutePath());
+                    // dkimitsa: add absolute path only if Config.Lib relative file converter was able to resolve it
+                    //           e.g. lib exists, otherwise use it as it is
+                    File f = new File(p);
+                    libs.add(f.isAbsolute() ? f.getAbsolutePath() : p);
                 } else {
                     // link via -l if suffix is omitted
                     libs.add("-l" + p);
@@ -320,23 +302,26 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected void copyResources(File destDir) throws IOException {
-        for (Resource res : config.getResources()) {
-            res.walk(new Walker() {
-                @Override
-                public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-                    return AbstractTarget.this.processDir(resource, dir, destDir);
-                }
-                @Override
-                public void processFile(Resource resource, File file, File destDir)
-                        throws IOException {
+        Walker walker = new Walker() {
+            @Override
+            public boolean processDir(Resource resource, File dir, File destDir) throws IOException {
+                return true;
+            }
 
-                    copyFile(resource, file, destDir);
-                }
-            }, destDir);
+            @Override
+            public void processFile(Resource resource, File file, File destDir)
+                    throws IOException {
+
+                copyFile(resource, file, destDir);
+            }
+        };
+
+        for (Resource res : config.getResources()) {
+            res.walk(walker, destDir);
         }
     }
 
-    protected void copyDynamicFrameworks(File destDir) throws IOException {
+    protected void copyDynamicFrameworks(File destDir, File appExecutable) throws IOException {
         final Set<String> swiftLibraries = new HashSet<>();
         File frameworksDir = new File(destDir, "Frameworks");
 
@@ -389,13 +374,7 @@ public abstract class AbstractTarget implements Target {
                                     // check if this dylib depends on Swift
                                     // and register those libraries to be copied
                                     // to bundle.app/Frameworks
-                                    String dependencies = ToolchainUtil.otool(file);
-                                    Pattern swiftLibraryPattern = Pattern.compile("libswift.+\\.dylib");
-                                    Matcher matcher = swiftLibraryPattern.matcher(dependencies);
-                                    while (matcher.find()) {
-                                        String library = dependencies.substring(matcher.start(), matcher.end());
-                                        swiftLibraries.add(library);
-                                    }
+                                    getSwiftDependencies(file, swiftLibraries);
                                 }
                             }
                         }
@@ -405,20 +384,35 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
-        // workaround: check if libs contain reference to swift lib
-        // if project links against static swift library it requires
-        // dynamic swift libraries to be included. and these are not automatically
-        // resolved yet, allow user to specify them in library list
-        for (Config.Lib lib : config.getLibs()) {
-            String p = lib.getValue();
-            if (p.startsWith("libswift") && p.endsWith(".dylib") && !new File(p).exists()) {
-                swiftLibraries.add(p);
+        if (config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()) {
+            // find swift libraries that might be referenced in executable due static linking
+            getSwiftDependencies(appExecutable, swiftLibraries);
+
+            // workaround: check if libs contain reference to swift lib
+            // if project links against static swift library it requires
+            // dynamic swift libraries to be included. and these are not automatically
+            // resolved yet, allow user to specify them in library list
+            for (Config.Lib lib : config.getLibs()) {
+                String p = lib.getValue();
+                if (p.startsWith("libswift") && p.endsWith(".dylib") && !new File(p).exists()) {
+                    swiftLibraries.add(p);
+                }
+            }
+
+            // copy Swift libraries if required
+            if (!swiftLibraries.isEmpty()) {
+                copySwiftLibs(swiftLibraries, frameworksDir, true);
             }
         }
+    }
 
-        // copy Swift libraries if required
-        if (!swiftLibraries.isEmpty()) {
-            copySwiftLibs(swiftLibraries, frameworksDir, true);
+    protected void getSwiftDependencies(File file, Collection<String> swiftLibraries) throws IOException {
+        String dependencies = ToolchainUtil.otool(file);
+        Pattern swiftLibraryPattern = Pattern.compile("@rpath/(libswift.+\\.dylib)");
+        Matcher matcher = swiftLibraryPattern.matcher(dependencies);
+        while (matcher.find()) {
+            String library = matcher.group(1);
+            swiftLibraries.add(library);
         }
     }
 
@@ -575,12 +569,9 @@ public abstract class AbstractTarget implements Target {
         List<File> configPaths = config.getSwiftLibPaths();
         if (!configPaths.isEmpty()) {
             // swift lib locations are provided in config,
-            String system = getSwiftSystemName(config);
-            List<File> candidates = new ArrayList<>();
-            for (File path : configPaths)
-                candidates.add(new File(path, system));
-            File[] swiftDirs = candidates.toArray(new File[0]);
-            return validateSwiftDirs(swiftDirs);
+            // paths in swiftSupport have to be qualified, no need to extend them with platform suffix
+            List<File> candidates = new ArrayList<>(configPaths);
+            return candidates.toArray(new File[0]);
         } else {
             return getDefaultSwiftDirs(config);
         }
@@ -606,32 +597,46 @@ public abstract class AbstractTarget implements Target {
         return getDefaultSwiftDirs(system);
     }
 
-    private File[] getDefaultSwiftDirs(String system) throws IOException {
-        // FIXME: dkimitsa: its a temporal for finding location of swift libraries
-        // FIXME: as in XCode 11 these are not under swift subdir anymore (but in swift-5.0).
-        // FIXME: while its a workaround and hardcode for specific swift version and proper way of
-        // FIXME: finding swift library location to be used
-        String[] versions = new String[]{"swift-5.0", "swift"};
-        String xcodePath = ToolchainUtil.findXcodePath();
-        List<File> candidates = new ArrayList<>();
-        for (String v: versions) {
-            File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + v + "/" + system);
-            if (candidate.exists())
-                candidates.add(candidate);
-        }
-        File[] swiftDirs = candidates.toArray(new File[0]);
-        return validateSwiftDirs(swiftDirs);
+    private void validateAndAddSwiftDir(List<File> dest, String xcodePath, String version, String system) {
+        File candidate = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/" + version + "/" + system);
+        if (candidate.exists() && candidate.isDirectory())
+            dest.add(candidate);
     }
 
-    private File[]  validateSwiftDirs(File[] swiftDirs) throws IOException {
-        try {
-            // FIXME: simplest criteria is to check for one of core libs
-            locateSwiftLib(swiftDirs, "libswiftCore.dylib");
-        } catch (Throwable ignored) {
-            throw new IOException("Failed to locate Swift Library directory!");
+    private File[] getDefaultSwiftDirs(String system) throws IOException {
+        List<File> swiftDirs = new ArrayList<>();
+        String xcodePath = ToolchainUtil.findXcodePath();
+
+        // keep runtime location of swift libs. these will be checked against
+        // SDK root for .tbd files
+        swiftDirs.add(new File("/usr/lib/swift"));
+        // add "swift" dir if it exists
+        validateAndAddSwiftDir(swiftDirs, xcodePath, "swift", system);
+
+        // find all versioned dirs and sort them descending by version
+        File rootDir = new File(xcodePath, "Toolchains/XcodeDefault.xctoolchain/usr/lib/");
+        final String swiftDirPrefix = "swift-";
+        String[] dirNames = rootDir.list((dir, name) -> name.startsWith(swiftDirPrefix));
+        if (dirNames != null && dirNames.length > 0) {
+            Map<String, Version> swiftVersions = new HashMap<>();
+            for (String dirName: dirNames) {
+                Version v = Version.parseOrNull(dirName.substring(swiftDirPrefix.length()));
+                if (v != null) {
+                    swiftVersions.put(dirName, v);
+                } else config.getLogger().warn("Failed to parse swift version: " + dirName);
+            }
+
+
+            // descending sort by version number
+            swiftVersions.entrySet().stream()
+                    .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                    .forEach(e -> {
+                        String version = e.getKey();
+                        validateAndAddSwiftDir(swiftDirs, xcodePath, version, system);
+                    });
         }
 
-        return swiftDirs;
+        return swiftDirs.toArray(new File[0]);
     }
 
 	protected void copySwiftLibs(Collection<String> swiftLibraries, File targetDir, boolean strip) throws IOException {
@@ -641,27 +646,22 @@ public abstract class AbstractTarget implements Target {
 		// e.g. one swiftLib has dependency that is not listed in included framework
 		// solve this by moving through all swiftLibs and resolve their not listed dependencies
 		Set<String> libsToResolve = new HashSet<>(swiftLibraries);
-		Set<String> extendedSwiftLibraries = new HashSet<>(swiftLibraries);
+		Map<String, File> resolvedLibs = new HashMap<>();
 		while (!libsToResolve.isEmpty()) {
 			for (String library : new HashSet<>(libsToResolve)) {
 				libsToResolve.remove(library);
+				if (!resolvedLibs.containsKey(library)) {
+                    File swiftLibrary = locateSwiftLib(swiftDirs, library);
+                    resolvedLibs.put(library, swiftLibrary);
 
-				File swiftLibrary = locateSwiftLib(swiftDirs, library);
-				String dependencies = ToolchainUtil.otool(swiftLibrary);
-				Pattern swiftLibraryPattern = Pattern.compile("libswift.+\\.dylib");
-				Matcher matcher = swiftLibraryPattern.matcher(dependencies);
-				while (matcher.find()) {
-					String lib = dependencies.substring(matcher.start(), matcher.end());
-					if (extendedSwiftLibraries.add(lib)) {
-						// new dependency, add it heere
-						libsToResolve.add(lib);
-					}
-				}
+                    getSwiftDependencies(swiftLibrary, libsToResolve);
+                }
 			}
 		}
 
-		for (String library : extendedSwiftLibraries) {
-            File swiftLibrary = locateSwiftLib(swiftDirs, library);
+		for (Map.Entry<String, File> e  : resolvedLibs.entrySet()) {
+		    String library = e.getKey();
+            File swiftLibrary = e.getValue();
             config.getLogger().info("Copying swift lib %s from %s to %s", library, swiftLibrary.getParent(), targetDir);
 			FileUtils.copyFileToDirectory(swiftLibrary, targetDir);
 
@@ -686,11 +686,11 @@ public abstract class AbstractTarget implements Target {
         List<String> archesToRemove = new ArrayList<>();
 
         // simulator ones
-        if(archs.contains(Arch.x86.getClangName())) {
-            archesToRemove.add(Arch.x86.getClangName());
+        if(archs.contains(CpuArch.x86.getClangName())) {
+            archesToRemove.add(CpuArch.x86.getClangName());
         }
-        if(archs.contains(Arch.x86_64.getClangName())) {
-            archesToRemove.add(Arch.x86_64.getClangName());
+        if(archs.contains(CpuArch.x86_64.getClangName())) {
+            archesToRemove.add(CpuArch.x86_64.getClangName());
         }
         // also arm64e has to be removed since Xcode10.1
         if (archs.contains("arm64e")) {
@@ -728,10 +728,6 @@ public abstract class AbstractTarget implements Target {
         return result.contains("Mach-O 64-bit executable") || result.contains("Mach-O executable");
     }
 
-    protected boolean processDir(Resource resource, File dir, File destDir) throws IOException {
-        return true;
-    }
-
     protected void copyFile(Resource resource, File file, File destDir) throws IOException {
         config.getLogger().info("Copying resource %s to %s", file, destDir);
         FileUtils.copyFileToDirectory(file, destDir, true);
@@ -754,11 +750,16 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected void doInstall(File installDir, String image, File resourcesDir) throws IOException {
-        if (!config.getTmpDir().equals(installDir) || !image.equals(config.getExecutableName())) {
-            File destFile = new File(installDir, image);
-            FileUtils.copyFile(new File(config.getTmpDir(), config.getExecutableName()), destFile);
-            destFile.setExecutable(true, false);
+        File executable = new File(installDir, image);;
+        File f = new File(config.getTmpDir(), config.getExecutableName());
+        if (!f.equals(executable)) {
+            FileUtils.copyFile(f, executable);
+            executable.setExecutable(true, false);
         }
+        doInstall(installDir, executable, resourcesDir);
+    }
+
+    protected void doInstall(File installDir, File executable, File resourcesDir) throws IOException {
         for (File f : config.getOsArchDepLibDir().listFiles()) {
             if (f.getName().matches(".*\\.(so|dylib)(\\.1)?")) {
                 FileUtils.copyFileToDirectory(f, installDir);
@@ -766,7 +767,7 @@ public abstract class AbstractTarget implements Target {
         }
         stripArchives(installDir);
         copyResources(resourcesDir);
-        copyDynamicFrameworks(installDir);
+        copyDynamicFrameworks(installDir, executable);
         copyAppExtensions(installDir);
         copyWatchApp(installDir);
     }

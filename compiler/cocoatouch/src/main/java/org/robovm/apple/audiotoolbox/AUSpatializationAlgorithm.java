@@ -47,7 +47,8 @@ public enum /*<name>*/AUSpatializationAlgorithm/*</name>*/ implements ValuedEnum
     SoundField(3L),
     VectorBasedPanning(4L),
     StereoPassThrough(5L),
-    HRTFHQ(6L);
+    HRTFHQ(6L),
+    UseOutputType(7L);
     /*</values>*/
 
     /*<bind>*/

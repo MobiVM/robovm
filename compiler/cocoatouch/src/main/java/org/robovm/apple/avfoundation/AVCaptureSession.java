@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeRuntimeError(AVCaptureSession object, final VoidBlock2<AVCaptureSession, NSError> block) {
+        public static NSObjectProtocol observeRuntimeError(AVCaptureSession object, final VoidBlock2<AVCaptureSession, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RuntimeErrorNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -68,7 +68,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeDidStartRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObjectProtocol observeDidStartRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidStartRunningNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -79,7 +79,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeDidStopRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObjectProtocol observeDidStopRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidStopRunningNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -90,7 +90,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeWasInterrupted(AVCaptureSession object, final VoidBlock2<AVCaptureSession, AVCaptureSessionInterruptionReason> block) {
+        public static NSObjectProtocol observeWasInterrupted(AVCaptureSession object, final VoidBlock2<AVCaptureSession, AVCaptureSessionInterruptionReason> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasInterruptedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -109,7 +109,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeInterruptionEnded(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObjectProtocol observeInterruptionEnded(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(InterruptionEndedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -163,6 +163,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyConfiguresCaptureDeviceForWideColor:")
     public native void setAutomaticallyConfiguresCaptureDeviceForWideColor(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "synchronizationClock")
+    public native CMClock getSynchronizationClock();
+    /**
+     * @deprecated Deprecated in iOS 15.4. Use synchronizationClock
+     */
+    @Deprecated
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
     /*</properties>*/

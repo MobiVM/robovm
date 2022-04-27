@@ -55,13 +55,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageReduceUnary(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageReduceUnary(NSCoder decoder) { super(decoder); }
+    public MPSImageReduceUnary(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
     public native @ByVal MTLRegion getClipRectSource();
     @Property(selector = "setClipRectSource:")
     public native void setClipRectSource(@ByVal MTLRegion v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

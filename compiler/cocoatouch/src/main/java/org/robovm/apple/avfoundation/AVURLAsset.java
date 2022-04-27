@@ -46,7 +46,7 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVURLAsset/*</name>*/ 
     extends /*<extends>*/AVAsset/*</extends>*/ 
-    /*<implements>*/implements AVContentKeyRecipient/*</implements>*/ {
+    /*<implements>*/implements NSItemProviderReading, NSItemProviderWriting, AVContentKeyRecipient/*</implements>*/ {
 
     /*<ptr>*/public static class AVURLAssetPtr extends Ptr<AVURLAsset, AVURLAssetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(AVURLAsset.class); }/*</bind>*/
@@ -70,10 +70,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "assetCache")
     public native AVAssetCache getAssetCache();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "variants")
+    public native NSArray<AVAssetVariant> getVariants();
+    /**
      * @since Available in iOS 10.3 and later.
      */
     @Property(selector = "mayRequireContentKeysForMediaDataProcessing")
     public native boolean mayRequireContentKeysForMediaDataProcessing();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public native NSArray<NSString> getWritableTypeIdentifiersForItemProvider();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -87,5 +98,29 @@ import org.robovm.apple.audiotoolbox.*;
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "compatibleTrackForCompositionTrack:")
     public native AVAssetTrack getCompatibleTrack(AVCompositionTrack compositionTrack);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "findCompatibleTrackForCompositionTrack:completionHandler:")
+    public native void findCompatibleTrackForCompositionTrack(AVCompositionTrack compositionTrack, @Block VoidBlock2<AVAssetTrack, NSError> completionHandler);
+    public static AVURLAsset createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       AVURLAsset result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native AVURLAsset createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public native NSItemProviderRepresentationVisibility getItemProviderVisibility(String typeIdentifier);
+    @Method(selector = "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:")
+    public native NSProgress loadData(String typeIdentifier, @Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "contentKeySession:didProvideContentKey:")
+    public native void didProvideContentKey(AVContentKeySession contentKeySession, AVContentKey contentKey);
     /*</methods>*/
 }

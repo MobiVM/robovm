@@ -21,6 +21,7 @@ import java.io.File;
 import javax.swing.*;
 
 import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.openapi.vfs.LocalFileSystem;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +33,6 @@ import org.robovm.idea.RoboVmPlugin;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.projectRoots.*;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.vfs.JarFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 
 public class RoboVmSdkType extends SdkType implements JavaSdkType {
@@ -72,7 +72,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
     @NotNull
     @Override
     public String suggestSdkName(String currentSdkName, String sdkHome) {
-        return SDK_NAME + " " + Version.getVersion();
+        return SDK_NAME + " " + Version.getCompilerVersion();
     }
 
     @Nullable
@@ -114,7 +114,7 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
 
         // add all class and source jars from the SDK lib/ folder
         for(File file: RoboVmPlugin.getSdkLibraries()) {
-            VirtualFile virtualFile = JarFileSystem.getInstance().findLocalVirtualFileByPath(file.getAbsolutePath());
+            VirtualFile virtualFile = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(file);
             assert virtualFile != null;
             sdkModificator.addRoot(virtualFile, file.getName().endsWith("-sources.jar")?  OrderRootType.SOURCES: OrderRootType.CLASSES);
         }

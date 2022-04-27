@@ -33,7 +33,7 @@ import org.robovm.apple.security.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/
@@ -51,7 +51,7 @@ import org.robovm.apple.security.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "driverConfigurations")
-    public static native NSDictionary<?, ?> getDriverConfigurations();
+    public static native NSDictionary<NSString, TKTokenDriverConfiguration> getDriverConfigurations();
     @Property(selector = "classID")
     public native String getClassID();
     @Property(selector = "tokenConfigurations")

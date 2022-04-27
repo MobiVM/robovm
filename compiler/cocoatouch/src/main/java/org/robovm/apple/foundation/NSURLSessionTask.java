@@ -64,6 +64,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "response")
     public native NSURLResponse getResponse();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native NSURLSessionTaskDelegate getDelegate();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setDelegate:")
+    public native void setDelegate(NSURLSessionTaskDelegate v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "progress")
@@ -98,10 +108,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCountOfBytesClientExpectsToReceive:")
     public native void setCountOfBytesClientExpectsToReceive(long v);
-    @Property(selector = "countOfBytesReceived")
-    public native long getCountOfBytesReceived();
     @Property(selector = "countOfBytesSent")
     public native long getCountOfBytesSent();
+    @Property(selector = "countOfBytesReceived")
+    public native long getCountOfBytesReceived();
     @Property(selector = "countOfBytesExpectedToSend")
     public native long getCountOfBytesExpectedToSend();
     @Property(selector = "countOfBytesExpectedToReceive")
@@ -118,6 +128,16 @@ import org.robovm.apple.dispatch.*;
     public native float getPriority();
     @Property(selector = "setPriority:")
     public native void setPriority(float v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "prefersIncrementalDelivery")
+    public native boolean prefersIncrementalDelivery();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setPrefersIncrementalDelivery:")
+    public native void setPrefersIncrementalDelivery(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

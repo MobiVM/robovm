@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,11 @@ import org.robovm.apple.security.*;
     public native WKNavigationType getNavigationType();
     @Property(selector = "request")
     public native NSURLRequest getRequest();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "shouldPerformDownload")
+    public native boolean shouldPerformDownload();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

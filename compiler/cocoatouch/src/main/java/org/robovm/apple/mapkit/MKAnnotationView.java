@@ -32,6 +32,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -143,6 +144,26 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setDisplayPriority:")
     public native void setDisplayPriority(float v);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "zPriority")
+    public native float getZPriority();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setZPriority:")
+    public native void setZPriority(float v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "selectedZPriority")
+    public native float getSelectedZPriority();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSelectedZPriority:")
+    public native void setSelectedZPriority(float v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "collisionMode")
@@ -152,6 +173,9 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCollisionMode:")
     public native void setCollisionMode(MKAnnotationViewCollisionMode v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -170,5 +194,15 @@ import org.robovm.apple.dispatch.*;
     public native void setSelected(boolean selected, boolean animated);
     @Method(selector = "setDragState:animated:")
     public native void setDragState(MKAnnotationViewDragState newDragState, boolean animated);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

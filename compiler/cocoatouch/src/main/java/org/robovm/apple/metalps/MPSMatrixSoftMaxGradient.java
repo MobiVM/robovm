@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixSoftMaxGradient(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixSoftMaxGradient(NSCoder decoder) { super(decoder); }
+    public MPSMatrixSoftMaxGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceRows")
@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getSourceColumns();
     @Property(selector = "setSourceColumns:")
     public native void setSourceColumns(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

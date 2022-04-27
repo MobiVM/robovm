@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNYOLOLoss(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNYOLOLoss(NSCoder decoder) { super(decoder); }
+    public MPSCNNYOLOLoss(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "lossXY")
@@ -85,6 +85,13 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getNumberOfAnchorBoxes();
     @Property(selector = "anchorBoxes")
     public native NSData getAnchorBoxes();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "reduceAcrossBatch")
+    public native boolean isReduceAcrossBatch();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,7 +68,43 @@ public enum /*<name>*/PKPaymentButtonType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Subscribe(7L);
+    Subscribe(7L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Reload(8L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    AddMoney(9L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    TopUp(10L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Order(11L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Rent(12L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Support(13L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Contribute(14L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Tip(15L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    Continue(16L);
     /*</values>*/
 
     /*<bind>*/

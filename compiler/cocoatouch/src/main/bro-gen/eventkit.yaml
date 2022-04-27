@@ -255,6 +255,24 @@ classes:
             '+locationWithMapItem:':
                 name: create
                 constructor: true
+    EKVirtualConferenceDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:URLDescriptors:conferenceDetails:':
+                name: init
+    EKVirtualConferenceProvider: #since 15.0
+        methods:
+            '-fetchAvailableRoomTypesWithCompletionHandler:':
+                name: fetchAvailableRoomTypes
+            '-fetchVirtualConferenceForIdentifier:completionHandler:':
+                name: fetchVirtualConference
+    EKVirtualConferenceRoomTypeDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:identifier:':
+                name: init
+    EKVirtualConferenceURLDescriptor: #since 15.0
+        methods:
+            '-initWithTitle:URL:':
+                name: init
 protocols: {}
 
 functions:

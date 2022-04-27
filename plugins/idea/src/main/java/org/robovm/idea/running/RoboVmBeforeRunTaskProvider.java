@@ -79,12 +79,6 @@ public class RoboVmBeforeRunTaskProvider extends BeforeRunTaskProvider<RoboVmBef
     @Override
     public boolean executeTask(@NotNull DataContext context, @NotNull final RunConfiguration configuration, @NotNull final ExecutionEnvironment env, @NotNull Task task) {
         final RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration) configuration;
-        if (runConfig.getConfig() != null) {
-            // configuration is set when RoboVmCompilerTask is executed.
-            // in this case there is no need to run this workaround
-            return true;
-        }
-
         final Ref<Boolean> result = new Ref<>(Boolean.FALSE);
         final Exception[] exception = {null};
         final Semaphore done = new Semaphore();
@@ -94,7 +88,7 @@ public class RoboVmBeforeRunTaskProvider extends BeforeRunTaskProvider<RoboVmBef
             @Override
             public void run(@NotNull ProgressIndicator progressIndicator) {
                 try {
-                    result.set(RoboVmCompileTask.compileForRunConfiguration(env.getProject(), null, progressIndicator, runConfig));
+                    result.set(RoboVmCompileTask.compileForRunConfiguration(env.getProject(), progressIndicator, runConfig));
                 } catch (Exception e) {
                     exception[0] = e;
                 } finally {

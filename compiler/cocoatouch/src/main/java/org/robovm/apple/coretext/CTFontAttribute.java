@@ -97,6 +97,10 @@ import org.robovm.apple.uikit.*;
     public static final CTFontAttribute StyleName = new CTFontAttribute("StyleName");
     public static final CTFontAttribute Traits = new CTFontAttribute("Traits");
     public static final CTFontAttribute Variation = new CTFontAttribute("Variation");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final CTFontAttribute VariationAxes = new CTFontAttribute("VariationAxes");
     public static final CTFontAttribute Size = new CTFontAttribute("Size");
     public static final CTFontAttribute Matrix = new CTFontAttribute("Matrix");
     public static final CTFontAttribute CascadeList = new CTFontAttribute("CascadeList");
@@ -114,13 +118,14 @@ import org.robovm.apple.uikit.*;
     public static final CTFontAttribute Enabled = new CTFontAttribute("Enabled");
     public static final CTFontAttribute Downloadable = new CTFontAttribute("Downloadable");
     public static final CTFontAttribute Downloaded = new CTFontAttribute("Downloaded");
+    public static final CTFontAttribute OpticalSize = new CTFontAttribute("OpticalSize");
     /**
      * @since Available in iOS 13.0 and later.
      */
     public static final CTFontAttribute RegistrationUserInfo = new CTFontAttribute("RegistrationUserInfo");
     /*</constants>*/
     
-    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, RegistrationUserInfo/*</value_list>*/};
+    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, VariationAxes, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, OpticalSize, RegistrationUserInfo/*</value_list>*/};
     
     /*<name>*/CTFontAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -157,6 +162,11 @@ import org.robovm.apple.uikit.*;
         public static native CFString Traits();
         @GlobalValue(symbol="kCTFontVariationAttribute", optional=true)
         public static native CFString Variation();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontVariationAxesAttribute", optional=true)
+        public static native CFString VariationAxes();
         @GlobalValue(symbol="kCTFontSizeAttribute", optional=true)
         public static native CFString Size();
         @GlobalValue(symbol="kCTFontMatrixAttribute", optional=true)
@@ -191,6 +201,8 @@ import org.robovm.apple.uikit.*;
         public static native CFString Downloadable();
         @GlobalValue(symbol="kCTFontDownloadedAttribute", optional=true)
         public static native CFString Downloaded();
+        @GlobalValue(symbol="kCTFontOpticalSizeAttribute", optional=true)
+        public static native CFString OpticalSize();
         /**
          * @since Available in iOS 13.0 and later.
          */

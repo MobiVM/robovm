@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,10 +55,33 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
     public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:relationship:")
+    public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, String relationship) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, relationship); }
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
     public INRestaurantGuest(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:suggestionType:")
+    public static  INRestaurantGuest createForMe(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe, INPersonSuggestionType suggestionType) {
+       INRestaurantGuest res = new INRestaurantGuest((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe, suggestionType));
+       return res;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isContactSuggestion:suggestionType:")
+    public static  INRestaurantGuest createForContactSuggestion(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isContactSuggestion, INPersonSuggestionType suggestionType) {
+       INRestaurantGuest res = new INRestaurantGuest((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isContactSuggestion, suggestionType));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "phoneNumber")
@@ -68,6 +92,8 @@ import org.robovm.apple.corelocation.*;
     public native String getEmailAddress();
     @Property(selector = "setEmailAddress:")
     public native void setEmailAddress(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

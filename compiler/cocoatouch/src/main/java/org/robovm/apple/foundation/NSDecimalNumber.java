@@ -76,6 +76,8 @@ import org.robovm.apple.dispatch.*;
     public static native NSDecimalNumberBehaviors getDefaultBehavior();
     @Property(selector = "setDefaultBehavior:")
     public static native void setDefaultBehavior(NSDecimalNumberBehaviors v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

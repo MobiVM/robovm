@@ -44,9 +44,10 @@ import org.robovm.apple.linkpresentation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Will be removed in a future release, use PHPicker.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UIImagePickerControllerImageURLExportPreset/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Compatible(0L),

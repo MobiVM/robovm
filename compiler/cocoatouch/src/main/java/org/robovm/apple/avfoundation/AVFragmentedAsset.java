@@ -68,14 +68,49 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isAssociatedWithFragmentMinder")
     public native boolean isAssociatedWithFragmentMinder();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "audiovisualTypes")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualTypes();
+    @Method(selector = "audiovisualMIMETypes")
+    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
+    @Method(selector = "isPlayableExtendedMIMEType:")
+    public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTrackWithTrackID:completionHandler:")
+    public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(String mediaType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaType:completionHandler:")
+    public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(String mediaCharacteristic);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
+    public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public static AVFragmentedAsset createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       AVFragmentedAsset result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native AVFragmentedAsset createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

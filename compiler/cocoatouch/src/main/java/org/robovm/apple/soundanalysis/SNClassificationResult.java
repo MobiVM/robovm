@@ -53,12 +53,16 @@ import org.robovm.apple.coreml.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "classifications")
-    public native NSArray<?> getClassifications();
+    public native NSArray<SNClassification> getClassifications();
     @Property(selector = "timeRange")
     public native @ByVal CMTimeRange getTimeRange();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "classificationForIdentifier:")
+    public native SNClassification classificationForIdentifier(String identifier);
     /*</methods>*/
 }

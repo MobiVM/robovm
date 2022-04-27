@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,7 +47,7 @@ import org.robovm.apple.coregraphics.*;
     /*<bind>*/static { ObjCRuntime.bind(PKToolPicker.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected PKToolPicker() {}
+    public PKToolPicker() {}
     protected PKToolPicker(Handle h, long handle) { super(h, handle); }
     protected PKToolPicker(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
@@ -61,6 +62,16 @@ import org.robovm.apple.coregraphics.*;
     public native void setRulerActive(boolean v);
     @Property(selector = "isVisible")
     public native boolean isVisible();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "stateAutosaveName")
+    public native String getStateAutosaveName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setStateAutosaveName:")
+    public native void setStateAutosaveName(String v);
     @Property(selector = "overrideUserInterfaceStyle")
     public native UIUserInterfaceStyle getOverrideUserInterfaceStyle();
     @Property(selector = "setOverrideUserInterfaceStyle:")
@@ -69,6 +80,16 @@ import org.robovm.apple.coregraphics.*;
     public native UIUserInterfaceStyle getColorUserInterfaceStyle();
     @Property(selector = "setColorUserInterfaceStyle:")
     public native void setColorUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "showsDrawingPolicyControls")
+    public native boolean showsDrawingPolicyControls();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShowsDrawingPolicyControls:")
+    public native void setShowsDrawingPolicyControls(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,6 +101,11 @@ import org.robovm.apple.coregraphics.*;
     public native void setVisible(boolean visible, UIResponder responder);
     @Method(selector = "frameObscuredInView:")
     public native @ByVal CGRect frameObscuredInView(UIView view);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Create individual instances instead.
+     */
+    @Deprecated
     @Method(selector = "sharedToolPickerForWindow:")
     public static native PKToolPicker sharedToolPickerForWindow(UIWindow window);
     /*</methods>*/

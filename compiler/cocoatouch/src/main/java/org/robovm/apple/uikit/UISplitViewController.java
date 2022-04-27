@@ -56,20 +56,55 @@ import org.robovm.apple.linkpresentation.*;
     public UISplitViewController() {}
     protected UISplitViewController(Handle h, long handle) { super(h, handle); }
     protected UISplitViewController(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithNibName:bundle:")
-    public UISplitViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public UISplitViewController(NSCoder coder) { super(coder); }
+    public UISplitViewController(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithNibName:bundle:")
+    public UISplitViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithStyle:")
+    public UISplitViewController(UISplitViewControllerStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "viewControllers")
-    public native NSArray<UIViewController> getViewControllers();
-    @Property(selector = "setViewControllers:")
-    public native void setViewControllers(NSArray<UIViewController> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "style")
+    public native UISplitViewControllerStyle getStyle();
     @Property(selector = "delegate")
     public native UISplitViewControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UISplitViewControllerDelegate v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "showsSecondaryOnlyButton")
+    public native boolean showsSecondaryOnlyButton();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShowsSecondaryOnlyButton:")
+    public native void setShowsSecondaryOnlyButton(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredSplitBehavior")
+    public native UISplitViewControllerSplitBehavior getPreferredSplitBehavior();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredSplitBehavior:")
+    public native void setPreferredSplitBehavior(UISplitViewControllerSplitBehavior v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "splitBehavior")
+    public native UISplitViewControllerSplitBehavior getSplitBehavior();
+    @Property(selector = "viewControllers")
+    public native NSArray<UIViewController> getViewControllers();
+    @Property(selector = "setViewControllers:")
+    public native void setViewControllers(NSArray<UIViewController> v);
     @Property(selector = "presentsWithGesture")
     public native boolean presentsWithGesture();
     @Property(selector = "setPresentsWithGesture:")
@@ -84,10 +119,30 @@ import org.robovm.apple.linkpresentation.*;
     public native UISplitViewControllerDisplayMode getDisplayMode();
     @Property(selector = "displayModeButtonItem")
     public native UIBarButtonItem getDisplayModeButtonItem();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "displayModeButtonVisibility")
+    public native UISplitViewControllerDisplayModeButtonVisibility getDisplayModeButtonVisibility();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setDisplayModeButtonVisibility:")
+    public native void setDisplayModeButtonVisibility(UISplitViewControllerDisplayModeButtonVisibility v);
     @Property(selector = "preferredPrimaryColumnWidthFraction")
     public native @MachineSizedFloat double getPreferredPrimaryColumnWidthFraction();
     @Property(selector = "setPreferredPrimaryColumnWidthFraction:")
     public native void setPreferredPrimaryColumnWidthFraction(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredPrimaryColumnWidth")
+    public native @MachineSizedFloat double getPreferredPrimaryColumnWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredPrimaryColumnWidth:")
+    public native void setPreferredPrimaryColumnWidth(@MachineSizedFloat double v);
     @Property(selector = "minimumPrimaryColumnWidth")
     public native @MachineSizedFloat double getMinimumPrimaryColumnWidth();
     @Property(selector = "setMinimumPrimaryColumnWidth:")
@@ -98,6 +153,51 @@ import org.robovm.apple.linkpresentation.*;
     public native void setMaximumPrimaryColumnWidth(@MachineSizedFloat double v);
     @Property(selector = "primaryColumnWidth")
     public native @MachineSizedFloat double getPrimaryColumnWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredSupplementaryColumnWidthFraction")
+    public native @MachineSizedFloat double getPreferredSupplementaryColumnWidthFraction();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredSupplementaryColumnWidthFraction:")
+    public native void setPreferredSupplementaryColumnWidthFraction(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredSupplementaryColumnWidth")
+    public native @MachineSizedFloat double getPreferredSupplementaryColumnWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredSupplementaryColumnWidth:")
+    public native void setPreferredSupplementaryColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "minimumSupplementaryColumnWidth")
+    public native @MachineSizedFloat double getMinimumSupplementaryColumnWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMinimumSupplementaryColumnWidth:")
+    public native void setMinimumSupplementaryColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumSupplementaryColumnWidth")
+    public native @MachineSizedFloat double getMaximumSupplementaryColumnWidth();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setMaximumSupplementaryColumnWidth:")
+    public native void setMaximumSupplementaryColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "supplementaryColumnWidth")
+    public native @MachineSizedFloat double getSupplementaryColumnWidth();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -124,6 +224,35 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UISplitViewControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double getAutomaticDimension();
     
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithStyle:")
+    protected native @Pointer long init(UISplitViewControllerStyle style);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setViewController:forColumn:")
+    public native void setViewController(UIViewController vc, UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "viewControllerForColumn:")
+    public native UIViewController viewControllerForColumn(UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "hideColumn:")
+    public native void hideColumn(UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "showColumn:")
+    public native void showColumn(UISplitViewControllerColumn column);
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
     @Method(selector = "showDetailViewController:sender:")

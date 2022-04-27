@@ -65,6 +65,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGRect getRect();
     @Property(selector = "identifier")
     public native NSObject getIdentifier();
+    @Property(selector = "latchingAxes")
+    public native UIAxis getLatchingAxes();
+    @Property(selector = "setLatchingAxes:")
+    public native void setLatchingAxes(UIAxis v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

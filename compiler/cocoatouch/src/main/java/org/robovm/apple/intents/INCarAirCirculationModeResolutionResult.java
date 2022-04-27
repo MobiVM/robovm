@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INCarAirCirculationModeResolutionResult is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INCarAirCirculationModeResolutionResult/*</name>*/ 
     extends /*<extends>*/INIntentResolutionResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -73,5 +75,11 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "confirmationRequiredWithValueToConfirm:")
     public static native INCarAirCirculationModeResolutionResult confirmationRequiredForValue(INCarAirCirculationMode valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCarAirCirculationModeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCarAirCirculationModeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCarAirCirculationModeResolutionResult unsupported();
     /*</methods>*/
 }

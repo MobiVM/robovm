@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,21 +58,13 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "successWithResolvedCallRecordTypeOptions:")
     public static native INCallRecordTypeOptionsResolutionResult success(INCallRecordTypeOptions resolvedCallRecordTypeOptions);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use +successWithResolvedCallRecordTypeOptions:
-     */
-    @Deprecated
-    @Method(selector = "successWithResolvedValue:")
-    public static native INCallRecordTypeOptionsResolutionResult successValue(INCallRecordTypeOptions resolvedValue);
     @Method(selector = "confirmationRequiredWithCallRecordTypeOptionsToConfirm:")
     public static native INCallRecordTypeOptionsResolutionResult confirmationRequired(INCallRecordTypeOptions callRecordTypeOptionsToConfirm);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 11.0. Use +confirmationRequiredWithCallRecordTypeOptionsToConfirm:
-     */
-    @Deprecated
-    @Method(selector = "confirmationRequiredWithValueToConfirm:")
-    public static native INCallRecordTypeOptionsResolutionResult confirmationRequiredForValue(INCallRecordTypeOptions valueToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCallRecordTypeOptionsResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCallRecordTypeOptionsResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCallRecordTypeOptionsResolutionResult unsupported();
     /*</methods>*/
 }

@@ -30,20 +30,37 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+ * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MPMovieLoadState/*</name>*/ extends Bits</*<name>*/MPMovieLoadState/*</name>*/> {
     /*<values>*/
     public static final MPMovieLoadState None = new MPMovieLoadState(0L);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     public static final MPMovieLoadState Unknown = new MPMovieLoadState(0L);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     public static final MPMovieLoadState Playable = new MPMovieLoadState(1L);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     public static final MPMovieLoadState PlaythroughOK = new MPMovieLoadState(2L);
+    /**
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
+     */
+    @Deprecated
     public static final MPMovieLoadState Stalled = new MPMovieLoadState(4L);
     /*</values>*/
 

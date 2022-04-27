@@ -1,5 +1,5 @@
 package: org.robovm.apple.replaykit
-include: [foundation.yaml, uikit.yaml, coremedia]
+include: [foundation, uikit, coremedia, coreanimation]
 library: ReplayKit
 framework: ReplayKit
 clang_args: ['-x', 'objective-c']
@@ -77,6 +77,14 @@ classes:
                 name: startRecording
             '-stopCaptureWithHandler:':
                 name: stopCapture
+            '-stopRecordingWithOutputURL:completionHandler:':
+                name: stopRecording
+            '-startClipBufferingWithCompletionHandler:':
+                name: startClipBuffering
+            '-stopClipBufferingWithCompletionHandler:':
+                name: stopClipBuffering
+            '-exportClipToURL:duration:completionHandler:':
+                name: exportClipToURL
     RPSystemBroadcastPickerView: {} #since 12.0
 
 protocols:

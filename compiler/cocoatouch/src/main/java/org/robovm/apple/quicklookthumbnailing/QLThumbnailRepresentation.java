@@ -57,6 +57,11 @@ import org.robovm.apple.uikit.*;
     public native CGImage getCGImage();
     @Property(selector = "UIImage")
     public native UIImage getUIImage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "contentRect")
+    public native @ByVal CGRect getContentRect();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

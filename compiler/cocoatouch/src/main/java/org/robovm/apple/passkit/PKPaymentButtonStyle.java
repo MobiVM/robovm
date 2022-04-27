@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,7 +45,11 @@ public enum /*<name>*/PKPaymentButtonStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     White(0L),
     WhiteOutline(1L),
-    Black(2L);
+    Black(2L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Automatic(3L);
     /*</values>*/
 
     /*<bind>*/

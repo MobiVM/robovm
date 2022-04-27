@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFont/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class UIFontPtr extends Ptr<UIFont, UIFontPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIFont.class); }/*</bind>*/
@@ -56,6 +56,8 @@ import org.robovm.apple.linkpresentation.*;
     public UIFont() {}
     protected UIFont(Handle h, long handle) { super(h, handle); }
     protected UIFont(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public UIFont(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "familyNames")
@@ -88,6 +90,8 @@ import org.robovm.apple.linkpresentation.*;
     public static native @MachineSizedFloat double getSmallSystemFontSize();
     @Property(selector = "systemFontSize")
     public static native @MachineSizedFloat double getSystemFontSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -133,5 +137,9 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIFont getMonospacedSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
     @Method(selector = "fontWithDescriptor:size:")
     public static native UIFont getFont(UIFontDescriptor descriptor, @MachineSizedFloat double pointSize);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

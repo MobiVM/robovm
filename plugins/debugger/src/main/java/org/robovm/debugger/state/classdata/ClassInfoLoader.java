@@ -75,7 +75,7 @@ public class ClassInfoLoader {
         dataInfos = Collections.unmodifiableList(new ArrayList<>(this.signatureToDataInfo.values()));
     }
 
-    private void parseHash( long hash) {
+    private void parseHash(long hash) {
         reader.setPosition(hash);
         long pointerSize = reader.pointerSize();
         int classInfoCount = reader.readInt32();

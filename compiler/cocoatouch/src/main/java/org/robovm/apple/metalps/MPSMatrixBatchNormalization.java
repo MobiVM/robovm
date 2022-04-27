@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixBatchNormalization(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixBatchNormalization(NSCoder decoder) { super(decoder); }
+    public MPSMatrixBatchNormalization(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceNumberOfFeatureVectors")
@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native boolean isComputeStatistics();
     @Property(selector = "setComputeStatistics:")
     public native void setComputeStatistics(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

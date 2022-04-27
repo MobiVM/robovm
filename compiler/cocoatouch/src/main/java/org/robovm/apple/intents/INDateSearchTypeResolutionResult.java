@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INDateSearchTypeResolutionResult success(INDateSearchType resolvedDateSearchType);
     @Method(selector = "confirmationRequiredWithDateSearchTypeToConfirm:")
     public static native INDateSearchTypeResolutionResult confirmationRequired(INDateSearchType dateSearchTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDateSearchTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDateSearchTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDateSearchTypeResolutionResult unsupported();
     /*</methods>*/
 }

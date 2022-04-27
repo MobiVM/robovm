@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSInstanceAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super(aDecoder, group); }
     @Method(selector = "initWithCoder:")
-    public MPSInstanceAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSInstanceAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "accelerationStructures")
@@ -97,6 +97,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getInstanceCount();
     @Property(selector = "setInstanceCount:")
     public native void setInstanceCount(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

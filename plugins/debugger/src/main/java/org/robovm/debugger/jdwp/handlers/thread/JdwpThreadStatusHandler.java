@@ -15,10 +15,12 @@
  */
 package org.robovm.debugger.jdwp.handlers.thread;
 
+import org.robovm.debugger.hooks.HookConsts;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.protocol.IJdwpRequestHandler;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.state.instances.VmThread;
+import org.robovm.debugger.utils.Converter;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.bytebuffer.DataBufferWriter;
 
@@ -51,8 +53,12 @@ public class JdwpThreadStatusHandler implements IJdwpRequestHandler {
                 return JdwpConsts.Error.INVALID_THREAD;
 
             // return running all time as for now, as status (wait/sleeping) is not available on object level 
-            output.writeInt32(JdwpConsts.ThreadStatus.RUNNING);
-            output.writeInt32(thread.suspendCount() > 0 ? JdwpConsts.SuspendStatus.SUSPEND_STATUS_SUSPENDED : 0);
+            output.writeInt32(Converter.jdwpThreadStatus(thread));
+            // suspended -- only if thread is running suspend cycle that can execute invoke command
+            output.writeInt32(thread.getHookSuspendStatus() == HookConsts.threadSuspendStatus.SUSPENDED_SOFT ||
+                    thread.getHookSuspendStatus() == HookConsts.threadSuspendStatus.SUSPENDED_HARD
+                    ? JdwpConsts.SuspendStatus.SUSPEND_STATUS_SUSPENDED 
+                    : JdwpConsts.SuspendStatus.SUSPEND_STATUS_NOT_SUSPENDED);
         }
 
         return JdwpConsts.Error.NONE;

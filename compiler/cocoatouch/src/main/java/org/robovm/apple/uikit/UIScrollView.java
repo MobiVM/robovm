@@ -239,6 +239,9 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setRefreshControl:")
     public native void setRefreshControl(UIRefreshControl v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "visibleSize")
     public native @ByVal CGSize getVisibleSize();
     /*</properties>*/
@@ -268,5 +271,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void setZoomScale(@MachineSizedFloat double scale, boolean animated);
     @Method(selector = "zoomToRect:animated:")
     public native void zoomToRect(@ByVal CGRect rect, boolean animated);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

@@ -198,6 +198,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "indexPathForPreferredFocusedViewInTableView:")
     public native NSIndexPath getIndexPathForPreferredFocusedView(UITableView tableView);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "tableView:selectionFollowsFocusForRowAtIndexPath:")
+    public native boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "tableView:shouldSpringLoadRowAtIndexPath:withContext:")
@@ -237,6 +242,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "tableView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public native void willPerformPreviewAction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tableView:willDisplayContextMenuWithConfiguration:animator:")
+    public native void willDisplayContextMenu(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "tableView:willEndContextMenuInteractionWithConfiguration:animator:")
+    public native void willEndContextMenuInteraction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")

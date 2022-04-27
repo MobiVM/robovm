@@ -51,12 +51,24 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "initialSelectedAID")
     String getInitialSelectedAID();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "identifier")
     NSData getIdentifier();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "historicalBytes")
     NSData getHistoricalBytes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "applicationData")
     NSData getApplicationData();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     @Property(selector = "proprietaryApplicationDataCoding")
     boolean isProprietaryApplicationDataCoding();
     /*</properties>*/

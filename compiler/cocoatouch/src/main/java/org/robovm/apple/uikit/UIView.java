@@ -88,6 +88,36 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "isFocused")
     public native boolean isFocused();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "focusGroupIdentifier")
+    public native String getFocusGroupIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setFocusGroupIdentifier:")
+    public native void setFocusGroupIdentifier(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusGroupPriority")
+    public native @MachineSizedSInt long getFocusGroupPriority();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFocusGroupPriority:")
+    public native void setFocusGroupPriority(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusEffect")
+    public native UIFocusEffect getFocusEffect();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFocusEffect:")
+    public native void setFocusEffect(UIFocusEffect v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "semanticContentAttribute")
@@ -119,12 +149,12 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setTransform:")
     public native void setTransform(@ByVal CGAffineTransform v);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "transform3D")
     public native @ByVal CATransform3D getTransform3D();
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "setTransform3D:")
     public native void setTransform3D(@ByVal CATransform3D v);
@@ -202,6 +232,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "safeAreaLayoutGuide")
     public native UILayoutGuide getSafeAreaLayoutGuide();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "keyboardLayoutGuide")
+    public native UIKeyboardLayoutGuide getKeyboardLayoutGuide();
     @Property(selector = "clipsToBounds")
     public native boolean clipsToBounds();
     @Property(selector = "setClipsToBounds:")
@@ -360,16 +395,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "accessibilityIgnoresInvertColors")
-    public native boolean isAccessibilityIgnoresInvertColors();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setAccessibilityIgnoresInvertColors:")
-    public native void setAccessibilityIgnoresInvertColors(boolean v);
+    @Property(selector = "minimumContentSizeCategory")
+    public native String getMinimumContentSizeCategory();
+    @Property(selector = "setMinimumContentSizeCategory:")
+    public native void setMinimumContentSizeCategory(String v);
+    @Property(selector = "maximumContentSizeCategory")
+    public native String getMaximumContentSizeCategory();
+    @Property(selector = "setMaximumContentSizeCategory:")
+    public native void setMaximumContentSizeCategory(String v);
+    @Property(selector = "appliedContentSizeCategoryLimitsDescription")
+    public native String getAppliedContentSizeCategoryLimitsDescription();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -380,6 +415,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setInteractions:")
     public native void setInteractions(NSArray<?> v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "accessibilityIgnoresInvertColors")
+    public native boolean isAccessibilityIgnoresInvertColors();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setAccessibilityIgnoresInvertColors:")
+    public native void setAccessibilityIgnoresInvertColors(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -442,6 +487,11 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBezierPath getCollisionBoundingPath();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isTransparentFocusItem")
+    public native boolean isTransparentFocusItem();
     @Property(selector = "preferredFocusEnvironments")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIFocusEnvironment> getPreferredFocusEnvironments();
     /**
@@ -575,7 +625,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "performSystemAnimation:onViews:options:animations:completion:")
     public static native void performSystemAnimation(UISystemAnimation animation, NSArray<UIView> views, UIViewAnimationOptions options, @Block Runnable parallelAnimations, @Block VoidBooleanBlock completion);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "modifyAnimationsWithRepeatCount:autoreverses:animations:")
     public static native void modifyAnimations(@MachineSizedFloat double count, boolean autoreverses, @Block Runnable animations);

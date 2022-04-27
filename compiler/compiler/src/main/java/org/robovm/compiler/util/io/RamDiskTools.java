@@ -16,17 +16,10 @@
  */
 package org.robovm.compiler.util.io;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileStore;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSNumber;
+import com.dd.plist.NSObject;
+import com.dd.plist.PropertyListParser;
 import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -34,10 +27,15 @@ import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.PropertyListParser;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Will modify cache and tmpdir paths given a {@link Config#builder()} and prun
@@ -110,12 +108,21 @@ public class RamDiskTools {
                 config.getLogger().info("Couldn't create cache directory on RAM disk, using hard drive");
                 return;
             }
+
+            // manage every build in own tmp folder -- allows to clear up not required tmp data
             File newTmpDir = new File(volume, "tmp");
+            newTmpDir = new File(newTmpDir, config.getBuildUuid().toString());
+            if (tmpDir.getAbsolutePath().startsWith(newTmpDir.getAbsolutePath())) {
+                // tmpDir already build on top of RamDisk, don't add it
+                // happens when building slice config from main one
+                newTmpDir = tmpDir;
+            } else {
+                newTmpDir = new File(newTmpDir, tmpDir.getAbsolutePath());
+            }
             if (!newTmpDir.exists() && !newTmpDir.mkdirs()) {
                 config.getLogger().info("Couldn't create tmp directory on RAM disk, using hard drive");
                 return;
             }
-            newTmpDir = new File(newTmpDir, tmpDir.getAbsolutePath());
             config.getLogger().info("Using RAM disk at %s for cache and tmp directory", ROBOVM_RAM_DISK_PATH);
             this.newCacheDir = newCacheDir;
             this.newTmpDir = newTmpDir;
@@ -127,16 +134,39 @@ public class RamDiskTools {
     }
 
     private void cleanRamDisk(FileStore store, File volume, Config config) {
-        // clean the cache/ and tmp/ dirs
-        // FIXME be smarter as per the issue report
+        // clean tmp/ dir
         try {
-//            FileUtils.deleteDirectory(new File(volume, "tmp"));
+            cleanTmp(volume, config);
+        } catch (IOException e) {
+            // nothing to do here
+        }
+
+        // clean the cache/
+        try {
             // only clean the cache if killing the tmp dir didn't work
             if (store.getUsableSpace() < MIN_FREE_SPACE) {
                 cleanCache(store, volume, config);
             }
         } catch (IOException e) {
             // nothing to do here
+        }
+    }
+
+    private void cleanTmp(File volume, Config config) throws IOException {
+        // clean up all files/folders inside tmp but not current build ones
+        File tmpDir = new File(volume, "tmp");
+        if (tmpDir.exists() && tmpDir.isDirectory()) {
+            File[] builds = tmpDir.listFiles();
+            if (builds != null && builds.length > 0) {
+                String currentBuild = config.getBuildUuid().toString();
+                for (File b : builds) {
+                    if (!currentBuild.equals(b.getName()))
+                        if (b.isDirectory())
+                            FileUtils.deleteDirectory(b);
+                        else
+                            b.delete();
+                }
+            }
         }
     }
 
@@ -147,12 +177,12 @@ public class RamDiskTools {
 
         // Enumerate all directories that are not our current cache
         // dir
-        List<CacheDir> cacheDirs = new ArrayList<CacheDir>();
+        List<CacheDir> cacheDirs = new ArrayList<>();
         for (OS os : OS.values()) {
-            for (Arch arch : Arch.values()) {
-                for (boolean isDebug : new boolean[] { false, true }) {
+            for (Arch arch : Arch.supported(os)) {
+                for (boolean isDebug : new boolean[]{false, true}) {
                     CacheDir cacheDir = constructCacheDir(volume, os, arch, isDebug);
-                    if (cacheDir != null && !cacheDir.directory.equals(currCacheDir.directory)) {
+                    if (cacheDir != null && (currCacheDir == null || !cacheDir.directory.equals(currCacheDir.directory))) {
                         cacheDirs.add(cacheDir);
                     }
                 }
@@ -197,14 +227,9 @@ public class RamDiskTools {
                 + (isDebug ? "debug" : "release"));
         if (!dir.exists())
             return null;
-        List<File> objFiles = new ArrayList<File>((Collection<File>) FileUtils.listFiles(dir, new String[] { "o" },
+        List<File> objFiles = new ArrayList<>(FileUtils.listFiles(dir, new String[]{"o"},
                 true));
-        Collections.sort(objFiles, new Comparator<File>() {
-            @Override
-            public int compare(File f1, File f2) {
-                return new Date(f2.lastModified()).compareTo(new Date(f1.lastModified()));
-            }
-        });
+        objFiles.sort((f1, f2) -> new Date(f2.lastModified()).compareTo(new Date(f1.lastModified())));
         long lastModified = 0;
         for (File file : objFiles) {
             lastModified = Math.max(lastModified, file.lastModified());

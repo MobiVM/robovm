@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBatchNormalization(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBatchNormalization(NSCoder decoder) { super(decoder); }
+    public MPSCNNBatchNormalization(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfFeatureChannels")
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native void setEpsilon(float v);
     @Property(selector = "dataSource")
     public native MPSCNNBatchNormalizationDataSource getDataSource();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

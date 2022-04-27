@@ -107,6 +107,12 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="SFExtensionMessageKey", optional=true)
+    public static native String getExtensionMessageKey();
+    
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithURL:configuration:")
@@ -120,5 +126,10 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSURL URL, boolean entersReaderIfAvailable);
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL URL);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "prewarmConnectionsToURLs:")
+    public static native SFSafariViewControllerPrewarmingToken prewarmConnectionsToURLs(NSArray<NSURL> URLs);
     /*</methods>*/
 }

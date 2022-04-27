@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INDeleteTasksIntent is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INDeleteTasksIntent/*</name>*/ 
     extends /*<extends>*/INIntent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -59,6 +61,8 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<INTask> getTasks();
     @Property(selector = "all")
     public native NSNumber getAll();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

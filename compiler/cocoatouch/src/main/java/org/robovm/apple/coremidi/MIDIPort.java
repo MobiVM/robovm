@@ -100,11 +100,22 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
         return connectSource(source, localRefconId);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="MIDIInputPortCreateWithProtocol", optional=true)
+    protected static native MIDIError createInputPort(MIDIClient client, String portName, MIDIProtocolID protocol, MIDIPort.MIDIPortPtr outPort, @Block VoidBlock2<MIDIEventList, VoidPtr> receiveBlock);
+    /**
+     * @deprecated Use MIDIInputPortCreateWithProtocol
+     */
+    @Deprecated
     @Bridge(symbol="MIDIInputPortCreate", optional=true)
     protected static native MIDIError createInputPort(MIDIClient client, String portName, FunctionPtr readProc, @Pointer long refCon, MIDIPort.MIDIPortPtr outPort);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use MIDIInputPortCreateWithProtocol
      */
+    @Deprecated
     @Bridge(symbol="MIDIInputPortCreateWithBlock", optional=true)
     protected static native MIDIError createInputPort(MIDIClient client, String portName, MIDIPort.MIDIPortPtr outPort, @Block VoidBlock2<MIDIPacketList, Long> readBlock);
     @Bridge(symbol="MIDIOutputPortCreate", optional=true)
@@ -116,8 +127,15 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
     @Bridge(symbol="MIDIPortDisconnectSource", optional=true)
     public native MIDIError disconnectSource(MIDIEndpoint source);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
+    @Bridge(symbol="MIDIDestinationCreateWithProtocol", optional=true)
+    protected static native MIDIError createDestination(MIDIClient client, String name, MIDIProtocolID protocol, MIDIEndpoint.MIDIEndpointPtr outDest, @Block VoidBlock2<MIDIEventList, VoidPtr> readBlock);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use MIDIDestinationCreateWithProtocol
+     */
+    @Deprecated
     @Bridge(symbol="MIDIDestinationCreateWithBlock", optional=true)
     protected static native MIDIError createDestination(MIDIClient client, String name, MIDIEndpoint.MIDIEndpointPtr outDest, @Block VoidBlock2<MIDIPacketList, Long> readBlock);
     /*</methods>*/

@@ -48,6 +48,11 @@ import org.robovm.apple.corefoundation.*;
     protected MIDICIProfile() {}
     protected MIDICIProfile(Handle h, long handle) { super(h, handle); }
     protected MIDICIProfile(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithData:")
+    public MIDICIProfile(NSData data) { super((SkipInit) null); initObject(init(data)); }
     @Method(selector = "initWithData:name:")
     public MIDICIProfile(NSData data, String inName) { super((SkipInit) null); initObject(init(data, inName)); }
     @Method(selector = "initWithCoder:")
@@ -63,6 +68,11 @@ import org.robovm.apple.corefoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithData:")
+    protected native @Pointer long init(NSData data);
     @Method(selector = "initWithData:name:")
     protected native @Pointer long init(NSData data, String inName);
     @Method(selector = "encodeWithCoder:")

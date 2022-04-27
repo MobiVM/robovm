@@ -50,7 +50,7 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
     @NotImplemented("tokenDriver:tokenForConfiguration:error:")
     public TKToken getToken(TKTokenDriver driver, TKTokenConfiguration configuration, NSError.NSErrorPtr error) { return null; }

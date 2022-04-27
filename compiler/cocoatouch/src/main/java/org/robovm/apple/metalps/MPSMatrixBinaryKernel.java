@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixBinaryKernel(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixBinaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSMatrixBinaryKernel(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -80,6 +80,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getBatchSize();
     @Property(selector = "setBatchSize:")
     public native void setBatchSize(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

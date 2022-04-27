@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayMatrixMultiplication(NSCoder coder, MTLDevice device) { super(coder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayMatrixMultiplication(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayMatrixMultiplication(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native double getBeta();
     @Property(selector = "setBeta:")
     public native void setBeta(double v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

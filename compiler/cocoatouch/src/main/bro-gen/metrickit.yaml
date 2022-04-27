@@ -41,7 +41,17 @@ classes:
     MXSignpostMetric: {} #since 13.0
     MXUnitAveragePixelLuminance: {} #since 13.0
     MXUnitSignalBars: {} #since 13.0
-
+    MXAnimationMetric: {} #since 14.0
+    MXAppExitMetric: {} #since 14.0
+    MXBackgroundExitData: {} #since 14.0
+    MXCPUExceptionDiagnostic: {} #since 14.0
+    MXCallStackTree: {} #since 14.0
+    MXCrashDiagnostic: {} #since 14.0
+    MXDiagnostic: {} #since 14.0
+    MXDiagnosticPayload: {} #since 14.0
+    MXDiskWriteExceptionDiagnostic: {} #since 14.0
+    MXForegroundExitData: {} #since 14.0
+    MXHangDiagnostic: {} #since 14.0
 protocols:
     MXMetricManagerSubscriber: {} #since 13.0
 

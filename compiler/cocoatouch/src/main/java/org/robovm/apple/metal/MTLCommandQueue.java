@@ -57,6 +57,11 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "commandBuffer")
     public native MTLCommandBuffer getCommandBuffer();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "commandBufferWithDescriptor:")
+    public native MTLCommandBuffer commandBuffer(MTLCommandBufferDescriptor descriptor);
     @Method(selector = "commandBufferWithUnretainedReferences")
     public native MTLCommandBuffer getCommandBufferWithUnretainedReferences();
     /**

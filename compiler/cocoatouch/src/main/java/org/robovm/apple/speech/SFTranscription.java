@@ -59,12 +59,16 @@ import org.robovm.apple.coremedia.*;
     public native NSArray<SFTranscriptionSegment> getSegments();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.5. speakingRate is moved to SFSpeechRecognitionMetadata
      */
+    @Deprecated
     @Property(selector = "speakingRate")
     public native double getSpeakingRate();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.5. averagePauseDuration is moved to SFSpeechRecognitionMetadata
      */
+    @Deprecated
     @Property(selector = "averagePauseDuration")
     public native double getAveragePauseDuration();
     @Property(selector = "supportsSecureCoding")

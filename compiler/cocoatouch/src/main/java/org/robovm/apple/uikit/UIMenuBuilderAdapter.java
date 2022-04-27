@@ -63,7 +63,7 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("menuForIdentifier:")
     public UIMenu menuForIdentifier(UIMenuIdentifier identifier) { return null; }
     @NotImplemented("actionForIdentifier:")
-    public UIAction actionForIdentifier(String identifier) { return null; }
+    public UIAction actionForIdentifier(UIActionIdentifier identifier) { return null; }
     @NotImplemented("commandForAction:propertyList:")
     public UICommand getCommand(Selector action, NSObject propertyList) { return null; }
     @NotImplemented("replaceMenuForIdentifier:withMenu:")

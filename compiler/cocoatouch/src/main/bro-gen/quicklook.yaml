@@ -1,5 +1,5 @@
 package: org.robovm.apple.quicklook
-include: [foundation.yaml, coregraphics.yaml, uikit.yaml]
+include: [foundation, coregraphics, mobilecoreservices, uikit, pdfkit]
 library: QuickLook
 framework: QuickLook
 clang_args: ['-x', 'objective-c']
@@ -35,6 +35,27 @@ classes:
             '+replyWithImageFileURL:':
                 name: create
                 constructor: true
+    QLFilePreviewRequest: {} #since 15.0
+    QLPreviewProvider: {} #since 15.0
+    QLPreviewReply: #since 15.0
+        methods:
+            '-initWithContextSize:isBitmap:drawingBlock:':
+                name: init
+            '-initWithFileURL:':
+                name: init
+            '-initWithDataOfContentType:contentSize:dataCreationBlock:':
+                name: init
+            '-initForPDFWithPageSize:documentCreationBlock:':
+                name: init
+    QLPreviewReplyAttachment: #since 15.0
+        methods:
+            '-initWithData:contentType:':
+                name: init
+    QLPreviewSceneActivationConfiguration: #since 15.0
+        methods:
+            '-initWithItemsAtURLs:options:':
+                name: init
+    QLPreviewSceneOptions: {} #since 15.0
 protocols:
     QLPreviewItem: # DONE
         properties:
@@ -75,6 +96,8 @@ protocols:
                 name: preparePreviewOfSearchableItem
             '-preparePreviewOfFileAtURL:completionHandler:':
                 name: preparePreviewOfFile
+            '-providePreviewForFileRequest:completionHandler:':
+                name: providePreviewForFileRequest
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (QL.*):

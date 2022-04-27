@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeWillBecomeMultiThreaded(final Runnable block) {
+        public static NSObjectProtocol observeWillBecomeMultiThreaded(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillBecomeMultiThreadedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeDidBecomeSingleThreaded(final Runnable block) {
+        public static NSObjectProtocol observeDidBecomeSingleThreaded(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeSingleThreadedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -63,7 +63,7 @@ import org.robovm.apple.dispatch.*;
                 }
             });
         }
-        public static NSObject observeWillExit(NSThread object, final VoidBlock1<NSThread> block) {
+        public static NSObjectProtocol observeWillExit(NSThread object, final VoidBlock1<NSThread> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillExitNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

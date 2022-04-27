@@ -30,8 +30,10 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +65,16 @@ import org.robovm.apple.iad.*;
     public native boolean showsPlaybackControls();
     @Property(selector = "setShowsPlaybackControls:")
     public native void setShowsPlaybackControls(boolean v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "showsTimecodes")
+    public native boolean showsTimecodes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setShowsTimecodes:")
+    public native void setShowsTimecodes(boolean v);
     @Property(selector = "videoGravity")
     public native AVLayerVideoGravity getVideoGravity();
     @Property(selector = "setVideoGravity:")
@@ -83,6 +95,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setAllowsPictureInPicturePlayback:")
     public native void setAllowsPictureInPicturePlayback(boolean v);
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "canStartPictureInPictureAutomaticallyFromInline")
+    public native boolean canStartPictureInPictureAutomaticallyFromInline();
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Property(selector = "setCanStartPictureInPictureAutomaticallyFromInline:")
+    public native void setCanStartPictureInPictureAutomaticallyFromInline(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -113,6 +135,16 @@ import org.robovm.apple.iad.*;
      */
     @Property(selector = "setExitsFullScreenWhenPlaybackEnds:")
     public native void setExitsFullScreenWhenPlaybackEnds(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "requiresLinearPlayback")
+    public native boolean requiresLinearPlayback();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setRequiresLinearPlayback:")
+    public native void setRequiresLinearPlayback(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -61,13 +61,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImagePyramid(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImagePyramid(NSCoder decoder) { super(decoder); }
+    public MPSImagePyramid(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelHeight")
     public native @MachineSizedUInt long getKernelHeight();
     @Property(selector = "kernelWidth")
     public native @MachineSizedUInt long getKernelWidth();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

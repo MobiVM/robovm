@@ -120,6 +120,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "photoProcessingTimeRange")
     public native @ByVal CMTimeRange getPhotoProcessingTimeRange();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isContentAwareDistortionCorrectionEnabled")
+    public native boolean isContentAwareDistortionCorrectionEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

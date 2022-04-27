@@ -51,7 +51,8 @@ public enum /*<name>*/UISegmentedControlSegment/*</name>*/ implements ValuedEnum
     Left(1L),
     Center(2L),
     Right(3L),
-    Alone(4L);
+    Alone(4L),
+    NoSegment(-1L);
     /*</values>*/
 
     private final long n;

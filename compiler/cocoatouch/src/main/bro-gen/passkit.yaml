@@ -1,5 +1,5 @@
 package: org.robovm.apple.passkit
-include: [foundation.yaml, uikit.yaml, addressbook.yaml, contacts.yaml]
+include: [foundation, uikit, addressbook, contacts, coregraphics, coreanimation]
 library: PassKit
 framework: PassKit
 clang_args: ['-x', 'objective-c']
@@ -29,6 +29,16 @@ enums:
     PKDisbursementRequestSchedule: {}
     PKAddSecureElementPassErrorCode: {prefix: PKAddSecureElementPass, nserror: true} #since 13.4
     PKSecureElementPassActivationState: {} #since 13.4
+    PKBarcodeEventConfigurationDataType: {} #since 14.0
+    PKAddShareablePassConfigurationPrimaryAction: {} #since 14.0
+    PKIssuerProvisioningExtensionAuthorizationResult: {} #since 14.0
+    PKRadioTechnology: {} #since 14.5
+    PKShippingContactEditingMode: {} #since 15.0
+typed_enums:
+    PKStoredValuePassBalanceType:
+        enum: PKStoredValuePassBalanceType
+        prefix: PKStoredValuePassBalanceType
+        type: NSString
 classes:
     PKPassKitError:
         extends: NSError
@@ -115,6 +125,8 @@ classes:
                 name: activateSecureElementPass
             '-signData:withSecureElementPass:completion:':
                 name: signData
+            '-serviceProviderDataForSecureElementPass:completion:':
+                name: serviceProviderDataForSecureElementPass
     PKPayment: # DONE
         properties:
             'billingAddress':
@@ -159,6 +171,10 @@ classes:
                 name: createPaymentShippingAddressUnserviceableError
             '+paymentBillingAddressInvalidErrorWithKey:localizedDescription:':
                 name: createPaymentBillingAddressInvalidError
+            '+paymentCouponCodeInvalidErrorWithLocalizedDescription:':
+                name: createPaymentCouponCodeInvalidError
+            '+paymentCouponCodeExpiredErrorWithLocalizedDescription:':
+                name: createPaymentCouponCodeExpiredError
     PKPaymentSummaryItem: # DONE
         methods:
             '+summaryItemWithLabel:amount:':
@@ -215,7 +231,73 @@ classes:
     PKDisbursementRequest: {}
     PKDisbursementVoucher: {}
     PKSecureElementPass: {} #since 13.4
-
+    PKAddCarKeyPassConfiguration: {} #since 13.4
+    PKAddSecureElementPassConfiguration: {} #since 13.4
+    PKAddSecureElementPassViewController: #since 13.4
+        methods:
+            '-initWithConfiguration:delegate:':
+                name: init
+            '+canAddSecureElementPassWithConfiguration:':
+                name: canAddSecureElementPass
+    PKAddShareablePassConfiguration: #since 14.0
+        methods:
+            '+configurationForPassMetadata:provisioningPolicyIdentifier:primaryAction:completion:':
+                constructor: true
+                name: create
+    PKBarcodeEventConfigurationRequest: {} #since 14.0
+    PKBarcodeEventMetadataRequest: {} #since 14.0
+    PKBarcodeEventMetadataResponse: #since 14.0
+        methods:
+            '-initWithPaymentInformation:':
+                name: init
+    PKBarcodeEventSignatureRequest: {} #since 14.0
+    PKBarcodeEventSignatureResponse: #since 14.0
+        methods:
+            '-initWithSignedData:':
+                name: init
+    PKIssuerProvisioningExtensionHandler: #since 14.0
+        methods:
+            '-statusWithCompletion:':
+                name: getStatus
+            '-passEntriesWithCompletion:':
+                name: getPassEntries
+            '-remotePassEntriesWithCompletion:':
+                name: remotePassEntries
+            '-generateAddPaymentPassRequestForPassEntryWithIdentifier:configuration:certificateChain:nonce:nonceSignature:completionHandler:':
+                name: generateAddPaymentPassRequestForPassEntry
+    PKIssuerProvisioningExtensionPassEntry: {} #since 14.0
+    PKIssuerProvisioningExtensionPaymentPassEntry: #since 14.0
+        methods:
+            '-initWithIdentifier:title:art:addRequestConfiguration:':
+                name: init
+    PKIssuerProvisioningExtensionStatus: {} #since 14.0
+    PKPaymentInformationEventExtension: {} #since 14.0
+    PKPaymentMerchantSession: #since 14.0
+        methods:
+            '-initWithDictionary:':
+                name: init
+    PKPaymentRequestMerchantSessionUpdate: #since 14.0
+        methods:
+            '-initWithStatus:merchantSession:':
+                name: init
+    PKShareablePassMetadata: #since 14.0
+        methods:
+            '-initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:':
+                name: init
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:':
+               name: init
+    PKDateComponentsRange: #since 15.0
+        methods:
+            '-initWithStartDateComponents:endDateComponents:':
+                name: init
+    PKDeferredPaymentSummaryItem: {} #since 15.0
+    PKPaymentRequestCouponCodeUpdate: #since 15.0
+        methods:
+            '-initWithErrors:paymentSummaryItems:shippingMethods:':
+                name: init
+    PKRecurringPaymentSummaryItem: {} #since 15.0
+    PKStoredValuePassBalance: {} #since 15.0
+    PKStoredValuePassProperties: {} #since 15.0
 protocols:
     PKPaymentAuthorizationControllerDelegate:
         methods:
@@ -239,6 +321,10 @@ protocols:
                 name: didSelectShippingContact
             '-paymentAuthorizationController:didSelectPaymentMethod:handler:':
                 name: didSelectPaymentMethod
+            '-paymentAuthorizationController:didRequestMerchantSessionUpdate:':
+                name: didRequestMerchantSessionUpdate
+            '-paymentAuthorizationController:didChangeCouponCode:handler:':
+                name: didChangeCouponCode
 
     PKAddPassesViewControllerDelegate: # DONE
         methods:
@@ -291,12 +377,31 @@ protocols:
                 name: didSelectShippingContact
             '-paymentAuthorizationViewController:didSelectPaymentMethod:handler:':
                 name: didSelectPaymentMethod
+            '-paymentAuthorizationViewController:didRequestMerchantSessionUpdate:':
+                name: didRequestMerchantSessionUpdate
+            '-paymentAuthorizationViewController:didChangeCouponCode:handler:':
+                name: didChangeCouponCode
     PKDisbursementAuthorizationControllerDelegate:
         methods:
             '-disbursementAuthorizationController:didAuthorizeWithDisbursementVoucher:':
                 name: didAuthorize
             '-disbursementAuthorizationControllerDidFinish:':
                 name: didFinish
+    PKAddSecureElementPassViewControllerDelegate: #since 13.4
+        methods:
+            '-addSecureElementPassViewController:didFinishAddingSecureElementPass:error:':
+                name: didFinishAddingSecureElementPass
+            '-addSecureElementPassViewController:didFinishAddingSecureElementPasses:error:':
+                name: didFinishAddingSecureElementPasses
+    PKIssuerProvisioningExtensionAuthorizationProviding: {} #since 14.0
+    PKPaymentInformationRequestHandling:
+        methods:
+            '-handleInformationRequest:completion:':
+                name: handleInformationRequest
+            '-handleSignatureRequest:completion:':
+                name: handleSignatureRequest
+            '-handleConfigurationRequest:completion:':
+                name: handleConfigurationRequest
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (PK.*):

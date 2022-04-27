@@ -52,6 +52,12 @@ import org.robovm.apple.coregraphics.*;
     public MDLCheckerboardTexture(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2) { super((SkipInit) null); initObject(init(divisions, name, dimensions, channelCount, channelEncoding, color1, color2)); }
     @Method(selector = "initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:")
     public MDLCheckerboardTexture(NSData pixelData, boolean topLeftOrigin, String name, @ByVal VectorInt2 dimensions, @MachineSizedSInt long rowStride, @MachineSizedUInt long channelCount, MDLTextureChannelEncoding channelEncoding, boolean isCube) { super(pixelData, topLeftOrigin, name, dimensions, rowStride, channelCount, channelEncoding, isCube); }
+    public MDLCheckerboardTexture(String name) { super((Handle) null, create(name)); retain(getHandle()); }
+    public MDLCheckerboardTexture(String name, NSBundle bundleOrNil) { super((Handle) null, create(name, bundleOrNil)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public MDLCheckerboardTexture(String name, MDLAssetResolver resolver) { super((Handle) null, create(name, resolver)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "divisions")
@@ -71,5 +77,22 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:")
     protected native @Pointer long init(float divisions, String name, @ByVal VectorInt2 dimensions, int channelCount, MDLTextureChannelEncoding channelEncoding, CGColor color1, CGColor color2);
+    @Method(selector = "textureNamed:")
+    protected static native @Pointer long create(String name);
+    @Method(selector = "textureNamed:bundle:")
+    protected static native @Pointer long create(String name, NSBundle bundleOrNil);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "textureNamed:assetResolver:")
+    protected static native @Pointer long create(String name, MDLAssetResolver resolver);
+    @Method(selector = "textureCubeWithImagesNamed:")
+    public static native MDLCheckerboardTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names);
+    @Method(selector = "textureCubeWithImagesNamed:bundle:")
+    public static native MDLCheckerboardTexture newTextureCube(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> names, NSBundle bundleOrNil);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:")
+    public static native MDLCheckerboardTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions);
+    @Method(selector = "irradianceTextureCubeWithTexture:name:dimensions:roughness:")
+    public static native MDLCheckerboardTexture newIrradianceTextureCube(MDLTexture texture, String name, @ByVal VectorInt2 dimensions, float roughness);
     /*</methods>*/
 }

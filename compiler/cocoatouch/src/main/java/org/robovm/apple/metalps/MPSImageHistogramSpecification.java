@@ -59,11 +59,13 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageHistogramSpecification(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageHistogramSpecification(NSCoder decoder) { super(decoder); }
+    public MPSImageHistogramSpecification(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "histogramInfo")
     public native @ByVal MPSImageHistogramInfo getHistogramInfo();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

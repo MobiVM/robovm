@@ -52,7 +52,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNArithmetic(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNArithmetic(NSCoder decoder) { super(decoder); }
+    public MPSCNNArithmetic(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryScale")
@@ -83,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native float getMaximumValue();
     @Property(selector = "setMaximumValue:")
     public native void setMaximumValue(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

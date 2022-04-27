@@ -56,13 +56,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNPoolingGradient(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNPoolingGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNPoolingGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceSize")
     public native @ByVal MTLSize getSourceSize();
     @Property(selector = "setSourceSize:")
     public native void setSourceSize(@ByVal MTLSize v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

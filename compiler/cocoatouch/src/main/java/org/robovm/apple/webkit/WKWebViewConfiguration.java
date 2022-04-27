@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -99,6 +100,16 @@ import org.robovm.apple.security.*;
     @Property(selector = "setAllowsAirPlayForMediaPlayback:")
     public native void setAllowsAirPlayForMediaPlayback(boolean v);
     /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "upgradeKnownHostsToHTTPS")
+    public native boolean isUpgradeKnownHostsToHTTPS();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setUpgradeKnownHostsToHTTPS:")
+    public native void setUpgradeKnownHostsToHTTPS(boolean v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "mediaTypesRequiringUserActionForPlayback")
@@ -118,6 +129,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setDefaultWebpagePreferences:")
     public native void setDefaultWebpagePreferences(WKWebpagePreferences v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "limitsNavigationsToAppBoundDomains")
+    public native boolean isLimitsNavigationsToAppBoundDomains();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setLimitsNavigationsToAppBoundDomains:")
+    public native void setLimitsNavigationsToAppBoundDomains(boolean v);
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")

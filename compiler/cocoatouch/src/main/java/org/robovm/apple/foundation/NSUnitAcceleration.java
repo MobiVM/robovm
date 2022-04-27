@@ -65,9 +65,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitAcceleration getMetersPerSecondSquared();
     @Property(selector = "gravity")
     public static native NSUnitAcceleration getGravity();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitAcceleration getBaseUnit();
     /*</methods>*/
 }

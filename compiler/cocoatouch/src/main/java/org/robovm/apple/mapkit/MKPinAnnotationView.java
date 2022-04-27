@@ -32,12 +32,15 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use MKMarkerAnnotationView
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPinAnnotationView/*</name>*/ 
     extends /*<extends>*/MKAnnotationView/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -83,6 +86,9 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Property(selector = "setPinColor:")
     public native void setPinColor(MKPinAnnotationColor v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -101,5 +107,15 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "purplePinColor")
     public static native UIColor getPurplePinColor();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

@@ -575,12 +575,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 11.0 and later.
      */
     @Bridge(symbol="AudioUnitExtensionSetComponentList", optional=true)
-    protected static native OSStatus extensionSetComponentList0(String extensionIdentifier, NSArray<?> audioComponentInfo);
+    protected static native OSStatus extensionSetComponentList0(String extensionIdentifier, NSArray audioComponentInfo);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Bridge(symbol="AudioUnitExtensionCopyComponentList", optional=true)
-    protected static native NSArray<?> extensionCopyComponentList0(String extensionIdentifier);
+    protected static native NSArray extensionCopyComponentList0(String extensionIdentifier);
     @Bridge(symbol="AudioOutputUnitStart", optional=true)
     protected native OSStatus startOutput0();
     @Bridge(symbol="AudioOutputUnitStop", optional=true)

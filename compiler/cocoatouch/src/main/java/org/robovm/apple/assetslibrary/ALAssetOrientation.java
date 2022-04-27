@@ -41,42 +41,42 @@ import org.robovm.apple.imageio.*;
 public enum /*<name>*/ALAssetOrientation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     Up(0L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     Down(1L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     Left(2L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     Right(3L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     UpMirrored(4L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     DownMirrored(5L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     LeftMirrored(6L),
     /**
-     * @deprecated Deprecated in iOS 9.0.
+     * @deprecated Deprecated in iOS 9.0. Use UIImageOrientation in the Photos framework instead
      */
     @Deprecated
     RightMirrored(7L);

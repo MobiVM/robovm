@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,16 @@ import org.robovm.apple.corelocation.*;
     public INObject(String identifier, String displayString, String pronunciationHint) { super((SkipInit) null); initObject(init(identifier, displayString, pronunciationHint)); }
     @Method(selector = "initWithIdentifier:displayString:")
     public INObject(String identifier, String displayString) { super((SkipInit) null); initObject(init(identifier, displayString)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayString:subtitleString:displayImage:")
+    public INObject(String identifier, String displayString, String subtitleString, INImage displayImage) { super((SkipInit) null); initObject(init(identifier, displayString, subtitleString, displayImage)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayString:pronunciationHint:subtitleString:displayImage:")
+    public INObject(String identifier, String displayString, String pronunciationHint, String subtitleString, INImage displayImage) { super((SkipInit) null); initObject(init(identifier, displayString, pronunciationHint, subtitleString, displayImage)); }
     @Method(selector = "initWithCoder:")
     public INObject(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -63,6 +74,26 @@ import org.robovm.apple.corelocation.*;
     public native String getDisplayString();
     @Property(selector = "pronunciationHint")
     public native String getPronunciationHint();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "subtitleString")
+    public native String getSubtitleString();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSubtitleString:")
+    public native void setSubtitleString(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "displayImage")
+    public native INImage getDisplayImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDisplayImage:")
+    public native void setDisplayImage(INImage v);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -86,6 +117,16 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(String identifier, String displayString, String pronunciationHint);
     @Method(selector = "initWithIdentifier:displayString:")
     protected native @Pointer long init(String identifier, String displayString);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayString:subtitleString:displayImage:")
+    protected native @Pointer long init(String identifier, String displayString, String subtitleString, INImage displayImage);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayString:pronunciationHint:subtitleString:displayImage:")
+    protected native @Pointer long init(String identifier, String displayString, String pronunciationHint, String subtitleString, INImage displayImage);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

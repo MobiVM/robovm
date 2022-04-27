@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +45,7 @@ import org.robovm.apple.coregraphics.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeWirelessRoutesAvailableDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
+        public static NSObjectProtocol observeWirelessRoutesAvailableDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WirelessRoutesAvailableDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -55,7 +56,7 @@ import org.robovm.apple.coregraphics.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeWirelessRouteActiveDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
+        public static NSObjectProtocol observeWirelessRouteActiveDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WirelessRouteActiveDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -110,6 +111,9 @@ import org.robovm.apple.coregraphics.*;
     public native UIImage getVolumeWarningSliderImage();
     @Property(selector = "setVolumeWarningSliderImage:")
     public native void setVolumeWarningSliderImage(UIImage v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -160,5 +164,15 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "routeButtonRectForBounds:")
     public native @ByVal CGRect getRouteButtonRect(@ByVal CGRect bounds);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

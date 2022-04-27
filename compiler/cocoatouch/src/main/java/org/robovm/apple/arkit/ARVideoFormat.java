@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +66,11 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "captureDevicePosition")
     public native AVCaptureDevicePosition getCaptureDevicePosition();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "captureDeviceType")
+    public native String getCaptureDeviceType();
     @Property(selector = "imageResolution")
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "framesPerSecond")

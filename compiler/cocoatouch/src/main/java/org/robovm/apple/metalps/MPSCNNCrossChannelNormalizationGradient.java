@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSCNNCrossChannelNormalizationGradient(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNCrossChannelNormalizationGradient(NSCoder decoder) { super(decoder); }
+    public MPSCNNCrossChannelNormalizationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
@@ -73,6 +73,8 @@ import org.robovm.apple.metal.*;
     public native void setDelta(float v);
     @Property(selector = "kernelSize")
     public native @MachineSizedUInt long getKernelSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

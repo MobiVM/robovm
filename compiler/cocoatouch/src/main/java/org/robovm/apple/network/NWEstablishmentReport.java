@@ -87,6 +87,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_establishment_report_enumerate_resolutions", optional=true)
     public native void enumerateResolutions(@Block Block5<NWReportResolutionSource, Long, Integer, NWEndpoint, NWEndpoint, Boolean> enumerate_block);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Bridge(symbol="nw_establishment_report_enumerate_resolution_reports", optional=true)
+    public native void enumerateResolutionReports(@Block Block1<NWResolutionReport, Boolean> enumerate_block);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="nw_establishment_report_enumerate_protocols", optional=true)

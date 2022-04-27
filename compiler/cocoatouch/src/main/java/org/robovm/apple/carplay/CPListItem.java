@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -41,7 +42,7 @@ import org.robovm.apple.mapkit.*;
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPListItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements CPSelectableListItem/*</implements>*/ {
 
     /*<ptr>*/public static class CPListItemPtr extends Ptr<CPListItem, CPListItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CPListItem.class); }/*</bind>*/
@@ -50,45 +51,158 @@ import org.robovm.apple.mapkit.*;
     public CPListItem() {}
     protected CPListItem(Handle h, long handle) { super(h, handle); }
     protected CPListItem(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithText:detailText:image:showsDisclosureIndicator:")
-    public CPListItem(String text, String detailText, UIImage image, boolean showsDisclosureIndicator) { super((SkipInit) null); initObject(init(text, detailText, image, showsDisclosureIndicator)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithText:detailText:image:accessoryImage:accessoryType:")
+    public CPListItem(String text, String detailText, UIImage image, UIImage accessoryImage, CPListItemAccessoryType accessoryType) { super((SkipInit) null); initObject(init(text, detailText, image, accessoryImage, accessoryType)); }
     @Method(selector = "initWithText:detailText:image:")
     public CPListItem(String text, String detailText, UIImage image) { super((SkipInit) null); initObject(init(text, detailText, image)); }
     @Method(selector = "initWithText:detailText:")
     public CPListItem(String text, String detailText) { super((SkipInit) null); initObject(init(text, detailText)); }
-    @Method(selector = "initWithCoder:")
-    public CPListItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use initWithText:detailText:image:accessoryImage:accessoryType:
+     */
+    @Deprecated
+    @Method(selector = "initWithText:detailText:image:showsDisclosureIndicator:")
+    public CPListItem(String text, String detailText, UIImage image, boolean showsDisclosureIndicator) { super((SkipInit) null); initObject(init(text, detailText, image, showsDisclosureIndicator)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "accessoryType")
+    public native CPListItemAccessoryType getAccessoryType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAccessoryType:")
+    public native void setAccessoryType(CPListItemAccessoryType v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isExplicitContent")
+    public native boolean isExplicitContent();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setExplicitContent:")
+    public native void setExplicitContent(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "playbackProgress")
+    public native @MachineSizedFloat double getPlaybackProgress();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPlaybackProgress:")
+    public native void setPlaybackProgress(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isPlaying")
+    public native boolean isPlaying();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPlaying:")
+    public native void setPlaying(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "playingIndicatorLocation")
+    public native CPListItemPlayingIndicatorLocation getPlayingIndicatorLocation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPlayingIndicatorLocation:")
+    public native void setPlayingIndicatorLocation(CPListItemPlayingIndicatorLocation v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "maximumImageSize")
+    public static native @ByVal CGSize getMaximumImageSize();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "handler")
+    public native @Block("(,@Block)") VoidBlock2<CPSelectableListItem, Runnable> getHandler();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setHandler:")
+    public native void setHandler(@Block("(,@Block)") VoidBlock2<CPSelectableListItem, Runnable> v);
     @Property(selector = "text")
     public native String getText();
-    @Property(selector = "detailText")
-    public native String getDetailText();
-    @Property(selector = "image")
-    public native UIImage getImage();
-    @Property(selector = "showsDisclosureIndicator")
-    public native boolean showsDisclosureIndicator();
+    @Property(selector = "setText:")
+    public native void setText(String v);
     @Property(selector = "userInfo")
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "detailText")
+    public native String getDetailText();
+    @Property(selector = "setDetailText:")
+    public native void setDetailText(String v);
+    @Property(selector = "image")
+    public native UIImage getImage();
+    @Property(selector = "setImage:")
+    public native void setImage(UIImage v);
+    @Property(selector = "accessoryImage")
+    public native UIImage getAccessoryImage();
+    @Property(selector = "setAccessoryImage:")
+    public native void setAccessoryImage(UIImage v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use CPListItemAccessoryType
+     */
+    @Deprecated
+    @Property(selector = "showsDisclosureIndicator")
+    public native boolean showsDisclosureIndicator();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -explicitContent
+     */
+    @Deprecated
+    @Property(selector = "showsExplicitLabel")
+    public native boolean showsExplicitLabel();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -explicitContent
+     */
+    @Deprecated
+    @Property(selector = "setShowsExplicitLabel:")
+    public native void setShowsExplicitLabel(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="CPMaximumListItemImageSize", optional=true)
-    public static native @ByVal CGSize getMaximumListItemImageSize();
-    
-    @Method(selector = "initWithText:detailText:image:showsDisclosureIndicator:")
-    protected native @Pointer long init(String text, String detailText, UIImage image, boolean showsDisclosureIndicator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithText:detailText:image:accessoryImage:accessoryType:")
+    protected native @Pointer long init(String text, String detailText, UIImage image, UIImage accessoryImage, CPListItemAccessoryType accessoryType);
     @Method(selector = "initWithText:detailText:image:")
     protected native @Pointer long init(String text, String detailText, UIImage image);
     @Method(selector = "initWithText:detailText:")
     protected native @Pointer long init(String text, String detailText);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use initWithText:detailText:image:accessoryImage:accessoryType:
+     */
+    @Deprecated
+    @Method(selector = "initWithText:detailText:image:showsDisclosureIndicator:")
+    protected native @Pointer long init(String text, String detailText, UIImage image, boolean showsDisclosureIndicator);
     /*</methods>*/
 }

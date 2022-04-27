@@ -64,7 +64,8 @@ import org.robovm.rt.annotation.WeaklyLinked;
     public UIVibrancyEffect(UIBlurEffect blurEffect, UIVibrancyEffectStyle style) { super((Handle) null, create(blurEffect, style)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     

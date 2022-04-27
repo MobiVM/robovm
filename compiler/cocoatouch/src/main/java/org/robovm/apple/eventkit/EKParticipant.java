@@ -71,10 +71,6 @@ import org.robovm.apple.mapkit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 9.0. Use contactPredicate instead
-     */
-    @Deprecated
     @WeaklyLinked
     @Method(selector = "ABRecordWithAddressBook:")
     public native ABRecord getAddessBookRecord(ABAddressBook addressBook);

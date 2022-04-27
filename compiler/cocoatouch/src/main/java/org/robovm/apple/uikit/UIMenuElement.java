@@ -49,7 +49,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMenuElement/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIMenuElementPtr extends Ptr<UIMenuElement, UIMenuElementPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIMenuElement.class); }/*</bind>*/
@@ -64,10 +64,24 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
     @Property(selector = "image")
     public native UIImage getImage();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
+    @Property(selector = "accessibilityIdentifier")
+    public native String getAccessibilityIdentifier();
+    @Property(selector = "setAccessibilityIdentifier:")
+    public native void setAccessibilityIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

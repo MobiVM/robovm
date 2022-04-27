@@ -69,6 +69,8 @@ import org.robovm.apple.network.*;
     public native String getRemoteIdentifier();
     @Property(selector = "setRemoteIdentifier:")
     public native void setRemoteIdentifier(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

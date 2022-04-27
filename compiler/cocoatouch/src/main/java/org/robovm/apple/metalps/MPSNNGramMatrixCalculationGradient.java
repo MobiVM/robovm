@@ -56,13 +56,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSNNGramMatrixCalculationGradient(MTLDevice device) { super((SkipInit) null); initObject(init(device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNGramMatrixCalculationGradient(NSCoder decoder) { super(decoder); }
+    public MPSNNGramMatrixCalculationGradient(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "alpha")
     public native float getAlpha();
     @Property(selector = "setAlpha:")
     public native void setAlpha(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

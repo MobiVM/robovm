@@ -317,6 +317,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setRawEmbeddedThumbnailPhotoFormat:")
     public native void setRawEmbeddedThumbnailPhotoFormat(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "isAutoContentAwareDistortionCorrectionEnabled")
+    public native boolean isAutoContentAwareDistortionCorrectionEnabled();
+    /**
+     * @since Available in iOS 14.1 and later.
+     */
+    @Property(selector = "setAutoContentAwareDistortionCorrectionEnabled:")
+    public native void setAutoContentAwareDistortionCorrectionEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

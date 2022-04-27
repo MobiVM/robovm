@@ -73,12 +73,16 @@ import org.robovm.apple.foundation.*;
     public native NSDictionary<?, ?> getUserInfo();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgument is ignored
      */
+    @Deprecated
     @Property(selector = "summaryArgument")
     public native String getSummaryArgument();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. summaryArgumentCount is ignored
      */
+    @Deprecated
     @Property(selector = "summaryArgumentCount")
     public native @MachineSizedUInt long getSummaryArgumentCount();
     /**
@@ -86,11 +90,26 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "targetContentIdentifier")
     public native String getTargetContentIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "interruptionLevel")
+    public native UNNotificationInterruptionLevel getInterruptionLevel();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "relevanceScore")
+    public native double getRelevanceScore();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "contentByUpdatingWithProvider:error:")
+    public native UNNotificationContent contentByUpdating(UNNotificationContentProviding provider, NSError.NSErrorPtr outError);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

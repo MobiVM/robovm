@@ -95,36 +95,160 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Word = new NSLinguisticTag("Word");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Punctuation = new NSLinguisticTag("Punctuation");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Whitespace = new NSLinguisticTag("Whitespace");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Other = new NSLinguisticTag("Other");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Noun = new NSLinguisticTag("Noun");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Verb = new NSLinguisticTag("Verb");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Adjective = new NSLinguisticTag("Adjective");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Adverb = new NSLinguisticTag("Adverb");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Pronoun = new NSLinguisticTag("Pronoun");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Determiner = new NSLinguisticTag("Determiner");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Particle = new NSLinguisticTag("Particle");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Preposition = new NSLinguisticTag("Preposition");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Number = new NSLinguisticTag("Number");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Conjunction = new NSLinguisticTag("Conjunction");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Interjection = new NSLinguisticTag("Interjection");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Classifier = new NSLinguisticTag("Classifier");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Idiom = new NSLinguisticTag("Idiom");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OtherWord = new NSLinguisticTag("OtherWord");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag SentenceTerminator = new NSLinguisticTag("SentenceTerminator");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OpenQuote = new NSLinguisticTag("OpenQuote");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag CloseQuote = new NSLinguisticTag("CloseQuote");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OpenParenthesis = new NSLinguisticTag("OpenParenthesis");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag CloseParenthesis = new NSLinguisticTag("CloseParenthesis");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag WordJoiner = new NSLinguisticTag("WordJoiner");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag Dash = new NSLinguisticTag("Dash");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OtherPunctuation = new NSLinguisticTag("OtherPunctuation");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag ParagraphBreak = new NSLinguisticTag("ParagraphBreak");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OtherWhitespace = new NSLinguisticTag("OtherWhitespace");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag PersonalName = new NSLinguisticTag("PersonalName");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag PlaceName = new NSLinguisticTag("PlaceName");
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     public static final NSLinguisticTag OrganizationName = new NSLinguisticTag("OrganizationName");
     /*</constants>*/
     
@@ -151,66 +275,190 @@ import org.robovm.apple.dispatch.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagWord", optional=true)
         public static native NSString Word();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagPunctuation", optional=true)
         public static native NSString Punctuation();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagWhitespace", optional=true)
         public static native NSString Whitespace();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOther", optional=true)
         public static native NSString Other();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagNoun", optional=true)
         public static native NSString Noun();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagVerb", optional=true)
         public static native NSString Verb();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagAdjective", optional=true)
         public static native NSString Adjective();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagAdverb", optional=true)
         public static native NSString Adverb();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagPronoun", optional=true)
         public static native NSString Pronoun();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagDeterminer", optional=true)
         public static native NSString Determiner();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagParticle", optional=true)
         public static native NSString Particle();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagPreposition", optional=true)
         public static native NSString Preposition();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagNumber", optional=true)
         public static native NSString Number();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagConjunction", optional=true)
         public static native NSString Conjunction();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagInterjection", optional=true)
         public static native NSString Interjection();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagClassifier", optional=true)
         public static native NSString Classifier();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagIdiom", optional=true)
         public static native NSString Idiom();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOtherWord", optional=true)
         public static native NSString OtherWord();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagSentenceTerminator", optional=true)
         public static native NSString SentenceTerminator();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOpenQuote", optional=true)
         public static native NSString OpenQuote();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagCloseQuote", optional=true)
         public static native NSString CloseQuote();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOpenParenthesis", optional=true)
         public static native NSString OpenParenthesis();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagCloseParenthesis", optional=true)
         public static native NSString CloseParenthesis();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagWordJoiner", optional=true)
         public static native NSString WordJoiner();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagDash", optional=true)
         public static native NSString Dash();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOtherPunctuation", optional=true)
         public static native NSString OtherPunctuation();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagParagraphBreak", optional=true)
         public static native NSString ParagraphBreak();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOtherWhitespace", optional=true)
         public static native NSString OtherWhitespace();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagPersonalName", optional=true)
         public static native NSString PersonalName();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagPlaceName", optional=true)
         public static native NSString PlaceName();
+        /**
+         * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+         */
+        @Deprecated
         @GlobalValue(symbol="NSLinguisticTagOrganizationName", optional=true)
         public static native NSString OrganizationName();
         /*</values>*/

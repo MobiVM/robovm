@@ -1,5 +1,5 @@
 package: org.robovm.apple.photosui
-include: [foundation.yaml, photos.yaml, uikit.yaml]
+include: [foundation, photos, uikit, coreanimation]
 library: PhotosUI
 framework: PhotosUI
 clang_args: ['-x', 'objective-c']
@@ -14,7 +14,8 @@ typedefs:
 enums:
     PHLivePhotoBadgeOptions: {}
     PHLivePhotoViewPlaybackStyle: {}
-
+    PHPickerConfigurationAssetRepresentationMode: {} #since 14.0
+    PHPickerConfigurationSelection: {} #since 15.0
 classes:
     PHLivePhotoView: #since 9.1
         methods:
@@ -23,7 +24,16 @@ classes:
             '+livePhotoBadgeImageWithOptions:':
                 name: createLivePhotoBadgeImage
     PHEditingExtensionContext: {} #since 8.0
-
+    PHPickerConfiguration: #since 14.0
+        methods:
+            '-initWithPhotoLibrary:':
+                name: init
+    PHPickerFilter: {} #since 14.0
+    PHPickerResult: {} #since 14.0
+    PHPickerViewController: #since 14.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
 protocols:
     PHLivePhotoViewDelegate:
         methods:
@@ -31,6 +41,8 @@ protocols:
                 name: willBeginPlayback
             '-livePhotoView:didEndPlaybackWithStyle:':
                 name: didEndPlayback
+            '-livePhotoView:canBeginPlaybackWithStyle:':
+                name: canBeginPlayback
     PHContentEditingController: # DONE
         properties:
             'shouldShowCancelConfirmation':
@@ -42,7 +54,10 @@ protocols:
                 name: startContentEditing
             '-finishContentEditingWithCompletionHandler:':
                 name: finishContentEditing
-
+    PHPickerViewControllerDelegate: #since 14.0
+        methods:
+            '-picker:didFinishPicking:':
+                name: didFinishPicking
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?PH.*):

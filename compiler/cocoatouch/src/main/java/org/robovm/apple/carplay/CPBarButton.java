@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,21 @@ import org.robovm.apple.mapkit.*;
     protected CPBarButton() {}
     protected CPBarButton(Handle h, long handle) { super(h, handle); }
     protected CPBarButton(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithImage:handler:")
+    public CPBarButton(UIImage image, @Block VoidBlock1<CPBarButton> handler) { super((SkipInit) null); initObject(init(image, handler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTitle:handler:")
+    public CPBarButton(String title, @Block VoidBlock1<CPBarButton> handler) { super((SkipInit) null); initObject(init(title, handler)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPBarButton initWithImage:handler:] or -[CPBarButton buttonWithTitle:handler:]
+     */
+    @Deprecated
     @Method(selector = "initWithType:handler:")
     public CPBarButton(CPBarButtonType type, @Block VoidBlock1<CPBarButton> handler) { super((SkipInit) null); initObject(init(type, handler)); }
     @Method(selector = "initWithCoder:")
@@ -60,8 +76,16 @@ import org.robovm.apple.mapkit.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
-    @Property(selector = "buttonType")
-    public native CPBarButtonType getButtonType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "buttonStyle")
+    public native CPBarButtonStyle getButtonStyle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setButtonStyle:")
+    public native void setButtonStyle(CPBarButtonStyle v);
     @Property(selector = "image")
     public native UIImage getImage();
     @Property(selector = "setImage:")
@@ -70,11 +94,33 @@ import org.robovm.apple.mapkit.*;
     public native String getTitle();
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPBarButton initWithImage:handler:] or -[CPBarButton initWithTitle:handler:]
+     */
+    @Deprecated
+    @Property(selector = "buttonType")
+    public native CPBarButtonType getButtonType();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithImage:handler:")
+    protected native @Pointer long init(UIImage image, @Block VoidBlock1<CPBarButton> handler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithTitle:handler:")
+    protected native @Pointer long init(String title, @Block VoidBlock1<CPBarButton> handler);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[CPBarButton initWithImage:handler:] or -[CPBarButton buttonWithTitle:handler:]
+     */
+    @Deprecated
     @Method(selector = "initWithType:handler:")
     protected native @Pointer long init(CPBarButtonType type, @Block VoidBlock1<CPBarButton> handler);
     @Method(selector = "encodeWithCoder:")

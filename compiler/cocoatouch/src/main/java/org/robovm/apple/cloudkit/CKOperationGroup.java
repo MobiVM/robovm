@@ -51,7 +51,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKOperationGroup(Handle h, long handle) { super(h, handle); }
     protected CKOperationGroup(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CKOperationGroup(NSCoder decoder) { super((SkipInit) null); initObject(init(decoder)); }
+    public CKOperationGroup(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "operationGroupID")
@@ -82,7 +82,7 @@ import org.robovm.apple.fileprovider.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder decoder);
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

@@ -82,5 +82,10 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="ICDownloadSidecarFiles", optional=true)
     public static native NSString DownloadSidecarFiles();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="ICTruncateAfterSuccessfulDownload", optional=true)
+    public static native NSString TruncateAfterSuccessfulDownload();
     /*</methods>*/
 }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +68,26 @@ import org.robovm.apple.coregraphics.*;
     public native String getCallerBundleIdentifier();
     @Property(selector = "authorizationOptions")
     public native NSDictionary<?, ?> getAuthorizationOptions();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isCallerManaged")
+    public native boolean isCallerManaged();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "callerTeamIdentifier")
+    public native String getCallerTeamIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "localizedCallerDisplayName")
+    public native String getLocalizedCallerDisplayName();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isUserInterfaceEnabled")
+    public native boolean isUserInterfaceEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,6 +101,11 @@ import org.robovm.apple.coregraphics.*;
     public native void complete(NSDictionary<NSString, NSString> httpAuthorizationHeaders);
     @Method(selector = "completeWithHTTPResponse:httpBody:")
     public native void complete(NSHTTPURLResponse httpResponse, NSData httpBody);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "completeWithAuthorizationResult:")
+    public native void complete(ASAuthorizationProviderExtensionAuthorizationResult authorizationResult);
     @Method(selector = "completeWithError:")
     public native void complete(NSError error);
     @Method(selector = "presentAuthorizationViewControllerWithCompletion:")

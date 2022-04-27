@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,21 +75,96 @@ import org.robovm.apple.mapkit.*;
     public native CPTemplate getTopTemplate();
     @Property(selector = "templates")
     public native NSArray<CPTemplate> getTemplates();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "carTraitCollection")
+    public native UITraitCollection getCarTraitCollection();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setRootTemplate:animated:completion:")
+    public native void setRootTemplate(CPTemplate rootTemplate, boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "pushTemplate:animated:completion:")
+    public native void pushTemplate(CPTemplate templateToPush, boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "popTemplateAnimated:completion:")
+    public native void popTemplate(boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "popToRootTemplateAnimated:completion:")
+    public native void popToRootTemplate(boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "popToTemplate:animated:completion:")
+    public native void popToTemplate(CPTemplate targetTemplate, boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "presentTemplate:animated:completion:")
+    public native void presentTemplate(CPTemplate templateToPresent, boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dismissTemplateAnimated:completion:")
+    public native void dismissTemplate(boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -setRootTemplate:animated:completion:
+     */
+    @Deprecated
     @Method(selector = "setRootTemplate:animated:")
     public native void setRootTemplate(CPTemplate rootTemplate, boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -pushTemplate:animated:completion:
+     */
+    @Deprecated
     @Method(selector = "pushTemplate:animated:")
     public native void pushTemplate(CPTemplate templateToPush, boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -popTemplateAnimated:completion:
+     */
+    @Deprecated
     @Method(selector = "popTemplateAnimated:")
     public native void popTemplateAnimated(boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -popToRootTemplateAnimated:completion:
+     */
+    @Deprecated
     @Method(selector = "popToRootTemplateAnimated:")
     public native void popToRootTemplateAnimated(boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -popToTemplate:animated:completion:
+     */
+    @Deprecated
     @Method(selector = "popToTemplate:animated:")
     public native void popToTemplate(CPTemplate targetTemplate, boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -presentTemplate:animated:completion:
+     */
+    @Deprecated
     @Method(selector = "presentTemplate:animated:")
     public native void presentTemplate(CPTemplate templateToPresent, boolean animated);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -dismissTemplateAnimated:completion:
+     */
+    @Deprecated
     @Method(selector = "dismissTemplateAnimated:")
     public native void dismissTemplateAnimated(boolean animated);
     /*</methods>*/

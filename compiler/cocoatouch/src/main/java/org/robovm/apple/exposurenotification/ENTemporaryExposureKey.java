@@ -33,7 +33,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 12.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/

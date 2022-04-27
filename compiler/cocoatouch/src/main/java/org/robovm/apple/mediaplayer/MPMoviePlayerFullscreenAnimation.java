@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,7 +105,7 @@ import org.robovm.apple.coregraphics.*;
     
 
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     public double getDuration() {
@@ -115,7 +116,7 @@ import org.robovm.apple.coregraphics.*;
         return 0;
     }
     /**
-     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+     * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
      */
     @Deprecated
     public UIViewAnimationCurve getCurve() {
@@ -132,13 +133,13 @@ import org.robovm.apple.coregraphics.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+         * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerFullscreenAnimationDurationUserInfoKey", optional=true)
         public static native NSString Duration();
         /**
-         * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit.
+         * @deprecated Deprecated in iOS 9.0. Use AVPlayerViewController in AVKit
          */
         @Deprecated
         @GlobalValue(symbol="MPMoviePlayerFullscreenAnimationCurveUserInfoKey", optional=true)

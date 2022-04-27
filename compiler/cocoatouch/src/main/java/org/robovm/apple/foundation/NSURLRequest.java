@@ -85,6 +85,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "allowsConstrainedNetworkAccess")
     public native boolean allowsConstrainedNetworkAccess();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "assumesHTTP3Capable")
+    public native boolean isAssumesHTTP3Capable();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "attribution")
+    public native NSURLRequestAttribution getAttribution();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "allHTTPHeaderFields")

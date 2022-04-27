@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,10 +51,10 @@ import org.robovm.apple.corelocation.*;
     protected INSendMessageIntent(Handle h, long handle) { super(h, handle); }
     protected INSendMessageIntent(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "initWithRecipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
-    public INSendMessageIntent(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender) { super((SkipInit) null); initObject(init(recipients, content, speakableGroupName, conversationIdentifier, serviceName, sender)); }
+    @Method(selector = "initWithRecipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:attachments:")
+    public INSendMessageIntent(NSArray<INPerson> recipients, INOutgoingMessageType outgoingMessageType, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender, NSArray<INSendMessageAttachment> attachments) { super((SkipInit) null); initObject(init(recipients, outgoingMessageType, content, speakableGroupName, conversationIdentifier, serviceName, sender, attachments)); }
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
@@ -61,10 +62,29 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithRecipients:content:groupName:serviceName:sender:")
     public INSendMessageIntent(NSArray<INPerson> recipients, String content, String groupName, String serviceName, INPerson sender) { super((SkipInit) null); initObject(init(recipients, content, groupName, serviceName, sender)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use the designated initializer with outgoingMessageType instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
+    public INSendMessageIntent(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender) { super((SkipInit) null); initObject(init(recipients, content, speakableGroupName, conversationIdentifier, serviceName, sender)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use the designated initializer with attachments instead instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
+    public INSendMessageIntent(NSArray<INPerson> recipients, INOutgoingMessageType outgoingMessageType, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender) { super((SkipInit) null); initObject(init(recipients, outgoingMessageType, content, speakableGroupName, conversationIdentifier, serviceName, sender)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recipients")
     public native NSArray<INPerson> getRecipients();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "outgoingMessageType")
+    public native INOutgoingMessageType getOutgoingMessageType();
     @Property(selector = "content")
     public native String getContent();
     /**
@@ -82,20 +102,27 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "sender")
     public native INPerson getSender();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "attachments")
+    public native NSArray<INSendMessageAttachment> getAttachments();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use speakableGroupNames instead
      */
     @Deprecated
     @Property(selector = "groupName")
     public native String getGroupName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "initWithRecipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
-    protected native @Pointer long init(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender);
+    @Method(selector = "initWithRecipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:attachments:")
+    protected native @Pointer long init(NSArray<INPerson> recipients, INOutgoingMessageType outgoingMessageType, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender, NSArray<INSendMessageAttachment> attachments);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use the designated initializer instead
@@ -103,5 +130,19 @@ import org.robovm.apple.corelocation.*;
     @Deprecated
     @Method(selector = "initWithRecipients:content:groupName:serviceName:sender:")
     protected native @Pointer long init(NSArray<INPerson> recipients, String content, String groupName, String serviceName, INPerson sender);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use the designated initializer with outgoingMessageType instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
+    protected native @Pointer long init(NSArray<INPerson> recipients, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use the designated initializer with attachments instead instead
+     */
+    @Deprecated
+    @Method(selector = "initWithRecipients:outgoingMessageType:content:speakableGroupName:conversationIdentifier:serviceName:sender:")
+    protected native @Pointer long init(NSArray<INPerson> recipients, INOutgoingMessageType outgoingMessageType, String content, INSpeakableString speakableGroupName, String conversationIdentifier, String serviceName, INPerson sender);
     /*</methods>*/
 }

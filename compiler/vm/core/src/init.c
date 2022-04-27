@@ -286,7 +286,7 @@ Env* rvmCreateEnv(VM* vm) {
     if(vm->options->enableHooks) {
         DebugEnv* debugEnv = (DebugEnv*)env;
         debugEnv->reqId = 0;
-        debugEnv->suspended = FALSE;
+        debugEnv->suspendStatus = 0;
         // dkimitsa: ignore VM initialization exception till app entry point as these exc wil will break wait_for_resume startup logic
         debugEnv->ignoreExceptions = TRUE;
     }

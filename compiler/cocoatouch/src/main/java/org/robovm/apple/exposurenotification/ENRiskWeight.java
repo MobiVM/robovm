@@ -37,11 +37,26 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/ENRiskWeight/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     Default(1L),
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     DefaultV2(100L),
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     Min(0L),
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     Max(100L),
-    MaxV2(200L);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    MaxV2(250L);
     /*</values>*/
 
     /*<bind>*/

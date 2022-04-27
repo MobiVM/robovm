@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeFailedToDecode(AVSampleBufferDisplayLayer object, final VoidBlock2<AVSampleBufferDisplayLayer, NSError> block) {
+        public static NSObjectProtocol observeFailedToDecode(AVSampleBufferDisplayLayer object, final VoidBlock2<AVSampleBufferDisplayLayer, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FailedToDecodeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -90,6 +90,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVQueuedSampleBufferRenderingStatus getStatus();
     @Property(selector = "error")
     public native NSError getError();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "requiresFlushToResumeDecoding")
+    public native boolean requiresFlushToResumeDecoding();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
     /**
@@ -112,8 +117,20 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreventsDisplaySleepDuringVideoPlayback:")
     public native void setPreventsDisplaySleepDuringVideoPlayback(boolean v);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
+    public native boolean isOutputObscuredDueToInsufficientExternalProtection();
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
+    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -121,7 +138,28 @@ import org.robovm.apple.audiotoolbox.*;
     public static native NSString FailedToDecodeNotification();
     @GlobalValue(symbol="AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey", optional=true)
     protected static native NSString FailedToDecodeNotificationErrorKey();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChangeNotification", optional=true)
+    public static native NSString RequiresFlushToResumeDecodingDidChangeNotification();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChangeNotification", optional=true)
+    public static native NSString OutputObscuredDueToInsufficientExternalProtectionDidChangeNotification();
     
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
+    @Method(selector = "needsDisplayForKey:")
+    public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
+    @Method(selector = "defaultActionForKey:")
+    public static native CAAction getDefaultAction(String event);
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
     @Method(selector = "flush")

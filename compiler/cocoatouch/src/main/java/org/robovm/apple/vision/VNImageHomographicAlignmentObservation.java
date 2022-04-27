@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -57,8 +58,8 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "warpTransform")
     public native @ByVal MatrixFloat3x4 getWarpTransform();
-    @Property(selector = "setWarpTransform:")
-    public native void setWarpTransform(@ByVal MatrixFloat3x4 v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

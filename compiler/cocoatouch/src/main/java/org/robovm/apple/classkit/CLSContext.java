@@ -71,6 +71,8 @@ import org.robovm.apple.coregraphics.*;
     public native void setUniversalLinkURL(NSURL v);
     @Property(selector = "type")
     public native CLSContextType getType();
+    @Property(selector = "setType:")
+    public native void setType(CLSContextType v);
     /**
      * @since Available in iOS 13.4 and later.
      */
@@ -93,6 +95,41 @@ import org.robovm.apple.coregraphics.*;
     public native String getTopic();
     @Property(selector = "setTopic:")
     public native void setTopic(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isAssignable")
+    public native boolean isAssignable();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAssignable:")
+    public native void setAssignable(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "suggestedAge")
+    public native @ByVal NSRange getSuggestedAge();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSuggestedAge:")
+    public native void setSuggestedAge(@ByVal NSRange v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "suggestedCompletionTime")
+    public native @ByVal NSRange getSuggestedCompletionTime();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSuggestedCompletionTime:")
+    public native void setSuggestedCompletionTime(@ByVal NSRange v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "progressReportingCapabilities")
+    public native NSSet<CLSProgressReportingCapability> getProgressReportingCapabilities();
     /**
      * @since Available in iOS 13.4 and later.
      */
@@ -117,8 +154,15 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isActive();
     @Property(selector = "parent")
     public native CLSContext getParent();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "navigationChildContexts")
+    public native NSArray<CLSContext> getNavigationChildContexts();
     @Property(selector = "currentActivity")
     public native CLSActivity getCurrentActivity();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -128,12 +172,32 @@ import org.robovm.apple.coregraphics.*;
     public native void becomeActive();
     @Method(selector = "resignActive")
     public native void resignActive();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "addProgressReportingCapabilities:")
+    public native void addProgressReportingCapabilities(NSSet<CLSProgressReportingCapability> capabilities);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "resetProgressReportingCapabilities")
+    public native void resetProgressReportingCapabilities();
     @Method(selector = "removeFromParent")
     public native void removeFromParent();
     @Method(selector = "addChildContext:")
     public native void addChildContext(CLSContext child);
     @Method(selector = "descendantMatchingIdentifierPath:completion:")
     public native void getDescendantMatchingIdentifierPath(NSArray<NSString> identifierPath, @Block VoidBlock2<CLSContext, NSError> completion);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "addNavigationChildContext:")
+    public native void addNavigationChildContext(CLSContext child);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "removeNavigationChildContext:")
+    public native void removeNavigationChildContext(CLSContext child);
     @Method(selector = "createNewActivity")
     public native CLSActivity createNewActivity();
     /*</methods>*/

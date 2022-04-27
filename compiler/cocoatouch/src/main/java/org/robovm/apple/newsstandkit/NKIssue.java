@@ -41,7 +41,7 @@ import org.robovm.apple.foundation.*;
     /*<implements>*//*</implements>*/ {
     
     public static class Notifications {
-        public static NSObject observeDownloadCompleted(NKIssue object, final VoidBlock1<NKIssue> block) {
+        public static NSObjectProtocol observeDownloadCompleted(NKIssue object, final VoidBlock1<NKIssue> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DownloadCompletedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

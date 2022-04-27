@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,6 +46,11 @@ public enum /*<name>*/INStartCallContactUnsupportedReason/*</name>*/ implements 
     NoHandleForLabel(3L),
     InvalidHandle(4L),
     UnsupportedMmiUssd(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0.
+     */
+    @Deprecated
     NoCallHistoryForRedial(6L),
     NoUsableHandleForRedial(7L);
     /*</values>*/

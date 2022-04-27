@@ -40,7 +40,7 @@ import org.robovm.apple.corefoundation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeRadioAccessTechnologyDidChange(CTTelephonyNetworkInfo object, final VoidBlock1<CTTelephonyNetworkInfo> block) {
+        public static NSObjectProtocol observeRadioAccessTechnologyDidChange(CTTelephonyNetworkInfo object, final VoidBlock1<CTTelephonyNetworkInfo> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RadioAccessTechnologyDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -79,7 +79,7 @@ import org.robovm.apple.corefoundation.*;
     @Property(selector = "serviceSubscriberCellularProviders")
     public native NSDictionary<NSString, CTCarrier> getServiceSubscriberCellularProviders();
     /**
-     * @deprecated Deprecated in iOS 12.0. Replaced by serviceSubscriberCellularProviders
+     * @deprecated Deprecated in iOS 12.0. Use serviceSubscriberCellularProviders
      */
     @Deprecated
     @Property(selector = "subscriberCellularProvider")

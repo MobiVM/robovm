@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UIDatePicker(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UIDatePicker(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UIDatePicker(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "datePickerMode")
@@ -113,10 +118,33 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "datePickerStyle")
     public native UIDatePickerStyle getDatePickerStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "roundsToMinuteInterval")
+    public native boolean isRoundsToMinuteInterval();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRoundsToMinuteInterval:")
+    public native void setRoundsToMinuteInterval(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "setDate:animated:")
     public native void setDate(NSDate date, boolean animated);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

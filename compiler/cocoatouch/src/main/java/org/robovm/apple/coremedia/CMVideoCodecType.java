@@ -53,9 +53,11 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     H264(1635148593L),
     HEVC(1752589105L),
     HEVCWithAlpha(1836415073L),
+    DolbyVisionHEVC(1685481521L),
     MPEG4Video(1836070006L),
     MPEG2Video(1836069494L),
     MPEG1Video(1836069238L),
+    VP9(1987063865L),
     DVCNTSC(1685480224L),
     DVCPAL(1685480304L),
     DVCProPAL(1685483632L),
@@ -74,7 +76,9 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     AppleProRes422LT(1634755443L),
     AppleProRes422Proxy(1634755439L),
     AppleProResRAW(1634759278L),
-    AppleProResRAWHQ(1634759272L);
+    AppleProResRAWHQ(1634759272L),
+    DisparityHEVC(1684632424L),
+    DepthHEVC(1684369512L);
     /*</values>*/
 
     public static class AsListMarshaler {

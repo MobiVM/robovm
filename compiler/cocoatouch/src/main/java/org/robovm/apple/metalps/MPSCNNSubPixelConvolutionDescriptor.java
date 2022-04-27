@@ -53,13 +53,18 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithCoder:")
-    public MPSCNNSubPixelConvolutionDescriptor(NSCoder decoder) { super(decoder); }
+    public MPSCNNSubPixelConvolutionDescriptor(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "subPixelScaleFactor")
     public native @MachineSizedUInt long getSubPixelScaleFactor();
     @Property(selector = "setSubPixelScaleFactor:")
     public native void setSubPixelScaleFactor(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

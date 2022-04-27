@@ -60,7 +60,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSRNNMatrixTrainingLayer(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSRNNMatrixTrainingLayer(NSCoder decoder) { super(decoder); }
+    public MPSRNNMatrixTrainingLayer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -83,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native boolean isAccumulateWeightGradients();
     @Property(selector = "setAccumulateWeightGradients:")
     public native void setAccumulateWeightGradients(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

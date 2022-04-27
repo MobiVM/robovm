@@ -137,7 +137,7 @@ public interface ValuedEnum {
                 }
             }
             Class<?> enumType = values[0].getClass();
-            throw new IllegalArgumentException("No constant with value " 
+            throw new EnumConstantMissingException(value, "No constant with value "
                     + value + " (0x" + Long.toHexString(value) + ") found in " 
                     + enumType.getName());
         }

@@ -58,10 +58,24 @@ import org.robovm.apple.fileprovider.*;
     public native NSArray<CKUserIdentityLookupInfo> getUserIdentityLookupInfos();
     @Property(selector = "setUserIdentityLookupInfos:")
     public native void setUserIdentityLookupInfos(NSArray<CKUserIdentityLookupInfo> v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors
+     */
+    @Deprecated
     @Property(selector = "shareParticipantFetchedBlock")
     public native @Block VoidBlock1<CKShareParticipant> getShareParticipantFetchedBlock();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use perShareParticipantCompletionBlock instead, which surfaces per-share-participant errors
+     */
+    @Deprecated
     @Property(selector = "setShareParticipantFetchedBlock:")
     public native void setShareParticipantFetchedBlock(@Block VoidBlock1<CKShareParticipant> v);
+    @Property(selector = "perShareParticipantCompletionBlock")
+    public native @Block VoidBlock3<CKUserIdentityLookupInfo, CKShareParticipant, NSError> getPerShareParticipantCompletionBlock();
+    @Property(selector = "setPerShareParticipantCompletionBlock:")
+    public native void setPerShareParticipantCompletionBlock(@Block VoidBlock3<CKUserIdentityLookupInfo, CKShareParticipant, NSError> v);
     @Property(selector = "fetchShareParticipantsCompletionBlock")
     public native @Block VoidBlock1<NSError> getFetchShareParticipantsCompletionBlock();
     @Property(selector = "setFetchShareParticipantsCompletionBlock:")

@@ -57,13 +57,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageThresholdTruncate(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageThresholdTruncate(NSCoder decoder) { super(decoder); }
+    public MPSImageThresholdTruncate(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "thresholdValue")
     public native float getThresholdValue();
     @Property(selector = "transform")
     public native FloatPtr getTransform();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

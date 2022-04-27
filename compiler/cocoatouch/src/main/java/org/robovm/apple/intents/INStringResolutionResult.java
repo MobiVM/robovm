@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INStringResolutionResult disambiguation(NSArray<NSString> stringsToDisambiguate);
     @Method(selector = "confirmationRequiredWithStringToConfirm:")
     public static native INStringResolutionResult confirmationRequired(String stringToConfirm);
+    @Method(selector = "needsValue")
+    public static native INStringResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INStringResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INStringResolutionResult unsupported();
     /*</methods>*/
 }

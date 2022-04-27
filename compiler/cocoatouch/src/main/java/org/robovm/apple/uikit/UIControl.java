@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIControl/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIContextMenuInteractionDelegate/*</implements>*/ {
 
     /*<ptr>*/public static class UIControlPtr extends Ptr<UIControl, UIControlPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIControl.class); }/*</bind>*/
@@ -58,9 +58,14 @@ import org.robovm.apple.linkpresentation.*;
     protected UIControl(Handle h, long handle) { super(h, handle); }
     protected UIControl(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithFrame:")
-    public UIControl(@ByVal CGRect frame) { super(frame); }
+    public UIControl(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
-    public UIControl(NSCoder coder) { super(coder); }
+    public UIControl(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UIControl(@ByVal CGRect frame, UIAction primaryAction) { super((SkipInit) null); initObject(init(frame, primaryAction)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -95,6 +100,49 @@ import org.robovm.apple.linkpresentation.*;
     public native NSSet<?> getAllTargets();
     @Property(selector = "allControlEvents")
     public native UIControlEvents getAllControlEvents();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contextMenuInteraction")
+    public native UIContextMenuInteraction getContextMenuInteraction();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isContextMenuInteractionEnabled")
+    public native boolean isContextMenuInteractionEnabled();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setContextMenuInteractionEnabled:")
+    public native void setContextMenuInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "showsMenuAsPrimaryAction")
+    public native boolean showsMenuAsPrimaryAction();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShowsMenuAsPrimaryAction:")
+    public native void setShowsMenuAsPrimaryAction(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "toolTip")
+    public native String getToolTip();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setToolTip:")
+    public native void setToolTip(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "toolTipInteraction")
+    public native UIToolTipInteraction getToolTipInteraction();
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     
@@ -289,6 +337,15 @@ import org.robovm.apple.linkpresentation.*;
     }
     
     /*<methods>*/
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    protected native @Pointer long init(@ByVal CGRect frame, UIAction primaryAction);
     @Method(selector = "beginTrackingWithTouch:withEvent:")
     public native boolean beginTracking(UITouch touch, UIEvent event);
     @Method(selector = "continueTrackingWithTouch:withEvent:")
@@ -301,11 +358,78 @@ import org.robovm.apple.linkpresentation.*;
     public native void addTarget(NSObject target, Selector action, UIControlEvents controlEvents);
     @Method(selector = "removeTarget:action:forControlEvents:")
     public native void removeTarget(NSObject target, Selector action, UIControlEvents controlEvents);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "addAction:forControlEvents:")
+    public native void addAction(UIAction action, UIControlEvents controlEvents);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "removeAction:forControlEvents:")
+    public native void removeAction(UIAction action, UIControlEvents controlEvents);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "removeActionForIdentifier:forControlEvents:")
+    public native void removeAction(UIActionIdentifier actionIdentifier, UIControlEvents controlEvents);
     @Method(selector = "actionsForTarget:forControlEvent:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getActions(NSObject target, UIControlEvents controlEvent);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "enumerateEventHandlers:")
+    public native void enumerateEventHandlers(@Block VoidBlock5<UIAction, NSObject, Selector, UIControlEvents, BooleanPtr> iterator);
     @Method(selector = "sendAction:to:forEvent:")
     public native void sendAction(Selector action, NSObject target, UIEvent event);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "sendAction:")
+    public native void sendAction(UIAction action);
     @Method(selector = "sendActionsForControlEvents:")
     public native void sendControlEventsActions(UIControlEvents controlEvents);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "menuAttachmentPointForConfiguration:")
+    public native @ByVal CGPoint menuAttachmentPointForConfiguration(UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:configurationForMenuAtLocation:")
+    public native UIContextMenuConfiguration getConfiguration(UIContextMenuInteraction interaction, @ByVal CGPoint location);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:previewForHighlightingMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForHighlightingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:previewForDismissingMenuWithConfiguration:")
+    public native UITargetedPreview getPreviewForDismissingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:willDisplayMenuForConfiguration:animator:")
+    public native void willDisplayMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:willEndForConfiguration:animator:")
+    public native void willEnd(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    @Method(selector = "contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:")
+    public native void willPerformPreviewAction(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
     /*</methods>*/
 }

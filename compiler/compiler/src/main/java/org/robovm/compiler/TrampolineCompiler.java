@@ -30,18 +30,7 @@ import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.llvm.Function;
-import org.robovm.compiler.llvm.FunctionAttribute;
-import org.robovm.compiler.llvm.FunctionDeclaration;
-import org.robovm.compiler.llvm.FunctionRef;
-import org.robovm.compiler.llvm.FunctionType;
-import org.robovm.compiler.llvm.Global;
-import org.robovm.compiler.llvm.Linkage;
-import org.robovm.compiler.llvm.NullConstant;
-import org.robovm.compiler.llvm.Ret;
-import org.robovm.compiler.llvm.StructureType;
-import org.robovm.compiler.llvm.Unreachable;
-import org.robovm.compiler.llvm.Value;
+import org.robovm.compiler.llvm.*;
 import org.robovm.compiler.trampoline.Anewarray;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.FieldAccessor;
@@ -259,7 +248,7 @@ public class TrampolineCompiler {
         fn.add(new Ret(result));
         mb.addFunction(fn);
     }
-    
+
     private void createTrampolineAliasForField(FieldAccessor t, SootField field) {
         String fnName = t.isGetter() ? Symbols.getterSymbol(field) : Symbols.setterSymbol(field);
         if (t.isStatic()) {

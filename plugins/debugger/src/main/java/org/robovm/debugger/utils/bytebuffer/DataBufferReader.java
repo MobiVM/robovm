@@ -45,8 +45,12 @@ public interface DataBufferReader extends DataBuffer {
             throw new BufferUnderflowException();
     }
 
-    // redeclare for proper return type
-    DataBufferReader setPosition(long position);
+    default void alignPosition(int boundary) {
+        long savedPosition = position();
+        long alignedPosition = DataUtils.align(savedPosition, boundary);
+        if (savedPosition != alignedPosition)
+            setPosition(alignedPosition);
+    }
 
     byte readByte();
 
@@ -55,6 +59,11 @@ public interface DataBufferReader extends DataBuffer {
     }
 
     short readInt16();
+
+    default int readInt16(boolean aligned) {
+        if (aligned) alignPosition(2);
+        return readInt16();
+    }
 
     default int readUnsignedInt16() {
         return Short.toUnsignedInt(readInt16());
@@ -65,6 +74,11 @@ public interface DataBufferReader extends DataBuffer {
     }
 
     int readInt32();
+
+    default int readInt32(boolean aligned) {
+        if (aligned) alignPosition(4);
+        return readInt32();
+    }
 
     default long readUnsignedInt32() {
         return Integer.toUnsignedLong(readInt32());
@@ -202,22 +216,17 @@ public interface DataBufferReader extends DataBuffer {
      * reads un-aligned pointer
      */
     default long readPointer() {
-        return readPointer(false);
+        return is64bit() ? readLong() : readUnsignedInt32();
     }
 
     /**
      * reads optionally aligned pointer to pointer size boundary (
      *
-     * @param aligned true if pointer has to be alligned
+     * @param aligned true if pointer has to be aligned
      */
     default long readPointer(boolean aligned) {
-        if (aligned) {
-            long savedPosition = position();
-            long alignedPosition = DataUtils.align(savedPosition, pointerSize());
-            if (savedPosition != alignedPosition)
-                setPosition(alignedPosition);
-        }
-        return is64bit() ? readLong() : readUnsignedInt32();
+        if (aligned) alignPosition(pointerSize());
+        return readPointer();
     }
 
     /**
@@ -269,6 +278,38 @@ public interface DataBufferReader extends DataBuffer {
             }
         }
     }
+
+    /**
+     * @return ULEB128 packed data
+     */
+    default long readUleb128() {
+        byte b = readByte();
+        if ((b & 0x80) == 0)
+            return b;
+
+        long result = 0;
+        int bit = 0;
+        for(;;) {
+            long slice = b & 0x7f;
+            if ( bit > 63 )
+                throw new IllegalArgumentException("uleb128 too big for uint64");
+
+            result |= (slice << bit);
+            if ((b & 0x80) == 0)
+                return result;
+            bit += 7;
+            b = readByte();
+        }
+    }
+
+    //
+    // Overloadable API
+    //
+
+    /**
+     * sets new position of buffer
+     */
+    DataBufferReader setPosition(long position);
 
     /**
      * makes a slice at specific position and specific size,

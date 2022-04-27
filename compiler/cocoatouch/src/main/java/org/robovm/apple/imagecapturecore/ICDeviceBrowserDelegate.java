@@ -65,6 +65,26 @@ import org.robovm.apple.uikit.*;
     void deviceDidChangeName(ICDeviceBrowser browser, ICDevice device);
     @Method(selector = "deviceBrowser:deviceDidChangeSharingState:")
     void deviceDidChangeSharingState(ICDeviceBrowser browser, ICDevice device);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "deviceBrowserWillSuspendOperations:")
+    void deviceBrowserWillSuspendOperations(ICDeviceBrowser browser);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "deviceBrowserDidSuspendOperations:")
+    void deviceBrowserDidSuspendOperations(ICDeviceBrowser browser);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "deviceBrowserDidCancelSuspendOperations:")
+    void deviceBrowserDidCancelSuspendOperations(ICDeviceBrowser browser);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "deviceBrowserDidResumeOperations:")
+    void deviceBrowserDidResumeOperations(ICDeviceBrowser browser);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

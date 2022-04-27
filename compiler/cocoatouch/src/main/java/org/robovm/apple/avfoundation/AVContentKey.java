@@ -41,18 +41,27 @@ import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVContentKey/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVContentKey.class); }/*</bind>*/
+    /*<ptr>*/public static class AVContentKeyPtr extends Ptr<AVContentKey, AVContentKeyPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVContentKey.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public AVContentKey() {}
+    protected AVContentKey(Handle h, long handle) { super(h, handle); }
+    protected AVContentKey(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "contentKeySpecifier")
+    public native AVContentKeySpecifier getContentKeySpecifier();
+    /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
@@ -105,5 +114,31 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVContentKeyRequestProtocolVersionsKey", optional=true)
     public static native String RequestProtocolVersionsKey();
+    
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public static boolean attachToSampleBuffer(CMSampleBuffer sbuf, AVContentKey contentKey) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = attachToSampleBuffer(sbuf, contentKey, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Bridge(symbol="AVSampleBufferAttachContentKey", optional=true)
+    private static native boolean attachToSampleBuffer(CMSampleBuffer sbuf, AVContentKey contentKey, NSError.NSErrorPtr error);
+    
+    
     /*</methods>*/
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    public boolean attachToSampleBuffer(CMSampleBuffer sbuf) throws NSErrorException {
+        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+        boolean result = attachToSampleBuffer(sbuf, this, ptr);
+        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+        return result;
+    }
 }

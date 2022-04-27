@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,7 +61,7 @@ import org.robovm.apple.metal.*;
      */
     public SKLabelNode(NSAttributedString attributedText) { super((Handle) null, create(attributedText)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
-    public SKLabelNode(NSCoder decoder) { super(decoder); }
+    public SKLabelNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);
@@ -143,6 +144,8 @@ import org.robovm.apple.metal.*;
     public native SKBlendMode getBlendMode();
     @Property(selector = "setBlendMode:")
     public native void setBlendMode(SKBlendMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -97,6 +97,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use AVAudioTimePitchAlgorithmTimeDomain instead
+     */
+    @Deprecated
     public static final AVAudioTimePitchAlgorithm LowQualityZeroLatency = new AVAudioTimePitchAlgorithm("LowQualityZeroLatency");
     public static final AVAudioTimePitchAlgorithm TimeDomain = new AVAudioTimePitchAlgorithm("TimeDomain");
     public static final AVAudioTimePitchAlgorithm Spectral = new AVAudioTimePitchAlgorithm("Spectral");
@@ -126,6 +130,10 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @deprecated Deprecated in iOS 15.0. Use AVAudioTimePitchAlgorithmTimeDomain instead
+         */
+        @Deprecated
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmLowQualityZeroLatency", optional=true)
         public static native NSString LowQualityZeroLatency();
         @GlobalValue(symbol="AVAudioTimePitchAlgorithmTimeDomain", optional=true)

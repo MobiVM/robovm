@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,46 @@ import org.robovm.apple.mapkit.*;
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "tabTitle")
+    public native String getTabTitle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setTabTitle:")
+    public native void setTabTitle(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "tabImage")
+    public native UIImage getTabImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setTabImage:")
+    public native void setTabImage(UIImage v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "tabSystemItem")
+    public native UITabBarSystemItem getTabSystemItem();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setTabSystemItem:")
+    public native void setTabSystemItem(UITabBarSystemItem v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "showsTabBadge")
+    public native boolean showsTabBadge();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShowsTabBadge:")
+    public native void setShowsTabBadge(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

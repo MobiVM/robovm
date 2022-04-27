@@ -53,7 +53,15 @@ import org.robovm.apple.metal.*;
     protected MLUpdateTask(Handle h, long handle) { super(h, handle); }
     protected MLUpdateTask(SkipInit skipInit) { super(skipInit); }
     public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, configuration, completionHandler, error)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, completionHandler, error)); retain(getHandle()); }
     public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, configuration, progressHandlers, error)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, progressHandlers, error)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -64,7 +72,17 @@ import org.robovm.apple.metal.*;
     public native void resume(NSDictionary<MLParameterKey, ?> updateParameters);
     @Method(selector = "updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:")
     protected static native @Pointer long create(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "updateTaskForModelAtURL:trainingData:completionHandler:error:")
+    protected static native @Pointer long create(NSURL modelURL, MLBatchProvider trainingData, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error);
     @Method(selector = "updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:")
     protected static native @Pointer long create(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "updateTaskForModelAtURL:trainingData:progressHandlers:error:")
+    protected static native @Pointer long create(NSURL modelURL, MLBatchProvider trainingData, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error);
     /*</methods>*/
 }

@@ -187,15 +187,8 @@ public class NewProjectWizard extends Wizard implements INewWizard {
             };
         }
 
-        @Override
-        protected Control createJRESelectionControl(Composite composite) {
-            // Hide the JRE selection control
-            Label l = new Label(composite, NONE);
-            l.setSize(1, 1);
-            return l;
-        }
 
-        @Override
+		@Override
         protected Control createInfoControl(Composite composite) {
             addCustomControls(composite);
             return super.createInfoControl(composite);

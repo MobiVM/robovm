@@ -11,11 +11,10 @@ typedefs:
     'CGGlyph *': ShortPtr
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
 
 enums:
     CGBitmapInfo: {}
@@ -43,6 +42,7 @@ enums:
     CGImagePixelFormatInfo: {} #since 12.0
     CGImageByteOrderInfo: {prefix: kCGImage} #since 2.0
     CGPDFTagType: {} #since 13.0
+    CGGlyphDeprecatedEnum: {exclude: true}
 
 classes:
     CoreGraphics:
@@ -57,6 +57,7 @@ classes:
     CGRect: {}
     CGSize: {}
     CGVector: {}
+    CGColorDataFormat: {}
 
     # Opaque types
     CGBitmapContext:
@@ -103,6 +104,8 @@ classes:
     CGPDFStream: {}
     CGPDFString: {}
     CGShading:
+        extends: CFType
+    ColorSyncProfile:
         extends: CFType
 
 functions:
@@ -697,6 +700,12 @@ functions:
         parameters:
             pageInfo:
                 type: CGPDFBoxOptions
+    CGPDFContext(BeginTag):
+        class: CGPDFContext
+        name: '#{g[0]}'
+        parameters:
+            tagProperties:
+                type: CGPDFTagProperties
     CGPDFContext(.*):
         class: CGPDFContext
         name: '#{g[0]}'
@@ -941,6 +950,20 @@ functions:
         static: true
         visibility: protected
 
+    CGPDFTagTypeGetName:
+        class: CGPDFTagType
+        name: getName
+        return_type: String
+        return_marshaler: StringMarshalers.AsUtf8ZMarshaler
+
+    CGConvertColorDataWithFormat:
+        class: CGColorDataFormat
+        name: convertColorData
+
+    CGErrorSetCallback:
+        class: CGErrorCode
+        name: setCallback
+
     (k?CG.*):
         class: CoreGraphics
         name: '#{g[0]}'
@@ -986,7 +1009,28 @@ values:
             AllowsPrinting:
                 type: boolean
             AllowsCopying:
-                type: boolean    
+                type: boolean
+            OutputIntent:
+                type: CGPDFContextOutputIntent
+            OutputIntents:
+                type: List<CGPDFContextOutputIntent>
+    kCGPDFX(.*):
+        dictionary: CGPDFContextOutputIntent
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            OutputIntentSubtype:
+                type: String
+            OutputConditionIdentifier:
+                type: String
+            OutputCondition:
+                type: String
+            RegistryName:
+                type: String
+            Info:
+                type: String
+            DestinationOutputProfile:
+                type: CGColorSpace
 
     # CGAffineTransform
     CGAffineTransform(.*):
@@ -1047,14 +1091,25 @@ values:
             DestinationRect:
                 type: NSDictionary
 
+    # Names of colors for use with `CGColorGetConstantColor'.
+    kCGColor(White|Black|Clear):
+        class: CGColor
+        static_class: ConstantColors
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later CoreGraphics
     (k?CG.*):
         class: CoreGraphics
         name: '#{g[0]}'
 
+typed_enums:
+    CGPDFTagProperty:
+        dictionary: CGPDFTagProperties
+        type: NSString
+        prefix: kCGPDFTagProperty
 
 constants:
-    (CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED|CGFLOAT_MIN|CGFLOAT_MAX):
+    (CGFLOAT_EPSILON|CGFLOAT_IS_DOUBLE|CGFLOAT_DEFINED|CGVECTOR_DEFINED|CGFLOAT_MIN|CGFLOAT_MAX|CG_HDR_BT_2100):
         exclude: true
 
     # CGFont

@@ -64,6 +64,8 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<CLSActivityItem> getAdditionalActivityItems();
     @Property(selector = "isStarted")
     public native boolean isStarted();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -75,5 +77,10 @@ import org.robovm.apple.coregraphics.*;
     public native void start();
     @Method(selector = "stop")
     public native void stop();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "removeAllActivityItems")
+    public native void removeAllActivityItems();
     /*</methods>*/
 }

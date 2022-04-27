@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INRestaurantGuestResolutionResult disambiguation(NSArray<INRestaurantGuest> restaurantGuestsToDisambiguate);
     @Method(selector = "confirmationRequiredWithRestaurantGuestToConfirm:")
     public static native INRestaurantGuestResolutionResult confirmationRequired(INRestaurantGuest restaurantGuestToConfirm);
+    @Method(selector = "needsValue")
+    public static native INRestaurantGuestResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INRestaurantGuestResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INRestaurantGuestResolutionResult unsupported();
     /*</methods>*/
 }

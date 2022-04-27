@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextAttachment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSTextAttachmentContainer, NSSecureCoding, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
+    /*<implements>*/implements NSTextAttachmentLayout, NSTextAttachmentContainer, NSSecureCoding, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextAttachmentPtr extends Ptr<NSTextAttachment, NSTextAttachmentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextAttachment.class); }/*</bind>*/
@@ -88,6 +88,31 @@ import org.robovm.apple.linkpresentation.*;
     public native NSFileWrapper getFileWrapper();
     @Property(selector = "setFileWrapper:")
     public native void setFileWrapper(NSFileWrapper v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "lineLayoutPadding")
+    public native @MachineSizedFloat double getLineLayoutPadding();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setLineLayoutPadding:")
+    public native void setLineLayoutPadding(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsTextAttachmentView")
+    public native boolean allowsTextAttachmentView();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsTextAttachmentView:")
+    public native void setAllowsTextAttachmentView(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "usesTextAttachmentView")
+    public native boolean usesTextAttachmentView();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "adjustsImageSizeForAccessibilityContentSizeCategory")
@@ -100,10 +125,35 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithData:ofType:")
     protected native @Pointer long init(NSData contentData, String uti);
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "textAttachmentViewProviderClassForFileType:")
+    public static native Class<?> textAttachmentViewProviderClassForFileType(String fileType);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "registerTextAttachmentViewProviderClass:forFileType:")
+    public static native void registerTextAttachmentViewProviderClass(Class<?> textAttachmentViewProviderClass, String fileType);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "textAttachmentWithImage:")
     protected static native @Pointer long create(UIImage image);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "imageForBounds:attributes:location:textContainer:")
+    public native UIImage imageForBounds(@ByVal CGRect bounds, NSDictionary<NSString, ?> attributes, NSTextLocation location, NSTextContainer textContainer);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:")
+    public native @ByVal CGRect attachmentBoundsForAttributes(NSDictionary<NSString, ?> attributes, NSTextLocation location, NSTextContainer textContainer, @ByVal CGRect proposedLineFragment, @ByVal CGPoint position);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "viewProviderForParentView:location:textContainer:")
+    public native NSTextAttachmentViewProvider viewProviderForParentView(UIView parentView, NSTextLocation location, NSTextContainer textContainer);
     @Method(selector = "imageForBounds:textContainer:characterIndex:")
     public native UIImage getImageForBounds(@ByVal CGRect imageBounds, NSTextContainer textContainer, @MachineSizedUInt long charIndex);
     @Method(selector = "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:")

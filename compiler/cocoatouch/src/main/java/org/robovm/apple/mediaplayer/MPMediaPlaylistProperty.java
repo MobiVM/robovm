@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -90,6 +91,10 @@ import org.robovm.apple.coregraphics.*;
 
     /*<constants>*/
     public static final MPMediaPlaylistProperty PlaylistPersistendID = new MPMediaPlaylistProperty("PlaylistPersistendID");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final MPMediaPlaylistProperty CloudGlobalID = new MPMediaPlaylistProperty("CloudGlobalID");
     public static final MPMediaPlaylistProperty Name = new MPMediaPlaylistProperty("Name");
     public static final MPMediaPlaylistProperty PlaylistAttributes = new MPMediaPlaylistProperty("PlaylistAttributes");
     public static final MPMediaPlaylistProperty SeedItems = new MPMediaPlaylistProperty("SeedItems");
@@ -103,7 +108,7 @@ import org.robovm.apple.coregraphics.*;
     public static final MPMediaPlaylistProperty AuthorDisplayName = new MPMediaPlaylistProperty("AuthorDisplayName");
     /*</constants>*/
     
-    private static /*<name>*/MPMediaPlaylistProperty/*</name>*/[] values = new /*<name>*/MPMediaPlaylistProperty/*</name>*/[] {/*<value_list>*/PlaylistPersistendID, Name, PlaylistAttributes, SeedItems, DescriptionText, AuthorDisplayName/*</value_list>*/};
+    private static /*<name>*/MPMediaPlaylistProperty/*</name>*/[] values = new /*<name>*/MPMediaPlaylistProperty/*</name>*/[] {/*<value_list>*/PlaylistPersistendID, CloudGlobalID, Name, PlaylistAttributes, SeedItems, DescriptionText, AuthorDisplayName/*</value_list>*/};
     
     /*<name>*/MPMediaPlaylistProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -128,6 +133,11 @@ import org.robovm.apple.coregraphics.*;
         /*<values>*/
         @GlobalValue(symbol="MPMediaPlaylistPropertyPersistentID", optional=true)
         public static native NSString PlaylistPersistendID();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="MPMediaPlaylistPropertyCloudGlobalID", optional=true)
+        public static native NSString CloudGlobalID();
         @GlobalValue(symbol="MPMediaPlaylistPropertyName", optional=true)
         public static native NSString Name();
         @GlobalValue(symbol="MPMediaPlaylistPropertyPlaylistAttributes", optional=true)

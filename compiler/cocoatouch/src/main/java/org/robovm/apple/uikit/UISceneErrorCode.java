@@ -58,7 +58,7 @@ public enum /*<name>*/UISceneErrorCode/*</name>*/ implements NSErrorCode {
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="UISceneErrorDomain", optional=true)
     public static native String getClassDomain();

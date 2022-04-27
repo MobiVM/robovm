@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -44,7 +45,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/VNRecognizedText/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, VNRequestRevisionProviding/*</implements>*/ {
 
     /*<ptr>*/public static class VNRecognizedTextPtr extends Ptr<VNRecognizedText, VNRecognizedTextPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNRecognizedText.class); }/*</bind>*/
@@ -63,6 +64,8 @@ import org.robovm.apple.imageio.*;
     public native float getConfidence();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
+    @Property(selector = "requestRevision")
+    public native @MachineSizedUInt long getRequestRevision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

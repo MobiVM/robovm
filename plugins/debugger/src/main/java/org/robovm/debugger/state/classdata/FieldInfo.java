@@ -35,16 +35,21 @@ public class FieldInfo extends BaseModifiersInfo {
     //} FieldInfo;
 
 
+    private final ClassInfo owner;
     private int flags;
     private String name;
     private String signature;
     private int offset;
     private ClassInfo typeInfo;
 
-    public void readFieldInfo(DataBufferReader reader) {
-        flags = reader.readInt16();
+    public FieldInfo(ClassInfoImpl classInfo) {
+        this.owner = classInfo;
+    }
 
-        name = reader.readStringZ(reader.readPointer());
+    public void readFieldInfo(DataBufferReader reader) {
+        flags = reader.readInt16(true);
+
+        name = reader.readStringZ(reader.readPointer(true));
 
         if ((flags >> 12) != 0) {
             switch ((flags >> 12) & 0xf) {
@@ -58,15 +63,19 @@ public class FieldInfo extends BaseModifiersInfo {
                 case ClassDataConsts.desc.Z: signature = "Z"; break;
             }
         } else {
-            signature = reader.readStringZ(reader.readPointer());
+            signature = reader.readStringZ(reader.readPointer(true));
         }
 
-        offset = reader.readInt32();
+        offset = reader.readInt32(true);
 
         if ((flags & ClassDataConsts.fieldinfo.ATTRIBUTES) != 0) {
             // TODO: skip attributes for now
-            reader.skip(reader.pointerSize());
+            reader.readPointer(true);
         }
+    }
+
+    public ClassInfo getOwnerClass() {
+        return owner;
     }
 
     public String name() {

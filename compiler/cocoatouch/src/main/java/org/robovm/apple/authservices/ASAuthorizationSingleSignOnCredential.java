@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.coregraphics.*;
     public native NSArray<NSString> getAuthorizedScopes();
     @Property(selector = "authenticatedResponse")
     public native NSHTTPURLResponse getAuthenticatedResponse();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "privateKeys")
+    public native NSArray<?> getPrivateKeys();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

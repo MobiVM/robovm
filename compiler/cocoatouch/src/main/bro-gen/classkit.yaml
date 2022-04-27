@@ -12,6 +12,10 @@ enums:
     CLSErrorCode: {nserror: true} #since 11.3
     CLSContextType: {} #since 11.3
     CLSBinaryValueType: {} #since 11.3
+    CLSProgressReportingCapabilityKind: {} #since 14.0
+
+categories:
+    NSUserActivity: {}
 
 classes:
     CLSActivity: #since 11.3
@@ -37,6 +41,8 @@ classes:
                 name: getContextsMatchingIdentifier
             '-saveWithCompletion:':
                 name: save
+            '-fetchActivityForURL:completion:':
+                name: fetchActivity
     CLSObject: {} #since 11.3
     CLSQuantityItem: #since 11.3
         methods:
@@ -46,7 +52,10 @@ classes:
         methods:
             '-initWithIdentifier:title:score:maxScore:':
                 name: init
-
+    CLSProgressReportingCapability: #since 14.0
+        methods:
+            '-initWithKind:details:':
+                name: init
 protocols:
     CLSDataStoreDelegate: #since 11.3
         methods:
@@ -74,6 +83,10 @@ values:
     CLSErrorUnderlyingErrorsKey:
         class: CLSErrorCode
         name: getUnderlyingErrorsKey
+
+    CLSErrorSuccessfulObjectsKey:
+        class: CLSErrorCode
+        name: getSuccessfulObjectsKey
 
     CLSContextTopic(.*):
         class: CLSContextTopic

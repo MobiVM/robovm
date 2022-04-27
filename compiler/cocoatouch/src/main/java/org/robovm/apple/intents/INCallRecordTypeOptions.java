@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +53,18 @@ public final class /*<name>*/INCallRecordTypeOptions/*</name>*/ extends Bits</*<
      * @since Available in iOS 11.0 and later.
      */
     public static final INCallRecordTypeOptions Voicemail = new INCallRecordTypeOptions(16L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final INCallRecordTypeOptions Ringing = new INCallRecordTypeOptions(32L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final INCallRecordTypeOptions InProgress = new INCallRecordTypeOptions(64L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final INCallRecordTypeOptions OnHold = new INCallRecordTypeOptions(128L);
     /*</values>*/
 
     /*<bind>*/

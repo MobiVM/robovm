@@ -59,9 +59,19 @@ import org.robovm.apple.foundation.*;
     public native HKQuantity getMostRecentQuantity();
     @Property(selector = "mostRecentQuantityDateInterval")
     public native NSDateInterval getMostRecentQuantityDateInterval();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "quantitySampleWithType:quantity:startDate:endDate:")
+    public static native HKDiscreteQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate);
+    @Method(selector = "quantitySampleWithType:quantity:startDate:endDate:metadata:")
+    public static native HKDiscreteQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate, HKMetadata metadata);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "quantitySampleWithType:quantity:startDate:endDate:device:metadata:")
+    public static native HKDiscreteQuantitySample create(HKQuantityType quantityType, HKQuantity quantity, NSDate startDate, NSDate endDate, HKDevice device, HKMetadata metadata);
     /*</methods>*/
 }

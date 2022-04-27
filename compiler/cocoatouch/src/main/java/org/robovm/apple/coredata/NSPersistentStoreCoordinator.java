@@ -45,7 +45,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObject observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
+        public static NSObjectProtocol observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresWillChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +61,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
+        public static NSObjectProtocol observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresDidChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -77,7 +77,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
+        public static NSObjectProtocol observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorWillRemoveStore(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -88,7 +88,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
+        public static NSObjectProtocol observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.DidImportUbiquitousContentChanges(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

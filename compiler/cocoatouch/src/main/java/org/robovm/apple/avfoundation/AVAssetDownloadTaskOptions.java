@@ -162,6 +162,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredMediaBitrateKey", optional=true)
         public static native NSString MinimumRequiredMediaBitrate();
         /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredPresentationSizeKey", optional=true)
+        public static native NSString MinimumRequiredPresentationSize();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionKey", optional=true)
@@ -171,6 +176,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey", optional=true)
         public static native NSString MediaSelectionPrefersMultichannel();
+        /**
+         * @since Available in iOS 14.5 and later.
+         */
+        @GlobalValue(symbol="AVAssetDownloadTaskPrefersLosslessAudioKey", optional=true)
+        public static native NSString PrefersLosslessAudio();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetDownloadTaskPrefersHDRKey", optional=true)
+        public static native NSString PrefersHDR();
     }
     /*</keys>*/
 }

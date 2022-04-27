@@ -29,7 +29,9 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.mobilecoreservices.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.pdfkit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,5 +56,7 @@ import org.robovm.apple.uikit.*;
     public void preparePreviewOfSearchableItem(String identifier, String queryString, @Block VoidBlock1<NSError> handler) {}
     @NotImplemented("preparePreviewOfFileAtURL:completionHandler:")
     public void preparePreviewOfFile(NSURL url, @Block VoidBlock1<NSError> handler) {}
+    @NotImplemented("providePreviewForFileRequest:completionHandler:")
+    public void providePreviewForFileRequest(QLFilePreviewRequest request, @Block VoidBlock2<QLPreviewReply, NSError> handler) {}
     /*</methods>*/
 }

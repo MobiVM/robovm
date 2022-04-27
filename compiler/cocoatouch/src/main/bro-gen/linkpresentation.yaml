@@ -1,5 +1,5 @@
 package: org.robovm.apple.linkpresentation
-include: [foundation, uikit, coregraphics]
+include: [foundation, uikit, coregraphics, coreanimation]
 library: LinkPresentation
 framework: LinkPresentation
 clang_args: ['-x', 'objective-c']
@@ -20,6 +20,8 @@ classes:
     LPMetadataProvider: #since 13.0
         methods:
             '-startFetchingMetadataForURL:completionHandler:':
+                name: startFetchingMetadata
+            '-startFetchingMetadataForRequest:completionHandler:':
                 name: startFetchingMetadata
 protocols:
 

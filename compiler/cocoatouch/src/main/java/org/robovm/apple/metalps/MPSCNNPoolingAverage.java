@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:kernelWidth:kernelHeight:")
     public MPSCNNPoolingAverage(MTLDevice device, @MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight) { super(device, kernelWidth, kernelHeight); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNPoolingAverage(NSCoder decoder) { super(decoder); }
+    public MPSCNNPoolingAverage(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zeroPadSizeX")
@@ -70,6 +70,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getZeroPadSizeY();
     @Property(selector = "setZeroPadSizeY:")
     public native void setZeroPadSizeY(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

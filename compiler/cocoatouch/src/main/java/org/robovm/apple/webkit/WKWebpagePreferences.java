@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +63,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setPreferredContentMode:")
     public native void setPreferredContentMode(WKContentMode v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsContentJavaScript")
+    public native boolean allowsContentJavaScript();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsContentJavaScript:")
+    public native void setAllowsContentJavaScript(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

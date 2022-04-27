@@ -54,13 +54,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSTemporalAA(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSTemporalAA(NSCoder decoder) { super(decoder); }
+    public MPSTemporalAA(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "blendFactor")
     public native float getBlendFactor();
     @Property(selector = "setBlendFactor:")
     public native void setBlendFactor(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

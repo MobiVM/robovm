@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageThresholdBinary(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageThresholdBinary(NSCoder decoder) { super(decoder); }
+    public MPSImageThresholdBinary(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "thresholdValue")
@@ -66,6 +66,8 @@ import org.robovm.apple.metal.*;
     public native float getMaximumValue();
     @Property(selector = "transform")
     public native FloatPtr getTransform();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

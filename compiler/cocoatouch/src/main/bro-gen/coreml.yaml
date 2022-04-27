@@ -125,6 +125,8 @@ classes:
             '-parameterValueForKey:error:':
                 name: getParameterValue
                 throws: NSErrorException
+            '+loadContentsOfURL:configuration:completionHandler:':
+                name: load
     MLModelDescription: {} #since 11.0
     MLMultiArray:  #since 11.0
         methods:
@@ -138,6 +140,9 @@ classes:
                 trim_after_first_colon: true
             '-setObject:forKeyedSubscript:':
                 trim_after_first_colon: true
+            '+multiArrayByConcatenatingMultiArrays:alongAxis:dataType:':
+                constructor: true
+                name: multiArrayByConcatenatingMultiArrays
     MLMultiArrayConstraint: {} #since 11.0
     MLPredictionOptions: {} #since 11.0
     MLArrayBatchProvider: #since 12.0
@@ -184,7 +189,19 @@ classes:
             '+updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:':
                 constructor: true
                 name: create
-
+            '+updateTaskForModelAtURL:trainingData:completionHandler:error:':
+                constructor: true
+                name: create
+            '+updateTaskForModelAtURL:trainingData:progressHandlers:error:':
+                constructor: true
+                name: create
+    MLModelCollection: #since 14.0
+        methods:
+            '+beginAccessingModelCollectionWithIdentifier:completionHandler:':
+                name: beginAccessingModelCollection
+            '+endAccessingModelCollectionWithIdentifier:completionHandler:':
+                name: endAccessingModelCollection
+    MLModelCollectionEntry: {} #since 14.0
 protocols:
     MLFeatureProvider: {} #since 11.0
     MLBatchProvider: {} #since 12.0
@@ -226,6 +243,10 @@ values:
     MLModel(.*)Key:
         enum: MLModelMetadataKey
         name: '#{g[0]}'
+        type: NSString
+    MLModelCollectionDidChangeNotification:
+        class: MLModelCollection
+        name: DidChangeNotification
         type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version

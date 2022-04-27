@@ -98,5 +98,9 @@ import org.robovm.apple.imageio.*;
     protected static native @Pointer long createTransientAssetCollection(NSArray<PHAsset> assets, String title);
     @Method(selector = "transientAssetCollectionWithAssetFetchResult:title:")
     protected static native @Pointer long createTransientAssetCollection(PHFetchResult<PHAsset> fetchResult, String title);
+    @Method(selector = "fetchCollectionsInCollectionList:options:")
+    public static native PHFetchResult<PHCollection> fetchCollectionsInCollectionList(PHCollectionList collectionList, PHFetchOptions options);
+    @Method(selector = "fetchTopLevelUserCollectionsWithOptions:")
+    public static native PHFetchResult<PHCollection> fetchTopLevelUserCollections(PHFetchOptions options);
     /*</methods>*/
 }

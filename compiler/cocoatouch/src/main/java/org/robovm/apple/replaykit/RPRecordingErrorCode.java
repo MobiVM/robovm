@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,6 +74,9 @@ public enum /*<name>*/RPRecordingErrorCode/*</name>*/ implements NSErrorCode {
     PhotoFailure(-5831L),
     RecordingInvalidSession(-5832L),
     FailedToStartCaptureStack(-5833L),
+    InvalidParameter(-5834L),
+    FilePermissions(-5835L),
+    ExportClipToURLInProgress(-5836L),
     CodeSuccessful(0L);
     /*</values>*/
 

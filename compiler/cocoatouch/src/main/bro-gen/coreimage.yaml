@@ -115,6 +115,12 @@ classes:
                 name: depthBlurEffectFilter
             '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:orientation:options:':
                 name: depthBlurEffectFilter
+            '-depthBlurEffectFilterForImage:disparityImage:portraitEffectsMatte:hairSemanticSegmentation:glassesMatte:gainMap:orientation:options:':
+                name: depthBlurEffectFilter
+            '-HEIF10RepresentationOfImage:colorSpace:options:error:':
+                name: getHEIF10Representation
+            '-writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:':
+                name: writeHEIF10Representation
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -241,6 +247,11 @@ classes:
             '+kernelWithFunctionName:fromMetalLibraryData:outputPixelFormat:error:':
                 throws: NSErrorException
                 name: create
+            '+kernelNamesFromMetalLibraryData:':
+                name: getKernelNamesFromMetalLibraryData
+            '+kernelsWithMetalString:error:':
+                name: kernelsWithMetalString
+                throws: NSErrorException
     CIQRCodeFeature: {} # DONE
     CIRectangleFeature: {} # DONE
     CIVector: # DONE
@@ -368,7 +379,18 @@ classes:
             '+samplerWithImage:':
                 exclude: true
     CITextFeature: {} #since 9.0
-
+    CIRAWFilter: #since 15.0
+        skip_def_constructor: true
+        methods:
+            '+filterWithImageURL:':
+                name: create
+                constructor: true
+            '+filterWithImageData:identifierHint:':
+                name: create
+                constructor: true
+            '+filterWithCVPixelBuffer:properties:':
+                name: create
+                constructor: true
 protocols:
     CIFilterConstructor:
         protocols: [NSObjectProtocol]
@@ -427,6 +449,10 @@ typed_enums:
         type: NSString
         prefix: kCIInput
         suffix: Key
+    CIRAWDecoderVersion:
+        enum: CIRAWDecoderVersion
+        type: NSString
+        prefix: CIRAWDecoder
 
 values:
     # CIContext

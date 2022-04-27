@@ -39,9 +39,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Foundation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLinguisticTagger/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,19 +55,37 @@ import org.robovm.apple.dispatch.*;
     public NSLinguisticTagger() {}
     protected NSLinguisticTagger(Handle h, long handle) { super(h, handle); }
     protected NSLinguisticTagger(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "initWithTagSchemes:options:")
     public NSLinguisticTagger(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> tagSchemes, NSLinguisticTaggerOptions opts) { super((SkipInit) null); initObject(init(tagSchemes, opts)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Property(selector = "tagSchemes")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> getTagSchemes();
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Property(selector = "string")
     public native String getString();
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Property(selector = "setString:")
     public native void setString(String v);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Property(selector = "dominantLanguage")
     public native String getDominantLanguage();
     /*</properties>*/
@@ -107,69 +127,127 @@ import org.robovm.apple.dispatch.*;
         return list;
     }
     /*<methods>*/
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "initWithTagSchemes:options:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> tagSchemes, NSLinguisticTaggerOptions opts);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "setOrthography:range:")
     public native void setOrthography(NSOrthography orthography, @ByVal NSRange range);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "orthographyAtIndex:effectiveRange:")
     public native NSOrthography getOrthography(@MachineSizedUInt long charIndex, NSRange effectiveRange);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "stringEditedInRange:changeInLength:")
     public native void stringEditedInRange(@ByVal NSRange newRange, @MachineSizedSInt long delta);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "tokenRangeAtIndex:unit:")
     public native @ByVal NSRange tokenRangeAtIndex(@MachineSizedUInt long charIndex, NSLinguisticTaggerUnit unit);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "sentenceRangeForRange:")
     public native @ByVal NSRange getSentenceRange(@ByVal NSRange range);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "enumerateTagsInRange:unit:scheme:options:usingBlock:")
     public native void enumerateTagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, @Block("(,@ByVal,)") VoidBlock3<String, NSRange, BooleanPtr> block);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "tagAtIndex:unit:scheme:tokenRange:")
     public native String tagAtIndex(@MachineSizedUInt long charIndex, NSLinguisticTaggerUnit unit, String scheme, NSRange tokenRange);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "tagsInRange:unit:scheme:options:tokenRanges:")
     public native NSArray<NSString> tagsInRange(@ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSArray.NSArrayPtr<?> tokenRanges);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "enumerateTagsInRange:scheme:options:usingBlock:")
     public native void enumerateTagsInRange(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, @Block("(,@ByVal,@ByVal,)") VoidBlock4<NSLinguisticTag, NSRange, NSRange, BooleanPtr> block);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "tagAtIndex:scheme:tokenRange:sentenceRange:")
     public native String getTag(@MachineSizedUInt long charIndex, String scheme, NSRange tokenRange, NSRange sentenceRange);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "tagsInRange:scheme:options:tokenRanges:")
     protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getTags(@ByVal NSRange range, NSLinguisticTagScheme tagScheme, NSLinguisticTaggerOptions opts, NSArray.NSArrayPtr<?> tokenRanges);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:")
     protected native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTag> getPossibleTags(@MachineSizedUInt long charIndex, NSLinguisticTagScheme tagScheme, NSRange tokenRange, NSRange sentenceRange, NSArray.NSArrayPtr<?> scores);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "availableTagSchemesForUnit:language:")
     public static native NSArray<NSString> availableTagSchemesForUnit(NSLinguisticTaggerUnit unit, String language);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
     @Method(selector = "availableTagSchemesForLanguage:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<NSLinguisticTagScheme> getAvailableTagSchemes(String language);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "dominantLanguageForString:")
     public static native String dominantLanguageForString(String string);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "tagForString:atIndex:unit:scheme:orthography:tokenRange:")
     public static native String tagForString(String string, @MachineSizedUInt long charIndex, NSLinguisticTaggerUnit unit, String scheme, NSOrthography orthography, NSRange tokenRange);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "tagsForString:range:unit:scheme:options:orthography:tokenRanges:")
     public static native NSArray<NSString> tagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
      */
+    @Deprecated
     @Method(selector = "enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:")
     public static native void enumerateTagsForString(String string, @ByVal NSRange range, NSLinguisticTaggerUnit unit, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, @Block("(,@ByVal,)") VoidBlock3<String, NSRange, BooleanPtr> block);
     /*</methods>*/

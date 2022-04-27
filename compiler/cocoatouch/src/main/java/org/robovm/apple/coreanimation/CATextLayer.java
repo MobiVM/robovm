@@ -86,6 +86,8 @@ import org.robovm.apple.metal.*;
     public native boolean allowsFontSubpixelQuantization();
     @Property(selector = "setAllowsFontSubpixelQuantization:")
     public native void setAllowsFontSubpixelQuantization(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
 
@@ -137,6 +139,16 @@ import org.robovm.apple.metal.*;
     }
 
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
+    @Method(selector = "needsDisplayForKey:")
+    public static native boolean needsDisplay(String key);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "cornerCurveExpansionFactor:")
+    public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
+    @Method(selector = "defaultActionForKey:")
+    public static native CAAction getDefaultAction(String event);
     /*</methods>*/
 }

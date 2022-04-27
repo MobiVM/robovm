@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,8 +57,15 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -[SKStoreReviewController requestReviewInScene:]
      */
+    @Deprecated
     @Method(selector = "requestReview")
     public static native void requestReview();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "requestReviewInScene:")
+    public static native void requestReviewInScene(UIWindowScene windowScene);
     /*</methods>*/
 }

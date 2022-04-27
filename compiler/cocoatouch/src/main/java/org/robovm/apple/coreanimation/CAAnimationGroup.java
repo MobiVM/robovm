@@ -56,9 +56,12 @@ import org.robovm.apple.metal.*;
     public native NSArray<CAAnimation> getAnimations();
     @Property(selector = "setAnimations:")
     public native void setAnimations(NSArray<CAAnimation> v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "defaultValueForKey:")
+    public static native NSObject getDefaultValue(String key);
     /*</methods>*/
 }

@@ -57,6 +57,11 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVAudioPCMBuffer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPCMFormat:frameCapacity:")
     public AVAudioPCMBuffer(AVAudioFormat format, int frameCapacity) { super((SkipInit) null); initObject(init(format, frameCapacity)); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPCMFormat:bufferListNoCopy:deallocator:")
+    public AVAudioPCMBuffer(AVAudioFormat format, AudioBufferList bufferList, @Block VoidBlock1<AudioBufferList> deallocator) { super((SkipInit) null); initObject(init(format, bufferList, deallocator)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "frameCapacity")
@@ -78,5 +83,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithPCMFormat:frameCapacity:")
     protected native @Pointer long init(AVAudioFormat format, int frameCapacity);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPCMFormat:bufferListNoCopy:deallocator:")
+    protected native @Pointer long init(AVAudioFormat format, AudioBufferList bufferList, @Block VoidBlock1<AudioBufferList> deallocator);
     /*</methods>*/
 }

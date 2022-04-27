@@ -58,6 +58,11 @@ import org.robovm.apple.audiotoolbox.*;
     public CMTimebase getTimebase() { return null; }
     @NotImplemented("isReadyForMoreMediaData")
     public boolean isReadyForMoreMediaData() { return false; }
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @NotImplemented("hasSufficientMediaDataForReliablePlaybackStart")
+    public boolean hasSufficientMediaDataForReliablePlaybackStart() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

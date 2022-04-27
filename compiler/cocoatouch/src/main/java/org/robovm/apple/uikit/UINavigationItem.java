@@ -78,10 +78,30 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBarButtonItem getBackBarButtonItem();
     @Property(selector = "setBackBarButtonItem:")
     public native void setBackBarButtonItem(UIBarButtonItem v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "backButtonTitle")
+    public native String getBackButtonTitle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setBackButtonTitle:")
+    public native void setBackButtonTitle(String v);
     @Property(selector = "hidesBackButton")
     public native boolean hidesBackButton();
     @Property(selector = "setHidesBackButton:")
     public native void setHidesBackButton(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "backButtonDisplayMode")
+    public native UINavigationItemBackButtonDisplayMode getBackButtonDisplayMode();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBackButtonDisplayMode:")
+    public native void setBackButtonDisplayMode(UINavigationItemBackButtonDisplayMode v);
     @Property(selector = "leftBarButtonItems")
     public native NSArray<UIBarButtonItem> getLeftBarButtonItems();
     @Property(selector = "setLeftBarButtonItems:")
@@ -162,6 +182,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setScrollEdgeAppearance:")
     public native void setScrollEdgeAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "compactScrollEdgeAppearance")
+    public native UINavigationBarAppearance getCompactScrollEdgeAppearance();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCompactScrollEdgeAppearance:")
+    public native void setCompactScrollEdgeAppearance(UINavigationBarAppearance v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

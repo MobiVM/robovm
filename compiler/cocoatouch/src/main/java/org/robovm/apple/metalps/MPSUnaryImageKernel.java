@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSUnaryImageKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSUnaryImageKernel(NSCoder decoder) { super(decoder); }
+    public MPSUnaryImageKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "offset")
@@ -72,6 +72,8 @@ import org.robovm.apple.metal.*;
     public native MPSImageEdgeMode getEdgeMode();
     @Property(selector = "setEdgeMode:")
     public native void setEdgeMode(MPSImageEdgeMode v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

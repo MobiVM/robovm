@@ -56,13 +56,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNBinaryConvolution(NSCoder aDecoder, MTLDevice device) { super((SkipInit) null); initObject(init(aDecoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNBinaryConvolution(NSCoder decoder) { super(decoder); }
+    public MPSCNNBinaryConvolution(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
     public native @MachineSizedUInt long getInputFeatureChannels();
     @Property(selector = "outputFeatureChannels")
     public native @MachineSizedUInt long getOutputFeatureChannels();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

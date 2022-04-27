@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +45,11 @@ public enum /*<name>*/ASAuthorizationError/*</name>*/ implements NSErrorCode {
     Canceled(1001L),
     InvalidResponse(1002L),
     NotHandled(1003L),
-    Failed(1004L);
+    Failed(1004L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    NotInteractive(1005L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ASAuthorizationError.class); }/*</bind>*/

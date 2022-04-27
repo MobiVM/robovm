@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageArithmetic(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageArithmetic(NSCoder decoder) { super(decoder); }
+    public MPSImageArithmetic(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryScale")
@@ -98,6 +98,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setMaximumValue:")
     public native void setMaximumValue(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

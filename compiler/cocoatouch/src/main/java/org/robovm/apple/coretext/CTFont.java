@@ -209,6 +209,8 @@ import org.robovm.apple.uikit.*;
     public native @MachineSizedFloat double getXHeight();
     @Bridge(symbol="CTFontGetGlyphWithName", optional=true)
     public native short getGlyph(String glyphName);
+    @Bridge(symbol="CTFontCopyNameForGlyph", optional=true)
+    public native String getNameForGlyph(short glyph);
     @Bridge(symbol="CTFontGetBoundingRectsForGlyphs", optional=true)
     protected native @ByVal CGRect getBoundingRects(CTFontOrientation orientation, ShortPtr glyphs, CGRect.CGRectPtr boundingRects, @MachineSizedSInt long count);
     @Bridge(symbol="CTFontGetOpticalBoundsForGlyphs", optional=true)

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -37,7 +38,7 @@ import org.robovm.apple.uikit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCExtendedGamepad/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/GCPhysicalInputProfile/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class GCExtendedGamepadPtr extends Ptr<GCExtendedGamepad, GCExtendedGamepadPtr> {}/*</ptr>*/
@@ -75,6 +76,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "buttonOptions")
     public native GCControllerButtonInput getButtonOptions();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "buttonHome")
+    public native GCControllerButtonInput getButtonHome();
     @Property(selector = "leftThumbstick")
     public native GCControllerDirectionPad getLeftThumbstick();
     @Property(selector = "rightThumbstick")

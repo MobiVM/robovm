@@ -104,6 +104,9 @@ import org.robovm.apple.avfoundation.*;
     public native SCNAntialiasingMode getAntialiasingMode();
     @Property(selector = "setAntialiasingMode:")
     public native void setAntialiasingMode(SCNAntialiasingMode v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     @Property(selector = "sceneTime")
     public native double getSceneTime();
     @Property(selector = "setSceneTime:")
@@ -175,6 +178,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "currentRenderCommandEncoder")
     public native MTLRenderCommandEncoder getCurrentRenderCommandEncoder();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "currentRenderPassDescriptor")
+    public native MTLRenderPassDescriptor getCurrentRenderPassDescriptor();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -268,6 +276,16 @@ import org.robovm.apple.avfoundation.*;
     public native void pause(NSObject sender);
     @Method(selector = "stop:")
     public native void stop(NSObject sender);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /**
      * @since Available in iOS 9.0 and later.
      */

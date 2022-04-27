@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INTaskListResolutionResult disambiguation(NSArray<INTaskList> taskListsToDisambiguate);
     @Method(selector = "confirmationRequiredWithTaskListToConfirm:")
     public static native INTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTaskListResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTaskListResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTaskListResolutionResult unsupported();
     /*</methods>*/
 }

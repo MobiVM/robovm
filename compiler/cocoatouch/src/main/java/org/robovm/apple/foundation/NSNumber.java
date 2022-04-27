@@ -74,6 +74,8 @@ import org.robovm.apple.dispatch.*;
     public native String stringValue();
     @Property(selector = "decimalValue")
     public native @ByVal NSDecimal decimalValue();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public static NSNumber valueOf(Number value) {

@@ -57,7 +57,8 @@ public enum /*<name>*/CLErrorCode/*</name>*/ implements NSErrorCode {
     DeferredDistanceFiltered(14L),
     DeferredCanceled(15L),
     RangingUnavailable(16L),
-    RangingFailure(17L);
+    RangingFailure(17L),
+    PromptDeclined(18L);
     /*</values>*/
 
     /*<bind>*/

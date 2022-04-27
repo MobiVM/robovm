@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +60,16 @@ import org.robovm.apple.contacts.*;
     public native String getDetail();
     @Property(selector = "setDetail:")
     public native void setDetail(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "dateComponentsRange")
+    public native PKDateComponentsRange getDateComponentsRange();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setDateComponentsRange:")
+    public native void setDateComponentsRange(PKDateComponentsRange v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

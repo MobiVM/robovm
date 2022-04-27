@@ -68,6 +68,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "hasHardwareVoiceCallProcessing")
     public native boolean hasHardwareVoiceCallProcessing();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isSpatialAudioEnabled")
+    public native boolean isSpatialAudioEnabled();
     @Property(selector = "channels")
     public native NSArray<AVAudioSessionChannelDescription> getChannels();
     @Property(selector = "dataSources")

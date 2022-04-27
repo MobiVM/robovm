@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.security.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,11 @@ import org.robovm.apple.security.*;
     protected WKUserScript(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSource:injectionTime:forMainFrameOnly:")
     public WKUserScript(String source, WKUserScriptInjectionTime injectionTime, boolean forMainFrameOnly) { super((SkipInit) null); initObject(init(source, injectionTime, forMainFrameOnly)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithSource:injectionTime:forMainFrameOnly:inContentWorld:")
+    public WKUserScript(String source, WKUserScriptInjectionTime injectionTime, boolean forMainFrameOnly, WKContentWorld contentWorld) { super((SkipInit) null); initObject(init(source, injectionTime, forMainFrameOnly, contentWorld)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "source")
@@ -63,5 +69,10 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     @Method(selector = "initWithSource:injectionTime:forMainFrameOnly:")
     protected native @Pointer long init(String source, WKUserScriptInjectionTime injectionTime, boolean forMainFrameOnly);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithSource:injectionTime:forMainFrameOnly:inContentWorld:")
+    protected native @Pointer long init(String source, WKUserScriptInjectionTime injectionTime, boolean forMainFrameOnly, WKContentWorld contentWorld);
     /*</methods>*/
 }

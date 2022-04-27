@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:")
     public MPSNNOptimizerStochasticGradientDescent(MTLDevice device, float momentumScale, boolean useNestrovMomentum, MPSNNOptimizerDescriptor optimizerDescriptor) { super((SkipInit) null); initObject(init(device, momentumScale, useNestrovMomentum, optimizerDescriptor)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizerStochasticGradientDescent(NSCoder decoder) { super(decoder); }
+    public MPSNNOptimizerStochasticGradientDescent(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -64,8 +64,15 @@ import org.robovm.apple.metal.*;
     /*<properties>*/
     @Property(selector = "momentumScale")
     public native float getMomentumScale();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "useNesterovMomentum")
+    public native boolean isUseNesterovMomentum();
     @Property(selector = "useNestrovMomentum")
     public native boolean isUseNestrovMomentum();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

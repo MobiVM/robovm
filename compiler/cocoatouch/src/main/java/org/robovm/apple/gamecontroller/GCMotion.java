@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,6 +56,26 @@ import org.robovm.apple.uikit.*;
     public native @Block VoidBlock2<GCGamepad, GCControllerElement> getValueChangedHandler();
     @Property(selector = "setValueChangedHandler:")
     public native void setValueChangedHandler(@Block VoidBlock2<GCGamepad, GCControllerElement> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sensorsRequireManualActivation")
+    public native boolean isSensorsRequireManualActivation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "sensorsActive")
+    public native boolean isSensorsActive();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSensorsActive:")
+    public native void setSensorsActive(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "hasGravityAndUserAcceleration")
+    public native boolean hasGravityAndUserAcceleration();
     @Property(selector = "gravity")
     public native @ByVal GCAcceleration getGravity();
     @Property(selector = "setGravity:")
@@ -64,10 +85,32 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setUserAcceleration:")
     public native void setUserAcceleration(@ByVal GCAcceleration v);
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
+    @Property(selector = "acceleration")
+    public native @ByVal GCAcceleration getAcceleration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAcceleration:")
+    public native void setAcceleration(@ByVal GCAcceleration v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 14.0. hasAttitudeAndRotationRate has been deprecated, use -hasAttitude and -hasRotationRate instead
+     */
+    @Deprecated
     @Property(selector = "hasAttitudeAndRotationRate")
     public native boolean hasAttitudeAndRotationRate();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "hasAttitude")
+    public native boolean hasAttitude();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "hasRotationRate")
+    public native boolean hasRotationRate();
     /**
      * @since Available in iOS 11.0 and later.
      */

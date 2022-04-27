@@ -59,7 +59,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSImageHistogram(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageHistogram(NSCoder decoder) { super(decoder); }
+    public MPSImageHistogram(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "clipRectSource")
@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
     public native void setMinPixelThresholdValue(@ByVal VectorFloat4 v);
     @Property(selector = "histogramInfo")
     public native @ByVal MPSImageHistogramInfo getHistogramInfo();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

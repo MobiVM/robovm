@@ -1,9 +1,9 @@
 <idea-plugin url="https://github.com/robovm/robovm-idea">
     <id>com.mobidevelop.robovm.intellij</id>
     <version>${project.version}</version>
-    <vendor email="robovm@mobidevelop.com" url="https://github.com/mobidevelop/robovm">mobidevelop</vendor>
+    <vendor email="robovm@mobidevelop.com" url="https://github.com/MobiVM/robovm">MobiVM</vendor>
 
-    <depends optional="true" config-file="">org.jetbrains.idea.maven</depends>
+    <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
     <idea-version since-build="193.1"/>
@@ -18,10 +18,12 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.10</b>
-            <li> iOS 13 API support </li>
-            <li> iOS 14 device support </li>
-            <li> fixes and improvements </li>
+            <b>2.3.16</b>
+            <li> Improved XCFramework support </li>
+            <li> Fix iOS touch inputs after SKStoreReview </li>
+            <li> Eclipse and IDEA maintenance </li>
+            <li> iOS 15 binding updates </li>
+            <li> ByteBuffer java 9 api </li>
         ]]>
     </change-notes>
 
@@ -35,10 +37,11 @@
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
         <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
-        <compiler.task execute="AFTER" implementation="org.robovm.idea.compilation.RoboVmCompileTask"/>
         <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->
+        <toolWindow id="RoboVM" anchor="bottom" icon="org.robovm.idea.RoboVmIcons.ROBOVM_SMALL" secondary="true"
+                    factoryClass="org.robovm.idea.components.RoboVmToolWindowFactory"/>
     </extensions>
 
     <application-components>
@@ -60,7 +63,7 @@
     </module-components>
 
     <actions>
-        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM Menu">
+        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu">
             <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu"/>
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
@@ -78,7 +81,7 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="new Project/Module workaround for Android Studio" popup="true">
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for Android Studio" popup="true">
                 <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
                 <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
             </group>

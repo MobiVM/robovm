@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,23 +50,60 @@ import org.robovm.apple.corelocation.*;
     public INStartCallIntent() {}
     protected INStartCallIntent(Handle h, long handle) { super(h, handle); }
     protected INStartCallIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:")
+    public INStartCallIntent(INCallRecordFilter callRecordFilter, INCallRecord callRecordToCallBack, INCallAudioRoute audioRoute, INCallDestinationType destinationType, NSArray<INPerson> contacts, INCallCapability callCapability) { super((SkipInit) null); initObject(init(callRecordFilter, callRecordToCallBack, audioRoute, destinationType, contacts, callCapability)); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:
+     */
+    @Deprecated
     @Method(selector = "initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:")
     public INStartCallIntent(INCallAudioRoute audioRoute, INCallDestinationType destinationType, NSArray<INPerson> contacts, INCallRecordType recordTypeForRedialing, INCallCapability callCapability) { super((SkipInit) null); initObject(init(audioRoute, destinationType, contacts, recordTypeForRedialing, callCapability)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "callRecordFilter")
+    public native INCallRecordFilter getCallRecordFilter();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "callRecordToCallBack")
+    public native INCallRecord getCallRecordToCallBack();
     @Property(selector = "audioRoute")
     public native INCallAudioRoute getAudioRoute();
     @Property(selector = "destinationType")
     public native INCallDestinationType getDestinationType();
     @Property(selector = "contacts")
     public native NSArray<INPerson> getContacts();
-    @Property(selector = "recordTypeForRedialing")
-    public native INCallRecordType getRecordTypeForRedialing();
     @Property(selector = "callCapability")
     public native INCallCapability getCallCapability();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0.
+     */
+    @Deprecated
+    @Property(selector = "recordTypeForRedialing")
+    public native INCallRecordType getRecordTypeForRedialing();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:")
+    protected native @Pointer long init(INCallRecordFilter callRecordFilter, INCallRecord callRecordToCallBack, INCallAudioRoute audioRoute, INCallDestinationType destinationType, NSArray<INPerson> contacts, INCallCapability callCapability);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use -initWithCallRecordFilter:callRecordToCallBack:audioRoute:destinationType:contacts:callCapability:
+     */
+    @Deprecated
     @Method(selector = "initWithAudioRoute:destinationType:contacts:recordTypeForRedialing:callCapability:")
     protected native @Pointer long init(INCallAudioRoute audioRoute, INCallDestinationType destinationType, NSArray<INPerson> contacts, INCallRecordType recordTypeForRedialing, INCallCapability callCapability);
     /*</methods>*/

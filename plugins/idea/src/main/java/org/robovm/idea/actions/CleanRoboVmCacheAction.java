@@ -61,7 +61,7 @@ public class CleanRoboVmCacheAction extends AnAction {
         public void run(@NotNull ProgressIndicator progress) {
             busy.set(true);
             progress.setText("Clearing RoboVM cache (~/.robovm/cache)");
-            progress.setFraction(0.5);
+            progress.setIndeterminate(true);
 
             File file = new File(System.getProperty("user.home"), ".robovm/cache");
             try {

@@ -89,6 +89,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getVolume();
     @Property(selector = "setVolume:")
     public native void setVolume(float v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "prefersAssistiveTechnologySettings")
+    public native boolean prefersAssistiveTechnologySettings();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPrefersAssistiveTechnologySettings:")
+    public native void setPrefersAssistiveTechnologySettings(boolean v);
     @Property(selector = "preUtteranceDelay")
     public native double getPreUtteranceDelay();
     @Property(selector = "setPreUtteranceDelay:")

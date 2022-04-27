@@ -82,19 +82,19 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:")
     public void didEndDisplayingSupplementaryView(UICollectionView collectionView, UICollectionReusableView view, String elementKind, NSIndexPath indexPath) {}
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:shouldShowMenuForItemAtIndexPath:")
     public boolean shouldShowMenuForItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:canPerformAction:forItemAtIndexPath:withSender:")
     public boolean canPerformAction(UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender) { return false; }
     /**
-     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForRowAtIndexPath:
+     * @deprecated Deprecated in iOS 13.0. Use collectionView:contextMenuConfigurationForItemAtIndexPath:
      */
     @Deprecated
     @NotImplemented("collectionView:performAction:forItemAtIndexPath:withSender:")
@@ -122,15 +122,32 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("indexPathForPreferredFocusedViewInCollectionView:")
     public NSIndexPath getIndexPathForPreferredFocusedView(UICollectionView collectionView) { return null; }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 15.0 and later.
      */
+    @NotImplemented("collectionView:selectionFollowsFocusForItemAtIndexPath:")
+    public boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:")
+    public NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) { return null; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:
+     */
+    @Deprecated
     @NotImplemented("collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:")
-    public NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath proposedIndexPath) { return null; }
+    public NSIndexPath getTargetIndexPathForMoveFromItem(UICollectionView collectionView, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) { return null; }
     /**
      * @since Available in iOS 9.0 and later.
      */
     @NotImplemented("collectionView:targetContentOffsetForProposedContentOffset:")
     public @ByVal CGPoint getTargetContentOffsetForProposedContentOffset(UICollectionView collectionView, @ByVal CGPoint proposedContentOffset) { return null; }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @NotImplemented("collectionView:canEditItemAtIndexPath:")
+    public boolean canEditItem(UICollectionView collectionView, NSIndexPath indexPath) { return false; }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -171,5 +188,20 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("collectionView:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public void willPerformPreviewAction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @NotImplemented("collectionView:willDisplayContextMenuWithConfiguration:animator:")
+    public void willDisplayContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @NotImplemented("collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
+    public void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("collectionView:sceneActivationConfigurationForItemAtIndexPath:point:")
+    public UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, @ByVal CGPoint point) { return null; }
     /*</methods>*/
 }

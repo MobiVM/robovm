@@ -66,6 +66,46 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setLanguageVersion:")
     public native void setLanguageVersion(MTLLanguageVersion v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "libraryType")
+    public native MTLLibraryType getLibraryType();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setLibraryType:")
+    public native void setLibraryType(MTLLibraryType v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "installName")
+    public native String getInstallName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setInstallName:")
+    public native void setInstallName(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "libraries")
+    public native NSArray<?> getLibraries();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setLibraries:")
+    public native void setLibraries(NSArray<?> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "preserveInvariance")
+    public native boolean isPreserveInvariance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "setPreserveInvariance:")
+    public native void setPreserveInvariance(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

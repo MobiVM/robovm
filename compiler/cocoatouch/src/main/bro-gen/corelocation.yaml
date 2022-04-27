@@ -14,7 +14,8 @@ enums:
     CLError: {name: CLErrorCode}
     CLProximity: {}
     CLRegionState: {}
-
+    CLAccuracyAuthorization: {}
+    CLLocationPushServiceError: { nserror: true } #since 15.0
 classes:
     CLError:
         extends: NSError
@@ -99,12 +100,16 @@ classes:
                 name: init
             '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:':
                 name: init
+            '-initWithCoordinate:altitude:horizontalAccuracy:verticalAccuracy:course:courseAccuracy:speed:speedAccuracy:timestamp:sourceInfo:':
+                name: init
             '-getDistanceFrom:':
                 exclude: true
             '-distanceFromLocation:':
                 name: getDistanceTo
     CLLocationManager: # DONE
         properties:
+            'authorizationStatus':
+                omit_prefix: true
             'headingAvailable': # Deprecated in iOS 4. Conflicts with the class method with the same name.
                 exclude: true
             'locationServicesEnabled': # Deprecated in iOS 4. Conflicts with the class method with the same name.
@@ -147,6 +152,12 @@ classes:
                 name: stopRangingBeacons
             '-allowDeferredLocationUpdatesUntilTraveled:timeout:':
                 name: allowDeferredLocationUpdatesUntil
+            '-requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:':
+                name: requestTemporaryFullAccuracyAuthorization
+            '-requestTemporaryFullAccuracyAuthorizationWithPurposeKey:':
+                name: requestTemporaryFullAccuracyAuthorization
+            '-startMonitoringLocationPushesWithCompletion:':
+                name: startMonitoringLocationPushes
     CLPlacemark: # DONE
         properties:
             'areasOfInterest':
@@ -177,6 +188,10 @@ classes:
             '-initWithUUID:major:':
                 name: init
             '-initWithUUID:major:minor:':
+                name: init
+    CLLocationSourceInformation: #since 15.0
+        methods:
+            '-initWithSoftwareSimulationState:andExternalAccessoryState:':
                 name: init
 protocols:
     CLLocationManagerDelegate: # DONE
@@ -222,6 +237,10 @@ protocols:
                 name: didRangeBeacons
             '-locationManager:didFailRangingBeaconsForConstraint:error:':
                 name: didFailRangingBeacons
+    CLLocationPushServiceExtension: #since 15.0
+        methods:
+            '-didReceiveLocationPushPayload:completion:':
+                name: didReceiveLocationPushPayload
 functions:
     CLLocationCoordinate2DMake:
         exclude: true
@@ -240,6 +259,9 @@ functions:
 values:
     kCLErrorDomain:
         class: CLError
+        name: getClassDomain
+    CLLocationPushServiceErrorDomain:
+        class: CLLocationPushServiceError
         name: getClassDomain
     kCLErrorUserInfo(.*)Key:
         enum: CLErrorUserInfoKey

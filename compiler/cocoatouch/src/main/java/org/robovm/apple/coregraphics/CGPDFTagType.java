@@ -37,7 +37,7 @@ import org.robovm.apple.uikit.*;
  * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreGraphics")/*</annotations>*/
 public enum /*<name>*/CGPDFTagType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Document(100L),
@@ -91,10 +91,15 @@ public enum /*<name>*/CGPDFTagType/*</name>*/ implements ValuedEnum {
     Form(702L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(CGPDFTagType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CGPDFTagTypeGetName", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsUtf8ZMarshaler.class) String getName();
+    /*</methods>*/
 
     private final long n;
 

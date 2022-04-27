@@ -57,7 +57,11 @@ public enum /*<name>*/UIUserInterfaceIdiom/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    CarPlay(3L);
+    CarPlay(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Mac(5L);
     /*</values>*/
 
     private final long n;

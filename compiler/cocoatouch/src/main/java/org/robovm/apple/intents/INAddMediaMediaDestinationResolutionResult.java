@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INMediaDestinationResolutionResult mediaDestinationResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INAddMediaMediaDestinationResolutionResult unsupportedForReason(INAddMediaMediaDestinationUnsupportedReason reason);
+    @Method(selector = "successWithResolvedMediaDestination:")
+    public static native INAddMediaMediaDestinationResolutionResult success(INMediaDestination resolvedMediaDestination);
+    @Method(selector = "disambiguationWithMediaDestinationsToDisambiguate:")
+    public static native INAddMediaMediaDestinationResolutionResult disambiguation(NSArray<INMediaDestination> mediaDestinationsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithMediaDestinationToConfirm:")
+    public static native INAddMediaMediaDestinationResolutionResult confirmationRequired(INMediaDestination mediaDestinationToConfirm);
+    @Method(selector = "needsValue")
+    public static native INAddMediaMediaDestinationResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INAddMediaMediaDestinationResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INAddMediaMediaDestinationResolutionResult unsupported();
     /*</methods>*/
 }

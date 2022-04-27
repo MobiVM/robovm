@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +51,8 @@ public enum /*<name>*/ARCoachingGoal/*</name>*/ implements ValuedEnum {
     Tracking(0L),
     HorizontalPlane(1L),
     VerticalPlane(2L),
-    AnyPlane(3L);
+    AnyPlane(3L),
+    GeoTracking(4L);
     /*</values>*/
 
     /*<bind>*/

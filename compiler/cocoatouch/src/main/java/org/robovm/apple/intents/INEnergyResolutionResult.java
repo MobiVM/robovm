@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INEnergyResolutionResult disambiguation(NSArray<?> energyToDisambiguate);
     @Method(selector = "confirmationRequiredWithEnergyToConfirm:")
     public static native INEnergyResolutionResult confirmationRequired(NSMeasurement<NSUnitEnergy> energyToConfirm);
+    @Method(selector = "needsValue")
+    public static native INEnergyResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INEnergyResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INEnergyResolutionResult unsupported();
     /*</methods>*/
 }

@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKEffectNode(Handle h, long handle) { super(h, handle); }
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKEffectNode(NSCoder decoder) { super(decoder); }
+    public SKEffectNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -102,6 +103,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getSubdivisionLevels();
     @Property(selector = "setSubdivisionLevels:")
     public native void setSubdivisionLevels(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

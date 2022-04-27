@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSMatrixSum(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixSum(NSCoder decoder) { super(decoder); }
+    public MPSMatrixSum(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "rows")
@@ -75,6 +75,8 @@ import org.robovm.apple.metal.*;
     public native float getNeuronParameterB();
     @Property(selector = "neuronParameterC")
     public native float getNeuronParameterC();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INLocationSearchTypeResolutionResult success(INLocationSearchType resolvedLocationSearchType);
     @Method(selector = "confirmationRequiredWithLocationSearchTypeToConfirm:")
     public static native INLocationSearchTypeResolutionResult confirmationRequired(INLocationSearchType locationSearchTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INLocationSearchTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INLocationSearchTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INLocationSearchTypeResolutionResult unsupported();
     /*</methods>*/
 }

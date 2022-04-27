@@ -66,6 +66,8 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "parentURL")
     public native NSURL getParentURL();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

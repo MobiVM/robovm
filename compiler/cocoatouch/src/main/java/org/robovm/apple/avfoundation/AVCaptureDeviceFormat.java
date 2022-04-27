@@ -95,6 +95,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "highResolutionStillImageDimensions")
     public native @ByVal CMVideoDimensions getHighResolutionStillImageDimensions();
     /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isHighPhotoQualitySupported")
+    public native boolean isHighPhotoQualitySupported();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "isHighestPhotoQualitySupported")
@@ -141,6 +146,36 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "geometricDistortionCorrectedVideoFieldOfView")
     public native float getGeometricDistortionCorrectedVideoFieldOfView();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "isCenterStageSupported")
+    public native boolean isCenterStageSupported();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "videoMinZoomFactorForCenterStage")
+    public native @MachineSizedFloat double getVideoMinZoomFactorForCenterStage();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "videoMaxZoomFactorForCenterStage")
+    public native @MachineSizedFloat double getVideoMaxZoomFactorForCenterStage();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForCenterStage")
+    public native AVFrameRateRange getVideoFrameRateRangeForCenterStage();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "isPortraitEffectSupported")
+    public native boolean isPortraitEffectSupported();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForPortraitEffect")
+    public native AVFrameRateRange getVideoFrameRateRangeForPortraitEffect();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

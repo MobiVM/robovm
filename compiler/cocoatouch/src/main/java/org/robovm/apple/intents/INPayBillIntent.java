@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.3 and later.
+ * @deprecated Deprecated in iOS 15.0. INPayBillIntent is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INPayBillIntent/*</name>*/ 
     extends /*<extends>*/INIntent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -67,6 +69,8 @@ import org.robovm.apple.corelocation.*;
     public native INBillType getBillType();
     @Property(selector = "dueDate")
     public native INDateComponentsRange getDueDate();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

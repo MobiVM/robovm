@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INVisualCodeTypeResolutionResult is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INVisualCodeTypeResolutionResult/*</name>*/ 
     extends /*<extends>*/INIntentResolutionResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -59,5 +61,11 @@ import org.robovm.apple.corelocation.*;
     public static native INVisualCodeTypeResolutionResult success(INVisualCodeType resolvedVisualCodeType);
     @Method(selector = "confirmationRequiredWithVisualCodeTypeToConfirm:")
     public static native INVisualCodeTypeResolutionResult confirmationRequired(INVisualCodeType visualCodeTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INVisualCodeTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INVisualCodeTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INVisualCodeTypeResolutionResult unsupported();
     /*</methods>*/
 }

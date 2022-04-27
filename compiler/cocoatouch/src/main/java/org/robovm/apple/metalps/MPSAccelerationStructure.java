@@ -58,7 +58,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:group:")
     public MPSAccelerationStructure(NSCoder aDecoder, MPSAccelerationStructureGroup group) { super((SkipInit) null); initObject(init(aDecoder, group)); }
     @Method(selector = "initWithCoder:")
-    public MPSAccelerationStructure(NSCoder decoder) { super(decoder); }
+    public MPSAccelerationStructure(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "group")
@@ -71,6 +71,8 @@ import org.robovm.apple.metal.*;
     public native MPSAccelerationStructureUsage getUsage();
     @Property(selector = "setUsage:")
     public native void setUsage(MPSAccelerationStructureUsage v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,5 +60,11 @@ import org.robovm.apple.corelocation.*;
     public static native INCallCapabilityResolutionResult success(INCallCapability resolvedCallCapability);
     @Method(selector = "confirmationRequiredWithCallCapabilityToConfirm:")
     public static native INCallCapabilityResolutionResult confirmationRequired(INCallCapability callCapabilityToConfirm);
+    @Method(selector = "needsValue")
+    public static native INCallCapabilityResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INCallCapabilityResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INCallCapabilityResolutionResult unsupported();
     /*</methods>*/
 }

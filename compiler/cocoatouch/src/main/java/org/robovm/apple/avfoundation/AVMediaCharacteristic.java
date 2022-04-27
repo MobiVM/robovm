@@ -106,6 +106,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVMediaCharacteristic UsesWideGamutColorSpace = new AVMediaCharacteristic("UsesWideGamutColorSpace");
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMediaCharacteristic ContainsHDRVideo = new AVMediaCharacteristic("ContainsHDRVideo");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final AVMediaCharacteristic ContainsAlphaChannel = new AVMediaCharacteristic("ContainsAlphaChannel");
@@ -134,7 +138,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMediaCharacteristic VoiceOverTranslation = new AVMediaCharacteristic("VoiceOverTranslation");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
+    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsHDRVideo, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
     
     /*<name>*/AVMediaCharacteristic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -170,6 +174,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicUsesWideGamutColorSpace", optional=true)
         public static native NSString UsesWideGamutColorSpace();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicContainsHDRVideo", optional=true)
+        public static native NSString ContainsHDRVideo();
         /**
          * @since Available in iOS 13.0 and later.
          */

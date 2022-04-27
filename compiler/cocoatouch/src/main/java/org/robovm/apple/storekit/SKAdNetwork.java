@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,9 +56,33 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.3 and later.
+     * @since Available in iOS 14.5 and later.
      */
+    @Method(selector = "startImpression:completionHandler:")
+    public static native void startImpression(SKAdImpression impression, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Method(selector = "endImpression:completionHandler:")
+    public static native void endImpression(SKAdImpression impression, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "registerAppForAdNetworkAttribution")
     public static native void registerAppForAdNetworkAttribution();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead
+     */
+    @Deprecated
+    @Method(selector = "updateConversionValue:")
+    public static native void updateConversionValue(@MachineSizedSInt long conversionValue);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "updatePostbackConversionValue:completionHandler:")
+    public static native void updatePostbackConversionValue(@MachineSizedSInt long conversionValue, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

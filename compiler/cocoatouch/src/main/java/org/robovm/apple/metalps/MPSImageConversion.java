@@ -59,13 +59,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageConversion(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSImageConversion(NSCoder decoder) { super(decoder); }
+    public MPSImageConversion(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceAlpha")
     public native MPSAlphaType getSourceAlpha();
     @Property(selector = "destinationAlpha")
     public native MPSAlphaType getDestinationAlpha();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

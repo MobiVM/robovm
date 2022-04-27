@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "guestIdentifier")
     public native String getGuestIdentifier();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isInvitable")
+    public native boolean isInvitable();
+    /**
      * @deprecated Deprecated in iOS 8.0. use -[GKLocalPlayer loadFriendPlayers...]
      */
     @Deprecated
@@ -82,6 +88,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="GKPlayerIDNoLongerAvailable", optional=true)
+    public static native NSString IDNoLongerAvailable();
     @GlobalValue(symbol="GKPlayerDidChangeNotificationName", optional=true)
     public static native NSString DidChangeNotification();
     
@@ -90,8 +101,6 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "scopedIDsArePersistent")
     public native boolean scopedIDsArePersistent();
-    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
-    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -99,5 +108,11 @@ import org.robovm.apple.uikit.*;
     public static native GKPlayer getAnonymousGuestPlayer(String guestIdentifier);
     @Method(selector = "loadPhotoForSize:withCompletionHandler:")
     public native void loadPhoto(GKPhotoSize size, @Block VoidBlock2<UIImage, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 14.5. use GKLocalPlayer.loadFriendsWithIdentifiers to load a friend's GKPlayer object.
+     */
+    @Deprecated
+    @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")
+    public static native void loadPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> identifiers, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /*</methods>*/
 }

@@ -58,16 +58,52 @@ import org.robovm.apple.coreml.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithClassifierIdentifier:error:")
+    public SNClassifySoundRequest(SNClassifierIdentifier classifierIdentifier) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(classifierIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "overlapFactor")
     public native double getOverlapFactor();
     @Property(selector = "setOverlapFactor:")
     public native void setOverlapFactor(double v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "windowDuration")
+    public native @ByVal CMTime getWindowDuration();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setWindowDuration:")
+    public native void setWindowDuration(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "windowDurationConstraint")
+    public native SNTimeDurationConstraint getWindowDurationConstraint();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "knownClassifications")
+    public native NSArray<NSString> getKnownClassifications();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithMLModel:error:")
     private native @Pointer long init(MLModel mlModel, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithClassifierIdentifier:error:")
+    private native @Pointer long init(SNClassifierIdentifier classifierIdentifier, NSError.NSErrorPtr error);
     /*</methods>*/
 }

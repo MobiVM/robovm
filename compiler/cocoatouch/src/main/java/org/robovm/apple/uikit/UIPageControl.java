@@ -60,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     public UIPageControl(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public UIPageControl(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithFrame:primaryAction:")
+    public UIPageControl(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfPages")
@@ -74,10 +79,6 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean hidesForSinglePage();
     @Property(selector = "setHidesForSinglePage:")
     public native void setHidesForSinglePage(boolean v);
-    @Property(selector = "defersCurrentPageDisplay")
-    public native boolean defersCurrentPageDisplay();
-    @Property(selector = "setDefersCurrentPageDisplay:")
-    public native void setDefersCurrentPageDisplay(boolean v);
     @Property(selector = "pageIndicatorTintColor")
     public native UIColor getPageIndicatorTintColor();
     @Property(selector = "setPageIndicatorTintColor:")
@@ -86,12 +87,86 @@ import org.robovm.apple.linkpresentation.*;
     public native UIColor getCurrentPageIndicatorTintColor();
     @Property(selector = "setCurrentPageIndicatorTintColor:")
     public native void setCurrentPageIndicatorTintColor(UIColor v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "backgroundStyle")
+    public native UIPageControlBackgroundStyle getBackgroundStyle();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setBackgroundStyle:")
+    public native void setBackgroundStyle(UIPageControlBackgroundStyle v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "interactionState")
+    public native UIPageControlInteractionState getInteractionState();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsContinuousInteraction")
+    public native boolean allowsContinuousInteraction();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsContinuousInteraction:")
+    public native void setAllowsContinuousInteraction(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredIndicatorImage")
+    public native UIImage getPreferredIndicatorImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredIndicatorImage:")
+    public native void setPreferredIndicatorImage(UIImage v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. defersCurrentPageDisplay no longer does anything reasonable with the new interaction mode.
+     */
+    @Deprecated
+    @Property(selector = "defersCurrentPageDisplay")
+    public native boolean defersCurrentPageDisplay();
+    /**
+     * @deprecated Deprecated in iOS 14.0. defersCurrentPageDisplay no longer does anything reasonable with the new interaction mode.
+     */
+    @Deprecated
+    @Property(selector = "setDefersCurrentPageDisplay:")
+    public native void setDefersCurrentPageDisplay(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "updateCurrentPageDisplay")
-    public native void updateCurrentPageDisplay();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "indicatorImageForPage:")
+    public native UIImage indicatorImageForPage(@MachineSizedSInt long page);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setIndicatorImage:forPage:")
+    public native void setIndicatorImage(UIImage image, @MachineSizedSInt long page);
     @Method(selector = "sizeForNumberOfPages:")
     public native @ByVal CGSize getSizeForNumberOfPages(@MachineSizedSInt long pageCount);
+    /**
+     * @deprecated Deprecated in iOS 14.0. updateCurrentPageDisplay no longer does anything reasonable with the new interaction mode.
+     */
+    @Deprecated
+    @Method(selector = "updateCurrentPageDisplay")
+    public native void updateCurrentPageDisplay();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     /*</methods>*/
 }

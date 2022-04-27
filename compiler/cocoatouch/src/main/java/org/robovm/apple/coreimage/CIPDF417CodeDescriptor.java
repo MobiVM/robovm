@@ -68,6 +68,8 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getRowCount();
     @Property(selector = "columnCount")
     public native @MachineSizedSInt long getColumnCount();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -51,7 +51,8 @@ import org.robovm.apple.network.*;
     protected NEFilterControlVerdict(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +71,35 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "updateRules")
     public static native NEFilterControlVerdict updateRules();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "needRulesVerdict")
+    public static native NEFilterNewFlowVerdict needRulesVerdict();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "allowVerdict")
+    public static native NEFilterNewFlowVerdict allowVerdict();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "dropVerdict")
+    public static native NEFilterNewFlowVerdict dropVerdict();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "remediateVerdictWithRemediationURLMapKey:remediationButtonTextMapKey:")
+    public static native NEFilterNewFlowVerdict remediateVerdict(String remediationURLMapKey, String remediationButtonTextMapKey);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "URLAppendStringVerdictWithMapKey:")
+    public static native NEFilterNewFlowVerdict URLAppendStringVerdict(String urlAppendMapKey);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "filterDataVerdictWithFilterInbound:peekInboundBytes:filterOutbound:peekOutboundBytes:")
+    public static native NEFilterNewFlowVerdict filterDataVerdict(boolean filterInbound, @MachineSizedUInt long peekInboundBytes, boolean filterOutbound, @MachineSizedUInt long peekOutboundBytes);
     /*</methods>*/
 }

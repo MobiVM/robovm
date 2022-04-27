@@ -54,29 +54,81 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayBinaryKernel(NSCoder coder, MTLDevice device) { super((SkipInit) null); initObject(init(coder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayBinaryKernel(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayBinaryKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "primaryOffsets")
     public native @ByVal MPSNDArrayOffsets getPrimaryOffsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "primaryEdgeMode")
     public native MPSImageEdgeMode getPrimaryEdgeMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "primaryKernelSizes")
     public native @ByVal MPSNDArraySizes getPrimaryKernelSizes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "primaryStrides")
     public native @ByVal MPSNDArrayOffsets getPrimaryStrides();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "primaryDilationRates")
     public native @ByVal MPSNDArraySizes getPrimaryDilationRates();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "secondaryOffsets")
     public native @ByVal MPSNDArrayOffsets getSecondaryOffsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "secondaryEdgeMode")
     public native MPSImageEdgeMode getSecondaryEdgeMode();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "secondaryKernelSizes")
     public native @ByVal MPSNDArraySizes getSecondaryKernelSizes();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "secondaryStrides")
     public native @ByVal MPSNDArrayOffsets getSecondaryStrides();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use derived filter properties
+     */
+    @Deprecated
     @Property(selector = "secondaryDilationRates")
     public native @ByVal MPSNDArraySizes getSecondaryDilationRates();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

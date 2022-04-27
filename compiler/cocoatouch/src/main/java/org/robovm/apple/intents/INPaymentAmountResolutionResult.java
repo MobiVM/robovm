@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INPaymentAmountResolutionResult disambiguation(NSArray<INPaymentAmount> paymentAmountsToDisambiguate);
     @Method(selector = "confirmationRequiredWithPaymentAmountToConfirm:")
     public static native INPaymentAmountResolutionResult confirmationRequired(INPaymentAmount paymentAmountToConfirm);
+    @Method(selector = "needsValue")
+    public static native INPaymentAmountResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INPaymentAmountResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INPaymentAmountResolutionResult unsupported();
     /*</methods>*/
 }

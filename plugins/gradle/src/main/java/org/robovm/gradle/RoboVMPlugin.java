@@ -41,7 +41,7 @@ public class RoboVMPlugin implements Plugin<Project> {
     private final ToolingModelBuilderRegistry registry;
 
     public static String getRoboVMVersion() {
-        return Version.getVersion();
+        return Version.getCompilerVersion();
     }
 
     @Inject

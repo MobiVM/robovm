@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNGradientKernel(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNGradientKernel(NSCoder decoder) { super(decoder); }
+    public MPSCNNGradientKernel(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "kernelOffsetX")
@@ -65,6 +65,8 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedSInt long getKernelOffsetY();
     @Property(selector = "setKernelOffsetY:")
     public native void setKernelOffsetY(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObject observeFormatDescriptionDidChange(AVCaptureInputPort object, final VoidBlock1<AVCaptureInputPort> block) {
+        public static NSObjectProtocol observeFormatDescriptionDidChange(AVCaptureInputPort object, final VoidBlock1<AVCaptureInputPort> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FormatDescriptionDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

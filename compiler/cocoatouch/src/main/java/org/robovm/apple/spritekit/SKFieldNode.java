@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKFieldNode(Handle h, long handle) { super(h, handle); }
     protected SKFieldNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKFieldNode(NSCoder decoder) { super(decoder); }
+    public SKFieldNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "region")
@@ -102,6 +103,8 @@ import org.robovm.apple.metal.*;
     public native SKTexture getTexture();
     @Property(selector = "setTexture:")
     public native void setTexture(SKTexture v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

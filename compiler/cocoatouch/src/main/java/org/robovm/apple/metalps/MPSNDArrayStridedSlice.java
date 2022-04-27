@@ -54,13 +54,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayStridedSlice(NSCoder coder, MTLDevice device) { super(coder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayStridedSlice(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayStridedSlice(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "strides")
     public native @ByVal MPSNDArrayOffsets getStrides();
     @Property(selector = "setStrides:")
     public native void setStrides(@ByVal MPSNDArrayOffsets v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

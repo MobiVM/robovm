@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INTemporalEventTriggerResolutionResult temporalEventTriggerResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSetTaskAttributeTemporalEventTriggerResolutionResult unsupportedForReason(INSetTaskAttributeTemporalEventTriggerUnsupportedReason reason);
+    @Method(selector = "successWithResolvedTemporalEventTrigger:")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult success(INTemporalEventTrigger resolvedTemporalEventTrigger);
+    @Method(selector = "disambiguationWithTemporalEventTriggersToDisambiguate:")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult disambiguation(NSArray<INTemporalEventTrigger> temporalEventTriggersToDisambiguate);
+    @Method(selector = "confirmationRequiredWithTemporalEventTriggerToConfirm:")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult confirmationRequired(INTemporalEventTrigger temporalEventTriggerToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSetTaskAttributeTemporalEventTriggerResolutionResult unsupported();
     /*</methods>*/
 }

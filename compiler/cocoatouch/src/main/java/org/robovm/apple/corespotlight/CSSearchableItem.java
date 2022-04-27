@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,6 +85,11 @@ import org.robovm.apple.foundation.*;
      */
     @GlobalValue(symbol="CSSearchableItemActivityIdentifier", optional=true)
     public static native String CSSearchableItemActivityIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="CSActionIdentifier", optional=true)
+    public static native String getActionIdentifier();
     /**
      * @since Available in iOS 10.0 and later.
      */

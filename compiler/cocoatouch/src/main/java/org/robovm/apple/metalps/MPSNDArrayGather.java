@@ -54,13 +54,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNDArrayGather(NSCoder coder, MTLDevice device) { super(coder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSNDArrayGather(NSCoder decoder) { super(decoder); }
+    public MPSNDArrayGather(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "axis")
     public native @MachineSizedUInt long getAxis();
     @Property(selector = "setAxis:")
     public native void setAxis(@MachineSizedUInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

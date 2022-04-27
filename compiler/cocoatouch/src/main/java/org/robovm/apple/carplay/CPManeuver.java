@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,16 @@ import org.robovm.apple.mapkit.*;
     @Deprecated
     @Property(selector = "setSymbolSet:")
     public native void setSymbolSet(CPImageSet v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "cardBackgroundColor")
+    public native UIColor getCardBackgroundColor();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setCardBackgroundColor:")
+    public native void setCardBackgroundColor(UIColor v);
     @Property(selector = "symbolImage")
     public native UIImage getSymbolImage();
     @Property(selector = "setSymbolImage:")
@@ -88,6 +99,76 @@ import org.robovm.apple.mapkit.*;
     public native NSArray<NSAttributedString> getAttributedInstructionVariants();
     @Property(selector = "setAttributedInstructionVariants:")
     public native void setAttributedInstructionVariants(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dashboardSymbolImage")
+    public native UIImage getDashboardSymbolImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDashboardSymbolImage:")
+    public native void setDashboardSymbolImage(UIImage v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dashboardJunctionImage")
+    public native UIImage getDashboardJunctionImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDashboardJunctionImage:")
+    public native void setDashboardJunctionImage(UIImage v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dashboardInstructionVariants")
+    public native NSArray<NSString> getDashboardInstructionVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDashboardInstructionVariants:")
+    public native void setDashboardInstructionVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "dashboardAttributedInstructionVariants")
+    public native NSArray<NSAttributedString> getDashboardAttributedInstructionVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDashboardAttributedInstructionVariants:")
+    public native void setDashboardAttributedInstructionVariants(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "notificationSymbolImage")
+    public native UIImage getNotificationSymbolImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setNotificationSymbolImage:")
+    public native void setNotificationSymbolImage(UIImage v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "notificationInstructionVariants")
+    public native NSArray<NSString> getNotificationInstructionVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setNotificationInstructionVariants:")
+    public native void setNotificationInstructionVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "notificationAttributedInstructionVariants")
+    public native NSArray<NSAttributedString> getNotificationAttributedInstructionVariants();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setNotificationAttributedInstructionVariants:")
+    public native void setNotificationAttributedInstructionVariants(NSArray<NSAttributedString> v);
     @Property(selector = "userInfo")
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")

@@ -99,7 +99,11 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 11.3 and later.
      */
-    AssetNotAvailable(35L);
+    AssetNotAvailable(35L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    AccountTemporarilyUnavailable(36L);
     /*</values>*/
 
     /*<bind>*/

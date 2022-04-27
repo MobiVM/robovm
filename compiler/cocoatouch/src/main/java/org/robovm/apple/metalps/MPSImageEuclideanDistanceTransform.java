@@ -54,10 +54,21 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSImageEuclideanDistanceTransform(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSImageEuclideanDistanceTransform(NSCoder decoder) { super(decoder); }
+    public MPSImageEuclideanDistanceTransform(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "searchLimitRadius")
+    public native float getSearchLimitRadius();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSearchLimitRadius:")
+    public native void setSearchLimitRadius(float v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

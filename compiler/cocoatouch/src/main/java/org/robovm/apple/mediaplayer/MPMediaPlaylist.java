@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,11 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "persistentID")
     public native long getPersistentID();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "cloudGlobalID")
+    public native String getCloudGlobalID();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "playlistAttributes")
@@ -69,6 +75,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "authorDisplayName")
     public native String getAuthorDisplayName();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     public long getPersistentIDLegacy() {
@@ -111,5 +119,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "addMediaItems:completionHandler:")
     public native void addMediaItems(NSArray<MPMediaItem> mediaItems, @Block VoidBlock1<NSError> completionHandler);
+    @Method(selector = "canFilterByProperty:")
+    public static native boolean canFilterByProperty(MPMediaEntityProperty property);
     /*</methods>*/
 }

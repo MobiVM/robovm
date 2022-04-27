@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +63,11 @@ import org.robovm.apple.mapkit.*;
     public native CPInterfaceController getInterfaceController();
     @Property(selector = "carWindow")
     public native CPWindow getCarWindow();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "contentStyle")
+    public native UIUserInterfaceStyle getContentStyle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

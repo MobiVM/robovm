@@ -74,7 +74,7 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_protocol_version", optional=true)
     public native SSLProtocol getNegotiatedProtocolVersion();
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_tls_ciphersuite", optional=true)
     public native TlsCiphersuite getNegotiatedTlsCiphersuite();

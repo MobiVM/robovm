@@ -58,7 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
+     * @deprecated Deprecated in iOS 7.0. Use numberOfMediaRequests
      */
     @Deprecated
     @Property(selector = "numberOfSegmentsDownloaded")
@@ -112,8 +112,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native double getStartupTime();
     @Property(selector = "downloadOverdue")
     public native @MachineSizedSInt long getDownloadOverdue();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use observedBitrateStandardDeviation to monitor variance in network bitrate.
+     */
+    @Deprecated
     @Property(selector = "observedMaxBitrate")
     public native double getObservedMaxBitrate();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use observedBitrateStandardDeviation to monitor variance in network bitrate.
+     */
+    @Deprecated
     @Property(selector = "observedMinBitrate")
     public native double getObservedMinBitrate();
     @Property(selector = "observedBitrateStandardDeviation")

@@ -14,13 +14,12 @@ typedefs:
     OS_dispatch_source: DispatchSource
 private_typedefs:
     '__CFString *': String
-    '__CFString **': NSString.NSStringPtr
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFArray *': NSArray<?>
-    '__CFRunLoopTimer *': NSTimer
-    '__CFRunLoop *': NSRunLoop
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
+    '__CFRunLoopTimer': NSTimer
+    '__CFRunLoop': NSRunLoop
 
 enums:
     CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_}
@@ -1367,6 +1366,8 @@ constants:
     kCMPersistentTrackID_Invalid:
         exclude: true
     CMITEMCOUNT_MAX:
+        exclude: true
+    CMTIMEBASE_USE_SOURCE_TERMINOLOGY:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

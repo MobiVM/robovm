@@ -55,6 +55,11 @@ import org.robovm.apple.foundation.*;
     public native AEAssessmentSessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(AEAssessmentSessionDelegate v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "configuration")
+    public native AEAssessmentConfiguration getConfiguration();
     @Property(selector = "isActive")
     public native boolean isActive();
     /*</properties>*/

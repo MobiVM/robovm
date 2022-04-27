@@ -127,6 +127,11 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setDragInteractionEnabled:")
     public native void setDragInteractionEnabled(boolean v);
     /**
+     * @since Available in iOS 13.2 and later.
+     */
+    @Property(selector = "contextMenuInteraction")
+    public native UIContextMenuInteraction getContextMenuInteraction();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "reorderingCadence")
@@ -172,6 +177,36 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setRemembersLastFocusedIndexPath:")
     public native void setRemembersLastFocusedIndexPath(boolean v);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "selectionFollowsFocus")
+    public native boolean isSelectionFollowsFocus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setSelectionFollowsFocus:")
+    public native void setSelectionFollowsFocus(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsFocus")
+    public native boolean allowsFocus();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsFocus:")
+    public native void setAllowsFocus(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "allowsFocusDuringEditing")
+    public native boolean allowsFocusDuringEditing();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setAllowsFocusDuringEditing:")
+    public native void setAllowsFocusDuringEditing(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "hasActiveDrag")
@@ -181,6 +216,39 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "hasActiveDrop")
     public native boolean hasActiveDrop();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isEditing")
+    public native boolean isEditing();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setEditing:")
+    public native void setEditing(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsSelectionDuringEditing")
+    public native boolean allowsSelectionDuringEditing();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsSelectionDuringEditing:")
+    public native void setAllowsSelectionDuringEditing(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsMultipleSelectionDuringEditing")
+    public native boolean allowsMultipleSelectionDuringEditing();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsMultipleSelectionDuringEditing:")
+    public native void setAllowsMultipleSelectionDuringEditing(boolean v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -219,6 +287,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UICollectionReusableView dequeueReusableCell(String identifier, NSIndexPath indexPath);
     @Method(selector = "dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:")
     public native UICollectionReusableView dequeueReusableSupplementaryView(UICollectionElementKind elementKind, String identifier, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:")
+    public native UICollectionViewCell dequeueConfiguredReusableCell(UICollectionViewCellRegistration registration, NSIndexPath indexPath, NSObject item);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:")
+    public native UICollectionReusableView dequeueConfiguredReusableSupplementaryView(UICollectionViewSupplementaryRegistration registration, NSIndexPath indexPath);
     @Method(selector = "selectItemAtIndexPath:animated:scrollPosition:")
     public native void selectItem(NSIndexPath indexPath, boolean animated, UICollectionViewScrollPosition scrollPosition);
     @Method(selector = "deselectItemAtIndexPath:animated:")
@@ -268,18 +346,23 @@ import org.robovm.apple.linkpresentation.*;
     public native void insertSections(NSIndexSet sections);
     @Method(selector = "deleteSections:")
     public native void deleteSections(NSIndexSet sections);
-    @Method(selector = "reloadSections:")
-    public native void reloadSections(NSIndexSet sections);
     @Method(selector = "moveSection:toSection:")
     public native void moveSection(@MachineSizedSInt long section, @MachineSizedSInt long newSection);
+    @Method(selector = "reloadSections:")
+    public native void reloadSections(NSIndexSet sections);
     @Method(selector = "insertItemsAtIndexPaths:")
     public native void insertItems(NSArray<NSIndexPath> indexPaths);
     @Method(selector = "deleteItemsAtIndexPaths:")
     public native void deleteItems(NSArray<NSIndexPath> indexPaths);
-    @Method(selector = "reloadItemsAtIndexPaths:")
-    public native void reloadItems(NSArray<NSIndexPath> indexPaths);
     @Method(selector = "moveItemAtIndexPath:toIndexPath:")
     public native void moveItem(NSIndexPath indexPath, NSIndexPath newIndexPath);
+    @Method(selector = "reloadItemsAtIndexPaths:")
+    public native void reloadItems(NSArray<NSIndexPath> indexPaths);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "reconfigureItemsAtIndexPaths:")
+    public native void reconfigureItemsAtIndexPaths(NSArray<NSIndexPath> indexPaths);
     @Method(selector = "performBatchUpdates:completion:")
     public native void performBatchUpdates(@Block Runnable updates, @Block VoidBooleanBlock completion);
     /**
@@ -302,6 +385,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "cancelInteractiveMovement")
     public native void cancelInteractiveMovement();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "presentationSectionIndexForDataSourceSectionIndex:")
     public native @MachineSizedSInt long presentationSectionIndexForDataSourceSectionIndex(@MachineSizedSInt long dataSourceSectionIndex);
     @Method(selector = "dataSourceSectionIndexForPresentationSectionIndex:")

@@ -33,7 +33,7 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.5 and later.
+ * @since Available in iOS 12.5 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
@@ -50,10 +50,140 @@ import org.robovm.apple.dispatch.*;
     protected ENExposureConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "immediateDurationWeight")
+    public native double getImmediateDurationWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setImmediateDurationWeight:")
+    public native void setImmediateDurationWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "nearDurationWeight")
+    public native double getNearDurationWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setNearDurationWeight:")
+    public native void setNearDurationWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "mediumDurationWeight")
+    public native double getMediumDurationWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setMediumDurationWeight:")
+    public native void setMediumDurationWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "otherDurationWeight")
+    public native double getOtherDurationWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setOtherDurationWeight:")
+    public native void setOtherDurationWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "infectiousnessForDaysSinceOnsetOfSymptoms")
+    public native NSDictionary<NSNumber, NSNumber> getInfectiousnessForDaysSinceOnsetOfSymptoms();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setInfectiousnessForDaysSinceOnsetOfSymptoms:")
+    public native void setInfectiousnessForDaysSinceOnsetOfSymptoms(NSDictionary<NSNumber, NSNumber> v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "infectiousnessStandardWeight")
+    public native double getInfectiousnessStandardWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setInfectiousnessStandardWeight:")
+    public native void setInfectiousnessStandardWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "infectiousnessHighWeight")
+    public native double getInfectiousnessHighWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setInfectiousnessHighWeight:")
+    public native void setInfectiousnessHighWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "reportTypeConfirmedTestWeight")
+    public native double getReportTypeConfirmedTestWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setReportTypeConfirmedTestWeight:")
+    public native void setReportTypeConfirmedTestWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "reportTypeConfirmedClinicalDiagnosisWeight")
+    public native double getReportTypeConfirmedClinicalDiagnosisWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setReportTypeConfirmedClinicalDiagnosisWeight:")
+    public native void setReportTypeConfirmedClinicalDiagnosisWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "reportTypeSelfReportedWeight")
+    public native double getReportTypeSelfReportedWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setReportTypeSelfReportedWeight:")
+    public native void setReportTypeSelfReportedWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "reportTypeRecursiveWeight")
+    public native double getReportTypeRecursiveWeight();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setReportTypeRecursiveWeight:")
+    public native void setReportTypeRecursiveWeight(double v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "reportTypeNoneMap")
+    public native ENDiagnosisReportType getReportTypeNoneMap();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setReportTypeNoneMap:")
+    public native void setReportTypeNoneMap(ENDiagnosisReportType v);
     @Property(selector = "attenuationDurationThresholds")
     public native NSArray<NSNumber> getAttenuationDurationThresholds();
     @Property(selector = "setAttenuationDurationThresholds:")
     public native void setAttenuationDurationThresholds(NSArray<NSNumber> v);
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "daysSinceLastExposureThreshold")
+    public native @MachineSizedSInt long getDaysSinceLastExposureThreshold();
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
+    @Property(selector = "setDaysSinceLastExposureThreshold:")
+    public native void setDaysSinceLastExposureThreshold(@MachineSizedSInt long v);
     @Property(selector = "minimumRiskScoreFullRange")
     public native double getMinimumRiskScoreFullRange();
     @Property(selector = "setMinimumRiskScoreFullRange:")

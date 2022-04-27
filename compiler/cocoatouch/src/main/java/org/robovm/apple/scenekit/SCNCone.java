@@ -76,10 +76,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getHeightSegmentCount();
     @Property(selector = "setHeightSegmentCount:")
     public native void setHeightSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "coneWithTopRadius:bottomRadius:height:")
     public static native SCNCone create(@MachineSizedFloat double topRadius, @MachineSizedFloat double bottomRadius, @MachineSizedFloat double height);
+    @Method(selector = "geometry")
+    public static native SCNCone createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNCone createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

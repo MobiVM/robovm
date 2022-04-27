@@ -61,17 +61,40 @@ import org.robovm.apple.iosurface.*;
     /*<methods>*/
     @Bridge(symbol="CVBufferSetAttachment", optional=true)
     protected native void setAttachment(CFString key, CFType value, CVAttachmentMode attachmentMode);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use CVBufferCopyAttachment
+     */
+    @Deprecated
     @Bridge(symbol="CVBufferGetAttachment", optional=true)
     protected native CFType getAttachment(CFString key, IntPtr attachmentMode);
     @Bridge(symbol="CVBufferRemoveAttachment", optional=true)
     protected native void removeAttachment(CFString key);
     @Bridge(symbol="CVBufferRemoveAllAttachments", optional=true)
     protected native void removeAllAttachments();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use CVBufferCopyAttachments
+     */
+    @Deprecated
     @Bridge(symbol="CVBufferGetAttachments", optional=true)
     protected native NSDictionary getAttachments(CVAttachmentMode attachmentMode);
     @Bridge(symbol="CVBufferSetAttachments", optional=true)
     protected native void setAttachments(NSDictionary theAttachments, CVAttachmentMode attachmentMode);
     @Bridge(symbol="CVBufferPropagateAttachments", optional=true)
     protected native void propagateAttachments(CVBuffer destinationBuffer);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CVBufferCopyAttachments", optional=true)
+    protected native CFDictionary copyAttachments(CVAttachmentMode attachmentMode);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CVBufferCopyAttachment", optional=true)
+    protected native CFType copyAttachment(CFString key, IntPtr attachmentMode);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="CVBufferHasAttachment", optional=true)
+    protected native boolean hasAttachment(CFString key);
     /*</methods>*/
 }

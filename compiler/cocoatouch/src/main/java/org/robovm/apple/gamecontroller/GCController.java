@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -38,10 +39,10 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GCController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements GCDevice/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidConnect(final VoidBlock1<GCController> block) {
+        public static NSObjectProtocol observeDidConnect(final VoidBlock1<GCController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidConnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -49,7 +50,7 @@ import org.robovm.apple.uikit.*;
                 }
             });
         }
-        public static NSObject observeDidDisconnect(final VoidBlock1<GCController> block) {
+        public static NSObjectProtocol observeDidDisconnect(final VoidBlock1<GCController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidDisconnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -79,17 +80,21 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "setControllerPausedHandler:")
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
-    @Property(selector = "handlerQueue")
-    public native DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    public native void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    public native String getVendorName();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
-    @Property(selector = "productCategory")
-    public native String getProductCategory();
+    @Property(selector = "current")
+    public static native GCController getCurrent();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "shouldMonitorBackgroundEvents")
+    public static native boolean shouldMonitorBackgroundEvents();
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    @Property(selector = "setShouldMonitorBackgroundEvents:")
+    public static native void setShouldMonitorBackgroundEvents(boolean v);
     @Property(selector = "isAttachedToDevice")
     public native boolean isAttachedToDevice();
     /**
@@ -102,7 +107,12 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
     /**
-     * @deprecated Deprecated in iOS 10.0. Use -extendedGamepad
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "battery")
+    public native GCDeviceBattery getBattery();
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use extendedGamepad
      */
     @Deprecated
     @Property(selector = "gamepad")
@@ -113,6 +123,32 @@ import org.robovm.apple.uikit.*;
     public native GCExtendedGamepad getExtendedGamepad();
     @Property(selector = "motion")
     public native GCMotion getMotion();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "light")
+    public native GCDeviceLight getLight();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "haptics")
+    public native GCDeviceHaptics getHaptics();
+    @Property(selector = "handlerQueue")
+    public native DispatchQueue getHandlerQueue();
+    @Property(selector = "setHandlerQueue:")
+    public native void setHandlerQueue(DispatchQueue v);
+    @Property(selector = "vendorName")
+    public native String getVendorName();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "productCategory")
+    public native String getProductCategory();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "physicalInputProfile")
+    public native GCPhysicalInputProfile getPhysicalInputProfile();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -120,6 +156,16 @@ import org.robovm.apple.uikit.*;
     public static native NSString DidConnectNotification();
     @GlobalValue(symbol="GCControllerDidDisconnectNotification", optional=true)
     public static native NSString DidDisconnectNotification();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="GCControllerDidBecomeCurrentNotification", optional=true)
+    public static native NSString DidBecomeCurrentNotification();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="GCControllerDidStopBeingCurrentNotification", optional=true)
+    public static native NSString DidStopBeingCurrentNotification();
     
     /**
      * @since Available in iOS 13.0 and later.

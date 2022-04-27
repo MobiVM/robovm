@@ -56,6 +56,16 @@ import org.robovm.apple.fileprovider.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getSubscriptionIDs();
     @Property(selector = "setSubscriptionIDs:")
     public native void setSubscriptionIDs(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perSubscriptionCompletionBlock")
+    public native @Block VoidBlock3<String, CKSubscription, NSError> getPerSubscriptionCompletionBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerSubscriptionCompletionBlock:")
+    public native void setPerSubscriptionCompletionBlock(@Block VoidBlock3<String, CKSubscription, NSError> v);
     @Property(selector = "fetchSubscriptionCompletionBlock")
     public native @Block VoidBlock2<NSDictionary<NSString, CKSubscription>, NSError> getFetchSubscriptionCompletionBlock();
     @Property(selector = "setFetchSubscriptionCompletionBlock:")

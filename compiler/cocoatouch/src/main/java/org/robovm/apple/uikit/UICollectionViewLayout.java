@@ -75,6 +75,12 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @GlobalValue(symbol="UICollectionViewLayoutAutomaticDimension", optional=true)
+    public static native @MachineSizedFloat double AutomaticDimension();
+    
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "invalidateLayout")

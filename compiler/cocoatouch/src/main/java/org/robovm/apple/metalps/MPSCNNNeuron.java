@@ -57,7 +57,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNNeuron(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNNeuron(NSCoder decoder) { super(decoder); }
+    public MPSCNNNeuron(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "data")
     public native NSData getData();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

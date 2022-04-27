@@ -57,6 +57,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_path_get_status", optional=true)
     public native NWPathStatus getStatus();
     /**
+     * @since Available in iOS 14.2 and later.
+     */
+    @Bridge(symbol="nw_path_get_unsatisfied_reason", optional=true)
+    public native NWPathUnsatisfiedReason getUnsatisfiedReason();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_path_enumerate_interfaces", optional=true)

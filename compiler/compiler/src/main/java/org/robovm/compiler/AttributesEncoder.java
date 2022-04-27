@@ -33,8 +33,8 @@ import org.robovm.compiler.llvm.FloatingPointConstant;
 import org.robovm.compiler.llvm.Global;
 import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.Linkage;
-import org.robovm.compiler.llvm.PackedStructureConstant;
-import org.robovm.compiler.llvm.PackedStructureType;
+import org.robovm.compiler.llvm.StructureConstant;
+import org.robovm.compiler.llvm.StructureType;
 import org.robovm.compiler.llvm.StructureConstant;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
@@ -92,10 +92,10 @@ public class AttributesEncoder {
     
     public void encode(ModuleBuilder mb, SootClass sootClass) {
         this.mb = mb;
-        dependencies = new HashSet<String>();
+        dependencies = new HashSet<>();
         classAttributes = null;
-        fieldAttributes = new HashMap<SootField, Global>();
-        methodAttributes = new HashMap<SootMethod, Global>();
+        fieldAttributes = new HashMap<>();
+        methodAttributes = new HashMap<>();
         
         encodeAttributes(sootClass);
         Constant classAttributes = encodeAttributes(sootClass);
@@ -152,21 +152,21 @@ public class AttributesEncoder {
         return methodAttributes.get(m);
     }
     
-    private PackedStructureType getAnnotationElementType(AnnotationElem ae) {
+    private StructureType getAnnotationElementType(AnnotationElem ae) {
         if (ae instanceof AnnotationIntElem) {
-            return new PackedStructureType(I8, I32);
+            return new StructureType(I8, I32);
         } else if (ae instanceof AnnotationLongElem) {
-            return new PackedStructureType(I8, I64);            
+            return new StructureType(I8, I64);            
         } else if (ae instanceof AnnotationFloatElem) {
-            return new PackedStructureType(I8, FLOAT);            
+            return new StructureType(I8, FLOAT);            
         } else if (ae instanceof AnnotationDoubleElem) {
-            return new PackedStructureType(I8, DOUBLE);            
+            return new StructureType(I8, DOUBLE);            
         } else if (ae instanceof AnnotationStringElem) {
-            return new PackedStructureType(I8, I8_PTR);            
+            return new StructureType(I8, I8_PTR);            
         } else if (ae instanceof AnnotationClassElem) {
-            return new PackedStructureType(I8, I8_PTR);            
+            return new StructureType(I8, I8_PTR);            
         } else if (ae instanceof AnnotationEnumElem) {
-            return new PackedStructureType(I8, I8_PTR, I8_PTR);            
+            return new StructureType(I8, I8_PTR, I8_PTR);            
         } else if (ae instanceof AnnotationArrayElem) {
             AnnotationArrayElem aae = (AnnotationArrayElem) ae;
             Type[] types = new Type[aae.getNumValues() + 2];
@@ -175,46 +175,46 @@ public class AttributesEncoder {
             for (int i = 0; i < aae.getNumValues(); i++) {
                 types[i + 2] = getAnnotationElementType(aae.getValueAt(i));
             }
-            return new PackedStructureType(types);            
+            return new StructureType(types);            
         } else if (ae instanceof AnnotationAnnotationElem) {
             AnnotationAnnotationElem aae = (AnnotationAnnotationElem) ae;
-            return new PackedStructureType(I8, getAnnotationTagType(aae.getValue()));            
+            return new StructureType(I8, getAnnotationTagType(aae.getValue()));            
         }
         throw new IllegalArgumentException("Unknown AnnotationElem type: " + ae.getClass());
     }
     
-    private PackedStructureConstant encodeAnnotationElementValue(AnnotationElem ae) {
-        PackedStructureType type = getAnnotationElementType(ae);
+    private StructureConstant encodeAnnotationElementValue(AnnotationElem ae) {
+        StructureType type = getAnnotationElementType(ae);
         Value kind = new IntegerConstant((byte) ae.getKind());
         if (ae instanceof AnnotationIntElem) {
             AnnotationIntElem aie = (AnnotationIntElem) ae;
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     new IntegerConstant(aie.getValue()));
         } else if (ae instanceof AnnotationLongElem) {
             AnnotationLongElem ale = (AnnotationLongElem) ae;
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     new IntegerConstant(ale.getValue()));            
         } else if (ae instanceof AnnotationFloatElem) {
             AnnotationFloatElem afe = (AnnotationFloatElem) ae;
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     new FloatingPointConstant(afe.getValue()));            
         } else if (ae instanceof AnnotationDoubleElem) {
             AnnotationDoubleElem ade = (AnnotationDoubleElem) ae;
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     new FloatingPointConstant(ade.getValue()));            
         } else if (ae instanceof AnnotationStringElem) {
             AnnotationStringElem ase = (AnnotationStringElem) ae;
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     getStringOrNull(ase.getValue()));            
         } else if (ae instanceof AnnotationClassElem) {
             AnnotationClassElem ace = (AnnotationClassElem) ae;
             addDependencyIfNeeded(ace.getDesc());
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     getStringOrNull(ace.getDesc()));            
         } else if (ae instanceof AnnotationEnumElem) {
             AnnotationEnumElem aee = (AnnotationEnumElem) ae;
             addDependencyIfNeeded(aee.getTypeName());
-            return new PackedStructureConstant(type, kind,
+            return new StructureConstant(type, kind,
                     getStringOrNull(aee.getTypeName()),            
                     getStringOrNull(aee.getConstantName()));            
         } else if (ae instanceof AnnotationArrayElem) {
@@ -225,15 +225,15 @@ public class AttributesEncoder {
             for (int i = 0; i < aae.getNumValues(); i++) {
                 values[i + 2] = encodeAnnotationElementValue(aae.getValueAt(i));
             }
-            return new PackedStructureConstant(type, values);
+            return new StructureConstant(type, values);
         } else if (ae instanceof AnnotationAnnotationElem) {
             AnnotationAnnotationElem aae = (AnnotationAnnotationElem) ae;
-            return new PackedStructureConstant(type, kind, encodeAnnotationTagValue(aae.getValue()));            
+            return new StructureConstant(type, kind, encodeAnnotationTagValue(aae.getValue()));            
         }
         throw new IllegalArgumentException("Unknown AnnotationElem type: " + ae.getClass());
     }
     
-    private PackedStructureType getAnnotationTagType(AnnotationTag tag) {
+    private StructureType getAnnotationTagType(AnnotationTag tag) {
         Type[] types = new Type[tag.getNumElems() * 2 + 2];
         types[0] = I8_PTR;
         types[1] = I32;
@@ -241,10 +241,10 @@ public class AttributesEncoder {
             types[i * 2 + 2] = I8_PTR;
             types[i * 2 + 2 + 1] = getAnnotationElementType(tag.getElemAt(i));
         }
-        return new PackedStructureType(types);            
+        return new StructureType(types);            
     }
     
-    private PackedStructureConstant encodeAnnotationTagValue(AnnotationTag tag) {
+    private StructureConstant encodeAnnotationTagValue(AnnotationTag tag) {
         Value[] values = new Value[tag.getNumElems() * 2 + 2];
         values[0] = getString(tag.getType());
         addDependencyIfNeeded(tag.getType());
@@ -253,27 +253,27 @@ public class AttributesEncoder {
             values[i * 2 + 2] = getString(tag.getElemAt(i).getName());
             values[i * 2 + 2 + 1] = encodeAnnotationElementValue(tag.getElemAt(i));
         }
-        return new PackedStructureConstant(getAnnotationTagType(tag), values);
+        return new StructureConstant(getAnnotationTagType(tag), values);
     }
     
     private Constant encodeAttributes(Host host) {
-        List<Value> attributes = new ArrayList<Value>();
+        List<Value> attributes = new ArrayList<>();
         for (Tag tag : host.getTags()) {
             if (tag instanceof SourceFileTag) {
                 // Skip. We don't need this at this time.
                 Value sourceFile = getString(((SourceFileTag) tag).getSourceFile());
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I8_PTR), 
+                attributes.add(new StructureConstant(new StructureType(I8, I8_PTR), 
                         new IntegerConstant(SOURCE_FILE), sourceFile));
             } else if (tag instanceof EnclosingMethodTag) {
                 EnclosingMethodTag emt = (EnclosingMethodTag) tag;
                 Value eClass = getString(emt.getEnclosingClass());
                 Value eMethod = getStringOrNull(emt.getEnclosingMethod());
                 Value eDesc = getStringOrNull(emt.getEnclosingMethodSig());
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I8_PTR, I8_PTR, I8_PTR), 
+                attributes.add(new StructureConstant(new StructureType(I8, I8_PTR, I8_PTR, I8_PTR), 
                         new IntegerConstant(ENCLOSING_METHOD), eClass, eMethod, eDesc));
             } else if (tag instanceof SignatureTag) {
                 Value signature = getString(((SignatureTag) tag).getSignature());
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I8_PTR), 
+                attributes.add(new StructureConstant(new StructureType(I8, I8_PTR), 
                         new IntegerConstant(SIGNATURE), signature));
             } else if (tag instanceof InnerClassTag) {
                 InnerClassTag ict = (InnerClassTag) tag;
@@ -281,11 +281,11 @@ public class AttributesEncoder {
                 Value outerClass = getStringOrNull(ict.getOuterClass());
                 Value innerName = getStringOrNull(ict.getShortName());
                 Value innerClassAccess = new IntegerConstant(ict.getAccessFlags());
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I8_PTR, I8_PTR, I8_PTR, I32), 
+                attributes.add(new StructureConstant(new StructureType(I8, I8_PTR, I8_PTR, I8_PTR, I32), 
                         new IntegerConstant(INNER_CLASS), innerClass, outerClass, innerName, innerClassAccess));
             } else if (tag instanceof AnnotationDefaultTag) {
                 StructureConstant value = encodeAnnotationElementValue(((AnnotationDefaultTag) tag).getDefaultVal());
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, value.getType()), 
+                attributes.add(new StructureConstant(new StructureType(I8, value.getType()), 
                         new IntegerConstant(ANNOTATION_DEFAULT), value));
             } else if (tag instanceof VisibilityAnnotationTag) {
                 VisibilityAnnotationTag vat = (VisibilityAnnotationTag) tag;
@@ -298,14 +298,14 @@ public class AttributesEncoder {
                         types[i] = values[i].getType();
                         i++;
                     }
-                    attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I32, new PackedStructureType(types)),
+                    attributes.add(new StructureConstant(new StructureType(I8, I32, new StructureType(types)),
                             new IntegerConstant(RUNTIME_VISIBLE_ANNOTATIONS), new IntegerConstant(vat.getAnnotations().size()),
-                            new PackedStructureConstant(new PackedStructureType(types), values)));
+                            new StructureConstant(new StructureType(types), values)));
                 }
             } else if (tag instanceof VisibilityParameterAnnotationTag) {
                 VisibilityParameterAnnotationTag vpat = (VisibilityParameterAnnotationTag) tag;
-                List<Type> typesList = new ArrayList<Type>();
-                List<Value> valuesList = new ArrayList<Value>();
+                List<Type> typesList = new ArrayList<>();
+                List<Value> valuesList = new ArrayList<>();
                 boolean hasRuntimeVisible = false;
                 for (VisibilityAnnotationTag vat : vpat.getVisibilityAnnotations()) {
                     typesList.add(I32);
@@ -315,19 +315,20 @@ public class AttributesEncoder {
                         hasRuntimeVisible = true;
                         valuesList.add(new IntegerConstant(vat.getAnnotations().size()));
                         for (AnnotationTag at : vat.getAnnotations()) {
-                            valuesList.add(encodeAnnotationTagValue(at));
-                            typesList.add(valuesList.get(valuesList.size() - 1).getType());
+                            StructureConstant value = encodeAnnotationTagValue(at);
+                            valuesList.add(value);
+                            typesList.add(value.getType());
                         }
                     } else {
                         valuesList.add(new IntegerConstant(0));                        
                     }
                 }
                 if (hasRuntimeVisible) {
-                    Type[] types = typesList.toArray(new Type[typesList.size()]);
-                    Value[] values = valuesList.toArray(new Value[valuesList.size()]);
-                    attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I32, new PackedStructureType(types)),
+                    Type[] types = typesList.toArray(new Type[0]);
+                    Value[] values = valuesList.toArray(new Value[0]);
+                    attributes.add(new StructureConstant(new StructureType(I8, I32, new StructureType(types)),
                             new IntegerConstant(RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS), new IntegerConstant(vpat.getVisibilityAnnotations().size()),
-                            new PackedStructureConstant(new PackedStructureType(types), values)));
+                            new StructureConstant(new StructureType(types), values)));
                 }
             }
         }
@@ -340,7 +341,7 @@ public class AttributesEncoder {
                     values[i] = getString(exName);
                     addDependency(exName);
                 }
-                attributes.add(new PackedStructureConstant(new PackedStructureType(I8, I32, new ArrayType(exceptions.size(), I8_PTR)), 
+                attributes.add(new StructureConstant(new StructureType(I8, I32, new ArrayType(exceptions.size(), I8_PTR)), 
                         new IntegerConstant(EXCEPTIONS), new IntegerConstant(exceptions.size()), 
                         new ArrayConstant(new ArrayType(exceptions.size(), I8_PTR), values)));
             }
@@ -356,7 +357,7 @@ public class AttributesEncoder {
         for (int i = 0; i < types.length; i++) {
             types[i] = attributes.get(i).getType();
         }
-        return new PackedStructureConstant(new PackedStructureType(types), attributes.toArray(new Value[0]));
+        return new StructureConstant(new StructureType(types), attributes.toArray(new Value[0])).flatten();
     }
     
     private Constant getString(String string) {

@@ -245,9 +245,13 @@ public class DebuggerDebugObjectFileInfo {
 //    }
 
     private  static void putStringWithLen(DataOutputStream stream, String str) throws IOException {
-        stream.writeInt(str.length());
-        if (!str.isEmpty())
-            stream.write(str.getBytes());
+        if (!str.isEmpty()) {
+            byte[] bytes = str.getBytes();
+            stream.writeInt(bytes.length);
+            stream.write(bytes);
+        } else {
+            stream.writeInt(0);
+        }
     }
 
 }

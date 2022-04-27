@@ -53,6 +53,13 @@ import org.robovm.apple.foundation.*;
     public native NSDate getStartDate();
     @Property(selector = "endDate")
     public native NSDate getEndDate();
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    @Property(selector = "hasUndeterminedDuration")
+    public native boolean hasUndeterminedDuration();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

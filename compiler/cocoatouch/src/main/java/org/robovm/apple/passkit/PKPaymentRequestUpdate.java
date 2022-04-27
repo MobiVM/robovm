@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +64,16 @@ import org.robovm.apple.contacts.*;
     public native NSArray<PKPaymentSummaryItem> getPaymentSummaryItems();
     @Property(selector = "setPaymentSummaryItems:")
     public native void setPaymentSummaryItems(NSArray<PKPaymentSummaryItem> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "shippingMethods")
+    public native NSArray<PKShippingMethod> getShippingMethods();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setShippingMethods:")
+    public native void setShippingMethods(NSArray<PKShippingMethod> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

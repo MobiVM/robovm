@@ -27,27 +27,27 @@ public final class HookConsts {
         static final long ANSWER = 0x526f626f564d2121L; // RoboVM!!
     }
 
-    final static class commands {
+    public final static class commands {
         // memory operations
-        static final byte READ_MEMORY = 1;
-        static final byte READ_CSTRING = 2;
-        static final byte WRITE_MEMORY = 3;
-        static final byte WRITE_AND_BITS = 4;
-        static final byte WRITE_OR_BITS = 5;
-        static final byte ALLOCATE = 6;
-        static final byte FREE = 7;
+        public static final byte READ_MEMORY = 1;
+        public static final byte READ_CSTRING = 2;
+        public static final byte WRITE_MEMORY = 3;
+        public static final byte WRITE_AND_BITS = 4;
+        public static final byte WRITE_OR_BITS = 5;
+        public static final byte ALLOCATE = 6;
+        public static final byte FREE = 7;
 
         // thread operations
-        static final byte THREAD_SUSPEND = 50;
-        static final byte THREAD_RESUME = 51;
-        static final byte THREAD_STEP = 52;
-        static final byte THREAD_INVOKE = 53;
-        static final byte THREAD_NEWSTRING = 54;
-        static final byte THREAD_NEWARRAY = 55;
-        static final byte THREAD_NEWINSTANCE = 56;
+        public static final byte THREAD_SUSPEND = 50;
+        public static final byte THREAD_RESUME = 51;
+        public static final byte THREAD_STEP = 52;
+        public static final byte THREAD_INVOKE = 53;
+        public static final byte THREAD_NEWSTRING = 54;
+        public static final byte THREAD_NEWARRAY = 55;
+        public static final byte THREAD_NEWINSTANCE = 56;
 
         // class operations
-        static final byte CLASS_FILTER = 70;
+        public static final byte CLASS_FILTER = 70;
     }
 
     public final static class events {
@@ -61,6 +61,14 @@ public final class HookConsts {
         public static final byte THREAD_STEPPED = 106;
         public static final byte CLASS_LOAD = 107;
         public static final byte EXCEPTION = 108;
+    }
+
+    public final static class threadSuspendStatus {
+        // events
+        public static final byte RUNNING = 0;
+        public static final byte SUSPENDED_SOFT = 1;
+        public static final byte SUSPENDED_PENDING_HARD = 2;
+        public static final byte SUSPENDED_HARD = 3;
     }
 
     public static String commandToString(int cmd) {

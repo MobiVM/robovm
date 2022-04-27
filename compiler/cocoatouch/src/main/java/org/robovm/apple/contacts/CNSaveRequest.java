@@ -49,7 +49,26 @@ import org.robovm.apple.foundation.*;
     protected CNSaveRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "transactionAuthor")
+    public native String getTransactionAuthor();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setTransactionAuthor:")
+    public native void setTransactionAuthor(String v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "shouldRefetchContacts")
+    public native boolean shouldRefetchContacts();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setShouldRefetchContacts:")
+    public native void setShouldRefetchContacts(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -71,6 +71,7 @@ import soot.SootMethod;
 import soot.Unit;
 import soot.jimple.IdentityStmt;
 import soot.jimple.ParameterRef;
+import soot.jimple.internal.JIdentityStmt;
 import soot.tagkit.GenericAttribute;
 import soot.tagkit.LineNumberTag;
 import soot.tagkit.SourceFileTag;
@@ -185,7 +186,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
             // kotlin, get line number mapping table from SMAP section
             GenericAttribute smap = (GenericAttribute) clazz.getSootClass().getTag("SourceDebugExtension");
             if (smap != null) {
-                lineNumberMapper = KotlinTools.parseSMAP(smap.getValue(), clazz.getInternalName());
+                lineNumberMapper = KotlinTools.parseSMAP(config, smap.getValue(), clazz.getInternalName());
             }
         }
         // save mapper
@@ -284,7 +285,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
                     }
 
                     // save mapping of unit to instructions for debugger needs
-                    unitToInstruction.put(unit, instruction);
+                    unitToInstruction.putIfAbsent(unit, instruction);
                 }
 
                 if (lineNumber != -1) {
@@ -336,7 +337,7 @@ public class DebugInformationPlugin extends AbstractCompilerPlugin {
         // being copied to locals
         Unit firstHooksUnit = null;
         for (Unit unit : method.getActiveBody().getUnits()) {
-            if (!(unit instanceof IdentityStmt)) {
+            if (unit.getClass() != JIdentityStmt.class) {
                 firstHooksUnit = unit;
                 break;
             }

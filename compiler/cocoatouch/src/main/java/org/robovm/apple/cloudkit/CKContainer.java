@@ -45,7 +45,7 @@ import org.robovm.apple.fileprovider.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObject observeAccountChanged(final Runnable block) {
+        public static NSObjectProtocol observeAccountChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AccountChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -135,24 +135,6 @@ import org.robovm.apple.fileprovider.*;
      */
     @Method(selector = "discoverUserIdentityWithUserRecordID:completionHandler:")
     public native void discoverUserIdentityWithUserRecordID(CKRecordID userRecordID, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverAllIdentitiesWithCompletionHandler:]
-     */
-    @Deprecated
-    @Method(selector = "discoverAllContactUserInfosWithCompletionHandler:")
-    public native void discoverAllContactUserInfos(@Block VoidBlock2<NSArray<CKDiscoveredUserInfo>, NSError> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverUserIdentityWithEmailAddress:completionHandler:]
-     */
-    @Deprecated
-    @Method(selector = "discoverUserInfoWithEmailAddress:completionHandler:")
-    public native void discoverUserInfo(String email, @Block VoidBlock2<CKDiscoveredUserInfo, NSError> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use -[CKContainer discoverUserIdentityWithUserRecordID:completionHandler:]
-     */
-    @Deprecated
-    @Method(selector = "discoverUserInfoWithUserRecordID:completionHandler:")
-    public native void discoverUserInfo(CKRecordID userRecordID, @Block VoidBlock2<CKDiscoveredUserInfo, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
      */

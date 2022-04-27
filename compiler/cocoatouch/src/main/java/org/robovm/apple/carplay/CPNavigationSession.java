@@ -31,6 +31,7 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,11 @@ import org.robovm.apple.mapkit.*;
     /*<methods>*/
     @Method(selector = "pauseTripForReason:description:")
     public native void pauseTrip(CPTripPauseReason reason, String description);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "pauseTripForReason:description:turnCardColor:")
+    public native void pauseTripForReason(CPTripPauseReason reason, String description, UIColor turnCardColor);
     @Method(selector = "finishTrip")
     public native void finishTrip();
     @Method(selector = "cancelTrip")

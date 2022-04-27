@@ -1,5 +1,16 @@
 package: org.robovm.apple.avfoundation
-include: [foundation.yaml, corefoundation.yaml, dispatch.yaml, coreanimation.yaml, coreimage.yaml, coregraphics.yaml, coreaudio.yaml, coremedia.yaml, corevideo.yaml, mediatoolbox.yaml, audiotoolbox.yaml, ]
+include:
+    - foundation
+    - corefoundation
+    - dispatch
+    - coreanimation
+    - coreimage
+    - coregraphics
+    - coreaudio
+    - coremedia
+    - corevideo
+    - mediatoolbox
+    - audiotoolbox
 library: AVFoundation
 framework: AVFoundation
 internal_frameworks: [AVFAudio]
@@ -10,15 +21,12 @@ headers:
     - /System/Library/Frameworks/AVFoundation.framework/Headers/AVBase.h
     - /System/Library/Frameworks/AVFoundation.framework/Headers/AVFAudio.h
 typedefs:
-    'void (^)(CMSampleBufferRef, NSError *)': '@Block VoidBlock2<CMSampleBuffer, NSError>'
-    'void (^)(CMTime)': '@Block VoidBlock1<CMTime>'
-    'void (^)(BOOL, NSError *)': '@Block VoidBlock2<Boolean, NSError>'
-    'void (^)(CMSampleBufferRef, AVCaptureBracketedStillImageSettings *, NSError *)': '@Block VoidBlock3<CMSampleBuffer, AVCaptureBracketedStillImageSettings, NSError>'
 private_typedefs:
     CGImagePropertyOrientation: org.robovm.apple.imageio.CGImagePropertyOrientation
     # following can't be used as Enum from CoreMedia. As it defines only invalid state
     # and will fail on any valid track id
     CMPersistentTrackID: int
+    UTType *: org.robovm.apple.uniformtypeid.UTType
 enums:
     AVAssetReferenceRestrictions: {}
     AVAssetExportSessionStatus: {}
@@ -95,6 +103,27 @@ enums:
     AVSpeechSynthesisVoiceGender: {} #since 13.0
     AVCapturePhotoQualityPrioritization: {} #since 13.0
     AVMovieWritingOptions: {prefix: AVMovieWriting} #since 13.0
+    # ios14
+    AVAudioStereoOrientation: {}
+    AVAssetSegmentType: { } #since 14.0
+    AVAudioSpatializationFormats: { prefix: AVAudioSpatializationFormat }
+    # ios 14.5
+    AVVariantPreferences: {prefix: AVVariantPreference} #since 14.5
+    AVPlayerInterstitialEventRestrictions: {prefix: AVPlayerInterstitialEventRestriction} #since 14.5
+    AVCaptureCenterStageControlMode: {} #since 14.5
+    AVAudioSessionInterruptionReason: {}
+    # ios 15
+    AVAudioRoutingArbitrationCategory: {}
+    AVPlayerAudiovisualBackgroundPlaybackPolicy: {} #since 15.0
+    AVDelegatingPlaybackCoordinatorRateChangeOptions: {prefix: AVDelegatingPlaybackCoordinatorRateChangeOption}
+    AVDelegatingPlaybackCoordinatorSeekOptions: {prefix: AVDelegatingPlaybackCoordinatorSeekOption}
+    AVSampleBufferRequestDirection: {}
+    AVSampleBufferRequestMode: {}
+    AVCapturePrimaryConstituentDeviceSwitchingBehavior: {} #since 15.0
+    AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: {prefix: AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition} #since 15.0
+    AVCaptureMicrophoneMode: {} #since 15.0
+    AVCaptureSystemUserInterface: {} #since 15.0
+
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
         enum: AVAssetDownloadedAssetEvictionPriority
@@ -219,6 +248,28 @@ classes:
                         type: AVMediaCharacteristic
             '-unusedTrackID':
                 property: true
+            '-loadTrackWithTrackID:completionHandler:':
+                name: loadTrack
+                parameters:
+                    1: { type: "@Block VoidBlock2<NSArray<?>, NSError>" } # FIXME: using wildcard as slashes with subclasses
+            '-loadTracksWithMediaType:completionHandler:':
+                name: loadTracksWithMediaType
+                parameters:
+                    1: { type: "@Block VoidBlock2<NSArray<?>, NSError>" } # FIXME: using wildcard as slashes with subclasses
+            '-loadTracksWithMediaCharacteristic:completionHandler:':
+                name: loadTracksWithMediaCharacteristic
+                parameters:
+                    1: { type: "@Block VoidBlock2<NSArray<?>, NSError>" } # FIXME: using wildcard as slashes with subclasses
+            '-loadMetadataForFormat:completionHandler:':
+                name: loadMetadataForFormat
+            '-loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:':
+                name: loadChapterMetadataGroups
+            '-loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:':
+                name: loadChapterMetadataGroupsBestMatchingPreferredLanguages
+            '-loadMediaSelectionGroupForMediaCharacteristic:completionHandler:':
+                name: loadMediaSelectionGroupForMediaCharacteristic
+            '-findUnusedTrackIDWithCompletionHandler:':
+                name: findUnusedTrackID
     AVAssetCache : {}
     AVAssetDownloadTask: # DONE
         properties:
@@ -252,6 +303,8 @@ classes:
                 constructor: true
             '-aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:':
                 trim_after_first_colon: true
+            '-assetDownloadTaskWithConfiguration:':
+                name: assetDownloadTask
     AVAssetExportSession: # DONE
         properties:
             'presetName':
@@ -472,6 +525,14 @@ classes:
                 parameters:
                     trackAssociationType:
                         type: AVTrackAssociationType
+            '-loadSegmentForTrackTime:completionHandler:':
+                name: loadSegmentForTrackTime
+            '-loadSamplePresentationTimeForTrackTime:completionHandler:':
+                name: loadSamplePresentationTimeForTrackTime
+            '-loadMetadataForFormat:completionHandler:':
+                name: loadMetadataForFormat
+            '-loadAssociatedTracksOfType:completionHandler:':
+                name: loadAssociatedTracksOfType
     AVAssetTrackGroup: # DONE
         properties:
             'trackIDs':
@@ -491,6 +552,8 @@ classes:
             '-initWithURL:fileType:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithContentType:':
+                name: init
             '-canApplyOutputSettings:forMediaType:':
                 trim_after_first_colon: true
                 visibility: protected # can be either AVAudioSettings or AVVideoSettings
@@ -835,6 +898,8 @@ classes:
         methods:
             '-initWithPCMFormat:frameCapacity:':
                 name: init
+            '-initWithPCMFormat:bufferListNoCopy:deallocator:':
+                name: init
     AVAudioPlayer: # DONE
         properties:
             'settings':
@@ -1027,6 +1092,17 @@ classes:
                 throws: NSErrorException
             '-setAllowHapticsAndSystemSoundsDuringRecording:error:':
                 name: setAllowHapticsAndSystemSoundsDuringRecording
+                throws: NSErrorException
+            '-setPreferredInputOrientation:error:':
+                name: setPreferredInputOrientation
+                throws: NSErrorException
+            '-setRate:time:atHostTime:':
+                name: setRate
+            '-setPrefersNoInterruptionsFromSystemAlerts:error:':
+                name: setPrefersNoInterruptionsFromSystemAlerts
+                throws: NSErrorException
+            '-setSupportsMultichannelContent:error:':
+                name: setSupportsMultichannelContent
                 throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
@@ -1321,6 +1397,8 @@ classes:
                 name: convertTemperatureAndTintValuesToDeviceWhiteBalanceGains
             '+extrinsicMatrixFromDevice:toDevice:':
                 name: getExtrinsicMatrix
+            '-setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:':
+                name: setPrimaryConstituentDeviceSwitchingBehavior
     AVCaptureDeviceFormat: # DONE
         properties:
             'mediaType':
@@ -1399,7 +1477,8 @@ classes:
                 name: getOutputSettings
             '-setOutputSettings:forConnection:':
                 trim_after_first_colon: true
-
+            '-setPrimaryConstituentDeviceSwitchingBehaviorForRecording:restrictedSwitchingBehaviorConditions:':
+                name: setPrimaryConstituentDeviceSwitchingBehaviorForRecording
 
     AVCaptureOutput: # DONE
         properties:
@@ -1558,6 +1637,12 @@ classes:
                 parameters:
                     mediaCharacteristic:
                         type: AVMediaCharacteristic
+#            '-loadTrackWithTrackID:completionHandler:':
+#                name: loadTrack
+#            '-loadTracksWithMediaType:completionHandler:':
+#                name: loadTracksWithMediaType
+#            '-loadTracksWithMediaCharacteristic:completionHandler:':
+#                name: loadTracksWithMediaCharacteristic
     AVCompositionTrack: # DONE
         properties:
             'segments':
@@ -1590,6 +1675,12 @@ classes:
                 name: getTracksForMediaType
             '-tracksWithMediaCharacteristic:':
                 name: getTracksForMediaCharacteristic
+#            '-loadTrackWithTrackID:completionHandler:':
+#                name: loadTrack
+#            '-loadTracksWithMediaType:completionHandler:':
+#                name: loadTracksWithMediaType
+#            '-loadTracksWithMediaCharacteristic:completionHandler:':
+#                name: loadTracksWithMediaCharacteristic
     AVFragmentedAssetTrack: {} # DONE
     AVFrameRateRange: {} # DONE
     AVMediaSelection: # DONE
@@ -1869,7 +1960,12 @@ classes:
                 parameters:
                     mediaCharacteristic:
                         type: AVMediaCharacteristic
-                
+#            '-loadTrackWithTrackID:completionHandler:':
+#                name: loadMutableCompositionTrack
+#            '-loadTracksWithMediaType:completionHandler:':
+#                name: loadTracksWithMediaType
+#            '-loadTracksWithMediaCharacteristic:completionHandler:':
+#                name: loadTracksWithMediaCharacteristic
                 
     AVMutableCompositionTrack: # DONE
         properties:
@@ -2102,6 +2198,8 @@ classes:
                 trim_after_first_colon: true
             '-removeMediaDataCollector:':
                 trim_after_first_colon: true
+            '-copyWithZone:':
+                name: copyWithZone
     AVPlayerItemAccessLog: # DONE
         properties:
             'events':
@@ -2356,6 +2454,8 @@ classes:
                 exclude: true
             '-compatibleTrackForCompositionTrack:':
                 name: getCompatibleTrack
+            '-findCompatibleTrackForCompositionTrack:completionHandler:':
+                name: findCompatibleTrackForCompositionTrack
     AVVideoComposition: # DONE
         skip_handle_constructor: false
         properties:
@@ -2585,6 +2685,8 @@ classes:
         methods:
             '-setRate:time:':
                 trim_after_first_colon: true
+            '-setRate:time:atHostTime:':
+                trim_after_first_colon: true
             '-removeRenderer:atTime:completionHandler:':
                 trim_after_first_colon: true
             '-addPeriodicTimeObserverForInterval:queue:usingBlock:':
@@ -2621,7 +2723,14 @@ classes:
                 name: init
     AVCaptureMultiCamSession: {} #since 13.0
     AVCompositionTrackFormatDescriptionReplacement: {} #since 13.0
-    AVFragmentedMovie: {} #since 13.0
+    AVFragmentedMovie:  #since 13.0
+        methods:
+#            '-loadTrackWithTrackID:completionHandler:':
+#                name: loadTrackWithTrackID
+#            '-loadTracksWithMediaType:completionHandler:':
+#                name: loadTracksWithMediaType
+#            '-loadTracksWithMediaCharacteristic:completionHandler:':
+#                name: loadTracksWithMediaCharacteristic
     AVFragmentedMovieMinder: #since 13.0
         methods:
             '-initWithMovie:mindingInterval:':
@@ -2649,6 +2758,12 @@ classes:
                 name: writeMovieHeader
             '-isCompatibleWithFileType:':
                 name: isCompatibleWithFileType
+#            '-loadTrackWithTrackID:completionHandler:':
+#                name: loadTrack
+#            '-loadTracksWithMediaType:completionHandler:':
+#                name: loadTracksWithMediaType
+#            '-loadTracksWithMediaCharacteristic:completionHandler:':
+#                name: loadTracksWithMediaCharacteristic
         properties:
             'tracks':
                 type: 'NSArray<? extends AVMovieTrack>' # to allow subclasses to overload
@@ -2709,7 +2824,104 @@ classes:
     AVMetadataDogBodyObject: {} #since 13.0
     AVMetadataHumanBodyObject: {} #since 13.0
     AVMetadataSalientObject: {} #since 13.0
-
+    AVAssetSegmentReport: {} #since 14.0
+    AVAssetSegmentReportSampleInformation: {} #since 14.0
+    AVAssetSegmentTrackReport: {} #since 14.0
+    AVContentKey: {} #since 14.5
+    AVContentKeySpecifier: #since 14.5
+        methods:
+            '-initForKeySystem:identifier:options:':
+                name: init
+            '+contentKeySpecifierForKeySystem:identifier:options:':
+                exclude: true
+    AVPlayerInterstitialEvent: #since 14.5
+        methods:
+            '+interstitialEventWithPrimaryItem:time:templateItems:restrictions:resumptionOffset:':
+                name: create
+                constructor: true
+            '+interstitialEventWithPrimaryItem:date:templateItems:restrictions:resumptionOffset:':
+                name: create
+                constructor: true
+            '+interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:':
+                name: create
+                constructor: true
+            '+interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:':
+                name: create
+                constructor: true
+            '+playerInterstitialEventWithPrimaryItem:time:interstitialTemplateItems:restrictions:resumptionOffset:':
+                exclude: true // COMPATIBILITY SHIM - 72562501
+            '+playerInterstitialEventWithPrimaryItem:date:interstitialTemplateItems:restrictions:resumptionOffset:':
+                exclude: true // COMPATIBILITY SHIM - 72562501
+    AVPlayerInterstitialEventController: #since 14.5
+        methods:
+            '-cancelCurrentEventWithResumptionOffset:':
+                name: cancelCurrentEvent
+            '+interstitialEventControllerWithPrimaryPlayer:':
+                exclude: true
+            '+playerInterstitialEventControllerWithPrimaryPlayer:':
+                exclude: true
+    AVPlayerInterstitialEventObserver: #since 14.5
+        methods:
+            '-initWithPrimaryPlayer:':
+                name: init
+            '+interstitialEventObserverWithPrimaryPlayer:':
+                exclude: true
+            '+playerInterstitialEventObserverWithPrimaryPlayer:':
+                exclude: true
+    AVAssetDownloadConfiguration: #since 15.0
+        methods:
+            '+downloadConfigurationWithAsset:title:':
+                name: create
+                constructor: true
+    AVAssetDownloadContentConfiguration: {} #since 15.0
+    AVAssetVariant: {} #since 15.0
+    AVAssetVariantAudioAttributes: {} #since 15.0
+    AVAssetVariantAudioRenditionSpecificAttributes: {} #since 15.0
+    AVAssetVariantQualifier: #since 15.0
+        methods:
+            '+assetVariantQualifierWithPredicate:':
+                name: create
+                constructor: true
+            '+assetVariantQualifierWithVariant:':
+                name: create
+                constructor: true
+            '+predicateForChannelCount:mediaSelectionOption:operatorType:':
+                name: predicateForChannelCount
+            '+predicateForPresentationWidth:operatorType:':
+                name: predicateForPresentationWidth
+            '+predicateForPresentationHeight:operatorType:':
+                name: predicateForPresentationHeight
+    AVAssetVariantVideoAttributes: {} #since 15.0
+    AVCoordinatedPlaybackParticipant: {} #since 15.0
+    AVCoordinatedPlaybackSuspension: {} #since 15.0
+    AVDelegatingPlaybackCoordinator: #since 15.0
+        methods:
+            '-initWithPlaybackControlDelegate:':
+                name: init
+            '-coordinateRateChangeToRate:options:':
+                name: coordinateRateChangeToRate
+            '-coordinateSeekToTime:options:':
+                name: coordinateSeekToTime
+            '-transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:':
+                name: transitionToItem
+    AVDelegatingPlaybackCoordinatorBufferingCommand: {} #since 15.0
+    AVDelegatingPlaybackCoordinatorPauseCommand: {} #since 15.0
+    AVDelegatingPlaybackCoordinatorPlayCommand: {} #since 15.0
+    AVDelegatingPlaybackCoordinatorPlaybackControlCommand: {} #since 15.0
+    AVDelegatingPlaybackCoordinatorSeekCommand: {} #since 15.0
+    AVPlaybackCoordinator: #since 15.0
+        methods:
+            '-setParticipantLimit:forWaitingOutSuspensionsWithReason:':
+                name: setParticipantLimitForWaitingOutSuspensions
+            '-participantLimitForWaitingOutSuspensionsWithReason:':
+                name: getParticipantLimitForWaitingOutSuspensions
+    AVPlayerInterstitialEventMonitor: #since 15.0
+        methods:
+            '-initWithPrimaryPlayer:':
+                name: init
+            '+interstitialEventMonitorWithPrimaryPlayer:':
+                exclude: true
+    AVPlayerPlaybackCoordinator: {} #since 15.0
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2734,6 +2946,9 @@ protocols:
 
     AVContentKeyRecipient:
         skip_adapter: true
+        methods:
+            '-contentKeySession:didProvideContentKey:':
+                name: didProvideContentKey
 
     AVContentKeySessionDelegate:
         methods:
@@ -2780,6 +2995,8 @@ protocols:
                 name: didCompleteForMediaSelection
             '-URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:':
                 name: didLoadTimeRange
+            '-URLSession:assetDownloadTask:willDownloadVariants:':
+                name: assetDownloadTask
     AVAssetResourceLoaderDelegate: # DONE
         methods:
             '-resourceLoader:shouldWaitForLoadingOfRequestedResource:':
@@ -2965,11 +3182,38 @@ protocols:
                 name: replacementEmbeddedThumbnailPixelBuffer
             '-replacementSemanticSegmentationMatteOfType:forPhoto:':
                 name: replacementSemanticSegmentationMatteOfType
-
+            '-replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:':
+                name: replacementAppleProRAWCompressionSettingsForPhoto
+    AVAssetWriterDelegate: #since 14.0
+        methods:
+            '-assetWriter:didOutputSegmentData:segmentType:segmentReport:':
+                name: didOutputSegmentData
+            '-assetWriter:didOutputSegmentData:segmentType:':
+                name: didOutputSegmentData
+    AVPlaybackCoordinatorPlaybackControlDelegate: #since 15.0
+        methods:
+            '-playbackCoordinator:didIssuePlayCommand:completionHandler:':
+                name: didIssuePlayCommand
+            '-playbackCoordinator:didIssuePauseCommand:completionHandler:':
+                name: didIssuePauseCommand
+            '-playbackCoordinator:didIssueSeekCommand:completionHandler:':
+                name: didIssueSeekCommand
+            '-playbackCoordinator:didIssueBufferingCommand:completionHandler:':
+                name: didIssueBufferingCommand
+    AVPlayerPlaybackCoordinatorDelegate: #since 15.0
+        methods:
+            '-playbackCoordinator:identifierForPlayerItem:':
+                name: identifierForPlayerItem
+            '-playbackCoordinator:interstitialTimeRangesForPlayerItem:':
+                name: interstitialTimeRangesForPlayerItem
 functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation
         name: 'create#{g[0]}'
+    AVSampleBufferAttachContentKey:
+        class: AVContentKey
+        name: attachToSampleBuffer
+        throws: NSErrorException
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

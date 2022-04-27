@@ -38,7 +38,7 @@ classes:
     SFTranscription: {} #since 10.0
     SFTranscriptionSegment: {} #since 10.0
     SFVoiceAnalytics: {} #since 13.0
-
+    SFSpeechRecognitionMetadata: {} #since 14.0
 protocols:
     SFSpeechRecognitionTaskDelegate: #since 10.0
         methods:

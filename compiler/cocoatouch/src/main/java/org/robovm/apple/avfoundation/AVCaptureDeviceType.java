@@ -96,6 +96,11 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTrueDepthCamera", optional=true)
     public static native String BuiltInTrueDepthCamera();
     /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInLiDARDepthCamera", optional=true)
+    public static native String BuiltInLiDARDepthCamera();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use AVCaptureDeviceTypeBuiltInDualCamera instead.
      */

@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     protected MPSNNOptimizer(Handle h, long handle) { super(h, handle); }
     protected MPSNNOptimizer(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MPSNNOptimizer(NSCoder decoder) { super(decoder); }
+    public MPSNNOptimizer(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -76,6 +76,8 @@ import org.robovm.apple.metal.*;
     public native float getRegularizationScale();
     @Property(selector = "regularizationType")
     public native MPSNNRegularizationType getRegularizationType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

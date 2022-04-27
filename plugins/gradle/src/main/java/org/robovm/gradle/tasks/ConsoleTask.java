@@ -19,6 +19,7 @@ import org.gradle.api.GradleException;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
+import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
@@ -33,7 +34,7 @@ public class ConsoleTask extends AbstractRoboVMTask {
         try {
             Arch arch = Arch.getDefaultArch();
             if (extension.getArch() != null) {
-                arch = Arch.valueOf(extension.getArch());
+                arch = Arch.parse(extension.getArch());
             }
 
             AppCompiler compiler = build(OS.getDefaultOS(), arch, ConsoleTarget.TYPE);

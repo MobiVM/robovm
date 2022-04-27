@@ -194,6 +194,10 @@ import org.robovm.apple.dispatch.*;
     public native void scheduleInRunLoop(NSRunLoop aRunLoop, String mode);
     @Method(selector = "removeFromRunLoop:forMode:")
     public native void removeFromRunLoop(NSRunLoop aRunLoop, String mode);
+    /**
+     * @deprecated Use nw_connection_t in Network framework instead
+     */
+    @Deprecated
     @Method(selector = "getStreamsToHostWithName:port:inputStream:outputStream:")
     protected static native void getStreamsToHost(String hostname, @MachineSizedSInt long port, NSInputStream.NSInputStreamPtr inputStream, NSOutputStream.NSOutputStreamPtr outputStream);
     @Method(selector = "getBoundStreamsWithBufferSize:inputStream:outputStream:")

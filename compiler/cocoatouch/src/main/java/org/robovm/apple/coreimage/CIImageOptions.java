@@ -148,6 +148,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIImageColorSpace", optional=true)
         public static native CFString ColorSpace();
         /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCIImageToneMapHDRtoSDR", optional=true)
+        public static native CFString ToneMapHDRtoSDR();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="kCIImageNearestSampling", optional=true)
@@ -189,6 +194,16 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationTeethMatte", optional=true)
         public static native CFString AuxiliarySemanticSegmentationTeethMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationGlassesMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationGlassesMatte();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationSkyMatte", optional=true)
+        public static native CFString AuxiliarySemanticSegmentationSkyMatte();
         /**
          * @since Available in iOS 9.0 and later.
          */

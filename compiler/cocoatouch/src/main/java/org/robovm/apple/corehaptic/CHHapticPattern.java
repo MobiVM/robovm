@@ -65,7 +65,7 @@ import org.robovm.apple.avfoundation.*;
        initObject(handle);
     }
     @Method(selector = "initWithDictionary:error:")
-    public CHHapticPattern(NSDictionary<NSString, ?> patternDict) throws NSErrorException {
+    public CHHapticPattern(CHHapticPatternDict patternDict) throws NSErrorException {
        super((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long handle = init(patternDict, ptr);
@@ -84,8 +84,8 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithEvents:parameterCurves:error:")
     private native @Pointer long init(NSArray<CHHapticEvent> events, NSArray<CHHapticParameterCurve> parameterCurves, NSError.NSErrorPtr outError);
     @Method(selector = "initWithDictionary:error:")
-    private native @Pointer long init(NSDictionary<NSString, ?> patternDict, NSError.NSErrorPtr outError);
+    private native @Pointer long init(CHHapticPatternDict patternDict, NSError.NSErrorPtr outError);
     @Method(selector = "exportDictionaryAndReturnError:")
-    public native NSDictionary<NSString, ?> exportDictionaryAndReturnError(NSError.NSErrorPtr outError);
+    public native CHHapticPatternDict exportDictionaryAndReturnError(NSError.NSErrorPtr outError);
     /*</methods>*/
 }

@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INNotebookItemTypeResolutionResult disambiguation(NSArray<NSNumber> notebookItemTypesToDisambiguate);
     @Method(selector = "confirmationRequiredWithNotebookItemTypeToConfirm:")
     public static native INNotebookItemTypeResolutionResult confirmationRequired(INNotebookItemType notebookItemTypeToConfirm);
+    @Method(selector = "needsValue")
+    public static native INNotebookItemTypeResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INNotebookItemTypeResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INNotebookItemTypeResolutionResult unsupported();
     /*</methods>*/
 }

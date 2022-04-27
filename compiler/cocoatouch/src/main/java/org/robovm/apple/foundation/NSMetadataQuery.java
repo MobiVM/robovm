@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeDidStartGathering(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
+        public static NSObjectProtocol observeDidStartGathering(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidStartGatheringNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +61,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeGatheringProgress(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
+        public static NSObjectProtocol observeGatheringProgress(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(GatheringProgressNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeDidFinishGathering(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
+        public static NSObjectProtocol observeDidFinishGathering(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidFinishGatheringNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -83,7 +83,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeDidUpdate(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
+        public static NSObjectProtocol observeDidUpdate(NSMetadataQuery object, final VoidBlock2<NSMetadataQuery, NSMetadataQueryUpdatedItems> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidUpdateNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

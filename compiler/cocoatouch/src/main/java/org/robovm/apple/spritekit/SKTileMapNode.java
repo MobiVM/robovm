@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,7 +64,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTileSet:columns:rows:tileSize:tileGroupLayout:")
     public SKTileMapNode(SKTileSet tileSet, @MachineSizedUInt long columns, @MachineSizedUInt long rows, @ByVal CGSize tileSize, NSArray<SKTileGroup> tileGroupLayout) { super((SkipInit) null); initObject(init(tileSet, columns, rows, tileSize, tileGroupLayout)); }
     @Method(selector = "initWithCoder:")
-    public SKTileMapNode(NSCoder decoder) { super(decoder); }
+    public SKTileMapNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "numberOfColumns")
@@ -122,6 +123,8 @@ import org.robovm.apple.metal.*;
     public native boolean isEnableAutomapping();
     @Property(selector = "setEnableAutomapping:")
     public native void setEnableAutomapping(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -66,7 +66,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNGraph(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNGraph(NSCoder decoder) { super(decoder); }
+    public MPSNNGraph(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceImageHandles")
@@ -93,6 +93,8 @@ import org.robovm.apple.metal.*;
     public native void setFormat(MPSImageFeatureChannelFormat v);
     @Property(selector = "resultImageIsNeeded")
     public native boolean isResultImageIsNeeded();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -457,6 +457,10 @@ static void signalHandler_npe_so_chaining(int signum, siginfo_t* info, void* con
     }
 }
 
+static void unlockDumpThreadStackTraceCall() {
+    sem_post(&dumpThreadStackTraceCallSemaphore);
+}
+
 static void signalHandler_dump_thread(int signum, siginfo_t* info, void* context) {
     Env* env = rvmGetEnv();
     if (env) {
@@ -476,5 +480,10 @@ static void signalHandler_dump_thread(int signum, siginfo_t* info, void* context
 
         captureCallStack(env, &fakeFrame, dumpThreadStackTraceCallStack, MAX_CALL_STACK_LENGTH);
     }
-    sem_post(&dumpThreadStackTraceCallSemaphore);
+
+    // check if its required to run suspend loop by hook.
+    // if hooks decide to suspend thread it will post semaphore itself
+    if (!rvmHookAfterThreadStackCaptured(env, &unlockDumpThreadStackTraceCall)) {
+        unlockDumpThreadStackTraceCall();
+    }
 }

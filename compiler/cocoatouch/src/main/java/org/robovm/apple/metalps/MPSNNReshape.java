@@ -54,10 +54,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSNNReshape(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSNNReshape(NSCoder decoder) { super(decoder); }
+    public MPSNNReshape(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -65,5 +66,25 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device);
     @Method(selector = "initWithCoder:device:")
     protected native @Pointer long init(NSCoder decoder, MTLDevice device);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:sourceImage:reshapedWidth:reshapedHeight:reshapedFeatureChannels:")
+    public native MPSImage encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSImage sourceImage, @MachineSizedUInt long reshapedWidth, @MachineSizedUInt long reshapedHeight, @MachineSizedUInt long reshapedFeatureChannels);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:")
+    public native MPSImage encodeToCommandBuffer(MTLCommandBuffer commandBuffer, MPSImage sourceImage, MPSState.MPSStatePtr outState, boolean isTemporary, @MachineSizedUInt long reshapedWidth, @MachineSizedUInt long reshapedHeight, @MachineSizedUInt long reshapedFeatureChannels);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "encodeBatchToCommandBuffer:sourceImages:reshapedWidth:reshapedHeight:reshapedFeatureChannels:")
+    public native NSArray<MPSImage> encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, @MachineSizedUInt long reshapedWidth, @MachineSizedUInt long reshapedHeight, @MachineSizedUInt long reshapedFeatureChannels);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:reshapedWidth:reshapedHeight:reshapedFeatureChannels:")
+    public native NSArray<MPSImage> encodeBatchToCommandBuffer(MTLCommandBuffer commandBuffer, NSArray<MPSImage> sourceImages, NSArray.NSArrayPtr<? extends MPSState> outStates, boolean isTemporary, @MachineSizedUInt long reshapedWidth, @MachineSizedUInt long reshapedHeight, @MachineSizedUInt long reshapedFeatureChannels);
     /*</methods>*/
 }

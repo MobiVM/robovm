@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNUpsampling(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNUpsampling(NSCoder decoder) { super(decoder); }
+    public MPSCNNUpsampling(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "scaleFactorX")
@@ -64,6 +64,8 @@ import org.robovm.apple.metal.*;
     public native double getScaleFactorY();
     @Property(selector = "alignCorners")
     public native boolean isAlignCorners();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

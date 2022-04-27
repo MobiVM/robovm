@@ -142,6 +142,21 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationTeethMatte", optional=true)
         public static native CFString SemanticSegmentationTeethMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationGlassesMatte", optional=true)
+        public static native CFString SemanticSegmentationGlassesMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeSemanticSegmentationSkyMatte", optional=true)
+        public static native CFString SemanticSegmentationSkyMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeHDRGainMap", optional=true)
+        public static native CFString HDRGainMap();
     }
     /*</keys>*/
 }

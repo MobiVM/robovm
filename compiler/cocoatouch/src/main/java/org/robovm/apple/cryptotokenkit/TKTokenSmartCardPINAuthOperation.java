@@ -70,6 +70,8 @@ import org.robovm.apple.security.*;
     public native String getPIN();
     @Property(selector = "setPIN:")
     public native void setPIN(String v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

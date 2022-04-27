@@ -8,13 +8,12 @@ headers:
     - /System/Library/Frameworks/CoreText.framework/Headers/CTDefines.h
 typedefs: {}
 private_typedefs:
-    '__CFString **': NSString.NSStringPtr
     '__CFString *': String
     '__CFAttributedString *': NSAttributedString
-    '__CFData *': NSData
-    '__CFURL *': NSURL
-    '__CFDictionary *': NSDictionary
-    '__CFCharacterSet *': NSCharacterSet
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFCharacterSet': NSCharacterSet
 
 enums:
     CTFontOptions: { bits: true}

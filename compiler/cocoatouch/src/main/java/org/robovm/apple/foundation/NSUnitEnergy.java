@@ -71,9 +71,12 @@ import org.robovm.apple.dispatch.*;
     public static native NSUnitEnergy getCalories();
     @Property(selector = "kilowattHours")
     public static native NSUnitEnergy getKilowattHours();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitEnergy getBaseUnit();
     /*</methods>*/
 }

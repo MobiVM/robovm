@@ -1,24 +1,16 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
-        classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
-    }
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.1.0"
+    id 'java'
+    id 'groovy'
+    id 'maven-publish'
+    id 'signing'
+    id 'eclipse'
 }
 
-apply plugin: 'java'
-apply plugin: 'groovy'
-apply plugin: 'maven'
-apply plugin: 'nexus'
-apply plugin: 'eclipse'
-apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.11-SNAPSHOT'
+version = '2.3.17-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -28,7 +20,9 @@ compileJava {
 }
 
 ext {
-    roboVMVersion = '2.3.11-SNAPSHOT'
+    roboVMVersion = '2.3.17-SNAPSHOT'
+    nexusUsername = System.getenv('MAVEN_USERNAME')
+    nexusPassword = System.getenv('MAVEN_PASSWORD')
 }
 
 repositories {
@@ -40,70 +34,89 @@ repositories {
 dependencies {
     compileOnly gradleApi()
     compileOnly localGroovy()
-    compile "org.apache.commons:commons-compress:1.5"
-    compile "com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"
-    compile 'org.sonatype.aether:aether:1.13.1'
-    compile 'org.sonatype.aether:aether-connector-wagon:1.13.1'
-    compile 'org.apache.maven:maven-aether-provider:3.0.4'
-    compile 'org.apache.maven.wagon:wagon-provider-api:2.4'
-    compile 'org.apache.maven.wagon:wagon-http:2.4'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    implementation "org.apache.commons:commons-compress:1.5"
+    implementation "com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"
+    implementation 'org.sonatype.aether:aether:1.13.1'
+    implementation 'org.sonatype.aether:aether-connector-wagon:1.13.1'
+    implementation 'org.apache.maven:maven-aether-provider:3.0.4'
+    implementation 'org.apache.maven.wagon:wagon-provider-api:2.4'
+    implementation 'org.apache.maven.wagon:wagon-http:2.4'
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
 }
 
-modifyPom {
-    project {
-        name 'RoboVM Gradle Plugin'
-        packaging 'jar'
-        description 'The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle.'
-        url 'https://github.com/mobidevelop/robovm/'
-        inceptionYear '2013'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.mobidevelop.robovm'
+            artifactId = 'robovm-gradle-plugin'
+            from components.java
 
-        scm {
-            url 'https://github.com/mobidevelop/robovm.git'
-            connection 'scm:git:git://github.com/mobidevelop/robovm.git'
-            developerConnection 'scm:git:git@github.com:mobidevelop/robovm.git'
-        }
+            pom {
+                name = 'RoboVM Gradle Plugin'
+                packaging = 'jar'
+                description = 'The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle.'
+                url = 'https://github.com/mobidevelop/robovm/'
+                inceptionYear = '2013'
 
-        licenses {
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution 'repo'
+                scm {
+                    url = 'https://github.com/mobidevelop/robovm.git'
+                    connection = 'scm:git:git://github.com/mobidevelop/robovm.git'
+                    developerConnection = 'scm:git:git@github.com:mobidevelop/robovm.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'jtakakura'
+                        name = 'Junji Takakura'
+                    }
+                    developer {
+                        id = 'ntherning'
+                        name = 'Niklas Therning'
+                    }
+                }
             }
         }
-
-        developers {
-            developer {
-                id 'jtakakura'
-                name 'Junji Takakura'
-            }
-            developer {
-                id 'ntherning'
-                name 'Niklas Therning'
-            }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")            }
         }
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.10.1'
-}
-
-// apply from: 'local.gradle'
-
-jar {
-    enabled = false
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 shadowJar {
     classifier = ''
     dependencies {
-        exclude(dependency("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}"));
+        exclude(dependency("com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"));
     }
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
     relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
 }
 
+signing {
+    required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
+    sign publishing.publications.mavenJava
+}
+
 assemble.dependsOn('shadowJar')
-install.dependsOn('shadowJar')
+publishToMavenLocal.dependsOn('shadowJar')
+publish.dependsOn('shadowJar')

@@ -49,7 +49,96 @@ import org.robovm.apple.foundation.*;
     protected AEAssessmentConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "autocorrectMode")
+    public native AEAutocorrectMode getAutocorrectMode();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAutocorrectMode:")
+    public native void setAutocorrectMode(AEAutocorrectMode v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsSpellCheck")
+    public native boolean allowsSpellCheck();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsSpellCheck:")
+    public native void setAllowsSpellCheck(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsPredictiveKeyboard")
+    public native boolean allowsPredictiveKeyboard();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsPredictiveKeyboard:")
+    public native void setAllowsPredictiveKeyboard(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsKeyboardShortcuts")
+    public native boolean allowsKeyboardShortcuts();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsKeyboardShortcuts:")
+    public native void setAllowsKeyboardShortcuts(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsActivityContinuation")
+    public native boolean allowsActivityContinuation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsActivityContinuation:")
+    public native void setAllowsActivityContinuation(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsDictation")
+    public native boolean allowsDictation();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsDictation:")
+    public native void setAllowsDictation(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsAccessibilitySpeech")
+    public native boolean allowsAccessibilitySpeech();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsAccessibilitySpeech:")
+    public native void setAllowsAccessibilitySpeech(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsPasswordAutoFill")
+    public native boolean allowsPasswordAutoFill();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsPasswordAutoFill:")
+    public native void setAllowsPasswordAutoFill(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "allowsContinuousPathKeyboard")
+    public native boolean allowsContinuousPathKeyboard();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setAllowsContinuousPathKeyboard:")
+    public native void setAllowsContinuousPathKeyboard(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

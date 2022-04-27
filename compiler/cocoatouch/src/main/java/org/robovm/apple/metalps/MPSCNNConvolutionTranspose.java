@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithCoder:device:")
     public MPSCNNConvolutionTranspose(NSCoder decoder, MTLDevice device) { super((SkipInit) null); initObject(init(decoder, device)); }
     @Method(selector = "initWithCoder:")
-    public MPSCNNConvolutionTranspose(NSCoder decoder) { super(decoder); }
+    public MPSCNNConvolutionTranspose(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "inputFeatureChannels")
@@ -86,6 +86,8 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "dataSource")
     public native MPSCNNConvolutionDataSource getDataSource();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

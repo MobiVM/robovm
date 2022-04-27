@@ -37,6 +37,7 @@ import org.robovm.apple.glkit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.gameplaykit.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,7 +56,7 @@ import org.robovm.apple.metal.*;
     protected SKLightNode(Handle h, long handle) { super(h, handle); }
     protected SKLightNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SKLightNode(NSCoder decoder) { super(decoder); }
+    public SKLightNode(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isEnabled")
@@ -82,6 +83,8 @@ import org.robovm.apple.metal.*;
     public native int getCategoryBitMask();
     @Property(selector = "setCategoryBitMask:")
     public native void setCategoryBitMask(int v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

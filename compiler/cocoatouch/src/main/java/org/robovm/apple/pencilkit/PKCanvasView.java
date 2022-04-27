@@ -31,6 +31,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,13 +75,46 @@ import org.robovm.apple.coregraphics.*;
     public native void setRulerActive(boolean v);
     @Property(selector = "drawingGestureRecognizer")
     public native UIGestureRecognizer getDrawingGestureRecognizer();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use 'drawingPolicy' property.
+     */
+    @Deprecated
     @Property(selector = "allowsFingerDrawing")
     public native boolean allowsFingerDrawing();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use 'drawingPolicy' property.
+     */
+    @Deprecated
     @Property(selector = "setAllowsFingerDrawing:")
     public native void setAllowsFingerDrawing(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "drawingPolicy")
+    public native PKCanvasViewDrawingPolicy getDrawingPolicy();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setDrawingPolicy:")
+    public native void setDrawingPolicy(PKCanvasViewDrawingPolicy v);
+    @WeaklyLinked
+    @Property(selector = "layerClass")
+    public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute attribute);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
+    public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
     @Method(selector = "toolPickerSelectedToolDidChange:")
     public native void toolPickerSelectedToolDidChange(PKToolPicker toolPicker);
     @Method(selector = "toolPickerIsRulerActiveDidChange:")

@@ -32,7 +32,9 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 12.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
@@ -42,7 +44,8 @@ public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
     Disabled(2L),
     BluetoothOff(3L),
     Restricted(4L),
-    Paused(5L);
+    Paused(5L),
+    Unauthorized(6L);
     /*</values>*/
 
     /*<bind>*/

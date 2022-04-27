@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INPersonResolutionResult personResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INSendMessageRecipientResolutionResult unsupportedForReason(INSendMessageRecipientUnsupportedReason reason);
+    @Method(selector = "successWithResolvedPerson:")
+    public static native INSendMessageRecipientResolutionResult success(INPerson resolvedPerson);
+    @Method(selector = "disambiguationWithPeopleToDisambiguate:")
+    public static native INSendMessageRecipientResolutionResult disambiguation(NSArray<INPerson> peopleToDisambiguate);
+    @Method(selector = "confirmationRequiredWithPersonToConfirm:")
+    public static native INSendMessageRecipientResolutionResult confirmationRequired(INPerson personToConfirm);
+    @Method(selector = "needsValue")
+    public static native INSendMessageRecipientResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INSendMessageRecipientResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INSendMessageRecipientResolutionResult unsupported();
     /*</methods>*/
 }

@@ -56,7 +56,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixCopyToImage(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixCopyToImage(NSCoder decoder) { super(decoder); }
+    public MPSMatrixCopyToImage(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceMatrixOrigin")
@@ -69,6 +69,8 @@ import org.robovm.apple.metal.*;
     public native void setSourceMatrixBatchIndex(@MachineSizedUInt long v);
     @Property(selector = "dataLayout")
     public native MPSDataLayout getDataLayout();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

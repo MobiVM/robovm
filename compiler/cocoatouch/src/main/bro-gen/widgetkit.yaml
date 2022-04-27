@@ -1,0 +1,43 @@
+package: org.robovm.apple.widgetkit
+include: [foundation]
+library: WidgetKit
+framework: WidgetKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/WidgetKit.framework/Headers/WidgetKit.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    # dkimitsa: framework was empty on moment of binding, once functionality added probably structure will change
+    WGWidgetUserInfoKey(.*):
+        class: WGWidget
+        static_class: UserInfoKeys
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?WG.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

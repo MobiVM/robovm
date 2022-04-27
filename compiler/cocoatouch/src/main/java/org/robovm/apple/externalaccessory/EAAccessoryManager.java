@@ -44,7 +44,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeAccessoryDidConnect(EAAccessoryManager object, final VoidBlock3<EAAccessoryManager, EAAccessory, EAAccessory> block) {
+        public static NSObjectProtocol observeAccessoryDidConnect(EAAccessoryManager object, final VoidBlock3<EAAccessoryManager, EAAccessory, EAAccessory> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AccessoryDidConnectNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObject observeAccessoryDidDisconnect(EAAccessoryManager object, final VoidBlock2<EAAccessoryManager, EAAccessory> block) {
+        public static NSObjectProtocol observeAccessoryDidDisconnect(EAAccessoryManager object, final VoidBlock2<EAAccessoryManager, EAAccessory> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AccessoryDidDisconnectNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

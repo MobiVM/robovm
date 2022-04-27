@@ -64,6 +64,16 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithAttributedName:target:selector:")
     public UIAccessibilityCustomAction(NSAttributedString attributedName, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(attributedName, target, selector)); }
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithName:image:target:selector:")
+    public UIAccessibilityCustomAction(String name, UIImage image, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(name, image, target, selector)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:image:target:selector:")
+    public UIAccessibilityCustomAction(NSAttributedString attributedName, UIImage image, NSObject target, Selector selector) { super((SkipInit) null); initObject(init(attributedName, image, target, selector)); }
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithName:actionHandler:")
@@ -73,12 +83,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "initWithAttributedName:actionHandler:")
     public UIAccessibilityCustomAction(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler) { super((SkipInit) null); initObject(init(attributedName, actionHandler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithName:image:actionHandler:")
+    public UIAccessibilityCustomAction(String name, UIImage image, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler) { super((SkipInit) null); initObject(init(name, image, actionHandler)); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:image:actionHandler:")
+    public UIAccessibilityCustomAction(NSAttributedString attributedName, UIImage image, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler) { super((SkipInit) null); initObject(init(attributedName, image, actionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
     public native void setName(String v);
+    @Property(selector = "image")
+    public native UIImage getImage();
+    @Property(selector = "setImage:")
+    public native void setImage(UIImage v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -118,6 +142,16 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithAttributedName:target:selector:")
     protected native @Pointer long init(NSAttributedString attributedName, NSObject target, Selector selector);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithName:image:target:selector:")
+    protected native @Pointer long init(String name, UIImage image, NSObject target, Selector selector);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:image:target:selector:")
+    protected native @Pointer long init(NSAttributedString attributedName, UIImage image, NSObject target, Selector selector);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithName:actionHandler:")
@@ -127,5 +161,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "initWithAttributedName:actionHandler:")
     protected native @Pointer long init(NSAttributedString attributedName, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithName:image:actionHandler:")
+    protected native @Pointer long init(String name, UIImage image, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithAttributedName:image:actionHandler:")
+    protected native @Pointer long init(NSAttributedString attributedName, UIImage image, @Block Block1<UIAccessibilityCustomAction, Boolean> actionHandler);
     /*</methods>*/
 }

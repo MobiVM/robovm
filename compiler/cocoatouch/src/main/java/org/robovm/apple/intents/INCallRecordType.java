@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +52,19 @@ public enum /*<name>*/INCallRecordType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Voicemail(5L);
+    Voicemail(5L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    Ringing(6L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    InProgress(7L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    OnHold(8L);
     /*</values>*/
 
     /*<bind>*/

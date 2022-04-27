@@ -76,10 +76,16 @@ import org.robovm.apple.avfoundation.*;
     public native @MachineSizedSInt long getHeightSegmentCount();
     @Property(selector = "setHeightSegmentCount:")
     public native void setHeightSegmentCount(@MachineSizedSInt long v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "tubeWithInnerRadius:outerRadius:height:")
     public static native SCNTube create(@MachineSizedFloat double innerRadius, @MachineSizedFloat double outerRadius, @MachineSizedFloat double height);
+    @Method(selector = "geometry")
+    public static native SCNTube createGeometry();
+    @Method(selector = "geometryWithSources:elements:")
+    public static native SCNTube createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/
 }

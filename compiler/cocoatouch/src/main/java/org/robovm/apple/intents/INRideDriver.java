@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,10 +58,33 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:")
     public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier); }
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:relationship:")
+    public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, String relationship) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, relationship); }
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:")
     public INRideDriver(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe) { super(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:suggestionType:")
+    public static  INRideDriver createForMe(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe, INPersonSuggestionType suggestionType) {
+       INRideDriver res = new INRideDriver((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe, suggestionType));
+       return res;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isContactSuggestion:suggestionType:")
+    public static  INRideDriver createForContactSuggestion(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isContactSuggestion, INPersonSuggestionType suggestionType) {
+       INRideDriver res = new INRideDriver((SkipInit) null);
+       res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isContactSuggestion, suggestionType));
+       return res;
+    }
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use the designated initializer instead
@@ -92,6 +116,8 @@ import org.robovm.apple.corelocation.*;
     public native String getRating();
     @Property(selector = "phoneNumber")
     public native String getPhoneNumber();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

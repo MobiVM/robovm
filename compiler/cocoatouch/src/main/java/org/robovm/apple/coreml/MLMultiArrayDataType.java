@@ -44,7 +44,15 @@ import org.robovm.apple.metal.*;
 public enum /*<name>*/MLMultiArrayDataType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Double(65600L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Float64(65600L),
     Float32(65568L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    Float(65568L),
     Int32(131104L);
     /*</values>*/
 

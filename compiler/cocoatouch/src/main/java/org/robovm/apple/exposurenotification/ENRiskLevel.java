@@ -37,7 +37,13 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
 public enum /*<name>*/ENRiskLevel/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     Min(0L),
+    /**
+     * @since Available in iOS 12.5 and later.
+     */
     Max(7L);
     /*</values>*/
 

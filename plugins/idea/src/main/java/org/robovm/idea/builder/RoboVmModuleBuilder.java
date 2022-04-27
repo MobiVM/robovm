@@ -33,7 +33,6 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ContentEntry;
 import com.intellij.openapi.roots.LanguageLevelModuleExtension;
-import com.intellij.openapi.roots.LanguageLevelModuleExtensionImpl;
 import com.intellij.openapi.roots.LanguageLevelProjectExtension;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ProjectRootManager;
@@ -189,17 +188,17 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 final File buildFile = new File(contentRoot + "/" + robovmDir + "/build.gradle");
                 if (buildFile.exists()) {
                     String template = FileUtils.readFileToString(buildFile, StandardCharsets.UTF_8.name());
-                    template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
+                    template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getCompilerVersion());
                     FileUtils.write(buildFile, template, Charset.defaultCharset());
                 } else {
                     String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_build.gradle"),
                             StandardCharsets.UTF_8);
-                    template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
+                    template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getCompilerVersion());
                     FileUtils.write(buildFile, template, Charset.defaultCharset());
                 }
             } else if (buildSystem == BuildSystem.Maven) {
                 String template = IOUtils.toString(RoboVmModuleBuilder.class.getResource("/template_pom.xml"), StandardCharsets.UTF_8);
-                template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getVersion());
+                template = template.replaceAll(ROBOVM_VERSION_PLACEHOLDER, Version.getCompilerVersion());
                 template = template.replaceAll(PACKAGE_NAME_PLACEHOLDER, packageName);
                 template = template.replaceAll(APP_NAME_PLACEHOLDER, appName);
                 File buildFile = new File(contentRoot + "/pom.xml");
@@ -240,13 +239,10 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 // force java8
                 LanguageLevelProjectExtension projectLangModel = LanguageLevelProjectExtension.getInstance(project);
                 projectLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
-                LanguageLevelModuleExtensionImpl moduleLangModel = LanguageLevelModuleExtensionImpl.getInstance(module);
-                moduleLangModel.setLanguageLevel(LanguageLevel.JDK_1_8);
+                rootModel.getModuleExtension(LanguageLevelModuleExtension.class).setLanguageLevel(LanguageLevel.JDK_1_8);
 
                 FileDocumentManager.getInstance().saveAllDocuments();
                 ImportSpecBuilder builder = new ImportSpecBuilder(rootModel.getProject(), GradleConstants.SYSTEM_ID);
-                builder.forceWhenUptodate(true);
-
                 ExternalSystemUtil.refreshProjects(builder);
             }
         } else {

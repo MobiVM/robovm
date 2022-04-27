@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.scenekit.*;
 import org.robovm.apple.corevideo.*;
@@ -38,6 +39,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -119,5 +121,10 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "updateWithCollaborationData:")
     public native void update(ARCollaborationData collaborationData);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "getGeoLocationForPoint:completionHandler:")
+    public native void getGeoLocation(@ByVal VectorFloat3 position, @Block("(@ByVal,,)") VoidBlock3<CLLocationCoordinate2D, Double, NSError> completionHandler);
     /*</methods>*/
 }

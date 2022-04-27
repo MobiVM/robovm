@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +68,26 @@ import org.robovm.apple.contacts.*;
     public native PKMerchantCapability getMerchantCapabilities();
     @Property(selector = "setMerchantCapabilities:")
     public native void setMerchantCapabilities(PKMerchantCapability v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "supportsCouponCode")
+    public native boolean supportsCouponCode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setSupportsCouponCode:")
+    public native void setSupportsCouponCode(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "couponCode")
+    public native String getCouponCode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setCouponCode:")
+    public native void setCouponCode(String v);
     @Property(selector = "paymentSummaryItems")
     public native NSArray<PKPaymentSummaryItem> getPaymentSummaryItems();
     @Property(selector = "setPaymentSummaryItems:")
@@ -152,6 +174,16 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "setShippingType:")
     public native void setShippingType(PKShippingType v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "shippingContactEditingMode")
+    public native PKShippingContactEditingMode getShippingContactEditingMode();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setShippingContactEditingMode:")
+    public native void setShippingContactEditingMode(PKShippingContactEditingMode v);
     @Property(selector = "applicationData")
     public native NSData getApplicationData();
     @Property(selector = "setApplicationData:")
@@ -218,5 +250,15 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "paymentShippingAddressUnserviceableErrorWithLocalizedDescription:")
     public static native NSError createPaymentShippingAddressUnserviceableError(String localizedDescription);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "paymentCouponCodeInvalidErrorWithLocalizedDescription:")
+    public static native NSError createPaymentCouponCodeInvalidError(String localizedDescription);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "paymentCouponCodeExpiredErrorWithLocalizedDescription:")
+    public static native NSError createPaymentCouponCodeExpiredError(String localizedDescription);
     /*</methods>*/
 }

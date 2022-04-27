@@ -62,6 +62,10 @@ public final class /*<name>*/UIControlEvents/*</name>*/ extends Bits</*<name>*/U
      * @since Available in iOS 9.0 and later.
      */
     public static final UIControlEvents PrimaryActionTriggered = new UIControlEvents(8192L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UIControlEvents MenuActionTriggered = new UIControlEvents(16384L);
     public static final UIControlEvents EditingDidBegin = new UIControlEvents(65536L);
     public static final UIControlEvents EditingChanged = new UIControlEvents(131072L);
     public static final UIControlEvents EditingDidEnd = new UIControlEvents(262144L);

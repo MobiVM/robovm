@@ -18,15 +18,19 @@ package org.robovm.idea.actions;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.progress.ProgressManager;
+import com.intellij.openapi.progress.Task;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Key;
+import com.intellij.task.ProjectTaskManager;
+import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.idea.RoboVmPlugin;
+import org.robovm.idea.compilation.RoboVmCompileTask;
 
 import java.io.File;
 import java.util.List;
@@ -46,11 +50,25 @@ public class CreateIpaAction extends AnAction {
         if (dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {
             // create IPA
             IpaConfig ipaConfig = dialog.getIpaConfig();
-            CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(ipaConfig.module, true);
-            scope.putUserData(IPA_CONFIG_KEY, ipaConfig);
-            CompilerManager.getInstance(project).compile(scope, (aborted, errors, warnings, compileContext) ->
-                    RoboVmPlugin.logInfo(project, "IPA creation complete, %d errors, %d warnings", errors, warnings)
-            );
+            ProjectTaskManager.getInstance(project)
+                    .build(ipaConfig.module)
+                    .onSuccess(r -> {
+                        if (r.hasErrors()) {
+                            RoboVmPlugin.logInfo(project, "IPA creation failed due errors");
+                        } else if (r.isAborted()) {
+                            RoboVmPlugin.logInfo(project, "IPA creation aborted");
+                        } else
+                            ProgressManager.getInstance().run(new Task.Backgroundable(project, "Building IPA ", true) {
+                                @Override
+                                public void run(@NotNull ProgressIndicator progressIndicator) {
+                                    try {
+                                        RoboVmCompileTask.compileForIpa(project, progressIndicator, ipaConfig);
+                                    } catch (Exception e) {
+                                        RoboVmPlugin.logErrorThrowable(project, "Couldn't create IPA", e, false);
+                                    }
+                                }
+                            });
+                    });
         }
     }
 
@@ -58,10 +76,10 @@ public class CreateIpaAction extends AnAction {
         private final Module module;
         private final String signingIdentity;
         private final String provisioningProfile;
-        private final List<Arch> archs;
+        private final Arch[] archs;
         private final File destinationDir;
 
-        public IpaConfig(Module module, File destinationDir, String signingIdentity, String provisioningProile, List<Arch> archs) {
+        public IpaConfig(Module module, File destinationDir, String signingIdentity, String provisioningProile, Arch[] archs) {
             this.module = module;
             this.destinationDir = destinationDir;
             this.signingIdentity = signingIdentity;
@@ -81,7 +99,7 @@ public class CreateIpaAction extends AnAction {
             return provisioningProfile;
         }
 
-        public List<Arch> getArchs() {
+        public Arch[] getArchs() {
             return archs;
         }
 

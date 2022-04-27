@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidConnect(final VoidBlock1<UIScreen> block) {
+        public static NSObjectProtocol observeDidConnect(final VoidBlock1<UIScreen> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidConnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeDidDisconnect(final VoidBlock1<UIScreen> block) {
+        public static NSObjectProtocol observeDidDisconnect(final VoidBlock1<UIScreen> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidDisconnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -75,7 +75,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObject observeModeDidChange(final VoidBlock1<UIScreen> block) {
+        public static NSObjectProtocol observeModeDidChange(final VoidBlock1<UIScreen> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ModeDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -86,7 +86,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObject observeBrightnessDidChange(final VoidBlock1<UIScreen> block) {
+        public static NSObjectProtocol observeBrightnessDidChange(final VoidBlock1<UIScreen> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(BrightnessDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -164,17 +164,23 @@ import org.robovm.apple.linkpresentation.*;
     public native double getCalibratedLatency();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem].focusedItem instead
      */
+    @Deprecated
     @Property(selector = "focusedItem")
     public native UIFocusItem getFocusedItem();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem].focusedItem instead
      */
+    @Deprecated
     @Property(selector = "focusedView")
     public native UIView getFocusedView();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem] != nil instead
      */
+    @Deprecated
     @Property(selector = "supportsFocus")
     public native boolean supportsFocus();
     /**

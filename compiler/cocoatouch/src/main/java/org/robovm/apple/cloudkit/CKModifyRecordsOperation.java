@@ -76,10 +76,38 @@ import org.robovm.apple.fileprovider.*;
     public native @Block VoidBlock2<CKRecord, Double> getPerRecordProgressBlock();
     @Property(selector = "setPerRecordProgressBlock:")
     public native void setPerRecordProgressBlock(@Block VoidBlock2<CKRecord, Double> v);
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use perRecordSaveBlock
+     */
+    @Deprecated
     @Property(selector = "perRecordCompletionBlock")
     public native @Block VoidBlock2<CKRecord, NSError> getPerRecordCompletionBlock();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Use perRecordSaveBlock
+     */
+    @Deprecated
     @Property(selector = "setPerRecordCompletionBlock:")
     public native void setPerRecordCompletionBlock(@Block VoidBlock2<CKRecord, NSError> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perRecordSaveBlock")
+    public native @Block VoidBlock3<CKRecordID, CKRecord, NSError> getPerRecordSaveBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerRecordSaveBlock:")
+    public native void setPerRecordSaveBlock(@Block VoidBlock3<CKRecordID, CKRecord, NSError> v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "perRecordDeleteBlock")
+    public native @Block VoidBlock2<CKRecordID, NSError> getPerRecordDeleteBlock();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setPerRecordDeleteBlock:")
+    public native void setPerRecordDeleteBlock(@Block VoidBlock2<CKRecordID, NSError> v);
     @Property(selector = "modifyRecordsCompletionBlock")
     public native @Block VoidBlock3<NSArray<CKRecord>, NSArray<CKRecordID>, NSError> getModifyRecordsCompletionBlock();
     @Property(selector = "setModifyRecordsCompletionBlock:")

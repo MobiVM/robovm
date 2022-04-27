@@ -30,14 +30,16 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 15.0. INDeleteTasksTaskListResolutionResult is deprecated. There is no replacement.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INDeleteTasksTaskListResolutionResult/*</name>*/ 
     extends /*<extends>*/INTaskListResolutionResult/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -61,5 +63,17 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(INTaskListResolutionResult taskListResolutionResult);
     @Method(selector = "unsupportedForReason:")
     public static native INDeleteTasksTaskListResolutionResult unsupportedForReason(INDeleteTasksTaskListUnsupportedReason reason);
+    @Method(selector = "successWithResolvedTaskList:")
+    public static native INDeleteTasksTaskListResolutionResult success(INTaskList resolvedTaskList);
+    @Method(selector = "disambiguationWithTaskListsToDisambiguate:")
+    public static native INDeleteTasksTaskListResolutionResult disambiguation(NSArray<INTaskList> taskListsToDisambiguate);
+    @Method(selector = "confirmationRequiredWithTaskListToConfirm:")
+    public static native INDeleteTasksTaskListResolutionResult confirmationRequired(INTaskList taskListToConfirm);
+    @Method(selector = "needsValue")
+    public static native INDeleteTasksTaskListResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INDeleteTasksTaskListResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INDeleteTasksTaskListResolutionResult unsupported();
     /*</methods>*/
 }

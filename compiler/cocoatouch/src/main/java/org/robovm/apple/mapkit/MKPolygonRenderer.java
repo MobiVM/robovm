@@ -32,6 +32,7 @@ import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,6 +58,26 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "polygon")
     public native MKPolygon getPolygon();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "strokeStart")
+    public native @MachineSizedFloat double getStrokeStart();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setStrokeStart:")
+    public native void setStrokeStart(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "strokeEnd")
+    public native @MachineSizedFloat double getStrokeEnd();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setStrokeEnd:")
+    public native void setStrokeEnd(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

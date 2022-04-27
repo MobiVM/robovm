@@ -50,6 +50,11 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "didReceiveMetricPayloads:")
     void didReceiveMetricPayloads(NSArray<MXMetricPayload> payloads);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "didReceiveDiagnosticPayloads:")
+    void didReceiveDiagnosticPayloads(NSArray<MXDiagnosticPayload> payloads);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

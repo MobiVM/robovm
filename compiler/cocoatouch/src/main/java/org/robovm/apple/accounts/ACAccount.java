@@ -31,9 +31,11 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 15.0. Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("Accounts") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Accounts") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ACAccount/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

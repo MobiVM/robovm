@@ -16,21 +16,65 @@
 
 package org.robovm.apple.foundation;
 
+import org.robovm.rt.bro.GlobalValueSupplier;
 import org.robovm.rt.bro.LazyGlobalValue;
 
-public class GlobalValueEnumeration<T> {
-    private final LazyGlobalValue<T> lazyGlobalValue;
+import java.util.Objects;
+
+public class GlobalValueEnumeration<T> extends GlobalValueSupplier<T> {
+    private final GlobalValueSupplier<T> globalValueSupplier;
 
     protected GlobalValueEnumeration (Class<?> clazz, String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(clazz, getterName);
+        globalValueSupplier = new LazyGlobalValue<>(clazz, getterName);
     }
 
+    protected GlobalValueEnumeration (T value) {
+        globalValueSupplier = new Constant<>(value);
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return globalValueSupplier.isAvailable();
+    }
+
+    @Override
     public T value () {
-        return lazyGlobalValue.value();
+        return globalValueSupplier.value();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GlobalValueEnumeration<?> that = (GlobalValueEnumeration<?>) o;
+        if (!globalValueSupplier.isAvailable() || !that.globalValueSupplier.isAvailable())
+            return false;
+        return Objects.equals(globalValueSupplier.value(), that.globalValueSupplier.value());
     }
 
     @Override
     public String toString () {
         return value().toString();
+    }
+
+    /**
+     * Constant supplier
+     */
+    private static class Constant<T> extends GlobalValueSupplier<T> {
+        private final T constValue;
+
+        private Constant(T value) {
+            this.constValue = value;
+        }
+
+        @Override
+        public boolean isAvailable() {
+            return true;
+        }
+
+        @Override
+        public T value() {
+            return constValue;
+        }
     }
 }

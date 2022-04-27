@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,11 @@ import org.robovm.apple.corelocation.*;
     public static native INTemperatureResolutionResult disambiguation(NSArray<?> temperaturesToDisambiguate);
     @Method(selector = "confirmationRequiredWithTemperatureToConfirm:")
     public static native INTemperatureResolutionResult confirmationRequired(NSMeasurement<NSUnitTemperature> temperatureToConfirm);
+    @Method(selector = "needsValue")
+    public static native INTemperatureResolutionResult needsValue();
+    @Method(selector = "notRequired")
+    public static native INTemperatureResolutionResult notRequired();
+    @Method(selector = "unsupported")
+    public static native INTemperatureResolutionResult unsupported();
     /*</methods>*/
 }

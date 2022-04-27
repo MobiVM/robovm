@@ -68,7 +68,7 @@ public class CleanBuildFoldersAction extends AnAction {
         public void run(@NotNull ProgressIndicator progress) {
             busy.set(true);
             progress.setText("Cleaning RoboVM build folders");
-            progress.setFraction(0.5);
+            progress.setIndeterminate(true);
             try {
                 for (Module module : RoboVmPlugin.getRoboVmModules(project, IOSTarget.TYPE)) {
                     File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(module);

@@ -54,7 +54,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithDevice:")
     public MPSMatrixDecompositionCholesky(MTLDevice device) { super(device); }
     @Method(selector = "initWithCoder:")
-    public MPSMatrixDecompositionCholesky(NSCoder decoder) { super(decoder); }
+    public MPSMatrixDecompositionCholesky(NSCoder coder) { super(coder); }
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -62,7 +62,8 @@ import org.robovm.apple.metal.*;
     public MPSMatrixDecompositionCholesky(NSCoder decoder, MTLDevice device) { super(decoder, device); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

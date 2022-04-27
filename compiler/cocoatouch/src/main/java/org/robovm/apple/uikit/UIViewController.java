@@ -55,7 +55,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObject observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
+        public static NSObjectProtocol observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ShowDetailTargetDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -124,6 +124,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setRestoresFocusAfterTransition:")
     public native void setRestoresFocusAfterTransition(boolean v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "focusGroupIdentifier")
+    public native String getFocusGroupIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setFocusGroupIdentifier:")
+    public native void setFocusGroupIdentifier(String v);
     @Property(selector = "isBeingPresented")
     public native boolean isBeingPresented();
     @Property(selector = "isBeingDismissed")
@@ -288,6 +298,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native NSExtensionContext getExtensionContext();
     @Property(selector = "presentationController")
     public native UIPresentationController getPresentationController();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "sheetPresentationController")
+    public native UISheetPresentationController getSheetPresentationController();
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
     /**
@@ -321,6 +336,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "prefersHomeIndicatorAutoHidden")
     public native boolean prefersHomeIndicatorAutoHidden();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "childViewControllerForPointerLock")
+    public native UIViewController getChildViewControllerForPointerLock();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "prefersPointerLocked")
+    public native boolean prefersPointerLocked();
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
@@ -352,13 +377,13 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize.
+     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
      */
     @Deprecated
     @Property(selector = "contentSizeForViewInPopover")
     public native @ByVal CGSize getContentSizeForViewInPopover();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize.
+     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
      */
     @Deprecated
     @Property(selector = "setContentSizeForViewInPopover:")
@@ -562,6 +587,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void presentViewController(UIViewController viewControllerToPresent, boolean animated, @Block Runnable completion);
     @Method(selector = "dismissViewControllerAnimated:completion:")
     public native void dismissViewController(boolean animated, @Block Runnable completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "setContentScrollView:forEdge:")
+    public native void setContentScrollView(UIScrollView scrollView, NSDirectionalRectEdge edge);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "contentScrollViewForEdge:")
+    public native UIScrollView contentScrollViewForEdge(NSDirectionalRectEdge edge);
     @Method(selector = "setNeedsStatusBarAppearanceUpdate")
     public native void setNeedsStatusBarAppearanceUpdate();
     @Method(selector = "targetViewControllerForAction:sender:")
@@ -680,6 +715,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "setNeedsUpdateOfHomeIndicatorAutoHidden")
     public native void setNeedsUpdateOfHomeIndicatorAutoHidden();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfPrefersPointerLocked")
+    public native void setNeedsUpdateOfPrefersPointerLocked();
     @Method(selector = "setToolbarItems:animated:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> toolbarItems, boolean animated);
     @Method(selector = "collapseSecondaryViewController:forSplitViewController:")

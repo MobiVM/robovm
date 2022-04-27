@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +63,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "setSuggestedInvocationPhrase:")
     public static native void setSuggestedInvocationPhrase(NSUserActivity thiz, String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "shortcutAvailability")
+    public static native INShortcutAvailabilityOptions getShortcutAvailability(NSUserActivity thiz);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setShortcutAvailability:")
+    public static native void setShortcutAvailability(NSUserActivity thiz, INShortcutAvailabilityOptions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

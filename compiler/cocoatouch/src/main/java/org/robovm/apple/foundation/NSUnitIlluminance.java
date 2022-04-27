@@ -63,9 +63,12 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "lux")
     public static native NSUnitIlluminance getLux();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "baseUnit")
+    public static native NSUnitIlluminance getBaseUnit();
     /*</methods>*/
 }

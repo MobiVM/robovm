@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.addressbook.*;
 import org.robovm.apple.contacts.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -44,7 +46,15 @@ public enum /*<name>*/PKPaymentErrorCode/*</name>*/ implements NSErrorCode {
     UnknownError(-1L),
     ShippingContactInvalidError(1L),
     BillingContactInvalidError(2L),
-    ShippingAddressUnserviceableError(3L);
+    ShippingAddressUnserviceableError(3L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    CouponCodeInvalidError(4L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    CouponCodeExpiredError(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PKPaymentErrorCode.class); }/*</bind>*/

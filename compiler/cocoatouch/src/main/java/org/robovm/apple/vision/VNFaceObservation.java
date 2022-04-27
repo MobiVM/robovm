@@ -30,6 +30,7 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coreml.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.metal.*;
 import org.robovm.apple.coreimage.*;
@@ -55,8 +56,14 @@ import org.robovm.apple.imageio.*;
     protected VNFaceObservation(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -faceObservationWithRequestRevision:boundingBox:roll:yaw:
      */
+    @Deprecated
     public VNFaceObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw) { super((Handle) null, create(requestRevision, boundingBox, roll, yaw)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public VNFaceObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw, NSNumber pitch) { super((Handle) null, create(requestRevision, boundingBox, roll, yaw, pitch)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "landmarks")
@@ -76,13 +83,27 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "yaw")
     public native NSNumber getYaw();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "pitch")
+    public native NSNumber getPitch();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -faceObservationWithRequestRevision:boundingBox:roll:yaw:
      */
+    @Deprecated
     @Method(selector = "faceObservationWithRequestRevision:boundingBox:roll:yaw:")
     protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw, NSNumber pitch);
     /*</methods>*/
 }
