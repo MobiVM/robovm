@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SELF=$(basename $0)
 BASE=$(cd $(dirname $0); pwd -P)

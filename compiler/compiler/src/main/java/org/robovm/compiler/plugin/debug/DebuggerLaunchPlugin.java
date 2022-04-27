@@ -101,7 +101,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setJdwpClienMode(jdwpClientMode);
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
-        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().name()));
+        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().getCpuArch().name()));
 
         // make list of arguments for target
         if (ConsoleTarget.TYPE.equals(target.getType())) {
@@ -121,7 +121,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
             builder.setAppfile(new File(appDir, config.getExecutableName()));
 
-            if (IOSTarget.isSimulatorArch(target.getArch())) {
+            if (IOSTarget.isSimulatorArch(config.getArch())) {
                 // launching on simulator, it can write down port number to file on local system
                 File hooksPortFile;
                 try {
@@ -177,27 +177,12 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         }
     }
 
-    private String argumentValue(Map<String, String> arguments, String key, String defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? v : defaultValue;
-    }
-
-    private int argumentValue(Map<String, String> arguments, String key, int defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? Integer.parseInt(v) : defaultValue;
-    }
-
     private int argumentIntValue(Map<String, String> arguments, String key) {
         String v = arguments.get(key);
         if (v == null)
             throw new CompilerException("Missing required debugger argument " + key);
 
         return Integer.parseInt(v);
-    }
-
-    private boolean argumentValue(Map<String, String> arguments, String key, boolean defaultValue) {
-        String v = arguments.get(key);
-        return v != null ? Boolean.parseBoolean(v) : defaultValue;
     }
 
     boolean argumentBoolValue(Map<String, String> arguments, String key) {
