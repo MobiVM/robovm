@@ -447,7 +447,7 @@ public class TrampolineCompiler {
             runtimeClass = c.getSootClass();
         }
         
-        if (Access.checkMemberAccessible(member, caller, target, runtimeClass)) {
+        if (Access.checkMemberAccessible(config.getClazzes(), member, caller, target, runtimeClass)) {
             return true;
         }
 
