@@ -32,11 +32,7 @@ import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.plugin.LaunchPlugin;
-import org.robovm.compiler.plugin.Plugin;
-import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.plugin.TargetPlugin;
+import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
@@ -259,7 +255,8 @@ public class Config {
                 new ByteBufferJava9ApiPlugin(),
                 new LambdaPlugin(),
                 new DebugInformationPlugin(),
-                new DebuggerLaunchPlugin()
+                new DebuggerLaunchPlugin(),
+                new BuildGarbageCollectorPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }

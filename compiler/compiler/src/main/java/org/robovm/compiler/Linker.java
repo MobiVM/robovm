@@ -446,7 +446,10 @@ public class Linker {
             }
         }
 
-        config.getTarget().build(objectFiles);
+        File binaryFile = config.getTarget().build(objectFiles);
+        for (CompilerPlugin plugin : config.getCompilerPlugins()) {
+            plugin.afterLinker(config, binaryFile);
+        }
     }
 
     private void generateMachineCode(final Config config, ModuleBuilder[] mbs,

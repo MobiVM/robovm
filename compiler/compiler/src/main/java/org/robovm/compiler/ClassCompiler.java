@@ -328,10 +328,6 @@ public class ClassCompiler {
                 } catch (Throwable t) {
                     listener.failure(clazz, t);
                 }
-
-                // remove all soot structures that are not
-                // required anymore but consume memory
-                clazz.shrinkSoot();
             }
         };
         
