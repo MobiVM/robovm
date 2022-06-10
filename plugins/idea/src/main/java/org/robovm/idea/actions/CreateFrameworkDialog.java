@@ -73,7 +73,7 @@ public class CreateFrameworkDialog extends DialogWrapper {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                        .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
+                        .createFileChooser(new FileChooserDescriptor(false, true, false, false, false, false) {
                             @Override
                             public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
                                 return file.isDirectory();
