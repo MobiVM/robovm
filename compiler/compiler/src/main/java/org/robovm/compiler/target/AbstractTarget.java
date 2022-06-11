@@ -25,6 +25,7 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Resource.Walker;
+import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
 
@@ -581,7 +582,7 @@ public abstract class AbstractTarget implements Target {
     private String getSwiftSystemName(Config config) {
         String system;
         if (config.getOs() == OS.ios) {
-            if (config.getArch().isArm()) {
+            if (IOSTarget.isDeviceArch(config.getArch())) {
                 system = "iphoneos";
             } else {
                 system = "iphonesimulator";
