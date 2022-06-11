@@ -87,7 +87,7 @@ public interface Target {
     /**
      * Builds a binary out of the specified object files.
      */
-    void build(List<File> objectFiles) throws IOException;
+    File build(List<File> objectFiles) throws IOException;
 
     /**
      * Builds a fat binary out of the specified slices.

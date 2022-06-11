@@ -90,7 +90,7 @@ public abstract class AbstractTarget implements Target {
         return Collections.emptyList();
     }
 
-    public void build(List<File> objectFiles) throws IOException {
+    public File build(List<File> objectFiles) throws IOException {
         File outFile = new File(config.getTmpDir(), config.getExecutableName());
 
         config.getLogger().info("Building %s binary %s", config.getTarget().getType(), outFile);
@@ -261,6 +261,7 @@ public abstract class AbstractTarget implements Target {
         }
 
         doBuild(outFile, ccArgs, objectFiles, libs);
+        return outFile;
     }
 
     protected void doBuild(File outFile, List<String> ccArgs, List<File> objectFiles,

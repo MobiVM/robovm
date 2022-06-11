@@ -32,11 +32,7 @@ import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.plugin.LaunchPlugin;
-import org.robovm.compiler.plugin.Plugin;
-import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.plugin.TargetPlugin;
+import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
@@ -259,7 +255,8 @@ public class Config {
                 new ByteBufferJava9ApiPlugin(),
                 new LambdaPlugin(),
                 new DebugInformationPlugin(),
-                new DebuggerLaunchPlugin()
+                new DebuggerLaunchPlugin(),
+                new BuildGarbageCollectorPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }
@@ -404,6 +401,8 @@ public class Config {
     }
 
     public DependencyGraph getDependencyGraph() {
+        if (dependencyGraph == null)
+            throw new IllegalStateException(".dependencyGraph has been disposed!");
         return dependencyGraph;
     }
 
@@ -504,14 +503,29 @@ public class Config {
     }
 
     public Clazzes getClazzes() {
+        if (clazzes == null)
+            throw new IllegalStateException(".clazzes has been disposed!");
         return clazzes;
     }
 
+    public void disposeBuildData() {
+        // not null clazzes as some data like allPath is required post-build (e.g. to stripArchives)
+        clazzes.disposeData();
+        dependencyGraph = null;
+        vtableCache = null;
+        itableCache = null;
+        marshalerLookup = null;
+    }
+
     public VTable.Cache getVTableCache() {
+        if (vtableCache == null)
+            throw new IllegalStateException(".vtableCache has been disposed!");
         return vtableCache;
     }
 
     public ITable.Cache getITableCache() {
+        if (itableCache == null)
+            throw new IllegalStateException(".itableCache has been disposed!");
         return itableCache;
     }
 

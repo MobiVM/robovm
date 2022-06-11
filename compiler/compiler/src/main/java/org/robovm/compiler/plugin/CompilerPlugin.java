@@ -112,6 +112,15 @@ public abstract class CompilerPlugin extends Plugin {
             ModuleBuilder moduleBuilder, Function function) throws IOException;
 
     /**
+     * Called after dependencies resolved and added to the list. It is the moment when all work with
+     * clazz is finished (machine code generation pending) and all associated resources might be released
+     *
+     * @param config the current {@link Config}
+     * @param clazz the {@link Clazz} being compiled
+     */
+    public abstract void afterClassDependenciesResolved(Config config, Clazz clazz);
+
+    /**
      * Called after the object file of a class has been compiled to an object
      * file.
      * 
@@ -130,4 +139,12 @@ public abstract class CompilerPlugin extends Plugin {
      * @param classes the classes that will be linked.
      */
     public abstract void beforeLinker(Config config, Linker linker, Set<Clazz> classes) throws IOException;
+
+    /**
+     * Called just before {@link Linker} is invoked.
+     *
+     * @param config the current {@link Config}
+     * @param executable the binary
+     */
+    public abstract void afterLinker(Config config, File executable) throws IOException;
 }

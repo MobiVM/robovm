@@ -28,10 +28,7 @@ import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
-import org.robovm.compiler.plugin.LaunchPlugin;
-import org.robovm.compiler.plugin.Plugin;
-import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.plugin.TargetPlugin;
+import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.*;
@@ -438,6 +435,11 @@ public class AppCompiler {
                     Collection<MethodInfo> forceLinkMethods = getMatchingForceLinkMethods(clazz);
                     dependencyGraph.add(clazz, rootClasses.contains(clazz), forceLinkMethods);
                     linkClasses.add(clazz);
+
+                    // notify plugins
+                    for (CompilerPlugin plugin : config.getCompilerPlugins()) {
+                        plugin.afterClassDependenciesResolved(config, clazz);
+                    }
 
                     if (compileDependencies) {
                         addMetaInfImplementations(config.getClazzes(), clazz, linkClasses, compileQueue);
