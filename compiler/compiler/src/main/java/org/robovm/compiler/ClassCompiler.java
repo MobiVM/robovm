@@ -227,7 +227,7 @@ public class ClassCompiler {
     private final TrampolineCompiler trampolineResolver;
     private final ObjCMemberPlugin.MethodCompiler objcMethodCompiler;
 
-    private final ByteArrayOutputStream output = new ByteArrayOutputStream(256 * 1024);
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream(4 * 1024 * 1024);
     
     public ClassCompiler(Config config) {
         this.config = config;

@@ -16,7 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 
 /**
  *
@@ -38,11 +40,14 @@ public class MetadataString extends Metadata {
     }
 
     @Override
+    public void write(Writer writer) throws IOException {
+        writer.write("!\"");
+        StringConstant.escape(writer, bytes);
+        writer.write('"');
+    }
+
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("!\"");
-        StringConstant.escape(sb, bytes);
-        sb.append('"');
-        return sb.toString();
+        return toString(this::write);
     }
 }

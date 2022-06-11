@@ -23,6 +23,9 @@ import org.robovm.compiler.llvm.MetadataString;
 import org.robovm.compiler.llvm.NamedMetadata;
 import org.robovm.compiler.llvm.UnnamedMetadata;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * base class for metadata, used as single point of data to be attached to builder and once attached this data
  * should be used as everywhere as metadata reference
@@ -60,7 +63,7 @@ public class DIBaseItem {
      * @param name to give to metadata
      */
     public DIBaseItem(ModuleBuilder builder, String name) {
-        this(builder, name, null);
+        this(builder, name, (Metadata[])null);
     }
 
     protected DIBaseItem(ModuleBuilder builder, String name, Metadata... values) {
@@ -98,7 +101,12 @@ public class DIBaseItem {
         public String toString() {
             return "!" + name;
         }
-    };
+
+        @Override
+        public void write(Writer writer) throws IOException {
+            writer.write(toString());
+        }
+    }
 
 
     /** just a wrapper that allows this class to be considered as metadata */
@@ -106,6 +114,11 @@ public class DIBaseItem {
         @Override
         public String toString() {
             return DIBaseItem.this.toString();
+        }
+
+        @Override
+        public void write(Writer writer) throws IOException {
+            writer.write(toString());
         }
     }
 

@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 /**
@@ -34,24 +36,27 @@ public class MetadataNode extends Metadata {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("!{");
+    public void write(Writer writer) throws IOException {
+        writer.write("!{");
         for (int i = 0; i < values.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
             if (values[i] == null) {
-                sb.append("null");
+                writer.write("null");
             } else {
                 if (values[i].getType() != Type.METADATA) {
-                    sb.append(values[i].getType());
-                    sb.append(' ');
+                    values[i].getType().write(writer);
+                    writer.write(' ');
                 }
-                sb.append(values[i]);
+                values[i].write(writer);
             }
         }
-        sb.append('}');
-        return sb.toString();
+        writer.write('}');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

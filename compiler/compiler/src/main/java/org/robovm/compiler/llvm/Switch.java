@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -61,24 +63,27 @@ public class Switch extends Instruction {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("switch ");
-        sb.append(value.getType());
-        sb.append(' ');
-        sb.append(value);
-        sb.append(", label %");
-        sb.append(def.getName());
-        sb.append(" [ ");
+    public void write(Writer writer) throws IOException {
+        writer.write("switch ");
+        value.getType().write(writer);
+        writer.write(' ');
+        value.write(writer);
+        writer.write(", label %");
+        writer.write(def.getName());
+        writer.write(" [ ");
         for (Entry<IntegerConstant, BasicBlockRef> pair : alt.entrySet()) {
-            sb.append(pair.getKey().getType());
-            sb.append(' ');
-            sb.append(pair.getKey());
-            sb.append(", label %");
-            sb.append(pair.getValue().getName());
-            sb.append(' ');
+            pair.getKey().getType().write(writer);
+            writer.write(' ');
+            pair.getKey().write(writer);
+            writer.write(", label %");
+            writer.write(pair.getValue().getName());
+            writer.write(' ');
         }
-        sb.append("]");
-        return sb.toString();
+        writer.write(']');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

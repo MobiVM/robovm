@@ -15,6 +15,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * @author Demyan Kimitsa
  * returns zeroinitializer to be used as value with arrays structs ect
@@ -35,5 +38,10 @@ public class ZeroInitializer extends Constant {
     @Override
     public String toString() {
         return "zeroinitializer";
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(this.toString());
     }
 }

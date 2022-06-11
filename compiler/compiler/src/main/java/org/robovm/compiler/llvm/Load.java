@@ -17,6 +17,8 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  *
@@ -43,27 +45,30 @@ public class Load extends UnaryOpInstruction {
     }
     
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(result);
-        sb.append(" = load ");
+    public void write(Writer writer) throws IOException {
+        writer.write(result.toString());
+        writer.write(" = load ");
         if (_volatile) {
-            sb.append("volatile ");
+            writer.write("volatile ");
         }
         if (ordering != null) {
-            sb.append("atomic ");
+            writer.write("atomic ");
         }
-        sb.append(op.getType());
-        sb.append(" ");
-        sb.append(op);
+        op.getType().write(writer);
+        writer.write(" ");
+        op.write(writer);
         if (ordering != null) {
-            sb.append(" ");
-            sb.append(ordering);
+            writer.write(" ");
+            writer.write(ordering.toString());
         }
         if (alignment > 0) {
-            sb.append(", align ");
-            sb.append(alignment);            
+            writer.write(", align ");
+            writer.write(Integer.toString(alignment));
         }
-        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }
