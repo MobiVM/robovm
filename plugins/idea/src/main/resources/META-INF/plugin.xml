@@ -18,12 +18,14 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.16</b>
-            <li> Improved XCFramework support </li>
-            <li> Fix iOS touch inputs after SKStoreReview </li>
-            <li> Eclipse and IDEA maintenance </li>
-            <li> iOS 15 binding updates </li>
-            <li> ByteBuffer java 9 api </li>
+            <b>2.3.17</b>
+            <li> Debugger improvements, thread statuses </li>
+            <li> IDEA plugin update </li>
+            <li> Memory optimizations </li>
+            <li> Fix debugger crashes </li>
+            <li> iOS 15.4 binding updates </li>
+            <li> Sideloading app fixes </li>
+            <li> m1 arm simulator fixes </li>
         ]]>
     </change-notes>
 
