@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mobidevelop.robovm</groupId>
-    <version>2.3.18.202207061724</version>
+    <version>2.3.19-SNAPSHOT</version>
     <artifactId>org.robovm.eclipse.parent</artifactId>
     <name>RoboVM for Eclipse</name>
     <packaging>pom</packaging>
@@ -28,7 +28,7 @@
     </licenses>
 
     <properties>
-        <robovm.version>2.3.18</robovm.version>
+        <robovm.version>2.3.19-SNAPSHOT</robovm.version>
         <tycho.version>2.5.0</tycho.version>
         <eclipse-site>https://download.eclipse.org/releases/2021-09/</eclipse-site>
     </properties>
