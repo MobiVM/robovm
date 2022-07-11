@@ -25,7 +25,7 @@ import java.util.Set;
  *
  * @version $Id$
  */
-public abstract class Instruction {
+public abstract class Instruction implements Writable{
     BasicBlock basicBlock;
     private List<Metadata> metadata;
     private List<Object> attachments;

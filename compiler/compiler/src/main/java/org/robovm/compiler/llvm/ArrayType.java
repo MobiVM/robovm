@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -53,10 +56,17 @@ public class ArrayType extends AggregateType {
     public int getTypeCount() {
         return (int) size;
     }
-    
+
+    @Override
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.append('[').append(Long.toString(size)).append(" x ");
+        elementType.write(writer);
+        writer.write("]");
+    }
+
     @Override
     public String getDefinition() {
-        return "[" + size + " x " + elementType + "]";
+        return toString(this::writeDefinition);
     }
 
     @Override

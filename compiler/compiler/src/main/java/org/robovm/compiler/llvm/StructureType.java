@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 
 
@@ -72,16 +74,19 @@ public class StructureType extends AggregateType {
     }
 
     @Override
-    public String getDefinition() {
-        StringBuilder sb = new StringBuilder("{");
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.write('{');
         for (int i = 0; i < types.length; i++) {
-            if (i > 0) {
-                sb.append(", ");
-            }
-            sb.append(types[i].toString());
+            if (i > 0)
+                writer.write(", ");
+            types[i].write(writer);
         }
-        sb.append("}");
-        return sb.toString();
+        writer.write('}');
+    }
+
+    @Override
+    public String getDefinition() {
+        return toString(this::writeDefinition);
     }
 
     @Override

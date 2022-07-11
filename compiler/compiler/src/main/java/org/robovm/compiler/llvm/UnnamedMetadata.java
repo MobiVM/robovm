@@ -16,11 +16,14 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
  */
-public class UnnamedMetadata {
+public class UnnamedMetadata implements Writable {
     private final int index;
     private Metadata value;
 
@@ -49,17 +52,24 @@ public class UnnamedMetadata {
     public String toString() {
         return "!" + index;
     }
-    
-    public String getDefinition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('!');
-        sb.append(index);
-        sb.append(" = ");
+
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.write('!');
+        writer.write(Integer.toString(index));
+        writer.write(" = ");
         if (value.getType() != Type.METADATA) {
-            sb.append(value.getType());
-            sb.append(' ');
+            value.getType().write(writer);
+            writer.write(' ');
         }
-        sb.append(value.toString());
-        return sb.toString();
+        value.write(writer);
+    }
+
+    public String getDefinition() {
+        return toString(this::writeDefinition);
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        throw new IllegalStateException("Use writeDefinition!");
     }
 }

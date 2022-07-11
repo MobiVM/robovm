@@ -47,7 +47,7 @@ public class JdkSetupDialog extends JDialog {
 
         browseButton.addActionListener(e -> {
             FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
+                    .createFileChooser(new FileChooserDescriptor(false, true, false, false, false, false) {
                         @Override
                         public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
                             return file.isDirectory();

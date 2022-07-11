@@ -10,7 +10,7 @@ plugins {
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.17-SNAPSHOT'
+version = '2.3.19-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,7 +20,7 @@ compileJava {
 }
 
 ext {
-    roboVMVersion = '2.3.17-SNAPSHOT'
+    roboVMVersion = '2.3.19-SNAPSHOT'
     nexusUsername = System.getenv('MAVEN_USERNAME')
     nexusPassword = System.getenv('MAVEN_PASSWORD')
 }

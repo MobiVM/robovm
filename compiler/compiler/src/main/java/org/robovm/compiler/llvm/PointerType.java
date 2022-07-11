@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -36,10 +39,16 @@ public class PointerType extends UserType {
     public Type getBase() {
         return base;
     }
-    
+
+    @Override
+    public void writeDefinition(Writer writer) throws IOException {
+        base.write(writer);
+        writer.write('*');
+    }
+
     @Override
     public String getDefinition() {
-        return base.toString() + "*";
+        return toString(this::writeDefinition);
     }
 
     @Override

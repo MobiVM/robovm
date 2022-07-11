@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -134,28 +136,34 @@ public abstract class FunctionCallInstruction extends Instruction {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public void write(Writer writer) throws IOException {
         if (result != null) {
-            sb.append(result.toString());
-            sb.append(" = ");
+            writer.write(result.toString());
+            writer.write(" = ");
         }
-        sb.append(name);
-        sb.append(' ');
+        writer.write(name);
+        writer.write(' ');
         FunctionType ftype = (FunctionType) function.getType();
-        sb.append(ftype.isVarargs() ? ftype.getDefinition() : ftype.getReturnType().toString());
-        sb.append(" ");
-        sb.append(function.toString());
-        sb.append('(');
+        if (ftype.isVarargs())
+            ftype.writeDefinition(writer);
+        else
+            ftype.getReturnType().write(writer);
+        writer.write(' ');
+        function.write(writer);
+        writer.write('(');
         for (int i = 0; i < args.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append(args[i].getType());
-            sb.append(' ');
-            sb.append(args[i]);
+            args[i].getType().write(writer);
+            writer.write(' ');
+            args[i].write(writer);
         }
-        sb.append(')');
-        return sb.toString();
+        writer.write(')');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

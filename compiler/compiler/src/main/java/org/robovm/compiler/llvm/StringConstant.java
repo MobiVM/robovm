@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -35,21 +38,24 @@ public class StringConstant extends Constant {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("c\"");
-        escape(sb, bytes);
-        sb.append('"');
-        return sb.toString();
+    public void write(Writer writer) throws IOException {
+        writer.write("c\"");
+        escape(writer, bytes);
+        writer.write('"');
     }
 
-    static void escape(StringBuilder sb, byte[] bytes) {
+    @Override
+    public String toString() {
+        return toString(this::write);
+    }
+
+    static void escape(Writer writer, byte[] bytes) throws IOException {
         for (int i = 0; i < bytes.length; i++) {
             int b = bytes[i] & 0xff;
             if (b < ' ' || b > '~' || b == '"' || b == '\\') {
-                sb.append(String.format("\\%02X", b));
+                writer.write(String.format("\\%02X", b));
             } else {
-                sb.append((char) b);
+                writer.write((char) b);
             }
         }
     }

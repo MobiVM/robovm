@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -64,5 +67,10 @@ public class PrimitiveType extends Type {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
     }
 }

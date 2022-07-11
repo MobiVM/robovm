@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 
 
@@ -66,26 +68,29 @@ public class FunctionType extends PointerType {
     public Type[] getParameterTypes() {
         return parameterTypes;
     }
-    
+
     @Override
-    public String getDefinition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(returnType.toString());
-        sb.append(" (");
+    public void writeDefinition(Writer writer) throws IOException {
+        returnType.write(writer);
+        writer.write(" (");
         for (int i = 0; i < parameterTypes.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append(parameterTypes[i].toString());
+            parameterTypes[i].write(writer);
         }
         if (varargs) {
             if (parameterTypes.length > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append("...");            
+            writer.write("...");
         }
-        sb.append(")*");
-        return sb.toString();
+        writer.write(")*");
+    }
+
+    @Override
+    public String getDefinition() {
+        return toString(this::writeDefinition);
     }
 
     @Override

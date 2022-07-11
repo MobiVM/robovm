@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -61,12 +63,20 @@ public class Br extends Instruction {
         }
         return result;
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        if (cond != null) {
+            writer.write("br i1 ");
+            cond.write(writer);
+            writer.append(", label %").append(destTrue.getName()).append(", label %").append(destFalse.getName());
+        } else {
+            writer.append("br label %").append(destTrue.getName());
+        }
+    }
+
     @Override
     public String toString() {
-        if (cond != null) {
-            return "br i1 " + cond + ", label %" + destTrue.getName() + ", label %" + destFalse.getName();
-        }
-        return "br label %" + destTrue.getName();
+        return toString(this::write);
     }
 }
