@@ -29,6 +29,7 @@ import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.llvm.Function;
 
 import org.robovm.llvm.ObjectFile;
+import soot.SootClass;
 import soot.SootMethod;
 
 /**
@@ -62,6 +63,11 @@ public abstract class AbstractCompilerPlugin extends CompilerPlugin {
     @Override
     public void afterMethod(Config config, Clazz clazz, SootMethod method,
             ModuleBuilder moduleBuilder, Function function) throws IOException {}
+
+    @Override
+    public SootMethod resolveMethod(Config config, SootClass sootClass, String name, String desc) {
+        return null;
+    }
 
     @Override
     public void afterClassDependenciesResolved(Config config, Clazz clazz) {}
