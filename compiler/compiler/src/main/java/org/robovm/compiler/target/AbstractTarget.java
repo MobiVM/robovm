@@ -366,7 +366,7 @@ public abstract class AbstractTarget implements Target {
 
                                 if (isDynamicLibrary(file)) {
                                     // remove simulator and deprecated archs, also strip bitcode if not used
-                                    if (config.getOs() == OS.ios && config.getArch().isArm()) {
+                                    if (config.getOs() == OS.ios && config.getArch().getEnv() != Environment.Simulator) {
                                         File libFile = new File(destDir, file.getName());
                                         stripExtraArches(libFile);
                                         if (!config.isEnableBitcode())
@@ -440,7 +440,7 @@ public abstract class AbstractTarget implements Target {
                 public void processFile(Resource resource, File file, File destDir) throws IOException {
                     copyFile(resource, file, destDir);
 
-                    if (config.getOs() == OS.ios && config.getArch().isArm()) {
+                    if (config.getOs() == OS.ios && config.getArch().getEnv() != Environment.Simulator) {
                         // remove simulator and deprecated archs, also strip bitcode if not used
                         if (isAppExtension(file)) {
                             File libFile = new File(destDir, file.getName());
@@ -670,7 +670,7 @@ public abstract class AbstractTarget implements Target {
 			// don't strip if libraries goes to SwiftSupport folder
 			if (strip) {
                 // remove simulator and deprecated archs, also strip bitcode if not used
-                if (config.getOs() == OS.ios && config.getArch().isArm()) {
+                if (config.getOs() == OS.ios && config.getArch().getEnv() != Environment.Simulator) {
                     File libFile = new File(targetDir, swiftLibrary.getName());
                     stripExtraArches(libFile);
                     if (!config.isEnableBitcode())

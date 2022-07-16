@@ -329,7 +329,7 @@ public class ToolchainUtil {
         }
         args.add("-output");
         args.add(outFile);
-        new Executor(Logger.NULL_LOGGER, getLipo()).args(args).exec();
+        new Executor(config.getLogger(), getLipo()).args(args).exec();
     }
 
 
