@@ -1,4 +1,8 @@
 <config>
+  <swiftSupport>
+    <enable>true</enable>
+    <copySwiftLibs>true</copySwiftLibs>
+  </swiftSupport>
   <target>ios</target>
   <iosSdkVersion>6.1</iosSdkVersion>
   <iosInfoPList>Info.plist</iosInfoPList>

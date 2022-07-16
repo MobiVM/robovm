@@ -15,6 +15,10 @@
     <framework>Foundation</framework>
     <framework>AppKit</framework>
   </frameworks>
+  <swiftSupport>
+    <enable>true</enable>
+    <copySwiftLibs>true</copySwiftLibs>
+  </swiftSupport>
   <resources>
     <resource>resources</resource>
     <resource>/usr/share/resources</resource>
