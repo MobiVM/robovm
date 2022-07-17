@@ -18,10 +18,7 @@ package org.robovm.compiler.config;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -417,5 +414,35 @@ public class ConfigTest {
 
         assertEquals("com/example/AB9ca44297c0e0d22df654119dce73ee52d3d51c71.class.o",
                 Config.getFileName("com/example/ABCDEFGIHJABCDEFGIHJABCDEFGIHJABCDEFGIHJABCDEFGIHJ", "class.o", 50));
+    }
+
+    @Test
+    public void testSwiftSupportEnabledByDefault() throws Exception {
+        String configText = "<config>\n" +
+                "  <target>ios</target>\n" +
+                "</config>";
+        Config.Builder builder = new Config.Builder();
+
+        builder.read(new StringReader(configText), wd);
+        Config config = builder.config;
+
+        assertTrue(config.hasSwiftSupport());
+        assertNotNull(config.getSwiftSupport());
+        assertTrue(config.getSwiftSupport().isEnabled());
+        assertTrue(config.getSwiftSupport().shouldCopySwiftLibs());
+    }
+
+    @Test
+    public void testSwiftSupportCanBeDisabled() throws Exception {
+        String configText = "<config>\n" +
+                "  <swiftSupport>\n" +
+                "    <enable>false</enable>\n" +
+                "  </swiftSupport>\n" +
+                "</config>";
+        Config.Builder builder = new Config.Builder();
+        builder.read(new StringReader(configText), wd);
+        Config config = builder.config;
+        assertFalse(config.hasSwiftSupport());
+        assertNull(config.getSwiftSupport());
     }
 }
