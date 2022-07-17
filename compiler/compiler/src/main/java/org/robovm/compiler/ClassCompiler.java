@@ -835,8 +835,17 @@ public class ClassCompiler {
         }
 
         // After this point no changes to methods/fields may be done by CompilerPlugins.
-        ci.initClassInfo(); 
+        ci.initClassInfo();
 
+        // when Java18 used as compiler JDK-8272564 changes will be applied this will affect invocation of
+        // java.lang.Object methods on interface receivers.
+        // as per changes invokevirtual is replaced with invokeinterface and these methods
+        // has to be resolved as per https://docs.oracle.com/javase/specs/jvms/se17/html/jvms-5.html#jvms-5.4.3.4 item 3
+        // in RoboVM case this means that final methods of "java.lang.Object" has to be available for lookup,
+        // thus changes added to include [lookup] wrappers for final methods in this case
+        // otherwise it will fail during linking with message(s):
+        // Undefined symbols for architecture arm64:"[j]java.lang.Object.notifyAll()V[lookup]"
+        boolean isJavaLangObject = sootClass.getName().equals("java.lang.Object");
         for (SootMethod method : sootClass.getMethods()) {
             
             for (CompilerPlugin compilerPlugin : config.getCompilerPlugins()) {
@@ -870,7 +879,7 @@ public class ClassCompiler {
             }
             if (!name.equals("<clinit>") && !name.equals("<init>") 
                     && !method.isPrivate() && !method.isStatic() 
-                    && !Modifier.isFinal(method.getModifiers()) 
+                    && (isJavaLangObject || !Modifier.isFinal(method.getModifiers()))
                     && !Modifier.isFinal(sootClass.getModifiers())) {
                 
                 createLookupFunction(method);
