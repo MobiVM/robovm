@@ -157,7 +157,7 @@ public class Config {
     @ElementList(required = false, entry = "path")
     private ArrayList<QualifiedFile> appExtensionPaths;
     @Element(required = false)
-    private SwiftSupport swiftSupport = null;
+    private SwiftSupport swiftSupport = new SwiftSupport();
     @ElementList(required = false, entry = "resource")
     private ArrayList<Resource> resources;
     @ElementList(required = false, entry = "classpathentry")
@@ -478,15 +478,15 @@ public class Config {
     }
 
     public SwiftSupport getSwiftSupport() {
-        return swiftSupport;
+        return swiftSupport.isEnabled() ? swiftSupport : null;
     }
 
     public boolean hasSwiftSupport() {
-        return swiftSupport != null;
+        return swiftSupport.isEnabled();
     }
 
     public List<File> getSwiftLibPaths() {
-        return swiftSupport == null ? Collections.emptyList()
+        return !swiftSupport.isEnabled() ? Collections.emptyList()
                 : swiftSupport.getSwiftLibPaths().stream()
                 .filter(this::isQualified)
                 .map(f -> f.entry)

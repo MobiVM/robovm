@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class SwiftSupport {
     /**
+     * specifies if swift support is enabled, allows to disable it if required
+     */
+    @Element(required = false)
+    private boolean enable = true;
+
+    /**
      * path where swift library to be looked at
      * also these libraries will be added to linker library search path
      */
@@ -23,8 +29,12 @@ public class SwiftSupport {
      * specifies if swift runtime libraries to be copied
      */
     @Element(required = false)
-    private Boolean copySwiftLibs = true;
+    private boolean copySwiftLibs = true;
 
+
+    public boolean isEnabled() {
+        return enable;
+    }
 
     public List<Config.QualifiedFile> getSwiftLibPaths() {
         return swiftLibPaths == null ? Collections.emptyList()
@@ -32,6 +42,6 @@ public class SwiftSupport {
     }
 
     public boolean shouldCopySwiftLibs() {
-        return copySwiftLibs != null ? copySwiftLibs : true;
+        return copySwiftLibs;
     }
 }
