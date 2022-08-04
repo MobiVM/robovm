@@ -52,6 +52,8 @@ public class ToolchainUtil {
     private static String NM;
     private static String OTOOL;
     private static String FILE;
+    private static String DSYMUTIL;
+    private static String SYMBOLS;
 
     private static String getIOSDevClang() throws IOException {
         if (IOS_DEV_CLANG == null) {
@@ -142,6 +144,20 @@ public class ToolchainUtil {
             PACKAGE_APPLICATION = findXcodeCommand("PackageApplication", "iphoneos");
         }
         return PACKAGE_APPLICATION;
+    }
+
+    private static String getDsymutil() throws IOException {
+        if (DSYMUTIL == null) {
+            DSYMUTIL = findXcodeCommand("dsymutil", "iphoneos");
+        }
+        return DSYMUTIL;
+    }
+
+    private static String getSymbols() throws IOException {
+        if (SYMBOLS == null) {
+            SYMBOLS = findXcodeCommand("symbols", "iphoneos");
+        }
+        return SYMBOLS;
     }
 
     private static void handleExecuteException(ExecuteException e) {
@@ -350,6 +366,15 @@ public class ToolchainUtil {
 
     public static void packageApplication(Config config, File appDir, File outFile) throws IOException {
         new Executor(config.getLogger(), getPackageApplication()).args(appDir, "-o", outFile).exec();
+    }
+
+    public static void generateDsym(Config config, File dsymDir, File exePath) throws IOException {
+        new Executor(config.getLogger(), getDsymutil()).args("-o", dsymDir, exePath).exec();
+    }
+
+    public static void dsymToSymbols(Config config, File dsymExecutable, File outDir) throws IOException {
+        new Executor(config.getLogger(), getSymbols()).args("-noTextInSOD", "-noDaemon", "-arch", "all",
+                "-symbolsPackageDir", outDir, dsymExecutable).exec();
     }
 
     private static List<File> writeObjectsFiles(Config config, List<File> objectFiles, int maxObjectsPerFile,

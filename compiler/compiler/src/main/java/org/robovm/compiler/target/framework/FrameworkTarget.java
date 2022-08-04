@@ -358,7 +358,7 @@ public class FrameworkTarget extends AbstractTarget {
 		if (dsymDir.exists())
 			FileUtils.deleteDirectory(dsymDir);
 		dsymDir.mkdirs();
-		new Executor(config.getLogger(), "xcrun").args("dsymutil", "-o", dsymDir, executable).exec();
+		ToolchainUtil.generateDsym(config, dsymDir, executable);
 
 		if (!config.isDebug()) {
 			config.getLogger().info("Striping framework binary: %s", executable);
