@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stddef.h>
 #include <string.h>
 #include <robovm.h>
 
@@ -52,7 +53,8 @@ static jboolean throwFormatError(Env* env, char* expectedType) {
     return FALSE;
 }
 
-#define ALIGN(pp, t) (void*)(((uintptr_t) (pp) + sizeof(t) - 1) & ~(sizeof(t) - 1))
+#define ALIGN_OF(t) offsetof(struct { char c; t m; }, m)
+#define ALIGN(pp, t) (void*)(((uintptr_t) (pp) + ALIGN_OF(t) - 1) & ~(ALIGN_OF(t) - 1))
 
 static inline jbyte getByte(void** attributes) {
     jbyte v = *(jbyte*) *attributes;
