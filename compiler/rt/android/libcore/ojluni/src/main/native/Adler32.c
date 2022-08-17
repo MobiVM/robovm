@@ -70,12 +70,13 @@ Java_java_util_zip_Adler32_updateByteBuffer(JNIEnv *env, jclass cls, jint adler,
     return adler;
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(Adler32, update, "(II)I"),
-  NATIVE_METHOD(Adler32, updateBytes, "(I[BII)I"),
-  NATIVE_METHOD(Adler32, updateByteBuffer, "(IJII)I"),
-};
-
-void register_java_util_zip_Adler32(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/util/zip/Adler32", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(Adler32, update, "(II)I"),
+//  NATIVE_METHOD(Adler32, updateBytes, "(I[BII)I"),
+//  NATIVE_METHOD(Adler32, updateByteBuffer, "(IJII)I"),
+//};
+//
+//void register_java_util_zip_Adler32(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/util/zip/Adler32", gMethods, NELEM(gMethods));
+//}

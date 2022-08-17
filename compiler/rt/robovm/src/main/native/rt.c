@@ -56,9 +56,9 @@ struct ClassLoader {
   ClassLoader* parent;
 };
 
-extern void luniRegister(JNIEnv* env);
-extern void ojluniRegister(JNIEnv* env);
-extern void ojluni_OnLoad(JavaVM* vm, void*);
+// registration point for libraries that can't be lazily initialized
+extern void register_libcore_icu_ICU(JNIEnv* env);
+extern jint net_JNI_OnLoad(JavaVM *vm, void* ignored);
 
 LAZY_CLASS(class_java_lang_String, "java/lang/String");
 LAZY_CLASS(class_java_lang_Thread, "java/lang/Thread");
@@ -144,12 +144,12 @@ const char* rvmRTGetName(void) {
 }
 
 jboolean rvmRTInit(Env* env) {
-    luniRegister((JNIEnv*)env);
-    ojluniRegister((JNIEnv*)env);
+    register_libcore_icu_ICU((JNIEnv*)env);
     return TRUE;
 }
 
 jboolean rvmRTOnLoad(Env* env) {
-    ojluni_OnLoad(&env->vm->javaVM, NULL);
+    net_JNI_OnLoad(env->vm, NULL);
+    if (rvmExceptionCheck(env)) FALSE;
     return TRUE;
 }

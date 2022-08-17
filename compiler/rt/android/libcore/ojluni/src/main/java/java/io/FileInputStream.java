@@ -58,6 +58,12 @@ import libcore.io.IoUtils;
 public
 class FileInputStream extends InputStream
 {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     /* File Descriptor - handle to the open file */
     // Android-added: @ReachabilitySensitive
     @ReachabilitySensitive

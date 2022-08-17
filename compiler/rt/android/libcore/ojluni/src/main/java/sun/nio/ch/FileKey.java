@@ -32,6 +32,11 @@ import java.io.IOException;
  * Represents a key to a specific file on Solaris or Linux
  */
 public class FileKey {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
 
     private long st_dev;    // ID of device
     private long st_ino;    // Inode number

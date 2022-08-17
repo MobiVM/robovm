@@ -45,9 +45,9 @@ static jfieldID key_st_dev;    /* id for FileKey.st_dev */
 static jfieldID key_st_ino;    /* id for FileKey.st_ino */
 
 
-static void FileKey_initIDs(JNIEnv *env)
-{
-    jclass clazz = (*env)->FindClass(env, "sun/nio/ch/FileKey");
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_sun_nio_ch_FileKey_registerNatives(JNIEnv *env, jclass clazz) {
     key_st_dev = (*env)->GetFieldID(env, clazz, "st_dev", "J");
     key_st_ino = (*env)->GetFieldID(env, clazz, "st_ino", "J");
 }
@@ -72,8 +72,8 @@ Java_sun_nio_ch_FileKey_init(JNIEnv *env, jobject this, jobject fdo)
 //static JNINativeMethod gMethods[] = {
 //  NATIVE_METHOD(FileKey, init, "(Ljava/io/FileDescriptor;)V"),
 //};
-
-void register_sun_nio_ch_FileKey(JNIEnv* env) {
+//
+//void register_sun_nio_ch_FileKey(JNIEnv* env) {
 //    jniRegisterNativeMethods(env, "sun/nio/ch/FileKey", gMethods, NELEM(gMethods));
-    FileKey_initIDs(env);
-}
+//    FileKey_initIDs(env);
+//}

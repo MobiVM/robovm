@@ -43,8 +43,9 @@ jfieldID iac_familyID;
 jfieldID iac_hostNameID;
 jfieldID iac_origHostNameID;
 
-static void InetAddress_init(JNIEnv *env) {
-    jclass c = (*env)->FindClass(env,"java/net/InetAddress");
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_net_InetAddress_registerNatives(JNIEnv *env, jclass c) {
     CHECK_NULL(c);
     ia_class = (*env)->NewGlobalRef(env, c);
     CHECK_NULL(ia_class);
@@ -64,6 +65,7 @@ static void InetAddress_init(JNIEnv *env) {
     CHECK_NULL(iac_origHostNameID);
 }
 
-void register_java_net_InetAddress(JNIEnv* env) {
-  InetAddress_init(env);
-}
+// RoboVM Note: using fully qualified JNI names and registerNatives()
+//void register_java_net_InetAddress(JNIEnv* env) {
+//  InetAddress_init(env);
+//}

@@ -86,6 +86,12 @@ import static android.system.OsConstants.*;
 
 public final
 class Inet4Address extends InetAddress {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     final static int INADDRSZ = 4;
 
     /** use serialVersionUID from InetAddress, but Inet4Address instance

@@ -35,6 +35,11 @@ import java.nio.ByteBuffer;
  */
 
 public class IOUtil {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
 
     /**
      * Max number of iovec structures that readv/writev supports

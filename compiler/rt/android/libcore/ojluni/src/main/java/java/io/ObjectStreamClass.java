@@ -70,6 +70,11 @@ import dalvik.system.VMRuntime;
  * @since   JDK1.1
  */
 public class ObjectStreamClass implements Serializable {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
 
     /** serialPersistentFields value indicating no serializable fields */
     public static final ObjectStreamField[] NO_FIELDS =

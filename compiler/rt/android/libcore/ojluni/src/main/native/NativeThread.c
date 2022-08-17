@@ -67,8 +67,9 @@ nullHandler(int sig)
 {
 }
 
-static void  NativeThread_init(JNIEnv *env)
-{
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_sun_nio_ch_NativeThread_registerNatives(JNIEnv *env, jclass cls) {
     /* Install the null handler for INTERRUPT_SIGNAL.  This might overwrite the
      * handler previously installed by java/net/linux_close.c, but that's okay
      * since neither handler actually does anything.  We install our own
@@ -113,8 +114,8 @@ Java_sun_nio_ch_NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
 //  NATIVE_METHOD(NativeThread, current, "()J"),
 //  NATIVE_METHOD(NativeThread, signal, "(J)V"),
 //};
-
-void register_sun_nio_ch_NativeThread(JNIEnv* env) {
+//
+//void register_sun_nio_ch_NativeThread(JNIEnv* env) {
 //  jniRegisterNativeMethods(env, "sun/nio/ch/NativeThread", gMethods, NELEM(gMethods));
-  NativeThread_init(env);
-}
+//  NativeThread_init(env);
+//}

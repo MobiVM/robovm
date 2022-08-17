@@ -45,6 +45,12 @@
 
 static jfieldID IO_fd_fdID;
 
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_net_SocketInputStream_registerNatives(JNIEnv *env, jclass fdClass) {
+    IO_fd_fdID = NET_GetFileDescriptorID(env);
+}
+
 /*
  * Class:     java_net_SocketInputStream
  * Method:    socketRead0

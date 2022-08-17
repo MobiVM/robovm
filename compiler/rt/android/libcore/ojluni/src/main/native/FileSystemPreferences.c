@@ -150,12 +150,13 @@ Java_java_util_prefs_FileSystemPreferences_unlockFile0(JNIEnv *env,
     return 0;
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(FileSystemPreferences, lockFile0, "(Ljava/lang/String;IZ)[I"),
-    NATIVE_METHOD(FileSystemPreferences, unlockFile0, "(I)I"),
-    NATIVE_METHOD(FileSystemPreferences, chmod, "(Ljava/lang/String;I)I"),
-};
-
-void register_java_util_prefs_FileSystemPreferences(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "java/util/prefs/FileSystemPreferences", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(FileSystemPreferences, lockFile0, "(Ljava/lang/String;IZ)[I"),
+//    NATIVE_METHOD(FileSystemPreferences, unlockFile0, "(I)I"),
+//    NATIVE_METHOD(FileSystemPreferences, chmod, "(Ljava/lang/String;I)I"),
+//};
+//
+//void register_java_util_prefs_FileSystemPreferences(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "java/util/prefs/FileSystemPreferences", gMethods, NELEM(gMethods));
+//}

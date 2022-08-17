@@ -175,11 +175,12 @@ Java_java_io_ObjectInputStream_bytesToDoubles(JNIEnv *env,
     (*env)->ReleasePrimitiveArrayCritical(env, dst, doubles, 0);
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(ObjectInputStream, bytesToFloats, "([BI[FII)V"),
-    NATIVE_METHOD(ObjectInputStream, bytesToDoubles, "([BI[DII)V"),
-};
-
-void register_java_io_ObjectInputStream(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "java/io/ObjectInputStream", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(ObjectInputStream, bytesToFloats, "([BI[FII)V"),
+//    NATIVE_METHOD(ObjectInputStream, bytesToDoubles, "([BI[DII)V"),
+//};
+//
+//void register_java_io_ObjectInputStream(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "java/io/ObjectInputStream", gMethods, NELEM(gMethods));
+//}

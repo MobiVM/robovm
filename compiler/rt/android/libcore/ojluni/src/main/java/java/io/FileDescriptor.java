@@ -47,6 +47,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since   JDK1.0
  */
 public final class FileDescriptor {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     // Android-changed: Removed parent reference counting.
     // The creator is responsible for closing the file descriptor.
 

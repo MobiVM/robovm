@@ -44,6 +44,12 @@ import sun.net.ConnectionResetException;
  */
 class SocketInputStream extends FileInputStream
 {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     // Android-removed: Android doesn't need to call native init.
     // static {
     //    init();

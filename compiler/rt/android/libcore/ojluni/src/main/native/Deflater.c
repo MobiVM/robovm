@@ -48,8 +48,9 @@ static jfieldID finishID;
 static jfieldID finishedID;
 static jfieldID bufID, offID, lenID;
 
-static void Deflater_initIDs(JNIEnv *env) {
-    jclass cls = (*env)->FindClass(env, "java/util/zip/Deflater");
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_util_zip_Deflater_registerNatives(JNIEnv *env, jclass cls) {
     levelID = (*env)->GetFieldID(env, cls, "level", "I");
     strategyID = (*env)->GetFieldID(env, cls, "strategy", "I");
     setParamsID = (*env)->GetFieldID(env, cls, "setParams", "Z");
