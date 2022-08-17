@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-#ifndef SCOPED_PRIMITIVE_ARRAY_H_
-#define SCOPED_PRIMITIVE_ARRAY_H_
+#pragma once
 
-#include "jni.h"
+#include <stddef.h>
+
+#include <jni.h>
+
 #include "nativehelper_utils.h"
 
 #ifdef POINTER_TYPE
@@ -40,20 +42,20 @@
     class Scoped ## NAME ## ArrayRO { \
     public: \
         explicit Scoped ## NAME ## ArrayRO(JNIEnv* env) \
-        : mEnv(env), mJavaArray(NULL), mRawArray(NULL), mSize(0) {} \
+        : mEnv(env), mJavaArray(nullptr), mRawArray(nullptr), mSize(0) {} \
         Scoped ## NAME ## ArrayRO(JNIEnv* env, PRIMITIVE_TYPE ## Array javaArray) \
         : mEnv(env) { \
-            if (javaArray == NULL) { \
-                mJavaArray = NULL; \
+            if (javaArray == nullptr) { \
+                mJavaArray = nullptr; \
                 mSize = 0; \
-                mRawArray = NULL; \
-                jniThrowNullPointerException(mEnv, NULL); \
+                mRawArray = nullptr; \
+                jniThrowNullPointerException(mEnv); \
             } else { \
                 reset(javaArray); \
             } \
         } \
         ~Scoped ## NAME ## ArrayRO() { \
-            if (mRawArray != NULL && mRawArray != mBuffer) { \
+            if (mRawArray != nullptr && mRawArray != mBuffer) { \
                 mEnv->Release ## NAME ## ArrayElements(mJavaArray, mRawArray, JNI_ABORT); \
             } \
         } \
@@ -64,7 +66,7 @@
                 mEnv->Get ## NAME ## ArrayRegion(mJavaArray, 0, mSize, mBuffer); \
                 mRawArray = mBuffer; \
             } else { \
-                mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, NULL); \
+                mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, nullptr); \
             } \
         } \
         const PRIMITIVE_TYPE* get() const { return mRawArray; } \
@@ -100,13 +102,13 @@ INSTANTIATE_SCOPED_PRIMITIVE_ARRAY_RO(jshort, Short);
     class Scoped ## NAME ## ArrayRW { \
     public: \
         explicit Scoped ## NAME ## ArrayRW(JNIEnv* env) \
-        : mEnv(env), mJavaArray(NULL), mRawArray(NULL) {} \
+        : mEnv(env), mJavaArray(nullptr), mRawArray(nullptr) {} \
         Scoped ## NAME ## ArrayRW(JNIEnv* env, PRIMITIVE_TYPE ## Array javaArray) \
-        : mEnv(env), mJavaArray(javaArray), mRawArray(NULL) { \
-            if (mJavaArray == NULL) { \
-                jniThrowNullPointerException(mEnv, NULL); \
+        : mEnv(env), mJavaArray(javaArray), mRawArray(nullptr) { \
+            if (mJavaArray == nullptr) { \
+                jniThrowNullPointerException(mEnv); \
             } else { \
-                mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, NULL); \
+                mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, nullptr); \
             } \
         } \
         ~Scoped ## NAME ## ArrayRW() { \
@@ -116,7 +118,7 @@ INSTANTIATE_SCOPED_PRIMITIVE_ARRAY_RO(jshort, Short);
         } \
         void reset(PRIMITIVE_TYPE ## Array javaArray) { \
             mJavaArray = javaArray; \
-            mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, NULL); \
+            mRawArray = mEnv->Get ## NAME ## ArrayElements(mJavaArray, nullptr); \
         } \
         const PRIMITIVE_TYPE* get() const { return mRawArray; } \
         PRIMITIVE_TYPE ## Array getJavaArray() const { return mJavaArray; } \
@@ -144,4 +146,3 @@ INSTANTIATE_SCOPED_PRIMITIVE_ARRAY_RW(jshort, Short);
 #undef POINTER_TYPE
 #undef REFERENCE_TYPE
 
-#endif  // SCOPED_PRIMITIVE_ARRAY_H_

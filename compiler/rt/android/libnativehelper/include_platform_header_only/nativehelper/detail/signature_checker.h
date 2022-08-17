@@ -951,10 +951,10 @@ struct is_valid_jni_argument_type<native_kind, position, T, Args...> {
 };
 
 // This helper is required to decompose the function type into a list of arg types.
-template<NativeKind native_kind, typename T, T fn>
+template<NativeKind native_kind, typename T, T* fn>
 struct is_valid_jni_function_type_helper;
 
-template<NativeKind native_kind, typename R, typename ... Args, R fn(Args...)>
+template<NativeKind native_kind, typename R, typename ... Args, R (*fn)(Args...)>
 struct is_valid_jni_function_type_helper<native_kind, R(Args...), fn> {
   static constexpr bool value =
       IsJniParameterCountValid(native_kind, sizeof...(Args))
@@ -965,7 +965,7 @@ struct is_valid_jni_function_type_helper<native_kind, R(Args...), fn> {
 };
 
 // Is this function type 'T' a valid C++ function type given the native_kind?
-template<NativeKind native_kind, typename T, T fn>
+template<NativeKind native_kind, typename T, T* fn>
 constexpr bool IsValidJniFunctionType() {
   return is_valid_jni_function_type_helper<native_kind, T, fn>::value;
   // TODO: we could replace template metaprogramming with constexpr by
@@ -1036,12 +1036,12 @@ constexpr auto MakeArray(Args&& ... args) {
 }
 
 // See below.
-template<typename T, T fn>
+template<typename T, T* fn>
 struct FunctionTypeMetafunction {
 };
 
 // Enables the "map" operation over the function component types.
-template<typename R, typename ... Args, R fn(Args...)>
+template<typename R, typename ... Args, R (*fn)(Args...)>
 struct FunctionTypeMetafunction<R(Args...), fn> {
   // Count how many arguments there are, and add 1 for the return type.
   static constexpr size_t
@@ -1107,7 +1107,7 @@ using ReifiedJniSignature = FunctionSignatureDescriptor<ReifiedJniTypeTrait,
 //    parses are nonfatal -> returns nullopt (test behavior).
 template <NativeKind native_kind,
           typename T,
-          T fn,
+          T* fn,
           size_t kMaxSize = FunctionTypeMetafunction<T, fn>::count>
 constexpr ConstexprOptional<ReifiedJniSignature<kMaxSize>>
 MaybeMakeReifiedJniSignature() {
@@ -1218,7 +1218,7 @@ CompareJniDescriptorNodeErased(JniDescriptorNode user_defined_descriptor,
 // If matches fails, then:
 //    parses are fatal -> assertion is triggered (default behavior),
 //    parses are nonfatal -> returns false (test behavior).
-template<NativeKind native_kind, typename T, T fn, size_t kMaxSize>
+template<NativeKind native_kind, typename T, T* fn, size_t kMaxSize>
 constexpr bool
 MatchJniDescriptorWithFunctionType(ConstexprStringView user_function_descriptor) {
   constexpr size_t kReifiedMaxSize = FunctionTypeMetafunction<T, fn>::count;
@@ -1267,7 +1267,7 @@ MatchJniDescriptorWithFunctionType(ConstexprStringView user_function_descriptor)
 
 // Supports inferring the JNI function descriptor string from the C++
 // function type when all type components are final.
-template<NativeKind native_kind, typename T, T fn>
+template<NativeKind native_kind, typename T, T* fn>
 struct InferJniDescriptor {
   static constexpr size_t kMaxSize = FunctionTypeMetafunction<T, fn>::count;
 

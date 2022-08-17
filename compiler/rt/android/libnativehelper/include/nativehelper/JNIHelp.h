@@ -20,28 +20,373 @@
  * This file may be included by C or C++ code, which is trouble because jni.h
  * uses different typedefs for JNIEnv in each language.
  */
-#ifndef NATIVEHELPER_JNIHELP_H_
-#define NATIVEHELPER_JNIHELP_H_
+#pragma once
+
+#include <sys/cdefs.h>
 
 #include <errno.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include <jni.h>
-#include "module_api.h"
 
+#include <android/log.h>
+
+// Avoid formatting this as it must match webview's usage (webview/graphics_utils.cpp).
+// clang-format off
 #ifndef NELEM
-# define NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
+#define NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
 #endif
+// clang-format on
 
 /*
- * Register one or more native methods with a particular class.
- * "className" looks like "java/lang/String". Aborts on failure.
- * TODO: fix all callers and change the return type to void.
+ * For C++ code, we provide inlines that map to the C functions.  g++ always
+ * inlines these, even on non-optimized builds.
  */
-MODULE_API int jniRegisterNativeMethods(C_JNIEnv* env,
-                                        const char* className,
-                                        const JNINativeMethod* gMethods,
-                                        int numMethods);
+#if defined(__cplusplus)
+
+namespace android::jnihelp {
+struct [[maybe_unused]] ExpandableString {
+    size_t dataSize; // The length of the C string data (not including the null-terminator).
+    char* data;      // The C string data.
+};
+
+[[maybe_unused]] static void ExpandableStringInitialize(struct ExpandableString* s) {
+    memset(s, 0, sizeof(*s));
+}
+
+[[maybe_unused]] static void ExpandableStringRelease(struct ExpandableString* s) {
+    free(s->data);
+    memset(s, 0, sizeof(*s));
+}
+
+[[maybe_unused]] static bool ExpandableStringAppend(struct ExpandableString* s, const char* text) {
+    size_t textSize = strlen(text);
+    size_t requiredSize = s->dataSize + textSize + 1;
+    char* data = (char*)realloc(s->data, requiredSize);
+    if (data == NULL) {
+        return false;
+    }
+    s->data = data;
+    memcpy(s->data + s->dataSize, text, textSize + 1);
+    s->dataSize += textSize;
+    return true;
+}
+
+[[maybe_unused]] static bool ExpandableStringAssign(struct ExpandableString* s, const char* text) {
+    ExpandableStringRelease(s);
+    return ExpandableStringAppend(s, text);
+}
+
+[[maybe_unused]] inline char* safe_strerror(char* (*strerror_r_method)(int, char*, size_t),
+                                            int errnum, char* buf, size_t buflen) {
+    return strerror_r_method(errnum, buf, buflen);
+}
+
+[[maybe_unused]] inline char* safe_strerror(int (*strerror_r_method)(int, char*, size_t),
+                                            int errnum, char* buf, size_t buflen) {
+    int rc = strerror_r_method(errnum, buf, buflen);
+    if (rc != 0) {
+        snprintf(buf, buflen, "errno %d", errnum);
+    }
+    return buf;
+}
+
+[[maybe_unused]] static const char* platformStrError(int errnum, char* buf, size_t buflen) {
+    return safe_strerror(strerror_r, errnum, buf, buflen);
+}
+
+[[maybe_unused]] static jmethodID FindMethod(JNIEnv* env, const char* className,
+                                             const char* methodName, const char* descriptor) {
+    // This method is only valid for classes in the core library which are
+    // not unloaded during the lifetime of managed code execution.
+    jclass clazz = env->FindClass(className);
+    jmethodID methodId = env->GetMethodID(clazz, methodName, descriptor);
+    env->DeleteLocalRef(clazz);
+    return methodId;
+}
+
+[[maybe_unused]] static bool AppendJString(JNIEnv* env, jstring text,
+                                           struct ExpandableString* dst) {
+    const char* utfText = env->GetStringUTFChars(text, NULL);
+    if (utfText == NULL) {
+        return false;
+    }
+    bool success = ExpandableStringAppend(dst, utfText);
+    env->ReleaseStringUTFChars(text, utfText);
+    return success;
+}
+
+/*
+ * Returns a human-readable summary of an exception object.  The buffer will
+ * be populated with the "binary" class name and, if present, the
+ * exception message.
+ */
+[[maybe_unused]] static bool GetExceptionSummary(JNIEnv* env, jthrowable thrown,
+                                                 struct ExpandableString* dst) {
+    // Summary is <exception_class_name> ": " <exception_message>
+    jclass exceptionClass = env->GetObjectClass(thrown); // Always succeeds
+    jmethodID getName = FindMethod(env, "java/lang/Class", "getName", "()Ljava/lang/String;");
+    jstring className = (jstring)env->CallObjectMethod(exceptionClass, getName);
+    if (className == NULL) {
+        ExpandableStringAssign(dst, "<error getting class name>");
+        env->ExceptionClear();
+        env->DeleteLocalRef(exceptionClass);
+        return false;
+    }
+    env->DeleteLocalRef(exceptionClass);
+    exceptionClass = NULL;
+
+    if (!AppendJString(env, className, dst)) {
+        ExpandableStringAssign(dst, "<error getting class name UTF-8>");
+        env->ExceptionClear();
+        env->DeleteLocalRef(className);
+        return false;
+    }
+    env->DeleteLocalRef(className);
+    className = NULL;
+
+    jmethodID getMessage =
+            FindMethod(env, "java/lang/Throwable", "getMessage", "()Ljava/lang/String;");
+    jstring message = (jstring)env->CallObjectMethod(thrown, getMessage);
+    if (message == NULL) {
+        return true;
+    }
+
+    bool success = (ExpandableStringAppend(dst, ": ") && AppendJString(env, message, dst));
+    if (!success) {
+        // Two potential reasons for reaching here:
+        //
+        // 1. managed heap allocation failure (OOME).
+        // 2. native heap allocation failure for the storage in |dst|.
+        //
+        // Attempt to append failure notification, okay to fail, |dst| contains the class name
+        // of |thrown|.
+        ExpandableStringAppend(dst, "<error getting message>");
+        // Clear OOME if present.
+        env->ExceptionClear();
+    }
+    env->DeleteLocalRef(message);
+    message = NULL;
+    return success;
+}
+
+[[maybe_unused]] static jobject NewStringWriter(JNIEnv* env) {
+    jclass clazz = env->FindClass("java/io/StringWriter");
+    jmethodID init = env->GetMethodID(clazz, "<init>", "()V");
+    jobject instance = env->NewObject(clazz, init);
+    env->DeleteLocalRef(clazz);
+    return instance;
+}
+
+[[maybe_unused]] static jstring StringWriterToString(JNIEnv* env, jobject stringWriter) {
+    jmethodID toString =
+            FindMethod(env, "java/io/StringWriter", "toString", "()Ljava/lang/String;");
+    return (jstring)env->CallObjectMethod(stringWriter, toString);
+}
+
+[[maybe_unused]] static jobject NewPrintWriter(JNIEnv* env, jobject writer) {
+    jclass clazz = env->FindClass("java/io/PrintWriter");
+    jmethodID init = env->GetMethodID(clazz, "<init>", "(Ljava/io/Writer;)V");
+    jobject instance = env->NewObject(clazz, init, writer);
+    env->DeleteLocalRef(clazz);
+    return instance;
+}
+
+[[maybe_unused]] static bool GetStackTrace(JNIEnv* env, jthrowable thrown,
+                                           struct ExpandableString* dst) {
+    // This function is equivalent to the following Java snippet:
+    //   StringWriter sw = new StringWriter();
+    //   PrintWriter pw = new PrintWriter(sw);
+    //   thrown.printStackTrace(pw);
+    //   String trace = sw.toString();
+    //   return trace;
+    jobject sw = NewStringWriter(env);
+    if (sw == NULL) {
+        return false;
+    }
+
+    jobject pw = NewPrintWriter(env, sw);
+    if (pw == NULL) {
+        env->DeleteLocalRef(sw);
+        return false;
+    }
+
+    jmethodID printStackTrace =
+            FindMethod(env, "java/lang/Throwable", "printStackTrace", "(Ljava/io/PrintWriter;)V");
+    env->CallVoidMethod(thrown, printStackTrace, pw);
+
+    jstring trace = StringWriterToString(env, sw);
+
+    env->DeleteLocalRef(pw);
+    pw = NULL;
+    env->DeleteLocalRef(sw);
+    sw = NULL;
+
+    if (trace == NULL) {
+        return false;
+    }
+
+    bool success = AppendJString(env, trace, dst);
+    env->DeleteLocalRef(trace);
+    return success;
+}
+
+[[maybe_unused]] static void GetStackTraceOrSummary(JNIEnv* env, jthrowable thrown,
+                                                    struct ExpandableString* dst) {
+    // This method attempts to get a stack trace or summary info for an exception.
+    // The exception may be provided in the |thrown| argument to this function.
+    // If |thrown| is NULL, then any pending exception is used if it exists.
+
+    // Save pending exception, callees may raise other exceptions. Any pending exception is
+    // rethrown when this function exits.
+    jthrowable pendingException = env->ExceptionOccurred();
+    if (pendingException != NULL) {
+        env->ExceptionClear();
+    }
+
+    if (thrown == NULL) {
+        if (pendingException == NULL) {
+            ExpandableStringAssign(dst, "<no pending exception>");
+            return;
+        }
+        thrown = pendingException;
+    }
+
+    if (!GetStackTrace(env, thrown, dst)) {
+        // GetStackTrace may have raised an exception, clear it since it's not for the caller.
+        env->ExceptionClear();
+        GetExceptionSummary(env, thrown, dst);
+    }
+
+    if (pendingException != NULL) {
+        // Re-throw the pending exception present when this method was called.
+        env->Throw(pendingException);
+        env->DeleteLocalRef(pendingException);
+    }
+}
+
+[[maybe_unused]] static void DiscardPendingException(JNIEnv* env, const char* className) {
+    jthrowable exception = env->ExceptionOccurred();
+    env->ExceptionClear();
+    if (exception == NULL) {
+        return;
+    }
+
+    struct ExpandableString summary;
+    ExpandableStringInitialize(&summary);
+    GetExceptionSummary(env, exception, &summary);
+    const char* details = (summary.data != NULL) ? summary.data : "Unknown";
+    __android_log_print(ANDROID_LOG_WARN, "JNIHelp",
+                        "Discarding pending exception (%s) to throw %s", details, className);
+    ExpandableStringRelease(&summary);
+    env->DeleteLocalRef(exception);
+}
+
+[[maybe_unused]] static int ThrowException(JNIEnv* env, const char* className, const char* ctorSig,
+                                           ...) {
+    int status = -1;
+    jclass exceptionClass = NULL;
+
+    va_list args;
+    va_start(args, ctorSig);
+
+    DiscardPendingException(env, className);
+
+    {
+        /* We want to clean up local references before returning from this function, so,
+         * regardless of return status, the end block must run. Have the work done in a
+         * nested block to avoid using any uninitialized variables in the end block. */
+        exceptionClass = env->FindClass(className);
+        if (exceptionClass == NULL) {
+            __android_log_print(ANDROID_LOG_ERROR, "JNIHelp", "Unable to find exception class %s",
+                                className);
+            /* an exception, most likely ClassNotFoundException, will now be pending */
+            goto end;
+        }
+
+        jmethodID init = env->GetMethodID(exceptionClass, "<init>", ctorSig);
+        if (init == NULL) {
+            __android_log_print(ANDROID_LOG_ERROR, "JNIHelp",
+                                "Failed to find constructor for '%s' '%s'", className, ctorSig);
+            goto end;
+        }
+
+        jobject instance = env->NewObjectV(exceptionClass, init, args);
+        if (instance == NULL) {
+            __android_log_print(ANDROID_LOG_ERROR, "JNIHelp", "Failed to construct '%s'",
+                                className);
+            goto end;
+        }
+
+        if (env->Throw((jthrowable)instance) != JNI_OK) {
+            __android_log_print(ANDROID_LOG_ERROR, "JNIHelp", "Failed to throw '%s'", className);
+            /* an exception, most likely OOM, will now be pending */
+            goto end;
+        }
+
+        /* everything worked fine, just update status to success and clean up */
+        status = 0;
+    }
+
+end:
+    va_end(args);
+    if (exceptionClass != NULL) {
+        env->DeleteLocalRef(exceptionClass);
+    }
+    return status;
+}
+
+[[maybe_unused]] static jstring CreateExceptionMsg(JNIEnv* env, const char* msg) {
+    jstring detailMessage = env->NewStringUTF(msg);
+    if (detailMessage == NULL) {
+        /* Not really much we can do here. We're probably dead in the water,
+        but let's try to stumble on... */
+        env->ExceptionClear();
+    }
+    return detailMessage;
+}
+} // namespace android::jnihelp
+
+/*
+ * Register one or more native methods with a particular class.  "className" looks like
+ * "java/lang/String". Aborts on failure, returns 0 on success.
+ */
+[[maybe_unused]] static int jniRegisterNativeMethods(JNIEnv* env, const char* className,
+                                                     const JNINativeMethod* methods,
+                                                     int numMethods) {
+    using namespace android::jnihelp;
+    jclass clazz = env->FindClass(className);
+    if (clazz == NULL) {
+        __android_log_assert("clazz == NULL", "JNIHelp",
+                             "Native registration unable to find class '%s'; aborting...",
+                             className);
+    }
+    int result = env->RegisterNatives(clazz, methods, numMethods);
+    env->DeleteLocalRef(clazz);
+    if (result == 0) {
+        return 0;
+    }
+
+    // Failure to register natives is fatal. Try to report the corresponding exception,
+    // otherwise abort with generic failure message.
+    jthrowable thrown = env->ExceptionOccurred();
+    if (thrown != NULL) {
+        struct ExpandableString summary;
+        ExpandableStringInitialize(&summary);
+        if (GetExceptionSummary(env, thrown, &summary)) {
+            __android_log_print(ANDROID_LOG_FATAL, "JNIHelp", "%s", summary.data);
+        }
+        ExpandableStringRelease(&summary);
+        env->DeleteLocalRef(thrown);
+    }
+    __android_log_print(ANDROID_LOG_FATAL, "JNIHelp",
+                        "RegisterNatives failed for '%s'; aborting...", className);
+    return result;
+}
 
 /*
  * Throw an exception with the specified class and an optional message.
@@ -57,7 +402,30 @@ MODULE_API int jniRegisterNativeMethods(C_JNIEnv* env,
  *
  * Currently aborts the VM if it can't throw the exception.
  */
-MODULE_API int jniThrowException(C_JNIEnv* env, const char* className, const char* msg);
+[[maybe_unused]] static int jniThrowException(JNIEnv* env, const char* className, const char* msg) {
+    using namespace android::jnihelp;
+    jstring _detailMessage = CreateExceptionMsg(env, msg);
+    int _status = ThrowException(env, className, "(Ljava/lang/String;)V", _detailMessage);
+    if (_detailMessage != NULL) {
+        env->DeleteLocalRef(_detailMessage);
+    }
+    return _status;
+}
+
+/*
+ * Throw an android.system.ErrnoException, with the given function name and errno value.
+ */
+[[maybe_unused]] static int jniThrowErrnoException(JNIEnv* env, const char* functionName,
+                                                   int errnum) {
+    using namespace android::jnihelp;
+    jstring _detailMessage = CreateExceptionMsg(env, functionName);
+    int _status = ThrowException(env, "android/system/ErrnoException", "(Ljava/lang/String;I)V",
+                                 _detailMessage, errnum);
+    if (_detailMessage != NULL) {
+        env->DeleteLocalRef(_detailMessage);
+    }
+    return _status;
+}
 
 /*
  * Throw an exception with the specified class and formatted error message.
@@ -73,228 +441,71 @@ MODULE_API int jniThrowException(C_JNIEnv* env, const char* className, const cha
  *
  * Currently aborts the VM if it can't throw the exception.
  */
-MODULE_API int jniThrowExceptionFmt(C_JNIEnv* env, const char* className, const char* fmt, va_list args);
+[[maybe_unused]] static int jniThrowExceptionFmt(JNIEnv* env, const char* className,
+                                                 const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    char msgBuf[512];
+    vsnprintf(msgBuf, sizeof(msgBuf), fmt, args);
+    va_end(args);
+    return jniThrowException(env, className, msgBuf);
+}
 
-/*
- * Throw a java.lang.NullPointerException, with an optional message.
- */
-MODULE_API int jniThrowNullPointerException(C_JNIEnv* env, const char* msg);
+[[maybe_unused]] static int jniThrowNullPointerException(JNIEnv* env, const char* msg) {
+    return jniThrowException(env, "java/lang/NullPointerException", msg);
+}
 
-/*
- * Throw a java.lang.RuntimeException, with an optional message.
- */
-MODULE_API int jniThrowRuntimeException(C_JNIEnv* env, const char* msg);
+[[maybe_unused]] static int jniThrowRuntimeException(JNIEnv* env, const char* msg) {
+    return jniThrowException(env, "java/lang/RuntimeException", msg);
+}
 
-/*
- * Throw a java.io.IOException, generating the message from errno.
- */
-MODULE_API int jniThrowIOException(C_JNIEnv* env, int errnum);
-
-/*
- * Return a pointer to a locale-dependent error string explaining errno
- * value 'errnum'. The returned pointer may or may not be equal to 'buf'.
- * This function is thread-safe (unlike strerror) and portable (unlike
- * strerror_r).
- */
-MODULE_API const char* jniStrError(int errnum, char* buf, size_t buflen);
-
-/*
- * Returns a new java.io.FileDescriptor for the given int fd.
- */
-MODULE_API jobject jniCreateFileDescriptor(C_JNIEnv* env, int fd);
-
-/*
- * Returns the int fd from a java.io.FileDescriptor.
- */
-MODULE_API int jniGetFDFromFileDescriptor(C_JNIEnv* env, jobject fileDescriptor);
-
-/*
- * Sets the int fd in a java.io.FileDescriptor.  Throws java.lang.NullPointerException
- * if fileDescriptor is null.
- */
-MODULE_API void jniSetFileDescriptorOfFD(C_JNIEnv* env,
-                                         jobject fileDescriptor,
-                                         int value);
-
-/*
- * Returns the long ownerId from a java.io.FileDescriptor.
- */
-MODULE_API jlong jniGetOwnerIdFromFileDescriptor(C_JNIEnv* env, jobject fileDescriptor);
-
-/*
- * Gets the managed heap array backing a java.nio.Buffer instance.
- *
- * Returns nullptr if there is no array backing.
- *
- * This method performs a JNI call to java.nio.NIOAccess.getBaseArray().
- */
-MODULE_API jarray jniGetNioBufferBaseArray(C_JNIEnv* env, jobject nioBuffer);
-
-/*
- * Gets the offset in bytes from the start of the managed heap array backing the buffer.
- *
- * Returns 0 if there is no array backing.
- *
- * This method performs a JNI call to java.nio.NIOAccess.getBaseArrayOffset().
- */
-MODULE_API jint jniGetNioBufferBaseArrayOffset(C_JNIEnv* env, jobject nioBuffer);
-
-/*
- * Gets field information from a java.nio.Buffer instance.
- *
- * Reads the |position|, |limit|, and |elementSizeShift| fields from the buffer instance.
- *
- * Returns the |address| field of the java.nio.Buffer instance which is only valid (non-zero) when
- * the buffer is backed by a direct buffer.
- */
-MODULE_API jlong jniGetNioBufferFields(C_JNIEnv* env,
-                                       jobject nioBuffer,
-                                       /*out*/jint* position,
-                                       /*out*/jint* limit,
-                                       /*out*/jint* elementSizeShift);
-
-/*
- * Gets the current position from a java.nio.Buffer as a pointer to memory in a fixed buffer.
- *
- * Returns 0 if |nioBuffer| is not backed by a direct buffer.
- *
- * This method reads the |address|, |position|, and |elementSizeShift| fields from the
- * java.nio.Buffer instance to calculate the pointer address for the current position.
- */
-MODULE_API jlong jniGetNioBufferPointer(C_JNIEnv* env, jobject nioBuffer);
-
-/*
- * Returns the reference from a java.lang.ref.Reference.
- */
-MODULE_API jobject jniGetReferent(C_JNIEnv* env, jobject ref);
+[[maybe_unused]] static int jniThrowIOException(JNIEnv* env, int errno_value) {
+    using namespace android::jnihelp;
+    char buffer[80];
+    const char* message = platformStrError(errno_value, buffer, sizeof(buffer));
+    return jniThrowException(env, "java/io/IOException", message);
+}
 
 /*
  * Returns a Java String object created from UTF-16 data either from jchar or,
  * if called from C++11, char16_t (a bitwise identical distinct type).
  */
-MODULE_API jstring jniCreateString(C_JNIEnv* env, const jchar* unicodeChars, jsize len);
+[[maybe_unused]] static inline jstring jniCreateString(JNIEnv* env, const jchar* unicodeChars,
+                                                       jsize len) {
+    return env->NewString(unicodeChars, len);
+}
+
+[[maybe_unused]] static inline jstring jniCreateString(JNIEnv* env, const char16_t* unicodeChars,
+                                                       jsize len) {
+    return jniCreateString(env, reinterpret_cast<const jchar*>(unicodeChars), len);
+}
 
 /*
  * Log a message and an exception.
  * If exception is NULL, logs the current exception in the JNI environment.
  */
-MODULE_API void jniLogException(C_JNIEnv* env, int priority, const char* tag, jthrowable exception);
-
-/*
- * Clear the cache of constants libnativehelper is using.
- */
-MODULE_API void jniUninitializeConstants();
-
-/*
- * For C++ code, we provide inlines that map to the C functions.  g++ always
- * inlines these, even on non-optimized builds.
- */
-#if defined(__cplusplus)
-
-inline int jniRegisterNativeMethods(JNIEnv* env, const char* className, const JNINativeMethod* gMethods, int numMethods) {
-    return jniRegisterNativeMethods(&env->functions, className, gMethods, numMethods);
+[[maybe_unused]] static void jniLogException(JNIEnv* env, int priority, const char* tag,
+                                             jthrowable exception = NULL) {
+    using namespace android::jnihelp;
+    struct ExpandableString summary;
+    ExpandableStringInitialize(&summary);
+    GetStackTraceOrSummary(env, exception, &summary);
+    const char* details = (summary.data != NULL) ? summary.data : "No memory to report exception";
+    __android_log_write(priority, tag, details);
+    ExpandableStringRelease(&summary);
 }
 
-inline int jniThrowException(JNIEnv* env, const char* className, const char* msg) {
-    return jniThrowException(&env->functions, className, msg);
-}
+#else // defined(__cplusplus)
 
-/*
- * Equivalent to jniThrowException but with a printf-like format string and
- * variable-length argument list. This is only available in C++.
- */
-inline int jniThrowExceptionFmt(JNIEnv* env, const char* className, const char* fmt, ...) {
-    va_list args;
-    va_start(args, fmt);
-    return jniThrowExceptionFmt(&env->functions, className, fmt, args);
-    va_end(args);
-}
+// ART-internal only methods (not exported), exposed for legacy C users
 
-inline int jniThrowNullPointerException(JNIEnv* env, const char* msg) {
-    return jniThrowNullPointerException(&env->functions, msg);
-}
+int jniRegisterNativeMethods(JNIEnv* env, const char* className, const JNINativeMethod* gMethods,
+                             int numMethods);
 
-inline int jniThrowRuntimeException(JNIEnv* env, const char* msg) {
-    return jniThrowRuntimeException(&env->functions, msg);
-}
+void jniLogException(JNIEnv* env, int priority, const char* tag, jthrowable thrown);
 
-inline int jniThrowIOException(JNIEnv* env, int errnum) {
-    return jniThrowIOException(&env->functions, errnum);
-}
+int jniThrowException(JNIEnv* env, const char* className, const char* msg);
 
-inline jobject jniCreateFileDescriptor(JNIEnv* env, int fd) {
-    return jniCreateFileDescriptor(&env->functions, fd);
-}
+int jniThrowNullPointerException(JNIEnv* env, const char* msg);
 
-inline int jniGetFDFromFileDescriptor(JNIEnv* env, jobject fileDescriptor) {
-    return jniGetFDFromFileDescriptor(&env->functions, fileDescriptor);
-}
-
-inline void jniSetFileDescriptorOfFD(JNIEnv* env, jobject fileDescriptor, int value) {
-    jniSetFileDescriptorOfFD(&env->functions, fileDescriptor, value);
-}
-
-inline jlong jniGetOwnerIdFromFileDescriptor(JNIEnv* env, jobject fileDescriptor) {
-    return jniGetOwnerIdFromFileDescriptor(&env->functions, fileDescriptor);
-}
-
-inline jarray jniGetNioBufferBaseArray(JNIEnv* env, jobject nioBuffer) {
-    return jniGetNioBufferBaseArray(&env->functions, nioBuffer);
-}
-
-inline jint jniGetNioBufferBaseArrayOffset(JNIEnv* env, jobject nioBuffer) {
-    return jniGetNioBufferBaseArrayOffset(&env->functions, nioBuffer);
-}
-
-inline jlong jniGetNioBufferFields(JNIEnv* env, jobject nioBuffer,
-                                   jint* position, jint* limit, jint* elementSizeShift) {
-    return jniGetNioBufferFields(&env->functions, nioBuffer,
-                                 position, limit, elementSizeShift);
-}
-
-inline jlong jniGetNioBufferPointer(JNIEnv* env, jobject nioBuffer) {
-    return jniGetNioBufferPointer(&env->functions, nioBuffer);
-}
-
-inline jobject jniGetReferent(JNIEnv* env, jobject ref) {
-    return jniGetReferent(&env->functions, ref);
-}
-
-inline jstring jniCreateString(JNIEnv* env, const jchar* unicodeChars, jsize len) {
-    return jniCreateString(&env->functions, unicodeChars, len);
-}
-
-inline jstring jniCreateString(JNIEnv* env, const char16_t* unicodeChars, jsize len) {
-    return jniCreateString(&env->functions, reinterpret_cast<const jchar*>(unicodeChars), len);
-}
-
-inline void jniLogException(JNIEnv* env, int priority, const char* tag, jthrowable exception = NULL) {
-    jniLogException(&env->functions, priority, tag, exception);
-}
-
-#if !defined(DISALLOW_COPY_AND_ASSIGN)
-// DISALLOW_COPY_AND_ASSIGN disallows the copy and operator= functions. It goes in the private:
-// declarations in a class.
-#define DISALLOW_COPY_AND_ASSIGN(TypeName) \
-  TypeName(const TypeName&) = delete;  \
-  void operator=(const TypeName&) = delete
-#endif  // !defined(DISALLOW_COPY_AND_ASSIGN)
-
-#endif  // defined(__cplusplus)
-
-/*
- * TEMP_FAILURE_RETRY is defined by some, but not all, versions of
- * <unistd.h>. (Alas, it is not as standard as we'd hoped!) So, if it's
- * not already defined, then define it here.
- */
-#ifndef TEMP_FAILURE_RETRY
-/* Used to retry syscalls that can return EINTR. */
-#define TEMP_FAILURE_RETRY(exp) ({         \
-    typeof (exp) _rc;                      \
-    do {                                   \
-        _rc = (exp);                       \
-    } while (_rc == -1 && errno == EINTR); \
-    _rc; })
-#endif
-
-#endif  /* NATIVEHELPER_JNIHELP_H_ */
+#endif // defined(__cplusplus)

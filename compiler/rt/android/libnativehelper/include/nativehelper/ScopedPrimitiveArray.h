@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef SCOPED_PRIMITIVE_ARRAY_H_included
-#define SCOPED_PRIMITIVE_ARRAY_H_included
+#pragma once
 
 #include "JNIHelp.h"
 #include <nativehelper/scoped_primitive_array.h>
 
-#endif  // SCOPED_PRIMITIVE_ARRAY_H_included

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,17 @@
 
 #pragma once
 
-#ifdef __cplusplus
-#define MODULE_API extern "C"
-#else
-#define MODULE_API
-#endif  // __cplusplus
+#include <sys/cdefs.h>
+#include <stdbool.h>
+
+__BEGIN_DECLS
+
+typedef void* DlLibrary;
+typedef void* DlSymbol;
+
+DlLibrary DlOpenLibrary(const char* filename);
+bool DlCloseLibrary(DlLibrary library);
+DlSymbol DlGetSymbol(DlLibrary library, const char* symbol);
+const char* DlGetError();
+
+__END_DECLS

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
-#ifndef SCOPED_BYTES_H_included
-#define SCOPED_BYTES_H_included
+#pragma once
 
-#include "JNIHelp.h"
-#include <nativehelper/scoped_bytes.h>
+#include <sys/cdefs.h>
 
-#endif  // SCOPED_BYTES_H_included
+__BEGIN_DECLS
+
+const char* JniInvocationGetLibraryWith(const char* library,
+                                        bool is_debuggable,
+                                        const char* system_preferred_library);
+
+__END_DECLS
+

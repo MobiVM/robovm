@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef SCOPED_LOCAL_REF_H_included
-#define SCOPED_LOCAL_REF_H_included
+#pragma once
 
 #include "JNIHelp.h"
 #include <nativehelper/scoped_local_ref.h>
 
-#endif  // SCOPED_LOCAL_REF_H_included

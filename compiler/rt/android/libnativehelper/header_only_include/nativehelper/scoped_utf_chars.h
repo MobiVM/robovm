@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-#ifndef SCOPED_UTF_CHARS_H_
-#define SCOPED_UTF_CHARS_H_
+#pragma once
 
+#include <stddef.h>
 #include <string.h>
 
-#include "jni.h"
+#include <jni.h>
+
 #include "nativehelper_utils.h"
 
 // A smart pointer that provides read-only access to a Java string's UTF chars.
@@ -36,7 +37,7 @@ class ScopedUtfChars {
   ScopedUtfChars(JNIEnv* env, jstring s) : env_(env), string_(s) {
     if (s == nullptr) {
       utf_chars_ = nullptr;
-      jniThrowNullPointerException(env, nullptr);
+      jniThrowNullPointerException(env);
     } else {
       utf_chars_ = env->GetStringUTFChars(s, nullptr);
     }
@@ -91,4 +92,3 @@ class ScopedUtfChars {
   DISALLOW_COPY_AND_ASSIGN(ScopedUtfChars);
 };
 
-#endif  // SCOPED_UTF_CHARS_H_
