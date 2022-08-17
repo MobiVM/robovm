@@ -73,3 +73,15 @@ TEST_MAPPING
 !/external/bouncycastle/bouncycastle.version
 !/external/bouncycastle/MODULE_LICENSE_BSD_LIKE
 !/external/bouncycastle/NOTICE
+
+##
+## Compat -- annotations for Libcore
+##
+/compat/*
+/compat/**/Android.bp
+!/compat/README.md
+!/compat/java
+/compat/java/*
+!/compat/java/android
+/compat/java/android/compat/testing
+/compat/java/android/processor
