@@ -1,6 +1,8 @@
 project(android-external-expat)
 
-include_directories(. lib)
+
+set(LIB_PATH "${ANDROID_RT_PATH}/external/expat")
+include_directories("${LIB_PATH}" "${LIB_PATH}/lib")
 
 add_definitions(-DHAVE_EXPAT_CONFIG_H -UWIN32_LEAN_AND_MEAN)
 add_compile_options(-Wall)
@@ -17,9 +19,9 @@ if(DARWIN)
 endif(DARWIN)
 
 set(SRC
-  lib/xmlparse.c
-  lib/xmlrole.c
-  lib/xmltok.c
+  ${LIB_PATH}/lib/xmlparse.c
+  ${LIB_PATH}/lib/xmlrole.c
+  ${LIB_PATH}/lib/xmltok.c
 )
 
 add_library(android-external-expat OBJECT ${SRC})

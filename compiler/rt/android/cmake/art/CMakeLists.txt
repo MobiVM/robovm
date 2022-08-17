@@ -1,12 +1,10 @@
 project(android-art)
 
-include_directories(
-  ../libnativehelper
-)
+set(LIB_PATH "${ANDROID_RT_PATH}/art")
 
 set(SRC
-  openjdkjvm/OpenjdkJvm.cc
-  src/dalvik_system_VMRuntime.cc
+  ${LIB_PATH}/openjdkjvm/OpenjdkJvm.cc
+  ${LIB_PATH}/src/dalvik_system_VMRuntime.cc
 )
 
 add_library(android-art OBJECT ${SRC})

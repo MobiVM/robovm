@@ -1,7 +1,9 @@
 project(android-external-javasqlite)
 
+set(LIB_PATH "${ANDROID_RT_PATH}/external/javasqlite")
+
 include_directories(
-  ../sqlite/dist
+  ${ANDROID_RT_PATH}/external/sqlite/dist
 )
 
 add_definitions(
@@ -11,7 +13,7 @@ add_definitions(
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error=sign-compare -Wno-unused-parameter")
 
 set(SRC
-  src/main/native/sqlite_jni.c
+  ${LIB_PATH}/src/main/native/sqlite_jni.c
 )
 
 add_library(android-external-javasqlite OBJECT ${SRC})
