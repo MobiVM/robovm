@@ -25,6 +25,7 @@ import com.android.org.bouncycastle.crypto.params.DHPublicKeyParameters;
 import com.android.org.bouncycastle.crypto.params.DHValidationParameters;
 import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.KeyUtil;
 import com.android.org.bouncycastle.jcajce.spec.DHDomainParameterSpec;
+import com.android.org.bouncycastle.jcajce.spec.DHExtendedPublicKeySpec;
 
 /**
  * @hide This class is not part of the Android public SDK API
@@ -44,8 +45,25 @@ public class BCDHPublicKey
         DHPublicKeySpec spec)
     {
         this.y = spec.getY();
-        this.dhSpec = new DHParameterSpec(spec.getP(), spec.getG());
-        this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(spec.getP(), spec.getG()));
+        if (spec instanceof DHExtendedPublicKeySpec)
+        {
+            this.dhSpec = ((DHExtendedPublicKeySpec)spec).getParams();
+        }
+        else
+        {
+            this.dhSpec = new DHParameterSpec(spec.getP(), spec.getG());
+
+        }
+
+        if (dhSpec instanceof DHDomainParameterSpec)
+        {
+            DHDomainParameterSpec dhSp = (DHDomainParameterSpec)dhSpec;
+            this.dhPublicKey = new DHPublicKeyParameters(y, dhSp.getDomainParameters());
+        }
+        else
+        {
+            this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(spec.getP(), spec.getG()));
+        }
     }
 
     BCDHPublicKey(
@@ -53,7 +71,15 @@ public class BCDHPublicKey
     {
         this.y = key.getY();
         this.dhSpec = key.getParams();
-        this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(dhSpec.getP(), dhSpec.getG()));
+        if (dhSpec instanceof DHDomainParameterSpec)
+        {
+            DHDomainParameterSpec dhSp = (DHDomainParameterSpec)dhSpec;
+            this.dhPublicKey = new DHPublicKeyParameters(y, dhSp.getDomainParameters());
+        }
+        else
+        {
+            this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(dhSpec.getP(), dhSpec.getG()));
+        }
     }
 
     BCDHPublicKey(
@@ -109,12 +135,14 @@ public class BCDHPublicKey
             if (params.getL() != null)
             {
                 this.dhSpec = new DHParameterSpec(params.getP(), params.getG(), params.getL().intValue());
+                this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(dhSpec.getP(), dhSpec.getG(), null, dhSpec.getL()));
             }
             else
             {
                 this.dhSpec = new DHParameterSpec(params.getP(), params.getG());
+                this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(dhSpec.getP(), dhSpec.getG()));
             }
-            this.dhPublicKey = new DHPublicKeyParameters(y, new DHParameters(dhSpec.getP(), dhSpec.getG()));
+
         }
         else if (id.equals(X9ObjectIdentifiers.dhpublicnumber))
         {

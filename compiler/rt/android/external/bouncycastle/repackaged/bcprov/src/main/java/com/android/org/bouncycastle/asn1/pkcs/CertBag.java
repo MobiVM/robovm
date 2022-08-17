@@ -7,6 +7,7 @@ import com.android.org.bouncycastle.asn1.ASN1Object;
 import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
+import com.android.org.bouncycastle.asn1.ASN1TaggedObject;
 import com.android.org.bouncycastle.asn1.DERSequence;
 import com.android.org.bouncycastle.asn1.DERTaggedObject;
 
@@ -22,8 +23,8 @@ public class CertBag
     private CertBag(
         ASN1Sequence    seq)
     {
-        this.certId = (ASN1ObjectIdentifier)seq.getObjectAt(0);
-        this.certValue = ((DERTaggedObject)seq.getObjectAt(1)).getObject();
+        this.certId = ASN1ObjectIdentifier.getInstance(seq.getObjectAt(0));
+        this.certValue = ASN1TaggedObject.getInstance(seq.getObjectAt(1)).getObject();
     }
 
     public static CertBag getInstance(Object o)
@@ -60,7 +61,7 @@ public class CertBag
 
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector  v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(2);
 
         v.add(certId);
         v.add(new DERTaggedObject(0, certValue));

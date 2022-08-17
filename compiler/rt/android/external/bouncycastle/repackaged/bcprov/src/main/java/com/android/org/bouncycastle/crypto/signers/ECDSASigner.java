@@ -19,6 +19,7 @@ import com.android.org.bouncycastle.math.ec.ECFieldElement;
 import com.android.org.bouncycastle.math.ec.ECMultiplier;
 import com.android.org.bouncycastle.math.ec.ECPoint;
 import com.android.org.bouncycastle.math.ec.FixedPointCombMultiplier;
+import com.android.org.bouncycastle.util.BigIntegers;
 
 /**
  * EC-DSA as described in X9.62
@@ -127,7 +128,7 @@ public class ECDSASigner
             }
             while (r.equals(ZERO));
 
-            s = k.modInverse(n).multiply(e.add(d.multiply(r))).mod(n);
+            s = BigIntegers.modOddInverse(n, k).multiply(e.add(d.multiply(r))).mod(n);
         }
         while (s.equals(ZERO));
 
@@ -161,7 +162,7 @@ public class ECDSASigner
             return false;
         }
 
-        BigInteger c = s.modInverse(n);
+        BigInteger c = BigIntegers.modOddInverseVar(n, s);
 
         BigInteger u1 = e.multiply(c).mod(n);
         BigInteger u2 = r.multiply(c).mod(n);
@@ -255,6 +256,6 @@ public class ECDSASigner
 
     protected SecureRandom initSecureRandom(boolean needed, SecureRandom provided)
     {
-        return !needed ? null : (provided != null) ? provided : CryptoServicesRegistrar.getSecureRandom();
+        return needed ? CryptoServicesRegistrar.getSecureRandom(provided) : null;
     }
 }

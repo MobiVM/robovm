@@ -9,21 +9,15 @@ import java.io.IOException;
  * Preferably use the constant:  DERNull.INSTANCE.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class DERNull
     extends ASN1Null
 {
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public static final DERNull INSTANCE = new DERNull();
 
     private static final byte[]  zeroBytes = new byte[0];
 
-    /**
-     * @deprecated use DERNull.INSTANCE
-     */
-    // Android-changed: Reduce visibility to protected.
-    protected DERNull()
+    private DERNull()
     {
     }
 
@@ -37,10 +31,8 @@ public class DERNull
         return 2;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.NULL, zeroBytes);
+        out.writeEncoded(withTag, BERTags.NULL, zeroBytes);
     }
 }

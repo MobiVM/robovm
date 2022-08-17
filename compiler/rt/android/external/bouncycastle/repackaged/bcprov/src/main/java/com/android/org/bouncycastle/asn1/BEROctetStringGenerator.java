@@ -22,7 +22,7 @@ public class BEROctetStringGenerator
         throws IOException
     {
         super(out);
-        
+
         writeBERHeader(BERTags.CONSTRUCTED | BERTags.OCTET_STRING);
     }
 
@@ -42,7 +42,7 @@ public class BEROctetStringGenerator
         throws IOException
     {
         super(out, tagNo, isExplicit);
-        
+
         writeBERHeader(BERTags.CONSTRUCTED | BERTags.OCTET_STRING);
     }
 
@@ -67,7 +67,7 @@ public class BEROctetStringGenerator
     {
         return new BufferedBEROctetStream(buf);
     }
-   
+
     private class BufferedBEROctetStream
         extends OutputStream
     {
@@ -82,7 +82,7 @@ public class BEROctetStringGenerator
             _off = 0;
             _derOut = new DEROutputStream(_out);
         }
-        
+
         public void write(
             int b)
             throws IOException
@@ -91,7 +91,7 @@ public class BEROctetStringGenerator
 
             if (_off == _buf.length)
             {
-                DEROctetString.encode(_derOut, _buf);
+                DEROctetString.encode(_derOut, true, _buf, 0, _buf.length);
                 _off = 0;
             }
         }
@@ -109,7 +109,7 @@ public class BEROctetStringGenerator
                     break;
                 }
 
-                DEROctetString.encode(_derOut, _buf);
+                DEROctetString.encode(_derOut, true, _buf, 0, _buf.length);
                 _off = 0;
 
                 off += numToCopy;
@@ -117,17 +117,16 @@ public class BEROctetStringGenerator
             }
         }
 
-        public void close() 
+        public void close()
             throws IOException
         {
             if (_off != 0)
             {
-                byte[] bytes = new byte[_off];
-                System.arraycopy(_buf, 0, bytes, 0, _off);
-                
-                DEROctetString.encode(_derOut, bytes);
+                DEROctetString.encode(_derOut, true, _buf, 0, _off);
             }
-            
+
+            _derOut.flushInternal();
+
              writeBEREnd();
         }
     }

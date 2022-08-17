@@ -40,15 +40,31 @@ public class RSABlindedEngine
 
         if (param instanceof ParametersWithRandom)
         {
-            ParametersWithRandom    rParam = (ParametersWithRandom)param;
+            ParametersWithRandom rParam = (ParametersWithRandom)param;
 
-            key = (RSAKeyParameters)rParam.getParameters();
-            random = rParam.getRandom();
+            this.key = (RSAKeyParameters)rParam.getParameters();
+
+            if (key instanceof RSAPrivateCrtKeyParameters)
+            {
+                this.random = rParam.getRandom();
+            }
+            else
+            {
+                this.random = null;
+            }
         }
         else
         {
-            key = (RSAKeyParameters)param;
-            random = CryptoServicesRegistrar.getSecureRandom();
+            this.key = (RSAKeyParameters)param;
+
+            if (key instanceof RSAPrivateCrtKeyParameters)
+            {
+                this.random = CryptoServicesRegistrar.getSecureRandom();
+            }
+            else
+            {
+                this.random = null;
+            }
         }
     }
 
@@ -111,7 +127,7 @@ public class RSABlindedEngine
                 BigInteger blindedInput = r.modPow(e, m).multiply(input).mod(m);
                 BigInteger blindedResult = core.processBlock(blindedInput);
 
-                BigInteger rInv = r.modInverse(m);
+                BigInteger rInv = BigIntegers.modOddInverse(m, r);
                 result = blindedResult.multiply(rInv).mod(m);
                 // defence against Arjen Lenstra’s CRT attack
                 if (!input.equals(result.modPow(e, m)))

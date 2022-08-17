@@ -3,13 +3,18 @@ package com.android.org.bouncycastle.asn1.x509;
 
 import java.math.BigInteger;
 
+import com.android.org.bouncycastle.asn1.ASN1EncodableVector;
 import com.android.org.bouncycastle.asn1.ASN1Integer;
 import com.android.org.bouncycastle.asn1.ASN1Object;
 import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
 import com.android.org.bouncycastle.asn1.ASN1TaggedObject;
 import com.android.org.bouncycastle.asn1.DERBitString;
+import com.android.org.bouncycastle.asn1.DERSequence;
+import com.android.org.bouncycastle.asn1.DERTaggedObject;
 import com.android.org.bouncycastle.asn1.x500.X500Name;
+import com.android.org.bouncycastle.util.BigIntegers;
+import com.android.org.bouncycastle.util.Properties;
 
 /**
  * The TBSCertificate object.
@@ -32,7 +37,6 @@ import com.android.org.bouncycastle.asn1.x500.X500Name;
  * will parse them, but you really shouldn't be creating new ones.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class TBSCertificate
     extends ASN1Object
 {
@@ -94,15 +98,15 @@ public class TBSCertificate
         boolean isV1 = false;
         boolean isV2 = false;
  
-        if (version.getValue().equals(BigInteger.valueOf(0)))
+        if (version.hasValue(BigInteger.valueOf(0)))
         {
             isV1 = true;
         }
-        else if (version.getValue().equals(BigInteger.valueOf(1)))
+        else if (version.hasValue(BigInteger.valueOf(1)))
         {
             isV2 = true;
         }
-        else if (!version.getValue().equals(BigInteger.valueOf(2)))
+        else if (!version.hasValue(BigInteger.valueOf(2)))
         {
             throw new IllegalArgumentException("version number not recognised");
         }
@@ -161,7 +165,7 @@ public class TBSCertificate
 
     public int getVersionNumber()
     {
-        return version.getValue().intValue() + 1;
+        return version.intValueExact() + 1;
     }
 
     public ASN1Integer getVersion()
@@ -221,6 +225,69 @@ public class TBSCertificate
 
     public ASN1Primitive toASN1Primitive()
     {
-        return seq;
+        if (Properties.getPropertyValue("com.android.org.bouncycastle.x509.allow_non-der_tbscert") != null)
+        {
+            if (Properties.isOverrideSet("com.android.org.bouncycastle.x509.allow_non-der_tbscert"))
+            {
+                return seq;
+            }
+        }
+        else
+        {
+            return seq;
+        }
+
+        ASN1EncodableVector v = new ASN1EncodableVector();
+
+        // DEFAULT Zero
+        if (!version.hasValue(BigIntegers.ZERO))
+        {
+            v.add(new DERTaggedObject(true, 0, version));
+        }
+
+        v.add(serialNumber);
+        v.add(signature);
+        v.add(issuer);
+
+        //
+        // before and after dates
+        //
+        {
+            ASN1EncodableVector validity = new ASN1EncodableVector(2);
+            validity.add(startDate);
+            validity.add(endDate);
+
+            v.add(new DERSequence(validity));
+        }
+
+        if (subject != null)
+        {
+            v.add(subject);
+        }
+        else
+        {
+            v.add(new DERSequence());
+        }
+
+        v.add(subjectPublicKeyInfo);
+
+        // Note: implicit tag
+        if (issuerUniqueId != null)
+        {
+            v.add(new DERTaggedObject(false, 1, issuerUniqueId));
+        }
+
+        // Note: implicit tag
+        if (subjectUniqueId != null)
+        {
+            v.add(new DERTaggedObject(false, 2, subjectUniqueId));
+        }
+
+        if (extensions != null)
+        {
+            v.add(new DERTaggedObject(true, 3, extensions));
+        }
+
+        return new DERSequence(v);
     }
 }

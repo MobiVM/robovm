@@ -6,7 +6,6 @@ import java.security.SecureRandom;
 
 import com.android.org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import com.android.org.bouncycastle.crypto.AsymmetricCipherKeyPairGenerator;
-import com.android.org.bouncycastle.crypto.CryptoServicesRegistrar;
 import com.android.org.bouncycastle.crypto.KeyGenerationParameters;
 import com.android.org.bouncycastle.crypto.params.ECDomainParameters;
 import com.android.org.bouncycastle.crypto.params.ECKeyGenerationParameters;
@@ -35,11 +34,6 @@ public class ECKeyPairGenerator
 
         this.random = ecP.getRandom();
         this.params = ecP.getDomainParameters();
-
-        if (this.random == null)
-        {
-            this.random = CryptoServicesRegistrar.getSecureRandom();
-        }
     }
 
     /**
@@ -57,7 +51,7 @@ public class ECKeyPairGenerator
         {
             d = BigIntegers.createRandomBigInteger(nBitLength, random);
 
-            if (d.compareTo(TWO) < 0  || (d.compareTo(n) >= 0))
+            if (d.compareTo(ONE) < 0  || (d.compareTo(n) >= 0))
             {
                 continue;
             }

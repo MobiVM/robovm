@@ -7,7 +7,6 @@ import com.android.org.bouncycastle.util.Strings;
  * super class for all Password Based Encryption (PBE) parameter generator classes.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public abstract class PBEParametersGenerator
 {
     protected byte[]  password;
@@ -17,7 +16,6 @@ public abstract class PBEParametersGenerator
     /**
      * base constructor.
      */
-    @libcore.api.CorePlatformApi
     protected PBEParametersGenerator()
     {
     }
@@ -104,7 +102,6 @@ public abstract class PBEParametersGenerator
      * @param password a character array representing the password.
      * @return a byte array representing the password.
      */
-    @libcore.api.CorePlatformApi
     public static byte[] PKCS5PasswordToBytes(
         char[]  password)
     {

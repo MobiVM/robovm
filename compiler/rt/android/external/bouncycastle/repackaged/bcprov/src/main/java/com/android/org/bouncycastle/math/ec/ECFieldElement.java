@@ -4,10 +4,9 @@ package com.android.org.bouncycastle.math.ec;
 import java.math.BigInteger;
 import java.util.Random;
 
-import com.android.org.bouncycastle.math.raw.Mod;
-import com.android.org.bouncycastle.math.raw.Nat;
 import com.android.org.bouncycastle.util.Arrays;
 import com.android.org.bouncycastle.util.BigIntegers;
+import com.android.org.bouncycastle.util.Integers;
 
 /**
  * @hide This class is not part of the Android public SDK API
@@ -427,13 +426,7 @@ public abstract class ECFieldElement
 
         protected BigInteger modInverse(BigInteger x)
         {
-            int bits = getFieldSize();
-            int len = (bits + 31) >> 5;
-            int[] p = Nat.fromBigInteger(bits, q);
-            int[] n = Nat.fromBigInteger(bits, x);
-            int[] z = Nat.create(len);
-            Mod.invert(p, n, z);
-            return Nat.toBigInteger(len, z);
+            return BigIntegers.modOddInverse(q, x);
         }
 
         protected BigInteger modMult(BigInteger x1, BigInteger x2)
@@ -523,27 +516,59 @@ public abstract class ECFieldElement
                 throw new IllegalStateException("Half-trace only defined for odd m");
             }
 
-            ECFieldElement fe = this;
-            ECFieldElement ht = fe;
-            for (int i = 2; i < m; i += 2)
+//            ECFieldElement ht = this;
+//            for (int i = 1; i < m; i += 2)
+//            {
+//                ht = ht.squarePow(2).add(this);
+//            }
+
+            int n = (m + 1) >>> 1;
+            int k = 31 - Integers.numberOfLeadingZeros(n);
+            int nk = 1;
+
+            ECFieldElement ht = this;
+            while (k > 0)
             {
-                fe = fe.squarePow(2);
-                ht = ht.add(fe);
+                ht = ht.squarePow(nk << 1).add(ht);
+                nk = n >>> --k;
+                if (0 != (nk & 1))
+                {
+                    ht = ht.squarePow(2).add(this);
+                }
             }
 
             return ht;
         }
 
+        public boolean hasFastTrace()
+        {
+            return false;
+        }
+
         public int trace()
         {
             int m = this.getFieldSize();
-            ECFieldElement fe = this;
-            ECFieldElement tr = fe;
-            for (int i = 1; i < m; ++i)
+
+//            ECFieldElement tr = this;
+//            for (int i = 1; i < m; ++i)
+//            {
+//                tr = tr.square().add(this);
+//            }
+
+            int k = 31 - Integers.numberOfLeadingZeros(m);
+            int mk = 1;
+
+            ECFieldElement tr = this;
+            while (k > 0)
             {
-                fe = fe.square();
-                tr = tr.add(fe);
+                tr = tr.squarePow(mk).add(tr);
+                mk = m >>> --k;
+                if (0 != (mk & 1))
+                {
+                    tr = tr.square().add(this);
+                }
             }
+
             if (tr.isZero())
             {
                 return 0;
@@ -695,42 +720,6 @@ public abstract class ECFieldElement
         public int getFieldSize()
         {
             return m;
-        }
-
-        /**
-         * Checks, if the ECFieldElements <code>a</code> and <code>b</code>
-         * are elements of the same field <code>F<sub>2<sup>m</sup></sub></code>
-         * (having the same representation).
-         * @param a field element.
-         * @param b field element to be compared.
-         * @throws IllegalArgumentException if <code>a</code> and <code>b</code>
-         * are not elements of the same field
-         * <code>F<sub>2<sup>m</sup></sub></code> (having the same
-         * representation). 
-         */
-        public static void checkFieldElements(
-            ECFieldElement a,
-            ECFieldElement b)
-        {
-            if ((!(a instanceof F2m)) || (!(b instanceof F2m)))
-            {
-                throw new IllegalArgumentException("Field elements are not "
-                        + "both instances of ECFieldElement.F2m");
-            }
-
-            ECFieldElement.F2m aF2m = (ECFieldElement.F2m)a;
-            ECFieldElement.F2m bF2m = (ECFieldElement.F2m)b;
-
-            if (aF2m.representation != bF2m.representation)
-            {
-                // Should never occur
-                throw new IllegalArgumentException("One of the F2m field elements has incorrect representation");
-            }
-
-            if ((aF2m.m != bF2m.m) || !Arrays.areEqual(aF2m.ks, bF2m.ks))
-            {
-                throw new IllegalArgumentException("Field elements are not elements of the same field F2m");
-            }
         }
 
         public ECFieldElement add(final ECFieldElement b)

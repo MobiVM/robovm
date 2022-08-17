@@ -2,18 +2,27 @@
 package com.android.org.bouncycastle.asn1;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Base class for ASN.1 primitive objects. These are the actual objects used to generate byte encodings.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public abstract class ASN1Primitive
     extends ASN1Object
 {
     ASN1Primitive()
     {
+    }
 
+    public void encodeTo(OutputStream output) throws IOException
+    {
+        ASN1OutputStream.create(output).writeObject(this);
+    }
+
+    public void encodeTo(OutputStream output, String encoding) throws IOException
+    {
+        ASN1OutputStream.create(output, encoding).writeObject(this);
     }
 
     /**
@@ -23,7 +32,6 @@ public abstract class ASN1Primitive
      * @return the base ASN.1 object represented by the byte stream.
      * @exception IOException if there is a problem parsing the data, or parsing the stream did not exhaust the available data.
      */
-    @libcore.api.CorePlatformApi
     public static ASN1Primitive fromByteArray(byte[] data)
         throws IOException
     {
@@ -56,8 +64,17 @@ public abstract class ASN1Primitive
         return (o instanceof ASN1Encodable) && asn1Equals(((ASN1Encodable)o).toASN1Primitive());
     }
 
-    @libcore.api.CorePlatformApi
-    public ASN1Primitive toASN1Primitive()
+    public final boolean equals(ASN1Encodable other)
+    {
+        return this == other || (null != other && asn1Equals(other.toASN1Primitive()));
+    }
+
+    public final boolean equals(ASN1Primitive other)
+    {
+        return this == other || asn1Equals(other);
+    }
+
+    public final ASN1Primitive toASN1Primitive()
     {
         return this;
     }
@@ -97,7 +114,7 @@ public abstract class ASN1Primitive
      */
     abstract int encodedLength() throws IOException;
 
-    abstract void encode(ASN1OutputStream out) throws IOException;
+    abstract void encode(ASN1OutputStream out, boolean withTag) throws IOException;
 
     /**
      * Equality (similarity) comparison for two ASN1Primitive objects.

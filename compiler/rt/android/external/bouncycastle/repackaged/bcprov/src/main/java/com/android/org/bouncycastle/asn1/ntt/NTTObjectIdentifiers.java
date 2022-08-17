@@ -4,7 +4,7 @@ package com.android.org.bouncycastle.asn1.ntt;
 import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
 
 /**
- * From <a href="http://tools.ietf.org/html/rfc3657">RFC 3657</a>
+ * From <a href="https://tools.ietf.org/html/rfc3657">RFC 3657</a>
  * Use of the Camellia Encryption Algorithm
  * in Cryptographic Message Syntax (CMS)
  * @hide This class is not part of the Android public SDK API

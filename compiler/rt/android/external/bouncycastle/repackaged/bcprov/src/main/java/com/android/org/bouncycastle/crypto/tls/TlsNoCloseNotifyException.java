@@ -9,6 +9,8 @@ import java.io.EOFException;
  * protocol cannot rule out truncation of the connection data (potentially malicious). It may be
  * possible to check for truncation via some property of a higher level protocol built upon TLS,
  * e.g. the Content-Length header for HTTPS.
+ *
+ * @deprecated Migrate to the (D)TLS API in org.bouncycastle.tls (bctls jar).
  * @hide This class is not part of the Android public SDK API
  */
 public class TlsNoCloseNotifyException

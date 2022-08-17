@@ -98,21 +98,23 @@ public class SHA256
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("MessageDigest.SHA-256", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA256", "SHA-256");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha256, "SHA-256");
 
-            // BEGIN Android-removed: Unsupported algorithms
-            // provider.addAlgorithm("SecretKeyFactory.PBEWITHHMACSHA256", PREFIX + "$PBEWithMacKeyFactory");
-            // provider.addAlgorithm("Alg.Alias.SecretKeyFactory.PBEWITHHMACSHA-256", "PBEWITHHMACSHA256");
-            // provider.addAlgorithm("Alg.Alias.SecretKeyFactory." + NISTObjectIdentifiers.id_sha256, "PBEWITHHMACSHA256");
-            // END Android-removed: Unsupported algorithms
+            provider.addAlgorithm("SecretKeyFactory.PBEWITHHMACSHA256", PREFIX + "$PBEWithMacKeyFactory");
+            provider.addAlgorithm("Alg.Alias.SecretKeyFactory.PBEWITHHMACSHA-256", "PBEWITHHMACSHA256");
+            provider.addAlgorithm("Alg.Alias.SecretKeyFactory." + NISTObjectIdentifiers.id_sha256, "PBEWITHHMACSHA256");
 
             provider.addAlgorithm("Mac.PBEWITHHMACSHA256", PREFIX + "$HashMac");
 
             addHMACAlgorithm(provider, "SHA256", PREFIX + "$HashMac",  PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "SHA256", PKCSObjectIdentifiers.id_hmacWithSHA256);
             addHMACAlias(provider, "SHA256", NISTObjectIdentifiers.id_sha256);
+            */
+            // END Android-removed: Unsupported algorithms
         }
     }
 }

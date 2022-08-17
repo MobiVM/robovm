@@ -15,7 +15,7 @@ import com.android.org.bouncycastle.asn1.x509.X509CertificateStructure;
 import com.android.org.bouncycastle.asn1.x509.X509Name;
 
 /**
- * <a href="http://tools.ietf.org/html/rfc5652#section-10.2.4">RFC 5652</a>: IssuerAndSerialNumber object.
+ * <a href="https://tools.ietf.org/html/rfc5652#section-10.2.4">RFC 5652</a>: IssuerAndSerialNumber object.
  * <p>
  * <pre>
  * IssuerAndSerialNumber ::= SEQUENCE {
@@ -130,7 +130,7 @@ public class IssuerAndSerialNumber
 
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector    v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(2);
 
         v.add(name);
         v.add(serialNumber);

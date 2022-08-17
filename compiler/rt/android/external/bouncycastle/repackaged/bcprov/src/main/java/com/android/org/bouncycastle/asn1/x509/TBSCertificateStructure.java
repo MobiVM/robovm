@@ -7,7 +7,6 @@ import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
 import com.android.org.bouncycastle.asn1.ASN1TaggedObject;
 import com.android.org.bouncycastle.asn1.DERBitString;
-import com.android.org.bouncycastle.asn1.DERTaggedObject;
 import com.android.org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 import com.android.org.bouncycastle.asn1.x500.X500Name;
 
@@ -82,7 +81,7 @@ public class TBSCertificateStructure
         //
         // some certficates don't include a version number - we assume v1
         //
-        if (seq.getObjectAt(0) instanceof DERTaggedObject)
+        if (seq.getObjectAt(0) instanceof ASN1TaggedObject)
         {
             version = ASN1Integer.getInstance((ASN1TaggedObject)seq.getObjectAt(0), true);
         }
@@ -114,7 +113,7 @@ public class TBSCertificateStructure
 
         for (int extras = seq.size() - (seqStart + 6) - 1; extras > 0; extras--)
         {
-            DERTaggedObject extra = (DERTaggedObject)seq.getObjectAt(seqStart + 6 + extras);
+            ASN1TaggedObject extra = ASN1TaggedObject.getInstance(seq.getObjectAt(seqStart + 6 + extras));
 
             switch (extra.getTagNo())
             {
@@ -132,7 +131,7 @@ public class TBSCertificateStructure
 
     public int getVersion()
     {
-        return version.getValue().intValue() + 1;
+        return version.intValueExact() + 1;
     }
 
     public ASN1Integer getVersionNumber()

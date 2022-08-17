@@ -11,11 +11,14 @@ import com.android.org.bouncycastle.util.Properties;
  * Class representing the ASN.1 INTEGER type.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class ASN1Integer
     extends ASN1Primitive
 {
+    static final int SIGN_EXT_SIGNED = 0xFFFFFFFF;
+    static final int SIGN_EXT_UNSIGNED = 0xFF;
+
     private final byte[] bytes;
+    private final int start;
 
     /**
      * Return an integer from the passed in object.
@@ -78,10 +81,10 @@ public class ASN1Integer
      *
      * @param value the long representing the value desired.
      */
-    public ASN1Integer(
-        long value)
+    public ASN1Integer(long value)
     {
-        bytes = BigInteger.valueOf(value).toByteArray();
+        this.bytes = BigInteger.valueOf(value).toByteArray();
+        this.start = 0;
     }
 
     /**
@@ -89,12 +92,11 @@ public class ASN1Integer
      *
      * @param value the BigInteger representing the value desired.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public ASN1Integer(
-        BigInteger value)
+    @android.compat.annotation.UnsupportedAppUsage
+    public ASN1Integer(BigInteger value)
     {
-        bytes = value.toByteArray();
+        this.bytes = value.toByteArray();
+        this.start = 0;
     }
 
     /**
@@ -119,51 +121,20 @@ public class ASN1Integer
      *
      * @param bytes the byte array representing a 2's complement encoding of a BigInteger.
      */
-    public ASN1Integer(
-        byte[] bytes)
+    public ASN1Integer(byte[] bytes)
     {
         this(bytes, true);
     }
 
     ASN1Integer(byte[] bytes, boolean clone)
     {
-        // Apply loose validation, see note in public constructor ANS1Integer(byte[])
-        if (!Properties.isOverrideSet("com.android.org.bouncycastle.asn1.allow_unsafe_integer"))
-        {
-            if (isMalformed(bytes))
-            {                           
-                throw new IllegalArgumentException("malformed integer");
-            }
-        }
-        this.bytes = (clone) ? Arrays.clone(bytes) : bytes;
-    }
-
-    /**
-     * Apply the correct validation for an INTEGER primitive following the BER rules.
-     *
-     * @param bytes The raw encoding of the integer.
-     * @return true if the (in)put fails this validation.
-     */
-    static boolean isMalformed(byte[] bytes)
-    {
-        if (bytes.length > 1)
-        {
-            if (bytes[0] == 0 && (bytes[1] & 0x80) == 0)
-            {
-                return true;
-            }
-            if (bytes[0] == (byte)0xff && (bytes[1] & 0x80) != 0)
-            {
-                return true;
-            }
+        if (isMalformed(bytes))
+        {                           
+            throw new IllegalArgumentException("malformed integer");
         }
 
-        return false;
-    }
-
-    public BigInteger getValue()
-    {
-        return new BigInteger(bytes);
+        this.bytes = clone ? Arrays.clone(bytes) : bytes;
+        this.start = signBytesToSkip(bytes); 
     }
 
     /**
@@ -177,6 +148,52 @@ public class ASN1Integer
         return new BigInteger(1, bytes);
     }
 
+    public BigInteger getValue()
+    {
+        return new BigInteger(bytes);
+    }
+
+    public boolean hasValue(BigInteger x)
+    {
+        return null != x
+            // Fast check to avoid allocation
+            && intValue(bytes, start, SIGN_EXT_SIGNED) == x.intValue()
+            && getValue().equals(x);
+    }
+
+    public int intPositiveValueExact()
+    {
+        int count = bytes.length - start;
+        if (count > 4 || (count == 4 && 0 != (bytes[start] & 0x80)))
+        {
+            throw new ArithmeticException("ASN.1 Integer out of positive int range");
+        }
+
+        return intValue(bytes, start, SIGN_EXT_UNSIGNED);
+    }
+
+    public int intValueExact()
+    {
+        int count = bytes.length - start;
+        if (count > 4)
+        {
+            throw new ArithmeticException("ASN.1 Integer out of int range");
+        }
+
+        return intValue(bytes, start, SIGN_EXT_SIGNED); 
+    }
+
+    public long longValueExact()
+    {
+        int count = bytes.length - start;
+        if (count > 8)
+        {
+            throw new ArithmeticException("ASN.1 Integer out of long range");
+        }
+
+        return longValue(bytes, start, SIGN_EXT_SIGNED);
+    }
+
     boolean isConstructed()
     {
         return false;
@@ -187,27 +204,17 @@ public class ASN1Integer
         return 1 + StreamUtil.calculateBodyLength(bytes.length) + bytes.length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.INTEGER, bytes);
+        out.writeEncoded(withTag, BERTags.INTEGER, bytes);
     }
 
     public int hashCode()
     {
-        int value = 0;
-
-        for (int i = 0; i != bytes.length; i++)
-        {
-            value ^= (bytes[i] & 0xff) << (i % 4);
-        }
-
-        return value;
+        return Arrays.hashCode(bytes);
     }
 
-    boolean asn1Equals(
-        ASN1Primitive o)
+    boolean asn1Equals(ASN1Primitive o)
     {
         if (!(o instanceof ASN1Integer))
         {
@@ -216,7 +223,7 @@ public class ASN1Integer
 
         ASN1Integer other = (ASN1Integer)o;
 
-        return Arrays.areEqual(bytes, other.bytes);
+        return Arrays.areEqual(this.bytes, other.bytes);
     }
 
     public String toString()
@@ -224,4 +231,61 @@ public class ASN1Integer
         return getValue().toString();
     }
 
+    static int intValue(byte[] bytes, int start, int signExt)
+    {
+        int length = bytes.length;
+        int pos = Math.max(start, length - 4);
+
+        int val = bytes[pos] & signExt;
+        while (++pos < length)
+        {
+            val = (val << 8) | (bytes[pos] & SIGN_EXT_UNSIGNED);
+        }
+        return val;
+    }
+
+    static long longValue(byte[] bytes, int start, int signExt)
+    {
+        int length = bytes.length;
+        int pos = Math.max(start, length - 8);
+
+        long val = bytes[pos] & signExt;
+        while (++pos < length)
+        {
+            val = (val << 8) | (bytes[pos] & SIGN_EXT_UNSIGNED);
+        }
+        return val;
+    }
+
+    /**
+     * Apply the correct validation for an INTEGER primitive following the BER rules.
+     *
+     * @param bytes The raw encoding of the integer.
+     * @return true if the (in)put fails this validation.
+     */
+    static boolean isMalformed(byte[] bytes)
+    {
+        switch (bytes.length)
+        {
+        case 0:
+            return true;
+        case 1:
+            return false;
+        default:
+            return bytes[0] == (bytes[1] >> 7)
+                // Apply loose validation, see note in public constructor ASN1Integer(byte[])
+                && !Properties.isOverrideSet("com.android.org.bouncycastle.asn1.allow_unsafe_integer");
+        }
+    }
+
+    static int signBytesToSkip(byte[] bytes)
+    {
+        int pos = 0, last = bytes.length - 1;
+        while (pos < last
+            && bytes[pos] == (bytes[pos + 1] >> 7))
+        {
+            ++pos;
+        }
+        return pos;
+    }
 }

@@ -274,10 +274,11 @@ public abstract class Nat224
         }
 
         int[] z = create();
-        int i = 0;
-        while (x.signum() != 0)
+
+        // NOTE: Use a fixed number of loop iterations
+        for (int i = 0; i < 7; ++i)
         {
-            z[i++] = x.intValue();
+            z[i] = x.intValue();
             x = x.shiftRight(32);
         }
         return z;
@@ -518,9 +519,10 @@ public abstract class Nat224
             c += x_i * y_6 + (zz[i + 6] & M);
             zz[i + 6] = (int)c;
             c >>>= 32;
-            c += zc + (zz[i + 7] & M);
-            zz[i + 7] = (int)c;
-            zc = c >>> 32;
+
+            zc += c + (zz[i + 7] & M);
+            zz[i + 7] = (int)zc;
+            zc >>>= 32;
         }
         return (int)zc;
     }
@@ -560,9 +562,10 @@ public abstract class Nat224
             c += x_i * y_6 + (zz[zzOff + 6] & M);
             zz[zzOff + 6] = (int)c;
             c >>>= 32;
-            c += zc + (zz[zzOff + 7] & M);
-            zz[zzOff + 7] = (int)c;
-            zc = c >>> 32;
+
+            zc += c + (zz[zzOff + 7] & M);
+            zz[zzOff + 7] = (int)zc;
+            zc >>>= 32;
             ++zzOff;
         }
         return (int)zc;

@@ -14,12 +14,16 @@ import java.util.Map;
 import java.util.Set;
 
 import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
+import com.android.org.bouncycastle.asn1.ASN1Sequence;
+// import org.bouncycastle.asn1.cryptopro.ECGOST3410NamedCurves;
+// import org.bouncycastle.asn1.cryptopro.GOST3410PublicKeyAlgParameters;
 import com.android.org.bouncycastle.asn1.x9.ECNamedCurveTable;
 import com.android.org.bouncycastle.asn1.x9.X962Parameters;
 import com.android.org.bouncycastle.asn1.x9.X9ECParameters;
 import com.android.org.bouncycastle.crypto.ec.CustomNamedCurves;
 import com.android.org.bouncycastle.crypto.params.ECDomainParameters;
 import com.android.org.bouncycastle.jcajce.provider.config.ProviderConfiguration;
+// import org.bouncycastle.jce.ECGOST3410NamedCurveTable;
 import com.android.org.bouncycastle.jce.provider.BouncyCastleProvider;
 import com.android.org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
 import com.android.org.bouncycastle.jce.spec.ECNamedCurveSpec;
@@ -98,15 +102,33 @@ public class EC5Util
         {
             curve = configuration.getEcImplicitlyCa().getCurve();
         }
-        else if (acceptableCurves.isEmpty())
-        {
-            X9ECParameters ecP = X9ECParameters.getInstance(params.getParameters());
-
-            curve = ecP.getCurve();
-        }
         else
         {
-            throw new IllegalStateException("encoded parameters not acceptable");
+            ASN1Sequence pSeq = ASN1Sequence.getInstance(params.getParameters());
+            if (acceptableCurves.isEmpty())
+            {
+                if (pSeq.size() > 3)
+                {
+                    X9ECParameters ecP = X9ECParameters.getInstance(pSeq);
+
+                    curve = ecP.getCurve();
+                }
+                else    // GOST parameters
+                {
+                    // BEGIN Android-removed: unsupported algorithms
+                    /*
+                    ASN1ObjectIdentifier gostCurve = ASN1ObjectIdentifier.getInstance(pSeq.getObjectAt(0));
+
+                    curve = ECGOST3410NamedCurves.getByOIDX9(gostCurve).getCurve();
+                    */
+                    // END Android-removed: unsupported algorithms
+                    throw new IllegalStateException("GOST is not supported");
+                }
+            }
+            else
+            {
+                throw new IllegalStateException("encoded parameters not acceptable");
+            }
         }
 
         return curve;
@@ -126,7 +148,7 @@ public class EC5Util
         }
         else
         {
-            domainParameters = ECUtil.getDomainParameters(configuration, convertSpec(params, false));
+            domainParameters = ECUtil.getDomainParameters(configuration, convertSpec(params));
         }
 
         return domainParameters;
@@ -166,25 +188,51 @@ public class EC5Util
         }
         else
         {
-            X9ECParameters ecP = X9ECParameters.getInstance(params.getParameters());
-
-            ellipticCurve = EC5Util.convertCurve(curve, ecP.getSeed());
-
-            if (ecP.getH() != null)
+            ASN1Sequence pSeq = ASN1Sequence.getInstance(params.getParameters());
+            if (pSeq.size() > 3)
             {
-                ecSpec = new ECParameterSpec(
-                    ellipticCurve,
-                    convertPoint(ecP.getG()),
-                    ecP.getN(),
-                    ecP.getH().intValue());
+                X9ECParameters ecP = X9ECParameters.getInstance(pSeq);
+
+                ellipticCurve = EC5Util.convertCurve(curve, ecP.getSeed());
+
+                if (ecP.getH() != null)
+                {
+                    ecSpec = new ECParameterSpec(
+                        ellipticCurve,
+                        convertPoint(ecP.getG()),
+                        ecP.getN(),
+                        ecP.getH().intValue());
+                }
+                else
+                {
+                    ecSpec = new ECParameterSpec(
+                        ellipticCurve,
+                        convertPoint(ecP.getG()),
+                        ecP.getN(),
+                        1);      // TODO: not strictly correct... need to fix the test data...
+                }
             }
-            else
+            else    // GOST parameters
             {
-                ecSpec = new ECParameterSpec(
+                // BEGIN Android-removed: unsupported algorithms
+                /*
+                GOST3410PublicKeyAlgParameters gostParams = GOST3410PublicKeyAlgParameters.getInstance(pSeq);
+
+                ECNamedCurveParameterSpec spec = ECGOST3410NamedCurveTable.getParameterSpec(ECGOST3410NamedCurves.getName(
+                    gostParams.getPublicKeyParamSet()));
+
+                curve = spec.getCurve();
+                ellipticCurve = EC5Util.convertCurve(curve, spec.getSeed());
+
+                ecSpec = new ECNamedCurveSpec(
+                    ECGOST3410NamedCurves.getName(gostParams.getPublicKeyParamSet()),
                     ellipticCurve,
-                    convertPoint(ecP.getG()),
-                    ecP.getN(),
-                    1);      // TODO: not strictly correct... need to fix the test data...
+                    EC5Util.convertPoint(spec.getG()),
+                    spec.getN(), spec.getH());
+
+                */
+                // END Android-removed: unsupported algorithms
+                ecSpec = null;
             }
         }
 
@@ -269,64 +317,46 @@ public class EC5Util
         EllipticCurve ellipticCurve,
         com.android.org.bouncycastle.jce.spec.ECParameterSpec spec)
     {
+        ECPoint g = convertPoint(spec.getG());
+
         if (spec instanceof ECNamedCurveParameterSpec)
         {
-            return new ECNamedCurveSpec(
-                ((ECNamedCurveParameterSpec)spec).getName(),
-                ellipticCurve,
-                convertPoint(spec.getG()),
-                spec.getN(),
-                spec.getH());
+            String name = ((ECNamedCurveParameterSpec)spec).getName();
+
+            return new ECNamedCurveSpec(name, ellipticCurve, g, spec.getN(), spec.getH());
         }
         else
         {
-            return new ECParameterSpec(
-                ellipticCurve,
-                convertPoint(spec.getG()),
-                spec.getN(),
-                spec.getH().intValue());
+            return new ECParameterSpec(ellipticCurve, g, spec.getN(), spec.getH().intValue());
         }
     }
 
-    public static com.android.org.bouncycastle.jce.spec.ECParameterSpec convertSpec(
-        ECParameterSpec ecSpec,
-        boolean withCompression)
+    public static com.android.org.bouncycastle.jce.spec.ECParameterSpec convertSpec(ECParameterSpec ecSpec)
     {
         ECCurve curve = convertCurve(ecSpec.getCurve());
 
+        com.android.org.bouncycastle.math.ec.ECPoint g = convertPoint(curve, ecSpec.getGenerator());
+        BigInteger n = ecSpec.getOrder();
+        BigInteger h = BigInteger.valueOf(ecSpec.getCofactor());
+        byte[] seed = ecSpec.getCurve().getSeed();
+
         if (ecSpec instanceof ECNamedCurveSpec)
         {
-            return new com.android.org.bouncycastle.jce.spec.ECNamedCurveParameterSpec(
-                ((ECNamedCurveSpec)ecSpec).getName(),
-                curve,
-                convertPoint(curve, ecSpec.getGenerator(), withCompression),
-                ecSpec.getOrder(),
-                BigInteger.valueOf(ecSpec.getCofactor()),
-                ecSpec.getCurve().getSeed());
+            return new com.android.org.bouncycastle.jce.spec.ECNamedCurveParameterSpec(((ECNamedCurveSpec)ecSpec).getName(), curve,
+                g, n, h, seed);
         }
         else
         {
-            return new com.android.org.bouncycastle.jce.spec.ECParameterSpec(
-                curve,
-                convertPoint(curve, ecSpec.getGenerator(), withCompression),
-                ecSpec.getOrder(),
-                BigInteger.valueOf(ecSpec.getCofactor()),
-                ecSpec.getCurve().getSeed());
+            return new com.android.org.bouncycastle.jce.spec.ECParameterSpec(curve, g, n, h, seed);
         }
     }
 
-    public static com.android.org.bouncycastle.math.ec.ECPoint convertPoint(
-        ECParameterSpec ecSpec,
-        ECPoint point,
-        boolean withCompression)
+    public static com.android.org.bouncycastle.math.ec.ECPoint convertPoint(ECParameterSpec ecSpec, ECPoint point)
     {
-        return convertPoint(convertCurve(ecSpec.getCurve()), point, withCompression);
+        return convertPoint(convertCurve(ecSpec.getCurve()), point);
     }
 
-    public static com.android.org.bouncycastle.math.ec.ECPoint convertPoint(
-        ECCurve curve,
-        ECPoint point,
-        boolean withCompression)
+    public static com.android.org.bouncycastle.math.ec.ECPoint convertPoint(ECCurve curve, ECPoint point)
     {
         return curve.createPoint(point.getAffineX(), point.getAffineY());
     }

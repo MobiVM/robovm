@@ -4,7 +4,7 @@ package com.android.org.bouncycastle.asn1;
 import java.io.IOException;
 
 /**
- * Parser class for DER SEQUENCEs.
+ * @deprecated Use DLSequenceParser instead
  * @hide This class is not part of the Android public SDK API
  */
 public class DERSequenceParser
@@ -38,7 +38,7 @@ public class DERSequenceParser
     public ASN1Primitive getLoadedObject()
         throws IOException
     {
-         return new DERSequence(_parser.readVector());
+         return new DLSequence(_parser.readVector());
     }
 
     /**

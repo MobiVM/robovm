@@ -2,7 +2,10 @@
 package com.android.org.bouncycastle.math.ec.custom.sec;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
+import com.android.org.bouncycastle.math.ec.AbstractECLookupTable;
+import com.android.org.bouncycastle.math.ec.ECConstants;
 import com.android.org.bouncycastle.math.ec.ECCurve;
 import com.android.org.bouncycastle.math.ec.ECFieldElement;
 import com.android.org.bouncycastle.math.ec.ECLookupTable;
@@ -15,10 +18,10 @@ import com.android.org.bouncycastle.util.encoders.Hex;
  */
 public class SecP521R1Curve extends ECCurve.AbstractFp
 {
-    public static final BigInteger q = new BigInteger(1,
-        Hex.decode("01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"));
+    public static final BigInteger q = SecP521R1FieldElement.Q;
 
-    private static final int SecP521R1_DEFAULT_COORDS = COORD_JACOBIAN;
+    private static final int SECP521R1_DEFAULT_COORDS = COORD_JACOBIAN;
+    private static final ECFieldElement[] SECP521R1_AFFINE_ZS = new ECFieldElement[] { new SecP521R1FieldElement(ECConstants.ONE) }; 
 
     protected SecP521R1Point infinity;
 
@@ -29,13 +32,13 @@ public class SecP521R1Curve extends ECCurve.AbstractFp
         this.infinity = new SecP521R1Point(this, null, null);
 
         this.a = fromBigInteger(new BigInteger(1,
-            Hex.decode("01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC")));
+            Hex.decodeStrict("01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC")));
         this.b = fromBigInteger(new BigInteger(1,
-            Hex.decode("0051953EB9618E1C9A1F929A21A0B68540EEA2DA725B99B315F3B8B489918EF109E156193951EC7E937B1652C0BD3BB1BF073573DF883D2C34F1EF451FD46B503F00")));
-        this.order = new BigInteger(1, Hex.decode("01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409"));
+            Hex.decodeStrict("0051953EB9618E1C9A1F929A21A0B68540EEA2DA725B99B315F3B8B489918EF109E156193951EC7E937B1652C0BD3BB1BF073573DF883D2C34F1EF451FD46B503F00")));
+        this.order = new BigInteger(1, Hex.decodeStrict("01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409"));
         this.cofactor = BigInteger.valueOf(1);
 
-        this.coord = SecP521R1_DEFAULT_COORDS;
+        this.coord = SECP521R1_DEFAULT_COORDS;
     }
 
     protected ECCurve cloneCurve()
@@ -69,14 +72,14 @@ public class SecP521R1Curve extends ECCurve.AbstractFp
         return new SecP521R1FieldElement(x);
     }
 
-    protected ECPoint createRawPoint(ECFieldElement x, ECFieldElement y, boolean withCompression)
+    protected ECPoint createRawPoint(ECFieldElement x, ECFieldElement y)
     {
-        return new SecP521R1Point(this, x, y, withCompression);
+        return new SecP521R1Point(this, x, y);
     }
 
-    protected ECPoint createRawPoint(ECFieldElement x, ECFieldElement y, ECFieldElement[] zs, boolean withCompression)
+    protected ECPoint createRawPoint(ECFieldElement x, ECFieldElement y, ECFieldElement[] zs)
     {
-        return new SecP521R1Point(this, x, y, zs, withCompression);
+        return new SecP521R1Point(this, x, y, zs);
     }
 
     public ECPoint getInfinity()
@@ -99,7 +102,7 @@ public class SecP521R1Curve extends ECCurve.AbstractFp
             }
         }
 
-        return new ECLookupTable()
+        return new AbstractECLookupTable()
         {
             public int getSize()
             {
@@ -124,8 +127,41 @@ public class SecP521R1Curve extends ECCurve.AbstractFp
                     pos += (FE_INTS * 2);
                 }
 
-                return createRawPoint(new SecP521R1FieldElement(x), new SecP521R1FieldElement(y), false);
+                return createPoint(x, y);
+            }
+
+            public ECPoint lookupVar(int index)
+            {
+                int[] x = Nat.create(FE_INTS), y = Nat.create(FE_INTS);
+                int pos = index * FE_INTS * 2;
+
+                for (int j = 0; j < FE_INTS; ++j)
+                {
+                    x[j] ^= table[pos + j];
+                    y[j] ^= table[pos + FE_INTS + j];
+                }
+
+                return createPoint(x, y);
+            }
+
+            private ECPoint createPoint(int[] x, int[] y)
+            {
+                return createRawPoint(new SecP521R1FieldElement(x), new SecP521R1FieldElement(y), SECP521R1_AFFINE_ZS);
             }
         };
+    }
+
+    public ECFieldElement randomFieldElement(SecureRandom r)
+    {
+        int[] x = Nat.create(17);
+        SecP521R1Field.random(r, x);
+        return new SecP521R1FieldElement(x);
+    }
+
+    public ECFieldElement randomFieldElementMult(SecureRandom r)
+    {
+        int[] x = Nat.create(17);
+        SecP521R1Field.randomMult(r, x);
+        return new SecP521R1FieldElement(x);
     }
 }

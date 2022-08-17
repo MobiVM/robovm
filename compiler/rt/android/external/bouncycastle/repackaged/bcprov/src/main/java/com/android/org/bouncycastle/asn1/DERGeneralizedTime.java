@@ -109,10 +109,18 @@ public class DERGeneralizedTime
         return 1 + StreamUtil.calculateBodyLength(length) + length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.GENERALIZED_TIME, getDERTime());
+        out.writeEncoded(withTag, BERTags.GENERALIZED_TIME, getDERTime());
+    }
+
+    ASN1Primitive toDERObject()
+    {
+        return this;
+    }
+
+    ASN1Primitive toDLObject()
+    {
+        return this;
     }
 }

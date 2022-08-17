@@ -3,7 +3,6 @@ package com.android.org.bouncycastle.jcajce.provider.keystore.pkcs12;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -58,11 +57,10 @@ import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
 import com.android.org.bouncycastle.asn1.ASN1Set;
 import com.android.org.bouncycastle.asn1.BEROctetString;
-import com.android.org.bouncycastle.asn1.BEROutputStream;
+import com.android.org.bouncycastle.asn1.BERSequence;
 import com.android.org.bouncycastle.asn1.DERBMPString;
 import com.android.org.bouncycastle.asn1.DERNull;
 import com.android.org.bouncycastle.asn1.DEROctetString;
-import com.android.org.bouncycastle.asn1.DEROutputStream;
 import com.android.org.bouncycastle.asn1.DERSequence;
 import com.android.org.bouncycastle.asn1.DERSet;
 // Android-removed: Unsupported algorithms
@@ -407,26 +405,16 @@ public class PKCS12KeyStoreSpi
                 X509Certificate x509c = (X509Certificate)c;
                 Certificate nextC = null;
 
-                byte[] bytes = x509c.getExtensionValue(Extension.authorityKeyIdentifier.getId());
-                if (bytes != null)
+                byte[] akiBytes = x509c.getExtensionValue(Extension.authorityKeyIdentifier.getId());
+                if (akiBytes != null)
                 {
-                    try
+                    ASN1OctetString akiValue = ASN1OctetString.getInstance(akiBytes);
+                    AuthorityKeyIdentifier aki = AuthorityKeyIdentifier.getInstance(akiValue.getOctets());
+
+                    byte[] keyID = aki.getKeyIdentifier();
+                    if (null != keyID)
                     {
-                        ASN1InputStream aIn = new ASN1InputStream(bytes);
-
-                        byte[] authBytes = ((ASN1OctetString)aIn.readObject()).getOctets();
-                        aIn = new ASN1InputStream(authBytes);
-
-                        AuthorityKeyIdentifier id = AuthorityKeyIdentifier.getInstance(aIn.readObject());
-                        if (id.getKeyIdentifier() != null)
-                        {
-                            nextC = (Certificate)chainCerts.get(new CertId(id.getKeyIdentifier()));
-                        }
-
-                    }
-                    catch (IOException e)
-                    {
-                        throw new RuntimeException(e.toString());
+                        nextC = (Certificate)chainCerts.get(new CertId(keyID));
                     }
                 }
 
@@ -786,11 +774,6 @@ public class PKCS12KeyStoreSpi
             return;
         }
 
-        if (password == null)
-        {
-            throw new NullPointerException("No password supplied for PKCS#12 KeyStore.");
-        }
-
         BufferedInputStream bufIn = new BufferedInputStream(stream);
 
         bufIn.mark(10);
@@ -823,6 +806,11 @@ public class PKCS12KeyStoreSpi
 
         if (bag.getMacData() != null)           // check the mac code
         {
+            if (password == null)
+            {
+                throw new NullPointerException("no password supplied when one expected");
+            }
+
             MacData mData = bag.getMacData();
             DigestInfo dInfo = mData.getMac();
             macAlgorithm = dInfo.getAlgorithmId();
@@ -864,23 +852,33 @@ public class PKCS12KeyStoreSpi
                 throw new IOException("error constructing MAC: " + e.toString());
             }
         }
+        // BEGIN Android-removed: keep v1.61 behaviour to keep backwards-compatibility
+        /*
+        else if (password != null)
+        {
+            if (!Properties.isOverrideSet("org.bouncycastle.pkcs12.ignore_useless_passwd"))
+            {
+                throw new IOException("password supplied for keystore that does not require one");
+            }
+        }
+        */
+        // END Android-removed: keep v1.61 behaviour to keep backwards-compatibility
 
         keys = new IgnoresCaseHashtable();
         localIds = new Hashtable();
 
         if (info.getContentType().equals(data))
         {
-            bIn = new ASN1InputStream(((ASN1OctetString)info.getContent()).getOctets());
-
-            AuthenticatedSafe authSafe = AuthenticatedSafe.getInstance(bIn.readObject());
+            ASN1OctetString content = ASN1OctetString.getInstance(info.getContent());
+            AuthenticatedSafe authSafe = AuthenticatedSafe.getInstance(content.getOctets());
             ContentInfo[] c = authSafe.getContentInfo();
 
             for (int i = 0; i != c.length; i++)
             {
                 if (c[i].getContentType().equals(data))
                 {
-                    ASN1InputStream dIn = new ASN1InputStream(((ASN1OctetString)c[i].getContent()).getOctets());
-                    ASN1Sequence seq = (ASN1Sequence)dIn.readObject();
+                    ASN1OctetString authSafeContent = ASN1OctetString.getInstance(c[i].getContent());
+                    ASN1Sequence seq = ASN1Sequence.getInstance(authSafeContent.getOctets());
 
                     for (int j = 0; j != seq.size(); j++)
                     {
@@ -977,7 +975,7 @@ public class PKCS12KeyStoreSpi
                     EncryptedData d = EncryptedData.getInstance(c[i].getContent());
                     byte[] octets = cryptData(false, d.getEncryptionAlgorithm(),
                         password, wrongPKCS12Zero, d.getContent().getOctets());
-                    ASN1Sequence seq = (ASN1Sequence)ASN1Primitive.fromByteArray(octets);
+                    ASN1Sequence seq = ASN1Sequence.getInstance(octets);
 
                     for (int j = 0; j != seq.size(); j++)
                     {
@@ -1312,10 +1310,69 @@ public class PKCS12KeyStoreSpi
     private void doStore(OutputStream stream, char[] password, boolean useDEREncoding)
         throws IOException
     {
+        // BEGIN Android-changed: Upstream allows null passwords, but we maintain historical Android
+        // behaviour.
+        // See CtsKeystoreTestCases:android.keystore.cts.KeyStoreTest
         if (password == null)
         {
             throw new NullPointerException("No password supplied for PKCS#12 KeyStore.");
         }
+        /*
+        if (keys.size() == 0)
+        {
+            if (password == null)
+            {
+                Enumeration cs = certs.keys();
+
+                ASN1EncodableVector certSeq = new ASN1EncodableVector();
+
+                while (cs.hasMoreElements())
+                {
+                    try
+                    {
+                        String certId = (String)cs.nextElement();
+                        Certificate cert = (Certificate)certs.get(certId);
+
+                        SafeBag sBag = createSafeBag(certId, cert);
+
+                        certSeq.add(sBag);
+                    }
+                    catch (CertificateEncodingException e)
+                    {
+                        throw new IOException("Error encoding certificate: " + e.toString());
+                    }
+                }
+
+                if (useDEREncoding)
+                {
+                    ContentInfo bagInfo = new ContentInfo(PKCSObjectIdentifiers.data, new DEROctetString(new DERSequence(certSeq).getEncoded()));
+
+                    Pfx pfx = new Pfx(new ContentInfo(PKCSObjectIdentifiers.data, new DEROctetString(new DERSequence(bagInfo).getEncoded())), null);
+
+                    pfx.encodeTo(stream, ASN1Encoding.DER);
+                }
+                else
+                {
+                    ContentInfo bagInfo = new ContentInfo(PKCSObjectIdentifiers.data, new BEROctetString(new BERSequence(certSeq).getEncoded()));
+
+                    Pfx pfx = new Pfx(new ContentInfo(PKCSObjectIdentifiers.data, new BEROctetString(new BERSequence(bagInfo).getEncoded())), null);
+
+                    pfx.encodeTo(stream, ASN1Encoding.BER);
+                }
+
+                return;
+            }
+        }
+        else
+        {
+            if (password == null)
+            {
+                throw new NullPointerException("no password supplied for PKCS#12 KeyStore");
+            }
+        }
+        */
+        // END Android-changed: Upstream allows null passwords, but we maintain historical Android
+        // behaviour.
 
         //
         // handle the key
@@ -1500,66 +1557,13 @@ public class PKCS12KeyStoreSpi
             {
                 String certId = (String)cs.nextElement();
                 Certificate cert = (Certificate)certs.get(certId);
-                boolean cAttrSet = false;
 
                 if (keys.get(certId) != null)
                 {
                     continue;
                 }
 
-                CertBag cBag = new CertBag(
-                    x509Certificate,
-                    new DEROctetString(cert.getEncoded()));
-                ASN1EncodableVector fName = new ASN1EncodableVector();
-
-                if (cert instanceof PKCS12BagAttributeCarrier)
-                {
-                    PKCS12BagAttributeCarrier bagAttrs = (PKCS12BagAttributeCarrier)cert;
-                    //
-                    // make sure we are using the local alias on store
-                    //
-                    DERBMPString nm = (DERBMPString)bagAttrs.getBagAttribute(pkcs_9_at_friendlyName);
-                    if (nm == null || !nm.getString().equals(certId))
-                    {
-                        bagAttrs.setBagAttribute(pkcs_9_at_friendlyName, new DERBMPString(certId));
-                    }
-
-                    Enumeration e = bagAttrs.getBagAttributeKeys();
-
-                    while (e.hasMoreElements())
-                    {
-                        ASN1ObjectIdentifier oid = (ASN1ObjectIdentifier)e.nextElement();
-
-                        // a certificate not immediately linked to a key doesn't require
-                        // a localKeyID and will confuse some PKCS12 implementations.
-                        //
-                        // If we find one, we'll prune it out.
-                        if (oid.equals(PKCSObjectIdentifiers.pkcs_9_at_localKeyId))
-                        {
-                            continue;
-                        }
-
-                        ASN1EncodableVector fSeq = new ASN1EncodableVector();
-
-                        fSeq.add(oid);
-                        fSeq.add(new DERSet(bagAttrs.getBagAttribute(oid)));
-                        fName.add(new DERSequence(fSeq));
-
-                        cAttrSet = true;
-                    }
-                }
-
-                if (!cAttrSet)
-                {
-                    ASN1EncodableVector fSeq = new ASN1EncodableVector();
-
-                    fSeq.add(pkcs_9_at_friendlyName);
-                    fSeq.add(new DERSet(new DERBMPString(certId)));
-
-                    fName.add(new DERSequence(fSeq));
-                }
-
-                SafeBag sBag = new SafeBag(certBag, cBag.toASN1Primitive(), new DERSet(fName));
+                SafeBag sBag = createSafeBag(certId, cert);
 
                 certSeq.add(sBag);
 
@@ -1644,20 +1648,7 @@ public class PKCS12KeyStoreSpi
 
         AuthenticatedSafe auth = new AuthenticatedSafe(info);
 
-        ByteArrayOutputStream bOut = new ByteArrayOutputStream();
-        DEROutputStream asn1Out;
-        if (useDEREncoding)
-        {
-            asn1Out = new DEROutputStream(bOut);
-        }
-        else
-        {
-            asn1Out = new BEROutputStream(bOut);
-        }
-
-        asn1Out.writeObject(auth);
-
-        byte[] pkg = bOut.toByteArray();
+        byte[] pkg = auth.getEncoded(useDEREncoding ? ASN1Encoding.DER : ASN1Encoding.BER);
 
         ContentInfo mainInfo = new ContentInfo(data, new BEROctetString(pkg));
 
@@ -1690,16 +1681,69 @@ public class PKCS12KeyStoreSpi
         //
         Pfx pfx = new Pfx(mainInfo, mData);
 
-        if (useDEREncoding)
+        pfx.encodeTo(stream, useDEREncoding ? ASN1Encoding.DER : ASN1Encoding.BER);
+    }
+
+    private SafeBag createSafeBag(String certId, Certificate cert)
+        throws CertificateEncodingException
+    {
+        CertBag cBag = new CertBag(
+            x509Certificate,
+            new DEROctetString(cert.getEncoded()));
+        ASN1EncodableVector fName = new ASN1EncodableVector();
+
+        boolean cAttrSet = false;
+        if (cert instanceof PKCS12BagAttributeCarrier)
         {
-            asn1Out = new DEROutputStream(stream);
-        }
-        else
-        {
-            asn1Out = new BEROutputStream(stream);
+            PKCS12BagAttributeCarrier bagAttrs = (PKCS12BagAttributeCarrier)cert;
+            //
+            // make sure we are using the local alias on store
+            //
+            DERBMPString nm = (DERBMPString)bagAttrs.getBagAttribute(pkcs_9_at_friendlyName);
+            if (nm == null || !nm.getString().equals(certId))
+            {
+                if (certId != null)
+                {
+                    bagAttrs.setBagAttribute(pkcs_9_at_friendlyName, new DERBMPString(certId));
+                }
+            }
+
+            Enumeration e = bagAttrs.getBagAttributeKeys();
+
+            while (e.hasMoreElements())
+            {
+                ASN1ObjectIdentifier oid = (ASN1ObjectIdentifier)e.nextElement();
+
+                // a certificate not immediately linked to a key doesn't require
+                // a localKeyID and will confuse some PKCS12 implementations.
+                //
+                // If we find one, we'll prune it out.
+                if (oid.equals(PKCSObjectIdentifiers.pkcs_9_at_localKeyId))
+                {
+                    continue;
+                }
+
+                ASN1EncodableVector fSeq = new ASN1EncodableVector();
+
+                fSeq.add(oid);
+                fSeq.add(new DERSet(bagAttrs.getBagAttribute(oid)));
+                fName.add(new DERSequence(fSeq));
+
+                cAttrSet = true;
+            }
         }
 
-        asn1Out.writeObject(pfx);
+        if (!cAttrSet)
+        {
+            ASN1EncodableVector fSeq = new ASN1EncodableVector();
+
+            fSeq.add(pkcs_9_at_friendlyName);
+            fSeq.add(new DERSet(new DERBMPString(certId)));
+
+            fName.add(new DERSequence(fSeq));
+        }
+
+        return new SafeBag(certBag, cBag.toASN1Primitive(), new DERSet(fName));
     }
 
     private Set getUsedCertificateSet()
@@ -1841,6 +1885,11 @@ public class PKCS12KeyStoreSpi
         public Enumeration elements()
         {
             return orig.elements();
+        }
+
+        public int size()
+        {
+            return orig.size();
         }
     }
 

@@ -4,16 +4,17 @@ package com.android.org.bouncycastle.math.ec.custom.sec;
 import java.math.BigInteger;
 
 import com.android.org.bouncycastle.math.ec.ECFieldElement;
-import com.android.org.bouncycastle.math.raw.Mod;
 import com.android.org.bouncycastle.math.raw.Nat256;
 import com.android.org.bouncycastle.util.Arrays;
+import com.android.org.bouncycastle.util.encoders.Hex;
 
 /**
  * @hide This class is not part of the Android public SDK API
  */
 public class SecP256R1FieldElement extends ECFieldElement.AbstractFp
 {
-    public static final BigInteger Q = SecP256R1Curve.q;
+    public static final BigInteger Q = new BigInteger(1,
+        Hex.decodeStrict("FFFFFFFF00000001000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF"));
 
     protected int[] x;
 
@@ -99,7 +100,7 @@ public class SecP256R1FieldElement extends ECFieldElement.AbstractFp
     {
 //        return multiply(b.invert());
         int[] z = Nat256.create();
-        Mod.invert(SecP256R1Field.P, ((SecP256R1FieldElement)b).x, z);
+        SecP256R1Field.inv(((SecP256R1FieldElement)b).x, z);
         SecP256R1Field.multiply(z, x, z);
         return new SecP256R1FieldElement(z);
     }
@@ -122,7 +123,7 @@ public class SecP256R1FieldElement extends ECFieldElement.AbstractFp
     {
 //        return new SecP256R1FieldElement(toBigInteger().modInverse(Q));
         int[] z = Nat256.create();
-        Mod.invert(SecP256R1Field.P, x, z);
+        SecP256R1Field.inv(x, z);
         return new SecP256R1FieldElement(z);
     }
 

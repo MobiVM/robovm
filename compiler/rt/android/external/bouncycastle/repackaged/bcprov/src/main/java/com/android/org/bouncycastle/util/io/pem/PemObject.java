@@ -9,7 +9,6 @@ import java.util.List;
  * A generic PEM object - type, header properties, and byte content.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class PemObject
     implements PemObjectGenerator
 {
@@ -25,7 +24,6 @@ public class PemObject
      * @param type pem object type.
      * @param content the binary content of the object.
      */
-    @libcore.api.CorePlatformApi
     public PemObject(String type, byte[] content)
     {
         this(type, EMPTY_LIST, content);
@@ -38,7 +36,6 @@ public class PemObject
      * @param headers a list of PemHeader objects.
      * @param content the binary content of the object.
      */
-    @libcore.api.CorePlatformApi
     public PemObject(String type, List headers, byte[] content)
     {
         this.type = type;
@@ -46,7 +43,6 @@ public class PemObject
         this.content = content;
     }
 
-    @libcore.api.CorePlatformApi
     public String getType()
     {
         return type;
@@ -57,7 +53,6 @@ public class PemObject
         return headers;
     }
 
-    @libcore.api.CorePlatformApi
     public byte[] getContent()
     {
         return content;

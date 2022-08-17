@@ -4,6 +4,7 @@ package com.android.org.bouncycastle.crypto.params;
 import java.math.BigInteger;
 
 import com.android.org.bouncycastle.crypto.CipherParameters;
+import com.android.org.bouncycastle.util.Properties;
 
 /**
  * @hide This class is not part of the Android public SDK API
@@ -98,7 +99,7 @@ public class DHParameters
             }
         }
 
-        if (m > p.bitLength())
+        if (m > p.bitLength() && !Properties.isOverrideSet("com.android.org.bouncycastle.dh.allow_unsafe_p_value"))
         {
             throw new IllegalArgumentException("unsafe p value so small specific l required");
         }

@@ -19,7 +19,7 @@ import com.android.org.bouncycastle.asn1.DERGeneralizedTime;
 import com.android.org.bouncycastle.asn1.DERUTCTime;
 
 /**
- * <a href="http://tools.ietf.org/html/rfc5652#section-11.3">RFC 5652</a>:
+ * <a href="https://tools.ietf.org/html/rfc5652#section-11.3">RFC 5652</a>:
  * Dual-mode timestamp format producing either UTCTIme or GeneralizedTime.
  * <p>
  * <pre>

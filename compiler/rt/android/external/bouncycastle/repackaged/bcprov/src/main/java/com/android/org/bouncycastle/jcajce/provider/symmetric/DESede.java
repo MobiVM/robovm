@@ -427,22 +427,21 @@ public final class DESede
 
             provider.addAlgorithm("Alg.Alias.Cipher.TDEA", "DESEDE");
             provider.addAlgorithm("Alg.Alias.Cipher.TDEAWRAP", "DESEDEWRAP");
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("Alg.Alias.KeyGenerator.TDEA", "DESEDE");
             provider.addAlgorithm("Alg.Alias.AlgorithmParameters.TDEA", "DESEDE");
-            // Android-removed: Unsupported algorithms
-            // provider.addAlgorithm("Alg.Alias.AlgorithmParameterGenerator.TDEA", "DESEDE");
+            provider.addAlgorithm("Alg.Alias.AlgorithmParameterGenerator.TDEA", "DESEDE");
             provider.addAlgorithm("Alg.Alias.SecretKeyFactory.TDEA", "DESEDE");
+            */
+            // END Android-removed: Unsupported algorithms
 
-            if (provider.hasAlgorithm("MessageDigest", "SHA-1"))
+            // Android-removed Bouncy Castle's SHA-1 implementation is removed but we still need PBEWithSHAAnd3-KeyTripleDES-CBC
+            // if (provider.hasAlgorithm("MessageDigest", "SHA-1"))
             {
                 provider.addAlgorithm("Cipher.PBEWITHSHAAND3-KEYTRIPLEDES-CBC", PREFIX + "$PBEWithSHAAndDES3Key");
-                // BEGIN Android-removed: Unsupported algorithms
-                // provider.addAlgorithm("Cipher.BROKENPBEWITHSHAAND3-KEYTRIPLEDES-CBC", PREFIX + "$BrokePBEWithSHAAndDES3Key");
-                // provider.addAlgorithm("Cipher.OLDPBEWITHSHAAND3-KEYTRIPLEDES-CBC", PREFIX + "$OldPBEWithSHAAndDES3Key");
-                // END Android-removed: Unsupported algorithms
                 provider.addAlgorithm("Cipher.PBEWITHSHAAND2-KEYTRIPLEDES-CBC", PREFIX + "$PBEWithSHAAndDES2Key");
-                // Android-removed: Unsupported algorithms
-                // provider.addAlgorithm("Cipher.BROKENPBEWITHSHAAND2-KEYTRIPLEDES-CBC", PREFIX + "$BrokePBEWithSHAAndDES2Key");
+
                 provider.addAlgorithm("Alg.Alias.Cipher", PKCSObjectIdentifiers.pbeWithSHAAnd3_KeyTripleDES_CBC, "PBEWITHSHAAND3-KEYTRIPLEDES-CBC");
                 provider.addAlgorithm("Alg.Alias.Cipher", PKCSObjectIdentifiers.pbeWithSHAAnd2_KeyTripleDES_CBC, "PBEWITHSHAAND2-KEYTRIPLEDES-CBC");
                 provider.addAlgorithm("Alg.Alias.Cipher.PBEWITHSHA1ANDDESEDE", "PBEWITHSHAAND3-KEYTRIPLEDES-CBC");
@@ -455,16 +454,14 @@ public final class DESede
                 provider.addAlgorithm("Alg.Alias.Cipher.PBEWITHSHA1ANDDESEDE-CBC", "PBEWITHSHAAND3-KEYTRIPLEDES-CBC");
             }
 
-            provider.addAlgorithm("KeyGenerator.DESEDE", PREFIX + "$KeyGenerator");
             // BEGIN Android-removed: Unsupported algorithms
-            // provider.addAlgorithm("KeyGenerator." + PKCSObjectIdentifiers.des_EDE3_CBC, PREFIX + "$KeyGenerator3");
-            // provider.addAlgorithm("KeyGenerator.DESEDEWRAP", PREFIX + "$KeyGenerator");
-            // END Android-removed: Unsupported algorithms
+            /*
+            provider.addAlgorithm("KeyGenerator.DESEDE", PREFIX + "$KeyGenerator");
+            provider.addAlgorithm("KeyGenerator." + PKCSObjectIdentifiers.des_EDE3_CBC, PREFIX + "$KeyGenerator3");
+            provider.addAlgorithm("KeyGenerator.DESEDEWRAP", PREFIX + "$KeyGenerator");
 
             provider.addAlgorithm("SecretKeyFactory.DESEDE", PREFIX + "$KeyFactory");
 
-            // BEGIN Android-removed: Unsupported algorithms
-            /*
             provider.addAlgorithm("SecretKeyFactory", OIWObjectIdentifiers.desEDE, PREFIX + "$KeyFactory");
 
             provider.addAlgorithm("Mac.DESEDECMAC", PREFIX + "$CMAC");
@@ -481,11 +478,11 @@ public final class DESede
             provider.addAlgorithm("Alg.Alias.Mac.DESEDE64WITHISO7816-4PADDING", "DESEDEMAC64WITHISO7816-4PADDING");
             provider.addAlgorithm("Alg.Alias.Mac.DESEDEISO9797ALG1MACWITHISO7816-4PADDING", "DESEDEMAC64WITHISO7816-4PADDING");
             provider.addAlgorithm("Alg.Alias.Mac.DESEDEISO9797ALG1WITHISO7816-4PADDING", "DESEDEMAC64WITHISO7816-4PADDING");
-            */
-            // END Android-removed: Unsupported algorithms
 
             provider.addAlgorithm("AlgorithmParameters.DESEDE", PACKAGE + ".util.IvAlgorithmParameters");
             provider.addAlgorithm("Alg.Alias.AlgorithmParameters." + PKCSObjectIdentifiers.des_EDE3_CBC, "DESEDE");
+            */
+            // END Android-removed: Unsupported algorithms
 
             // BEGIN Android-removed: Unsupported algorithms
             // provider.addAlgorithm("AlgorithmParameterGenerator.DESEDE",  PREFIX + "$AlgParamGen");

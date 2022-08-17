@@ -290,18 +290,7 @@ public abstract class BaseWrapCipher
 
         if (params != null)
         {
-            for (int i = 0; i != availableSpecs.length; i++)
-            {
-                try
-                {
-                    paramSpec = params.getParameterSpec(availableSpecs[i]);
-                    break;
-                }
-                catch (Exception e)
-                {
-                    // try next spec
-                }
-            }
+            paramSpec = SpecUtil.extractSpec(params, availableSpecs);
 
             if (paramSpec == null)
             {
@@ -373,7 +362,10 @@ public abstract class BaseWrapCipher
             throw new IllegalStateException("not supported in a wrapping mode");
         }
 
-        wrapStream.write(input, inputOffset, inputLen);
+        if (input != null)
+        {
+            wrapStream.write(input, inputOffset, inputLen);
+        }
 
         try
         {

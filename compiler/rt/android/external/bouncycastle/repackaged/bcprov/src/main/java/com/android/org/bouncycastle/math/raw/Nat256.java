@@ -336,10 +336,11 @@ public abstract class Nat256
         }
 
         int[] z = create();
-        int i = 0;
-        while (x.signum() != 0)
+
+        // NOTE: Use a fixed number of loop iterations
+        for (int i = 0; i < 8; ++i)
         {
-            z[i++] = x.intValue();
+            z[i] = x.intValue();
             x = x.shiftRight(32);
         }
         return z;
@@ -353,10 +354,11 @@ public abstract class Nat256
         }
 
         long[] z = create64();
-        int i = 0;
-        while (x.signum() != 0)
+
+        // NOTE: Use a fixed number of loop iterations
+        for (int i = 0; i < 4; ++i)
         {
-            z[i++] = x.longValue();
+            z[i] = x.longValue();
             x = x.shiftRight(64);
         }
         return z;
@@ -643,9 +645,10 @@ public abstract class Nat256
             c += x_i * y_7 + (zz[i + 7] & M);
             zz[i + 7] = (int)c;
             c >>>= 32;
-            c += zc + (zz[i + 8] & M);
-            zz[i + 8] = (int)c;
-            zc = c >>> 32;
+
+            zc += c + (zz[i + 8] & M);
+            zz[i + 8] = (int)zc;
+            zc >>>= 32;
         }
         return (int)zc;
     }
@@ -689,9 +692,10 @@ public abstract class Nat256
             c += x_i * y_7 + (zz[zzOff + 7] & M);
             zz[zzOff + 7] = (int)c;
             c >>>= 32;
-            c += zc + (zz[zzOff + 8] & M);
-            zz[zzOff + 8] = (int)c;
-            zc = c >>> 32;
+
+            zc += c + (zz[zzOff + 8] & M);
+            zz[zzOff + 8] = (int)zc;
+            zc >>>= 32;
             ++zzOff;
         }
         return (int)zc;

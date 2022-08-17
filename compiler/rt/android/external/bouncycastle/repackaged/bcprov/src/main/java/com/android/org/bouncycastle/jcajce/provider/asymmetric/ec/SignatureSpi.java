@@ -1,6 +1,7 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 package com.android.org.bouncycastle.jcajce.provider.asymmetric.ec;
 
+import java.security.AlgorithmParameters;
 import java.security.InvalidKeyException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -65,6 +66,11 @@ public class SignatureSpi
         }
     }
 
+    protected AlgorithmParameters engineGetParameters()
+    {
+        return null;
+    }
+    
     /**
      * @hide This class is not part of the Android public SDK API
      */

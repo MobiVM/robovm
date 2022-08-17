@@ -8,6 +8,9 @@ import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.RSAKeyGenParameterSpec;
 
+import com.android.org.bouncycastle.asn1.DERNull;
+import com.android.org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
+import com.android.org.bouncycastle.asn1.x509.AlgorithmIdentifier;
 import com.android.org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import com.android.org.bouncycastle.crypto.CryptoServicesRegistrar;
 import com.android.org.bouncycastle.crypto.generators.RSAKeyPairGenerator;
@@ -22,25 +25,31 @@ import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.PrimeCertain
 public class KeyPairGeneratorSpi
     extends java.security.KeyPairGenerator
 {
-    public KeyPairGeneratorSpi(
-        String algorithmName)
-    {
-        super(algorithmName);
-    }
+    private static final AlgorithmIdentifier PKCS_ALGID = new AlgorithmIdentifier(PKCSObjectIdentifiers.rsaEncryption, DERNull.INSTANCE);
+    private static final AlgorithmIdentifier PSS_ALGID = new AlgorithmIdentifier(PKCSObjectIdentifiers.id_RSASSA_PSS);
 
     final static BigInteger defaultPublicExponent = BigInteger.valueOf(0x10001);
 
     RSAKeyGenerationParameters param;
     RSAKeyPairGenerator engine;
+    AlgorithmIdentifier algId;
 
-    public KeyPairGeneratorSpi()
+    public KeyPairGeneratorSpi(
+        String algorithmName,
+        AlgorithmIdentifier algId)
     {
-        super("RSA");
+        super(algorithmName);
 
+        this.algId = algId;
         engine = new RSAKeyPairGenerator();
         param = new RSAKeyGenerationParameters(defaultPublicExponent,
             CryptoServicesRegistrar.getSecureRandom(), 2048, PrimeCertaintyCalculator.getDefaultCertainty(2048));
         engine.init(param);
+    }
+
+    public KeyPairGeneratorSpi()
+    {
+        this("RSA", PKCS_ALGID);
     }
 
     public void initialize(
@@ -81,7 +90,19 @@ public class KeyPairGeneratorSpi
         RSAKeyParameters pub = (RSAKeyParameters)pair.getPublic();
         RSAPrivateCrtKeyParameters priv = (RSAPrivateCrtKeyParameters)pair.getPrivate();
 
-        return new KeyPair(new BCRSAPublicKey(pub),
-            new BCRSAPrivateCrtKey(priv));
+        return new KeyPair(new BCRSAPublicKey(algId, pub),
+            new BCRSAPrivateCrtKey(algId, priv));
+    }
+
+    /**
+     * @hide This class is not part of the Android public SDK API
+     */
+    public static class PSS
+        extends KeyPairGeneratorSpi
+    {
+        public PSS()
+        {
+            super("RSASSA-PSS", PSS_ALGID);
+        }
     }
 }

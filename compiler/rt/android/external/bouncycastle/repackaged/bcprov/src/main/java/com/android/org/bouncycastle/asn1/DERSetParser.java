@@ -4,7 +4,7 @@ package com.android.org.bouncycastle.asn1;
 import java.io.IOException;
 
 /**
- * Parser class for DER SETs.
+ * @deprecated Use DLSetParser instead
  * @hide This class is not part of the Android public SDK API
  */
 public class DERSetParser
@@ -38,7 +38,7 @@ public class DERSetParser
     public ASN1Primitive getLoadedObject()
         throws IOException
     {
-        return new DERSet(_parser.readVector(), false);
+        return new DLSet(_parser.readVector());
     }
 
     /**

@@ -81,11 +81,15 @@ public class MD5
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithm
+            /*
             provider.addAlgorithm("MessageDigest.MD5", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + PKCSObjectIdentifiers.md5, "MD5");
 
             addHMACAlgorithm(provider, "MD5", PREFIX + "$HashMac", PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "MD5", IANAObjectIdentifiers.hmacMD5);
+            */
+            // END Android-removed: Unsupported algorithm
         }
     }
 }

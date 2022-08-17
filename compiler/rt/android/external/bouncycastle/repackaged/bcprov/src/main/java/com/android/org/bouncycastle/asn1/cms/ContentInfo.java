@@ -12,8 +12,8 @@ import com.android.org.bouncycastle.asn1.BERSequence;
 import com.android.org.bouncycastle.asn1.BERTaggedObject;
 
 /**
- * <a href="http://tools.ietf.org/html/rfc5652#section-3">RFC 5652</a> ContentInfo, and 
- * <a href="http://tools.ietf.org/html/rfc5652#section-5.2">RFC 5652</a> EncapsulatedContentInfo objects.
+ * <a href="https://tools.ietf.org/html/rfc5652#section-3">RFC 5652</a> ContentInfo, and
+ * <a href="https://tools.ietf.org/html/rfc5652#section-5.2">RFC 5652</a> EncapsulatedContentInfo objects.
  *
  * <pre>
  * ContentInfo ::= SEQUENCE {
@@ -118,7 +118,7 @@ public class ContentInfo
      */
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector  v = new ASN1EncodableVector();
+        ASN1EncodableVector  v = new ASN1EncodableVector(2);
 
         v.add(contentType);
 

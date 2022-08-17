@@ -3,6 +3,8 @@ package com.android.org.bouncycastle.crypto.tls;
 
 /**
  * RFC 6091 
+ *
+ * @deprecated Migrate to the (D)TLS API in org.bouncycastle.tls (bctls jar).
  * @hide This class is not part of the Android public SDK API
  */
 public class CertificateType

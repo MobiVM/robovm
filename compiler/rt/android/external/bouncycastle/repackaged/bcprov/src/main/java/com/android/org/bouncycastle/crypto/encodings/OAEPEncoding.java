@@ -303,6 +303,7 @@ public class OAEPEncoding
         byte[]  output = new byte[block.length - start];
 
         System.arraycopy(block, start, output, 0, output.length);
+        Arrays.fill(block, (byte)0);
 
         return output;
     }

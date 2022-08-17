@@ -13,7 +13,6 @@ import com.android.org.bouncycastle.util.encoders.Base64;
  * A generic PEM writer, based on RFC 1421
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class PemWriter
     extends BufferedWriter
 {
@@ -27,7 +26,6 @@ public class PemWriter
      *
      * @param out output stream to use.
      */
-    @libcore.api.CorePlatformApi
     public PemWriter(Writer out)
     {
         super(out);
@@ -75,7 +73,6 @@ public class PemWriter
         return size;
     }
     
-    @libcore.api.CorePlatformApi
     public void writeObject(PemObjectGenerator objGen)
         throws IOException
     {

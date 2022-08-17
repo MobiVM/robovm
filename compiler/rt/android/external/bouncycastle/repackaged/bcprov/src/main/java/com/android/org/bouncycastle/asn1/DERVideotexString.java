@@ -67,7 +67,7 @@ public class DERVideotexString
         }
         else
         {
-            return new DERVideotexString(((ASN1OctetString)o).getOctets());
+            return new DERVideotexString(ASN1OctetString.getInstance(o).getOctets());
         }
     }
 
@@ -96,11 +96,9 @@ public class DERVideotexString
         return 1 + StreamUtil.calculateBodyLength(string.length) + string.length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.VIDEOTEX_STRING, string);
+        out.writeEncoded(withTag, BERTags.VIDEOTEX_STRING, string);
     }
 
     public int hashCode()

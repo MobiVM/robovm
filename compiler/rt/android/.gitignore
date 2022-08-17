@@ -64,3 +64,12 @@ TEST_MAPPING
 !/external/okhttp/LICENSE.txt
 !/external/okhttp/MODULE_LICENSE_APACHE2
 !/external/okhttp/README.android
+
+##
+## BouncyCastle
+##
+/external/bouncycastle/*
+!/external/bouncycastle/repackaged/
+!/external/bouncycastle/bouncycastle.version
+!/external/bouncycastle/MODULE_LICENSE_BSD_LIKE
+!/external/bouncycastle/NOTICE

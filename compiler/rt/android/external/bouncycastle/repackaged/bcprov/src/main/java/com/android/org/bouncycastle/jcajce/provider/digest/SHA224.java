@@ -80,15 +80,18 @@ public class SHA224
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("MessageDigest.SHA-224", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA224", "SHA-224");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha224, "SHA-224");
 
             provider.addAlgorithm("Mac.PBEWITHHMACSHA224", PREFIX + "$HashMac");
-
+            
             addHMACAlgorithm(provider, "SHA224", PREFIX + "$HashMac",  PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "SHA224", PKCSObjectIdentifiers.id_hmacWithSHA224);
-
+            */
+            // END Android-removed: Unsupported algorithms
         }
     }
 }

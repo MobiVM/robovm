@@ -46,7 +46,7 @@ public class RDN
      */
     public RDN(ASN1ObjectIdentifier oid, ASN1Encodable value)
     {
-        ASN1EncodableVector v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(2);
 
         v.add(oid);
         v.add(value);
@@ -104,6 +104,31 @@ public class RDN
         }
 
         return tmp;
+    }
+
+    int collectAttributeTypes(ASN1ObjectIdentifier[] oids, int oidsOff)
+    {
+        int count = values.size();
+        for (int i = 0; i < count; ++i)
+        {
+            AttributeTypeAndValue attr = AttributeTypeAndValue.getInstance(values.getObjectAt(i));
+            oids[oidsOff + i] = attr.getType();
+        }
+        return count;
+    }
+
+    boolean containsAttributeType(ASN1ObjectIdentifier attributeType)
+    {
+        int count = values.size();
+        for (int i = 0; i < count; ++i)
+        {
+            AttributeTypeAndValue attr = AttributeTypeAndValue.getInstance(values.getObjectAt(i));
+            if (attr.getType().equals(attributeType))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

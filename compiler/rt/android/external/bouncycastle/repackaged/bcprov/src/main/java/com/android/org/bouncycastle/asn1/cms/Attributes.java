@@ -9,7 +9,7 @@ import com.android.org.bouncycastle.asn1.ASN1TaggedObject;
 import com.android.org.bouncycastle.asn1.DLSet;
 
 /**
- * <a href="http://tools.ietf.org/html/rfc5652">RFC 5652</a> defines
+ * <a href="https://tools.ietf.org/html/rfc5652">RFC 5652</a> defines
  * 5 "SET OF Attribute" entities with 5 different names.
  * This is common implementation for them all:
  * <pre>
