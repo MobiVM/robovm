@@ -1,0 +1,23 @@
+URL: https://github.com/square/okhttp
+License: Apache 2
+Description: "OkHttp: An HTTP+SPDY client for Android and Java applications."
+
+Local patches
+-------------
+
+Addition of classes in android/ :
+  - com.squareup.okhttp.internal.Platform - to replace the Platform class that
+    comes with okhttp. Avoids use of reflection where possible.
+  - com.squareup.okhttp.Http(s)Handler - integration with Android's corelibs.
+  - com.squareup.okhttp.ConfigAwareConnectionPool - support for a
+    ConnectionPool that listens for network configuration changes.
+  - com.squareup.okhttp.internal.Version - a hand-crafted version of
+    okhttp/src/main/java-templates/com/squareup/okhttp/internal/Version.java
+    for Android.
+
+All source changes (besides imports) marked with ANDROID-BEGIN and ANDROID-END:
+  - Commenting of code that references APIs not present on Android.
+  - @Ignore or comment out tests for functionality not supported on Android.
+
+okio/ contains a snapshot of the Okio project. See okio/README.android for
+details.

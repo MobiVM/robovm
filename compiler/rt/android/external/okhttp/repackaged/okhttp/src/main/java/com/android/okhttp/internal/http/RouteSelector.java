@@ -67,7 +67,7 @@ public final class RouteSelector {
    * Returns true if there's another route to attempt. Every address has at
    * least one route.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public boolean hasNext() {
     return hasNextInetSocketAddress()
         || hasNextProxy()

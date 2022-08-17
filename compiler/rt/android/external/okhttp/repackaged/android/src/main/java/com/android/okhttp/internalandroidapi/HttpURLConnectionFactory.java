@@ -53,27 +53,27 @@ import javax.net.SocketFactory;
  * @hide
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public final class HttpURLConnectionFactory {
 
     private ConnectionPool connectionPool;
     private com.android.okhttp.Dns dns;
 
-    @libcore.api.CorePlatformApi
+    /** @hide */
     public HttpURLConnectionFactory() {
     }
 
     /**
      * Sets a new ConnectionPool, specific to this URLFactory and not shared with
      * any other connections, with the given configuration.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
     public void setNewConnectionPool(int maxIdleConnections, long keepAliveDuration,
             TimeUnit timeUnit) {
         this.connectionPool = new ConnectionPool(maxIdleConnections, keepAliveDuration, timeUnit);
     }
 
-    @libcore.api.CorePlatformApi
+    /** @hide */
     public void setDns(Dns dns) {
         Objects.requireNonNull(dns);
         this.dns = new DnsAdapter(dns);
@@ -81,6 +81,8 @@ public final class HttpURLConnectionFactory {
 
     /**
      * Opens a connection that uses the system default proxy settings and SocketFactory.
+     *
+     * @hide
      */
     public URLConnection openConnection(URL url) throws IOException {
         return internalOpenConnection(url, null /* socketFactory */, null /* proxy */);
@@ -89,6 +91,8 @@ public final class HttpURLConnectionFactory {
     /**
      * Opens a connection that uses the system default SocketFactory and the specified
      * proxy settings.
+     *
+     * @hide
      */
     public URLConnection openConnection(URL url, Proxy proxy) throws IOException {
         Objects.requireNonNull(proxy);
@@ -98,6 +102,8 @@ public final class HttpURLConnectionFactory {
     /**
      * Opens a connection that uses the specified SocketFactory and the system default
      * proxy settings.
+     *
+     * @hide
      */
     public URLConnection openConnection(URL url, SocketFactory socketFactory) throws IOException {
         Objects.requireNonNull(socketFactory);
@@ -107,8 +113,9 @@ public final class HttpURLConnectionFactory {
     /**
      * Opens a connection using the specified SocketFactory and the specified proxy
      * settings, overriding any system wide configuration.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
     public URLConnection openConnection(URL url, SocketFactory socketFactory, Proxy proxy)
             throws IOException {
         Objects.requireNonNull(socketFactory);
@@ -150,6 +157,8 @@ public final class HttpURLConnectionFactory {
 
     /**
      * Adapts a {@link Dns} as a {@link com.android.okhttp.Dns}.
+     *
+     * @hide
      */
     static final class DnsAdapter implements com.android.okhttp.Dns {
         private final Dns adaptee;

@@ -43,12 +43,12 @@ import com.android.okhttp.okio.Source;
 /** Junk drawer of utility methods. 
  * @hide This class is not part of the Android public SDK API*/
 public final class Util {
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
   public static final String[] EMPTY_STRING_ARRAY = new String[0];
 
   /** A cheap and type-safe constant for the UTF-8 Charset. */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static final Charset UTF_8 = Charset.forName("UTF-8");
 
   private Util() {
@@ -69,7 +69,7 @@ public final class Util {
    * Closes {@code closeable}, ignoring any checked exceptions. Does nothing
    * if {@code closeable} is null.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static void closeQuietly(Closeable closeable) {
     if (closeable != null) {
       try {
@@ -117,7 +117,7 @@ public final class Util {
    * Closes {@code a} and {@code b}. If either close fails, this completes
    * the other close and rethrows the first encountered exception.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static void closeAll(Closeable a, Closeable b) throws IOException {
     Throwable thrown = null;
     try {

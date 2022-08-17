@@ -438,7 +438,7 @@ public final class HttpUrl {
    * Returns the entire path of this URL, encoded for use in HTTP resource resolution. The
    * returned path is always nonempty and is prefixed with {@code /}.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public String encodedPath() {
     int pathStart = url.indexOf('/', scheme.length() + 3); // "://".length() == 3.
     int pathEnd = delimiterOffset(url, pathStart, url.length(), "?#");
@@ -519,7 +519,7 @@ public final class HttpUrl {
     return result;
   }
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public String query() {
     if (queryNamesAndValues == null) return null; // No query.
     StringBuilder result = new StringBuilder();
@@ -590,7 +590,7 @@ public final class HttpUrl {
     return result == Builder.ParseResult.SUCCESS ? builder.build() : null;
   }
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public Builder newBuilder() {
     Builder result = new Builder();
     result.scheme = scheme;
@@ -610,7 +610,7 @@ public final class HttpUrl {
    * Returns a new {@code HttpUrl} representing {@code url} if it is a well-formed HTTP or HTTPS
    * URL, or null if it isn't.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static HttpUrl parse(String url) {
     Builder builder = new Builder();
     Builder.ParseResult result = builder.parse(null, url);
@@ -919,7 +919,7 @@ public final class HttpUrl {
       return this;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public HttpUrl build() {
       if (scheme == null) throw new IllegalStateException("scheme == null");
       if (host == null) throw new IllegalStateException("host == null");

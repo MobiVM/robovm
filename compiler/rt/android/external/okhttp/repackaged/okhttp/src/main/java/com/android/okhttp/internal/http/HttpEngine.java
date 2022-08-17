@@ -108,13 +108,13 @@ public final class HttpEngine {
   final OkHttpClient client;
 
   public final StreamAllocation streamAllocation;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final Response priorResponse;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private HttpStream httpStream;
 
   /** The time when the request headers were written, or -1 if they haven't been written yet. */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   long sentRequestMillis = -1;
 
   /**
@@ -142,7 +142,7 @@ public final class HttpEngine {
    * derived from the user request, and customized to support OkHttp features
    * like compression and caching.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private Request networkRequest;
 
   /**
@@ -157,7 +157,7 @@ public final class HttpEngine {
    * response, cache response, or both. It is customized to support OkHttp
    * features like compression and caching.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private Response userResponse;
 
   private Sink requestBodyOut;
@@ -203,7 +203,7 @@ public final class HttpEngine {
    *     {@link #recover(IOException)}.
    *
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public void sendRequest() throws RequestException, RouteException, IOException {
     if (cacheStrategy != null) return; // Already sent.
     if (httpStream != null) throw new IllegalStateException();
@@ -302,7 +302,7 @@ public final class HttpEngine {
    * Called immediately before the transport transmits HTTP request headers.
    * This is used to observe the sent time should the request be cached.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public void writingRequestHeaders() {
     if (sentRequestMillis != -1) throw new IllegalStateException();
     sentRequestMillis = System.currentTimeMillis();
@@ -327,7 +327,7 @@ public final class HttpEngine {
         : null;
   }
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public boolean hasResponse() {
     return userResponse != null;
   }
@@ -343,7 +343,7 @@ public final class HttpEngine {
     return userResponse;
   }
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public Connection getConnection() {
     return streamAllocation.connection();
   }
@@ -526,7 +526,7 @@ public final class HttpEngine {
    * <p>This client doesn't specify a default {@code Accept} header because it
    * doesn't know what content types the application is interested in.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private Request networkRequest(Request request) throws IOException {
     Request.Builder result = request.newBuilder();
 
@@ -567,7 +567,7 @@ public final class HttpEngine {
    * Flushes the remaining request header and body, parses the HTTP response
    * headers and starts reading the HTTP response body if it exists.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public void readResponse() throws IOException {
     if (userResponse != null) {
       return; // Already ready.

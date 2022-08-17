@@ -86,7 +86,7 @@ public class HttpURLConnectionImpl extends HttpURLConnection {
       Arrays.asList("OPTIONS", "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "PATCH"));
   private static final RequestBody EMPTY_REQUEST_BODY = RequestBody.create(null, new byte[0]);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   final OkHttpClient client;
 
   private Headers.Builder requestHeaders = new Headers.Builder();
@@ -95,7 +95,7 @@ public class HttpURLConnectionImpl extends HttpURLConnection {
   private long fixedContentLength = -1;
   private int followUpCount;
   protected IOException httpEngineFailure;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   protected HttpEngine httpEngine;
   /** Lazily created (with synthetic headers) on first call to getHeaders(). */
   private Headers responseHeaders;

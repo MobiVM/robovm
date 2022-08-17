@@ -26,7 +26,7 @@ public final class HeaderParser {
    * contains a character from {@code characters}. Returns the input length if
    * none of the requested characters can be found.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static int skipUntil(String input, int pos, String characters) {
     for (; pos < input.length(); pos++) {
       if (characters.indexOf(input.charAt(pos)) != -1) {
@@ -40,7 +40,7 @@ public final class HeaderParser {
    * Returns the next non-whitespace character in {@code input} that is white
    * space. Result is undefined if input contains newline characters.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static int skipWhitespace(String input, int pos) {
     for (; pos < input.length(); pos++) {
       char c = input.charAt(pos);

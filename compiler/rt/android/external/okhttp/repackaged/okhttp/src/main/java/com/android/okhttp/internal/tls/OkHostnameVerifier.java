@@ -37,7 +37,9 @@ import javax.net.ssl.SSLSession;
  * @hide This class is not part of the Android public SDK API
  */
 public final class OkHostnameVerifier implements HostnameVerifier {
-  public static final OkHostnameVerifier INSTANCE = new OkHostnameVerifier();
+  // Android-changed: Add an instance which disallows top-level domain wildcards. b/144694112
+  // public static final OkHostnameVerifier INSTANCE = new OkHostnameVerifier();
+  public static final OkHostnameVerifier INSTANCE = new OkHostnameVerifier(false);
 
   /**
    * Quick and dirty pattern to differentiate IP addresses from hostnames. This
@@ -56,8 +58,19 @@ public final class OkHostnameVerifier implements HostnameVerifier {
   private static final int ALT_DNS_NAME = 2;
   private static final int ALT_IPA_NAME = 7;
 
-  private OkHostnameVerifier() {
+  // BEGIN Android-changed: Add a mode which disallows top-level domain wildcards. b/144694112
+  // private OkHostnameVerifier() {
+  // }
+  private final boolean strictWildcardMode;
+
+  private OkHostnameVerifier(boolean strictWildcardMode) {
+    this.strictWildcardMode = strictWildcardMode;
   }
+
+  public static OkHostnameVerifier strictInstance() {
+    return new OkHostnameVerifier(true);
+  }
+  // END Android-changed: Add a mode which disallows top-level domain wildcards. b/144694112
 
   @Override
   public boolean verify(String host, SSLSession session) {
@@ -96,6 +109,11 @@ public final class OkHostnameVerifier implements HostnameVerifier {
    * Returns true if {@code certificate} matches {@code hostName}.
    */
   private boolean verifyHostName(String hostName, X509Certificate certificate) {
+    // BEGIN Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
+    if (!isPrintableAscii(hostName)) {
+      return false;
+    }
+    // END Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
     hostName = hostName.toLowerCase(Locale.US);
     boolean hasDns = false;
     List<String> altNames = getSubjectAltNames(certificate, ALT_DNS_NAME);
@@ -198,6 +216,11 @@ public final class OkHostnameVerifier implements HostnameVerifier {
     }
     // hostName and pattern are now absolute domain names.
 
+    // BEGIN Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
+    if (!isPrintableAscii(pattern)) {
+      return false;
+    }
+    // END Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
     pattern = pattern.toLowerCase(Locale.US);
     // hostName and pattern are now in lower case -- domain names are case-insensitive.
 
@@ -216,6 +239,8 @@ public final class OkHostnameVerifier implements HostnameVerifier {
     //    For example, *.example.com matches test.example.com but does not match
     //    sub.test.example.com.
     // 3. Wildcard patterns for single-label domain names are not permitted.
+    // 4. Android-added: if strictWildcardMode is true then wildcards matching top-level domains,
+    //    e.g. *.com, are not permitted.
 
     if ((!pattern.startsWith("*.")) || (pattern.indexOf('*', 1) != -1)) {
       // Asterisk (*) is only permitted in the left-most domain name label and must be the only
@@ -236,6 +261,18 @@ public final class OkHostnameVerifier implements HostnameVerifier {
       return false;
     }
 
+    // BEGIN Android-added: Disallow top-level wildcards in strict mode. http://b/144694112
+    if (strictWildcardMode) {
+      // By this point we know the pattern has been normalised and starts with a wildcard,
+      // i.e. "*.domainpart."
+      String domainPart = pattern.substring(2, pattern.length() - 1);
+      // If the domain part contains no dots then this pattern will match top level domains.
+      if (domainPart.indexOf('.') < 0) {
+        return false;
+      }
+    }
+    // END Android-added: Disallow top-level wildcards in strict mode. http://b/144694112
+
     // hostName must end with the region of pattern following the asterisk.
     String suffix = pattern.substring(1);
     if (!hostName.endsWith(suffix)) {
@@ -254,4 +291,25 @@ public final class OkHostnameVerifier implements HostnameVerifier {
     // hostName matches pattern
     return true;
   }
+
+  // BEGIN Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
+  /**
+   * Returns true if the  input string contains only printable 7-bit ASCII
+   * characters, otherwise false.
+   */
+  private static final char DEL = 127;
+  static boolean isPrintableAscii(String input) {
+    if (input == null) {
+      return false;
+    }
+    for (char c : input.toCharArray()) {
+      // Space is illegal in a DNS name. DEL and anything less than space is non-printing so
+      // also illegal. Anything greater than DEL is not 7-bit.
+      if (c <= ' ' || c >= DEL) {
+        return false;
+      }
+    }
+    return true;
+  }
+  // END Android-added: Reject non-ASCII hostnames and SANs. http://b/171980069
 }

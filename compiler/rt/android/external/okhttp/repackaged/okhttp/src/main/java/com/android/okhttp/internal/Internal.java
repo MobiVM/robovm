@@ -40,7 +40,7 @@ import javax.net.ssl.SSLSocket;
 public abstract class Internal {
   public static final Logger logger = Logger.getLogger(OkHttpClient.class.getName());
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public Internal() {
   }
 
@@ -49,45 +49,45 @@ public abstract class Internal {
     new OkHttpClient();
   }
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public static Internal instance;
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void addLenient(Headers.Builder builder, String line);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void addLenient(Headers.Builder builder, String name, String value);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void setCache(OkHttpClient client, InternalCache internalCache);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract InternalCache internalCache(OkHttpClient client);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract RealConnection get(
       ConnectionPool pool, Address address, StreamAllocation streamAllocation);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void put(ConnectionPool pool, RealConnection connection);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract boolean connectionBecameIdle(ConnectionPool pool, RealConnection connection);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract RouteDatabase routeDatabase(ConnectionPool connectionPool);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void apply(ConnectionSpec tlsConfiguration, SSLSocket sslSocket,
       boolean isFallback);
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract HttpUrl getHttpUrlChecked(String url)
       throws MalformedURLException, UnknownHostException;
 
   // TODO delete the following when web sockets move into the main package.
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract void callEnqueue(Call call, Callback responseCallback, boolean forWebSocket);
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   public abstract StreamAllocation callEngineGetStreamAllocation(Call call);
 }

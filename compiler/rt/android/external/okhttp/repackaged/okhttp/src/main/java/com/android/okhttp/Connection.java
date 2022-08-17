@@ -73,7 +73,7 @@ public interface Connection {
    * Returns the socket that this connection uses, or null if the connection
    * is not currently connected.
    */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   Socket getSocket();
 
   Handshake getHandshake();

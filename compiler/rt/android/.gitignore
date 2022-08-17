@@ -54,3 +54,13 @@ TEST_MAPPING
 /external/javasqlite/METADATA
 /external/javasqlite/OWNERS
 
+##
+## OkHttp
+##
+/external/okhttp/*
+/external/okhttp/**/src/test/**
+!/external/okhttp/repackaged
+!/external/okhttp/CHANGELOG.md
+!/external/okhttp/LICENSE.txt
+!/external/okhttp/MODULE_LICENSE_APACHE2
+!/external/okhttp/README.android
