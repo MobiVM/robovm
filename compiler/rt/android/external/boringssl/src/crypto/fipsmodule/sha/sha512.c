@@ -105,7 +105,25 @@ int SHA512_Init(SHA512_CTX *sha) {
   return 1;
 }
 
-uint8_t *SHA384(const uint8_t *data, size_t len, uint8_t *out) {
+int SHA512_256_Init(SHA512_CTX *sha) {
+  sha->h[0] = UINT64_C(0x22312194fc2bf72c);
+  sha->h[1] = UINT64_C(0x9f555fa3c84c64c2);
+  sha->h[2] = UINT64_C(0x2393b86b6f53b151);
+  sha->h[3] = UINT64_C(0x963877195940eabd);
+  sha->h[4] = UINT64_C(0x96283ee2a88effe3);
+  sha->h[5] = UINT64_C(0xbe5e1e2553863992);
+  sha->h[6] = UINT64_C(0x2b0199fc2c85b8aa);
+  sha->h[7] = UINT64_C(0x0eb72ddc81c52ca2);
+
+  sha->Nl = 0;
+  sha->Nh = 0;
+  sha->num = 0;
+  sha->md_len = SHA512_256_DIGEST_LENGTH;
+  return 1;
+}
+
+uint8_t *SHA384(const uint8_t *data, size_t len,
+                uint8_t out[SHA384_DIGEST_LENGTH]) {
   SHA512_CTX ctx;
   SHA384_Init(&ctx);
   SHA384_Update(&ctx, data, len);
@@ -114,9 +132,20 @@ uint8_t *SHA384(const uint8_t *data, size_t len, uint8_t *out) {
   return out;
 }
 
-uint8_t *SHA512(const uint8_t *data, size_t len, uint8_t *out) {
+uint8_t *SHA512(const uint8_t *data, size_t len,
+                uint8_t out[SHA512_DIGEST_LENGTH]) {
   SHA512_CTX ctx;
   SHA512_Init(&ctx);
+  SHA512_Update(&ctx, data, len);
+  SHA512_Final(out, &ctx);
+  OPENSSL_cleanse(&ctx, sizeof(ctx));
+  return out;
+}
+
+uint8_t *SHA512_256(const uint8_t *data, size_t len,
+                    uint8_t out[SHA512_256_DIGEST_LENGTH]) {
+  SHA512_CTX ctx;
+  SHA512_256_Init(&ctx);
   SHA512_Update(&ctx, data, len);
   SHA512_Final(out, &ctx);
   OPENSSL_cleanse(&ctx, sizeof(ctx));
@@ -129,15 +158,28 @@ static void sha512_block_data_order(uint64_t *state, const uint8_t *in,
 #endif
 
 
-int SHA384_Final(uint8_t *md, SHA512_CTX *sha) {
-  return SHA512_Final(md, sha);
+int SHA384_Final(uint8_t out[SHA384_DIGEST_LENGTH], SHA512_CTX *sha) {
+  // |SHA384_Init| sets |sha->md_len| to |SHA384_DIGEST_LENGTH|, so this has a
+  // |smaller output.
+  return SHA512_Final(out, sha);
 }
 
 int SHA384_Update(SHA512_CTX *sha, const void *data, size_t len) {
   return SHA512_Update(sha, data, len);
 }
 
-void SHA512_Transform(SHA512_CTX *c, const uint8_t *block) {
+int SHA512_256_Update(SHA512_CTX *sha, const void *data, size_t len) {
+  return SHA512_Update(sha, data, len);
+}
+
+int SHA512_256_Final(uint8_t out[SHA512_256_DIGEST_LENGTH],
+                                    SHA512_CTX *sha) {
+  // |SHA512_256_Init| sets |sha->md_len| to |SHA512_256_DIGEST_LENGTH|, so this
+  // has a |smaller output.
+  return SHA512_Final(out, sha);
+}
+
+void SHA512_Transform(SHA512_CTX *c, const uint8_t block[SHA512_CBLOCK]) {
   sha512_block_data_order(c->h, block, 1);
 }
 
@@ -189,7 +231,7 @@ int SHA512_Update(SHA512_CTX *c, const void *in_data, size_t len) {
   return 1;
 }
 
-int SHA512_Final(uint8_t *md, SHA512_CTX *sha) {
+int SHA512_Final(uint8_t out[SHA512_DIGEST_LENGTH], SHA512_CTX *sha) {
   uint8_t *p = sha->p;
   size_t n = sha->num;
 
@@ -221,47 +263,18 @@ int SHA512_Final(uint8_t *md, SHA512_CTX *sha) {
 
   sha512_block_data_order(sha->h, p, 1);
 
-  if (md == NULL) {
+  if (out == NULL) {
     // TODO(davidben): This NULL check is absent in other low-level hash 'final'
     // functions and is one of the few places one can fail.
     return 0;
   }
 
-  switch (sha->md_len) {
-    // Let compiler decide if it's appropriate to unroll...
-    case SHA384_DIGEST_LENGTH:
-      for (n = 0; n < SHA384_DIGEST_LENGTH / 8; n++) {
-        uint64_t t = sha->h[n];
-
-        *(md++) = (uint8_t)(t >> 56);
-        *(md++) = (uint8_t)(t >> 48);
-        *(md++) = (uint8_t)(t >> 40);
-        *(md++) = (uint8_t)(t >> 32);
-        *(md++) = (uint8_t)(t >> 24);
-        *(md++) = (uint8_t)(t >> 16);
-        *(md++) = (uint8_t)(t >> 8);
-        *(md++) = (uint8_t)(t);
-      }
-      break;
-    case SHA512_DIGEST_LENGTH:
-      for (n = 0; n < SHA512_DIGEST_LENGTH / 8; n++) {
-        uint64_t t = sha->h[n];
-
-        *(md++) = (uint8_t)(t >> 56);
-        *(md++) = (uint8_t)(t >> 48);
-        *(md++) = (uint8_t)(t >> 40);
-        *(md++) = (uint8_t)(t >> 32);
-        *(md++) = (uint8_t)(t >> 24);
-        *(md++) = (uint8_t)(t >> 16);
-        *(md++) = (uint8_t)(t >> 8);
-        *(md++) = (uint8_t)(t);
-      }
-      break;
-    // ... as well as make sure md_len is not abused.
-    default:
-      // TODO(davidben): This bad |md_len| case is one of the few places a
-      // low-level hash 'final' function can fail. This should never happen.
-      return 0;
+  assert(sha->md_len % 8 == 0);
+  const size_t out_words = sha->md_len / 8;
+  for (size_t i = 0; i < out_words; i++) {
+    const uint64_t t = CRYPTO_bswap8(sha->h[i]);
+    memcpy(out, &t, sizeof(t));
+    out += sizeof(t);
   }
 
   return 1;

@@ -99,6 +99,19 @@ extern "C" {
 // parameters, only use 12-byte nonces.
 OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_128_gcm(void);
 
+// EVP_aead_aes_192_gcm is AES-192 in Galois Counter Mode.
+//
+// WARNING: AES-192 is superfluous and shouldn't exist. NIST should never have
+// defined it. Use only when interop with another system requires it, never
+// de novo.
+//
+// Note: AES-GCM should only be used with 12-byte (96-bit) nonces. Although it
+// is specified to take a variable-length nonce, nonces with other lengths are
+// effectively randomized, which means one must consider collisions. Unless
+// implementing an existing protocol which has already specified incorrect
+// parameters, only use 12-byte nonces.
+OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_192_gcm(void);
+
 // EVP_aead_aes_256_gcm is AES-256 in Galois Counter Mode.
 //
 // Note: AES-GCM should only be used with 12-byte (96-bit) nonces. Although it
@@ -132,6 +145,30 @@ OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_128_gcm_siv(void);
 // EVP_aead_aes_256_gcm_siv is AES-256 in GCM-SIV mode. See
 // https://tools.ietf.org/html/draft-irtf-cfrg-gcmsiv-02
 OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_256_gcm_siv(void);
+
+// EVP_aead_aes_128_gcm_randnonce is AES-128 in Galois Counter Mode with
+// internal nonce generation. The 12-byte nonce is appended to the tag
+// and is generated internally. The "tag", for the purpurses of the API, is thus
+// 12 bytes larger. The nonce parameter when using this AEAD must be
+// zero-length. Since the nonce is random, a single key should not be used for
+// more than 2^32 seal operations.
+//
+// Warning: this is for use for FIPS compliance only. It is probably not
+// suitable for other uses. Using standard AES-GCM AEADs allows one to achieve
+// the same effect, but gives more control over nonce storage.
+OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_128_gcm_randnonce(void);
+
+// EVP_aead_aes_256_gcm_randnonce is AES-256 in Galois Counter Mode with
+// internal nonce generation. The 12-byte nonce is appended to the tag
+// and is generated internally. The "tag", for the purpurses of the API, is thus
+// 12 bytes larger. The nonce parameter when using this AEAD must be
+// zero-length. Since the nonce is random, a single key should not be used for
+// more than 2^32 seal operations.
+//
+// Warning: this is for use for FIPS compliance only. It is probably not
+// suitable for other uses. Using standard AES-GCM AEADs allows one to achieve
+// the same effect, but gives more control over nonce storage.
+OPENSSL_EXPORT const EVP_AEAD *EVP_aead_aes_256_gcm_randnonce(void);
 
 // EVP_aead_aes_128_ccm_bluetooth is AES-128-CCM with M=4 and L=2 (4-byte tags
 // and 13-byte nonces), as decribed in the Bluetooth Core Specification v5.0,

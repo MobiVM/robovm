@@ -16,6 +16,8 @@
 
 #include <openssl/cpu.h>
 
+#include "fipsmodule/rand/fork_detect.h"
+#include "fipsmodule/rand/internal.h"
 #include "internal.h"
 
 
@@ -60,7 +62,7 @@
 // that tests the capability values will still skip the constructor but, so
 // far, the init constructor function only sets the capability variables.
 
-#if !defined(NDEBUG) && !defined(BORINGSSL_FIPS)
+#if defined(BORINGSSL_DISPATCH_TEST)
 // This value must be explicitly initialised to zero in order to work around a
 // bug in libtool or the linker on OS X.
 //
@@ -172,6 +174,15 @@ int CRYPTO_has_asm(void) {
 #else
   return 1;
 #endif
+}
+
+void CRYPTO_pre_sandbox_init(void) {
+  // Read from /proc/cpuinfo if needed.
+  CRYPTO_library_init();
+  // Open /dev/urandom if needed.
+  CRYPTO_init_sysrand();
+  // Set up MADV_WIPEONFORK state if needed.
+  CRYPTO_get_fork_generation();
 }
 
 const char *SSLeay_version(int which) { return OpenSSL_version(which); }

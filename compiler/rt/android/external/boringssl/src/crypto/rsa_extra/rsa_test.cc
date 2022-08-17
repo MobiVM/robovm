@@ -461,7 +461,8 @@ TEST_P(RSAEncryptTest, TestKey) {
   }
 }
 
-INSTANTIATE_TEST_CASE_P(, RSAEncryptTest, testing::ValuesIn(kRSAEncryptParams));
+INSTANTIATE_TEST_SUITE_P(All, RSAEncryptTest,
+                         testing::ValuesIn(kRSAEncryptParams));
 
 TEST(RSATest, TestDecrypt) {
   bssl::UniquePtr<RSA> rsa(
@@ -495,24 +496,26 @@ TEST(RSATest, GenerateFIPS) {
   bssl::UniquePtr<RSA> rsa(RSA_new());
   ASSERT_TRUE(rsa);
 
-  // RSA_generate_key_fips may only be used for 2048-bit and 3072-bit keys.
+  // RSA_generate_key_fips may only be used for 2048-, 3072-, and 4096-bit
+  // keys.
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 512, nullptr));
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 1024, nullptr));
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 2047, nullptr));
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 2049, nullptr));
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 3071, nullptr));
   EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 3073, nullptr));
-  EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 4096, nullptr));
+  EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 4095, nullptr));
+  EXPECT_FALSE(RSA_generate_key_fips(rsa.get(), 4097, nullptr));
   ERR_clear_error();
 
-  // Test that we can generate 2048-bit and 3072-bit RSA keys.
-  ASSERT_TRUE(RSA_generate_key_fips(rsa.get(), 2048, nullptr));
-  EXPECT_EQ(2048u, BN_num_bits(rsa->n));
+  // Test that we can generate keys of the supported lengths:
+  for (const size_t bits : {2048, 3072, 4096}) {
+    SCOPED_TRACE(bits);
 
-  rsa.reset(RSA_new());
-  ASSERT_TRUE(rsa);
-  ASSERT_TRUE(RSA_generate_key_fips(rsa.get(), 3072, nullptr));
-  EXPECT_EQ(3072u, BN_num_bits(rsa->n));
+    rsa.reset(RSA_new());
+    ASSERT_TRUE(RSA_generate_key_fips(rsa.get(), bits, nullptr));
+    EXPECT_EQ(bits, BN_num_bits(rsa->n));
+  }
 }
 
 TEST(RSATest, BadKey) {
@@ -1043,8 +1046,8 @@ TEST(RSATest, SqrtTwo) {
   ASSERT_TRUE(BN_sqr(sqrt.get(), sqrt.get(), ctx.get()));
   EXPECT_LT(BN_cmp(pow2.get(), sqrt.get()), 0);
 
-  // Check the kBoringSSLRSASqrtTwo is sized for a 3072-bit RSA key.
-  EXPECT_EQ(3072u / 2u, bits);
+  // Check the kBoringSSLRSASqrtTwo is sized for a 4096-bit RSA key.
+  EXPECT_EQ(4096u / 2u, bits);
 }
 #endif  // !BORINGSSL_SHARED_LIBRARY
 
@@ -1116,4 +1119,48 @@ TEST(RSATest, Threads) {
     thread.join();
   }
 }
+
+// This test might be excessively slow on slower CPUs or platforms that do not
+// expect server workloads. It is disabled by default and reenabled on some
+// platforms when running tests standalone via all_tests.go.
+//
+// Additionally, even when running disabled tests standalone, limit this to
+// x86_64. On other platforms, this test hits resource limits or is too slow.
+#if defined(OPENSSL_X86_64)
+TEST(RSATest, DISABLED_BlindingCacheConcurrency) {
+  bssl::UniquePtr<RSA> rsa(
+      RSA_private_key_from_bytes(kKey1, sizeof(kKey1) - 1));
+  ASSERT_TRUE(rsa);
+
+#if defined(OPENSSL_TSAN)
+  constexpr size_t kSignaturesPerThread = 10;
+  constexpr size_t kNumThreads = 10;
+#else
+  constexpr size_t kSignaturesPerThread = 100;
+  constexpr size_t kNumThreads = 2048;
 #endif
+
+  const uint8_t kDummyHash[32] = {0};
+  auto worker = [&] {
+    uint8_t sig[256];
+    ASSERT_LE(RSA_size(rsa.get()), sizeof(sig));
+
+    for (size_t i = 0; i < kSignaturesPerThread; i++) {
+      unsigned sig_len = sizeof(sig);
+      EXPECT_TRUE(RSA_sign(NID_sha256, kDummyHash, sizeof(kDummyHash), sig,
+                           &sig_len, rsa.get()));
+    }
+  };
+
+  std::vector<std::thread> threads;
+  threads.reserve(kNumThreads);
+  for (size_t i = 0; i < kNumThreads; i++) {
+    threads.emplace_back(worker);
+  }
+  for (auto &thread : threads) {
+    thread.join();
+  }
+}
+#endif  // X86_64
+
+#endif  // THREADS

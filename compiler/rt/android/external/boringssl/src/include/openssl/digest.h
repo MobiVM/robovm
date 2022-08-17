@@ -83,6 +83,8 @@ OPENSSL_EXPORT const EVP_MD *EVP_sha224(void);
 OPENSSL_EXPORT const EVP_MD *EVP_sha256(void);
 OPENSSL_EXPORT const EVP_MD *EVP_sha384(void);
 OPENSSL_EXPORT const EVP_MD *EVP_sha512(void);
+OPENSSL_EXPORT const EVP_MD *EVP_sha512_256(void);
+OPENSSL_EXPORT const EVP_MD *EVP_blake2b256(void);
 
 // EVP_md5_sha1 is a TLS-specific |EVP_MD| which computes the concatenation of
 // MD5 and SHA-1, as used in TLS 1.1 and below.
@@ -195,7 +197,7 @@ OPENSSL_EXPORT size_t EVP_MD_size(const EVP_MD *md);
 // EVP_MD_block_size returns the native block-size of |md|, in bytes.
 OPENSSL_EXPORT size_t EVP_MD_block_size(const EVP_MD *md);
 
-// EVP_MD_FLAG_PKEY_DIGEST indicates the the digest function is used with a
+// EVP_MD_FLAG_PKEY_DIGEST indicates that the digest function is used with a
 // specific public key in order to verify signatures. (For example,
 // EVP_dss1.)
 #define EVP_MD_FLAG_PKEY_DIGEST 1
@@ -204,6 +206,11 @@ OPENSSL_EXPORT size_t EVP_MD_block_size(const EVP_MD *md);
 // DigestAlgorithmIdentifier representing this digest function should be
 // undefined rather than NULL.
 #define EVP_MD_FLAG_DIGALGID_ABSENT 2
+
+// EVP_MD_FLAG_XOF indicates that the digest is an extensible-output function
+// (XOF). This flag is defined for compatibility and will never be set in any
+// |EVP_MD| in BoringSSL.
+#define EVP_MD_FLAG_XOF 4
 
 
 // Digest operation accessors.
@@ -268,6 +275,23 @@ OPENSSL_EXPORT EVP_MD_CTX *EVP_MD_CTX_create(void);
 
 // EVP_MD_CTX_destroy calls |EVP_MD_CTX_free|.
 OPENSSL_EXPORT void EVP_MD_CTX_destroy(EVP_MD_CTX *ctx);
+
+// EVP_DigestFinalXOF returns zero and adds an error to the error queue.
+// BoringSSL does not support any XOF digests.
+OPENSSL_EXPORT int EVP_DigestFinalXOF(EVP_MD_CTX *ctx, uint8_t *out,
+                                      size_t len);
+
+// EVP_MD_meth_get_flags calls |EVP_MD_flags|.
+OPENSSL_EXPORT uint32_t EVP_MD_meth_get_flags(const EVP_MD *md);
+
+// EVP_MD_CTX_set_flags does nothing.
+OPENSSL_EXPORT void EVP_MD_CTX_set_flags(EVP_MD_CTX *ctx, int flags);
+
+// EVP_MD_CTX_FLAG_NON_FIPS_ALLOW is meaningless. In OpenSSL it permits non-FIPS
+// algorithms in FIPS mode. But BoringSSL FIPS mode doesn't prohibit algorithms
+// (it's up the the caller to use the FIPS module in a fashion compliant with
+// their needs). Thus this exists only to allow code to compile.
+#define EVP_MD_CTX_FLAG_NON_FIPS_ALLOW 0
 
 
 struct evp_md_pctx_ops;

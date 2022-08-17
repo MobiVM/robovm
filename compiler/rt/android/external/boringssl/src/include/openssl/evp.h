@@ -170,22 +170,13 @@ OPENSSL_EXPORT int EVP_PKEY_assign_EC_KEY(EVP_PKEY *pkey, EC_KEY *key);
 OPENSSL_EXPORT EC_KEY *EVP_PKEY_get0_EC_KEY(const EVP_PKEY *pkey);
 OPENSSL_EXPORT EC_KEY *EVP_PKEY_get1_EC_KEY(const EVP_PKEY *pkey);
 
-// EVP_PKEY_new_ed25519_public returns a newly allocated |EVP_PKEY| wrapping an
-// Ed25519 public key, or NULL on allocation error.
-OPENSSL_EXPORT EVP_PKEY *EVP_PKEY_new_ed25519_public(
-    const uint8_t public_key[32]);
-
-// EVP_PKEY_new_ed25519_private returns a newly allocated |EVP_PKEY| wrapping an
-// Ed25519 private key, or NULL on allocation error.
-OPENSSL_EXPORT EVP_PKEY *EVP_PKEY_new_ed25519_private(
-    const uint8_t private_key[64]);
-
 #define EVP_PKEY_NONE NID_undef
 #define EVP_PKEY_RSA NID_rsaEncryption
 #define EVP_PKEY_RSA_PSS NID_rsassaPss
 #define EVP_PKEY_DSA NID_dsa
 #define EVP_PKEY_EC NID_X9_62_id_ecPublicKey
 #define EVP_PKEY_ED25519 NID_ED25519
+#define EVP_PKEY_X25519 NID_X25519
 
 // EVP_PKEY_assign sets the underlying key of |pkey| to |key|, which must be of
 // the given type. It returns one if successful or zero if the |type| argument
@@ -228,7 +219,9 @@ OPENSSL_EXPORT int EVP_marshal_public_key(CBB *cbb, const EVP_PKEY *key);
 //
 // The caller must check the type of the parsed private key to ensure it is
 // suitable and validate other desired key properties such as RSA modulus size
-// or EC curve.
+// or EC curve. In particular, RSA private key operations scale cubicly, so
+// applications accepting RSA private keys from external sources may need to
+// bound key sizes (use |EVP_PKEY_bits| or |RSA_bits|) to avoid a DoS vector.
 //
 // A PrivateKeyInfo ends with an optional set of attributes. These are not
 // processed and so this function will silently ignore any trailing data in the
@@ -239,6 +232,48 @@ OPENSSL_EXPORT EVP_PKEY *EVP_parse_private_key(CBS *cbs);
 // structure (RFC 5208) and appends the result to |cbb|. It returns one on
 // success and zero on error.
 OPENSSL_EXPORT int EVP_marshal_private_key(CBB *cbb, const EVP_PKEY *key);
+
+
+// Raw keys
+//
+// Some keys types support a "raw" serialization. Currently the only supported
+// raw format is Ed25519, where the public key and private key formats are those
+// specified in RFC 8032. Note the RFC 8032 private key format is the 32-byte
+// prefix of |ED25519_sign|'s 64-byte private key.
+
+// EVP_PKEY_new_raw_private_key returns a newly allocated |EVP_PKEY| wrapping a
+// private key of the specified type. It returns one on success and zero on
+// error.
+OPENSSL_EXPORT EVP_PKEY *EVP_PKEY_new_raw_private_key(int type, ENGINE *unused,
+                                                      const uint8_t *in,
+                                                      size_t len);
+
+// EVP_PKEY_new_raw_public_key returns a newly allocated |EVP_PKEY| wrapping a
+// public key of the specified type. It returns one on success and zero on
+// error.
+OPENSSL_EXPORT EVP_PKEY *EVP_PKEY_new_raw_public_key(int type, ENGINE *unused,
+                                                     const uint8_t *in,
+                                                     size_t len);
+
+// EVP_PKEY_get_raw_private_key outputs the private key for |pkey| in raw form.
+// If |out| is NULL, it sets |*out_len| to the size of the raw private key.
+// Otherwise, it writes at most |*out_len| bytes to |out| and sets |*out_len| to
+// the number of bytes written.
+//
+// It returns one on success and zero if |pkey| has no private key, the key
+// type does not support a raw format, or the buffer is too small.
+OPENSSL_EXPORT int EVP_PKEY_get_raw_private_key(const EVP_PKEY *pkey,
+                                                uint8_t *out, size_t *out_len);
+
+// EVP_PKEY_get_raw_public_key outputs the public key for |pkey| in raw form.
+// If |out| is NULL, it sets |*out_len| to the size of the raw public key.
+// Otherwise, it writes at most |*out_len| bytes to |out| and sets |*out_len| to
+// the number of bytes written.
+//
+// It returns one on success and zero if |pkey| has no public key, the key
+// type does not support a raw format, or the buffer is too small.
+OPENSSL_EXPORT int EVP_PKEY_get_raw_public_key(const EVP_PKEY *pkey,
+                                               uint8_t *out, size_t *out_len);
 
 
 // Signing
@@ -681,7 +716,8 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_get_signature_md(EVP_PKEY_CTX *ctx,
 // RSA specific control functions.
 
 // EVP_PKEY_CTX_set_rsa_padding sets the padding type to use. It should be one
-// of the |RSA_*_PADDING| values. Returns one on success or zero on error.
+// of the |RSA_*_PADDING| values. Returns one on success or zero on error. By
+// default, the padding is |RSA_PKCS1_PADDING|.
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_padding(EVP_PKEY_CTX *ctx, int padding);
 
 // EVP_PKEY_CTX_get_rsa_padding sets |*out_padding| to the current padding
@@ -699,6 +735,8 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_get_rsa_padding(EVP_PKEY_CTX *ctx,
 // If unsure, use -1.
 //
 // Returns one on success or zero on error.
+//
+// TODO(davidben): The default is currently -2. Switch it to -1.
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_pss_saltlen(EVP_PKEY_CTX *ctx,
                                                     int salt_len);
 
@@ -723,7 +761,10 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_keygen_pubexp(EVP_PKEY_CTX *ctx,
                                                       BIGNUM *e);
 
 // EVP_PKEY_CTX_set_rsa_oaep_md sets |md| as the digest used in OAEP padding.
-// Returns one on success or zero on error.
+// Returns one on success or zero on error. If unset, the default is SHA-1.
+// Callers are recommended to overwrite this default.
+//
+// TODO(davidben): Remove the default and require callers specify this.
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_oaep_md(EVP_PKEY_CTX *ctx,
                                                 const EVP_MD *md);
 
@@ -734,6 +775,10 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_get_rsa_oaep_md(EVP_PKEY_CTX *ctx,
 
 // EVP_PKEY_CTX_set_rsa_mgf1_md sets |md| as the digest used in MGF1. Returns
 // one on success or zero on error.
+//
+// If unset, the default is the signing hash for |RSA_PKCS1_PSS_PADDING| and the
+// OAEP hash for |RSA_PKCS1_OAEP_PADDING|. Callers are recommended to use this
+// default and not call this function.
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_mgf1_md(EVP_PKEY_CTX *ctx,
                                                 const EVP_MD *md);
 
@@ -778,6 +823,14 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_set_ec_paramgen_curve_nid(EVP_PKEY_CTX *ctx,
 // EVP_PKEY_RSA2 was historically an alternate form for RSA public keys (OID
 // 2.5.8.1.1), but is no longer accepted.
 #define EVP_PKEY_RSA2 NID_rsa
+
+// EVP_PKEY_X448 is defined for OpenSSL compatibility, but we do not support
+// X448 and attempts to create keys will fail.
+#define EVP_PKEY_X448 NID_X448
+
+// EVP_PKEY_ED448 is defined for OpenSSL compatibility, but we do not support
+// Ed448 and attempts to create keys will fail.
+#define EVP_PKEY_ED448 NID_ED448
 
 // OpenSSL_add_all_algorithms does nothing.
 OPENSSL_EXPORT void OpenSSL_add_all_algorithms(void);
@@ -874,6 +927,107 @@ OPENSSL_EXPORT DH *EVP_PKEY_get1_DH(const EVP_PKEY *pkey);
 OPENSSL_EXPORT int EVP_PKEY_CTX_set_ec_param_enc(EVP_PKEY_CTX *ctx,
                                                  int encoding);
 
+// EVP_PKEY_set1_tls_encodedpoint replaces |pkey| with a public key encoded by
+// |in|. It returns one on success and zero on error.
+//
+// This function only works on X25519 keys.
+OPENSSL_EXPORT int EVP_PKEY_set1_tls_encodedpoint(EVP_PKEY *pkey,
+                                                  const uint8_t *in,
+                                                  size_t len);
+
+// EVP_PKEY_get1_tls_encodedpoint sets |*out_ptr| to a newly-allocated buffer
+// containing the raw encoded public key for |pkey|. The caller must call
+// |OPENSSL_free| to release this buffer. The function returns the length of the
+// buffer on success and zero on error.
+//
+// This function only works on X25519 keys.
+OPENSSL_EXPORT size_t EVP_PKEY_get1_tls_encodedpoint(const EVP_PKEY *pkey,
+                                                     uint8_t **out_ptr);
+
+// EVP_PKEY_base_id calls |EVP_PKEY_id|.
+OPENSSL_EXPORT int EVP_PKEY_base_id(const EVP_PKEY *pkey);
+
+// EVP_PKEY_CTX_set_rsa_pss_keygen_md returns 0.
+OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_pss_keygen_md(EVP_PKEY_CTX *ctx,
+                                                      const EVP_MD *md);
+
+// EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen returns 0.
+OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_pss_keygen_saltlen(EVP_PKEY_CTX *ctx,
+                                                           int salt_len);
+
+// EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md returns 0.
+OPENSSL_EXPORT int EVP_PKEY_CTX_set_rsa_pss_keygen_mgf1_md(EVP_PKEY_CTX *ctx,
+                                                           const EVP_MD *md);
+
+// i2d_PUBKEY marshals a public key from |pkey| as a DER-encoded
+// SubjectPublicKeyInfo. If |outp| is not NULL, the result is written to |*outp|
+// and |*outp| is advanced just past the output. It returns the number of bytes
+// in the result, whether written or not, or a negative value on error.
+//
+// Use |EVP_marshal_public_key| instead.
+OPENSSL_EXPORT int i2d_PUBKEY(const EVP_PKEY *pkey, uint8_t **outp);
+
+// d2i_PUBKEY parses a DER-encoded SubjectPublicKeyInfo from |len| bytes at
+// |*inp|. It returns a newly-allocated result, or NULL on error. On success,
+// |*inp| is advanced past the DER structure. If |out| is not NULL, it also
+// frees any existing object pointed by |*out| and writes the result.
+//
+// Use |EVP_parse_public_key| instead.
+OPENSSL_EXPORT EVP_PKEY *d2i_PUBKEY(EVP_PKEY **out, const uint8_t **inp,
+                                    long len);
+
+// i2d_RSA_PUBKEY marshals |rsa| as a DER-encoded SubjectPublicKeyInfo. If
+// |outp| is not NULL, the result is written to |*outp| and
+// |*outp| is advanced just past the output. It returns the number of bytes in
+// the result, whether written or not, or a negative value on error.
+//
+// Use |EVP_marshal_public_key| instead.
+OPENSSL_EXPORT int i2d_RSA_PUBKEY(const RSA *rsa, uint8_t **outp);
+
+// d2i_RSA_PUBKEY parses an RSA public key as a DER-encoded SubjectPublicKeyInfo
+// from |len| bytes at |*inp|. It returns a newly-allocated result, or NULL on
+// error. On success, |*inp| is advanced past the DER structure. If |out| is not
+// NULL, it also frees any existing object pointed by |*out| and writes the
+// result.
+//
+// Use |EVP_parse_public_key| instead.
+OPENSSL_EXPORT RSA *d2i_RSA_PUBKEY(RSA **out, const uint8_t **inp, long len);
+
+// i2d_DSA_PUBKEY marshals |dsa| as a DER-encoded SubjectPublicKeyInfo. If
+// |outp| is not NULL, the result is written to |*outp| and |*outp| is advanced
+// just past the output. It returns the number of bytes in the result, whether
+// written or not, or a negative value on error.
+//
+// Use |EVP_marshal_public_key| instead.
+OPENSSL_EXPORT int i2d_DSA_PUBKEY(const DSA *dsa, uint8_t **outp);
+
+// d2i_DSA_PUBKEY parses a DSA public key as a DER-encoded SubjectPublicKeyInfo
+// from |len| bytes at |*inp|. It returns a newly-allocated result, or NULL on
+// error. On success, |*inp| is advanced past the DER structure. If |out| is not
+// NULL, it also frees any existing object pointed by |*out| and writes the
+// result.
+//
+// Use |EVP_parse_public_key| instead.
+OPENSSL_EXPORT DSA *d2i_DSA_PUBKEY(DSA **out, const uint8_t **inp, long len);
+
+// i2d_EC_PUBKEY marshals |ec_key| as a DER-encoded SubjectPublicKeyInfo. If
+// |outp| is not NULL, the result is written to |*outp| and |*outp| is advanced
+// just past the output. It returns the number of bytes in the result, whether
+// written or not, or a negative value on error.
+//
+// Use |EVP_marshal_public_key| instead.
+OPENSSL_EXPORT int i2d_EC_PUBKEY(const EC_KEY *ec_key, uint8_t **outp);
+
+// d2i_EC_PUBKEY parses an EC public key as a DER-encoded SubjectPublicKeyInfo
+// from |len| bytes at |*inp|. It returns a newly-allocated result, or NULL on
+// error. On success, |*inp| is advanced past the DER structure. If |out| is not
+// NULL, it also frees any existing object pointed by |*out| and writes the
+// result.
+//
+// Use |EVP_parse_public_key| instead.
+OPENSSL_EXPORT EC_KEY *d2i_EC_PUBKEY(EC_KEY **out, const uint8_t **inp,
+                                     long len);
+
 
 // Preprocessor compatibility section (hidden).
 //
@@ -887,6 +1041,15 @@ OPENSSL_EXPORT int EVP_PKEY_CTX_set_ec_param_enc(EVP_PKEY_CTX *ctx,
 #define EVP_PKEY_CTX_set_rsa_oaep_md EVP_PKEY_CTX_set_rsa_oaep_md
 #define EVP_PKEY_CTX_set0_rsa_oaep_label EVP_PKEY_CTX_set0_rsa_oaep_label
 #endif
+
+
+// Nodejs compatibility section (hidden).
+//
+// These defines exist for node.js, with the hope that we can eliminate the
+// need for them over time.
+
+#define EVPerr(function, reason) \
+  ERR_put_error(ERR_LIB_EVP, 0, reason, __FILE__, __LINE__)
 
 
 // Private structures.
@@ -962,5 +1125,8 @@ BSSL_NAMESPACE_END
 #define EVP_R_INVALID_SIGNATURE 131
 #define EVP_R_MEMORY_LIMIT_EXCEEDED 132
 #define EVP_R_INVALID_PARAMETERS 133
+#define EVP_R_INVALID_PEER_KEY 134
+#define EVP_R_NOT_XOF_OR_INVALID_LENGTH 135
+#define EVP_R_EMPTY_PSK 136
 
 #endif  // OPENSSL_HEADER_EVP_H

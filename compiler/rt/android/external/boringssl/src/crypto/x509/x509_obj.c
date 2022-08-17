@@ -73,7 +73,7 @@
 
 #define NAME_ONELINE_MAX    (1024 * 1024)
 
-char *X509_NAME_oneline(X509_NAME *a, char *buf, int len)
+char *X509_NAME_oneline(const X509_NAME *a, char *buf, int len)
 {
     X509_NAME_ENTRY *ne;
     size_t i;
@@ -101,7 +101,7 @@ char *X509_NAME_oneline(X509_NAME *a, char *buf, int len)
             buf = b->data;
             OPENSSL_free(b);
         }
-        BUF_strlcpy(buf, "NO X509_NAME", len);
+        OPENSSL_strlcpy(buf, "NO X509_NAME", len);
         return buf;
     }
 

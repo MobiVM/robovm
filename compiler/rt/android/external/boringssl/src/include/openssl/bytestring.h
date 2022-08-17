@@ -102,6 +102,10 @@ OPENSSL_EXPORT int CBS_get_u8(CBS *cbs, uint8_t *out);
 // advances |cbs|. It returns one on success and zero on error.
 OPENSSL_EXPORT int CBS_get_u16(CBS *cbs, uint16_t *out);
 
+// CBS_get_u16le sets |*out| to the next, little-endian uint16_t from |cbs| and
+// advances |cbs|. It returns one on success and zero on error.
+OPENSSL_EXPORT int CBS_get_u16le(CBS *cbs, uint16_t *out);
+
 // CBS_get_u24 sets |*out| to the next, big-endian 24-bit value from |cbs| and
 // advances |cbs|. It returns one on success and zero on error.
 OPENSSL_EXPORT int CBS_get_u24(CBS *cbs, uint32_t *out);
@@ -110,9 +114,17 @@ OPENSSL_EXPORT int CBS_get_u24(CBS *cbs, uint32_t *out);
 // and advances |cbs|. It returns one on success and zero on error.
 OPENSSL_EXPORT int CBS_get_u32(CBS *cbs, uint32_t *out);
 
+// CBS_get_u32le sets |*out| to the next, little-endian uint32_t value from
+// |cbs| and advances |cbs|. It returns one on success and zero on error.
+OPENSSL_EXPORT int CBS_get_u32le(CBS *cbs, uint32_t *out);
+
 // CBS_get_u64 sets |*out| to the next, big-endian uint64_t value from |cbs|
 // and advances |cbs|. It returns one on success and zero on error.
 OPENSSL_EXPORT int CBS_get_u64(CBS *cbs, uint64_t *out);
+
+// CBS_get_u64le sets |*out| to the next, little-endian uint64_t value from
+// |cbs| and advances |cbs|. It returns one on success and zero on error.
+OPENSSL_EXPORT int CBS_get_u64le(CBS *cbs, uint64_t *out);
 
 // CBS_get_last_u8 sets |*out| to the last uint8_t from |cbs| and shortens
 // |cbs|. It returns one on success and zero on error.
@@ -240,18 +252,27 @@ OPENSSL_EXPORT int CBS_get_any_asn1_element(CBS *cbs, CBS *out,
                                             size_t *out_header_len);
 
 // CBS_get_any_ber_asn1_element acts the same as |CBS_get_any_asn1_element| but
-// also allows indefinite-length elements to be returned. In that case,
-// |*out_header_len| and |CBS_len(out)| will both be two as only the header is
-// returned, otherwise it behaves the same as the previous function.
+// also allows indefinite-length elements to be returned and does not enforce
+// that lengths are minimal. For indefinite-lengths, |*out_header_len| and
+// |CBS_len(out)| will be equal as only the header is returned (although this is
+// also true for empty elements so the length must be checked too). If
+// |out_ber_found| is not NULL then it is set to one if any case of invalid DER
+// but valid BER is found, and to zero otherwise.
 OPENSSL_EXPORT int CBS_get_any_ber_asn1_element(CBS *cbs, CBS *out,
                                                 unsigned *out_tag,
-                                                size_t *out_header_len);
+                                                size_t *out_header_len,
+                                                int *out_ber_found);
 
 // CBS_get_asn1_uint64 gets an ASN.1 INTEGER from |cbs| using |CBS_get_asn1|
 // and sets |*out| to its value. It returns one on success and zero on error,
 // where error includes the integer being negative, or too large to represent
 // in 64 bits.
 OPENSSL_EXPORT int CBS_get_asn1_uint64(CBS *cbs, uint64_t *out);
+
+// CBS_get_asn1_int64 gets an ASN.1 INTEGER from |cbs| using |CBS_get_asn1|
+// and sets |*out| to its value. It returns one on success and zero on error,
+// where error includes the integer being too large to represent in 64 bits.
+OPENSSL_EXPORT int CBS_get_asn1_int64(CBS *cbs, int64_t *out);
 
 // CBS_get_asn1_bool gets an ASN.1 BOOLEAN from |cbs| and sets |*out| to zero
 // or one based on its value. It returns one on success or zero on error.
@@ -293,13 +314,24 @@ OPENSSL_EXPORT int CBS_get_optional_asn1_bool(CBS *cbs, int *out, unsigned tag,
                                               int default_value);
 
 // CBS_is_valid_asn1_bitstring returns one if |cbs| is a valid ASN.1 BIT STRING
-// and zero otherwise.
+// body and zero otherwise.
 OPENSSL_EXPORT int CBS_is_valid_asn1_bitstring(const CBS *cbs);
 
 // CBS_asn1_bitstring_has_bit returns one if |cbs| is a valid ASN.1 BIT STRING
-// and the specified bit is present and set. Otherwise, it returns zero. |bit|
-// is indexed starting from zero.
+// body and the specified bit is present and set. Otherwise, it returns zero.
+// |bit| is indexed starting from zero.
 OPENSSL_EXPORT int CBS_asn1_bitstring_has_bit(const CBS *cbs, unsigned bit);
+
+// CBS_is_valid_asn1_integer returns one if |cbs| is a valid ASN.1 INTEGER,
+// body and zero otherwise. On success, if |out_is_negative| is non-NULL,
+// |*out_is_negative| will be set to one if |cbs| is negative and zero
+// otherwise.
+OPENSSL_EXPORT int CBS_is_valid_asn1_integer(const CBS *cbs,
+                                             int *out_is_negative);
+
+// CBS_is_unsigned_asn1_integer returns one if |cbs| is a valid non-negative
+// ASN.1 INTEGER body and zero otherwise.
+OPENSSL_EXPORT int CBS_is_unsigned_asn1_integer(const CBS *cbs);
 
 // CBS_asn1_oid_to_text interprets |cbs| as DER-encoded ASN.1 OBJECT IDENTIFIER
 // contents (not including the element framing) and returns the ASCII
@@ -345,9 +377,9 @@ struct cbb_st {
   // length-prefix, or zero if no length-prefix is pending.
   uint8_t pending_len_len;
   char pending_is_asn1;
-  // is_top_level is true iff this is a top-level |CBB| (as opposed to a child
+  // is_child is true iff this is a child |CBB| (as opposed to a top-level
   // |CBB|). Top-level objects are valid arguments for |CBB_finish|.
-  char is_top_level;
+  char is_child;
 };
 
 // CBB_zero sets an uninitialised |cbb| to the zero state. It must be
@@ -455,6 +487,10 @@ OPENSSL_EXPORT int CBB_add_u8(CBB *cbb, uint8_t value);
 // returns one on success and zero otherwise.
 OPENSSL_EXPORT int CBB_add_u16(CBB *cbb, uint16_t value);
 
+// CBB_add_u16le appends a 16-bit, little-endian number from |value| to |cbb|.
+// It returns one on success and zero otherwise.
+OPENSSL_EXPORT int CBB_add_u16le(CBB *cbb, uint16_t value);
+
 // CBB_add_u24 appends a 24-bit, big-endian number from |value| to |cbb|. It
 // returns one on success and zero otherwise.
 OPENSSL_EXPORT int CBB_add_u24(CBB *cbb, uint32_t value);
@@ -463,9 +499,17 @@ OPENSSL_EXPORT int CBB_add_u24(CBB *cbb, uint32_t value);
 // returns one on success and zero otherwise.
 OPENSSL_EXPORT int CBB_add_u32(CBB *cbb, uint32_t value);
 
+// CBB_add_u32le appends a 32-bit, little-endian number from |value| to |cbb|.
+// It returns one on success and zero otherwise.
+OPENSSL_EXPORT int CBB_add_u32le(CBB *cbb, uint32_t value);
+
 // CBB_add_u64 appends a 64-bit, big-endian number from |value| to |cbb|. It
 // returns one on success and zero otherwise.
 OPENSSL_EXPORT int CBB_add_u64(CBB *cbb, uint64_t value);
+
+// CBB_add_u64le appends a 64-bit, little-endian number from |value| to |cbb|.
+// It returns one on success and zero otherwise.
+OPENSSL_EXPORT int CBB_add_u64le(CBB *cbb, uint64_t value);
 
 // CBB_discard_child discards the current unflushed child of |cbb|. Neither the
 // child's contents nor the length prefix will be included in the output.
@@ -475,6 +519,11 @@ OPENSSL_EXPORT void CBB_discard_child(CBB *cbb);
 // and writes |value| in its contents. It returns one on success and zero on
 // error.
 OPENSSL_EXPORT int CBB_add_asn1_uint64(CBB *cbb, uint64_t value);
+
+// CBB_add_asn1_int64 writes an ASN.1 INTEGER into |cbb| using |CBB_add_asn1|
+// and writes |value| in its contents. It returns one on success and zero on
+// error.
+OPENSSL_EXPORT int CBB_add_asn1_int64(CBB *cbb, int64_t value);
 
 // CBB_add_asn1_octet_string writes an ASN.1 OCTET STRING into |cbb| with the
 // given contents. It returns one on success and zero on error.

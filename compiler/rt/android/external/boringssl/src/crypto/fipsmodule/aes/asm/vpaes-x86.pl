@@ -69,7 +69,7 @@ $PREFIX="vpaes";
 my  ($round, $base, $magic, $key, $const, $inp, $out)=
     ("eax",  "ebx", "ecx",  "edx","ebp",  "esi","edi");
 
-&preprocessor_ifndef("NDEBUG")
+&preprocessor_ifdef("BORINGSSL_DISPATCH_TEST")
 &external_label("BORINGSSL_function_hit");
 &preprocessor_endif();
 &static_label("_vpaes_consts");
@@ -920,4 +920,4 @@ $k_dsbo=0x2c0;		# decryption sbox final output
 
 &asm_finish();
 
-close STDOUT;
+close STDOUT or die "error closing STDOUT";

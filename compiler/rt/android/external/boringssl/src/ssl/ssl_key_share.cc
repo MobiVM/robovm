@@ -32,7 +32,6 @@
 #include "internal.h"
 #include "../crypto/internal.h"
 
-
 BSSL_NAMESPACE_BEGIN
 
 namespace {

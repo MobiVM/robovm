@@ -67,6 +67,14 @@ TEST(CBSTest, GetUint) {
   EXPECT_EQ(0x13u, u8);
   EXPECT_FALSE(CBS_get_u8(&data, &u8));
   EXPECT_FALSE(CBS_get_last_u8(&data, &u8));
+
+  CBS_init(&data, kData, sizeof(kData));
+  ASSERT_TRUE(CBS_get_u16le(&data, &u16));
+  EXPECT_EQ(0x0201u, u16);
+  ASSERT_TRUE(CBS_get_u32le(&data, &u32));
+  EXPECT_EQ(0x06050403u, u32);
+  ASSERT_TRUE(CBS_get_u64le(&data, &u64));
+  EXPECT_EQ(0x0e0d0c0b0a090807u, u64);
 }
 
 TEST(CBSTest, GetPrefixed) {
@@ -316,7 +324,9 @@ TEST(CBBTest, InitUninitialized) {
 TEST(CBBTest, Basic) {
   static const uint8_t kExpected[] = {1,   2,    3,    4,    5,    6,   7,
                                       8,   9,    0xa,  0xb,  0xc,  0xd, 0xe,
-                                      0xf, 0x10, 0x11, 0x12, 0x13, 0x14};
+                                      0xf, 0x10, 0x11, 0x12, 0x13, 0x14, 3, 2,
+                                      10,  9,    8,    7,    0x12, 0x11, 0x10,
+                                      0xf, 0xe,  0xd,  0xc,  0xb};
   uint8_t *buf;
   size_t buf_len;
 
@@ -331,6 +341,9 @@ TEST(CBBTest, Basic) {
   ASSERT_TRUE(CBB_add_u32(cbb.get(), 0x708090a));
   ASSERT_TRUE(CBB_add_u64(cbb.get(), 0xb0c0d0e0f101112));
   ASSERT_TRUE(CBB_add_bytes(cbb.get(), (const uint8_t *)"\x13\x14", 2));
+  ASSERT_TRUE(CBB_add_u16le(cbb.get(), 0x203));
+  ASSERT_TRUE(CBB_add_u32le(cbb.get(), 0x708090a));
+  ASSERT_TRUE(CBB_add_u64le(cbb.get(), 0xb0c0d0e0f101112));
   ASSERT_TRUE(CBB_finish(cbb.get(), &buf, &buf_len));
 
   bssl::UniquePtr<uint8_t> scoper(buf);
@@ -579,6 +592,10 @@ static void ExpectBerConvert(const char *name, const uint8_t *der_expected,
 TEST(CBSTest, BerConvert) {
   static const uint8_t kSimpleBER[] = {0x01, 0x01, 0x00};
 
+  // kNonMinimalLengthBER has a non-minimally encoded length.
+  static const uint8_t kNonMinimalLengthBER[] = {0x02, 0x82, 0x00, 0x01, 0x01};
+  static const uint8_t kNonMinimalLengthDER[] = {0x02, 0x01, 0x01};
+
   // kIndefBER contains a SEQUENCE with an indefinite length.
   static const uint8_t kIndefBER[] = {0x30, 0x80, 0x01, 0x01, 0x02, 0x00, 0x00};
   static const uint8_t kIndefDER[] = {0x30, 0x03, 0x01, 0x01, 0x02};
@@ -631,6 +648,9 @@ TEST(CBSTest, BerConvert) {
 
   ExpectBerConvert("kSimpleBER", kSimpleBER, sizeof(kSimpleBER), kSimpleBER,
                    sizeof(kSimpleBER));
+  ExpectBerConvert("kNonMinimalLengthBER", kNonMinimalLengthDER,
+                   sizeof(kNonMinimalLengthDER), kNonMinimalLengthBER,
+                   sizeof(kNonMinimalLengthBER));
   ExpectBerConvert("kIndefBER", kIndefDER, sizeof(kIndefDER), kIndefBER,
                    sizeof(kIndefBER));
   ExpectBerConvert("kIndefBER2", kIndefDER2, sizeof(kIndefDER2), kIndefBER2,
@@ -642,6 +662,62 @@ TEST(CBSTest, BerConvert) {
   ExpectBerConvert("kConstructedStringBER", kConstructedStringDER,
                    sizeof(kConstructedStringDER), kConstructedStringBER,
                    sizeof(kConstructedStringBER));
+}
+
+struct BERTest {
+  const char *in_hex;
+  bool ok;
+  bool ber_found;
+  unsigned tag;
+};
+
+static const BERTest kBERTests[] = {
+  // Trivial cases, also valid DER.
+  {"0000", true, false, 0},
+  {"0100", true, false, 1},
+  {"020101", true, false, 2},
+
+  // Non-minimally encoded lengths.
+  {"02810101", true, true, 2},
+  {"0282000101", true, true, 2},
+  {"028300000101", true, true, 2},
+  {"02840000000101", true, true, 2},
+  // Technically valid BER, but not handled.
+  {"02850000000101", false, false, 0},
+
+  {"0280", false, false, 0},  // Indefinite length, but not constructed.
+  {"2280", true, true, CBS_ASN1_CONSTRUCTED | 2},  // Indefinite length.
+  {"3f0000", false, false, 0},  // Invalid extended tag zero (X.690 8.1.2.4.2.c)
+  {"1f0100", false, false, 0},  // Should be a low-number tag form, even in BER.
+  {"1f4000", true, false, 0x40},
+  {"1f804000", false, false, 0},  // Non-minimal tags are invalid, even in BER.
+};
+
+TEST(CBSTest, BERElementTest) {
+  for (const auto &test : kBERTests) {
+    SCOPED_TRACE(test.in_hex);
+
+    std::vector<uint8_t> in_bytes;
+    ASSERT_TRUE(DecodeHex(&in_bytes, test.in_hex));
+    CBS in(in_bytes);
+    CBS out;
+    unsigned tag;
+    size_t header_len;
+    int ber_found;
+    int ok =
+        CBS_get_any_ber_asn1_element(&in, &out, &tag, &header_len, &ber_found);
+    ASSERT_TRUE((ok == 1) == test.ok);
+    if (!test.ok) {
+      continue;
+    }
+
+    EXPECT_TRUE((ber_found == 1) == test.ber_found);
+    EXPECT_LE(header_len, in_bytes.size());
+    EXPECT_EQ(CBS_len(&out), in_bytes.size());
+    EXPECT_EQ(CBS_len(&in), 0u);
+    EXPECT_EQ(Bytes(out), Bytes(in_bytes));
+    EXPECT_EQ(tag, test.tag);
+  }
 }
 
 struct ImplicitStringTest {
@@ -707,50 +783,155 @@ static const ASN1Uint64Test kASN1Uint64Tests[] = {
 struct ASN1InvalidUint64Test {
   const char *encoding;
   size_t encoding_len;
+  bool overflow;
 };
 
 static const ASN1InvalidUint64Test kASN1InvalidUint64Tests[] = {
     // Bad tag.
-    {"\x03\x01\x00", 3},
+    {"\x03\x01\x00", 3, false},
     // Empty contents.
-    {"\x02\x00", 2},
+    {"\x02\x00", 2, false},
     // Negative number.
-    {"\x02\x01\x80", 3},
+    {"\x02\x01\x80", 3, false},
     // Overflow.
-    {"\x02\x09\x01\x00\x00\x00\x00\x00\x00\x00\x00", 11},
+    {"\x02\x09\x01\x00\x00\x00\x00\x00\x00\x00\x00", 11, true},
     // Leading zeros.
-    {"\x02\x02\x00\x01", 4},
+    {"\x02\x02\x00\x01", 4, false},
 };
 
 TEST(CBSTest, ASN1Uint64) {
-  for (size_t i = 0; i < OPENSSL_ARRAY_SIZE(kASN1Uint64Tests); i++) {
-    SCOPED_TRACE(i);
-    const ASN1Uint64Test *test = &kASN1Uint64Tests[i];
+  for (const ASN1Uint64Test &test : kASN1Uint64Tests) {
+    SCOPED_TRACE(Bytes(test.encoding, test.encoding_len));
+    SCOPED_TRACE(test.value);
     CBS cbs;
     uint64_t value;
     uint8_t *out;
     size_t len;
 
-    CBS_init(&cbs, (const uint8_t *)test->encoding, test->encoding_len);
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
     ASSERT_TRUE(CBS_get_asn1_uint64(&cbs, &value));
     EXPECT_EQ(0u, CBS_len(&cbs));
-    EXPECT_EQ(test->value, value);
+    EXPECT_EQ(test.value, value);
+
+    CBS child;
+    int is_negative;
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    ASSERT_TRUE(CBS_get_asn1(&cbs, &child, CBS_ASN1_INTEGER));
+    EXPECT_TRUE(CBS_is_valid_asn1_integer(&child, &is_negative));
+    EXPECT_EQ(0, is_negative);
+    EXPECT_TRUE(CBS_is_unsigned_asn1_integer(&child));
 
     bssl::ScopedCBB cbb;
     ASSERT_TRUE(CBB_init(cbb.get(), 0));
-    ASSERT_TRUE(CBB_add_asn1_uint64(cbb.get(), test->value));
+    ASSERT_TRUE(CBB_add_asn1_uint64(cbb.get(), test.value));
     ASSERT_TRUE(CBB_finish(cbb.get(), &out, &len));
     bssl::UniquePtr<uint8_t> scoper(out);
-    EXPECT_EQ(Bytes(test->encoding, test->encoding_len), Bytes(out, len));
+    EXPECT_EQ(Bytes(test.encoding, test.encoding_len), Bytes(out, len));
   }
 
-  for (size_t i = 0; i < OPENSSL_ARRAY_SIZE(kASN1InvalidUint64Tests); i++) {
-    const ASN1InvalidUint64Test *test = &kASN1InvalidUint64Tests[i];
+  for (const ASN1InvalidUint64Test &test : kASN1InvalidUint64Tests) {
+    SCOPED_TRACE(Bytes(test.encoding, test.encoding_len));
     CBS cbs;
     uint64_t value;
 
-    CBS_init(&cbs, (const uint8_t *)test->encoding, test->encoding_len);
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
     EXPECT_FALSE(CBS_get_asn1_uint64(&cbs, &value));
+
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    CBS child;
+    if (CBS_get_asn1(&cbs, &child, CBS_ASN1_INTEGER)) {
+      EXPECT_EQ(test.overflow, !!CBS_is_unsigned_asn1_integer(&child));
+    }
+  }
+}
+
+struct ASN1Int64Test {
+  int64_t value;
+  const char *encoding;
+  size_t encoding_len;
+};
+
+static const ASN1Int64Test kASN1Int64Tests[] = {
+    {0, "\x02\x01\x00", 3},
+    {1, "\x02\x01\x01", 3},
+    {-1, "\x02\x01\xff", 3},
+    {127, "\x02\x01\x7f", 3},
+    {-127, "\x02\x01\x81", 3},
+    {128, "\x02\x02\x00\x80", 4},
+    {-128, "\x02\x01\x80", 3},
+    {129, "\x02\x02\x00\x81", 4},
+    {-129, "\x02\x02\xff\x7f", 4},
+    {0xdeadbeef, "\x02\x05\x00\xde\xad\xbe\xef", 7},
+    {INT64_C(0x0102030405060708), "\x02\x08\x01\x02\x03\x04\x05\x06\x07\x08",
+     10},
+    {INT64_MIN, "\x02\x08\x80\x00\x00\x00\x00\x00\x00\x00", 10},
+    {INT64_MAX, "\x02\x08\x7f\xff\xff\xff\xff\xff\xff\xff", 10},
+};
+
+struct ASN1InvalidInt64Test {
+  const char *encoding;
+  size_t encoding_len;
+  bool overflow;
+};
+
+static const ASN1InvalidInt64Test kASN1InvalidInt64Tests[] = {
+    // Bad tag.
+    {"\x03\x01\x00", 3, false},
+    // Empty contents.
+    {"\x02\x00", 2, false},
+    // Overflow.
+    {"\x02\x09\x01\x00\x00\x00\x00\x00\x00\x00\x00", 11, true},
+    // Underflow.
+    {"\x02\x09\x08\xff\xff\xff\xff\xff\xff\xff\xff", 11, true},
+    // Leading zeros.
+    {"\x02\x02\x00\x01", 4, false},
+    // Leading 0xff.
+    {"\x02\x02\xff\xff", 4, false},
+};
+
+TEST(CBSTest, ASN1Int64) {
+  for (const ASN1Int64Test &test : kASN1Int64Tests) {
+    SCOPED_TRACE(Bytes(test.encoding, test.encoding_len));
+    SCOPED_TRACE(test.value);
+    CBS cbs;
+    int64_t value;
+    uint8_t *out;
+    size_t len;
+
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    ASSERT_TRUE(CBS_get_asn1_int64(&cbs, &value));
+    EXPECT_EQ(0u, CBS_len(&cbs));
+    EXPECT_EQ(test.value, value);
+
+    CBS child;
+    int is_negative;
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    ASSERT_TRUE(CBS_get_asn1(&cbs, &child, CBS_ASN1_INTEGER));
+    EXPECT_TRUE(CBS_is_valid_asn1_integer(&child, &is_negative));
+    EXPECT_EQ(test.value < 0, !!is_negative);
+    EXPECT_EQ(test.value >= 0, !!CBS_is_unsigned_asn1_integer(&child));
+
+    bssl::ScopedCBB cbb;
+    ASSERT_TRUE(CBB_init(cbb.get(), 0));
+    ASSERT_TRUE(CBB_add_asn1_int64(cbb.get(), test.value));
+    ASSERT_TRUE(CBB_finish(cbb.get(), &out, &len));
+    bssl::UniquePtr<uint8_t> scoper(out);
+    EXPECT_EQ(Bytes(test.encoding, test.encoding_len), Bytes(out, len));
+  }
+
+  for (const ASN1InvalidInt64Test &test : kASN1InvalidInt64Tests) {
+    SCOPED_TRACE(Bytes(test.encoding, test.encoding_len));
+    CBS cbs;
+    int64_t value;
+
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    EXPECT_FALSE(CBS_get_asn1_int64(&cbs, &value));
+
+    CBS_init(&cbs, (const uint8_t *)test.encoding, test.encoding_len);
+    CBS child;
+    if (CBS_get_asn1(&cbs, &child, CBS_ASN1_INTEGER)) {
+      EXPECT_EQ(test.overflow, !!CBS_is_valid_asn1_integer(&child, NULL));
+    }
   }
 }
 

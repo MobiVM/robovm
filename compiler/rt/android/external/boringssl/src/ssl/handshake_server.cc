@@ -152,7 +152,6 @@
 #include <string.h>
 
 #include <openssl/bn.h>
-#include <openssl/buf.h>
 #include <openssl/bytestring.h>
 #include <openssl/cipher.h>
 #include <openssl/ec.h>
@@ -326,7 +325,7 @@ static void ssl_get_compatible_server_ciphers(SSL_HANDSHAKE *hs,
   *out_mask_a = mask_a;
 }
 
-static const SSL_CIPHER *ssl3_choose_cipher(
+static const SSL_CIPHER *choose_cipher(
     SSL_HANDSHAKE *hs, const SSL_CLIENT_HELLO *client_hello,
     const SSLCipherPreferenceList *server_pref) {
   SSL *const ssl = hs->ssl;
@@ -503,6 +502,54 @@ static bool is_probably_jdk11_with_tls13(const SSL_CLIENT_HELLO *client_hello) {
   return true;
 }
 
+static bool extract_sni(SSL_HANDSHAKE *hs, uint8_t *out_alert,
+                        const SSL_CLIENT_HELLO *client_hello) {
+  SSL *const ssl = hs->ssl;
+  CBS sni;
+  if (!ssl_client_hello_get_extension(client_hello, &sni,
+                                      TLSEXT_TYPE_server_name)) {
+    // No SNI extension to parse.
+    return true;
+  }
+
+  CBS server_name_list, host_name;
+  uint8_t name_type;
+  if (!CBS_get_u16_length_prefixed(&sni, &server_name_list) ||
+      !CBS_get_u8(&server_name_list, &name_type) ||
+      // Although the server_name extension was intended to be extensible to
+      // new name types and multiple names, OpenSSL 1.0.x had a bug which meant
+      // different name types will cause an error. Further, RFC 4366 originally
+      // defined syntax inextensibly. RFC 6066 corrected this mistake, but
+      // adding new name types is no longer feasible.
+      //
+      // Act as if the extensibility does not exist to simplify parsing.
+      !CBS_get_u16_length_prefixed(&server_name_list, &host_name) ||
+      CBS_len(&server_name_list) != 0 ||
+      CBS_len(&sni) != 0) {
+    *out_alert = SSL_AD_DECODE_ERROR;
+    return false;
+  }
+
+  if (name_type != TLSEXT_NAMETYPE_host_name ||
+      CBS_len(&host_name) == 0 ||
+      CBS_len(&host_name) > TLSEXT_MAXLEN_host_name ||
+      CBS_contains_zero_byte(&host_name)) {
+    *out_alert = SSL_AD_UNRECOGNIZED_NAME;
+    return false;
+  }
+
+  // Copy the hostname as a string.
+  char *raw = nullptr;
+  if (!CBS_strdup(&host_name, &raw)) {
+    *out_alert = SSL_AD_INTERNAL_ERROR;
+    return false;
+  }
+  ssl->s3->hostname.reset(raw);
+
+  hs->should_ack_sni = true;
+  return true;
+}
+
 static enum ssl_hs_wait_t do_read_client_hello(SSL_HANDSHAKE *hs) {
   SSL *const ssl = hs->ssl;
 
@@ -515,14 +562,28 @@ static enum ssl_hs_wait_t do_read_client_hello(SSL_HANDSHAKE *hs) {
     return ssl_hs_error;
   }
 
-  if (hs->config->handoff) {
-    return ssl_hs_handoff;
-  }
-
   SSL_CLIENT_HELLO client_hello;
   if (!ssl_client_hello_init(ssl, &client_hello, msg)) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_DECODE_ERROR);
     ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_DECODE_ERROR);
+    return ssl_hs_error;
+  }
+
+  // ClientHello should be the end of the flight. We check this early to cover
+  // all protocol versions.
+  if (ssl->method->has_unprocessed_handshake_data(ssl)) {
+    ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_UNEXPECTED_MESSAGE);
+    OPENSSL_PUT_ERROR(SSL, SSL_R_EXCESS_HANDSHAKE_DATA);
+    return ssl_hs_error;
+  }
+
+  if (hs->config->handoff) {
+    return ssl_hs_handoff;
+  }
+
+  uint8_t alert = SSL_AD_DECODE_ERROR;
+  if (!extract_sni(hs, &alert, &client_hello)) {
+    ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
     return ssl_hs_error;
   }
 
@@ -553,7 +614,6 @@ static enum ssl_hs_wait_t do_read_client_hello(SSL_HANDSHAKE *hs) {
     hs->apply_jdk11_workaround = true;
   }
 
-  uint8_t alert = SSL_AD_DECODE_ERROR;
   if (!negotiate_version(hs, &alert, &client_hello)) {
     ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
     return ssl_hs_error;
@@ -581,6 +641,12 @@ static enum ssl_hs_wait_t do_read_client_hello(SSL_HANDSHAKE *hs) {
   // TLS extensions.
   if (!ssl_parse_clienthello_tlsext(hs, &client_hello)) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_PARSE_TLSEXT);
+    return ssl_hs_error;
+  }
+
+  if (hs->ech_present && hs->ech_is_inner_present) {
+    OPENSSL_PUT_ERROR(SSL, SSL_R_UNEXPECTED_EXTENSION);
+    ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_ILLEGAL_PARAMETER);
     return ssl_hs_error;
   }
 
@@ -635,6 +701,8 @@ static enum ssl_hs_wait_t do_select_certificate(SSL_HANDSHAKE *hs) {
     return ssl_hs_ok;
   }
 
+  ssl->s3->early_data_reason = ssl_early_data_protocol_version;
+
   SSL_CLIENT_HELLO client_hello;
   if (!ssl_client_hello_init(ssl, &client_hello, msg)) {
     return ssl_hs_error;
@@ -645,7 +713,7 @@ static enum ssl_hs_wait_t do_select_certificate(SSL_HANDSHAKE *hs) {
   SSLCipherPreferenceList *prefs = hs->config->cipher_list
                                        ? hs->config->cipher_list.get()
                                        : ssl->ctx->cipher_list.get();
-  hs->new_cipher = ssl3_choose_cipher(hs, &client_hello, prefs);
+  hs->new_cipher = choose_cipher(hs, &client_hello, prefs);
   if (hs->new_cipher == NULL) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_NO_SHARED_CIPHER);
     ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_HANDSHAKE_FAILURE);
@@ -846,7 +914,7 @@ static enum ssl_hs_wait_t do_send_server_hello(SSL_HANDSHAKE *hs) {
       !CBB_add_u8_length_prefixed(&body, &session_id) ||
       !CBB_add_bytes(&session_id, session->session_id,
                      session->session_id_length) ||
-      !CBB_add_u16(&body, ssl_cipher_get_value(hs->new_cipher)) ||
+      !CBB_add_u16(&body, SSL_CIPHER_get_protocol_id(hs->new_cipher)) ||
       !CBB_add_u8(&body, 0 /* no compression */) ||
       !ssl_add_serverhello_tlsext(hs, &body) ||
       !ssl_add_message_cbb(ssl, cbb.get())) {
@@ -1038,12 +1106,9 @@ static enum ssl_hs_wait_t do_send_server_hello_done(SSL_HANDSHAKE *hs) {
         !CBB_add_u8_length_prefixed(&body, &cert_types) ||
         !CBB_add_u8(&cert_types, SSL3_CT_RSA_SIGN) ||
         !CBB_add_u8(&cert_types, TLS_CT_ECDSA_SIGN) ||
-        // TLS 1.2 has no way to specify different signature algorithms for
-        // certificates and the online signature, so emit the more restrictive
-        // certificate list.
         (ssl_protocol_version(ssl) >= TLS1_2_VERSION &&
          (!CBB_add_u16_length_prefixed(&body, &sigalgs_cbb) ||
-          !tls12_add_verify_sigalgs(ssl, &sigalgs_cbb, true /* certs */))) ||
+          !tls12_add_verify_sigalgs(hs, &sigalgs_cbb))) ||
         !ssl_add_client_CA_list(hs, &body) ||
         !ssl_add_message_cbb(ssl, cbb.get())) {
       OPENSSL_PUT_ERROR(SSL, ERR_R_INTERNAL_ERROR);
@@ -1343,14 +1408,13 @@ static enum ssl_hs_wait_t do_read_client_key_exchange(SSL_HANDSHAKE *hs) {
   }
 
   // Compute the master secret.
-  hs->new_session->master_key_length = tls1_generate_master_secret(
-      hs, hs->new_session->master_key, premaster_secret);
-  if (hs->new_session->master_key_length == 0) {
+  hs->new_session->secret_length = tls1_generate_master_secret(
+      hs, hs->new_session->secret, premaster_secret);
+  if (hs->new_session->secret_length == 0) {
     return ssl_hs_error;
   }
   hs->new_session->extended_master_secret = hs->extended_master_secret;
-  CONSTTIME_DECLASSIFY(hs->new_session->master_key,
-                       hs->new_session->master_key_length);
+  CONSTTIME_DECLASSIFY(hs->new_session->secret, hs->new_session->secret_length);
 
   ssl->method->next_message(ssl);
   hs->state = state12_read_client_certificate_verify;
@@ -1377,6 +1441,15 @@ static enum ssl_hs_wait_t do_read_client_certificate_verify(SSL_HANDSHAKE *hs) {
     return ssl_hs_error;
   }
 
+  // The peer certificate must be valid for signing.
+  const CRYPTO_BUFFER *leaf =
+      sk_CRYPTO_BUFFER_value(hs->new_session->certs.get(), 0);
+  CBS leaf_cbs;
+  CRYPTO_BUFFER_init_CBS(leaf, &leaf_cbs);
+  if (!ssl_cert_check_key_usage(&leaf_cbs, key_usage_digital_signature)) {
+    return ssl_hs_error;
+  }
+
   CBS certificate_verify = msg.body, signature;
 
   // Determine the signature algorithm.
@@ -1388,7 +1461,7 @@ static enum ssl_hs_wait_t do_read_client_certificate_verify(SSL_HANDSHAKE *hs) {
       return ssl_hs_error;
     }
     uint8_t alert = SSL_AD_DECODE_ERROR;
-    if (!tls12_check_peer_sigalg(ssl, &alert, signature_algorithm)) {
+    if (!tls12_check_peer_sigalg(hs, &alert, signature_algorithm)) {
       ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
       return ssl_hs_error;
     }
@@ -1408,14 +1481,8 @@ static enum ssl_hs_wait_t do_read_client_certificate_verify(SSL_HANDSHAKE *hs) {
     return ssl_hs_error;
   }
 
-  bool sig_ok =
-      ssl_public_key_verify(ssl, signature, signature_algorithm,
-                            hs->peer_pubkey.get(), hs->transcript.buffer());
-#if defined(BORINGSSL_UNSAFE_FUZZER_MODE)
-  sig_ok = true;
-  ERR_clear_error();
-#endif
-  if (!sig_ok) {
+  if (!ssl_public_key_verify(ssl, signature, signature_algorithm,
+                             hs->peer_pubkey.get(), hs->transcript.buffer())) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_BAD_SIGNATURE);
     ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_DECRYPT_ERROR);
     return ssl_hs_error;

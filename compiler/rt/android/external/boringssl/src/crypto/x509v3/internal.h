@@ -43,6 +43,16 @@ unsigned char *x509v3_hex_to_bytes(const char *str, long *len);
 // followed by '.'. Otherwise, it returns a non-zero number.
 int x509v3_name_cmp(const char *name, const char *cmp);
 
+// x509v3_looks_like_dns_name returns one if |in| looks like a DNS name and zero
+// otherwise.
+OPENSSL_EXPORT int x509v3_looks_like_dns_name(const unsigned char *in,
+                                              size_t len);
+
+// x509v3_cache_extensions fills in a number of fields relating to X.509
+// extensions in |x|. It returns one on success and zero if some extensions were
+// invalid.
+int x509v3_cache_extensions(X509 *x);
+
 
 #if defined(__cplusplus)
 }  /* extern C */

@@ -426,6 +426,11 @@ static int aead_aes_gcm_siv_asm_open(const EVP_AEAD_CTX *ctx, uint8_t *out,
     return 0;
   }
 
+  if (nonce_len != EVP_AEAD_AES_GCM_SIV_NONCE_LEN) {
+    OPENSSL_PUT_ERROR(CIPHER, CIPHER_R_UNSUPPORTED_NONCE_SIZE);
+    return 0;
+  }
+
   const struct aead_aes_gcm_siv_asm_ctx *gcm_siv_ctx = asm_ctx_from_ctx(ctx);
   const size_t plaintext_len = in_len - EVP_AEAD_AES_GCM_SIV_TAG_LEN;
   const uint8_t *const given_tag = in + plaintext_len;
@@ -718,6 +723,14 @@ static void gcm_siv_keys(
   }
 
   OPENSSL_memcpy(out_keys->auth_key, key_material, 16);
+  // Note the |ctr128_f| function uses a big-endian couner, while AES-GCM-SIV
+  // uses a little-endian counter. We ignore the return value and only use
+  // |block128_f|. This has a significant performance cost for the fallback
+  // bitsliced AES implementations (bsaes and aes_nohw).
+  //
+  // We currently do not consider AES-GCM-SIV to be performance-sensitive on
+  // client hardware. If this changes, we can write little-endian |ctr128_f|
+  // functions.
   aes_ctr_set_key(&out_keys->enc_key.ks, NULL, &out_keys->enc_block,
                   key_material + 16, gcm_siv_ctx->is_256 ? 32 : 16);
 }

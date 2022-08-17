@@ -1,0 +1,25 @@
+# allows to filter out not required files copied from original Libcore
+# out of scope files can be removed from disk by `git clean -fXd` command
+
+## common
+TEST_MAPPING
+
+##
+## BorringSSL. files to keep
+##
+/external/boringssl/*
+/external/boringssl/**/test/**
+!/external/boringssl/src
+/external/boringssl/src/*
+!/external/boringssl/src/include
+!/external/boringssl/src/crypto
+!/external/boringssl/src/ssl
+!/external/boringssl/src/third_party/
+/external/boringssl/src/third_party/*
+!/external/boringssl/src/third_party/fiat
+!/external/boringssl/src/LICENSE
+!/external/boringssl/src/README.md
+!/external/boringssl/MODULE_LICENSE_BSD_LIKE
+!/external/boringssl/NOTICE
+!/external/boringssl/BORINGSSL_REVISION
+!/external/boringssl/err_data.c

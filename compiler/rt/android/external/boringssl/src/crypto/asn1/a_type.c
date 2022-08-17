@@ -61,7 +61,10 @@
 #include <openssl/mem.h>
 #include <openssl/obj.h>
 
-int ASN1_TYPE_get(ASN1_TYPE *a)
+#include "asn1_locl.h"
+
+
+int ASN1_TYPE_get(const ASN1_TYPE *a)
 {
     if ((a->value.ptr != NULL) || (a->type == V_ASN1_NULL))
         return (a->type);
@@ -142,8 +145,7 @@ int ASN1_TYPE_cmp(const ASN1_TYPE *a, const ASN1_TYPE *b)
     case V_ASN1_UTF8STRING:
     case V_ASN1_OTHER:
     default:
-        result = ASN1_STRING_cmp((ASN1_STRING *)a->value.ptr,
-                                 (ASN1_STRING *)b->value.ptr);
+        result = ASN1_STRING_cmp(a->value.asn1_string, b->value.asn1_string);
         break;
     }
 

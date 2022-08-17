@@ -77,24 +77,24 @@ const X509V3_EXT_METHOD v3_skey_id = {
     NULL
 };
 
-char *i2s_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method, ASN1_OCTET_STRING *oct)
+char *i2s_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method, const ASN1_OCTET_STRING *oct)
 {
     return x509v3_bytes_to_hex(oct->data, oct->length);
 }
 
 ASN1_OCTET_STRING *s2i_ASN1_OCTET_STRING(X509V3_EXT_METHOD *method,
-                                         X509V3_CTX *ctx, char *str)
+                                         X509V3_CTX *ctx, const char *str)
 {
     ASN1_OCTET_STRING *oct;
     long length;
 
-    if (!(oct = M_ASN1_OCTET_STRING_new())) {
+    if (!(oct = ASN1_OCTET_STRING_new())) {
         OPENSSL_PUT_ERROR(X509V3, ERR_R_MALLOC_FAILURE);
         return NULL;
     }
 
     if (!(oct->data = x509v3_hex_to_bytes(str, &length))) {
-        M_ASN1_OCTET_STRING_free(oct);
+        ASN1_OCTET_STRING_free(oct);
         return NULL;
     }
 
@@ -115,7 +115,7 @@ static ASN1_OCTET_STRING *s2i_skey_id(X509V3_EXT_METHOD *method,
     if (strcmp(str, "hash"))
         return s2i_ASN1_OCTET_STRING(method, ctx, str);
 
-    if (!(oct = M_ASN1_OCTET_STRING_new())) {
+    if (!(oct = ASN1_OCTET_STRING_new())) {
         OPENSSL_PUT_ERROR(X509V3, ERR_R_MALLOC_FAILURE);
         return NULL;
     }
@@ -142,7 +142,7 @@ static ASN1_OCTET_STRING *s2i_skey_id(X509V3_EXT_METHOD *method,
         (pk->data, pk->length, pkey_dig, &diglen, EVP_sha1(), NULL))
         goto err;
 
-    if (!M_ASN1_OCTET_STRING_set(oct, pkey_dig, diglen)) {
+    if (!ASN1_OCTET_STRING_set(oct, pkey_dig, diglen)) {
         OPENSSL_PUT_ERROR(X509V3, ERR_R_MALLOC_FAILURE);
         goto err;
     }
@@ -150,6 +150,6 @@ static ASN1_OCTET_STRING *s2i_skey_id(X509V3_EXT_METHOD *method,
     return oct;
 
  err:
-    M_ASN1_OCTET_STRING_free(oct);
+    ASN1_OCTET_STRING_free(oct);
     return NULL;
 }

@@ -126,10 +126,10 @@ BSSL_NAMESPACE_BEGIN
 
 SSL_HANDSHAKE::SSL_HANDSHAKE(SSL *ssl_arg)
     : ssl(ssl_arg),
+      ech_present(false),
+      ech_is_inner_present(false),
       scts_requested(false),
       needs_psk_binder(false),
-      received_hello_retry_request(false),
-      sent_hello_retry_request(false),
       handshake_finalized(false),
       accept_psk_mode(false),
       cert_request(false),
@@ -155,6 +155,13 @@ SSL_HANDSHAKE::SSL_HANDSHAKE(SSL *ssl_arg)
 
 SSL_HANDSHAKE::~SSL_HANDSHAKE() {
   ssl->ctx->x509_method->hs_flush_cached_ca_names(this);
+}
+
+void SSL_HANDSHAKE::ResizeSecrets(size_t hash_len) {
+  if (hash_len > SSL_MAX_MD_SIZE) {
+    abort();
+  }
+  hash_len_ = hash_len;
 }
 
 UniquePtr<SSL_HANDSHAKE> ssl_handshake_new(SSL *ssl) {
@@ -230,13 +237,13 @@ bool ssl_hash_message(SSL_HANDSHAKE *hs, const SSLMessage &msg) {
   return hs->transcript.Update(msg.raw);
 }
 
-int ssl_parse_extensions(const CBS *cbs, uint8_t *out_alert,
-                         const SSL_EXTENSION_TYPE *ext_types,
-                         size_t num_ext_types, int ignore_unknown) {
+bool ssl_parse_extensions(const CBS *cbs, uint8_t *out_alert,
+                          Span<const SSL_EXTENSION_TYPE> ext_types,
+                          bool ignore_unknown) {
   // Reset everything.
-  for (size_t i = 0; i < num_ext_types; i++) {
-    *ext_types[i].out_present = 0;
-    CBS_init(ext_types[i].out_data, NULL, 0);
+  for (const SSL_EXTENSION_TYPE &ext_type : ext_types) {
+    *ext_type.out_present = false;
+    CBS_init(ext_type.out_data, nullptr, 0);
   }
 
   CBS copy = *cbs;
@@ -247,38 +254,38 @@ int ssl_parse_extensions(const CBS *cbs, uint8_t *out_alert,
         !CBS_get_u16_length_prefixed(&copy, &data)) {
       OPENSSL_PUT_ERROR(SSL, SSL_R_PARSE_TLSEXT);
       *out_alert = SSL_AD_DECODE_ERROR;
-      return 0;
+      return false;
     }
 
-    const SSL_EXTENSION_TYPE *ext_type = NULL;
-    for (size_t i = 0; i < num_ext_types; i++) {
-      if (type == ext_types[i].type) {
-        ext_type = &ext_types[i];
+    const SSL_EXTENSION_TYPE *found = nullptr;
+    for (const SSL_EXTENSION_TYPE &ext_type : ext_types) {
+      if (type == ext_type.type) {
+        found = &ext_type;
         break;
       }
     }
 
-    if (ext_type == NULL) {
+    if (found == nullptr) {
       if (ignore_unknown) {
         continue;
       }
       OPENSSL_PUT_ERROR(SSL, SSL_R_UNEXPECTED_EXTENSION);
       *out_alert = SSL_AD_UNSUPPORTED_EXTENSION;
-      return 0;
+      return false;
     }
 
     // Duplicate ext_types are forbidden.
-    if (*ext_type->out_present) {
+    if (*found->out_present) {
       OPENSSL_PUT_ERROR(SSL, SSL_R_DUPLICATE_EXTENSION);
       *out_alert = SSL_AD_ILLEGAL_PARAMETER;
-      return 0;
+      return false;
     }
 
-    *ext_type->out_present = 1;
-    *ext_type->out_data = data;
+    *found->out_present = 1;
+    *found->out_data = data;
   }
 
-  return 1;
+  return true;
 }
 
 enum ssl_verify_result_t ssl_verify_peer_cert(SSL_HANDSHAKE *hs) {
@@ -381,7 +388,8 @@ enum ssl_verify_result_t ssl_verify_peer_cert(SSL_HANDSHAKE *hs) {
 // SSL_VERIFY_NONE
 // 3. We don't call the OCSP callback.
 // 4. We only support custom verify callbacks.
-enum ssl_verify_result_t ssl_reverify_peer_cert(SSL_HANDSHAKE *hs) {
+enum ssl_verify_result_t ssl_reverify_peer_cert(SSL_HANDSHAKE *hs,
+                                                bool send_alert) {
   SSL *const ssl = hs->ssl;
   assert(ssl->s3->established_session == nullptr);
   assert(hs->config->verify_mode != SSL_VERIFY_NONE);
@@ -394,7 +402,9 @@ enum ssl_verify_result_t ssl_reverify_peer_cert(SSL_HANDSHAKE *hs) {
 
   if (ret == ssl_verify_invalid) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_CERTIFICATE_VERIFY_FAILED);
-    ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
+    if (send_alert) {
+      ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
+    }
   }
 
   return ret;
@@ -433,7 +443,7 @@ enum ssl_hs_wait_t ssl_get_finished(SSL_HANDSHAKE *hs) {
   uint8_t finished[EVP_MAX_MD_SIZE];
   size_t finished_len;
   if (!hs->transcript.GetFinishedMAC(finished, &finished_len,
-                                     SSL_get_session(ssl), !ssl->server) ||
+                                     ssl_handshake_session(hs), !ssl->server) ||
       !ssl_hash_message(hs, msg)) {
     return ssl_hs_error;
   }
@@ -463,13 +473,20 @@ enum ssl_hs_wait_t ssl_get_finished(SSL_HANDSHAKE *hs) {
     ssl->s3->previous_server_finished_len = finished_len;
   }
 
+  // The Finished message should be the end of a flight.
+  if (ssl->method->has_unprocessed_handshake_data(ssl)) {
+    ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_UNEXPECTED_MESSAGE);
+    OPENSSL_PUT_ERROR(SSL, SSL_R_EXCESS_HANDSHAKE_DATA);
+    return ssl_hs_error;
+  }
+
   ssl->method->next_message(ssl);
   return ssl_hs_ok;
 }
 
 bool ssl_send_finished(SSL_HANDSHAKE *hs) {
   SSL *const ssl = hs->ssl;
-  const SSL_SESSION *session = SSL_get_session(ssl);
+  const SSL_SESSION *session = ssl_handshake_session(hs);
 
   uint8_t finished[EVP_MAX_MD_SIZE];
   size_t finished_len;
@@ -479,8 +496,8 @@ bool ssl_send_finished(SSL_HANDSHAKE *hs) {
   }
 
   // Log the master secret, if logging is enabled.
-  if (!ssl_log_secret(ssl, "CLIENT_RANDOM", session->master_key,
-                      session->master_key_length)) {
+  if (!ssl_log_secret(ssl, "CLIENT_RANDOM",
+                      MakeConstSpan(session->secret, session->secret_length))) {
     return 0;
   }
 
@@ -525,6 +542,13 @@ bool ssl_output_cert_chain(SSL_HANDSHAKE *hs) {
   return true;
 }
 
+const SSL_SESSION *ssl_handshake_session(const SSL_HANDSHAKE *hs) {
+  if (hs->new_session) {
+    return hs->new_session.get();
+  }
+  return hs->ssl->session.get();
+}
+
 int ssl_run_handshake(SSL_HANDSHAKE *hs, bool *out_early_return) {
   SSL *const ssl = hs->ssl;
   for (;;) {
@@ -549,7 +573,7 @@ int ssl_run_handshake(SSL_HANDSHAKE *hs, bool *out_early_return) {
           hs->wait = ssl_hs_ok;
           // The change cipher spec is omitted in QUIC.
           if (hs->wait != ssl_hs_read_change_cipher_spec) {
-            ssl->s3->rwstate = SSL_READING;
+            ssl->s3->rwstate = SSL_ERROR_WANT_READ;
             return -1;
           }
           break;
@@ -603,54 +627,59 @@ int ssl_run_handshake(SSL_HANDSHAKE *hs, bool *out_early_return) {
       }
 
       case ssl_hs_certificate_selection_pending:
-        ssl->s3->rwstate = SSL_CERTIFICATE_SELECTION_PENDING;
+        ssl->s3->rwstate = SSL_ERROR_PENDING_CERTIFICATE;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_handoff:
-        ssl->s3->rwstate = SSL_HANDOFF;
+        ssl->s3->rwstate = SSL_ERROR_HANDOFF;
         hs->wait = ssl_hs_ok;
         return -1;
 
-      case ssl_hs_handback:
-        ssl->s3->rwstate = SSL_HANDBACK;
+      case ssl_hs_handback: {
+        int ret = ssl->method->flush_flight(ssl);
+        if (ret <= 0) {
+          return ret;
+        }
+        ssl->s3->rwstate = SSL_ERROR_HANDBACK;
         hs->wait = ssl_hs_handback;
         return -1;
+      }
 
       case ssl_hs_x509_lookup:
-        ssl->s3->rwstate = SSL_X509_LOOKUP;
+        ssl->s3->rwstate = SSL_ERROR_WANT_X509_LOOKUP;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_channel_id_lookup:
-        ssl->s3->rwstate = SSL_CHANNEL_ID_LOOKUP;
+        ssl->s3->rwstate = SSL_ERROR_WANT_CHANNEL_ID_LOOKUP;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_private_key_operation:
-        ssl->s3->rwstate = SSL_PRIVATE_KEY_OPERATION;
+        ssl->s3->rwstate = SSL_ERROR_WANT_PRIVATE_KEY_OPERATION;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_pending_session:
-        ssl->s3->rwstate = SSL_PENDING_SESSION;
+        ssl->s3->rwstate = SSL_ERROR_PENDING_SESSION;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_pending_ticket:
-        ssl->s3->rwstate = SSL_PENDING_TICKET;
+        ssl->s3->rwstate = SSL_ERROR_PENDING_TICKET;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_certificate_verify:
-        ssl->s3->rwstate = SSL_CERTIFICATE_VERIFY;
+        ssl->s3->rwstate = SSL_ERROR_WANT_CERTIFICATE_VERIFY;
         hs->wait = ssl_hs_ok;
         return -1;
 
       case ssl_hs_early_data_rejected:
-        ssl->s3->rwstate = SSL_EARLY_DATA_REJECTED;
-        // Cause |SSL_write| to start failing immediately.
-        hs->can_early_write = false;
+        assert(ssl->s3->early_data_reason != ssl_early_data_unknown);
+        assert(!hs->can_early_write);
+        ssl->s3->rwstate = SSL_ERROR_EARLY_DATA_REJECTED;
         return -1;
 
       case ssl_hs_early_return:
