@@ -60,21 +60,24 @@ public class DefaultAsynchronousChannelProvider {
      * Returns the default AsynchronousChannelProvider.
      */
     public static AsynchronousChannelProvider create() {
-        // BEGIN Android-changed: Hardcode AsynchronousChannelProvider provider.
-        /*
-        String osname = AccessController
-            .doPrivileged(new GetPropertyAction("os.name"));
-        if (osname.equals("SunOS"))
-            return createProvider("sun.nio.ch.SolarisAsynchronousChannelProvider");
-        if (osname.equals("Linux"))
-            return createProvider("sun.nio.ch.LinuxAsynchronousChannelProvider");
-        if (osname.contains("OS X"))
-            return createProvider("sun.nio.ch.BsdAsynchronousChannelProvider");
-        if (osname.equals("AIX"))
-            return createProvider("sun.nio.ch.AixAsynchronousChannelProvider");
-        throw new InternalError("platform not recognized");
-        */
-        return createProvider("sun.nio.ch.LinuxAsynchronousChannelProvider");
-        // END Android-changed: Hardcode AsynchronousChannelProvider provider.
+//        // BEGIN Android-changed: Hardcode AsynchronousChannelProvider provider.
+//        /*
+//        String osname = AccessController
+//            .doPrivileged(new GetPropertyAction("os.name"));
+//        if (osname.equals("SunOS"))
+//            return createProvider("sun.nio.ch.SolarisAsynchronousChannelProvider");
+//        if (osname.equals("Linux"))
+//            return createProvider("sun.nio.ch.LinuxAsynchronousChannelProvider");
+//        if (osname.contains("OS X"))
+//            return createProvider("sun.nio.ch.BsdAsynchronousChannelProvider");
+//        if (osname.equals("AIX"))
+//            return createProvider("sun.nio.ch.AixAsynchronousChannelProvider");
+//        throw new InternalError("platform not recognized");
+//        */
+//        return createProvider("sun.nio.ch.LinuxAsynchronousChannelProvider");
+//        // END Android-changed: Hardcode AsynchronousChannelProvider provider.
+        // RoboVM Note: Hardcode BsdAsynchronousChannelProvider
+        // RoboVM FIXME: TODO: Linux case should use LinuxAsynchronousChannelProvider
+        return createProvider("sun.nio.ch.BsdAsynchronousChannelProvider");
     }
 }

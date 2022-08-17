@@ -195,7 +195,7 @@ public final class Daemons {
                     continue;
                 }
                 boolean finalized = waitForFinalization(object);
-                if (!finalized && !VMRuntime.getRuntime().isDebuggerActive()) {
+                if (!finalized && !VMRuntime.getRuntime().isJavaDebuggable()) {
                     finalizerTimedOut(object);
                     break;
                 }
