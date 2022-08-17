@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-#ifndef NATIVEHELPER_ALOGPRIV_H_
-#define NATIVEHELPER_ALOGPRIV_H_
+#pragma once
 
 #include <android/log.h>
 
@@ -35,8 +34,8 @@
  */
 
 #ifndef ALOG
-#define ALOG(priority, tag, fmt...) \
-    __android_log_print(ANDROID_##priority, tag, fmt)
+#define ALOG(priority, tag, fmt, ...) \
+    __android_log_print(ANDROID_##priority, tag, fmt, __VA_ARGS__)
 #endif
 
 #ifndef ALOGV
@@ -63,6 +62,10 @@
 #define ALOGE(...) ((void)ALOG(LOG_ERROR, LOG_TAG, __VA_ARGS__))
 #endif
 
+#ifndef ALOGF
+#define ALOGF(...) ((void)ALOG(LOG_FATAL, LOG_TAG, __VA_ARGS__))
+#endif
+
 /*
  * Log a fatal error if cond is true. The condition test is inverted from
  * assert(3) semantics. The test and message are not stripped from release
@@ -73,4 +76,3 @@
     if (cond) __android_log_assert(#cond, LOG_TAG, __VA_ARGS__)
 #endif
 
-#endif  // NATIVEHELPER_ALOGPRIV_H_

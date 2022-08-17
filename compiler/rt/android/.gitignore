@@ -172,3 +172,14 @@ TEST_MAPPING
 /art/*
 !/art/openjdkjvm
 /art/**/Android.bp
+
+##
+## libnativehelper
+##
+/libnativehelper/tests
+/libnativehelper/tests_mts
+/libnativehelper/Android.bp
+/libnativehelper/libnativehelper.map.txt
+/libnativehelper/OWNERS
+/libnativehelper/PREUPLOAD.cfg
+/libnativehelper/TEST_MAPPING
