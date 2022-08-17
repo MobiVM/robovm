@@ -23,6 +23,5 @@ package com.android.org.conscrypt;
  */
 @Internal
 public interface OpenSSLKeyHolder {
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    OpenSSLKey getOpenSSLKey();
+    @android.compat.annotation.UnsupportedAppUsage OpenSSLKey getOpenSSLKey();
 }

@@ -35,10 +35,8 @@ import javax.net.ssl.TrustManagerFactory;
  * Support class for this package.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
-public final class DefaultSSLContextImpl extends OpenSSLContextImpl {
-
+public class DefaultSSLContextImpl extends OpenSSLContextImpl {
     /**
      * Accessed by SSLContextImpl(DefaultSSLContextImpl) holding the
      * DefaultSSLContextImpl.class monitor
@@ -57,13 +55,12 @@ public final class DefaultSSLContextImpl extends OpenSSLContextImpl {
      * rest of this constructor to guarantee that we don't have races in
      * creating the state shared between all default SSLContexts.
      */
-    @libcore.api.IntraCoreApi
-    public DefaultSSLContextImpl() throws GeneralSecurityException, IOException {
-        super();
+    private DefaultSSLContextImpl(String[] protocols) throws GeneralSecurityException, IOException {
+        super(protocols, true);
     }
 
     // TODO javax.net.ssl.keyStoreProvider system property
-    KeyManager[] getKeyManagers () throws GeneralSecurityException, IOException {
+    KeyManager[] getKeyManagers() throws GeneralSecurityException, IOException {
         if (KEY_MANAGERS != null) {
             return KEY_MANAGERS;
         }
@@ -129,5 +126,23 @@ public final class DefaultSSLContextImpl extends OpenSSLContextImpl {
     public void engineInit(KeyManager[] kms, TrustManager[] tms,
             SecureRandom sr) throws KeyManagementException {
         throw new KeyManagementException("Do not init() the default SSLContext ");
+    }
+
+    /**
+     * @hide This class is not part of the Android public SDK API
+     */
+    public final static class TLSv13 extends DefaultSSLContextImpl {
+        public TLSv13() throws GeneralSecurityException, IOException {
+            super(NativeCrypto.TLSV13_PROTOCOLS);
+        }
+    }
+
+    /**
+     * @hide This class is not part of the Android public SDK API
+     */
+    public final static class TLSv12 extends DefaultSSLContextImpl {
+        public TLSv12() throws GeneralSecurityException, IOException {
+            super(NativeCrypto.TLSV12_PROTOCOLS);
+        }
     }
 }

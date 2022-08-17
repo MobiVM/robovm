@@ -17,7 +17,9 @@
 
 package com.android.org.conscrypt;
 
+import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigInteger;
@@ -31,7 +33,6 @@ import java.security.spec.ECParameterSpec;
 import java.security.spec.ECPrivateKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
-import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 
 /**
  * An implementation of a {@link PrivateKey} for EC keys based on BoringSSL.
@@ -41,9 +42,9 @@ final class OpenSSLECPrivateKey implements ECPrivateKey, OpenSSLKeyHolder {
 
     private static final String ALGORITHM = "EC";
 
-    protected transient OpenSSLKey key;
+    private transient OpenSSLKey key;
 
-    protected transient OpenSSLECGroupContext group;
+    private transient OpenSSLECGroupContext group;
 
     OpenSSLECPrivateKey(OpenSSLECGroupContext group, OpenSSLKey key) {
         this.group = group;
@@ -158,11 +159,17 @@ final class OpenSSLECPrivateKey implements ECPrivateKey, OpenSSLKeyHolder {
 
     @Override
     public String getFormat() {
+        if (key.isHardwareBacked()) {
+            return null;
+        }
         return "PKCS#8";
     }
 
     @Override
     public byte[] getEncoded() {
+        if (key.isHardwareBacked()) {
+            return null;
+        }
         return NativeCrypto.EVP_marshal_private_key(key.getNativeRef());
     }
 
@@ -173,6 +180,9 @@ final class OpenSSLECPrivateKey implements ECPrivateKey, OpenSSLKeyHolder {
 
     @Override
     public BigInteger getS() {
+        if (key.isHardwareBacked()) {
+            throw new UnsupportedOperationException("Private key value S cannot be extracted");
+        }
         return getPrivateKey();
     }
 
@@ -243,6 +253,10 @@ final class OpenSSLECPrivateKey implements ECPrivateKey, OpenSSLKeyHolder {
     }
 
     private void writeObject(ObjectOutputStream stream) throws IOException {
+        if (key.isHardwareBacked()) {
+            throw new NotSerializableException("Hardware backed keys cannot be serialized");
+        }
+
         stream.defaultWriteObject();
         stream.writeObject(getEncoded());
     }

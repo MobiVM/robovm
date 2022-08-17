@@ -31,7 +31,6 @@ import java.security.spec.InvalidParameterSpecException;
  * The only supported encoding format is ASN.1, as specified in RFC 5084 section 3.2.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public final class GCMParameters extends AlgorithmParametersSpi {
 
@@ -44,7 +43,6 @@ public final class GCMParameters extends AlgorithmParametersSpi {
     /** Actually the nonce value for the GCM operation. */
     private byte[] iv;
 
-    @libcore.api.IntraCoreApi
     public GCMParameters() { }
 
     GCMParameters(int tLen, byte[] iv) {

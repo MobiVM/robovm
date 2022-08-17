@@ -63,7 +63,7 @@ import javax.security.cert.CertificateException;
  */
 final class SSLUtils {
     static final boolean USE_ENGINE_SOCKET_BY_DEFAULT = Boolean.parseBoolean(
-            System.getProperty("com.android.org.conscrypt.useEngineSocketByDefault", "false"));
+            System.getProperty("com.android.org.conscrypt.useEngineSocketByDefault", "true"));
     private static final int MAX_PROTOCOL_LENGTH = 255;
 
     private static final Charset US_ASCII = Charset.forName("US-ASCII");
@@ -212,7 +212,7 @@ final class SSLUtils {
      * X509ExtendedKeyManager.chooseEngineServerAlias. Returns {@code null} for key exchanges that
      * do not use X.509 for server authentication.
      */
-    static String getServerX509KeyType(long sslCipherNative) throws SSLException {
+    static String getServerX509KeyType(long sslCipherNative) {
         String kx_name = NativeCrypto.SSL_CIPHER_get_kx_name(sslCipherNative);
         if (kx_name.equals("RSA") || kx_name.equals("DHE_RSA") || kx_name.equals("ECDHE_RSA")) {
             return KEY_TYPE_RSA;
@@ -276,7 +276,7 @@ final class SSLUtils {
      */
     static Set<String> getSupportedClientKeyTypes(byte[] clientCertificateTypes,
             int[] signatureAlgs) {
-        Set<String> fromClientCerts = new HashSet<String>(clientCertificateTypes.length);
+        Set<String> fromClientCerts = new HashSet<>(clientCertificateTypes.length);
         for (byte keyTypeCode : clientCertificateTypes) {
             String keyType = SSLUtils.getClientKeyType(keyTypeCode);
             if (keyType == null) {
@@ -286,7 +286,7 @@ final class SSLUtils {
             fromClientCerts.add(keyType);
         }
         // Signature algorithms are listed in preference order
-        Set<String> fromSigAlgs = new LinkedHashSet<String>(signatureAlgs.length);
+        Set<String> fromSigAlgs = new LinkedHashSet<>(signatureAlgs.length);
         for (int signatureAlg : signatureAlgs) {
             String keyType = SSLUtils.getClientKeyTypeFromSignatureAlg(signatureAlg);
             if (keyType == null) {
@@ -320,6 +320,7 @@ final class SSLUtils {
     /**
      * Converts the peer certificates into a cert chain.
      */
+    @SuppressWarnings("deprecation") // Used in public Conscrypt APIs
     static javax.security.cert.X509Certificate[] toCertificateChain(X509Certificate[] certificates)
             throws SSLPeerUnverifiedException {
         try {
@@ -333,11 +334,11 @@ final class SSLUtils {
             return chain;
         } catch (CertificateEncodingException e) {
             SSLPeerUnverifiedException exception = new SSLPeerUnverifiedException(e.getMessage());
-            exception.initCause(exception);
+            exception.initCause(e);
             throw exception;
         } catch (CertificateException e) {
             SSLPeerUnverifiedException exception = new SSLPeerUnverifiedException(e.getMessage());
-            exception.initCause(exception);
+            exception.initCause(e);
             throw exception;
         }
     }

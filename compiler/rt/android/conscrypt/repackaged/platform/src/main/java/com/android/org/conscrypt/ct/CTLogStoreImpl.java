@@ -17,6 +17,8 @@
 
 package com.android.org.conscrypt.ct;
 
+import com.android.org.conscrypt.Internal;
+import com.android.org.conscrypt.InternalUtil;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -33,15 +36,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-import com.android.org.conscrypt.Internal;
-import com.android.org.conscrypt.InternalUtil;
 
 /**
  * @hide This class is not part of the Android public SDK API
  */
 @Internal
 public class CTLogStoreImpl implements CTLogStore {
-    private static final Charset US_ASCII = Charset.forName("US-ASCII");
+    private static final Charset US_ASCII = StandardCharsets.US_ASCII;
 
     /**
      * Thrown when parsing of a log file fails.
@@ -75,12 +76,13 @@ public class CTLogStoreImpl implements CTLogStore {
         defaultSystemLogDir = new File(ANDROID_ROOT + "/etc/security/ct_known_logs/");
     }
 
-    private File userLogDir;
-    private File systemLogDir;
-    private CTLogInfo[] fallbackLogs;
+    private final File userLogDir;
+    private final File systemLogDir;
+    private final CTLogInfo[] fallbackLogs;
 
-    private HashMap<ByteBuffer, CTLogInfo> logCache = new HashMap<>();
-    private Set<ByteBuffer> missingLogCache = Collections.synchronizedSet(new HashSet<ByteBuffer>());
+    private final HashMap<ByteBuffer, CTLogInfo> logCache = new HashMap<>();
+    private final Set<ByteBuffer> missingLogCache =
+            Collections.synchronizedSet(new HashSet<ByteBuffer>());
 
     public CTLogStoreImpl() {
         this(defaultUserLogDir,
@@ -121,13 +123,17 @@ public class CTLogStoreImpl implements CTLogStore {
             return loadLog(new File(userLogDir, filename));
         } catch (InvalidLogFileException e) {
             return null;
-        } catch (FileNotFoundException e) {}
+        } catch (FileNotFoundException e) {
+            // Ignored
+        }
 
         try {
             return loadLog(new File(systemLogDir, filename));
         } catch (InvalidLogFileException e) {
             return null;
-        } catch (FileNotFoundException e) {}
+        } catch (FileNotFoundException e) {
+            // Ignored
+        }
 
         // If the updateable logs dont exist then use the fallback logs.
         if (!userLogDir.exists()) {

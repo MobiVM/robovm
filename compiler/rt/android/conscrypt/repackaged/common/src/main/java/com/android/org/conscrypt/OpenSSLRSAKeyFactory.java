@@ -39,10 +39,8 @@ import java.security.spec.X509EncodedKeySpec;
  * operations.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public final class OpenSSLRSAKeyFactory extends KeyFactorySpi {
-    @libcore.api.IntraCoreApi
     public OpenSSLRSAKeyFactory() {}
 
     @Override

@@ -28,12 +28,10 @@ import javax.crypto.spec.IvParameterSpec;
  * supported encoding formats are ASN.1 (primary) and RAW.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class IvParameters extends AlgorithmParametersSpi {
     private byte[] iv;
 
-    @libcore.api.IntraCoreApi
     public IvParameters() {}
 
     @Override
@@ -116,25 +114,19 @@ public class IvParameters extends AlgorithmParametersSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static class AES extends IvParameters {
-        @libcore.api.IntraCoreApi
         public AES() {}
     }
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static class DESEDE extends IvParameters {
-        @libcore.api.IntraCoreApi
         public DESEDE() {}
     }
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static class ChaCha20 extends IvParameters {
-        @libcore.api.IntraCoreApi
         public ChaCha20() {}
     }
 }

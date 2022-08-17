@@ -21,11 +21,20 @@ import static android.system.OsConstants.SOL_SOCKET;
 import static android.system.OsConstants.SO_SNDTIMEO;
 
 import android.system.ErrnoException;
+import android.system.Os;
 import android.system.StructTimeval;
+import com.android.org.conscrypt.ct.CTLogStore;
+import com.android.org.conscrypt.ct.CTLogStoreImpl;
+import com.android.org.conscrypt.ct.CTPolicy;
+import com.android.org.conscrypt.ct.CTPolicyImpl;
+import com.android.org.conscrypt.metrics.CipherSuite;
+import com.android.org.conscrypt.metrics.ConscryptStatsLog;
+import com.android.org.conscrypt.metrics.Protocol;
 import dalvik.system.BlockGuard;
 import dalvik.system.CloseGuard;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.lang.System;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -44,10 +53,13 @@ import java.security.cert.X509Certificate;
 import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.ECParameterSpec;
 import java.security.spec.InvalidParameterSpecException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import javax.crypto.spec.GCMParameterSpec;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SNIHostName;
+import javax.net.ssl.SNIMatcher;
 import javax.net.ssl.SNIServerName;
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.SSLParameters;
@@ -56,13 +68,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.StandardConstants;
 import javax.net.ssl.X509ExtendedTrustManager;
 import javax.net.ssl.X509TrustManager;
-
-import libcore.io.Libcore;
 import libcore.net.NetworkSecurityPolicy;
-import com.android.org.conscrypt.ct.CTLogStore;
-import com.android.org.conscrypt.ct.CTLogStoreImpl;
-import com.android.org.conscrypt.ct.CTPolicy;
-import com.android.org.conscrypt.ct.CTPolicyImpl;
 import sun.security.x509.AlgorithmId;
 
 final class Platform {
@@ -123,7 +129,7 @@ final class Platform {
     static void setSocketWriteTimeout(Socket s, long timeoutMillis) throws SocketException {
         StructTimeval tv = StructTimeval.fromMillis(timeoutMillis);
         try {
-            Libcore.getOs().setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET, SO_SNDTIMEO, tv);
+            Os.setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET, SO_SNDTIMEO, tv);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsSocketException();
         }
@@ -503,8 +509,8 @@ final class Platform {
         return new TrustedCertificateStore();
     }
 
-    static CertBlacklist newDefaultBlacklist() {
-        return CertBlacklistImpl.getDefault();
+    static CertBlocklist newDefaultBlocklist() {
+        return CertBlocklistImpl.getDefault();
     }
 
     static CTLogStore newDefaultLogStore() {
@@ -513,5 +519,47 @@ final class Platform {
 
     static CTPolicy newDefaultPolicy(CTLogStore logStore) {
         return new CTPolicyImpl(logStore, 2);
+    }
+
+    static boolean serverNamePermitted(SSLParametersImpl parameters, String serverName) {
+        Collection<SNIMatcher> sniMatchers = parameters.getSNIMatchers();
+        if (sniMatchers == null || sniMatchers.isEmpty()) {
+            return true;
+        }
+
+        SNIHostName hostname = new SNIHostName(serverName);
+        for (SNIMatcher m : sniMatchers) {
+            boolean match = m.matches(hostname);
+            if (match) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static ConscryptHostnameVerifier getDefaultHostnameVerifier() {
+        return Conscrypt.wrapHostnameVerifier(HttpsURLConnection.getDefaultHostnameVerifier());
+    }
+
+    /**
+     * Returns milliseconds elapsed since boot, including time spent in sleep.
+     * @return long number of milliseconds elapsed since boot
+     */
+    static long getMillisSinceBoot() {
+        return System.currentTimeMillis();
+    }
+
+    static void countTlsHandshake(
+            boolean success, String protocol, String cipherSuite, long duration) {
+        Protocol proto = Protocol.forName(protocol);
+        CipherSuite suite = CipherSuite.forName(cipherSuite);
+        int dur = (int) duration;
+
+        ConscryptStatsLog.write(ConscryptStatsLog.TLS_HANDSHAKE_REPORTED, success, proto.getId(),
+                suite.getId(), dur);
+    }
+
+    public static boolean isJavaxCertificateSupported() {
+        return true;
     }
 }

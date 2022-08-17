@@ -47,6 +47,7 @@ abstract class NativeRef {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected void finalize() throws Throwable {
         try {
             if (address != 0) {
@@ -58,6 +59,17 @@ abstract class NativeRef {
     }
 
     abstract void doFree(long context);
+
+    static final class CMAC_CTX extends NativeRef {
+        CMAC_CTX(long nativePointer) {
+            super(nativePointer);
+        }
+
+        @Override
+        void doFree(long context) {
+            NativeCrypto.CMAC_CTX_free(context);
+        }
+    }
 
     static final class EC_GROUP extends NativeRef {
         EC_GROUP(long ctx) {

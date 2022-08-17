@@ -38,11 +38,9 @@ import java.security.spec.X509EncodedKeySpec;
  * An implementation of a {@link KeyFactorySpi} for EC keys based on BoringSSL.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public final class OpenSSLECKeyFactory extends KeyFactorySpi {
 
-    @libcore.api.IntraCoreApi
     public OpenSSLECKeyFactory() {}
 
     @Override

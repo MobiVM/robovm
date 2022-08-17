@@ -30,13 +30,11 @@ import java.security.spec.InvalidParameterSpecException;
  * ASN.1, as specified in RFC 3279, section 2.3.5.  However, only named curves are supported.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class ECParameters extends AlgorithmParametersSpi {
 
     private OpenSSLECGroupContext curve;
 
-    @libcore.api.IntraCoreApi
     public ECParameters() {}
 
     @Override
@@ -91,7 +89,7 @@ public class ECParameters extends AlgorithmParametersSpi {
         if (aClass == ECParameterSpec.class) {
             return (T) curve.getECParameterSpec();
         } else if (aClass == ECGenParameterSpec.class) {
-            return (T) new ECGenParameterSpec(Platform.getCurveName(curve.getECParameterSpec()));
+            return (T) new ECGenParameterSpec(curve.getCurveName());
         } else {
             throw new InvalidParameterSpecException("Unsupported class: " + aClass);
         }

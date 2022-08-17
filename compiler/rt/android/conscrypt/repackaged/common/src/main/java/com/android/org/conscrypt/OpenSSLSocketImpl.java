@@ -31,7 +31,7 @@ import javax.net.ssl.SSLSession;
  * Conscrypt's extended socket API before the introduction of the {@link Conscrypt} class.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 @Internal
 public abstract class OpenSSLSocketImpl extends AbstractConscryptSocket {
     OpenSSLSocketImpl() throws IOException {
@@ -61,20 +61,23 @@ public abstract class OpenSSLSocketImpl extends AbstractConscryptSocket {
         super(socket, hostname, port, autoClose);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public String getHostname() {
         return super.getHostname();
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    public void setHostname(String hostname) {
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = dalvik.annotation.compat.VersionCodes.Q,
+                    publicAlternatives = "Use {@code javax.net.ssl.SSLParameters#setServerNames}.")
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            public void
+            setHostname(String hostname) {
         super.setHostname(hostname);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public String getHostnameOrIP() {
         return super.getHostnameOrIP();
@@ -85,99 +88,119 @@ public abstract class OpenSSLSocketImpl extends AbstractConscryptSocket {
         return super.getFileDescriptor$();
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    public void setSoWriteTimeout(int writeTimeoutMilliseconds) throws SocketException {
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            public void setSoWriteTimeout(int writeTimeoutMilliseconds) throws SocketException {
         super.setSoWriteTimeout(writeTimeoutMilliseconds);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public int getSoWriteTimeout() throws SocketException {
         return super.getSoWriteTimeout();
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    public void setHandshakeTimeout(int handshakeTimeoutMilliseconds) throws SocketException {
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            public void setHandshakeTimeout(int handshakeTimeoutMilliseconds)
+            throws SocketException {
         super.setHandshakeTimeout(handshakeTimeoutMilliseconds);
     }
 
     @Override
     public abstract SSLSession getHandshakeSession();
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    public abstract void setUseSessionTickets(boolean useSessionTickets);
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = dalvik.annotation.compat.VersionCodes.Q,
+                    publicAlternatives =
+                            "Use {@link android.net.ssl.SSLSockets#setUseSessionTickets}.")
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            public abstract void
+            setUseSessionTickets(boolean useSessionTickets);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public abstract void setChannelIdEnabled(boolean enabled);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     @Override
     public abstract byte[] getChannelId() throws SSLException;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.
+    annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     @Override
     public abstract void setChannelIdPrivateKey(PrivateKey privateKey);
 
     /**
      * @deprecated NPN is not supported
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    @Deprecated
-    public final byte[] getNpnSelectedProtocol() {
+    @android.compat.annotation
+            .UnsupportedAppUsage
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            @Deprecated
+            public final byte[] getNpnSelectedProtocol() {
         return super.getNpnSelectedProtocol();
     }
 
     /**
      * @deprecated NPN is not supported
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    @Deprecated
-    public final void setNpnProtocols(byte[] npnProtocols) {
+    @android.compat.annotation
+            .UnsupportedAppUsage
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            @Deprecated
+            public final void setNpnProtocols(byte[] npnProtocols) {
         super.setNpnProtocols(npnProtocols);
     }
 
     /**
      * @deprecated use {@link #setApplicationProtocols(String[])} instead.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.
+    UnsupportedAppUsage(maxTargetSdk = dalvik.annotation.compat.VersionCodes.Q,
+            publicAlternatives =
+                    "Use {@code javax.net.ssl.SSLParameters#setApplicationProtocols(java.lang.String[])}.")
     @Override
     @Deprecated
-    public final void setAlpnProtocols(String[] alpnProtocols) {
+    public final void
+    setAlpnProtocols(String[] alpnProtocols) {
         setApplicationProtocols(alpnProtocols == null ? EmptyArray.STRING : alpnProtocols);
     }
 
     /**
      * @deprecated use {@link #getApplicationProtocol()} instead.
      */
-    @dalvik.annotation.
-    compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    @Deprecated
-    public final byte[] getAlpnSelectedProtocol() {
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = dalvik.annotation.compat.VersionCodes.Q,
+                    publicAlternatives =
+                            "Use {@code javax.net.ssl.SSLSocket#getApplicationProtocol()}.")
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            @Deprecated
+            public final byte[] getAlpnSelectedProtocol() {
         return SSLUtils.toProtocolBytes(getApplicationProtocol());
     }
 
     /**
      * @deprecated Use {@link #setAlpnProtocols(String[])} instead.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    @Override
-    @Deprecated
-    public final void setAlpnProtocols(byte[] protocols) {
+    @android.compat.annotation
+            .UnsupportedAppUsage(maxTargetSdk = dalvik.annotation.compat.VersionCodes.Q,
+                    publicAlternatives =
+                            "Use {@code javax.net.ssl.SSLParameters#setApplicationProtocols(java.lang.String[])}.")
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            @Override
+            @Deprecated
+            public final void
+            setAlpnProtocols(byte[] protocols) {
         setApplicationProtocols(SSLUtils.decodeProtocols(protocols == null ? EmptyArray.BYTE : protocols));
     }
 }

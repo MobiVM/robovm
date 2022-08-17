@@ -18,6 +18,7 @@
 
 package com.android.org.conscrypt;
 
+import java.security.AlgorithmConstraints;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -26,10 +27,12 @@ import java.security.SecureRandom;
 import java.security.UnrecoverableKeyException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Set;
 import javax.crypto.SecretKey;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SNIMatcher;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509ExtendedKeyManager;
@@ -66,8 +69,7 @@ final class SSLParametersImpl implements Cloneable {
     @SuppressWarnings("deprecation") // PSKKeyManager is deprecated, but in our own package
     private final PSKKeyManager pskKeyManager;
     // source of X.509 certificate based authentication trust decisions or null if not provided
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    private final X509TrustManager x509TrustManager;
+    @android.compat.annotation.UnsupportedAppUsage private final X509TrustManager x509TrustManager;
 
     // protocols enabled for SSL connection
     String[] enabledProtocols;
@@ -89,6 +91,8 @@ final class SSLParametersImpl implements Cloneable {
     private String endpointIdentificationAlgorithm;
     // Whether to use the local cipher suites order
     private boolean useCipherSuitesOrder;
+    private Collection<SNIMatcher> sniMatchers;
+    private AlgorithmConstraints algorithmConstraints;
 
     // client-side only, bypasses the property based configuration, used for tests
     private boolean ctVerificationEnabled;
@@ -153,6 +157,7 @@ final class SSLParametersImpl implements Cloneable {
     }
 
     // Copy constructor for the purposes of changing the final fields
+    @SuppressWarnings("deprecation") // for PSKKeyManager
     private SSLParametersImpl(ClientSessionContext clientSessionContext,
             ServerSessionContext serverSessionContext, X509KeyManager x509KeyManager,
             PSKKeyManager pskKeyManager, X509TrustManager x509TrustManager,
@@ -189,7 +194,7 @@ final class SSLParametersImpl implements Cloneable {
         this.channelIdEnabled = sslParams.channelIdEnabled;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static SSLParametersImpl getDefault() throws KeyManagementException {
         SSLParametersImpl result = defaultParameters;
         if (result == null) {
@@ -236,7 +241,7 @@ final class SSLParametersImpl implements Cloneable {
     /**
      * @return X.509 trust manager or {@code null} for none.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     X509TrustManager getX509TrustManager() {
         return x509TrustManager;
     }
@@ -275,7 +280,7 @@ final class SSLParametersImpl implements Cloneable {
      * Sets the list of available protocols for use in SSL connection.
      * @throws IllegalArgumentException if {@code protocols == null}
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     void setEnabledProtocols(String[] protocols) {
         if (protocols == null) {
             throw new IllegalArgumentException("protocols == null");
@@ -305,6 +310,13 @@ final class SSLParametersImpl implements Cloneable {
      */
     void setApplicationProtocolSelector(ApplicationProtocolSelectorAdapter applicationProtocolSelector) {
         this.applicationProtocolSelector = applicationProtocolSelector;
+    }
+
+    /**
+     * Returns the application protocol (ALPN) selector for this socket.
+     */
+    ApplicationProtocolSelectorAdapter getApplicationProtocolSelector() {
+        return applicationProtocolSelector;
     }
 
     /**
@@ -569,7 +581,9 @@ final class SSLParametersImpl implements Cloneable {
             } else if (km != null) {
                 try {
                     return DuckTypedPSKKeyManager.getInstance(km);
-                } catch (NoSuchMethodException ignored) {}
+                } catch (NoSuchMethodException ignored) {
+                    // This PSKKeyManager doesn't support the required methods, go to the next
+                }
             }
         }
         return null;
@@ -578,9 +592,8 @@ final class SSLParametersImpl implements Cloneable {
     /**
      * Gets the default X.509 trust manager.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static X509TrustManager getDefaultX509TrustManager()
-            throws KeyManagementException {
+    @android.compat.annotation.UnsupportedAppUsage
+    static X509TrustManager getDefaultX509TrustManager() throws KeyManagementException {
         X509TrustManager result = defaultX509TrustManager;
         if (result == null) {
             // single-check idiom
@@ -635,6 +648,25 @@ final class SSLParametersImpl implements Cloneable {
 
     boolean getUseCipherSuitesOrder() {
         return useCipherSuitesOrder;
+    }
+
+    Collection<SNIMatcher> getSNIMatchers() {
+        if (sniMatchers == null) {
+            return null;
+        }
+        return new ArrayList<>(sniMatchers);
+    }
+
+    void setSNIMatchers(Collection<SNIMatcher> sniMatchers) {
+        this.sniMatchers = sniMatchers != null ? new ArrayList<>(sniMatchers) : null;
+    }
+
+    AlgorithmConstraints getAlgorithmConstraints() {
+        return algorithmConstraints;
+    }
+
+    void setAlgorithmConstraints(AlgorithmConstraints algorithmConstraints) {
+        this.algorithmConstraints = algorithmConstraints;
     }
 
     void setUseCipherSuitesOrder(boolean useCipherSuitesOrder) {

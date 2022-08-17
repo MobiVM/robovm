@@ -29,13 +29,11 @@ import java.security.spec.PSSParameterSpec;
  * (with X.509 accepted as an alias), as specified in RFC 4055 section 3.1.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class PSSParameters extends AlgorithmParametersSpi {
 
     private PSSParameterSpec spec = PSSParameterSpec.DEFAULT;
 
-    @libcore.api.IntraCoreApi
     public PSSParameters() {}
 
     @Override

@@ -37,6 +37,8 @@ jclass integerClass;
 jclass inputStreamClass;
 jclass outputStreamClass;
 jclass stringClass;
+jclass byteBufferClass;
+jclass bufferClass;
 
 jfieldID nativeRef_address;
 
@@ -46,6 +48,8 @@ jmethodID integer_valueOfMethod;
 jmethodID openSslInputStream_readLineMethod;
 jmethodID outputStream_writeMethod;
 jmethodID outputStream_flushMethod;
+jmethodID buffer_positionMethod;
+jmethodID buffer_limitMethod;
 
 void init(JavaVM* vm, JNIEnv* env) {
     gJavaVM = vm;
@@ -58,6 +62,8 @@ void init(JavaVM* vm, JNIEnv* env) {
     objectArrayClass = findClass(env, "[Ljava/lang/Object;");
     outputStreamClass = findClass(env, "java/io/OutputStream");
     stringClass = findClass(env, "java/lang/String");
+    byteBufferClass = findClass(env, "java/nio/ByteBuffer");
+    bufferClass = findClass(env, "java/nio/Buffer");
 
     cryptoUpcallsClass = getGlobalRefToClass(
             env, TO_STRING(JNI_JARJAR_PREFIX) "org/conscrypt/CryptoUpcalls");
@@ -76,6 +82,8 @@ void init(JavaVM* vm, JNIEnv* env) {
             getMethodRef(env, openSslInputStreamClass, "gets", "([B)I");
     outputStream_writeMethod = getMethodRef(env, outputStreamClass, "write", "([B)V");
     outputStream_flushMethod = getMethodRef(env, outputStreamClass, "flush", "()V");
+    buffer_positionMethod = getMethodRef(env, bufferClass, "position", "()I");
+    buffer_limitMethod = getMethodRef(env, bufferClass, "limit", "()I");
 }
 
 void jniRegisterNativeMethods(JNIEnv* env, const char* className, const JNINativeMethod* gMethods,
@@ -217,18 +225,7 @@ int throwForAsn1Error(JNIEnv* env, int reason, const char* message,
                       int (*defaultThrow)(JNIEnv*, const char*)) {
     switch (reason) {
         case ASN1_R_UNSUPPORTED_PUBLIC_KEY_TYPE:
-#if defined(ASN1_R_UNABLE_TO_DECODE_RSA_KEY)
-        case ASN1_R_UNABLE_TO_DECODE_RSA_KEY:
-#endif
-#if defined(ASN1_R_WRONG_PUBLIC_KEY_TYPE)
         case ASN1_R_WRONG_PUBLIC_KEY_TYPE:
-#endif
-#if defined(ASN1_R_UNABLE_TO_DECODE_RSA_PRIVATE_KEY)
-        case ASN1_R_UNABLE_TO_DECODE_RSA_PRIVATE_KEY:
-#endif
-#if defined(ASN1_R_UNKNOWN_PUBLIC_KEY_TYPE)
-        case ASN1_R_UNKNOWN_PUBLIC_KEY_TYPE:
-#endif
             return throwInvalidKeyException(env, message);
             break;
         case ASN1_R_UNKNOWN_SIGNATURE_ALGORITHM:
@@ -249,9 +246,16 @@ int throwForCipherError(JNIEnv* env, int reason, const char* message,
         case CIPHER_R_WRONG_FINAL_BLOCK_LENGTH:
             return throwIllegalBlockSizeException(env, message);
             break;
-        case CIPHER_R_AES_KEY_SETUP_FAILED:
+        // TODO(davidben): Remove these ifdefs after
+        // https://boringssl-review.googlesource.com/c/boringssl/+/35565 has
+        // rolled out to relevant BoringSSL copies.
+#if defined(CIPHER_R_BAD_KEY_LENGTH)
         case CIPHER_R_BAD_KEY_LENGTH:
+#endif
+#if defined(CIPHER_R_UNSUPPORTED_KEY_SIZE)
         case CIPHER_R_UNSUPPORTED_KEY_SIZE:
+#endif
+        case CIPHER_R_INVALID_KEY_LENGTH:
             return throwInvalidKeyException(env, message);
             break;
         case CIPHER_R_BUFFER_TOO_SMALL:
@@ -268,21 +272,8 @@ int throwForEvpError(JNIEnv* env, int reason, const char* message,
             return throwInvalidKeyException(env, message);
             break;
         case EVP_R_UNSUPPORTED_ALGORITHM:
-#if defined(EVP_R_X931_UNSUPPORTED)
-        case EVP_R_X931_UNSUPPORTED:
-#endif
             return throwNoSuchAlgorithmException(env, message);
             break;
-#if defined(EVP_R_WRONG_PUBLIC_KEY_TYPE)
-        case EVP_R_WRONG_PUBLIC_KEY_TYPE:
-            return throwInvalidKeyException(env, message);
-            break;
-#endif
-#if defined(EVP_R_UNKNOWN_MESSAGE_DIGEST_ALGORITHM)
-        case EVP_R_UNKNOWN_MESSAGE_DIGEST_ALGORITHM:
-            return throwNoSuchAlgorithmException(env, message);
-            break;
-#endif
         default:
             return defaultThrow(env, message);
             break;
@@ -294,9 +285,6 @@ int throwForRsaError(JNIEnv* env, int reason, const char* message,
     switch (reason) {
         case RSA_R_BLOCK_TYPE_IS_NOT_01:
         case RSA_R_PKCS_DECODING_ERROR:
-#if defined(RSA_R_BLOCK_TYPE_IS_NOT_02)
-        case RSA_R_BLOCK_TYPE_IS_NOT_02:
-#endif
             return throwBadPaddingException(env, message);
             break;
         case RSA_R_BAD_SIGNATURE:

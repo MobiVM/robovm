@@ -33,6 +33,7 @@ import java.lang.annotation.Target;
  * considered API-breaking.</li>
  * <li>Removing this annotation from an API gives it stable status.</li>
  * </ol>
+ * @hide This class is not part of the Android public SDK API
  */
 @Internal
 @Retention(RetentionPolicy.SOURCE)
