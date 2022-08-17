@@ -50,10 +50,11 @@ import java.time.ZoneId;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import dalvik.system.RuntimeHooks;
 import libcore.io.IoUtils;
 import libcore.util.ZoneInfo;
 
-import dalvik.system.RuntimeHooks;
 
 /**
  * <code>TimeZone</code> represents a time zone offset, and also figures out daylight
@@ -679,17 +680,19 @@ abstract public class TimeZone implements Serializable, Cloneable {
         return ZoneInfoDb.getInstance().getAvailableIDs();
     }
 
-    /**
-     * Gets the platform defined TimeZone ID.
-     **/
-    private static native String getSystemTimeZoneID(String javaHome,
-                                                     String country);
+    // RoboVM note: commented as not used
+//    /**
+//     * Gets the platform defined TimeZone ID.
+//     **/
+//    private static native String getSystemTimeZoneID(String javaHome,
+//                                                     String country);
 
-    /**
-     * Gets the custom time zone ID based on the GMT offset of the
-     * platform. (e.g., "GMT+08:00")
-     */
-    private static native String getSystemGMTOffsetID();
+    // RoboVM note: commented as not used
+//    /**
+//     * Gets the custom time zone ID based on the GMT offset of the
+//     * platform. (e.g., "GMT+08:00")
+//     */
+//    private static native String getSystemGMTOffsetID();
 
     /**
      * Gets the default <code>TimeZone</code> for this host.
@@ -712,6 +715,10 @@ abstract public class TimeZone implements Serializable, Cloneable {
             String zoneName = (tzGetter != null) ? tzGetter.get() : null;
             if (zoneName != null) {
                 zoneName = zoneName.trim();
+            }
+            // RoboVM note: Delegate to ZoneInfoDb first.
+            if (zoneName == null || zoneName.isEmpty()) {
+                zoneName = ZoneInfoDb.getInstance().getDefaultID();
             }
             if (zoneName == null || zoneName.isEmpty()) {
                 try {

@@ -35,9 +35,6 @@ import sun.reflect.CallerSensitive;
 import java.lang.ref.FinalizerReference;
 import java.util.ArrayList;
 import java.util.List;
-import dalvik.system.DelegateLastClassLoader;
-import dalvik.system.PathClassLoader;
-import dalvik.system.VMDebug;
 import dalvik.system.VMRuntime;
 import sun.reflect.Reflection;
 
@@ -774,7 +771,9 @@ public class Runtime {
     private native void nativeGc();
 
     /* Wormhole for calling java.lang.ref.Finalizer.runFinalization */
-    private static native void runFinalization0();
+    private static void runFinalization0() {
+        // RoboVM note: This is native in Android. In RoboVM this is a nop.
+    }
 
     /**
      * Runs the finalization methods of any objects pending finalization.
@@ -994,7 +993,9 @@ public class Runtime {
     }
     */
     void loadLibrary0(Class<?> fromClass, String libname) {
-        ClassLoader classLoader = ClassLoader.getClassLoader(fromClass);
+        // RoboVM Note: using luni4 approach
+        ClassLoader classLoader = fromClass.getClassLoader();
+//        ClassLoader classLoader = ClassLoader.getClassLoader(fromClass);
         loadLibrary0(classLoader, fromClass, libname);
     }
 
@@ -1050,8 +1051,8 @@ public class Runtime {
         if (loader != null && !(loader instanceof BootClassLoader)) {
             String filename = loader.findLibrary(libraryName);
             if (filename == null &&
-                    (loader.getClass() == PathClassLoader.class ||
-                     loader.getClass() == DelegateLastClassLoader.class)) {
+                    (loader.getClass() == PathClassLoader.class /* RoboVM Note: DelegateLastClassLoader is not included ||
+                     loader.getClass() == DelegateLastClassLoader.class */)) {
                 // Don't give up even if we failed to find the library in the native lib paths.
                 // The underlying dynamic linker might be able to find the lib in one of the linker
                 // namespaces associated with the current linker namespace. In order to give the

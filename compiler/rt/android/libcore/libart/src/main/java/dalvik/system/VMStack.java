@@ -24,6 +24,9 @@ import android.compat.annotation.UnsupportedAppUsage;
 import dalvik.annotation.optimization.FastNative;
 
 import libcore.util.Nullable;
+import org.robovm.rt.VM;
+
+import java.util.Arrays;
 
 /**
  * Provides a limited interface to the Dalvik VM stack. This class is mostly
@@ -52,7 +55,10 @@ public final class VMStack {
     @UnsupportedAppUsage
     @FastNative
     @Deprecated
-    native public static ClassLoader getCallingClassLoader();
+    public static ClassLoader getCallingClassLoader() {
+        // RoboVM note: This is native in Android
+        return VM.getStackClasses(1, 1)[0].getClassLoader();
+    }
 
     /**
      * Returns the class of the caller's caller.
@@ -76,7 +82,38 @@ public final class VMStack {
      */
     @UnsupportedAppUsage
     @FastNative
-    native public static Class<?> getStackClass2();
+    public static Class<?> getStackClass2() {
+        // RoboVM note: This is native in Android
+        Class<?>[] classes = VM.getStackClasses(2, 1);
+        return classes != null && classes.length > 0 ? classes[0] : null;
+    }
+
+    /**
+     * Creates an array of classes from the methods at the top of the stack.
+     * We continue until we reach the bottom of the stack or exceed the
+     * specified maximum depth.
+     * <p>
+     * The topmost stack frame (this method) and the one above that (the
+     * caller) are excluded from the array.  Frames with java.lang.reflect
+     * classes are skipped over.
+     * <p>
+     * The classes in the array are the defining classes of the methods.
+     * <p>
+     * This is similar to Harmony's VMStack.getClasses, except that this
+     * implementation doesn't have a concept of "privileged" frames.
+     *
+     * @param maxDepth
+     *      maximum number of classes to return, or -1 for all
+     * @return an array with classes for the most-recent methods on the stack
+     */
+    public static Class<?>[] getClasses(int maxDepth) {
+        // RoboVM note: This is native in Android
+        // TODO: Skip over java.lang.reflect classes.
+        return VM.getStackClasses(1, maxDepth);
+    }
+
+    private static final ClassLoader bootstrapLoader = Object.class.getClassLoader();
+    private static final ClassLoader systemLoader = ClassLoader.getSystemClassLoader();
 
     /**
      * Returns the first ClassLoader on the call stack that isn't the
@@ -85,7 +122,18 @@ public final class VMStack {
      * @hide
      */
     @FastNative
-    public native static ClassLoader getClosestUserClassLoader();
+    public static ClassLoader getClosestUserClassLoader() {
+        // RoboVM note: This is native in Android.
+        // RoboVM note: This is native in Android.
+        Class<?>[] stackClasses = VMStack.getClasses(-1);
+        for (Class<?> stackClass : stackClasses) {
+            ClassLoader loader = stackClass.getClassLoader();
+            if (loader != null && loader != bootstrapLoader && loader != systemLoader) {
+                return loader;
+            }
+        }
+        return null;
+    }
 
     /**
      * Retrieves the stack trace from the specified thread.
@@ -99,23 +147,27 @@ public final class VMStack {
      */
     @UnsupportedAppUsage
     @FastNative
-    native public static StackTraceElement[] getThreadStackTrace(Thread t);
+    public static StackTraceElement[] getThreadStackTrace(Thread t) {
+        // RoboVM note: This is native in Android.
+        return t.getStackTrace();
+    }
 
-    /**
-     * Retrieves an annotated stack trace from the specified thread.
-     *
-     * @param t
-     *      thread of interest
-     * @return an array of annotated stack frames, or null if the thread
-     *      doesn't have a stack trace (e.g. because it exited)
-     *
-     * @hide
-     */
-    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    @SystemApi(client = MODULE_LIBRARIES)
-    @FastNative
-    native public static @Nullable AnnotatedStackTraceElement[]
-            getAnnotatedThreadStackTrace(Thread t);
+// RoboVM Note: not used
+//    /**
+//     * Retrieves an annotated stack trace from the specified thread.
+//     *
+//     * @param t
+//     *      thread of interest
+//     * @return an array of annotated stack frames, or null if the thread
+//     *      doesn't have a stack trace (e.g. because it exited)
+//     *
+//     * @hide
+//     */
+//    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+//    @SystemApi(client = MODULE_LIBRARIES)
+//    @FastNative
+//    native public static @Nullable AnnotatedStackTraceElement[]
+//            getAnnotatedThreadStackTrace(Thread t);
 
     /**
      * Retrieves a partial stack trace from the specified thread into
@@ -132,6 +184,13 @@ public final class VMStack {
      */
     @UnsupportedAppUsage
     @FastNative
-    native public static int fillStackTraceElements(Thread t,
-        StackTraceElement[] stackTraceElements);
+    public static int fillStackTraceElements(Thread t,
+                                             StackTraceElement[] stackTraceElements) {
+        // RoboVM note: This is native in Android.
+        Arrays.fill(stackTraceElements, null);
+        StackTraceElement[] st = t.getStackTrace();
+        int n = Math.min(st.length, stackTraceElements.length);
+        System.arraycopy(st, 0, stackTraceElements, 0, n);
+        return n;
+    }
 }

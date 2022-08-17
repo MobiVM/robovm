@@ -26,6 +26,7 @@
 
 package java.lang;
 import dalvik.annotation.optimization.FastNative;
+import libcore.util.EmptyArray;
 import  java.io.*;
 import  java.util.*;
 
@@ -119,8 +120,9 @@ public class Throwable implements Serializable {
 
     /**
      * Native code saves some indication of the stack backtrace in this slot.
+     * RoboVM note: saving pointer, it was Object on Android
      */
-    private transient Object backtrace;
+    private transient long backtrace;
 
     /**
      * Specific details about the Throwable.  For example, for
@@ -322,6 +324,22 @@ public class Throwable implements Serializable {
         fillInStackTrace();
         detailMessage = (cause==null ? null : cause.toString());
         this.cause = cause;
+    }
+
+    /**
+     * RoboVM note: Called by RoboVM to initialize StackOverflowError and
+     * NullPointerException instances from a signal handler. We cannot call a
+     * constructor from a signal handler as that could cause stack overflow if
+     * we're handling a StackOverflowError already. Using a static method which
+     * doesn't call any other methods prevents stack overflow detection being
+     * added to this method.
+     */
+    @SuppressWarnings("unchecked")
+    static void init(Throwable t, long stackState) {
+        t.backtrace = stackState;
+        t.stackTrace = EmptyArray.STACK_TRACE_ELEMENT;
+        t.suppressedExceptions = Collections.EMPTY_LIST;
+        t.cause = t;
     }
 
     /**
@@ -793,7 +811,7 @@ public class Throwable implements Serializable {
      */
     public synchronized Throwable fillInStackTrace() {
         if (stackTrace != null ||
-            backtrace != null /* Out of protocol state */ ) {
+            backtrace != 0 /* Out of protocol state */ ) {
             // Android-changed: Use Android-specific nativeFillInStackTrace.
             // fillInStackTrace(0);
             backtrace = nativeFillInStackTrace();
@@ -807,7 +825,7 @@ public class Throwable implements Serializable {
     // Android-changed: Use Android-specific nativeFillInStackTrace.
     // private native Throwable fillInStackTrace(int dummy);
     @FastNative
-    private static native Object nativeFillInStackTrace();
+    private static native long nativeFillInStackTrace();
 
     /**
      * Provides programmatic access to the stack trace information printed by
@@ -843,14 +861,14 @@ public class Throwable implements Serializable {
         // Android-changed: Use libcore.util.EmptyArray for the empty stack trace.
         // if (stackTrace == UNASSIGNED_STACK ||
         if (stackTrace == libcore.util.EmptyArray.STACK_TRACE_ELEMENT ||
-            (stackTrace == null && backtrace != null) /* Out of protocol state */) {
+            (stackTrace == null && backtrace != 0) /* Out of protocol state */) {
             // BEGIN Android-changed: Use Android-specific nativeGetStackTrace.
             // int depth = getStackTraceDepth();
             // stackTrace = new StackTraceElement[depth];
             // for (int i=0; i < depth; i++)
             //     stackTrace[i] = getStackTraceElement(i);
             stackTrace = nativeGetStackTrace(backtrace);
-            backtrace = null;
+            backtrace = 0;
             if (stackTrace == null) {
                 return libcore.util.EmptyArray.STACK_TRACE_ELEMENT;
             }
@@ -901,7 +919,7 @@ public class Throwable implements Serializable {
 
         synchronized (this) {
             if (this.stackTrace == null && // Immutable stack
-                backtrace == null) // Test for out of protocol state
+                backtrace == 0) // Test for out of protocol state
                 return;
             this.stackTrace = defensiveCopy;
         }
@@ -928,7 +946,7 @@ public class Throwable implements Serializable {
     // Android-changed: Use Android-specific nativeGetStackTrace.
     // native StackTraceElement getStackTraceElement(int index);
     @FastNative
-    private static native StackTraceElement[] nativeGetStackTrace(Object stackState);
+    private static native StackTraceElement[] nativeGetStackTrace(long stackState);
 
 
     /**

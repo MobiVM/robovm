@@ -3573,7 +3573,8 @@ public class ConcurrentSkipListMap<K,V> extends AbstractMap<K,V>
                 return Map.Entry.comparingByKey(comparator);
             }
             else {
-                return (Comparator<Map.Entry<K,V>> & Serializable) (e1, e2) -> {
+                // RoboVM note: TODO: FIXME: commented out Serializable due to lack java.lang.invoke.SerializedLambda
+                return (Comparator<Map.Entry<K,V>> /* & Serializable */) (e1, e2) -> {
                     @SuppressWarnings("unchecked")
                     Comparable<? super K> k1 = (Comparable<? super K>) e1.getKey();
                     return k1.compareTo(e2.getKey());

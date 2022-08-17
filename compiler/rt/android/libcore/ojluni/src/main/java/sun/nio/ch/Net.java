@@ -491,11 +491,15 @@ public class Net {
         return new InetSocketAddress(localInetAddress(fd), localPort(fd));
     }
 
-    private static native int remotePort(FileDescriptor fd)
-        throws IOException;
+    // RoboVM note: its native on Android, but native part is missing
+    private static int remotePort(FileDescriptor fd) {
+        throw new UnsupportedOperationException();
+    }
 
-    private static native InetAddress remoteInetAddress(FileDescriptor fd)
-        throws IOException;
+    // RoboVM note: its native on Android, but native part is missing
+    private static InetAddress remoteInetAddress(FileDescriptor fd) {
+        throw new UnsupportedOperationException();
+    }
 
     static InetSocketAddress remoteAddress(FileDescriptor fd)
         throws IOException
