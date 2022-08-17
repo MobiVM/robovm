@@ -29,6 +29,7 @@
 #include <pwd.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/capability.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
@@ -58,8 +59,7 @@
 #include <android-base/macros.h>
 #include <android-base/strings.h>
 #include <log/log.h>
-#include <nativehelper/JNIHelp.h>
-#include <nativehelper/ScopedBytes.h>
+#include <nativehelper/JNIPlatformHelp.h>
 #include <nativehelper/ScopedLocalRef.h>
 #include <nativehelper/ScopedPrimitiveArray.h>
 #include <nativehelper/ScopedUtfChars.h>
@@ -72,6 +72,10 @@
 #include "JniException.h"
 #include "NetworkUtilities.h"
 #include "Portability.h"
+#include "ScopedBytes.h"
+#include "ScopedByteBufferArray.h"
+#include "ScopedMsghdr.h"
+
 
 #ifndef __unused
 #define __unused __attribute__((__unused__))
@@ -256,12 +260,7 @@ static void throwException(JNIEnv* env, jclass exceptionClass, jmethodID ctor3, 
 
 static void throwErrnoException(JNIEnv* env, const char* functionName) {
     int error = errno;
-    jclass errnoExceptionClass = JniConstants::GetErrnoExceptionClass(env);
-    static jmethodID ctor3 = env->GetMethodID(errnoExceptionClass,
-            "<init>", "(Ljava/lang/String;ILjava/lang/Throwable;)V");
-    static jmethodID ctor2 = env->GetMethodID(errnoExceptionClass,
-            "<init>", "(Ljava/lang/String;I)V");
-    throwException(env, errnoExceptionClass, ctor3, ctor2, functionName, error);
+    jniThrowErrnoException(env, functionName, error);
 }
 
 static void throwGaiException(JNIEnv* env, const char* functionName, int error) {
@@ -349,6 +348,18 @@ private:
     std::vector<ScopedT*> mScopedBuffers;
 };
 
+static jobject createFileDescriptorIfOpen(JNIEnv* env, int fd) {
+    if (fd == -1) {
+        return NULL;
+    }
+    jobject jifd = jniCreateFileDescriptor(env, fd);
+    if (jifd == NULL) {
+        // OOME prevented allocation of j.i.FileDescriptor instance, close fd to avoid leak.
+        close(fd);
+    }
+    return jifd;
+}
+
 /**
  * Returns a jbyteArray containing the sockaddr_un.sun_path from ss. As per unix(7) sa_len should be
  * the length of ss as returned by getsockname(2), getpeername(2), or accept(2).
@@ -418,7 +429,7 @@ static jobject makeSocketAddress(JNIEnv* env, const sockaddr_storage& ss, const 
     } else if (ss.ss_family == AF_PACKET) {
         const struct sockaddr_ll* sll = reinterpret_cast<const struct sockaddr_ll*>(&ss);
         static jmethodID ctor = env->GetMethodID(JniConstants::GetPacketSocketAddressClass(env),
-                "<init>", "(SISB[B)V");
+                "<init>", "(IIII[B)V");
         if (ctor == NULL) {
             return NULL;
         }
@@ -429,10 +440,10 @@ static jobject makeSocketAddress(JNIEnv* env, const sockaddr_storage& ss, const 
         env->SetByteArrayRegion(byteArray.get(), 0, sll->sll_halen,
                 reinterpret_cast<const jbyte*>(sll->sll_addr));
         jobject packetSocketAddress = env->NewObject(JniConstants::GetPacketSocketAddressClass(env), ctor,
-                static_cast<jshort>(ntohs(sll->sll_protocol)),
+                static_cast<jint>(ntohs(sll->sll_protocol)),
                 static_cast<jint>(sll->sll_ifindex),
-                static_cast<jshort>(sll->sll_hatype),
-                static_cast<jbyte>(sll->sll_pkttype),
+                static_cast<jint>(sll->sll_hatype),
+                static_cast<jint>(sll->sll_pkttype),
                 byteArray.get());
         return packetSocketAddress;
     }
@@ -604,6 +615,30 @@ static bool fillInetSocketAddress(JNIEnv* env, jobject javaInetSocketAddress,
     return true;
 }
 
+#if __has_include(<linux/vm_sockets.h>)
+static bool fillVmSocketAddress(JNIEnv* env, jobject javaVmSocketAddress,
+        const sockaddr_storage& ss) {
+    static jfieldID portFid = env->GetFieldID(
+            JniConstants::GetVmSocketAddressClass(env), "svmPort", "I");
+    static jfieldID cidFid = env->GetFieldID(
+            JniConstants::GetVmSocketAddressClass(env), "svmCid", "I");
+
+    if (javaVmSocketAddress == NULL) {
+        return true;
+    }
+
+    if (ss.ss_family != AF_VSOCK) {
+        return false;
+    }
+
+    const sockaddr_vm& svm = reinterpret_cast<const sockaddr_vm&>(ss);
+    env->SetIntField(javaVmSocketAddress, portFid, svm.svm_port);
+    env->SetIntField(javaVmSocketAddress, cidFid, svm.svm_cid);
+
+    return true;
+}
+#endif
+
 static bool fillSocketAddress(JNIEnv* env, jobject javaSocketAddress, const sockaddr_storage& ss,
         const socklen_t& sa_len) {
     if (javaSocketAddress == NULL) {
@@ -614,6 +649,10 @@ static bool fillSocketAddress(JNIEnv* env, jobject javaSocketAddress, const sock
         return fillInetSocketAddress(env, javaSocketAddress, ss);
     } else if (env->IsInstanceOf(javaSocketAddress, JniConstants::GetUnixSocketAddressClass(env))) {
         return fillUnixSocketAddress(env, javaSocketAddress, ss, sa_len);
+#if __has_include(<linux/vm_sockets.h>)
+    } else if (env->IsInstanceOf(javaSocketAddress, JniConstants::GetVmSocketAddressClass(env))) {
+        return fillVmSocketAddress(env, javaSocketAddress, ss);
+#endif
     }
     jniThrowException(env, "java/lang/UnsupportedOperationException",
             "unsupported SocketAddress subclass");
@@ -686,22 +725,22 @@ static bool javaUnixSocketAddressToSockaddr(
 static bool javaPacketSocketAddressToSockaddr(
         JNIEnv* env, jobject javaSocketAddress, sockaddr_storage& ss, socklen_t& sa_len) {
     static jfieldID protocolFid = env->GetFieldID(
-            JniConstants::GetPacketSocketAddressClass(env), "sll_protocol", "S");
+            JniConstants::GetPacketSocketAddressClass(env), "sll_protocol", "I");
     static jfieldID ifindexFid = env->GetFieldID(
             JniConstants::GetPacketSocketAddressClass(env), "sll_ifindex", "I");
     static jfieldID hatypeFid = env->GetFieldID(
-            JniConstants::GetPacketSocketAddressClass(env), "sll_hatype", "S");
+            JniConstants::GetPacketSocketAddressClass(env), "sll_hatype", "I");
     static jfieldID pkttypeFid = env->GetFieldID(
-            JniConstants::GetPacketSocketAddressClass(env), "sll_pkttype", "B");
+            JniConstants::GetPacketSocketAddressClass(env), "sll_pkttype", "I");
     static jfieldID addrFid = env->GetFieldID(
             JniConstants::GetPacketSocketAddressClass(env), "sll_addr", "[B");
 
     sockaddr_ll *sll = reinterpret_cast<sockaddr_ll *>(&ss);
     sll->sll_family = AF_PACKET;
-    sll->sll_protocol = htons(env->GetShortField(javaSocketAddress, protocolFid));
+    sll->sll_protocol = htons(env->GetIntField(javaSocketAddress, protocolFid));
     sll->sll_ifindex = env->GetIntField(javaSocketAddress, ifindexFid);
-    sll->sll_hatype = env->GetShortField(javaSocketAddress, hatypeFid);
-    sll->sll_pkttype = env->GetByteField(javaSocketAddress, pkttypeFid);
+    sll->sll_hatype = env->GetIntField(javaSocketAddress, hatypeFid);
+    sll->sll_pkttype = env->GetIntField(javaSocketAddress, pkttypeFid);
 
     jbyteArray sllAddr = (jbyteArray) env->GetObjectField(javaSocketAddress, addrFid);
     if (sllAddr == NULL) {
@@ -719,6 +758,24 @@ static bool javaPacketSocketAddressToSockaddr(
     return true;
 }
 
+#if __has_include(<linux/vm_sockets.h>)
+static bool javaVmSocketAddressToSockaddr(
+        JNIEnv* env, jobject javaSocketAddress, sockaddr_storage& ss, socklen_t& sa_len) {
+    static jfieldID portFid = env->GetFieldID(
+            JniConstants::GetVmSocketAddressClass(env), "svmPort", "I");
+    static jfieldID cidFid = env->GetFieldID(
+            JniConstants::GetVmSocketAddressClass(env), "svmCid", "I");
+
+    sockaddr_vm& svm = reinterpret_cast<sockaddr_vm&>(ss);
+    svm.svm_family = AF_VSOCK;
+    svm.svm_port = env->GetIntField(javaSocketAddress, portFid);
+    svm.svm_cid = env->GetIntField(javaSocketAddress, cidFid);
+
+    sa_len = sizeof(svm);
+    return true;
+}
+#endif
+
 static bool javaSocketAddressToSockaddr(
         JNIEnv* env, jobject javaSocketAddress, sockaddr_storage& ss, socklen_t& sa_len) {
     if (javaSocketAddress == NULL) {
@@ -734,6 +791,11 @@ static bool javaSocketAddressToSockaddr(
         return javaPacketSocketAddressToSockaddr(env, javaSocketAddress, ss, sa_len);
     } else if (env->IsInstanceOf(javaSocketAddress, JniConstants::GetUnixSocketAddressClass(env))) {
         return javaUnixSocketAddressToSockaddr(env, javaSocketAddress, ss, sa_len);
+#if __has_include(<linux/vm_sockets.h>)
+    } else if (env->IsInstanceOf(javaSocketAddress,
+                                 JniConstants::GetVmSocketAddressClass(env))) {
+        return javaVmSocketAddressToSockaddr(env, javaSocketAddress, ss, sa_len);
+#endif
     }
     jniThrowException(env, "java/lang/UnsupportedOperationException",
             "unsupported SocketAddress subclass");
@@ -965,7 +1027,7 @@ static jobject Linux_accept(JNIEnv* env, jobject, jobject javaFd, jobject javaSo
         close(clientFd);
         return NULL;
     }
-    return (clientFd != -1) ? jniCreateFileDescriptor(env, clientFd) : NULL;
+    return createFileDescriptorIfOpen(env, clientFd);
 }
 
 static jboolean Linux_access(JNIEnv* env, jobject, jstring javaPath, jint mode) {
@@ -1111,7 +1173,9 @@ static void Linux_close(JNIEnv* env, jobject, jobject javaFd) {
     jniSetFileDescriptorOfFD(env, javaFd, -1);
 
 #if defined(__BIONIC__)
-    jlong ownerId = jniGetOwnerIdFromFileDescriptor(env, javaFd);
+    static jmethodID getOwnerId = env->GetMethodID(JniConstants::GetFileDescriptorClass(env),
+                                                   "getOwnerId$", "()J");
+    jlong ownerId = env->CallLongMethod(javaFd, getOwnerId);
 
     // Close with bionic's fd ownership tracking (which returns 0 in the case of EINTR).
     throwIfMinusOne(env, "close", android_fdsan_close_with_tag(fd, ownerId));
@@ -1193,13 +1257,13 @@ static void Linux_connectSocketAddress(
 static jobject Linux_dup(JNIEnv* env, jobject, jobject javaOldFd) {
     int oldFd = jniGetFDFromFileDescriptor(env, javaOldFd);
     int newFd = throwIfMinusOne(env, "dup", TEMP_FAILURE_RETRY(dup(oldFd)));
-    return (newFd != -1) ? jniCreateFileDescriptor(env, newFd) : NULL;
+    return createFileDescriptorIfOpen(env, newFd);
 }
 
 static jobject Linux_dup2(JNIEnv* env, jobject, jobject javaOldFd, jint newFd) {
     int oldFd = jniGetFDFromFileDescriptor(env, javaOldFd);
     int fd = throwIfMinusOne(env, "dup2", TEMP_FAILURE_RETRY(dup2(oldFd, newFd)));
-    return (fd != -1) ? jniCreateFileDescriptor(env, fd) : NULL;
+    return createFileDescriptorIfOpen(env, fd);
 }
 
 static jobjectArray Linux_environ(JNIEnv* env, jobject) {
@@ -1240,32 +1304,6 @@ static void Linux_fchmod(JNIEnv* env, jobject, jobject javaFd, jint mode) {
 static void Linux_fchown(JNIEnv* env, jobject, jobject javaFd, jint uid, jint gid) {
     int fd = jniGetFDFromFileDescriptor(env, javaFd);
     throwIfMinusOne(env, "fchown", TEMP_FAILURE_RETRY(fchown(fd, uid, gid)));
-}
-
-static jint Linux_fcntlFlock(JNIEnv* env, jobject, jobject javaFd, jint cmd, jobject javaFlock) {
-    static jfieldID typeFid = env->GetFieldID(JniConstants::GetStructFlockClass(env), "l_type", "S");
-    static jfieldID whenceFid = env->GetFieldID(JniConstants::GetStructFlockClass(env), "l_whence", "S");
-    static jfieldID startFid = env->GetFieldID(JniConstants::GetStructFlockClass(env), "l_start", "J");
-    static jfieldID lenFid = env->GetFieldID(JniConstants::GetStructFlockClass(env), "l_len", "J");
-    static jfieldID pidFid = env->GetFieldID(JniConstants::GetStructFlockClass(env), "l_pid", "I");
-
-    struct flock64 lock;
-    memset(&lock, 0, sizeof(lock));
-    lock.l_type = env->GetShortField(javaFlock, typeFid);
-    lock.l_whence = env->GetShortField(javaFlock, whenceFid);
-    lock.l_start = env->GetLongField(javaFlock, startFid);
-    lock.l_len = env->GetLongField(javaFlock, lenFid);
-    lock.l_pid = env->GetIntField(javaFlock, pidFid);
-
-    int rc = IO_FAILURE_RETRY(env, int, fcntl, javaFd, cmd, &lock);
-    if (rc != -1) {
-        env->SetShortField(javaFlock, typeFid, lock.l_type);
-        env->SetShortField(javaFlock, whenceFid, lock.l_whence);
-        env->SetLongField(javaFlock, startFid, lock.l_start);
-        env->SetLongField(javaFlock, lenFid, lock.l_len);
-        env->SetIntField(javaFlock, pidFid, lock.l_pid);
-    }
-    return rc;
 }
 
 static jint Linux_fcntlInt(JNIEnv* env, jobject, jobject javaFd, jint cmd, jint arg) {
@@ -1763,16 +1801,12 @@ static jobject Linux_ioctlInetAddress(JNIEnv* env, jobject, jobject javaFd, jint
     return sockaddrToInetAddress(env, reinterpret_cast<sockaddr_storage&>(req.ifr_addr), NULL);
 }
 
-static jint Linux_ioctlInt(JNIEnv* env, jobject, jobject javaFd, jint cmd, jobject javaArg) {
-    // This is complicated because ioctls may return their result by updating their argument
-    // or via their return value, so we need to support both.
+static jint Linux_ioctlInt(JNIEnv* env, jobject, jobject javaFd, jint cmd) {
+    // Result is being stored in arg, thus simply returning it
     int fd = jniGetFDFromFileDescriptor(env, javaFd);
-    jint arg = env->GetIntField(javaArg, int32RefValueFid);
-    int rc = throwIfMinusOne(env, "ioctl", TEMP_FAILURE_RETRY(ioctl(fd, cmd, &arg)));
-    if (!env->ExceptionCheck()) {
-        env->SetIntField(javaArg, int32RefValueFid, arg);
-    }
-    return rc;
+    jint arg = 0;
+    throwIfMinusOne(env, "ioctl", TEMP_FAILURE_RETRY(ioctl(fd, cmd, &arg)));
+    return arg;
 }
 
 static jint Linux_ioctlMTU(JNIEnv* env, jobject, jobject javaFd, jstring javaInterfaceName) {
@@ -1863,6 +1897,21 @@ static jobject Linux_lstat(JNIEnv* env, jobject, jstring javaPath) {
     return doStat(env, javaPath, true);
 }
 
+static jobject Linux_memfd_create(JNIEnv* env, jobject, jstring javaName, jint flags) {
+#if defined(__BIONIC__)
+    ScopedUtfChars name(env, javaName);
+    if (name.c_str() == NULL) {
+        return NULL;
+    }
+
+    int fd = throwIfMinusOne(env, "memfd_create", memfd_create(name.c_str(), flags));
+    return createFileDescriptorIfOpen(env, fd);
+#else
+    UNUSED(env, javaName, flags);
+    return NULL;
+#endif
+}
+
 static void Linux_mincore(JNIEnv* env, jobject, jlong address, jlong byteCount, jbyteArray javaVector) {
     ScopedByteArrayRW vector(env, javaVector);
     if (vector.get() == NULL) {
@@ -1925,7 +1974,7 @@ static jobject Linux_open(JNIEnv* env, jobject, jstring javaPath, jint flags, ji
         return NULL;
     }
     int fd = throwIfMinusOne(env, "open", TEMP_FAILURE_RETRY(open(path.c_str(), flags, mode)));
-    return fd != -1 ? jniCreateFileDescriptor(env, fd) : NULL;
+    return createFileDescriptorIfOpen(env, fd);
 }
 
 static jobjectArray Linux_pipe2(JNIEnv* env, jobject, jint flags __unused) {
@@ -1940,11 +1989,10 @@ static jobjectArray Linux_pipe2(JNIEnv* env, jobject, jint flags __unused) {
     }
     for (int i = 0; i < 2; ++i) {
         ScopedLocalRef<jobject> fd(env, jniCreateFileDescriptor(env, fds[i]));
-        if (fd.get() == NULL) {
-            return NULL;
-        }
         env->SetObjectArrayElement(result, i, fd.get());
-        if (env->ExceptionCheck()) {
+        if (fd.get() == NULL || env->ExceptionCheck()) {
+            close(fds[0]);
+            close(fds[1]);
             return NULL;
         }
     }
@@ -2135,6 +2183,62 @@ static jint Linux_recvfromBytes(JNIEnv* env, jobject, jobject javaFd, jobject ja
     return recvCount;
 }
 
+static jint Linux_recvmsg(JNIEnv* env, jobject, jobject javaFd, jobject structMsghdr, jint flags) {
+    ssize_t rc = -1;
+    ScopedMsghdr scopedMsghdrValue;
+    ScopedByteBufferArray scopedBytesArray(env, true);
+    sockaddr_storage ss = {};
+
+    static jfieldID msgNameFid = env->GetFieldID(JniConstants::GetStructMsghdrClass(env),
+                                                  "msg_name", "Ljava/net/SocketAddress;");
+    if (!msgNameFid) {
+        return -1;
+    }
+
+    // Initialize msghdr with everything from StructCMsghdr except msg_name.
+    if (msghdrJavaToC(env, structMsghdr, scopedMsghdrValue.getObject(),
+                           scopedBytesArray) == false) {
+        return -1;
+    }
+
+    jobject javaSocketAddress = env->GetObjectField(structMsghdr, msgNameFid);
+    if (javaSocketAddress) {
+        // client want to get source address, then set msg_name and msg_namelen.
+        scopedMsghdrValue.setMsgNameAndLen(reinterpret_cast<sockaddr*>(&ss),
+                                              sizeof(sockaddr_in6));
+    }
+
+    rc = NET_FAILURE_RETRY(env, ssize_t, recvmsg, javaFd, \
+                               &scopedMsghdrValue.getObject(), flags);
+
+    if (rc < 0) {
+        return rc;
+    }
+
+    if (javaSocketAddress) {
+        sockaddr_storage* interfaceAddr = NULL;
+        if (!scopedMsghdrValue.isNameLenValid()) {
+            jniThrowException(env, "java/net/SocketException",
+                                   "unknown socket address type");
+                return -1;
+        }
+
+        interfaceAddr = reinterpret_cast<sockaddr_storage*>(scopedMsghdrValue.getObject().msg_name);
+        if (fillSocketAddress(env, javaSocketAddress, *interfaceAddr,
+                scopedMsghdrValue.getObject().msg_namelen) == false) {
+            return -1;
+        }
+    }
+
+    if (msghdrCToJava(env, structMsghdr, scopedMsghdrValue.getObject(),
+                            scopedBytesArray) == false) {
+        return -1;
+    }
+
+    return rc;
+}
+
+
 static void Linux_remove(JNIEnv* env, jobject, jstring javaPath) {
     ScopedUtfChars path(env, javaPath);
     if (path.c_str() == NULL) {
@@ -2189,6 +2293,66 @@ static jlong Linux_sendfile(JNIEnv* env, jobject, jobject javaOutFd, jobject jav
         env->SetLongField(javaOffset, int64RefValueFid, offset);
     }
     return result;
+}
+
+static jint Linux_sendmsg(JNIEnv* env, jobject, jobject javaFd, jobject structMsghdr, jint flags) {
+
+    ssize_t rc = -1;
+    ScopedMsghdr scopedMsghdrValue = {};
+    ScopedByteBufferArray scopedBytesArray(env, false);
+    static jfieldID msgNameFid = env->GetFieldID(JniConstants::GetStructMsghdrClass(env),
+                                                  "msg_name",
+                                                  "Ljava/net/SocketAddress;");
+    if (!msgNameFid) {
+        return -1;
+    }
+
+    jobject sockAddrObj = env->GetObjectField(structMsghdr, msgNameFid);
+
+    // Initialize structMsghdr with everything from C msghdr except msg_name.
+    if (msghdrJavaToC(env, structMsghdr, scopedMsghdrValue.getObject(),
+                           scopedBytesArray) == false) {
+        return -1;
+    }
+
+    sockaddr_storage ss = {};
+    socklen_t sa_len = 0;
+    if (sockAddrObj && javaSocketAddressToSockaddr(env, sockAddrObj, ss, sa_len) == false) {
+        return -1;
+    }
+
+    sockaddr* _sa = sa_len ? reinterpret_cast<sockaddr*>(&ss) : NULL;
+    scopedMsghdrValue.setMsgNameAndLen(_sa, sa_len);
+    rc  = NET_FAILURE_RETRY(env, ssize_t, sendmsg, javaFd, \
+                                 &(scopedMsghdrValue.getObject()), flags);
+
+    if (sockAddrObj &&
+        !env->IsInstanceOf(sockAddrObj, JniConstants::GetInetSocketAddressClass(env))) {
+        // non InetSockAddress case, return now;
+        return rc;
+    }
+
+    // InetSocket and IPv6 didn't work, fallback to IPv4.
+    if (rc  == -1 && errno == EAFNOSUPPORT && sa_len && isIPv4MappedAddress(_sa)) {
+        env->ExceptionClear();
+
+        jobject javaInetAddress;
+        jint port = 0;
+        javaInetSocketAddressToInetAddressAndPort(env, sockAddrObj, javaInetAddress, port);
+
+        // Get IPv4 sockaddr.
+        if (!inetAddressToSockaddrVerbatim(env, javaInetAddress, port, ss, sa_len)) {
+            return rc;
+        }
+
+        // Use IPv4 msghdr.msg_name.
+        _sa = sa_len ? reinterpret_cast<sockaddr*>(&ss) : NULL;
+        scopedMsghdrValue.setMsgNameAndLen(_sa, sa_len);
+        rc = NET_FAILURE_RETRY(env, ssize_t, sendmsg, javaFd, \
+                                    &(scopedMsghdrValue.getObject()), flags);
+    }
+
+    return rc;
 }
 
 static jint Linux_sendtoBytes(JNIEnv* env, jobject, jobject javaFd, jobject javaBytes, jint byteOffset, jint byteCount, jint flags, jobject javaInetAddress, jint port) {
@@ -2397,7 +2561,7 @@ static jobject Linux_socket(JNIEnv* env, jobject, jint domain, jint type, jint p
         protocol = htons(protocol);  // Packet sockets specify the protocol in host byte order.
     }
     int fd = throwIfMinusOne(env, "socket", TEMP_FAILURE_RETRY(socket(domain, type, protocol)));
-    return fd != -1 ? jniCreateFileDescriptor(env, fd) : NULL;
+    return createFileDescriptorIfOpen(env, fd);
 }
 
 static void Linux_socketpair(JNIEnv* env, jobject, jint domain, jint type, jint protocol, jobject javaFd1, jobject javaFd2) {
@@ -2481,7 +2645,7 @@ static jobject Linux_statvfs(JNIEnv* env, jobject, jstring javaPath) {
 
 static jstring Linux_strerror(JNIEnv* env, jobject, jint errnum) {
     char buffer[BUFSIZ];
-    const char* message = jniStrError(errnum, buffer, sizeof(buffer));
+    const char* message = strerror_r(errnum, buffer, sizeof(buffer));
     return env->NewStringUTF(message);
 }
 
@@ -2603,7 +2767,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Linux, execve, "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V"),
     NATIVE_METHOD(Linux, fchmod, "(Ljava/io/FileDescriptor;I)V"),
     NATIVE_METHOD(Linux, fchown, "(Ljava/io/FileDescriptor;II)V"),
-    NATIVE_METHOD(Linux, fcntlFlock, "(Ljava/io/FileDescriptor;ILandroid/system/StructFlock;)I"),
     NATIVE_METHOD(Linux, fcntlInt, "(Ljava/io/FileDescriptor;II)I"),
     NATIVE_METHOD(Linux, fcntlVoid, "(Ljava/io/FileDescriptor;I)I"),
     NATIVE_METHOD(Linux, fdatasync, "(Ljava/io/FileDescriptor;)V"),
@@ -2640,7 +2803,7 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Linux, inet_pton, "(ILjava/lang/String;)Ljava/net/InetAddress;"),
     NATIVE_METHOD(Linux, ioctlFlags, "(Ljava/io/FileDescriptor;Ljava/lang/String;)I"),
     NATIVE_METHOD(Linux, ioctlInetAddress, "(Ljava/io/FileDescriptor;ILjava/lang/String;)Ljava/net/InetAddress;"),
-    NATIVE_METHOD(Linux, ioctlInt, "(Ljava/io/FileDescriptor;ILandroid/system/Int32Ref;)I"),
+    NATIVE_METHOD(Linux, ioctlInt, "(Ljava/io/FileDescriptor;I)I"),
     NATIVE_METHOD(Linux, ioctlMTU, "(Ljava/io/FileDescriptor;Ljava/lang/String;)I"),
     NATIVE_METHOD(Linux, isatty, "(Ljava/io/FileDescriptor;)Z"),
     NATIVE_METHOD(Linux, kill, "(II)V"),
@@ -2650,6 +2813,7 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Linux, listxattr, "(Ljava/lang/String;)[Ljava/lang/String;"),
     NATIVE_METHOD(Linux, lseek, "(Ljava/io/FileDescriptor;JI)J"),
     NATIVE_METHOD(Linux, lstat, "(Ljava/lang/String;)Landroid/system/StructStat;"),
+    NATIVE_METHOD(Linux, memfd_create, "(Ljava/lang/String;I)Ljava/io/FileDescriptor;"),
     NATIVE_METHOD(Linux, mincore, "(JJ[B)V"),
     NATIVE_METHOD(Linux, mkdir, "(Ljava/lang/String;I)V"),
     NATIVE_METHOD(Linux, mkfifo, "(Ljava/lang/String;I)V"),
@@ -2670,10 +2834,12 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Linux, realpath, "(Ljava/lang/String;)Ljava/lang/String;"),
     NATIVE_METHOD(Linux, readv, "(Ljava/io/FileDescriptor;[Ljava/lang/Object;[I[I)I"),
     NATIVE_METHOD(Linux, recvfromBytes, "(Ljava/io/FileDescriptor;Ljava/lang/Object;IIILjava/net/InetSocketAddress;)I"),
+    NATIVE_METHOD(Linux, recvmsg, "(Ljava/io/FileDescriptor;Landroid/system/StructMsghdr;I)I"),
     NATIVE_METHOD(Linux, remove, "(Ljava/lang/String;)V"),
     NATIVE_METHOD(Linux, removexattr, "(Ljava/lang/String;Ljava/lang/String;)V"),
     NATIVE_METHOD(Linux, rename, "(Ljava/lang/String;Ljava/lang/String;)V"),
     NATIVE_METHOD(Linux, sendfile, "(Ljava/io/FileDescriptor;Ljava/io/FileDescriptor;Landroid/system/Int64Ref;J)J"),
+    NATIVE_METHOD(Linux, sendmsg, "(Ljava/io/FileDescriptor;Landroid/system/StructMsghdr;I)I"),
     NATIVE_METHOD(Linux, sendtoBytes, "(Ljava/io/FileDescriptor;Ljava/lang/Object;IIILjava/net/InetAddress;I)I"),
     NATIVE_METHOD_OVERLOAD(Linux, sendtoBytes, "(Ljava/io/FileDescriptor;Ljava/lang/Object;IIILjava/net/SocketAddress;)I", SocketAddress),
     NATIVE_METHOD(Linux, setegid, "(I)V"),

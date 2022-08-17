@@ -47,6 +47,7 @@ import static libcore.io.IoBridge.JAVA_MCAST_JOIN_GROUP;
 import static libcore.io.IoBridge.JAVA_MCAST_LEAVE_GROUP;
 import static sun.net.ExtendedOptionsImpl.*;
 
+// Android-changed: Rewritten to use android.system POSIX calls and assume AF_INET6.
 /*
  * On Unix systems we simply delegate to native methods.
  *

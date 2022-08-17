@@ -55,7 +55,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
     protected InetAddress connectedAddress = null;
     private int connectedPort = -1;
 
-    // Android-added: CloseGuard
+    // Android-added: CloseGuard.
     private final CloseGuard guard = CloseGuard.get();
 
     private static final String os = AccessController.doPrivileged(
@@ -67,7 +67,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
      */
     private final static boolean connectDisabled = os.contains("OS X");
 
-    // BEGIN Android-removed: Android doesn't need to load native net library
+    // BEGIN Android-removed: Android doesn't need to load native net library.
     /**
      * Load net library into runtime.
      *
@@ -81,7 +81,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
             });
     }
     */
-    // END Android-removed: Android doesn't need to load native net library
+    // END Android-removed: Android doesn't need to load native net library.
 
     /**
      * Creates a datagram socket
@@ -97,7 +97,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
             throw ioe;
         }
 
-        // Android-added: CloseGuard/fdsan
+        // Android-added: CloseGuard/fdsan.
         if (fd != null && fd.valid()) {
             guard.open("close");
             IoUtils.setFdOwner(fd, this);
@@ -130,7 +130,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
      * @param port the remote port number
      */
     protected void connect(InetAddress address, int port) throws SocketException {
-        // Android-added: BlockGuard
+        // Android-added: BlockGuard.
         BlockGuard.getThreadPolicy().onNetwork();
         connect0(address, port);
         connectedAddress = address;
@@ -248,7 +248,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
      * Close the socket.
      */
     protected void close() {
-        // Android-added: CloseGuard
+        // Android-added: CloseGuard.
         guard.close();
 
         if (fd != null) {
@@ -263,7 +263,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
     }
 
     protected void finalize() {
-        // Android-added: CloseGuard
+        // Android-added: CloseGuard.
         if (guard != null) {
             guard.warnIfOpen();
         }
@@ -375,7 +375,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
             case SO_REUSEADDR:
             case SO_BROADCAST:
                 result = socketGetOption(optID);
-                // Android-added: Added for app compat reason. See methodgetNIFirstAddress
+                // Android-added: Added for app compat reason. See methodgetNIFirstAddress.
                 if (optID == IP_MULTICAST_IF) {
                     return getNIFirstAddress((Integer)result);
                 }
@@ -422,7 +422,7 @@ abstract class AbstractPlainDatagramSocketImpl extends DatagramSocketImpl
         return connectDisabled;
     }
 
-    // Android-changed: rewritten on the top of IoBridge
+    // Android-changed: rewritten on the top of IoBridge.
     int dataAvailable() {
         try {
             return IoBridge.available(fd);

@@ -12,9 +12,10 @@
 
 package org.w3c.dom.traversal;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Node;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * <code>NodeIterators</code> are used to step through a set of nodes, e.g.

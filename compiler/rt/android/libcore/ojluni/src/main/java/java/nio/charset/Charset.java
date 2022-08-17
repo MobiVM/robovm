@@ -26,13 +26,12 @@
 
 package java.nio.charset;
 
+import com.android.icu.charset.CharsetFactory;
 import java.io.UnsupportedEncodingException;
-import libcore.icu.NativeConverter;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.spi.CharsetProvider;
 import java.security.AccessController;
-import java.security.AccessControlException;
 import java.security.PrivilegedAction;
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -52,6 +51,7 @@ import sun.nio.cs.ThreadLocalCoders;
 import sun.security.action.GetPropertyAction;
 
 
+// Android-changed: Docs to say UTF-8 is always the platform default charset.
 /**
  * A named mapping between sequences of sixteen-bit Unicode <a
  * href="../../lang/Character.html#unicode">code units</a> and sequences of
@@ -318,8 +318,8 @@ public abstract class Charset
         }
     }
 
-    /* The standard set of charsets */
     // Android-removed: We use ICU's list of standard charsets.
+    /* The standard set of charsets */
     // private static CharsetProvider standardProvider = new StandardCharsets();
 
     // Cache of the most-recently-returned charsets,
@@ -508,7 +508,7 @@ public abstract class Charset
 
         // Android-changed: Drop support for "standard" and "extended"
         // providers.
-        if ((cs = NativeConverter.charsetForName(charsetName))  != null ||
+        if ((cs = CharsetFactory.create(charsetName))  != null ||
             (cs = lookupViaProviders(charsetName))              != null)
         {
             cache(charsetName, cs);
@@ -566,7 +566,7 @@ public abstract class Charset
         throw new UnsupportedCharsetException(charsetName);
     }
 
-
+    // BEGIN Android-added: forNameUEE(String) method.
     /**
      * Equivalent to {@code forName} but only throws {@code UnsupportedEncodingException},
      * which is all pre-nio code claims to throw.
@@ -582,7 +582,7 @@ public abstract class Charset
             throw ex;
         }
     }
-
+    // END Android-added: forNameUEE(String) method.
 
     // Fold charsets from the given iterator into the given map, ignoring
     // charsets whose names already have entries in the map.
@@ -628,13 +628,9 @@ public abstract class Charset
                     TreeMap<String,Charset> m =
                         new TreeMap<String,Charset>(
                             ASCIICaseInsensitiveComparator.CASE_INSENSITIVE_ORDER);
-                    for (String charsetName : NativeConverter.getAvailableCharsetNames()) {
-                        // RoboVM note: Added try-catch to ignore charsets with bad names (e.g. "x-UTF-16,version=1")
-                        try {
-                            Charset charset = NativeConverter.charsetForName(charsetName);
-                            m.put(charset.name(), charset);
-                        } catch (IllegalCharsetNameException ignored) {
-                        }
+                    for (String charsetName : CharsetFactory.getAvailableCharsetNames()) {
+                        Charset charset = CharsetFactory.create(charsetName);
+                        m.put(charset.name(), charset);
                     }
                     // Android-changed: No more "standard" provider.
                     // put(standardProvider.charsets(), m);

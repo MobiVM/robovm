@@ -661,7 +661,7 @@ public interface XmlPullParser {
     int getLineNumber();
 
     /**
-     * Returns the current column number, starting from 0.
+     * Returns the current column number, starting from 1.
      * When the parser does not know the current column number
      * or can not determine it,  -1 is returned (e.g. for WBXML).
      *

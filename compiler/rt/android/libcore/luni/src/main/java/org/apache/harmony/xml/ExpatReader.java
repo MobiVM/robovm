@@ -16,11 +16,6 @@
 
 package org.apache.harmony.xml;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import libcore.io.IoUtils;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;
 import org.xml.sax.EntityResolver;
@@ -31,6 +26,13 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.ext.LexicalHandler;
+
+import android.compat.annotation.UnsupportedAppUsage;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import libcore.io.IoUtils;
 
 /**
  * SAX wrapper around Expat. Interns strings. Does not support validation.

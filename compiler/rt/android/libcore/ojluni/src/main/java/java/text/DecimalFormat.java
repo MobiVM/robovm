@@ -52,8 +52,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import libcore.icu.LocaleData;
-
 import android.icu.math.MathContext;
+
+import com.android.icu.text.CompatibleDecimalFormatFactory;
 
 /**
  * <code>DecimalFormat</code> is a concrete subclass of
@@ -385,8 +386,7 @@ public class DecimalFormat extends NumberFormat {
     // to implement DecimalFormat.
 
     // Android-added: ICU DecimalFormat to delegate to.
-    // TODO(b/68143370): switch back to ICU DecimalFormat once it can reproduce ICU 58 behavior.
-    private transient android.icu.text.DecimalFormat_ICU58_Android icuDecimalFormat;
+    private transient android.icu.text.DecimalFormat icuDecimalFormat;
 
     /**
      * Creates a DecimalFormat using the default pattern and symbols
@@ -488,7 +488,8 @@ public class DecimalFormat extends NumberFormat {
      * {@link #icuDecimalFormat} in the process. This should only be called from constructors.
      */
     private void initPattern(String pattern) {
-        this.icuDecimalFormat =  new android.icu.text.DecimalFormat_ICU58_Android(pattern,
+        // Android-changed: Compatibility mode for j.t.DecimalFormat. http://b/112355520
+        this.icuDecimalFormat = CompatibleDecimalFormatFactory.create(pattern,
                 symbols.getIcuDecimalFormatSymbols());
         updateFieldsFromIcu();
     }
@@ -896,7 +897,7 @@ public class DecimalFormat extends NumberFormat {
         return format(number, result, fieldPosition.getFieldDelegate());
         */
         FieldPosition icuFieldPosition = getIcuFieldPosition(fieldPosition);
-        icuDecimalFormat.format(number, result, fieldPosition);
+        icuDecimalFormat.format(number, result, icuFieldPosition);
         fieldPosition.setBeginIndex(icuFieldPosition.getBeginIndex());
         fieldPosition.setEndIndex(icuFieldPosition.getEndIndex());
         return result;
@@ -965,7 +966,7 @@ public class DecimalFormat extends NumberFormat {
         return format(number, result, fieldPosition.getFieldDelegate(), false);
         */
         FieldPosition icuFieldPosition = getIcuFieldPosition(fieldPosition);
-        icuDecimalFormat.format(number, result, fieldPosition);
+        icuDecimalFormat.format(number, result, icuFieldPosition);
         fieldPosition.setBeginIndex(icuFieldPosition.getBeginIndex());
         fieldPosition.setEndIndex(icuFieldPosition.getEndIndex());
         return result;
@@ -3083,7 +3084,7 @@ public class DecimalFormat extends NumberFormat {
         */
         try {
             DecimalFormat other = (DecimalFormat) super.clone();
-            other.icuDecimalFormat = (android.icu.text.DecimalFormat_ICU58_Android) icuDecimalFormat.clone();
+            other.icuDecimalFormat = (android.icu.text.DecimalFormat) icuDecimalFormat.clone();
             other.symbols = (DecimalFormatSymbols) symbols.clone();
             return other;
         } catch (Exception e) {
@@ -3149,7 +3150,7 @@ public class DecimalFormat extends NumberFormat {
             && compareIcuRoundingIncrement(other.icuDecimalFormat);
     }
 
-    private boolean compareIcuRoundingIncrement(android.icu.text.DecimalFormat_ICU58_Android other) {
+    private boolean compareIcuRoundingIncrement(android.icu.text.DecimalFormat other) {
         BigDecimal increment = this.icuDecimalFormat.getRoundingIncrement();
         if (increment != null) {
             return (other.getRoundingIncrement() != null)

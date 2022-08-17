@@ -16,7 +16,10 @@
 
 package dalvik.system;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.io.FileDescriptor;
 import java.net.DatagramSocket;
 import java.net.Socket;
@@ -27,7 +30,8 @@ import java.net.SocketException;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public abstract class SocketTagger {
 
     private static SocketTagger tagger = new SocketTagger() {
@@ -35,16 +39,27 @@ public abstract class SocketTagger {
         @Override public void untag(FileDescriptor socketDescriptor) throws SocketException {}
     };
 
-    @libcore.api.CorePlatformApi
+    /**
+     *
+     * @hide
+     */
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public SocketTagger() {
     }
 
     /**
-     * Notified when {@code socketDescriptor} is either assigned to the current
+     * Notified when {@code socketDescriptor} is assigned to the current
      * thread. The socket is either newly connected or reused from a connection
      * pool. Implementations of this method should be thread-safe.
+     *
+     * @param socketDescriptor to be assigned to the current thread
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public abstract void tag(FileDescriptor socketDescriptor) throws SocketException;
 
     /**
@@ -54,34 +69,92 @@ public abstract class SocketTagger {
      *
      * <p><strong>Note:</strong> this method will not be invoked when the socket
      * is closed.
+     *
+     * @param socketDescriptor to be released from the current thread to a connection pool
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public abstract void untag(FileDescriptor socketDescriptor) throws SocketException;
 
+    /**
+     * Notified when {@code socket} is assigned to the current
+     * thread. The socket is either newly connected or reused from a connection
+     * pool. Implementations of this method should be thread-safe.
+     *
+     * @param socket to be assigned to the current thread
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
+     */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public final void tag(Socket socket) throws SocketException {
         if (!socket.isClosed()) {
             tag(socket.getFileDescriptor$());
         }
     }
 
+    /**
+     * Notified when {@code socket} is released from the current
+     * thread to a connection pool. Implementations of this method should be
+     * thread-safe.
+     *
+     * <p><strong>Note:</strong> this method will not be invoked when the socket
+     * is closed.
+     *
+     * @param socket           to be released from the current thread
+     *                         to a connection pool
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
+     */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public final void untag(Socket socket) throws SocketException {
         if (!socket.isClosed()) {
             untag(socket.getFileDescriptor$());
         }
     }
 
-    @libcore.api.CorePlatformApi
+    /**
+     * Notified when {@code socket} is assigned to the current thread.
+     * The socket is either newly connected or reused from a connection
+     * pool. Implementations of this method should be thread-safe.
+     *
+     * @param socket           to be assigned to the current thread
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
+     */
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public final void tag(DatagramSocket socket) throws SocketException {
         if (!socket.isClosed()) {
             tag(socket.getFileDescriptor$());
         }
     }
 
-    @libcore.api.CorePlatformApi
+    /**
+     * Notified when {@code socket} is released from the current
+     * thread to a connection pool. Implementations of this method should be
+     * thread-safe.
+     *
+     * <p><strong>Note:</strong> this method will not be invoked when the socket
+     * is closed.
+     *
+     * @param socket           to be released from the current thread
+     *                         to a connection pool
+     * @throws SocketException when {@link SocketException} occurs
+     *
+     * @hide
+     */
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public final void untag(DatagramSocket socket) throws SocketException {
         if (!socket.isClosed()) {
             untag(socket.getFileDescriptor$());
@@ -90,8 +163,13 @@ public abstract class SocketTagger {
 
     /**
      * Sets this process' socket tagger to {@code tagger}.
+     *
+     * @param tagger socket tagger to be assigned to this process
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static synchronized void set(SocketTagger tagger) {
         if (tagger == null) {
             throw new NullPointerException("tagger == null");
@@ -101,9 +179,14 @@ public abstract class SocketTagger {
 
     /**
      * Returns this process socket tagger.
+     *
+     * @return {@link SocketTagger} assigned to this process
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static synchronized SocketTagger get() {
         return tagger;
     }

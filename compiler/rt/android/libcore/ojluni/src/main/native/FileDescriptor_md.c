@@ -63,9 +63,11 @@ FileDescriptor_sync(JNIEnv *env, jobject this) {
 }
 
 JNIEXPORT jboolean JNICALL FileDescriptor_isSocket(JNIEnv *env, jclass ignored, jint fd) {
-    int error;
-    socklen_t error_length = sizeof(error);
-    return TEMP_FAILURE_RETRY(getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &error_length)) == 0;
+    // BEGIN Android-changed: isSocket - do not clear socket error code
+    int domain;
+    socklen_t domain_length = sizeof(domain);
+    return TEMP_FAILURE_RETRY(getsockopt(fd, SOL_SOCKET, SO_DOMAIN, &domain, &domain_length)) == 0;
+    // END Android-changed: isSocket - do not clear socket error code
 }
 
 static JNINativeMethod gMethods[] = {

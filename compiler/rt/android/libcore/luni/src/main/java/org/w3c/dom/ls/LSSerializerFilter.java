@@ -12,8 +12,9 @@
 
 package org.w3c.dom.ls;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.w3c.dom.traversal.NodeFilter;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  *  <code>LSSerializerFilter</code>s provide applications the ability to

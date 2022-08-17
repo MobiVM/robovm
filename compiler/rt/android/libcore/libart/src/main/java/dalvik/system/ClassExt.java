@@ -27,6 +27,28 @@ package dalvik.system;
  */
 public final class ClassExt {
     /**
+     * A Pointer-sized-array of instance jfieldIDs in the same order as the ifields_ array.
+     * The jfieldID is associated with the ArtField at the corresonding index in the ifields_ array.
+     */
+    private Object instanceJfieldIDs;
+
+    /**
+     * A Pointer-sized-array of jmethodIDS in the same order as the methods_
+     * array. The jmethodID is associated with the ArtField at the corresonding
+     * index in the methods_ array.
+     */
+    private Object jmethodIDs;
+
+    /**
+     * If the class has undergone structural redefinition, the now obsolete class object.
+     *
+     * Needed to ensure that the class isn't unloaded before its jit code is. Normally this is
+     * handled by the classloader but since the class is now obsolete it's no longer held live
+     * there and instead we must do so manually. This class should not be used for anything.
+     */
+    private Class<?> obsoleteClass;
+
+    /**
      * An array of all obsolete DexCache objects that are needed for obsolete methods.
      *
      * These entries are associated with the obsolete ArtMethod pointers at the same indexes in the
@@ -63,6 +85,12 @@ public final class ClassExt {
     private Object originalDexFile;
 
     /**
+     * A Pointer-sized-array of static jfieldIDs in the same order as the sfields_ array.
+     * The jfieldID is associated with the ArtField at the corresonding index in the sfields_ array.
+     */
+    private Object staticJfieldIDs;
+
+    /**
      * If class verify fails, we must return same error on subsequent tries. We may store either
      * the class of the error, or an actual instance of Throwable here.
      *
@@ -94,6 +122,7 @@ public final class ClassExt {
      * This field is a logical part of the 'Class' type.
      */
     private int preRedefineClassDefIndex;
+
 
     /**
     * Private constructor.

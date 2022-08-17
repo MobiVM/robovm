@@ -514,7 +514,7 @@ public final class Security {
      * </ul>
      *
      * <p> See the <a href=
-     * "https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html">
+     * "../../../technotes/guides/security/StandardNames.html">
      * Java Cryptography Architecture Standard Algorithm Name Documentation</a>
      * for information about standard cryptographic service names, standard
      * algorithm names and standard attribute names.
@@ -1016,7 +1016,7 @@ public final class Security {
      * an empty Set if there is no provider that supports the
      * specified service or if serviceName is null. For a complete list
      * of Java cryptographic services, please see the
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">Java
+     * <a href="../../../technotes/guides/security/crypto/CryptoSpec.html">Java
      * Cryptography Architecture API Specification &amp; Reference</a>.
      * Note: the returned set is immutable.
      *

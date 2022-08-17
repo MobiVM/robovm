@@ -16,16 +16,14 @@
 
 package libcore.io;
 
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
 import android.system.ErrnoException;
-import android.system.Int32Ref;
 import android.system.StructGroupReq;
 import android.system.StructLinger;
 import android.system.StructPollfd;
 import android.system.StructTimeval;
 
-import libcore.util.ArrayUtils;
-
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,6 +37,7 @@ import java.net.InetSocketAddress;
 import java.net.NetworkInterface;
 import java.net.NoRouteToHostException;
 import java.net.PortUnreachableException;
+import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketException;
 import java.net.SocketOptions;
@@ -47,33 +46,75 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
+import libcore.util.ArrayUtils;
+import libcore.util.NonNull;
+import libcore.util.Nullable;
+
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
 import static android.system.OsConstants.*;
 
 /**
- * Implements java.io/java.net/java.nio semantics in terms of the underlying POSIX system calls.
+ * Collection of utility methods to work with blocking and non-blocking I/O that wrap raw POSIX
+ * system calls, e.g. {@link android.system.Os}. These wrappers are to signal other blocked I/O
+ * threads and avoid boilerplate code of routine error checks when using raw system calls.
+ *
+ * <p>
+ * For example, when using {@link Os#read(FileDescriptor, byte[], int, int)}, return value can
+ * contain:
+ * <ul>
+ *   <li>{@code 0} which means EOF</li>
+ *   <li>{@code N > 0} which means number of bytes read</li>
+ *   <li>{@code -1} which means error, and {@link ErrnoException} is thrown</li>
+ * </ul>
+ *
+ * <p>
+ * {@link ErrnoException} in its turn can be one of:
+ * <ul>
+ *   <li>{@link android.system.OsConstants#EAGAIN} which means the file descriptor refers to a file
+ *       or a socket, which has been marked nonblocking
+ *       ({@link android.system.OsConstants#O_NONBLOCK}), and the read would block</li>
+ *   <li>{@link android.system.OsConstants#EBADF} which means the file descriptor is not a valid
+ *       file descriptor or is not open for reading</li>
+ *   <li>{@link android.system.OsConstants#EFAULT} which means given buffer is outside accessible
+ *       address space</li>
+ *   <li>{@link android.system.OsConstants#EINTR} which means the call was interrupted by a signal
+ *       before any data was read</li>
+ *   <li>{@link android.system.OsConstants#EINVAL} which means the file descriptor is attached to
+ *       an object which is unsuitable for reading; or the file was opened with the
+ *       {@link android.system.OsConstants#O_DIRECT} flag, and either the address specified in
+ *       {@code buffer}, the value specified in {@code count}, or the file {@code offset} is not
+ *       suitably aligned</li>
+ *   <li>{@link android.system.OsConstants#EIO} which means I/O error happened</li>
+ *   <li>{@link android.system.OsConstants#EISDIR} which means the file descriptor refers to a
+ *       directory</li>
+ * </ul>
+ *
+ * All these errors require handling, and this class contains some wrapper methods that handle most
+ * common cases, making usage of system calls more user friendly.
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public final class IoBridge {
 
     private IoBridge() {
     }
 
+    /** @hide */
     public static int available(FileDescriptor fd) throws IOException {
         try {
-            Int32Ref available = new Int32Ref(0);
-            Libcore.os.ioctlInt(fd, FIONREAD, available);
-            if (available.value < 0) {
+            int available = Libcore.os.ioctlInt(fd, FIONREAD);
+            if (available < 0) {
                 // If the fd refers to a regular file, the result is the difference between
                 // the file size and the file position. This may be negative if the position
                 // is past the end of the file. If the fd refers to a special file masquerading
                 // as a regular file, the result may be negative because the special file
                 // may appear to have zero size and yet a previous read call may have
                 // read some amount of data and caused the file position to be advanced.
-                available.value = 0;
+                available = 0;
             }
-            return available.value;
+            return available;
         } catch (ErrnoException errnoException) {
             if (errnoException.errno == ENOTTY) {
                 // The fd is unwilling to opine about its read buffer.
@@ -83,7 +124,7 @@ public final class IoBridge {
         }
     }
 
-
+    /** @hide */
     public static void bind(FileDescriptor fd, InetAddress address, int port) throws SocketException {
         if (address instanceof Inet6Address) {
             Inet6Address inet6Address = (Inet6Address) address;
@@ -117,6 +158,8 @@ public final class IoBridge {
     /**
      * Connects socket 'fd' to 'inetAddress' on 'port', with no timeout. The lack of a timeout
      * means this method won't throw SocketTimeoutException.
+     *
+     * @hide
      */
     public static void connect(FileDescriptor fd, InetAddress inetAddress, int port) throws SocketException {
         try {
@@ -129,6 +172,8 @@ public final class IoBridge {
     /**
      * Connects socket 'fd' to 'inetAddress' on 'port', with a the given 'timeoutMs'.
      * Use timeoutMs == 0 for a blocking connect with no timeout.
+     *
+     * @hide
      */
     public static void connect(FileDescriptor fd, InetAddress inetAddress, int port, int timeoutMs) throws SocketException, SocketTimeoutException {
         try {
@@ -196,6 +241,8 @@ public final class IoBridge {
 
     /**
      * Constructs the message for an exception that the caller is about to throw.
+     *
+     * @hide
      */
     private static String createMessageForException(FileDescriptor fd, InetAddress inetAddress,
             int port, int timeoutMs, Exception causeOrNull) {
@@ -236,18 +283,31 @@ public final class IoBridge {
      * Closes the Unix file descriptor associated with the supplied file descriptor, resets the
      * internal int to -1, and sends a signal to any threads are currently blocking. In order for
      * the signal to be sent the blocked threads must have registered with the
-     * AsynchronousCloseMonitor before they entered the blocking operation. {@code fd} will be
+     * {@link AsynchronousCloseMonitor} before they entered the blocking operation. {@code fd} will be
      * invalid after this call.
      *
      * <p>This method is a no-op if passed a {@code null} or already-closed file descriptor.
+     *
+     * @param fd file descriptor to be closed
+     * @throws IOException if underlying system call fails with {@link ErrnoException}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static void closeAndSignalBlockedThreads(FileDescriptor fd) throws IOException {
-        if (fd == null || !fd.valid()) {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static void closeAndSignalBlockedThreads(@NonNull FileDescriptor fd) throws IOException {
+        if (fd == null) {
             return;
         }
-        // fd is invalid after we call release.
+
+        // fd is invalid after we call release$.
+        // If multiple threads reach this point simultaneously, release$ is synchronized, so one
+        // of them will receive the old fd, and the rest will get an empty FileDescriptor.
         FileDescriptor oldFd = fd.release$();
+        if (!oldFd.valid()) {
+            return;
+        }
+
         AsynchronousCloseMonitor.signalBlockedThreads(oldFd);
         try {
             Libcore.os.close(oldFd);
@@ -256,6 +316,7 @@ public final class IoBridge {
         }
     }
 
+    /** @hide */
     @UnsupportedAppUsage
     public static boolean isConnected(FileDescriptor fd, InetAddress inetAddress, int port,
             int timeoutMs, int remainingTimeoutMs) throws IOException {
@@ -289,14 +350,19 @@ public final class IoBridge {
     }
 
     // Socket options used by java.net but not exposed in SocketOptions.
+    /** @hide */
     public static final int JAVA_MCAST_JOIN_GROUP = 19;
+    /** @hide */
     public static final int JAVA_MCAST_LEAVE_GROUP = 20;
+    /** @hide */
     public static final int JAVA_IP_MULTICAST_TTL = 17;
+    /** @hide */
     public static final int JAVA_IP_TTL = 25;
 
     /**
      * java.net has its own socket options similar to the underlying Unix ones. We paper over the
      * differences here.
+     * @hide
      */
     public static Object getSocketOption(FileDescriptor fd, int option) throws SocketException {
         try {
@@ -369,6 +435,8 @@ public final class IoBridge {
     /**
      * java.net has its own socket options similar to the underlying Unix ones. We paper over the
      * differences here.
+     *
+     * @hide
      */
     public static void setSocketOption(FileDescriptor fd, int option, Object value) throws SocketException {
         try {
@@ -468,20 +536,31 @@ public final class IoBridge {
     }
 
     /**
-     * java.io only throws FileNotFoundException when opening files, regardless of what actually
-     * went wrong. Additionally, java.io is more restrictive than POSIX when it comes to opening
-     * directories: POSIX says read-only is okay, but java.io doesn't even allow that. We also
-     * have an Android-specific hack to alter the default permissions.
+     * Wrapper for {@link Os#open(String, int, int)} that behaves similar to {@link java.io.File}.
+     * When a {@link java.io.File} is opened and there is an error, it throws
+     * {@link java.io.FileNotFoundException} regardless of what went wrong, when POSIX
+     * {@link Os#open(String, int, int)} throws more grained exceptions of what went wrong.
+     *
+     * <p>Additionally, attempt to open directory using {@link java.io.File} is also error, however
+     * POSIX {@link Os#open(String, int, int)} for read-only directories is not error.
+     *
+     * @see <a href="https://man7.org/linux/man-pages/man2/open.2.html">open(2)</a>.
+     *
+     * @param path  path of the file to be opened
+     * @param flags bitmask of the access, file creation and file status flags
+     * @return {@link FileDescriptor} of an opened file
+     * @throws FileNotFoundException if there was error opening file under {@code path}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static FileDescriptor open(String path, int flags) throws FileNotFoundException {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static @NonNull FileDescriptor open(@NonNull String path, int flags) throws FileNotFoundException {
         FileDescriptor fd = null;
         try {
-            // On Android, we don't want default permissions to allow global access.
-            int mode = ((flags & O_ACCMODE) == O_RDONLY) ? 0 : 0600;
-            fd = Libcore.os.open(path, flags, mode);
+            fd = Libcore.os.open(path, flags, 0666);
             // Posix open(2) fails with EISDIR only if you ask for write permission.
-            // Java disallows reading directories too.
+            // Java disallows reading directories too.f
             if (S_ISDIR(Libcore.os.fstat(fd).st_mode)) {
                 throw new ErrnoException("open", EISDIR);
             }
@@ -500,11 +579,25 @@ public final class IoBridge {
     }
 
     /**
-     * java.io thinks that a read at EOF is an error and should return -1, contrary to traditional
-     * Unix practice where you'd read until you got 0 bytes (and any future read would return -1).
+     * Wrapper for {@link Os#read(FileDescriptor, byte[], int, int)} that behaves similar to
+     * {@link java.io.FileInputStream#read(byte[], int, int)} and
+     * {@link java.io.FileReader#read(char[], int, int)} which interpret reading at {@code EOF} as
+     * error, when POSIX system call returns {@code 0} (and future reads return {@code -1}).
+     *
+     * <p>@see <a href="https://man7.org/linux/man-pages/man2/read.2.html">read(2)</a>.
+     *
+     * @param fd         file descriptor to read from
+     * @param bytes      buffer to put data read from {@code fd}
+     * @param byteOffset offset in {@code bytes} buffer to put read data at
+     * @param byteCount  number of bytes to read from {@code fd}
+     * @return           number of bytes read, if read operation was successful
+     * @throws IOException if underlying system call returned error
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static int read(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws IOException {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static int read(@NonNull FileDescriptor fd, @NonNull byte[] bytes, int byteOffset, int byteCount) throws IOException {
         ArrayUtils.throwsIfOutOfBounds(bytes.length, byteOffset, byteCount);
         if (byteCount == 0) {
             return 0;
@@ -525,11 +618,28 @@ public final class IoBridge {
     }
 
     /**
-     * java.io always writes every byte it's asked to, or fails with an error. (That is, unlike
-     * Unix it never just writes as many bytes as happens to be convenient.)
+     * Wrapper for {@link Os#write(FileDescriptor, byte[], int, int)} that behaves similar to
+     * {@link java.io.FileOutputStream#write(byte[], int, int)} and
+     * {@link java.io.FileWriter#write(char[], int, int)} which always either write all requested
+     * bytes, or fail with error; as opposed to POSIX write, when the number of bytes written may
+     * be less than {@code bytes}. This may happen, for example, if there is insufficient space on
+     * the underlying  physical medium, or the {@code RLIMIT_FSIZE} resource limit is encountered,
+     * or the call was interrupted by a signal handler after having written less than {@code bytes}
+     * bytes.
+     *
+     * <p>@see <a href="https://man7.org/linux/man-pages/man2/write.2.html">write(2)</a>.
+     *
+     * @param fd         file descriptor to write to
+     * @param bytes      buffer containing the data to be written
+     * @param byteOffset offset in {@code bytes} buffer to read written data from
+     * @param byteCount  number of bytes to write to {@code fd}
+     * @throws IOException if underlying system call returned error
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static void write(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount) throws IOException {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static void write(@NonNull FileDescriptor fd,@NonNull  byte[] bytes, int byteOffset, int byteCount) throws IOException {
         ArrayUtils.throwsIfOutOfBounds(bytes.length, byteOffset, byteCount);
         if (byteCount == 0) {
             return;
@@ -545,8 +655,31 @@ public final class IoBridge {
         }
     }
 
-    @libcore.api.CorePlatformApi
-    public static int sendto(FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, int flags, InetAddress inetAddress, int port) throws IOException {
+    /**
+     * Wrapper around {@link Os#sendto(FileDescriptor, byte[], int, int, int, InetAddress, int)}
+     * that allows sending data over both TCP and UDP socket; handles
+     * {@link android.system.OsConstants#EAGAIN} and {@link android.system.OsConstants#ECONNREFUSED}
+     * and behaves similar to and behaves similar to
+     * {@link java.net.DatagramSocket#send(DatagramPacket)} and
+     * {@link Socket#getOutputStream()#write(FileDescriptor, byte[], int, int)}.
+     *
+     * <p>See {@link android.system.OsConstants} for available flags.
+     *
+     * <p>@see <a href="https://man7.org/linux/man-pages/man2/send.2.html">send(2)</a>.
+     *
+     * @param fd          {@link FileDescriptor} of the socket to send data over
+     * @param bytes       byte buffer containing the data to be sent
+     * @param byteOffset  offset in {@code bytes} at which data to be sent starts
+     * @param byteCount   number of bytes to be sent
+     * @param flags       bitwise OR of zero or more of flags, like {@link android.system.OsConstants#MSG_DONTROUTE}
+     * @param inetAddress destination address
+     * @param port        destination port
+     * @return            number of bytes sent on success
+     * @throws IOException if underlying system call returned error
+     *
+     * @hide
+     */
+    public static int sendto(@NonNull FileDescriptor fd, @NonNull byte[] bytes, int byteOffset, int byteCount, int flags, @Nullable InetAddress inetAddress, int port) throws IOException {
         boolean isDatagram = (inetAddress != null);
         if (!isDatagram && byteCount <= 0) {
             return 0;
@@ -560,6 +693,7 @@ public final class IoBridge {
         return result;
     }
 
+    /** @hide */
     public static int sendto(FileDescriptor fd, ByteBuffer buffer, int flags, InetAddress inetAddress, int port) throws IOException {
         boolean isDatagram = (inetAddress != null);
         if (!isDatagram && buffer.remaining() == 0) {
@@ -590,8 +724,32 @@ public final class IoBridge {
         throw errnoException.rethrowAsIOException();
     }
 
-    @libcore.api.CorePlatformApi
-    public static int recvfrom(boolean isRead, FileDescriptor fd, byte[] bytes, int byteOffset, int byteCount, int flags, DatagramPacket packet, boolean isConnected) throws IOException {
+    /**
+     * Wrapper around {@link Os#recvfrom(FileDescriptor, byte[], int, int, int, InetSocketAddress)}
+     * that receives a message from both TCP and UDP socket; handles
+     * {@link android.system.OsConstants#EAGAIN} and {@link android.system.OsConstants#ECONNREFUSED}
+     * and behaves similar to {@link java.net.DatagramSocket#receive(DatagramPacket)} and
+     * {@link Socket#getInputStream()#recvfrom(boolean, FileDescriptor, byte[], int, int, int, DatagramPacket, boolean)}.
+     *
+     * <p>If {@code packet} is not {@code null}, and the underlying protocol provides the source
+     * address of the message, that source address is placed in the {@code packet}.
+     *
+     * @see <a href="https://man7.org/linux/man-pages/man2/recv.2.html">recv(2)</a>.
+     *
+     * @param isRead      {@code true} if some data been read already from {@code fd}
+     * @param fd          socket to receive data from
+     * @param bytes       buffer to put data read from {@code fd}
+     * @param byteOffset  offset in {@code bytes} buffer to put read data at
+     * @param byteCount   number of bytes to read from {@code fd}
+     * @param flags       bitwise OR of zero or more of flags, like {@link android.system.OsConstants#MSG_DONTROUTE}
+     * @param packet      {@link DatagramPacket} to fill with source address
+     * @param isConnected {@code true} if socket {@code fd} is connected
+     * @return            number of bytes read, if read operation was successful
+     * @throws IOException if underlying system call returned error
+     *
+     * @hide
+     */
+    public static int recvfrom(boolean isRead, @NonNull FileDescriptor fd, @NonNull byte[] bytes, int byteOffset, int byteCount, int flags, @Nullable DatagramPacket packet, boolean isConnected) throws IOException {
         int result;
         try {
             InetSocketAddress srcAddress = packet != null ? new InetSocketAddress() : null;
@@ -603,6 +761,7 @@ public final class IoBridge {
         return result;
     }
 
+    /** @hide */
     public static int recvfrom(boolean isRead, FileDescriptor fd, ByteBuffer buffer, int flags, DatagramPacket packet, boolean isConnected) throws IOException {
         int result;
         try {
@@ -651,8 +810,34 @@ public final class IoBridge {
         }
     }
 
-    @libcore.api.CorePlatformApi
-    public static FileDescriptor socket(int domain, int type, int protocol) throws SocketException {
+    /**
+     * Creates an endpoint for communication and returns a file descriptor that refers
+     * to that endpoint.
+     *
+     * <p>The {@code domain} specifies a communication domain; this selects the protocol
+     * family which will be used for communication, e.g. {@link android.system.OsConstants#AF_UNIX}
+     * {@link android.system.OsConstants#AF_INET}.
+     *
+     * <p>The socket has the indicated type, which specifies the communication semantics,
+     * e.g. {@link android.system.OsConstants#SOCK_STREAM} or
+     * {@link android.system.OsConstants#SOCK_DGRAM}.
+     *
+     * <p>The protocol specifies a particular protocol to be used with the
+     * socket. Normally only a single protocol exists to support a
+     * particular socket type within a given protocol family, in which
+     * case protocol can be specified as {@code 0}.
+     *
+     * @see <a href="https://man7.org/linux/man-pages/man2/socket.2.html">socket(2)</a>.
+     *
+     * @param domain   socket domain
+     * @param type     socket type
+     * @param protocol socket protocol
+     * @return {@link FileDescriptor} of an opened socket
+     * @throws SocketException if underlying system call returned error
+     *
+     * @hide
+     */
+    public static @NonNull FileDescriptor socket(int domain, int type, int protocol) throws SocketException {
         FileDescriptor fd;
         try {
             fd = Libcore.os.socket(domain, type, protocol);
@@ -669,6 +854,8 @@ public final class IoBridge {
      *
      * @throws SocketException if poll(2) fails.
      * @throws SocketTimeoutException if the event has not happened before timeout period has passed.
+     *
+     * @hide
      */
     public static void poll(FileDescriptor fd, int events, int timeout)
             throws SocketException, SocketTimeoutException {
@@ -677,7 +864,7 @@ public final class IoBridge {
         pollFds[0].events = (short) events;
 
         try {
-            int ret = Libcore.os.poll(pollFds, timeout);
+            int ret = android.system.Os.poll(pollFds, timeout);
             if (ret == 0) {
                 throw new SocketTimeoutException("Poll timed out");
             }
@@ -687,10 +874,17 @@ public final class IoBridge {
     }
 
     /**
-     * @throws SocketException if fd is not currently bound to an InetSocketAddress
+     * Returns the current address to which the socket {@code fd} is bound.
+     *
+     * @see <a href="https://man7.org/linux/man-pages/man2/getsockname.2.html">getsockname(2)</a>.
+     *
+     * @param fd socket to get the bounded address of
+     * @return current address to which the socket {@code fd} is bound
+     * @throws SocketException if {@code fd} is not currently bound to an {@link InetSocketAddress}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static InetSocketAddress getLocalInetSocketAddress(FileDescriptor fd)
+    public static @NonNull InetSocketAddress getLocalInetSocketAddress(@NonNull FileDescriptor fd)
             throws SocketException {
         try {
             SocketAddress socketAddress = Libcore.os.getsockname(fd);

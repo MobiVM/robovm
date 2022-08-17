@@ -5,7 +5,7 @@
 
 package org.xml.sax;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.io.InputStream;
 import java.io.Reader;
 

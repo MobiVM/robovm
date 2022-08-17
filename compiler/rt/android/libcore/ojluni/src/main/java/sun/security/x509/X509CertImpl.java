@@ -192,7 +192,7 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
         }
     }
 
-    // BEGIN Android-removed: unused code
+    // BEGIN Android-removed: unused code.
     /*
     /**
      * unmarshals an X.509 certificate from an input stream.  If the
@@ -280,7 +280,7 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
         return der;
     }
     */
-    // END Android-removed: unused code
+    // END Android-removed: unused code.
 
     /**
      * Construct an initialized X509 Certificate. The certificate is stored
@@ -310,7 +310,7 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
         }
     }
 
-    // BEGIN Android-added: Ctor to retain original encoded form for APKs parsing
+    // BEGIN Android-added: Ctor to retain original encoded form for APKs parsing.
     /**
      * Unmarshal a certificate from its encoded form, parsing a DER value.
      * This form of constructor is used by agents which need to examine
@@ -328,7 +328,7 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
             throw new CertificateException("Unable to initialize, " + e, e);
         }
     }
-    // END Android-added: Ctor to retain original encoded form for APKs parsing
+    // END Android-added: Ctor to retain original encoded form for APKs parsing.
 
     /**
      * Appends the certificate to an output stream.
@@ -1814,7 +1814,7 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
             throw new CertificateParsingException(
                       "invalid DER-encoded certificate data");
 
-        // Android-changed: Needed for providing encoded form of cert
+        // Android-changed: Needed for providing encoded form of cert.
         // signedCert = val.toByteArray();
         signedCert =
                 (originalEncodedForm != null)
@@ -1972,12 +1972,12 @@ public class X509CertImpl extends X509Certificate implements DerEncoder {
     private ConcurrentHashMap<String,String> fingerprints =
             new ConcurrentHashMap<>(2);
 
-// BEGIN Android-removed
+// BEGIN Android-removed: unused code.
 //    public String getFingerprint(String algorithm) {
 //        return fingerprints.computeIfAbsent(algorithm,
 //                x -> getFingerprint(x, this));
 //    }
-// END Android-removed
+// END Android-removed: unused code.
 
     /**
      * Gets the requested finger print of the certificate. The result

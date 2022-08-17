@@ -139,7 +139,7 @@ class Socket implements java.io.Closeable {
                     security.checkConnect(epoint.getAddress().getHostAddress(),
                                   epoint.getPort());
             }
-            // Android-changed: Removed HTTP proxy suppport.
+            // Android-changed: Removed HTTP proxy support.
             // impl = type == Proxy.Type.SOCKS ? new SocksSocketImpl(p)
             //                                : new HttpConnectSocketImpl(p);
             impl = new SocksSocketImpl(p);
@@ -1775,7 +1775,11 @@ class Socket implements java.io.Closeable {
 
     // Android-added: getFileDescriptor$() method for testing and internal use.
     /**
+     * Gets socket's underlying {@link FileDescriptor}.
+     *
      * @hide internal use only
+     *
+     * @return socket's underlying {@link FileDescriptor}.
      */
     public FileDescriptor getFileDescriptor$() {
         return impl.getFileDescriptor();

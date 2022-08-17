@@ -61,14 +61,15 @@
  */
 package java.time.format;
 
-import android.icu.impl.ICUData;
-import android.icu.impl.ICUResourceBundle;
-import android.icu.util.UResourceBundle;
+import android.icu.text.DateFormatSymbols;
+import android.icu.util.ULocale;
 
 import static java.time.temporal.ChronoField.AMPM_OF_DAY;
 import static java.time.temporal.ChronoField.DAY_OF_WEEK;
 import static java.time.temporal.ChronoField.ERA;
 import static java.time.temporal.ChronoField.MONTH_OF_YEAR;
+
+import com.android.icu.text.ExtendedDateFormatSymbols;
 
 import java.time.chrono.Chronology;
 import java.time.chrono.IsoChronology;
@@ -452,17 +453,25 @@ class DateTimeTextProvider {
                 }
             }
             */
-            ICUResourceBundle rb = (ICUResourceBundle) UResourceBundle
-                    .getBundleInstance(ICUData.ICU_BASE_NAME, locale);
-            ICUResourceBundle quartersRb = rb.getWithFallback("calendar/gregorian/quarters");
-            ICUResourceBundle formatRb = quartersRb.getWithFallback("format");
-            ICUResourceBundle standaloneRb = quartersRb.getWithFallback("stand-alone");
-            styleMap.put(TextStyle.FULL, extractQuarters(formatRb, "wide"));
-            styleMap.put(TextStyle.FULL_STANDALONE, extractQuarters(standaloneRb, "wide"));
-            styleMap.put(TextStyle.SHORT, extractQuarters(formatRb, "abbreviated"));
-            styleMap.put(TextStyle.SHORT_STANDALONE, extractQuarters(standaloneRb, "abbreviated"));
-            styleMap.put(TextStyle.NARROW, extractQuarters(formatRb, "narrow"));
-            styleMap.put(TextStyle.NARROW_STANDALONE, extractQuarters(standaloneRb, "narrow"));
+            ULocale uLocale = ULocale.forLocale(locale);
+            // TODO: Figure why we forced Gregorian calendar in the first patch in
+            // https://r.android.com/311224
+            uLocale.setKeywordValue("calendar", "gregorian");
+            ExtendedDateFormatSymbols extendedDfs = ExtendedDateFormatSymbols.getInstance(uLocale);
+            DateFormatSymbols dfs = extendedDfs.getDateFormatSymbols();
+            styleMap.put(TextStyle.FULL, extractQuarters(
+                    dfs.getQuarters(DateFormatSymbols.FORMAT, DateFormatSymbols.WIDE)));
+            styleMap.put(TextStyle.FULL_STANDALONE, extractQuarters(
+                    dfs.getQuarters(DateFormatSymbols.STANDALONE, DateFormatSymbols.WIDE)));
+            styleMap.put(TextStyle.SHORT, extractQuarters(
+                    dfs.getQuarters(DateFormatSymbols.FORMAT, DateFormatSymbols.ABBREVIATED)));
+            styleMap.put(TextStyle.SHORT_STANDALONE, extractQuarters(
+                    dfs.getQuarters(DateFormatSymbols.STANDALONE, DateFormatSymbols.ABBREVIATED)));
+            styleMap.put(TextStyle.NARROW, extractQuarters(
+                    extendedDfs.getNarrowQuarters(DateFormatSymbols.FORMAT)));
+            styleMap.put(TextStyle.NARROW_STANDALONE, extractQuarters(
+                    extendedDfs.getNarrowQuarters(DateFormatSymbols.STANDALONE)));
+
             // END Android-changed: Use ICU resources.
             return new LocaleStore(styleMap);
         }
@@ -470,16 +479,15 @@ class DateTimeTextProvider {
         return "";  // null marker for map
     }
 
-    // BEGIN Android-added: Extracts a Map of quarter names from ICU resource bundle.
-    private static Map<Long, String> extractQuarters(ICUResourceBundle rb, String key) {
-        String[] names = rb.getWithFallback(key).getStringArray();
+    // BEGIN Android-added: Extracts a Map of quarter names.
+    private static Map<Long, String> extractQuarters(String[] quarters) {
         Map<Long, String> map = new HashMap<>();
-        for (int q = 0; q < names.length; q++) {
-            map.put((long) (q + 1), names[q]);
+        for (int q = 0; q < quarters.length; q++) {
+            map.put((long) (q + 1), quarters[q]);
         }
         return map;
     }
-    // END Android-added: Extracts a Map of quarter names from ICU resource bundle.
+    // END Android-added: Extracts a Map of quarter names.
 
     /**
      * Helper method to create an immutable entry.

@@ -79,6 +79,7 @@ import java.lang.annotation.Target;
  *
  * @hide
  */
+@libcore.api.IntraCoreApi
 @Retention(RetentionPolicy.RUNTIME)  // Let the GC or interpreter ask, if they need to.
                                      // TODO(b/72332040): Reconsider retention later.
 @Target({ElementType.FIELD, ElementType.METHOD})

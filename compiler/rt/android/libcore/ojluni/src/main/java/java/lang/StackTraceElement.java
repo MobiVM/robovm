@@ -75,14 +75,6 @@ public final class StackTraceElement implements java.io.Serializable {
     }
 
     /**
-     * RoboVM note: Private constructor used by RoboVM only.
-     */
-    @SuppressWarnings("unused")
-    private StackTraceElement(Class<?> cls, String method, String file, int line) {
-        this(cls.getName(), method, file, line);
-    }
-
-    /**
      * Returns the name of the source file containing the execution point
      * represented by this stack trace element.  Generally, this corresponds
      * to the {@code SourceFile} attribute of the relevant {@code class}

@@ -32,11 +32,16 @@ import java.util.StringTokenizer;
 
 import dalvik.system.BlockGuard;
 import sun.reflect.CallerSensitive;
+import java.lang.ref.FinalizerReference;
 import java.util.ArrayList;
 import java.util.List;
+import dalvik.system.DelegateLastClassLoader;
+import dalvik.system.PathClassLoader;
+import dalvik.system.VMDebug;
 import dalvik.system.VMRuntime;
 import sun.reflect.Reflection;
 
+import libcore.io.IoUtils;
 import libcore.io.Libcore;
 import libcore.util.EmptyArray;
 import static android.system.OsConstants._SC_NPROCESSORS_CONF;
@@ -768,6 +773,9 @@ public class Runtime {
 
     private native void nativeGc();
 
+    /* Wormhole for calling java.lang.ref.Finalizer.runFinalization */
+    private static native void runFinalization0();
+
     /**
      * Runs the finalization methods of any objects pending finalization.
      * Calling this method suggests that the Java virtual machine expend
@@ -832,7 +840,9 @@ public class Runtime {
      *               <code>false</code> to disable this feature.
      */
     public void traceMethodCalls(boolean on) {
-        // RoboVM Note: does nothing
+        if (on) {
+            throw new UnsupportedOperationException();
+        }
     }
 
     /**
@@ -984,7 +994,7 @@ public class Runtime {
     }
     */
     void loadLibrary0(Class<?> fromClass, String libname) {
-        ClassLoader classLoader = fromClass.getClassLoader(); // RoboVM Note: was ClassLoader.getClassLoader(fromClass);
+        ClassLoader classLoader = ClassLoader.getClassLoader(fromClass);
         loadLibrary0(classLoader, fromClass, libname);
     }
 
@@ -1021,7 +1031,7 @@ public class Runtime {
      * @param      loader    the class loader that initiated the loading. Used by the
      *                       underlying linker to determine linker namespace. A {@code null}
      *                       value represents the boot class loader.
-     * @param      callerClass the class that initiated the loading. Used when loader is
+     * @param      fromClass the class that initiated the loading. Used when loader is
      *                       {@code null} and ignored in all other cases. When used, it 
      *                       determines the linker namespace from the class's .dex location.
      *                       {@code null} indicates the default namespace for the boot 
@@ -1039,6 +1049,21 @@ public class Runtime {
         // have returned null; therefore we treat BootClassLoader the same as null here.
         if (loader != null && !(loader instanceof BootClassLoader)) {
             String filename = loader.findLibrary(libraryName);
+            if (filename == null &&
+                    (loader.getClass() == PathClassLoader.class ||
+                     loader.getClass() == DelegateLastClassLoader.class)) {
+                // Don't give up even if we failed to find the library in the native lib paths.
+                // The underlying dynamic linker might be able to find the lib in one of the linker
+                // namespaces associated with the current linker namespace. In order to give the
+                // dynamic linker a chance, proceed to load the library with its soname, which
+                // is the fileName.
+                // Note that we do this only for PathClassLoader  and DelegateLastClassLoader to
+                // minimize the scope of this behavioral change as much as possible, which might
+                // cause problem like b/143649498. These two class loaders are the only
+                // platform-provided class loaders that can load apps. See the classLoader attribute
+                // of the application tag in app manifest.
+                filename = System.mapLibraryName(libraryName);
+            }
             if (filename == null) {
                 // It's not necessarily true that the ClassLoader used
                 // System.mapLibraryName, but the default setup does, and it's

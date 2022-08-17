@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1999, 2013, Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1999, 2016, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -24,6 +24,7 @@
  */
 
 package java.lang;
+
 import java.util.Random;
 import sun.misc.DoubleConsts;
 
@@ -68,7 +69,7 @@ import sun.misc.DoubleConsts;
  * {@code subtractExact}, {@code multiplyExact}, and {@code toIntExact}
  * throw an {@code ArithmeticException} when the results overflow.
  * For other arithmetic operations such as divide, absolute value,
- * increment, decrement, and negation overflow occurs only with
+ * increment by one, decrement by one, and negation overflow occurs only with
  * a specific minimum or maximum value and should be checked against
  * the minimum or maximum as appropriate.
  *
@@ -96,6 +97,19 @@ public final class StrictMath {
      * diameter.
      */
     public static final double PI = 3.14159265358979323846;
+
+    /**
+     * Constant by which to multiply an angular value in degrees to obtain an
+     * angular value in radians.
+     */
+    private static final double DEGREES_TO_RADIANS = 0.017453292519943295;
+
+    /**
+     * Constant by which to multiply an angular value in radians to obtain an
+     * angular value in degrees.
+     */
+
+    private static final double RADIANS_TO_DEGREES = 57.29577951308232;
 
     /**
      * Returns the trigonometric sine of an angle. Special cases:
@@ -179,7 +193,7 @@ public final class StrictMath {
     public static strictfp double toRadians(double angdeg) {
         // Do not delegate to Math.toRadians(angdeg) because
         // this method has the strictfp modifier.
-        return angdeg / 180.0 * PI;
+        return angdeg * DEGREES_TO_RADIANS;
     }
 
     /**
@@ -196,7 +210,7 @@ public final class StrictMath {
     public static strictfp double toDegrees(double angrad) {
         // Do not delegate to Math.toDegrees(angrad) because
         // this method has the strictfp modifier.
-        return angrad * 180.0 / PI;
+        return angrad * RADIANS_TO_DEGREES;
     }
 
     /**
@@ -785,6 +799,21 @@ public final class StrictMath {
     }
 
     /**
+     * Returns the product of the arguments, throwing an exception if the result
+     * overflows a {@code long}.
+     *
+     * @param x the first value
+     * @param y the second value
+     * @return the result
+     * @throws ArithmeticException if the result overflows a long
+     * @see Math#multiplyExact(long,int)
+     * @since 9
+     */
+    public static long multiplyExact(long x, int y) {
+        return Math.multiplyExact(x, y);
+    }
+
+    /**
      * Returns the product of the arguments,
      * throwing an exception if the result overflows a {@code long}.
      *
@@ -814,6 +843,33 @@ public final class StrictMath {
     }
 
     /**
+     * Returns the exact mathematical product of the arguments.
+     *
+     * @param x the first value
+     * @param y the second value
+     * @return the result
+     * @see Math#multiplyFull(int,int)
+     * @since 9
+     */
+    public static long multiplyFull(int x, int y) {
+        return Math.multiplyFull(x, y);
+    }
+
+    /**
+     * Returns as a {@code long} the most significant 64 bits of the 128-bit
+     * product of two 64-bit factors.
+     *
+     * @param x the first value
+     * @param y the second value
+     * @return the result
+     * @see Math#multiplyHigh(long,long)
+     * @since 9
+     */
+    public static long multiplyHigh(long x, long y) {
+        return Math.multiplyHigh(x, y);
+    }
+
+    /**
      * Returns the largest (closest to positive infinity)
      * {@code int} value that is less than or equal to the algebraic quotient.
      * There is one special case, if the dividend is the
@@ -834,6 +890,30 @@ public final class StrictMath {
      * @since 1.8
      */
     public static int floorDiv(int x, int y) {
+        return Math.floorDiv(x, y);
+    }
+
+    /**
+     * Returns the largest (closest to positive infinity)
+     * {@code long} value that is less than or equal to the algebraic quotient.
+     * There is one special case, if the dividend is the
+     * {@linkplain Long#MIN_VALUE Long.MIN_VALUE} and the divisor is {@code -1},
+     * then integer overflow occurs and
+     * the result is equal to {@code Long.MIN_VALUE}.
+     * <p>
+     * See {@link Math#floorDiv(int, int) Math.floorDiv} for examples and
+     * a comparison to the integer division {@code /} operator.
+     *
+     * @param x the dividend
+     * @param y the divisor
+     * @return the largest (closest to positive infinity)
+     * {@code int} value that is less than or equal to the algebraic quotient.
+     * @throws ArithmeticException if the divisor {@code y} is zero
+     * @see Math#floorDiv(long, int)
+     * @see Math#floor(double)
+     * @since 9
+     */
+    public static long floorDiv(long x, int y) {
         return Math.floorDiv(x, y);
     }
 
@@ -887,6 +967,35 @@ public final class StrictMath {
     public static int floorMod(int x, int y) {
         return Math.floorMod(x , y);
     }
+
+    /**
+     * Returns the floor modulus of the {@code long} and {@code int} arguments.
+     * <p>
+     * The floor modulus is {@code x - (floorDiv(x, y) * y)},
+     * has the same sign as the divisor {@code y}, and
+     * is in the range of {@code -abs(y) < r < +abs(y)}.
+     *
+     * <p>
+     * The relationship between {@code floorDiv} and {@code floorMod} is such that:
+     * <ul>
+     *   <li>{@code floorDiv(x, y) * y + floorMod(x, y) == x}
+     * </ul>
+     * <p>
+     * See {@link Math#floorMod(int, int) Math.floorMod} for examples and
+     * a comparison to the {@code %} operator.
+     *
+     * @param x the dividend
+     * @param y the divisor
+     * @return the floor modulus {@code x - (floorDiv(x, y) * y)}
+     * @throws ArithmeticException if the divisor {@code y} is zero
+     * @see Math#floorMod(long, int)
+     * @see StrictMath#floorDiv(long, int)
+     * @since 9
+     */
+    public static int floorMod(long x, int y) {
+        return Math.floorMod(x , y);
+    }
+
     /**
      * Returns the floor modulus of the {@code long} arguments.
      * <p>

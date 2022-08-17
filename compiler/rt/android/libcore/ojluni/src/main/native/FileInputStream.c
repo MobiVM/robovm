@@ -62,10 +62,15 @@ static void FileInputStream_initIDs(JNIEnv *env) {
     fis_fd = (*env)->GetFieldID(env, clazz, "fd", "Ljava/io/FileDescriptor;");
 }
 
+// BEGIN Android-removed: Open files using IoBridge to share BlockGuard & StrictMode logic.
+// http://b/112107427
+/*
 JNIEXPORT void JNICALL
 FileInputStream_open0(JNIEnv *env, jobject this, jstring path) {
     fileOpen(env, this, path, fis_fd, O_RDONLY);
 }
+*/
+// END Android-removed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
 JNIEXPORT jlong JNICALL
 FileInputStream_skip0(JNIEnv *env, jobject this, jlong toSkip) {
@@ -141,7 +146,6 @@ FileInputStream_available0(JNIEnv *env, jobject this) {
 }
 
 static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(FileInputStream, open0, "(Ljava/lang/String;)V"),
   NATIVE_METHOD(FileInputStream, skip0, "(J)J"),
   NATIVE_METHOD(FileInputStream, available0, "()I"),
 };

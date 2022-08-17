@@ -34,7 +34,6 @@ import sun.security.util.*;
  *
  * @author Benjamin Renaud
  */
-
 public class ContentInfo {
 
     // pkcs7 pre-defined content types
@@ -199,6 +198,8 @@ public class ContentInfo {
     /**
      * Returns a byte array representation of the data held in
      * the content field.
+     * @return             byte array representation of data held in content field
+     * @throws IOException if content bytes are invalid
      */
     public byte[] getContentBytes() throws IOException {
         if (content == null)

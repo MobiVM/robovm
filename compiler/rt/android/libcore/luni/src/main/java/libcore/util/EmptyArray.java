@@ -16,38 +16,84 @@
 
 package libcore.util;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
 
-/** @hide */
-@libcore.api.CorePlatformApi
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
+import dalvik.annotation.compat.VersionCodes;
+
+/**
+ * Empty array is immutable. Use a shared empty array to avoid allocation.
+ *
+ * @hide
+ */
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+@SystemApi(client = MODULE_LIBRARIES)
 public final class EmptyArray {
     private EmptyArray() {}
 
-    @libcore.api.CorePlatformApi
-    public static final boolean[] BOOLEAN = new boolean[0];
-    @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public static final byte[] BYTE = new byte[0];
-    public static final char[] CHAR = new char[0];
-    public static final double[] DOUBLE = new double[0];
-    @libcore.api.CorePlatformApi
-    public static final float[] FLOAT = new float[0];
-    @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public static final int[] INT = new int[0];
-    @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public static final long[] LONG = new long[0];
+    /** @hide */
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull boolean[] BOOLEAN = new boolean[0];
 
+    /** @hide */
+    @UnsupportedAppUsage(maxTargetSdk=VersionCodes.Q,
+            publicAlternatives="Use {@code new byte[0]} instead.")
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull byte[] BYTE = new byte[0];
+
+    /** @hide */
+    public static final char[] CHAR = new char[0];
+
+    /** @hide */
+    public static final double[] DOUBLE = new double[0];
+
+    /** @hide */
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull float[] FLOAT = new float[0];
+
+    /** @hide */
+    @UnsupportedAppUsage(maxTargetSdk=VersionCodes.Q,
+            publicAlternatives="Use {@code new int[0]} instead.")
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull int[] INT = new int[0];
+
+    /** @hide */
+    @UnsupportedAppUsage(maxTargetSdk=VersionCodes.Q,
+            publicAlternatives="Use {@code new long[0]} instead.")
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull long[] LONG = new long[0];
+
+    /** @hide */
     public static final Class<?>[] CLASS = new Class[0];
-    @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public static final Object[] OBJECT = new Object[0];
-    @libcore.api.CorePlatformApi
-    public static final String[] STRING = new String[0];
+
+    /** @hide */
+    @UnsupportedAppUsage(maxTargetSdk=VersionCodes.Q,
+            publicAlternatives="Use {@code new Object[0]} instead.")
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull Object[] OBJECT = new Object[0];
+
+    /** @hide */
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @SystemApi(client = MODULE_LIBRARIES)
+    public static final @NonNull String[] STRING = new String[0];
+
+    /** @hide */
     public static final Throwable[] THROWABLE = new Throwable[0];
+
+    /** @hide */
     public static final StackTraceElement[] STACK_TRACE_ELEMENT = new StackTraceElement[0];
+
+    /** @hide */
     public static final java.lang.reflect.Type[] TYPE = new java.lang.reflect.Type[0];
+
+    /** @hide */
     public static final java.lang.reflect.TypeVariable[] TYPE_VARIABLE =
         new java.lang.reflect.TypeVariable[0];
 }

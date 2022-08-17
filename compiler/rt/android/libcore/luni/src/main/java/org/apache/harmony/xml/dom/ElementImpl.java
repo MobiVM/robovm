@@ -16,10 +16,6 @@
 
 package org.apache.harmony.xml.dom;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
@@ -27,6 +23,12 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.TypeInfo;
+
+import android.compat.annotation.UnsupportedAppUsage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Provides a straightforward implementation of the corresponding W3C DOM

@@ -19,7 +19,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <netdb.h>
-#include <netinet/ip.h> // RoboVM Note: for n_short support
 #include <netinet/icmp6.h>
 #include <netinet/in.h>
 #include <netinet/ip_icmp.h>
@@ -29,9 +28,7 @@
 #include <stdlib.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
-#if defined(__linux__) // RoboVM Note: not available on Darwin
 #include <sys/prctl.h>
-#endif // RoboVM Note: end of changes
 #include <sys/resource.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -40,7 +37,6 @@
 #include <sys/xattr.h>
 #include <unistd.h>
 
-#if defined(__linux__) // RoboVM Note: not available on Darwin
 #include <net/if_arp.h>
 #include <linux/if_ether.h>
 
@@ -50,7 +46,6 @@
 
 // Include linux socket constants for setting sockopts
 #include <linux/udp.h>
-#endif // RoboVM Note: end of changes
 
 #include <net/if.h> // After <sys/socket.h> to work around a Mac header file bug.
 
@@ -71,13 +66,10 @@ static void initConstant(JNIEnv* env, jclass c, const char* fieldName, int value
 static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "AF_INET", AF_INET);
     initConstant(env, c, "AF_INET6", AF_INET6);
-#if defined(AF_PACKET)
     initConstant(env, c, "AF_PACKET", AF_PACKET);
-#endif
-#if defined(AF_NETLINK)
     initConstant(env, c, "AF_NETLINK", AF_NETLINK);
-#endif
     initConstant(env, c, "AF_UNIX", AF_UNIX);
+    initConstant(env, c, "AF_VSOCK", AF_VSOCK);
     initConstant(env, c, "AF_UNSPEC", AF_UNSPEC);
     initConstant(env, c, "AI_ADDRCONFIG", AI_ADDRCONFIG);
     initConstant(env, c, "AI_ALL", AI_ALL);
@@ -88,12 +80,12 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 #endif
     initConstant(env, c, "AI_PASSIVE", AI_PASSIVE);
     initConstant(env, c, "AI_V4MAPPED", AI_V4MAPPED);
-#if defined(ARPHRD_ETHER)
     initConstant(env, c, "ARPHRD_ETHER", ARPHRD_ETHER);
-#endif
-#if defined(ARPHRD_LOOPBACK)
+    initConstant(env, c, "VMADDR_PORT_ANY", VMADDR_PORT_ANY);
+    initConstant(env, c, "VMADDR_CID_ANY", VMADDR_CID_ANY);
+    initConstant(env, c, "VMADDR_CID_LOCAL", VMADDR_CID_LOCAL);
+    initConstant(env, c, "VMADDR_CID_HOST", VMADDR_CID_HOST);
     initConstant(env, c, "ARPHRD_LOOPBACK", ARPHRD_LOOPBACK);
-#endif
 #if defined(CAP_LAST_CAP)
     initConstant(env, c, "CAP_AUDIT_CONTROL", CAP_AUDIT_CONTROL);
     initConstant(env, c, "CAP_AUDIT_WRITE", CAP_AUDIT_WRITE);
@@ -197,9 +189,7 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "ENOLINK", ENOLINK);
     initConstant(env, c, "ENOMEM", ENOMEM);
     initConstant(env, c, "ENOMSG", ENOMSG);
-#if defined(ENONET)
     initConstant(env, c, "ENONET", ENONET);
-#endif
     initConstant(env, c, "ENOPROTOOPT", ENOPROTOOPT);
     initConstant(env, c, "ENOSPC", ENOSPC);
     initConstant(env, c, "ENOSR", ENOSR);
@@ -224,18 +214,10 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "ESPIPE", ESPIPE);
     initConstant(env, c, "ESRCH", ESRCH);
     initConstant(env, c, "ESTALE", ESTALE);
-#if defined(ETH_P_ALL)
     initConstant(env, c, "ETH_P_ALL", ETH_P_ALL);
-#endif
-#if defined(ETH_P_ARP)
     initConstant(env, c, "ETH_P_ARP", ETH_P_ARP);
-#endif
-#if defined(ETH_P_IP)
     initConstant(env, c, "ETH_P_IP", ETH_P_IP);
-#endif
-#if defined(ETH_P_IPV6)
     initConstant(env, c, "ETH_P_IPV6", ETH_P_IPV6);
-#endif
     initConstant(env, c, "ETIME", ETIME);
     initConstant(env, c, "ETIMEDOUT", ETIMEDOUT);
     initConstant(env, c, "ETXTBSY", ETXTBSY);
@@ -363,9 +345,7 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 #endif
     initConstant(env, c, "IPV6_UNICAST_HOPS", IPV6_UNICAST_HOPS);
     initConstant(env, c, "IPV6_V6ONLY", IPV6_V6ONLY);
-#if defined(IP_MULTICAST_ALL)
     initConstant(env, c, "IP_MULTICAST_ALL", IP_MULTICAST_ALL);
-#endif
     initConstant(env, c, "IP_MULTICAST_IF", IP_MULTICAST_IF);
     initConstant(env, c, "IP_MULTICAST_LOOP", IP_MULTICAST_LOOP);
     initConstant(env, c, "IP_MULTICAST_TTL", IP_MULTICAST_TTL);
@@ -376,9 +356,8 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "_LINUX_CAPABILITY_VERSION_3", _LINUX_CAPABILITY_VERSION_3);
 #endif
     initConstant(env, c, "MAP_FIXED", MAP_FIXED);
-#if defined(MAP_POPULATE)
+    initConstant(env, c, "MAP_ANONYMOUS", MAP_ANONYMOUS);
     initConstant(env, c, "MAP_POPULATE", MAP_POPULATE);
-#endif
     initConstant(env, c, "MAP_PRIVATE", MAP_PRIVATE);
     initConstant(env, c, "MAP_SHARED", MAP_SHARED);
 #if defined(MCAST_JOIN_GROUP)
@@ -401,6 +380,9 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 #endif
     initConstant(env, c, "MCL_CURRENT", MCL_CURRENT);
     initConstant(env, c, "MCL_FUTURE", MCL_FUTURE);
+#if defined(MFD_CLOEXEC)
+    initConstant(env, c, "MFD_CLOEXEC", MFD_CLOEXEC);
+#endif
     initConstant(env, c, "MSG_CTRUNC", MSG_CTRUNC);
     initConstant(env, c, "MSG_DONTROUTE", MSG_DONTROUTE);
     initConstant(env, c, "MSG_EOR", MSG_EOR);
@@ -411,15 +393,9 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "MS_ASYNC", MS_ASYNC);
     initConstant(env, c, "MS_INVALIDATE", MS_INVALIDATE);
     initConstant(env, c, "MS_SYNC", MS_SYNC);
-#if defined(NETLINK_NETFILTER)
     initConstant(env, c, "NETLINK_NETFILTER", NETLINK_NETFILTER);
-#endif
-#if defined(NETLINK_ROUTE)
     initConstant(env, c, "NETLINK_ROUTE", NETLINK_ROUTE);
-#endif
-#if defined(NETLINK_INET_DIAG)
     initConstant(env, c, "NETLINK_INET_DIAG", NETLINK_INET_DIAG);
-#endif
     initConstant(env, c, "NI_DGRAM", NI_DGRAM);
     initConstant(env, c, "NI_NAMEREQD", NI_NAMEREQD);
     initConstant(env, c, "NI_NOFQDN", NI_NOFQDN);
@@ -429,9 +405,7 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "O_APPEND", O_APPEND);
     initConstant(env, c, "O_CLOEXEC", O_CLOEXEC);
     initConstant(env, c, "O_CREAT", O_CREAT);
-#if defined(O_DIRECT)
     initConstant(env, c, "O_DIRECT", O_DIRECT);
-#endif
     initConstant(env, c, "O_EXCL", O_EXCL);
     initConstant(env, c, "O_NOCTTY", O_NOCTTY);
     initConstant(env, c, "O_NOFOLLOW", O_NOFOLLOW);
@@ -477,7 +451,6 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 // members. The best we can do (barring UAPI / kernel version checks) is
 // to hope they exist on all host linuxes we're building on. These
 // constants have been around since 2.6.35 at least, so we should be ok.
-#if defined(__linux__) // RoboVM Note: not available on Darwin
     initConstant(env, c, "RT_SCOPE_HOST", RT_SCOPE_HOST);
     initConstant(env, c, "RT_SCOPE_LINK", RT_SCOPE_LINK);
     initConstant(env, c, "RT_SCOPE_NOWHERE", RT_SCOPE_NOWHERE);
@@ -496,7 +469,6 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "RTMGRP_NEIGH", RTMGRP_NEIGH);
     initConstant(env, c, "RTMGRP_NOTIFY", RTMGRP_NOTIFY);
     initConstant(env, c, "RTMGRP_TC", RTMGRP_TC);
-#endif // RoboVM Note: end of changes
     initConstant(env, c, "SEEK_CUR", SEEK_CUR);
     initConstant(env, c, "SEEK_END", SEEK_END);
     initConstant(env, c, "SEEK_SET", SEEK_SET);
@@ -548,17 +520,16 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "SIOCGIFBRDADDR", SIOCGIFBRDADDR);
     initConstant(env, c, "SIOCGIFDSTADDR", SIOCGIFDSTADDR);
     initConstant(env, c, "SIOCGIFNETMASK", SIOCGIFNETMASK);
-#if defined(SOCK_CLOEXEC)
     initConstant(env, c, "SOCK_CLOEXEC", SOCK_CLOEXEC);
-#endif
     initConstant(env, c, "SOCK_DGRAM", SOCK_DGRAM);
-#if defined(SOCK_NONBLOCK)
     initConstant(env, c, "SOCK_NONBLOCK", SOCK_NONBLOCK);
-#endif
     initConstant(env, c, "SOCK_RAW", SOCK_RAW);
     initConstant(env, c, "SOCK_SEQPACKET", SOCK_SEQPACKET);
     initConstant(env, c, "SOCK_STREAM", SOCK_STREAM);
     initConstant(env, c, "SOL_SOCKET", SOL_SOCKET);
+#if defined(SOL_UDP)
+    initConstant(env, c, "SOL_UDP", SOL_UDP);
+#endif
 #if defined(SO_BINDTODEVICE)
     initConstant(env, c, "SO_BINDTODEVICE", SO_BINDTODEVICE);
 #endif
@@ -589,45 +560,21 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "SO_SNDLOWAT", SO_SNDLOWAT);
     initConstant(env, c, "SO_SNDTIMEO", SO_SNDTIMEO);
     initConstant(env, c, "SO_TYPE", SO_TYPE);
-#if defined(SPLICE_F_MOVE)
     initConstant(env, c, "SPLICE_F_MOVE", SPLICE_F_MOVE);
-#endif
-#if defined(SPLICE_F_NONBLOCK)
     initConstant(env, c, "SPLICE_F_NONBLOCK", SPLICE_F_NONBLOCK);
-#endif
-#if defined(SPLICE_F_MORE)
     initConstant(env, c, "SPLICE_F_MORE", SPLICE_F_MORE);
-#endif
     initConstant(env, c, "STDERR_FILENO", STDERR_FILENO);
     initConstant(env, c, "STDIN_FILENO", STDIN_FILENO);
     initConstant(env, c, "STDOUT_FILENO", STDOUT_FILENO);
-#if defined(ST_MANDLOCK)
     initConstant(env, c, "ST_MANDLOCK", ST_MANDLOCK);
-#endif
-#if defined(ST_NOATIME)
     initConstant(env, c, "ST_NOATIME", ST_NOATIME);
-#endif
-#if defined(ST_NODEV)
     initConstant(env, c, "ST_NODEV", ST_NODEV);
-#endif
-#if defined(ST_NODIRATIME)
     initConstant(env, c, "ST_NODIRATIME", ST_NODIRATIME);
-#endif
-#if defined(ST_NOEXEC)
     initConstant(env, c, "ST_NOEXEC", ST_NOEXEC);
-#endif
-#if defined(ST_NOSUID)
     initConstant(env, c, "ST_NOSUID", ST_NOSUID);
-#endif
-#if defined(ST_RDONLY)
     initConstant(env, c, "ST_RDONLY", ST_RDONLY);
-#endif
-#if defined(ST_RELATIME)
     initConstant(env, c, "ST_RELATIME", ST_RELATIME);
-#endif
-#if defined(ST_SYNCHRONOUS)
     initConstant(env, c, "ST_SYNCHRONOUS", ST_SYNCHRONOUS);
-#endif
     initConstant(env, c, "S_IFBLK", S_IFBLK);
     initConstant(env, c, "S_IFCHR", S_IFCHR);
     initConstant(env, c, "S_IFDIR", S_IFDIR);
@@ -656,14 +603,14 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
     initConstant(env, c, "TCP_USER_TIMEOUT", TCP_USER_TIMEOUT);
 #endif
     initConstant(env, c, "TIOCOUTQ", TIOCOUTQ);
-#if defined(UDP_ENCAP)
     initConstant(env, c, "UDP_ENCAP", UDP_ENCAP);
-#endif
-#if defined(UDP_ENCAP_ESPINUDP_NON_IKE)
     initConstant(env, c, "UDP_ENCAP_ESPINUDP_NON_IKE", UDP_ENCAP_ESPINUDP_NON_IKE);
-#endif
-#if defined(UDP_ENCAP_ESPINUDP)
     initConstant(env, c, "UDP_ENCAP_ESPINUDP", UDP_ENCAP_ESPINUDP);
+#if defined(UDP_GRO)
+    initConstant(env, c, "UDP_GRO", UDP_GRO);
+#endif
+#if defined(UDP_SEGMENT)
+    initConstant(env, c, "UDP_SEGMENT", UDP_SEGMENT);
 #endif
     // UNIX_PATH_MAX is mentioned in some versions of unix(7), but not actually declared.
     initConstant(env, c, "UNIX_PATH_MAX", sizeof(sockaddr_un::sun_path));
@@ -778,6 +725,6 @@ static void OsConstants_initConstants(JNIEnv* env, jclass c) {
 static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(OsConstants, initConstants, "()V"),
 };
-extern "C" void register_android_system_OsConstants(JNIEnv* env) {
+void register_android_system_OsConstants(JNIEnv* env) {
     jniRegisterNativeMethods(env, "android/system/OsConstants", gMethods, NELEM(gMethods));
 }

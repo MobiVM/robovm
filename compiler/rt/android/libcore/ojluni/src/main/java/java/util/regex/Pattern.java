@@ -26,10 +26,8 @@
 
 package java.util.regex;
 
-import dalvik.annotation.optimization.ReachabilitySensitive;
+import com.android.icu.util.regex.PatternNative;
 import dalvik.system.VMRuntime;
-
-import libcore.util.NativeAllocationRegistry;
 
 import java.util.Iterator;
 import java.util.ArrayList;
@@ -885,7 +883,10 @@ public final class Pattern
      */
     public static final int UNICODE_CASE = 0x40;
 
+    // Android-changed: Android does not support CANON_EQ flag.
     /**
+     * This flag is not supported on Android.
+     *
      * Enables canonical equivalence.
      *
      * <p> When this flag is specified then two characters will be considered
@@ -903,14 +904,14 @@ public final class Pattern
 
     // Android-changed: Android always uses unicode character classes.
     /**
+     * This flag is not supported on Android, and Unicode character classes are always
+     * used.
+     *
      * Enables the Unicode version of <i>Predefined character classes</i> and
      * <i>POSIX character classes</i> as defined by <a href="http://www.unicode.org/reports/tr18/"><i>Unicode Technical
      * Standard #18: Unicode Regular Expression</i></a>
      * <i>Annex C: Compatibility Properties</i>.
      * <p>
-     *
-     * This flag has no effect on Android, unicode character classes are always
-     * used.
      *
      * @since 1.7
      */
@@ -945,12 +946,7 @@ public final class Pattern
     // BEGIN Android-changed: reimplement matching logic natively via ICU.
     // We only need some tie-ins to native memory, instead of a large number
     // of fields on the .java side.
-    @ReachabilitySensitive
-    transient long address;
-
-    private static final NativeAllocationRegistry registry =
-            NativeAllocationRegistry.createMalloced(Pattern.class.getClassLoader(),
-            getNativeFinalizer());
+    /* package */ transient PatternNative nativePattern;
     // END Android-changed: reimplement matching logic natively via ICU.
 
     /**
@@ -966,6 +962,7 @@ public final class Pattern
         return new Pattern(regex, 0);
     }
 
+    // Android-changed: Android doesn't support CANON_EQ and UNICODE_CHARACTER_CLASS flags.
     /**
      * Compiles the given regular expression into a pattern with the given
      * flags.
@@ -976,8 +973,7 @@ public final class Pattern
      * @param  flags
      *         Match flags, a bit mask that may include
      *         {@link #CASE_INSENSITIVE}, {@link #MULTILINE}, {@link #DOTALL},
-     *         {@link #UNICODE_CASE}, {@link #CANON_EQ}, {@link #UNIX_LINES},
-     *         {@link #LITERAL}, {@link #UNICODE_CHARACTER_CLASS}
+     *         {@link #UNICODE_CASE}, {@link #UNIX_LINES}, {@link #LITERAL},
      *         and {@link #COMMENTS}
      *
      * @return the given regular expression compiled into a pattern with the given flags
@@ -1430,12 +1426,8 @@ public final class Pattern
         // These are the flags natively supported by ICU.
         // They even have the same value in native code.
         int icuFlags = flags & (CASE_INSENSITIVE | COMMENTS | MULTILINE | DOTALL | UNIX_LINES);
-        address = compileImpl(icuPattern, icuFlags);
-        registry.registerNativeAllocation(this, address);
+        nativePattern = PatternNative.create(icuPattern, icuFlags);
     }
-
-    private static native long compileImpl(String regex, int flags);
-    private static native long getNativeFinalizer();
     // END Android-changed: reimplement matching logic natively via ICU.
 
     /**

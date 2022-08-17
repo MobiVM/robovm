@@ -212,8 +212,7 @@ public interface Comparator<T> {
      */
     default Comparator<T> thenComparing(Comparator<? super T> other) {
         Objects.requireNonNull(other);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */) (c1, c2) -> {
+        return (Comparator<T> & Serializable) (c1, c2) -> {
             int res = compare(c1, c2);
             return (res != 0) ? res : other.compare(c1, c2);
         };
@@ -433,8 +432,7 @@ public interface Comparator<T> {
     {
         Objects.requireNonNull(keyExtractor);
         Objects.requireNonNull(keyComparator);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */)
+        return (Comparator<T> & Serializable)
             (c1, c2) -> keyComparator.compare(keyExtractor.apply(c1),
                                               keyExtractor.apply(c2));
     }
@@ -467,8 +465,7 @@ public interface Comparator<T> {
             Function<? super T, ? extends U> keyExtractor)
     {
         Objects.requireNonNull(keyExtractor);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */)
+        return (Comparator<T> & Serializable)
             (c1, c2) -> keyExtractor.apply(c1).compareTo(keyExtractor.apply(c2));
     }
 
@@ -489,8 +486,7 @@ public interface Comparator<T> {
      */
     public static <T> Comparator<T> comparingInt(ToIntFunction<? super T> keyExtractor) {
         Objects.requireNonNull(keyExtractor);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */)
+        return (Comparator<T> & Serializable)
             (c1, c2) -> Integer.compare(keyExtractor.applyAsInt(c1), keyExtractor.applyAsInt(c2));
     }
 
@@ -511,8 +507,7 @@ public interface Comparator<T> {
      */
     public static <T> Comparator<T> comparingLong(ToLongFunction<? super T> keyExtractor) {
         Objects.requireNonNull(keyExtractor);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */)
+        return (Comparator<T> & Serializable)
             (c1, c2) -> Long.compare(keyExtractor.applyAsLong(c1), keyExtractor.applyAsLong(c2));
     }
 
@@ -533,8 +528,7 @@ public interface Comparator<T> {
      */
     public static<T> Comparator<T> comparingDouble(ToDoubleFunction<? super T> keyExtractor) {
         Objects.requireNonNull(keyExtractor);
-        // RoboVM note: not extending Serializable due to lack of proper lambda support
-        return (Comparator<T> /* RoboVM: & Serializable */)
+        return (Comparator<T> & Serializable)
             (c1, c2) -> Double.compare(keyExtractor.applyAsDouble(c1), keyExtractor.applyAsDouble(c2));
     }
 }

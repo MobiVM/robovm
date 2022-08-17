@@ -16,7 +16,7 @@
 
 package java.net;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import libcore.util.BasicLruCache;
 
 /**

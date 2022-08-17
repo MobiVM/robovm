@@ -23,12 +23,10 @@ package libcore.internal;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
 public final class StringPool {
 
     private final String[] pool = new String[512];
 
-    @libcore.api.CorePlatformApi
     public StringPool() {
     }
 
@@ -47,7 +45,6 @@ public final class StringPool {
     /**
      * Returns a string equal to {@code new String(array, start, length)}.
      */
-    @libcore.api.CorePlatformApi
     public String get(char[] array, int start, int length) {
         // Compute an arbitrary hash of the content
         int hashCode = 0;

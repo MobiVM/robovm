@@ -44,7 +44,7 @@
 
 // Android-changed: Fuchsia: Use the non-JVM NET_* on Fuchsia also.
 // #if defined(__linux__) || defined(MACOSX)
-#if defined(__linux__) || defined(__APPLE__) || defined(__Fuchsia__)
+#if defined(__linux__) || defined(MACOSX) || defined(__Fuchsia__)
 extern int NET_Timeout(int s, long timeout);
 extern int NET_Read(int s, void* buf, size_t len);
 extern int NET_RecvFrom(int s, void *buf, int len, unsigned int flags,

@@ -16,7 +16,7 @@
 
 package libcore.net.event;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * A base class for objects interested in network events.

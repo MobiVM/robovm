@@ -239,7 +239,7 @@ public abstract class Enum<E extends Enum<E>>
     public static <T extends Enum<T>> T valueOf(Class<T> enumType,
                                                 String name) {
         Objects.requireNonNull(enumType, "enumType == null");
-        Objects.requireNonNull(enumType, "name == null");
+        Objects.requireNonNull(name, "name == null");
         T[] values = getSharedConstants(enumType);
         if (values == null) {
             throw new IllegalArgumentException(enumType.toString() + " is not an enum type.");
@@ -264,11 +264,7 @@ public abstract class Enum<E extends Enum<E>>
             return null;
         }
         try {
-            // RoboVM note: The code to lookup the values() method below emulates the behavior of
-            // Android's Class.getDeclaredConstructorOrMethod() (i.e. make the method accessible
-            // and return null if not found).
             Method valueMethod = clazz.getDeclaredMethod("values");
-            valueMethod.setAccessible(true);
             return (Object[]) valueMethod.invoke(null);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);

@@ -26,6 +26,8 @@ import java.lang.annotation.Target;
  * Annotation for generic types in methods, denotes that a type nullability is
  * deliberately left floating; the nullability is the same as the
  * actual type parameter of the class.
+ *
+ * @hide - prevent references to this from being output to the signature file.
  */
 @Documented
 @Retention(SOURCE)

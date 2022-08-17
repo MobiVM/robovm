@@ -212,7 +212,7 @@ public final class LocaleMatcher {
             if (range.equals("*")) {
                 continue;
             }
-            // Android-changed: backport OpenJDK 9 fix for JDK-8166994
+            // Android-changed: backport OpenJDK 9 fix for JDK-8166994.
             String rangeForRegex = range.replace("*", "\\p{Alnum}*");
             while (rangeForRegex.length() > 0) {
                 for (String tag : tags) {
@@ -242,7 +242,7 @@ public final class LocaleMatcher {
     }
 
     public static List<LanguageRange> parse(String ranges) {
-        // Android-changed: backport OpenJDK 9 fix for JDK-8166994
+        // Android-changed: backport OpenJDK 9 fix for JDK-8166994.
         ranges = ranges.replace(" ", "").toLowerCase();
         if (ranges.startsWith("accept-language:")) {
             ranges = ranges.substring(16); // delete unnecessary prefix
@@ -332,7 +332,7 @@ public final class LocaleMatcher {
         return list;
     }
 
-    // BEGIN Android-added: backport OpenJDK 9 fix for JDK-8166994
+    // BEGIN Android-added: backport OpenJDK 9 fix for JDK-8166994.
     /**
      * A faster alternative approach to String.replaceFirst(), if the given
      * string is a literal String, not a regex.
@@ -347,7 +347,7 @@ public final class LocaleMatcher {
                     + range.substring(pos + substr.length());
         }
     }
-    // END Android-added: backport OpenJDK 9 fix for JDK-8166994
+    // END Android-added: backport OpenJDK 9 fix for JDK-8166994.
 
     private static String[] getEquivalentsForLanguage(String range) {
         String r = range;
@@ -357,7 +357,7 @@ public final class LocaleMatcher {
                 String equiv = LocaleEquivalentMaps.singleEquivMap.get(r);
                 // Return immediately for performance if the first matching
                 // subtag is found.
-// BEGIN Android-added: backport OpenJDK 9 fix for JDK-8166994
+// BEGIN Android-added: backport OpenJDK 9 fix for JDK-8166994.
 // Upstream bug: https://bugs.openjdk.java.net/browse/JDK-8166994
 // Upstream fix: http://hg.openjdk.java.net/jdk9/dev/jdk/rev/60837db5d445
                 return new String[]{replaceFirstSubStringMatch(range,
@@ -370,7 +370,7 @@ public final class LocaleMatcher {
                             r, equivs[i]);
                 }
                 return result;
-// END Android-added: backport OpenJDK 9 fix for JDK-8166994
+// END Android-added: backport OpenJDK 9 fix for JDK-8166994.
             }
 
             // Truncate the last subtag simply.

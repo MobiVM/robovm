@@ -229,11 +229,12 @@ class FileOutputStream extends OutputStream
         if (file.isInvalid()) {
             throw new FileNotFoundException("Invalid file path");
         }
-        // BEGIN Android-changed: Open files through common bridge code.
+        // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
+        // http://b/111268862
         // this.fd = new FileDescriptor();
         int flags = O_WRONLY | O_CREAT | (append ? O_APPEND : O_TRUNC);
         this.fd = IoBridge.open(name, flags);
-        // END Android-changed: Open files through common bridge code.
+        // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
         // Android-changed: Tracking mechanism for FileDescriptor sharing.
         // fd.attach(this);
@@ -242,7 +243,7 @@ class FileOutputStream extends OutputStream
         this.append = append;
         this.path = name;
 
-        // Android-removed: Open files through common bridge code.
+        // Android-removed: Open files using IoBridge to share BlockGuard & StrictMode logic.
         // open(name, append);
 
         // Android-added: File descriptor ownership tracking.
@@ -298,13 +299,19 @@ class FileOutputStream extends OutputStream
         // Android-changed: FileDescriptor ownership tracking mechanism.
         // fd.attach(this);
         this.isFdOwner = isFdOwner;
+        if (isFdOwner) {
+            IoUtils.setFdOwner(this.fd, this);
+        }
     }
 
+    // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
+    // http://b/112107427
+    /*
     /**
      * Opens a file, with the specified name, for overwriting or appending.
      * @param name name of file to be opened
      * @param append whether the file is to be opened in append mode
-     */
+     *
     private native void open0(String name, boolean append)
         throws FileNotFoundException;
 
@@ -313,11 +320,13 @@ class FileOutputStream extends OutputStream
      * Opens a file, with the specified name, for overwriting or appending.
      * @param name name of file to be opened
      * @param append whether the file is to be opened in append mode
-     */
+     *
     private void open(String name, boolean append)
         throws FileNotFoundException {
         open0(name, append);
     }
+    */
+    // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
     // Android-removed: write(int, boolean), use IoBridge instead.
     /*

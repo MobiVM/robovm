@@ -156,7 +156,7 @@ ZFILE_read(ZFILE zfd, char *buf, jint nbytes, jlong offset) {
      * JVM_IO_INTR is tricky and could cause undesired side effect. So we decided
      * to simply call "read" on Solaris/Linux. See details in bug 6304463.
      */
-    return pread(zfd, buf, nbytes, offset);
+    return pread64(zfd, buf, nbytes, offset);
 #endif
 }
 

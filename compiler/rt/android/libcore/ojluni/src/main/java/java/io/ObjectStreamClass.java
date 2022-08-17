@@ -60,13 +60,13 @@ import dalvik.system.VMRuntime;
  * loaded in this Java VM can be found/created using the lookup method.
  *
  * <p>The algorithm to compute the SerialVersionUID is described in
- * <a href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html#4100">Object
+ * <a href="../../../platform/serialization/spec/class.html#4100">Object
  * Serialization Specification, Section 4.6, Stream Unique Identifiers</a>.
  *
  * @author      Mike Warres
  * @author      Roger Riggs
  * @see ObjectStreamField
- * @see <a href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html">Object Serialization Specification, Section 4, Class Descriptors</a>
+ * @see <a href="../../../platform/serialization/spec/class.html">Object Serialization Specification, Section 4, Class Descriptors</a>
  * @since   JDK1.1
  */
 public class ObjectStreamClass implements Serializable {
@@ -1425,12 +1425,12 @@ public class ObjectStreamClass implements Serializable {
             {
                 return null;
             }
-            // BEGIN Android-changed: Serialization constructor obtained differently
+            // BEGIN Android-changed: Serialization constructor obtained differently.
             // cons = reflFactory.newConstructorForSerialization(cl, cons);
             if (cons.getDeclaringClass() != cl) {
                 cons = cons.serializationCopy(cons.getDeclaringClass(), cl);
             }
-            // END Android-changed: Serialization constructor obtained differently
+            // END Android-changed: Serialization constructor obtained differently.
             cons.setAccessible(true);
             return cons;
         } catch (NoSuchMethodException ex) {
@@ -1797,7 +1797,7 @@ public class ObjectStreamClass implements Serializable {
                 }
             }
 
-            // BEGIN Android-changed: Fix/log clinit serialization workaround b/29064453
+            // BEGIN Android-changed: Fix/log clinit serialization workaround. b/29064453
             // Prior to SDK 24 hasStaticInitializer() would return true if the superclass had a
             // static initializer, that was contrary to the specification. In SDK 24 the default
             // behavior was corrected but the old behavior was preserved for apps that targeted 23
@@ -1817,7 +1817,7 @@ public class ObjectStreamClass implements Serializable {
                     // instructions to the developer on how to fix the problems.
                     warnIncompatibleSUIDChange = true;
                 }
-                // END Android-changed: Fix/log clinit serialization workaround b/29064453
+            // END Android-changed: Fix/log clinit serialization workaround. b/29064453
                 dout.writeUTF("<clinit>");
                 dout.writeInt(Modifier.STATIC);
                 dout.writeUTF("()V");
@@ -1882,14 +1882,14 @@ public class ObjectStreamClass implements Serializable {
             for (int i = Math.min(hashBytes.length, 8) - 1; i >= 0; i--) {
                 hash = (hash << 8) | (hashBytes[i] & 0xFF);
             }
-            // BEGIN Android-added: Fix/log clinit serialization workaround b/29064453
+            // BEGIN Android-added: Fix/log clinit serialization workaround. b/29064453
             // ObjectStreamClass instances are cached per Class and caches its default
             // serialVersionUID so it will only log one message per class per app process
             // irrespective of the number of times the class is serialized.
             if (warnIncompatibleSUIDChange) {
                 suidCompatibilityListener.warnDefaultSUIDTargetVersionDependent(cl, hash);
             }
-            // END Android-added: Fix/log clinit serialization workaround b/29064453
+            // END Android-added: Fix/log clinit serialization workaround. b/29064453
             return hash;
         } catch (IOException ex) {
             throw new InternalError(ex);
@@ -1898,7 +1898,7 @@ public class ObjectStreamClass implements Serializable {
         }
     }
 
-    // BEGIN Android-changed: Fix/log clinit serialization workaround b/29064453
+    // BEGIN Android-changed: Fix/log clinit serialization workaround. b/29064453
     /**
      * Created for testing as there is no nice way to detect when a message is logged.
      *
@@ -1943,7 +1943,7 @@ public class ObjectStreamClass implements Serializable {
      */
     private native static boolean hasStaticInitializer(
         Class<?> cl, boolean inheritStaticInitializer);
-    // END Android-changed: Fix/log clinit serialization workaround b/29064453
+    // END Android-changed: Fix/log clinit serialization workaround. b/29064453
 
     /**
      * Class for computing and caching field/constructor/method signatures

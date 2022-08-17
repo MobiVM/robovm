@@ -16,7 +16,7 @@
 
 package libcore.io;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.util.Objects;
 
 /** @hide */
@@ -28,7 +28,7 @@ public final class Libcore {
      * unless it has a strong reason to bypass the helpful checks/guards that it
      * provides.
      */
-    public static final Os rawOs = new Posix(); // RoboVM Note: was: new Linux();
+    public static final Os rawOs = new Linux();
 
     /**
      * Access to syscalls with helpful checks/guards.

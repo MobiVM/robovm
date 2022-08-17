@@ -6,8 +6,6 @@
 
 package org.xml.sax.helpers;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
-import java.io.IOException;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;
@@ -21,6 +19,10 @@ import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLFilter;
 import org.xml.sax.XMLReader;
+
+import android.compat.annotation.UnsupportedAppUsage;
+
+import java.io.IOException;
 
 
 /**

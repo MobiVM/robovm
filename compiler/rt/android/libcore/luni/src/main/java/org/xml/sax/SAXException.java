@@ -5,7 +5,7 @@
 
 package org.xml.sax;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * Encapsulate a general SAX error or warning.

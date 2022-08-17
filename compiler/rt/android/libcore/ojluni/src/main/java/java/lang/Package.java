@@ -44,10 +44,11 @@ import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
 import java.util.jar.Attributes;
 import java.util.jar.Attributes.Name;
+import java.util.jar.JarException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 
-import dalvik.system.VMStack;
 import sun.net.www.ParseUtil;
 import sun.reflect.CallerSensitive;
 import dalvik.system.VMRuntime;
@@ -278,18 +279,12 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      */
     @CallerSensitive
     public static Package getPackage(String name) {
-        // RoboVM Note: using old implementation
-        ClassLoader classloader = VMStack.getCallingClassLoader();
-        if (classloader == null) {
-            classloader = ClassLoader.getSystemClassLoader();
+        ClassLoader l = ClassLoader.getClassLoader(Reflection.getCallerClass());
+        if (l != null) {
+            return l.getPackage(name);
+        } else {
+            return getSystemPackage(name);
         }
-        return classloader.getPackage(name);
-//        ClassLoader l = ClassLoader.getClassLoader(Reflection.getCallerClass());
-//        if (l != null) {
-//            return l.getPackage(name);
-//        } else {
-//            return getSystemPackage(name);
-//        }
     }
 
     /**
@@ -306,52 +301,46 @@ public class Package implements java.lang.reflect.AnnotatedElement {
      */
     @CallerSensitive
     public static Package[] getPackages() {
-        // RoboVM Note: using old implementation
-        ClassLoader classloader = VMStack.getCallingClassLoader();
-        if (classloader == null) {
-            classloader = ClassLoader.getSystemClassLoader();
+        ClassLoader l = ClassLoader.getClassLoader(Reflection.getCallerClass());
+        if (l != null) {
+            return l.getPackages();
+        } else {
+            return getSystemPackages();
         }
-        return classloader.getPackages();
-//        ClassLoader l = ClassLoader.getClassLoader(Reflection.getCallerClass());
-//        if (l != null) {
-//            return l.getPackages();
-//        } else {
-//            return getSystemPackages();
-//        }
     }
-// RoboVM Note: not used
-//    /**
-//     * Get the package for the specified class.
-//     * The class's class loader is used to find the package instance
-//     * corresponding to the specified class. If the class loader
-//     * is the bootstrap class loader, which may be represented by
-//     * {@code null} in some implementations, then the set of packages
-//     * loaded by the bootstrap class loader is searched to find the package.
-//     * <p>
-//     * Packages have attributes for versions and specifications only
-//     * if the class loader created the package
-//     * instance with the appropriate attributes. Typically those
-//     * attributes are defined in the manifests that accompany
-//     * the classes.
-//     *
-//     * @param c the class to get the package of.
-//     * @return the package of the class. It may be null if no package
-//     *          information is available from the archive or codebase.  */
-//    static Package getPackage(Class<?> c) {
-//        String name = c.getName();
-//        int i = name.lastIndexOf('.');
-//        if (i != -1) {
-//            name = name.substring(0, i);
-//            ClassLoader cl = c.getClassLoader();
-//            if (cl != null) {
-//                return cl.getPackage(name);
-//            } else {
-//                return getSystemPackage(name);
-//            }
-//        } else {
-//            return null;
-//        }
-//    }
+
+    /**
+     * Get the package for the specified class.
+     * The class's class loader is used to find the package instance
+     * corresponding to the specified class. If the class loader
+     * is the bootstrap class loader, which may be represented by
+     * {@code null} in some implementations, then the set of packages
+     * loaded by the bootstrap class loader is searched to find the package.
+     * <p>
+     * Packages have attributes for versions and specifications only
+     * if the class loader created the package
+     * instance with the appropriate attributes. Typically those
+     * attributes are defined in the manifests that accompany
+     * the classes.
+     *
+     * @param c the class to get the package of.
+     * @return the package of the class. It may be null if no package
+     *          information is available from the archive or codebase.  */
+    static Package getPackage(Class<?> c) {
+        String name = c.getName();
+        int i = name.lastIndexOf('.');
+        if (i != -1) {
+            name = name.substring(0, i);
+            ClassLoader cl = c.getClassLoader();
+            if (cl != null) {
+                return cl.getPackage(name);
+            } else {
+                return getSystemPackage(name);
+            }
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Return the hash code computed from the package name.
@@ -557,38 +546,36 @@ public class Package implements java.lang.reflect.AnnotatedElement {
         this.loader = loader;
     }
 
-// RoboVM Note: not used
-//    /*
-//     * Returns the loaded system package for the specified name.
-//     */
-//    static Package getSystemPackage(String name) {
-//        synchronized (pkgs) {
-//            Package pkg = pkgs.get(name);
-//            if (pkg == null) {
-//                name = name.replace('.', '/').concat("/");
-//                String fn = getSystemPackage0(name);
-//                if (fn != null) {
-//                    pkg = defineSystemPackage(name, fn);
-//                }
-//            }
-//            return pkg;
-//        }
-//    }
+    /*
+     * Returns the loaded system package for the specified name.
+     */
+    static Package getSystemPackage(String name) {
+        synchronized (pkgs) {
+            Package pkg = pkgs.get(name);
+            if (pkg == null) {
+                name = name.replace('.', '/').concat("/");
+                String fn = getSystemPackage0(name);
+                if (fn != null) {
+                    pkg = defineSystemPackage(name, fn);
+                }
+            }
+            return pkg;
+        }
+    }
 
-// RoboVM Note: not used
-//    /*
-//     * Return an array of loaded system packages.
-//     */
-//    static Package[] getSystemPackages() {
-//        // First, update the system package map with new package names
-//        String[] names = getSystemPackages0();
-//        synchronized (pkgs) {
-//            for (int i = 0; i < names.length; i++) {
-//                defineSystemPackage(names[i], getSystemPackage0(names[i]));
-//            }
-//            return pkgs.values().toArray(new Package[pkgs.size()]);
-//        }
-//    }
+    /*
+     * Return an array of loaded system packages.
+     */
+    static Package[] getSystemPackages() {
+        // First, update the system package map with new package names
+        String[] names = getSystemPackages0();
+        synchronized (pkgs) {
+            for (int i = 0; i < names.length; i++) {
+                defineSystemPackage(names[i], getSystemPackage0(names[i]));
+            }
+            return pkgs.values().toArray(new Package[pkgs.size()]);
+        }
+    }
 
     private static Package defineSystemPackage(final String iname,
                                                final String fn)
@@ -651,9 +638,8 @@ public class Package implements java.lang.reflect.AnnotatedElement {
     // Maps each code source url for a jar file to its manifest
     private static Map<String, Manifest> mans = new HashMap<>(10);
 
-// RoboVM Note: not used
-//    private static native String getSystemPackage0(String name);
-//    private static native String[] getSystemPackages0();
+    private static native String getSystemPackage0(String name);
+    private static native String[] getSystemPackages0();
 
     /*
      * Private storage for the package name and attributes.

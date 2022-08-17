@@ -1664,7 +1664,7 @@ class InetAddress implements java.io.Serializable {
      * @param netId the network to use for host resolution.
      * @return the {@code InetAddress} instance representing the host.
      * @throws UnknownHostException if the address lookup fails.
-     * @hide internal use only
+     * @hide
      */
     public static InetAddress getByNameOnNet(String host, int netId) throws UnknownHostException {
         return impl.lookupAllHostAddr(host, netId)[0];
@@ -1678,7 +1678,7 @@ class InetAddress implements java.io.Serializable {
      * @param netId the network to use for host resolution.
      * @return the array of addresses associated with the specified host.
      * @throws UnknownHostException if the address lookup fails.
-     * @hide internal use only
+     * @hide
      */
     public static InetAddress[] getAllByNameOnNet(String host, int netId) throws UnknownHostException {
         return impl.lookupAllHostAddr(host, netId).clone();

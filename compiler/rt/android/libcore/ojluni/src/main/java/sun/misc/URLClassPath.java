@@ -360,7 +360,7 @@ public class URLClassPath {
         lookupCacheEnabled = false;
     }
 
-    // BEGIN Android-changed: No lookup chache support
+    // BEGIN Android-changed: No lookup cache support.
     /*
     private static native URL[] getLookupCacheURLs(ClassLoader loader);
     private static native int[] getLookupCacheForClassLoader(ClassLoader loader,
@@ -380,7 +380,7 @@ public class URLClassPath {
                                             String className) {
         return false;
     }
-    // END Android-changed: No lookup chache support
+    // END Android-changed: No lookup cache support.
 
 
     synchronized boolean knownToNotExist(String className) {
@@ -816,7 +816,7 @@ public class URLClassPath {
         private final HashMap<String, Loader> lmap;
         private final AccessControlContext acc;
         private boolean closed = false;
-        // Android-changed: Not needed, called directly
+        // Android-changed: Not needed, called directly.
         // private static final sun.misc.JavaUtilZipFileAccess zipAccess =
         //      sun.misc.SharedSecrets.getJavaUtilZipFileAccess();
 

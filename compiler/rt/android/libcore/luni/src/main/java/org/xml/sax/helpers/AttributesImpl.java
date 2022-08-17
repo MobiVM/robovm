@@ -6,8 +6,9 @@
 
 package org.xml.sax.helpers;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.xml.sax.Attributes;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 
 /**

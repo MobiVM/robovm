@@ -1349,7 +1349,11 @@ class DatagramSocket implements java.io.Closeable {
 
     // Android-added: for testing and internal use.
     /**
+     * Gets socket's underlying {@link FileDescriptor}.
+     *
      * @hide internal use only
+     *
+     * @return socket's underlying {@link FileDescriptor}.
      */
     public FileDescriptor getFileDescriptor$() {
         return impl.fd;

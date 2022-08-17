@@ -69,10 +69,7 @@ public class AtomicLong extends Number implements java.io.Serializable {
      * Returns whether underlying JVM supports lockless CompareAndSet
      * for longs. Called only once and cached in VM_SUPPORTS_LONG_CAS.
      */
-    private static boolean VMSupportsCS8() {
-        // RoboVM Note: its native on Android and always return true
-        return true;
-    }
+    private static native boolean VMSupportsCS8();
 
     static {
         try {

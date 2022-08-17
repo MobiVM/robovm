@@ -15,6 +15,9 @@
  */
 package libcore.util;
 
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -30,7 +33,7 @@ import java.lang.annotation.Target;
  */
 @Documented
 @Retention(SOURCE)
-@Target({TYPE_USE})
+@Target({FIELD, METHOD, PARAMETER, TYPE_USE})
 @libcore.api.IntraCoreApi
 public @interface NonNull {
    /**

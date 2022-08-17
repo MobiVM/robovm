@@ -16,7 +16,7 @@
 
 package libcore.net.http;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -325,7 +325,7 @@ public class DerInputStream {
      *          (used to initialize an auto-growing data structure)
      * @return array of the values in the sequence
      */
-    // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation
+    // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation.
     public DerValue[] getSequence(int startLen,
             boolean originalEncodedFormRetained) throws IOException {
         tag = (byte)buffer.read();
@@ -348,8 +348,8 @@ public class DerInputStream {
         return getSequence(
                 startLen,
                 false); // no need to retain original encoded form
-        // END Android-changed: Original encoded form needed for APKs parsing/validation
     }
+    // END Android-changed: Original encoded form needed for APKs parsing/validation.
 
     /**
      * Return a set of encoded entities.  ASN.1 sets are unordered,
@@ -381,7 +381,7 @@ public class DerInputStream {
      */
     public DerValue[] getSet(int startLen, boolean implicit)
         throws IOException {
-        // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation
+        // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation.
         return getSet(
             startLen,
             implicit,
@@ -398,7 +398,7 @@ public class DerInputStream {
             }
         }
         return (readVector(startLen, originalEncodedFormRetained));
-        // END Android-changed: Original encoded form needed for APKs parsing/validation
+        // END Android-changed: Original encoded form needed for APKs parsing/validation.
     }
 
     /*
@@ -407,7 +407,7 @@ public class DerInputStream {
      * this same helper routine.
      */
     protected DerValue[] readVector(int startLen) throws IOException {
-        // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation
+        // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation.
         return readVector(
             startLen,
             false); // no need to retain original encoded form
@@ -420,7 +420,7 @@ public class DerInputStream {
      */
     protected DerValue[] readVector(int startLen,
             boolean originalEncodedFormRetained) throws IOException {
-        // END Android-changed: Original encoded form needed for APKs parsing/validation
+        // END Android-changed: Original encoded form needed for APKs parsing/validation.
         DerInputStream  newstr;
 
         byte lenByte = (byte)buffer.read();
@@ -465,7 +465,7 @@ public class DerInputStream {
         DerValue value;
 
         do {
-            // Android-changed: Original encoded form needed for APKs parsing/validation
+            // Android-changed: Original encoded form needed for APKs parsing/validation.
             value = new DerValue(newstr.buffer, originalEncodedFormRetained);
             vec.addElement(value);
         } while (newstr.available() > 0);

@@ -19,12 +19,18 @@
  * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <nativehelper/JNIHelp.h>
+#include <nativehelper/JNIPlatformHelp.h>
+#include <nativehelper/ScopedLocalRef.h>
 
 #include "JniConstants.h"
 
 extern "C" int tagSocket(JNIEnv* env, int fd) {
     if (env->ExceptionOccurred()) {
+      return fd;
+    }
+
+    jobject fileDescriptor = jniCreateFileDescriptor(env, fd);
+    if (fileDescriptor == nullptr) {
       return fd;
     }
 
@@ -35,7 +41,6 @@ extern "C" int tagSocket(JNIEnv* env, int fd) {
     jobject socketTagger = env->CallStaticObjectMethod(socketTaggerClass, get);
     jmethodID tag = env->GetMethodID(socketTaggerClass, "tag", "(Ljava/io/FileDescriptor;)V");
 
-    jobject fileDescriptor = jniCreateFileDescriptor(env, fd);
     env->CallVoidMethod(socketTagger, tag, fileDescriptor);
     return fd;
 }

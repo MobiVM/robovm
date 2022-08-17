@@ -16,6 +16,7 @@
 
 #include "jni.h"
 #include <sys/socket.h>
+#include "ScopedByteBufferArray.h"
 
 // Convert from sockaddr_storage to Inet4Address (AF_INET) or Inet6Address (AF_INET6).
 // If 'port' is non-NULL and the address family includes a notion
@@ -38,7 +39,15 @@ bool inetAddressToSockaddr(JNIEnv* env, jobject inetAddress, int port,
 bool inetAddressToSockaddrVerbatim(JNIEnv* env, jobject inetAddress, int port,
                                    sockaddr_storage& ss, socklen_t& sa_len);
 
+// Convert from StructMsghdr to msghdr,
+// set all fields except msg_name which would be set outside since IPv4 fallback handled outside
+bool msghdrJavaToC(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr,
+                   ScopedByteBufferArray& scopedBufArray);
 
+// Convert from msghdr to StructMsghdr,
+// msg_iov/msg_control need to be set since they are output parameters;
+bool msghdrCToJava(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr,
+                   ScopedByteBufferArray& scopedBufArray);
 
 // Changes 'fd' to be blocking/non-blocking. Returns false and sets errno on failure.
 // @Deprecated - use IoUtils.setBlocking

@@ -40,6 +40,10 @@
 package java.util;
 
 import android.icu.text.TimeZoneNames;
+import com.android.i18n.timezone.ZoneInfoData;
+import com.android.i18n.timezone.ZoneInfoDb;
+import com.android.icu.util.ExtendedTimeZone;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.ZoneId;
@@ -47,7 +51,9 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import libcore.io.IoUtils;
-import libcore.timezone.ZoneInfoDB;
+import libcore.util.ZoneInfo;
+
+import dalvik.system.RuntimeHooks;
 
 /**
  * <code>TimeZone</code> represents a time zone offset, and also figures out daylight
@@ -555,7 +561,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
      * @return the specified <code>TimeZone</code>, or the GMT zone if the given ID
      * cannot be understood.
      */
-    // Android-changed: param s/ID/id; use ZoneInfoDB instead of ZoneInfo class.
+    // Android-changed: param s/ID/id; use ZoneInfoDb instead of ZoneInfo class.
     public static synchronized TimeZone getTimeZone(String id) {
         if (id == null) {
             throw new NullPointerException("id == null");
@@ -572,11 +578,9 @@ abstract public class TimeZone implements Serializable, Cloneable {
         }
 
         // In the database?
-        TimeZone zone = null;
-        try {
-            zone = ZoneInfoDB.getInstance().makeTimeZone(id);
-        } catch (IOException ignored) {
-        }
+
+        ZoneInfoData zoneInfoData = ZoneInfoDb.getInstance().makeZoneInfoData(id);
+        TimeZone zone = zoneInfoData == null ? null : ZoneInfo.createZoneInfo(zoneInfoData);
 
         // Custom time zone?
         if (zone == null && id.length() > 3 && id.startsWith("GMT")) {
@@ -664,7 +668,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
      * @see #getRawOffset()
      */
     public static synchronized String[] getAvailableIDs(int rawOffset) {
-        return ZoneInfoDB.getInstance().getAvailableIDs(rawOffset);
+        return ZoneInfoDb.getInstance().getAvailableIDs(rawOffset);
     }
 
     /**
@@ -672,22 +676,20 @@ abstract public class TimeZone implements Serializable, Cloneable {
      * @return an array of IDs.
      */
     public static synchronized String[] getAvailableIDs() {
-        return ZoneInfoDB.getInstance().getAvailableIDs();
+        return ZoneInfoDb.getInstance().getAvailableIDs();
     }
 
-// RoboVM Note: not used
-//    /**
-//     * Gets the platform defined TimeZone ID.
-//     **/
-//    private static native String getSystemTimeZoneID(String javaHome,
-//                                                     String country);
+    /**
+     * Gets the platform defined TimeZone ID.
+     **/
+    private static native String getSystemTimeZoneID(String javaHome,
+                                                     String country);
 
-// RoboVM Note: not used
-//    /**
-//     * Gets the custom time zone ID based on the GMT offset of the
-//     * platform. (e.g., "GMT+08:00")
-//     */
-//    private static native String getSystemGMTOffsetID();
+    /**
+     * Gets the custom time zone ID based on the GMT offset of the
+     * platform. (e.g., "GMT+08:00")
+     */
+    private static native String getSystemGMTOffsetID();
 
     /**
      * Gets the default <code>TimeZone</code> for this host.
@@ -706,8 +708,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
      */
     static synchronized TimeZone getDefaultRef() {
         if (defaultTimeZone == null) {
-            // RoboVM Notes: TODO: FIXME: replace with TimezoneGetter.getInstance();
-            Supplier<String> tzGetter = null; // RoboVM Notes: FIXME: RuntimeHooks.getTimeZoneIdSupplier();
+            Supplier<String> tzGetter = RuntimeHooks.getTimeZoneIdSupplier();
             String zoneName = (tzGetter != null) ? tzGetter.get() : null;
             if (zoneName != null) {
                 zoneName = zoneName.trim();
@@ -746,7 +747,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
         }
         defaultTimeZone = timeZone != null ? (TimeZone) timeZone.clone() : null;
         // Android-changed: notify ICU4J of changed default TimeZone.
-        android.icu.util.TimeZone.setICUDefault(null);
+        ExtendedTimeZone.clearDefaultTimeZone();
     }
 
     /**

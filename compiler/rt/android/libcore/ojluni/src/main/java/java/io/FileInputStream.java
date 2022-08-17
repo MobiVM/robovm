@@ -154,9 +154,11 @@ class FileInputStream extends InputStream
         if (file.isInvalid()) {
             throw new FileNotFoundException("Invalid file path");
         }
-        // Android-changed: Open files through common bridge code.
+        // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
+        // http://b/112107427
         // fd = new FileDescriptor();
         fd = IoBridge.open(name, O_RDONLY);
+        // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
         // Android-changed: Tracking mechanism for FileDescriptor sharing.
         // fd.attach(this);
@@ -164,7 +166,7 @@ class FileInputStream extends InputStream
 
         path = name;
 
-        // Android-removed: Open files through common bridge code.
+        // Android-removed: Open files using IoBridge to share BlockGuard & StrictMode logic.
         // open(name);
 
         // Android-added: File descriptor ownership tracking.
@@ -220,22 +222,30 @@ class FileInputStream extends InputStream
         fd.attach(this);
         */
         this.isFdOwner = isFdOwner;
+        if (isFdOwner) {
+            IoUtils.setFdOwner(this.fd, this);
+        }
     }
 
+    // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
+    // http://b/112107427
+    /*
     /**
      * Opens the specified file for reading.
      * @param name the name of the file
-     */
+     *
     private native void open0(String name) throws FileNotFoundException;
 
     // wrap native call to allow instrumentation
     /**
      * Opens the specified file for reading.
      * @param name the name of the file
-     */
+     *
     private void open(String name) throws FileNotFoundException {
         open0(name);
     }
+    */
+    // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
     /**
      * Reads a byte of data from this input stream. This method blocks

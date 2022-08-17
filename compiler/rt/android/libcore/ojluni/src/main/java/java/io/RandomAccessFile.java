@@ -29,6 +29,7 @@ package java.io;
 import dalvik.annotation.optimization.ReachabilitySensitive;
 import java.nio.channels.FileChannel;
 import sun.nio.ch.FileChannelImpl;
+import android.system.Os;
 import android.system.ErrnoException;
 import dalvik.system.CloseGuard;
 import libcore.io.IoBridge;
@@ -302,7 +303,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
             }
         } else if (flushAfterWrite == FLUSH_FDATASYNC) {
             try {
-                Libcore.os.fdatasync(fd);
+                Os.fdatasync(fd);
             } catch (ErrnoException e) {
                 // Ignored
             }

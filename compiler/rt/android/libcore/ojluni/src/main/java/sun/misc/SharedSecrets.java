@@ -35,7 +35,7 @@ package sun.misc;
     for this purpose, namely the loss of compile-time checking. */
 
 public class SharedSecrets {
-    // BEGIN Android-removed: Pruned unused access interfaces
+    // BEGIN Android-removed: Pruned unused access interfaces.
     /*
     private static final Unsafe unsafe = Unsafe.getUnsafe();
     private static JavaUtilJarAccess javaUtilJarAccess;
@@ -46,9 +46,9 @@ public class SharedSecrets {
     private static JavaNetHttpCookieAccess javaNetHttpCookieAccess;
     private static JavaNioAccess javaNioAccess;
     */
-    // END Android-removed: Pruned unused access interfaces
+    // END Android-removed: Pruned unused access interfaces.
     private static JavaIOFileDescriptorAccess javaIOFileDescriptorAccess;
-    // BEGIN Android-removed: Pruned unused access interfaces
+    // BEGIN Android-removed: Pruned unused access interfaces.
     /*
     private static JavaSecurityProtectionDomainAccess javaSecurityProtectionDomainAccess;
     private static JavaSecurityAccess javaSecurityAccess;
@@ -129,7 +129,7 @@ public class SharedSecrets {
         return javaIOAccess;
     }
     */
-    // END Android-removed: Pruned unused access interfaces
+    // END Android-removed: Pruned unused access interfaces.
 
     public static void setJavaIOFileDescriptorAccess(JavaIOFileDescriptorAccess jiofda) {
         javaIOFileDescriptorAccess = jiofda;
@@ -150,7 +150,7 @@ public class SharedSecrets {
         return javaIOFileDescriptorAccess;
     }
 
-    // BEGIN Android-removed: Pruned unused access interfaces
+    // BEGIN Android-removed: Pruned unused access interfaces.
     /*
     public static void setJavaOISAccess(JavaOISAccess access) {
         javaOISAccess = access;
@@ -221,5 +221,5 @@ public class SharedSecrets {
         javaObjectInputStreamAccess = access;
     }
     */
-    // END Android-removed: Pruned unused access interfaces
+    // END Android-removed: Pruned unused access interfaces.
 }

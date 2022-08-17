@@ -16,6 +16,10 @@
 
 package dalvik.annotation.optimization;
 
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -93,7 +97,8 @@ import java.lang.annotation.Target;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+@SystemApi(client = MODULE_LIBRARIES)
 @Retention(RetentionPolicy.CLASS)  // Save memory, don't instantiate as an object at runtime.
 @Target(ElementType.METHOD)
 public @interface CriticalNative {}

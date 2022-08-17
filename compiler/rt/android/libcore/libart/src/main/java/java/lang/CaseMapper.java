@@ -17,8 +17,8 @@
 package java.lang;
 
 import android.icu.text.Transliterator;
+import com.android.icu.util.CaseMapperNative;
 import java.util.Locale;
-import libcore.icu.ICU;
 
 /**
  * Performs case operations as described by http://unicode.org/reports/tr21/tr21-5.html.
@@ -47,7 +47,7 @@ class CaseMapper {
         // Note that Greek isn't a particularly hard case for toLowerCase, only toUpperCase.
         String languageCode = locale.getLanguage();
         if (languageCode.equals("tr") || languageCode.equals("az") || languageCode.equals("lt")) {
-            return ICU.toLowerCase(s, locale);
+            return CaseMapperNative.toLowerCase(s, locale);
         }
 
         char[] newValue = null;
@@ -56,7 +56,7 @@ class CaseMapper {
             char newCh;
             if (ch == LATIN_CAPITAL_I_WITH_DOT || Character.isHighSurrogate(ch)) {
                 // Punt these hard cases.
-                return ICU.toLowerCase(s, locale);
+                return CaseMapperNative.toLowerCase(s, locale);
             } else if (ch == GREEK_CAPITAL_SIGMA && isFinalSigma(s, i)) {
                 newCh = GREEK_SMALL_FINAL_SIGMA;
             } else {
@@ -146,7 +146,7 @@ class CaseMapper {
     public static String toUpperCase(Locale locale, String s, int count) {
         String languageCode = locale.getLanguage();
         if (languageCode.equals("tr") || languageCode.equals("az") || languageCode.equals("lt")) {
-            return ICU.toUpperCase(s, locale);
+            return CaseMapperNative.toUpperCase(s, locale);
         }
         if (languageCode.equals("el")) {
             return EL_UPPER.get().transliterate(s);
@@ -157,7 +157,7 @@ class CaseMapper {
         for (int o = 0; o < count; o++) {
             char ch = s.charAt(o);
             if (Character.isHighSurrogate(ch)) {
-                return ICU.toUpperCase(s, locale);
+                return CaseMapperNative.toUpperCase(s, locale);
             }
             int index = upperIndex(ch);
             if (index == -1) {

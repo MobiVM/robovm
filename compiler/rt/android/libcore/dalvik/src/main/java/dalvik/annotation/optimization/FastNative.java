@@ -16,6 +16,10 @@
 
 package dalvik.annotation.optimization;
 
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -57,12 +61,24 @@ import java.lang.annotation.Target;
  * </p>
  *
  * <p>
+ * Note that even in FastNative methods you <b>are</b> allowed to
+ * allocate objects and make upcalls into Java code. A call from Java to
+ * a FastNative function and back to Java is equivalent to a call from one Java
+ * method to another. What's forbidden in a FastNative method is blocking
+ * the calling thread in some non-Java code and thereby preventing the thread
+ * from responding to requests from the garbage collector to enter the suspended
+ * state.
+ * </p>
+ *
+ * <p>
  * Has no effect when used with non-native methods.
  * </p>
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.IntraCoreApi
 @Retention(RetentionPolicy.CLASS)  // Save memory, don't instantiate as an object at runtime.
 @Target(ElementType.METHOD)
 public @interface FastNative {}

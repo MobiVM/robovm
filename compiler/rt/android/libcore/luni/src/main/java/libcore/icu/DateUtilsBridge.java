@@ -16,14 +16,14 @@
 
 package libcore.icu;
 
-import android.icu.impl.JavaTimeZone;
 import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
+import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 
 /**
- * Common methods and constants for the various ICU formatters used to support
- * android.text.format.DateUtils.
+ * This class is no longer used by android.text.format.DateUtils, but kept only for
+ * @UnsupportedAppUsage in {@link DateIntervalFormat}.
  */
 public final class DateUtilsBridge {
   // These are all public API in DateUtils. There are others, but they're either for use with
@@ -50,24 +50,24 @@ public final class DateUtilsBridge {
    * writing the libcore implementation is faster but restricted to 1902 - 2038.
    * Callers must not modify the {@code tz} after calling this method.
    */
-  public static android.icu.util.TimeZone icuTimeZone(java.util.TimeZone tz) {
-    JavaTimeZone javaTimeZone = new JavaTimeZone(tz, null);
-    javaTimeZone.freeze(); // Optimization - allows the timezone to be copied cheaply.
-    return javaTimeZone;
+  /* package */ static android.icu.util.TimeZone icuTimeZone(java.util.TimeZone tz) {
+    android.icu.util.TimeZone icuTimeZone = TimeZone.getTimeZone(tz.getID());
+    icuTimeZone.freeze(); // Optimization - allows the timezone to be copied cheaply.
+    return icuTimeZone;
   }
 
-  public static Calendar createIcuCalendar(android.icu.util.TimeZone icuTimeZone, ULocale icuLocale,
+  /* package */ static Calendar createIcuCalendar(android.icu.util.TimeZone icuTimeZone, ULocale icuLocale,
       long timeInMillis) {
     Calendar calendar = new GregorianCalendar(icuTimeZone, icuLocale);
     calendar.setTimeInMillis(timeInMillis);
     return calendar;
   }
 
-  public static String toSkeleton(Calendar calendar, int flags) {
+  /* package */ static String toSkeleton(Calendar calendar, int flags) {
     return toSkeleton(calendar, calendar, flags);
   }
 
-  public static String toSkeleton(Calendar startCalendar, Calendar endCalendar, int flags) {
+  /* package */ static String toSkeleton(Calendar startCalendar, Calendar endCalendar, int flags) {
     if ((flags & FORMAT_ABBREV_ALL) != 0) {
       flags |= FORMAT_ABBREV_MONTH | FORMAT_ABBREV_TIME | FORMAT_ABBREV_WEEKDAY;
     }
@@ -147,7 +147,7 @@ public final class DateUtilsBridge {
     return builder.toString();
   }
 
-  public static int dayDistance(Calendar c1, Calendar c2) {
+  /* package */ static int dayDistance(Calendar c1, Calendar c2) {
     return c2.get(Calendar.JULIAN_DAY) - c1.get(Calendar.JULIAN_DAY);
   }
 
@@ -155,7 +155,7 @@ public final class DateUtilsBridge {
    * Returns whether the argument will be displayed as if it were midnight, using any of the
    * skeletons provided by {@link #toSkeleton}.
    */
-  public static boolean isDisplayMidnightUsingSkeleton(Calendar c) {
+  /* package */ static boolean isDisplayMidnightUsingSkeleton(Calendar c) {
     // All the skeletons returned by toSkeleton have minute precision (they may abbreviate 4:00 PM
     // to 4 PM but will still show the following minute as 4:01 PM).
     return c.get(Calendar.HOUR_OF_DAY) == 0 && c.get(Calendar.MINUTE) == 0;

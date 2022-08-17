@@ -53,7 +53,7 @@ import sun.reflect.Reflection;
  * </pre>
  *<P> The <code>DriverManager</code> methods <code>getConnection</code> and
  * <code>getDrivers</code> have been enhanced to support the Java Standard Edition
- * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jar/jar.html#Service%20Provider">Service Provider</a> mechanism. JDBC 4.0 Drivers must
+ * <a href="../../../technotes/guides/jar/jar.html#Service%20Provider">Service Provider</a> mechanism. JDBC 4.0 Drivers must
  * include the file <code>META-INF/services/java.sql.Driver</code>. This file contains the name of the JDBC drivers
  * implementation of <code>java.sql.Driver</code>.  For example, to load the <code>my.sql.Driver</code> class,
  * the <code>META-INF/services/java.sql.Driver</code> file would contain the entry:

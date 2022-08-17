@@ -31,9 +31,11 @@
 #include <nativehelper/ScopedUtfChars.h>
 #include <nativehelper/jni_macros.h>
 
+#include <unicode/char16ptr.h>
+#include <unicode/ustring.h>
+
 #include "JniConstants.h"
 #include "JniException.h"
-#include "unicode/unistr.h"
 
 #define BUCKET_COUNT 128
 
@@ -428,11 +430,11 @@ static void jniThrowExpatException(JNIEnv* env, XML_Error error) {
  *
  * @returns number of UTF-16 characters which were copied
  */
-static size_t fillBuffer(ParsingContext* parsingContext, const char* utf8, int byteCount) {
+static size_t fillBuffer(ParsingContext* parsingContext, const char* utf8, int byteLength) {
     JNIEnv* env = parsingContext->env;
 
     // Grow buffer if necessary (the length in bytes is always >= the length in chars).
-    jcharArray javaChars = parsingContext->ensureCapacity(byteCount);
+    jcharArray javaChars = parsingContext->ensureCapacity(byteLength);
     if (javaChars == NULL) {
         return -1;
     }
@@ -443,8 +445,19 @@ static size_t fillBuffer(ParsingContext* parsingContext, const char* utf8, int b
         return -1;
     }
     UErrorCode status = U_ZERO_ERROR;
-    icu::UnicodeString utf16(icu::UnicodeString::fromUTF8(icu::StringPiece(utf8, byteCount)));
-    return utf16.extract(chars.get(), byteCount, status);
+    int32_t length16;
+    // Use inline C++ class provided by ICU
+    icu::Char16Ptr dest(chars.get()); // Convert jchar (aka uint16_t*) to char16_t*
+    // Avoid icu::UnicodeString due to unstable C++ ABI.
+    u_strFromUTF8WithSub(dest.get(), // dest
+      byteLength, // destCapacity
+      &length16, // pDestLength
+      utf8, // src
+      byteLength, // srcLength
+      0xfffd,  // 0xfffd is the standard substitution character for malformed input sequence.
+      NULL,    // Don't care about number of substitutions.
+      &status);
+    return length16;
 }
 
 /**
@@ -1378,7 +1391,7 @@ static JNINativeMethod attributeMethods[] = {
     NATIVE_METHOD(ExpatAttributes, getValueForQName, "(JLjava/lang/String;)Ljava/lang/String;"),
     NATIVE_METHOD(ExpatAttributes, getValue, "(JLjava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
 };
-extern "C" void register_org_apache_harmony_xml_ExpatParser(JNIEnv* env) {
+void register_org_apache_harmony_xml_ExpatParser(JNIEnv* env) {
     jniRegisterNativeMethods(env, "org/apache/harmony/xml/ExpatParser", parserMethods, NELEM(parserMethods));
     jniRegisterNativeMethods(env, "org/apache/harmony/xml/ExpatAttributes", attributeMethods, NELEM(attributeMethods));
 }

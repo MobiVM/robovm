@@ -15,6 +15,10 @@
  */
 package libcore.net;
 
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
 import android.system.GaiException;
 import android.system.StructAddrinfo;
 import java.net.Inet4Address;
@@ -30,7 +34,8 @@ import static android.system.OsConstants.AI_NUMERICHOST;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public class InetAddressUtils {
 
     private static final int NETID_UNSET = 0;
@@ -50,8 +55,11 @@ public class InetAddressUtils {
      *
      * @param address the address to parse.
      * @return true if the supplied address is numeric, false otherwise.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static boolean isNumericAddress(String address) {
         return parseNumericAddressNoThrow(address) != null;
     }
@@ -68,8 +76,11 @@ public class InetAddressUtils {
      * @param address the address to parse, must be numeric.
      * @return an {@link InetAddress} instance corresponding to the address.
      * @throws IllegalArgumentException if {@code address} is not a numeric address.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static InetAddress parseNumericAddress(String address) {
         InetAddress result = parseNumericAddressNoThrow(address);
         if (result == null) {
@@ -78,13 +89,15 @@ public class InetAddressUtils {
         return result;
     }
 
+    /**
+     * @hide
+     */
     public static InetAddress parseNumericAddressNoThrow(String address) {
         StructAddrinfo hints = new StructAddrinfo();
         hints.ai_flags = AI_NUMERICHOST;
         InetAddress[] addresses = null;
         try {
-            // RoboVM Note: TODO: FIXME: using getaddrinfo instead of android_getaddrinfo
-            addresses = Libcore.os.getaddrinfo(address, hints);
+            addresses = Libcore.os.android_getaddrinfo(address, hints, NETID_UNSET);
         } catch (GaiException ignored) {
         }
         if (addresses == null) {
@@ -96,6 +109,8 @@ public class InetAddressUtils {
     /**
      * Like {@link #parseNumericAddressNoThrow(String)}}, but strips optional []
      * around a numeric IPv6 address.
+     *
+     * @hide
      */
     public static InetAddress parseNumericAddressNoThrowStripOptionalBrackets(String address) {
         // Accept IPv6 addresses (only) in square brackets for compatibility.
