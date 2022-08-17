@@ -257,13 +257,13 @@ public final class IoUtils {
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static void setBlocking(@NonNull FileDescriptor fd, boolean blocking) throws IOException {
         try {
-            int flags = Libcore.os.fcntlVoid(fd, F_GETFL);
+            int flags = Libcore.os.fcntlVoid(fd, F_GETFL());
             if (!blocking) {
-                flags |= O_NONBLOCK;
+                flags |= O_NONBLOCK();
             } else {
-                flags &= ~O_NONBLOCK;
+                flags &= ~O_NONBLOCK();
             }
-            Libcore.os.fcntlInt(fd, F_SETFL, flags);
+            Libcore.os.fcntlInt(fd, F_SETFL(), flags);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsIOException();
         }
@@ -338,7 +338,7 @@ public final class IoUtils {
     public static boolean canOpenReadOnly(String path) {
         try {
             // Use open(2) rather than stat(2) so we require fewer permissions. http://b/6485312.
-            FileDescriptor fd = Libcore.os.open(path, O_RDONLY, 0);
+            FileDescriptor fd = Libcore.os.open(path, O_RDONLY(), 0);
             Libcore.os.close(fd);
             return true;
         } catch (ErrnoException errnoException) {
@@ -385,7 +385,7 @@ public final class IoUtils {
             // "absolutePath" is a directory or not. We can eliminate it
             // at the cost of copying some code from IoBridge.open.
             try {
-                fd = IoBridge.open(absolutePath, O_RDONLY);
+                fd = IoBridge.open(absolutePath, O_RDONLY());
             } catch (FileNotFoundException fnfe) {
                 throw fnfe;
             }

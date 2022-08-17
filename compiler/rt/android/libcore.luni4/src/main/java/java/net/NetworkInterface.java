@@ -416,7 +416,7 @@ public final class NetworkInterface extends Object {
      * @since 1.6
      */
     public boolean isUp() throws SocketException {
-        return hasFlag(IFF_UP);
+        return hasFlag(IFF_UP());
     }
 
     /**
@@ -427,7 +427,7 @@ public final class NetworkInterface extends Object {
      * @since 1.6
      */
     public boolean isLoopback() throws SocketException {
-        return hasFlag(IFF_LOOPBACK);
+        return hasFlag(IFF_LOOPBACK());
     }
 
     /**
@@ -439,7 +439,7 @@ public final class NetworkInterface extends Object {
      * @since 1.6
      */
     public boolean isPointToPoint() throws SocketException {
-        return hasFlag(IFF_POINTOPOINT);
+        return hasFlag(IFF_POINTOPOINT());
     }
 
     /**
@@ -449,7 +449,7 @@ public final class NetworkInterface extends Object {
      * @since 1.6
      */
     public boolean supportsMulticast() throws SocketException {
-        return hasFlag(IFF_MULTICAST);
+        return hasFlag(IFF_MULTICAST());
     }
 
     private boolean hasFlag(int mask) throws SocketException {

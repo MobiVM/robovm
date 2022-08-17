@@ -94,7 +94,7 @@ public class InetAddressUtils {
      */
     public static InetAddress parseNumericAddressNoThrow(String address) {
         StructAddrinfo hints = new StructAddrinfo();
-        hints.ai_flags = AI_NUMERICHOST;
+        hints.ai_flags = AI_NUMERICHOST();
         InetAddress[] addresses = null;
         try {
             addresses = Libcore.os.android_getaddrinfo(address, hints, NETID_UNSET);

@@ -181,7 +181,7 @@ public final class FileDescriptor {
      */
     public void cloneForFork() {
         try {
-            int newDescriptor = Os.fcntlInt(this, F_DUPFD_CLOEXEC, 0);
+            int newDescriptor = Os.fcntlInt(this, F_DUPFD_CLOEXEC(), 0);
             this.descriptor = newDescriptor;
         } catch (ErrnoException e) {
             throw new RuntimeException(e);

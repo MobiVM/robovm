@@ -50,7 +50,7 @@ public final class IcmpHeaders {
      */
     public static byte[] createIcmpEchoHdr(boolean ipv4, int seq) {
         byte[] bytes = new byte[8];
-        bytes[0] = ipv4 ? (byte) ICMP_ECHO : (byte) ICMP6_ECHO_REQUEST;
+        bytes[0] = ipv4 ? (byte) ICMP_ECHO() : (byte) ICMP6_ECHO_REQUEST();
         // packet[1]: Code is always zero.
         // packet[2,3]: Checksum is computed by kernel.
         // packet[4,5]: ID (= port) inserted by kernel.

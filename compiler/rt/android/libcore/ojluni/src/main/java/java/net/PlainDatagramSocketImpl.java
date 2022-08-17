@@ -128,13 +128,13 @@ class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
 
     protected synchronized int peek(InetAddress i) throws IOException {
         DatagramPacket p = new DatagramPacket(EmptyArray.BYTE, 0);
-        doRecv(p, MSG_PEEK);
+        doRecv(p, MSG_PEEK());
         i.holder().address = p.getAddress().holder().address;
         return p.getPort();
     }
 
     protected synchronized int peekData(DatagramPacket p) throws IOException {
-        doRecv(p, MSG_PEEK);
+        doRecv(p, MSG_PEEK());
         return p.getPort();
     }
 
@@ -148,7 +148,7 @@ class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
         }
 
         if (timeout != 0) {
-            IoBridge.poll(fd, POLLIN | POLLERR, timeout);
+            IoBridge.poll(fd, POLLIN() | POLLERR(), timeout);
         }
 
         IoBridge.recvfrom(false, fd, p.getData(), p.getOffset(), p.bufLength, flags, p,
@@ -195,11 +195,11 @@ class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
     }
 
     protected void datagramSocketCreate() throws SocketException {
-        fd = IoBridge.socket(AF_INET6, SOCK_DGRAM, 0);
+        fd = IoBridge.socket(AF_INET6(), SOCK_DGRAM(), 0);
         IoBridge.setSocketOption(fd, SO_BROADCAST, true);
 
         try {
-            Libcore.os.setsockoptInt(fd, IPPROTO_IP, IP_MULTICAST_ALL, 0);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IP(), IP_MULTICAST_ALL(), 0);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsSocketException();
         }
@@ -241,7 +241,7 @@ class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
         }
 
         InetAddress inetAddressUnspec = new InetAddress();
-        inetAddressUnspec.holder().family = AF_UNSPEC;
+        inetAddressUnspec.holder().family = AF_UNSPEC();
 
         try {
             IoBridge.connect(fd, inetAddressUnspec, 0);

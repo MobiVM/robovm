@@ -406,7 +406,7 @@ class Inet6Address extends InetAddress {
 
     Inet6Address() {
         super();
-        holder.init(null, AF_INET6);
+        holder.init(null, AF_INET6());
         holder6 = new Inet6AddressHolder();
     }
 
@@ -414,7 +414,7 @@ class Inet6Address extends InetAddress {
      * scope_id must be >= 0, or -1 to indicate not being set
      */
     Inet6Address(String hostName, byte addr[], int scope_id) {
-        holder.init(hostName, AF_INET6);
+        holder.init(hostName, AF_INET6());
         holder6 = new Inet6AddressHolder();
         holder6.init(addr, scope_id);
     }
@@ -531,7 +531,7 @@ class Inet6Address extends InetAddress {
         holder6.init(addr, nif);
 
         if (addr.length == INADDRSZ) { // normal IPv6 address
-            family = AF_INET6;
+            family = AF_INET6();
         }
         holder.init(hostName, family);
     }
@@ -674,7 +674,7 @@ class Inet6Address extends InetAddress {
                                              ipaddress.length);
         }
 
-        if (holder().getFamily() != AF_INET6) {
+        if (holder().getFamily() != AF_INET6()) {
             throw new InvalidObjectException("invalid address family type");
         }
 
@@ -904,7 +904,7 @@ class Inet6Address extends InetAddress {
     public String getHostAddress() {
         // Android-changed: getnameinfo returns smarter representations than getHostAddress().
         // return holder6.getHostAddress();
-        return Libcore.os.getnameinfo(this, NI_NUMERICHOST); // Can't throw.
+        return Libcore.os.getnameinfo(this, NI_NUMERICHOST()); // Can't throw.
     }
 
     /**

@@ -37,7 +37,7 @@ import java.util.Arrays;
 @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public final class UnixSocketAddress extends SocketAddress {
 
-    private static final int NAMED_PATH_LENGTH = OsConstants.UNIX_PATH_MAX;
+    private static final int NAMED_PATH_LENGTH = OsConstants.UNIX_PATH_MAX();
     private static final byte[] UNNAMED_PATH = new byte[0];
 
     // See unix(7): Three types of UnixSocketAddress:

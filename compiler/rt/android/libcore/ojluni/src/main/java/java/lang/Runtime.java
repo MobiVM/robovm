@@ -704,7 +704,7 @@ public class Runtime {
      * @since 1.4
      */
     public int availableProcessors() {
-        return (int) Libcore.os.sysconf(_SC_NPROCESSORS_CONF);
+        return (int) Libcore.os.sysconf(_SC_NPROCESSORS_CONF());
     }
 
     /**

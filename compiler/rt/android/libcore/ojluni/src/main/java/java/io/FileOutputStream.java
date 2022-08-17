@@ -232,7 +232,7 @@ class FileOutputStream extends OutputStream
         // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
         // http://b/111268862
         // this.fd = new FileDescriptor();
-        int flags = O_WRONLY | O_CREAT | (append ? O_APPEND : O_TRUNC);
+        int flags = O_WRONLY() | O_CREAT() | (append ? O_APPEND() : O_TRUNC());
         this.fd = IoBridge.open(name, flags);
         // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
