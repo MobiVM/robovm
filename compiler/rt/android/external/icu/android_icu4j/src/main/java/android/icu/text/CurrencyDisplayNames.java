@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2009-2016, International Business Machines Corporation and    *
@@ -106,9 +106,10 @@ public abstract class CurrencyDisplayNames {
     public abstract ULocale getULocale();
 
     /**
-     * Returns the symbol for the currency with the provided ISO code.  If
-     * there is no data for the ISO code, substitutes isoCode, or returns null
-     * if noSubstitute was set in the factory method.
+     * Returns the symbol for the currency with the provided ISO code.
+     * <p>
+     * If there is no data for this symbol, substitutes isoCode,
+     * or returns null if noSubstitute was set in the factory method.
      *
      * @param isoCode the three-letter ISO code.
      * @return the symbol.
@@ -117,14 +118,49 @@ public abstract class CurrencyDisplayNames {
 
     /**
      * Returns the narrow symbol for the currency with the provided ISO code.
-     * If there is no data for narrow symbol, substitutes isoCode, or returns
-     * null if noSubstitute was set in the factory method.
+     * <p>
+     * The narrow currency symbol is similar to the regular currency symbol,
+     * but it always takes the shortest form;
+     * for example, "$" instead of "US$" for USD in en-CA.
+     * <p>
+     * If there is no data for this symbol, substitutes the default symbol,
+     * or returns null if noSubstitute was set in the factory method.
      *
      * @param isoCode the three-letter ISO code.
      * @return the narrow symbol.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public abstract String getNarrowSymbol(String isoCode);
+
+    /**
+     * Returns the formal symbol for the currency with the provided ISO code.
+     * <p>
+     * The formal currency symbol is similar to the regular currency symbol,
+     * but it always takes the form used in formal settings such as banking;
+     * for example, "NT$" instead of "$" for TWD in zh-TW.
+     * <p>
+     * If there is no data for this symbol, substitutes the default symbol,
+     * or returns null if noSubstitute was set in the factory method.
+     *
+     * @param isoCode the three-letter ISO code.
+     * @return the formal symbol.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public abstract String getFormalSymbol(String isoCode);
+
+    /**
+     * Returns the variant symbol for the currency with the provided ISO code.
+     * <p>
+     * The variant symbol for a currency is an alternative symbol that is not
+     * necessarily as widely used as the regular symbol.
+     * <p>
+     * If there is no data for variant symbol, substitutes the default symbol,
+     * or returns null if noSubstitute was set in the factory method.
+     *
+     * @param isoCode the three-letter ISO code.
+     * @return the variant symbol.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public abstract String getVariantSymbol(String isoCode);
 
     /**
      * Returns the 'long name' for the currency with the provided ISO code.

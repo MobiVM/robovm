@@ -767,7 +767,7 @@ uregex_start64(URegularExpression *regexp2,
     if (validateRE(regexp, TRUE, status) == FALSE) {
         return 0;
     }
-    int32_t result = regexp->fMatcher->start(groupNum, *status);
+    int64_t result = regexp->fMatcher->start64(groupNum, *status);
     return result;
 }
 
@@ -791,7 +791,7 @@ uregex_end64(URegularExpression   *regexp2,
     if (validateRE(regexp, TRUE, status) == FALSE) {
         return 0;
     }
-    int32_t result = regexp->fMatcher->end(groupNum, *status);
+    int64_t result = regexp->fMatcher->end64(groupNum, *status);
     return result;
 }
 
@@ -1508,7 +1508,8 @@ int32_t RegexCImpl::appendReplacement(RegularExpression    *regexp,
                         (c32 >= 0x31 && c32 <= 0x39)) {       // 0..9
                     groupName.append(c32);
                 } else if (c32 == RIGHTBRACKET) {
-                    groupNum = uhash_geti(regexp->fPat->fNamedCaptureMap, &groupName);
+                    groupNum = regexp->fPat->fNamedCaptureMap ?
+                            uhash_geti(regexp->fPat->fNamedCaptureMap, &groupName) : 0;
                     if (groupNum == 0) {
                         // Name not defined by pattern.
                         *status = U_REGEX_INVALID_CAPTURE_GROUP_NAME;

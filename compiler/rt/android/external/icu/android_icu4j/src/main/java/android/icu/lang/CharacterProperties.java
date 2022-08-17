@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 
 package android.icu.lang;
 
@@ -21,7 +21,6 @@ import android.icu.util.MutableCodePointTrie;
  * For lookup of property values by code point see class {@link UCharacter}.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public final class CharacterProperties {
     private CharacterProperties() {}  // all-static
@@ -113,7 +112,6 @@ public final class CharacterProperties {
      * @return the property as a set
      * @see UProperty
      * @see UCharacter#hasBinaryProperty
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final UnicodeSet getBinaryPropertySet(int property) {
         if (property < 0 || UProperty.BINARY_LIMIT <= property) {
@@ -143,7 +141,6 @@ public final class CharacterProperties {
      * @return the property as a map
      * @see UProperty
      * @see UCharacter#getIntPropertyValue
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final CodePointMap getIntPropertyMap(int property) {
         if (property < UProperty.INT_START || UProperty.INT_LIMIT <= property) {

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.text;
 
 import java.io.IOException;
@@ -13,9 +13,14 @@ import java.text.AttributedCharacterIterator;
 import java.text.FieldPosition;
 import java.text.ParsePosition;
 
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
+import android.icu.impl.Utility;
 import android.icu.impl.number.AffixUtils;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.DecimalFormatProperties.ParseMode;
+import android.icu.impl.number.DecimalQuantity;
+import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.Padder.PadPosition;
 import android.icu.impl.number.PatternStringParser;
@@ -121,8 +126,8 @@ import android.icu.util.ULocale.Category;
  * <p>It is also possible to specify the <em>rounding mode</em> to use. The default rounding mode is
  * "half even", which rounds numbers to their closest increment, with ties broken in favor of
  * trailing numbers being even. For more information, see {@link #setRoundingMode} and <a
- * href="http://userguide.icu-project.org/formatparse/numbers/rounding-modes">the ICU User
- * Guide</a>.
+ * href="https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes">the ICU
+ * User Guide</a>.
  *
  * <h3>Pattern Strings</h3>
  *
@@ -693,9 +698,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(double number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -704,9 +711,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(long number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -715,9 +724,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(BigInteger number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -727,9 +738,11 @@ public class DecimalFormat extends NumberFormat {
   @Override
   public StringBuffer format(
       java.math.BigDecimal number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -738,9 +751,11 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(BigDecimal number, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(number);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(number);
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -752,7 +767,7 @@ public class DecimalFormat extends NumberFormat {
     if (!(obj instanceof Number)) throw new IllegalArgumentException();
     Number number = (Number) obj;
     FormattedNumber output = formatter.format(number);
-    return output.getFieldIterator();
+    return output.toCharacterIterator();
   }
 
   /**
@@ -760,9 +775,19 @@ public class DecimalFormat extends NumberFormat {
    */
   @Override
   public StringBuffer format(CurrencyAmount currAmt, StringBuffer result, FieldPosition fieldPosition) {
-    FormattedNumber output = formatter.format(currAmt);
-    fieldPositionHelper(output, fieldPosition, result.length());
-    output.appendTo(result);
+    // We need to make localSymbols in order for monetary symbols to be initialized.
+    // Also, bypass the CurrencyAmount override of LocalizedNumberFormatter#format,
+    // because its caching mechanism will not provide any benefit here.
+    DecimalFormatSymbols localSymbols = (DecimalFormatSymbols) symbols.clone();
+    localSymbols.setCurrency(currAmt.getCurrency());
+
+    DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(currAmt.getNumber());
+    FormattedStringBuilder string = new FormattedStringBuilder();
+    formatter.symbols(localSymbols)
+            .unit(currAmt.getCurrency())
+            .formatImpl(dq, string);
+    fieldPositionHelper(dq, string, fieldPosition, result.length());
+    Utility.appendTo(string, result);
     return result;
   }
 
@@ -1006,12 +1031,10 @@ public class DecimalFormat extends NumberFormat {
   /**
    * <strong>[icu]</strong> Returns whether the sign is being shown on positive numbers.
    *
+   * @return Whether the sign is shown on positive numbers and zero.
    * @see #setSignAlwaysShown
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
-  public synchronized boolean getSignAlwaysShown() {
+  public synchronized boolean isSignAlwaysShown() {
     // This is not in the exported properties
     return properties.getSignAlwaysShown();
   }
@@ -1036,11 +1059,8 @@ public class DecimalFormat extends NumberFormat {
    * explicit plus sign, such as "+0;-0". The behavior when combining this method with explicit plus
    * signs in the pattern is undefined.
    *
-   * @param value true to always show a sign; false to hide the sign on positive numbers.
-   * @deprecated ICU 59: This API is technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
+   * @param value true to always show a sign; false to hide the sign on positive numbers and zero.
    */
-  @Deprecated
   public synchronized void setSignAlwaysShown(boolean value) {
     properties.setSignAlwaysShown(value);
     refreshFormatter();
@@ -1185,8 +1205,8 @@ public class DecimalFormat extends NumberFormat {
    * number, and rounds to the closest even number if at the midpoint.
    *
    * <p>For more detail on rounding modes, see <a
-   * href="http://userguide.icu-project.org/formatparse/numbers/rounding-modes">the ICU User
-   * Guide</a>.
+   * href="https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes">the ICU
+   * User Guide</a>.
    *
    * <p>For backwards compatibility, the rounding mode is specified as an int argument, which can be
    * from either the constants in {@link BigDecimal} or the ordinal value of {@link RoundingMode}.
@@ -1819,10 +1839,7 @@ public class DecimalFormat extends NumberFormat {
    * <strong>[icu]</strong> Returns the minimum number of digits before grouping is triggered.
    *
    * @see #setMinimumGroupingDigits
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
   public synchronized int getMinimumGroupingDigits() {
     if (properties.getMinimumGroupingDigits() > 0) {
       return properties.getMinimumGroupingDigits();
@@ -1835,15 +1852,43 @@ public class DecimalFormat extends NumberFormat {
    * order for the grouping separator to be printed. For example, if minimum grouping digits is set
    * to 2, in <em>en-US</em>, 1234 will be printed as "1234" and 12345 will be printed as "12,345".
    *
+    * Set the value to:
+   * <ul>
+   * <li>1 to turn off minimum grouping digits.</li>
+   * <li>MINIMUM_GROUPING_DIGITS_AUTO to display grouping using the default
+   * strategy for all locales.</li>
+   * <li>MINIMUM_GROUPING_DIGITS_MIN2 to display grouping using locale defaults,
+   * except do not show grouping on values smaller than 10000 (such that there is a minimum of
+   * two digits before the first separator).</li>
+   * </ul>
+   *
    * @param number The minimum number of digits before grouping is triggered.
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
   public synchronized void setMinimumGroupingDigits(int number) {
     properties.setMinimumGroupingDigits(number);
     refreshFormatter();
   }
+
+  /**
+   * <strong>[icu]</strong> Constant for {@link #setMinimumGroupingDigits(int)} to specify display
+   * grouping using the default strategy for all locales.
+   *
+   * @see #setMinimumGroupingDigits(int)
+   * @see #MINIMUM_GROUPING_DIGITS_MIN2
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public static final int MINIMUM_GROUPING_DIGITS_AUTO = -2;
+
+  /**
+   * <strong>[icu]</strong> Constant for {@link #setMinimumGroupingDigits(int)} to specify display
+   * grouping using locale defaults, except do not show grouping on values smaller than
+   * 10000 (such that there is a minimum of two digits before the first separator).
+   *
+   * @see #setMinimumGroupingDigits(int)
+   * @see #MINIMUM_GROUPING_DIGITS_AUTO
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public static final int MINIMUM_GROUPING_DIGITS_MIN2 = -3;
 
   /**
    * Returns whether the decimal separator is shown on integers.
@@ -1897,11 +1942,8 @@ public class DecimalFormat extends NumberFormat {
   @Override
   public synchronized void setCurrency(Currency currency) {
     properties.setCurrency(currency);
-    // Backwards compatibility: also set the currency in the DecimalFormatSymbols
     if (currency != null) {
       symbols.setCurrency(currency);
-      String symbol = currency.getName(symbols.getULocale(), Currency.SYMBOL_NAME, null);
-      symbols.setCurrencySymbol(symbol);
     }
     refreshFormatter();
   }
@@ -2028,6 +2070,27 @@ public class DecimalFormat extends NumberFormat {
     refreshFormatter();
   }
 
+  // BEGIN android-added: Allow libcore to use java-compatible parsing mode
+  /**
+   * @param parseJavaCompatible true for java-compatible mode, and otherwise lenient mode.
+   * @hide draft / provisional / internal are hidden on Android
+   */
+  public void setParseJavaCompatible(boolean parseJavaCompatible) {
+    setParseStrictMode(parseJavaCompatible ? ParseMode.JAVA_COMPATIBILITY : ParseMode.LENIENT);
+  }
+  // END android-added: Allow libcore to use java-compatible parsing mode
+
+  /**
+   * Android libcore uses this internal method to set {@link ParseMode#JAVA_COMPATIBILITY}.
+   * @deprecated This API is ICU internal only.
+ * @hide draft / provisional / internal are hidden on Android
+   */
+  @Deprecated
+public synchronized void setParseStrictMode(ParseMode parseMode) {
+    properties.setParseMode(parseMode);
+    refreshFormatter();
+  }
+
   /**
    * {@inheritDoc}
    *
@@ -2104,11 +2167,8 @@ public class DecimalFormat extends NumberFormat {
    * <strong>[icu]</strong> Returns whether to ignore exponents when parsing.
    *
    * @see #setParseNoExponent
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
-  public synchronized boolean getParseNoExponent() {
+  public synchronized boolean isParseNoExponent() {
     return properties.getParseNoExponent();
   }
 
@@ -2118,10 +2178,7 @@ public class DecimalFormat extends NumberFormat {
    * 5).
    *
    * @param value true to prevent exponents from being parsed; false to allow them to be parsed.
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
   public synchronized void setParseNoExponent(boolean value) {
     properties.setParseNoExponent(value);
     refreshFormatter();
@@ -2131,11 +2188,8 @@ public class DecimalFormat extends NumberFormat {
    * <strong>[icu]</strong> Returns whether to force case (uppercase/lowercase) to match when parsing.
    *
    * @see #setParseNoExponent
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
-  public synchronized boolean getParseCaseSensitive() {
+  public synchronized boolean isParseCaseSensitive() {
     return properties.getParseCaseSensitive();
   }
 
@@ -2146,10 +2200,7 @@ public class DecimalFormat extends NumberFormat {
    *
    * @param value true to force case (uppercase/lowercase) to match when parsing; false to ignore
    *     case and perform case folding.
-   * @deprecated ICU 59: This API is a technical preview. It may change in an upcoming release.
- * @hide draft / provisional / internal are hidden on Android
    */
-  @Deprecated
   public synchronized void setParseCaseSensitive(boolean value) {
     properties.setParseCaseSensitive(value);
     refreshFormatter();
@@ -2293,7 +2344,7 @@ public class DecimalFormat extends NumberFormat {
    * @return An instance of {@link LocalizedNumberFormatter} with the same behavior as this instance of
    * DecimalFormat.
    * @see NumberFormatter
-   * @hide draft / provisional / internal are hidden on Android
+   * @hide unsupported on Android
    */
   public LocalizedNumberFormatter toNumberFormatter() {
       return formatter;
@@ -2387,11 +2438,13 @@ public class DecimalFormat extends NumberFormat {
     PatternStringParser.parseToExistingProperties(pattern, properties, ignoreRounding);
   }
 
-  static void fieldPositionHelper(FormattedNumber formatted, FieldPosition fieldPosition, int offset) {
+  static void fieldPositionHelper(
+          DecimalQuantity dq, FormattedStringBuilder string, FieldPosition fieldPosition, int offset) {
       // always return first occurrence:
       fieldPosition.setBeginIndex(0);
       fieldPosition.setEndIndex(0);
-      boolean found = formatted.nextFieldPosition(fieldPosition);
+      dq.populateUFieldPosition(fieldPosition);
+      boolean found = FormattedValueStringBuilderImpl.nextFieldPosition(string, fieldPosition);;
       if (found && offset != 0) {
           fieldPosition.setBeginIndex(fieldPosition.getBeginIndex() + offset);
           fieldPosition.setEndIndex(fieldPosition.getEndIndex() + offset);

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 1996-2016, International Business Machines Corporation and
@@ -821,9 +821,32 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         if (currency == null) {
             throw new NullPointerException();
         }
+        if (currency.equals(this.currency)) {
+            return;
+        }
+        CurrencyDisplayInfo displayInfo = CurrencyData.provider.getInstance(ulocale, true);
+        setCurrencyOrNull(currency, displayInfo);
+    }
+
+    private void setCurrencyOrNull(Currency currency, CurrencyDisplayInfo displayInfo) {
         this.currency = currency;
+
+        if (currency == null) {
+            intlCurrencySymbol = "XXX";
+            currencySymbol = "\u00A4"; // 'OX' currency symbol
+            currencyPattern = null;
+            return;
+        }
+
         intlCurrencySymbol = currency.getCurrencyCode();
-        currencySymbol = currency.getSymbol(requestedLocale);
+        currencySymbol = currency.getSymbol(ulocale);
+
+        CurrencyFormatInfo formatInfo = displayInfo.getFormatInfo(currency.getCurrencyCode());
+        if (formatInfo != null) {
+            setMonetaryDecimalSeparatorString(formatInfo.monetaryDecimalSeparator);
+            setMonetaryGroupingSeparatorString(formatInfo.monetaryGroupingSeparator);
+            currencyPattern = formatInfo.currencyPattern;
+        }
     }
 
     /**
@@ -927,11 +950,13 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
     }
 
     /**
-    }
      * Internal API for NumberFormat
      * @return String currency pattern string
+     * @deprecated This API is for ICU internal use only
+     * @hide unsupported on Android
      */
-    String getCurrencyPattern() {
+    @Deprecated
+    public String getCurrencyPattern() {
         return currencyPattern;
     }
 
@@ -1188,7 +1213,9 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
             "nan",
             "currencyDecimal",
             "currencyGroup",
-            "superscriptingExponent"
+            "superscriptingExponent",
+    // Android-added: Libcore bridge needs localized pattern separator. http://b/112080617
+            "list",
     };
 
     /*
@@ -1266,6 +1293,24 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         }
     }
 
+    // BEGIN Android-added: Libcore bridge needs localized pattern separator. http://b/112080617
+    /**
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static String getLocalizedPatternSeparator(ULocale locale, NumberingSystem ns) {
+        CacheData data = getCachedLocaleData(locale, ns);
+        return data.numberElements[12];
+    }
+
+    private static CacheData getCachedLocaleData(ULocale locale, NumberingSystem ns) {
+        // TODO: The cache requires a single key, so we just save the NumberingSystem into the
+        // locale string. NumberingSystem is then decoded again in the loadData() method. It would
+        // be more efficient if we didn't have to serialize and deserialize the NumberingSystem.
+        ULocale keyLocale = (ns == null) ? locale : locale.setKeywordValue("numbers", ns.getName());
+        return cachedLocaleData.getInstance(keyLocale, null /* unused */);
+    }
+    // END Android-added: Libcore bridge needs localized pattern separator. http://b/112080617
+
     /**
      * Initializes the symbols from the locale data.
      */
@@ -1273,11 +1318,8 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         this.requestedLocale = locale.toLocale();
         this.ulocale = locale;
 
-        // TODO: The cache requires a single key, so we just save the NumberingSystem into the
-        // locale string. NumberingSystem is then decoded again in the loadData() method. It would
-        // be more efficient if we didn't have to serialize and deserialize the NumberingSystem.
-        ULocale keyLocale = (ns == null) ? locale : locale.setKeywordValue("numbers", ns.getName());
-        CacheData data = cachedLocaleData.getInstance(keyLocale, null /* unused */);
+        // Android-changed: Libcore bridge needs localized pattern separator. http://b/112080617
+        CacheData data = getCachedLocaleData(locale, ns);
 
         setLocale(data.validLocale, data.validLocale);
         setDigitStrings(data.digits);
@@ -1303,30 +1345,10 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
         padEscape = '*';
         sigDigit  = '@';
 
+        CurrencyDisplayInfo displayInfo = CurrencyData.provider.getInstance(ulocale, true);
+        initSpacingInfo(displayInfo.getSpacingInfo());
 
-        CurrencyDisplayInfo info = CurrencyData.provider.getInstance(locale, true);
-
-        // Obtain currency data from the currency API.  This is strictly
-        // for backward compatibility; we don't use DecimalFormatSymbols
-        // for currency data anymore.
-        currency = Currency.getInstance(locale);
-        if (currency != null) {
-            intlCurrencySymbol = currency.getCurrencyCode();
-            currencySymbol = currency.getName(locale, Currency.SYMBOL_NAME, null);
-            CurrencyFormatInfo fmtInfo = info.getFormatInfo(intlCurrencySymbol);
-            if (fmtInfo != null) {
-                currencyPattern = fmtInfo.currencyPattern;
-                setMonetaryDecimalSeparatorString(fmtInfo.monetaryDecimalSeparator);
-                setMonetaryGroupingSeparatorString(fmtInfo.monetaryGroupingSeparator);
-            }
-        } else {
-            intlCurrencySymbol = "XXX";
-            currencySymbol = "\u00A4"; // 'OX' currency symbol
-        }
-
-
-        // Get currency spacing data.
-        initSpacingInfo(info.getSpacingInfo());
+        setCurrencyOrNull(Currency.getInstance(ulocale), displayInfo);
     }
 
     private static CacheData loadData(ULocale locale) {
@@ -1852,7 +1874,7 @@ public class DecimalFormatSymbols implements Cloneable, Serializable {
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * @hide draft / provisional / internal are hidden on Android
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?
             this.actualLocale : this.validLocale;

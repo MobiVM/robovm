@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 1996-2014, International Business Machines Corporation and    *
@@ -221,6 +221,16 @@ public class JapaneseCalendar extends GregorianCalendar {
     private static final EraRules ERA_RULES;
 
     static {
+        ERA_RULES = EraRules.getInstance(CalType.JAPANESE, enableTentativeEra());
+    }
+
+    /**
+     * Check environment variable that enables use of future eras.
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public static boolean enableTentativeEra() {
         // Although start date of next Japanese era is planned ahead, a name of
         // new era might not be available. This implementation allows tester to
         // check a new era without era names by settings below (in priority order).
@@ -248,8 +258,7 @@ public class JapaneseCalendar extends GregorianCalendar {
             String jdkEraConf = System.getProperty("jdk.calendar.japanese.supplemental.era");
             includeTentativeEra = jdkEraConf != null;
         }
-
-        ERA_RULES = EraRules.getInstance(CalType.JAPANESE, includeTentativeEra);
+        return includeTentativeEra;
     }
 
     /**
@@ -335,7 +344,8 @@ public class JapaneseCalendar extends GregorianCalendar {
 
     // Constant for the current era.  This must be regularly updated.
     /**
-     * @deprecated on Android but not deprecated in ICU
+     * @deprecated Use era constants, e.g. {@link #REIWA}, instead.
+     * @removed on Android but @stable in ICU
      */
     @Deprecated
     static public final int CURRENT_ERA;
@@ -360,10 +370,8 @@ public class JapaneseCalendar extends GregorianCalendar {
      */
     static public final int HEISEI;
 
-    // Android-changed: Cherry-pick the Reiwa constant from ICU 64.
     /**
      * Constant for the era starting on May 1, 2019 AD.
-     * @hide draft / provisional / internal are hidden on Android
      */
     static public final int REIWA;
 
@@ -397,7 +405,7 @@ public class JapaneseCalendar extends GregorianCalendar {
             if (limitType == MINIMUM || limitType == GREATEST_MINIMUM) {
                 return 0;
             }
-            return CURRENT_ERA;
+            return ERA_RULES.getNumberOfEras() - 1; // max known era, not always CURRENT_ERA
         case YEAR:
         {
             switch (limitType) {
@@ -443,7 +451,7 @@ public class JapaneseCalendar extends GregorianCalendar {
     public int getActualMaximum(int field) {
         if (field == YEAR) {
             int era = get(Calendar.ERA);
-            if (era == CURRENT_ERA) {
+            if (era == ERA_RULES.getNumberOfEras() - 1) {
                 // TODO: Investigate what value should be used here - revisit after 4.0.
                 return handleGetLimit(YEAR, MAXIMUM);
             } else {

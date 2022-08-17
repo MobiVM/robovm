@@ -1,17 +1,22 @@
 // © 2018 and later: Unicode, Inc. and others.
 // License & terms of use: http://www.unicode.org/copyright.html
 
-#if !UCONFIG_NO_FORMATTING
 #ifndef __NUMBERRANGEFORMATTER_H__
 #define __NUMBERRANGEFORMATTER_H__
+
+#include "unicode/utypes.h"
+
+#if U_SHOW_CPLUSPLUS_API
+
+#if !UCONFIG_NO_FORMATTING
 
 #include <atomic>
 #include "unicode/appendable.h"
 #include "unicode/fieldpos.h"
+#include "unicode/formattedvalue.h"
 #include "unicode/fpositer.h"
 #include "unicode/numberformatter.h"
-
-#ifndef U_HIDE_DRAFT_API
+#include "unicode/unumberrangeformatter.h"
 
 /**
  * \file
@@ -27,141 +32,23 @@
  *     .numberFormatterFirst(NumberFormatter::with().adoptUnit(MeasureUnit::createMeter()))
  *     .numberFormatterSecond(NumberFormatter::with().adoptUnit(MeasureUnit::createKilometer()))
  *     .locale("en-GB")
- *     .formatRange(750, 1.2, status)
+ *     .formatFormattableRange(750, 1.2, status)
  *     .toString(status);
  * // => "750 m - 1.2 km"
  * </pre>
  * <p>
- * Like NumberFormatter, NumberRangeFormatter instances are immutable and thread-safe. This API is based on the
+ * Like NumberFormatter, NumberRangeFormatter instances (i.e., LocalizedNumberRangeFormatter
+ * and UnlocalizedNumberRangeFormatter) are immutable and thread-safe. This API is based on the
  * <em>fluent</em> design pattern popularized by libraries such as Google's Guava.
  *
  * @author Shane Carr
  */
 
 
-/**
- * Defines how to merge fields that are identical across the range sign.
- *
- * @draft ICU 63
- */
-typedef enum UNumberRangeCollapse {
-    /**
-     * Use locale data and heuristics to determine how much of the string to collapse. Could end up collapsing none,
-     * some, or all repeated pieces in a locale-sensitive way.
-     *
-     * The heuristics used for this option are subject to change over time.
-     *
-     * @draft ICU 63
-     */
-    UNUM_RANGE_COLLAPSE_AUTO,
-
-    /**
-     * Do not collapse any part of the number. Example: "3.2 thousand kilograms – 5.3 thousand kilograms"
-     *
-     * @draft ICU 63
-     */
-    UNUM_RANGE_COLLAPSE_NONE,
-
-    /**
-     * Collapse the unit part of the number, but not the notation, if present. Example: "3.2 thousand – 5.3 thousand
-     * kilograms"
-     *
-     * @draft ICU 63
-     */
-    UNUM_RANGE_COLLAPSE_UNIT,
-
-    /**
-     * Collapse any field that is equal across the range sign. May introduce ambiguity on the magnitude of the
-     * number. Example: "3.2 – 5.3 thousand kilograms"
-     *
-     * @draft ICU 63
-     */
-    UNUM_RANGE_COLLAPSE_ALL
-} UNumberRangeCollapse;
-
-/**
- * Defines the behavior when the two numbers in the range are identical after rounding. To programmatically detect
- * when the identity fallback is used, compare the lower and upper BigDecimals via FormattedNumber.
- *
- * @draft ICU 63
- * @see NumberRangeFormatter
- */
-typedef enum UNumberRangeIdentityFallback {
-    /**
-     * Show the number as a single value rather than a range. Example: "$5"
-     *
-     * @draft ICU 63
-     */
-    UNUM_IDENTITY_FALLBACK_SINGLE_VALUE,
-
-    /**
-     * Show the number using a locale-sensitive approximation pattern. If the numbers were the same before rounding,
-     * show the single value. Example: "~$5" or "$5"
-     *
-     * @draft ICU 63
-     */
-    UNUM_IDENTITY_FALLBACK_APPROXIMATELY_OR_SINGLE_VALUE,
-
-    /**
-     * Show the number using a locale-sensitive approximation pattern. Use the range pattern always, even if the
-     * inputs are the same. Example: "~$5"
-     *
-     * @draft ICU 63
-     */
-    UNUM_IDENTITY_FALLBACK_APPROXIMATELY,
-
-    /**
-     * Show the number as the range of two equal values. Use the range pattern always, even if the inputs are the
-     * same. Example (with RangeCollapse.NONE): "$5 – $5"
-     *
-     * @draft ICU 63
-     */
-    UNUM_IDENTITY_FALLBACK_RANGE
-} UNumberRangeIdentityFallback;
-
-/**
- * Used in the result class FormattedNumberRange to indicate to the user whether the numbers formatted in the range
- * were equal or not, and whether or not the identity fallback was applied.
- *
- * @draft ICU 63
- * @see NumberRangeFormatter
- */
-typedef enum UNumberRangeIdentityResult {
-    /**
-     * Used to indicate that the two numbers in the range were equal, even before any rounding rules were applied.
-     *
-     * @draft ICU 63
-     * @see NumberRangeFormatter
-     */
-    UNUM_IDENTITY_RESULT_EQUAL_BEFORE_ROUNDING,
-
-    /**
-     * Used to indicate that the two numbers in the range were equal, but only after rounding rules were applied.
-     *
-     * @draft ICU 63
-     * @see NumberRangeFormatter
-     */
-    UNUM_IDENTITY_RESULT_EQUAL_AFTER_ROUNDING,
-
-    /**
-     * Used to indicate that the two numbers in the range were not equal, even after rounding rules were applied.
-     *
-     * @draft ICU 63
-     * @see NumberRangeFormatter
-     */
-    UNUM_IDENTITY_RESULT_NOT_EQUAL,
-
-#ifndef U_HIDE_INTERNAL_API
-    /**
-     * The number of entries in this enum.
-     * @internal
-     */
-    UNUM_IDENTITY_RESULT_COUNT
-#endif
-
-} UNumberRangeIdentityResult;
-
 U_NAMESPACE_BEGIN
+
+// Forward declarations:
+class PluralRules;
 
 namespace number {  // icu::number
 
@@ -175,8 +62,9 @@ namespace impl {
 // Forward declarations:
 struct RangeMacroProps;
 class DecimalQuantity;
-struct UFormattedNumberRangeData;
+class UFormattedNumberRangeData;
 class NumberRangeFormatterImpl;
+struct UFormattedNumberRangeImpl;
 
 } // namespace impl
 
@@ -252,7 +140,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      * @param formatter
      *            The formatter to use for both numbers in the range.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterBoth(const UnlocalizedNumberFormatter &formatter) const &;
 
@@ -263,7 +151,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for both numbers in the range.
      * @return The fluent chain.
      * @see #numberFormatterBoth
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterBoth(const UnlocalizedNumberFormatter &formatter) &&;
 
@@ -274,7 +162,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for both numbers in the range.
      * @return The fluent chain.
      * @see #numberFormatterBoth
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterBoth(UnlocalizedNumberFormatter &&formatter) const &;
 
@@ -285,7 +173,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for both numbers in the range.
      * @return The fluent chain.
      * @see #numberFormatterBoth
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterBoth(UnlocalizedNumberFormatter &&formatter) &&;
 
@@ -298,7 +186,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      * @param formatterFirst
      *            The formatter to use for the first number in the range.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterFirst(const UnlocalizedNumberFormatter &formatterFirst) const &;
 
@@ -309,7 +197,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the first number in the range.
      * @return The fluent chain.
      * @see #numberFormatterFirst
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterFirst(const UnlocalizedNumberFormatter &formatterFirst) &&;
 
@@ -320,7 +208,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the first number in the range.
      * @return The fluent chain.
      * @see #numberFormatterFirst
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterFirst(UnlocalizedNumberFormatter &&formatterFirst) const &;
 
@@ -331,7 +219,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the first number in the range.
      * @return The fluent chain.
      * @see #numberFormatterFirst
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterFirst(UnlocalizedNumberFormatter &&formatterFirst) &&;
 
@@ -344,7 +232,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      * @param formatterSecond
      *            The formatter to use for the second number in the range.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterSecond(const UnlocalizedNumberFormatter &formatterSecond) const &;
 
@@ -355,7 +243,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the second number in the range.
      * @return The fluent chain.
      * @see #numberFormatterSecond
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterSecond(const UnlocalizedNumberFormatter &formatterSecond) &&;
 
@@ -366,7 +254,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the second number in the range.
      * @return The fluent chain.
      * @see #numberFormatterSecond
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterSecond(UnlocalizedNumberFormatter &&formatterSecond) const &;
 
@@ -377,7 +265,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The formatter to use for the second number in the range.
      * @return The fluent chain.
      * @see #numberFormatterSecond
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived numberFormatterSecond(UnlocalizedNumberFormatter &&formatterSecond) &&;
 
@@ -396,7 +284,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      * @param collapse
      *            The collapsing strategy to use for this range.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived collapse(UNumberRangeCollapse collapse) const &;
 
@@ -407,14 +295,14 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The collapsing strategy to use for this range.
      * @return The fluent chain.
      * @see #collapse
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived collapse(UNumberRangeCollapse collapse) &&;
 
     /**
      * Sets the behavior when the two sides of the range are the same. This could happen if the same two numbers are
-     * passed to the formatRange function, or if different numbers are passed to the function but they become the same
-     * after rounding rules are applied. Possible values:
+     * passed to the formatFormattableRange function, or if different numbers are passed to the function but they
+     * become the same after rounding rules are applied. Possible values:
      * <p>
      * <ul>
      * <li>SINGLE_VALUE: "5 miles"</li>
@@ -429,7 +317,7 @@ class U_I18N_API NumberRangeFormatterSettings {
      * @param identityFallback
      *            The strategy to use when formatting two numbers that end up being the same.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived identityFallback(UNumberRangeIdentityFallback identityFallback) const &;
 
@@ -440,24 +328,46 @@ class U_I18N_API NumberRangeFormatterSettings {
      *            The strategy to use when formatting two numbers that end up being the same.
      * @return The fluent chain.
      * @see #identityFallback
-     * @draft ICU 63
+     * @stable ICU 63
      */
     Derived identityFallback(UNumberRangeIdentityFallback identityFallback) &&;
 
     /**
+     * Returns the current (Un)LocalizedNumberRangeFormatter as a LocalPointer
+     * wrapping a heap-allocated copy of the current object.
+     *
+     * This is equivalent to new-ing the move constructor with a value object
+     * as the argument.
+     *
+     * @return A wrapped (Un)LocalizedNumberRangeFormatter pointer, or a wrapped
+     *         nullptr on failure.
+     * @stable ICU 64
+     */
+    LocalPointer<Derived> clone() const &;
+
+    /**
+     * Overload of clone for use on an rvalue reference.
+     *
+     * @return A wrapped (Un)LocalizedNumberRangeFormatter pointer, or a wrapped
+     *         nullptr on failure.
+     * @stable ICU 64
+     */
+    LocalPointer<Derived> clone() &&;
+
+    /**
      * Sets the UErrorCode if an error occurred in the fluent chain.
      * Preserves older error codes in the outErrorCode.
-     * @return TRUE if U_FAILURE(outErrorCode)
-     * @draft ICU 63
+     * @return true if U_FAILURE(outErrorCode)
+     * @stable ICU 63
      */
     UBool copyErrorTo(UErrorCode &outErrorCode) const {
         if (U_FAILURE(outErrorCode)) {
             // Do not overwrite the older error code
-            return TRUE;
+            return true;
         }
         fMacros.copyErrorTo(outErrorCode);
         return U_FAILURE(outErrorCode);
-    };
+    }
 
     // NOTE: Uses default copy and move constructors.
 
@@ -474,8 +384,10 @@ class U_I18N_API NumberRangeFormatterSettings {
 /**
  * A NumberRangeFormatter that does not yet have a locale. In order to format, a locale must be specified.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @see NumberRangeFormatter
- * @draft ICU 63
+ * @stable ICU 63
  */
 class U_I18N_API UnlocalizedNumberRangeFormatter
         : public NumberRangeFormatterSettings<UnlocalizedNumberRangeFormatter>, public UMemory {
@@ -488,7 +400,7 @@ class U_I18N_API UnlocalizedNumberRangeFormatter
      * @param locale
      *            The locale to use when loading data for number formatting.
      * @return The fluent chain.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter locale(const icu::Locale &locale) const &;
 
@@ -499,40 +411,40 @@ class U_I18N_API UnlocalizedNumberRangeFormatter
      *            The locale to use when loading data for number formatting.
      * @return The fluent chain.
      * @see #locale
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter locale(const icu::Locale &locale) &&;
 
     /**
      * Default constructor: puts the formatter into a valid but undefined state.
      *
-     * @draft ICU 63
+     * @stable ICU 63
      */
     UnlocalizedNumberRangeFormatter() = default;
 
     /**
      * Returns a copy of this UnlocalizedNumberRangeFormatter.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     UnlocalizedNumberRangeFormatter(const UnlocalizedNumberRangeFormatter &other);
 
     /**
      * Move constructor:
      * The source UnlocalizedNumberRangeFormatter will be left in a valid but undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     UnlocalizedNumberRangeFormatter(UnlocalizedNumberRangeFormatter&& src) U_NOEXCEPT;
 
     /**
      * Copy assignment operator.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     UnlocalizedNumberRangeFormatter& operator=(const UnlocalizedNumberRangeFormatter& other);
 
     /**
      * Move assignment operator:
      * The source UnlocalizedNumberRangeFormatter will be left in a valid but undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     UnlocalizedNumberRangeFormatter& operator=(UnlocalizedNumberRangeFormatter&& src) U_NOEXCEPT;
 
@@ -553,8 +465,10 @@ class U_I18N_API UnlocalizedNumberRangeFormatter
 /**
  * A NumberRangeFormatter that has a locale associated with it; this means .formatRange() methods are available.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @see NumberFormatter
- * @draft ICU 63
+ * @stable ICU 63
  */
 class U_I18N_API LocalizedNumberRangeFormatter
         : public NumberRangeFormatterSettings<LocalizedNumberRangeFormatter>, public UMemory {
@@ -570,7 +484,7 @@ class U_I18N_API LocalizedNumberRangeFormatter
      * @param status
      *            Set if an error occurs while formatting.
      * @return A FormattedNumberRange object; call .toString() to get the string.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     FormattedNumberRange formatFormattableRange(
         const Formattable& first, const Formattable& second, UErrorCode& status) const;
@@ -578,33 +492,33 @@ class U_I18N_API LocalizedNumberRangeFormatter
     /**
      * Default constructor: puts the formatter into a valid but undefined state.
      *
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter() = default;
 
     /**
      * Returns a copy of this LocalizedNumberRangeFormatter.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter(const LocalizedNumberRangeFormatter &other);
 
     /**
      * Move constructor:
      * The source LocalizedNumberRangeFormatter will be left in a valid but undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter(LocalizedNumberRangeFormatter&& src) U_NOEXCEPT;
 
     /**
      * Copy assignment operator.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter& operator=(const LocalizedNumberRangeFormatter& other);
 
     /**
      * Move assignment operator:
      * The source LocalizedNumberRangeFormatter will be left in a valid but undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     LocalizedNumberRangeFormatter& operator=(LocalizedNumberRangeFormatter&& src) U_NOEXCEPT;
 
@@ -623,11 +537,11 @@ class U_I18N_API LocalizedNumberRangeFormatter
     void formatImpl(impl::UFormattedNumberRangeData& results, bool equalBeforeRounding,
                     UErrorCode& status) const;
 
-#endif
+#endif  /* U_HIDE_INTERNAL_API */
 
     /**
      * Destruct this LocalizedNumberRangeFormatter, cleaning up any memory it might own.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     ~LocalizedNumberRangeFormatter();
 
@@ -660,90 +574,56 @@ class U_I18N_API LocalizedNumberRangeFormatter
  * The result of a number range formatting operation. This class allows the result to be exported in several data types,
  * including a UnicodeString and a FieldPositionIterator.
  *
- * @draft ICU 63
+ * Instances of this class are immutable and thread-safe.
+ *
+ * @stable ICU 63
  */
-class U_I18N_API FormattedNumberRange : public UMemory {
+class U_I18N_API FormattedNumberRange : public UMemory, public FormattedValue {
   public:
+    // Copybrief: this method is older than the parent method
     /**
-     * Returns a UnicodeString representation of the formatted number range.
+     * @copybrief FormattedValue::toString()
      *
-     * @param status
-     *            Set if an error occurs while formatting the number to the UnicodeString.
-     * @return a UnicodeString containing the localized number range.
-     * @draft ICU 63
+     * For more information, see FormattedValue::toString()
+     *
+     * @stable ICU 63
      */
-    UnicodeString toString(UErrorCode& status) const;
+    UnicodeString toString(UErrorCode& status) const U_OVERRIDE;
 
+    // Copydoc: this method is new in ICU 64
+    /** @copydoc FormattedValue::toTempString() */
+    UnicodeString toTempString(UErrorCode& status) const U_OVERRIDE;
+
+    // Copybrief: this method is older than the parent method
     /**
-     * Appends the formatted number range to an Appendable.
+     * @copybrief FormattedValue::appendTo()
      *
-     * @param appendable
-     *            The Appendable to which to append the formatted number range string.
-     * @param status
-     *            Set if an error occurs while formatting the number range to the Appendable.
-     * @return The same Appendable, for chaining.
-     * @draft ICU 63
-     * @see Appendable
+     * For more information, see FormattedValue::appendTo()
+     *
+     * @stable ICU 63
      */
-    Appendable &appendTo(Appendable &appendable, UErrorCode& status) const;
+    Appendable &appendTo(Appendable &appendable, UErrorCode& status) const U_OVERRIDE;
 
-    /**
-     * Determines the start (inclusive) and end (exclusive) indices of the next occurrence of the given
-     * <em>field</em> in the output string. This allows you to determine the locations of, for example,
-     * the integer part, fraction part, or symbols.
-     *
-     * If both sides of the range have the same field, the field will occur twice, once before the
-     * range separator and once after the range separator, if applicable.
-     *
-     * If a field occurs just once, calling this method will find that occurrence and return it. If a
-     * field occurs multiple times, this method may be called repeatedly with the following pattern:
-     *
-     * <pre>
-     * FieldPosition fpos(UNUM_INTEGER_FIELD);
-     * while (formattedNumberRange.nextFieldPosition(fpos, status)) {
-     *   // do something with fpos.
-     * }
-     * </pre>
-     *
-     * This method is useful if you know which field to query. If you want all available field position
-     * information, use #getAllFieldPositions().
-     *
-     * @param fieldPosition
-     *            Input+output variable. See {@link FormattedNumber#nextFieldPosition}.
-     * @param status
-     *            Set if an error occurs while populating the FieldPosition.
-     * @return TRUE if a new occurrence of the field was found; FALSE otherwise.
-     * @draft ICU 63
-     * @see UNumberFormatFields
-     */
-    UBool nextFieldPosition(FieldPosition& fieldPosition, UErrorCode& status) const;
+    // Copydoc: this method is new in ICU 64
+    /** @copydoc FormattedValue::nextPosition() */
+    UBool nextPosition(ConstrainedFieldPosition& cfpos, UErrorCode& status) const U_OVERRIDE;
 
-    /**
-     * Export the formatted number range to a FieldPositionIterator. This allows you to determine which characters in
-     * the output string correspond to which <em>fields</em>, such as the integer part, fraction part, and sign.
-     *
-     * If information on only one field is needed, use #nextFieldPosition() instead.
-     *
-     * @param iterator
-     *            The FieldPositionIterator to populate with all of the fields present in the formatted number.
-     * @param status
-     *            Set if an error occurs while populating the FieldPositionIterator.
-     * @draft ICU 63
-     * @see UNumberFormatFields
-     */
-    void getAllFieldPositions(FieldPositionIterator &iterator, UErrorCode &status) const;
-
+#ifndef U_HIDE_DEPRECATED_API
     /**
      * Export the first formatted number as a decimal number. This endpoint
      * is useful for obtaining the exact number being printed after scaling
      * and rounding have been applied by the number range formatting pipeline.
-     * 
+     *
      * The syntax of the unformatted number is a "numeric string"
      * as defined in the Decimal Arithmetic Specification, available at
      * http://speleotrove.com/decimal
      *
+     * TODO(ICU-21275): This function will be removed in ICU 69.
+     * Use getDecimalNumbers() instead.
+     *
+     * @param status Set if an error occurs.
      * @return A decimal representation of the first formatted number.
-     * @draft ICU 63
+     * @deprecated ICU 68 Use getDecimalNumbers instead.
      * @see NumberRangeFormatter
      * @see #getSecondDecimal
      */
@@ -753,17 +633,47 @@ class U_I18N_API FormattedNumberRange : public UMemory {
      * Export the second formatted number as a decimal number. This endpoint
      * is useful for obtaining the exact number being printed after scaling
      * and rounding have been applied by the number range formatting pipeline.
-     * 
+     *
      * The syntax of the unformatted number is a "numeric string"
      * as defined in the Decimal Arithmetic Specification, available at
      * http://speleotrove.com/decimal
      *
+     * TODO(ICU-21275): This function will be removed in ICU 69.
+     * Use getDecimalNumbers() instead.
+     *
+     * @param status Set if an error occurs.
      * @return A decimal representation of the second formatted number.
-     * @draft ICU 63
+     * @deprecated ICU 68 Use getDecimalNumbers instead.
      * @see NumberRangeFormatter
      * @see #getFirstDecimal
      */
     UnicodeString getSecondDecimal(UErrorCode& status) const;
+#endif // U_HIDE_DEPRECATED_API
+
+
+#ifndef U_HIDE_DRAFT_API
+    /**
+     * Extracts the formatted range as a pair of decimal numbers. This endpoint
+     * is useful for obtaining the exact number being printed after scaling
+     * and rounding have been applied by the number range formatting pipeline.
+     * 
+     * The syntax of the unformatted numbers is a "numeric string"
+     * as defined in the Decimal Arithmetic Specification, available at
+     * http://speleotrove.com/decimal
+     *
+     * Example C++17 call site:
+     *
+     *     auto [ first, second ] = range.getDecimalNumbers<std::string>(status);
+     *
+     * @tparam StringClass A string class compatible with StringByteSink;
+     *         for example, std::string.
+     * @param status Set if an error occurs.
+     * @return A pair of StringClasses containing the numeric strings.
+     * @draft ICU 68
+     */
+    template<typename StringClass>
+    inline std::pair<StringClass, StringClass> getDecimalNumbers(UErrorCode& status) const;
+#endif // U_HIDE_DRAFT_API
 
     /**
      * Returns whether the pair of numbers was successfully formatted as a range or whether an identity fallback was
@@ -771,7 +681,7 @@ class U_I18N_API FormattedNumberRange : public UMemory {
      * identity fallback was used.
      *
      * @return An indication the resulting identity situation in the formatted number range.
-     * @draft ICU 63
+     * @stable ICU 63
      * @see UNumberRangeIdentityFallback
      */
     UNumberRangeIdentityResult getIdentityResult(UErrorCode& status) const;
@@ -789,50 +699,72 @@ class U_I18N_API FormattedNumberRange : public UMemory {
     /**
      * Move constructor:
      * Leaves the source FormattedNumberRange in an undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     FormattedNumberRange(FormattedNumberRange&& src) U_NOEXCEPT;
 
     /**
      * Move assignment:
      * Leaves the source FormattedNumberRange in an undefined state.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     FormattedNumberRange& operator=(FormattedNumberRange&& src) U_NOEXCEPT;
 
     /**
      * Destruct an instance of FormattedNumberRange, cleaning up any memory it might own.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     ~FormattedNumberRange();
 
   private:
     // Can't use LocalPointer because UFormattedNumberRangeData is forward-declared
-    const impl::UFormattedNumberRangeData *fResults;
+    const impl::UFormattedNumberRangeData *fData;
 
     // Error code for the terminal methods
     UErrorCode fErrorCode;
 
     /**
      * Internal constructor from data type. Adopts the data pointer.
-     * @internal
      */
     explicit FormattedNumberRange(impl::UFormattedNumberRangeData *results)
-        : fResults(results), fErrorCode(U_ZERO_ERROR) {};
+        : fData(results), fErrorCode(U_ZERO_ERROR) {}
 
     explicit FormattedNumberRange(UErrorCode errorCode)
-        : fResults(nullptr), fErrorCode(errorCode) {};
+        : fData(nullptr), fErrorCode(errorCode) {}
 
     void getAllFieldPositionsImpl(FieldPositionIteratorHandler& fpih, UErrorCode& status) const;
 
+    void getDecimalNumbers(ByteSink& sink1, ByteSink& sink2, UErrorCode& status) const;
+
+    const impl::UFormattedNumberRangeData* getData(UErrorCode& status) const;
+
+    // To allow PluralRules to access the underlying data
+    friend class ::icu::PluralRules;
+
     // To give LocalizedNumberRangeFormatter format methods access to this class's constructor:
     friend class LocalizedNumberRangeFormatter;
+
+    // To give C API access to internals
+    friend struct impl::UFormattedNumberRangeImpl;
 };
+
+#ifndef U_HIDE_DRAFT_API
+// Note: This is draft ICU 68
+template<typename StringClass>
+std::pair<StringClass, StringClass> FormattedNumberRange::getDecimalNumbers(UErrorCode& status) const {
+    StringClass str1;
+    StringClass str2;
+    StringByteSink<StringClass> sink1(&str1);
+    StringByteSink<StringClass> sink2(&str2);
+    getDecimalNumbers(sink1, sink2, status);
+    return std::make_pair(str1, str2);
+}
+#endif // U_HIDE_DRAFT_API
 
 /**
  * See the main description in numberrangeformatter.h for documentation and examples.
  *
- * @draft ICU 63
+ * @stable ICU 63
  */
 class U_I18N_API NumberRangeFormatter final {
   public:
@@ -841,7 +773,7 @@ class U_I18N_API NumberRangeFormatter final {
      * known at the call site.
      *
      * @return An {@link UnlocalizedNumberRangeFormatter}, to be used for chaining.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     static UnlocalizedNumberRangeFormatter with();
 
@@ -852,7 +784,7 @@ class U_I18N_API NumberRangeFormatter final {
      * @param locale
      *            The locale from which to load formats and symbols for number range formatting.
      * @return A {@link LocalizedNumberRangeFormatter}, to be used for chaining.
-     * @draft ICU 63
+     * @stable ICU 63
      */
     static LocalizedNumberRangeFormatter withLocale(const Locale &locale);
 
@@ -865,8 +797,9 @@ class U_I18N_API NumberRangeFormatter final {
 }  // namespace number
 U_NAMESPACE_END
 
-#endif  // U_HIDE_DRAFT_API
+#endif /* #if !UCONFIG_NO_FORMATTING */
+
+#endif /* U_SHOW_CPLUSPLUS_API */
 
 #endif // __NUMBERRANGEFORMATTER_H__
 
-#endif /* #if !UCONFIG_NO_FORMATTING */

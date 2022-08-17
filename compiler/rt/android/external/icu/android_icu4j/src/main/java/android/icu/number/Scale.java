@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.math.BigDecimal;
@@ -17,8 +17,6 @@ import android.icu.impl.number.RoundingUtils;
  * To create a Multiplier, use one of the factory methods.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class Scale {
 
@@ -70,7 +68,6 @@ public class Scale {
      *
      * @return A Multiplier to prevent any multiplication.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Scale none() {
         return DEFAULT;
@@ -85,7 +82,6 @@ public class Scale {
      *
      * @return A Multiplier for passing to the setter in NumberFormatter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Scale powerOfTen(int power) {
         if (power == 0) {
@@ -106,7 +102,6 @@ public class Scale {
      *
      * @return A Multiplier for passing to the setter in NumberFormatter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Scale byBigDecimal(BigDecimal multiplicand) {
         if (multiplicand.compareTo(BigDecimal.ONE) == 0) {
@@ -127,7 +122,6 @@ public class Scale {
      *
      * @return A Multiplier for passing to the setter in NumberFormatter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Scale byDouble(double multiplicand) {
         if (multiplicand == 1) {
@@ -146,7 +140,6 @@ public class Scale {
      *
      * @return A Multiplier for passing to the setter in NumberFormatter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static Scale byDoubleAndPowerOfTen(double multiplicand, int power) {
         return new Scale(power, BigDecimal.valueOf(multiplicand));

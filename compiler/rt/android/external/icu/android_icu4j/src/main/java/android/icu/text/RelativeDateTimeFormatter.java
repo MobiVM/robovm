@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2013-2016, International Business Machines Corporation and
@@ -9,18 +9,25 @@
  */
 package android.icu.text;
 
+import java.io.InvalidObjectException;
+import java.text.AttributedCharacterIterator;
+import java.text.Format;
 import java.text.FieldPosition;
 import java.util.EnumMap;
 import java.util.Locale;
 
 import android.icu.impl.CacheBase;
-import android.icu.impl.DontCareFieldPosition;
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
 import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleFormatterImpl;
 import android.icu.impl.SoftCache;
 import android.icu.impl.StandardPlural;
 import android.icu.impl.UResource;
+import android.icu.impl.Utility;
+import android.icu.impl.number.DecimalQuantity;
+import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.lang.UCharacter;
 import android.icu.util.Calendar;
 import android.icu.util.ICUException;
@@ -214,11 +221,18 @@ public final class RelativeDateTimeFormatter {
 
         /**
          * Quarter
-         * @deprecated This API is ICU internal only.
-         * @hide draft / provisional / internal are hidden on Android
          */
-        @Deprecated
         QUARTER,
+
+        /**
+         * Hour
+         */
+        HOUR,
+
+        /**
+         * Minute
+         */
+        MINUTE,
     }
 
     /**
@@ -340,6 +354,123 @@ public final class RelativeDateTimeFormatter {
     }
 
     /**
+     * Field constants used when accessing field information for relative
+     * datetime strings in FormattedValue.
+     * <p>
+     * There is no public constructor to this class; the only instances are the
+     * constants defined here.
+     * <p>
+     * @hide Only a subset of ICU is exposed in Android
+     */
+    public static class Field extends Format.Field {
+        private static final long serialVersionUID = -5327685528663492325L;
+
+        /**
+         * Represents a literal text string, like "tomorrow" or "days ago".
+         */
+        public static final Field LITERAL = new Field("literal");
+
+        /**
+         * Represents a number quantity, like "3" in "3 days ago".
+         */
+        public static final Field NUMERIC = new Field("numeric");
+
+        private Field(String fieldName) {
+            super(fieldName);
+        }
+
+        /**
+         * Serizalization method resolve instances to the constant Field values
+         *
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        @Override
+        protected Object readResolve() throws InvalidObjectException {
+            if (this.getName().equals(LITERAL.getName()))
+                return LITERAL;
+            if (this.getName().equals(NUMERIC.getName()))
+                return NUMERIC;
+
+            throw new InvalidObjectException("An invalid object.");
+        }
+    }
+
+    /**
+     * Represents the result of a formatting operation of a relative datetime.
+     * Access the string value or field information.
+     *
+     * Instances of this class are immutable and thread-safe.
+     *
+     * Not intended for public subclassing.
+     *
+     * @author sffc
+     */
+    public static class FormattedRelativeDateTime implements FormattedValue {
+
+        private final FormattedStringBuilder string;
+
+        private FormattedRelativeDateTime(FormattedStringBuilder string) {
+            this.string = string;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            return string.toString();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int length() {
+            return string.length();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public char charAt(int index) {
+            return string.charAt(index);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public CharSequence subSequence(int start, int end) {
+            return string.subString(start, end);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public <A extends Appendable> A appendTo(A appendable) {
+            return Utility.appendTo(string, appendable);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean nextPosition(ConstrainedFieldPosition cfpos) {
+            return FormattedValueStringBuilderImpl.nextPosition(string, cfpos, Field.NUMERIC);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public AttributedCharacterIterator toCharacterIterator() {
+            return FormattedValueStringBuilderImpl.toCharacterIterator(string, Field.NUMERIC);
+        }
+    }
+
+    /**
      * Returns a RelativeDateTimeFormatter for the default locale.
      */
     public static RelativeDateTimeFormatter getInstance() {
@@ -429,7 +560,11 @@ public final class RelativeDateTimeFormatter {
 
     /**
      * Formats a relative date with a quantity such as "in 5 days" or
-     * "3 months ago"
+     * "3 months ago".
+     *
+     * This method returns a String. To get more information about the
+     * formatting result, use formatToValue().
+     *
      * @param quantity The numerical amount e.g 5. This value is formatted
      * according to this object's {@link NumberFormat} object.
      * @param direction NEXT means a future relative date; LAST means a past
@@ -440,31 +575,63 @@ public final class RelativeDateTimeFormatter {
      * NEXT or LAST.
      */
     public String format(double quantity, Direction direction, RelativeUnit unit) {
+        FormattedStringBuilder output = formatImpl(quantity, direction, unit);
+        return adjustForContext(output.toString());
+    }
+
+    /**
+     * Formats a relative date with a quantity such as "in 5 days" or
+     * "3 months ago".
+     *
+     * This method returns a FormattedRelativeDateTime, which exposes more
+     * information than the String returned by format().
+     *
+     * @param quantity The numerical amount e.g 5. This value is formatted
+     * according to this object's {@link NumberFormat} object.
+     * @param direction NEXT means a future relative date; LAST means a past
+     * relative date.
+     * @param unit the unit e.g day? month? year?
+     * @return the formatted relative datetime
+     * @throws IllegalArgumentException if direction is something other than
+     * NEXT or LAST.
+     */
+    public FormattedRelativeDateTime formatToValue(double quantity, Direction direction, RelativeUnit unit) {
+        checkNoAdjustForContext();
+        return new FormattedRelativeDateTime(formatImpl(quantity, direction, unit));
+    }
+
+    /** Implementation method for format and formatToValue with RelativeUnit */
+    private FormattedStringBuilder formatImpl(double quantity, Direction direction, RelativeUnit unit) {
         if (direction != Direction.LAST && direction != Direction.NEXT) {
             throw new IllegalArgumentException("direction must be NEXT or LAST");
         }
-        String result;
         int pastFutureIndex = (direction == Direction.NEXT ? 1 : 0);
 
-        // This class is thread-safe, yet numberFormat is not. To ensure thread-safety of this
-        // class we must guarantee that only one thread at a time uses our numberFormat.
-        synchronized (numberFormat) {
-            StringBuffer formatStr = new StringBuffer();
-            DontCareFieldPosition fieldPosition = DontCareFieldPosition.INSTANCE;
-            StandardPlural pluralForm = QuantityFormatter.selectPlural(quantity,
-                    numberFormat, pluralRules, formatStr, fieldPosition);
-
-            String formatter = getRelativeUnitPluralPattern(style, unit, pastFutureIndex, pluralForm);
-            result = SimpleFormatterImpl.formatCompiledPattern(formatter, formatStr);
+        FormattedStringBuilder output = new FormattedStringBuilder();
+        String pluralKeyword;
+        if (numberFormat instanceof DecimalFormat) {
+            DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(quantity);
+            ((DecimalFormat) numberFormat).toNumberFormatter().formatImpl(dq, output);
+            pluralKeyword = pluralRules.select(dq);
+        } else {
+            String result = numberFormat.format(quantity);
+            output.append(result, null);
+            pluralKeyword = pluralRules.select(quantity);
         }
-        return adjustForContext(result);
+        StandardPlural pluralForm = StandardPlural.orOtherFromString(pluralKeyword);
 
+        String compiledPattern = getRelativeUnitPluralPattern(style, unit, pastFutureIndex, pluralForm);
+        SimpleFormatterImpl.formatPrefixSuffix(compiledPattern, Field.LITERAL, 0, output.length(), output);
+        return output;
     }
 
     /**
      * Format a combination of RelativeDateTimeUnit and numeric offset
      * using a numeric style, e.g. "1 week ago", "in 1 week",
      * "5 weeks ago", "in 5 weeks".
+     *
+     * This method returns a String. To get more information about the
+     * formatting result, use formatNumericToValue().
      *
      * @param offset    The signed offset for the specified unit. This
      *                  will be formatted according to this object's
@@ -475,6 +642,33 @@ public final class RelativeDateTimeFormatter {
      * @return          The formatted string (may be empty in case of error)
      */
     public String formatNumeric(double offset, RelativeDateTimeUnit unit) {
+        FormattedStringBuilder output = formatNumericImpl(offset, unit);
+        return adjustForContext(output.toString());
+    }
+
+    /**
+     * Format a combination of RelativeDateTimeUnit and numeric offset
+     * using a numeric style, e.g. "1 week ago", "in 1 week",
+     * "5 weeks ago", "in 5 weeks".
+     *
+     * This method returns a FormattedRelativeDateTime, which exposes more
+     * information than the String returned by formatNumeric().
+     *
+     * @param offset    The signed offset for the specified unit. This
+     *                  will be formatted according to this object's
+     *                  NumberFormat object.
+     * @param unit      The unit to use when formatting the relative
+     *                  date, e.g. RelativeDateTimeUnit.WEEK,
+     *                  RelativeDateTimeUnit.FRIDAY.
+     * @return          The formatted string (may be empty in case of error)
+     */
+    public FormattedRelativeDateTime formatNumericToValue(double offset, RelativeDateTimeUnit unit) {
+        checkNoAdjustForContext();
+        return new FormattedRelativeDateTime(formatNumericImpl(offset, unit));
+    }
+
+    /** Implementation method for formatNumeric and formatNumericToValue */
+    private FormattedStringBuilder formatNumericImpl(double offset, RelativeDateTimeUnit unit) {
         // TODO:
         // The full implementation of this depends on CLDR data that is not yet available,
         // see: http://unicode.org/cldr/trac/ticket/9165 Add more relative field data.
@@ -500,8 +694,7 @@ public final class RelativeDateTimeFormatter {
             direction = Direction.LAST;
             offset = -offset;
         }
-        String result = format(offset, direction, relunit);
-        return (result != null)? result: "";
+        return formatImpl(offset, direction, relunit);
     }
 
     private int[] styleToDateFormatSymbolsWidth = {
@@ -510,6 +703,10 @@ public final class RelativeDateTimeFormatter {
 
     /**
      * Formats a relative date without a quantity.
+     *
+     * This method returns a String. To get more information about the
+     * formatting result, use formatToValue().
+     *
      * @param direction NEXT, LAST, THIS, etc.
      * @param unit e.g SATURDAY, DAY, MONTH
      * @return the formatted string. If direction has a value that is documented as not being
@@ -519,6 +716,37 @@ public final class RelativeDateTimeFormatter {
      * unit this can occur with NOW which can only take PLAIN.
      */
     public String format(Direction direction, AbsoluteUnit unit) {
+        String result = formatAbsoluteImpl(direction, unit);
+        return result != null ? adjustForContext(result) : null;
+    }
+
+    /**
+     * Formats a relative date without a quantity.
+     *
+     * This method returns a FormattedRelativeDateTime, which exposes more
+     * information than the String returned by format().
+     *
+     * @param direction NEXT, LAST, THIS, etc.
+     * @param unit e.g SATURDAY, DAY, MONTH
+     * @return the formatted string. If direction has a value that is documented as not being
+     *  fully supported in every locale (for example NEXT_2 or LAST_2) then this function may
+     *  return null to signal that no formatted string is available.
+     * @throws IllegalArgumentException if the direction is incompatible with
+     * unit this can occur with NOW which can only take PLAIN.
+     */
+    public FormattedRelativeDateTime formatToValue(Direction direction, AbsoluteUnit unit) {
+        checkNoAdjustForContext();
+        String string = formatAbsoluteImpl(direction, unit);
+        if (string == null) {
+            return null;
+        }
+        FormattedStringBuilder nsb = new FormattedStringBuilder();
+        nsb.append(string, Field.LITERAL);
+        return new FormattedRelativeDateTime(nsb);
+    }
+
+    /** Implementation method for format and formatToValue with AbsoluteUnit */
+    private String formatAbsoluteImpl(Direction direction, AbsoluteUnit unit) {
         if (unit == AbsoluteUnit.NOW && direction != Direction.PLAIN) {
             throw new IllegalArgumentException("NOW can only accept direction PLAIN.");
         }
@@ -536,7 +764,7 @@ public final class RelativeDateTimeFormatter {
             // Not PLAIN, or not a weekday.
             result = getAbsoluteUnitString(style, unit, direction);
         }
-        return result != null ? adjustForContext(result) : null;
+        return result;
     }
 
     /**
@@ -546,6 +774,9 @@ public final class RelativeDateTimeFormatter {
      * style if no appropriate text term is available for the specified
      * offset in the object’s locale.
      *
+     * This method returns a String. To get more information about the
+     * formatting result, use formatToValue().
+     *
      * @param offset    The signed offset for the specified field.
      * @param unit      The unit to use when formatting the relative
      *                  date, e.g. RelativeDateTimeUnit.WEEK,
@@ -553,6 +784,41 @@ public final class RelativeDateTimeFormatter {
      * @return          The formatted string (may be empty in case of error)
      */
     public String format(double offset, RelativeDateTimeUnit unit) {
+        return adjustForContext(formatRelativeImpl(offset, unit).toString());
+    }
+
+    /**
+     * Format a combination of RelativeDateTimeUnit and numeric offset
+     * using a text style if possible, e.g. "last week", "this week",
+     * "next week", "yesterday", "tomorrow". Falls back to numeric
+     * style if no appropriate text term is available for the specified
+     * offset in the object’s locale.
+     *
+     * This method returns a FormattedRelativeDateTime, which exposes more
+     * information than the String returned by format().
+     *
+     * @param offset    The signed offset for the specified field.
+     * @param unit      The unit to use when formatting the relative
+     *                  date, e.g. RelativeDateTimeUnit.WEEK,
+     *                  RelativeDateTimeUnit.FRIDAY.
+     * @return          The formatted string (may be empty in case of error)
+     */
+    public FormattedRelativeDateTime formatToValue(double offset, RelativeDateTimeUnit unit) {
+        checkNoAdjustForContext();
+        CharSequence cs = formatRelativeImpl(offset, unit);
+        FormattedStringBuilder nsb;
+        if (cs instanceof FormattedStringBuilder) {
+            nsb = (FormattedStringBuilder) cs;
+        } else {
+            nsb = new FormattedStringBuilder();
+            nsb.append(cs, Field.LITERAL);
+        }
+        return new FormattedRelativeDateTime(nsb);
+    }
+
+
+    /** Implementation method for format and formatToValue with RelativeDateTimeUnit. */
+    private CharSequence formatRelativeImpl(double offset, RelativeDateTimeUnit unit) {
         // TODO:
         // The full implementation of this depends on CLDR data that is not yet available,
         // see: http://unicode.org/cldr/trac/ticket/9165 Add more relative field data.
@@ -589,6 +855,8 @@ public final class RelativeDateTimeFormatter {
             case THURSDAY:  absunit = AbsoluteUnit.THURSDAY; break;
             case FRIDAY:    absunit = AbsoluteUnit.FRIDAY;  break;
             case SATURDAY:  absunit = AbsoluteUnit.SATURDAY; break;
+            case HOUR:      absunit = AbsoluteUnit.HOUR;    break;
+            case MINUTE:    absunit = AbsoluteUnit.MINUTE;  break;
             case SECOND:
                 if (direction == Direction.THIS) {
                     // absunit = AbsoluteUnit.NOW was set above
@@ -598,19 +866,18 @@ public final class RelativeDateTimeFormatter {
                 // could just fall through here but that produces warnings
                 useNumeric = true;
                 break;
-            case HOUR:
             default:
                 useNumeric = true;
                 break;
         }
         if (!useNumeric) {
-            String result = format(direction, absunit);
+            String result = formatAbsoluteImpl(direction, absunit);
             if (result != null && result.length() > 0) {
                 return result;
             }
         }
         // otherwise fallback to formatNumeric
-        return formatNumeric(offset, unit);
+        return formatNumericImpl(offset, unit);
     }
 
     /**
@@ -697,6 +964,12 @@ public final class RelativeDateTimeFormatter {
                     originalFormattedString,
                     breakIterator,
                     UCharacter.TITLECASE_NO_LOWERCASE | UCharacter.TITLECASE_NO_BREAK_ADJUSTMENT);
+        }
+    }
+
+    private void checkNoAdjustForContext() {
+        if (breakIterator != null) {
+            throw new UnsupportedOperationException("Capitalization context is not supported in formatV");
         }
     }
 
@@ -835,8 +1108,8 @@ public final class RelativeDateTimeFormatter {
         // For white list of units to handle in RelativeDateTimeFormatter.
         private enum DateTimeUnit {
             SECOND(RelativeUnit.SECONDS, null),
-            MINUTE(RelativeUnit.MINUTES, null),
-            HOUR(RelativeUnit.HOURS, null),
+            MINUTE(RelativeUnit.MINUTES, AbsoluteUnit.MINUTE),
+            HOUR(RelativeUnit.HOURS, AbsoluteUnit.HOUR),
             DAY(RelativeUnit.DAYS, AbsoluteUnit.DAY),
             WEEK(RelativeUnit.WEEKS, AbsoluteUnit.WEEK),
             MONTH(RelativeUnit.MONTHS, AbsoluteUnit.MONTH),

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import java.io.IOException;
@@ -66,6 +66,13 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
          * </ul>
          */
         STRICT,
+
+        /**
+         * Internal parse mode for increased compatibility with java.text.DecimalFormat.
+         * Used by Android libcore. To enable this feature, java.text.DecimalFormat holds an instance of
+         * ICU4J's DecimalFormat and enable it by calling setParseStrictMode(ParseMode.JAVA_COMPATIBILITY).
+         */
+        JAVA_COMPATIBILITY,
     }
 
     // The setters in this class should NOT have any side-effects or perform any validation. It is
@@ -1401,8 +1408,8 @@ public class DecimalFormatProperties implements Cloneable, Serializable {
         // Extra int for possible future use
         oos.writeInt(0);
 
-        ArrayList<Field> fieldsToSerialize = new ArrayList<Field>();
-        ArrayList<Object> valuesToSerialize = new ArrayList<Object>();
+        ArrayList<Field> fieldsToSerialize = new ArrayList<>();
+        ArrayList<Object> valuesToSerialize = new ArrayList<>();
         Field[] fields = DecimalFormatProperties.class.getDeclaredFields();
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers())) {

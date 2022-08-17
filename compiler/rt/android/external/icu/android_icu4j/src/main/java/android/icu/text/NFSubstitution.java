@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 1996-2015, International Business Machines Corporation and    *
@@ -91,7 +91,7 @@ abstract class NFSubstitution {
             }
             else if (rule.getBaseValue() == NFRule.IMPROPER_FRACTION_RULE
                      || rule.getBaseValue() == NFRule.PROPER_FRACTION_RULE
-                     || rule.getBaseValue() == NFRule.MASTER_RULE)
+                     || rule.getBaseValue() == NFRule.DEFAULT_RULE)
             {
                 // if the rule is a fraction rule, return an IntegralPartSubstitution
                 return new IntegralPartSubstitution(pos, ruleSet, description);
@@ -116,7 +116,7 @@ abstract class NFSubstitution {
             }
             else if (rule.getBaseValue() == NFRule.IMPROPER_FRACTION_RULE
                      || rule.getBaseValue() == NFRule.PROPER_FRACTION_RULE
-                     || rule.getBaseValue() == NFRule.MASTER_RULE)
+                     || rule.getBaseValue() == NFRule.DEFAULT_RULE)
             {
                 // if the rule is a fraction rule, return a
                 // FractionalPartSubstitution

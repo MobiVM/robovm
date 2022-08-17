@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.math.RoundingMode;
@@ -25,8 +25,6 @@ import android.icu.util.ULocale;
  * for public subclassing.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<?>> {
 
@@ -46,7 +44,8 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
     static final int KEY_SCALE = 13;
     static final int KEY_THRESHOLD = 14;
     static final int KEY_PER_UNIT = 15;
-    static final int KEY_MAX = 16;
+    static final int KEY_USAGE = 16;
+    static final int KEY_MAX = 17;
 
     private final NumberFormatterSettings<?> parent;
     private final int key;
@@ -85,7 +84,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The notation strategy to use.
      * @return The fluent chain.
      * @see Notation
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T notation(Notation notation) {
         return create(KEY_NOTATION, notation);
@@ -123,26 +121,20 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * NumberFormatter.with().unit(Currency.getInstance("USD"))
      * </pre>
      *
-     * Percent:
-     *
-     * <pre>
-     * NumberFormatter.with().unit(NoUnit.PERCENT)
-     * </pre>
-     *
      * <p>
      * See {@link #perUnit} for information on how to format strings like "5 meters per second".
      *
      * <p>
-     * The default is to render without units (equivalent to {@link NoUnit#BASE}).
+     * If the input usage is correctly set the output unit <b>will change</b>
+     * according to `usage`, `locale` and `unit` value.
+     * </p>
      *
      * @param unit
      *            The unit to render.
      * @return The fluent chain.
      * @see MeasureUnit
      * @see Currency
-     * @see NoUnit
      * @see #perUnit
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T unit(MeasureUnit unit) {
         return create(KEY_UNIT, unit);
@@ -169,7 +161,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The unit to render in the denominator.
      * @return The fluent chain
      * @see #unit
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T perUnit(MeasureUnit perUnit) {
         return create(KEY_PER_UNIT, perUnit);
@@ -203,19 +194,9 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The rounding precision to use.
      * @return The fluent chain.
      * @see Precision
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T precision(Precision precision) {
         return create(KEY_PRECISION, precision);
-    }
-
-    /**
-     * @deprecated ICU 62 Use precision() instead. This method is for backwards compatibility and will be
-     *             removed in ICU 64. See http://bugs.icu-project.org/trac/ticket/13746
-     */
-    @Deprecated
-    public T rounding(Precision rounder) {
-        return precision(rounder);
     }
 
     /**
@@ -230,13 +211,12 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *
      * The default is HALF_EVEN. For more information on rounding mode, see the ICU userguide here:
      *
-     * http://userguide.icu-project.org/formatparse/numbers/rounding-modes
+     * https://unicode-org.github.io/icu/userguide/format_parse/numbers/rounding-modes
      *
      * @param roundingMode
      *            The rounding mode to use.
      * @return The fluent chain.
      * @see Precision
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T roundingMode(RoundingMode roundingMode) {
         return create(KEY_ROUNDING_MODE, roundingMode);
@@ -268,7 +248,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The grouping strategy to use.
      * @return The fluent chain.
      * @see GroupingStrategy
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T grouping(GroupingStrategy strategy) {
         return create(KEY_GROUPING, strategy);
@@ -296,7 +275,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The integer width to use.
      * @return The fluent chain.
      * @see IntegerWidth
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T integerWidth(IntegerWidth style) {
         return create(KEY_INTEGER, style);
@@ -340,7 +318,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The DecimalFormatSymbols to use.
      * @return The fluent chain.
      * @see DecimalFormatSymbols
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T symbols(DecimalFormatSymbols symbols) {
         symbols = (DecimalFormatSymbols) symbols.clone();
@@ -375,7 +352,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The NumberingSystem to use.
      * @return The fluent chain.
      * @see NumberingSystem
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T symbols(NumberingSystem ns) {
         return create(KEY_SYMBOLS, ns);
@@ -404,7 +380,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The width to use when rendering numbers.
      * @return The fluent chain
      * @see UnitWidth
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T unitWidth(UnitWidth style) {
         return create(KEY_UNIT_WIDTH, style);
@@ -433,7 +408,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The sign display strategy to use when rendering numbers.
      * @return The fluent chain
      * @see SignDisplay
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T sign(SignDisplay style) {
         return create(KEY_SIGN, style);
@@ -462,7 +436,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            The decimal separator display strategy to use when rendering numbers.
      * @return The fluent chain
      * @see DecimalSeparatorDisplay
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T decimal(DecimalSeparatorDisplay style) {
         return create(KEY_DECIMAL, style);
@@ -491,10 +464,64 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      *            An amount to be multiplied against numbers before formatting.
      * @return The fluent chain
      * @see Scale
-     * @hide draft / provisional / internal are hidden on Android
      */
     public T scale(Scale scale) {
         return create(KEY_SCALE, scale);
+    }
+
+    /**
+     * Specifies the usage for which numbers will be formatted ("person-height",
+     * "road", "rainfall", etc.)
+     *
+     * <p>
+     * When a `usage` is specified, the output unit will change depending on the
+     * `Locale` and the unit quantity. For example, formatting length
+     * measurements specified in meters:
+     *
+     * <pre>
+     * NumberFormatter.with().usage("person").unit(MeasureUnit.METER).locale(new ULocale("en-US"))
+     * </pre>
+     * <ul>
+     *   <li> When formatting 0.25, the output will be "10 inches".
+     *   <li> When formatting 1.50, the output will be "4 feet and 11 inches".
+     * </ul>
+     *
+     * <p>
+     * The input unit specified via unit() determines the type of measurement
+     * being formatted (e.g. "length" when the unit is "foot"). The usage
+     * requested will be looked for only within this category of measurement
+     * units.
+     *
+     * <p>
+     * The output unit can be found via FormattedNumber.getOutputUnit().
+     *
+     * <p>
+     * If the usage has multiple parts (e.g. "land-agriculture-grain") and does
+     * not match a known usage preference, the last part will be dropped
+     * repeatedly until a match is found (e.g. trying "land-agriculture", then
+     * "land"). If a match is still not found, usage will fall back to
+     * "default".
+     *
+     * <p>
+     * Setting usage to an empty string clears the usage (disables usage-based
+     * localized formatting).
+     *
+     * <p>
+     * Setting a usage string but not a correct input unit will result in an
+     * U_ILLEGAL_ARGUMENT_ERROR.
+     *
+     * <p>
+     * When using usage, specifying rounding or precision is unnecessary.
+     * Specifying a precision in some manner will override the default
+     * formatting.
+     *
+     * @param usage A usage parameter from the units resource.
+     * @return The fluent chain
+     * @throws IllegalArgumentException in case of Setting a usage string but not a correct input unit.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public T usage(String usage) {
+        return create(KEY_USAGE, usage);
     }
 
     /**
@@ -545,7 +572,7 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
      * @return A number skeleton string with behavior corresponding to this number formatter.
      * @throws UnsupportedOperationException
      *             If the number formatter has an option that cannot be represented in a skeleton string.
-     * @hide draft / provisional / internal are hidden on Android
+     * @hide unsupported on Android
      */
     public String toSkeleton() {
         return NumberSkeletonImpl.generate(resolve());
@@ -562,86 +589,67 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
         // of a MacroProps object at each step.
         // TODO: Remove the reference to the parent after the macros are resolved?
         MacroProps macros = new MacroProps();
+        // Bitmap: 1 if seen; 0 if unseen
+        long seen = 0;
         NumberFormatterSettings<?> current = this;
         while (current != null) {
+            long keyBitmask = (1L << current.key);
+            if (0 != (seen & keyBitmask)) {
+                current = current.parent;
+                continue;
+            }
+            seen |= keyBitmask;
             switch (current.key) {
             case KEY_MACROS:
                 macros.fallback((MacroProps) current.value);
                 break;
             case KEY_LOCALE:
-                if (macros.loc == null) {
-                    macros.loc = (ULocale) current.value;
-                }
+                macros.loc = (ULocale) current.value;
                 break;
             case KEY_NOTATION:
-                if (macros.notation == null) {
-                    macros.notation = (Notation) current.value;
-                }
+                macros.notation = (Notation) current.value;
                 break;
             case KEY_UNIT:
-                if (macros.unit == null) {
-                    macros.unit = (MeasureUnit) current.value;
-                }
+                macros.unit = (MeasureUnit) current.value;
                 break;
             case KEY_PRECISION:
-                if (macros.precision == null) {
-                    macros.precision = (Precision) current.value;
-                }
+                macros.precision = (Precision) current.value;
                 break;
             case KEY_ROUNDING_MODE:
-                if (macros.roundingMode == null) {
-                    macros.roundingMode = (RoundingMode) current.value;
-                }
+                macros.roundingMode = (RoundingMode) current.value;
                 break;
             case KEY_GROUPING:
-                if (macros.grouping == null) {
-                    macros.grouping = /* (Object) */ current.value;
-                }
+                macros.grouping = /* (Object) */ current.value;
                 break;
             case KEY_PADDER:
-                if (macros.padder == null) {
-                    macros.padder = (Padder) current.value;
-                }
+                macros.padder = (Padder) current.value;
                 break;
             case KEY_INTEGER:
-                if (macros.integerWidth == null) {
-                    macros.integerWidth = (IntegerWidth) current.value;
-                }
+                macros.integerWidth = (IntegerWidth) current.value;
                 break;
             case KEY_SYMBOLS:
-                if (macros.symbols == null) {
-                    macros.symbols = /* (Object) */ current.value;
-                }
+                macros.symbols = /* (Object) */ current.value;
                 break;
             case KEY_UNIT_WIDTH:
-                if (macros.unitWidth == null) {
-                    macros.unitWidth = (UnitWidth) current.value;
-                }
+                macros.unitWidth = (UnitWidth) current.value;
                 break;
             case KEY_SIGN:
-                if (macros.sign == null) {
-                    macros.sign = (SignDisplay) current.value;
-                }
+                macros.sign = (SignDisplay) current.value;
                 break;
             case KEY_DECIMAL:
-                if (macros.decimal == null) {
-                    macros.decimal = (DecimalSeparatorDisplay) current.value;
-                }
+                macros.decimal = (DecimalSeparatorDisplay) current.value;
                 break;
             case KEY_SCALE:
-                if (macros.scale == null) {
-                    macros.scale = (Scale) current.value;
-                }
+                macros.scale = (Scale) current.value;
                 break;
             case KEY_THRESHOLD:
-                if (macros.threshold == null) {
-                    macros.threshold = (Long) current.value;
-                }
+                macros.threshold = (Long) current.value;
                 break;
             case KEY_PER_UNIT:
-                if (macros.perUnit == null) {
-                    macros.perUnit = (MeasureUnit) current.value;
-                }
+                macros.perUnit = (MeasureUnit) current.value;
+                break;
+            case KEY_USAGE:
+                macros.usage = (String) current.value;
                 break;
             default:
                 throw new AssertionError("Unknown key: " + current.key);
@@ -654,8 +662,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public int hashCode() {
@@ -664,8 +670,6 @@ public abstract class NumberFormatterSettings<T extends NumberFormatterSettings<
 
     /**
      * {@inheritDoc}
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public boolean equals(Object other) {

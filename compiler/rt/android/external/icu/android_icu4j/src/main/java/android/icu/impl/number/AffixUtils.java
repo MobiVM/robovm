@@ -1,8 +1,9 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.text.NumberFormat;
 import android.icu.text.UnicodeSet;
 
@@ -298,7 +299,7 @@ public class AffixUtils {
     /**
      * Executes the unescape state machine. Replaces the unquoted characters "-", "+", "%", "‰", and "¤"
      * with the corresponding symbols provided by the {@link SymbolProvider}, and inserts the result into
-     * the NumberStringBuilder at the requested location.
+     * the FormattedStringBuilder at the requested location.
      *
      * <p>
      * Example input: "'-'¤x"; example output: "-$x"
@@ -306,18 +307,19 @@ public class AffixUtils {
      * @param affixPattern
      *            The original string to be unescaped.
      * @param output
-     *            The NumberStringBuilder to mutate with the result.
+     *            The FormattedStringBuilder to mutate with the result.
      * @param position
-     *            The index into the NumberStringBuilder to insert the the string.
+     *            The index into the FormattedStringBuilder to insert the the string.
      * @param provider
      *            An object to generate locale symbols.
      * @return The length of the string added to affixPattern.
      */
     public static int unescape(
             CharSequence affixPattern,
-            NumberStringBuilder output,
+            FormattedStringBuilder output,
             int position,
-            SymbolProvider provider) {
+            SymbolProvider provider,
+            NumberFormat.Field field) {
         assert affixPattern != null;
         int length = 0;
         long tag = 0L;
@@ -332,7 +334,7 @@ public class AffixUtils {
                         provider.getSymbol(typeOrCp),
                         getFieldForType(typeOrCp));
             } else {
-                length += output.insertCodePoint(position + length, typeOrCp, null);
+                length += output.insertCodePoint(position + length, typeOrCp, field);
             }
         }
         return length;

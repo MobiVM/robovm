@@ -1,7 +1,9 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
+
+import android.icu.impl.FormattedStringBuilder;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
@@ -86,7 +88,7 @@ public class Padder {
     public int padAndApply(
             Modifier mod1,
             Modifier mod2,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int leftIndex,
             int rightIndex) {
         int modLength = mod1.getCodePointCount() + mod2.getCodePointCount();
@@ -121,7 +123,7 @@ public class Padder {
     private static int addPaddingHelper(
             String paddingString,
             int requiredPadding,
-            NumberStringBuilder string,
+            FormattedStringBuilder string,
             int index) {
         for (int i = 0; i < requiredPadding; i++) {
             // TODO: If appending to the end, this will cause actual insertion operations. Improve.

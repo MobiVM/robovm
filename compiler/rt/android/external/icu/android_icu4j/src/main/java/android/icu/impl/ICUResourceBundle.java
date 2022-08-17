@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  * *****************************************************************************
  * Copyright (C) 2005-2016, International Business Machines Corporation and
@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -136,7 +137,8 @@ public  class ICUResourceBundle extends UResourceBundle {
         r = (ICUResourceBundle) UResourceBundle.getBundleInstance(baseName, parent);
         if (isAvailable != null) {
             isAvailable[0] = false;
-            ULocale[] availableULocales = getAvailEntry(baseName, loader).getULocaleList();
+            ULocale[] availableULocales = getAvailEntry(baseName, loader)
+                    .getULocaleList(ULocale.AvailableType.DEFAULT);
             for (int i = 0; i < availableULocales.length; i++) {
                 if (parent.equals(availableULocales[i])) {
                     isAvailable[0] = true;
@@ -252,8 +254,9 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @hide draft / provisional / internal are hidden on Android
      */
     public static final String[] getKeywordValues(String baseName, String keyword) {
-        Set<String> keywords = new HashSet<String>();
-        ULocale locales[] = getAvailEntry(baseName, ICU_DATA_CLASS_LOADER).getULocaleList();
+        Set<String> keywords = new HashSet<>();
+        ULocale locales[] = getAvailEntry(baseName, ICU_DATA_CLASS_LOADER)
+                .getULocaleList(ULocale.AvailableType.DEFAULT);
         int i;
 
         for (i = 0; i < locales.length; i++) {
@@ -294,7 +297,7 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @return resource represented by the key
      * @exception MissingResourceException If a resource was not found.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public ICUResourceBundle getWithFallback(String path) throws MissingResourceException {
         ICUResourceBundle actualBundle = this;
 
@@ -367,6 +370,26 @@ public  class ICUResourceBundle extends UResourceBundle {
             throw new MissingResourceException("Encountered NO_INHERITANCE_MARKER", path, getKey());
         }
         return result;
+    }
+
+    public UResource.Value getValueWithFallback(String path) throws MissingResourceException {
+        ICUResourceBundle rb;
+        if (path.isEmpty()) {
+            rb = this;
+        } else {
+            rb = findResourceWithFallback(path, this, null);
+            if (rb == null) {
+                throw new MissingResourceException(
+                    "Can't find resource for bundle "
+                    + this.getClass().getName() + ", key " + getType(),
+                    path, getKey());
+            }
+        }
+        ReaderValue readerValue = new ReaderValue();
+        ICUResourceBundleImpl impl = (ICUResourceBundleImpl)rb;
+        readerValue.reader = impl.wholeBundle.reader;
+        readerValue.res = impl.getResource();
+        return readerValue;
     }
 
     public void getAllItemsWithFallbackNoFail(String path, UResource.Sink sink) {
@@ -478,11 +501,12 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     /**
-     * Get the set of Locales installed in the specified bundles.
+     * Get the set of Locales installed in the specified bundles, for the specified type.
      * @return the list of available locales
      */
-    public static final ULocale[] getAvailableULocales(String baseName, ClassLoader loader) {
-        return getAvailEntry(baseName, loader).getULocaleList();
+    public static final ULocale[] getAvailableULocales(String baseName, ClassLoader loader,
+            ULocale.AvailableType type) {
+        return getAvailEntry(baseName, loader).getULocaleList(type);
     }
 
     /**
@@ -490,7 +514,48 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @return the list of available locales
      */
     public static final ULocale[] getAvailableULocales() {
-        return getAvailableULocales(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER);
+        return getAvailableULocales(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER, ULocale.AvailableType.DEFAULT);
+    }
+
+    /**
+     * Get the set of ULocales installed the base bundle, for the specified type.
+     * @return the list of available locales for the specified type
+     */
+    public static final ULocale[] getAvailableULocales(ULocale.AvailableType type) {
+        return getAvailableULocales(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER, type);
+    }
+
+    /**
+     * Get the set of Locales installed in the specified bundles.
+     * @return the list of available locales
+     */
+    public static final ULocale[] getAvailableULocales(String baseName, ClassLoader loader) {
+        return getAvailableULocales(baseName, loader, ULocale.AvailableType.DEFAULT);
+    }
+
+    /**
+     * Get the set of Locales installed in the specified bundles, for the specified type.
+     * @return the list of available locales
+     */
+    public static final Locale[] getAvailableLocales(String baseName, ClassLoader loader,
+            ULocale.AvailableType type) {
+        return getAvailEntry(baseName, loader).getLocaleList(type);
+    }
+
+    /**
+     * Get the set of ULocales installed the base bundle.
+     * @return the list of available locales
+     */
+    public static final Locale[] getAvailableLocales() {
+        return getAvailableLocales(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER, ULocale.AvailableType.DEFAULT);
+    }
+
+    /**
+     * Get the set of Locales installed the base bundle, for the specified type.
+     * @return the list of available locales
+     */
+    public static final Locale[] getAvailableLocales(ULocale.AvailableType type) {
+        return getAvailableLocales(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER, type);
     }
 
     /**
@@ -498,15 +563,7 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @return the list of available locales
      */
     public static final Locale[] getAvailableLocales(String baseName, ClassLoader loader) {
-        return getAvailEntry(baseName, loader).getLocaleList();
-    }
-
-   /**
-     * Get the set of Locales installed the base bundle.
-     * @return the list of available locales
-     */
-    public static final Locale[] getAvailableLocales() {
-        return getAvailEntry(ICUData.ICU_BASE_NAME, ICU_DATA_CLASS_LOADER).getLocaleList();
+        return getAvailableLocales(baseName, loader, ULocale.AvailableType.DEFAULT);
     }
 
     /**
@@ -517,8 +574,8 @@ public  class ICUResourceBundle extends UResourceBundle {
      * @return the list of converted ULocales
      */
     public static final Locale[] getLocaleList(ULocale[] ulocales) {
-        ArrayList<Locale> list = new ArrayList<Locale>(ulocales.length);
-        HashSet<Locale> uniqueSet = new HashSet<Locale>();
+        ArrayList<Locale> list = new ArrayList<>(ulocales.length);
+        HashSet<Locale> uniqueSet = new HashSet<>();
         for (int i = 0; i < ulocales.length; i++) {
             Locale loc = ulocales[i].toLocale();
             if (!uniqueSet.contains(loc)) {
@@ -554,31 +611,50 @@ public  class ICUResourceBundle extends UResourceBundle {
     // Flag for enabling/disabling debugging code
     private static final boolean DEBUG = ICUDebug.enabled("localedata");
 
-    private static final ULocale[] createULocaleList(String baseName,
-            ClassLoader root) {
+    private static final class AvailableLocalesSink extends UResource.Sink {
+
+        EnumMap<ULocale.AvailableType, ULocale[]> output;
+
+        public AvailableLocalesSink(EnumMap<ULocale.AvailableType, ULocale[]> output) {
+            this.output = output;
+        }
+
+        @Override
+        public void put(UResource.Key key, UResource.Value value, boolean noFallback) {
+            UResource.Table resIndexTable = value.getTable();
+            for (int i = 0; resIndexTable.getKeyAndValue(i, key, value); ++i) {
+                ULocale.AvailableType type;
+                if (key.contentEquals("InstalledLocales")) {
+                    type = ULocale.AvailableType.DEFAULT;
+                } else if (key.contentEquals("AliasLocales")) {
+                    type = ULocale.AvailableType.ONLY_LEGACY_ALIASES;
+                } else {
+                    // CLDRVersion, etc.
+                    continue;
+                }
+                UResource.Table availableLocalesTable = value.getTable();
+                ULocale[] locales = new ULocale[availableLocalesTable.getSize()];
+                for (int j = 0; availableLocalesTable.getKeyAndValue(j, key, value); ++j) {
+                    locales[j] = new ULocale(key.toString());
+                }
+                output.put(type, locales);
+            }
+        }
+    }
+
+    private static final EnumMap<ULocale.AvailableType, ULocale[]> createULocaleList(
+            String baseName, ClassLoader root) {
         // the canned list is a subset of all the available .res files, the idea
         // is we don't export them
         // all. gotta be a better way to do this, since to add a locale you have
         // to update this list,
         // and it's embedded in our binary resources.
-        ICUResourceBundle bundle = (ICUResourceBundle) UResourceBundle.instantiateBundle(baseName, ICU_RESOURCE_INDEX, root, true);
+        ICUResourceBundle rb = (ICUResourceBundle) UResourceBundle.instantiateBundle(baseName, ICU_RESOURCE_INDEX, root, true);
 
-        bundle = (ICUResourceBundle)bundle.get(INSTALLED_LOCALES);
-        int length = bundle.getSize();
-        int i = 0;
-        ULocale[] locales = new ULocale[length];
-        UResourceBundleIterator iter = bundle.getIterator();
-        iter.reset();
-        while (iter.hasNext()) {
-            String locstr = iter.next().getKey();
-            if (locstr.equals("root")) {
-                locales[i++] = ULocale.ROOT;
-            } else {
-                locales[i++] = new ULocale(locstr);
-            }
-        }
-        bundle = null;
-        return locales;
+        EnumMap<ULocale.AvailableType, ULocale[]> result = new EnumMap<>(ULocale.AvailableType.class);
+        AvailableLocalesSink sink = new AvailableLocalesSink(result);
+        rb.getAllItemsWithFallback("", sink);
+        return result;
     }
 
     // Same as createULocaleList() but catches the MissingResourceException
@@ -667,7 +743,7 @@ public  class ICUResourceBundle extends UResourceBundle {
 
     private static Set<String> createFullLocaleNameSet(String baseName, ClassLoader loader) {
         String bn = baseName.endsWith("/") ? baseName : baseName + "/";
-        Set<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         String skipScan = ICUConfig.get("android.icu.impl.ICUResourceBundle.skipRuntimeLocaleResourceScan", "false");
         if (!skipScan.equalsIgnoreCase("true")) {
             // scan available locale resources under the base url first
@@ -712,7 +788,7 @@ public  class ICUResourceBundle extends UResourceBundle {
     }
 
     private static Set<String> createLocaleNameSet(String baseName, ClassLoader loader) {
-        HashSet<String> set = new HashSet<String>();
+        HashSet<String> set = new HashSet<>();
         addLocaleIDsFromIndexBundle(baseName, loader, set);
         return Collections.unmodifiableSet(set);
     }
@@ -724,7 +800,7 @@ public  class ICUResourceBundle extends UResourceBundle {
     private static final class AvailEntry {
         private String prefix;
         private ClassLoader loader;
-        private volatile ULocale[] ulocales;
+        private volatile EnumMap<ULocale.AvailableType, ULocale[]> ulocales;
         private volatile Locale[] locales;
         private volatile Set<String> nameSet;
         private volatile Set<String> fullNameSet;
@@ -734,7 +810,9 @@ public  class ICUResourceBundle extends UResourceBundle {
             this.loader = loader;
         }
 
-        ULocale[] getULocaleList() {
+        ULocale[] getULocaleList(ULocale.AvailableType type) {
+            // Direct data is available for DEFAULT and ONLY_LEGACY_ALIASES
+            assert type != ULocale.AvailableType.WITH_LEGACY_ALIASES;
             if (ulocales == null) {
                 synchronized(this) {
                     if (ulocales == null) {
@@ -742,14 +820,14 @@ public  class ICUResourceBundle extends UResourceBundle {
                     }
                 }
             }
-            return ulocales;
+            return ulocales.get(type);
         }
-        Locale[] getLocaleList() {
+        Locale[] getLocaleList(ULocale.AvailableType type) {
             if (locales == null) {
-                getULocaleList();
+                getULocaleList(type);
                 synchronized(this) {
                     if (locales == null) {
-                        locales = ICUResourceBundle.getLocaleList(ulocales);
+                        locales = ICUResourceBundle.getLocaleList(ulocales.get(type));
                     }
                 }
             }
@@ -1311,7 +1389,7 @@ public  class ICUResourceBundle extends UResourceBundle {
         return wholeBundle.baseName;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     @Override
     public ULocale getULocale() {
         return wholeBundle.ulocale;
@@ -1417,7 +1495,7 @@ public  class ICUResourceBundle extends UResourceBundle {
         String bundleName;
         String rpath = wholeBundle.reader.getAlias(_resource);
         if (aliasesVisited == null) {
-            aliasesVisited = new HashMap<String, String>();
+            aliasesVisited = new HashMap<>();
         }
         if (aliasesVisited.get(rpath) != null) {
             throw new IllegalArgumentException(

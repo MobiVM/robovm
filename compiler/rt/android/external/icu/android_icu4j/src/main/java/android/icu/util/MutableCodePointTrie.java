@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 
 // created: 2018may04 Markus W. Scherer
 
@@ -24,7 +24,6 @@ import java.util.Arrays;
  * add the source value into the value of each trie range.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public final class MutableCodePointTrie extends CodePointMap implements Cloneable {
     /**
@@ -37,7 +36,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      *
      * @param initialValue the initial value that is set for all code points
      * @param errorValue the value for out-of-range code points and ill-formed UTF-8/16
-     * @hide draft / provisional / internal are hidden on Android
      */
     public MutableCodePointTrie(int initialValue, int errorValue) {
         index = new int[BMP_I_LIMIT];
@@ -54,7 +52,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      * Clones this mutable trie.
      *
      * @return the clone
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public MutableCodePointTrie clone() {
@@ -89,7 +86,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      *
      * @param map the source map or trie
      * @return the mutable trie
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static MutableCodePointTrie fromCodePointMap(CodePointMap map) {
         // TODO: Consider special code branch for map instanceof CodePointTrie?
@@ -124,7 +120,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
 
     /**
      * {@inheritDoc}
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public int get(int c) {
@@ -156,8 +151,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      * {@inheritDoc}
      *
      * <p>The trie can be modified between calls to this function.
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public boolean getRange(int start, CodePointTrie.ValueFilter filter,
@@ -249,7 +242,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      *
      * @param c the code point
      * @param value the value
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void set(int c, int value) {
         if (c < 0 || MAX_UNICODE < c) {
@@ -272,7 +264,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      * @param start the first code point to get the value
      * @param end the last code point to get the value (inclusive)
      * @param value the value
-     * @hide draft / provisional / internal are hidden on Android
      */
     public void setRange(int start, int end, int value) {
         if (start < 0 || MAX_UNICODE < start || end < 0 || MAX_UNICODE < end || start > end) {
@@ -347,7 +338,6 @@ public final class MutableCodePointTrie extends CodePointMap implements Cloneabl
      *                   then the values stored in the trie will be truncated first
      *
      * @see #fromCodePointMap(CodePointMap)
-     * @hide draft / provisional / internal are hidden on Android
      */
     public CodePointTrie buildImmutable(CodePointTrie.Type type, CodePointTrie.ValueWidth valueWidth) {
         if (type == null || valueWidth == null) {

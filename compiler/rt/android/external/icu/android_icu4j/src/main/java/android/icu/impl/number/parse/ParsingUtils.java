@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number.parse;
 
 import android.icu.text.UnicodeSet;
@@ -26,6 +26,9 @@ public class ParsingUtils {
     // public static final int PARSE_FLAG_OPTIMIZE = 0x0800; // no longer used
     public static final int PARSE_FLAG_FORCE_BIG_DECIMAL = 0x1000;
     public static final int PARSE_FLAG_NO_FOREIGN_CURRENCIES = 0x2000;
+    public static final int PARSE_FLAG_ALLOW_INFINITE_RECURSION = 0x4000;
+    public static final int PARSE_FLAG_STRICT_IGNORABLES = 0x8000;
+    public static final int PARSE_FLAG_JAVA_COMPATIBILITY_IGNORABLES = 0x10000;
 
     public static void putLeadCodePoints(UnicodeSet input, UnicodeSet output) {
         for (EntryRange range : input.ranges()) {

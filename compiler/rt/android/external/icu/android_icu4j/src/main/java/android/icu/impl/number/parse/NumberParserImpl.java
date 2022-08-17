@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number.parse;
 
 import java.text.ParsePosition;
@@ -11,7 +11,6 @@ import java.util.List;
 import android.icu.impl.StringSegment;
 import android.icu.impl.number.AffixPatternProvider;
 import android.icu.impl.number.AffixUtils;
-import android.icu.impl.number.CurrencyPluralInfoAffixProvider;
 import android.icu.impl.number.CustomSymbolCurrency;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.DecimalFormatProperties.ParseMode;
@@ -44,7 +43,7 @@ public class NumberParserImpl {
         NumberParserImpl parser = new NumberParserImpl(parseFlags);
         Currency currency = Currency.getInstance("USD");
         DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(locale);
-        IgnorablesMatcher ignorables = IgnorablesMatcher.DEFAULT;
+        IgnorablesMatcher ignorables = IgnorablesMatcher.getInstance(parseFlags);
 
         AffixTokenMatcherFactory factory = new AffixTokenMatcherFactory();
         factory.currency = currency;
@@ -140,14 +139,12 @@ public class NumberParserImpl {
             boolean parseCurrency) {
 
         ULocale locale = symbols.getULocale();
-        AffixPatternProvider affixProvider;
-        if (properties.getCurrencyPluralInfo() == null) {
-            affixProvider = new PropertiesAffixPatternProvider(properties);
-        } else {
-            affixProvider = new CurrencyPluralInfoAffixProvider(properties.getCurrencyPluralInfo(), properties);
-        }
+        AffixPatternProvider affixProvider = PropertiesAffixPatternProvider.forProperties(properties);
         Currency currency = CustomSymbolCurrency.resolve(properties.getCurrency(), locale, symbols);
-        boolean isStrict = properties.getParseMode() == ParseMode.STRICT;
+        ParseMode parseMode = properties.getParseMode();
+        if (parseMode == null) {
+            parseMode = ParseMode.LENIENT;
+        }
         Grouper grouper = Grouper.forProperties(properties);
         int parseFlags = 0;
         if (!properties.getParseCaseSensitive()) {
@@ -162,11 +159,17 @@ public class NumberParserImpl {
         if (properties.getSignAlwaysShown()) {
             parseFlags |= ParsingUtils.PARSE_FLAG_PLUS_SIGN_ALLOWED;
         }
-        if (isStrict) {
+        if (parseMode == ParseMode.JAVA_COMPATIBILITY) {
+            parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_SEPARATORS;
+            parseFlags |= ParsingUtils.PARSE_FLAG_USE_FULL_AFFIXES;
+            parseFlags |= ParsingUtils.PARSE_FLAG_EXACT_AFFIX;
+            parseFlags |= ParsingUtils.PARSE_FLAG_JAVA_COMPATIBILITY_IGNORABLES;
+        } else if (parseMode == ParseMode.STRICT) {
             parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_GROUPING_SIZE;
             parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_SEPARATORS;
             parseFlags |= ParsingUtils.PARSE_FLAG_USE_FULL_AFFIXES;
             parseFlags |= ParsingUtils.PARSE_FLAG_EXACT_AFFIX;
+            parseFlags |= ParsingUtils.PARSE_FLAG_STRICT_IGNORABLES;
         } else {
             parseFlags |= ParsingUtils.PARSE_FLAG_INCLUDE_UNPAIRED_AFFIXES;
         }
@@ -179,9 +182,9 @@ public class NumberParserImpl {
         if (!parseCurrency) {
             parseFlags |= ParsingUtils.PARSE_FLAG_NO_FOREIGN_CURRENCIES;
         }
-        IgnorablesMatcher ignorables = isStrict ? IgnorablesMatcher.STRICT : IgnorablesMatcher.DEFAULT;
 
         NumberParserImpl parser = new NumberParserImpl(parseFlags);
+        IgnorablesMatcher ignorables = IgnorablesMatcher.getInstance(parseFlags);
 
         AffixTokenMatcherFactory factory = new AffixTokenMatcherFactory();
         factory.currency = currency;
@@ -211,10 +214,10 @@ public class NumberParserImpl {
 
         // ICU-TC meeting, April 11, 2018: accept percent/permille only if it is in the pattern,
         // and to maintain regressive behavior, divide by 100 even if no percent sign is present.
-        if (!isStrict && affixProvider.containsSymbolType(AffixUtils.TYPE_PERCENT)) {
+        if (parseMode == ParseMode.LENIENT && affixProvider.containsSymbolType(AffixUtils.TYPE_PERCENT)) {
             parser.addMatcher(PercentMatcher.getInstance(symbols));
         }
-        if (!isStrict && affixProvider.containsSymbolType(AffixUtils.TYPE_PERMILLE)) {
+        if (parseMode == ParseMode.LENIENT && affixProvider.containsSymbolType(AffixUtils.TYPE_PERMILLE)) {
             parser.addMatcher(PermilleMatcher.getInstance(symbols));
         }
 
@@ -222,7 +225,7 @@ public class NumberParserImpl {
         /// OTHER STANDARD MATCHERS ///
         ///////////////////////////////
 
-        if (!isStrict) {
+        if (parseMode == ParseMode.LENIENT) {
             parser.addMatcher(PlusSignMatcher.getInstance(symbols, false));
             parser.addMatcher(MinusSignMatcher.getInstance(symbols, false));
         }
@@ -244,7 +247,7 @@ public class NumberParserImpl {
         //////////////////
 
         parser.addMatcher(new RequireNumberValidator());
-        if (isStrict) {
+        if (parseMode != ParseMode.LENIENT) {
             parser.addMatcher(new RequireAffixValidator());
         }
         if (parseCurrency) {
@@ -323,9 +326,13 @@ public class NumberParserImpl {
                 0 != (parseFlags & ParsingUtils.PARSE_FLAG_IGNORE_CASE));
         segment.adjustOffset(start);
         if (greedy) {
-            parseGreedyRecursive(segment, result);
+            parseGreedy(segment, result);
+        } else if (0 != (parseFlags & ParsingUtils.PARSE_FLAG_ALLOW_INFINITE_RECURSION)) {
+            // Start at 1 so that recursionLevels never gets to 0
+            parseLongestRecursive(segment, result, 1);
         } else {
-            parseLongestRecursive(segment, result);
+            // Arbitrary recursion safety limit: 100 levels.
+            parseLongestRecursive(segment, result, -100);
         }
         for (NumberParseMatcher matcher : matchers) {
             matcher.postProcess(result);
@@ -333,36 +340,43 @@ public class NumberParserImpl {
         result.postProcess();
     }
 
-    private void parseGreedyRecursive(StringSegment segment, ParsedNumber result) {
-        // Base Case
-        if (segment.length() == 0) {
-            return;
-        }
-
-        int initialOffset = segment.getOffset();
-        for (int i = 0; i < matchers.size(); i++) {
+    private void parseGreedy(StringSegment segment, ParsedNumber result) {
+        // Note: this method is not recursive in order to avoid stack overflow.
+        for (int i = 0; i < matchers.size();) {
+            // Base Case
+            if (segment.length() == 0) {
+                return;
+            }
             NumberParseMatcher matcher = matchers.get(i);
             if (!matcher.smokeTest(segment)) {
+                // Matcher failed smoke test: try the next one
+                i++;
                 continue;
             }
+            int initialOffset = segment.getOffset();
             matcher.match(segment, result);
             if (segment.getOffset() != initialOffset) {
-                // In a greedy parse, recurse on only the first match.
-                parseGreedyRecursive(segment, result);
-                // The following line resets the offset so that the StringSegment says the same across
-                // the function
-                // call boundary. Since we recurse only once, this line is not strictly necessary.
-                segment.setOffset(initialOffset);
-                return;
+                // Greedy heuristic: accept the match and loop back
+                i = 0;
+                continue;
+            } else {
+                // Matcher did not match: try the next one
+                i++;
+                continue;
             }
         }
 
         // NOTE: If we get here, the greedy parse completed without consuming the entire string.
     }
 
-    private void parseLongestRecursive(StringSegment segment, ParsedNumber result) {
+    private void parseLongestRecursive(StringSegment segment, ParsedNumber result, int recursionLevels) {
         // Base Case
         if (segment.length() == 0) {
+            return;
+        }
+
+        // Safety against stack overflow
+        if (recursionLevels == 0) {
             return;
         }
 
@@ -390,7 +404,7 @@ public class NumberParserImpl {
 
                 // If the entire segment was consumed, recurse.
                 if (segment.getOffset() - initialOffset == charsToConsume) {
-                    parseLongestRecursive(segment, candidate);
+                    parseLongestRecursive(segment, candidate, recursionLevels + 1);
                     if (candidate.isBetterThan(result)) {
                         result.copyFrom(candidate);
                     }

@@ -60,7 +60,7 @@
  *  This value will change in the subsequent releases of ICU
  *  @stable ICU 2.4
  */
-#define U_ICU_VERSION_MAJOR_NUM 63
+#define U_ICU_VERSION_MAJOR_NUM 68
 
 /** The current ICU minor version as an integer.
  *  This value will change in the subsequent releases of ICU
@@ -86,7 +86,7 @@
  *  This value will change in the subsequent releases of ICU
  *  @stable ICU 2.6
  */
-#define U_ICU_VERSION_SUFFIX _63
+#define U_ICU_VERSION_SUFFIX _68
 
 /**
  * \def U_DEF2_ICU_ENTRY_POINT_RENAME
@@ -108,6 +108,9 @@
  * \def U_DISABLE_VERSION_SUFFIX
  * @internal
  */
+#ifndef U_DISABLE_VERSION_SUFFIX
+#define U_DISABLE_VERSION_SUFFIX 0
+#endif
 
 #ifndef U_ICU_ENTRY_POINT_RENAME
 #ifdef U_HAVE_LIB_SUFFIX
@@ -120,12 +123,14 @@
 #       define U_DEF2_ICU_ENTRY_POINT_RENAME(x,y) U_DEF_ICU_ENTRY_POINT_RENAME(x,y)
 #       define U_ICU_ENTRY_POINT_RENAME(x)    U_DEF2_ICU_ENTRY_POINT_RENAME(x,U_LIB_SUFFIX_C_NAME)
 #   endif
-#elif !U_DISABLE_VERSION_SUFFIX
-#   define U_DEF_ICU_ENTRY_POINT_RENAME(x,y) x ## y
-#   define U_DEF2_ICU_ENTRY_POINT_RENAME(x,y) U_DEF_ICU_ENTRY_POINT_RENAME(x,y)
-#   define U_ICU_ENTRY_POINT_RENAME(x)    U_DEF2_ICU_ENTRY_POINT_RENAME(x,U_ICU_VERSION_SUFFIX)
 #else
-#   define U_ICU_ENTRY_POINT_RENAME(x)    x
+#   if !U_DISABLE_VERSION_SUFFIX
+#       define U_DEF_ICU_ENTRY_POINT_RENAME(x,y) x ## y
+#       define U_DEF2_ICU_ENTRY_POINT_RENAME(x,y) U_DEF_ICU_ENTRY_POINT_RENAME(x,y)
+#       define U_ICU_ENTRY_POINT_RENAME(x)    U_DEF2_ICU_ENTRY_POINT_RENAME(x,U_ICU_VERSION_SUFFIX)
+#   else
+#       define U_ICU_ENTRY_POINT_RENAME(x)    x
+#   endif
 #endif
 #endif
 
@@ -134,7 +139,7 @@
  *  This value will change in the subsequent releases of ICU
  *  @stable ICU 2.4
  */
-#define U_ICU_VERSION "63.2"
+#define U_ICU_VERSION "68.2"
 
 /**
  * The current ICU library major version number as a string, for library name suffixes.
@@ -143,17 +148,17 @@
  * Until ICU 4.8, this was the combination of the single-digit major and minor ICU version numbers
  * into one string without dots ("48").
  * Since ICU 49, it is the double-digit major ICU version number.
- * See http://userguide.icu-project.org/design#TOC-Version-Numbers-in-ICU
+ * See https://unicode-org.github.io/icu/userguide/design#version-numbers-in-icu
  *
  * @stable ICU 2.6
  */
-#define U_ICU_VERSION_SHORT "63"
+#define U_ICU_VERSION_SHORT "68"
 
 #ifndef U_HIDE_INTERNAL_API
 /** Data version in ICU4C.
  * @internal ICU 4.4 Internal Use Only
  **/
-#define U_ICU_DATA_VERSION "63.2"
+#define U_ICU_DATA_VERSION "68.2"
 #endif  /* U_HIDE_INTERNAL_API */
 
 /*===========================================================================

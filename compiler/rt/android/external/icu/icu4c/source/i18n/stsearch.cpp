@@ -184,7 +184,7 @@ StringSearch::clone() const {
 // operator overloading ---------------------------------------------
 StringSearch & StringSearch::operator=(const StringSearch &that)
 {
-    if ((*this) != that) {
+    if (this != &that) {
         UErrorCode status = U_ZERO_ERROR;
         m_text_          = that.m_text_;
         m_breakiterator_ = that.m_breakiterator_;
@@ -282,7 +282,7 @@ void StringSearch::reset()
     usearch_reset(m_strsrch_);
 }
 
-SearchIterator * StringSearch::safeClone(void) const
+StringSearch * StringSearch::safeClone() const
 {
     UErrorCode status = U_ZERO_ERROR;
     StringSearch *result = new StringSearch(m_pattern_, m_text_,

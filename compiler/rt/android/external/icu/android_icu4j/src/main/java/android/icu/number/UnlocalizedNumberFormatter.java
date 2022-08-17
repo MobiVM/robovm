@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.util.Locale;
@@ -11,9 +11,9 @@ import android.icu.util.ULocale;
  * A NumberFormatter that does not yet have a locale. In order to format numbers, a locale must be
  * specified.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class UnlocalizedNumberFormatter extends NumberFormatterSettings<UnlocalizedNumberFormatter> {
 
@@ -40,7 +40,6 @@ public class UnlocalizedNumberFormatter extends NumberFormatterSettings<Unlocali
      * @param locale
      *            The locale to use when loading data for number formatting.
      * @return The fluent chain
-     * @hide draft / provisional / internal are hidden on Android
      */
     public LocalizedNumberFormatter locale(Locale locale) {
         return new LocalizedNumberFormatter(this, KEY_LOCALE, ULocale.forLocale(locale));
@@ -53,7 +52,6 @@ public class UnlocalizedNumberFormatter extends NumberFormatterSettings<Unlocali
      *            The locale to use when loading data for number formatting.
      * @return The fluent chain
      * @see #locale(Locale)
-     * @hide draft / provisional / internal are hidden on Android
      */
     public LocalizedNumberFormatter locale(ULocale locale) {
         return new LocalizedNumberFormatter(this, KEY_LOCALE, locale);

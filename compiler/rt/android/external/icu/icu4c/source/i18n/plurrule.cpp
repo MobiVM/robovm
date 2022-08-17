@@ -19,6 +19,7 @@
 #include "unicode/ures.h"
 #include "unicode/numfmt.h"
 #include "unicode/decimfmt.h"
+#include "unicode/numberrangeformatter.h"
 #include "charstr.h"
 #include "cmemory.h"
 #include "cstring.h"
@@ -35,6 +36,9 @@
 #include "sharedpluralrules.h"
 #include "unifiedcache.h"
 #include "number_decimalquantity.h"
+#include "util.h"
+#include "pluralranges.h"
+#include "numrange_impl.h"
 
 #if !UCONFIG_NO_FORMATTING
 
@@ -55,6 +59,7 @@ static const UChar PK_VAR_N[]={LOW_N,0};
 static const UChar PK_VAR_I[]={LOW_I,0};
 static const UChar PK_VAR_F[]={LOW_F,0};
 static const UChar PK_VAR_T[]={LOW_T,0};
+static const UChar PK_VAR_E[]={LOW_E,0};
 static const UChar PK_VAR_V[]={LOW_V,0};
 static const UChar PK_WITHIN[]={LOW_W,LOW_I,LOW_T,LOW_H,LOW_I,LOW_N,0};
 static const UChar PK_DECIMAL[]={LOW_D,LOW_E,LOW_C,LOW_I,LOW_M,LOW_A,LOW_L,0};
@@ -66,6 +71,7 @@ UOBJECT_DEFINE_RTTI_IMPLEMENTATION(PluralKeywordEnumeration)
 PluralRules::PluralRules(UErrorCode& /*status*/)
 :   UObject(),
     mRules(nullptr),
+    mStandardPluralRanges(nullptr),
     mInternalStatus(U_ZERO_ERROR)
 {
 }
@@ -73,6 +79,7 @@ PluralRules::PluralRules(UErrorCode& /*status*/)
 PluralRules::PluralRules(const PluralRules& other)
 : UObject(other),
     mRules(nullptr),
+    mStandardPluralRanges(nullptr),
     mInternalStatus(U_ZERO_ERROR)
 {
     *this=other;
@@ -80,6 +87,7 @@ PluralRules::PluralRules(const PluralRules& other)
 
 PluralRules::~PluralRules() {
     delete mRules;
+    delete mStandardPluralRanges;
 }
 
 SharedPluralRules::~SharedPluralRules() {
@@ -88,14 +96,20 @@ SharedPluralRules::~SharedPluralRules() {
 
 PluralRules*
 PluralRules::clone() const {
-    PluralRules* newObj = new PluralRules(*this);
     // Since clone doesn't have a 'status' parameter, the best we can do is return nullptr if
     // the newly created object was not fully constructed properly (an error occurred).
-    if (newObj != nullptr && U_FAILURE(newObj->mInternalStatus)) {
-        delete newObj;
-        newObj = nullptr;
+    UErrorCode localStatus = U_ZERO_ERROR;
+    return clone(localStatus);
+}
+
+PluralRules*
+PluralRules::clone(UErrorCode& status) const {
+    LocalPointer<PluralRules> newObj(new PluralRules(*this), status);
+    if (U_SUCCESS(status) && U_FAILURE(newObj->mInternalStatus)) {
+        status = newObj->mInternalStatus;
+        newObj.adoptInstead(nullptr);
     }
-    return newObj;
+    return newObj.orphan();
 }
 
 PluralRules&
@@ -103,6 +117,8 @@ PluralRules::operator=(const PluralRules& other) {
     if (this != &other) {
         delete mRules;
         mRules = nullptr;
+        delete mStandardPluralRanges;
+        mStandardPluralRanges = nullptr;
         mInternalStatus = other.mInternalStatus;
         if (U_FAILURE(mInternalStatus)) {
             // bail out early if the object we were copying from was already 'invalid'.
@@ -117,6 +133,11 @@ PluralRules::operator=(const PluralRules& other) {
                 // If the RuleChain wasn't fully copied, then set our status to failure as well.
                 mInternalStatus = mRules->fInternalStatus;
             }
+        }
+        if (other.mStandardPluralRanges != nullptr) {
+            mStandardPluralRanges = other.mStandardPluralRanges->copy(mInternalStatus)
+                .toPointer(mInternalStatus)
+                .orphan();
         }
     }
     return *this;
@@ -210,11 +231,8 @@ PluralRules::forLocale(const Locale& locale, UPluralType type, UErrorCode& statu
     if (U_FAILURE(status)) {
         return nullptr;
     }
-    PluralRules *result = (*shared)->clone();
+    PluralRules *result = (*shared)->clone(status);
     shared->removeRef();
-    if (result == nullptr) {
-        status = U_MEMORY_ALLOCATION_ERROR;
-    }
     return result;
 }
 
@@ -251,6 +269,10 @@ PluralRules::internalForLocale(const Locale& locale, UPluralType type, UErrorCod
         //        Original impl used default rules.
         //        Ask the question to ICU Core.
 
+    newObj->mStandardPluralRanges = StandardPluralRanges::forLocale(locale, status)
+        .toPointer(status)
+        .orphan();
+
     return newObj.orphan();
 }
 
@@ -265,6 +287,20 @@ PluralRules::select(double number) const {
 }
 
 UnicodeString
+PluralRules::select(const number::FormattedNumber& number, UErrorCode& status) const {
+    DecimalQuantity dq;
+    number.getDecimalQuantity(dq, status);
+    if (U_FAILURE(status)) {
+        return ICU_Utility::makeBogusString();
+    }
+    if (U_FAILURE(mInternalStatus)) {
+        status = mInternalStatus;
+        return ICU_Utility::makeBogusString();
+    }
+    return select(dq);
+}
+
+UnicodeString
 PluralRules::select(const IFixedDecimal &number) const {
     if (mRules == nullptr) {
         return UnicodeString(TRUE, PLURAL_DEFAULT_RULE, -1);
@@ -274,6 +310,33 @@ PluralRules::select(const IFixedDecimal &number) const {
     }
 }
 
+UnicodeString
+PluralRules::select(const number::FormattedNumberRange& range, UErrorCode& status) const {
+    return select(range.getData(status), status);
+}
+
+UnicodeString
+PluralRules::select(const number::impl::UFormattedNumberRangeData* impl, UErrorCode& status) const {
+    if (U_FAILURE(status)) {
+        return ICU_Utility::makeBogusString();
+    }
+    if (U_FAILURE(mInternalStatus)) {
+        status = mInternalStatus;
+        return ICU_Utility::makeBogusString();
+    }
+    if (mStandardPluralRanges == nullptr) {
+        // Happens if PluralRules was constructed via createRules()
+        status = U_UNSUPPORTED_ERROR;
+        return ICU_Utility::makeBogusString();
+    }
+    auto form1 = StandardPlural::fromString(select(impl->quantity1), status);
+    auto form2 = StandardPlural::fromString(select(impl->quantity2), status);
+    if (U_FAILURE(status)) {
+        return ICU_Utility::makeBogusString();
+    }
+    auto result = mStandardPluralRanges->resolve(form1, form2);
+    return UnicodeString(StandardPlural::getKeyword(result), -1, US_INV);
+}
 
 
 StringEnumeration*
@@ -315,9 +378,23 @@ static double scaleForInt(double d) {
     return scale;
 }
 
+/**
+ * Helper method for the overrides of getSamples() for double and FixedDecimal
+ * return value types.  Provide only one of an allocated array of doubles or
+ * FixedDecimals, and a nullptr for the other.
+ */
 static int32_t
-getSamplesFromString(const UnicodeString &samples, double *dest,
-                        int32_t destCapacity, UErrorCode& status) {
+getSamplesFromString(const UnicodeString &samples, double *destDbl,
+                        FixedDecimal* destFd, int32_t destCapacity,
+                        UErrorCode& status) {
+
+    if ((destDbl == nullptr && destFd == nullptr)
+            || (destDbl != nullptr && destFd != nullptr)) {
+        status = U_INTERNAL_PROGRAM_ERROR;
+        return 0;
+    }
+
+    bool isDouble = destDbl != nullptr;
     int32_t sampleCount = 0;
     int32_t sampleStartIdx = 0;
     int32_t sampleEndIdx = 0;
@@ -335,9 +412,13 @@ getSamplesFromString(const UnicodeString &samples, double *dest,
         int32_t tildeIndex = sampleRange.indexOf(TILDE);
         if (tildeIndex < 0) {
             FixedDecimal fixed(sampleRange, status);
-            double sampleValue = fixed.source;
-            if (fixed.visibleDecimalDigitCount == 0 || sampleValue != floor(sampleValue)) {
-                dest[sampleCount++] = sampleValue;
+            if (isDouble) {
+                double sampleValue = fixed.source;
+                if (fixed.visibleDecimalDigitCount == 0 || sampleValue != floor(sampleValue)) {
+                    destDbl[sampleCount++] = sampleValue;
+                }
+            } else {
+                destFd[sampleCount++] = fixed;
             }
         } else {
 
@@ -364,14 +445,21 @@ getSamplesFromString(const UnicodeString &samples, double *dest,
             rangeLo *= scale;
             rangeHi *= scale;
             for (double n=rangeLo; n<=rangeHi; n+=1) {
-                // Hack Alert: don't return any decimal samples with integer values that
-                //    originated from a format with trailing decimals.
-                //    This API is returning doubles, which can't distinguish having displayed
-                //    zeros to the right of the decimal.
-                //    This results in test failures with values mapping back to a different keyword.
                 double sampleValue = n/scale;
-                if (!(sampleValue == floor(sampleValue) && fixedLo.visibleDecimalDigitCount > 0)) {
-                    dest[sampleCount++] = sampleValue;
+                if (isDouble) {
+                    // Hack Alert: don't return any decimal samples with integer values that
+                    //    originated from a format with trailing decimals.
+                    //    This API is returning doubles, which can't distinguish having displayed
+                    //    zeros to the right of the decimal.
+                    //    This results in test failures with values mapping back to a different keyword.
+                    if (!(sampleValue == floor(sampleValue) && fixedLo.visibleDecimalDigitCount > 0)) {
+                        destDbl[sampleCount++] = sampleValue;
+                    }
+                } else {
+                    int32_t v = (int32_t) fixedLo.getPluralOperand(PluralOperand::PLURAL_OPERAND_V);
+                    int32_t e = (int32_t) fixedLo.getPluralOperand(PluralOperand::PLURAL_OPERAND_E);
+                    FixedDecimal newSample = FixedDecimal::createWithExponent(sampleValue, v, e);
+                    destFd[sampleCount++] = newSample;
                 }
                 if (sampleCount >= destCapacity) {
                     break;
@@ -383,24 +471,52 @@ getSamplesFromString(const UnicodeString &samples, double *dest,
     return sampleCount;
 }
 
-
 int32_t
 PluralRules::getSamples(const UnicodeString &keyword, double *dest,
                         int32_t destCapacity, UErrorCode& status) {
-    if (destCapacity == 0 || U_FAILURE(status)) {
+    if (U_FAILURE(status)) {
         return 0;
     }
     if (U_FAILURE(mInternalStatus)) {
         status = mInternalStatus;
         return 0;
     }
+    if (dest != nullptr ? destCapacity < 0 : destCapacity != 0) {
+        status = U_ILLEGAL_ARGUMENT_ERROR;
+        return 0;
+    }
     RuleChain *rc = rulesForKeyword(keyword);
     if (rc == nullptr) {
         return 0;
     }
-    int32_t numSamples = getSamplesFromString(rc->fIntegerSamples, dest, destCapacity, status);
+    int32_t numSamples = getSamplesFromString(rc->fIntegerSamples, dest, nullptr, destCapacity, status);
     if (numSamples == 0) {
-        numSamples = getSamplesFromString(rc->fDecimalSamples, dest, destCapacity, status);
+        numSamples = getSamplesFromString(rc->fDecimalSamples, dest, nullptr, destCapacity, status);
+    }
+    return numSamples;
+}
+
+int32_t
+PluralRules::getSamples(const UnicodeString &keyword, FixedDecimal *dest,
+                        int32_t destCapacity, UErrorCode& status) {
+    if (U_FAILURE(status)) {
+        return 0;
+    }
+    if (U_FAILURE(mInternalStatus)) {
+        status = mInternalStatus;
+        return 0;
+    }
+    if (dest != nullptr ? destCapacity < 0 : destCapacity != 0) {
+        status = U_ILLEGAL_ARGUMENT_ERROR;
+        return 0;
+    }
+    RuleChain *rc = rulesForKeyword(keyword);
+    if (rc == nullptr) {
+        return 0;
+    }
+    int32_t numSamples = getSamplesFromString(rc->fIntegerSamples, nullptr, dest, destCapacity, status);
+    if (numSamples == 0) {
+        numSamples = getSamplesFromString(rc->fDecimalSamples, nullptr, dest, destCapacity, status);
     }
     return numSamples;
 }
@@ -589,6 +705,7 @@ PluralRuleParser::parse(const UnicodeString& ruleData, PluralRules *prules, UErr
         case tVariableI:
         case tVariableF:
         case tVariableT:
+        case tVariableE:
         case tVariableV:
             U_ASSERT(curAndConstraint != nullptr);
             curAndConstraint->digitsType = type;
@@ -692,14 +809,14 @@ PluralRules::getRuleFromResource(const Locale& locale, UPluralType type, UErrorC
         return emptyStr;
     }
     int32_t resLen=0;
-    const char *curLocaleName=locale.getName();
+    const char *curLocaleName=locale.getBaseName();
     const UChar* s = ures_getStringByKey(locRes.getAlias(), curLocaleName, &resLen, &errCode);
 
     if (s == nullptr) {
         // Check parent locales.
         UErrorCode status = U_ZERO_ERROR;
         char parentLocaleName[ULOC_FULLNAME_CAPACITY];
-        const char *curLocaleName2=locale.getName();
+        const char *curLocaleName2=locale.getBaseName();
         uprv_strcpy(parentLocaleName, curLocaleName2);
 
         while (uloc_getParent(parentLocaleName, parentLocaleName,
@@ -973,6 +1090,8 @@ static UnicodeString tokenString(tokenType tok) {
         s.append(LOW_V); break;
       case tVariableT:
         s.append(LOW_T); break;
+      case tVariableE:
+        s.append(LOW_E); break;
       default:
         s.append(TILDE);
     }
@@ -1149,6 +1268,7 @@ PluralRuleParser::checkSyntax(UErrorCode &status)
     case tVariableI:
     case tVariableF:
     case tVariableT:
+    case tVariableE:
     case tVariableV:
         if (type != tIs && type != tMod && type != tIn &&
             type != tNot && type != tWithin && type != tEqual && type != tNotEqual) {
@@ -1165,6 +1285,7 @@ PluralRuleParser::checkSyntax(UErrorCode &status)
               type == tVariableI ||
               type == tVariableF ||
               type == tVariableT ||
+              type == tVariableE ||
               type == tVariableV ||
               type == tAt)) {
             status = U_UNEXPECTED_TOKEN;
@@ -1196,6 +1317,7 @@ PluralRuleParser::checkSyntax(UErrorCode &status)
              type != tVariableI &&
              type != tVariableF &&
              type != tVariableT &&
+             type != tVariableE &&
              type != tVariableV) {
             status = U_UNEXPECTED_TOKEN;
         }
@@ -1373,6 +1495,8 @@ PluralRuleParser::getKeyType(const UnicodeString &token, tokenType keyType)
         keyType = tVariableF;
     } else if (0 == token.compare(PK_VAR_T, 1)) {
         keyType = tVariableT;
+    } else if (0 == token.compare(PK_VAR_E, 1)) {
+        keyType = tVariableE;
     } else if (0 == token.compare(PK_VAR_V, 1)) {
         keyType = tVariableV;
     } else if (0 == token.compare(PK_IS, 2)) {
@@ -1470,14 +1594,15 @@ PluralOperand tokenTypeToPluralOperand(tokenType tt) {
         return PLURAL_OPERAND_V;
     case tVariableT:
         return PLURAL_OPERAND_T;
+    case tVariableE:
+        return PLURAL_OPERAND_E;
     default:
-        U_ASSERT(FALSE);  // unexpected.
-        return PLURAL_OPERAND_N;
+        UPRV_UNREACHABLE;  // unexpected.
     }
 }
 
-FixedDecimal::FixedDecimal(double n, int32_t v, int64_t f) {
-    init(n, v, f);
+FixedDecimal::FixedDecimal(double n, int32_t v, int64_t f, int32_t e) {
+    init(n, v, f, e);
     // check values. TODO make into unit test.
     //            
     //            long visiblePower = (int) Math.pow(10, v);
@@ -1491,6 +1616,10 @@ FixedDecimal::FixedDecimal(double n, int32_t v, int64_t f) {
     //                    throw new IllegalArgumentException();
     //                }
     //            }
+}
+
+FixedDecimal::FixedDecimal(double n, int32_t v, int64_t f) {
+    init(n, v, f);
 }
 
 FixedDecimal::FixedDecimal(double n, int32_t v) {
@@ -1512,20 +1641,36 @@ FixedDecimal::FixedDecimal() {
 
 FixedDecimal::FixedDecimal(const UnicodeString &num, UErrorCode &status) {
     CharString cs;
-    cs.appendInvariantChars(num, status);
+    int32_t parsedExponent = 0;
+
+    int32_t exponentIdx = num.indexOf(u'e');
+    if (exponentIdx < 0) {
+        exponentIdx = num.indexOf(u'E');
+    }
+    if (exponentIdx >= 0) {
+        cs.appendInvariantChars(num.tempSubString(0, exponentIdx), status);
+        int32_t expSubstrStart = exponentIdx + 1;
+        parsedExponent = ICU_Utility::parseAsciiInteger(num, expSubstrStart);
+    }
+    else {
+        cs.appendInvariantChars(num, status);
+    }
+
     DecimalQuantity dl;
     dl.setToDecNumber(cs.toStringPiece(), status);
     if (U_FAILURE(status)) {
         init(0, 0, 0);
         return;
     }
+
     int32_t decimalPoint = num.indexOf(DOT);
     double n = dl.toDouble();
     if (decimalPoint == -1) {
-        init(n, 0, 0);
+        init(n, 0, 0, parsedExponent);
     } else {
-        int32_t v = num.length() - decimalPoint - 1;
-        init(n, v, getFractionalDigits(n, v));
+        int32_t fractionNumLength = exponentIdx < 0 ? num.length() : cs.length();
+        int32_t v = fractionNumLength - decimalPoint - 1;
+        init(n, v, getFractionalDigits(n, v), parsedExponent);
     }
 }
 
@@ -1536,6 +1681,7 @@ FixedDecimal::FixedDecimal(const FixedDecimal &other) {
     decimalDigits = other.decimalDigits;
     decimalDigitsWithoutTrailingZeros = other.decimalDigitsWithoutTrailingZeros;
     intValue = other.intValue;
+    exponent = other.exponent;
     _hasIntegerValue = other._hasIntegerValue;
     isNegative = other.isNegative;
     _isNaN = other._isNaN;
@@ -1543,6 +1689,10 @@ FixedDecimal::FixedDecimal(const FixedDecimal &other) {
 }
 
 FixedDecimal::~FixedDecimal() = default;
+
+FixedDecimal FixedDecimal::createWithExponent(double n, int32_t v, int32_t e) {
+    return FixedDecimal(n, v, getFractionalDigits(n, v), e);
+}
 
 
 void FixedDecimal::init(double n) {
@@ -1552,10 +1702,17 @@ void FixedDecimal::init(double n) {
 
 
 void FixedDecimal::init(double n, int32_t v, int64_t f) {
+    int32_t exponent = 0;
+    init(n, v, f, exponent);
+}
+
+
+void FixedDecimal::init(double n, int32_t v, int64_t f, int32_t e) {
     isNegative = n < 0.0;
     source = fabs(n);
     _isNaN = uprv_isNaN(source);
     _isInfinite = uprv_isInfinite(source);
+    exponent = e;
     if (_isNaN || _isInfinite) {
         v = 0;
         f = 0;
@@ -1651,7 +1808,9 @@ int64_t FixedDecimal::getFractionalDigits(double n, int32_t v) {
       case 3: return (int64_t)(fract*1000.0 + 0.5);
       default:
           double scaled = floor(fract * pow(10.0, (double)v) + 0.5);
-          if (scaled > U_INT64_MAX) {
+          if (scaled >= static_cast<double>(U_INT64_MAX)) {
+              // Note: a double cannot accurately represent U_INT64_MAX. Casting it to double
+              //       will round up to the next representable value, which is U_INT64_MAX + 1.
               return U_INT64_MAX;
           } else {
               return (int64_t)scaled;
@@ -1683,9 +1842,9 @@ double FixedDecimal::getPluralOperand(PluralOperand operand) const {
         case PLURAL_OPERAND_F: return static_cast<double>(decimalDigits);
         case PLURAL_OPERAND_T: return static_cast<double>(decimalDigitsWithoutTrailingZeros);
         case PLURAL_OPERAND_V: return visibleDecimalDigitCount;
+        case PLURAL_OPERAND_E: return exponent;
         default:
-             U_ASSERT(FALSE);  // unexpected.
-             return source;
+             UPRV_UNREACHABLE;  // unexpected.
     }
 }
 
@@ -1709,6 +1868,23 @@ int32_t FixedDecimal::getVisibleFractionDigitCount() const {
     return visibleDecimalDigitCount;
 }
 
+bool FixedDecimal::operator==(const FixedDecimal &other) const {
+    return source == other.source && visibleDecimalDigitCount == other.visibleDecimalDigitCount
+        && decimalDigits == other.decimalDigits && exponent == other.exponent;
+}
+
+UnicodeString FixedDecimal::toString() const {
+    char pattern[15];
+    char buffer[20];
+    if (exponent == 0) {
+        snprintf(pattern, sizeof(pattern), "%%.%df", visibleDecimalDigitCount);
+        snprintf(buffer, sizeof(buffer), pattern, source);
+    } else {
+        snprintf(pattern, sizeof(pattern), "%%.%dfe%%d", visibleDecimalDigitCount);
+        snprintf(buffer, sizeof(buffer), pattern, source, exponent);
+    }
+    return UnicodeString(buffer, -1, US_INV);
+}
 
 
 PluralAvailableLocalesEnumeration::PluralAvailableLocalesEnumeration(UErrorCode &status) {

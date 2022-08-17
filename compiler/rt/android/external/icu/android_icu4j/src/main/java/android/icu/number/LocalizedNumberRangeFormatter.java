@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import android.icu.impl.number.DecimalQuantity;
@@ -9,10 +9,10 @@ import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 /**
  * A NumberRangeFormatter that has a locale associated with it; this means .formatRange() methods are available.
  *
+ * Instances of this class are immutable and thread-safe.
+ *
  * @author sffc
  * @see NumberRangeFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class LocalizedNumberRangeFormatter extends NumberRangeFormatterSettings<LocalizedNumberRangeFormatter> {
 
@@ -32,7 +32,6 @@ public class LocalizedNumberRangeFormatter extends NumberRangeFormatterSettings<
      *            The second number in the range, usually to the right in LTR locales.
      * @return A FormattedNumberRange object; call .toString() to get the string.
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumberRange formatRange(int first, int second) {
         DecimalQuantity dq1 = new DecimalQuantity_DualStorageBCD(first);
@@ -50,7 +49,6 @@ public class LocalizedNumberRangeFormatter extends NumberRangeFormatterSettings<
      *            The second number in the range, usually to the right in LTR locales.
      * @return A FormattedNumberRange object; call .toString() to get the string.
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumberRange formatRange(double first, double second) {
         DecimalQuantity dq1 = new DecimalQuantity_DualStorageBCD(first);
@@ -69,8 +67,8 @@ public class LocalizedNumberRangeFormatter extends NumberRangeFormatterSettings<
      * @param second
      *            The second number in the range, usually to the right in LTR locales.
      * @return A FormattedNumberRange object; call .toString() to get the string.
+     * @throws IllegalArgumentException if first or second is null
      * @see NumberRangeFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public FormattedNumberRange formatRange(Number first, Number second) {
         if (first == null || second == null) {

@@ -16,12 +16,21 @@
 // Common definitions.
 //
 
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "external_icu_icu4c_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Unicode-DFS
+    default_applicable_licenses: ["external_icu_icu4c_license"],
+}
+
 cc_defaults {
     name: "libicuuc_defaults",
+    defaults: ["icu4c_defaults"],
     srcs: [
         "*.cpp",
     ],
-
     // We deliberately do not set -DICU_DATA_DIR: ICU4C is configured on Android
     // using udata_setCommonData.
     cflags: [
@@ -31,29 +40,40 @@ cc_defaults {
         "-O3",
         "-fvisibility=hidden",
 
-        "-Wall",
-        "-Werror",
-        "-Wno-unused-parameter",
         "-Wno-missing-field-initializers",
         "-Wno-sign-compare",
-        "-Wno-deprecated-declarations",
     ],
-
-    cppflags: [
-        "-std=c++11",
-    ],
-
     rtti: true,
-
-    required: ["icu-data_host_runtime_apex"],
-
     target: {
         android: {
             cflags: [
-                "-DANDROID_LINK_SHARED_ICU4C",
                 "-DPIC",
                 "-fPIC",
             ],
+            static_libs: [
+                "libandroidicuinit", // Required to set the data files in libicuuc.
+                "libicuuc_stubdata",
+            ],
+            shared_libs: [
+                "libbase", // required by libandroidicuinit
+                "liblog", // required by libandroidicuinit
+            ],
+        },
+        not_windows: {
+            static_libs: [
+                "libicuuc_stubdata",
+            ],
+            // linkerconfig links libicuuc statically on host, but we need to avoid exposing
+            // libandroidicuinit independently to other modules. Thus, we links the entire
+            // libandroidicuinit into libicuuc on host.
+            whole_static_libs: [
+                "libandroidicuinit", // Required to set the data files in libicuuc in ART testing.
+            ],
+            required: ["icu-data_host_i18n_apex"],
+        },
+        windows: {
+            // Windows requires importing data as a DLL when building with U_COMMON_IMPLEMENTATION
+            shared_libs: ["libicuuc_stubdata"],
         },
     },
 }
@@ -61,9 +81,13 @@ cc_defaults {
 cc_library_headers {
     name: "libicuuc_headers",
     host_supported: true,
-    header_libs: [ "icu4c_extra_headers" ],
-    export_header_lib_headers: [ "icu4c_extra_headers" ],
+    native_bridge_supported: true,
+    header_libs: ["icu4c_extra_headers"],
+    export_header_lib_headers: ["icu4c_extra_headers"],
     export_include_dirs: ["."],
+    apex_available: [
+        "com.android.i18n",
+    ],
     target: {
         windows: {
             enabled: true,
@@ -73,25 +97,40 @@ cc_library_headers {
 
 //
 // Build for the host and target.
-//
-cc_library_shared {
+// Allow static builds for host so that they can be statically
+// linked into libandroid_runtime. That enables libandroid_runtime to
+// be shipped on desktops as one file which saves space and complexity.
+cc_library {
     name: "libicuuc",
     host_supported: true,
     unique_host_soname: true,
     defaults: ["libicuuc_defaults"],
+    apex_available: [
+        "com.android.i18n",
+    ],
     target: {
         android: {
-            static_libs: ["libicuuc_stubdata"],
+            static: {
+                enabled: false,
+            },
         },
-        not_windows: {
-            static_libs: ["libicuuc_stubdata"],
-        },
-        windows: {
-            enabled: true,
-            // Windows requires importing data as a DLL when building with U_COMMON_IMPLEMENTATION
-            shared_libs: ["libicuuc_stubdata"],
+        windows_x86_64: {
+            dist: {
+                targets: ["layoutlib"],
+                dir: "layoutlib_native/windows",
+            },
         },
     },
-    header_libs: [ "libicuuc_headers" ],
-    export_header_lib_headers: [ "libicuuc_headers" ],
+    header_libs: ["libicuuc_headers"],
+    export_header_lib_headers: ["libicuuc_headers"],
+}
+
+cc_library_shared {
+    name: "libicuuc_cts_stub",
+    defaults: ["libicuuc_defaults"],
+    host_supported: false,
+    installable: false,
+    stem: "libicuuc",
+    header_libs: ["libicuuc_headers"],
+    visibility: ["//external/icu:__subpackages__"],
 }

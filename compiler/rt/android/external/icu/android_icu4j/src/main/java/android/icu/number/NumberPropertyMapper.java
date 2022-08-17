@@ -1,19 +1,19 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 import android.icu.impl.number.AffixPatternProvider;
-import android.icu.impl.number.CurrencyPluralInfoAffixProvider;
 import android.icu.impl.number.CustomSymbolCurrency;
 import android.icu.impl.number.DecimalFormatProperties;
 import android.icu.impl.number.Grouper;
 import android.icu.impl.number.MacroProps;
 import android.icu.impl.number.Padder;
 import android.icu.impl.number.PatternStringParser;
+import android.icu.impl.number.PatternStringUtils;
 import android.icu.impl.number.PropertiesAffixPatternProvider;
 import android.icu.impl.number.RoundingUtils;
 import android.icu.number.NumberFormatter.DecimalSeparatorDisplay;
@@ -104,12 +104,7 @@ final class NumberPropertyMapper {
         // AFFIXES //
         /////////////
 
-        AffixPatternProvider affixProvider;
-        if (properties.getCurrencyPluralInfo() == null) {
-            affixProvider = new PropertiesAffixPatternProvider(properties);
-        } else {
-            affixProvider = new CurrencyPluralInfoAffixProvider(properties.getCurrencyPluralInfo(), properties);
-        }
+        AffixPatternProvider affixProvider = PropertiesAffixPatternProvider.forProperties(properties);
         macros.affixProvider = affixProvider;
 
         ///////////
@@ -161,10 +156,8 @@ final class NumberPropertyMapper {
         }
         // Validate min/max int/frac.
         // For backwards compatibility, minimum overrides maximum if the two conflict.
-        // The following logic ensures that there is always a minimum of at least one digit.
         if (minInt == 0 && maxFrac != 0) {
-            // Force a digit after the decimal point.
-            minFrac = minFrac <= 0 ? 1 : minFrac;
+            minFrac = (minFrac < 0 || (minFrac == 0 && maxInt == 0)) ? 1 : minFrac;
             maxFrac = maxFrac < 0 ? -1 : maxFrac < minFrac ? minFrac : maxFrac;
             minInt = 0;
             maxInt = maxInt < 0 ? -1 : maxInt > RoundingUtils.MAX_INT_FRAC_SIG ? -1 : maxInt;
@@ -180,7 +173,11 @@ final class NumberPropertyMapper {
         if (explicitCurrencyUsage) {
             rounding = Precision.constructCurrency(currencyUsage).withCurrency(currency);
         } else if (roundingIncrement != null) {
-            rounding = Precision.constructIncrement(roundingIncrement);
+            if (PatternStringUtils.ignoreRoundingIncrement(roundingIncrement, maxFrac)) {
+                rounding = Precision.constructFraction(minFrac, maxFrac);
+            } else {
+                rounding = Precision.constructIncrement(roundingIncrement);
+            }
         } else if (explicitMinMaxSig) {
             minSig = minSig < 1 ? 1
                     : minSig > RoundingUtils.MAX_INT_FRAC_SIG ? RoundingUtils.MAX_INT_FRAC_SIG : minSig;
@@ -215,7 +212,7 @@ final class NumberPropertyMapper {
         // PADDING //
         /////////////
 
-        if (properties.getFormatWidth() != -1) {
+        if (properties.getFormatWidth() > 0) {
             macros.padder = Padder.forProperties(properties);
         }
 

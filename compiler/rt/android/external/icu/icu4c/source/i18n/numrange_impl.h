@@ -13,7 +13,9 @@
 #include "number_types.h"
 #include "number_decimalquantity.h"
 #include "number_formatimpl.h"
-#include "number_stringbuilder.h"
+#include "formatted_string_builder.h"
+#include "formattedval_impl.h"
+#include "pluralranges.h"
 
 U_NAMESPACE_BEGIN namespace number {
 namespace impl {
@@ -24,50 +26,18 @@ namespace impl {
  *
  * Has incomplete magic number logic that will need to be finished
  * if this is to be exposed as C API in the future.
+ *
+ * Possible magic number: 0x46445200
+ * Reads in ASCII as "FDR" (FormatteDnumberRange with room at the end)
  */
-struct UFormattedNumberRangeData : public UMemory {
-    // The magic number to identify incoming objects.
-    // Reads in ASCII as "FDR" (FormatteDnumberRange with room at the end)
-    static constexpr int32_t kMagic = 0x46445200;
+class UFormattedNumberRangeData : public FormattedValueStringBuilderImpl {
+public:
+    UFormattedNumberRangeData() : FormattedValueStringBuilderImpl(kUndefinedField) {}
+    virtual ~UFormattedNumberRangeData();
 
-    // Data members:
-    int32_t fMagic = kMagic;
     DecimalQuantity quantity1;
     DecimalQuantity quantity2;
-    NumberStringBuilder string;
     UNumberRangeIdentityResult identityResult = UNUM_IDENTITY_RESULT_COUNT;
-
-    // No C conversion methods (no C API yet)
-};
-
-
-class StandardPluralRanges : public UMemory {
-  public:
-    void initialize(const Locale& locale, UErrorCode& status);
-    StandardPlural::Form resolve(StandardPlural::Form first, StandardPlural::Form second) const;
-
-    /** Used for data loading. */
-    void addPluralRange(
-        StandardPlural::Form first,
-        StandardPlural::Form second,
-        StandardPlural::Form result);
-
-    /** Used for data loading. */
-    void setCapacity(int32_t length);
-
-  private:
-    struct StandardPluralRangeTriple {
-        StandardPlural::Form first;
-        StandardPlural::Form second;
-        StandardPlural::Form result;
-    };
-
-    // TODO: An array is simple here, but it results in linear lookup time.
-    // Certain locales have 20-30 entries in this list.
-    // Consider changing to a smarter data structure.
-    typedef MaybeStackArray<StandardPluralRangeTriple, 3> PluralRangeTriples;
-    PluralRangeTriples fTriples;
-    int32_t fTriplesLen = 0;
 };
 
 
@@ -104,6 +74,11 @@ class NumberRangeFormatterImpl : public UMemory {
 
     const Modifier& resolveModifierPlurals(const Modifier& first, const Modifier& second) const;
 };
+
+
+/** Helper function used in upluralrules.cpp */
+const UFormattedNumberRangeData* validateUFormattedNumberRange(
+    const UFormattedNumberRange* uresult, UErrorCode& status);
 
 
 } // namespace impl

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
 *   Copyright (C) 2010-2014, International Business Machines
@@ -49,13 +49,26 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
     }
 
     /**
+     * Copy constructor.
+     * Makes a shallow copy of the other trie reader object and its state.
+     * Does not copy the byte array which will be shared.
+     * Same as clone() but without the throws clause.
+     */
+    public BytesTrie(BytesTrie other) {
+        bytes_ = other.bytes_;
+        root_ = other.root_;
+        pos_ = other.pos_;
+        remainingMatchLength_ = other.remainingMatchLength_;
+    }
+
+    /**
      * Clones this trie reader object and its state,
      * but not the byte array which will be shared.
      * @return A shallow clone of this trie.
      */
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();  // A shallow copy is just what we need.
+    public BytesTrie clone() throws CloneNotSupportedException {
+        return (BytesTrie) super.clone();  // A shallow copy is just what we need.
     }
 
     /**
@@ -65,6 +78,36 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
     public BytesTrie reset() {
         pos_=root_;
         remainingMatchLength_=-1;
+        return this;
+    }
+
+    /**
+     * Returns the state of this trie as a 64-bit integer.
+     * The state value is never 0.
+     *
+     * @return opaque state value
+     * @see #resetToState64
+     */
+    public long getState64() {
+        return ((long)remainingMatchLength_ << 32) | pos_;
+    }
+
+    /**
+     * Resets this trie to the saved state.
+     * Unlike {@link #resetToState(State)}, the 64-bit state value
+     * must be from {@link #getState64()} from the same trie object or
+     * from one initialized the exact same way.
+     * Because of no validation, this method is faster.
+     *
+     * @param state The opaque trie state value from getState64().
+     * @return this
+     * @see #getState64
+     * @see #resetToState
+     * @see #reset
+     */
+    public BytesTrie resetToState64(long state) {
+        remainingMatchLength_ = (int)(state >> 32);
+        pos_ = (int)state;
         return this;
     }
 
@@ -100,6 +143,8 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
 
     /**
      * Resets this trie to the saved state.
+     * Slower than {@link #resetToState64(long)} which does not validate the state value.
+     *
      * @param state The State object which holds a saved trie state.
      * @return this
      * @throws IllegalArgumentException if the state object contains no state,
@@ -672,7 +717,7 @@ public final class BytesTrie implements Cloneable, Iterable<BytesTrie.Entry> {
         // and the remaining branch length in bits 24..16. (Bits 31..25 are unused.)
         // (We could store the remaining branch length minus 1 in bits 23..16 and not use bits 31..24,
         // but the code looks more confusing that way.)
-        private ArrayList<Long> stack_=new ArrayList<Long>();
+        private ArrayList<Long> stack_=new ArrayList<>();
     }
 
     private void stop() {

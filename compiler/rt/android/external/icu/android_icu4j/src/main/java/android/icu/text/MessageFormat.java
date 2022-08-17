@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 **********************************************************************
 * Copyright (c) 2004-2016, International Business Machines
@@ -165,7 +165,7 @@ import android.icu.util.ULocale.Category;
  *       <td colspan=2><i>(none)</i>
  *       <td><code>null</code>
  *    <tr>
- *       <td rowspan=6><code>number</code>
+ *       <td rowspan=5><code>number</code>
  *       <td><i>(none)</i>
  *       <td><code>NumberFormat.getInstance(getLocale())</code>
  *    <tr>
@@ -2141,6 +2141,16 @@ public class MessageFormat extends UFormat {
         DATE_MODIFIER_LONG = 3,
         DATE_MODIFIER_FULL = 4;
 
+    Format dateTimeFormatForPatternOrSkeleton(String style) {
+        // Ignore leading whitespace when looking for "::", the skeleton signal sequence
+        int i = PatternProps.skipWhiteSpace(style, 0);
+        if (style.regionMatches(i, "::", 0, 2)) { // Skeleton
+            return DateFormat.getInstanceForSkeleton(style.substring(i + 2), ulocale);
+        } else { // Pattern
+            return new SimpleDateFormat(style, ulocale);
+        }
+    }
+
     // Creates an appropriate Format object for the type and style passed.
     // Both arguments cannot be null.
     private Format createAppropriateFormat(String type, String style) {
@@ -2163,8 +2173,7 @@ public class MessageFormat extends UFormat {
                 break;
             default: // pattern or skeleton
                 // Ignore leading whitespace when looking for "::", the skeleton signal sequence
-                int i = 0;
-                for (; PatternProps.isWhiteSpace(style.charAt(i)); i++);
+                int i = PatternProps.skipWhiteSpace(style, 0);
                 if (style.regionMatches(i, "::", 0, 2)) {
                     // Skeleton
                     newFormat = NumberFormatter.forSkeleton(style.substring(i + 2)).locale(ulocale).toFormat();
@@ -2192,8 +2201,8 @@ public class MessageFormat extends UFormat {
             case DATE_MODIFIER_FULL:
                 newFormat = DateFormat.getDateInstance(DateFormat.FULL, ulocale);
                 break;
-            default:
-                newFormat = new SimpleDateFormat(style, ulocale);
+            default: // pattern or skeleton
+                newFormat = dateTimeFormatForPatternOrSkeleton(style);
                 break;
             }
             break;
@@ -2214,8 +2223,8 @@ public class MessageFormat extends UFormat {
             case DATE_MODIFIER_FULL:
                 newFormat = DateFormat.getTimeInstance(DateFormat.FULL, ulocale);
                 break;
-            default:
-                newFormat = new SimpleDateFormat(style, ulocale);
+            default: // pattern or skeleton
+                newFormat = dateTimeFormatForPatternOrSkeleton(style);
                 break;
             }
             break;

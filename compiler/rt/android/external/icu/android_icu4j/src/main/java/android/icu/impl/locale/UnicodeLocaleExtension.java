@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2009-2014, International Business Machines Corporation and    *
@@ -97,8 +97,9 @@ public class UnicodeLocaleExtension extends Extension {
     }
 
     public static boolean isKey(String s) {
-        // 2alphanum
-        return (s.length() == 2) && AsciiUtil.isAlphaNumericString(s);
+        // key = alphanum alpha ;
+        return (s.length() == 2) && AsciiUtil.isAlphaNumeric(s.charAt(0)) &&
+            AsciiUtil.isAlpha(s.charAt(1));
     }
 
     public static boolean isTypeSubtag(String s) {

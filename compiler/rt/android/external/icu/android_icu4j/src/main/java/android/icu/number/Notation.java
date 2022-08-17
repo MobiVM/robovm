@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import android.icu.number.NumberFormatter.SignDisplay;
@@ -10,8 +10,6 @@ import android.icu.text.CompactDecimalFormat.CompactStyle;
  * A class that defines the notation style to be used when formatting numbers in NumberFormatter.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class Notation {
 
@@ -55,7 +53,6 @@ public class Notation {
      *
      * @return A ScientificNotation for chaining or passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNotation scientific() {
         return SCIENTIFIC;
@@ -82,7 +79,6 @@ public class Notation {
      *
      * @return A ScientificNotation for chaining or passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static ScientificNotation engineering() {
         return ENGINEERING;
@@ -128,7 +124,6 @@ public class Notation {
      *
      * @return A CompactNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static CompactNotation compactShort() {
         return COMPACT_SHORT;
@@ -155,7 +150,6 @@ public class Notation {
      *
      * @return A CompactNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static CompactNotation compactLong() {
         return COMPACT_LONG;
@@ -185,7 +179,6 @@ public class Notation {
      *
      * @return A SimpleNotation for passing to the NumberFormatter notation() setter.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static SimpleNotation simple() {
         return SIMPLE;

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import java.util.HashMap;
@@ -20,6 +20,7 @@ import android.icu.impl.number.MutablePatternModifier.ImmutablePatternModifier;
 import android.icu.impl.number.PatternStringParser;
 import android.icu.impl.number.PatternStringParser.ParsedPatternInfo;
 import android.icu.text.CompactDecimalFormat.CompactStyle;
+import android.icu.text.NumberFormat;
 import android.icu.text.PluralRules;
 import android.icu.util.ULocale;
 
@@ -32,8 +33,6 @@ import android.icu.util.ULocale;
  * methods in {@link Notation}.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public class CompactNotation extends Notation {
 
@@ -67,9 +66,10 @@ public class CompactNotation extends Notation {
             CompactType compactType,
             PluralRules rules,
             MutablePatternModifier buildReference,
+            boolean safe,
             MicroPropsGenerator parent) {
         // TODO: Add a data cache? It would be keyed by locale, nsName, compact type, and compact style.
-        return new CompactHandler(this, locale, nsName, compactType, rules, buildReference, parent);
+        return new CompactHandler(this, locale, nsName, compactType, rules, buildReference, safe, parent);
     }
 
     private static class CompactHandler implements MicroPropsGenerator {
@@ -77,6 +77,7 @@ public class CompactNotation extends Notation {
         final PluralRules rules;
         final MicroPropsGenerator parent;
         final Map<String, ImmutablePatternModifier> precomputedMods;
+        final MutablePatternModifier unsafePatternModifier;
         final CompactData data;
 
         private CompactHandler(
@@ -86,6 +87,7 @@ public class CompactNotation extends Notation {
                 CompactType compactType,
                 PluralRules rules,
                 MutablePatternModifier buildReference,
+                boolean safe,
                 MicroPropsGenerator parent) {
             this.rules = rules;
             this.parent = parent;
@@ -95,24 +97,26 @@ public class CompactNotation extends Notation {
             } else {
                 data.populate(notation.compactCustomData);
             }
-            if (buildReference != null) {
+            if (safe) {
                 // Safe code path
-                precomputedMods = new HashMap<String, ImmutablePatternModifier>();
+                precomputedMods = new HashMap<>();
                 precomputeAllModifiers(buildReference);
+                unsafePatternModifier = null;
             } else {
                 // Unsafe code path
                 precomputedMods = null;
+                unsafePatternModifier = buildReference;
             }
         }
 
         /** Used by the safe code path */
         private void precomputeAllModifiers(MutablePatternModifier buildReference) {
-            Set<String> allPatterns = new HashSet<String>();
+            Set<String> allPatterns = new HashSet<>();
             data.getUniquePatterns(allPatterns);
 
             for (String patternString : allPatterns) {
                 ParsedPatternInfo patternInfo = PatternStringParser.parseToPatternInfo(patternString);
-                buildReference.setPatternInfo(patternInfo);
+                buildReference.setPatternInfo(patternInfo, NumberFormat.Field.COMPACT);
                 precomputedMods.put(patternString, buildReference.createImmutable());
             }
         }
@@ -122,15 +126,15 @@ public class CompactNotation extends Notation {
             MicroProps micros = parent.processQuantity(quantity);
             assert micros.rounder != null;
 
-            // Treat zero as if it had magnitude 0
+            // Treat zero, NaN, and infinity as if they had magnitude 0
             int magnitude;
-            if (quantity.isZero()) {
+            int multiplier = 0;
+            if (quantity.isZeroish()) {
                 magnitude = 0;
                 micros.rounder.apply(quantity);
             } else {
-                // TODO: Revisit chooseMultiplierAndApply
-                int multiplier = micros.rounder.chooseMultiplierAndApply(quantity, data);
-                magnitude = quantity.isZero() ? 0 : quantity.getMagnitude();
+                multiplier = micros.rounder.chooseMultiplierAndApply(quantity, data);
+                magnitude = quantity.isZeroish() ? 0 : quantity.getMagnitude();
                 magnitude -= multiplier;
             }
 
@@ -147,13 +151,19 @@ public class CompactNotation extends Notation {
             } else {
                 // Unsafe code path.
                 // Overwrite the PatternInfo in the existing modMiddle.
-                assert micros.modMiddle instanceof MutablePatternModifier;
                 ParsedPatternInfo patternInfo = PatternStringParser.parseToPatternInfo(patternString);
-                ((MutablePatternModifier) micros.modMiddle).setPatternInfo(patternInfo);
+                unsafePatternModifier.setPatternInfo(patternInfo, NumberFormat.Field.COMPACT);
+                unsafePatternModifier.setNumberProperties(quantity.signum(), null);
+                micros.modMiddle = unsafePatternModifier;
             }
 
+            // Change the exponent only after we select appropriate plural form
+            // for formatting purposes so that we preserve expected formatted
+            // string behavior.
+            quantity.adjustExponent(-1 * multiplier);
+
             // We already performed rounding. Do not perform it again.
-            micros.rounder = Precision.constructPassThrough();
+            micros.rounder = null;
 
             return micros;
         }
