@@ -45,6 +45,49 @@ extern "C" {
 #define ZLIB_VER_SUBREVISION 0
 
 /*
+ * In Android's NDK we have one zlib.h for all the versions.
+ * zlib users tend to use ZLIB_VERNUM to check API availability,
+ * so we need to translate __ANDROID_API__ appropriately.
+ *
+ * ZLIB_1.2.7.1 and ZLIB_1.2.9 are the only API changes in the NDK's
+ * supported range of API levels.
+ *
+ * jb-mr2-dev (18): 1.2.7 (but not 1.2.7.1, where the APIs were added!)
+ * https://android.googlesource.com/platform/external/zlib/+/refs/heads/jb-mr2-dev/src/zlib.h
+ * kitkat-dev (19): 1.2.8
+ * https://android.googlesource.com/platform/external/zlib/+/refs/heads/kitkat-dev/src/zlib.h
+ *
+ * oreo-mr1-dev (27): 1.2.8
+ * https://android.googlesource.com/platform/external/zlib/+/refs/heads/oreo-mr1-dev/src/zlib.h
+ * pie-dev (28): 1.2.11
+ * https://android.googlesource.com/platform/external/zlib/+/refs/heads/pie-dev/src/zlib.h
+ *
+ * So:
+ *  >= 28 --> 1.2.11
+ *  >= 19 --> 1.2.8
+ *   < 19 --> 1.2.7
+ */
+#if defined(__ANDROID__)
+#  if __ANDROID_API__ >= 28
+     /* Already okay. */
+#  elif __ANDROID_API__ >= 19
+#    undef ZLIB_VERSION
+#    define ZLIB_VERSION "1.2.8"
+#    undef ZLIB_VERNUM
+#    define ZLIB_VERNUM 0x1280
+#    undef ZLIB_VER_REVISION
+#    define ZLIB_VER_REVISION 8
+#  else
+#    undef ZLIB_VERSION
+#    define ZLIB_VERSION "1.2.6"
+#    undef ZLIB_VERNUM
+#    define ZLIB_VERNUM 0x1260
+#    undef ZLIB_VER_REVISION
+#    define ZLIB_VER_REVISION 6
+#  endif
+#endif
+
+/*
     The 'zlib' compression library provides in-memory compression and
   decompression functions, including integrity checks of the uncompressed data.
   This version of the library supports only one compression method (deflation)
@@ -652,9 +695,11 @@ ZEXTERN int ZEXPORT deflateSetDictionary OF((z_streamp strm,
    not perform any compression: this will be done by deflate().
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN int ZEXPORT deflateGetDictionary OF((z_streamp strm,
                                              Bytef *dictionary,
                                              uInt  *dictLength));
+#endif
 /*
      Returns the sliding dictionary being maintained by deflate.  dictLength is
    set to the number of bytes in the dictionary, and that many bytes are copied
@@ -712,12 +757,11 @@ ZEXTERN int ZEXPORT deflateParams OF((z_streamp strm,
    used to switch between compression and straight copy of the input data, or
    to switch to a different kind of input data requiring a different strategy.
    If the compression approach (which is a function of the level) or the
-   strategy is changed, and if there have been any deflate() calls since the
-   state was initialized or reset, then the input available so far is
-   compressed with the old level and strategy using deflate(strm, Z_BLOCK).
-   There are three approaches for the compression levels 0, 1..3, and 4..9
-   respectively.  The new level and strategy will take effect at the next call
-   of deflate().
+   strategy is changed, and if any input has been consumed in a previous
+   deflate() call, then the input available so far is compressed with the old
+   level and strategy using deflate(strm, Z_BLOCK).  There are three approaches
+   for the compression levels 0, 1..3, and 4..9 respectively.  The new level
+   and strategy will take effect at the next call of deflate().
 
      If a deflate(strm, Z_BLOCK) is performed by deflateParams(), and it does
    not have enough output space to complete, then the parameter change will not
@@ -905,9 +949,11 @@ ZEXTERN int ZEXPORT inflateSetDictionary OF((z_streamp strm,
    inflate().
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 19
 ZEXTERN int ZEXPORT inflateGetDictionary OF((z_streamp strm,
                                              Bytef *dictionary,
                                              uInt  *dictLength));
+#endif
 /*
      Returns the sliding dictionary being maintained by inflate.  dictLength is
    set to the number of bytes in the dictionary, and that many bytes are copied
@@ -1281,8 +1327,10 @@ ZEXTERN int ZEXPORT uncompress OF((Bytef *dest,   uLongf *destLen,
    buffer with the uncompressed data up to that point.
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN int ZEXPORT uncompress2 OF((Bytef *dest,   uLongf *destLen,
                                     const Bytef *source, uLong *sourceLen));
+#endif
 /*
      Same as uncompress, except that sourceLen is a pointer, where the
    length of the source is *sourceLen.  On return, *sourceLen is the number of
@@ -1418,8 +1466,10 @@ ZEXTERN int ZEXPORT gzread OF((gzFile file, voidp buf, unsigned len));
    Z_STREAM_ERROR.
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN z_size_t ZEXPORT gzfread OF((voidp buf, z_size_t size, z_size_t nitems,
                                      gzFile file));
+#endif
 /*
      Read up to nitems items of size size from file to buf, otherwise operating
    as gzread() does.  This duplicates the interface of stdio's fread(), with
@@ -1452,8 +1502,10 @@ ZEXTERN int ZEXPORT gzwrite OF((gzFile file,
    error.
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN z_size_t ZEXPORT gzfwrite OF((voidpc buf, z_size_t size,
                                       z_size_t nitems, gzFile file));
+#endif
 /*
      gzfwrite() writes nitems items of size size from buf to file, duplicating
    the interface of stdio's fwrite(), with size_t request and return types.  If
@@ -1705,8 +1757,10 @@ ZEXTERN uLong ZEXPORT adler32 OF((uLong adler, const Bytef *buf, uInt len));
      if (adler != original_adler) error();
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN uLong ZEXPORT adler32_z OF((uLong adler, const Bytef *buf,
                                     z_size_t len));
+#endif
 /*
      Same as adler32(), but with a size_t length.
 */
@@ -1740,8 +1794,10 @@ ZEXTERN uLong ZEXPORT crc32   OF((uLong crc, const Bytef *buf, uInt len));
      if (crc != original_crc) error();
 */
 
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN uLong ZEXPORT crc32_z OF((uLong adler, const Bytef *buf,
                                   z_size_t len));
+#endif
 /*
      Same as crc32(), but with a size_t length.
 */
@@ -1825,6 +1881,11 @@ ZEXTERN int ZEXPORT gzgetc_ OF((gzFile file));  /* backward compatibility */
 #  undef z_gzgetc
 #  define z_gzgetc(g) \
           ((g)->have ? ((g)->have--, (g)->pos++, *((g)->next)++) : (gzgetc)(g))
+#elif defined(Z_CR_PREFIX_SET)
+#    undef gzgetc
+#    define gzgetc(g) \
+          ((g)->have ? ((g)->have--, (g)->pos++, *((g)->next)++) \
+                     : (Cr_z_gzgetc)(g))
 #else
 #  define gzgetc(g) \
           ((g)->have ? ((g)->have--, (g)->pos++, *((g)->next)++) : (gzgetc)(g))
@@ -1854,11 +1915,29 @@ ZEXTERN int ZEXPORT gzgetc_ OF((gzFile file));  /* backward compatibility */
 #    define z_adler32_combine z_adler32_combine64
 #    define z_crc32_combine z_crc32_combine64
 #  else
+#    ifdef gzopen
+#      undef gzopen
+#    endif
 #    define gzopen gzopen64
+#    ifdef gzseek
+#      undef gzseek
+#    endif
 #    define gzseek gzseek64
+#    ifdef gztell
+#      undef gztell
+#    endif
 #    define gztell gztell64
+#    ifdef gzoffset
+#      undef gzoffset
+#    endif
 #    define gzoffset gzoffset64
+#    ifdef adler32_combine
+#      undef adler32_combine
+#    endif
 #    define adler32_combine adler32_combine64
+#    ifdef crc32_combine
+#      undef crc32_combine
+#    endif
 #    define crc32_combine crc32_combine64
 #  endif
 #  ifndef Z_LARGE64
@@ -1890,8 +1969,12 @@ ZEXTERN const char   * ZEXPORT zError           OF((int));
 ZEXTERN int            ZEXPORT inflateSyncPoint OF((z_streamp));
 ZEXTERN const z_crc_t FAR * ZEXPORT get_crc_table    OF((void));
 ZEXTERN int            ZEXPORT inflateUndermine OF((z_streamp, int));
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN int            ZEXPORT inflateValidate OF((z_streamp, int));
+#endif
+#if !defined(__ANDROID__) || __ANDROID_API__ >= 28
 ZEXTERN unsigned long  ZEXPORT inflateCodesUsed OF ((z_streamp));
+#endif
 ZEXTERN int            ZEXPORT inflateResetKeep OF((z_streamp));
 ZEXTERN int            ZEXPORT deflateResetKeep OF((z_streamp));
 #if (defined(_WIN32) || defined(__CYGWIN__)) && !defined(Z_SOLO)
@@ -1900,9 +1983,11 @@ ZEXTERN gzFile         ZEXPORT gzopen_w OF((const wchar_t *path,
 #endif
 #if defined(STDC) || defined(Z_HAVE_STDARG_H)
 #  ifndef Z_SOLO
+#    if !defined(__ANDROID__) || __ANDROID_API__ >= 19
 ZEXTERN int            ZEXPORTVA gzvprintf Z_ARG((gzFile file,
                                                   const char *format,
                                                   va_list va));
+#    endif
 #  endif
 #endif
 
