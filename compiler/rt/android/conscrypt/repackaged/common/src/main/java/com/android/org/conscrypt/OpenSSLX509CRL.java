@@ -17,6 +17,7 @@
 
 package com.android.org.conscrypt;
 
+import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -41,8 +42,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 import javax.security.auth.x500.X500Principal;
-import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 
 /**
  * An implementation of {@link X509CRL} based on BoringSSL.
@@ -97,12 +99,12 @@ final class OpenSSLX509CRL extends X509CRL {
             bis.release();
         }
 
-        final List<OpenSSLX509CRL> certs = new ArrayList<OpenSSLX509CRL>(certRefs.length);
-        for (int i = 0; i < certRefs.length; i++) {
-            if (certRefs[i] == 0) {
+        final List<OpenSSLX509CRL> certs = new ArrayList<>(certRefs.length);
+        for (long certRef : certRefs) {
+            if (certRef == 0) {
                 continue;
             }
-            certs.add(new OpenSSLX509CRL(certRefs[i]));
+            certs.add(new OpenSSLX509CRL(certRef));
         }
         return certs;
     }
@@ -137,12 +139,12 @@ final class OpenSSLX509CRL extends X509CRL {
             bis.release();
         }
 
-        final List<OpenSSLX509CRL> certs = new ArrayList<OpenSSLX509CRL>(certRefs.length);
-        for (int i = 0; i < certRefs.length; i++) {
-            if (certRefs[i] == 0) {
+        final List<OpenSSLX509CRL> certs = new ArrayList<>(certRefs.length);
+        for (long certRef : certRefs) {
+            if (certRef == 0) {
                 continue;
             }
-            certs.add(new OpenSSLX509CRL(certRefs[i]));
+            certs.add(new OpenSSLX509CRL(certRef));
         }
         return certs;
     }
@@ -163,7 +165,7 @@ final class OpenSSLX509CRL extends X509CRL {
             return null;
         }
 
-        return new HashSet<String>(Arrays.asList(critOids));
+        return new HashSet<>(Arrays.asList(critOids));
     }
 
     @Override
@@ -188,7 +190,7 @@ final class OpenSSLX509CRL extends X509CRL {
             return null;
         }
 
-        return new HashSet<String>(Arrays.asList(nonCritOids));
+        return new HashSet<>(Arrays.asList(nonCritOids));
     }
 
     @Override
@@ -210,14 +212,18 @@ final class OpenSSLX509CRL extends X509CRL {
         return NativeCrypto.i2d_X509_CRL(mContext, this);
     }
 
-    private void verifyOpenSSL(OpenSSLKey pkey) throws CRLException, NoSuchAlgorithmException,
-            InvalidKeyException, NoSuchProviderException, SignatureException {
-        NativeCrypto.X509_CRL_verify(mContext, this, pkey.getNativeRef());
+    private void verifyOpenSSL(OpenSSLKey pkey)
+            throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
+        try {
+            NativeCrypto.X509_CRL_verify(mContext, this, pkey.getNativeRef());
+        } catch (BadPaddingException | IllegalBlockSizeException e) {
+            throw new SignatureException(e);
+        }
     }
 
-    private void verifyInternal(PublicKey key, String sigProvider) throws CRLException,
-            NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException,
-            SignatureException {
+    private void verifyInternal(PublicKey key, String sigProvider)
+            throws NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException,
+                   SignatureException {
         String sigAlg = getSigAlgName();
         if (sigAlg == null) {
             sigAlg = getSigAlgOID();
@@ -324,7 +330,7 @@ final class OpenSSLX509CRL extends X509CRL {
             return null;
         }
 
-        final Set<OpenSSLX509CRLEntry> crlSet = new HashSet<OpenSSLX509CRLEntry>();
+        final Set<OpenSSLX509CRLEntry> crlSet = new HashSet<>();
         for (long entryRef : entryRefs) {
             try {
                 crlSet.add(new OpenSSLX509CRLEntry(entryRef));
@@ -337,7 +343,7 @@ final class OpenSSLX509CRL extends X509CRL {
     }
 
     @Override
-    public byte[] getTBSCertList() throws CRLException {
+    public byte[] getTBSCertList() {
         return NativeCrypto.get_X509_CRL_crl_enc(mContext, this);
     }
 
@@ -349,7 +355,11 @@ final class OpenSSLX509CRL extends X509CRL {
     @Override
     public String getSigAlgName() {
         String oid = getSigAlgOID();
-        String algName = Platform.oidToAlgorithmName(oid);
+        String algName = OidData.oidToAlgorithmName(oid);
+        if (algName != null) {
+            return algName;
+        }
+        algName = Platform.oidToAlgorithmName(oid);
         if (algName != null) {
             return algName;
         }
@@ -403,6 +413,7 @@ final class OpenSSLX509CRL extends X509CRL {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected void finalize() throws Throwable {
         try {
             if (mContext != 0) {
@@ -412,5 +423,4 @@ final class OpenSSLX509CRL extends X509CRL {
             super.finalize();
         }
     }
-
 }

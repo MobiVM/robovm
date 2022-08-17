@@ -38,7 +38,6 @@ import java.security.spec.PSSParameterSpec;
  * signature verification using OpenSSL.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class OpenSSLSignature extends SignatureSpi {
     private enum EngineType {
@@ -289,9 +288,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class MD5RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public MD5RSA() {
             super(EvpMdRef.MD5.EVP_MD);
         }
@@ -299,9 +296,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA1RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public SHA1RSA() {
             super(EvpMdRef.SHA1.EVP_MD);
         }
@@ -309,9 +304,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA224RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public SHA224RSA() {
             super(EvpMdRef.SHA224.EVP_MD);
         }
@@ -319,9 +312,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA256RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public SHA256RSA() {
             super(EvpMdRef.SHA256.EVP_MD);
         }
@@ -329,9 +320,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA384RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public SHA384RSA() {
             super(EvpMdRef.SHA384.EVP_MD);
         }
@@ -339,9 +328,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA512RSA extends RSAPKCS1Padding {
-        @libcore.api.IntraCoreApi
         public SHA512RSA() {
             super(EvpMdRef.SHA512.EVP_MD);
         }
@@ -350,9 +337,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA1ECDSA extends OpenSSLSignature {
-        @libcore.api.IntraCoreApi
         public SHA1ECDSA() {
             super(EvpMdRef.SHA1.EVP_MD, EngineType.EC);
         }
@@ -360,9 +345,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA224ECDSA extends OpenSSLSignature {
-        @libcore.api.IntraCoreApi
         public SHA224ECDSA() {
             super(EvpMdRef.SHA224.EVP_MD, EngineType.EC);
         }
@@ -370,9 +353,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA256ECDSA extends OpenSSLSignature {
-        @libcore.api.IntraCoreApi
         public SHA256ECDSA() {
             super(EvpMdRef.SHA256.EVP_MD, EngineType.EC);
         }
@@ -380,9 +361,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA384ECDSA extends OpenSSLSignature {
-        @libcore.api.IntraCoreApi
         public SHA384ECDSA() {
             super(EvpMdRef.SHA384.EVP_MD, EngineType.EC);
         }
@@ -390,9 +369,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA512ECDSA extends OpenSSLSignature {
-        @libcore.api.IntraCoreApi
         public SHA512ECDSA() {
             super(EvpMdRef.SHA512.EVP_MD, EngineType.EC);
         }
@@ -522,9 +499,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA1RSAPSS extends RSAPSSPadding {
-        @libcore.api.IntraCoreApi
         public SHA1RSAPSS() {
             super(EvpMdRef.SHA1.EVP_MD, EvpMdRef.SHA1.JCA_NAME, EvpMdRef.SHA1.SIZE_BYTES);
         }
@@ -533,9 +508,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA224RSAPSS extends RSAPSSPadding {
-        @libcore.api.IntraCoreApi
         public SHA224RSAPSS() {
             super(EvpMdRef.SHA224.EVP_MD, EvpMdRef.SHA224.JCA_NAME, EvpMdRef.SHA224.SIZE_BYTES);
         }
@@ -544,9 +517,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA256RSAPSS extends RSAPSSPadding {
-        @libcore.api.IntraCoreApi
         public SHA256RSAPSS() {
             super(EvpMdRef.SHA256.EVP_MD, EvpMdRef.SHA256.JCA_NAME, EvpMdRef.SHA256.SIZE_BYTES);
         }
@@ -555,9 +526,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA384RSAPSS extends RSAPSSPadding {
-        @libcore.api.IntraCoreApi
         public SHA384RSAPSS() {
             super(EvpMdRef.SHA384.EVP_MD, EvpMdRef.SHA384.JCA_NAME, EvpMdRef.SHA384.SIZE_BYTES);
         }
@@ -566,9 +535,7 @@ public class OpenSSLSignature extends SignatureSpi {
     /**
      * @hide This class is not part of the Android public SDK API
      */
-    @libcore.api.IntraCoreApi
     public static final class SHA512RSAPSS extends RSAPSSPadding {
-        @libcore.api.IntraCoreApi
         public SHA512RSAPSS() {
             super(EvpMdRef.SHA512.EVP_MD, EvpMdRef.SHA512.JCA_NAME, EvpMdRef.SHA512.SIZE_BYTES);
         }

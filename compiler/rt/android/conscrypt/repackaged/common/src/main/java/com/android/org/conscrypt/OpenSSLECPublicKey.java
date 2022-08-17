@@ -17,7 +17,9 @@
 
 package com.android.org.conscrypt;
 
+import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.InvalidKeyException;
@@ -27,7 +29,6 @@ import java.security.spec.ECPoint;
 import java.security.spec.ECPublicKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
-import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 
 /**
  * An implementation of a {@link java.security.PublicKey} for EC keys based on BoringSSL.
@@ -37,9 +38,9 @@ final class OpenSSLECPublicKey implements ECPublicKey, OpenSSLKeyHolder {
 
     private static final String ALGORITHM = "EC";
 
-    protected transient OpenSSLKey key;
+    private transient OpenSSLKey key;
 
-    protected transient OpenSSLECGroupContext group;
+    private transient OpenSSLECGroupContext group;
 
     OpenSSLECPublicKey(OpenSSLECGroupContext group, OpenSSLKey key) {
         this.group = group;
@@ -168,6 +169,9 @@ final class OpenSSLECPublicKey implements ECPublicKey, OpenSSLKeyHolder {
     }
 
     private void writeObject(ObjectOutputStream stream) throws IOException {
+        if (key.isHardwareBacked()) {
+            throw new NotSerializableException("Hardware backed keys cannot be serialized");
+        }
         stream.defaultWriteObject();
         stream.writeObject(getEncoded());
     }

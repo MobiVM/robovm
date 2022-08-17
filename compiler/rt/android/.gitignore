@@ -85,3 +85,34 @@ TEST_MAPPING
 !/compat/java/android
 /compat/java/android/compat/testing
 /compat/java/android/processor
+
+##
+## Conscrypt. files to keep
+##
+/cmake/conscrypt/generate_constants
+/conscrypt/*
+/conscrypt/**/src/test/**
+!/conscrypt/LICENSE
+!/conscrypt/MODULE_LICENSE_APACHE2
+!/conscrypt/NOTICE
+#
+# keep /conscrypt/common/src/jni/main
+!/conscrypt/common
+/conscrypt/common/src/*
+!/conscrypt/common/src/jni
+/conscrypt/common/src/jni/*
+!/conscrypt/common/src/jni/main
+#
+# keep /conscrypt/constants/src
+!/conscrypt/constants
+/conscrypt/constants/*
+!/conscrypt/constants/src/
+#
+# keep /conscrypt/publicapi/src
+!/conscrypt/publicapi
+#
+# keep /conscrypt/repackaged/common/src/
+!/conscrypt/repackaged
+/conscrypt/repackaged/*
+!/conscrypt/repackaged/common/
+!/conscrypt/repackaged/platform/

@@ -38,7 +38,6 @@ import java.util.List;
  * An implementation of {@link java.security.cert.CertificateFactory} based on BoringSSL.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
     private static final byte[] PKCS7_MARKER = new byte[] {
@@ -61,6 +60,40 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
         ParsingException(String message, Exception cause) {
             super(message, cause);
         }
+    }
+
+    private static boolean isMaybePkcs7(byte[] header) {
+        // The outer tag must be SEQUENCE.
+        if (header.length < 2 || header[0] != 0x30) {
+            return false;
+        }
+
+        // Bytes are signed in Java.
+        int lengthByte = header[1] & 0xff;
+
+        // Skip the length prefix to find the tag of the first child of SEQUENCE. This function is
+        // intentionally lax and does not attempt to parse the length itself. It is only necessary
+        // to return true on PKCS#7 inputs and false on X.509 inputs. Other structures can go either
+        // way.
+        int idx = 2;
+        if (lengthByte <= 0x80) {
+            // Short-form or indefinite length.
+        } else if (lengthByte == 0x81) {
+            idx += 1;
+        } else if (lengthByte == 0x82) {
+            idx += 2;
+        } else if (lengthByte == 0x83) {
+            idx += 3;
+        } else if (lengthByte == 0x84) {
+            idx += 4;
+        } else {
+            // BoringSSL stops at 4-byte lengths. A 5-byte length would require a 4GiB input.
+            return false;
+        }
+
+        // The first element of a PKCS#7 structure is OBJECT IDENTIFIER, which has tag 6. The first
+        // element of an X.509 structure is never OBJECT IDENTIFIER.
+        return idx < header.length && header[idx] == 0x06;
     }
 
     /**
@@ -91,19 +124,10 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                 pbis.unread(buffer, 0, len);
 
                 if (buffer[0] == '-') {
-                    if (len == PKCS7_MARKER.length && Arrays.equals(PKCS7_MARKER, buffer)) {
-                        List<? extends T> items = fromPkcs7PemInputStream(pbis);
-                        if (items.size() == 0) {
-                            return null;
-                        }
-                        items.get(0);
-                    } else {
-                        return fromX509PemInputStream(pbis);
-                    }
+                    return fromX509PemInputStream(pbis);
                 }
 
-                /* PKCS#7 bags have a byte 0x06 at position 4 in the stream. */
-                if (buffer[4] == 0x06) {
+                if (isMaybePkcs7(buffer)) {
                     List<? extends T> certs = fromPkcs7DerInputStream(pbis);
                     if (certs.size() == 0) {
                         return null;
@@ -117,6 +141,7 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                     try {
                         inStream.reset();
                     } catch (IOException ignored) {
+                        // If resetting the stream fails, there's not much we can do
                     }
                 }
                 throw new ParsingException(e);
@@ -130,7 +155,9 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
             }
             try {
                 if (inStream.available() == 0) {
-                    return Collections.emptyList();
+                    // To avoid returning a immutable list in only one path, we create an
+                    // empty list here instead of using Collections.emptyList()
+                    return new ArrayList<T>();
                 }
             } catch (IOException e) {
                 throw new ParsingException("Problem reading input stream", e);
@@ -157,8 +184,7 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                     return fromPkcs7PemInputStream(pbis);
                 }
 
-                /* PKCS#7 bags have a byte 0x06 at position 4 in the stream. */
-                if (buffer[4] == 0x06) {
+                if (isMaybePkcs7(buffer)) {
                     return fromPkcs7DerInputStream(pbis);
                 }
             } catch (Exception e) {
@@ -166,6 +192,7 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                     try {
                         inStream.reset();
                     } catch (IOException ignored) {
+                        // If resetting the stream fails, there's not much we can do
                     }
                 }
                 throw new ParsingException(e);
@@ -198,6 +225,7 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                         try {
                             inStream.reset();
                         } catch (IOException ignored) {
+                            // If resetting the stream fails, there's not much we can do
                         }
                     }
 
@@ -273,7 +301,6 @@ public class OpenSSLX509CertificateFactory extends CertificateFactorySpi {
                 }
             };
 
-    @libcore.api.IntraCoreApi
     public OpenSSLX509CertificateFactory() {}
 
     @Override

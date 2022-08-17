@@ -32,7 +32,6 @@ import java.security.spec.RSAKeyGenParameterSpec;
  * the operations.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public final class OpenSSLRSAKeyPairGenerator extends KeyPairGeneratorSpi {
     /**
@@ -47,7 +46,6 @@ public final class OpenSSLRSAKeyPairGenerator extends KeyPairGeneratorSpi {
      */
     private int modulusBits = 2048;
 
-    @libcore.api.IntraCoreApi
     public OpenSSLRSAKeyPairGenerator() {}
 
     @Override

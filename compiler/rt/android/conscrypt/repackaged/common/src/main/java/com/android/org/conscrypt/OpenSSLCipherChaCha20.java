@@ -32,7 +32,6 @@ import javax.crypto.spec.IvParameterSpec;
  * Implementation of the ChaCha20 stream cipher.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class OpenSSLCipherChaCha20 extends OpenSSLCipher {
 
@@ -45,7 +44,6 @@ public class OpenSSLCipherChaCha20 extends OpenSSLCipher {
     private int currentBlockConsumedBytes = 0;
     private int blockCounter = 0;
 
-    @libcore.api.IntraCoreApi
     public OpenSSLCipherChaCha20() {}
 
     @Override
@@ -75,7 +73,7 @@ public class OpenSSLCipherChaCha20 extends OpenSSLCipher {
     int updateInternal(byte[] input, int inputOffset, int inputLen, byte[] output, int outputOffset,
             int maximumLen) throws ShortBufferException {
         if (inputLen > output.length - outputOffset) {
-            throw new ShortBufferException("Insufficient output space");
+            throw new ShortBufferWithoutStackTraceException("Insufficient output space");
         }
         int inputLenRemaining = inputLen;
         if (currentBlockConsumedBytes > 0) {

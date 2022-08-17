@@ -29,19 +29,19 @@ import java.io.InputStream;
 class OpenSSLBIOInputStream extends FilterInputStream {
     private long ctx;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     OpenSSLBIOInputStream(InputStream is, boolean isFinite) {
         super(is);
 
         ctx = NativeCrypto.create_BIO_InputStream(this, isFinite);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     long getBioContext() {
         return ctx;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     void release() {
         NativeCrypto.BIO_free_all(ctx);
     }

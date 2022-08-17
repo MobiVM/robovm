@@ -17,11 +17,13 @@
 
 package com.android.org.conscrypt;
 
+import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.SocketTimeoutException;
 import java.nio.Buffer;
+import java.nio.ByteBuffer;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -42,7 +44,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.ShortBufferException;
 import javax.net.ssl.SSLException;
 import javax.security.auth.x500.X500Principal;
-import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 
 /**
  * Provides the Java side of our JNI glue for OpenSSL.
@@ -62,8 +63,7 @@ public final class NativeCrypto {
     static {
         UnsatisfiedLinkError error = null;
         try {
-            // RoboVM Note: library is statically linked, just call onload()
-            onload();
+            NativeCryptoJni.init();
             clinit();
         } catch (UnsatisfiedLinkError t) {
             // Don't rethrow the error, so that we can later on interrogate the
@@ -73,7 +73,6 @@ public final class NativeCrypto {
         loadError = error;
     }
 
-    private native static void onload();
     private native static void clinit();
 
     /**
@@ -88,7 +87,7 @@ public final class NativeCrypto {
 
     // --- DSA/RSA public/private key handling functions -----------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long EVP_PKEY_new_RSA(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q,
             byte[] dmp1, byte[] dmq1, byte[] iqmp);
 
@@ -98,8 +97,7 @@ public final class NativeCrypto {
 
     static native String EVP_PKEY_print_params(NativeRef.EVP_PKEY pkeyRef);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native void EVP_PKEY_free(long pkey);
+    @android.compat.annotation.UnsupportedAppUsage static native void EVP_PKEY_free(long pkey);
 
     static native int EVP_PKEY_cmp(NativeRef.EVP_PKEY pkey1, NativeRef.EVP_PKEY pkey2);
 
@@ -119,7 +117,7 @@ public final class NativeCrypto {
 
     static native long getECPrivateKeyWrapper(PrivateKey key, NativeRef.EC_GROUP ecGroupRef);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long RSA_generate_key_ex(int modulusBits, byte[] publicExponent);
 
     static native int RSA_size(NativeRef.EVP_PKEY pkey);
@@ -159,7 +157,7 @@ public final class NativeCrypto {
     static native long EVP_PKEY_new_EC_KEY(
             NativeRef.EC_GROUP groupRef, NativeRef.EC_POINT pubkeyRef, byte[] privkey);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long EC_GROUP_new_by_curve_name(String curveName);
 
     static native long EC_GROUP_new_arbitrary(
@@ -169,7 +167,7 @@ public final class NativeCrypto {
 
     static native byte[][] EC_GROUP_get_curve(NativeRef.EC_GROUP groupRef);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native void EC_GROUP_clear_free(long groupRef);
 
     static native long EC_GROUP_get_generator(NativeRef.EC_GROUP groupRef);
@@ -182,7 +180,7 @@ public final class NativeCrypto {
 
     static native long EC_POINT_new(NativeRef.EC_GROUP groupRef);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native void EC_POINT_clear_free(long pointRef);
 
     static native byte[][] EC_POINT_get_affine_coordinates(
@@ -212,24 +210,28 @@ public final class NativeCrypto {
 
     static native int ECDSA_verify(byte[] data, byte[] sig, NativeRef.EVP_PKEY pkey);
 
+    // --- Curve25519 --------------
+
+    static native boolean X25519(byte[] out, byte[] privateKey, byte[] publicKey)
+            throws InvalidKeyException;
+
+    static native void X25519_keypair(byte[] outPublicKey, byte[] outPrivateKey);
+
     // --- Message digest functions --------------
 
     // These return const references
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long EVP_get_digestbyname(String name);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native int EVP_MD_size(long evp_md_const);
+    @android.compat.annotation.UnsupportedAppUsage static native int EVP_MD_size(long evp_md_const);
 
     // --- Message digest context functions --------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native long EVP_MD_CTX_create();
+    @android.compat.annotation.UnsupportedAppUsage static native long EVP_MD_CTX_create();
 
     static native void EVP_MD_CTX_cleanup(NativeRef.EVP_MD_CTX ctx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native void EVP_MD_CTX_destroy(long ctx);
+    @android.compat.annotation.UnsupportedAppUsage static native void EVP_MD_CTX_destroy(long ctx);
 
     static native int EVP_MD_CTX_copy_ex(
             NativeRef.EVP_MD_CTX dst_ctx, NativeRef.EVP_MD_CTX src_ctx);
@@ -300,7 +302,7 @@ public final class NativeCrypto {
     // --- Block ciphers -------------------------------------------------------
 
     // These return const references
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long EVP_get_cipherbyname(String string);
 
     static native void EVP_CipherInit_ex(NativeRef.EVP_CIPHER_CTX ctx, long evpCipher, byte[] key,
@@ -312,11 +314,10 @@ public final class NativeCrypto {
     static native int EVP_CipherFinal_ex(NativeRef.EVP_CIPHER_CTX ctx, byte[] out, int outOffset)
             throws BadPaddingException, IllegalBlockSizeException;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native int EVP_CIPHER_iv_length(long evpCipher);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native long EVP_CIPHER_CTX_new();
+    @android.compat.annotation.UnsupportedAppUsage static native long EVP_CIPHER_CTX_new();
 
     static native int EVP_CIPHER_CTX_block_size(NativeRef.EVP_CIPHER_CTX ctx);
 
@@ -338,17 +339,43 @@ public final class NativeCrypto {
 
     static native long EVP_aead_chacha20_poly1305();
 
+    static native long EVP_aead_aes_128_gcm_siv();
+
+    static native long EVP_aead_aes_256_gcm_siv();
+
     static native int EVP_AEAD_max_overhead(long evpAead);
 
     static native int EVP_AEAD_nonce_length(long evpAead);
 
     static native int EVP_AEAD_CTX_seal(long evpAead, byte[] key, int tagLengthInBytes, byte[] out,
             int outOffset, byte[] nonce, byte[] in, int inOffset, int inLength, byte[] ad)
-            throws ShortBufferException, BadPaddingException, IndexOutOfBoundsException;
+            throws ShortBufferException, BadPaddingException;
+
+    static native int EVP_AEAD_CTX_seal_buf(long evpAead, byte[] key, int tagLengthInBytes,
+            ByteBuffer out, byte[] nonce, ByteBuffer input, byte[] ad)
+            throws ShortBufferException, BadPaddingException;
 
     static native int EVP_AEAD_CTX_open(long evpAead, byte[] key, int tagLengthInBytes, byte[] out,
             int outOffset, byte[] nonce, byte[] in, int inOffset, int inLength, byte[] ad)
-            throws ShortBufferException, BadPaddingException, IndexOutOfBoundsException;
+            throws ShortBufferException, BadPaddingException;
+
+    static native int EVP_AEAD_CTX_open_buf(long evpAead, byte[] key, int tagLengthInBytes,
+            ByteBuffer out, byte[] nonce, ByteBuffer input, byte[] ad)
+            throws ShortBufferException, BadPaddingException;
+
+    // --- CMAC functions ------------------------------------------------------
+
+    static native long CMAC_CTX_new();
+
+    static native void CMAC_CTX_free(long ctx);
+
+    static native void CMAC_Init(NativeRef.CMAC_CTX ctx, byte[] key);
+
+    static native void CMAC_Update(NativeRef.CMAC_CTX ctx, byte[] in, int inOffset, int inLength);
+
+    static native void CMAC_UpdateDirect(NativeRef.CMAC_CTX ctx, long inPtr, int inLength);
+
+    static native byte[] CMAC_Final(NativeRef.CMAC_CTX ctx);
 
     // --- HMAC functions ------------------------------------------------------
 
@@ -366,8 +393,7 @@ public final class NativeCrypto {
 
     // --- RAND ----------------------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native void RAND_bytes(byte[] output);
+    @android.compat.annotation.UnsupportedAppUsage static native void RAND_bytes(byte[] output);
 
     // --- X509_NAME -----------------------------------------------------------
 
@@ -410,13 +436,12 @@ public final class NativeCrypto {
      */
     static final int EXTENSION_TYPE_CRITICAL = 1;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native long d2i_X509_bio(long bioCtx);
+    @android.compat.annotation.UnsupportedAppUsage static native long d2i_X509_bio(long bioCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long d2i_X509(byte[] encoded) throws ParsingException;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long PEM_read_bio_X509(long bioCtx);
 
     static native byte[] i2d_X509(long x509ctx, OpenSSLX509Certificate holder);
@@ -424,15 +449,13 @@ public final class NativeCrypto {
     /** Takes an X509 context not an X509_PUBKEY context. */
     static native byte[] i2d_X509_PUBKEY(long x509ctx, OpenSSLX509Certificate holder);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] ASN1_seq_pack_X509(long[] x509CertRefs);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long[] ASN1_seq_unpack_X509_bio(long bioRef) throws ParsingException;
 
     static native void X509_free(long x509ctx, OpenSSLX509Certificate holder);
-
-    static native long X509_dup(long x509ctx, OpenSSLX509Certificate holder);
 
     static native int X509_cmp(long x509ctx1, OpenSSLX509Certificate holder, long x509ctx2, OpenSSLX509Certificate holder2);
 
@@ -479,7 +502,10 @@ public final class NativeCrypto {
     static native void X509_verify(long x509ctx, OpenSSLX509Certificate holder, NativeRef.EVP_PKEY pkeyCtx)
             throws BadPaddingException;
 
-    static native byte[] get_X509_cert_info_enc(long x509ctx, OpenSSLX509Certificate holder);
+    static native byte[] get_X509_tbs_cert(long x509ctx, OpenSSLX509Certificate holder);
+
+    static native byte[] get_X509_tbs_cert_without_ext(
+            long x509ctx, OpenSSLX509Certificate holder, String oid);
 
     static native byte[] get_X509_signature(long x509ctx, OpenSSLX509Certificate holder);
 
@@ -498,23 +524,21 @@ public final class NativeCrypto {
     static final int PKCS7_CRLS = 2;
 
     /** Returns an array of X509 or X509_CRL pointers. */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long[] d2i_PKCS7_bio(long bioCtx, int which) throws ParsingException;
 
     /** Returns an array of X509 or X509_CRL pointers. */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native byte[] i2d_PKCS7(long[] certs);
+    @android.compat.annotation.UnsupportedAppUsage static native byte[] i2d_PKCS7(long[] certs);
 
     /** Returns an array of X509 or X509_CRL pointers. */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long[] PEM_read_bio_PKCS7(long bioCtx, int which);
 
     // --- X509_CRL ------------------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native long d2i_X509_CRL_bio(long bioCtx);
+    @android.compat.annotation.UnsupportedAppUsage static native long d2i_X509_CRL_bio(long bioCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long PEM_read_bio_X509_CRL(long bioCtx);
 
     static native byte[] i2d_X509_CRL(long x509CrlCtx, OpenSSLX509CRL holder);
@@ -542,15 +566,16 @@ public final class NativeCrypto {
 
     static native byte[] X509_CRL_get_ext_oid(long x509CrlCtx, OpenSSLX509CRL holder, String oid);
 
-    static native void X509_delete_ext(long x509, OpenSSLX509Certificate holder, String oid);
-
     static native long X509_CRL_get_version(long x509CrlCtx, OpenSSLX509CRL holder);
 
     static native long X509_CRL_get_ext(long x509CrlCtx, OpenSSLX509CRL holder, String oid);
 
     static native byte[] get_X509_CRL_signature(long x509ctx, OpenSSLX509CRL holder);
 
-    static native void X509_CRL_verify(long x509CrlCtx, OpenSSLX509CRL holder, NativeRef.EVP_PKEY pkeyCtx);
+    static native void X509_CRL_verify(long x509CrlCtx, OpenSSLX509CRL holder,
+            NativeRef.EVP_PKEY pkeyCtx) throws BadPaddingException, SignatureException,
+                                               NoSuchAlgorithmException, InvalidKeyException,
+                                               IllegalBlockSizeException;
 
     static native byte[] get_X509_CRL_crl_enc(long x509CrlCtx, OpenSSLX509CRL holder);
 
@@ -560,40 +585,41 @@ public final class NativeCrypto {
 
     // --- X509_REVOKED --------------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long X509_REVOKED_dup(long x509RevokedCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] i2d_X509_REVOKED(long x509RevokedCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native String[] get_X509_REVOKED_ext_oids(long x509ctx, int critical);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] X509_REVOKED_get_ext_oid(long x509RevokedCtx, String oid);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] X509_REVOKED_get_serialNumber(long x509RevokedCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long X509_REVOKED_get_ext(long x509RevokedCtx, String oid);
 
     /** Returns ASN1_TIME reference. */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long get_X509_REVOKED_revocationDate(long x509RevokedCtx);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native void X509_REVOKED_print(long bioRef, long x509RevokedCtx);
 
     // --- X509_EXTENSION ------------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native int X509_supported_extension(long x509ExtensionRef);
 
     // --- ASN1_TIME -----------------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native void ASN1_TIME_to_Calendar(long asn1TimeCtx, Calendar cal) throws ParsingException;
+    @android.compat.annotation.UnsupportedAppUsage
+    static native void ASN1_TIME_to_Calendar(long asn1TimeCtx, Calendar cal)
+            throws ParsingException;
 
     // --- ASN1 Encoding -------------------------------------------------------
 
@@ -733,14 +759,13 @@ public final class NativeCrypto {
 
     // --- BIO stream creation -------------------------------------------------
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long create_BIO_InputStream(OpenSSLBIOInputStream is, boolean isFinite);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long create_BIO_OutputStream(OutputStream os);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native void BIO_free_all(long bioRef);
+    @android.compat.annotation.UnsupportedAppUsage static native void BIO_free_all(long bioRef);
 
     // --- SSL handling --------------------------------------------------------
 
@@ -850,8 +875,7 @@ public final class NativeCrypto {
      */
     static native int EVP_has_aes_hardware();
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    static native long SSL_CTX_new();
+    @android.compat.annotation.UnsupportedAppUsage static native long SSL_CTX_new();
 
     // IMPLEMENTATION NOTE: The default list of cipher suites is a trade-off between what we'd like
     // to use and what servers currently support. We strive to be secure enough by default. We thus
@@ -1004,7 +1028,7 @@ public final class NativeCrypto {
             SUPPORTED_PROTOCOL_TLSV1_1,
             SUPPORTED_PROTOCOL_TLSV1_2,
             SUPPORTED_PROTOCOL_TLSV1_3,
-    };;
+    };
 
     static String[] getSupportedProtocols() {
         return SUPPORTED_PROTOCOLS.clone();
@@ -1109,7 +1133,7 @@ public final class NativeCrypto {
             // for more discussion.
             if (cipherSuite.equals(TLS_FALLBACK_SCSV)
                     && (maxProtocol.equals(SUPPORTED_PROTOCOL_TLSV1)
-                               || maxProtocol.equals(SUPPORTED_PROTOCOL_TLSV1_1))) {
+                            || maxProtocol.equals(SUPPORTED_PROTOCOL_TLSV1_1))) {
                 SSL_set_mode(ssl, ssl_holder, NativeConstants.SSL_MODE_SEND_FALLBACK_SCSV);
                 continue;
             }
@@ -1212,31 +1236,31 @@ public final class NativeCrypto {
 
     static native byte[] SSL_session_id(long ssl, NativeSsl ssl_holder);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] SSL_SESSION_session_id(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long SSL_SESSION_get_time(long sslSessionNativePointer);
 
     static native long SSL_SESSION_get_timeout(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native String SSL_SESSION_get_version(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native String SSL_SESSION_cipher(long sslSessionNativePointer);
 
     static native boolean SSL_SESSION_should_be_single_use(long sslSessionNativePointer);
 
     static native void SSL_SESSION_up_ref(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native void SSL_SESSION_free(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native byte[] i2d_SSL_SESSION(long sslSessionNativePointer);
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     static native long d2i_SSL_SESSION(byte[] data) throws IOException;
 
     /**
@@ -1268,9 +1292,18 @@ public final class NativeCrypto {
          * @param asn1DerEncodedX500Principals CAs known to the server
          */
         @SuppressWarnings("unused")
-        void clientCertificateRequested(byte[] keyTypes, int[] signatureAlgs,
-                byte[][] asn1DerEncodedX500Principals)
+        void clientCertificateRequested(
+                byte[] keyTypes, int[] signatureAlgs, byte[][] asn1DerEncodedX500Principals)
                 throws CertificateEncodingException, SSLException;
+
+        /**
+         * Called when acting as a server during ClientHello processing before a decision
+         * to resume a session is made. This allows the selection of the correct server
+         * certificate based on things like Server Name Indication (SNI).
+         *
+         * @throws IOException if there was an error during certificate selection.
+         */
+        @SuppressWarnings("unused") void serverCertificateRequested() throws IOException;
 
         /**
          * Gets the key to be used in client mode for this connection in Pre-Shared Key (PSK) key
@@ -1304,15 +1337,13 @@ public final class NativeCrypto {
         /**
          * Called when SSL state changes. This could be handshake completion.
          */
-        @SuppressWarnings("unused")
-        void onSSLStateChange(int type, int val);
+        @SuppressWarnings("unused") void onSSLStateChange(int type, int val);
 
         /**
          * Called when a new session has been established and may be added to the session cache.
          * The callee is responsible for incrementing the reference count on the returned session.
          */
-        @SuppressWarnings("unused")
-        void onNewSessionEstablished(long sslSessionNativePtr);
+        @SuppressWarnings("unused") void onNewSessionEstablished(long sslSessionNativePtr);
 
         /**
          * Called for servers where TLS < 1.3 (TLS 1.3 uses session tickets rather than
@@ -1325,8 +1356,17 @@ public final class NativeCrypto {
          * @param id the ID of the session to find.
          * @return the cached session or {@code 0} if no session was found matching the given ID.
          */
-        @SuppressWarnings("unused")
-        long serverSessionRequested(byte[] id);
+        @SuppressWarnings("unused") long serverSessionRequested(byte[] id);
+
+        /**
+         * Called when acting as a server, the socket has an {@link
+         * ApplicationProtocolSelectorAdapter} associated with it,  and the application protocol
+         * needs to be selected.
+         *
+         * @param applicationProtocols list of application protocols in length-prefix format
+         * @return the index offset of the selected protocol
+         */
+        @SuppressWarnings("unused") int selectApplicationProtocol(byte[] applicationProtocols);
     }
 
     static native String SSL_CIPHER_get_kx_name(long cipherAddress);
@@ -1368,12 +1408,13 @@ public final class NativeCrypto {
             long ssl, NativeSsl ssl_holder, boolean client, byte[] protocols) throws IOException;
 
     /**
-     * Called for a server endpoint only. Enables ALPN and sets a BiFunction that will
-     * be called to delegate protocol selection to the application. Calling this method overrides
+     * Called for a server endpoint only. Enables ALPN and indicates that the {@link
+     * SSLHandshakeCallbacks#selectApplicationProtocol} will be called to select the
+     * correct protocol during a handshake. Calling this method overrides
      * {@link #setApplicationProtocols(long, NativeSsl, boolean, byte[])}.
      */
-    static native void setApplicationProtocolSelector(
-            long ssl, NativeSsl ssl_holder, ApplicationProtocolSelectorAdapter selector) throws IOException;
+    static native void setHasApplicationProtocolSelector(
+            long ssl, NativeSsl ssl_holder, boolean hasSelector) throws IOException;
 
     /**
      * Returns the selected ALPN protocol. If the server did not select a
@@ -1425,24 +1466,10 @@ public final class NativeCrypto {
             SSLHandshakeCallbacks shc) throws IOException;
 
     /**
-     * Writes data from the given array to the BIO.
-     */
-    static native int ENGINE_SSL_write_BIO_heap(long ssl, NativeSsl ssl_holder, long bioRef, byte[] sourceJava,
-            int sourceOffset, int sourceLength, SSLHandshakeCallbacks shc)
-            throws IOException, IndexOutOfBoundsException;
-
-    /**
      * Reads data from the given BIO into a direct {@link java.nio.ByteBuffer}.
      */
     static native int ENGINE_SSL_read_BIO_direct(long ssl, NativeSsl ssl_holder, long bioRef, long address, int len,
             SSLHandshakeCallbacks shc) throws IOException;
-
-    /**
-     * Reads data from the given BIO into an array.
-     */
-    static native int ENGINE_SSL_read_BIO_heap(long ssl, NativeSsl ssl_holder, long bioRef, byte[] destJava,
-            int destOffset, int destLength, SSLHandshakeCallbacks shc)
-            throws IOException, IndexOutOfBoundsException;
 
     /**
      * Forces the SSL object to process any data pending in the BIO.
@@ -1456,6 +1483,11 @@ public final class NativeCrypto {
      */
     static native void ENGINE_SSL_shutdown(long ssl, NativeSsl ssl_holder, SSLHandshakeCallbacks shc)
             throws IOException;
+
+    /**
+     * Return {@code true} if BoringSSL has been built in FIPS mode.
+     */
+    static native boolean usesBoringSSL_FIPS_mode();
 
     /**
      * Used for testing only.

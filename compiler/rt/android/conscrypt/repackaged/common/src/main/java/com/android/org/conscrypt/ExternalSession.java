@@ -47,8 +47,8 @@ import javax.security.cert.X509Certificate;
  * underlying sessions, so they need not be implemented.
  */
 final class ExternalSession implements ConscryptSession {
-    // Use an initialcapacity of 2 to keep it small in the average case.
-    private final HashMap<String, Object> values = new HashMap<String, Object>(2);
+    // Use an initial capacity of 2 to keep it small in the average case.
+    private final HashMap<String, Object> values = new HashMap<>(2);
     private final Provider provider;
 
     public ExternalSession(Provider provider) {
@@ -112,6 +112,7 @@ final class ExternalSession implements ConscryptSession {
     }
 
     @Override
+    @SuppressWarnings("deprecation") // Public API
     public X509Certificate[] getPeerCertificateChain() throws SSLPeerUnverifiedException {
         return provider.provideSession().getPeerCertificateChain();
     }
@@ -157,6 +158,11 @@ final class ExternalSession implements ConscryptSession {
     }
 
     @Override
+    public String getApplicationProtocol() {
+        return provider.provideSession().getApplicationProtocol();
+    }
+
+    @Override
     public Object getValue(String name) {
         if (name == null) {
             throw new IllegalArgumentException("name == null");
@@ -166,7 +172,7 @@ final class ExternalSession implements ConscryptSession {
 
     @Override
     public String[] getValueNames() {
-        return values.keySet().toArray(new String[values.size()]);
+        return values.keySet().toArray(new String[0]);
     }
 
     @Override

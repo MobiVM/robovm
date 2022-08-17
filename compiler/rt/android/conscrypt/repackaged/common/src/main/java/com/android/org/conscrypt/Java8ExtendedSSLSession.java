@@ -30,13 +30,13 @@ import javax.net.ssl.SNIServerName;
 class Java8ExtendedSSLSession extends Java7ExtendedSSLSession {
     public Java8ExtendedSSLSession(ExternalSession delegate) {
         super(delegate);
-  }
+    }
 
   @Override
   public final List<SNIServerName> getRequestedServerNames() {
       String requestedServerName = delegate.getRequestedServerName();
       if (requestedServerName == null) {
-        return null;
+          return Collections.emptyList();
       }
 
       return Collections.singletonList((SNIServerName) new SNIHostName(requestedServerName));

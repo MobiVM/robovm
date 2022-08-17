@@ -25,7 +25,7 @@ import java.util.List;
  * Interface for classes that implement certificate pinning for use in {@link TrustManagerImpl}.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 @Internal
 public interface CertPinManager {
     /**

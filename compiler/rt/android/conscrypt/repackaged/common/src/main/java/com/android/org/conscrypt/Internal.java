@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
  * Annotates a program element (class, method, package etc) which is internal to Conscrypt, not part
  * of
  * the public API, and should not be used by users of Conscrypt.
+ * @hide This class is not part of the Android public SDK API
  */
 @Internal
 @Retention(RetentionPolicy.SOURCE)

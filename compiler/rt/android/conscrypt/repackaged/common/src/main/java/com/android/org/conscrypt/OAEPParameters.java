@@ -32,7 +32,6 @@ import javax.crypto.spec.PSource;
  * as specified in RFC 4055 section 4.1.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public class OAEPParameters extends AlgorithmParametersSpi {
 
@@ -53,7 +52,6 @@ public class OAEPParameters extends AlgorithmParametersSpi {
 
     private OAEPParameterSpec spec = OAEPParameterSpec.DEFAULT;
 
-    @libcore.api.IntraCoreApi
     public OAEPParameters() {}
 
     @Override

@@ -40,6 +40,7 @@ final class SessionSnapshot implements ConscryptSession {
     private final String cipherSuite;
     private final String protocol;
     private final String peerHost;
+    private final String applicationProtocol;
     private final int peerPort;
 
     SessionSnapshot(ConscryptSession session) {
@@ -54,6 +55,7 @@ final class SessionSnapshot implements ConscryptSession {
         protocol = session.getProtocol();
         peerHost = session.getPeerHost();
         peerPort = session.getPeerPort();
+        applicationProtocol = session.getApplicationProtocol();
     }
 
     @Override
@@ -63,7 +65,7 @@ final class SessionSnapshot implements ConscryptSession {
 
     @Override
     public List<byte[]> getStatusResponses() {
-        List<byte[]> ret = new ArrayList<byte[]>(statusResponses.size());
+        List<byte[]> ret = new ArrayList<>(statusResponses.size());
         for (byte[] resp : statusResponses) {
             ret.add(resp.clone());
         }
@@ -108,25 +110,25 @@ final class SessionSnapshot implements ConscryptSession {
     @Override
     public void putValue(String s, Object o) {
         throw new UnsupportedOperationException(
-                "All calls to this method should be intercepted by ProvidedSessionDecorator.");
+                "All calls to this method should be intercepted by ExternalSession.");
     }
 
     @Override
     public Object getValue(String s) {
         throw new UnsupportedOperationException(
-                "All calls to this method should be intercepted by ProvidedSessionDecorator.");
+                "All calls to this method should be intercepted by ExternalSession.");
     }
 
     @Override
     public void removeValue(String s) {
         throw new UnsupportedOperationException(
-                "All calls to this method should be intercepted by ProvidedSessionDecorator.");
+                "All calls to this method should be intercepted by ExternalSession.");
     }
 
     @Override
     public String[] getValueNames() {
         throw new UnsupportedOperationException(
-                "All calls to this method should be intercepted by ProvidedSessionDecorator.");
+                "All calls to this method should be intercepted by ExternalSession.");
     }
 
     @Override
@@ -140,8 +142,13 @@ final class SessionSnapshot implements ConscryptSession {
     }
 
     @Override
+    @SuppressWarnings("deprecation") // Public API
     public javax.security.cert.X509Certificate[] getPeerCertificateChain()
-        throws SSLPeerUnverifiedException {
+            throws SSLPeerUnverifiedException {
+        if (!Platform.isJavaxCertificateSupported()) {
+            throw new UnsupportedOperationException("Use getPeerCertificates() instead");
+        }
+
         throw new SSLPeerUnverifiedException("No peer certificates");
     }
 
@@ -183,5 +190,10 @@ final class SessionSnapshot implements ConscryptSession {
     @Override
     public int getApplicationBufferSize() {
         return NativeConstants.SSL3_RT_MAX_PLAIN_LENGTH;
+    }
+
+    @Override
+    public String getApplicationProtocol() {
+        return applicationProtocol;
     }
 }

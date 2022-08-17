@@ -35,7 +35,6 @@ import java.util.Map;
  * operations.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.IntraCoreApi
 @Internal
 public final class OpenSSLECKeyPairGenerator extends KeyPairGenerator {
     private static final String ALGORITHM = "EC";
@@ -54,7 +53,6 @@ public final class OpenSSLECKeyPairGenerator extends KeyPairGenerator {
 
     private OpenSSLECGroupContext group;
 
-    @libcore.api.IntraCoreApi
     public OpenSSLECKeyPairGenerator() {
         super(ALGORITHM);
     }

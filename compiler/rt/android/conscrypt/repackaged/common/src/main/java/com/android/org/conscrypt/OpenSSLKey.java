@@ -17,6 +17,7 @@
 
 package com.android.org.conscrypt;
 
+import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +29,6 @@ import java.security.spec.ECParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import com.android.org.conscrypt.OpenSSLX509CertificateFactory.ParsingException;
 
 /**
  * Represents a BoringSSL {@code EVP_PKEY}.
@@ -38,21 +38,36 @@ final class OpenSSLKey {
 
     private final boolean wrapped;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    // If true, indicates that this key is hardware-backed, e.g. stored in a TEE keystore.
+    // Conscrypt never creates such keys, but setting this field to true allows developers
+    // to create an EVP_PKEY from a hardware-backed key and then create an OpenSSLKey from it
+    // which can be used with Conscrypt.
+    // Hardware-backed keys cannot be serialised or have any private key material extracted.
+    private final boolean hardwareBacked;
+
+    @android.compat.annotation.UnsupportedAppUsage
     OpenSSLKey(long ctx) {
         this(ctx, false);
     }
 
     OpenSSLKey(long ctx, boolean wrapped) {
+        this(ctx, wrapped, false);
+    }
+
+    // Constructor for users who need to set the |hardwareBacked| field to true.
+    // See the field documentation for more information.
+    OpenSSLKey(long ctx, boolean wrapped, boolean hardwareBacked) {
         this.ctx = new NativeRef.EVP_PKEY(ctx);
         this.wrapped = wrapped;
+        this.hardwareBacked = hardwareBacked;
     }
 
     /**
      * Returns the EVP_PKEY context for use in JNI calls.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    NativeRef.EVP_PKEY getNativeRef() {
+    @android.compat.annotation
+            .UnsupportedAppUsage
+            NativeRef.EVP_PKEY getNativeRef() {
         return ctx;
     }
 
@@ -60,7 +75,11 @@ final class OpenSSLKey {
         return wrapped;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    boolean isHardwareBacked() {
+        return hardwareBacked;
+    }
+
+    @android.compat.annotation.UnsupportedAppUsage
     static OpenSSLKey fromPrivateKey(PrivateKey key) throws InvalidKeyException {
         if (key instanceof OpenSSLKeyHolder) {
             return ((OpenSSLKeyHolder) key).getOpenSSLKey();
@@ -263,7 +282,7 @@ final class OpenSSLKey {
         }
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     PublicKey getPublicKey() throws NoSuchAlgorithmException {
         switch (NativeCrypto.EVP_PKEY_type(ctx)) {
             case NativeConstants.EVP_PKEY_RSA:

@@ -135,6 +135,7 @@ class Java7ExtendedSSLSession extends ExtendedSSLSession implements ConscryptSes
     }
 
     @Override
+    @SuppressWarnings("deprecation") // Public API
     public final X509Certificate[] getPeerCertificateChain() throws SSLPeerUnverifiedException {
         return delegate.getPeerCertificateChain();
     }
@@ -177,5 +178,10 @@ class Java7ExtendedSSLSession extends ExtendedSSLSession implements ConscryptSes
     @Override
     public final int getApplicationBufferSize() {
         return delegate.getApplicationBufferSize();
+    }
+
+    @Override
+    public String getApplicationProtocol() {
+        return delegate.getApplicationProtocol();
     }
 }

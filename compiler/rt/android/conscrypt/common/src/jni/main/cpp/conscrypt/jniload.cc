@@ -28,10 +28,13 @@
 using conscrypt::CompatibilityCloseMonitor;
 using conscrypt::NativeCrypto;
 
-// RoboVM note: JNI_OnLoad() is not supported with static JNI. The NativeCrypto Java class has been changed to call a native method named onload() instead.
-extern "C" void Java_com_android_org_conscrypt_NativeCrypto_onload(JNIEnv* env, jclass) {
-    JavaVM* vm;
-    env->GetJavaVM(&vm);
+// Give client libs everything they need to initialize our JNI
+jint libconscrypt_JNI_OnLoad(JavaVM* vm, void*) {
+    JNIEnv* env;
+    if (vm->GetEnv(reinterpret_cast<void**>(&env), CONSCRYPT_JNI_VERSION) != JNI_OK) {
+        CONSCRYPT_LOG_ERROR("Could not get JNIEnv");
+        return JNI_ERR;
+    }
 
     // Initialize the JNI constants.
     conscrypt::jniutil::init(vm, env);
@@ -41,4 +44,24 @@ extern "C" void Java_com_android_org_conscrypt_NativeCrypto_onload(JNIEnv* env, 
 
     // Perform static initialization of the close monitor (if required on this platform).
     CompatibilityCloseMonitor::init();
+    return CONSCRYPT_JNI_VERSION;
 }
+
+#ifdef STATIC_LIB
+
+// A version of OnLoad called when the Conscrypt library has been statically linked to the JVM (For
+// Java >= 1.8). The manner in which the library is statically linked is implementation specific.
+//
+// See http://openjdk.java.net/jeps/178
+CONSCRYPT_PUBLIC jint JNI_OnLoad_conscrypt(JavaVM* vm, void* reserved) {
+    return libconscrypt_JNI_OnLoad(vm, reserved);
+}
+
+#else  // !STATIC_LIB
+
+// Method called by the JVM when the Conscrypt shared library is loaded.
+CONSCRYPT_PUBLIC jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
+    return libconscrypt_JNI_OnLoad(vm, reserved);
+}
+
+#endif  // !STATIC_LIB

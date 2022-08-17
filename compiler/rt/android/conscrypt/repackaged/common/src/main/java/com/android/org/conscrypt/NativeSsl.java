@@ -26,11 +26,15 @@ import static com.android.org.conscrypt.NativeConstants.SSL_VERIFY_FAIL_IF_NO_PE
 import static com.android.org.conscrypt.NativeConstants.SSL_VERIFY_NONE;
 import static com.android.org.conscrypt.NativeConstants.SSL_VERIFY_PEER;
 
+import com.android.org.conscrypt.NativeCrypto.SSLHandshakeCallbacks;
+import com.android.org.conscrypt.SSLParametersImpl.AliasChooser;
+import com.android.org.conscrypt.SSLParametersImpl.PSKCallbacks;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -47,9 +51,6 @@ import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.X509KeyManager;
 import javax.net.ssl.X509TrustManager;
 import javax.security.auth.x500.X500Principal;
-import com.android.org.conscrypt.NativeCrypto.SSLHandshakeCallbacks;
-import com.android.org.conscrypt.SSLParametersImpl.AliasChooser;
-import com.android.org.conscrypt.SSLParametersImpl.PSKCallbacks;
 
 /**
  * A utility wrapper that abstracts operations on the underlying native SSL instance.
@@ -212,7 +213,7 @@ final class NativeSsl {
             byte[][] asn1DerEncodedPrincipals)
             throws SSLException, CertificateEncodingException {
         Set<String> keyTypesSet = SSLUtils.getSupportedClientKeyTypes(keyTypeBytes, signatureAlgs);
-        String[] keyTypes = keyTypesSet.toArray(new String[keyTypesSet.size()]);
+        String[] keyTypes = keyTypesSet.toArray(new String[0]);
 
         X500Principal[] issuers;
         if (asn1DerEncodedPrincipals == null) {
@@ -230,7 +231,7 @@ final class NativeSsl {
         setCertificate(alias);
     }
 
-    void setCertificate(String alias) throws CertificateEncodingException, SSLException {
+    private void setCertificate(String alias) throws CertificateEncodingException, SSLException {
         if (alias == null) {
             return;
         }
@@ -320,30 +321,12 @@ final class NativeSsl {
             NativeCrypto.setApplicationProtocols(ssl, this, isClient(), parameters.applicationProtocols);
         }
         if (!isClient() && parameters.applicationProtocolSelector != null) {
-            NativeCrypto.setApplicationProtocolSelector(ssl, this, parameters.applicationProtocolSelector);
+            NativeCrypto.setHasApplicationProtocolSelector(ssl, this, true);
         }
 
         // setup server certificates and private keys.
         // clients will receive a call back to request certificates.
         if (!isClient()) {
-            Set<String> keyTypes = new HashSet<String>();
-            for (long sslCipherNativePointer : NativeCrypto.SSL_get_ciphers(ssl, this)) {
-                String keyType = SSLUtils.getServerX509KeyType(sslCipherNativePointer);
-                if (keyType != null) {
-                    keyTypes.add(keyType);
-                }
-            }
-            X509KeyManager keyManager = parameters.getX509KeyManager();
-            if (keyManager != null) {
-                for (String keyType : keyTypes) {
-                    try {
-                        setCertificate(aliasChooser.chooseServerAlias(keyManager, keyType));
-                    } catch (CertificateEncodingException e) {
-                        throw new IOException(e);
-                    }
-                }
-            }
-
             NativeCrypto.SSL_set_options(ssl, this, SSL_OP_CIPHER_SERVER_PREFERENCE);
 
             if (parameters.sctExtension != null) {
@@ -374,6 +357,44 @@ final class NativeSsl {
 
         setCertificateValidation();
         setTlsChannelId(channelIdPrivateKey);
+    }
+
+    void configureServerCertificate() throws IOException {
+        verifyWithSniMatchers(getRequestedServerName());
+        if (isClient()) {
+            return;
+        }
+        X509KeyManager keyManager = parameters.getX509KeyManager();
+        if (keyManager != null) {
+            for (String keyType : getCipherKeyTypes()) {
+                try {
+                    setCertificate(aliasChooser.chooseServerAlias(keyManager, keyType));
+                } catch (CertificateEncodingException e) {
+                    throw new IOException(e);
+                }
+            }
+        }
+    }
+
+    private void verifyWithSniMatchers(String serverName) throws SSLHandshakeException {
+        if (!AddressUtils.isValidSniHostname(serverName)) {
+            return;
+        }
+
+        if (!Platform.serverNamePermitted(parameters, serverName)) {
+            throw new SSLHandshakeException("SNI match failed: " + serverName);
+        }
+    }
+
+    private Set<String> getCipherKeyTypes() {
+        Set<String> keyTypes = new HashSet<>();
+        for (long sslCipherNativePointer : NativeCrypto.SSL_get_ciphers(ssl, this)) {
+            String keyType = SSLUtils.getServerX509KeyType(sslCipherNativePointer);
+            if (keyType != null) {
+                keyTypes.add(keyType);
+            }
+        }
+        return keyTypes;
     }
 
     // TODO(nathanmittler): Remove once after we switch to the engine socket.
@@ -515,15 +536,30 @@ final class NativeSsl {
     }
 
     void shutdown() throws IOException {
-        NativeCrypto.ENGINE_SSL_shutdown(ssl, this, handshakeCallbacks);
+        lock.readLock().lock();
+        try {
+            NativeCrypto.ENGINE_SSL_shutdown(ssl, this, handshakeCallbacks);
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     boolean wasShutdownReceived() {
-        return (NativeCrypto.SSL_get_shutdown(ssl, this) & SSL_RECEIVED_SHUTDOWN) != 0;
+        lock.readLock().lock();
+        try {
+            return (NativeCrypto.SSL_get_shutdown(ssl, this) & SSL_RECEIVED_SHUTDOWN) != 0;
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     boolean wasShutdownSent() {
-        return (NativeCrypto.SSL_get_shutdown(ssl, this) & SSL_SENT_SHUTDOWN) != 0;
+        lock.readLock().lock();
+        try {
+            return (NativeCrypto.SSL_get_shutdown(ssl, this) & SSL_SENT_SHUTDOWN) != 0;
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     int readDirectByteBuffer(long destAddress, int destLength)
@@ -557,7 +593,15 @@ final class NativeSsl {
     }
 
     int getPendingReadableBytes() {
-        return NativeCrypto.SSL_pending_readable_bytes(ssl, this);
+        lock.readLock().lock();
+        try {
+            if (!isClosed()) {
+                return NativeCrypto.SSL_pending_readable_bytes(ssl, this);
+            }
+            return 0;
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     int getMaxSealOverhead() {
@@ -594,6 +638,7 @@ final class NativeSsl {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected final void finalize() throws Throwable {
         try {
             close();
@@ -613,27 +658,51 @@ final class NativeSsl {
         }
 
         int getPendingWrittenBytes() {
-            if (bio != 0) {
-                return NativeCrypto.SSL_pending_written_bytes_in_BIO(bio);
-            } else {
-                return 0;
+            lock.readLock().lock();
+            try {
+                return (bio == 0L) ? 0 : NativeCrypto.SSL_pending_written_bytes_in_BIO(bio);
+            } finally {
+                lock.readLock().unlock();
             }
         }
 
         int writeDirectByteBuffer(long address, int length) throws IOException {
-            return NativeCrypto.ENGINE_SSL_write_BIO_direct(
-                    ssl, NativeSsl.this, bio, address, length, handshakeCallbacks);
+            lock.readLock().lock();
+            try {
+                if (isClosed()) {
+                    throw new SSLException("Connection closed");
+                }
+                return NativeCrypto.ENGINE_SSL_write_BIO_direct(
+                        ssl, NativeSsl.this, bio, address, length, handshakeCallbacks);
+            } finally {
+                lock.readLock().unlock();
+            }
         }
 
         int readDirectByteBuffer(long destAddress, int destLength) throws IOException {
-            return NativeCrypto.ENGINE_SSL_read_BIO_direct(
-                    ssl, NativeSsl.this, bio, destAddress, destLength, handshakeCallbacks);
+            lock.readLock().lock();
+            try {
+                if (isClosed()) {
+                    throw new SSLException("Connection closed");
+                }
+                return NativeCrypto.ENGINE_SSL_read_BIO_direct(
+                        ssl, NativeSsl.this, bio, destAddress, destLength, handshakeCallbacks);
+            } finally {
+                lock.readLock().unlock();
+            }
         }
 
         void close() {
-            long toFree = bio;
-            bio = 0L;
-            NativeCrypto.BIO_free_all(toFree);
+            lock.writeLock().lock();
+            try {
+                long toFree = bio;
+                bio = 0L;
+                if (toFree != 0L) {
+                    NativeCrypto.BIO_free_all(toFree);
+                }
+            } finally {
+                lock.writeLock().unlock();
+            }
         }
     }
 }

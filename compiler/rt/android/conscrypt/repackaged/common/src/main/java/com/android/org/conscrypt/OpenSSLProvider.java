@@ -32,7 +32,9 @@ import java.security.Provider;
  * </ul>
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
+@libcore.
+api.IntraCoreApi
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 @Internal
 public final class OpenSSLProvider extends Provider {
     private static final long serialVersionUID = 2996752495318905136L;
@@ -41,22 +43,27 @@ public final class OpenSSLProvider extends Provider {
 
     private static final String STANDARD_EC_PRIVATE_KEY_INTERFACE_CLASS_NAME =
             "java.security.interfaces.ECPrivateKey";
+    private static final String STANDARD_XEC_PRIVATE_KEY_INTERFACE_CLASS_NAME =
+            "java.security.interfaces.XECPrivateKey";
     private static final String STANDARD_RSA_PRIVATE_KEY_INTERFACE_CLASS_NAME =
             "java.security.interfaces.RSAPrivateKey";
     private static final String STANDARD_RSA_PUBLIC_KEY_INTERFACE_CLASS_NAME =
             "java.security.interfaces.RSAPublicKey";
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public OpenSSLProvider() {
+    @android.compat.annotation
+            .UnsupportedAppUsage
+            @libcore.api
+            .IntraCoreApi
+            @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+            public OpenSSLProvider() {
         this(Platform.getDefaultProviderName());
     }
 
     public OpenSSLProvider(String providerName) {
-        this(providerName, Platform.provideTrustManagerByDefault());
+        this(providerName, Platform.provideTrustManagerByDefault(), "TLSv1.3");
     }
 
-    OpenSSLProvider(String providerName, boolean includeTrustManager) {
+    OpenSSLProvider(String providerName, boolean includeTrustManager, String defaultTlsProtocol) {
         super(providerName, 1.0, "Android's OpenSSL-backed security provider");
 
         // Ensure that the native library has been loaded.
@@ -66,16 +73,29 @@ public final class OpenSSLProvider extends Provider {
         Platform.setup();
 
         /* === SSL Contexts === */
-        final String classOpenSSLContextImpl = PREFIX + "OpenSSLContextImpl";
-        final String tls13SSLContext = classOpenSSLContextImpl + "$TLSv13";
+        String classOpenSSLContextImpl = PREFIX + "OpenSSLContextImpl";
+        String tls12SSLContextSuffix = "$TLSv12";
+        String tls13SSLContextSuffix = "$TLSv13";
+        String defaultSSLContextSuffix;
+        switch (defaultTlsProtocol) {
+            case "TLSv1.2":
+                defaultSSLContextSuffix = tls12SSLContextSuffix;
+                break;
+            case "TLSv1.3":
+                defaultSSLContextSuffix = tls13SSLContextSuffix;
+                break;
+            default:
+                throw new IllegalArgumentException(
+                        "Choice of default protocol is unsupported: " + defaultTlsProtocol);
+        }
         // Keep SSL as an alias to TLS
-        put("SSLContext.SSL", tls13SSLContext);
-        put("SSLContext.TLS", tls13SSLContext);
+        put("SSLContext.SSL", classOpenSSLContextImpl + defaultSSLContextSuffix);
+        put("SSLContext.TLS", classOpenSSLContextImpl + defaultSSLContextSuffix);
         put("SSLContext.TLSv1", classOpenSSLContextImpl + "$TLSv1");
         put("SSLContext.TLSv1.1", classOpenSSLContextImpl + "$TLSv11");
-        put("SSLContext.TLSv1.2", classOpenSSLContextImpl + "$TLSv12");
-        put("SSLContext.TLSv1.3", tls13SSLContext);
-        put("SSLContext.Default", PREFIX + "DefaultSSLContextImpl");
+        put("SSLContext.TLSv1.2", classOpenSSLContextImpl + tls12SSLContextSuffix);
+        put("SSLContext.TLSv1.3", classOpenSSLContextImpl + tls13SSLContextSuffix);
+        put("SSLContext.Default", PREFIX + "DefaultSSLContextImpl" + defaultSSLContextSuffix);
 
         if (includeTrustManager) {
             put("TrustManagerFactory.PKIX", TrustManagerFactoryImpl.class.getName());
@@ -182,6 +202,9 @@ public final class OpenSSLProvider extends Provider {
         put("Alg.Alias.KeyPairGenerator.1.2.840.10045.2.1", "EC");
         put("Alg.Alias.KeyPairGenerator.1.3.133.16.840.63.0.2", "EC");
 
+        put("KeyPairGenerator.XDH", PREFIX + "OpenSSLXDHKeyPairGenerator");
+        put("Alg.Alias.KeyPairGenerator.1.3.101.110", "XDH");
+
         /* == KeyFactory == */
         put("KeyFactory.RSA", PREFIX + "OpenSSLRSAKeyFactory");
         put("Alg.Alias.KeyFactory.1.2.840.113549.1.1.1", "RSA");
@@ -192,12 +215,16 @@ public final class OpenSSLProvider extends Provider {
         put("Alg.Alias.KeyFactory.1.2.840.10045.2.1", "EC");
         put("Alg.Alias.KeyFactory.1.3.133.16.840.63.0.2", "EC");
 
+        put("KeyFactory.XDH", PREFIX + "OpenSSLXDHKeyFactory");
+        put("Alg.Alias.KeyFactory.1.3.101.110", "XDH");
+
         /* == SecretKeyFactory == */
         put("SecretKeyFactory.DESEDE", PREFIX + "DESEDESecretKeyFactory");
         put("Alg.Alias.SecretKeyFactory.TDEA", "DESEDE");
 
         /* == KeyAgreement == */
         putECDHKeyAgreementImplClass("OpenSSLECDHKeyAgreement");
+        putXDHKeyAgreementImplClass("OpenSSLXDHKeyAgreement");
 
         /* == Signatures == */
         putSignatureImplClass("MD5withRSA", "OpenSSLSignature$MD5RSA");
@@ -360,27 +387,25 @@ public final class OpenSSLProvider extends Provider {
          * than 64 bits. We solve this confusion by making PKCS7Padding an
          * alias for PKCS5Padding.
          */
-        putSymmetricCipherImplClass("AES/ECB/NoPadding",
-                "OpenSSLCipher$EVP_CIPHER$AES$ECB$NoPadding");
-        putSymmetricCipherImplClass("AES/ECB/PKCS5Padding",
-                "OpenSSLCipher$EVP_CIPHER$AES$ECB$PKCS5Padding");
+        putSymmetricCipherImplClass("AES/ECB/NoPadding", "OpenSSLEvpCipherAES$AES$ECB$NoPadding");
+        putSymmetricCipherImplClass(
+                "AES/ECB/PKCS5Padding", "OpenSSLEvpCipherAES$AES$ECB$PKCS5Padding");
         put("Alg.Alias.Cipher.AES/ECB/PKCS7Padding", "AES/ECB/PKCS5Padding");
-        putSymmetricCipherImplClass("AES/CBC/NoPadding",
-                "OpenSSLCipher$EVP_CIPHER$AES$CBC$NoPadding");
-        putSymmetricCipherImplClass("AES/CBC/PKCS5Padding",
-                "OpenSSLCipher$EVP_CIPHER$AES$CBC$PKCS5Padding");
+        putSymmetricCipherImplClass("AES/CBC/NoPadding", "OpenSSLEvpCipherAES$AES$CBC$NoPadding");
+        putSymmetricCipherImplClass(
+                "AES/CBC/PKCS5Padding", "OpenSSLEvpCipherAES$AES$CBC$PKCS5Padding");
         put("Alg.Alias.Cipher.AES/CBC/PKCS7Padding", "AES/CBC/PKCS5Padding");
-        putSymmetricCipherImplClass("AES/CTR/NoPadding", "OpenSSLCipher$EVP_CIPHER$AES$CTR");
+        putSymmetricCipherImplClass("AES/CTR/NoPadding", "OpenSSLEvpCipherAES$AES$CTR");
 
         putSymmetricCipherImplClass(
-                "AES_128/ECB/NoPadding", "OpenSSLCipher$EVP_CIPHER$AES_128$ECB$NoPadding");
+                "AES_128/ECB/NoPadding", "OpenSSLEvpCipherAES$AES_128$ECB$NoPadding");
         putSymmetricCipherImplClass(
-                "AES_128/ECB/PKCS5Padding", "OpenSSLCipher$EVP_CIPHER$AES_128$ECB$PKCS5Padding");
+                "AES_128/ECB/PKCS5Padding", "OpenSSLEvpCipherAES$AES_128$ECB$PKCS5Padding");
         put("Alg.Alias.Cipher.AES_128/ECB/PKCS7Padding", "AES_128/ECB/PKCS5Padding");
         putSymmetricCipherImplClass(
-                "AES_128/CBC/NoPadding", "OpenSSLCipher$EVP_CIPHER$AES_128$CBC$NoPadding");
+                "AES_128/CBC/NoPadding", "OpenSSLEvpCipherAES$AES_128$CBC$NoPadding");
         putSymmetricCipherImplClass(
-                "AES_128/CBC/PKCS5Padding", "OpenSSLCipher$EVP_CIPHER$AES_128$CBC$PKCS5Padding");
+                "AES_128/CBC/PKCS5Padding", "OpenSSLEvpCipherAES$AES_128$CBC$PKCS5Padding");
         put("Alg.Alias.Cipher.AES_128/CBC/PKCS7Padding", "AES_128/CBC/PKCS5Padding");
 
         put("Alg.Alias.Cipher.PBEWithHmacSHA1AndAES_128", "AES_128/CBC/PKCS5PADDING");
@@ -390,14 +415,14 @@ public final class OpenSSLProvider extends Provider {
         put("Alg.Alias.Cipher.PBEWithHmacSHA512AndAES_128", "AES_128/CBC/PKCS5PADDING");
 
         putSymmetricCipherImplClass(
-                "AES_256/ECB/NoPadding", "OpenSSLCipher$EVP_CIPHER$AES_256$ECB$NoPadding");
+                "AES_256/ECB/NoPadding", "OpenSSLEvpCipherAES$AES_256$ECB$NoPadding");
         putSymmetricCipherImplClass(
-                "AES_256/ECB/PKCS5Padding", "OpenSSLCipher$EVP_CIPHER$AES_256$ECB$PKCS5Padding");
+                "AES_256/ECB/PKCS5Padding", "OpenSSLEvpCipherAES$AES_256$ECB$PKCS5Padding");
         put("Alg.Alias.Cipher.AES_256/ECB/PKCS7Padding", "AES_256/ECB/PKCS5Padding");
         putSymmetricCipherImplClass(
-                "AES_256/CBC/NoPadding", "OpenSSLCipher$EVP_CIPHER$AES_256$CBC$NoPadding");
+                "AES_256/CBC/NoPadding", "OpenSSLEvpCipherAES$AES_256$CBC$NoPadding");
         putSymmetricCipherImplClass(
-                "AES_256/CBC/PKCS5Padding", "OpenSSLCipher$EVP_CIPHER$AES_256$CBC$PKCS5Padding");
+                "AES_256/CBC/PKCS5Padding", "OpenSSLEvpCipherAES$AES_256$CBC$PKCS5Padding");
         put("Alg.Alias.Cipher.AES_256/CBC/PKCS7Padding", "AES_256/CBC/PKCS5Padding");
 
         put("Alg.Alias.Cipher.PBEWithHmacSHA1AndAES_256", "AES_256/CBC/PKCS5PADDING");
@@ -406,32 +431,34 @@ public final class OpenSSLProvider extends Provider {
         put("Alg.Alias.Cipher.PBEWithHmacSHA384AndAES_256", "AES_256/CBC/PKCS5PADDING");
         put("Alg.Alias.Cipher.PBEWithHmacSHA512AndAES_256", "AES_256/CBC/PKCS5PADDING");
 
-        putSymmetricCipherImplClass("DESEDE/CBC/NoPadding",
-                "OpenSSLCipher$EVP_CIPHER$DESEDE$CBC$NoPadding");
-        putSymmetricCipherImplClass("DESEDE/CBC/PKCS5Padding",
-                "OpenSSLCipher$EVP_CIPHER$DESEDE$CBC$PKCS5Padding");
+        putSymmetricCipherImplClass("DESEDE/CBC/NoPadding", "OpenSSLEvpCipherDESEDE$CBC$NoPadding");
+        putSymmetricCipherImplClass(
+                "DESEDE/CBC/PKCS5Padding", "OpenSSLEvpCipherDESEDE$CBC$PKCS5Padding");
         put("Alg.Alias.Cipher.DESEDE/CBC/PKCS7Padding", "DESEDE/CBC/PKCS5Padding");
 
-        putSymmetricCipherImplClass("ARC4", "OpenSSLCipher$EVP_CIPHER$ARC4");
+        putSymmetricCipherImplClass("ARC4", "OpenSSLEvpCipherARC4");
         put("Alg.Alias.Cipher.ARCFOUR", "ARC4");
         put("Alg.Alias.Cipher.RC4", "ARC4");
         put("Alg.Alias.Cipher.1.2.840.113549.3.4", "ARC4");
         put("Alg.Alias.Cipher.OID.1.2.840.113549.3.4", "ARC4");
 
-        putSymmetricCipherImplClass("AES/GCM/NoPadding", "OpenSSLCipher$EVP_AEAD$AES$GCM");
+        putSymmetricCipherImplClass("AES/GCM/NoPadding", "OpenSSLAeadCipherAES$GCM");
         put("Alg.Alias.Cipher.GCM", "AES/GCM/NoPadding");
         put("Alg.Alias.Cipher.2.16.840.1.101.3.4.1.6", "AES/GCM/NoPadding");
         put("Alg.Alias.Cipher.2.16.840.1.101.3.4.1.26", "AES/GCM/NoPadding");
         put("Alg.Alias.Cipher.2.16.840.1.101.3.4.1.46", "AES/GCM/NoPadding");
+        putSymmetricCipherImplClass("AES_128/GCM/NoPadding", "OpenSSLAeadCipherAES$GCM$AES_128");
+        putSymmetricCipherImplClass("AES_256/GCM/NoPadding", "OpenSSLAeadCipherAES$GCM$AES_256");
+
+        putSymmetricCipherImplClass("AES/GCM-SIV/NoPadding", "OpenSSLAeadCipherAES$GCM_SIV");
         putSymmetricCipherImplClass(
-                "AES_128/GCM/NoPadding", "OpenSSLCipher$EVP_AEAD$AES$GCM$AES_128");
+                "AES_128/GCM-SIV/NoPadding", "OpenSSLAeadCipherAES$GCM_SIV$AES_128");
         putSymmetricCipherImplClass(
-                "AES_256/GCM/NoPadding", "OpenSSLCipher$EVP_AEAD$AES$GCM$AES_256");
+                "AES_256/GCM-SIV/NoPadding", "OpenSSLAeadCipherAES$GCM_SIV$AES_256");
 
         putSymmetricCipherImplClass("ChaCha20",
                 "OpenSSLCipherChaCha20");
-        putSymmetricCipherImplClass("ChaCha20/Poly1305/NoPadding",
-                "OpenSSLCipher$EVP_AEAD$ChaCha20");
+        putSymmetricCipherImplClass("ChaCha20/Poly1305/NoPadding", "OpenSSLAeadCipherChaCha20");
         put("Alg.Alias.Cipher.ChaCha20-Poly1305", "ChaCha20/Poly1305/NoPadding");
 
         /* === Mac === */
@@ -479,6 +506,8 @@ public final class OpenSSLProvider extends Provider {
         put("Alg.Alias.Mac.HMAC-SHA512", "HmacSHA512");
         put("Alg.Alias.Mac.HMAC/SHA512", "HmacSHA512");
         put("Alg.Alias.Mac.PBEWITHHMACSHA512", "HmacSHA512");
+
+        putMacImplClass("AESCMAC", "OpenSSLMac$AesCmac");
 
         /* === Certificate === */
 
@@ -576,6 +605,19 @@ public final class OpenSSLProvider extends Provider {
                 PREFIX + className,
                 supportedKeyClasses,
                 supportedKeyFormats);
+    }
+
+    private void putXDHKeyAgreementImplClass(String className) {
+        // Accept only keys for which any of the following is true:
+        // * the key is from this provider (subclass of OpenSSLKeyHolder),
+        // * the key provides its key material in "PKCS#8" encoding via Key.getEncoded.
+        // * the key is a transparent XEC private key (subclass of XECPrivateKey).
+        String supportedKeyClasses = PREFIX + "OpenSSLKeyHolder"
+                + "|" + STANDARD_XEC_PRIVATE_KEY_INTERFACE_CLASS_NAME + "|" + PREFIX
+                + "OpenSSLX25519PrivateKey";
+        String supportedKeyFormats = "PKCS#8";
+        putImplClassWithKeyConstraints(
+                "KeyAgreement.XDH", PREFIX + className, supportedKeyClasses, supportedKeyFormats);
     }
 
     private void putImplClassWithKeyConstraints(String typeAndAlgName,
