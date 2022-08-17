@@ -46,3 +46,11 @@ TEST_MAPPING
 /external/zlib/libz.map.txt
 /external/zlib/OWNERS.android
 /external/zlib/contrib/tests
+
+##
+## JavaSqlite
+##
+/external/javasqlite/Android.bp
+/external/javasqlite/METADATA
+/external/javasqlite/OWNERS
+
