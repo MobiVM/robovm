@@ -4,6 +4,36 @@
 //
 //
 
+package {
+    default_applicable_licenses: ["external_sqlite_dist_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "external_sqlite_dist_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "legacy_permissive",
+        "legacy_unencumbered",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
 cc_defaults {
     name: "sqlite-minimal-defaults",
     host_supported: true,
@@ -38,8 +68,12 @@ cc_defaults {
         "-DSQLITE_SECURE_DELETE",
         "-DSQLITE_ENABLE_BATCH_ATOMIC_WRITE",
         "-DBIONIC_IOCTL_NO_SIGNEDNESS_OVERLOAD",
+        "-DSQLITE_DEFAULT_LEGACY_ALTER_TABLE",
         "-Wno-unused-parameter",
         "-Werror",
+
+        // Default value causes sqlite3_open_v2 to return error if DB is missing.
+        "-ftrivial-auto-var-init=pattern",
     ],
 
     target: {
@@ -59,6 +93,7 @@ cc_defaults {
                 "-Dfdatasync=fdatasync",
                 "-DHAVE_MALLOC_H=1",
                 "-DHAVE_MALLOC_USABLE_SIZE",
+                "-DSQLITE_ENABLE_DBSTAT_VTAB",
             ],
         },
     },
@@ -68,6 +103,7 @@ cc_library {
     name: "libsqlite",
     defaults: ["sqlite-defaults"],
     vendor_available: true,
+    native_bridge_supported: true,
     vndk: {
         enabled: true,
     },
@@ -79,7 +115,6 @@ cc_library {
             shared_libs: [
                 "libdl",
                 "liblog",
-                "libutils",
                 "libandroidicu",
             ],
             cflags: ["-DSQLITE_ENABLE_ICU"],
@@ -90,12 +125,12 @@ cc_library {
         host: {
             static_libs: [
                 "liblog",
-                "libutils",
             ],
         },
         not_windows: {
             shared_libs: [
-                "libandroidicu",
+                "libicui18n",
+                "libicuuc",
             ],
 
             // include android specific methods
@@ -107,6 +142,7 @@ cc_library {
         vendor: {
             cflags: ["-USQLITE_ENABLE_ICU"],
             exclude_shared_libs: ["libandroidicu"],
+            exclude_static_libs: ["libsqlite3_android"],
         },
     },
 

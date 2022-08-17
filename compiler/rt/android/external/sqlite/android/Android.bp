@@ -1,9 +1,26 @@
+package {
+    default_applicable_licenses: ["external_sqlite_android_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "external_sqlite_android_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
 cc_library_static {
     name: "libsqlite3_android",
     vendor_available: true,
+    native_bridge_supported: true,
     host_supported: true,
     cflags: [
-        "-DSQLITE_ENABLE_ICU",
         "-Wall",
         "-Werror",
         "-Wno-unused-function",
@@ -17,9 +34,24 @@ cc_library_static {
     include_dirs: ["external/sqlite/dist"],
     shared_libs: [
         "liblog",
-        "libandroidicu",
     ],
     target: {
+        android: {
+            cflags: [
+                    "-DSQLITE_ENABLE_ICU",
+                    "-DSQLITE_DEFAULT_LEGACY_ALTER_TABLE",
+            ],
+            shared_libs: [
+                "libandroidicu",
+            ],
+        },
+        host: {
+            cflags: ["-DSQLITE_ENABLE_ICU"],
+            shared_libs: [
+                "libicui18n",
+                "libicuuc",
+            ],
+        },
         vendor: {
             cflags: ["-USQLITE_ENABLE_ICU"],
             exclude_shared_libs: ["libandroidicu"],
@@ -32,6 +64,7 @@ cc_library_static {
 //       (as of 2009-08-02), in which phone_number_compare() is tested via sqlite's custom
 //       function "PHONE_NUMBER_COMPARE".
 cc_test {
+    host_supported: true,
     name: "libsqlite3_phone_number_utils_test",
     cflags: [
         "-Wall",

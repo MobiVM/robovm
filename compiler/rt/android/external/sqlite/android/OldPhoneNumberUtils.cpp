@@ -159,13 +159,13 @@ static bool matchIntlPrefixAndCC(const char* a, int len)
  * enough for caller ID purposes.
  *
  * - Compares from right to left
- * - requires MIN_MATCH (7) characters to match
+ * - requires minimum characters to match
  * - handles common trunk prefixes and international prefixes
  *   (basically, everything except the Russian trunk prefix)
  *
  * Tolerates nulls
  */
-bool phone_number_compare_loose(const char* a, const char* b)
+bool phone_number_compare_loose_with_minmatch(const char* a, const char* b, int min_match)
 {
     int ia, ib;
     int matched;
@@ -216,11 +216,11 @@ bool phone_number_compare_loose(const char* a, const char* b)
         }
     }
 
-    if (matched < MIN_MATCH) {
+    if (matched < min_match) {
         const int effectiveALen = strlen(a) - numSeparatorCharsInA;
         const int effectiveBLen = strlen(b) - numSeparatorCharsInB;
 
-        // if the number of dialable chars in a and b match, but the matched chars < MIN_MATCH,
+        // if the number of dialable chars in a and b match, but the matched chars < min_match,
         // treat them as equal (i.e. 404-04 and 40404)
         if (effectiveALen == effectiveBLen && effectiveALen == matched) {
             return true;
@@ -230,7 +230,7 @@ bool phone_number_compare_loose(const char* a, const char* b)
     }
 
     // At least one string has matched completely;
-    if (matched >= MIN_MATCH && (ia < 0 || ib < 0)) {
+    if (matched >= min_match && (ia < 0 || ib < 0)) {
         return true;
     }
 
@@ -272,6 +272,11 @@ bool phone_number_compare_loose(const char* a, const char* b)
     }
 
     return false;
+}
+
+bool phone_number_compare_loose(const char* a, const char* b)
+{
+    return phone_number_compare_loose_with_minmatch(a, b, MIN_MATCH);
 }
 
 }  // namespace android
