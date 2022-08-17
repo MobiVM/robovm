@@ -79,7 +79,7 @@ static int collate8(void *p, int n1, const void *v1, int n2, const void *v2)
 
 static void phone_numbers_equal(sqlite3_context * context, int argc, sqlite3_value ** argv)
 {
-    if (argc != 2 && argc != 3) {
+    if (argc != 2 && argc != 3 && argc != 4) {
         sqlite3_result_int(context, 0);
         return;
     }
@@ -88,8 +88,12 @@ static void phone_numbers_equal(sqlite3_context * context, int argc, sqlite3_val
     char const * num2 = (char const *)sqlite3_value_text(argv[1]);
 
     bool use_strict = false;
-    if (argc == 3) {
+    int min_match = 0;
+    if (argc == 3 || argc == 4) {
         use_strict = (sqlite3_value_int(argv[2]) != 0);
+        if (!use_strict && argc == 4) {
+            min_match = sqlite3_value_int(argv[3]);
+        }
     }
 
     if (num1 == NULL || num2 == NULL) {
@@ -98,9 +102,11 @@ static void phone_numbers_equal(sqlite3_context * context, int argc, sqlite3_val
     }
 
     bool equal =
-        (use_strict ?
-         android::phone_number_compare_strict(num1, num2) :
-         android::phone_number_compare_loose(num1, num2));
+        (use_strict ? android::phone_number_compare_strict(num1, num2)
+                    : ((min_match > 0)
+                           ? android::phone_number_compare_loose_with_minmatch(
+                                 num1, num2, min_match)
+                           : android::phone_number_compare_loose(num1, num2)));
 
     if (equal) {
         sqlite3_result_int(context, 1);
@@ -542,6 +548,14 @@ extern "C" int register_android_functions(sqlite3 * handle, int utf16Storage __a
     // Register the PHONE_NUM_EQUALS function with an additional argument "use_strict"
     err = sqlite3_create_function(
         handle, "PHONE_NUMBERS_EQUAL", 3,
+        SQLITE_UTF8, NULL, phone_numbers_equal, NULL, NULL);
+    if (err != SQLITE_OK) {
+        return err;
+    }
+
+    // Register the PHONE_NUM_EQUALS function with additional arguments "use_strict" and "min_match"
+    err = sqlite3_create_function(
+        handle, "PHONE_NUMBERS_EQUAL", 4,
         SQLITE_UTF8, NULL, phone_numbers_equal, NULL, NULL);
     if (err != SQLITE_OK) {
         return err;
