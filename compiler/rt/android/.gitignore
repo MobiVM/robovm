@@ -23,3 +23,13 @@ TEST_MAPPING
 !/external/boringssl/NOTICE
 !/external/boringssl/BORINGSSL_REVISION
 !/external/boringssl/err_data.c
+
+##
+## Expat. files to keep
+##
+/external/expat/*
+!/external/expat/lib
+!/external/expat/COPYING
+!/external/expat/MODULE_LICENSE_MIT
+!/external/expat/README.md
+!/external/expat/expat_config.h
