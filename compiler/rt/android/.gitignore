@@ -33,3 +33,16 @@ TEST_MAPPING
 !/external/expat/MODULE_LICENSE_MIT
 !/external/expat/README.md
 !/external/expat/expat_config.h
+
+##
+## zlib
+##
+/external/zlib/google
+/external/zlib/patches
+/external/zlib/Android.bp
+/external/zlib/BUILD.gn
+/external/zlib/CleanSpec.mk
+/external/zlib/DIR_METADATA
+/external/zlib/libz.map.txt
+/external/zlib/OWNERS.android
+/external/zlib/contrib/tests
