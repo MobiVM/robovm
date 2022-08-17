@@ -27,146 +27,147 @@
 #include <math.h>
 
 JNIEXPORT jdouble JNICALL
-Math_cos(jdouble d) {
+Java_java_lang_Math_cos(jdouble d) {
     return cos(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_sin(jdouble d) {
+Java_java_lang_Math_sin(jdouble d) {
     return sin(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_tan(jdouble d) {
+Java_java_lang_Math_tan(jdouble d) {
     return tan(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_asin(jdouble d) {
+Java_java_lang_Math_asin(jdouble d) {
     return asin(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_acos(jdouble d) {
+Java_java_lang_Math_acos(jdouble d) {
     return acos(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_atan(jdouble d) {
+Java_java_lang_Math_atan(jdouble d) {
     return atan(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_exp(jdouble d) {
+Java_java_lang_Math_exp(jdouble d) {
     return exp(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_log(jdouble d) {
+Java_java_lang_Math_log(jdouble d) {
     return log(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_log10(jdouble d) {
+Java_java_lang_Math_log10(jdouble d) {
     return log10(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_sqrt(jdouble d) {
+Java_java_lang_Math_sqrt(jdouble d) {
     return sqrt(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_cbrt(jdouble d) {
+Java_java_lang_Math_cbrt(jdouble d) {
     return cbrt(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_atan2(jdouble d1, jdouble d2) {
+Java_java_lang_Math_atan2(jdouble d1, jdouble d2) {
     return atan2(d1, d2);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_pow(jdouble d1, jdouble d2) {
+Java_java_lang_Math_pow(jdouble d1, jdouble d2) {
     return pow(d1, d2);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_IEEEremainder(jdouble dividend, jdouble divisor) {
+Java_java_lang_Math_IEEEremainder(jdouble dividend, jdouble divisor) {
     return remainder(dividend, divisor);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_cosh(jdouble d) {
+Java_java_lang_Math_cosh(jdouble d) {
     return cosh(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_sinh(jdouble d) {
+Java_java_lang_Math_sinh(jdouble d) {
     return sinh(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_tanh(jdouble d) {
+Java_java_lang_Math_tanh(jdouble d) {
     return tanh(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_hypot(jdouble x, jdouble y) {
+Java_java_lang_Math_hypot(jdouble x, jdouble y) {
     return hypot(x, y);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_log1p(jdouble d) {
+Java_java_lang_Math_log1p(jdouble d) {
     return log1p(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_expm1(jdouble d) {
+Java_java_lang_Math_expm1(jdouble d) {
     return expm1(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_floor(jdouble d) {
+Java_java_lang_Math_floor(jdouble d) {
     return floor(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_ceil(jdouble d) {
+Java_java_lang_Math_ceil(jdouble d) {
     return ceil(d);
 }
 
 JNIEXPORT jdouble JNICALL
-Math_rint(jdouble d) {
+Java_java_lang_Math_rint(jdouble d) {
     return rint(d);
 }
 
-static JNINativeMethod gMethods[] = {
-  FAST_NATIVE_METHOD(Math, IEEEremainder, "(DD)D"),
-  FAST_NATIVE_METHOD(Math, acos, "(D)D"),
-  FAST_NATIVE_METHOD(Math, asin, "(D)D"),
-  FAST_NATIVE_METHOD(Math, atan, "(D)D"),
-  FAST_NATIVE_METHOD(Math, atan2, "(DD)D"),
-  FAST_NATIVE_METHOD(Math, cbrt, "(D)D"),
-  FAST_NATIVE_METHOD(Math, cos, "(D)D"),
-  FAST_NATIVE_METHOD(Math, ceil, "(D)D"),
-  FAST_NATIVE_METHOD(Math, cosh, "(D)D"),
-  FAST_NATIVE_METHOD(Math, exp, "(D)D"),
-  FAST_NATIVE_METHOD(Math, expm1, "(D)D"),
-  FAST_NATIVE_METHOD(Math, floor, "(D)D"),
-  FAST_NATIVE_METHOD(Math, hypot, "(DD)D"),
-  FAST_NATIVE_METHOD(Math, log, "(D)D"),
-  FAST_NATIVE_METHOD(Math, log10, "(D)D"),
-  FAST_NATIVE_METHOD(Math, log1p, "(D)D"),
-  FAST_NATIVE_METHOD(Math, pow, "(DD)D"),
-  FAST_NATIVE_METHOD(Math, rint, "(D)D"),
-  FAST_NATIVE_METHOD(Math, sin, "(D)D"),
-  FAST_NATIVE_METHOD(Math, sinh, "(D)D"),
-  FAST_NATIVE_METHOD(Math, sqrt, "(D)D"),
-  FAST_NATIVE_METHOD(Math, tan, "(D)D"),
-  FAST_NATIVE_METHOD(Math, tanh, "(D)D"),
-};
-
-void register_java_lang_Math(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/lang/Math", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  FAST_NATIVE_METHOD(Math, IEEEremainder, "(DD)D"),
+//  FAST_NATIVE_METHOD(Math, acos, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, asin, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, atan, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, atan2, "(DD)D"),
+//  FAST_NATIVE_METHOD(Math, cbrt, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, cos, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, ceil, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, cosh, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, exp, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, expm1, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, floor, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, hypot, "(DD)D"),
+//  FAST_NATIVE_METHOD(Math, log, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, log10, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, log1p, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, pow, "(DD)D"),
+//  FAST_NATIVE_METHOD(Math, rint, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, sin, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, sinh, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, sqrt, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, tan, "(D)D"),
+//  FAST_NATIVE_METHOD(Math, tanh, "(D)D"),
+//};
+//
+//void register_java_lang_Math(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/lang/Math", gMethods, NELEM(gMethods));
+//}

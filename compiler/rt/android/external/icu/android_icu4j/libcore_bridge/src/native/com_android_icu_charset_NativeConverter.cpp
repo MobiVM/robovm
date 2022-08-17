@@ -170,7 +170,7 @@ static char const * getVersionedIcuCanonicalName(char const * icuCanonicalName) 
   }
 }
 
-static jlong NativeConverter_openConverter(JNIEnv* env, jclass, jstring converterName) {
+extern "C" JNIEXPORT jlong JNICALL Java_com_android_icu_charset_NativeConverter_openConverter(JNIEnv* env, jclass, jstring converterName) {
     ScopedUtfChars converterNameChars(env, converterName);
     if (converterNameChars.c_str() == NULL) {
         // Extra debugging check that we do have an exception if the we could not
@@ -196,7 +196,7 @@ static jlong NativeConverter_openConverter(JNIEnv* env, jclass, jstring converte
     return reinterpret_cast<uintptr_t>(cnv);
 }
 
-static void NativeConverter_closeConverter(JNIEnv*, jclass, jlong address) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_charset_NativeConverter_closeConverter(JNIEnv*, jclass, jlong address) {
     ucnv_close(toUConverter(address));
 }
 
@@ -208,7 +208,7 @@ static bool shouldCodecThrow(jboolean flush, UErrorCode error) {
     }
 }
 
-static jint NativeConverter_encode(JNIEnv* env, jclass, jlong address,
+extern "C" JNIEXPORT jint JNICALL Java_com_android_icu_charset_NativeConverter_encode(JNIEnv* env, jclass, jlong address,
         jcharArray source, jint sourceEnd, jbyteArray target, jint targetEnd,
         jintArray data, jboolean flush) {
 
@@ -264,7 +264,7 @@ static jint NativeConverter_encode(JNIEnv* env, jclass, jlong address,
     return errorCode;
 }
 
-static jint NativeConverter_decode(JNIEnv* env, jclass, jlong address,
+extern "C" JNIEXPORT jint JNICALL Java_com_android_icu_charset_NativeConverter_decode(JNIEnv* env, jclass, jlong address,
         jbyteArray source, jint sourceEnd, jcharArray target, jint targetEnd,
         jintArray data, jboolean flush) {
 
@@ -320,31 +320,31 @@ static jint NativeConverter_decode(JNIEnv* env, jclass, jlong address,
     return errorCode;
 }
 
-static void NativeConverter_resetByteToChar(JNIEnv*, jclass, jlong address) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_charset_NativeConverter_resetByteToChar(JNIEnv*, jclass, jlong address) {
     UConverter* cnv = toUConverter(address);
     if (cnv) {
         ucnv_resetToUnicode(cnv);
     }
 }
 
-static void NativeConverter_resetCharToByte(JNIEnv*, jclass, jlong address) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_charset_NativeConverter_resetCharToByte(JNIEnv*, jclass, jlong address) {
     UConverter* cnv = toUConverter(address);
     if (cnv) {
         ucnv_resetFromUnicode(cnv);
     }
 }
 
-static jint NativeConverter_getMaxBytesPerChar(JNIEnv*, jclass, jlong address) {
+extern "C" JNIEXPORT jint JNICALL Java_com_android_icu_charset_NativeConverter_getMaxBytesPerChar(JNIEnv*, jclass, jlong address) {
     UConverter* cnv = toUConverter(address);
     return (cnv != NULL) ? ucnv_getMaxCharSize(cnv) : -1;
 }
 
-static jfloat NativeConverter_getAveBytesPerChar(JNIEnv*, jclass, jlong address) {
+extern "C" JNIEXPORT jfloat JNICALL Java_com_android_icu_charset_NativeConverter_getAveBytesPerChar(JNIEnv*, jclass, jlong address) {
     UConverter* cnv = toUConverter(address);
     return (cnv != NULL) ? ((ucnv_getMaxCharSize(cnv) + ucnv_getMinCharSize(cnv)) / 2.0) : -1;
 }
 
-static jobjectArray NativeConverter_getAvailableCharsetNames(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jobjectArray JNICALL Java_com_android_icu_charset_NativeConverter_getAvailableCharsetNames(JNIEnv* env, jclass) {
     int32_t num = ucnv_countAvailable();
     jobjectArray result = env->NewObjectArray(num, JniConstants::GetStringClass(env), NULL);
     if (result == NULL) {
@@ -408,7 +408,7 @@ static UConverterFromUCallback getFromUCallback(int32_t mode) {
     abort();
 }
 
-static void NativeConverter_setCallbackEncode(JNIEnv* env, jclass, jlong address,
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_charset_NativeConverter_setCallbackEncode(JNIEnv* env, jclass, jlong address,
         jint onMalformedInput, jint onUnmappableInput, jbyteArray javaReplacement) {
     UConverter* cnv = toUConverter(address);
     if (cnv == NULL) {
@@ -502,7 +502,7 @@ static void CHARSET_DECODER_CALLBACK(const void* rawContext, UConverterToUnicode
     }
 }
 
-static void NativeConverter_setCallbackDecode(JNIEnv* env, jclass, jlong address,
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_charset_NativeConverter_setCallbackDecode(JNIEnv* env, jclass, jlong address,
         jint onMalformedInput, jint onUnmappableInput, jstring javaReplacement) {
     UConverter* cnv = toUConverter(address);
     if (cnv == NULL) {
@@ -546,11 +546,11 @@ static void NativeConverter_setCallbackDecode(JNIEnv* env, jclass, jlong address
     maybeThrowIcuException(env, "ucnv_setToUCallBack", errorCode);
 }
 
-static jfloat NativeConverter_getAveCharsPerByte(JNIEnv* env, jclass, jlong handle) {
-    return (1 / (jfloat) NativeConverter_getMaxBytesPerChar(env, NULL, handle));
+extern "C" JNIEXPORT jfloat JNICALL Java_com_android_icu_charset_NativeConverter_getAveCharsPerByte(JNIEnv* env, jclass, jlong handle) {
+    return (1 / (jfloat) Java_com_android_icu_charset_NativeConverter_getMaxBytesPerChar(env, NULL, handle));
 }
 
-static jbyteArray NativeConverter_getSubstitutionBytes(JNIEnv* env, jclass, jlong address) {
+extern "C" JNIEXPORT jbyteArray JNICALL Java_com_android_icu_charset_NativeConverter_getSubstitutionBytes(JNIEnv* env, jclass, jlong address) {
     UConverter* cnv = toUConverter(address);
     if (cnv == NULL) {
         return NULL;
@@ -570,7 +570,7 @@ static jbyteArray NativeConverter_getSubstitutionBytes(JNIEnv* env, jclass, jlon
     return result;
 }
 
-static jboolean NativeConverter_contains(JNIEnv* env, jclass, jstring name1, jstring name2) {
+extern "C" JNIEXPORT jboolean JNICALL Java_com_android_icu_charset_NativeConverter_contains(JNIEnv* env, jclass, jstring name1, jstring name2) {
     ScopedUtfChars name1Chars(env, name1);
     if (name1Chars.c_str() == NULL) {
         return JNI_FALSE;
@@ -592,7 +592,7 @@ static jboolean NativeConverter_contains(JNIEnv* env, jclass, jstring name1, jst
     return U_SUCCESS(errorCode) && set1.containsAll(set2);
 }
 
-static jobject NativeConverter_charsetForName(JNIEnv* env, jclass, jstring charsetName) {
+extern "C" JNIEXPORT jobject JNICALL Java_com_android_icu_charset_NativeConverter_charsetForName(JNIEnv* env, jclass, jstring charsetName) {
     ScopedUtfChars charsetNameChars(env, charsetName);
     if (charsetNameChars.c_str() == NULL) {
         return NULL;
@@ -672,28 +672,29 @@ static void FreeNativeConverter(void *converter) {
     ucnv_close(reinterpret_cast<UConverter*>(converter));
 }
 
-static jlong NativeConverter_getNativeFinalizer(JNIEnv*, jclass) {
+extern "C" JNIEXPORT jlong JNICALL Java_com_android_icu_charset_NativeConverter_getNativeFinalizer(JNIEnv*, jclass) {
     return reinterpret_cast<jlong>(&FreeNativeConverter);
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(NativeConverter, charsetForName, "(Ljava/lang/String;)Ljava/nio/charset/Charset;"),
-    NATIVE_METHOD(NativeConverter, closeConverter, "(J)V"),
-    NATIVE_METHOD(NativeConverter, contains, "(Ljava/lang/String;Ljava/lang/String;)Z"),
-    NATIVE_METHOD(NativeConverter, decode, "(J[BI[CI[IZ)I"),
-    NATIVE_METHOD(NativeConverter, encode, "(J[CI[BI[IZ)I"),
-    NATIVE_METHOD(NativeConverter, getAvailableCharsetNames, "()[Ljava/lang/String;"),
-    NATIVE_METHOD(NativeConverter, getAveBytesPerChar, "(J)F"),
-    NATIVE_METHOD(NativeConverter, getAveCharsPerByte, "(J)F"),
-    NATIVE_METHOD(NativeConverter, getMaxBytesPerChar, "(J)I"),
-    NATIVE_METHOD(NativeConverter, getSubstitutionBytes, "(J)[B"),
-    NATIVE_METHOD(NativeConverter, openConverter, "(Ljava/lang/String;)J"),
-    NATIVE_METHOD(NativeConverter, resetByteToChar, "(J)V"),
-    NATIVE_METHOD(NativeConverter, resetCharToByte, "(J)V"),
-    NATIVE_METHOD(NativeConverter, setCallbackDecode, "(JIILjava/lang/String;)V"),
-    NATIVE_METHOD(NativeConverter, setCallbackEncode, "(JII[B)V"),
-    NATIVE_METHOD(NativeConverter, getNativeFinalizer, "()J"),
-};
-void register_com_android_icu_util_charset_NativeConverter(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "com/android/icu/charset/NativeConverter", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(NativeConverter, charsetForName, "(Ljava/lang/String;)Ljava/nio/charset/Charset;"),
+//    NATIVE_METHOD(NativeConverter, closeConverter, "(J)V"),
+//    NATIVE_METHOD(NativeConverter, contains, "(Ljava/lang/String;Ljava/lang/String;)Z"),
+//    NATIVE_METHOD(NativeConverter, decode, "(J[BI[CI[IZ)I"),
+//    NATIVE_METHOD(NativeConverter, encode, "(J[CI[BI[IZ)I"),
+//    NATIVE_METHOD(NativeConverter, getAvailableCharsetNames, "()[Ljava/lang/String;"),
+//    NATIVE_METHOD(NativeConverter, getAveBytesPerChar, "(J)F"),
+//    NATIVE_METHOD(NativeConverter, getAveCharsPerByte, "(J)F"),
+//    NATIVE_METHOD(NativeConverter, getMaxBytesPerChar, "(J)I"),
+//    NATIVE_METHOD(NativeConverter, getSubstitutionBytes, "(J)[B"),
+//    NATIVE_METHOD(NativeConverter, openConverter, "(Ljava/lang/String;)J"),
+//    NATIVE_METHOD(NativeConverter, resetByteToChar, "(J)V"),
+//    NATIVE_METHOD(NativeConverter, resetCharToByte, "(J)V"),
+//    NATIVE_METHOD(NativeConverter, setCallbackDecode, "(JIILjava/lang/String;)V"),
+//    NATIVE_METHOD(NativeConverter, setCallbackEncode, "(JII[B)V"),
+//    NATIVE_METHOD(NativeConverter, getNativeFinalizer, "()J"),
+//};
+//void register_com_android_icu_util_charset_NativeConverter(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "com/android/icu/charset/NativeConverter", gMethods, NELEM(gMethods));
+//}

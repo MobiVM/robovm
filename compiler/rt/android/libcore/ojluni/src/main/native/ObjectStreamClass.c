@@ -54,7 +54,7 @@ JNIEXPORT jboolean JNICALL
 // Android-changed: Added inheritStaticInitializer parameter.
 // The inheritStaticInitializer parameter is set to JNI_TRUE when behavior compatible with
 // Android version 23 is required.
-ObjectStreamClass_hasStaticInitializer(JNIEnv *env, jclass this,
+Java_java_io_ObjectStreamClass_hasStaticInitializer(JNIEnv *env, jclass this,
                                        jclass clazz,
                                        jboolean inheritStaticInitializer)
 {
@@ -110,11 +110,12 @@ ObjectStreamClass_hasStaticInitializer(JNIEnv *env, jclass this,
     return (clinitId != superClinitId);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(ObjectStreamClass, hasStaticInitializer, "(Ljava/lang/Class;Z)Z"),
-};
-
+// RoboVM Note: using fully qualified names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(ObjectStreamClass, hasStaticInitializer, "(Ljava/lang/Class;Z)Z"),
+//};
+//
 void register_java_io_ObjectStreamClass(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/io/ObjectStreamClass", gMethods, NELEM(gMethods));
+//  jniRegisterNativeMethods(env, "java/io/ObjectStreamClass", gMethods, NELEM(gMethods));
   ObjectStreamClass_initNative(env);
 }

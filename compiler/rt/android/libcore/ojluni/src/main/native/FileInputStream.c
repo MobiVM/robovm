@@ -73,7 +73,7 @@ FileInputStream_open0(JNIEnv *env, jobject this, jstring path) {
 // END Android-removed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
 JNIEXPORT jlong JNICALL
-FileInputStream_skip0(JNIEnv *env, jobject this, jlong toSkip) {
+Java_java_io_FileInputStream_skip0(JNIEnv *env, jobject this, jlong toSkip) {
     jlong cur = jlong_zero;
     jlong end = jlong_zero;
     FD fd = GET_FD(this, fis_fd);
@@ -128,7 +128,7 @@ static int available(int fd, jlong *bytes) {
 }
 
 JNIEXPORT jint JNICALL
-FileInputStream_available0(JNIEnv *env, jobject this) {
+Java_java_io_FileInputStream_available0(JNIEnv *env, jobject this) {
     jlong ret;
     FD fd = GET_FD(this, fis_fd);
     if (fd == -1) {
@@ -145,12 +145,13 @@ FileInputStream_available0(JNIEnv *env, jobject this) {
     return 0;
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(FileInputStream, skip0, "(J)J"),
-  NATIVE_METHOD(FileInputStream, available0, "()I"),
-};
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(FileInputStream, skip0, "(J)J"),
+//  NATIVE_METHOD(FileInputStream, available0, "()I"),
+//};
 
 void register_java_io_FileInputStream(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "java/io/FileInputStream", gMethods, NELEM(gMethods));
+//    jniRegisterNativeMethods(env, "java/io/FileInputStream", gMethods, NELEM(gMethods));
     FileInputStream_initIDs(env);
 }

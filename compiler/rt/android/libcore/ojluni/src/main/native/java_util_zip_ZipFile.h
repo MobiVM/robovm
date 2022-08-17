@@ -49,12 +49,16 @@ extern "C" {
 #undef java_util_zip_ZipFile_JZENTRY_COMMENT
 #define java_util_zip_ZipFile_JZENTRY_COMMENT 2L
 
+//
+// RoboVM Note: using full qualified name for JNI methods
+//
+
 /*
  * Class:     java_util_zip_ZipFile
  * Method:    getEntry
  * Signature: (J[BZ)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getEntry
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getEntry
   (JNIEnv *, jclass, jlong, jbyteArray, jboolean);
 
 /*
@@ -62,7 +66,7 @@ JNIEXPORT jlong JNICALL ZipFile_getEntry
  * Method:    freeEntry
  * Signature: (JJ)V
  */
-JNIEXPORT void JNICALL ZipFile_freeEntry
+JNIEXPORT void JNICALL Java_java_util_zip_ZipFile_freeEntry
   (JNIEnv *, jclass, jlong, jlong);
 
 /*
@@ -70,7 +74,7 @@ JNIEXPORT void JNICALL ZipFile_freeEntry
  * Method:    getNextEntry
  * Signature: (JI)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getNextEntry
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getNextEntry
   (JNIEnv *, jclass, jlong, jint);
 
 /*
@@ -78,7 +82,7 @@ JNIEXPORT jlong JNICALL ZipFile_getNextEntry
  * Method:    close
  * Signature: (J)V
  */
-JNIEXPORT void JNICALL ZipFile_close
+JNIEXPORT void JNICALL Java_java_util_zip_ZipFile_close
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -86,7 +90,7 @@ JNIEXPORT void JNICALL ZipFile_close
  * Method:    open
  * Signature: (Ljava/lang/String;IJZ)J
  */
-JNIEXPORT jlong JNICALL ZipFile_open
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_open
   (JNIEnv *, jclass, jstring, jint, jlong, jboolean);
 
 /*
@@ -94,7 +98,7 @@ JNIEXPORT jlong JNICALL ZipFile_open
  * Method:    getTotal
  * Signature: (J)I
  */
-JNIEXPORT jint JNICALL ZipFile_getTotal
+JNIEXPORT jint JNICALL Java_java_util_zip_ZipFile_getTotal
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -102,7 +106,7 @@ JNIEXPORT jint JNICALL ZipFile_getTotal
  * Method:    startsWithLOC
  * Signature: (J)Z
  */
-JNIEXPORT jboolean JNICALL ZipFile_startsWithLOC
+JNIEXPORT jboolean JNICALL Java_java_util_zip_ZipFile_startsWithLOC
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -110,7 +114,7 @@ JNIEXPORT jboolean JNICALL ZipFile_startsWithLOC
  * Method:    read
  * Signature: (JJJ[BII)I
  */
-JNIEXPORT jint JNICALL ZipFile_read
+JNIEXPORT jint JNICALL Java_java_util_zip_ZipFile_read
   (JNIEnv *, jclass, jlong, jlong, jlong, jbyteArray, jint, jint);
 
 /*
@@ -118,7 +122,7 @@ JNIEXPORT jint JNICALL ZipFile_read
  * Method:    getEntryTime
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getEntryTime
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getEntryTime
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -126,7 +130,7 @@ JNIEXPORT jlong JNICALL ZipFile_getEntryTime
  * Method:    getEntryCrc
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getEntryCrc
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getEntryCrc
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -134,7 +138,7 @@ JNIEXPORT jlong JNICALL ZipFile_getEntryCrc
  * Method:    getEntryCSize
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getEntryCSize
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getEntryCSize
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -142,7 +146,7 @@ JNIEXPORT jlong JNICALL ZipFile_getEntryCSize
  * Method:    getEntrySize
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL ZipFile_getEntrySize
+JNIEXPORT jlong JNICALL Java_java_util_zip_ZipFile_getEntrySize
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -150,7 +154,7 @@ JNIEXPORT jlong JNICALL ZipFile_getEntrySize
  * Method:    getEntryMethod
  * Signature: (J)I
  */
-JNIEXPORT jint JNICALL ZipFile_getEntryMethod
+JNIEXPORT jint JNICALL Java_java_util_zip_ZipFile_getEntryMethod
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -158,7 +162,7 @@ JNIEXPORT jint JNICALL ZipFile_getEntryMethod
  * Method:    getEntryFlag
  * Signature: (J)I
  */
-JNIEXPORT jint JNICALL ZipFile_getEntryFlag
+JNIEXPORT jint JNICALL Java_java_util_zip_ZipFile_getEntryFlag
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -166,7 +170,7 @@ JNIEXPORT jint JNICALL ZipFile_getEntryFlag
  * Method:    getCommentBytes
  * Signature: (J)[B
  */
-JNIEXPORT jbyteArray JNICALL ZipFile_getCommentBytes
+JNIEXPORT jbyteArray JNICALL Java_java_util_zip_ZipFile_getCommentBytes
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -174,7 +178,7 @@ JNIEXPORT jbyteArray JNICALL ZipFile_getCommentBytes
  * Method:    getEntryBytes
  * Signature: (JI)[B
  */
-JNIEXPORT jbyteArray JNICALL ZipFile_getEntryBytes
+JNIEXPORT jbyteArray JNICALL Java_java_util_zip_ZipFile_getEntryBytes
   (JNIEnv *, jclass, jlong, jint);
 
 /*
@@ -182,7 +186,7 @@ JNIEXPORT jbyteArray JNICALL ZipFile_getEntryBytes
  * Method:    getZipMessage
  * Signature: (J)Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL ZipFile_getZipMessage
+JNIEXPORT jstring JNICALL Java_java_util_zip_ZipFile_getZipMessage
   (JNIEnv *, jclass, jlong);
 
 #ifdef __cplusplus

@@ -867,38 +867,38 @@ handleSocketError(JNIEnv *env, jint errorValue) {
                                         JNU_JAVANETPKG "SocketException");
 }
 
-
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(Net, isIPv6Available0, "()Z"),
-  NATIVE_METHOD(Net, isExclusiveBindAvailable, "()I"),
-  NATIVE_METHOD(Net, canIPv6SocketJoinIPv4Group0, "()Z"),
-  NATIVE_METHOD(Net, canJoin6WithIPv4Group0, "()Z"),
-  NATIVE_METHOD(Net, socket0, "(ZZZZ)I"),
-  NATIVE_METHOD(Net, bind0, "(Ljava/io/FileDescriptor;ZZLjava/net/InetAddress;I)V"),
-  NATIVE_METHOD(Net, listen, "(Ljava/io/FileDescriptor;I)V"),
-  NATIVE_METHOD(Net, connect0, "(ZLjava/io/FileDescriptor;Ljava/net/InetAddress;I)I"),
-  NATIVE_METHOD(Net, shutdown, "(Ljava/io/FileDescriptor;I)V"),
-  NATIVE_METHOD(Net, localPort, "(Ljava/io/FileDescriptor;)I"),
-  NATIVE_METHOD(Net, localInetAddress, "(Ljava/io/FileDescriptor;)Ljava/net/InetAddress;"),
-  NATIVE_METHOD(Net, getIntOption0, "(Ljava/io/FileDescriptor;ZII)I"),
-  NATIVE_METHOD(Net, setIntOption0, "(Ljava/io/FileDescriptor;ZIIIZ)V"),
-  NATIVE_METHOD(Net, joinOrDrop4, "(ZLjava/io/FileDescriptor;III)I"),
-  NATIVE_METHOD(Net, blockOrUnblock4, "(ZLjava/io/FileDescriptor;III)I"),
-  NATIVE_METHOD(Net, joinOrDrop6, "(ZLjava/io/FileDescriptor;[BI[B)I"),
-  NATIVE_METHOD(Net, blockOrUnblock6, "(ZLjava/io/FileDescriptor;[BI[B)I"),
-  NATIVE_METHOD(Net, setInterface4, "(Ljava/io/FileDescriptor;I)V"),
-  NATIVE_METHOD(Net, getInterface4, "(Ljava/io/FileDescriptor;)I"),
-  NATIVE_METHOD(Net, setInterface6, "(Ljava/io/FileDescriptor;I)V"),
-  NATIVE_METHOD(Net, getInterface6, "(Ljava/io/FileDescriptor;)I"),
-  NATIVE_METHOD(Net, poll, "(Ljava/io/FileDescriptor;IJ)I"),
-  NATIVE_METHOD(Net, pollinValue, "()S"),
-  NATIVE_METHOD(Net, polloutValue, "()S"),
-  NATIVE_METHOD(Net, pollhupValue, "()S"),
-  NATIVE_METHOD(Net, pollerrValue, "()S"),
-  NATIVE_METHOD(Net, pollnvalValue, "()S"),
-  NATIVE_METHOD(Net, pollconnValue, "()S"),
-};
-
-void register_sun_nio_ch_Net(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/Net", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(Net, isIPv6Available0, "()Z"),
+//  NATIVE_METHOD(Net, isExclusiveBindAvailable, "()I"),
+//  NATIVE_METHOD(Net, canIPv6SocketJoinIPv4Group0, "()Z"),
+//  NATIVE_METHOD(Net, canJoin6WithIPv4Group0, "()Z"),
+//  NATIVE_METHOD(Net, socket0, "(ZZZZ)I"),
+//  NATIVE_METHOD(Net, bind0, "(Ljava/io/FileDescriptor;ZZLjava/net/InetAddress;I)V"),
+//  NATIVE_METHOD(Net, listen, "(Ljava/io/FileDescriptor;I)V"),
+//  NATIVE_METHOD(Net, connect0, "(ZLjava/io/FileDescriptor;Ljava/net/InetAddress;I)I"),
+//  NATIVE_METHOD(Net, shutdown, "(Ljava/io/FileDescriptor;I)V"),
+//  NATIVE_METHOD(Net, localPort, "(Ljava/io/FileDescriptor;)I"),
+//  NATIVE_METHOD(Net, localInetAddress, "(Ljava/io/FileDescriptor;)Ljava/net/InetAddress;"),
+//  NATIVE_METHOD(Net, getIntOption0, "(Ljava/io/FileDescriptor;ZII)I"),
+//  NATIVE_METHOD(Net, setIntOption0, "(Ljava/io/FileDescriptor;ZIIIZ)V"),
+//  NATIVE_METHOD(Net, joinOrDrop4, "(ZLjava/io/FileDescriptor;III)I"),
+//  NATIVE_METHOD(Net, blockOrUnblock4, "(ZLjava/io/FileDescriptor;III)I"),
+//  NATIVE_METHOD(Net, joinOrDrop6, "(ZLjava/io/FileDescriptor;[BI[B)I"),
+//  NATIVE_METHOD(Net, blockOrUnblock6, "(ZLjava/io/FileDescriptor;[BI[B)I"),
+//  NATIVE_METHOD(Net, setInterface4, "(Ljava/io/FileDescriptor;I)V"),
+//  NATIVE_METHOD(Net, getInterface4, "(Ljava/io/FileDescriptor;)I"),
+//  NATIVE_METHOD(Net, setInterface6, "(Ljava/io/FileDescriptor;I)V"),
+//  NATIVE_METHOD(Net, getInterface6, "(Ljava/io/FileDescriptor;)I"),
+//  NATIVE_METHOD(Net, poll, "(Ljava/io/FileDescriptor;IJ)I"),
+//  NATIVE_METHOD(Net, pollinValue, "()S"),
+//  NATIVE_METHOD(Net, polloutValue, "()S"),
+//  NATIVE_METHOD(Net, pollhupValue, "()S"),
+//  NATIVE_METHOD(Net, pollerrValue, "()S"),
+//  NATIVE_METHOD(Net, pollnvalValue, "()S"),
+//  NATIVE_METHOD(Net, pollconnValue, "()S"),
+//};
+//
+//void register_sun_nio_ch_Net(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "sun/nio/ch/Net", gMethods, NELEM(gMethods));
+//}

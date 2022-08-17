@@ -75,11 +75,11 @@ static void PatternNative_free(void* addr) {
     delete reinterpret_cast<icu::RegexPattern*>(addr);
 }
 
-static jlong PatternNative_getNativeFinalizer(JNIEnv*, jclass) {
+extern "C" JNIEXPORT jlong JNICALL Java_com_android_icu_util_regex_PatternNative_getNativeFinalizer(JNIEnv*, jclass) {
     return reinterpret_cast<jlong>(&PatternNative_free);
 }
 
-static jlong PatternNative_compileImpl(JNIEnv* env, jclass, jstring javaRegex, jint flags) {
+extern "C" JNIEXPORT jlong JNICALL Java_com_android_icu_util_regex_PatternNative_compileImpl(JNIEnv* env, jclass, jstring javaRegex, jint flags) {
     flags |= UREGEX_ERROR_ON_UNKNOWN_ESCAPES;
 
     UErrorCode status = U_ZERO_ERROR;
@@ -98,7 +98,7 @@ static jlong PatternNative_compileImpl(JNIEnv* env, jclass, jstring javaRegex, j
     return static_cast<jlong>(reinterpret_cast<uintptr_t>(result));
 }
 
-static jlong PatternNative_openMatcherImpl(JNIEnv* env, jclass, jlong addr) {
+extern "C" JNIEXPORT jlong JNICALL Java_com_android_icu_util_regex_PatternNative_openMatcherImpl(JNIEnv* env, jclass, jlong addr) {
     icu::RegexPattern* pattern = reinterpret_cast<icu::RegexPattern*>(static_cast<uintptr_t>(addr));
     UErrorCode status = U_ZERO_ERROR;
     icu::RegexMatcher* result = pattern->matcher(status);
@@ -109,7 +109,7 @@ static jlong PatternNative_openMatcherImpl(JNIEnv* env, jclass, jlong addr) {
     return reinterpret_cast<uintptr_t>(new MatcherState(result));
 }
 
-static jint PatternNative_getMatchedGroupIndexImpl(JNIEnv* env, jclass, jlong addr, jstring javaGroupName) {
+extern "C" JNIEXPORT jint JNICALL Java_com_android_icu_util_regex_PatternNative_getMatchedGroupIndexImpl(JNIEnv* env, jclass, jlong addr, jstring javaGroupName) {
   icu::RegexPattern* pattern = reinterpret_cast<icu::RegexPattern*>(static_cast<uintptr_t>(addr));
   ScopedJavaUnicodeString groupName(env, javaGroupName);
   UErrorCode status = U_ZERO_ERROR;
@@ -125,14 +125,14 @@ static jint PatternNative_getMatchedGroupIndexImpl(JNIEnv* env, jclass, jlong ad
   return -1;
 }
 
-
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(PatternNative, compileImpl, "(Ljava/lang/String;I)J"),
-    NATIVE_METHOD(PatternNative, getNativeFinalizer, "()J"),
-    NATIVE_METHOD(PatternNative, openMatcherImpl, "(J)J"),
-    NATIVE_METHOD(PatternNative, getMatchedGroupIndexImpl, "(JLjava/lang/String;)I"),
-};
-
-void register_com_android_icu_util_regex_PatternNative(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "com/android/icu/util/regex/PatternNative", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(PatternNative, compileImpl, "(Ljava/lang/String;I)J"),
+//    NATIVE_METHOD(PatternNative, getNativeFinalizer, "()J"),
+//    NATIVE_METHOD(PatternNative, openMatcherImpl, "(J)J"),
+//    NATIVE_METHOD(PatternNative, getMatchedGroupIndexImpl, "(JLjava/lang/String;)I"),
+//};
+//
+//void register_com_android_icu_util_regex_PatternNative(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "com/android/icu/util/regex/PatternNative", gMethods, NELEM(gMethods));
+//}

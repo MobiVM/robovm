@@ -38,7 +38,7 @@
 
 #define U_ICUDATA_CURR U_ICUDATA_NAME "-" "curr"
 
-static jstring ICU_getScript(JNIEnv* env, jclass, jstring javaLocaleName) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getScript(JNIEnv* env, jclass, jstring javaLocaleName) {
   ScopedIcuULoc icuLocale(env, javaLocaleName);
   if (!icuLocale.valid()) {
     return NULL;
@@ -55,7 +55,7 @@ static jstring ICU_getScript(JNIEnv* env, jclass, jstring javaLocaleName) {
   return env->NewStringUTF(buffer.get());
 }
 
-static jstring ICU_getISO3Country(JNIEnv* env, jclass, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getISO3Country(JNIEnv* env, jclass, jstring javaLanguageTag) {
   ScopedIcuULoc icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -63,7 +63,7 @@ static jstring ICU_getISO3Country(JNIEnv* env, jclass, jstring javaLanguageTag) 
   return env->NewStringUTF(uloc_getISO3Country(icuLocale.locale()));
 }
 
-static jstring ICU_getISO3Language(JNIEnv* env, jclass, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getISO3Language(JNIEnv* env, jclass, jstring javaLanguageTag) {
   ScopedIcuULoc icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -71,19 +71,19 @@ static jstring ICU_getISO3Language(JNIEnv* env, jclass, jstring javaLanguageTag)
   return env->NewStringUTF(uloc_getISO3Language(icuLocale.locale()));
 }
 
-static jobjectArray ICU_getISOCountriesNative(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jobjectArray Java_libcore_icu_ICU_getISOCountriesNative(JNIEnv* env, jclass) {
     return toStringArray(env, uloc_getISOCountries());
 }
 
-static jobjectArray ICU_getISOLanguagesNative(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jobjectArray Java_libcore_icu_ICU_getISOLanguagesNative(JNIEnv* env, jclass) {
     return toStringArray(env, uloc_getISOLanguages());
 }
 
-static jobjectArray ICU_getAvailableLocalesNative(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jobjectArray Java_libcore_icu_ICU_getAvailableLocalesNative(JNIEnv* env, jclass) {
     return toStringArray(env, uloc_countAvailable, uloc_getAvailable);
 }
 
-static jstring ICU_getDefaultLocale(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getDefaultLocale(JNIEnv* env, jclass) {
   return env->NewStringUTF(uloc_getDefault());
 }
 
@@ -93,43 +93,44 @@ static jstring versionString(JNIEnv* env, const UVersionInfo& version) {
     return env->NewStringUTF(versionString);
 }
 
-static jstring ICU_getCldrVersion(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getCldrVersion(JNIEnv* env, jclass) {
   UErrorCode status = U_ZERO_ERROR;
   UVersionInfo cldrVersion;
   ulocdata_getCLDRVersion(cldrVersion, &status);
   return versionString(env, cldrVersion);
 }
 
-static jstring ICU_getIcuVersion(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getIcuVersion(JNIEnv* env, jclass) {
     UVersionInfo icuVersion;
     u_getVersion(icuVersion);
     return versionString(env, icuVersion);
 }
 
-static jstring ICU_getUnicodeVersion(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jstring Java_libcore_icu_ICU_getUnicodeVersion(JNIEnv* env, jclass) {
     UVersionInfo unicodeVersion;
     u_getUnicodeVersion(unicodeVersion);
     return versionString(env, unicodeVersion);
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(ICU, getAvailableLocalesNative, "()[Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getCldrVersion, "()Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getDefaultLocale, "()Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getIcuVersion, "()Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getISO3Country, "(Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getISO3Language, "(Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getISOCountriesNative, "()[Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getISOLanguagesNative, "()[Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getScript, "(Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(ICU, getUnicodeVersion, "()Ljava/lang/String;"),
-};
-
-void register_libcore_icu_ICU(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "libcore/icu/ICU", gMethods, NELEM(gMethods));
-}
-
-void unregister_libcore_icu_ICU() {
-  // Skip unregistering JNI methods explicitly, class unloading takes care of
-  // it.
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(ICU, getAvailableLocalesNative, "()[Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getCldrVersion, "()Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getDefaultLocale, "()Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getIcuVersion, "()Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getISO3Country, "(Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getISO3Language, "(Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getISOCountriesNative, "()[Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getISOLanguagesNative, "()[Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getScript, "(Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(ICU, getUnicodeVersion, "()Ljava/lang/String;"),
+//};
+//
+//void register_libcore_icu_ICU(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "libcore/icu/ICU", gMethods, NELEM(gMethods));
+//}
+//
+//void unregister_libcore_icu_ICU() {
+//  // Skip unregistering JNI methods explicitly, class unloading takes care of
+//  // it.
+//}

@@ -75,7 +75,7 @@ static void throwException(JNIEnv* env) {
   }
 }
 
-static jlong NativeBN_BN_new(JNIEnv* env, jclass) {
+extern "C" JNIEXPORT jlong Java_libcore_math_NativeBN_BN_1new(JNIEnv* env, jclass) {
   jlong result = static_cast<jlong>(reinterpret_cast<uintptr_t>(BN_new()));
   if (!result) {
     throwException(env);
@@ -83,12 +83,12 @@ static jlong NativeBN_BN_new(JNIEnv* env, jclass) {
   return result;
 }
 
-static void NativeBN_BN_free(JNIEnv*, jclass, jlong a) {
+extern "C" JNIEXPORT void Java_libcore_math_NativeBN_BN_1free(JNIEnv*, jclass, jlong a) {
   // Do nothing on a zero argument.
   BN_free(toBigNum(a));
 }
 
-static void NativeBN_litEndInts2bn(JNIEnv* env, jclass, jintArray arr, int len, jboolean neg, jlong ret0) {
+extern "C" JNIEXPORT void Java_libcore_math_NativeBN_litEndInts2bn(JNIEnv* env, jclass, jintArray arr, int len, jboolean neg, jlong ret0) {
   BIGNUM* ret = toBigNum(ret0);
 
   ScopedIntArrayRO scopedArray(env, arr);
@@ -109,7 +109,7 @@ static void NativeBN_litEndInts2bn(JNIEnv* env, jclass, jintArray arr, int len, 
   BN_set_negative(ret, neg);
 }
 
-static jintArray NativeBN_bn2litEndInts(JNIEnv* env, jclass, jlong a0) {
+extern "C" JNIEXPORT jintArray Java_libcore_math_NativeBN_bn2litEndInts(JNIEnv* env, jclass, jlong a0) {
   BIGNUM* a = toBigNum(a0);
 
   // The number of integers we need is BN_num_bytes(a) / sizeof(int), rounded up
@@ -140,7 +140,7 @@ static jintArray NativeBN_bn2litEndInts(JNIEnv* env, jclass, jlong a0) {
   return result;
 }
 
-static void NativeBN_BN_mul(JNIEnv* env, jclass, jlong r, jlong a, jlong b) {
+extern "C" JNIEXPORT void Java_libcore_math_NativeBN_BN_1mul(JNIEnv* env, jclass, jlong r, jlong a, jlong b) {
   Unique_BN_CTX ctx(BN_CTX_new());
   BN_CTX* ctxp = ctx.get();
   if (!ctxp || !BN_mul(toBigNum(r), toBigNum(a), toBigNum(b), ctxp)) {
@@ -148,7 +148,7 @@ static void NativeBN_BN_mul(JNIEnv* env, jclass, jlong r, jlong a, jlong b) {
   }
 }
 
-static void NativeBN_BN_div(JNIEnv* env, jclass, jlong q, jlong rem, jlong num, jlong divisor) {
+extern "C" JNIEXPORT void Java_libcore_math_NativeBN_BN_1div(JNIEnv* env, jclass, jlong q, jlong rem, jlong num, jlong divisor) {
   Unique_BN_CTX ctx(BN_CTX_new());
   BN_CTX* ctxp = ctx.get();
   if (!ctxp || !BN_div(toBigNum(q), toBigNum(rem), toBigNum(num), toBigNum(divisor), ctxp)) {
@@ -156,7 +156,7 @@ static void NativeBN_BN_div(JNIEnv* env, jclass, jlong q, jlong rem, jlong num, 
   }
 }
 
-static void NativeBN_BN_mod_exp(JNIEnv* env, jclass, jlong r, jlong a, jlong p, jlong m) {
+extern "C" JNIEXPORT void Java_libcore_math_NativeBN_BN_1mod_1exp(JNIEnv* env, jclass, jlong r, jlong a, jlong p, jlong m) {
   Unique_BN_CTX ctx(BN_CTX_new());
   BN_CTX* ctxp = ctx.get();
   if (!ctxp || !BN_mod_exp(toBigNum(r), toBigNum(a), toBigNum(p), toBigNum(m), ctxp)) {
@@ -164,15 +164,16 @@ static void NativeBN_BN_mod_exp(JNIEnv* env, jclass, jlong r, jlong a, jlong p, 
   }
 }
 
-static JNINativeMethod gMethods[] = {
-   NATIVE_METHOD(NativeBN, BN_div, "(JJJJ)V"),
-   NATIVE_METHOD(NativeBN, BN_free, "(J)V"),
-   NATIVE_METHOD(NativeBN, BN_mod_exp, "(JJJJ)V"),
-   NATIVE_METHOD(NativeBN, BN_mul, "(JJJ)V"),
-   NATIVE_METHOD(NativeBN, BN_new, "()J"),
-   NATIVE_METHOD(NativeBN, bn2litEndInts, "(J)[I"),
-   NATIVE_METHOD(NativeBN, litEndInts2bn, "([IIZJ)V"),
-};
-void register_libcore_math_NativeBN(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "libcore/math/NativeBN", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//   NATIVE_METHOD(NativeBN, BN_div, "(JJJJ)V"),
+//   NATIVE_METHOD(NativeBN, BN_free, "(J)V"),
+//   NATIVE_METHOD(NativeBN, BN_mod_exp, "(JJJJ)V"),
+//   NATIVE_METHOD(NativeBN, BN_mul, "(JJJ)V"),
+//   NATIVE_METHOD(NativeBN, BN_new, "()J"),
+//   NATIVE_METHOD(NativeBN, bn2litEndInts, "(J)[I"),
+//   NATIVE_METHOD(NativeBN, litEndInts2bn, "([IIZJ)V"),
+//};
+//void register_libcore_math_NativeBN(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "libcore/math/NativeBN", gMethods, NELEM(gMethods));
+//}

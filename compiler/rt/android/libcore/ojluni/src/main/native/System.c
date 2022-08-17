@@ -106,7 +106,7 @@ void android_get_LD_LIBRARY_PATH(char*, size_t);
  * variable).
  */
 JNIEXPORT void JNICALL
-System_setIn0(JNIEnv *env, jclass cla, jobject stream)
+Java_java_lang_System_setIn0(JNIEnv *env, jclass cla, jobject stream)
 {
     jfieldID fid =
         (*env)->GetStaticFieldID(env,cla,"in","Ljava/io/InputStream;");
@@ -116,7 +116,7 @@ System_setIn0(JNIEnv *env, jclass cla, jobject stream)
 }
 
 JNIEXPORT void JNICALL
-System_setOut0(JNIEnv *env, jclass cla, jobject stream)
+Java_java_lang_System_setOut0(JNIEnv *env, jclass cla, jobject stream)
 {
     jfieldID fid =
         (*env)->GetStaticFieldID(env,cla,"out","Ljava/io/PrintStream;");
@@ -126,7 +126,7 @@ System_setOut0(JNIEnv *env, jclass cla, jobject stream)
 }
 
 JNIEXPORT void JNICALL
-System_setErr0(JNIEnv *env, jclass cla, jobject stream)
+Java_java_lang_System_setErr0(JNIEnv *env, jclass cla, jobject stream)
 {
     jfieldID fid =
         (*env)->GetStaticFieldID(env,cla,"err","Ljava/io/PrintStream;");
@@ -144,7 +144,7 @@ static void cpchars(jchar *dst, char *src, int n)
 }
 
 JNIEXPORT jstring JNICALL
-System_mapLibraryName(JNIEnv *env, jclass ign, jstring libname)
+Java_java_lang_System_mapLibraryName(JNIEnv *env, jclass ign, jstring libname)
 {
     int len;
     int prefix_len = (int) strlen(JNI_LIB_PREFIX);
@@ -169,7 +169,8 @@ System_mapLibraryName(JNIEnv *env, jclass ign, jstring libname)
     return (*env)->NewString(env, chars, len);
 }
 
-static jobjectArray System_specialProperties(JNIEnv* env, jclass ignored) {
+JNIEXPORT jobjectArray JNICALL
+Java_java_lang_System_specialProperties(JNIEnv* env, jclass ignored) {
     jclass stringClass = (*env)->FindClass(env, "java/lang/String");
     jobjectArray result = (*env)->NewObjectArray(env, 4, stringClass, NULL);
 
@@ -229,7 +230,7 @@ static jobjectArray System_specialProperties(JNIEnv* env, jclass ignored) {
     return result;
 }
 
-static void System_log(JNIEnv* env, jclass ignored, jchar type, jstring javaMessage, jthrowable exception) {
+JNIEXPORT void JNICALL Java_java_lang_System_log(JNIEnv* env, jclass ignored, jchar type, jstring javaMessage, jthrowable exception) {
     int priority;
     switch (type) {
     case 'D': case 'd': priority = ANDROID_LOG_DEBUG;   break;
@@ -251,27 +252,28 @@ static void System_log(JNIEnv* env, jclass ignored, jchar type, jstring javaMess
     }
 }
 
-static jlong System_nanoTime() {
+JNIEXPORT jlong JNICALL Java_java_lang_System_nanoTime() {
   struct timespec now;
   clock_gettime(CLOCK_MONOTONIC, &now);
   return now.tv_sec * 1000000000LL + now.tv_nsec;
 }
 
-static jlong System_currentTimeMillis() {
+JNIEXPORT jlong JNICALL Java_java_lang_System_currentTimeMillis() {
   return JVM_CurrentTimeMillis(NULL, NULL);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(System, mapLibraryName, "(Ljava/lang/String;)Ljava/lang/String;"),
-  NATIVE_METHOD(System, setErr0, "(Ljava/io/PrintStream;)V"),
-  NATIVE_METHOD(System, setOut0, "(Ljava/io/PrintStream;)V"),
-  NATIVE_METHOD(System, setIn0, "(Ljava/io/InputStream;)V"),
-  NATIVE_METHOD(System, specialProperties, "()[Ljava/lang/String;"),
-  NATIVE_METHOD(System, log, "(CLjava/lang/String;Ljava/lang/Throwable;)V"),
-  CRITICAL_NATIVE_METHOD(System, currentTimeMillis, "()J"),
-  CRITICAL_NATIVE_METHOD(System, nanoTime, "()J"),
-};
-
-void register_java_lang_System(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/lang/System", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(System, mapLibraryName, "(Ljava/lang/String;)Ljava/lang/String;"),
+//  NATIVE_METHOD(System, setErr0, "(Ljava/io/PrintStream;)V"),
+//  NATIVE_METHOD(System, setOut0, "(Ljava/io/PrintStream;)V"),
+//  NATIVE_METHOD(System, setIn0, "(Ljava/io/InputStream;)V"),
+//  NATIVE_METHOD(System, specialProperties, "()[Ljava/lang/String;"),
+//  NATIVE_METHOD(System, log, "(CLjava/lang/String;Ljava/lang/Throwable;)V"),
+//  CRITICAL_NATIVE_METHOD(System, currentTimeMillis, "()J"),
+//  CRITICAL_NATIVE_METHOD(System, nanoTime, "()J"),
+//};
+//
+//void register_java_lang_System(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/lang/System", gMethods, NELEM(gMethods));
+//}

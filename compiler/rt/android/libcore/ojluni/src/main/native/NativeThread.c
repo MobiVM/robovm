@@ -86,7 +86,7 @@ static void  NativeThread_init(JNIEnv *env)
 }
 
 JNIEXPORT jlong JNICALL
-NativeThread_current(JNIEnv *env, jclass cl)
+Java_sun_nio_ch_NativeThread_current(JNIEnv *env, jclass cl)
 {
 #ifdef __solaris__
     return (jlong)thr_self();
@@ -96,7 +96,7 @@ NativeThread_current(JNIEnv *env, jclass cl)
 }
 
 JNIEXPORT void JNICALL
-NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
+Java_sun_nio_ch_NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
 {
     int ret;
 #ifdef __solaris__
@@ -108,12 +108,13 @@ NativeThread_signal(JNIEnv *env, jclass cl, jlong thread)
         JNU_ThrowIOExceptionWithLastError(env, "Thread signal failed");
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(NativeThread, current, "()J"),
-  NATIVE_METHOD(NativeThread, signal, "(J)V"),
-};
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(NativeThread, current, "()J"),
+//  NATIVE_METHOD(NativeThread, signal, "(J)V"),
+//};
 
 void register_sun_nio_ch_NativeThread(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/NativeThread", gMethods, NELEM(gMethods));
+//  jniRegisterNativeMethods(env, "sun/nio/ch/NativeThread", gMethods, NELEM(gMethods));
   NativeThread_init(env);
 }
