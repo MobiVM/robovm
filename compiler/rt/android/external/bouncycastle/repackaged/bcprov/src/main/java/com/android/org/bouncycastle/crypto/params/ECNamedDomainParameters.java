@@ -4,6 +4,7 @@ package com.android.org.bouncycastle.crypto.params;
 import java.math.BigInteger;
 
 import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
+import com.android.org.bouncycastle.asn1.x9.X9ECParameters;
 import com.android.org.bouncycastle.math.ec.ECConstants;
 import com.android.org.bouncycastle.math.ec.ECCurve;
 import com.android.org.bouncycastle.math.ec.ECPoint;
@@ -36,6 +37,12 @@ public class ECNamedDomainParameters
     public ECNamedDomainParameters(ASN1ObjectIdentifier name, ECDomainParameters domainParameters)
     {
         super(domainParameters.getCurve(), domainParameters.getG(), domainParameters.getN(), domainParameters.getH(), domainParameters.getSeed());
+        this.name = name;
+    }
+
+    public ECNamedDomainParameters(ASN1ObjectIdentifier name, X9ECParameters x9)
+    {
+        super(x9);
         this.name = name;
     }
 

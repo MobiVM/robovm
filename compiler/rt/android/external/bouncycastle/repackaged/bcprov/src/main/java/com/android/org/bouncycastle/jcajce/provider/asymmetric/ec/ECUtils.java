@@ -11,6 +11,7 @@ import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import com.android.org.bouncycastle.asn1.DERNull;
 import com.android.org.bouncycastle.asn1.x9.X962Parameters;
 import com.android.org.bouncycastle.asn1.x9.X9ECParameters;
+import com.android.org.bouncycastle.asn1.x9.X9ECPoint;
 import com.android.org.bouncycastle.crypto.params.AsymmetricKeyParameter;
 import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.EC5Util;
 import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.ECUtil;
@@ -84,7 +85,7 @@ class ECUtils
 
             X9ECParameters ecP = new X9ECParameters(
                 curve,
-                EC5Util.convertPoint(curve, ecSpec.getGenerator(), withCompression),
+                new X9ECPoint(EC5Util.convertPoint(curve, ecSpec.getGenerator()), withCompression),
                 ecSpec.getOrder(),
                 BigInteger.valueOf(ecSpec.getCofactor()),
                 ecSpec.getCurve().getSeed());

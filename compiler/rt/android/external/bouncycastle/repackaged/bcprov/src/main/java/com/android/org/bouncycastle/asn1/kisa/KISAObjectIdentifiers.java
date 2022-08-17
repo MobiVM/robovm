@@ -7,10 +7,10 @@ import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
  * Korea Information Security Agency (KISA)
  * ({iso(1) member-body(2) kr(410) kisa(200004)})
  * <p>
- * See <a href="http://tools.ietf.org/html/rfc4010">RFC 4010</a>
+ * See <a href="https://tools.ietf.org/html/rfc4010">RFC 4010</a>
  * Use of the SEED Encryption Algorithm
  * in Cryptographic Message Syntax (CMS),
- * and <a href="http://tools.ietf.org/html/rfc4269">RFC 4269</a>
+ * and <a href="https://tools.ietf.org/html/rfc4269">RFC 4269</a>
  * The SEED Encryption Algorithm
  * @hide This class is not part of the Android public SDK API
  */

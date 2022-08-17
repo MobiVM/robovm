@@ -1,8 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 package com.android.org.bouncycastle.asn1.pkcs;
 
-import java.math.BigInteger;
-
 import com.android.org.bouncycastle.asn1.ASN1EncodableVector;
 import com.android.org.bouncycastle.asn1.ASN1Integer;
 import com.android.org.bouncycastle.asn1.ASN1Object;
@@ -24,8 +22,8 @@ public class Pfx
     private Pfx(
         ASN1Sequence   seq)
     {
-        BigInteger  version = ASN1Integer.getInstance(seq.getObjectAt(0)).getValue();
-        if (version.intValue() != 3)
+        ASN1Integer version = ASN1Integer.getInstance(seq.getObjectAt(0));
+        if (version.intValueExact() != 3)
         {
             throw new IllegalArgumentException("wrong version for PFX PDU");
         }
@@ -74,7 +72,7 @@ public class Pfx
 
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(3);
 
         v.add(new ASN1Integer(3));
         v.add(contentInfo);

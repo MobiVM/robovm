@@ -28,7 +28,6 @@ import com.android.org.bouncycastle.asn1.x500.X500Name;
  * @hide This class is not part of the Android public SDK API
  *
  */
-@libcore.api.CorePlatformApi
 public class V3TBSCertificateGenerator
 {
     DERTaggedObject         version = new DERTaggedObject(true, 0, new ASN1Integer(2));
@@ -45,22 +44,19 @@ public class V3TBSCertificateGenerator
     private DERBitString issuerUniqueID;
     private DERBitString subjectUniqueID;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public V3TBSCertificateGenerator()
     {
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setSerialNumber(
         ASN1Integer  serialNumber)
     {
         this.serialNumber = serialNumber;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setSignature(
         AlgorithmIdentifier    signature)
     {
@@ -70,8 +66,7 @@ public class V3TBSCertificateGenerator
         /**
      * @deprecated use X500Name method
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setIssuer(
         X509Name    issuer)
     {
@@ -90,8 +85,7 @@ public class V3TBSCertificateGenerator
         this.startDate = new Time(startDate);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setStartDate(
         Time startDate)
     {
@@ -104,8 +98,7 @@ public class V3TBSCertificateGenerator
         this.endDate = new Time(endDate);
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setEndDate(
         Time endDate)
     {
@@ -115,8 +108,7 @@ public class V3TBSCertificateGenerator
         /**
      * @deprecated use X500Name method
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setSubject(
         X509Name    subject)
     {
@@ -141,8 +133,7 @@ public class V3TBSCertificateGenerator
         this.subjectUniqueID = uniqueID;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public void setSubjectPublicKeyInfo(
         SubjectPublicKeyInfo    pubKeyInfo)
     {
@@ -174,8 +165,7 @@ public class V3TBSCertificateGenerator
         }
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public TBSCertificate generateTBSCertificate()
     {
         if ((serialNumber == null) || (signature == null)
@@ -185,7 +175,7 @@ public class V3TBSCertificateGenerator
             throw new IllegalStateException("not all mandatory fields set in V3 TBScertificate generator");
         }
 
-        ASN1EncodableVector  v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(10);
 
         v.add(version);
         v.add(serialNumber);
@@ -195,12 +185,13 @@ public class V3TBSCertificateGenerator
         //
         // before and after dates
         //
-        ASN1EncodableVector  validity = new ASN1EncodableVector();
+        {
+            ASN1EncodableVector validity = new ASN1EncodableVector(2);
+            validity.add(startDate);
+            validity.add(endDate);
 
-        validity.add(startDate);
-        validity.add(endDate);
-
-        v.add(new DERSequence(validity));
+            v.add(new DERSequence(validity));
+        }
 
         if (subject != null)
         {

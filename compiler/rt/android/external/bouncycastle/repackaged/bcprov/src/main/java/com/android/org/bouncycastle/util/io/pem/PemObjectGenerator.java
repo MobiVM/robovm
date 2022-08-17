@@ -5,7 +5,6 @@ package com.android.org.bouncycastle.util.io.pem;
  * Base interface for generators of PEM objects.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public interface PemObjectGenerator
 {
     /**

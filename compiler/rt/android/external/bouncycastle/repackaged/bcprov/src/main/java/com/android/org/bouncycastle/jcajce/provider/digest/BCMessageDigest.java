@@ -4,6 +4,8 @@ package com.android.org.bouncycastle.jcajce.provider.digest;
 import java.security.MessageDigest;
 
 import com.android.org.bouncycastle.crypto.Digest;
+// BEGIN Android-removed:
+// import org.bouncycastle.crypto.Xof;
 
 /**
  * @hide This class is not part of the Android public SDK API
@@ -12,6 +14,7 @@ public class BCMessageDigest
     extends MessageDigest
 {
     protected Digest  digest;
+    protected int     digestSize;
 
     protected BCMessageDigest(
         Digest digest)
@@ -19,8 +22,21 @@ public class BCMessageDigest
         super(digest.getAlgorithmName());
 
         this.digest = digest;
+        this.digestSize = digest.getDigestSize();
     }
 
+    // BEGIN Android-removed:
+    /*
+    protected BCMessageDigest(
+        Xof digest, int outputSize)
+    {
+        super(digest.getAlgorithmName());
+
+        this.digest = digest;
+        this.digestSize = outputSize / 8;
+    }
+    */
+    // END Android-removed:
     public void engineReset() 
     {
         digest.reset();
@@ -40,9 +56,14 @@ public class BCMessageDigest
         digest.update(input, offset, len);
     }
 
+    public int engineGetDigestLength()
+    {
+        return digestSize;
+    }
+
     public byte[] engineDigest() 
     {
-        byte[]  digestBytes = new byte[digest.getDigestSize()];
+        byte[]  digestBytes = new byte[digestSize];
 
         digest.doFinal(digestBytes, 0);
 

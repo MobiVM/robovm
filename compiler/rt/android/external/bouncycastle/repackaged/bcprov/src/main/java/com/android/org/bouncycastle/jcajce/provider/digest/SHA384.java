@@ -96,16 +96,19 @@ public class SHA384
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("MessageDigest.SHA-384", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA384", "SHA-384");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha384, "SHA-384");
-            // Android-removed: Unsupported algorithms
-            // provider.addAlgorithm("Mac.OLDHMACSHA384", PREFIX + "$OldSHA384");
+            provider.addAlgorithm("Mac.OLDHMACSHA384", PREFIX + "$OldSHA384");
 
             provider.addAlgorithm("Mac.PBEWITHHMACSHA384", PREFIX + "$HashMac");
 
             addHMACAlgorithm(provider, "SHA384", PREFIX + "$HashMac",  PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "SHA384", PKCSObjectIdentifiers.id_hmacWithSHA384);
+            */
+            // END Android-removed: Unsupported algorithms
         }
     }
 }

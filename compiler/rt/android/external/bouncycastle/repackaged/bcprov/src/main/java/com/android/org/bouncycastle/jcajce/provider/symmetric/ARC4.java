@@ -112,10 +112,14 @@ public final class ARC4
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("Cipher.ARC4", PREFIX + "$Base");
             provider.addAlgorithm("Alg.Alias.Cipher", PKCSObjectIdentifiers.rc4, "ARC4");
             provider.addAlgorithm("Alg.Alias.Cipher.ARCFOUR", "ARC4");
             provider.addAlgorithm("Alg.Alias.Cipher.RC4", "ARC4");
+            */
+            // END Android-removed: Unsupported algorithms
             provider.addAlgorithm("KeyGenerator.ARC4", PREFIX + "$KeyGen");
             provider.addAlgorithm("Alg.Alias.KeyGenerator.RC4", "ARC4");
             provider.addAlgorithm("Alg.Alias.KeyGenerator.1.2.840.113549.3.4", "ARC4");

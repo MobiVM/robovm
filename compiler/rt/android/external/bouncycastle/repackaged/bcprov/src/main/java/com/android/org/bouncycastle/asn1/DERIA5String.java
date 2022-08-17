@@ -71,7 +71,7 @@ public class DERIA5String
         }
         else
         {
-            return new DERIA5String(((ASN1OctetString)o).getOctets());
+            return new DERIA5String(ASN1OctetString.getInstance(o).getOctets());
         }
     }
 
@@ -109,11 +109,11 @@ public class DERIA5String
     {
         if (string == null)
         {
-            throw new NullPointerException("string cannot be null");
+            throw new NullPointerException("'string' cannot be null");
         }
         if (validate && !isIA5String(string))
         {
-            throw new IllegalArgumentException("string contains illegal characters");
+            throw new IllegalArgumentException("'string' contains illegal characters");
         }
 
         this.string = Strings.toByteArray(string);
@@ -144,11 +144,9 @@ public class DERIA5String
         return 1 + StreamUtil.calculateBodyLength(string.length) + string.length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.IA5_STRING, string);
+        out.writeEncoded(withTag, BERTags.IA5_STRING, string);
     }
 
     public int hashCode()

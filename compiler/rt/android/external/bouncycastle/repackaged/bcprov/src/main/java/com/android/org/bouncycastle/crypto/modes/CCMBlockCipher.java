@@ -75,7 +75,7 @@ public class CCMBlockCipher
 
             nonce = param.getNonce();
             initialAssociatedText = param.getAssociatedText();
-            macSize = param.getMacSize() / 8;
+            macSize = getMacSize(forEncryption, param.getMacSize());
             cipherParameters = param.getKey();
         }
         else if (params instanceof ParametersWithIV)
@@ -84,7 +84,7 @@ public class CCMBlockCipher
 
             nonce = param.getIV();
             initialAssociatedText = null;
-            macSize = macBlock.length / 2;
+            macSize = getMacSize(forEncryption, 64);
             cipherParameters = param.getParameters();
         }
         else
@@ -434,6 +434,16 @@ public class CCMBlockCipher
         cMac.update(data, dataOff, dataLen);
 
         return cMac.doFinal(macBlock, 0);
+    }
+
+    private int getMacSize(boolean forEncryption, int requestedMacBits)
+    {
+        if (forEncryption && (requestedMacBits < 32 || requestedMacBits > 128 || 0 != (requestedMacBits & 15)))
+        {
+            throw new IllegalArgumentException("tag length in octets must be one of {4,6,8,10,12,14,16}");
+        }
+
+        return requestedMacBits >>> 3;
     }
 
     private int getAssociatedTextLength()

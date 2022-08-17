@@ -109,6 +109,8 @@ public class SHA1
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithm
+            /*
             provider.addAlgorithm("MessageDigest.SHA-1", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA1", "SHA-1");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA", "SHA-1");
@@ -117,6 +119,8 @@ public class SHA1
             addHMACAlgorithm(provider, "SHA1", PREFIX + "$HashMac", PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "SHA1", PKCSObjectIdentifiers.id_hmacWithSHA1);
             addHMACAlias(provider, "SHA1", IANAObjectIdentifiers.hmacSHA1);
+            */
+            // END Android-removed: Unsupported algorithm
 
             provider.addAlgorithm("Mac.PBEWITHHMACSHA", PREFIX + "$SHA1Mac");
             provider.addAlgorithm("Mac.PBEWITHHMACSHA1", PREFIX + "$SHA1Mac");

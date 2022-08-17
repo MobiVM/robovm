@@ -363,18 +363,17 @@ public class IETFUtils
             String v = ((ASN1String)value).getString();
             if (v.length() > 0 && v.charAt(0) == '#')
             {
-                vBuf.append("\\" + v);
+                vBuf.append('\\');
             }
-            else
-            {
-                vBuf.append(v);
-            }
+
+            vBuf.append(v);
         }
         else
         {
             try
             {
-                vBuf.append("#" + bytesToString(Hex.encode(value.toASN1Primitive().getEncoded(ASN1Encoding.DER))));
+                vBuf.append('#');
+                vBuf.append(Hex.toHexString(value.toASN1Primitive().getEncoded(ASN1Encoding.DER)));
             }
             catch (IOException e)
             {
@@ -382,8 +381,8 @@ public class IETFUtils
             }
         }
 
-        int     end = vBuf.length();
-        int     index = 0;
+        int end = vBuf.length();
+        int index = 0;
 
         if (vBuf.length() >= 2 && vBuf.charAt(0) == '\\' && vBuf.charAt(1) == '#')
         {
@@ -392,21 +391,28 @@ public class IETFUtils
 
         while (index != end)
         {
-            if ((vBuf.charAt(index) == ',')
-               || (vBuf.charAt(index) == '"')
-               || (vBuf.charAt(index) == '\\')
-               || (vBuf.charAt(index) == '+')
-               || (vBuf.charAt(index) == '=')
-               || (vBuf.charAt(index) == '<')
-               || (vBuf.charAt(index) == '>')
-               || (vBuf.charAt(index) == ';'))
+            switch (vBuf.charAt(index))
             {
-                vBuf.insert(index, "\\");
-                index++;
-                end++;
+                case ',':
+                case '"':
+                case '\\':
+                case '+':
+                case '=':
+                case '<':
+                case '>':
+                case ';':
+                {
+                    vBuf.insert(index, "\\");
+                    index += 2;
+                    ++end;
+                    break;
+                }
+                default:
+                {
+                    ++index;
+                    break;
+                }
             }
-
-            index++;
         }
 
         int start = 0;
@@ -430,63 +436,55 @@ public class IETFUtils
         return vBuf.toString();
     }
 
-    private static String bytesToString(
-        byte[] data)
-    {
-        char[]  cs = new char[data.length];
-
-        for (int i = 0; i != cs.length; i++)
-        {
-            cs[i] = (char)(data[i] & 0xff);
-        }
-
-        return new String(cs);
-    }
-
     public static String canonicalize(String s)
     {
-        String value = Strings.toLowerCase(s);
-
-        if (value.length() > 0 && value.charAt(0) == '#')
+        if (s.length() > 0 && s.charAt(0) == '#')
         {
-            ASN1Primitive obj = decodeObject(value);
-
+            ASN1Primitive obj = decodeObject(s);
             if (obj instanceof ASN1String)
             {
-                value = Strings.toLowerCase(((ASN1String)obj).getString());
+                s = ((ASN1String)obj).getString();
             }
         }
 
-        if (value.length() > 1)
+        s = Strings.toLowerCase(s);
+
+        int length = s.length();
+        if (length < 2)
         {
-            int start = 0;
-            while (start + 1 < value.length() && value.charAt(start) == '\\' && value.charAt(start + 1) == ' ')
-            {
-                start += 2;
-            }
-
-            int end = value.length() - 1;
-            while (end - 1 > 0 && value.charAt(end - 1) == '\\' && value.charAt(end) == ' ')
-            {
-                end -= 2;
-            }
-
-            if (start > 0 || end < value.length() - 1)
-            {
-                value = value.substring(start, end + 1);
-            }
+            return s;
         }
 
-        value = stripInternalSpaces(value);
+        int start = 0, last = length - 1;
+        while (start < last && s.charAt(start) == '\\' && s.charAt(start + 1) == ' ')
+        {
+            start += 2;
+        }
 
-        return value;
+        int end = last, first = start + 1;
+        while (end > first && s.charAt(end - 1) == '\\' && s.charAt(end) == ' ')
+        {
+            end -= 2;
+        }
+
+        if (start > 0 || end < last)
+        {
+            s = s.substring(start, end + 1);
+        }
+
+        return stripInternalSpaces(s);
+    }
+
+    public static String canonicalString(ASN1Encodable value)
+    {
+        return canonicalize(valueToString(value));
     }
 
     private static ASN1Primitive decodeObject(String oValue)
     {
         try
         {
-            return ASN1Primitive.fromByteArray(Hex.decode(oValue.substring(1)));
+            return ASN1Primitive.fromByteArray(Hex.decodeStrict(oValue, 1, oValue.length() - 1));
         }
         catch (IOException e)
         {
@@ -497,21 +495,22 @@ public class IETFUtils
     public static String stripInternalSpaces(
         String str)
     {
+        if (str.indexOf("  ") < 0)
+        {
+            return str;
+        }
+
         StringBuffer res = new StringBuffer();
 
-        if (str.length() != 0)
+        char c1 = str.charAt(0);
+        res.append(c1);
+
+        for (int k = 1; k < str.length(); k++)
         {
-            char c1 = str.charAt(0);
-
-            res.append(c1);
-
-            for (int k = 1; k < str.length(); k++)
+            char c2 = str.charAt(k);
+            if (!(c1 == ' ' && c2 == ' '))
             {
-                char c2 = str.charAt(k);
-                if (!(c1 == ' ' && c2 == ' '))
-                {
-                    res.append(c2);
-                }
+                res.append(c2);
                 c1 = c2;
             }
         }
@@ -521,38 +520,22 @@ public class IETFUtils
 
     public static boolean rDNAreEqual(RDN rdn1, RDN rdn2)
     {
-        if (rdn1.isMultiValued())
+        if (rdn1.size() != rdn2.size())
         {
-            if (rdn2.isMultiValued())
-            {
-                AttributeTypeAndValue[] atvs1 = rdn1.getTypesAndValues();
-                AttributeTypeAndValue[] atvs2 = rdn2.getTypesAndValues();
-
-                if (atvs1.length != atvs2.length)
-                {
-                    return false;
-                }
-
-                for (int i = 0; i != atvs1.length; i++)
-                {
-                    if (!atvAreEqual(atvs1[i], atvs2[i]))
-                    {
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-        else
+
+        AttributeTypeAndValue[] atvs1 = rdn1.getTypesAndValues();
+        AttributeTypeAndValue[] atvs2 = rdn2.getTypesAndValues();
+
+        if (atvs1.length != atvs2.length)
         {
-            if (!rdn2.isMultiValued())
-            {
-                return atvAreEqual(rdn1.getFirst(), rdn2.getFirst());
-            }
-            else
+            return false;
+        }
+
+        for (int i = 0; i != atvs1.length; i++)
+        {
+            if (!atvAreEqual(atvs1[i], atvs2[i]))
             {
                 return false;
             }
@@ -568,12 +551,7 @@ public class IETFUtils
             return true;
         }
 
-        if (atv1 == null)
-        {
-            return false;
-        }
-
-        if (atv2 == null)
+        if (null == atv1 || null == atv2)
         {
             return false;
         }
@@ -586,8 +564,8 @@ public class IETFUtils
             return false;
         }
 
-        String v1 = IETFUtils.canonicalize(IETFUtils.valueToString(atv1.getValue()));
-        String v2 = IETFUtils.canonicalize(IETFUtils.valueToString(atv2.getValue()));
+        String v1 = canonicalString(atv1.getValue());
+        String v2 = canonicalString(atv2.getValue());
 
         if (!v1.equals(v2))
         {

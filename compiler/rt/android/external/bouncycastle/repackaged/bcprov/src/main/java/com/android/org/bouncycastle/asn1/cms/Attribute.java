@@ -11,7 +11,7 @@ import com.android.org.bouncycastle.asn1.ASN1Set;
 import com.android.org.bouncycastle.asn1.DERSequence;
 
 /**
- * <a href="http://tools.ietf.org/html/rfc5652#page-14">RFC 5652</a>:
+ * <a href="https://tools.ietf.org/html/rfc5652#page-14">RFC 5652</a>:
  * Attribute is a pair of OID (as type identifier) + set of values.
  * <p>
  * <pre>
@@ -102,7 +102,7 @@ public class Attribute
      */
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(2);
 
         v.add(attrType);
         v.add(attrValues);

@@ -5,7 +5,6 @@ package com.android.org.bouncycastle.asn1;
  * Basic interface to produce serialisers for ASN.1 encodings.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public interface ASN1Encodable
 {
     /**

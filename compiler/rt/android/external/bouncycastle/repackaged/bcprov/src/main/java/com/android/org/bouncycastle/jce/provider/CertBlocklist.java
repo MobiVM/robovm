@@ -37,27 +37,28 @@ import com.android.org.bouncycastle.util.encoders.Hex;
 /**
  * @hide This class is not part of the Android public SDK API
  */
-public class CertBlacklist {
-    private static final Logger logger = Logger.getLogger(CertBlacklist.class.getName());
+public class CertBlocklist {
+    private static final Logger logger = Logger.getLogger(CertBlocklist.class.getName());
 
     // public for testing
-    public final Set<BigInteger> serialBlacklist;
-    public final Set<byte[]> pubkeyBlacklist;
+    public final Set<BigInteger> serialBlocklist;
+    public final Set<byte[]> pubkeyBlocklist;
 
-    public CertBlacklist() {
+    public CertBlocklist() {
         String androidData = System.getenv("ANDROID_DATA");
-        String blacklistRoot = androidData + "/misc/keychain/";
-        String defaultPubkeyBlacklistPath = blacklistRoot + "pubkey_blacklist.txt";
-        String defaultSerialBlacklistPath = blacklistRoot + "serial_blacklist.txt";
+        String blocklistRoot = androidData + "/misc/keychain/";
+        // TODO(b/162575432): change these paths to use inclusive language
+        String defaultPubkeyBlocklistPath = blocklistRoot + "pubkey_blacklist.txt";
+        String defaultSerialBlocklistPath = blocklistRoot + "serial_blacklist.txt";
 
-        pubkeyBlacklist = readPublicKeyBlackList(defaultPubkeyBlacklistPath);
-        serialBlacklist = readSerialBlackList(defaultSerialBlacklistPath);
+        pubkeyBlocklist = readPublicKeyBlockList(defaultPubkeyBlocklistPath);
+        serialBlocklist = readSerialBlockList(defaultSerialBlocklistPath);
     }
 
     /** Test only interface, not for public use */
-    public CertBlacklist(String pubkeyBlacklistPath, String serialBlacklistPath) {
-        pubkeyBlacklist = readPublicKeyBlackList(pubkeyBlacklistPath);
-        serialBlacklist = readSerialBlackList(serialBlacklistPath);
+    public CertBlocklist(String pubkeyBlocklistPath, String serialBlocklistPath) {
+        pubkeyBlocklist = readPublicKeyBlockList(pubkeyBlocklistPath);
+        serialBlocklist = readSerialBlockList(serialBlocklistPath);
     }
 
     private static boolean isHex(String value) {
@@ -78,12 +79,12 @@ public class CertBlacklist {
         return isHex(value);
     }
 
-    private static String readBlacklist(String path) {
+    private static String readBlocklist(String path) {
         try {
             return readFileAsString(path);
         } catch (FileNotFoundException ignored) {
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Could not read blacklist", e);
+            logger.log(Level.WARNING, "Could not read blocklist", e);
         }
         return "";
     }
@@ -124,7 +125,7 @@ public class CertBlacklist {
         }
     }
 
-    private static final Set<BigInteger> readSerialBlackList(String path) {
+    private static Set<BigInteger> readSerialBlockList(String path) {
 
         /* Start out with a base set of known bad values.
          *
@@ -151,13 +152,13 @@ public class CertBlacklist {
         ));
 
         // attempt to augment it with values taken from gservices
-        String serialBlacklist = readBlacklist(path);
-        if (!serialBlacklist.equals("")) {
-            for(String value : serialBlacklist.split(",")) {
+        String serialBlocklist = readBlocklist(path);
+        if (!serialBlocklist.equals("")) {
+            for(String value : serialBlocklist.split(",")) {
                 try {
                     bl.add(new BigInteger(value, 16));
                 } catch (NumberFormatException e) {
-                    logger.log(Level.WARNING, "Tried to blacklist invalid serial number " + value, e);
+                    logger.log(Level.WARNING, "Tried to blocklist invalid serial number " + value, e);
                 }
             }
         }
@@ -166,7 +167,7 @@ public class CertBlacklist {
         return Collections.unmodifiableSet(bl);
     }
 
-    private static final Set<byte[]> readPublicKeyBlackList(String path) {
+    private static Set<byte[]> readPublicKeyBlockList(String path) {
 
         // start out with a base set of known bad values
         Set<byte[]> bl = new HashSet<byte[]>(Arrays.asList(
@@ -201,14 +202,14 @@ public class CertBlacklist {
         ));
 
         // attempt to augment it with values taken from gservices
-        String pubkeyBlacklist = readBlacklist(path);
-        if (!pubkeyBlacklist.equals("")) {
-            for (String value : pubkeyBlacklist.split(",")) {
+        String pubkeyBlocklist = readBlocklist(path);
+        if (!pubkeyBlocklist.equals("")) {
+            for (String value : pubkeyBlocklist.split(",")) {
                 value = value.trim();
                 if (isPubkeyHash(value)) {
                     bl.add(value.getBytes());
                 } else {
-                    logger.log(Level.WARNING, "Tried to blacklist invalid pubkey " + value);
+                    logger.log(Level.WARNING, "Tried to blocklist invalid pubkey " + value);
                 }
             }
         }
@@ -216,22 +217,22 @@ public class CertBlacklist {
         return bl;
     }
 
-    public boolean isPublicKeyBlackListed(PublicKey publicKey) {
+    public boolean isPublicKeyBlockListed(PublicKey publicKey) {
         byte[] encoded = publicKey.getEncoded();
         Digest digest = AndroidDigestFactory.getSHA1();
         digest.update(encoded, 0, encoded.length);
         byte[] out = new byte[digest.getDigestSize()];
         digest.doFinal(out, 0);
-        for (byte[] blacklisted : pubkeyBlacklist) {
-            if (Arrays.equals(blacklisted, Hex.encode(out))) {
+        for (byte[] blocklisted : pubkeyBlocklist) {
+            if (Arrays.equals(blocklisted, Hex.encode(out))) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isSerialNumberBlackListed(BigInteger serial) {
-        return serialBlacklist.contains(serial);
+    public boolean isSerialNumberBlockListed(BigInteger serial) {
+        return serialBlocklist.contains(serial);
     }
 
 }

@@ -149,11 +149,16 @@ public interface BCObjectIdentifiers
      * qTESLA
      */
     public static final ASN1ObjectIdentifier qTESLA = bc_sig.branch("4");
-    public static final ASN1ObjectIdentifier qTESLA_I = qTESLA.branch("1");
-    public static final ASN1ObjectIdentifier qTESLA_III_size = qTESLA.branch("2");
-    public static final ASN1ObjectIdentifier qTESLA_III_speed = qTESLA.branch("3");
-    public static final ASN1ObjectIdentifier qTESLA_p_I = qTESLA.branch("4");
-    public static final ASN1ObjectIdentifier qTESLA_p_III = qTESLA.branch("5");
+
+    public static final ASN1ObjectIdentifier qTESLA_Rnd1_I = qTESLA.branch("1");
+    public static final ASN1ObjectIdentifier qTESLA_Rnd1_III_size = qTESLA.branch("2");
+    public static final ASN1ObjectIdentifier qTESLA_Rnd1_III_speed = qTESLA.branch("3");
+    public static final ASN1ObjectIdentifier qTESLA_Rnd1_p_I = qTESLA.branch("4");
+    public static final ASN1ObjectIdentifier qTESLA_Rnd1_p_III = qTESLA.branch("5");
+
+
+    public static final ASN1ObjectIdentifier qTESLA_p_I = qTESLA.branch("11");
+    public static final ASN1ObjectIdentifier qTESLA_p_III = qTESLA.branch("12");
 
     /**
      * key_exchange(3) algorithms
@@ -166,4 +171,13 @@ public interface BCObjectIdentifiers
     public static final ASN1ObjectIdentifier newHope = bc_exch.branch("1");
     */
     // END Android-removed: Unsupported algorithms
+
+    /**
+     * X.509 extension(4) values
+     * <p>
+     * 1.3.6.1.4.1.22554.4
+     */
+    public static final ASN1ObjectIdentifier bc_ext        = bc.branch("4");
+
+    public static final ASN1ObjectIdentifier linkedCertificate = bc_ext.branch("1");
 }

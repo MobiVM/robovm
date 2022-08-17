@@ -182,12 +182,12 @@ public class SHA512
 
         public void configure(ConfigurableProvider provider)
         {
+            // BEGIN Android-removed: Unsupported algorithms
+            /*
             provider.addAlgorithm("MessageDigest.SHA-512", PREFIX + "$Digest");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA512", "SHA-512");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha512, "SHA-512");
 
-            // BEGIN Android-removed: Unsupported algorithms
-            /*
             provider.addAlgorithm("MessageDigest.SHA-512/224", PREFIX + "$DigestT224");
             provider.addAlgorithm("Alg.Alias.MessageDigest.SHA512/224", "SHA-512/224");
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha512_224, "SHA-512/224");
@@ -197,17 +197,15 @@ public class SHA512
             provider.addAlgorithm("Alg.Alias.MessageDigest." + NISTObjectIdentifiers.id_sha512_256, "SHA-512/256");
 
             provider.addAlgorithm("Mac.OLDHMACSHA512", PREFIX + "$OldSHA512");
-            */
-            // END Android-removed: Unsupported algorithms
 
             provider.addAlgorithm("Mac.PBEWITHHMACSHA512", PREFIX + "$HashMac");
 
             addHMACAlgorithm(provider, "SHA512", PREFIX + "$HashMac",  PREFIX + "$KeyGenerator");
             addHMACAlias(provider, "SHA512", PKCSObjectIdentifiers.id_hmacWithSHA512);
 
-            // BEGIN Android-removed: Unsupported algorithms
-            // addHMACAlgorithm(provider, "SHA512/224", PREFIX + "$HashMacT224",  PREFIX + "$KeyGeneratorT224");
-            // addHMACAlgorithm(provider, "SHA512/256", PREFIX + "$HashMacT256",  PREFIX + "$KeyGeneratorT256");
+            addHMACAlgorithm(provider, "SHA512/224", PREFIX + "$HashMacT224",  PREFIX + "$KeyGeneratorT224");
+            addHMACAlgorithm(provider, "SHA512/256", PREFIX + "$HashMacT256",  PREFIX + "$KeyGeneratorT256");
+            */
             // END Android-removed: Unsupported algorithms
         }
     }

@@ -53,5 +53,7 @@ public interface ConfigurableProvider
 
     void addKeyInfoConverter(ASN1ObjectIdentifier oid, AsymmetricKeyInfoConverter keyInfoConverter);
 
+    AsymmetricKeyInfoConverter getKeyInfoConverter(ASN1ObjectIdentifier oid);
+
     void addAttributes(String key, Map<String, String> attributeMap);
 }

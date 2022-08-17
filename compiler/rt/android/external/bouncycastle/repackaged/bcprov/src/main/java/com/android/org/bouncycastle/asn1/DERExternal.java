@@ -55,6 +55,16 @@ public class DERExternal
         super(directReference, indirectReference, dataValueDescriptor, encoding, externalData);
     }
 
+    ASN1Primitive toDERObject()
+    {
+        return this;
+    }
+
+    ASN1Primitive toDLObject()
+    {
+        return this;
+    }
+
     int encodedLength()
         throws IOException
     {
@@ -64,8 +74,7 @@ public class DERExternal
     /* (non-Javadoc)
      * @see org.bouncycastle.asn1.ASN1Primitive#encode(org.bouncycastle.asn1.DEROutputStream)
      */
-    void encode(ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         if (directReference != null)
@@ -82,6 +91,7 @@ public class DERExternal
         }
         DERTaggedObject obj = new DERTaggedObject(true, encoding, externalContent);
         baos.write(obj.getEncoded(ASN1Encoding.DER));
-        out.writeEncoded(BERTags.CONSTRUCTED, BERTags.EXTERNAL, baos.toByteArray());
+
+        out.writeEncoded(withTag, BERTags.CONSTRUCTED, BERTags.EXTERNAL, baos.toByteArray());
     }
 }

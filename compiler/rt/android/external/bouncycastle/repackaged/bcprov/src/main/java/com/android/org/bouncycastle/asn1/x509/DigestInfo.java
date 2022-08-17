@@ -50,7 +50,7 @@ public class DigestInfo
         return null;
     }
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public DigestInfo(
         AlgorithmIdentifier  algId,
         byte[]               digest)
@@ -80,7 +80,7 @@ public class DigestInfo
 
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector  v = new ASN1EncodableVector();
+        ASN1EncodableVector v = new ASN1EncodableVector(2);
 
         v.add(algId);
         v.add(new DEROctetString(digest));

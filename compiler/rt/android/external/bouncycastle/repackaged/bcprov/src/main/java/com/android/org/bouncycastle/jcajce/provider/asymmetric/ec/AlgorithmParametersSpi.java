@@ -13,6 +13,7 @@ import com.android.org.bouncycastle.asn1.DERNull;
 import com.android.org.bouncycastle.asn1.x9.ECNamedCurveTable;
 import com.android.org.bouncycastle.asn1.x9.X962Parameters;
 import com.android.org.bouncycastle.asn1.x9.X9ECParameters;
+import com.android.org.bouncycastle.asn1.x9.X9ECPoint;
 import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.EC5Util;
 import com.android.org.bouncycastle.jcajce.provider.asymmetric.util.ECUtil;
 import com.android.org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -127,7 +128,7 @@ public class AlgorithmParametersSpi
             }
             else
             {
-                ASN1ObjectIdentifier namedCurveOid = ECUtil.getNamedCurveOid(EC5Util.convertSpec(ecParameterSpec, false));
+                ASN1ObjectIdentifier namedCurveOid = ECUtil.getNamedCurveOid(EC5Util.convertSpec(ecParameterSpec));
 
                 if (namedCurveOid != null)
                 {
@@ -163,10 +164,10 @@ public class AlgorithmParametersSpi
             }
             else
             {
-                com.android.org.bouncycastle.jce.spec.ECParameterSpec ecSpec = EC5Util.convertSpec(ecParameterSpec, false);
+                com.android.org.bouncycastle.jce.spec.ECParameterSpec ecSpec = EC5Util.convertSpec(ecParameterSpec);
                 X9ECParameters ecP = new X9ECParameters(
                     ecSpec.getCurve(),
-                    ecSpec.getG(),
+                    new X9ECPoint(ecSpec.getG(), false),
                     ecSpec.getN(),
                     ecSpec.getH(),
                     ecSpec.getSeed());
@@ -183,6 +184,6 @@ public class AlgorithmParametersSpi
     @Override
     protected String engineToString()
     {
-        return "EC AlgorithmParameters ";
+        return "EC Parameters";
     }
 }

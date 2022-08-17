@@ -8,6 +8,10 @@ package com.android.org.bouncycastle.math.ec;
  */
 public class WNafPreCompInfo implements PreCompInfo
 {
+    volatile int promotionCountdown = 4; 
+
+    protected int confWidth = -1;
+
     /**
      * Array holding the precomputed <code>ECPoint</code>s used for a Window
      * NAF multiplication.
@@ -25,6 +29,43 @@ public class WNafPreCompInfo implements PreCompInfo
      * Window NAF multiplication to create or extend the precomputed values.
      */
     protected ECPoint twice = null;
+
+    protected int width = -1;
+
+    int decrementPromotionCountdown()
+    {
+        int t = promotionCountdown;
+        if (t > 0)
+        {
+            promotionCountdown = --t;
+        }
+        return t;
+    }
+
+    int getPromotionCountdown()
+    {
+        return promotionCountdown;
+    }
+
+    void setPromotionCountdown(int promotionCountdown)
+    {
+        this.promotionCountdown = promotionCountdown;
+    }
+
+    public boolean isPromoted()
+    {
+        return promotionCountdown <= 0;
+    }
+
+    public int getConfWidth()
+    {
+        return confWidth;
+    }
+
+    public void setConfWidth(int confWidth)
+    {
+        this.confWidth = confWidth;
+    }
 
     public ECPoint[] getPreComp()
     {
@@ -54,5 +95,15 @@ public class WNafPreCompInfo implements PreCompInfo
     public void setTwice(ECPoint twice)
     {
         this.twice = twice;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
     }
 }

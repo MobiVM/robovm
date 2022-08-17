@@ -9,12 +9,12 @@ import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
 // import org.bouncycastle.asn1.anssi.ANSSINamedCurves;
 // import org.bouncycastle.asn1.cryptopro.ECGOST3410NamedCurves;
 // import org.bouncycastle.asn1.gm.GMNamedCurves;
+// import org.bouncycastle.asn1.cryptlib.CryptlibObjectIdentifiers;
 import com.android.org.bouncycastle.asn1.nist.NISTNamedCurves;
 import com.android.org.bouncycastle.asn1.sec.SECNamedCurves;
 // Android-removed: Unsupported curves
 // import org.bouncycastle.asn1.teletrust.TeleTrusTNamedCurves;
 import com.android.org.bouncycastle.crypto.ec.CustomNamedCurves;
-import com.android.org.bouncycastle.crypto.params.ECDomainParameters;
 
 /**
  * A general class that reads all X9.62 style EC curve tables.
@@ -58,7 +58,7 @@ public class ECNamedCurveTable
 
         if (ecP == null)
         {
-            ecP = fromDomainParameters(ECGOST3410NamedCurves.getByName(name));
+            ecP = ECGOST3410NamedCurves.getByNameX9(name);
         }
 
         if (ecP == null)
@@ -112,6 +112,11 @@ public class ECNamedCurveTable
         if (oid == null)
         {
             oid = GMNamedCurves.getOID(name);
+        }
+
+        if (oid == null && name.equals("curve25519"))
+        {
+            oid = CryptlibObjectIdentifiers.curvey25519;
         }
         */
         // END Android-removed: Unsupported curves
@@ -206,7 +211,7 @@ public class ECNamedCurveTable
 
         if (ecP == null)
         {
-            ecP = fromDomainParameters(ECGOST3410NamedCurves.getByOID(oid));
+            ecP = ECGOST3410NamedCurves.getByOIDX9(oid);
         }
 
         if (ecP == null)
@@ -249,10 +254,5 @@ public class ECNamedCurveTable
         {
             v.addElement(e.nextElement());
         }
-    }
-
-    private static X9ECParameters fromDomainParameters(ECDomainParameters dp)
-    {
-        return dp == null ? null : new X9ECParameters(dp.getCurve(), dp.getG(), dp.getN(), dp.getH(), dp.getSeed());
     }
 }

@@ -1,7 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 package com.android.org.bouncycastle.jce.provider;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -38,7 +37,6 @@ import com.android.org.bouncycastle.asn1.ASN1Encodable;
 import com.android.org.bouncycastle.asn1.ASN1Encoding;
 import com.android.org.bouncycastle.asn1.ASN1InputStream;
 import com.android.org.bouncycastle.asn1.ASN1ObjectIdentifier;
-import com.android.org.bouncycastle.asn1.ASN1OutputStream;
 import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
 import com.android.org.bouncycastle.asn1.ASN1String;
@@ -74,7 +72,6 @@ import com.android.org.bouncycastle.util.encoders.Hex;
  * @deprecated Do not use this class directly - either use org.bouncycastle.cert (bcpkix) or CertificateFactory.
  * @hide This class is not part of the Android public SDK API
  */
-@libcore.api.CorePlatformApi
 public class X509CertificateObject
     extends X509Certificate
     implements PKCS12BagAttributeCarrier
@@ -87,8 +84,7 @@ public class X509CertificateObject
 
     private PKCS12BagAttributeCarrier   attrCarrier = new PKCS12BagAttributeCarrierImpl();
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @android.compat.annotation.UnsupportedAppUsage
     public X509CertificateObject(
         com.android.org.bouncycastle.asn1.x509.Certificate    c)
         throws CertificateParsingException
@@ -170,26 +166,14 @@ public class X509CertificateObject
 
     public Principal getIssuerDN()
     {
-        try
-        {
-            return new X509Principal(X500Name.getInstance(c.getIssuer().getEncoded()));
-        }
-        catch (IOException e)
-        {
-            return null;
-        }
+        return new X509Principal(c.getIssuer());
     }
 
     public X500Principal getIssuerX500Principal()
     {
         try
         {
-            ByteArrayOutputStream   bOut = new ByteArrayOutputStream();
-            ASN1OutputStream        aOut = new ASN1OutputStream(bOut);
-
-            aOut.writeObject(c.getIssuer());
-
-            return new X500Principal(bOut.toByteArray());
+            return new X500Principal(c.getIssuer().getEncoded());
         }
         catch (IOException e)
         {
@@ -199,19 +183,14 @@ public class X509CertificateObject
 
     public Principal getSubjectDN()
     {
-        return new X509Principal(X500Name.getInstance(c.getSubject().toASN1Primitive()));
+        return new X509Principal(c.getSubject());
     }
 
     public X500Principal getSubjectX500Principal()
     {
         try
         {
-            ByteArrayOutputStream   bOut = new ByteArrayOutputStream();
-            ASN1OutputStream        aOut = new ASN1OutputStream(bOut);
-
-            aOut.writeObject(c.getSubject());
-
-            return new X500Principal(bOut.toByteArray());
+            return new X500Principal(c.getSubject().getEncoded());
         }
         catch (IOException e)
         {

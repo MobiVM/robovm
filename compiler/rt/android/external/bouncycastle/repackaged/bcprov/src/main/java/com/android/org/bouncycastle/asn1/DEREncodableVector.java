@@ -13,7 +13,7 @@ public class DEREncodableVector
     /**
      * @deprecated use ASN1EncodableVector instead.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public DEREncodableVector()
     {
 

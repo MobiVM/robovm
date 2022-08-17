@@ -8,31 +8,23 @@ import java.io.OutputStream;
  * Stream that outputs encoding based on distinguished encoding rules.
  * @hide This class is not part of the Android public SDK API
  */
+// BEGIN Android-changed: Class is package-private in upstream.
+// Leaving as public as it's used by build/make/tools/signapk/src/com/android/signapk/SignApk.java
 public class DEROutputStream
     extends ASN1OutputStream
 {
-    @dalvik.annotation.compat.UnsupportedAppUsage
-    public DEROutputStream(
-        OutputStream    os)
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
+    public DEROutputStream(OutputStream os)
     {
         super(os);
     }
 
-    public void writeObject(
-        ASN1Encodable obj)
-        throws IOException
+    void writePrimitive(ASN1Primitive primitive, boolean withTag) throws IOException
     {
-        if (obj != null)
-        {
-            obj.toASN1Primitive().toDERObject().encode(this);
-        }
-        else
-        {
-            throw new IOException("null object detected");
-        }
+        primitive.toDERObject().encode(this, withTag);
     }
 
-    ASN1OutputStream getDERSubStream()
+    DEROutputStream getDERSubStream()
     {
         return this;
     }

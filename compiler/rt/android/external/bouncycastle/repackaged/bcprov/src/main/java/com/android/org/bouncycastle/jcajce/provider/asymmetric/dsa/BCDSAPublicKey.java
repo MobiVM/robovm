@@ -55,7 +55,7 @@ public class BCDSAPublicKey
         DSAPublicKeyParameters params)
     {
         this.y = params.getY();
-        if (params != null)
+        if (params.getParameters() != null)
         {
             this.dsaSpec = new DSAParameterSpec(params.getParameters().getP(), params.getParameters().getQ(), params.getParameters().getG());
         }

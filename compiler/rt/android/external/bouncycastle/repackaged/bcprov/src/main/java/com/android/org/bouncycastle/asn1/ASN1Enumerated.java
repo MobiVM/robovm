@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import com.android.org.bouncycastle.util.Arrays;
-import com.android.org.bouncycastle.util.Properties;
 
 /**
  * Class representing the ASN.1 ENUMERATED type.
@@ -15,6 +14,7 @@ public class ASN1Enumerated
     extends ASN1Primitive
 {
     private final byte[] bytes;
+    private final int start;
 
     /**
      * return an enumerated from the passed in object
@@ -68,7 +68,7 @@ public class ASN1Enumerated
         }
         else
         {
-            return fromOctetString(((ASN1OctetString)o).getOctets());
+            return fromOctetString(ASN1OctetString.getInstance(o).getOctets());
         }
     }
 
@@ -77,10 +77,15 @@ public class ASN1Enumerated
      *
      * @param value the value of this enumerated.
      */
-    public ASN1Enumerated(
-        int         value)
+    public ASN1Enumerated(int value)
     {
-        bytes = BigInteger.valueOf(value).toByteArray();
+        if (value < 0)
+        {
+            throw new IllegalArgumentException("enumerated must be non-negative");
+        }
+
+        this.bytes = BigInteger.valueOf(value).toByteArray();
+        this.start = 0;
     }
 
     /**
@@ -88,10 +93,15 @@ public class ASN1Enumerated
      *
      * @param value the value of this enumerated.
      */
-    public ASN1Enumerated(
-        BigInteger   value)
+    public ASN1Enumerated(BigInteger value)
     {
-        bytes = value.toByteArray();
+        if (value.signum() < 0)
+        {
+            throw new IllegalArgumentException("enumerated must be non-negative");
+        }
+
+        this.bytes = value.toByteArray();
+        this.start = 0;
     }
 
     /**
@@ -99,22 +109,43 @@ public class ASN1Enumerated
      *
      * @param bytes the value of this enumerated as an encoded BigInteger (signed).
      */
-    public ASN1Enumerated(
-        byte[]   bytes)
+    public ASN1Enumerated(byte[] bytes)
     {
-        if (!Properties.isOverrideSet("com.android.org.bouncycastle.asn1.allow_unsafe_integer"))
+        if (ASN1Integer.isMalformed(bytes))
         {
-            if (ASN1Integer.isMalformed(bytes))
-            {
-                throw new IllegalArgumentException("malformed enumerated");
-            }
+            throw new IllegalArgumentException("malformed enumerated");
         }
+        if (0 != (bytes[0] & 0x80))
+        {
+            throw new IllegalArgumentException("enumerated must be non-negative");
+        }
+
         this.bytes = Arrays.clone(bytes);
+        this.start = ASN1Integer.signBytesToSkip(bytes); 
     }
 
     public BigInteger getValue()
     {
         return new BigInteger(bytes);
+    }
+
+    public boolean hasValue(BigInteger x)
+    {
+        return null != x
+            // Fast check to avoid allocation
+            && ASN1Integer.intValue(bytes, start, ASN1Integer.SIGN_EXT_SIGNED) == x.intValue()
+            && getValue().equals(x);
+    }
+
+    public int intValueExact()
+    {
+        int count = bytes.length - start;
+        if (count > 4)
+        {
+            throw new ArithmeticException("ASN.1 Enumerated out of int range");
+        }
+
+        return ASN1Integer.intValue(bytes, start, ASN1Integer.SIGN_EXT_SIGNED); 
     }
 
     boolean isConstructed()
@@ -127,13 +158,11 @@ public class ASN1Enumerated
         return 1 + StreamUtil.calculateBodyLength(bytes.length) + bytes.length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.ENUMERATED, bytes);
+        out.writeEncoded(withTag, BERTags.ENUMERATED, bytes);
     }
-    
+
     boolean asn1Equals(
         ASN1Primitive  o)
     {
@@ -169,14 +198,14 @@ public class ASN1Enumerated
 
         if (value >= cache.length)
         {
-            return new ASN1Enumerated(Arrays.clone(enc));
+            return new ASN1Enumerated(enc);
         }
 
         ASN1Enumerated possibleMatch = cache[value];
 
         if (possibleMatch == null)
         {
-            possibleMatch = cache[value] = new ASN1Enumerated(Arrays.clone(enc));
+            possibleMatch = cache[value] = new ASN1Enumerated(enc);
         }
 
         return possibleMatch;

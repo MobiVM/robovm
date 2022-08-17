@@ -67,7 +67,7 @@ public class DERGraphicString
         }
         else
         {
-            return new DERGraphicString(((ASN1OctetString)o).getOctets());
+            return new DERGraphicString(ASN1OctetString.getInstance(o).getOctets());
         }
     }
 
@@ -96,11 +96,9 @@ public class DERGraphicString
         return 1 + StreamUtil.calculateBodyLength(string.length) + string.length;
     }
 
-    void encode(
-        ASN1OutputStream out)
-        throws IOException
+    void encode(ASN1OutputStream out, boolean withTag) throws IOException
     {
-        out.writeEncoded(BERTags.GRAPHIC_STRING, string);
+        out.writeEncoded(withTag, BERTags.GRAPHIC_STRING, string);
     }
 
     public int hashCode()

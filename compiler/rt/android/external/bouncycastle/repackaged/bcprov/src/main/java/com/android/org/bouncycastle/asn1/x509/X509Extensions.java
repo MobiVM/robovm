@@ -16,7 +16,7 @@ import com.android.org.bouncycastle.asn1.ASN1TaggedObject;
 import com.android.org.bouncycastle.asn1.DERSequence;
 
 /**
- * @deprecated use Extensions
+ * @deprecated use {@link Extensions}
  * @hide This class is not part of the Android public SDK API
  */
 public class X509Extensions
@@ -387,14 +387,15 @@ public class X509Extensions
      */
     public ASN1Primitive toASN1Primitive()
     {
-        ASN1EncodableVector     vec = new ASN1EncodableVector();
-        Enumeration             e = ordering.elements();
+        ASN1EncodableVector vec = new ASN1EncodableVector(ordering.size());
 
+        Enumeration e = ordering.elements();
         while (e.hasMoreElements())
         {
-            ASN1ObjectIdentifier    oid = (ASN1ObjectIdentifier)e.nextElement();
-            X509Extension           ext = (X509Extension)extensions.get(oid);
-            ASN1EncodableVector     v = new ASN1EncodableVector();
+            ASN1EncodableVector v = new ASN1EncodableVector(3);
+
+            ASN1ObjectIdentifier oid = (ASN1ObjectIdentifier)e.nextElement();
+            X509Extension ext = (X509Extension)extensions.get(oid);
 
             v.add(oid);
 

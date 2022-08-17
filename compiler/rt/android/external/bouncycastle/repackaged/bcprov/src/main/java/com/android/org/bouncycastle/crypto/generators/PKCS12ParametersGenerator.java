@@ -12,7 +12,7 @@ import com.android.org.bouncycastle.crypto.params.ParametersWithIV;
  * Generator for PBE derived keys and ivs as defined by PKCS 12 V1.0.
  * <p>
  * The document this implementation is based on can be found at
- * <a href=http://www.rsasecurity.com/rsalabs/pkcs/pkcs-12/index.html>
+ * <a href=https://www.rsasecurity.com/rsalabs/pkcs/pkcs-12/index.html>
  * RSA's PKCS12 Page</a>
  * @hide This class is not part of the Android public SDK API
  */

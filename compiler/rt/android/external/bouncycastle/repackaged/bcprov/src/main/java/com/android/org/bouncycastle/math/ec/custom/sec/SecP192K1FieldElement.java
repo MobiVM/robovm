@@ -4,16 +4,17 @@ package com.android.org.bouncycastle.math.ec.custom.sec;
 import java.math.BigInteger;
 
 import com.android.org.bouncycastle.math.ec.ECFieldElement;
-import com.android.org.bouncycastle.math.raw.Mod;
 import com.android.org.bouncycastle.math.raw.Nat192;
 import com.android.org.bouncycastle.util.Arrays;
+import com.android.org.bouncycastle.util.encoders.Hex;
 
 /**
  * @hide This class is not part of the Android public SDK API
  */
 public class SecP192K1FieldElement extends ECFieldElement.AbstractFp
 {
-    public static final BigInteger Q = SecP192K1Curve.q;
+    public static final BigInteger Q = new BigInteger(1,
+        Hex.decodeStrict("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFEE37"));
 
     protected int[] x;
 
@@ -99,7 +100,7 @@ public class SecP192K1FieldElement extends ECFieldElement.AbstractFp
     {
 //        return multiply(b.invert());
         int[] z = Nat192.create();
-        Mod.invert(SecP192K1Field.P, ((SecP192K1FieldElement)b).x, z);
+        SecP192K1Field.inv(((SecP192K1FieldElement)b).x, z);
         SecP192K1Field.multiply(z, x, z);
         return new SecP192K1FieldElement(z);
     }
@@ -122,7 +123,7 @@ public class SecP192K1FieldElement extends ECFieldElement.AbstractFp
     {
 //        return new SecP192K1FieldElement(toBigInteger().modInverse(Q));
         int[] z = Nat192.create();
-        Mod.invert(SecP192K1Field.P, x, z);
+        SecP192K1Field.inv(x, z);
         return new SecP192K1FieldElement(z);
     }
 
@@ -136,7 +137,7 @@ public class SecP192K1FieldElement extends ECFieldElement.AbstractFp
          * Raise this element to the exponent 2^190 - 2^30 - 2^10 - 2^6 - 2^5 - 2^4 - 2^1
          *
          * Breaking up the exponent's binary representation into "repunits", we get:
-         * { 159 1s } { 1 0s } { 19 1s } { 1 0s } { 3 1s } { 3 0s} { 3 1s } { 1 0s }
+         * { 159 1s } { 1 0s } { 19 1s } { 1 0s } { 3 1s } { 3 0s } { 3 1s } { 1 0s }
          *
          * Therefore we need an addition chain containing 3, 19, 159 (the lengths of the repunits)
          * We use: 1, 2, [3], 6, 8, 16, [19], 35, 70, 140, [159]

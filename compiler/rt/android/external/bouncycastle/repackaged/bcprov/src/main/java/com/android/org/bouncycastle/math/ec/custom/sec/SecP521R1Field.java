@@ -2,9 +2,12 @@
 package com.android.org.bouncycastle.math.ec.custom.sec;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
+import com.android.org.bouncycastle.math.raw.Mod;
 import com.android.org.bouncycastle.math.raw.Nat;
 import com.android.org.bouncycastle.math.raw.Nat512;
+import com.android.org.bouncycastle.util.Pack;
 
 /**
  * @hide This class is not part of the Android public SDK API
@@ -55,6 +58,22 @@ public class SecP521R1Field
         z[16] = (x16 >>> 1) | (c >>> 23);
     }
 
+    public static void inv(int[] x, int[] z)
+    {
+        Mod.checkedModOddInverse(P, x, z);
+    }
+
+    public static int isZero(int[] x)
+    {
+        int d = 0;
+        for (int i = 0; i < 17; ++i)
+        {
+            d |= x[i];
+        }
+        d = (d >>> 1) | (d & 1);
+        return (d - 1) >> 31;
+    }
+
     public static void multiply(int[] x, int[] y, int[] z)
     {
         int[] tt = Nat.create(33);
@@ -64,14 +83,35 @@ public class SecP521R1Field
 
     public static void negate(int[] x, int[] z)
     {
-        if (Nat.isZero(17, x))
+        if (0 != isZero(x))
         {
-            Nat.zero(17, z);
+            Nat.sub(17, P, P, z);
         }
         else
         {
             Nat.sub(17, P, x, z);
         }
+    }
+
+    public static void random(SecureRandom r, int[] z)
+    {
+        byte[] bb = new byte[17 * 4];
+        do
+        {
+            r.nextBytes(bb);
+            Pack.littleEndianToInt(bb, 0, z, 0, 17);
+            z[16] &= P16;
+        }
+        while (0 == Nat.lessThan(17, z, P));
+    }
+
+    public static void randomMult(SecureRandom r, int[] z)
+    {
+        do
+        {
+            random(r, z);
+        }
+        while (0 != isZero(z));
     }
 
     public static void reduce(int[] xx, int[] z)

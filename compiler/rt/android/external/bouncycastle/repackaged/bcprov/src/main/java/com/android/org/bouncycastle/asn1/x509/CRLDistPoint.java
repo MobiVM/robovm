@@ -1,7 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 package com.android.org.bouncycastle.asn1.x509;
 
-import com.android.org.bouncycastle.asn1.ASN1EncodableVector;
 import com.android.org.bouncycastle.asn1.ASN1Object;
 import com.android.org.bouncycastle.asn1.ASN1Primitive;
 import com.android.org.bouncycastle.asn1.ASN1Sequence;
@@ -24,11 +23,6 @@ public class CRLDistPoint
         return getInstance(ASN1Sequence.getInstance(obj, explicit));
     }
 
-    public static CRLDistPoint fromExtensions(Extensions extensions)
-    {
-        return CRLDistPoint.getInstance(extensions.getExtensionParsedValue(Extension.cRLDistributionPoints));
-    }
-
     public static CRLDistPoint getInstance(
         Object  obj)
     {
@@ -44,6 +38,11 @@ public class CRLDistPoint
         return null;
     }
 
+    public static CRLDistPoint fromExtensions(Extensions extensions)
+    {
+        return getInstance(Extensions.getExtensionParsedValue(extensions, Extension.cRLDistributionPoints));
+    }
+
     private CRLDistPoint(
         ASN1Sequence seq)
     {
@@ -53,14 +52,7 @@ public class CRLDistPoint
     public CRLDistPoint(
         DistributionPoint[] points)
     {
-        ASN1EncodableVector  v = new ASN1EncodableVector();
-
-        for (int i = 0; i != points.length; i++)
-        {
-            v.add(points[i]);
-        }
-
-        seq = new DERSequence(v);
+        seq = new DERSequence(points);
     }
 
     /**
