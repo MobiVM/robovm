@@ -262,16 +262,16 @@ class UnixFileSystem extends FileSystem {
         final int mode;
         switch (access) {
             case FileSystem.ACCESS_OK:
-                mode = OsConstants.F_OK;
+                mode = OsConstants.F_OK();
                 break;
             case FileSystem.ACCESS_READ:
-                mode = OsConstants.R_OK;
+                mode = OsConstants.R_OK();
                 break;
             case FileSystem.ACCESS_WRITE:
-                mode = OsConstants.W_OK;
+                mode = OsConstants.W_OK();
                 break;
             case FileSystem.ACCESS_EXECUTE:
-                mode = OsConstants.X_OK;
+                mode = OsConstants.X_OK();
                 break;
             default:
                 throw new IllegalArgumentException("Bad access mode: " + access);

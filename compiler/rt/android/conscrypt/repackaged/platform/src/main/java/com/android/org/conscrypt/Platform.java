@@ -129,7 +129,7 @@ final class Platform {
     static void setSocketWriteTimeout(Socket s, long timeoutMillis) throws SocketException {
         StructTimeval tv = StructTimeval.fromMillis(timeoutMillis);
         try {
-            Os.setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET, SO_SNDTIMEO, tv);
+            Os.setsockoptTimeval(s.getFileDescriptor$(), SOL_SOCKET(), SO_SNDTIMEO(), tv);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsSocketException();
         }

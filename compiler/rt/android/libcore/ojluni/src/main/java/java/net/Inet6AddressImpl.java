@@ -126,12 +126,12 @@ class Inet6AddressImpl implements InetAddressImpl {
         }
         try {
             StructAddrinfo hints = new StructAddrinfo();
-            hints.ai_flags = AI_ADDRCONFIG;
-            hints.ai_family = AF_UNSPEC;
+            hints.ai_flags = AI_ADDRCONFIG();
+            hints.ai_family = AF_UNSPEC();
             // If we don't specify a socket type, every address will appear twice, once
             // for SOCK_STREAM and one for SOCK_DGRAM. Since we do not return the family
             // anyway, just pick one.
-            hints.ai_socktype = SOCK_STREAM;
+            hints.ai_socktype = SOCK_STREAM();
             InetAddress[] addresses = Libcore.os.android_getaddrinfo(host, hints, netId);
             // TODO: should getaddrinfo set the hostname of the InetAddresses it returns?
             for (InetAddress address : addresses) {
@@ -146,7 +146,7 @@ class Inet6AddressImpl implements InetAddressImpl {
             // http://code.google.com/p/android/issues/detail?id=15722
             if (gaiException.getCause() instanceof ErrnoException) {
                 int errno = ((ErrnoException) gaiException.getCause()).errno;
-                if (errno == EACCES || errno == EPERM) {
+                if (errno == EACCES() || errno == EPERM()) {
                     throw new SecurityException("Permission denied (missing INTERNET permission?)", gaiException);
                 }
             }
@@ -218,7 +218,7 @@ class Inet6AddressImpl implements InetAddressImpl {
             throws IOException {
         FileDescriptor fd = null;
         try {
-            fd = IoBridge.socket(AF_INET6, SOCK_STREAM, 0);
+            fd = IoBridge.socket(AF_INET6(), SOCK_STREAM(), 0);
             if (ttl > 0) {
                 IoBridge.setSocketOption(fd, IoBridge.JAVA_IP_TTL, ttl);
             }
@@ -232,7 +232,7 @@ class Inet6AddressImpl implements InetAddressImpl {
             // ignore the exception and return false.
             Throwable cause = e.getCause();
             return cause instanceof ErrnoException
-                    && ((ErrnoException) cause).errno == ECONNREFUSED;
+                    && ((ErrnoException) cause).errno == ECONNREFUSED();
         } finally {
             IoBridge.closeAndSignalBlockedThreads(fd);
         }
@@ -244,9 +244,9 @@ class Inet6AddressImpl implements InetAddressImpl {
         FileDescriptor fd = null;
         try {
             boolean isIPv4 = addr instanceof Inet4Address;
-            int domain = isIPv4 ? AF_INET : AF_INET6;
-            int icmpProto = isIPv4 ? IPPROTO_ICMP : IPPROTO_ICMPV6;
-            fd = IoBridge.socket(domain, SOCK_DGRAM, icmpProto);
+            int domain = isIPv4 ? AF_INET() : AF_INET6();
+            int icmpProto = isIPv4 ? IPPROTO_ICMP() : IPPROTO_ICMPV6();
+            fd = IoBridge.socket(domain, SOCK_DGRAM(), icmpProto);
 
             if (ttl > 0) {
                 IoBridge.setSocketOption(fd, IoBridge.JAVA_IP_TTL, ttl);
@@ -272,8 +272,8 @@ class Inet6AddressImpl implements InetAddressImpl {
                 int size = IoBridge
                         .recvfrom(true, fd, received, 0, received.length, 0, receivedPacket, false);
                 if (size == packet.length) {
-                    byte expectedType = isIPv4 ? (byte) ICMP_ECHOREPLY
-                            : (byte) ICMP6_ECHO_REPLY;
+                    byte expectedType = isIPv4 ? (byte) ICMP_ECHOREPLY()
+                            : (byte) ICMP6_ECHO_REPLY();
                     if (receivedPacket.getAddress().equals(addr)
                             && received[0] == expectedType
                             && received[4] == (byte) (icmpId >> 8)
@@ -341,7 +341,7 @@ class Inet6AddressImpl implements InetAddressImpl {
         // Android-changed: Rewritten on the top of Libcore.os
         InetAddress hostaddr = InetAddress.getByAddress(addr);
         try {
-            return Libcore.os.getnameinfo(hostaddr, NI_NAMEREQD);
+            return Libcore.os.getnameinfo(hostaddr, NI_NAMEREQD());
         } catch (GaiException e) {
             UnknownHostException uhe = new UnknownHostException(hostaddr.toString());
             uhe.initCause(e);

@@ -234,11 +234,11 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
         String name = (file != null ? file.getPath() : null);
         int imode = -1;
         if (mode.equals("r")) {
-            imode = O_RDONLY;
+            imode = O_RDONLY();
         } else if (mode.startsWith("rw")) {
             // Android-changed: Added. O_CREAT
             // imode = O_RDWR;
-            imode = O_RDWR | O_CREAT;
+            imode = O_RDWR() | O_CREAT();
             rw = true;
             if (mode.length() > 2) {
                 if (mode.equals("rws")) {
@@ -584,7 +584,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
     public long getFilePointer() throws IOException {
         // BEGIN Android-changed: Implement on top of libcore os API.
         try {
-            return Libcore.os.lseek(fd, 0L, SEEK_CUR);
+            return Libcore.os.lseek(fd, 0L, SEEK_CUR());
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsIOException();
         }
@@ -614,7 +614,7 @@ public class RandomAccessFile implements DataOutput, DataInput, Closeable {
             // BEGIN Android-changed: Implement on top of libcore os API.
             // seek0(pos);
             try {
-                Libcore.os.lseek(fd, pos, SEEK_SET);
+                Libcore.os.lseek(fd, pos, SEEK_SET());
                 ioTracker.reset();
             } catch (ErrnoException errnoException) {
                 throw errnoException.rethrowAsIOException();

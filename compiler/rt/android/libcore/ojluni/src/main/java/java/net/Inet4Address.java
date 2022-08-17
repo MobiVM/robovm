@@ -133,12 +133,12 @@ class Inet4Address extends InetAddress {
         super();
         holder().hostName = null;
         holder().address = 0;
-        holder().family = AF_INET;
+        holder().family = AF_INET();
     }
 
     Inet4Address(String hostName, byte addr[]) {
         holder().hostName = hostName;
-        holder().family = AF_INET;
+        holder().family = AF_INET();
         if (addr != null) {
             if (addr.length == INADDRSZ) {
                 int address  = addr[3] & 0xFF;
@@ -152,7 +152,7 @@ class Inet4Address extends InetAddress {
     }
     Inet4Address(String hostName, int address) {
         holder().hostName = hostName;
-        holder().family = AF_INET;
+        holder().family = AF_INET();
         holder().address = address;
         holder().originalHostName = hostName;
     }

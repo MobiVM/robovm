@@ -51,10 +51,10 @@ public final class MemoryMappedFile implements AutoCloseable {
      */
     @UnsupportedAppUsage
     public static MemoryMappedFile mmapRO(String path) throws ErrnoException {
-        FileDescriptor fd = Libcore.os.open(path, O_RDONLY, 0);
+        FileDescriptor fd = Libcore.os.open(path, O_RDONLY(), 0);
         try {
             long size = Libcore.os.fstat(fd).st_size;
-            long address = Libcore.os.mmap(0L, size, PROT_READ, MAP_SHARED, fd, 0);
+            long address = Libcore.os.mmap(0L, size, PROT_READ(), MAP_SHARED(), fd, 0);
             return new MemoryMappedFile(address, size);
         } finally {
             Libcore.os.close(fd);

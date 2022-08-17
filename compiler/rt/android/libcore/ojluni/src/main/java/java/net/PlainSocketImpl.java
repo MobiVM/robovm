@@ -125,7 +125,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl
     void socketCreate(boolean isStream) throws IOException {
         // The fd object must not change after calling bind, because we rely on this undocumented
         // behaviour. See libcore.java.net.SocketTest#testFileDescriptorStaysSame.
-        fd.setInt$(IoBridge.socket(AF_INET6, isStream ? SOCK_STREAM : SOCK_DGRAM, 0).getInt$());
+        fd.setInt$(IoBridge.socket(AF_INET6(), isStream ? SOCK_STREAM() : SOCK_DGRAM(), 0).getInt$());
         IoUtils.setFdOwner(fd, this);
 
         if (serverSocket != null) {
@@ -191,9 +191,9 @@ class PlainSocketImpl extends AbstractPlainSocketImpl
         // poll() with a timeout of 0 means "poll for zero millis", but a Socket timeout == 0 means
         // "wait forever". When timeout == 0 we pass -1 to poll.
         if (timeout <= 0) {
-            IoBridge.poll(fd, POLLIN | POLLERR, -1);
+            IoBridge.poll(fd, POLLIN() | POLLERR(), -1);
         } else {
-            IoBridge.poll(fd, POLLIN | POLLERR, timeout);
+            IoBridge.poll(fd, POLLIN() | POLLERR(), timeout);
         }
 
         InetSocketAddress peerAddress = new InetSocketAddress();
@@ -205,11 +205,11 @@ class PlainSocketImpl extends AbstractPlainSocketImpl
             s.address = peerAddress.getAddress();
             s.port = peerAddress.getPort();
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno == EAGAIN) {
+            if (errnoException.errno == EAGAIN()) {
                 SocketTimeoutException e = new SocketTimeoutException();
                 e.initCause(errnoException);
                 throw e;
-            } else if (errnoException.errno == EINVAL || errnoException.errno == EBADF) {
+            } else if (errnoException.errno == EINVAL() || errnoException.errno == EBADF()) {
                 throw new SocketException("Socket closed");
             }
             errnoException.rethrowAsSocketException();
@@ -262,10 +262,10 @@ class PlainSocketImpl extends AbstractPlainSocketImpl
         FileDescriptor fd1 = new FileDescriptor();
         FileDescriptor fd2 = new FileDescriptor();
         try {
-            Libcore.os.socketpair(AF_UNIX, SOCK_STREAM, 0, fd1, fd2);
+            Libcore.os.socketpair(AF_UNIX(), SOCK_STREAM(), 0, fd1, fd2);
 
             // Shutdown fd1, any reads to this fd will get EOF; any writes will get an error.
-            Libcore.os.shutdown(fd1, SHUT_RDWR);
+            Libcore.os.shutdown(fd1, SHUT_RDWR());
             Libcore.os.close(fd2);
         } catch (ErrnoException errnoException) {
             // We might have reached the maximum file descriptor number and socketpair(2) would
@@ -304,7 +304,7 @@ class PlainSocketImpl extends AbstractPlainSocketImpl
 
         try {
             byte[] buffer = new byte[] { (byte) data };
-            Libcore.os.sendto(fd, buffer, 0, 1, MSG_OOB, null, 0);
+            Libcore.os.sendto(fd, buffer, 0, 1, MSG_OOB(), null, 0);
         } catch (ErrnoException errnoException) {
             throw errnoException.rethrowAsSocketException();
         }

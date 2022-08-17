@@ -55,7 +55,7 @@ public class BlockGuardOs extends ForwardingOs {
             SocketTagger.get().tag(fd);
             return fd;
         } catch (SocketException e) {
-            throw new ErrnoException("socket", EINVAL, e);
+            throw new ErrnoException("socket", EINVAL(), e);
         }
     }
 
@@ -114,36 +114,36 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     public static boolean isNonBlockingFile(FileDescriptor fd) throws ErrnoException {
-        int flag = android.system.Os.fcntlInt(fd, F_GETFL, 0);
-        if ((flag & O_NONBLOCK) != 0) {
+        int flag = android.system.Os.fcntlInt(fd, F_GETFL(), 0);
+        if ((flag & O_NONBLOCK()) != 0) {
             return true;
         }
         return false;
     }
 
     public static boolean isUnixSocket(FileDescriptor fd) throws ErrnoException {
-        return isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_DOMAIN));
+        return isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
     }
 
     private static boolean isUnixDomain(int domain) {
-        return (domain == AF_UNIX);
+        return (domain == AF_UNIX());
     }
 
     private static boolean isInetSocket(FileDescriptor fd) throws ErrnoException{
-        return isInetDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_DOMAIN));
+        return isInetDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
     }
 
     private static boolean isInetDomain(int domain) {
-        return (domain == AF_INET) || (domain == AF_INET6);
+        return (domain == AF_INET()) || (domain == AF_INET6());
     }
 
     private static boolean isLingerSocket(FileDescriptor fd) throws ErrnoException {
-        StructLinger linger = Libcore.os.getsockoptLinger(fd, SOL_SOCKET, SO_LINGER);
+        StructLinger linger = Libcore.os.getsockoptLinger(fd, SOL_SOCKET(), SO_LINGER());
         return linger.isOn() && linger.l_linger > 0;
     }
 
     private static boolean isUdpSocket(FileDescriptor fd) throws ErrnoException {
-        return Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_PROTOCOL) == IPPROTO_UDP;
+        return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_PROTOCOL()) == IPPROTO_UDP();
     }
 
     @Override public void connect(FileDescriptor fd, InetAddress address, int port)
@@ -214,7 +214,7 @@ public class BlockGuardOs extends ForwardingOs {
         // With AI_NUMERICHOST flag set, the node must a numerical network address, therefore no
         // host address lookups will be performed. In this case, it is fine to perform on main
         // thread.
-        boolean isNumericHost = (hints.ai_flags & AI_NUMERICHOST) != 0;
+        boolean isNumericHost = (hints.ai_flags & AI_NUMERICHOST()) != 0;
         if (!isNumericHost) {
             BlockGuard.getThreadPolicy().onNetwork();
         }
@@ -267,7 +267,7 @@ public class BlockGuardOs extends ForwardingOs {
     @Override public FileDescriptor open(String path, int flags, int mode) throws ErrnoException {
         BlockGuard.getThreadPolicy().onReadFromDisk();
         BlockGuard.getVmPolicy().onPathAccess(path);
-        if ((flags & O_ACCMODE) != O_RDONLY) {
+        if ((flags & O_ACCMODE()) != O_RDONLY()) {
             BlockGuard.getThreadPolicy().onWriteToDisk();
         }
         return super.open(path, flags, mode);
@@ -473,7 +473,7 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     @Override public void msync(long address, long byteCount, int flags) throws ErrnoException {
-        if ((flags & OsConstants.MS_SYNC) != 0) {
+        if ((flags & OsConstants.MS_SYNC()) != 0) {
             BlockGuard.getThreadPolicy().onWriteToDisk();
         }
         super.msync(address, byteCount, flags);

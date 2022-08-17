@@ -61,37 +61,37 @@ public final class OsConstants {
     /**
      * Tests whether the given mode is a block device.
      */
-    public static boolean S_ISBLK(int mode) { return (mode & S_IFMT) == S_IFBLK; }
+    public static boolean S_ISBLK(int mode) { return (mode & S_IFMT()) == S_IFBLK(); }
 
     /**
      * Tests whether the given mode is a character device.
      */
-    public static boolean S_ISCHR(int mode) { return (mode & S_IFMT) == S_IFCHR; }
+    public static boolean S_ISCHR(int mode) { return (mode & S_IFMT()) == S_IFCHR(); }
 
     /**
      * Tests whether the given mode is a directory.
      */
-    public static boolean S_ISDIR(int mode) { return (mode & S_IFMT) == S_IFDIR; }
+    public static boolean S_ISDIR(int mode) { return (mode & S_IFMT()) == S_IFDIR(); }
 
     /**
      * Tests whether the given mode is a FIFO.
      */
-    public static boolean S_ISFIFO(int mode) { return (mode & S_IFMT) == S_IFIFO; }
+    public static boolean S_ISFIFO(int mode) { return (mode & S_IFMT()) == S_IFIFO(); }
 
     /**
      * Tests whether the given mode is a regular file.
      */
-    public static boolean S_ISREG(int mode) { return (mode & S_IFMT) == S_IFREG; }
+    public static boolean S_ISREG(int mode) { return (mode & S_IFMT()) == S_IFREG(); }
 
     /**
      * Tests whether the given mode is a symbolic link.
      */
-    public static boolean S_ISLNK(int mode) { return (mode & S_IFMT) == S_IFLNK; }
+    public static boolean S_ISLNK(int mode) { return (mode & S_IFMT()) == S_IFLNK(); }
 
     /**
      * Tests whether the given mode is a socket.
      */
-    public static boolean S_ISSOCK(int mode) { return (mode & S_IFMT) == S_IFSOCK; }
+    public static boolean S_ISSOCK(int mode) { return (mode & S_IFMT()) == S_IFSOCK(); }
 
     /**
      * Extracts the exit status of a child. Only valid if WIFEXITED returns true.
@@ -128,11 +128,11 @@ public final class OsConstants {
      */
     public static boolean WIFSIGNALED(int status) { return (WTERMSIG(status + 1) >= 2); }
 
-    public static final int AF_INET = placeholder();
-    public static final int AF_INET6 = placeholder();
-    public static final int AF_NETLINK = placeholder();
-    public static final int AF_PACKET = placeholder();
-    public static final int AF_UNIX = placeholder();
+    public static native int AF_INET ();
+    public static native int AF_INET6 ();
+    public static native int AF_NETLINK ();
+    public static native int AF_PACKET ();
+    public static native int AF_UNIX ();
 
     /**
      * The virt-vsock address family, linux specific.
@@ -141,16 +141,16 @@ public final class OsConstants {
      * @see <a href="https://man7.org/linux/man-pages/man7/vsock.7.html">vsock(7)</a>
      * @see VmSocketAddress
      */
-    public static final int AF_VSOCK = placeholder();
-    public static final int AF_UNSPEC = placeholder();
-    public static final int AI_ADDRCONFIG = placeholder();
-    public static final int AI_ALL = placeholder();
-    public static final int AI_CANONNAME = placeholder();
-    public static final int AI_NUMERICHOST = placeholder();
-    public static final int AI_NUMERICSERV = placeholder();
-    public static final int AI_PASSIVE = placeholder();
-    public static final int AI_V4MAPPED = placeholder();
-    public static final int ARPHRD_ETHER = placeholder();
+    public static native int AF_VSOCK ();
+    public static native int AF_UNSPEC ();
+    public static native int AI_ADDRCONFIG();
+    public static native int AI_ALL();
+    public static native int AI_CANONNAME();
+    public static native int AI_NUMERICHOST();
+    public static native int AI_NUMERICSERV();
+    public static native int AI_PASSIVE();
+    public static native int AI_V4MAPPED();
+    public static native int ARPHRD_ETHER();
 
     /**
       * The virtio-vsock {@code svmPort} value to bind for any available port.
@@ -158,7 +158,7 @@ public final class OsConstants {
       * @see <a href="https://man7.org/linux/man-pages/man7/vsock.7.html">vsock(7)</a>
       * @see VmSocketAddress
       */
-    public static final int VMADDR_PORT_ANY = placeholder();
+    public static native int VMADDR_PORT_ANY();
 
     /**
       * The virtio-vsock {@code svmCid} value to listens for all CIDs.
@@ -166,7 +166,7 @@ public final class OsConstants {
       * @see <a href="https://man7.org/linux/man-pages/man7/vsock.7.html">vsock(7)</a>
       * @see VmSocketAddress
       */
-    public static final int VMADDR_CID_ANY = placeholder();
+    public static native int VMADDR_CID_ANY();
 
     /**
       * The virtio-vsock {@code svmCid} value for host communication.
@@ -174,7 +174,7 @@ public final class OsConstants {
       * @see <a href="https://man7.org/linux/man-pages/man7/vsock.7.html">vsock(7)</a>
       * @see VmSocketAddress
       */
-    public static final int VMADDR_CID_LOCAL = placeholder();
+    public static native int VMADDR_CID_LOCAL();
 
     /**
       * The virtio-vsock {@code svmCid} value for loopback communication.
@@ -182,7 +182,7 @@ public final class OsConstants {
       * @see <a href="https://man7.org/linux/man-pages/man7/vsock.7.html">vsock(7)</a>
       * @see VmSocketAddress
       */
-    public static final int VMADDR_CID_HOST = placeholder();
+    public static native int VMADDR_CID_HOST();
 
     /**
      * ARP protocol loopback device identifier.
@@ -192,138 +192,138 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int ARPHRD_LOOPBACK = placeholder();
-    public static final int CAP_AUDIT_CONTROL = placeholder();
-    public static final int CAP_AUDIT_WRITE = placeholder();
-    public static final int CAP_BLOCK_SUSPEND = placeholder();
-    public static final int CAP_CHOWN = placeholder();
-    public static final int CAP_DAC_OVERRIDE = placeholder();
-    public static final int CAP_DAC_READ_SEARCH = placeholder();
-    public static final int CAP_FOWNER = placeholder();
-    public static final int CAP_FSETID = placeholder();
-    public static final int CAP_IPC_LOCK = placeholder();
-    public static final int CAP_IPC_OWNER = placeholder();
-    public static final int CAP_KILL = placeholder();
-    public static final int CAP_LAST_CAP = placeholder();
-    public static final int CAP_LEASE = placeholder();
-    public static final int CAP_LINUX_IMMUTABLE = placeholder();
-    public static final int CAP_MAC_ADMIN = placeholder();
-    public static final int CAP_MAC_OVERRIDE = placeholder();
-    public static final int CAP_MKNOD = placeholder();
-    public static final int CAP_NET_ADMIN = placeholder();
-    public static final int CAP_NET_BIND_SERVICE = placeholder();
-    public static final int CAP_NET_BROADCAST = placeholder();
-    public static final int CAP_NET_RAW = placeholder();
-    public static final int CAP_SETFCAP = placeholder();
-    public static final int CAP_SETGID = placeholder();
-    public static final int CAP_SETPCAP = placeholder();
-    public static final int CAP_SETUID = placeholder();
-    public static final int CAP_SYS_ADMIN = placeholder();
-    public static final int CAP_SYS_BOOT = placeholder();
-    public static final int CAP_SYS_CHROOT = placeholder();
-    public static final int CAP_SYSLOG = placeholder();
-    public static final int CAP_SYS_MODULE = placeholder();
-    public static final int CAP_SYS_NICE = placeholder();
-    public static final int CAP_SYS_PACCT = placeholder();
-    public static final int CAP_SYS_PTRACE = placeholder();
-    public static final int CAP_SYS_RAWIO = placeholder();
-    public static final int CAP_SYS_RESOURCE = placeholder();
-    public static final int CAP_SYS_TIME = placeholder();
-    public static final int CAP_SYS_TTY_CONFIG = placeholder();
-    public static final int CAP_WAKE_ALARM = placeholder();
-    public static final int E2BIG = placeholder();
-    public static final int EACCES = placeholder();
-    public static final int EADDRINUSE = placeholder();
-    public static final int EADDRNOTAVAIL = placeholder();
-    public static final int EAFNOSUPPORT = placeholder();
-    public static final int EAGAIN = placeholder();
-    public static final int EAI_AGAIN = placeholder();
-    public static final int EAI_BADFLAGS = placeholder();
-    public static final int EAI_FAIL = placeholder();
-    public static final int EAI_FAMILY = placeholder();
-    public static final int EAI_MEMORY = placeholder();
-    public static final int EAI_NODATA = placeholder();
-    public static final int EAI_NONAME = placeholder();
-    public static final int EAI_OVERFLOW = placeholder();
-    public static final int EAI_SERVICE = placeholder();
-    public static final int EAI_SOCKTYPE = placeholder();
-    public static final int EAI_SYSTEM = placeholder();
-    public static final int EALREADY = placeholder();
-    public static final int EBADF = placeholder();
-    public static final int EBADMSG = placeholder();
-    public static final int EBUSY = placeholder();
-    public static final int ECANCELED = placeholder();
-    public static final int ECHILD = placeholder();
-    public static final int ECONNABORTED = placeholder();
-    public static final int ECONNREFUSED = placeholder();
-    public static final int ECONNRESET = placeholder();
-    public static final int EDEADLK = placeholder();
-    public static final int EDESTADDRREQ = placeholder();
-    public static final int EDOM = placeholder();
-    public static final int EDQUOT = placeholder();
-    public static final int EEXIST = placeholder();
-    public static final int EFAULT = placeholder();
-    public static final int EFBIG = placeholder();
-    public static final int EHOSTUNREACH = placeholder();
-    public static final int EIDRM = placeholder();
-    public static final int EILSEQ = placeholder();
-    public static final int EINPROGRESS = placeholder();
-    public static final int EINTR = placeholder();
-    public static final int EINVAL = placeholder();
-    public static final int EIO = placeholder();
-    public static final int EISCONN = placeholder();
-    public static final int EISDIR = placeholder();
-    public static final int ELOOP = placeholder();
-    public static final int EMFILE = placeholder();
-    public static final int EMLINK = placeholder();
-    public static final int EMSGSIZE = placeholder();
-    public static final int EMULTIHOP = placeholder();
-    public static final int ENAMETOOLONG = placeholder();
-    public static final int ENETDOWN = placeholder();
-    public static final int ENETRESET = placeholder();
-    public static final int ENETUNREACH = placeholder();
-    public static final int ENFILE = placeholder();
-    public static final int ENOBUFS = placeholder();
-    public static final int ENODATA = placeholder();
-    public static final int ENODEV = placeholder();
-    public static final int ENOENT = placeholder();
-    public static final int ENOEXEC = placeholder();
-    public static final int ENOLCK = placeholder();
-    public static final int ENOLINK = placeholder();
-    public static final int ENOMEM = placeholder();
-    public static final int ENOMSG = placeholder();
-    public static final int ENONET = placeholder();
-    public static final int ENOPROTOOPT = placeholder();
-    public static final int ENOSPC = placeholder();
-    public static final int ENOSR = placeholder();
-    public static final int ENOSTR = placeholder();
-    public static final int ENOSYS = placeholder();
-    public static final int ENOTCONN = placeholder();
-    public static final int ENOTDIR = placeholder();
-    public static final int ENOTEMPTY = placeholder();
-    public static final int ENOTSOCK = placeholder();
-    public static final int ENOTSUP = placeholder();
-    public static final int ENOTTY = placeholder();
-    public static final int ENXIO = placeholder();
-    public static final int EOPNOTSUPP = placeholder();
-    public static final int EOVERFLOW = placeholder();
-    public static final int EPERM = placeholder();
-    public static final int EPIPE = placeholder();
-    public static final int EPROTO = placeholder();
-    public static final int EPROTONOSUPPORT = placeholder();
-    public static final int EPROTOTYPE = placeholder();
-    public static final int ERANGE = placeholder();
-    public static final int EROFS = placeholder();
-    public static final int ESPIPE = placeholder();
-    public static final int ESRCH = placeholder();
-    public static final int ESTALE = placeholder();
-    public static final int ETH_P_ALL = placeholder();
-    public static final int ETH_P_ARP = placeholder();
-    public static final int ETH_P_IP = placeholder();
-    public static final int ETH_P_IPV6 = placeholder();
-    public static final int ETIME = placeholder();
-    public static final int ETIMEDOUT = placeholder();
-    public static final int ETXTBSY = placeholder();
+    public static native int ARPHRD_LOOPBACK();
+    public static native int CAP_AUDIT_CONTROL();
+    public static native int CAP_AUDIT_WRITE();
+    public static native int CAP_BLOCK_SUSPEND();
+    public static native int CAP_CHOWN();
+    public static native int CAP_DAC_OVERRIDE();
+    public static native int CAP_DAC_READ_SEARCH();
+    public static native int CAP_FOWNER();
+    public static native int CAP_FSETID();
+    public static native int CAP_IPC_LOCK();
+    public static native int CAP_IPC_OWNER();
+    public static native int CAP_KILL();
+    public static native int CAP_LAST_CAP();
+    public static native int CAP_LEASE();
+    public static native int CAP_LINUX_IMMUTABLE();
+    public static native int CAP_MAC_ADMIN();
+    public static native int CAP_MAC_OVERRIDE();
+    public static native int CAP_MKNOD();
+    public static native int CAP_NET_ADMIN();
+    public static native int CAP_NET_BIND_SERVICE();
+    public static native int CAP_NET_BROADCAST();
+    public static native int CAP_NET_RAW();
+    public static native int CAP_SETFCAP();
+    public static native int CAP_SETGID();
+    public static native int CAP_SETPCAP();
+    public static native int CAP_SETUID();
+    public static native int CAP_SYS_ADMIN();
+    public static native int CAP_SYS_BOOT();
+    public static native int CAP_SYS_CHROOT();
+    public static native int CAP_SYSLOG();
+    public static native int CAP_SYS_MODULE();
+    public static native int CAP_SYS_NICE();
+    public static native int CAP_SYS_PACCT();
+    public static native int CAP_SYS_PTRACE();
+    public static native int CAP_SYS_RAWIO();
+    public static native int CAP_SYS_RESOURCE();
+    public static native int CAP_SYS_TIME();
+    public static native int CAP_SYS_TTY_CONFIG();
+    public static native int CAP_WAKE_ALARM();
+    public static native int E2BIG();
+    public static native int EACCES();
+    public static native int EADDRINUSE();
+    public static native int EADDRNOTAVAIL();
+    public static native int EAFNOSUPPORT();
+    public static native int EAGAIN();
+    public static native int EAI_AGAIN();
+    public static native int EAI_BADFLAGS();
+    public static native int EAI_FAIL();
+    public static native int EAI_FAMILY();
+    public static native int EAI_MEMORY();
+    public static native int EAI_NODATA();
+    public static native int EAI_NONAME();
+    public static native int EAI_OVERFLOW();
+    public static native int EAI_SERVICE();
+    public static native int EAI_SOCKTYPE();
+    public static native int EAI_SYSTEM();
+    public static native int EALREADY();
+    public static native int EBADF();
+    public static native int EBADMSG();
+    public static native int EBUSY();
+    public static native int ECANCELED();
+    public static native int ECHILD();
+    public static native int ECONNABORTED();
+    public static native int ECONNREFUSED();
+    public static native int ECONNRESET();
+    public static native int EDEADLK();
+    public static native int EDESTADDRREQ();
+    public static native int EDOM();
+    public static native int EDQUOT();
+    public static native int EEXIST();
+    public static native int EFAULT();
+    public static native int EFBIG();
+    public static native int EHOSTUNREACH();
+    public static native int EIDRM();
+    public static native int EILSEQ();
+    public static native int EINPROGRESS();
+    public static native int EINTR();
+    public static native int EINVAL();
+    public static native int EIO();
+    public static native int EISCONN();
+    public static native int EISDIR();
+    public static native int ELOOP();
+    public static native int EMFILE();
+    public static native int EMLINK();
+    public static native int EMSGSIZE();
+    public static native int EMULTIHOP();
+    public static native int ENAMETOOLONG();
+    public static native int ENETDOWN();
+    public static native int ENETRESET();
+    public static native int ENETUNREACH();
+    public static native int ENFILE();
+    public static native int ENOBUFS();
+    public static native int ENODATA();
+    public static native int ENODEV();
+    public static native int ENOENT();
+    public static native int ENOEXEC();
+    public static native int ENOLCK();
+    public static native int ENOLINK();
+    public static native int ENOMEM();
+    public static native int ENOMSG();
+    public static native int ENONET();
+    public static native int ENOPROTOOPT();
+    public static native int ENOSPC();
+    public static native int ENOSR();
+    public static native int ENOSTR();
+    public static native int ENOSYS();
+    public static native int ENOTCONN();
+    public static native int ENOTDIR();
+    public static native int ENOTEMPTY();
+    public static native int ENOTSOCK();
+    public static native int ENOTSUP();
+    public static native int ENOTTY();
+    public static native int ENXIO();
+    public static native int EOPNOTSUPP();
+    public static native int EOVERFLOW();
+    public static native int EPERM();
+    public static native int EPIPE();
+    public static native int EPROTO();
+    public static native int EPROTONOSUPPORT();
+    public static native int EPROTOTYPE();
+    public static native int ERANGE();
+    public static native int EROFS();
+    public static native int ESPIPE();
+    public static native int ESRCH();
+    public static native int ESTALE();
+    public static native int ETH_P_ALL();
+    public static native int ETH_P_ARP();
+    public static native int ETH_P_IP();
+    public static native int ETH_P_IPV6();
+    public static native int ETIME();
+    public static native int ETIMEDOUT();
+    public static native int ETXTBSY();
     /**
      * "Too many users" error.
      * See <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno(3)</a>.
@@ -333,91 +333,91 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int EUSERS = placeholder();
+    public static native int EUSERS();
     // On Linux, EWOULDBLOCK == EAGAIN. Use EAGAIN instead, to reduce confusion.
-    public static final int EXDEV = placeholder();
-    public static final int EXIT_FAILURE = placeholder();
-    public static final int EXIT_SUCCESS = placeholder();
-    public static final int FD_CLOEXEC = placeholder();
-    public static final int FIONREAD = placeholder();
-    public static final int F_DUPFD = placeholder();
-    public static final int F_DUPFD_CLOEXEC = placeholder();
-    public static final int F_GETFD = placeholder();
-    public static final int F_GETFL = placeholder();
-    public static final int F_GETLK = placeholder();
-    public static final int F_GETLK64 = placeholder();
-    public static final int F_GETOWN = placeholder();
-    public static final int F_OK = placeholder();
-    public static final int F_RDLCK = placeholder();
-    public static final int F_SETFD = placeholder();
-    public static final int F_SETFL = placeholder();
-    public static final int F_SETLK = placeholder();
-    public static final int F_SETLK64 = placeholder();
-    public static final int F_SETLKW = placeholder();
-    public static final int F_SETLKW64 = placeholder();
-    public static final int F_SETOWN = placeholder();
-    public static final int F_UNLCK = placeholder();
-    public static final int F_WRLCK = placeholder();
-    public static final int ICMP_ECHO = placeholder();
-    public static final int ICMP_ECHOREPLY = placeholder();
-    public static final int ICMP6_ECHO_REQUEST = placeholder();
-    public static final int ICMP6_ECHO_REPLY = placeholder();
-    public static final int IFA_F_DADFAILED = placeholder();
-    public static final int IFA_F_DEPRECATED = placeholder();
-    public static final int IFA_F_HOMEADDRESS = placeholder();
-    public static final int IFA_F_NODAD = placeholder();
-    public static final int IFA_F_OPTIMISTIC = placeholder();
-    public static final int IFA_F_PERMANENT = placeholder();
-    public static final int IFA_F_SECONDARY = placeholder();
-    public static final int IFA_F_TEMPORARY = placeholder();
-    public static final int IFA_F_TENTATIVE = placeholder();
-    public static final int IFF_ALLMULTI = placeholder();
-    public static final int IFF_AUTOMEDIA = placeholder();
-    public static final int IFF_BROADCAST = placeholder();
-    public static final int IFF_DEBUG = placeholder();
-    public static final int IFF_DYNAMIC = placeholder();
-    public static final int IFF_LOOPBACK = placeholder();
-    public static final int IFF_MASTER = placeholder();
-    public static final int IFF_MULTICAST = placeholder();
-    public static final int IFF_NOARP = placeholder();
-    public static final int IFF_NOTRAILERS = placeholder();
-    public static final int IFF_POINTOPOINT = placeholder();
-    public static final int IFF_PORTSEL = placeholder();
-    public static final int IFF_PROMISC = placeholder();
-    public static final int IFF_RUNNING = placeholder();
-    public static final int IFF_SLAVE = placeholder();
-    public static final int IFF_UP = placeholder();
-    public static final int IPPROTO_ICMP = placeholder();
-    public static final int IPPROTO_ICMPV6 = placeholder();
-    public static final int IPPROTO_IP = placeholder();
-    public static final int IPPROTO_IPV6 = placeholder();
-    public static final int IPPROTO_RAW = placeholder();
-    public static final int IPPROTO_TCP = placeholder();
-    public static final int IPPROTO_UDP = placeholder();
-    public static final int IPV6_CHECKSUM = placeholder();
-    public static final int IPV6_MULTICAST_HOPS = placeholder();
-    public static final int IPV6_MULTICAST_IF = placeholder();
-    public static final int IPV6_MULTICAST_LOOP = placeholder();
-    public static final int IPV6_RECVDSTOPTS = placeholder();
-    public static final int IPV6_RECVHOPLIMIT = placeholder();
-    public static final int IPV6_RECVHOPOPTS = placeholder();
-    public static final int IPV6_RECVPKTINFO = placeholder();
-    public static final int IPV6_RECVRTHDR = placeholder();
-    public static final int IPV6_RECVTCLASS = placeholder();
-    public static final int IPV6_TCLASS = placeholder();
-    public static final int IPV6_UNICAST_HOPS = placeholder();
-    public static final int IPV6_V6ONLY = placeholder();
+    public static native int EXDEV();
+    public static native int EXIT_FAILURE();
+    public static native int EXIT_SUCCESS();
+    public static native int FD_CLOEXEC();
+    public static native int FIONREAD();
+    public static native int F_DUPFD();
+    public static native int F_DUPFD_CLOEXEC();
+    public static native int F_GETFD();
+    public static native int F_GETFL();
+    public static native int F_GETLK();
+    public static native int F_GETLK64();
+    public static native int F_GETOWN();
+    public static native int F_OK();
+    public static native int F_RDLCK();
+    public static native int F_SETFD();
+    public static native int F_SETFL();
+    public static native int F_SETLK();
+    public static native int F_SETLK64();
+    public static native int F_SETLKW();
+    public static native int F_SETLKW64();
+    public static native int F_SETOWN();
+    public static native int F_UNLCK();
+    public static native int F_WRLCK();
+    public static native int ICMP_ECHO();
+    public static native int ICMP_ECHOREPLY();
+    public static native int ICMP6_ECHO_REQUEST();
+    public static native int ICMP6_ECHO_REPLY();
+    public static native int IFA_F_DADFAILED();
+    public static native int IFA_F_DEPRECATED();
+    public static native int IFA_F_HOMEADDRESS();
+    public static native int IFA_F_NODAD();
+    public static native int IFA_F_OPTIMISTIC();
+    public static native int IFA_F_PERMANENT();
+    public static native int IFA_F_SECONDARY();
+    public static native int IFA_F_TEMPORARY();
+    public static native int IFA_F_TENTATIVE();
+    public static native int IFF_ALLMULTI();
+    public static native int IFF_AUTOMEDIA();
+    public static native int IFF_BROADCAST();
+    public static native int IFF_DEBUG();
+    public static native int IFF_DYNAMIC();
+    public static native int IFF_LOOPBACK();
+    public static native int IFF_MASTER();
+    public static native int IFF_MULTICAST();
+    public static native int IFF_NOARP();
+    public static native int IFF_NOTRAILERS();
+    public static native int IFF_POINTOPOINT();
+    public static native int IFF_PORTSEL();
+    public static native int IFF_PROMISC();
+    public static native int IFF_RUNNING();
+    public static native int IFF_SLAVE();
+    public static native int IFF_UP();
+    public static native int IPPROTO_ICMP();
+    public static native int IPPROTO_ICMPV6();
+    public static native int IPPROTO_IP();
+    public static native int IPPROTO_IPV6();
+    public static native int IPPROTO_RAW();
+    public static native int IPPROTO_TCP();
+    public static native int IPPROTO_UDP();
+    public static native int IPV6_CHECKSUM();
+    public static native int IPV6_MULTICAST_HOPS();
+    public static native int IPV6_MULTICAST_IF();
+    public static native int IPV6_MULTICAST_LOOP();
+    public static native int IPV6_RECVDSTOPTS();
+    public static native int IPV6_RECVHOPLIMIT();
+    public static native int IPV6_RECVHOPOPTS();
+    public static native int IPV6_RECVPKTINFO();
+    public static native int IPV6_RECVRTHDR();
+    public static native int IPV6_RECVTCLASS();
+    public static native int IPV6_TCLASS();
+    public static native int IPV6_UNICAST_HOPS();
+    public static native int IPV6_V6ONLY();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int IP_MULTICAST_ALL = placeholder();
-    public static final int IP_MULTICAST_IF = placeholder();
-    public static final int IP_MULTICAST_LOOP = placeholder();
-    public static final int IP_MULTICAST_TTL = placeholder();
+    public static native int IP_MULTICAST_ALL();
+    public static native int IP_MULTICAST_IF();
+    public static native int IP_MULTICAST_LOOP();
+    public static native int IP_MULTICAST_TTL();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int IP_RECVTOS = placeholder();
-    public static final int IP_TOS = placeholder();
-    public static final int IP_TTL = placeholder();
+    public static native int IP_RECVTOS();
+    public static native int IP_TOS();
+    public static native int IP_TTL();
     /**
      * Version constant to be used in {@link StructCapUserHeader} with
      * {@link Os#capset(StructCapUserHeader, StructCapUserData[])} and
@@ -430,9 +430,9 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int _LINUX_CAPABILITY_VERSION_3 = placeholder();
-    public static final int MAP_FIXED = placeholder();
-    public static final int MAP_ANONYMOUS = placeholder();
+    public static native int _LINUX_CAPABILITY_VERSION_3();
+    public static native int MAP_FIXED();
+    public static native int MAP_ANONYMOUS();
     /**
      * Flag argument for {@code mmap(long, long, int, int, FileDescriptor, long)}.
      *
@@ -443,43 +443,43 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int MAP_POPULATE = placeholder();
-    public static final int MAP_PRIVATE = placeholder();
-    public static final int MAP_SHARED = placeholder();
-    public static final int MCAST_JOIN_GROUP = placeholder();
-    public static final int MCAST_LEAVE_GROUP = placeholder();
-    public static final int MCAST_JOIN_SOURCE_GROUP = placeholder();
-    public static final int MCAST_LEAVE_SOURCE_GROUP = placeholder();
-    public static final int MCAST_BLOCK_SOURCE = placeholder();
-    public static final int MCAST_UNBLOCK_SOURCE = placeholder();
-    public static final int MCL_CURRENT = placeholder();
-    public static final int MCL_FUTURE = placeholder();
-    public static final int MFD_CLOEXEC = placeholder();
-    public static final int MSG_CTRUNC = placeholder();
-    public static final int MSG_DONTROUTE = placeholder();
-    public static final int MSG_EOR = placeholder();
-    public static final int MSG_OOB = placeholder();
-    public static final int MSG_PEEK = placeholder();
-    public static final int MSG_TRUNC = placeholder();
-    public static final int MSG_WAITALL = placeholder();
-    public static final int MS_ASYNC = placeholder();
-    public static final int MS_INVALIDATE = placeholder();
-    public static final int MS_SYNC = placeholder();
-    public static final int NETLINK_NETFILTER = placeholder();
-    public static final int NETLINK_ROUTE = placeholder();
+    public static native int MAP_POPULATE();
+    public static native int MAP_PRIVATE();
+    public static native int MAP_SHARED();
+    public static native int MCAST_JOIN_GROUP();
+    public static native int MCAST_LEAVE_GROUP();
+    public static native int MCAST_JOIN_SOURCE_GROUP();
+    public static native int MCAST_LEAVE_SOURCE_GROUP();
+    public static native int MCAST_BLOCK_SOURCE();
+    public static native int MCAST_UNBLOCK_SOURCE();
+    public static native int MCL_CURRENT();
+    public static native int MCL_FUTURE();
+    public static native int MFD_CLOEXEC();
+    public static native int MSG_CTRUNC();
+    public static native int MSG_DONTROUTE();
+    public static native int MSG_EOR();
+    public static native int MSG_OOB();
+    public static native int MSG_PEEK();
+    public static native int MSG_TRUNC();
+    public static native int MSG_WAITALL();
+    public static native int MS_ASYNC();
+    public static native int MS_INVALIDATE();
+    public static native int MS_SYNC();
+    public static native int NETLINK_NETFILTER();
+    public static native int NETLINK_ROUTE();
     /**
      * SELinux enforces that only system_server and netd may use this netlink socket type.
      */
-    public static final int NETLINK_INET_DIAG = placeholder();
-    public static final int NI_DGRAM = placeholder();
-    public static final int NI_NAMEREQD = placeholder();
-    public static final int NI_NOFQDN = placeholder();
-    public static final int NI_NUMERICHOST = placeholder();
-    public static final int NI_NUMERICSERV = placeholder();
-    public static final int O_ACCMODE = placeholder();
-    public static final int O_APPEND = placeholder();
-    public static final int O_CLOEXEC = placeholder();
-    public static final int O_CREAT = placeholder();
+    public static native int NETLINK_INET_DIAG();
+    public static native int NI_DGRAM();
+    public static native int NI_NAMEREQD();
+    public static native int NI_NOFQDN();
+    public static native int NI_NUMERICHOST();
+    public static native int NI_NUMERICSERV();
+    public static native int O_ACCMODE();
+    public static native int O_APPEND();
+    public static native int O_CLOEXEC();
+    public static native int O_CREAT();
     /**
      * Flag for {@code Os#open(String, int, int)}.
      *
@@ -500,27 +500,27 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int O_DIRECT = placeholder();
-    public static final int O_EXCL = placeholder();
-    public static final int O_NOCTTY = placeholder();
-    public static final int O_NOFOLLOW = placeholder();
-    public static final int O_NONBLOCK = placeholder();
-    public static final int O_RDONLY = placeholder();
-    public static final int O_RDWR = placeholder();
-    public static final int O_SYNC = placeholder();
-    public static final int O_DSYNC = placeholder();
-    public static final int O_TRUNC = placeholder();
-    public static final int O_WRONLY = placeholder();
-    public static final int POLLERR = placeholder();
-    public static final int POLLHUP = placeholder();
-    public static final int POLLIN = placeholder();
-    public static final int POLLNVAL = placeholder();
-    public static final int POLLOUT = placeholder();
-    public static final int POLLPRI = placeholder();
-    public static final int POLLRDBAND = placeholder();
-    public static final int POLLRDNORM = placeholder();
-    public static final int POLLWRBAND = placeholder();
-    public static final int POLLWRNORM = placeholder();
+    public static native int O_DIRECT();
+    public static native int O_EXCL();
+    public static native int O_NOCTTY();
+    public static native int O_NOFOLLOW();
+    public static native int O_NONBLOCK();
+    public static native int O_RDONLY();
+    public static native int O_RDWR();
+    public static native int O_SYNC();
+    public static native int O_DSYNC();
+    public static native int O_TRUNC();
+    public static native int O_WRONLY();
+    public static native int POLLERR();
+    public static native int POLLHUP();
+    public static native int POLLIN();
+    public static native int POLLNVAL();
+    public static native int POLLOUT();
+    public static native int POLLPRI();
+    public static native int POLLRDBAND();
+    public static native int POLLRDNORM();
+    public static native int POLLWRBAND();
+    public static native int POLLWRNORM();
     /**
      * Reads or changes the ambient capability set of the calling thread.
      * Has to be used as a first argument for {@link Os#prctl(int, long, long, long, long)}.
@@ -532,7 +532,7 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int PR_CAP_AMBIENT = placeholder();
+    public static native int PR_CAP_AMBIENT();
     /**
      * The capability specified in {@code arg3} of {@link Os#prctl(int, long, long, long, long)}
      * is added to the ambient set. The specified capability must already
@@ -545,15 +545,15 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int PR_CAP_AMBIENT_RAISE = placeholder();
-    public static final int PR_GET_DUMPABLE = placeholder();
-    public static final int PR_SET_DUMPABLE = placeholder();
-    public static final int PR_SET_NO_NEW_PRIVS = placeholder();
-    public static final int PROT_EXEC = placeholder();
-    public static final int PROT_NONE = placeholder();
-    public static final int PROT_READ = placeholder();
-    public static final int PROT_WRITE = placeholder();
-    public static final int R_OK = placeholder();
+    public static native int PR_CAP_AMBIENT_RAISE();
+    public static native int PR_GET_DUMPABLE();
+    public static native int PR_SET_DUMPABLE();
+    public static native int PR_SET_NO_NEW_PRIVS();
+    public static native int PROT_EXEC();
+    public static native int PROT_NONE();
+    public static native int PROT_READ();
+    public static native int PROT_WRITE();
+    public static native int R_OK();
     /**
      * Specifies a value one greater than the maximum file
      * descriptor number that can be opened by this process.
@@ -569,12 +569,12 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int RLIMIT_NOFILE = placeholder();
-    public static final int RT_SCOPE_HOST = placeholder();
-    public static final int RT_SCOPE_LINK = placeholder();
-    public static final int RT_SCOPE_NOWHERE = placeholder();
-    public static final int RT_SCOPE_SITE = placeholder();
-    public static final int RT_SCOPE_UNIVERSE = placeholder();
+    public static native int RLIMIT_NOFILE();
+    public static native int RT_SCOPE_HOST();
+    public static native int RT_SCOPE_LINK();
+    public static native int RT_SCOPE_NOWHERE();
+    public static native int RT_SCOPE_SITE();
+    public static native int RT_SCOPE_UNIVERSE();
     /**
      * Bitmask for IPv4 addresses add/delete events multicast groups mask.
      * Used in {@link NetlinkSocketAddress}.
@@ -586,84 +586,84 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int RTMGRP_IPV4_IFADDR = placeholder();
+    public static native int RTMGRP_IPV4_IFADDR();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV4_MROUTE = placeholder();
+    public static native int RTMGRP_IPV4_MROUTE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV4_ROUTE = placeholder();
+    public static native int RTMGRP_IPV4_ROUTE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV4_RULE = placeholder();
+    public static native int RTMGRP_IPV4_RULE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV6_IFADDR = placeholder();
+    public static native int RTMGRP_IPV6_IFADDR();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV6_IFINFO = placeholder();
+    public static native int RTMGRP_IPV6_IFINFO();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV6_MROUTE = placeholder();
+    public static native int RTMGRP_IPV6_MROUTE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV6_PREFIX = placeholder();
+    public static native int RTMGRP_IPV6_PREFIX();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_IPV6_ROUTE = placeholder();
+    public static native int RTMGRP_IPV6_ROUTE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_LINK = placeholder();
-    public static final int RTMGRP_NEIGH = placeholder();
+    public static native int RTMGRP_LINK();
+    public static native int RTMGRP_NEIGH();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_NOTIFY = placeholder();
+    public static native int RTMGRP_NOTIFY();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int RTMGRP_TC = placeholder();
-    public static final int SEEK_CUR = placeholder();
-    public static final int SEEK_END = placeholder();
-    public static final int SEEK_SET = placeholder();
-    public static final int SHUT_RD = placeholder();
-    public static final int SHUT_RDWR = placeholder();
-    public static final int SHUT_WR = placeholder();
-    public static final int SIGABRT = placeholder();
-    public static final int SIGALRM = placeholder();
-    public static final int SIGBUS = placeholder();
-    public static final int SIGCHLD = placeholder();
-    public static final int SIGCONT = placeholder();
-    public static final int SIGFPE = placeholder();
-    public static final int SIGHUP = placeholder();
-    public static final int SIGILL = placeholder();
-    public static final int SIGINT = placeholder();
-    public static final int SIGIO = placeholder();
-    public static final int SIGKILL = placeholder();
-    public static final int SIGPIPE = placeholder();
-    public static final int SIGPROF = placeholder();
-    public static final int SIGPWR = placeholder();
-    public static final int SIGQUIT = placeholder();
-    public static final int SIGRTMAX = placeholder();
-    public static final int SIGRTMIN = placeholder();
-    public static final int SIGSEGV = placeholder();
-    public static final int SIGSTKFLT = placeholder();
-    public static final int SIGSTOP = placeholder();
-    public static final int SIGSYS = placeholder();
-    public static final int SIGTERM = placeholder();
-    public static final int SIGTRAP = placeholder();
-    public static final int SIGTSTP = placeholder();
-    public static final int SIGTTIN = placeholder();
-    public static final int SIGTTOU = placeholder();
-    public static final int SIGURG = placeholder();
-    public static final int SIGUSR1 = placeholder();
-    public static final int SIGUSR2 = placeholder();
-    public static final int SIGVTALRM = placeholder();
-    public static final int SIGWINCH = placeholder();
-    public static final int SIGXCPU = placeholder();
-    public static final int SIGXFSZ = placeholder();
-    public static final int SIOCGIFADDR = placeholder();
-    public static final int SIOCGIFBRDADDR = placeholder();
-    public static final int SIOCGIFDSTADDR = placeholder();
-    public static final int SIOCGIFNETMASK = placeholder();
+    public static native int RTMGRP_TC();
+    public static native int SEEK_CUR();
+    public static native int SEEK_END();
+    public static native int SEEK_SET();
+    public static native int SHUT_RD();
+    public static native int SHUT_RDWR();
+    public static native int SHUT_WR();
+    public static native int SIGABRT();
+    public static native int SIGALRM();
+    public static native int SIGBUS();
+    public static native int SIGCHLD();
+    public static native int SIGCONT();
+    public static native int SIGFPE();
+    public static native int SIGHUP();
+    public static native int SIGILL();
+    public static native int SIGINT();
+    public static native int SIGIO();
+    public static native int SIGKILL();
+    public static native int SIGPIPE();
+    public static native int SIGPROF();
+    public static native int SIGPWR();
+    public static native int SIGQUIT();
+    public static native int SIGRTMAX();
+    public static native int SIGRTMIN();
+    public static native int SIGSEGV();
+    public static native int SIGSTKFLT();
+    public static native int SIGSTOP();
+    public static native int SIGSYS();
+    public static native int SIGTERM();
+    public static native int SIGTRAP();
+    public static native int SIGTSTP();
+    public static native int SIGTTIN();
+    public static native int SIGTTOU();
+    public static native int SIGURG();
+    public static native int SIGUSR1();
+    public static native int SIGUSR2();
+    public static native int SIGVTALRM();
+    public static native int SIGWINCH();
+    public static native int SIGXCPU();
+    public static native int SIGXFSZ();
+    public static native int SIOCGIFADDR();
+    public static native int SIOCGIFBRDADDR();
+    public static native int SIOCGIFDSTADDR();
+    public static native int SIOCGIFNETMASK();
 
     /**
      * Set the close-on-exec ({@code FD_CLOEXEC}) flag on the new file
@@ -677,8 +677,8 @@ public final class OsConstants {
      * may use {@link #O_CLOEXEC} instead. On Android, {@code O_CLOEXEC} and
      * {@code SOCK_CLOEXEC} are the same value.
      */
-    public static final int SOCK_CLOEXEC = placeholder();
-    public static final int SOCK_DGRAM = placeholder();
+    public static native int SOCK_CLOEXEC();
+    public static native int SOCK_DGRAM();
 
     /**
      * Set the O_NONBLOCK file status flag on the file descriptor
@@ -689,36 +689,36 @@ public final class OsConstants {
      * may use {@link #O_NONBLOCK} instead. On Android, {@code O_NONBLOCK}
      * and {@code SOCK_NONBLOCK} are the same value.
      */
-    public static final int SOCK_NONBLOCK = placeholder();
-    public static final int SOCK_RAW = placeholder();
-    public static final int SOCK_SEQPACKET = placeholder();
-    public static final int SOCK_STREAM = placeholder();
-    public static final int SOL_SOCKET = placeholder();
-    public static final int SOL_UDP = placeholder();
-    public static final int SO_BINDTODEVICE = placeholder();
-    public static final int SO_BROADCAST = placeholder();
-    public static final int SO_DEBUG = placeholder();
+    public static native int SOCK_NONBLOCK();
+    public static native int SOCK_RAW();
+    public static native int SOCK_SEQPACKET();
+    public static native int SOCK_STREAM();
+    public static native int SOL_SOCKET();
+    public static native int SOL_UDP();
+    public static native int SO_BINDTODEVICE();
+    public static native int SO_BROADCAST();
+    public static native int SO_DEBUG();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int SO_DOMAIN = placeholder();
-    public static final int SO_DONTROUTE = placeholder();
-    public static final int SO_ERROR = placeholder();
-    public static final int SO_KEEPALIVE = placeholder();
-    public static final int SO_LINGER = placeholder();
-    public static final int SO_OOBINLINE = placeholder();
-    public static final int SO_PASSCRED = placeholder();
-    public static final int SO_PEERCRED = placeholder();
+    public static native int SO_DOMAIN();
+    public static native int SO_DONTROUTE();
+    public static native int SO_ERROR();
+    public static native int SO_KEEPALIVE();
+    public static native int SO_LINGER();
+    public static native int SO_OOBINLINE();
+    public static native int SO_PASSCRED();
+    public static native int SO_PEERCRED();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int SO_PROTOCOL = placeholder();
-    public static final int SO_RCVBUF = placeholder();
-    public static final int SO_RCVLOWAT = placeholder();
-    public static final int SO_RCVTIMEO = placeholder();
-    public static final int SO_REUSEADDR = placeholder();
-    public static final int SO_SNDBUF = placeholder();
-    public static final int SO_SNDLOWAT = placeholder();
-    public static final int SO_SNDTIMEO = placeholder();
-    public static final int SO_TYPE = placeholder();
+    public static native int SO_PROTOCOL();
+    public static native int SO_RCVBUF();
+    public static native int SO_RCVLOWAT();
+    public static native int SO_RCVTIMEO();
+    public static native int SO_REUSEADDR();
+    public static native int SO_SNDBUF();
+    public static native int SO_SNDLOWAT();
+    public static native int SO_SNDTIMEO();
+    public static native int SO_TYPE();
     /**
      * Bitmask for flags argument of
      * {@link splice(java.io.FileDescriptor, Int64Ref, FileDescriptor, Int64Ref, long, int)}.
@@ -735,10 +735,10 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int SPLICE_F_MOVE = placeholder();
+    public static native int SPLICE_F_MOVE();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int SPLICE_F_NONBLOCK = placeholder();
+    public static native int SPLICE_F_NONBLOCK();
     /**
      * Bitmask for flags argument of
      * {@link splice(java.io.FileDescriptor, Int64Ref, FileDescriptor, Int64Ref, long, int)}.
@@ -753,46 +753,46 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int SPLICE_F_MORE = placeholder();
-    public static final int STDERR_FILENO = placeholder();
-    public static final int STDIN_FILENO = placeholder();
-    public static final int STDOUT_FILENO = placeholder();
-    public static final int ST_MANDLOCK = placeholder();
-    public static final int ST_NOATIME = placeholder();
-    public static final int ST_NODEV = placeholder();
-    public static final int ST_NODIRATIME = placeholder();
-    public static final int ST_NOEXEC = placeholder();
-    public static final int ST_NOSUID = placeholder();
-    public static final int ST_RDONLY = placeholder();
-    public static final int ST_RELATIME = placeholder();
-    public static final int ST_SYNCHRONOUS = placeholder();
-    public static final int S_IFBLK = placeholder();
-    public static final int S_IFCHR = placeholder();
-    public static final int S_IFDIR = placeholder();
-    public static final int S_IFIFO = placeholder();
-    public static final int S_IFLNK = placeholder();
-    public static final int S_IFMT = placeholder();
-    public static final int S_IFREG = placeholder();
-    public static final int S_IFSOCK = placeholder();
-    public static final int S_IRGRP = placeholder();
-    public static final int S_IROTH = placeholder();
-    public static final int S_IRUSR = placeholder();
-    public static final int S_IRWXG = placeholder();
-    public static final int S_IRWXO = placeholder();
-    public static final int S_IRWXU = placeholder();
-    public static final int S_ISGID = placeholder();
-    public static final int S_ISUID = placeholder();
-    public static final int S_ISVTX = placeholder();
-    public static final int S_IWGRP = placeholder();
-    public static final int S_IWOTH = placeholder();
-    public static final int S_IWUSR = placeholder();
-    public static final int S_IXGRP = placeholder();
-    public static final int S_IXOTH = placeholder();
-    public static final int S_IXUSR = placeholder();
-    public static final int TCP_NODELAY = placeholder();
-    public static final int TCP_USER_TIMEOUT = placeholder();
-    public static final int UDP_GRO = placeholder();
-    public static final int UDP_SEGMENT = placeholder();
+    public static native int SPLICE_F_MORE();
+    public static native int STDERR_FILENO();
+    public static native int STDIN_FILENO();
+    public static native int STDOUT_FILENO();
+    public static native int ST_MANDLOCK();
+    public static native int ST_NOATIME();
+    public static native int ST_NODEV();
+    public static native int ST_NODIRATIME();
+    public static native int ST_NOEXEC();
+    public static native int ST_NOSUID();
+    public static native int ST_RDONLY();
+    public static native int ST_RELATIME();
+    public static native int ST_SYNCHRONOUS();
+    public static native int S_IFBLK();
+    public static native int S_IFCHR();
+    public static native int S_IFDIR();
+    public static native int S_IFIFO();
+    public static native int S_IFLNK();
+    public static native int S_IFMT();
+    public static native int S_IFREG();
+    public static native int S_IFSOCK();
+    public static native int S_IRGRP();
+    public static native int S_IROTH();
+    public static native int S_IRUSR();
+    public static native int S_IRWXG();
+    public static native int S_IRWXO();
+    public static native int S_IRWXU();
+    public static native int S_ISGID();
+    public static native int S_ISUID();
+    public static native int S_ISVTX();
+    public static native int S_IWGRP();
+    public static native int S_IWOTH();
+    public static native int S_IWUSR();
+    public static native int S_IXGRP();
+    public static native int S_IXOTH();
+    public static native int S_IXUSR();
+    public static native int TCP_NODELAY();
+    public static native int TCP_USER_TIMEOUT();
+    public static native int UDP_GRO();
+    public static native int UDP_SEGMENT();
     /**
      * Get the number of bytes in the output buffer.
      *
@@ -803,7 +803,7 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int TIOCOUTQ = placeholder();
+    public static native int TIOCOUTQ();
     /**
      * Sockopt option to encapsulate ESP packets in UDP.
      *
@@ -812,25 +812,25 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int UDP_ENCAP = placeholder();
+    public static native int UDP_ENCAP();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int UDP_ENCAP_ESPINUDP_NON_IKE = placeholder();
+    public static native int UDP_ENCAP_ESPINUDP_NON_IKE();
     /** @hide */
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int UDP_ENCAP_ESPINUDP = placeholder();
+    public static native int UDP_ENCAP_ESPINUDP();
     /** @hide */
     @UnsupportedAppUsage
-    public static final int UNIX_PATH_MAX = placeholder();
-    public static final int WCONTINUED = placeholder();
-    public static final int WEXITED = placeholder();
-    public static final int WNOHANG = placeholder();
-    public static final int WNOWAIT = placeholder();
-    public static final int WSTOPPED = placeholder();
-    public static final int WUNTRACED = placeholder();
-    public static final int W_OK = placeholder();
+    public static native int UNIX_PATH_MAX();
+    public static native int WCONTINUED();
+    public static native int WEXITED();
+    public static native int WNOHANG();
+    public static native int WNOWAIT();
+    public static native int WSTOPPED();
+    public static native int WUNTRACED();
+    public static native int W_OK();
     /**
      * {@code flags} option for {@link Os#setxattr(String, String, byte[], int)}.
      *
@@ -843,7 +843,7 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int XATTR_CREATE = placeholder();
+    public static native int XATTR_CREATE();
     /**
      * {@code flags} option for {@link Os#setxattr(String, String, byte[], int)}.
      *
@@ -857,393 +857,119 @@ public final class OsConstants {
     @UnsupportedAppUsage
     @SystemApi(client = MODULE_LIBRARIES)
     @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
-    public static final int XATTR_REPLACE = placeholder();
-    public static final int X_OK = placeholder();
-    public static final int _SC_2_CHAR_TERM = placeholder();
-    public static final int _SC_2_C_BIND = placeholder();
-    public static final int _SC_2_C_DEV = placeholder();
-    public static final int _SC_2_C_VERSION = placeholder();
-    public static final int _SC_2_FORT_DEV = placeholder();
-    public static final int _SC_2_FORT_RUN = placeholder();
-    public static final int _SC_2_LOCALEDEF = placeholder();
-    public static final int _SC_2_SW_DEV = placeholder();
-    public static final int _SC_2_UPE = placeholder();
-    public static final int _SC_2_VERSION = placeholder();
-    public static final int _SC_AIO_LISTIO_MAX = placeholder();
-    public static final int _SC_AIO_MAX = placeholder();
-    public static final int _SC_AIO_PRIO_DELTA_MAX = placeholder();
-    public static final int _SC_ARG_MAX = placeholder();
-    public static final int _SC_ASYNCHRONOUS_IO = placeholder();
-    public static final int _SC_ATEXIT_MAX = placeholder();
-    public static final int _SC_AVPHYS_PAGES = placeholder();
-    public static final int _SC_BC_BASE_MAX = placeholder();
-    public static final int _SC_BC_DIM_MAX = placeholder();
-    public static final int _SC_BC_SCALE_MAX = placeholder();
-    public static final int _SC_BC_STRING_MAX = placeholder();
-    public static final int _SC_CHILD_MAX = placeholder();
-    public static final int _SC_CLK_TCK = placeholder();
-    public static final int _SC_COLL_WEIGHTS_MAX = placeholder();
-    public static final int _SC_DELAYTIMER_MAX = placeholder();
-    public static final int _SC_EXPR_NEST_MAX = placeholder();
-    public static final int _SC_FSYNC = placeholder();
-    public static final int _SC_GETGR_R_SIZE_MAX = placeholder();
-    public static final int _SC_GETPW_R_SIZE_MAX = placeholder();
-    public static final int _SC_IOV_MAX = placeholder();
-    public static final int _SC_JOB_CONTROL = placeholder();
-    public static final int _SC_LINE_MAX = placeholder();
-    public static final int _SC_LOGIN_NAME_MAX = placeholder();
-    public static final int _SC_MAPPED_FILES = placeholder();
-    public static final int _SC_MEMLOCK = placeholder();
-    public static final int _SC_MEMLOCK_RANGE = placeholder();
-    public static final int _SC_MEMORY_PROTECTION = placeholder();
-    public static final int _SC_MESSAGE_PASSING = placeholder();
-    public static final int _SC_MQ_OPEN_MAX = placeholder();
-    public static final int _SC_MQ_PRIO_MAX = placeholder();
-    public static final int _SC_NGROUPS_MAX = placeholder();
-    public static final int _SC_NPROCESSORS_CONF = placeholder();
-    public static final int _SC_NPROCESSORS_ONLN = placeholder();
-    public static final int _SC_OPEN_MAX = placeholder();
-    public static final int _SC_PAGESIZE = placeholder();
-    public static final int _SC_PAGE_SIZE = placeholder();
-    public static final int _SC_PASS_MAX = placeholder();
-    public static final int _SC_PHYS_PAGES = placeholder();
-    public static final int _SC_PRIORITIZED_IO = placeholder();
-    public static final int _SC_PRIORITY_SCHEDULING = placeholder();
-    public static final int _SC_REALTIME_SIGNALS = placeholder();
-    public static final int _SC_RE_DUP_MAX = placeholder();
-    public static final int _SC_RTSIG_MAX = placeholder();
-    public static final int _SC_SAVED_IDS = placeholder();
-    public static final int _SC_SEMAPHORES = placeholder();
-    public static final int _SC_SEM_NSEMS_MAX = placeholder();
-    public static final int _SC_SEM_VALUE_MAX = placeholder();
-    public static final int _SC_SHARED_MEMORY_OBJECTS = placeholder();
-    public static final int _SC_SIGQUEUE_MAX = placeholder();
-    public static final int _SC_STREAM_MAX = placeholder();
-    public static final int _SC_SYNCHRONIZED_IO = placeholder();
-    public static final int _SC_THREADS = placeholder();
-    public static final int _SC_THREAD_ATTR_STACKADDR = placeholder();
-    public static final int _SC_THREAD_ATTR_STACKSIZE = placeholder();
-    public static final int _SC_THREAD_DESTRUCTOR_ITERATIONS = placeholder();
-    public static final int _SC_THREAD_KEYS_MAX = placeholder();
-    public static final int _SC_THREAD_PRIORITY_SCHEDULING = placeholder();
-    public static final int _SC_THREAD_PRIO_INHERIT = placeholder();
-    public static final int _SC_THREAD_PRIO_PROTECT = placeholder();
-    public static final int _SC_THREAD_SAFE_FUNCTIONS = placeholder();
-    public static final int _SC_THREAD_STACK_MIN = placeholder();
-    public static final int _SC_THREAD_THREADS_MAX = placeholder();
-    public static final int _SC_TIMERS = placeholder();
-    public static final int _SC_TIMER_MAX = placeholder();
-    public static final int _SC_TTY_NAME_MAX = placeholder();
-    public static final int _SC_TZNAME_MAX = placeholder();
-    public static final int _SC_VERSION = placeholder();
-    public static final int _SC_XBS5_ILP32_OFF32 = placeholder();
-    public static final int _SC_XBS5_ILP32_OFFBIG = placeholder();
-    public static final int _SC_XBS5_LP64_OFF64 = placeholder();
-    public static final int _SC_XBS5_LPBIG_OFFBIG = placeholder();
-    public static final int _SC_XOPEN_CRYPT = placeholder();
-    public static final int _SC_XOPEN_ENH_I18N = placeholder();
-    public static final int _SC_XOPEN_LEGACY = placeholder();
-    public static final int _SC_XOPEN_REALTIME = placeholder();
-    public static final int _SC_XOPEN_REALTIME_THREADS = placeholder();
-    public static final int _SC_XOPEN_SHM = placeholder();
-    public static final int _SC_XOPEN_UNIX = placeholder();
-    public static final int _SC_XOPEN_VERSION = placeholder();
-    public static final int _SC_XOPEN_XCU_VERSION = placeholder();
+    public static native int XATTR_REPLACE();
+    public static native int X_OK();
+    public static native int _SC_2_CHAR_TERM();
+    public static native int _SC_2_C_BIND();
+    public static native int _SC_2_C_DEV();
+    public static native int _SC_2_C_VERSION();
+    public static native int _SC_2_FORT_DEV();
+    public static native int _SC_2_FORT_RUN();
+    public static native int _SC_2_LOCALEDEF();
+    public static native int _SC_2_SW_DEV();
+    public static native int _SC_2_UPE();
+    public static native int _SC_2_VERSION();
+    public static native int _SC_AIO_LISTIO_MAX();
+    public static native int _SC_AIO_MAX();
+    public static native int _SC_AIO_PRIO_DELTA_MAX();
+    public static native int _SC_ARG_MAX();
+    public static native int _SC_ASYNCHRONOUS_IO();
+    public static native int _SC_ATEXIT_MAX();
+    public static native int _SC_AVPHYS_PAGES();
+    public static native int _SC_BC_BASE_MAX();
+    public static native int _SC_BC_DIM_MAX();
+    public static native int _SC_BC_SCALE_MAX();
+    public static native int _SC_BC_STRING_MAX();
+    public static native int _SC_CHILD_MAX();
+    public static native int _SC_CLK_TCK();
+    public static native int _SC_COLL_WEIGHTS_MAX();
+    public static native int _SC_DELAYTIMER_MAX();
+    public static native int _SC_EXPR_NEST_MAX();
+    public static native int _SC_FSYNC();
+    public static native int _SC_GETGR_R_SIZE_MAX();
+    public static native int _SC_GETPW_R_SIZE_MAX();
+    public static native int _SC_IOV_MAX();
+    public static native int _SC_JOB_CONTROL();
+    public static native int _SC_LINE_MAX();
+    public static native int _SC_LOGIN_NAME_MAX();
+    public static native int _SC_MAPPED_FILES();
+    public static native int _SC_MEMLOCK();
+    public static native int _SC_MEMLOCK_RANGE();
+    public static native int _SC_MEMORY_PROTECTION();
+    public static native int _SC_MESSAGE_PASSING();
+    public static native int _SC_MQ_OPEN_MAX();
+    public static native int _SC_MQ_PRIO_MAX();
+    public static native int _SC_NGROUPS_MAX();
+    public static native int _SC_NPROCESSORS_CONF();
+    public static native int _SC_NPROCESSORS_ONLN();
+    public static native int _SC_OPEN_MAX();
+    public static native int _SC_PAGESIZE();
+    public static native int _SC_PAGE_SIZE();
+    public static native int _SC_PASS_MAX();
+    public static native int _SC_PHYS_PAGES();
+    public static native int _SC_PRIORITIZED_IO();
+    public static native int _SC_PRIORITY_SCHEDULING();
+    public static native int _SC_REALTIME_SIGNALS();
+    public static native int _SC_RE_DUP_MAX();
+    public static native int _SC_RTSIG_MAX();
+    public static native int _SC_SAVED_IDS();
+    public static native int _SC_SEMAPHORES();
+    public static native int _SC_SEM_NSEMS_MAX();
+    public static native int _SC_SEM_VALUE_MAX();
+    public static native int _SC_SHARED_MEMORY_OBJECTS();
+    public static native int _SC_SIGQUEUE_MAX();
+    public static native int _SC_STREAM_MAX();
+    public static native int _SC_SYNCHRONIZED_IO();
+    public static native int _SC_THREADS();
+    public static native int _SC_THREAD_ATTR_STACKADDR();
+    public static native int _SC_THREAD_ATTR_STACKSIZE();
+    public static native int _SC_THREAD_DESTRUCTOR_ITERATIONS();
+    public static native int _SC_THREAD_KEYS_MAX();
+    public static native int _SC_THREAD_PRIORITY_SCHEDULING();
+    public static native int _SC_THREAD_PRIO_INHERIT();
+    public static native int _SC_THREAD_PRIO_PROTECT();
+    public static native int _SC_THREAD_SAFE_FUNCTIONS();
+    public static native int _SC_THREAD_STACK_MIN();
+    public static native int _SC_THREAD_THREADS_MAX();
+    public static native int _SC_TIMERS();
+    public static native int _SC_TIMER_MAX();
+    public static native int _SC_TTY_NAME_MAX();
+    public static native int _SC_TZNAME_MAX();
+    public static native int _SC_VERSION();
+    public static native int _SC_XBS5_ILP32_OFF32();
+    public static native int _SC_XBS5_ILP32_OFFBIG();
+    public static native int _SC_XBS5_LP64_OFF64();
+    public static native int _SC_XBS5_LPBIG_OFFBIG();
+    public static native int _SC_XOPEN_CRYPT();
+    public static native int _SC_XOPEN_ENH_I18N();
+    public static native int _SC_XOPEN_LEGACY();
+    public static native int _SC_XOPEN_REALTIME();
+    public static native int _SC_XOPEN_REALTIME_THREADS();
+    public static native int _SC_XOPEN_SHM();
+    public static native int _SC_XOPEN_UNIX();
+    public static native int _SC_XOPEN_VERSION();
+    public static native int _SC_XOPEN_XCU_VERSION();
 
     /**
      * Returns the string name of a getaddrinfo(3) error value.
      * For example, "EAI_AGAIN".
      */
-    public static String gaiName(int error) {
-        if (error == EAI_AGAIN) {
-            return "EAI_AGAIN";
-        }
-        if (error == EAI_BADFLAGS) {
-            return "EAI_BADFLAGS";
-        }
-        if (error == EAI_FAIL) {
-            return "EAI_FAIL";
-        }
-        if (error == EAI_FAMILY) {
-            return "EAI_FAMILY";
-        }
-        if (error == EAI_MEMORY) {
-            return "EAI_MEMORY";
-        }
-        if (error == EAI_NODATA) {
-            return "EAI_NODATA";
-        }
-        if (error == EAI_NONAME) {
-            return "EAI_NONAME";
-        }
-        if (error == EAI_OVERFLOW) {
-            return "EAI_OVERFLOW";
-        }
-        if (error == EAI_SERVICE) {
-            return "EAI_SERVICE";
-        }
-        if (error == EAI_SOCKTYPE) {
-            return "EAI_SOCKTYPE";
-        }
-        if (error == EAI_SYSTEM) {
-            return "EAI_SYSTEM";
-        }
-        return null;
-    }
+    public static native String gaiName(int error);
 
     /**
      * Returns the string name of an errno value.
      * For example, "EACCES". See {@link Os#strerror} for human-readable errno descriptions.
      */
-    public static String errnoName(int errno) {
-        if (errno == E2BIG) {
-            return "E2BIG";
-        }
-        if (errno == EACCES) {
-            return "EACCES";
-        }
-        if (errno == EADDRINUSE) {
-            return "EADDRINUSE";
-        }
-        if (errno == EADDRNOTAVAIL) {
-            return "EADDRNOTAVAIL";
-        }
-        if (errno == EAFNOSUPPORT) {
-            return "EAFNOSUPPORT";
-        }
-        if (errno == EAGAIN) {
-            return "EAGAIN";
-        }
-        if (errno == EALREADY) {
-            return "EALREADY";
-        }
-        if (errno == EBADF) {
-            return "EBADF";
-        }
-        if (errno == EBADMSG) {
-            return "EBADMSG";
-        }
-        if (errno == EBUSY) {
-            return "EBUSY";
-        }
-        if (errno == ECANCELED) {
-            return "ECANCELED";
-        }
-        if (errno == ECHILD) {
-            return "ECHILD";
-        }
-        if (errno == ECONNABORTED) {
-            return "ECONNABORTED";
-        }
-        if (errno == ECONNREFUSED) {
-            return "ECONNREFUSED";
-        }
-        if (errno == ECONNRESET) {
-            return "ECONNRESET";
-        }
-        if (errno == EDEADLK) {
-            return "EDEADLK";
-        }
-        if (errno == EDESTADDRREQ) {
-            return "EDESTADDRREQ";
-        }
-        if (errno == EDOM) {
-            return "EDOM";
-        }
-        if (errno == EDQUOT) {
-            return "EDQUOT";
-        }
-        if (errno == EEXIST) {
-            return "EEXIST";
-        }
-        if (errno == EFAULT) {
-            return "EFAULT";
-        }
-        if (errno == EFBIG) {
-            return "EFBIG";
-        }
-        if (errno == EHOSTUNREACH) {
-            return "EHOSTUNREACH";
-        }
-        if (errno == EIDRM) {
-            return "EIDRM";
-        }
-        if (errno == EILSEQ) {
-            return "EILSEQ";
-        }
-        if (errno == EINPROGRESS) {
-            return "EINPROGRESS";
-        }
-        if (errno == EINTR) {
-            return "EINTR";
-        }
-        if (errno == EINVAL) {
-            return "EINVAL";
-        }
-        if (errno == EIO) {
-            return "EIO";
-        }
-        if (errno == EISCONN) {
-            return "EISCONN";
-        }
-        if (errno == EISDIR) {
-            return "EISDIR";
-        }
-        if (errno == ELOOP) {
-            return "ELOOP";
-        }
-        if (errno == EMFILE) {
-            return "EMFILE";
-        }
-        if (errno == EMLINK) {
-            return "EMLINK";
-        }
-        if (errno == EMSGSIZE) {
-            return "EMSGSIZE";
-        }
-        if (errno == EMULTIHOP) {
-            return "EMULTIHOP";
-        }
-        if (errno == ENAMETOOLONG) {
-            return "ENAMETOOLONG";
-        }
-        if (errno == ENETDOWN) {
-            return "ENETDOWN";
-        }
-        if (errno == ENETRESET) {
-            return "ENETRESET";
-        }
-        if (errno == ENETUNREACH) {
-            return "ENETUNREACH";
-        }
-        if (errno == ENFILE) {
-            return "ENFILE";
-        }
-        if (errno == ENOBUFS) {
-            return "ENOBUFS";
-        }
-        if (errno == ENODATA) {
-            return "ENODATA";
-        }
-        if (errno == ENODEV) {
-            return "ENODEV";
-        }
-        if (errno == ENOENT) {
-            return "ENOENT";
-        }
-        if (errno == ENOEXEC) {
-            return "ENOEXEC";
-        }
-        if (errno == ENOLCK) {
-            return "ENOLCK";
-        }
-        if (errno == ENOLINK) {
-            return "ENOLINK";
-        }
-        if (errno == ENOMEM) {
-            return "ENOMEM";
-        }
-        if (errno == ENOMSG) {
-            return "ENOMSG";
-        }
-        if (errno == ENONET) {
-            return "ENONET";
-        }
-        if (errno == ENOPROTOOPT) {
-            return "ENOPROTOOPT";
-        }
-        if (errno == ENOSPC) {
-            return "ENOSPC";
-        }
-        if (errno == ENOSR) {
-            return "ENOSR";
-        }
-        if (errno == ENOSTR) {
-            return "ENOSTR";
-        }
-        if (errno == ENOSYS) {
-            return "ENOSYS";
-        }
-        if (errno == ENOTCONN) {
-            return "ENOTCONN";
-        }
-        if (errno == ENOTDIR) {
-            return "ENOTDIR";
-        }
-        if (errno == ENOTEMPTY) {
-            return "ENOTEMPTY";
-        }
-        if (errno == ENOTSOCK) {
-            return "ENOTSOCK";
-        }
-        if (errno == ENOTSUP) {
-            return "ENOTSUP";
-        }
-        if (errno == ENOTTY) {
-            return "ENOTTY";
-        }
-        if (errno == ENXIO) {
-            return "ENXIO";
-        }
-        if (errno == EOPNOTSUPP) {
-            return "EOPNOTSUPP";
-        }
-        if (errno == EOVERFLOW) {
-            return "EOVERFLOW";
-        }
-        if (errno == EPERM) {
-            return "EPERM";
-        }
-        if (errno == EPIPE) {
-            return "EPIPE";
-        }
-        if (errno == EPROTO) {
-            return "EPROTO";
-        }
-        if (errno == EPROTONOSUPPORT) {
-            return "EPROTONOSUPPORT";
-        }
-        if (errno == EPROTOTYPE) {
-            return "EPROTOTYPE";
-        }
-        if (errno == ERANGE) {
-            return "ERANGE";
-        }
-        if (errno == EROFS) {
-            return "EROFS";
-        }
-        if (errno == ESPIPE) {
-            return "ESPIPE";
-        }
-        if (errno == ESRCH) {
-            return "ESRCH";
-        }
-        if (errno == ESTALE) {
-            return "ESTALE";
-        }
-        if (errno == ETIME) {
-            return "ETIME";
-        }
-        if (errno == ETIMEDOUT) {
-            return "ETIMEDOUT";
-        }
-        if (errno == ETXTBSY) {
-            return "ETXTBSY";
-        }
-        if (errno == EXDEV) {
-            return "EXDEV";
-        }
-        return null;
-    }
+    public static native String errnoName(int errno);
 
-    @UnsupportedAppUsage
-    private static native void initConstants();
-
-    // A hack to avoid these constants being inlined by javac...
-    @UnsupportedAppUsage
-    private static int placeholder() { return 0; }
-    // ...because we want to initialize them at runtime.
-    static {
-        initConstants();
-    }
+//    @UnsupportedAppUsage
+//    private static native void initConstants();
+//
+//    // A hack to avoid these constants being inlined by javac...
+//    @UnsupportedAppUsage
+//    private static int placeholder() { return 0; }
+//    // ...because we want to initialize them at runtime.
+//    static {
+//        initConstants();
+//    }
 }

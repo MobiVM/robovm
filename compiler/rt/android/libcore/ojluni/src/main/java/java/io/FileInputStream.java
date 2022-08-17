@@ -157,7 +157,7 @@ class FileInputStream extends InputStream
         // BEGIN Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
         // http://b/112107427
         // fd = new FileDescriptor();
-        fd = IoBridge.open(name, O_RDONLY);
+        fd = IoBridge.open(name, O_RDONLY());
         // END Android-changed: Open files using IoBridge to share BlockGuard & StrictMode logic.
 
         // Android-changed: Tracking mechanism for FileDescriptor sharing.

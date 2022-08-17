@@ -104,7 +104,7 @@ public final class IoBridge {
     /** @hide */
     public static int available(FileDescriptor fd) throws IOException {
         try {
-            int available = Libcore.os.ioctlInt(fd, FIONREAD);
+            int available = Libcore.os.ioctlInt(fd, FIONREAD());
             if (available < 0) {
                 // If the fd refers to a regular file, the result is the difference between
                 // the file size and the file position. This may be negative if the position
@@ -116,7 +116,7 @@ public final class IoBridge {
             }
             return available;
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno == ENOTTY) {
+            if (errnoException.errno == ENOTTY()) {
                 // The fd is unwilling to opine about its read buffer.
                 return 0;
             }
@@ -145,8 +145,8 @@ public final class IoBridge {
         try {
             Libcore.os.bind(fd, address, port);
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno == EADDRINUSE || errnoException.errno == EADDRNOTAVAIL ||
-                errnoException.errno == EPERM || errnoException.errno == EACCES) {
+            if (errnoException.errno == EADDRINUSE() || errnoException.errno == EADDRNOTAVAIL() ||
+                errnoException.errno == EPERM() || errnoException.errno == EACCES()) {
                 throw new BindException(errnoException.getMessage(), errnoException);
             } else {
                 throw new SocketException(errnoException.getMessage(), errnoException);
@@ -179,10 +179,10 @@ public final class IoBridge {
         try {
             connectErrno(fd, inetAddress, port, timeoutMs);
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno == EHOSTUNREACH) {
+            if (errnoException.errno == EHOSTUNREACH()) {
                 throw new NoRouteToHostException("Host unreachable");
             }
-            if (errnoException.errno == EADDRNOTAVAIL) {
+            if (errnoException.errno == EADDRNOTAVAIL()) {
                 throw new NoRouteToHostException("Address not available");
             }
             throw new ConnectException(createMessageForException(fd, inetAddress, port, timeoutMs,
@@ -220,7 +220,7 @@ public final class IoBridge {
             IoUtils.setBlocking(fd, true); // 4. set the socket back to blocking.
             return; // We connected immediately.
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno != EINPROGRESS) {
+            if (errnoException.errno != EINPROGRESS()) {
                 throw errnoException;
             }
             // EINPROGRESS means we should keep trying...
@@ -324,12 +324,12 @@ public final class IoBridge {
         try {
             StructPollfd[] pollFds = new StructPollfd[] { new StructPollfd() };
             pollFds[0].fd = fd;
-            pollFds[0].events = (short) POLLOUT;
+            pollFds[0].events = (short) POLLOUT();
             int rc = Libcore.os.poll(pollFds, remainingTimeoutMs);
             if (rc == 0) {
                 return false; // Timeout.
             }
-            int connectError = Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_ERROR);
+            int connectError = Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_ERROR());
             if (connectError == 0) {
                 return true; // Success!
             }
@@ -341,7 +341,7 @@ public final class IoBridge {
             cause = errnoException;
         }
         String detail = createMessageForException(fd, inetAddress, port, timeoutMs, cause);
-        if (cause.errno == ETIMEDOUT) {
+        if (cause.errno == ETIMEDOUT()) {
             SocketTimeoutException e = new SocketTimeoutException(detail);
             e.initCause(cause);
             throw e;
@@ -376,47 +376,47 @@ public final class IoBridge {
         switch (option) {
         case SocketOptions.IP_MULTICAST_IF:
         case SocketOptions.IP_MULTICAST_IF2:
-            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_IF);
+            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_IF());
         case SocketOptions.IP_MULTICAST_LOOP:
             // Since setting this from java.net always sets IPv4 and IPv6 to the same value,
             // it doesn't matter which we return.
             // NOTE: getsockopt's return value means "isEnabled", while OpenJDK code java.net
             // requires a value that means "isDisabled" so we NEGATE the system call value here.
-            return !booleanFromInt(Libcore.os.getsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_LOOP));
+            return !booleanFromInt(Libcore.os.getsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_LOOP()));
         case IoBridge.JAVA_IP_MULTICAST_TTL:
             // Since setting this from java.net always sets IPv4 and IPv6 to the same value,
             // it doesn't matter which we return.
-            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_HOPS);
+            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_HOPS());
         case IoBridge.JAVA_IP_TTL:
             // Since setting this from java.net always sets IPv4 and IPv6 to the same value,
             // it doesn't matter which we return.
-            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6, IPV6_UNICAST_HOPS);
+            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6(), IPV6_UNICAST_HOPS());
         case SocketOptions.IP_TOS:
             // Since setting this from java.net always sets IPv4 and IPv6 to the same value,
             // it doesn't matter which we return.
-            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6, IPV6_TCLASS);
+            return Libcore.os.getsockoptInt(fd, IPPROTO_IPV6(), IPV6_TCLASS());
         case SocketOptions.SO_BROADCAST:
-            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_BROADCAST));
+            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_BROADCAST()));
         case SocketOptions.SO_KEEPALIVE:
-            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_KEEPALIVE));
+            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_KEEPALIVE()));
         case SocketOptions.SO_LINGER:
-            StructLinger linger = Libcore.os.getsockoptLinger(fd, SOL_SOCKET, SO_LINGER);
+            StructLinger linger = Libcore.os.getsockoptLinger(fd, SOL_SOCKET(), SO_LINGER());
             if (!linger.isOn()) {
                 return false;
             }
             return linger.l_linger;
         case SocketOptions.SO_OOBINLINE:
-            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_OOBINLINE));
+            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_OOBINLINE()));
         case SocketOptions.SO_RCVBUF:
-            return Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_RCVBUF);
+            return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_RCVBUF());
         case SocketOptions.SO_REUSEADDR:
-            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_REUSEADDR));
+            return booleanFromInt(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_REUSEADDR()));
         case SocketOptions.SO_SNDBUF:
-            return Libcore.os.getsockoptInt(fd, SOL_SOCKET, SO_SNDBUF);
+            return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_SNDBUF());
         case SocketOptions.SO_TIMEOUT:
-            return (int) Libcore.os.getsockoptTimeval(fd, SOL_SOCKET, SO_RCVTIMEO).toMillis();
+            return (int) Libcore.os.getsockoptTimeval(fd, SOL_SOCKET(), SO_RCVTIMEO()).toMillis();
         case SocketOptions.TCP_NODELAY:
-            return booleanFromInt(Libcore.os.getsockoptInt(fd, IPPROTO_TCP, TCP_NODELAY));
+            return booleanFromInt(Libcore.os.getsockoptInt(fd, IPPROTO_TCP(), TCP_NODELAY()));
         case SocketOptions.SO_BINDADDR:
             return ((InetSocketAddress) Libcore.os.getsockname(fd)).getAddress();
         default:
@@ -452,44 +452,44 @@ public final class IoBridge {
             NetworkInterface nif = NetworkInterface.getByInetAddress((InetAddress) value);
             if (nif == null) {
                 throw new SocketException(
-                        "bad argument for IP_MULTICAST_IF : address not bound to any interface");
+                        "bad argument for IP_MULTICAST_IF() : address not bound to any interface");
             }
             // Although IPv6 was cleaned up to use int, IPv4 uses an ip_mreqn containing an int.
-            Libcore.os.setsockoptIpMreqn(fd, IPPROTO_IP, IP_MULTICAST_IF, nif.getIndex());
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_IF, nif.getIndex());
+            Libcore.os.setsockoptIpMreqn(fd, IPPROTO_IP(), IP_MULTICAST_IF(), nif.getIndex());
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_IF(), nif.getIndex());
             return;
         case SocketOptions.IP_MULTICAST_IF2:
             // Although IPv6 was cleaned up to use int, IPv4 uses an ip_mreqn containing an int.
-            Libcore.os.setsockoptIpMreqn(fd, IPPROTO_IP, IP_MULTICAST_IF, (Integer) value);
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_IF, (Integer) value);
+            Libcore.os.setsockoptIpMreqn(fd, IPPROTO_IP(), IP_MULTICAST_IF(), (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_IF(), (Integer) value);
             return;
         case SocketOptions.IP_MULTICAST_LOOP:
             // Although IPv6 was cleaned up to use int, IPv4 multicast loopback uses a byte.
             // NOTE: setsockopt's arguement value means "isEnabled", while OpenJDK code java.net
             // uses a value that means "isDisabled" so we NEGATE the system call value here.
             int enable = booleanToInt(!((Boolean) value));
-            Libcore.os.setsockoptByte(fd, IPPROTO_IP, IP_MULTICAST_LOOP, enable);
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_LOOP, enable);
+            Libcore.os.setsockoptByte(fd, IPPROTO_IP(), IP_MULTICAST_LOOP(), enable);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_LOOP(), enable);
             return;
         case IoBridge.JAVA_IP_MULTICAST_TTL:
             // Although IPv6 was cleaned up to use int, and IPv4 non-multicast TTL uses int,
             // IPv4 multicast TTL uses a byte.
-            Libcore.os.setsockoptByte(fd, IPPROTO_IP, IP_MULTICAST_TTL, (Integer) value);
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (Integer) value);
+            Libcore.os.setsockoptByte(fd, IPPROTO_IP(), IP_MULTICAST_TTL(), (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_MULTICAST_HOPS(), (Integer) value);
             return;
         case IoBridge.JAVA_IP_TTL:
-            Libcore.os.setsockoptInt(fd, IPPROTO_IP, IP_TTL, (Integer) value);
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_UNICAST_HOPS, (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IP(), IP_TTL(), (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_UNICAST_HOPS(), (Integer) value);
             return;
         case SocketOptions.IP_TOS:
-            Libcore.os.setsockoptInt(fd, IPPROTO_IP, IP_TOS, (Integer) value);
-            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6, IPV6_TCLASS, (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IP(), IP_TOS(), (Integer) value);
+            Libcore.os.setsockoptInt(fd, IPPROTO_IPV6(), IPV6_TCLASS(), (Integer) value);
             return;
         case SocketOptions.SO_BROADCAST:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_BROADCAST, booleanToInt((Boolean) value));
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_BROADCAST(), booleanToInt((Boolean) value));
             return;
         case SocketOptions.SO_KEEPALIVE:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_KEEPALIVE, booleanToInt((Boolean) value));
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_KEEPALIVE(), booleanToInt((Boolean) value));
             return;
         case SocketOptions.SO_LINGER:
             boolean on = false;
@@ -499,34 +499,34 @@ public final class IoBridge {
                 seconds = Math.min((Integer) value, 65535);
             }
             StructLinger linger = new StructLinger(booleanToInt(on), seconds);
-            Libcore.os.setsockoptLinger(fd, SOL_SOCKET, SO_LINGER, linger);
+            Libcore.os.setsockoptLinger(fd, SOL_SOCKET(), SO_LINGER(), linger);
             return;
         case SocketOptions.SO_OOBINLINE:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_OOBINLINE, booleanToInt((Boolean) value));
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_OOBINLINE(), booleanToInt((Boolean) value));
             return;
         case SocketOptions.SO_RCVBUF:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_RCVBUF, (Integer) value);
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_RCVBUF(), (Integer) value);
             return;
         case SocketOptions.SO_REUSEADDR:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_REUSEADDR, booleanToInt((Boolean) value));
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_REUSEADDR(), booleanToInt((Boolean) value));
             return;
         case SocketOptions.SO_SNDBUF:
-            Libcore.os.setsockoptInt(fd, SOL_SOCKET, SO_SNDBUF, (Integer) value);
+            Libcore.os.setsockoptInt(fd, SOL_SOCKET(), SO_SNDBUF(), (Integer) value);
             return;
         case SocketOptions.SO_TIMEOUT:
             int millis = (Integer) value;
             StructTimeval tv = StructTimeval.fromMillis(millis);
-            Libcore.os.setsockoptTimeval(fd, SOL_SOCKET, SO_RCVTIMEO, tv);
+            Libcore.os.setsockoptTimeval(fd, SOL_SOCKET(), SO_RCVTIMEO(), tv);
             return;
         case SocketOptions.TCP_NODELAY:
-            Libcore.os.setsockoptInt(fd, IPPROTO_TCP, TCP_NODELAY, booleanToInt((Boolean) value));
+            Libcore.os.setsockoptInt(fd, IPPROTO_TCP(), TCP_NODELAY(), booleanToInt((Boolean) value));
             return;
         case IoBridge.JAVA_MCAST_JOIN_GROUP:
         case IoBridge.JAVA_MCAST_LEAVE_GROUP:
         {
             StructGroupReq groupReq = (StructGroupReq) value;
-            int level = (groupReq.gr_group instanceof Inet4Address) ? IPPROTO_IP : IPPROTO_IPV6;
-            int op = (option == JAVA_MCAST_JOIN_GROUP) ? MCAST_JOIN_GROUP : MCAST_LEAVE_GROUP;
+            int level = (groupReq.gr_group instanceof Inet4Address) ? IPPROTO_IP() : IPPROTO_IPV6();
+            int op = (option == JAVA_MCAST_JOIN_GROUP) ? MCAST_JOIN_GROUP() : MCAST_LEAVE_GROUP();
             Libcore.os.setsockoptGroupReq(fd, level, op, groupReq);
             return;
         }
@@ -562,7 +562,7 @@ public final class IoBridge {
             // Posix open(2) fails with EISDIR only if you ask for write permission.
             // Java disallows reading directories too.f
             if (S_ISDIR(Libcore.os.fstat(fd).st_mode)) {
-                throw new ErrnoException("open", EISDIR);
+                throw new ErrnoException("open", EISDIR());
             }
             return fd;
         } catch (ErrnoException errnoException) {
@@ -609,7 +609,7 @@ public final class IoBridge {
             }
             return readCount;
         } catch (ErrnoException errnoException) {
-            if (errnoException.errno == EAGAIN) {
+            if (errnoException.errno == EAGAIN()) {
                 // We return 0 rather than throw if we try to read from an empty non-blocking pipe.
                 return 0;
             }
@@ -711,11 +711,11 @@ public final class IoBridge {
     private static int maybeThrowAfterSendto(boolean isDatagram, ErrnoException errnoException)
             throws IOException {
         if (isDatagram) {
-            if (errnoException.errno == ECONNREFUSED) {
+            if (errnoException.errno == ECONNREFUSED()) {
                 throw new PortUnreachableException("ICMP Port Unreachable");
             }
         } else {
-            if (errnoException.errno == EAGAIN) {
+            if (errnoException.errno == EAGAIN()) {
                 // We were asked to write to a non-blocking socket, but were told
                 // it would block, so report "no bytes written".
                 return 0;
@@ -792,15 +792,15 @@ public final class IoBridge {
 
     private static int maybeThrowAfterRecvfrom(boolean isRead, boolean isConnected, ErrnoException errnoException) throws SocketException, SocketTimeoutException {
         if (isRead) {
-            if (errnoException.errno == EAGAIN) {
+            if (errnoException.errno == EAGAIN()) {
                 return 0;
             } else {
                 throw errnoException.rethrowAsSocketException();
             }
         } else {
-            if (isConnected && errnoException.errno == ECONNREFUSED) {
+            if (isConnected && errnoException.errno == ECONNREFUSED()) {
                 throw new PortUnreachableException("ICMP Port Unreachable", errnoException);
-            } else if (errnoException.errno == EAGAIN) {
+            } else if (errnoException.errno == EAGAIN()) {
                 SocketTimeoutException e = new SocketTimeoutException();
                 e.initCause(errnoException);
                 throw e;
