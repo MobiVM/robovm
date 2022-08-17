@@ -39,18 +39,12 @@ set(SRC
   ${LUNI_PATH}/valueOf.cpp
   ${LUNI_PATH}/AsynchronousCloseMonitor.cpp
   ${LUNI_PATH}/JniConstants.cpp
+  ${LUNI_PATH}/libcore_io_Linux.cpp
   # files from luni4
-  ${LUNI4_PATH}/libcore_io_Posix.cpp
   ${LUNI4_PATH}/java_nio_charset_Charsets.cpp
   ${LUNI4_PATH}/android_icu_impl_ICUBinary.cpp
   ${LUNI4_PATH}/java_util_concurrent_atomic_AtomicLong.cpp
 )
-if(LINUX)
-  set(SRC
-    ${SRC}
-    ${LUNI_PATH}/libcore_io_Linux.cpp
-  )
-endif()
 
 
 # ojluni files
