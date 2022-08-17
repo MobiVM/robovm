@@ -1,7 +1,7 @@
 project(android)
 
 set(ANDROID_RT_PATH "${CMAKE_CURRENT_LIST_DIR}")
-message(STATUS "CMAKE_CURRENT_LIST_DIR: ${CMAKE_CURRENT_LIST_DIR}")
+add_definitions(-D__ROBOVM__)
 
 include_directories(
   # system/core/liblog
@@ -12,8 +12,9 @@ include_directories(
   libnativehelper/
   libnativehelper/include/
   libnativehelper/include_jni/
-  libnativehelper/platform_include/
-  libnativehelper/header_only_include/
+  libnativehelper/include_platform/
+  libnativehelper/include_platform_header_only/
+  libnativehelper/header_only_include
 )
 
 if(DARWIN)

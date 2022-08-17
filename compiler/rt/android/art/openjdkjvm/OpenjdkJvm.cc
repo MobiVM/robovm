@@ -39,11 +39,12 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
-
+#include <math.h> // RoboVM Note: for `isnan`
 #include <android-base/logging.h>
 
 #include "../../libcore/ojluni/src/main/native/jvm.h"  // TODO(narayan): fix it
 
+#if 0 // RoboVM Note: start changes -- commented out not used includes
 #include "base/macros.h"
 #include "base/fast_exit.h"
 #include "common_throws.h"
@@ -62,6 +63,7 @@
 #include "thread.h"
 #include "thread_list.h"
 #include "verify_object.h"
+#endif // RoboVM Note: end of changes
 
 #undef LOG_TAG
 #define LOG_TAG "artopenjdk"
@@ -285,67 +287,76 @@ JNIEXPORT int JVM_GetHostName(char* name, int namelen) {
   return TEMP_FAILURE_RETRY(gethostname(name, namelen));
 }
 
-JNIEXPORT jstring JVM_InternString(JNIEnv* env, jstring jstr) {
-  art::ScopedFastNativeObjectAccess soa(env);
-  art::ObjPtr<art::mirror::String> s = soa.Decode<art::mirror::String>(jstr);
-  return soa.AddLocalReference<jstring>(s->Intern());
-}
+// RoboVM note: commented out internal art API
+//JNIEXPORT jstring JVM_InternString(JNIEnv* env, jstring jstr) {
+//  art::ScopedFastNativeObjectAccess soa(env);
+//  art::ObjPtr<art::mirror::String> s = soa.Decode<art::mirror::String>(jstr);
+//  return soa.AddLocalReference<jstring>(s->Intern());
+//}
 
-JNIEXPORT jlong JVM_FreeMemory(void) {
-  return art::Runtime::Current()->GetHeap()->GetFreeMemory();
-}
+// RoboVM note: commented out as robovm runtime is used
+//JNIEXPORT jlong JVM_FreeMemory(void) {
+//  return art::Runtime::Current()->GetHeap()->GetFreeMemory();
+//}
 
-JNIEXPORT jlong JVM_TotalMemory(void) {
-  return art::Runtime::Current()->GetHeap()->GetTotalMemory();
-}
+// RoboVM note: commented out as robovm runtime is used
+//JNIEXPORT jlong JVM_TotalMemory(void) {
+//  return art::Runtime::Current()->GetHeap()->GetTotalMemory();
+//}
 
-JNIEXPORT jlong JVM_MaxMemory(void) {
-  return art::Runtime::Current()->GetHeap()->GetMaxMemory();
-}
+// RoboVM note: commented out as robovm runtime is used
+//JNIEXPORT jlong JVM_MaxMemory(void) {
+//  return art::Runtime::Current()->GetHeap()->GetMaxMemory();
+//}
 
-JNIEXPORT void JVM_GC(void) {
-  if (art::Runtime::Current()->IsExplicitGcDisabled()) {
-      LOG(INFO) << "Explicit GC skipped.";
-      return;
-  }
-  art::Runtime::Current()->GetHeap()->CollectGarbage(/* clear_soft_references */ false);
-}
+// RoboVM note: commented out as robovm runtime is used
+//JNIEXPORT void JVM_GC(void) {
+//  if (art::Runtime::Current()->IsExplicitGcDisabled()) {
+//      LOG(INFO) << "Explicit GC skipped.";
+//      return;
+//  }
+//  art::Runtime::Current()->GetHeap()->CollectGarbage(/* clear_soft_references */ false);
+//}
 
 JNIEXPORT __attribute__((noreturn)) void JVM_Exit(jint status) {
   LOG(INFO) << "System.exit called, status: " << status;
-  art::Runtime::Current()->CallExitHook(status);
-  // Unsafe to call exit() while threads may still be running. They would race
-  // with static destructors.
-  art::FastExit(status);
+  // RoboVM Note: switched to exit
+//  art::Runtime::Current()->CallExitHook(status);
+//  // Unsafe to call exit() while threads may still be running. They would race
+//  // with static destructors.
+//  art::FastExit(status);
+  exit(status);
 }
 
-JNIEXPORT jstring JVM_NativeLoad(JNIEnv* env,
-                                 jstring javaFilename,
-                                 jobject javaLoader,
-                                 jclass caller) {
-  ScopedUtfChars filename(env, javaFilename);
-  if (filename.c_str() == nullptr) {
-    return nullptr;
-  }
+// RoboVM note: commented out as robovm runtime is used
+//JNIEXPORT jstring JVM_NativeLoad(JNIEnv* env,
+//                                 jstring javaFilename,
+//                                 jobject javaLoader,
+//                                 jclass caller) {
+//  ScopedUtfChars filename(env, javaFilename);
+//  if (filename.c_str() == nullptr) {
+//    return nullptr;
+//  }
+//
+//  std::string error_msg;
+//  {
+//    art::JavaVMExt* vm = art::Runtime::Current()->GetJavaVM();
+//    bool success = vm->LoadNativeLibrary(env,
+//                                         filename.c_str(),
+//                                         javaLoader,
+//                                         caller,
+//                                         &error_msg);
+//    if (success) {
+//      return nullptr;
+//    }
+//  }
+//
+//  // Don't let a pending exception from JNI_OnLoad cause a CheckJNI issue with NewStringUTF.
+//  env->ExceptionClear();
+//  return env->NewStringUTF(error_msg.c_str());
+//}
 
-  std::string error_msg;
-  {
-    art::JavaVMExt* vm = art::Runtime::Current()->GetJavaVM();
-    bool success = vm->LoadNativeLibrary(env,
-                                         filename.c_str(),
-                                         javaLoader,
-                                         caller,
-                                         &error_msg);
-    if (success) {
-      return nullptr;
-    }
-  }
-
-  // Don't let a pending exception from JNI_OnLoad cause a CheckJNI issue with NewStringUTF.
-  env->ExceptionClear();
-  return env->NewStringUTF(error_msg.c_str());
-}
-
+#if 0 // RoboVM Note: changes start -- commented out not used code
 JNIEXPORT void JVM_StartThread(JNIEnv* env, jobject jthread, jlong stack_size, jboolean daemon) {
   art::Thread::CreateNativeThread(env, jthread, stack_size, daemon == JNI_TRUE);
 }
@@ -476,6 +487,7 @@ JNIEXPORT __attribute__((noreturn)) jboolean JVM_RaiseSignal(jint signum ATTRIBU
 JNIEXPORT __attribute__((noreturn))  void JVM_Halt(jint code) {
   _exit(code);
 }
+#endif // RoboVM Note: changes end
 
 JNIEXPORT jboolean JVM_IsNaN(jdouble d) {
   return isnan(d);

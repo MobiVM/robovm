@@ -4,12 +4,15 @@ message(STATUS "ANDROID_RT_PATH: ${ANDROID_RT_PATH}")
 
 set(LUNI_PATH "${ANDROID_RT_PATH}/libcore/luni/src/main/native")
 set(OJLUNI_PATH "${ANDROID_RT_PATH}/libcore/ojluni/src/main/native")
+set(LUNI4_PATH "${ANDROID_RT_PATH}/libcore.luni4/src/main/native")
+set(ADDED_PATH "${ANDROID_RT_PATH}/libcore.additional/src/main/native")
 
 include_directories(
   "${ANDROID_RT_PATH}/external/icu/icu4c/source/common"
   "${ANDROID_RT_PATH}/external/icu/icu4c/source/i18n"
   "${ANDROID_RT_PATH}/external/boringssl/src/include"
   "${LUNI_PATH}"
+  "${OJLUNI_PATH}"
 )
 
 add_definitions(-DBORINGSSL_IMPLEMENTATION)
@@ -27,23 +30,18 @@ set(SRC
   ${LUNI_PATH}/android_system_OsConstants.cpp
   ${LUNI_PATH}/cbigint.cpp
   ${LUNI_PATH}/java_lang_StringToReal.cpp
-  ${LUNI_PATH}/java_lang_invoke_MethodHandle.cpp
-  ${LUNI_PATH}/java_lang_invoke_VarHandle.cpp
-  ${LUNI_PATH}/java_math_NativeBN.cpp
-  ${LUNI_PATH}/java_util_regex_Matcher.cpp
-  ${LUNI_PATH}/java_util_regex_Pattern.cpp
   ${LUNI_PATH}/libcore_icu_ICU.cpp
-  ${LUNI_PATH}/libcore_icu_NativeConverter.cpp
-  ${LUNI_PATH}/libcore_icu_TimeZoneNames.cpp
   ${LUNI_PATH}/libcore_io_AsynchronousCloseMonitor.cpp
   ${LUNI_PATH}/libcore_io_Memory.cpp
+  ${LUNI_PATH}/libcore_math_NativeBN.cpp
   ${LUNI_PATH}/libcore_util_NativeAllocationRegistry.cpp
   ${LUNI_PATH}/org_apache_harmony_xml_ExpatParser.cpp
   ${LUNI_PATH}/valueOf.cpp
   ${LUNI_PATH}/AsynchronousCloseMonitor.cpp
   # files from luni4
-  ${LUNI_PATH}/libcore_io_Posix.cpp
-  ${LUNI_PATH}/java_nio_charset_Charsets.cpp
+  ${LUNI4_PATH}/libcore_io_Posix.cpp
+  ${LUNI4_PATH}/java_nio_charset_Charsets.cpp
+  ${LUNI4_PATH}/java_util_concurrent_atomic_AtomicLong.cpp
 )
 if(LINUX)
   set(SRC
@@ -55,6 +53,7 @@ endif()
 
 # ojluni files
 set(SRC
+  ${SRC}
   ${OJLUNI_PATH}/ZipFile.c
   ${OJLUNI_PATH}/Inflater.c
   ${OJLUNI_PATH}/Deflater.c
@@ -74,7 +73,6 @@ set(SRC
   ${OJLUNI_PATH}/SocketChannelImpl.c
   ${OJLUNI_PATH}/FileChannelImpl.c
   ${OJLUNI_PATH}/FileDispatcherImpl.c
-  ${OJLUNI_PATH}/FileOutputStream_md.c
   ${OJLUNI_PATH}/FileInputStream.c
   ${OJLUNI_PATH}/FileSystemPreferences.c
   ${OJLUNI_PATH}/UnixAsynchronousServerSocketChannelImpl.c
@@ -126,9 +124,9 @@ endif()
 if(DARWIN)
   set(SRC
     ${SRC}
-    ${OJLUNI_PATH}/KQueue.c
-    ${OJLUNI_PATH}/KQueueArrayWrapper.c
-    ${OJLUNI_PATH}/KQueuePort.c
+    ${ADDED_PATH}/KQueue.c
+    ${ADDED_PATH}/KQueueArrayWrapper.c
+    ${ADDED_PATH}/KQueuePort.c
   )
 endif()
 

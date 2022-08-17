@@ -16,7 +16,16 @@
 
 #define LOG_TAG "Memory"
 
+#if defined(__APPLE__)
+// RoboVM note: byteswap workaround
+#include <libkern/OSByteOrder.h>
+#define bswap_16 OSSwapInt16
+#define bswap_32 OSSwapInt32
+#define bswap_64 OSSwapInt64
+#else
 #include <byteswap.h>
+#endif 
+
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
