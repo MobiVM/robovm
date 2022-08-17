@@ -23,15 +23,15 @@
     <build>
         <resources>
             <resource><directory>robovm/src/main/resources</directory></resource>
-            <resource><directory>art/libcore/ojluni/src/main/resources</directory></resource>
+            <resource><directory>android/libcore/ojluni/src/main/resources</directory></resource>
             <resource>
-                <directory>art/libcore/ojluni/src/main/java</directory>
+                <directory>android/libcore/ojluni/src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
                 </includes>
             </resource>
             <resource>
-                <directory>art/libcore/luni/src/main/java</directory>
+                <directory>android/libcore/luni/src/main/java</directory>
                 <includes>
                     <include>**/*.properties</include>
                 </includes>
@@ -44,7 +44,7 @@
                     <include>**/*.java</include>
                 </includes>
             </resource>
-            <resource><directory>art/android_icu4j/src/main/resources</directory></resource>
+            <resource><directory>android/android_icu4j/src/main/resources</directory></resource>
         </resources>
 
         <plugins>

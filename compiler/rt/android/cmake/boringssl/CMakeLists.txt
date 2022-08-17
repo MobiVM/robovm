@@ -1,0 +1,315 @@
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This file is created by generate_build_files.py. Do not edit manually.
+# To specify a custom path prefix, set BORINGSSL_ROOT before including this
+# file, or use list(TRANSFORM ... PREPEND) from CMake 3.12.
+
+#
+# RoboVM notes: list of files copied from android-sources.cmake
+#
+
+
+project(android-external-boringssl)
+
+set(BORINGSSL_ROOT "${ANDROID_RT_PATH}/external/boringssl/")
+include_directories(${BORINGSSL_ROOT}/src/include)
+
+add_definitions(-DBORINGSSL_SHARED_LIBRARY)
+add_definitions(-DBORINGSSL_ANDROID_SYSTEM)
+add_definitions(-DOPENSSL_SMALL)
+add_definitions(-D_XOPEN_SOURCE=700)
+add_definitions(-DOPENSSL_NO_ASM)
+add_definitions(-DBORINGSSL_IMPLEMENTATION)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fvisibility=hidden -Werror -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
+
+
+set(crypto_sources
+  ${BORINGSSL_ROOT}err_data.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_bitstr.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_bool.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_d2i_fp.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_dup.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_enum.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_gentm.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_i2d_fp.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_int.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_mbstr.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_object.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_octet.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_print.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_strnid.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_time.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_type.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_utctm.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/a_utf8.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/asn1_lib.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/asn1_par.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/asn_pack.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/f_enum.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/f_int.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/f_string.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_dec.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_enc.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_fre.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_new.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_typ.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/tasn_utl.c
+  ${BORINGSSL_ROOT}src/crypto/asn1/time_support.c
+  ${BORINGSSL_ROOT}src/crypto/base64/base64.c
+  ${BORINGSSL_ROOT}src/crypto/bio/bio.c
+  ${BORINGSSL_ROOT}src/crypto/bio/bio_mem.c
+  ${BORINGSSL_ROOT}src/crypto/bio/connect.c
+  ${BORINGSSL_ROOT}src/crypto/bio/fd.c
+  ${BORINGSSL_ROOT}src/crypto/bio/file.c
+  ${BORINGSSL_ROOT}src/crypto/bio/hexdump.c
+  ${BORINGSSL_ROOT}src/crypto/bio/pair.c
+  ${BORINGSSL_ROOT}src/crypto/bio/printf.c
+  ${BORINGSSL_ROOT}src/crypto/bio/socket.c
+  ${BORINGSSL_ROOT}src/crypto/bio/socket_helper.c
+  ${BORINGSSL_ROOT}src/crypto/blake2/blake2.c
+  ${BORINGSSL_ROOT}src/crypto/bn_extra/bn_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/bn_extra/convert.c
+  ${BORINGSSL_ROOT}src/crypto/buf/buf.c
+  ${BORINGSSL_ROOT}src/crypto/bytestring/asn1_compat.c
+  ${BORINGSSL_ROOT}src/crypto/bytestring/ber.c
+  ${BORINGSSL_ROOT}src/crypto/bytestring/cbb.c
+  ${BORINGSSL_ROOT}src/crypto/bytestring/cbs.c
+  ${BORINGSSL_ROOT}src/crypto/bytestring/unicode.c
+  ${BORINGSSL_ROOT}src/crypto/chacha/chacha.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/cipher_extra.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/derive_key.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_aesccm.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_aesctrhmac.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_aesgcmsiv.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_chacha20poly1305.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_null.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_rc2.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_rc4.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/e_tls.c
+  ${BORINGSSL_ROOT}src/crypto/cipher_extra/tls_cbc.c
+  ${BORINGSSL_ROOT}src/crypto/cmac/cmac.c
+  ${BORINGSSL_ROOT}src/crypto/conf/conf.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-aarch64-fuchsia.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-aarch64-linux.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-aarch64-win.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-arm-linux.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-arm.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-intel.c
+  ${BORINGSSL_ROOT}src/crypto/cpu-ppc64le.c
+  ${BORINGSSL_ROOT}src/crypto/crypto.c
+  ${BORINGSSL_ROOT}src/crypto/curve25519/curve25519.c
+  ${BORINGSSL_ROOT}src/crypto/curve25519/spake25519.c
+  ${BORINGSSL_ROOT}src/crypto/dh_extra/dh_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/dh_extra/params.c
+  ${BORINGSSL_ROOT}src/crypto/digest_extra/digest_extra.c
+  ${BORINGSSL_ROOT}src/crypto/dsa/dsa.c
+  ${BORINGSSL_ROOT}src/crypto/dsa/dsa_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/ec_extra/ec_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/ec_extra/ec_derive.c
+  ${BORINGSSL_ROOT}src/crypto/ec_extra/hash_to_curve.c
+  ${BORINGSSL_ROOT}src/crypto/ecdh_extra/ecdh_extra.c
+  ${BORINGSSL_ROOT}src/crypto/ecdsa_extra/ecdsa_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/engine/engine.c
+  ${BORINGSSL_ROOT}src/crypto/err/err.c
+  ${BORINGSSL_ROOT}src/crypto/evp/digestsign.c
+  ${BORINGSSL_ROOT}src/crypto/evp/evp.c
+  ${BORINGSSL_ROOT}src/crypto/evp/evp_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/evp_ctx.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_dsa_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_ec.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_ec_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_ed25519.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_ed25519_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_rsa.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_rsa_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_x25519.c
+  ${BORINGSSL_ROOT}src/crypto/evp/p_x25519_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/evp/pbkdf.c
+  ${BORINGSSL_ROOT}src/crypto/evp/print.c
+  ${BORINGSSL_ROOT}src/crypto/evp/scrypt.c
+  ${BORINGSSL_ROOT}src/crypto/evp/sign.c
+  ${BORINGSSL_ROOT}src/crypto/ex_data.c
+  ${BORINGSSL_ROOT}src/crypto/fipsmodule/bcm.c
+  ${BORINGSSL_ROOT}src/crypto/fipsmodule/fips_shared_support.c
+  ${BORINGSSL_ROOT}src/crypto/fipsmodule/is_fips.c
+  ${BORINGSSL_ROOT}src/crypto/hkdf/hkdf.c
+  ${BORINGSSL_ROOT}src/crypto/hpke/hpke.c
+  ${BORINGSSL_ROOT}src/crypto/hrss/hrss.c
+  ${BORINGSSL_ROOT}src/crypto/lhash/lhash.c
+  ${BORINGSSL_ROOT}src/crypto/mem.c
+  ${BORINGSSL_ROOT}src/crypto/obj/obj.c
+  ${BORINGSSL_ROOT}src/crypto/obj/obj_xref.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_all.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_info.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_lib.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_oth.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_pk8.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_pkey.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_x509.c
+  ${BORINGSSL_ROOT}src/crypto/pem/pem_xaux.c
+  ${BORINGSSL_ROOT}src/crypto/pkcs7/pkcs7.c
+  ${BORINGSSL_ROOT}src/crypto/pkcs7/pkcs7_x509.c
+  ${BORINGSSL_ROOT}src/crypto/pkcs8/p5_pbev2.c
+  ${BORINGSSL_ROOT}src/crypto/pkcs8/pkcs8.c
+  ${BORINGSSL_ROOT}src/crypto/pkcs8/pkcs8_x509.c
+  ${BORINGSSL_ROOT}src/crypto/poly1305/poly1305.c
+  ${BORINGSSL_ROOT}src/crypto/poly1305/poly1305_arm.c
+  ${BORINGSSL_ROOT}src/crypto/poly1305/poly1305_vec.c
+  ${BORINGSSL_ROOT}src/crypto/pool/pool.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/deterministic.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/forkunsafe.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/fuchsia.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/passive.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/rand_extra.c
+  ${BORINGSSL_ROOT}src/crypto/rand_extra/windows.c
+  ${BORINGSSL_ROOT}src/crypto/rc4/rc4.c
+  ${BORINGSSL_ROOT}src/crypto/refcount_c11.c
+  ${BORINGSSL_ROOT}src/crypto/refcount_lock.c
+  ${BORINGSSL_ROOT}src/crypto/rsa_extra/rsa_asn1.c
+  ${BORINGSSL_ROOT}src/crypto/rsa_extra/rsa_print.c
+  ${BORINGSSL_ROOT}src/crypto/siphash/siphash.c
+  ${BORINGSSL_ROOT}src/crypto/stack/stack.c
+  ${BORINGSSL_ROOT}src/crypto/thread.c
+  ${BORINGSSL_ROOT}src/crypto/thread_none.c
+  ${BORINGSSL_ROOT}src/crypto/thread_pthread.c
+  ${BORINGSSL_ROOT}src/crypto/thread_win.c
+  ${BORINGSSL_ROOT}src/crypto/trust_token/pmbtoken.c
+  ${BORINGSSL_ROOT}src/crypto/trust_token/trust_token.c
+  ${BORINGSSL_ROOT}src/crypto/trust_token/voprf.c
+  ${BORINGSSL_ROOT}src/crypto/x509/a_digest.c
+  ${BORINGSSL_ROOT}src/crypto/x509/a_sign.c
+  ${BORINGSSL_ROOT}src/crypto/x509/a_strex.c
+  ${BORINGSSL_ROOT}src/crypto/x509/a_verify.c
+  ${BORINGSSL_ROOT}src/crypto/x509/algorithm.c
+  ${BORINGSSL_ROOT}src/crypto/x509/asn1_gen.c
+  ${BORINGSSL_ROOT}src/crypto/x509/by_dir.c
+  ${BORINGSSL_ROOT}src/crypto/x509/by_file.c
+  ${BORINGSSL_ROOT}src/crypto/x509/i2d_pr.c
+  ${BORINGSSL_ROOT}src/crypto/x509/rsa_pss.c
+  ${BORINGSSL_ROOT}src/crypto/x509/t_crl.c
+  ${BORINGSSL_ROOT}src/crypto/x509/t_req.c
+  ${BORINGSSL_ROOT}src/crypto/x509/t_x509.c
+  ${BORINGSSL_ROOT}src/crypto/x509/t_x509a.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_att.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_cmp.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_d2.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_def.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_ext.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_lu.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_obj.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_r2x.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_req.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_set.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_trs.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_txt.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_v3.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_vfy.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509_vpm.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509cset.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509name.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509rset.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x509spki.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_algor.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_all.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_attrib.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_crl.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_exten.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_info.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_name.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_pkey.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_pubkey.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_req.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_sig.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_spki.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_val.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_x509.c
+  ${BORINGSSL_ROOT}src/crypto/x509/x_x509a.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_cache.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_data.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_lib.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_map.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_node.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/pcy_tree.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_akey.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_akeya.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_alt.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_bcons.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_bitst.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_conf.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_cpols.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_crld.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_enum.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_extku.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_genn.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_ia5.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_info.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_int.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_lib.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_ncons.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_ocsp.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_pci.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_pcia.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_pcons.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_pmaps.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_prn.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_purp.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_skey.c
+  ${BORINGSSL_ROOT}src/crypto/x509v3/v3_utl.c
+)
+set(ssl_sources
+  ${BORINGSSL_ROOT}src/ssl/bio_ssl.cc
+  ${BORINGSSL_ROOT}src/ssl/d1_both.cc
+  ${BORINGSSL_ROOT}src/ssl/d1_lib.cc
+  ${BORINGSSL_ROOT}src/ssl/d1_pkt.cc
+  ${BORINGSSL_ROOT}src/ssl/d1_srtp.cc
+  ${BORINGSSL_ROOT}src/ssl/dtls_method.cc
+  ${BORINGSSL_ROOT}src/ssl/dtls_record.cc
+  ${BORINGSSL_ROOT}src/ssl/handoff.cc
+  ${BORINGSSL_ROOT}src/ssl/handshake.cc
+  ${BORINGSSL_ROOT}src/ssl/handshake_client.cc
+  ${BORINGSSL_ROOT}src/ssl/handshake_server.cc
+  ${BORINGSSL_ROOT}src/ssl/s3_both.cc
+  ${BORINGSSL_ROOT}src/ssl/s3_lib.cc
+  ${BORINGSSL_ROOT}src/ssl/s3_pkt.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_aead_ctx.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_asn1.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_buffer.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_cert.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_cipher.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_file.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_key_share.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_lib.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_privkey.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_session.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_stat.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_transcript.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_versions.cc
+  ${BORINGSSL_ROOT}src/ssl/ssl_x509.cc
+  ${BORINGSSL_ROOT}src/ssl/t1_enc.cc
+  ${BORINGSSL_ROOT}src/ssl/t1_lib.cc
+  ${BORINGSSL_ROOT}src/ssl/tls13_both.cc
+  ${BORINGSSL_ROOT}src/ssl/tls13_client.cc
+  ${BORINGSSL_ROOT}src/ssl/tls13_enc.cc
+  ${BORINGSSL_ROOT}src/ssl/tls13_server.cc
+  ${BORINGSSL_ROOT}src/ssl/tls_method.cc
+  ${BORINGSSL_ROOT}src/ssl/tls_record.cc
+)
+
+set(SRC ${crypto_sources} ${ssl_sources})
+
+add_library(android-external-boringssl OBJECT ${SRC})
+set(EXTERNAL_BORINGSSL_OBJECTS $<TARGET_OBJECTS:android-external-boringssl> PARENT_SCOPE)
