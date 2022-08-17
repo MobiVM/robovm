@@ -93,9 +93,9 @@ int ECDH_compute_key_fips(uint8_t *out, size_t out_len, const EC_POINT *pub_key,
   EC_RAW_POINT shared_point;
   uint8_t buf[EC_MAX_BYTES];
   size_t buflen;
-  if (!ec_point_mul_scalar(group, &shared_point, NULL, &pub_key->raw, priv) ||
-      !ec_point_get_affine_coordinate_bytes(group, buf, NULL, &buflen,
-                                            sizeof(buf), &shared_point)) {
+  if (!ec_point_mul_scalar(group, &shared_point, &pub_key->raw, priv) ||
+      !ec_get_x_coordinate_as_bytes(group, buf, &buflen, sizeof(buf),
+                                    &shared_point)) {
     OPENSSL_PUT_ERROR(ECDH, ECDH_R_POINT_ARITHMETIC_FAILURE);
     return 0;
   }

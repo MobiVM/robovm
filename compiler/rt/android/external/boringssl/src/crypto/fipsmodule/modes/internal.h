@@ -261,22 +261,15 @@ OPENSSL_EXPORT void CRYPTO_gcm128_tag(GCM128_CONTEXT *ctx, uint8_t *tag,
 
 // GCM assembly.
 
-#if !defined(OPENSSL_NO_ASM) &&                         \
-    (defined(OPENSSL_X86) || defined(OPENSSL_X86_64) || \
-     defined(OPENSSL_ARM) || defined(OPENSSL_AARCH64) || \
-     defined(OPENSSL_PPC64LE))
-#define GHASH_ASM
-#endif
-
-void gcm_init_4bit(u128 Htable[16], const uint64_t H[2]);
-void gcm_gmult_4bit(uint64_t Xi[2], const u128 Htable[16]);
-void gcm_ghash_4bit(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
+void gcm_init_nohw(u128 Htable[16], const uint64_t H[2]);
+void gcm_gmult_nohw(uint64_t Xi[2], const u128 Htable[16]);
+void gcm_ghash_nohw(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
                     size_t len);
 
-#if defined(GHASH_ASM)
+#if !defined(OPENSSL_NO_ASM)
 
 #if defined(OPENSSL_X86) || defined(OPENSSL_X86_64)
-#define GCM_FUNCREF_4BIT
+#define GCM_FUNCREF
 void gcm_init_clmul(u128 Htable[16], const uint64_t Xi[2]);
 void gcm_gmult_clmul(uint64_t Xi[2], const u128 Htable[16]);
 void gcm_ghash_clmul(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
@@ -309,14 +302,11 @@ size_t aesni_gcm_decrypt(const uint8_t *in, uint8_t *out, size_t len,
 
 #if defined(OPENSSL_X86)
 #define GHASH_ASM_X86
-void gcm_gmult_4bit_mmx(uint64_t Xi[2], const u128 Htable[16]);
-void gcm_ghash_4bit_mmx(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
-                        size_t len);
 #endif  // OPENSSL_X86
 
 #elif defined(OPENSSL_ARM) || defined(OPENSSL_AARCH64)
 #define GHASH_ASM_ARM
-#define GCM_FUNCREF_4BIT
+#define GCM_FUNCREF
 
 OPENSSL_INLINE int gcm_pmull_capable(void) {
   return CRYPTO_is_ARMv8_PMULL_capable();
@@ -336,49 +326,13 @@ void gcm_ghash_neon(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
 
 #elif defined(OPENSSL_PPC64LE)
 #define GHASH_ASM_PPC64LE
-#define GCM_FUNCREF_4BIT
+#define GCM_FUNCREF
 void gcm_init_p8(u128 Htable[16], const uint64_t Xi[2]);
 void gcm_gmult_p8(uint64_t Xi[2], const u128 Htable[16]);
 void gcm_ghash_p8(uint64_t Xi[2], const u128 Htable[16], const uint8_t *inp,
                   size_t len);
 #endif
-#endif  // GHASH_ASM
-
-
-// CCM.
-
-typedef struct ccm128_context {
-  block128_f block;
-  ctr128_f ctr;
-  unsigned M, L;
-} CCM128_CONTEXT;
-
-// CRYPTO_ccm128_init initialises |ctx| to use |block| (typically AES) with the
-// specified |M| and |L| parameters. It returns one on success and zero if |M|
-// or |L| is invalid.
-int CRYPTO_ccm128_init(CCM128_CONTEXT *ctx, const AES_KEY *key,
-                       block128_f block, ctr128_f ctr, unsigned M, unsigned L);
-
-// CRYPTO_ccm128_max_input returns the maximum input length accepted by |ctx|.
-size_t CRYPTO_ccm128_max_input(const CCM128_CONTEXT *ctx);
-
-// CRYPTO_ccm128_encrypt encrypts |len| bytes from |in| to |out| writing the tag
-// to |out_tag|. |key| must be the same key that was passed to
-// |CRYPTO_ccm128_init|. It returns one on success and zero otherwise.
-int CRYPTO_ccm128_encrypt(const CCM128_CONTEXT *ctx, const AES_KEY *key,
-                          uint8_t *out, uint8_t *out_tag, size_t tag_len,
-                          const uint8_t *nonce, size_t nonce_len,
-                          const uint8_t *in, size_t len, const uint8_t *aad,
-                          size_t aad_len);
-
-// CRYPTO_ccm128_decrypt decrypts |len| bytes from |in| to |out|, writing the
-// expected tag to |out_tag|. |key| must be the same key that was passed to
-// |CRYPTO_ccm128_init|. It returns one on success and zero otherwise.
-int CRYPTO_ccm128_decrypt(const CCM128_CONTEXT *ctx, const AES_KEY *key,
-                          uint8_t *out, uint8_t *out_tag, size_t tag_len,
-                          const uint8_t *nonce, size_t nonce_len,
-                          const uint8_t *in, size_t len, const uint8_t *aad,
-                          size_t aad_len);
+#endif  // OPENSSL_NO_ASM
 
 
 // CBC.

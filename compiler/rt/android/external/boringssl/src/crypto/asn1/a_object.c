@@ -66,7 +66,7 @@
 #include "../internal.h"
 
 
-int i2d_ASN1_OBJECT(ASN1_OBJECT *a, unsigned char **pp)
+int i2d_ASN1_OBJECT(const ASN1_OBJECT *a, unsigned char **pp)
 {
     unsigned char *p, *allocated = NULL;
     int objsize;
@@ -98,12 +98,12 @@ int i2d_ASN1_OBJECT(ASN1_OBJECT *a, unsigned char **pp)
     return objsize;
 }
 
-int i2t_ASN1_OBJECT(char *buf, int buf_len, ASN1_OBJECT *a)
+int i2t_ASN1_OBJECT(char *buf, int buf_len, const ASN1_OBJECT *a)
 {
     return OBJ_obj2txt(buf, buf_len, a, 0);
 }
 
-int i2a_ASN1_OBJECT(BIO *bp, ASN1_OBJECT *a)
+int i2a_ASN1_OBJECT(BIO *bp, const ASN1_OBJECT *a)
 {
     char buf[80], *p = buf;
     int i;
@@ -250,19 +250,12 @@ void ASN1_OBJECT_free(ASN1_OBJECT *a)
     if (a == NULL)
         return;
     if (a->flags & ASN1_OBJECT_FLAG_DYNAMIC_STRINGS) {
-#ifndef CONST_STRICT            /* disable purely for compile-time strict
-                                 * const checking. Doing this on a "real"
-                                 * compile will cause memory leaks */
-        if (a->sn != NULL)
-            OPENSSL_free((void *)a->sn);
-        if (a->ln != NULL)
-            OPENSSL_free((void *)a->ln);
-#endif
+        OPENSSL_free((void *)a->sn);
+        OPENSSL_free((void *)a->ln);
         a->sn = a->ln = NULL;
     }
     if (a->flags & ASN1_OBJECT_FLAG_DYNAMIC_DATA) {
-        if (a->data != NULL)
-            OPENSSL_free((void *)a->data);
+        OPENSSL_free((void *)a->data);
         a->data = NULL;
         a->length = 0;
     }

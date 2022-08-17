@@ -221,15 +221,36 @@ OPENSSL_EXPORT int EC_POINT_get_affine_coordinates_GFp(const EC_GROUP *group,
                                                        BIGNUM *x, BIGNUM *y,
                                                        BN_CTX *ctx);
 
+// EC_POINT_get_affine_coordinates is an alias of
+// |EC_POINT_get_affine_coordinates_GFp|.
+OPENSSL_EXPORT int EC_POINT_get_affine_coordinates(const EC_GROUP *group,
+                                                   const EC_POINT *point,
+                                                   BIGNUM *x, BIGNUM *y,
+                                                   BN_CTX *ctx);
+
 // EC_POINT_set_affine_coordinates_GFp sets the value of |point| to be
 // (|x|, |y|). The |ctx| argument may be used if not NULL. It returns one
-// on success or zero on error. Note that, unlike with OpenSSL, it's
-// considered an error if the point is not on the curve.
+// on success or zero on error. It's considered an error if the point is not on
+// the curve.
+//
+// Note that the corresponding function in OpenSSL versions prior to 1.0.2s does
+// not check if the point is on the curve. This is a security-critical check, so
+// code additionally supporting OpenSSL should repeat the check with
+// |EC_POINT_is_on_curve| or check for older OpenSSL versions with
+// |OPENSSL_VERSION_NUMBER|.
 OPENSSL_EXPORT int EC_POINT_set_affine_coordinates_GFp(const EC_GROUP *group,
                                                        EC_POINT *point,
                                                        const BIGNUM *x,
                                                        const BIGNUM *y,
                                                        BN_CTX *ctx);
+
+// EC_POINT_set_affine_coordinates is an alias of
+// |EC_POINT_set_affine_coordinates_GFp|.
+OPENSSL_EXPORT int EC_POINT_set_affine_coordinates(const EC_GROUP *group,
+                                                   EC_POINT *point,
+                                                   const BIGNUM *x,
+                                                   const BIGNUM *y,
+                                                   BN_CTX *ctx);
 
 // EC_POINT_point2oct serialises |point| into the X9.62 form given by |form|
 // into, at most, |len| bytes at |buf|. It returns the number of bytes written
@@ -248,8 +269,9 @@ OPENSSL_EXPORT int EC_POINT_point2cbb(CBB *out, const EC_GROUP *group,
                                       BN_CTX *ctx);
 
 // EC_POINT_oct2point sets |point| from |len| bytes of X9.62 format
-// serialisation in |buf|. It returns one on success and zero otherwise. The
-// |ctx| argument may be used if not NULL.
+// serialisation in |buf|. It returns one on success and zero on error. The
+// |ctx| argument may be used if not NULL. It's considered an error if |buf|
+// does not represent a point on the curve.
 OPENSSL_EXPORT int EC_POINT_oct2point(const EC_GROUP *group, EC_POINT *point,
                                       const uint8_t *buf, size_t len,
                                       BN_CTX *ctx);

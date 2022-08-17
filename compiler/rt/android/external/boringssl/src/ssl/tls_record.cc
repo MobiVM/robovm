@@ -447,13 +447,15 @@ static bool tls_seal_scatter_suffix_len(const SSL *ssl, size_t *out_suffix_len,
     // TLS 1.3 adds an extra byte for encrypted record type.
     extra_in_len = 1;
   }
-  if (type == SSL3_RT_APPLICATION_DATA &&  // clang-format off
+  // clang-format off
+  if (type == SSL3_RT_APPLICATION_DATA &&
       in_len > 1 &&
       ssl_needs_record_splitting(ssl)) {
     // With record splitting enabled, the first byte gets sealed into a separate
     // record which is written into the prefix.
     in_len -= 1;
   }
+  // clang-format on
   return ssl->s3->aead_write_ctx->SuffixLen(out_suffix_len, in_len, extra_in_len);
 }
 
@@ -465,8 +467,8 @@ static bool tls_seal_scatter_suffix_len(const SSL *ssl, size_t *out_suffix_len,
 // |tls_seal_scatter_record| implements TLS 1.0 CBC 1/n-1 record splitting and
 // may write two records concatenated.
 static bool tls_seal_scatter_record(SSL *ssl, uint8_t *out_prefix, uint8_t *out,
-                                   uint8_t *out_suffix, uint8_t type,
-                                   const uint8_t *in, size_t in_len) {
+                                    uint8_t *out_suffix, uint8_t type,
+                                    const uint8_t *in, size_t in_len) {
   if (type == SSL3_RT_APPLICATION_DATA && in_len > 1 &&
       ssl_needs_record_splitting(ssl)) {
     assert(ssl->s3->aead_write_ctx->ExplicitNonceLen() == 0);
@@ -566,9 +568,14 @@ enum ssl_open_record_t ssl_process_alert(SSL *ssl, uint8_t *out_alert,
       return ssl_open_record_close_notify;
     }
 
-    // Warning alerts do not exist in TLS 1.3.
+    // Warning alerts do not exist in TLS 1.3, but RFC 8446 section 6.1
+    // continues to define user_canceled as a signal to cancel the handshake,
+    // without specifying how to handle it. JDK11 misuses it to signal
+    // full-duplex connection close after the handshake. As a workaround, skip
+    // user_canceled as in TLS 1.2. This matches NSS and OpenSSL.
     if (ssl->s3->have_version &&
-        ssl_protocol_version(ssl) >= TLS1_3_VERSION) {
+        ssl_protocol_version(ssl) >= TLS1_3_VERSION &&
+        alert_descr != SSL_AD_USER_CANCELLED) {
       *out_alert = SSL_AD_DECODE_ERROR;
       OPENSSL_PUT_ERROR(SSL, SSL_R_BAD_ALERT);
       return ssl_open_record_error;

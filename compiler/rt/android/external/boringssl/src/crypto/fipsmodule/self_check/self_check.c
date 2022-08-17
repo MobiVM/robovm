@@ -15,11 +15,14 @@
 #include <openssl/crypto.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <openssl/aead.h>
 #include <openssl/aes.h>
 #include <openssl/bn.h>
 #include <openssl/des.h>
+#include <openssl/digest.h>
+#include <openssl/ec.h>
 #include <openssl/ecdsa.h>
 #include <openssl/ec_key.h>
 #include <openssl/nid.h>
@@ -29,11 +32,27 @@
 #include "../../internal.h"
 #include "../ec/internal.h"
 #include "../rand/internal.h"
+#include "../tls/internal.h"
 
 
 // MSVC wants to put a NUL byte at the end of non-char arrays and so cannot
 // compile this.
 #if !defined(_MSC_VER)
+
+#if defined(BORINGSSL_FIPS) && defined(OPENSSL_ANDROID)
+// FIPS builds on Android will test for flag files, named after the module hash,
+// in /dev/boringssl/selftest/. If such a flag file exists, it's assumed that
+// self-tests have already passed and thus do not need to be repeated. (The
+// integrity tests always run, however.)
+//
+// If self-tests complete successfully and the environment variable named in
+// |kFlagWriteEnableEnvVar| is present, then the flag file will be created. The
+// flag file isn't written without the environment variable being set in order
+// to avoid SELinux violations on Android.
+#define BORINGSSL_FIPS_SELF_TEST_FLAG_FILE
+static const char kFlagPrefix[] = "/dev/boringssl/selftest/";
+static const char kFlagWriteEnableEnvVar[] = "BORINGSSL_SELF_TEST_CREATE_FLAG";
+#endif
 
 static void hexdump(const uint8_t *in, size_t len) {
   for (size_t i = 0; i < len; i++) {
@@ -227,7 +246,113 @@ static EC_KEY *self_test_ecdsa_key(void) {
   return ec_key;
 }
 
-int BORINGSSL_self_test(void) {
+static DH *self_test_dh(void) {
+  // This is the prime from https://tools.ietf.org/html/rfc7919#appendix-A.1,
+  // which is specifically approved for FIPS in appendix D of SP 800-56Ar3.
+  static const BN_ULONG kFFDHE2048Data[] = {
+      TOBN(0xffffffff, 0xffffffff), TOBN(0x886b4238, 0x61285c97),
+      TOBN(0xc6f34a26, 0xc1b2effa), TOBN(0xc58ef183, 0x7d1683b2),
+      TOBN(0x3bb5fcbc, 0x2ec22005), TOBN(0xc3fe3b1b, 0x4c6fad73),
+      TOBN(0x8e4f1232, 0xeef28183), TOBN(0x9172fe9c, 0xe98583ff),
+      TOBN(0xc03404cd, 0x28342f61), TOBN(0x9e02fce1, 0xcdf7e2ec),
+      TOBN(0x0b07a7c8, 0xee0a6d70), TOBN(0xae56ede7, 0x6372bb19),
+      TOBN(0x1d4f42a3, 0xde394df4), TOBN(0xb96adab7, 0x60d7f468),
+      TOBN(0xd108a94b, 0xb2c8e3fb), TOBN(0xbc0ab182, 0xb324fb61),
+      TOBN(0x30acca4f, 0x483a797a), TOBN(0x1df158a1, 0x36ade735),
+      TOBN(0xe2a689da, 0xf3efe872), TOBN(0x984f0c70, 0xe0e68b77),
+      TOBN(0xb557135e, 0x7f57c935), TOBN(0x85636555, 0x3ded1af3),
+      TOBN(0x2433f51f, 0x5f066ed0), TOBN(0xd3df1ed5, 0xd5fd6561),
+      TOBN(0xf681b202, 0xaec4617a), TOBN(0x7d2fe363, 0x630c75d8),
+      TOBN(0xcc939dce, 0x249b3ef9), TOBN(0xa9e13641, 0x146433fb),
+      TOBN(0xd8b9c583, 0xce2d3695), TOBN(0xafdc5620, 0x273d3cf1),
+      TOBN(0xadf85458, 0xa2bb4a9a), TOBN(0xffffffff, 0xffffffff),
+  };
+
+  // kFFDHE2048PrivateKeyData is a 225-bit value. (225 because that's the
+  // minimum private key size in
+  // https://tools.ietf.org/html/rfc7919#appendix-A.1.)
+  static const BN_ULONG kFFDHE2048PrivateKeyData[] = {
+      TOBN(0x187be36b, 0xd38a4fa1),
+      TOBN(0x0a152f39, 0x6458f3b8),
+      TOBN(0x0570187e, 0xc422eeb7),
+      TOBN(0x00000001, 0x91173f2a),
+  };
+
+  BIGNUM *const ffdhe2048_p = BN_new();
+  BIGNUM *const ffdhe2048_q = BN_new();
+  BIGNUM *const ffdhe2048_g = BN_new();
+  BIGNUM *ffdhe2048_priv = BN_new();
+  DH *const dh = DH_new();
+
+  if (!ffdhe2048_p || !ffdhe2048_q || !ffdhe2048_g || !ffdhe2048_priv || !dh) {
+    goto err;
+  }
+
+  bn_set_static_words(ffdhe2048_p, kFFDHE2048Data,
+                      OPENSSL_ARRAY_SIZE(kFFDHE2048Data));
+  bn_set_static_words(ffdhe2048_priv, kFFDHE2048PrivateKeyData,
+                      OPENSSL_ARRAY_SIZE(kFFDHE2048PrivateKeyData));
+
+  if (!BN_copy(ffdhe2048_q, ffdhe2048_p) ||
+      !BN_sub_word(ffdhe2048_q, 1) ||
+      BN_div_word(ffdhe2048_q, 2) != 0 ||
+      !BN_set_word(ffdhe2048_g, 2) ||
+      !DH_set0_key(dh, NULL, ffdhe2048_priv)) {
+    goto err;
+  }
+
+  ffdhe2048_priv = NULL;
+  if (!DH_set0_pqg(dh, ffdhe2048_p, ffdhe2048_q, ffdhe2048_g)) {
+    goto err;
+  }
+
+  return dh;
+
+err:
+  BN_free(ffdhe2048_p);
+  BN_free(ffdhe2048_q);
+  BN_free(ffdhe2048_g);
+  BN_free(ffdhe2048_priv);
+  DH_free(dh);
+  return NULL;
+}
+
+#if defined(OPENSSL_ANDROID)
+static const size_t kModuleDigestSize = SHA256_DIGEST_LENGTH;
+#else
+static const size_t kModuleDigestSize = SHA512_DIGEST_LENGTH;
+#endif
+
+int boringssl_fips_self_test(
+    const uint8_t *module_hash, size_t module_hash_len) {
+#if defined(BORINGSSL_FIPS_SELF_TEST_FLAG_FILE)
+  char flag_path[sizeof(kFlagPrefix) + 2*kModuleDigestSize];
+  if (module_hash_len != 0) {
+    if (module_hash_len != kModuleDigestSize) {
+      fprintf(stderr,
+              "module hash of length %zu does not match expected length %zu\n",
+              module_hash_len, kModuleDigestSize);
+      BORINGSSL_FIPS_abort();
+    }
+
+    // Test whether the flag file exists.
+    memcpy(flag_path, kFlagPrefix, sizeof(kFlagPrefix) - 1);
+    static const char kHexTable[17] = "0123456789abcdef";
+    for (size_t i = 0; i < kModuleDigestSize; i++) {
+      flag_path[sizeof(kFlagPrefix) - 1 + 2 * i] =
+          kHexTable[module_hash[i] >> 4];
+      flag_path[sizeof(kFlagPrefix) - 1 + 2 * i + 1] =
+          kHexTable[module_hash[i] & 15];
+    }
+    flag_path[sizeof(flag_path) - 1] = 0;
+
+    if (access(flag_path, F_OK) == 0) {
+      // Flag file found. Skip self-tests.
+      return 1;
+    }
+  }
+#endif // BORINGSSL_FIPS_SELF_TEST_FLAG_FILE
+
   static const uint8_t kAESKey[16] = "BoringCrypto Key";
   static const uint8_t kAESIV[16] = {0};
   static const uint8_t kPlaintext[64] =
@@ -379,11 +504,119 @@ int BORINGSSL_self_test(void) {
       0xba, 0x4d, 0xd9, 0x86, 0x77, 0xda, 0x7d, 0x8f, 0xef, 0xc4, 0x1a,
       0xf0, 0xcc, 0x81, 0xe5, 0xea, 0x3f, 0xc2, 0x41, 0x7f, 0xd8,
   };
+  // kP256Point is SHA256("Primitive Z Computation KAT")×G within P-256.
+  const uint8_t kP256Point[65] = {
+      0x04, 0x4e, 0xc1, 0x94, 0x8c, 0x5c, 0xf4, 0x37, 0x35, 0x0d, 0xa3,
+      0xf9, 0x55, 0xf9, 0x8b, 0x26, 0x23, 0x5c, 0x43, 0xe0, 0x83, 0x51,
+      0x2b, 0x0d, 0x4b, 0x56, 0x24, 0xc3, 0xe4, 0xa5, 0xa8, 0xe2, 0xe9,
+      0x95, 0xf2, 0xc4, 0xb9, 0xb7, 0x48, 0x7d, 0x2a, 0xae, 0xc5, 0xc0,
+      0x0a, 0xcc, 0x1b, 0xd0, 0xec, 0xb8, 0xdc, 0xbe, 0x0c, 0xbe, 0x52,
+      0x79, 0x93, 0x7c, 0x0b, 0x92, 0x2b, 0x7f, 0x17, 0xa5, 0x80,
+  };
+  // kP256Scalar is SHA256("Primitive Z Computation KAT scalar").
+  const uint8_t kP256Scalar[32] = {
+      0xe7, 0x60, 0x44, 0x91, 0x26, 0x9a, 0xfb, 0x5b, 0x10, 0x2d, 0x6e,
+      0xa5, 0x2c, 0xb5, 0x9f, 0xeb, 0x70, 0xae, 0xde, 0x6c, 0xe3, 0xbf,
+      0xb3, 0xe0, 0x10, 0x54, 0x85, 0xab, 0xd8, 0x61, 0xd7, 0x7b,
+  };
+  // kP256PointResult is |kP256Scalar|×|kP256Point|.
+  const uint8_t kP256PointResult[65] = {
+      0x04, 0xf1, 0x63, 0x00, 0x88, 0xc5, 0xd5, 0xe9, 0x05, 0x52, 0xac,
+      0xb6, 0xec, 0x68, 0x76, 0xb8, 0x73, 0x7f, 0x0f, 0x72, 0x34, 0xe6,
+      0xbb, 0x30, 0x32, 0x22, 0x37, 0xb6, 0x2a, 0x80, 0xe8, 0x9e, 0x6e,
+      0x6f, 0x36, 0x02, 0xe7, 0x21, 0xd2, 0x31, 0xdb, 0x94, 0x63, 0xb7,
+      0xd8, 0x19, 0x0e, 0xc2, 0xc0, 0xa7, 0x2f, 0x15, 0x49, 0x1a, 0xa2,
+      0x7c, 0x41, 0x8f, 0xaf, 0x9c, 0x40, 0xaf, 0x2e, 0x4a,
+#if !defined(BORINGSSL_FIPS_BREAK_Z_COMPUTATION)
+      0x0c,
+#else
+      0x00,
+#endif
+  };
+  const uint8_t kTLSOutput[32] = {
+      0x67, 0x85, 0xde, 0x60, 0xfc, 0x0a, 0x83, 0xe9, 0xa2, 0x2a, 0xb3,
+      0xf0, 0x27, 0x0c, 0xba, 0xf7, 0xfa, 0x82, 0x3d, 0x14, 0x77, 0x1d,
+      0x86, 0x29, 0x79, 0x39, 0x77, 0x8a, 0xd5, 0x0e, 0x9d,
+#if !defined(BORINGSSL_FIPS_BREAK_TLS_KDF)
+      0x32,
+#else
+      0x00,
+#endif
+  };
+  const uint8_t kTLSSecret[32] = {
+      0xbf, 0xe4, 0xb7, 0xe0, 0x26, 0x55, 0x5f, 0x6a, 0xdf, 0x5d, 0x27,
+      0xd6, 0x89, 0x99, 0x2a, 0xd6, 0xf7, 0x65, 0x66, 0x07, 0x4b, 0x55,
+      0x5f, 0x64, 0x55, 0xcd, 0xd5, 0x77, 0xa4, 0xc7, 0x09, 0x61,
+  };
+  const char kTLSLabel[] = "FIPS self test";
+  const uint8_t kTLSSeed1[16] = {
+      0x8f, 0x0d, 0xe8, 0xb6, 0x90, 0x8f, 0xb1, 0xd2,
+      0x6d, 0x51, 0xf4, 0x79, 0x18, 0x63, 0x51, 0x65,
+  };
+  const uint8_t kTLSSeed2[16] = {
+      0x7d, 0x24, 0x1a, 0x9d, 0x3c, 0x59, 0xbf, 0x3c,
+      0x31, 0x1e, 0x2b, 0x21, 0x41, 0x8d, 0x32, 0x81,
+  };
+
+  // kFFDHE2048PublicValueData is an arbitrary public value, mod
+  // kFFDHE2048Data. (The private key happens to be 4096.)
+  static const BN_ULONG kFFDHE2048PublicValueData[] = {
+      TOBN(0x187be36b, 0xd38a4fa1), TOBN(0x0a152f39, 0x6458f3b8),
+      TOBN(0x0570187e, 0xc422eeb7), TOBN(0x18af7482, 0x91173f2a),
+      TOBN(0xe9fdac6a, 0xcff4eaaa), TOBN(0xf6afebb7, 0x6e589d6c),
+      TOBN(0xf92f8e9a, 0xb7e33fb0), TOBN(0x70acf2aa, 0x4cf36ddd),
+      TOBN(0x561ab426, 0xd07137fd), TOBN(0x5f57d037, 0x430ee91e),
+      TOBN(0xe3e768c8, 0x60d10b8a), TOBN(0xb14884d8, 0xa18af8ce),
+      TOBN(0xf8a98014, 0xa12b74e4), TOBN(0x748d407c, 0x3437b7a8),
+      TOBN(0x627588c4, 0x9875d5a7), TOBN(0xdd24a127, 0x53c8f09d),
+      TOBN(0x85a997d5, 0x0cd51aec), TOBN(0x44f0c619, 0xce348458),
+      TOBN(0x9b894b24, 0x5f6b69a1), TOBN(0xae1302f2, 0xf6d4777e),
+      TOBN(0xe6678eeb, 0x375db18e), TOBN(0x2674e1d6, 0x4fbcbdc8),
+      TOBN(0xb297a823, 0x6fa93d28), TOBN(0x6a12fb70, 0x7c8c0510),
+      TOBN(0x5c6d1aeb, 0xdb06f65b), TOBN(0xe8c2954e, 0x4c1804ca),
+      TOBN(0x06bdeac1, 0xf5500fa7), TOBN(0x6a315604, 0x189cd76b),
+      TOBN(0xbae7b0b3, 0x6e362dc0), TOBN(0xa57c73bd, 0xdc70fb82),
+      TOBN(0xfaff50d2, 0x9d573457), TOBN(0x352bd399, 0xbe84058e),
+  };
+
+  const uint8_t kDHOutput[2048 / 8] = {
+      0x2a, 0xe6, 0xd3, 0xa6, 0x13, 0x58, 0x8e, 0xce, 0x53, 0xaa, 0xf6, 0x5d,
+      0x9a, 0xae, 0x02, 0x12, 0xf5, 0x80, 0x3d, 0x06, 0x09, 0x76, 0xac, 0x57,
+      0x37, 0x9e, 0xab, 0x38, 0x62, 0x25, 0x05, 0x1d, 0xf3, 0xa9, 0x39, 0x60,
+      0xf6, 0xae, 0x90, 0xed, 0x1e, 0xad, 0x6e, 0xe9, 0xe3, 0xba, 0x27, 0xf6,
+      0xdb, 0x54, 0xdf, 0xe2, 0xbd, 0xbb, 0x7f, 0xf1, 0x81, 0xac, 0x1a, 0xfa,
+      0xdb, 0x87, 0x07, 0x98, 0x76, 0x90, 0x21, 0xf2, 0xae, 0xda, 0x0d, 0x84,
+      0x97, 0x64, 0x0b, 0xbf, 0xb8, 0x8d, 0x10, 0x46, 0xe2, 0xd5, 0xca, 0x1b,
+      0xbb, 0xe5, 0x37, 0xb2, 0x3b, 0x35, 0xd3, 0x1b, 0x65, 0xea, 0xae, 0xf2,
+      0x03, 0xe2, 0xb6, 0xde, 0x22, 0xb7, 0x86, 0x49, 0x79, 0xfe, 0xd7, 0x16,
+      0xf7, 0xdc, 0x9c, 0x59, 0xf5, 0xb7, 0x70, 0xc0, 0x53, 0x42, 0x6f, 0xb1,
+      0xd2, 0x4e, 0x00, 0x25, 0x4b, 0x2d, 0x5a, 0x9b, 0xd0, 0xe9, 0x27, 0x43,
+      0xcc, 0x00, 0x66, 0xea, 0x94, 0x7a, 0x0b, 0xb9, 0x89, 0x0c, 0x5e, 0x94,
+      0xb8, 0x3a, 0x78, 0x9c, 0x4d, 0x84, 0xe6, 0x32, 0x2c, 0x38, 0x7c, 0xf7,
+      0x43, 0x9c, 0xd8, 0xb8, 0x1c, 0xce, 0x24, 0x91, 0x20, 0x67, 0x7a, 0x54,
+      0x1f, 0x7e, 0x86, 0x7f, 0xa1, 0xc1, 0x03, 0x4e, 0x2c, 0x26, 0x71, 0xb2,
+      0x06, 0x30, 0xb3, 0x6c, 0x15, 0xcc, 0xac, 0x25, 0xe5, 0x37, 0x3f, 0x24,
+      0x8f, 0x2a, 0x89, 0x5e, 0x3d, 0x43, 0x94, 0xc9, 0x36, 0xae, 0x40, 0x00,
+      0x6a, 0x0d, 0xb0, 0x6e, 0x8b, 0x2e, 0x70, 0x57, 0xe1, 0x88, 0x53, 0xd6,
+      0x06, 0x80, 0x2a, 0x4e, 0x5a, 0xf0, 0x1e, 0xaa, 0xcb, 0xab, 0x06, 0x0e,
+      0x27, 0x0f, 0xd9, 0x88, 0xd9, 0x01, 0xe3, 0x07, 0xeb, 0xdf, 0xc3, 0x12,
+      0xe3, 0x40, 0x88, 0x7b, 0x5f, 0x59, 0x78, 0x6e, 0x26, 0x20, 0xc3, 0xdf,
+      0xc8, 0xe4, 0x5e,
+#if !defined(BORINGSSL_FIPS_BREAK_FFC_DH)
+      0xb8,
+#else
+      0x00,
+#endif
+  };
 
   EVP_AEAD_CTX aead_ctx;
   EVP_AEAD_CTX_zero(&aead_ctx);
   RSA *rsa_key = NULL;
   EC_KEY *ec_key = NULL;
+  EC_GROUP *ec_group = NULL;
+  EC_POINT *ec_point_in = NULL;
+  EC_POINT *ec_point_out = NULL;
+  BIGNUM *ec_scalar = NULL;
   ECDSA_SIG *sig = NULL;
   int ret = 0;
 
@@ -526,7 +759,7 @@ int BORINGSSL_self_test(void) {
     goto err;
   }
 
-  // ECDSA Sign/Verify PWCT
+  // ECDSA Sign/Verify KAT
 
   // The 'k' value for ECDSA is fixed to avoid an entropy draw.
   ec_key->fixed_k = BN_new();
@@ -547,7 +780,60 @@ int BORINGSSL_self_test(void) {
       !BN_bn2bin(sig->s, ecdsa_s_bytes) ||
       !check_test(kECDSASigR, ecdsa_r_bytes, sizeof(kECDSASigR), "ECDSA R") ||
       !check_test(kECDSASigS, ecdsa_s_bytes, sizeof(kECDSASigS), "ECDSA S")) {
-    fprintf(stderr, "ECDSA KAT failed.\n");
+    fprintf(stderr, "ECDSA signature KAT failed.\n");
+    goto err;
+  }
+
+  if (!ECDSA_do_verify(kPlaintextSHA256, sizeof(kPlaintextSHA256), sig,
+                       ec_key)) {
+    fprintf(stderr, "ECDSA verification KAT failed.\n");
+    goto err;
+  }
+
+  // Primitive Z Computation KAT (IG 9.6).
+  ec_group = EC_GROUP_new_by_curve_name(NID_X9_62_prime256v1);
+  if (ec_group == NULL) {
+    fprintf(stderr, "Failed to create P-256 group.\n");
+    goto err;
+  }
+  ec_point_in = EC_POINT_new(ec_group);
+  ec_point_out = EC_POINT_new(ec_group);
+  ec_scalar = BN_new();
+  uint8_t z_comp_result[65];
+  if (ec_point_in == NULL || ec_point_out == NULL || ec_scalar == NULL ||
+      !EC_POINT_oct2point(ec_group, ec_point_in, kP256Point, sizeof(kP256Point),
+                          NULL) ||
+      !BN_bin2bn(kP256Scalar, sizeof(kP256Scalar), ec_scalar) ||
+      !EC_POINT_mul(ec_group, ec_point_out, NULL, ec_point_in, ec_scalar,
+                    NULL) ||
+      !EC_POINT_point2oct(ec_group, ec_point_out, POINT_CONVERSION_UNCOMPRESSED,
+                          z_comp_result, sizeof(z_comp_result), NULL) ||
+      !check_test(kP256PointResult, z_comp_result, sizeof(z_comp_result),
+                  "Z Computation Result")) {
+    fprintf(stderr, "Z Computation KAT failed.\n");
+    goto err;
+  }
+
+  // FFC Diffie-Hellman KAT
+
+  BIGNUM *const ffdhe2048_value = BN_new();
+  DH *const dh = self_test_dh();
+  int dh_ok = 0;
+  if (ffdhe2048_value && dh) {
+    bn_set_static_words(ffdhe2048_value, kFFDHE2048PublicValueData,
+                        OPENSSL_ARRAY_SIZE(kFFDHE2048PublicValueData));
+
+    uint8_t dh_out[sizeof(kDHOutput)];
+    dh_ok =
+        sizeof(dh_out) == DH_size(dh) &&
+        DH_compute_key_padded(dh_out, ffdhe2048_value, dh) == sizeof(dh_out) &&
+        check_test(kDHOutput, dh_out, sizeof(dh_out), "FFC DH");
+  }
+
+  BN_free(ffdhe2048_value);
+  DH_free(dh);
+  if (!dh_ok) {
+    fprintf(stderr, "FFDH failed.\n");
     goto err;
   }
 
@@ -575,15 +861,44 @@ int BORINGSSL_self_test(void) {
     goto err;
   }
 
+  // TLS KDF KAT
+  uint8_t tls_output[sizeof(kTLSOutput)];
+  if (!CRYPTO_tls1_prf(EVP_sha256(), tls_output, sizeof(tls_output), kTLSSecret,
+                       sizeof(kTLSSecret), kTLSLabel, sizeof(kTLSLabel),
+                       kTLSSeed1, sizeof(kTLSSeed1), kTLSSeed2,
+                       sizeof(kTLSSeed2)) ||
+      !check_test(kTLSOutput, tls_output, sizeof(kTLSOutput), "TLS KDF KAT")) {
+    fprintf(stderr, "TLS KDF failed.\n");
+    goto err;
+  }
+
   ret = 1;
+
+#if defined(BORINGSSL_FIPS_SELF_TEST_FLAG_FILE)
+  // Tests were successful. Write flag file if requested.
+  if (module_hash_len != 0 && getenv(kFlagWriteEnableEnvVar) != NULL) {
+    const int fd = open(flag_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd >= 0) {
+      close(fd);
+    }
+  }
+#endif  // BORINGSSL_FIPS_SELF_TEST_FLAG_FILE
 
 err:
   EVP_AEAD_CTX_cleanup(&aead_ctx);
   RSA_free(rsa_key);
   EC_KEY_free(ec_key);
+  EC_POINT_free(ec_point_in);
+  EC_POINT_free(ec_point_out);
+  EC_GROUP_free(ec_group);
+  BN_free(ec_scalar);
   ECDSA_SIG_free(sig);
 
   return ret;
+}
+
+int BORINGSSL_self_test(void) {
+  return boringssl_fips_self_test(NULL, 0);
 }
 
 #endif  // !_MSC_VER

@@ -36,7 +36,7 @@ extern void addmulmod(fe1305x2 *r, const fe1305x2 *x, const fe1305x2 *y,
                       const fe1305x2 *c);
 
 extern int blocks(fe1305x2 *h, const fe1305x2 *precomp, const uint8_t *in,
-                  unsigned int inlen);
+                  size_t inlen);
 
 static void freeze(fe1305x2 *r) {
   int i;
@@ -103,7 +103,17 @@ static void freeze(fe1305x2 *r) {
   r->v[8] = y4;
 }
 
-static void fe1305x2_tobytearray(uint8_t *r, fe1305x2 *x) {
+static void store32(uint8_t out[4], uint32_t v) { OPENSSL_memcpy(out, &v, 4); }
+
+// load32 exists to avoid breaking strict aliasing rules in
+// fe1305x2_frombytearray.
+static uint32_t load32(const uint8_t t[4]) {
+  uint32_t tmp;
+  OPENSSL_memcpy(&tmp, t, sizeof(tmp));
+  return tmp;
+}
+
+static void fe1305x2_tobytearray(uint8_t r[16], fe1305x2 *x) {
   uint32_t x0 = x->v[0];
   uint32_t x1 = x->v[2];
   uint32_t x2 = x->v[4];
@@ -119,23 +129,14 @@ static void fe1305x2_tobytearray(uint8_t *r, fe1305x2 *x) {
   x4 += x3 >> 26;
   x3 &= 0x3ffffff;
 
-  *(uint32_t *)r = x0 + (x1 << 26);
-  *(uint32_t *)(r + 4) = (x1 >> 6) + (x2 << 20);
-  *(uint32_t *)(r + 8) = (x2 >> 12) + (x3 << 14);
-  *(uint32_t *)(r + 12) = (x3 >> 18) + (x4 << 8);
+  store32(r, x0 + (x1 << 26));
+  store32(r + 4, (x1 >> 6) + (x2 << 20));
+  store32(r + 8, (x2 >> 12) + (x3 << 14));
+  store32(r + 12, (x3 >> 18) + (x4 << 8));
 }
 
-// load32 exists to avoid breaking strict aliasing rules in
-// fe1305x2_frombytearray.
-static uint32_t load32(uint8_t *t) {
-  uint32_t tmp;
-  OPENSSL_memcpy(&tmp, t, sizeof(tmp));
-  return tmp;
-}
-
-static void fe1305x2_frombytearray(fe1305x2 *r, const uint8_t *x,
-                                   unsigned long long xlen) {
-  unsigned i;
+static void fe1305x2_frombytearray(fe1305x2 *r, const uint8_t *x, size_t xlen) {
+  size_t i;
   uint8_t t[17];
 
   for (i = 0; (i < 16) && (i < xlen); i++) {
@@ -178,9 +179,13 @@ static const alignas(16) fe1305x2 zero;
 struct poly1305_state_st {
   uint8_t data[sizeof(fe1305x2[5]) + 128];
   uint8_t buf[32];
-  unsigned int buf_used;
+  size_t buf_used;
   uint8_t key[16];
 };
+
+OPENSSL_STATIC_ASSERT(
+    sizeof(struct poly1305_state_st) + 63 <= sizeof(poly1305_state),
+    "poly1305_state isn't large enough to hold aligned poly1305_state_st.");
 
 void CRYPTO_poly1305_init_neon(poly1305_state *state, const uint8_t key[32]) {
   struct poly1305_state_st *st = (struct poly1305_state_st *)(state);
@@ -188,15 +193,14 @@ void CRYPTO_poly1305_init_neon(poly1305_state *state, const uint8_t key[32]) {
   fe1305x2 *const h = r + 1;
   fe1305x2 *const c = h + 1;
   fe1305x2 *const precomp = c + 1;
-  unsigned int j;
 
-  r->v[1] = r->v[0] = 0x3ffffff & *(uint32_t *)key;
-  r->v[3] = r->v[2] = 0x3ffff03 & ((*(uint32_t *)(key + 3)) >> 2);
-  r->v[5] = r->v[4] = 0x3ffc0ff & ((*(uint32_t *)(key + 6)) >> 4);
-  r->v[7] = r->v[6] = 0x3f03fff & ((*(uint32_t *)(key + 9)) >> 6);
-  r->v[9] = r->v[8] = 0x00fffff & ((*(uint32_t *)(key + 12)) >> 8);
+  r->v[1] = r->v[0] = 0x3ffffff & load32(key);
+  r->v[3] = r->v[2] = 0x3ffff03 & (load32(key + 3) >> 2);
+  r->v[5] = r->v[4] = 0x3ffc0ff & (load32(key + 6) >> 4);
+  r->v[7] = r->v[6] = 0x3f03fff & (load32(key + 9) >> 6);
+  r->v[9] = r->v[8] = 0x00fffff & (load32(key + 12) >> 8);
 
-  for (j = 0; j < 10; j++) {
+  for (size_t j = 0; j < 10; j++) {
     h->v[j] = 0;  // XXX: should fast-forward a bit
   }
 
@@ -214,14 +218,13 @@ void CRYPTO_poly1305_update_neon(poly1305_state *state, const uint8_t *in,
   fe1305x2 *const h = r + 1;
   fe1305x2 *const c = h + 1;
   fe1305x2 *const precomp = c + 1;
-  unsigned int i;
 
   if (st->buf_used) {
-    unsigned int todo = 32 - st->buf_used;
+    size_t todo = 32 - st->buf_used;
     if (todo > in_len) {
       todo = in_len;
     }
-    for (i = 0; i < todo; i++) {
+    for (size_t i = 0; i < todo; i++) {
       st->buf[st->buf_used + i] = in[i];
     }
     st->buf_used += todo;
@@ -231,7 +234,7 @@ void CRYPTO_poly1305_update_neon(poly1305_state *state, const uint8_t *in,
     if (st->buf_used == sizeof(st->buf) && in_len) {
       addmulmod(h, h, precomp, &zero);
       fe1305x2_frombytearray(c, st->buf, sizeof(st->buf));
-      for (i = 0; i < 10; i++) {
+      for (size_t i = 0; i < 10; i++) {
         h->v[i] += c->v[i];
       }
       st->buf_used = 0;
@@ -239,7 +242,7 @@ void CRYPTO_poly1305_update_neon(poly1305_state *state, const uint8_t *in,
   }
 
   while (in_len > 32) {
-    unsigned int tlen = 1048576;
+    size_t tlen = 1048576;
     if (in_len < tlen) {
       tlen = in_len;
     }
@@ -249,7 +252,7 @@ void CRYPTO_poly1305_update_neon(poly1305_state *state, const uint8_t *in,
   }
 
   if (in_len) {
-    for (i = 0; i < in_len; i++) {
+    for (size_t i = 0; i < in_len; i++) {
       st->buf[i] = in[i];
     }
     st->buf_used = in_len;

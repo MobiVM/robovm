@@ -57,8 +57,8 @@
 
 #include <stdio.h>
 
-#include <openssl/buf.h>
 #include <openssl/obj.h>
+#include <openssl/mem.h>
 #include <openssl/x509v3.h>
 
 static const ENUMERATED_NAMES crl_reasons[] = {
@@ -87,14 +87,15 @@ const X509V3_EXT_METHOD v3_crl_reason = {
     (void *)crl_reasons
 };
 
-char *i2s_ASN1_ENUMERATED_TABLE(X509V3_EXT_METHOD *method, ASN1_ENUMERATED *e)
+char *i2s_ASN1_ENUMERATED_TABLE(X509V3_EXT_METHOD *method,
+                                const ASN1_ENUMERATED *e)
 {
     const ENUMERATED_NAMES *enam;
     long strval;
     strval = ASN1_ENUMERATED_get(e);
     for (enam = method->usr_data; enam->lname; enam++) {
         if (strval == enam->bitnum)
-            return BUF_strdup(enam->lname);
+            return OPENSSL_strdup(enam->lname);
     }
     return i2s_ASN1_ENUMERATED(method, e);
 }

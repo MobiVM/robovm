@@ -197,18 +197,19 @@ UniquePtr<SSL_SESSION> SSL_SESSION_dup(SSL_SESSION *session, int dup_flags) {
 
   new_session->is_server = session->is_server;
   new_session->ssl_version = session->ssl_version;
+  new_session->is_quic = session->is_quic;
   new_session->sid_ctx_length = session->sid_ctx_length;
   OPENSSL_memcpy(new_session->sid_ctx, session->sid_ctx, session->sid_ctx_length);
 
   // Copy the key material.
-  new_session->master_key_length = session->master_key_length;
-  OPENSSL_memcpy(new_session->master_key, session->master_key,
-         session->master_key_length);
+  new_session->secret_length = session->secret_length;
+  OPENSSL_memcpy(new_session->secret, session->secret, session->secret_length);
   new_session->cipher = session->cipher;
 
   // Copy authentication state.
   if (session->psk_identity != nullptr) {
-    new_session->psk_identity.reset(BUF_strdup(session->psk_identity.get()));
+    new_session->psk_identity.reset(
+        OPENSSL_strdup(session->psk_identity.get()));
     if (new_session->psk_identity == nullptr) {
       return nullptr;
     }
@@ -262,8 +263,15 @@ UniquePtr<SSL_SESSION> SSL_SESSION_dup(SSL_SESSION *session, int dup_flags) {
     new_session->ticket_age_add = session->ticket_age_add;
     new_session->ticket_max_early_data = session->ticket_max_early_data;
     new_session->extended_master_secret = session->extended_master_secret;
+    new_session->has_application_settings = session->has_application_settings;
 
-    if (!new_session->early_alpn.CopyFrom(session->early_alpn)) {
+    if (!new_session->early_alpn.CopyFrom(session->early_alpn) ||
+        !new_session->quic_early_data_context.CopyFrom(
+            session->quic_early_data_context) ||
+        !new_session->local_application_settings.CopyFrom(
+            session->local_application_settings) ||
+        !new_session->peer_application_settings.CopyFrom(
+            session->peer_application_settings)) {
       return nullptr;
     }
   }
@@ -356,6 +364,7 @@ int ssl_get_new_session(SSL_HANDSHAKE *hs, int is_server) {
 
   session->is_server = is_server;
   session->ssl_version = ssl->version;
+  session->is_quic = ssl->quic_method != nullptr;
 
   // Fill in the time from the |SSL_CTX|'s clock.
   struct OPENSSL_timeval now;
@@ -623,10 +632,14 @@ int ssl_session_is_resumable(const SSL_HANDSHAKE *hs,
          ssl->server == session->is_server &&
          // The session must not be expired.
          ssl_session_is_time_valid(ssl, session) &&
-         /* Only resume if the session's version matches the negotiated
-          * version. */
+         // Only resume if the session's version matches the negotiated
+         // version.
          ssl->version == session->ssl_version &&
-         // Only resume if the session's cipher matches the negotiated one.
+         // Only resume if the session's cipher matches the negotiated one. This
+         // is stricter than necessary for TLS 1.3, which allows cross-cipher
+         // resumption if the PRF hashes match. We require an exact match for
+         // simplicity. If loosening this, the 0-RTT accept logic must be
+         // updated to check the cipher.
          hs->new_cipher == session->cipher &&
          // If the session contains a client certificate (either the full
          // certificate or just the hash) then require that the form of the
@@ -634,7 +647,10 @@ int ssl_session_is_resumable(const SSL_HANDSHAKE *hs,
          ((sk_CRYPTO_BUFFER_num(session->certs.get()) == 0 &&
            !session->peer_sha256_valid) ||
           session->peer_sha256_valid ==
-              hs->config->retain_only_sha256_of_client_certs);
+              hs->config->retain_only_sha256_of_client_certs) &&
+         // Only resume if the underlying transport protocol hasn't changed.
+         // This is to prevent cross-protocol resumption between QUIC and TCP.
+         (hs->ssl->quic_method != nullptr) == session->is_quic;
 }
 
 // ssl_lookup_session looks up |session_id| in the session cache and sets
@@ -848,7 +864,9 @@ ssl_session_st::ssl_session_st(const SSL_X509_METHOD *method)
       peer_sha256_valid(false),
       not_resumable(false),
       ticket_age_add_valid(false),
-      is_server(false) {
+      is_server(false),
+      is_quic(false),
+      has_application_settings(false) {
   CRYPTO_new_ex_data(&ex_data);
   time = ::time(nullptr);
 }
@@ -944,14 +962,14 @@ void SSL_SESSION_get0_ocsp_response(const SSL_SESSION *session,
 
 size_t SSL_SESSION_get_master_key(const SSL_SESSION *session, uint8_t *out,
                                   size_t max_out) {
-  // TODO(davidben): Fix master_key_length's type and remove these casts.
+  // TODO(davidben): Fix secret_length's type and remove these casts.
   if (max_out == 0) {
-    return (size_t)session->master_key_length;
+    return (size_t)session->secret_length;
   }
-  if (max_out > (size_t)session->master_key_length) {
-    max_out = (size_t)session->master_key_length;
+  if (max_out > (size_t)session->secret_length) {
+    max_out = (size_t)session->secret_length;
   }
-  OPENSSL_memcpy(out, session->master_key, max_out);
+  OPENSSL_memcpy(out, session->secret, max_out);
   return max_out;
 }
 
@@ -1042,6 +1060,29 @@ void SSL_SESSION_get0_peer_sha256(const SSL_SESSION *session,
     *out_ptr = nullptr;
     *out_len = 0;
   }
+}
+
+int SSL_SESSION_early_data_capable(const SSL_SESSION *session) {
+  return ssl_session_protocol_version(session) >= TLS1_3_VERSION &&
+         session->ticket_max_early_data != 0;
+}
+
+SSL_SESSION *SSL_SESSION_copy_without_early_data(SSL_SESSION *session) {
+  if (!SSL_SESSION_early_data_capable(session)) {
+    return UpRef(session).release();
+  }
+
+  bssl::UniquePtr<SSL_SESSION> copy =
+      SSL_SESSION_dup(session, SSL_SESSION_DUP_ALL);
+  if (!copy) {
+    return nullptr;
+  }
+
+  copy->ticket_max_early_data = 0;
+  // Copied sessions are non-resumable until they're completely filled in.
+  copy->not_resumable = session->not_resumable;
+  assert(!SSL_SESSION_early_data_capable(copy.get()));
+  return copy.release();
 }
 
 SSL_SESSION *SSL_magic_pending_session_ptr(void) {

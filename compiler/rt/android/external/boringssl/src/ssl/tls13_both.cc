@@ -133,9 +133,9 @@ bool tls13_process_certificate(SSL_HANDSHAKE *hs, const SSLMessage &msg,
     }
 
     ssl_cert_decompression_func_t decompress = nullptr;
-    for (const auto* alg : ssl->ctx->cert_compression_algs.get()) {
-      if (alg->alg_id == alg_id) {
-        decompress = alg->decompress;
+    for (const auto &alg : ssl->ctx->cert_compression_algs) {
+      if (alg.alg_id == alg_id) {
+        decompress = alg.decompress;
         break;
       }
     }
@@ -244,8 +244,7 @@ bool tls13_process_certificate(SSL_HANDSHAKE *hs, const SSLMessage &msg,
 
     uint8_t alert = SSL_AD_DECODE_ERROR;
     if (!ssl_parse_extensions(&extensions, &alert, ext_types,
-                              OPENSSL_ARRAY_SIZE(ext_types),
-                              0 /* reject unknown */)) {
+                              /*ignore_unknown=*/false)) {
       ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
       return false;
     }
@@ -356,7 +355,7 @@ bool tls13_process_certificate_verify(SSL_HANDSHAKE *hs, const SSLMessage &msg) 
   }
 
   uint8_t alert = SSL_AD_DECODE_ERROR;
-  if (!tls12_check_peer_sigalg(ssl, &alert, signature_algorithm)) {
+  if (!tls12_check_peer_sigalg(hs, &alert, signature_algorithm)) {
     ssl_send_alert(ssl, SSL3_AL_FATAL, alert);
     return false;
   }
@@ -370,13 +369,8 @@ bool tls13_process_certificate_verify(SSL_HANDSHAKE *hs, const SSLMessage &msg) 
     return false;
   }
 
-  bool sig_ok = ssl_public_key_verify(ssl, signature, signature_algorithm,
-                                      hs->peer_pubkey.get(), input);
-#if defined(BORINGSSL_UNSAFE_FUZZER_MODE)
-  sig_ok = true;
-  ERR_clear_error();
-#endif
-  if (!sig_ok) {
+  if (!ssl_public_key_verify(ssl, signature, signature_algorithm,
+                             hs->peer_pubkey.get(), input)) {
     OPENSSL_PUT_ERROR(SSL, SSL_R_BAD_SIGNATURE);
     ssl_send_alert(ssl, SSL3_AL_FATAL, SSL_AD_DECRYPT_ERROR);
     return false;
@@ -389,21 +383,20 @@ bool tls13_process_finished(SSL_HANDSHAKE *hs, const SSLMessage &msg,
                             bool use_saved_value) {
   SSL *const ssl = hs->ssl;
   uint8_t verify_data_buf[EVP_MAX_MD_SIZE];
-  const uint8_t *verify_data;
-  size_t verify_data_len;
+  Span<const uint8_t> verify_data;
   if (use_saved_value) {
     assert(ssl->server);
-    verify_data = hs->expected_client_finished;
-    verify_data_len = hs->hash_len;
+    verify_data = hs->expected_client_finished();
   } else {
-    if (!tls13_finished_mac(hs, verify_data_buf, &verify_data_len,
-                            !ssl->server)) {
+    size_t len;
+    if (!tls13_finished_mac(hs, verify_data_buf, &len, !ssl->server)) {
       return false;
     }
-    verify_data = verify_data_buf;
+    verify_data = MakeConstSpan(verify_data_buf, len);
   }
 
-  bool finished_ok = CBS_mem_equal(&msg.body, verify_data, verify_data_len);
+  bool finished_ok =
+      CBS_mem_equal(&msg.body, verify_data.data(), verify_data.size());
 #if defined(BORINGSSL_UNSAFE_FUZZER_MODE)
   finished_ok = true;
 #endif
@@ -488,15 +481,16 @@ bool tls13_add_certificate(SSL_HANDSHAKE *hs) {
 
   if (ssl_signing_with_dc(hs)) {
     const CRYPTO_BUFFER *raw = dc->raw.get();
+    CBB child;
     if (!CBB_add_u16(&extensions, TLSEXT_TYPE_delegated_credential) ||
-        !CBB_add_u16(&extensions, CRYPTO_BUFFER_len(raw)) ||
-        !CBB_add_bytes(&extensions,
-                       CRYPTO_BUFFER_data(raw),
+        !CBB_add_u16_length_prefixed(&extensions, &child) ||
+        !CBB_add_bytes(&child, CRYPTO_BUFFER_data(raw),
                        CRYPTO_BUFFER_len(raw)) ||
         !CBB_flush(&extensions)) {
       OPENSSL_PUT_ERROR(SSL, ERR_R_INTERNAL_ERROR);
       return 0;
     }
+    ssl->s3->delegated_credential_used = true;
   }
 
   for (size_t i = 1; i < sk_CRYPTO_BUFFER_num(cert->chain.get()); i++) {
@@ -522,9 +516,9 @@ bool tls13_add_certificate(SSL_HANDSHAKE *hs) {
   }
 
   const CertCompressionAlg *alg = nullptr;
-  for (const auto *candidate : ssl->ctx->cert_compression_algs.get()) {
-    if (candidate->alg_id == hs->cert_compression_alg_id) {
-      alg = candidate;
+  for (const auto &candidate : ssl->ctx->cert_compression_algs) {
+    if (candidate.alg_id == hs->cert_compression_alg_id) {
+      alg = &candidate;
       break;
     }
   }

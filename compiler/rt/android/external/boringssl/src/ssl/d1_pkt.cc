@@ -115,7 +115,6 @@
 #include <string.h>
 
 #include <openssl/bio.h>
-#include <openssl/buf.h>
 #include <openssl/bytestring.h>
 #include <openssl/mem.h>
 #include <openssl/evp.h>
@@ -256,7 +255,7 @@ int dtls1_dispatch_alert(SSL *ssl) {
   if (ret <= 0) {
     return ret;
   }
-  ssl->s3->alert_dispatch = 0;
+  ssl->s3->alert_dispatch = false;
 
   // If the alert is fatal, flush the BIO now.
   if (ssl->s3->send_alert[0] == SSL3_AL_FATAL) {

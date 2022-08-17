@@ -136,8 +136,8 @@ OPENSSL_EXPORT int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out,
                                        const EVP_CIPHER_CTX *in);
 
 // EVP_CIPHER_CTX_reset calls |EVP_CIPHER_CTX_cleanup| followed by
-// |EVP_CIPHER_CTX_init|.
-OPENSSL_EXPORT void EVP_CIPHER_CTX_reset(EVP_CIPHER_CTX *ctx);
+// |EVP_CIPHER_CTX_init| and returns one.
+OPENSSL_EXPORT int EVP_CIPHER_CTX_reset(EVP_CIPHER_CTX *ctx);
 
 
 // Cipher context configuration.
@@ -380,6 +380,12 @@ OPENSSL_EXPORT int EVP_BytesToKey(const EVP_CIPHER *type, const EVP_MD *md,
 // processing.
 #define EVP_CIPH_CUSTOM_COPY 0x1000
 
+// EVP_CIPH_FLAG_NON_FIPS_ALLOW is meaningless. In OpenSSL it permits non-FIPS
+// algorithms in FIPS mode. But BoringSSL FIPS mode doesn't prohibit algorithms
+// (it's up the the caller to use the FIPS module in a fashion compliant with
+// their needs). Thus this exists only to allow code to compile.
+#define EVP_CIPH_FLAG_NON_FIPS_ALLOW 0
+
 
 // Deprecated functions
 
@@ -424,6 +430,24 @@ OPENSSL_EXPORT const EVP_CIPHER *EVP_des_ede3_ecb(void);
 
 // EVP_aes_128_cfb128 is only available in decrepit.
 OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_128_cfb128(void);
+
+// EVP_aes_128_cfb is an alias for |EVP_aes_128_cfb128| and is only available in
+// decrepit.
+OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_128_cfb(void);
+
+// EVP_aes_192_cfb128 is only available in decrepit.
+OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_192_cfb128(void);
+
+// EVP_aes_192_cfb is an alias for |EVP_aes_192_cfb128| and is only available in
+// decrepit.
+OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_192_cfb(void);
+
+// EVP_aes_256_cfb128 is only available in decrepit.
+OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_256_cfb128(void);
+
+// EVP_aes_256_cfb is an alias for |EVP_aes_256_cfb128| and is only available in
+// decrepit.
+OPENSSL_EXPORT const EVP_CIPHER *EVP_aes_256_cfb(void);
 
 // EVP_bf_ecb is Blowfish in ECB mode and is only available in decrepit.
 OPENSSL_EXPORT const EVP_CIPHER *EVP_bf_ecb(void);
