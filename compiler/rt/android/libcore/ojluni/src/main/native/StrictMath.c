@@ -33,85 +33,85 @@
 
 
 JNIEXPORT jdouble JNICALL
-StrictMath_cos(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_cos(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_cos((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_sin(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_sin(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_sin((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_tan(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_tan(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_tan((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_asin(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_asin(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_asin((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_acos(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_acos(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_acos((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_atan(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_atan(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_atan((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_exp(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_exp(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_exp((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_log(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_log(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_log((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_log10(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_log10(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_log10((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_sqrt(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_sqrt(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_sqrt((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_cbrt(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_cbrt(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_cbrt((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_atan2(JNIEnv *env, jclass unused, jdouble d1, jdouble d2)
+Java_java_lang_StrictMath_atan2(JNIEnv *env, jclass unused, jdouble d1, jdouble d2)
 {
     return (jdouble) ieee_atan2((double)d1, (double)d2);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_pow(JNIEnv *env, jclass unused, jdouble d1, jdouble d2)
+Java_java_lang_StrictMath_pow(JNIEnv *env, jclass unused, jdouble d1, jdouble d2)
 {
     return (jdouble) ieee_pow((double)d1, (double)d2);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_IEEEremainder(JNIEnv *env, jclass unused,
+Java_java_lang_StrictMath_IEEEremainder(JNIEnv *env, jclass unused,
                                   jdouble dividend,
                                   jdouble divisor)
 {
@@ -119,25 +119,25 @@ StrictMath_IEEEremainder(JNIEnv *env, jclass unused,
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_cosh(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_cosh(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_cosh((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_sinh(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_sinh(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_sinh((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_tanh(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_tanh(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_tanh((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_hypot(JNIEnv *env, jclass unused, jdouble x, jdouble y)
+Java_java_lang_StrictMath_hypot(JNIEnv *env, jclass unused, jdouble x, jdouble y)
 {
     return (jdouble) ieee_hypot((double)x, (double)y);
 }
@@ -145,40 +145,41 @@ StrictMath_hypot(JNIEnv *env, jclass unused, jdouble x, jdouble y)
 
 
 JNIEXPORT jdouble JNICALL
-StrictMath_log1p(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_log1p(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_log1p((double)d);
 }
 
 JNIEXPORT jdouble JNICALL
-StrictMath_expm1(JNIEnv *env, jclass unused, jdouble d)
+Java_java_lang_StrictMath_expm1(JNIEnv *env, jclass unused, jdouble d)
 {
     return (jdouble) ieee_expm1((double)d);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(StrictMath, cos, "(D)D"),
-  NATIVE_METHOD(StrictMath, sin, "(D)D"),
-  NATIVE_METHOD(StrictMath, tan, "(D)D"),
-  NATIVE_METHOD(StrictMath, asin, "(D)D"),
-  NATIVE_METHOD(StrictMath, acos, "(D)D"),
-  NATIVE_METHOD(StrictMath, atan, "(D)D"),
-  NATIVE_METHOD(StrictMath, exp, "(D)D"),
-  NATIVE_METHOD(StrictMath, log, "(D)D"),
-  NATIVE_METHOD(StrictMath, log10, "(D)D"),
-  NATIVE_METHOD(StrictMath, sqrt, "(D)D"),
-  NATIVE_METHOD(StrictMath, cbrt, "(D)D"),
-  NATIVE_METHOD(StrictMath, atan2, "(DD)D"),
-  NATIVE_METHOD(StrictMath, pow, "(DD)D"),
-  NATIVE_METHOD(StrictMath, IEEEremainder, "(DD)D"),
-  NATIVE_METHOD(StrictMath, cosh, "(D)D"),
-  NATIVE_METHOD(StrictMath, sinh, "(D)D"),
-  NATIVE_METHOD(StrictMath, tanh, "(D)D"),
-  NATIVE_METHOD(StrictMath, hypot, "(DD)D"),
-  NATIVE_METHOD(StrictMath, log1p, "(D)D"),
-  NATIVE_METHOD(StrictMath, expm1, "(D)D"),
-};
-
-void register_java_lang_StrictMath(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/lang/StrictMath", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(StrictMath, cos, "(D)D"),
+//  NATIVE_METHOD(StrictMath, sin, "(D)D"),
+//  NATIVE_METHOD(StrictMath, tan, "(D)D"),
+//  NATIVE_METHOD(StrictMath, asin, "(D)D"),
+//  NATIVE_METHOD(StrictMath, acos, "(D)D"),
+//  NATIVE_METHOD(StrictMath, atan, "(D)D"),
+//  NATIVE_METHOD(StrictMath, exp, "(D)D"),
+//  NATIVE_METHOD(StrictMath, log, "(D)D"),
+//  NATIVE_METHOD(StrictMath, log10, "(D)D"),
+//  NATIVE_METHOD(StrictMath, sqrt, "(D)D"),
+//  NATIVE_METHOD(StrictMath, cbrt, "(D)D"),
+//  NATIVE_METHOD(StrictMath, atan2, "(DD)D"),
+//  NATIVE_METHOD(StrictMath, pow, "(DD)D"),
+//  NATIVE_METHOD(StrictMath, IEEEremainder, "(DD)D"),
+//  NATIVE_METHOD(StrictMath, cosh, "(D)D"),
+//  NATIVE_METHOD(StrictMath, sinh, "(D)D"),
+//  NATIVE_METHOD(StrictMath, tanh, "(D)D"),
+//  NATIVE_METHOD(StrictMath, hypot, "(DD)D"),
+//  NATIVE_METHOD(StrictMath, log1p, "(D)D"),
+//  NATIVE_METHOD(StrictMath, expm1, "(D)D"),
+//};
+//
+//void register_java_lang_StrictMath(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/lang/StrictMath", gMethods, NELEM(gMethods));
+//}

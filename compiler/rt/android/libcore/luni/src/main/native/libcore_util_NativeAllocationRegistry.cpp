@@ -19,7 +19,7 @@
 
 typedef void (*FreeFunction)(void*);
 
-static void NativeAllocationRegistry_applyFreeFunction(JNIEnv*,
+extern "C" JNIEXPORT void Java_libcore_util_NativeAllocationRegistry_applyFreeFunction(JNIEnv*,
                                                        jclass,
                                                        jlong freeFunction,
                                                        jlong ptr) {
@@ -29,11 +29,12 @@ static void NativeAllocationRegistry_applyFreeFunction(JNIEnv*,
     nativeFreeFunction(nativePtr);
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(NativeAllocationRegistry, applyFreeFunction, "(JJ)V"),
-};
-
-void register_libcore_util_NativeAllocationRegistry(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "libcore/util/NativeAllocationRegistry",
-        gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(NativeAllocationRegistry, applyFreeFunction, "(JJ)V"),
+//};
+//
+//void register_libcore_util_NativeAllocationRegistry(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "libcore/util/NativeAllocationRegistry",
+//        gMethods, NELEM(gMethods));
+//}

@@ -25,7 +25,7 @@
 
 typedef std::unique_ptr<char const[], std::function<void(char const*)>> jni_string;
 
-static void Log_log(JNIEnv* env, jclass, jint priority, jstring msg, jthrowable throwable) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_i18n_util_Log_log(JNIEnv* env, jclass, jint priority, jstring msg, jthrowable throwable) {
   if (msg == NULL) {
     jniThrowNullPointerException(env, "Log needs a message");
     return;
@@ -43,9 +43,10 @@ static void Log_log(JNIEnv* env, jclass, jint priority, jstring msg, jthrowable 
   }
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(Log, log, "(ILjava/lang/String;Ljava/lang/Throwable;)V"),
-};
-void register_com_android_i18n_util_Log(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "com/android/i18n/util/Log", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(Log, log, "(ILjava/lang/String;Ljava/lang/Throwable;)V"),
+//};
+//void register_com_android_i18n_util_Log(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "com/android/i18n/util/Log", gMethods, NELEM(gMethods));
+//}

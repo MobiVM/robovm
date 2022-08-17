@@ -37,7 +37,7 @@
 { #functionName, signature, (void*)(className ## _ ## functionName) }
 
 JNIEXPORT jint JNICALL
-CRC32_update(JNIEnv *env, jclass cls, jint crc, jint b)
+Java_java_util_zip_CRC32_update(JNIEnv *env, jclass cls, jint crc, jint b)
 {
     Bytef buf[1];
 
@@ -46,7 +46,7 @@ CRC32_update(JNIEnv *env, jclass cls, jint crc, jint b)
 }
 
 JNIEXPORT jint JNICALL
-CRC32_updateBytes(JNIEnv *env, jclass cls, jint crc,
+Java_java_util_zip_CRC32_updateBytes(JNIEnv *env, jclass cls, jint crc,
                                      jarray b, jint off, jint len)
 {
     Bytef *buf = (*env)->GetPrimitiveArrayCritical(env, b, 0);
@@ -64,7 +64,7 @@ ZIP_CRC32(jint crc, const jbyte *buf, jint len)
 }
 
 JNIEXPORT jint JNICALL
-CRC32_updateByteBuffer(JNIEnv *env, jclass cls, jint crc,
+Java_java_util_zip_CRC32_updateByteBuffer(JNIEnv *env, jclass cls, jint crc,
                                           jlong address, jint off, jint len)
 {
     Bytef *buf = (Bytef *)jlong_to_ptr(address);
@@ -74,12 +74,13 @@ CRC32_updateByteBuffer(JNIEnv *env, jclass cls, jint crc,
     return crc;
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(CRC32, update, "(II)I"),
-  NATIVE_METHOD(CRC32, updateBytes, "(I[BII)I"),
-  NATIVE_METHOD(CRC32, updateByteBuffer, "(IJII)I"),
-};
-
-void register_java_util_zip_CRC32(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/util/zip/CRC32", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(CRC32, update, "(II)I"),
+//  NATIVE_METHOD(CRC32, updateBytes, "(I[BII)I"),
+//  NATIVE_METHOD(CRC32, updateByteBuffer, "(IJII)I"),
+//};
+//
+//void register_java_util_zip_CRC32(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/util/zip/CRC32", gMethods, NELEM(gMethods));
+//}

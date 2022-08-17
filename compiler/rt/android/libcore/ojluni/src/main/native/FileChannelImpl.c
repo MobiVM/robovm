@@ -61,7 +61,7 @@
 static jfieldID chan_fd;        /* jobject 'fd' in sun.io.FileChannelImpl */
 
 JNIEXPORT jlong JNICALL
-FileChannelImpl_initIDs(JNIEnv *env, jclass clazz)
+Java_sun_nio_ch_FileChannelImpl_initIDs(JNIEnv *env, jclass clazz)
 {
     jlong pageSize = sysconf(_SC_PAGESIZE);
     chan_fd = (*env)->GetFieldID(env, clazz, "fd", "Ljava/io/FileDescriptor;");
@@ -81,7 +81,7 @@ handle(JNIEnv *env, jlong rv, char *msg)
 
 
 JNIEXPORT jlong JNICALL
-FileChannelImpl_map0(JNIEnv *env, jobject this,
+Java_sun_nio_ch_FileChannelImpl_map0(JNIEnv *env, jobject this,
                                      jint prot, jlong off, jlong len)
 {
     void *mapAddress = 0;
@@ -122,7 +122,7 @@ FileChannelImpl_map0(JNIEnv *env, jobject this,
 
 
 JNIEXPORT jint JNICALL
-FileChannelImpl_unmap0(JNIEnv *env, jobject this,
+Java_sun_nio_ch_FileChannelImpl_unmap0(JNIEnv *env, jobject this,
                                        jlong address, jlong len)
 {
     void *a = (void *)jlong_to_ptr(address);
@@ -133,7 +133,7 @@ FileChannelImpl_unmap0(JNIEnv *env, jobject this,
 
 
 JNIEXPORT jlong JNICALL
-FileChannelImpl_position0(JNIEnv *env, jobject this,
+Java_sun_nio_ch_FileChannelImpl_position0(JNIEnv *env, jobject this,
                                           jobject fdo, jlong offset)
 {
     jint fd = fdval(env, fdo);
@@ -147,7 +147,7 @@ FileChannelImpl_position0(JNIEnv *env, jobject this,
     return handle(env, result, "Position failed");
 }
 
-
+// RoboVM note: out of fully qualified name as seem to be not used
 JNIEXPORT void JNICALL
 FileChannelImpl_close0(JNIEnv *env, jobject this, jobject fdo)
 {
@@ -161,7 +161,7 @@ FileChannelImpl_close0(JNIEnv *env, jobject this, jobject fdo)
 }
 
 JNIEXPORT jlong JNICALL
-FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
+Java_sun_nio_ch_FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
                                             jobject srcFDO,
                                             jlong position, jlong count,
                                             jobject dstFDO)
@@ -284,14 +284,15 @@ FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
 #endif
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(FileChannelImpl, initIDs, "()J"),
-  NATIVE_METHOD(FileChannelImpl, map0, "(IJJ)J"),
-  NATIVE_METHOD(FileChannelImpl, unmap0, "(JJ)I"),
-  NATIVE_METHOD(FileChannelImpl, position0, "(Ljava/io/FileDescriptor;J)J"),
-  NATIVE_METHOD(FileChannelImpl, transferTo0, "(Ljava/io/FileDescriptor;JJLjava/io/FileDescriptor;)J"),
-};
-
-void register_sun_nio_ch_FileChannelImpl(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/FileChannelImpl", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(FileChannelImpl, initIDs, "()J"),
+//  NATIVE_METHOD(FileChannelImpl, map0, "(IJJ)J"),
+//  NATIVE_METHOD(FileChannelImpl, unmap0, "(JJ)I"),
+//  NATIVE_METHOD(FileChannelImpl, position0, "(Ljava/io/FileDescriptor;J)J"),
+//  NATIVE_METHOD(FileChannelImpl, transferTo0, "(Ljava/io/FileDescriptor;JJLjava/io/FileDescriptor;)J"),
+//};
+//
+//void register_sun_nio_ch_FileChannelImpl(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "sun/nio/ch/FileChannelImpl", gMethods, NELEM(gMethods));
+//}

@@ -51,7 +51,7 @@ static void IOUtil_initIDs(JNIEnv *env)
 }
 
 JNIEXPORT jboolean JNICALL
-IOUtil_randomBytes(JNIEnv *env, jclass clazz,
+Java_sun_nio_ch_IOUtil_randomBytes(JNIEnv *env, jclass clazz,
                                   jbyteArray randArray)
 {
     JNU_ThrowByName(env, "java/lang/UnsupportedOperationException", NULL);
@@ -59,13 +59,13 @@ IOUtil_randomBytes(JNIEnv *env, jclass clazz,
 }
 
 JNIEXPORT jint JNICALL
-IOUtil_fdVal(JNIEnv *env, jclass clazz, jobject fdo)
+Java_sun_nio_ch_IOUtil_fdVal(JNIEnv *env, jclass clazz, jobject fdo)
 {
     return (*env)->GetIntField(env, fdo, fd_fdID);
 }
 
 JNIEXPORT void JNICALL
-IOUtil_setfdVal(JNIEnv *env, jclass clazz, jobject fdo, jint val)
+Java_sun_nio_ch_IOUtil_setfdVal(JNIEnv *env, jclass clazz, jobject fdo, jint val)
 {
     (*env)->SetIntField(env, fdo, fd_fdID, val);
 }
@@ -80,7 +80,7 @@ configureBlocking(int fd, jboolean blocking)
 }
 
 JNIEXPORT void JNICALL
-IOUtil_configureBlocking(JNIEnv *env, jclass clazz,
+Java_sun_nio_ch_IOUtil_configureBlocking(JNIEnv *env, jclass clazz,
                                          jobject fdo, jboolean blocking)
 {
     if (configureBlocking(fdval(env, fdo), blocking) < 0)
@@ -88,7 +88,7 @@ IOUtil_configureBlocking(JNIEnv *env, jclass clazz,
 }
 
 JNIEXPORT jlong JNICALL
-IOUtil_makePipe(JNIEnv *env, jobject this, jboolean blocking)
+Java_sun_nio_ch_IOUtil_makePipe(JNIEnv *env, jobject this, jboolean blocking)
 {
     int fd[2];
 
@@ -109,7 +109,7 @@ IOUtil_makePipe(JNIEnv *env, jobject this, jboolean blocking)
 }
 
 JNIEXPORT jboolean JNICALL
-IOUtil_drain(JNIEnv *env, jclass cl, jint fd)
+Java_sun_nio_ch_IOUtil_drain(JNIEnv *env, jclass cl, jint fd)
 {
     char buf[128];
     int tn = 0;
@@ -126,7 +126,7 @@ IOUtil_drain(JNIEnv *env, jclass cl, jint fd)
 }
 
 JNIEXPORT jint JNICALL
-IOUtil_fdLimit(JNIEnv *env, jclass this)
+Java_sun_nio_ch_IOUtil_fdLimit(JNIEnv *env, jclass this)
 {
     struct rlimit rlp;
     if (getrlimit(RLIMIT_NOFILE, &rlp) < 0) {
@@ -142,7 +142,7 @@ IOUtil_fdLimit(JNIEnv *env, jclass this)
 }
 
 JNIEXPORT jint JNICALL
-IOUtil_iovMax(JNIEnv *env, jclass this)
+Java_sun_nio_ch_IOUtil_iovMax(JNIEnv *env, jclass this)
 {
     jlong iov_max = sysconf(_SC_IOV_MAX);
     if (iov_max == -1)
@@ -206,19 +206,20 @@ fdval(JNIEnv *env, jobject fdo)
     return (*env)->GetIntField(env, fdo, fd_fdID);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(IOUtil, iovMax, "()I"),
-  NATIVE_METHOD(IOUtil, fdLimit, "()I"),
-  NATIVE_METHOD(IOUtil, drain, "(I)Z"),
-  NATIVE_METHOD(IOUtil, makePipe, "(Z)J"),
-  NATIVE_METHOD(IOUtil, configureBlocking, "(Ljava/io/FileDescriptor;Z)V"),
-  NATIVE_METHOD(IOUtil, setfdVal, "(Ljava/io/FileDescriptor;I)V"),
-  NATIVE_METHOD(IOUtil, fdVal, "(Ljava/io/FileDescriptor;)I"),
-  NATIVE_METHOD(IOUtil, randomBytes, "([B)Z"),
-};
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(IOUtil, iovMax, "()I"),
+//  NATIVE_METHOD(IOUtil, fdLimit, "()I"),
+//  NATIVE_METHOD(IOUtil, drain, "(I)Z"),
+//  NATIVE_METHOD(IOUtil, makePipe, "(Z)J"),
+//  NATIVE_METHOD(IOUtil, configureBlocking, "(Ljava/io/FileDescriptor;Z)V"),
+//  NATIVE_METHOD(IOUtil, setfdVal, "(Ljava/io/FileDescriptor;I)V"),
+//  NATIVE_METHOD(IOUtil, fdVal, "(Ljava/io/FileDescriptor;)I"),
+//  NATIVE_METHOD(IOUtil, randomBytes, "([B)Z"),
+//};
 
 void register_sun_nio_ch_IOUtil(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/IOUtil", gMethods, NELEM(gMethods));
+//  jniRegisterNativeMethods(env, "sun/nio/ch/IOUtil", gMethods, NELEM(gMethods));
 
   IOUtil_initIDs(env);
 }

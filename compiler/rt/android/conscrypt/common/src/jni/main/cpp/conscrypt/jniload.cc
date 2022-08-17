@@ -36,8 +36,9 @@ extern "C" void Java_com_android_org_conscrypt_NativeCrypto_onload(JNIEnv* env, 
     // Initialize the JNI constants.
     conscrypt::jniutil::init(vm, env);
 
-    // Register all of the native JNI methods.
-    NativeCrypto::registerNativeMethods(env);
+// RoboVM note: no need in registration as using fully qualified names
+//    // Register all of the native JNI methods.
+//    NativeCrypto::registerNativeMethods(env);
 
     // Perform static initialization of the close monitor (if required on this platform).
     CompatibilityCloseMonitor::init();

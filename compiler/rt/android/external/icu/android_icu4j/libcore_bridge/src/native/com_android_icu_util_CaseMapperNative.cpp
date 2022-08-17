@@ -24,7 +24,7 @@
 #include "unicode/unistr.h"
 
 
-static jstring CaseMapperNative_toLowerCase(JNIEnv* env, jclass, jstring javaString, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_CaseMapperNative_toLowerCase(JNIEnv* env, jclass, jstring javaString, jstring javaLanguageTag) {
   ScopedJavaUnicodeString scopedString(env, javaString);
   if (!scopedString.valid()) {
     return NULL;
@@ -39,7 +39,7 @@ static jstring CaseMapperNative_toLowerCase(JNIEnv* env, jclass, jstring javaStr
   return s == original ? javaString : jniCreateString(env, s.getBuffer(), s.length());
 }
 
-static jstring CaseMapperNative_toUpperCase(JNIEnv* env, jclass, jstring javaString, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_CaseMapperNative_toUpperCase(JNIEnv* env, jclass, jstring javaString, jstring javaLanguageTag) {
   ScopedJavaUnicodeString scopedString(env, javaString);
   if (!scopedString.valid()) {
     return NULL;
@@ -54,11 +54,12 @@ static jstring CaseMapperNative_toUpperCase(JNIEnv* env, jclass, jstring javaStr
   return s == original ? javaString : jniCreateString(env, s.getBuffer(), s.length());
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(CaseMapperNative, toLowerCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(CaseMapperNative, toUpperCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-};
-
-void register_com_android_icu_util_CaseMapperNative(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "com/android/icu/util/CaseMapperNative", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(CaseMapperNative, toLowerCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(CaseMapperNative, toUpperCase, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//};
+//
+//void register_com_android_icu_util_CaseMapperNative(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "com/android/icu/util/CaseMapperNative", gMethods, NELEM(gMethods));
+//}

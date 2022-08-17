@@ -54,7 +54,7 @@ static void FileKey_initIDs(JNIEnv *env)
 
 
 JNIEXPORT void JNICALL
-FileKey_init(JNIEnv *env, jobject this, jobject fdo)
+Java_sun_nio_ch_FileKey_init(JNIEnv *env, jobject this, jobject fdo)
 {
     struct stat64 fbuf;
     int res;
@@ -68,11 +68,12 @@ FileKey_init(JNIEnv *env, jobject this, jobject fdo)
     }
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(FileKey, init, "(Ljava/io/FileDescriptor;)V"),
-};
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(FileKey, init, "(Ljava/io/FileDescriptor;)V"),
+//};
 
 void register_sun_nio_ch_FileKey(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "sun/nio/ch/FileKey", gMethods, NELEM(gMethods));
+//    jniRegisterNativeMethods(env, "sun/nio/ch/FileKey", gMethods, NELEM(gMethods));
     FileKey_initIDs(env);
 }

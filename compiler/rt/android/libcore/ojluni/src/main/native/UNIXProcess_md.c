@@ -295,7 +295,7 @@ static const char * const *parentPathv;
 static jfieldID field_exitcode;
 
 JNIEXPORT void JNICALL
-UNIXProcess_initIDs(JNIEnv *env, jclass clazz)
+Java_java_lang_UNIXProcess_initIDs(JNIEnv *env, jclass clazz)
 {
     field_exitcode = (*env)->GetFieldID(env, clazz, "exitcode", "I");
 
@@ -325,7 +325,7 @@ UNIXProcess_initIDs(JNIEnv *env, jclass clazz)
 /* Block until a child process exits and return its exit code.
    Note, can only be called once for any given pid. */
 JNIEXPORT jint JNICALL
-UNIXProcess_waitForProcessExit(JNIEnv* env,
+Java_java_lang_UNIXProcess_waitForProcessExit(JNIEnv* env,
                                               jobject junk,
                                               jint pid)
 {
@@ -853,7 +853,7 @@ startChild(ChildStuff *c) {
 }
 
 JNIEXPORT jint JNICALL
-UNIXProcess_forkAndExec(JNIEnv *env,
+Java_java_lang_UNIXProcess_forkAndExec(JNIEnv *env,
                                        jobject process,
                                        jbyteArray prog,
                                        jbyteArray argBlock, jint argc,
@@ -987,18 +987,19 @@ UNIXProcess_forkAndExec(JNIEnv *env,
 }
 
 JNIEXPORT void JNICALL
-UNIXProcess_destroyProcess(JNIEnv *env, jobject junk, jint pid)
+Java_java_lang_UNIXProcess_destroyProcess(JNIEnv *env, jobject junk, jint pid)
 {
     kill(pid, SIGTERM);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(UNIXProcess, destroyProcess, "(I)V"),
-  NATIVE_METHOD(UNIXProcess, forkAndExec, "([B[BI[BI[B[IZ)I"),
-  NATIVE_METHOD(UNIXProcess, waitForProcessExit, "(I)I"),
-  NATIVE_METHOD(UNIXProcess, initIDs, "()V"),
-};
-
-void register_java_lang_UNIXProcess(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/lang/UNIXProcess", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(UNIXProcess, destroyProcess, "(I)V"),
+//  NATIVE_METHOD(UNIXProcess, forkAndExec, "([B[BI[BI[B[IZ)I"),
+//  NATIVE_METHOD(UNIXProcess, waitForProcessExit, "(I)I"),
+//  NATIVE_METHOD(UNIXProcess, initIDs, "()V"),
+//};
+//
+//void register_java_lang_UNIXProcess(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/lang/UNIXProcess", gMethods, NELEM(gMethods));
+//}

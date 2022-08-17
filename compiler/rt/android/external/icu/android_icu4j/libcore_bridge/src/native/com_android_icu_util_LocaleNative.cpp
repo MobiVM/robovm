@@ -22,7 +22,7 @@
 
 #include "unicode/locid.h"
 
-static void LocaleNative_setDefaultNative(JNIEnv* env, jclass, jstring javaLanguageTag) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_util_LocaleNative_setDefaultNative(JNIEnv* env, jclass, jstring javaLanguageTag) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return;
@@ -33,7 +33,7 @@ static void LocaleNative_setDefaultNative(JNIEnv* env, jclass, jstring javaLangu
   maybeThrowIcuException(env, "uloc_setDefault", status);
 }
 
-static jstring LocaleNative_getDisplayCountryNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_LocaleNative_getDisplayCountryNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -48,7 +48,7 @@ static jstring LocaleNative_getDisplayCountryNative(JNIEnv* env, jclass, jstring
   return jniCreateString(env, str.getBuffer(), str.length());
 }
 
-static jstring LocaleNative_getDisplayLanguageNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_LocaleNative_getDisplayLanguageNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -63,7 +63,7 @@ static jstring LocaleNative_getDisplayLanguageNative(JNIEnv* env, jclass, jstrin
   return jniCreateString(env, str.getBuffer(), str.length());
 }
 
-static jstring LocaleNative_getDisplayScriptNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_LocaleNative_getDisplayScriptNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -78,7 +78,7 @@ static jstring LocaleNative_getDisplayScriptNative(JNIEnv* env, jclass, jstring 
   return jniCreateString(env, str.getBuffer(), str.length());
 }
 
-static jstring LocaleNative_getDisplayVariantNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
+extern "C" JNIEXPORT jstring JNICALL Java_com_android_icu_util_LocaleNative_getDisplayVariantNative(JNIEnv* env, jclass, jstring javaTargetLanguageTag, jstring javaLanguageTag) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return NULL;
@@ -93,14 +93,15 @@ static jstring LocaleNative_getDisplayVariantNative(JNIEnv* env, jclass, jstring
   return jniCreateString(env, str.getBuffer(), str.length());
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(LocaleNative, getDisplayCountryNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(LocaleNative, getDisplayLanguageNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(LocaleNative, getDisplayScriptNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(LocaleNative, getDisplayVariantNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
-    NATIVE_METHOD(LocaleNative, setDefaultNative, "(Ljava/lang/String;)V"),
-};
-
-void register_com_android_icu_util_LocaleNative(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "com/android/icu/util/LocaleNative", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(LocaleNative, getDisplayCountryNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(LocaleNative, getDisplayLanguageNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(LocaleNative, getDisplayScriptNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(LocaleNative, getDisplayVariantNative, "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"),
+//    NATIVE_METHOD(LocaleNative, setDefaultNative, "(Ljava/lang/String;)V"),
+//};
+//
+//void register_com_android_icu_util_LocaleNative(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "com/android/icu/util/LocaleNative", gMethods, NELEM(gMethods));
+//}

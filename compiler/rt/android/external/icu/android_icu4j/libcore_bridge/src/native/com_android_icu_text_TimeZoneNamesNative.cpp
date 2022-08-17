@@ -43,7 +43,7 @@ static bool setStringArrayElement(JNIEnv* env, jobjectArray array, int i, const 
   return true;
 }
 
-static void TimeZoneNamesNative_fillZoneStringsNative(JNIEnv* env, jclass, jstring javaLanguageTag, jobjectArray result) {
+extern "C" JNIEXPORT void JNICALL Java_com_android_icu_text_TimeZoneNamesNative_fillZoneStringsNative(JNIEnv* env, jclass, jstring javaLanguageTag, jobjectArray result) {
   ScopedIcuLocale icuLocale(env, javaLanguageTag);
   if (!icuLocale.valid()) {
     return;
@@ -96,10 +96,11 @@ static void TimeZoneNamesNative_fillZoneStringsNative(JNIEnv* env, jclass, jstri
   }
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(TimeZoneNamesNative, fillZoneStringsNative, "(Ljava/lang/String;[[Ljava/lang/String;)V"),
-};
-
-void register_com_android_icu_text_TimeZoneNamesNative(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "com/android/icu/text/TimeZoneNamesNative", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: Using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(TimeZoneNamesNative, fillZoneStringsNative, "(Ljava/lang/String;[[Ljava/lang/String;)V"),
+//};
+//
+//void register_com_android_icu_text_TimeZoneNamesNative(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "com/android/icu/text/TimeZoneNamesNative", gMethods, NELEM(gMethods));
+//}

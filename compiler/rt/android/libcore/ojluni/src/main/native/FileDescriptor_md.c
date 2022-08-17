@@ -54,15 +54,14 @@ static void FileDescriptor_initIDs(JNIEnv *env) {
  * File Descriptor
  */
 
-JNIEXPORT void JNICALL
-FileDescriptor_sync(JNIEnv *env, jobject this) {
+JNIEXPORT void JNICALL Java_java_io_FileDescriptor_sync(JNIEnv *env, jobject this) {
     int fd = (*env)->GetIntField(env, this, IO_fd_fdID);
     if (JVM_Sync(fd) == -1) {
         JNU_ThrowByName(env, "java/io/SyncFailedException", "sync failed");
     }
 }
 
-JNIEXPORT jboolean JNICALL FileDescriptor_isSocket(JNIEnv *env, jclass ignored, jint fd) {
+JNIEXPORT jboolean JNICALL Java_java_io_FileDescriptor_isSocket(JNIEnv *env, jclass ignored, jint fd) {
 // RoboVM Note: SO_DOMAIN is not available on Darwin
 #if defined(DARWIN)
     int error;
@@ -77,13 +76,14 @@ JNIEXPORT jboolean JNICALL FileDescriptor_isSocket(JNIEnv *env, jclass ignored, 
 #endif
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(FileDescriptor, sync, "()V"),
-  NATIVE_METHOD(FileDescriptor, isSocket, "(I)Z"),
-};
-
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(FileDescriptor, sync, "()V"),
+//  NATIVE_METHOD(FileDescriptor, isSocket, "(I)Z"),
+//};
+//
 void register_java_io_FileDescriptor(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "java/io/FileDescriptor", gMethods, NELEM(gMethods));
+//    jniRegisterNativeMethods(env, "java/io/FileDescriptor", gMethods, NELEM(gMethods));
 
     FileDescriptor_initIDs(env);
 }
