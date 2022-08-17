@@ -115,6 +115,15 @@ if(LINUX)
     ${OJLUNI_PATH}/LinuxNativeDispatcher.c
     ${OJLUNI_PATH}/LinuxWatchService.c
   )
+else()
+  # just mock on other platform to have matching list of Java native methods and their native code
+  set(SRC
+    ${SRC}
+    ${ADDED_PATH}/EPoll-mock.c
+    ${ADDED_PATH}/EPollPort-mock.c
+    ${ADDED_PATH}/LinuxNativeDispatcher-mock.c
+    ${ADDED_PATH}/LinuxWatchService-mock.c
+  )
 endif()
 
 
@@ -124,6 +133,14 @@ if(DARWIN)
     ${ADDED_PATH}/KQueue.c
     ${ADDED_PATH}/KQueueArrayWrapper.c
     ${ADDED_PATH}/KQueuePort.c
+  )
+else()
+  # just mock on other platform to have matching list of Java native methods and their native code
+  set(SRC
+    ${SRC}
+    ${ADDED_PATH}/KQueue-mock.c
+    ${ADDED_PATH}/KQueueArrayWrapper-mock.c
+    ${ADDED_PATH}/KQueuePort-mock.c
   )
 endif()
 
