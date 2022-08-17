@@ -77,6 +77,7 @@
                                 <source>${project.build.directory}/generated-sources/filtered-java</source>
                                 <source>robovm/src/main/java</source>
 
+                                <source>android/compat/java</source>
                                 <source>android/libcore/dalvik/src/main/java</source>
                                 <source>android/libcore/libart/src/main/java</source>
                                 <source>android/libcore/luni/src/main/java</source>
