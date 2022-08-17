@@ -57,8 +57,9 @@ jfieldID fis_fd; /* id for jobject 'fd' in java.io.FileInputStream */
  */
 
 
-static void FileInputStream_initIDs(JNIEnv *env) {
-    jclass clazz = (*env)->FindClass(env, "java/io/FileInputStream");
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_io_FileInputStream_registerNatives(JNIEnv *env, jclass clazz) {
     fis_fd = (*env)->GetFieldID(env, clazz, "fd", "Ljava/io/FileDescriptor;");
 }
 
@@ -150,8 +151,8 @@ Java_java_io_FileInputStream_available0(JNIEnv *env, jobject this) {
 //  NATIVE_METHOD(FileInputStream, skip0, "(J)J"),
 //  NATIVE_METHOD(FileInputStream, available0, "()I"),
 //};
-
-void register_java_io_FileInputStream(JNIEnv* env) {
+//
+//void register_java_io_FileInputStream(JNIEnv* env) {
 //    jniRegisterNativeMethods(env, "java/io/FileInputStream", gMethods, NELEM(gMethods));
-    FileInputStream_initIDs(env);
-}
+//    FileInputStream_initIDs(env);
+//}

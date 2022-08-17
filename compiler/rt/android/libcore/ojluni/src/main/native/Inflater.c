@@ -48,8 +48,9 @@ static jfieldID needDictID;
 static jfieldID finishedID;
 static jfieldID bufID, offID, lenID;
 
-static void Inflater_initIDs(JNIEnv *env) {
-    jclass cls = (*env)->FindClass(env, "java/util/zip/Inflater");
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_util_zip_Inflater_registerNatives(JNIEnv *env, jclass cls) {
     needDictID = (*env)->GetFieldID(env, cls, "needDict", "Z");
     finishedID = (*env)->GetFieldID(env, cls, "finished", "Z");
     bufID = (*env)->GetFieldID(env, cls, "buf", "[B");
@@ -211,8 +212,8 @@ Java_java_util_zip_Inflater_end(JNIEnv *env, jclass cls, jlong addr)
 //  NATIVE_METHOD(Inflater, end, "(J)V"),
 //};
 //
-void register_java_util_zip_Inflater(JNIEnv* env) {
+//void register_java_util_zip_Inflater(JNIEnv* env) {
 //    jniRegisterNativeMethods(env, "java/util/zip/Inflater", gMethods, NELEM(gMethods));
-
-    Inflater_initIDs(env);
-}
+//
+//    Inflater_initIDs(env);
+//}

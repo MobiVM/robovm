@@ -62,6 +62,12 @@ import static java.util.zip.ZipConstants64.*;
  */
 public
 class ZipFile implements ZipConstants, Closeable {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     // Android-note: jzfile does not require @ReachabilitySensitive annotation.
     // The @ReachabilitySensitive annotation is usually added to instance fields that references
     // native data that is cleaned up when the instance becomes unreachable. Its presence ensures

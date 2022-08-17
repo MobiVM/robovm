@@ -42,8 +42,9 @@
 
 static jfieldID fd_fdID;        /* for jint 'fd' in java.io.FileDescriptor */
 
-static void IOUtil_initIDs(JNIEnv *env)
-{
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_sun_nio_ch_IOUtil_registerNatives(JNIEnv *env, jclass cls) {
     jclass clazz = (*env)->FindClass(env, "java/io/FileDescriptor");
     CHECK_NULL(clazz);
     fd_fdID = (*env)->GetFieldID(env, clazz, "descriptor", "I");
@@ -217,9 +218,9 @@ fdval(JNIEnv *env, jobject fdo)
 //  NATIVE_METHOD(IOUtil, fdVal, "(Ljava/io/FileDescriptor;)I"),
 //  NATIVE_METHOD(IOUtil, randomBytes, "([B)Z"),
 //};
-
-void register_sun_nio_ch_IOUtil(JNIEnv* env) {
+//
+//void register_sun_nio_ch_IOUtil(JNIEnv* env) {
 //  jniRegisterNativeMethods(env, "sun/nio/ch/IOUtil", gMethods, NELEM(gMethods));
-
-  IOUtil_initIDs(env);
-}
+//
+//  IOUtil_initIDs(env);
+//}

@@ -37,15 +37,10 @@
 jclass ia4_class;
 jmethodID ia4_ctrID;
 
-static void Inet4Address_init(JNIEnv *env) {
-    jclass c = (*env)->FindClass(env, "java/net/Inet4Address");
-    CHECK_NULL(c);
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL Java_java_net_Inet4Address_registerNatives(JNIEnv *env, jclass c) {
     ia4_class = (*env)->NewGlobalRef(env, c);
     CHECK_NULL(ia4_class);
     ia4_ctrID = (*env)->GetMethodID(env, ia4_class, "<init>", "()V");
     CHECK_NULL(ia4_ctrID);
-}
-
-void register_java_net_Inet4Address(JNIEnv* env) {
-    Inet4Address_init(env);
 }

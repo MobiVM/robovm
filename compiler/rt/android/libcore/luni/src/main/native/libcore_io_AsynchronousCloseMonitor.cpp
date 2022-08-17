@@ -21,15 +21,16 @@
 
 #include "AsynchronousCloseMonitor.h"
 
-static void AsynchronousCloseMonitor_signalBlockedThreads(JNIEnv* env, jclass, jobject javaFd) {
+extern "C" JNIEXPORT void Java_libcore_io_AsynchronousCloseMonitor_signalBlockedThreads(JNIEnv* env, jclass, jobject javaFd) {
     int fd = jniGetFDFromFileDescriptor(env, javaFd);
     AsynchronousCloseMonitor::signalBlockedThreads(fd);
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(AsynchronousCloseMonitor, signalBlockedThreads, "(Ljava/io/FileDescriptor;)V"),
-};
-void register_libcore_io_AsynchronousCloseMonitor(JNIEnv* env) {
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(AsynchronousCloseMonitor, signalBlockedThreads, "(Ljava/io/FileDescriptor;)V"),
+//};
+// RoboVM note: registerNatives will be called from class initializer
+extern "C" JNIEXPORT void JNICALL Java_libcore_io_AsynchronousCloseMonitor_registerNatives(JNIEnv *env, jclass ) {
     AsynchronousCloseMonitor::init();
-    jniRegisterNativeMethods(env, "libcore/io/AsynchronousCloseMonitor", gMethods, NELEM(gMethods));
 }

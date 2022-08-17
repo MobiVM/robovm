@@ -104,12 +104,13 @@ Java_java_nio_MappedByteBuffer_force0(JNIEnv *env, jobject obj, jobject fdo,
 }
 
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(MappedByteBuffer, isLoaded0, "(JJI)Z"),
-  NATIVE_METHOD(MappedByteBuffer, load0, "(JJ)V"),
-  NATIVE_METHOD(MappedByteBuffer, force0, "(Ljava/io/FileDescriptor;JJ)V"),
-};
-
-void register_java_nio_MappedByteBuffer(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "java/nio/MappedByteBuffer", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(MappedByteBuffer, isLoaded0, "(JJI)Z"),
+//  NATIVE_METHOD(MappedByteBuffer, load0, "(JJ)V"),
+//  NATIVE_METHOD(MappedByteBuffer, force0, "(Ljava/io/FileDescriptor;JJ)V"),
+//};
+//
+//void register_java_nio_MappedByteBuffer(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "java/nio/MappedByteBuffer", gMethods, NELEM(gMethods));
+//}

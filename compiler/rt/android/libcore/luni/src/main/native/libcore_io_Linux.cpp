@@ -3027,7 +3027,9 @@ extern "C" JNIEXPORT jint Java_libcore_io_Linux_writev(JNIEnv* env, jobject, job
 //    NATIVE_METHOD(Linux, writeBytes, "(Ljava/io/FileDescriptor;Ljava/lang/Object;II)I"),
 //    NATIVE_METHOD(Linux, writev, "(Ljava/io/FileDescriptor;[Ljava/lang/Object;[I[I)I"),
 //};
-void register_libcore_io_Linux(JNIEnv* env) {
+
+// RoboVM note: registerNatives will be called from class initializer
+extern "C" JNIEXPORT void JNICALL Java_libcore_io_Linux_registerNatives(JNIEnv *env, jclass ) {
     // Note: it is safe to only cache the fields as boot classpath classes are never
     //       unloaded.
     ScopedLocalRef<jclass> int32RefClass(env, env->FindClass("android/system/Int32Ref"));

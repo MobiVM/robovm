@@ -72,12 +72,13 @@ Java_java_io_Console_echo(JNIEnv *env,
     return old;
 }
 
-static JNINativeMethod gMethods[] = {
-    NATIVE_METHOD(Console, istty, "()Z"),
-    NATIVE_METHOD(Console, encoding, "()Ljava/lang/String;"),
-    NATIVE_METHOD(Console, echo, "(Z)Z"),
-};
-
-void register_java_io_Console(JNIEnv* env) {
-    jniRegisterNativeMethods(env, "java/io/Console", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//    NATIVE_METHOD(Console, istty, "()Z"),
+//    NATIVE_METHOD(Console, encoding, "()Ljava/lang/String;"),
+//    NATIVE_METHOD(Console, echo, "(Z)Z"),
+//};
+//
+//void register_java_io_Console(JNIEnv* env) {
+//    jniRegisterNativeMethods(env, "java/io/Console", gMethods, NELEM(gMethods));
+//}

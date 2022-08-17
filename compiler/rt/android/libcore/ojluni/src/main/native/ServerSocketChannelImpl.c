@@ -137,12 +137,13 @@ Java_sun_nio_ch_ServerSocketChannelImpl_accept0(JNIEnv *env, jobject this,
 
 
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(Java_sun_nio_ch_ServerSocketChannelImpl, initIDs, "()V"),
-  NATIVE_METHOD(Java_sun_nio_ch_ServerSocketChannelImpl, accept0,
-                "(Ljava/io/FileDescriptor;Ljava/io/FileDescriptor;[Ljava/net/InetSocketAddress;)I"),
-};
-
-void register_sun_nio_ch_ServerSocketChannelImpl(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/ServerSocketChannelImpl", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(Java_sun_nio_ch_ServerSocketChannelImpl, initIDs, "()V"),
+//  NATIVE_METHOD(Java_sun_nio_ch_ServerSocketChannelImpl, accept0,
+//                "(Ljava/io/FileDescriptor;Ljava/io/FileDescriptor;[Ljava/net/InetSocketAddress;)I"),
+//};
+//
+//void register_sun_nio_ch_ServerSocketChannelImpl(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "sun/nio/ch/ServerSocketChannelImpl", gMethods, NELEM(gMethods));
+//}

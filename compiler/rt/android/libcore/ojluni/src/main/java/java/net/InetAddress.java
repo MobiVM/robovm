@@ -179,6 +179,12 @@ import libcore.io.Libcore;
  */
 public
 class InetAddress implements java.io.Serializable {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     // BEGIN Android-removed: Android uses linux-based OsConstants.
     /*
      * Specify the address family: Internet Protocol, Version 4

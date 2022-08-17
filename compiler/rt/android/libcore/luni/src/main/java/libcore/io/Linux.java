@@ -46,6 +46,12 @@ import java.nio.ByteBuffer;
 import java.nio.NioUtils;
 
 public final class Linux implements Os {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     Linux() { }
 
     public native FileDescriptor accept(FileDescriptor fd, SocketAddress peerAddress) throws ErrnoException, SocketException;

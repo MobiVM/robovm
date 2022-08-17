@@ -96,11 +96,12 @@ Java_sun_nio_ch_SocketChannelImpl_sendOutOfBandData(JNIEnv* env, jclass this,
     return convertReturnVal(env, n, JNI_FALSE);
 }
 
-static JNINativeMethod gMethods[] = {
-  NATIVE_METHOD(SocketChannelImpl, checkConnect, "(Ljava/io/FileDescriptor;ZZ)I"),
-  NATIVE_METHOD(SocketChannelImpl, sendOutOfBandData, "(Ljava/io/FileDescriptor;B)I"),
-};
-
-void register_sun_nio_ch_SocketChannelImpl(JNIEnv* env) {
-  jniRegisterNativeMethods(env, "sun/nio/ch/SocketChannelImpl", gMethods, NELEM(gMethods));
-}
+// RoboVM Note: using fully qualified JNI names
+//static JNINativeMethod gMethods[] = {
+//  NATIVE_METHOD(SocketChannelImpl, checkConnect, "(Ljava/io/FileDescriptor;ZZ)I"),
+//  NATIVE_METHOD(SocketChannelImpl, sendOutOfBandData, "(Ljava/io/FileDescriptor;B)I"),
+//};
+//
+//void register_sun_nio_ch_SocketChannelImpl(JNIEnv* env) {
+//  jniRegisterNativeMethods(env, "sun/nio/ch/SocketChannelImpl", gMethods, NELEM(gMethods));
+//}

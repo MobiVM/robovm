@@ -38,6 +38,11 @@ package sun.nio.ch;
 
 
 public class NativeThread {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
 
     // Returns an opaque token representing the native thread underlying the
     // invoking Java thread.  On systems that do not require signalling, this

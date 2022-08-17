@@ -33,7 +33,9 @@
 
 static jclass noSuchMethodErrCl;
 
-static void ObjectStreamClass_initNative(JNIEnv *env)
+// RoboVM note: registerNatives will be called from class initializer
+JNIEXPORT void JNICALL
+Java_java_io_ObjectStreamClass_registerNatives(JNIEnv *env, jclass c)
 {
     jclass cl = (*env)->FindClass(env, "java/lang/NoSuchMethodError");
     if (cl == NULL) {           /* exception thrown */
@@ -115,7 +117,7 @@ Java_java_io_ObjectStreamClass_hasStaticInitializer(JNIEnv *env, jclass this,
 //  NATIVE_METHOD(ObjectStreamClass, hasStaticInitializer, "(Ljava/lang/Class;Z)Z"),
 //};
 //
-void register_java_io_ObjectStreamClass(JNIEnv* env) {
+//void register_java_io_ObjectStreamClass(JNIEnv* env) {
 //  jniRegisterNativeMethods(env, "java/io/ObjectStreamClass", gMethods, NELEM(gMethods));
-  ObjectStreamClass_initNative(env);
-}
+//  ObjectStreamClass_initNative(env);
+//}

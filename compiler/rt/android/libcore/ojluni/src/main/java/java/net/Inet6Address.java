@@ -176,6 +176,12 @@ import static android.system.OsConstants.*;
 
 public final
 class Inet6Address extends InetAddress {
+    // RoboVM note: invoking registerNatives to initialize missing native elements
+    private static native void registerNatives();
+    static {
+        registerNatives();
+    }
+
     final static int INADDRSZ = 16;
 
     // BEGIN Android-removed: Remove special handling for link-local addresses.
