@@ -156,7 +156,13 @@ ZFILE_read(ZFILE zfd, char *buf, jint nbytes, jlong offset) {
      * JVM_IO_INTR is tricky and could cause undesired side effect. So we decided
      * to simply call "read" on Solaris/Linux. See details in bug 6304463.
      */
+
+// RoboVM Note: pread64 is not available on Darwin
+#if defined(__APPLE__)
+    return pread(zfd, buf, nbytes, offset);
+#else
     return pread64(zfd, buf, nbytes, offset);
+#endif
 #endif
 }
 

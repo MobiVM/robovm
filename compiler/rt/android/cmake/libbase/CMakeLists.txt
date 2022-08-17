@@ -5,6 +5,8 @@ set(SRC
     ${LIBBASE_PATH}/logging.cpp
     ${LIBBASE_PATH}/threads.cpp
     ${LIBBASE_PATH}/stringprintf.cpp 
+    ${LIBBASE_PATH}/file.cpp
+    ${LIBBASE_PATH}/strings.cpp
 # FIXME: keep it empty for now as we don't need base code from Android core in robovm. Probably printf would be enough
 # FIXME: fix on final linkage stage
 )

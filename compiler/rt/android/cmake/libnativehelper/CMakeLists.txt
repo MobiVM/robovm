@@ -6,7 +6,7 @@ set(SRC
   ${LIB_PATH}/ExpandableString.c
   ${LIB_PATH}/JNIPlatformHelp.c
   ${LIB_PATH}/JniConstants.c
-  ${LIB_PATH}/JniInvocation.c
+  ${LIB_PATH}/JNIHelp.c
   ${LIB_PATH}/file_descriptor_jni.c
 )
 

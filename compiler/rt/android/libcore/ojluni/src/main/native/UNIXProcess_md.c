@@ -46,7 +46,8 @@
 #include <ctype.h>
 // Android-changed: Fuchsia: Point to correct location of header. http://b/119426171
 // #ifdef _ALLBSD_SOURCE
-#if defined(_ALLBSD_SOURCE) && !defined(__Fuchsia__)
+// RoboVM Note: header to use
+#if defined(_ALLBSD_SOURCE) && !defined(__Fuchsia__) && !defined(__ROBOVM__)
 #include <wait.h>
 #else
 #include <sys/wait.h>

@@ -4,7 +4,6 @@ set(LIB_PATH "${ANDROID_RT_PATH}/art")
 
 set(SRC
   ${LIB_PATH}/openjdkjvm/OpenjdkJvm.cc
-  ${LIB_PATH}/src/dalvik_system_VMRuntime.cc
 )
 
 add_library(android-art OBJECT ${SRC})
