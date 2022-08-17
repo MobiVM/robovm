@@ -12,6 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+package {
+    default_applicable_licenses: ["external_fdlibm_license"],
+}
+
+// Added automatically by a large-scale-change
+license {
+    name: "external_fdlibm_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-BSD",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
 cc_library_static {
     name: "libfdlibm",
     host_supported: true,
@@ -128,4 +144,10 @@ cc_library_static {
         "-Wno-logical-op-parentheses",
         "-Wno-sometimes-uninitialized",
     ],
+
+    apex_available: [
+        "com.android.art",
+        "com.android.art.debug",
+    ],
+    min_sdk_version: "S",
 }
