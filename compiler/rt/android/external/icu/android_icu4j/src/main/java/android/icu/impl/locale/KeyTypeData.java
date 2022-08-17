@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2014-2016, International Business Machines Corporation and
@@ -69,6 +69,14 @@ public class KeyTypeData {
         }
     }
 
+    private static class ScriptCodeTypeHandler extends SpecialTypeHandler {
+        private static final Pattern pat = Pattern.compile("[a-zA-Z]{4}(-[a-zA-Z]{4})*");
+        @Override
+        boolean isWellFormed(String value) {
+            return pat.matcher(value).matches();
+        }
+    }
+
     private static class SubdivisionKeyValueTypeHandler extends SpecialTypeHandler {
         private static final Pattern pat = Pattern.compile("([a-zA-Z]{2}|[0-9]{3})");
         @Override
@@ -89,6 +97,7 @@ public class KeyTypeData {
         CODEPOINTS(new CodepointsTypeHandler()),
         REORDER_CODE(new ReorderCodeTypeHandler()),
         RG_KEY_VALUE(new RgKeyValueTypeHandler()),
+        SCRIPT_CODE(new ScriptCodeTypeHandler()),
         SUBDIVISION_CODE(new SubdivisionKeyValueTypeHandler()),
         PRIVATE_USE(new PrivateUseKeyValueTypeHandler()),
         ;

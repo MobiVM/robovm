@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  *   Copyright (C) 2009-2016, International Business Machines
@@ -177,7 +177,9 @@ public abstract class Normalizer2 {
      * @param name "nfc" or "nfkc" or "nfkc_cf" or name of custom data file
      * @param mode normalization mode (compose or decompose etc.)
      * @return the requested Normalizer2, if successful
+     * @deprecated Don't use because the binary {@code data} format is not stable across API levels.
      */
+    @Deprecated
     public static Normalizer2 getInstance(InputStream data, String name, Mode mode) {
         // TODO: If callers really use this API, then we should add an overload that takes a ByteBuffer.
         ByteBuffer bytes = null;

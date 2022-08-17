@@ -1,8 +1,9 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
 import android.icu.text.UnicodeSet;
@@ -15,7 +16,7 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
     // Pre-compute them for performance.
     // The unit test testCurrencySpacingPatternStability() will start failing if these change in CLDR.
     private static final UnicodeSet UNISET_DIGIT = new UnicodeSet("[:digit:]").freeze();
-    private static final UnicodeSet UNISET_NOTS = new UnicodeSet("[:^S:]").freeze();
+    private static final UnicodeSet UNISET_NOTSZ = new UnicodeSet("[[:^S:]&[:^Z:]]").freeze();
 
     // Constants for better readability. Types are for compiler checking.
     static final byte PREFIX = 0;
@@ -30,8 +31,8 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
 
     /** Safe code path */
     public CurrencySpacingEnabledModifier(
-            NumberStringBuilder prefix,
-            NumberStringBuilder suffix,
+            FormattedStringBuilder prefix,
+            FormattedStringBuilder suffix,
             boolean overwrite,
             boolean strong,
             DecimalFormatSymbols symbols) {
@@ -55,7 +56,7 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
             afterPrefixInsert = null;
         }
         if (suffix.length() > 0 && suffix.fieldAt(0) == NumberFormat.Field.CURRENCY) {
-            int suffixCp = suffix.getLastCodePoint();
+            int suffixCp = suffix.getFirstCodePoint();
             UnicodeSet suffixUnicodeSet = getUnicodeSet(symbols, IN_CURRENCY, SUFFIX);
             if (suffixUnicodeSet.contains(suffixCp)) {
                 beforeSuffixUnicodeSet = getUnicodeSet(symbols, IN_NUMBER, SUFFIX);
@@ -73,7 +74,7 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
 
     /** Safe code path */
     @Override
-    public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
+    public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex) {
         // Currency spacing logic
         int length = 0;
         if (rightIndex - leftIndex > 0
@@ -96,7 +97,7 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
 
     /** Unsafe code path */
     public static int applyCurrencySpacing(
-            NumberStringBuilder output,
+            FormattedStringBuilder output,
             int prefixStart,
             int prefixLen,
             int suffixStart,
@@ -117,14 +118,14 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
 
     /** Unsafe code path */
     private static int applyCurrencySpacingAffix(
-            NumberStringBuilder output,
+            FormattedStringBuilder output,
             int index,
             byte affix,
             DecimalFormatSymbols symbols) {
         // NOTE: For prefix, output.fieldAt(index-1) gets the last field type in the prefix.
         // This works even if the last code point in the prefix is 2 code units because the
         // field value gets populated to both indices in the field array.
-        NumberFormat.Field affixField = (affix == PREFIX) ? output.fieldAt(index - 1)
+        Object affixField = (affix == PREFIX) ? output.fieldAt(index - 1)
                 : output.fieldAt(index);
         if (affixField != NumberFormat.Field.CURRENCY) {
             return 0;
@@ -158,8 +159,8 @@ public class CurrencySpacingEnabledModifier extends ConstantMultiFieldModifier {
                         affix == SUFFIX);
         if (pattern.equals("[:digit:]")) {
             return UNISET_DIGIT;
-        } else if (pattern.equals("[:^S:]")) {
-            return UNISET_NOTS;
+        } else if (pattern.equals("[[:^S:]&[:^Z:]]")) {
+            return UNISET_NOTSZ;
         } else {
             return new UnicodeSet(pattern);
         }

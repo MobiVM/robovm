@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
 import android.icu.util.Currency;
@@ -13,8 +13,6 @@ import android.icu.util.Currency;
  * To create a CurrencyPrecision, use one of the factory methods on Precision.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class CurrencyPrecision extends Precision {
 
@@ -36,8 +34,8 @@ public abstract class CurrencyPrecision extends Precision {
      * @param currency
      *            The currency to associate with this rounding strategy.
      * @return A Precision for chaining or passing to the NumberFormatter rounding() setter.
+     * @throws IllegalArgumentException for null Currency
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public Precision withCurrency(Currency currency) {
         if (currency != null) {

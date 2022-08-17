@@ -1,20 +1,22 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.number;
 
+import java.text.Format.Field;
+
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.number.ConstantAffixModifier;
 import android.icu.impl.number.DecimalQuantity;
 import android.icu.impl.number.MicroProps;
 import android.icu.impl.number.MicroPropsGenerator;
 import android.icu.impl.number.Modifier;
 import android.icu.impl.number.MultiplierProducer;
-import android.icu.impl.number.NumberStringBuilder;
 import android.icu.impl.number.RoundingUtils;
 import android.icu.number.NumberFormatter.SignDisplay;
 import android.icu.number.Precision.SignificantRounderImpl;
 import android.icu.text.DecimalFormatSymbols;
 import android.icu.text.NumberFormat;
-import android.icu.text.NumberFormat.Field;
 
 /**
  * A class that defines the scientific notation style to be used when formatting numbers in
@@ -24,10 +26,8 @@ import android.icu.text.NumberFormat.Field;
  * To create a ScientificNotation, use one of the factory methods in {@link Notation}.
  *
  * @see NumberFormatter
- * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
-public class ScientificNotation extends Notation implements Cloneable {
+public class ScientificNotation extends Notation {
 
     int engineeringInterval;
     boolean requireMinInt;
@@ -56,12 +56,12 @@ public class ScientificNotation extends Notation implements Cloneable {
      * @param minExponentDigits
      *            The minimum number of digits to show in the exponent.
      * @return A ScientificNotation, for chaining.
+     * @throws IllegalArgumentException if minExponentDigits is too big or smaller than 1
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public ScientificNotation withMinExponentDigits(int minExponentDigits) {
         if (minExponentDigits >= 1 && minExponentDigits <= RoundingUtils.MAX_INT_FRAC_SIG) {
-            ScientificNotation other = (ScientificNotation) this.clone();
+            ScientificNotation other = createCopy();
             other.minExponentDigits = minExponentDigits;
             return other;
         } else {
@@ -83,25 +83,21 @@ public class ScientificNotation extends Notation implements Cloneable {
      *            The strategy for displaying the sign in the exponent.
      * @return A ScientificNotation, for chaining.
      * @see NumberFormatter
-     * @hide draft / provisional / internal are hidden on Android
      */
     public ScientificNotation withExponentSignDisplay(SignDisplay exponentSignDisplay) {
-        ScientificNotation other = (ScientificNotation) this.clone();
+        ScientificNotation other = createCopy();
         other.exponentSignDisplay = exponentSignDisplay;
         return other;
     }
 
-    /**
-     * @hide draft / provisional / internal are hidden on Android
-     */
-    @Override
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            // Should not happen since parent is Object
-            throw new AssertionError(e);
-        }
+    /** Package-private clone method */
+    ScientificNotation createCopy() {
+        return new ScientificNotation(
+            engineeringInterval,
+            requireMinInt,
+            minExponentDigits,
+            exponentSignDisplay
+        );
     }
 
     /* package-private */ MicroPropsGenerator withLocaleData(
@@ -159,9 +155,15 @@ public class ScientificNotation extends Notation implements Cloneable {
             MicroProps micros = parent.processQuantity(quantity);
             assert micros.rounder != null;
 
+            // Do not apply scientific notation to special doubles
+            if (quantity.isInfinite() || quantity.isNaN()) {
+                micros.modInner = ConstantAffixModifier.EMPTY;
+                return micros;
+            }
+
             // Treat zero as if it had magnitude 0
             int exponent;
-            if (quantity.isZero()) {
+            if (quantity.isZeroish()) {
                 if (notation.requireMinInt && micros.rounder instanceof SignificantRounderImpl) {
                     // Show "00.000E0" on pattern "00.000E0"
                     ((SignificantRounderImpl) micros.rounder).apply(quantity,
@@ -188,8 +190,13 @@ public class ScientificNotation extends Notation implements Cloneable {
                 micros.modInner = this;
             }
 
+            // Change the exponent only after we select appropriate plural form
+            // for formatting purposes so that we preserve expected formatted
+            // string behavior.
+            quantity.adjustExponent(exponent);
+
             // We already performed rounding. Do not perform it again.
-            micros.rounder = Precision.constructPassThrough();
+            micros.rounder = null;
 
             return micros;
         }
@@ -253,11 +260,11 @@ public class ScientificNotation extends Notation implements Cloneable {
         }
 
         @Override
-        public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
+        public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex) {
             return doApply(exponent, output, rightIndex);
         }
 
-        private int doApply(int exponent, NumberStringBuilder output, int rightIndex) {
+        private int doApply(int exponent, FormattedStringBuilder output, int rightIndex) {
             // FIXME: Localized exponent separator location.
             int i = rightIndex;
             // Append the exponent separator and sign
@@ -288,7 +295,7 @@ public class ScientificNotation extends Notation implements Cloneable {
         }
 
         @Override
-        public int apply(NumberStringBuilder output, int leftIndex, int rightIndex) {
+        public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex) {
             return handler.doApply(exponent, output, rightIndex);
         }
 

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 ******************************************************************************
 * Copyright (C) 2004-2009, International Business Machines Corporation and   *
@@ -56,7 +56,7 @@ public class UResourceBundleIterator{
      * @return the UResourceBundle object
      * @throws NoSuchElementException If there does not exist such an element.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public UResourceBundle next()throws NoSuchElementException{
         if(index<size){
             return bundle.get(index++);
@@ -88,7 +88,7 @@ public class UResourceBundleIterator{
      * Checks whether the given resource has another element to iterate over.
      * @return TRUE if there are more elements, FALSE if there is no more elements
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public boolean hasNext(){
         return index < size;   
     }

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2009,2016 International Business Machines Corporation and
@@ -48,7 +48,7 @@ public final class CalendarUtil {
             return calType.toLowerCase(Locale.ROOT);
         }
 
-        // Canonicalize, so grandfathered variant will be transformed to keywords
+        // Canonicalize, so that an old-style variant will be transformed to keywords.
         ULocale canonical = ULocale.createCanonical(loc.toString());
         calType = canonical.getKeywordValue(CALKEY);
         if (calType != null) {

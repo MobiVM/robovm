@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 
 // created: 2018may10 Markus W. Scherer
 
@@ -14,7 +14,6 @@ import java.util.NoSuchElementException;
  * This does not implement java.util.Map.
  *
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
     /**
@@ -23,14 +22,11 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      *
      * @see #getRange
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum RangeOption {
         /**
          * getRange() enumerates all same-value ranges as stored in the map.
          * Most users should use this option.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         NORMAL,
         /**
@@ -46,8 +42,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          * special values optimized for UTF-16 string processing
          * or for special error behavior for unpaired surrogates,
          * but those values are not to be associated with the lead surrogate code *points*.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         FIXED_LEAD_SURROGATES,
         /**
@@ -63,8 +57,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          * special values optimized for UTF-16 string processing
          * or for special error behavior for unpaired surrogates,
          * but those values are not to be associated with the lead surrogate code *points*.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         FIXED_ALL_SURROGATES
     }
@@ -81,7 +73,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * @see #getRange
      * @see #iterator
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public interface ValueFilter {
         /**
@@ -89,7 +80,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          *
          * @param value map value
          * @return modified value
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int apply(int value);
     }
@@ -103,7 +93,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * @see #getRange
      * @see #iterator
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Range {
         private int start;
@@ -112,8 +101,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
 
         /**
          * Constructor. Sets start and end to -1 and value to 0.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         public Range() {
             start = end = -1;
@@ -122,17 +109,14 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
 
         /**
          * @return the start code point
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int getStart() { return start; }
         /**
          * @return the (inclusive) end code point
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int getEnd() { return end; }
         /**
          * @return the range value
-         * @hide draft / provisional / internal are hidden on Android
          */
         public int getValue() { return value; }
         /**
@@ -142,7 +126,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          * @param start new start code point
          * @param end new end code point
          * @param value new value
-         * @hide draft / provisional / internal are hidden on Android
          */
         public void set(int start, int end, int value) {
             this.start = start;
@@ -192,7 +175,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * <p>This class is not intended for public subclassing.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public class StringIterator {
         /**
@@ -237,7 +219,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          *
          * @param s string to iterate over
          * @param sIndex string index where the iteration will start
-         * @hide draft / provisional / internal are hidden on Android
          */
         public void reset(CharSequence s, int sIndex) {
             this.s = s;
@@ -253,7 +234,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          *
          * @return true if the string index was not yet at the end of the string;
          *         otherwise the iterator did not advance
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean next() {
             if (sIndex >= s.length()) {
@@ -272,7 +252,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
          *
          * @return true if the string index was not yet at the start of the string;
          *         otherwise the iterator did not advance
-         * @hide draft / provisional / internal are hidden on Android
          */
         public boolean previous() {
             if (sIndex <= 0) {
@@ -285,27 +264,22 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
         }
         /**
          * @return the string index
-         * @hide draft / provisional / internal are hidden on Android
          */
         public final int getIndex() { return sIndex; }
         /**
          * @return the code point
-         * @hide draft / provisional / internal are hidden on Android
          */
         public final int getCodePoint() { return c; }
         /**
          * @return the map value,
          *         or an implementation-defined error value if
          *         the code point is an unpaired surrogate
-         * @hide draft / provisional / internal are hidden on Android
          */
         public final int getValue() { return value; }
     }
 
     /**
      * Protected no-args constructor.
-     *
-     * @hide draft / provisional / internal are hidden on Android
      */
     protected CodePointMap() {
     }
@@ -318,7 +292,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * @return the map value,
      *         or an implementation-defined error value if
      *         the code point is not in the range 0..U+10FFFF
-     * @hide draft / provisional / internal are hidden on Android
      */
     public abstract int get(int c);
 
@@ -355,7 +328,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      *     or null if the values from the map are to be used unmodified
      * @param range the range object that will be set to the code point range and value
      * @return true if start is 0..U+10FFFF; otherwise no new range is fetched
-     * @hide draft / provisional / internal are hidden on Android
      */
     public abstract boolean getRange(int start, ValueFilter filter, Range range);
 
@@ -378,7 +350,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      *     or null if the values from the map are to be used unmodified
      * @param range the range object that will be set to the code point range and value
      * @return true if start is 0..U+10FFFF; otherwise no new range is fetched
-     * @hide draft / provisional / internal are hidden on Android
      */
     public boolean getRange(int start, RangeOption option, int surrogateValue,
             ValueFilter filter, Range range) {
@@ -435,7 +406,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * <p>The iterator always returns the same Range object.
      *
      * @return a Range iterator
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public Iterator<Range> iterator() {
@@ -449,7 +419,6 @@ public abstract class CodePointMap implements Iterable<CodePointMap.Range> {
      * @param s string to iterate over
      * @param sIndex string index where the iteration will start
      * @return the iterator
-     * @hide draft / provisional / internal are hidden on Android
      */
     public StringIterator stringIterator(CharSequence s, int sIndex) {
         return new StringIterator(s, sIndex);

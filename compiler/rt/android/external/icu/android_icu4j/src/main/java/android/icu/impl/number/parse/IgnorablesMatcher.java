@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number.parse;
 
 import android.icu.impl.StaticUnicodeSets;
@@ -14,15 +14,23 @@ import android.icu.text.UnicodeSet;
  */
 public class IgnorablesMatcher extends SymbolMatcher implements NumberParseMatcher.Flexible {
 
-    public static final IgnorablesMatcher DEFAULT = new IgnorablesMatcher(
+    private static final IgnorablesMatcher DEFAULT = new IgnorablesMatcher(
             StaticUnicodeSets.get(StaticUnicodeSets.Key.DEFAULT_IGNORABLES));
 
-    public static final IgnorablesMatcher STRICT = new IgnorablesMatcher(
+    private static final IgnorablesMatcher STRICT = new IgnorablesMatcher(
             StaticUnicodeSets.get(StaticUnicodeSets.Key.STRICT_IGNORABLES));
 
-    public static IgnorablesMatcher getInstance(UnicodeSet ignorables) {
-        assert ignorables.isFrozen();
-        return new IgnorablesMatcher(ignorables);
+    private static final IgnorablesMatcher JAVA_COMPATIBILITY = new IgnorablesMatcher(
+            StaticUnicodeSets.get(StaticUnicodeSets.Key.EMPTY));
+
+    public static IgnorablesMatcher getInstance(int parseFlags) {
+        if (0 != (parseFlags & ParsingUtils.PARSE_FLAG_JAVA_COMPATIBILITY_IGNORABLES)) {
+            return JAVA_COMPATIBILITY;
+        } else if (0 != (parseFlags & ParsingUtils.PARSE_FLAG_STRICT_IGNORABLES)) {
+            return STRICT;
+        } else {
+            return DEFAULT;
+        }
     }
 
     private IgnorablesMatcher(UnicodeSet ignorables) {

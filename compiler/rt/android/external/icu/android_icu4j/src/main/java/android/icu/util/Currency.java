@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /**
  *******************************************************************************
  * Copyright (C) 2001-2016, International Business Machines Corporation and
@@ -87,13 +87,33 @@ public class Currency extends MeasureUnit {
 
     /**
      * Selector for getName() indicating the narrow currency symbol.
-     * The narrow currency symbol is similar to the regular currency
-     * symbol, but it always takes the shortest form: for example,
-     * "$" instead of "US$" for USD in en-CA.
+     * <p>
+     * The narrow currency symbol is similar to the regular currency symbol,
+     * but it always takes the shortest form;
+     * for example, "$" instead of "US$" for USD in en-CA.
+     */
+    public static final int NARROW_SYMBOL_NAME = 3;
+
+    /**
+     * Selector for getName() indicating the formal currency symbol.
+     * <p>
+     * The formal currency symbol is similar to the regular currency symbol,
+     * but it always takes the form used in formal settings such as banking;
+     * for example, "NT$" instead of "$" for TWD in zh-TW.
      *
      * @hide draft / provisional / internal are hidden on Android
      */
-    public static final int NARROW_SYMBOL_NAME = 3;
+    public static final int FORMAL_SYMBOL_NAME = 4;
+
+    /**
+     * Selector for getName() indicating the variant currency symbol.
+     * <p>
+     * The variant symbol for a currency is an alternative symbol that is not
+     * necessarily as widely used as the regular symbol.
+     *
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public static final int VARIANT_SYMBOL_NAME = 5;
 
     /**
      * Currency Usage used for Decimal Format
@@ -223,7 +243,6 @@ public class Currency extends MeasureUnit {
         return resultSet;
     }
 
-    private static final String EUR_STR = "EUR";
     private static final CacheBase<String, Currency, Void> regionCurrencyCache =
             new SoftCache<String, Currency, Void>() {
         @Override
@@ -236,40 +255,18 @@ public class Currency extends MeasureUnit {
      * Instantiate a currency from resource data.
      */
     /* package */ static Currency createCurrency(ULocale loc) {
-        String variant = loc.getVariant();
-        if ("EURO".equals(variant)) {
-            return getInstance(EUR_STR);
-        }
-
-        // Cache the currency by region, and whether variant=PREEURO.
+        // Cache the currency by region.
         // Minimizes the size of the cache compared with caching by ULocale.
         String key = ULocale.getRegionForSupplementalData(loc, false);
-        if ("PREEURO".equals(variant)) {
-            key = key + '-';
-        }
         return regionCurrencyCache.getInstance(key, null);
     }
 
     private static Currency loadCurrency(String key) {
-        String region;
-        boolean isPreEuro;
-        if (key.endsWith("-")) {
-            region = key.substring(0, key.length() - 1);
-            isPreEuro = true;
-        } else {
-            region = key;
-            isPreEuro = false;
-        }
+        String region = key;
         CurrencyMetaInfo info = CurrencyMetaInfo.getInstance();
         List<String> list = info.currencies(CurrencyFilter.onRegion(region));
         if (!list.isEmpty()) {
             String code = list.get(0);
-            if (isPreEuro && EUR_STR.equals(code)) {
-                if (list.size() < 2) {
-                    return null;
-                }
-                code = list.get(1);
-            }
             return getInstance(code);
         }
         return null;
@@ -519,6 +516,17 @@ public class Currency extends MeasureUnit {
      * given locale.
      * This is a convenient method for
      * getName(ULocale, int, boolean[]);
+     *
+     * @param locale locale in which to display currency
+     * @param nameStyle selector for which kind of name to return.
+     *                  The nameStyle should be SYMBOL_NAME, NARROW_SYMBOL_NAME,
+     *                  or LONG_NAME. Otherwise, throw IllegalArgumentException.
+     * @param isChoiceFormat isChoiceFormat[0] is always set to false, or isChoiceFormat can be null;
+     *     display names are static strings;
+     *     since ICU 4.4, ChoiceFormat patterns are no longer supported
+     * @return display string for this currency.  If the resource data
+     * contains no entry for this currency, then the ISO 4217 code is
+     * returned.
      */
     public String getName(Locale locale,
                           int nameStyle,
@@ -530,19 +538,17 @@ public class Currency extends MeasureUnit {
      * Returns the display name for the given currency in the
      * given locale.  For example, the display name for the USD
      * currency object in the en_US locale is "$".
+     *
      * @param locale locale in which to display currency
      * @param nameStyle selector for which kind of name to return.
      *                  The nameStyle should be SYMBOL_NAME, NARROW_SYMBOL_NAME,
      *                  or LONG_NAME. Otherwise, throw IllegalArgumentException.
-     * @param isChoiceFormat fill-in; isChoiceFormat[0] is set to true
-     * if the returned value is a ChoiceFormat pattern; otherwise it
-     * is set to false
+     * @param isChoiceFormat isChoiceFormat[0] is always set to false, or isChoiceFormat can be null;
+     *     display names are static strings;
+     *     since ICU 4.4, ChoiceFormat patterns are no longer supported
      * @return display string for this currency.  If the resource data
      * contains no entry for this currency, then the ISO 4217 code is
-     * returned.  If isChoiceFormat[0] is true, then the result is a
-     * ChoiceFormat pattern.  Otherwise it is a static string. <b>Note:</b>
-     * as of ICU 4.4, choice formats are not used, and the value returned
-     * in isChoiceFormat is always false.
+     * returned.
      * <p>
      * @throws  IllegalArgumentException  if the nameStyle is not SYMBOL_NAME
      *                                    or LONG_NAME.
@@ -561,6 +567,10 @@ public class Currency extends MeasureUnit {
             return names.getSymbol(subType);
         case NARROW_SYMBOL_NAME:
             return names.getNarrowSymbol(subType);
+        case FORMAL_SYMBOL_NAME:
+            return names.getFormalSymbol(subType);
+        case VARIANT_SYMBOL_NAME:
+            return names.getVariantSymbol(subType);
         case LONG_NAME:
             return names.getName(subType);
         default:
@@ -571,6 +581,16 @@ public class Currency extends MeasureUnit {
     /**
      * Returns the display name for the given currency in the given locale.
      * This is a convenience overload of getName(ULocale, int, String, boolean[]);
+     *
+     * @param locale locale in which to display currency
+     * @param nameStyle selector for which kind of name to return
+     * @param pluralCount plural count string for this locale
+     * @param isChoiceFormat isChoiceFormat[0] is always set to false, or isChoiceFormat can be null;
+     *     display names are static strings;
+     *     since ICU 4.4, ChoiceFormat patterns are no longer supported
+     * @return display string for this currency.  If the resource data
+     * contains no entry for this currency, then the ISO 4217 code is
+     * returned.
      */
     public String getName(Locale locale, int nameStyle, String pluralCount,
             boolean[] isChoiceFormat) {
@@ -585,18 +605,16 @@ public class Currency extends MeasureUnit {
      * amount is plural is "US dollars", such as in "3.00 US dollars";
      * while the PLURAL_LONG_NAME for the USD currency object when the currency
      * amount is singular is "US dollar", such as in "1.00 US dollar".
+     *
      * @param locale locale in which to display currency
      * @param nameStyle selector for which kind of name to return
      * @param pluralCount plural count string for this locale
-     * @param isChoiceFormat fill-in; isChoiceFormat[0] is set to true
-     * if the returned value is a ChoiceFormat pattern; otherwise it
-     * is set to false
+     * @param isChoiceFormat isChoiceFormat[0] is always set to false, or isChoiceFormat can be null;
+     *     display names are static strings;
+     *     since ICU 4.4, ChoiceFormat patterns are no longer supported
      * @return display string for this currency.  If the resource data
      * contains no entry for this currency, then the ISO 4217 code is
-     * returned.  If isChoiceFormat[0] is true, then the result is a
-     * ChoiceFormat pattern.  Otherwise it is a static string. <b>Note:</b>
-     * as of ICU 4.4, choice formats are not used, and the value returned
-     * in isChoiceFormat is always false.
+     * returned.
      * @throws  IllegalArgumentException  if the nameStyle is not SYMBOL_NAME,
      *                                    LONG_NAME, or PLURAL_LONG_NAME.
      */
@@ -834,6 +852,13 @@ public class Currency extends MeasureUnit {
      * Returns the number of the number of fraction digits that should
      * be displayed for this currency.
      * This is equivalent to getDefaultFractionDigits(CurrencyUsage.STANDARD);
+     *
+     * Important: The number of fraction digits for a given currency is NOT
+     * guaranteed to be constant across versions of ICU or CLDR. For example,
+     * do NOT use this value as a mechanism for deciding the magnitude used
+     * to store currency values in a database. You should use this value for
+     * display purposes only.
+     *
      * @return a non-negative number of fraction digits to be
      * displayed
      */
@@ -844,6 +869,13 @@ public class Currency extends MeasureUnit {
     /**
      * Returns the number of the number of fraction digits that should
      * be displayed for this currency with Usage.
+     *
+     * Important: The number of fraction digits for a given currency is NOT
+     * guaranteed to be constant across versions of ICU or CLDR. For example,
+     * do NOT use this value as a mechanism for deciding the magnitude used
+     * to store currency values in a database. You should use this value for
+     * display purposes only.
+     *
      * @param Usage the usage of currency(Standard or Cash)
      * @return a non-negative number of fraction digits to be
      * displayed

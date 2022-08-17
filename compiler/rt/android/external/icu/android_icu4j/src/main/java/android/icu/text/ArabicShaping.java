@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
 *   Copyright (C) 2001-2012, International Business Machines
@@ -155,7 +155,7 @@ public final class ArabicShaping {
      * @return the converted string
      * @throws ArabicShapingException if the string cannot be converted according to the options.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public String shape(String text) throws ArabicShapingException {
         char[] src = text.toCharArray();
         char[] dest = src;
@@ -184,7 +184,7 @@ public final class ArabicShaping {
      * 'DIGIT_TYPE' flags control whether standard or extended Arabic-Indic
      * digits are used when performing digit conversion.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public ArabicShaping(int options) {
         this.options = options;
         if ((options & DIGITS_MASK) > 0x80) {
@@ -978,7 +978,7 @@ public final class ArabicShaping {
      *           in the FE range otherwise returns 0
      */
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     private static int isSeenTailFamilyChar(char ch) {
         if (ch >= 0xfeb1 && ch < 0xfebf){
              return tailFamilyIsolatedFinal [ch - 0xFEB1];
@@ -1006,7 +1006,7 @@ public final class ArabicShaping {
      *           (0xfe73 or 0x200b) otherwise returns false
      */
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     private static boolean isTailChar(char ch) {
         if(ch == OLD_TAIL_CHAR || ch == NEW_TAIL_CHAR){
                 return true;
@@ -1020,7 +1020,7 @@ public final class ArabicShaping {
      *Function : returns true if the character is a Alef Maksoura Final or isolated
      *           otherwise returns false
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     private static boolean isAlefMaksouraChar(char ch) {
         return ( (ch == 0xFEEF) || ( ch == 0xFEF0) || (ch == 0x0649));
     }
@@ -1030,7 +1030,7 @@ public final class ArabicShaping {
      * Function : returns true if the character is a yehHamza isolated or yehhamza
      *            final is found otherwise returns false
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     private static boolean isYehHamzaChar(char ch) {
         if((ch==0xFE89)||(ch==0xFE8A)){
             return true;

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 1996-2015, International Business Machines Corporation and    *
@@ -11,6 +11,7 @@ package android.icu.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -18,6 +19,7 @@ import android.icu.lang.UCharacter;
 import android.icu.text.Replaceable;
 import android.icu.text.UTF16;
 import android.icu.text.UnicodeMatcher;
+import android.icu.util.ICUUncheckedIOException;
 
 /**
  * @hide Only a subset of ICU is exposed in Android
@@ -1848,5 +1850,45 @@ public final class Utility {
             hash = hash * 31 + value.charAt(i);
         }
         return hash;
+    }
+
+    /**
+     * Appends a CharSequence to an Appendable, converting IOException to ICUUncheckedIOException.
+     */
+    public static <A extends Appendable> A appendTo(CharSequence string, A appendable) {
+        try {
+            appendable.append(string);
+            return appendable;
+        } catch (IOException e) {
+            throw new ICUUncheckedIOException(e);
+        }
+    }
+
+    /**
+     * Java 8+ String#join(CharSequence, Iterable<? extends CharSequence>) compatible method for Java 7 env.
+     * @param delimiter the delimiter that separates each element
+     * @param elements the elements to join together.
+     * @return a new String that is composed of the elements separated by the delimiter
+     * @throws NullPointerException If delimiter or elements is null
+     */
+    public static String joinStrings(CharSequence delimiter, Iterable<? extends CharSequence> elements) {
+        if (delimiter == null || elements == null) {
+            throw new NullPointerException("Delimiter or elements is null");
+        }
+        StringBuilder buf = new StringBuilder();
+        Iterator<? extends CharSequence> itr = elements.iterator();
+        boolean isFirstElem = true;
+        while (itr.hasNext()) {
+            CharSequence element = itr.next();
+            if (element != null) {
+                if (!isFirstElem) {
+                    buf.append(delimiter);
+                } else {
+                    isFirstElem = false;
+                }
+                buf.append(element);
+            }
+        }
+        return buf.toString();
     }
 }

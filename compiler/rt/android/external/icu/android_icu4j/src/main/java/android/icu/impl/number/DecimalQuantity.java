@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import java.math.BigDecimal;
@@ -8,6 +8,7 @@ import java.math.MathContext;
 import java.text.FieldPosition;
 
 import android.icu.impl.StandardPlural;
+import android.icu.impl.number.Modifier.Signum;
 import android.icu.text.PluralRules;
 import android.icu.text.UFieldPosition;
 
@@ -29,26 +30,31 @@ import android.icu.text.UFieldPosition;
  */
 public interface DecimalQuantity extends PluralRules.IFixedDecimal {
     /**
-     * Sets the minimum and maximum integer digits that this {@link DecimalQuantity} should generate.
+     * Sets the minimum integer digits that this {@link DecimalQuantity} should generate.
      * This method does not perform rounding.
      *
      * @param minInt
      *            The minimum number of integer digits.
-     * @param maxInt
-     *            The maximum number of integer digits.
      */
-    public void setIntegerLength(int minInt, int maxInt);
+    public void setMinInteger(int minInt);
 
     /**
-     * Sets the minimum and maximum fraction digits that this {@link DecimalQuantity} should generate.
+     * Sets the minimum fraction digits that this {@link DecimalQuantity} should generate.
      * This method does not perform rounding.
      *
      * @param minFrac
      *            The minimum number of fraction digits.
-     * @param maxFrac
-     *            The maximum number of fraction digits.
      */
-    public void setFractionLength(int minFrac, int maxFrac);
+    public void setMinFraction(int minFrac);
+
+    /**
+     * Truncates digits from the upper magnitude of the number in order to satisfy the
+     * specified maximum number of integer digits.
+     *
+     * @param maxInt
+     *            The maximum number of integer digits.
+     */
+    public void applyMaxInteger(int maxInt);
 
     /**
      * Rounds the number to a specified interval, such as 0.05.
@@ -62,6 +68,17 @@ public interface DecimalQuantity extends PluralRules.IFixedDecimal {
      *            The {@link MathContext} to use if rounding is necessary. Undefined behavior if null.
      */
     public void roundToIncrement(BigDecimal roundingInterval, MathContext mathContext);
+
+    /**
+     * Rounds the number to the nearest multiple of 5 at the specified magnitude.
+     * For example, when magnitude == -2, this performs rounding to the nearest 0.05.
+     *
+     * @param magnitude
+     *            The magnitude at which the digit should become either 0 or 5.
+     * @param mathContext
+     *            Rounding strategy.
+     */
+    public void roundToNickel(int magnitude, MathContext mathContext);
 
     /**
      * Rounds the number to a specified magnitude (power of ten).
@@ -107,14 +124,37 @@ public interface DecimalQuantity extends PluralRules.IFixedDecimal {
      */
     public int getMagnitude() throws ArithmeticException;
 
-    /** @return Whether the value represented by this {@link DecimalQuantity} is zero. */
-    public boolean isZero();
+    /**
+     * @return The value of the (suppressed) exponent after the number has been
+     * put into a notation with exponents (ex: compact, scientific).  Ex: given
+     * the number 1000 as "1K" / "1E3", the return value will be 3 (positive).
+     */
+    public int getExponent();
+
+    /**
+     * Adjusts the value for the (suppressed) exponent stored when using
+     * notation with exponents (ex: compact, scientific).
+     *
+     * <p>Adjusting the exponent is decoupled from {@link #adjustMagnitude} in
+     * order to allow flexibility for {@link StandardPlural} to be selected in
+     * formatting (ex: for compact notation) either with or without the exponent
+     * applied in the value of the number.
+     * @param delta
+     *             The value to adjust the exponent by.
+     */
+    public void adjustExponent(int delta);
+
+    /**
+     * @return Whether the value represented by this {@link DecimalQuantity} is
+     * zero, infinity, or NaN.
+     */
+    public boolean isZeroish();
 
     /** @return Whether the value represented by this {@link DecimalQuantity} is less than zero. */
     public boolean isNegative();
 
-    /** @return -1 if the value is negative; 1 if positive; or 0 if zero. */
-    public int signum();
+    /** @return The appropriate value from the Signum enum. */
+    public Signum signum();
 
     /** @return Whether the value represented by this {@link DecimalQuantity} is infinite. */
     @Override

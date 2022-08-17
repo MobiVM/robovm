@@ -1,11 +1,12 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import java.math.BigDecimal;
 
 import android.icu.impl.StandardPlural;
+import android.icu.impl.number.Modifier.Signum;
 import android.icu.impl.number.Padder.PadPosition;
 import android.icu.number.NumberFormatter.SignDisplay;
 import android.icu.text.DecimalFormatSymbols;
@@ -15,6 +16,54 @@ import android.icu.text.DecimalFormatSymbols;
  * @hide Only a subset of ICU is exposed in Android
  */
 public class PatternStringUtils {
+
+    // Note: the order of fields in this enum matters for parsing.
+    /**
+     * @hide Only a subset of ICU is exposed in Android
+     */
+    public static enum PatternSignType {
+        // Render using normal positive subpattern rules
+        POS,
+        // Render using rules to force the display of a plus sign
+        POS_SIGN,
+        // Render using negative subpattern rules
+        NEG;
+
+        public static final PatternSignType[] VALUES = PatternSignType.values();
+    };
+
+    /**
+     * Determine whether a given roundingIncrement should be ignored for formatting
+     * based on the current maxFrac value (maximum fraction digits). For example a
+     * roundingIncrement of 0.01 should be ignored if maxFrac is 1, but not if maxFrac
+     * is 2 or more. Note that roundingIncrements are rounded up in significance, so
+     * a roundingIncrement of 0.006 is treated like 0.01 for this determination, i.e.
+     * it should not be ignored if maxFrac is 2 or more (but a roundingIncrement of
+     * 0.005 is treated like 0.001 for significance).
+     *
+     * This test is needed for both NumberPropertyMapper.oldToNew and
+     * PatternStringUtils.propertiesToPatternString, but NumberPropertyMapper
+     * is package-private so we have it here.
+     *
+     * @param roundIncrDec
+     *            The roundingIncrement to be checked. Must be non-null.
+     * @param maxFrac
+     *            The current maximum fraction digits value.
+     * @return true if roundIncr should be ignored for formatting.
+     */
+    public static boolean ignoreRoundingIncrement(BigDecimal roundIncrDec, int maxFrac) {
+        double roundIncr = roundIncrDec.doubleValue();
+        if (roundIncr == 0.0) {
+            return true;
+        }
+        if (maxFrac < 0) {
+            return false;
+        }
+        int frac = 0;
+        roundIncr *= 2.0; // This handles the rounding up of values above e.g. 0.005 or 0.0005
+        for (frac = 0; frac <= maxFrac && roundIncr <= 1.0; frac++, roundIncr *= 10.0);
+        return (frac > maxFrac);
+    }
 
     /**
      * Creates a pattern string from a property bag.
@@ -34,56 +83,33 @@ public class PatternStringUtils {
         // Convenience references
         // The Math.min() calls prevent DoS
         int dosMax = 100;
-        int groupingSize = Math.min(properties.getSecondaryGroupingSize(), dosMax);
-        int firstGroupingSize = Math.min(properties.getGroupingSize(), dosMax);
+        int grouping1 = Math.max(0, Math.min(properties.getGroupingSize(), dosMax));
+        int grouping2 = Math.max(0, Math.min(properties.getSecondaryGroupingSize(), dosMax));
+        boolean useGrouping = properties.getGroupingUsed();
         int paddingWidth = Math.min(properties.getFormatWidth(), dosMax);
         PadPosition paddingLocation = properties.getPadPosition();
         String paddingString = properties.getPadString();
-        int minInt = Math.max(Math.min(properties.getMinimumIntegerDigits(), dosMax), 0);
+        int minInt = Math.max(0, Math.min(properties.getMinimumIntegerDigits(), dosMax));
         int maxInt = Math.min(properties.getMaximumIntegerDigits(), dosMax);
-        int minFrac = Math.max(Math.min(properties.getMinimumFractionDigits(), dosMax), 0);
+        int minFrac = Math.max(0, Math.min(properties.getMinimumFractionDigits(), dosMax));
         int maxFrac = Math.min(properties.getMaximumFractionDigits(), dosMax);
         int minSig = Math.min(properties.getMinimumSignificantDigits(), dosMax);
         int maxSig = Math.min(properties.getMaximumSignificantDigits(), dosMax);
         boolean alwaysShowDecimal = properties.getDecimalSeparatorAlwaysShown();
         int exponentDigits = Math.min(properties.getMinimumExponentDigits(), dosMax);
         boolean exponentShowPlusSign = properties.getExponentSignAlwaysShown();
-        String pp = properties.getPositivePrefix();
-        String ppp = properties.getPositivePrefixPattern();
-        String ps = properties.getPositiveSuffix();
-        String psp = properties.getPositiveSuffixPattern();
-        String np = properties.getNegativePrefix();
-        String npp = properties.getNegativePrefixPattern();
-        String ns = properties.getNegativeSuffix();
-        String nsp = properties.getNegativeSuffixPattern();
+        AffixPatternProvider affixes = PropertiesAffixPatternProvider.forProperties(properties);
 
         // Prefixes
-        if (ppp != null) {
-            sb.append(ppp);
-        }
-        AffixUtils.escape(pp, sb);
+        sb.append(affixes.getString(AffixPatternProvider.FLAG_POS_PREFIX));
         int afterPrefixPos = sb.length();
 
         // Figure out the grouping sizes.
-        int grouping1, grouping2, grouping;
-        if (groupingSize != Math.min(dosMax, -1)
-                && firstGroupingSize != Math.min(dosMax, -1)
-                && groupingSize != firstGroupingSize) {
-            grouping = groupingSize;
-            grouping1 = groupingSize;
-            grouping2 = firstGroupingSize;
-        } else if (groupingSize != Math.min(dosMax, -1)) {
-            grouping = groupingSize;
-            grouping1 = 0;
-            grouping2 = groupingSize;
-        } else if (firstGroupingSize != Math.min(dosMax, -1)) {
-            grouping = groupingSize;
-            grouping1 = 0;
-            grouping2 = firstGroupingSize;
-        } else {
-            grouping = 0;
+        if (!useGrouping) {
             grouping1 = 0;
             grouping2 = 0;
+        } else if (grouping1 == grouping2) {
+            grouping1 = 0;
         }
         int groupingLength = grouping1 + grouping2 + 1;
 
@@ -99,7 +125,7 @@ public class PatternStringUtils {
             while (digitsString.length() < maxSig) {
                 digitsString.append('#');
             }
-        } else if (roundingInterval != null) {
+        } else if (roundingInterval != null && !ignoreRoundingIncrement(roundingInterval,maxFrac)) {
             // Rounding Interval.
             digitsStringScale = -roundingInterval.scale();
             // TODO: Check for DoS here?
@@ -130,12 +156,20 @@ public class PatternStringUtils {
             } else {
                 sb.append(digitsString.charAt(di));
             }
-            if (magnitude > grouping2 && grouping > 0 && (magnitude - grouping2) % grouping == 0) {
-                sb.append(',');
-            } else if (magnitude > 0 && magnitude == grouping2) {
-                sb.append(',');
-            } else if (magnitude == 0 && (alwaysShowDecimal || mN < 0)) {
+            // Decimal separator
+            if (magnitude == 0 && (alwaysShowDecimal || mN < 0)) {
                 sb.append('.');
+            }
+            if (!useGrouping) {
+                continue;
+            }
+            // Least-significant grouping separator
+            if (magnitude > 0 && magnitude == grouping1) {
+                sb.append(',');
+            }
+            // All other grouping separators
+            if (magnitude > grouping1 && grouping2 > 0 && (magnitude - grouping1) % grouping2 == 0) {
+                sb.append(',');
             }
         }
 
@@ -152,13 +186,10 @@ public class PatternStringUtils {
 
         // Suffixes
         int beforeSuffixPos = sb.length();
-        if (psp != null) {
-            sb.append(psp);
-        }
-        AffixUtils.escape(ps, sb);
+        sb.append(affixes.getString(AffixPatternProvider.FLAG_POS_SUFFIX));
 
         // Resolve Padding
-        if (paddingWidth != -1) {
+        if (paddingWidth > 0) {
             while (paddingWidth - sb.length() > 0) {
                 sb.insert(afterPrefixPos, '#');
                 beforeSuffixPos++;
@@ -190,20 +221,13 @@ public class PatternStringUtils {
 
         // Negative affixes
         // Ignore if the negative prefix pattern is "-" and the negative suffix is empty
-        if (np != null
-                || ns != null
-                || (npp == null && nsp != null)
-                || (npp != null && (npp.length() != 1 || npp.charAt(0) != '-' || nsp.length() != 0))) {
+        if (affixes.hasNegativeSubpattern()) {
             sb.append(';');
-            if (npp != null)
-                sb.append(npp);
-            AffixUtils.escape(np, sb);
+            sb.append(affixes.getString(AffixPatternProvider.FLAG_NEG_PREFIX));
             // Copy the positive digit format into the negative.
             // This is optional; the pattern is the same as if '#' were appended here instead.
             sb.append(sb, afterPrefixPos, beforeSuffixPos);
-            if (nsp != null)
-                sb.append(nsp);
-            AffixUtils.escape(ns, sb);
+            sb.append(affixes.getString(AffixPatternProvider.FLAG_NEG_SUFFIX));
         }
 
         return sb.toString();
@@ -410,25 +434,19 @@ public class PatternStringUtils {
     public static void patternInfoToStringBuilder(
             AffixPatternProvider patternInfo,
             boolean isPrefix,
-            int signum,
-            SignDisplay signDisplay,
+            PatternSignType patternSignType,
             StandardPlural plural,
             boolean perMilleReplacesPercent,
             StringBuilder output) {
 
-        // Should the output render '+' where '-' would normally appear in the pattern?
-        boolean plusReplacesMinusSign = signum != -1
-                && (signDisplay == SignDisplay.ALWAYS
-                        || signDisplay == SignDisplay.ACCOUNTING_ALWAYS
-                        || (signum == 1
-                                && (signDisplay == SignDisplay.EXCEPT_ZERO
-                                        || signDisplay == SignDisplay.ACCOUNTING_EXCEPT_ZERO)))
-                && patternInfo.positiveHasPlusSign() == false;
+        boolean plusReplacesMinusSign = (patternSignType == PatternSignType.POS_SIGN)
+                && !patternInfo.positiveHasPlusSign();
 
-        // Should we use the affix from the negative subpattern? (If not, we will use the positive
-        // subpattern.)
+        // Should we use the affix from the negative subpattern?
+        // (If not, we will use the positive subpattern.)
         boolean useNegativeAffixPattern = patternInfo.hasNegativeSubpattern()
-                && (signum == -1 || (patternInfo.negativeHasMinusSign() && plusReplacesMinusSign));
+                && (patternSignType == PatternSignType.NEG
+                    || (patternInfo.negativeHasMinusSign() && plusReplacesMinusSign));
 
         // Resolve the flags for the affix pattern.
         int flags = 0;
@@ -447,8 +465,8 @@ public class PatternStringUtils {
         boolean prependSign;
         if (!isPrefix || useNegativeAffixPattern) {
             prependSign = false;
-        } else if (signum == -1) {
-            prependSign = signDisplay != SignDisplay.NEVER;
+        } else if (patternSignType == PatternSignType.NEG) {
+            prependSign = true;
         } else {
             prependSign = plusReplacesMinusSign;
         }
@@ -475,6 +493,55 @@ public class PatternStringUtils {
             }
             output.append(candidate);
         }
+    }
+
+    public static PatternSignType resolveSignDisplay(SignDisplay signDisplay, Signum signum) {
+        switch (signDisplay) {
+            case AUTO:
+            case ACCOUNTING:
+                switch (signum) {
+                    case NEG:
+                    case NEG_ZERO:
+                        return PatternSignType.NEG;
+                    case POS_ZERO:
+                    case POS:
+                        return PatternSignType.POS;
+                }
+                break;
+
+            case ALWAYS:
+            case ACCOUNTING_ALWAYS:
+                switch (signum) {
+                    case NEG:
+                    case NEG_ZERO:
+                        return PatternSignType.NEG;
+                    case POS_ZERO:
+                    case POS:
+                        return PatternSignType.POS_SIGN;
+                }
+                break;
+
+            case EXCEPT_ZERO:
+            case ACCOUNTING_EXCEPT_ZERO:
+                switch (signum) {
+                    case NEG:
+                        return PatternSignType.NEG;
+                    case NEG_ZERO:
+                    case POS_ZERO:
+                        return PatternSignType.POS;
+                    case POS:
+                        return PatternSignType.POS_SIGN;
+                }
+                break;
+
+            case NEVER:
+                return PatternSignType.POS;
+
+            default:
+                break;
+        }
+
+        throw new AssertionError("Unreachable");
     }
 
 }

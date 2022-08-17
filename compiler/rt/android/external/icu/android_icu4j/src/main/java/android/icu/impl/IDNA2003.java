@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
 *******************************************************************************
 * Copyright (C) 2003-2010, International Business Machines
@@ -37,17 +37,15 @@ public final class IDNA2003 {
     private static final StringPrep namePrep = StringPrep.getInstance(StringPrep.RFC3491_NAMEPREP);
     
     private static boolean startsWithPrefix(StringBuffer src){
-        boolean startsWithPrefix = true;
-
         if(src.length() < ACE_PREFIX.length){
             return false;
         }
         for(int i=0; i<ACE_PREFIX.length;i++){
             if(toASCIILower(src.charAt(i)) != ACE_PREFIX[i]){
-                startsWithPrefix = false;
+                return false;
             }
         }
-        return startsWithPrefix;
+        return true;
     }
 
     private static char toASCIILower(char ch){
@@ -169,6 +167,7 @@ public final class IDNA2003 {
         while((ch = src.next())!= UCharacterIterator.DONE){
             if(ch> 0x7f){
                 srcIsASCII = false;
+                break;
             }
         }
         int failPos = -1;

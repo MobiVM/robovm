@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *   Copyright (C) 1996-2016, International Business Machines
  *   Corporation and others.  All Rights Reserved.
@@ -490,6 +490,37 @@ public abstract class DateFormat extends UFormat {
      * boolean attributes for this instance. Inclusion in this is indicates a true condition.
      */
     private EnumSet<BooleanAttribute> booleanAttributes = EnumSet.allOf(BooleanAttribute.class);
+
+    /**
+     * Hour Cycle
+     * @hide Only a subset of ICU is exposed in Android
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    public enum HourCycle {
+        /**
+         * hour in am/pm (0~11)
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        HOUR_CYCLE_11,
+
+        /**
+         * hour in am/pm (1~12)
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        HOUR_CYCLE_12,
+
+        /**
+         * hour in day (0~23)
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        HOUR_CYCLE_23,
+
+        /**
+         * hour in day (1~24)
+         * @hide draft / provisional / internal are hidden on Android
+         */
+        HOUR_CYCLE_24;
+    };
 
     /*
      * Capitalization setting, hoisted to DateFormat ICU 53
@@ -1215,6 +1246,32 @@ public abstract class DateFormat extends UFormat {
     @Deprecated
     public static final String HOUR_TZ = "jz";
 
+    /**
+     * Constant for Unicode string name of new (in 2019) Japanese calendar era,
+     * root/English abbreviated version (ASCII-range characters).
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public static final String JP_ERA_2019_ROOT = "Reiwa";
+
+    /**
+     * Constant for Unicode string name of new (in 2019) Japanese calendar era,
+     * Japanese abbreviated version (Han, or fullwidth Latin for testing).
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public static final String JP_ERA_2019_JA = "\u4EE4\u548C";
+
+    /**
+     * Constant for Unicode string name of new (in 2019) Japanese calendar era,
+     * root and Japanese narrow version (ASCII-range characters).
+     * @deprecated This API is ICU internal only.
+     * @hide draft / provisional / internal are hidden on Android
+     */
+    @Deprecated
+    public static final String JP_ERA_2019_NARROW = "R";
 
     /**
      * Gets the time formatter with the default formatting style
@@ -2019,6 +2076,9 @@ public abstract class DateFormat extends UFormat {
      */
     public final static DateFormat getInstanceForSkeleton(
         Calendar cal, String skeleton, ULocale locale) {
+        if (cal != null) {
+            locale = locale.setKeywordValue("calendar", cal.getType());
+        }
         DateTimePatternGenerator generator = DateTimePatternGenerator.getInstance(locale);
         final String bestPattern = generator.getBestPattern(skeleton);
         SimpleDateFormat format = new SimpleDateFormat(bestPattern, locale);
@@ -2133,7 +2193,7 @@ public abstract class DateFormat extends UFormat {
             GregorianCalendar cal = new GregorianCalendar();
             CAL_FIELD_COUNT = cal.getFieldCount();
             CAL_FIELDS = new Field[CAL_FIELD_COUNT];
-            FIELD_NAME_MAP = new HashMap<String, Field>(CAL_FIELD_COUNT);
+            FIELD_NAME_MAP = new HashMap<>(CAL_FIELD_COUNT);
         }
 
         // Java fields -------------------

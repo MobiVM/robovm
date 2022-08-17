@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2010-2013, International Business Machines Corporation and    *
@@ -42,13 +42,13 @@ public class LanguageTag {
     private List<String> _variants = Collections.emptyList();   // variant subtags
     private List<String> _extensions = Collections.emptyList(); // extensions
 
-    // Map contains grandfathered tags and its preferred mappings from
-    // http://www.ietf.org/rfc/rfc5646.txt
-    private static final Map<AsciiUtil.CaseInsensitiveKey, String[]> GRANDFATHERED =
+    // The Map contains legacy language tags (marked as “Type: grandfathered” in BCP 47)
+    // and their preferred mappings from BCP 47.
+    private static final Map<AsciiUtil.CaseInsensitiveKey, String[]> LEGACY =
         new HashMap<AsciiUtil.CaseInsensitiveKey, String[]>();
 
     static {
-        // grandfathered = irregular           ; non-redundant tags registered
+        // legacy        = irregular           ; non-redundant tags registered
         //               / regular             ; during the RFC 3066 era
         //
         // irregular     = "en-GB-oed"         ; irregular tags do not match
@@ -82,7 +82,7 @@ public class LanguageTag {
         final String[][] entries = {
           //{"tag",         "preferred"},
             {"art-lojban",  "jbo"},
-            {"cel-gaulish", "xtg-x-cel-gaulish"},   // fallback
+            {"cel-gaulish", "xtg"},   // fallback
             {"en-GB-oed",   "en-GB-x-oed"},         // fallback
             {"i-ami",       "ami"},
             {"i-bnn",       "bnn"},
@@ -109,57 +109,17 @@ public class LanguageTag {
             {"zh-xiang",    "hsn"},
         };
         for (String[] e : entries) {
-            GRANDFATHERED.put(new AsciiUtil.CaseInsensitiveKey(e[0]), e);
+            LEGACY.put(new AsciiUtil.CaseInsensitiveKey(e[0]), e);
         }
     }
 
     private LanguageTag() {
     }
 
-    /*
-     * BNF in RFC5464
-     *
-     * Language-Tag  = langtag             ; normal language tags
-     *               / privateuse          ; private use tag
-     *               / grandfathered       ; grandfathered tags
-     *
-     *
-     * langtag       = language
-     *                 ["-" script]
-     *                 ["-" region]
-     *                 *("-" variant)
-     *                 *("-" extension)
-     *                 ["-" privateuse]
-     *
-     * language      = 2*3ALPHA            ; shortest ISO 639 code
-     *                 ["-" extlang]       ; sometimes followed by
-     *                                     ; extended language subtags
-     *               / 4ALPHA              ; or reserved for future use
-     *               / 5*8ALPHA            ; or registered language subtag
-     *
-     * extlang       = 3ALPHA              ; selected ISO 639 codes
-     *                 *2("-" 3ALPHA)      ; permanently reserved
-     *
-     * script        = 4ALPHA              ; ISO 15924 code
-     *
-     * region        = 2ALPHA              ; ISO 3166-1 code
-     *               / 3DIGIT              ; UN M.49 code
-     *
-     * variant       = 5*8alphanum         ; registered variants
-     *               / (DIGIT 3alphanum)
-     *
-     * extension     = singleton 1*("-" (2*8alphanum))
-     *
-     *                                     ; Single alphanumerics
-     *                                     ; "x" reserved for private use
-     * singleton     = DIGIT               ; 0 - 9
-     *               / %x41-57             ; A - W
-     *               / %x59-5A             ; Y - Z
-     *               / %x61-77             ; a - w
-     *               / %x79-7A             ; y - z
-     *
-     * privateuse    = "x" 1*("-" (1*8alphanum))
-     *
+    /**
+     * See BCP 47 “Tags for Identifying Languages”:
+     * https://www.rfc-editor.org/info/bcp47 -->
+     * https://www.rfc-editor.org/rfc/rfc5646.html#section-2.1
      */
     public static LanguageTag parse(String languageTag, ParseStatus sts) {
         if (sts == null) {
@@ -169,14 +129,24 @@ public class LanguageTag {
         }
 
         StringTokenIterator itr;
-        boolean isGrandfathered = false;
+        boolean isLegacy = false;
 
-        // Check if the tag is grandfathered
-        String[] gfmap = GRANDFATHERED.get(new AsciiUtil.CaseInsensitiveKey(languageTag));
+        String[] gfmap = LEGACY.get(new AsciiUtil.CaseInsensitiveKey(languageTag));
+        // Language tag is at least 2 alpha so we can skip searching the first 2 chars.
+        int dash = 2;
+        while (gfmap == null && (dash = languageTag.indexOf('-', dash + 1)) != -1) {
+            gfmap = LEGACY.get(new AsciiUtil.CaseInsensitiveKey(languageTag.substring(0, dash)));
+        }
+
         if (gfmap != null) {
-            // use preferred mapping
-            itr = new StringTokenIterator(gfmap[1], SEP);
-            isGrandfathered = true;
+            if (gfmap[0].length() == languageTag.length()) {
+                // use preferred mapping
+                itr = new StringTokenIterator(gfmap[1], SEP);
+            } else {
+                // append the rest of the tag.
+                itr = new StringTokenIterator(gfmap[1] + languageTag.substring(dash), SEP);
+            }
+            isLegacy = true;
         } else {
             itr = new StringTokenIterator(languageTag, SEP);
         }
@@ -195,8 +165,8 @@ public class LanguageTag {
         }
         tag.parsePrivateuse(itr, sts);
 
-        if (isGrandfathered) {
-            // Grandfathered tag is replaced with a well-formed tag above.
+        if (isLegacy) {
+            // A legacy tag is replaced with a well-formed tag above.
             // However, the parsed length must be the original tag length.
             assert (itr.isDone());
             assert (!sts.isError());
@@ -317,7 +287,11 @@ public class LanguageTag {
             if (_variants.isEmpty()) {
                 _variants = new ArrayList<String>(3);
             }
-            _variants.add(s);
+            // Ignore repeated variant
+            s = s.toUpperCase();
+            if (!_variants.contains(s)) {
+                _variants.add(s);
+            }
             sts._parseLength = itr.currentEnd();
             itr.next();
         }
@@ -336,7 +310,7 @@ public class LanguageTag {
             String s = itr.current();
             if (isExtensionSingleton(s)) {
                 int start = itr.currentStart();
-                String singleton = s;
+                String singleton = s.toLowerCase();
                 StringBuilder sb = new StringBuilder(singleton);
 
                 itr.next();
@@ -360,7 +334,14 @@ public class LanguageTag {
                 if (_extensions.size() == 0) {
                     _extensions = new ArrayList<String>(4);
                 }
-                _extensions.add(sb.toString());
+                // Ignore the extension if it is already in _extensions.
+                boolean alreadyHas = false;
+                for (String extension : _extensions) {
+                    alreadyHas |= extension.charAt(0) == sb.charAt(0);
+                }
+                if (!alreadyHas) {
+                  _extensions.add(sb.toString());
+                }
                 found = true;
             } else {
                 break;
@@ -626,7 +607,7 @@ public class LanguageTag {
         //               / %x79-7A             ; y - z
 
         return (s.length() == 1)
-                && AsciiUtil.isAlphaString(s)
+                && AsciiUtil.isAlphaNumericString(s)
                 && !AsciiUtil.caseIgnoreMatch(PRIVATEUSE, s);
     }
 
@@ -679,7 +660,21 @@ public class LanguageTag {
     }
 
     public static String canonicalizeExtension(String s) {
-        return AsciiUtil.toLowerString(s);
+        s = AsciiUtil.toLowerString(s);
+        int found;
+        while (s.endsWith("-true")) {
+            s = s.substring(0, s.length() - 5);  // length of "-true" is 5
+        }
+        while ((found = s.indexOf("-true-")) > 0) {
+            s = s.substring(0, found) + s.substring(found + 5);  // length of "-true" is 5
+        }
+        while (s.endsWith("-yes")) {
+            s = s.substring(0, s.length() - 4);  // length of "-yes" is 4
+        }
+        while ((found = s.indexOf("-yes-")) > 0) {
+            s = s.substring(0, found) + s.substring(found + 4);  // length of "-yes" is 5
+        }
+        return s;
     }
 
     public static String canonicalizeExtensionSingleton(String s) {

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import android.icu.text.DecimalFormatSymbols;
@@ -46,6 +46,9 @@ public class CustomSymbolCurrency extends Currency {
     @Override
     public String getName(ULocale locale, int nameStyle, boolean[] isChoiceFormat) {
         if (nameStyle == SYMBOL_NAME) {
+            if (isChoiceFormat != null) {
+                isChoiceFormat[0] = false;
+            }
             return symbol1;
         }
         return super.getName(locale, nameStyle, isChoiceFormat);

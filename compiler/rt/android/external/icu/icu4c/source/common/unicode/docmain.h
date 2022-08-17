@@ -33,7 +33,7 @@
  * then detailed member descriptions.</p>
  * 
  * <h3>C Programmers:</h3>
- * <p>Use <a href="#Module">Module List</a> or <a href="globals.html">File Members</a>
+ * <p>Use <a href="#Module">Module List</a> or <a href="globals_u.html">File Members</a>
  * to find a list of all the functions and constants.
  * For example, to find BreakIterator functions you would click on
  * <a href="files.html"> File List</a>,
@@ -53,10 +53,10 @@
  *
  * <h2>Architecture (User's Guide)</h2>
  * <ul>
- *   <li><a href="http://userguide.icu-project.org/">Introduction</a></li>
- *   <li><a href="http://userguide.icu-project.org/i18n">Internationalization</a></li>
- *   <li><a href="http://userguide.icu-project.org/design">Locale Model, Multithreading, Error Handling, etc.</a></li>
- *   <li><a href="http://userguide.icu-project.org/conversion">Conversion</a></li>
+ *   <li><a href="https://unicode-org.github.io/icu/userguide/">Introduction</a></li>
+ *   <li><a href="https://unicode-org.github.io/icu/userguide/i18n">Internationalization</a></li>
+ *   <li><a href="https://unicode-org.github.io/icu/userguide/design">Locale Model, Multithreading, Error Handling, etc.</a></li>
+ *   <li><a href="https://unicode-org.github.io/icu/userguide/conversion">Conversion</a></li>
  * </ul>
  *
  * <hr>
@@ -99,7 +99,7 @@
  *   </tr>
  *   <tr>
  *     <td>Codepage Conversion</td>
- *     <td>ucnv.h, ucnvsel.hb</td>
+ *     <td>ucnv.h, ucnvsel.h</td>
  *     <td>C API</td>
  *   </tr>
  *   <tr>
@@ -115,7 +115,7 @@
  *   <tr>
  *     <td>Locales </td>
  *     <td>uloc.h</a></td>
- *     <td>icu::Locale</td>
+ *     <td>icu::Locale, icu::LocaleBuilder, icu::LocaleMatcher</td>
  *   </tr>
  *   <tr>
  *     <td>Resource Bundles</td>
@@ -143,9 +143,19 @@
  *     <td>icu::MessageFormat</td>
  *   </tr>
  *   <tr>
- *     <td>Number Formatting</td>
+ *     <td>List Formatting</td>
+ *     <td>ulistformatter.h</td>
+ *     <td>icu::ListFormatter</td>
+ *   </tr>
+ *   <tr>
+ *     <td>Number Formatting<br/>(includes currency and unit formatting)</td>
  *     <td>unumberformatter.h, unum.h</td>
  *     <td>icu::number::NumberFormatter (ICU 60+) or icu::NumberFormat (older versions)</td>
+ *   </tr>
+ *   <tr>
+ *     <td>Number Range Formatting<br />(includes currency and unit ranges)</td>
+ *     <td>unumberrangeformatter.h</td>
+ *     <td>icu::number::NumberRangeFormatter</td>
  *   </tr>
  *   <tr>
  *     <td>Number Spellout<br/>(Rule Based Number Formatting)</td>

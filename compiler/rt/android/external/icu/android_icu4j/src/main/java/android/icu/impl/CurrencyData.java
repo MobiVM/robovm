@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2009-2016, International Business Machines Corporation and
@@ -22,7 +22,7 @@ import android.icu.util.ULocale;
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;
 
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     private CurrencyData() {}
 
     /**
@@ -177,6 +177,16 @@ public class CurrencyData {
 
         @Override
         public String getNarrowSymbol(String isoCode) {
+            return fallback ? isoCode : null;
+        }
+
+        @Override
+        public String getFormalSymbol(String isoCode) {
+            return fallback ? isoCode : null;
+        }
+
+        @Override
+        public String getVariantSymbol(String isoCode) {
             return fallback ? isoCode : null;
         }
 

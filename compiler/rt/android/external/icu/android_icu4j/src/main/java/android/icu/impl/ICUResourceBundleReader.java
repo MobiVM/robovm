@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2004-2016, International Business Machines Corporation and
@@ -1066,6 +1066,17 @@ public final class ICUResourceBundleReader {
                 return true;
             }
             return false;
+        }
+        @Override
+        public boolean findValue(CharSequence key, UResource.Value value) {
+            ReaderValue readerValue = (ReaderValue)value;
+            int i = findTableItem(readerValue.reader, key);
+            if (i >= 0) {
+                readerValue.res = getContainerResource(readerValue.reader, i);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     private static final class Table1632 extends Table {

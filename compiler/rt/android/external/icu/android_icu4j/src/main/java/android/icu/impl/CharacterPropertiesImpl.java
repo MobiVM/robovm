@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl;
 
 import android.icu.lang.UCharacter;
@@ -70,7 +70,7 @@ public final class CharacterPropertiesImpl {
             case UCharacterProperty.SRC_INPC:
             case UCharacterProperty.SRC_INSC:
             case UCharacterProperty.SRC_VO:
-                UCharacterProperty.INSTANCE.ulayout_addPropertyStarts(src, incl);
+                UCharacterProperty.ulayout_addPropertyStarts(src, incl);
                 break;
             default:
                 throw new IllegalStateException("getInclusions(unknown src " + src + ")");

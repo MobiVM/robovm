@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2009-2016, International Business Machines Corporation and
@@ -309,10 +309,9 @@ public class LocaleDisplayNamesImpl extends LocaleDisplayNames {
         String lang = locale.getLanguage();
 
         // Empty basename indicates root locale (keywords are ignored for this).
-        // Our data uses 'root' to access display names for the root locale in the
-        // "Languages" table.
-        if (locale.getBaseName().length() == 0) {
-            lang = "root";
+        // For the display name, we treat this as unknown language (ICU-20273).
+        if (lang.isEmpty()) {
+            lang = "und";
         }
         String script = locale.getScript();
         String country = locale.getCountry();

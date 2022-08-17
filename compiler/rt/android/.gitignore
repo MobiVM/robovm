@@ -116,3 +116,35 @@ TEST_MAPPING
 /conscrypt/repackaged/*
 !/conscrypt/repackaged/common/
 !/conscrypt/repackaged/platform/
+
+##
+## ICU
+##
+/external/icu/**/main/tests/**
+/external/icu/build
+/external/icu/icu4j/
+/external/icu/README.android
+/external/icu/CleanSpec.mk
+/external/icu/PREUPLOAD.cfg
+/external/icu/libicu/
+/external/icu/tools/
+/external/icu/Android.bp
+/external/icu/libandroidicu/
+/external/icu/libandroidicuinit/
+/external/icu/android_icu4c/
+# android_icu4j and libcore_bridge
+/external/icu/android_icu4j/*
+!/external/icu/android_icu4j/src
+!/external/icu/android_icu4j/libcore_bridge
+!/external/icu/android_icu4j/resources
+/external/icu/android_icu4j/src/samples/
+# icu4c: leave source/i18n/*, source/common/* and source/stubdata/stubdata.cpp
+/external/icu/icu4c/*
+!/external/icu/icu4c/source/
+!/external/icu/icu4c/LICENSE
+/external/icu/icu4c/source/*
+!/external/icu/icu4c/source/i18n
+!/external/icu/icu4c/source/common
+!/external/icu/icu4c/source/stubdata
+/external/icu/icu4c/source/stubdata/*
+!/external/icu/icu4c/source/stubdata/stubdata.cpp

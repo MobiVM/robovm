@@ -1,10 +1,12 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
+import java.text.Format.Field;
+
+import android.icu.impl.FormattedStringBuilder;
 import android.icu.impl.StandardPlural;
-import android.icu.text.NumberFormat.Field;
 
 /**
  * A Modifier is an object that can be passed through the formatting pipeline until it is finally applied
@@ -16,6 +18,15 @@ import android.icu.text.NumberFormat.Field;
  * @hide Only a subset of ICU is exposed in Android
  */
 public interface Modifier {
+
+    static enum Signum {
+        NEG,
+        NEG_ZERO,
+        POS_ZERO,
+        POS;
+
+        static final int COUNT = Signum.values().length;
+    };
 
     /**
      * Apply this Modifier to the string builder.
@@ -30,7 +41,7 @@ public interface Modifier {
      *            number is being formatted.
      * @return The number of characters (UTF-16 code units) that were added to the string builder.
      */
-    public int apply(NumberStringBuilder output, int leftIndex, int rightIndex);
+    public int apply(FormattedStringBuilder output, int leftIndex, int rightIndex);
 
     /**
      * Gets the length of the prefix. This information can be used in combination with {@link #apply} to
@@ -66,7 +77,7 @@ public interface Modifier {
      */
     public static class Parameters {
         public ModifierStore obj;
-        public int signum;
+        public Signum signum;
         public StandardPlural plural;
     }
 

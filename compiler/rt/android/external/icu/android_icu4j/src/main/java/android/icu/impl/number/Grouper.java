@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import android.icu.impl.ICUData;
@@ -121,8 +121,20 @@ public class Grouper {
     }
 
     public Grouper withLocaleData(ULocale locale, ParsedPatternInfo patternInfo) {
-        if (this.grouping1 != -2 && this.grouping1 != -4) {
-            return this;
+        short minGrouping;
+        if (this.minGrouping == -2) {
+            minGrouping = getMinGroupingForLocale(locale);
+        } else if (this.minGrouping == -3) {
+            minGrouping = (short) Math.max(2, getMinGroupingForLocale(locale));
+        } else {
+            minGrouping = this.minGrouping;
+        }
+
+        if (this.grouping1 != -2 && this.grouping2 != -4) {
+            if (minGrouping == this.minGrouping) {
+              return this;
+            }
+            return getInstance(this.grouping1, this.grouping2, minGrouping);
         }
 
         short grouping1 = (short) (patternInfo.positive.groupingSizes & 0xffff);
@@ -133,15 +145,6 @@ public class Grouper {
         }
         if (grouping3 == -1) {
             grouping2 = grouping1;
-        }
-
-        short minGrouping;
-        if (this.minGrouping == -2) {
-            minGrouping = getMinGroupingForLocale(locale);
-        } else if (this.minGrouping == -3) {
-            minGrouping = (short) Math.max(2, getMinGroupingForLocale(locale));
-        } else {
-            minGrouping = this.minGrouping;
         }
 
         return getInstance(grouping1, grouping2, minGrouping);

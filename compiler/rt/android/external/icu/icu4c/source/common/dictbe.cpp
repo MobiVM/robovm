@@ -7,6 +7,8 @@
  *******************************************************************************
  */
 
+#include <utility>
+
 #include "unicode/utypes.h"
 
 #if !UCONFIG_NO_BREAK_ITERATION
@@ -16,6 +18,7 @@
 #include "unicode/uniset.h"
 #include "unicode/chariter.h"
 #include "unicode/ubrk.h"
+#include "utracimp.h"
 #include "uvectr32.h"
 #include "uvector.h"
 #include "uassert.h"
@@ -101,8 +104,8 @@ private:
     int32_t   cpLengths[POSSIBLE_WORD_LIST_MAX];   // Word Lengths, in code points.
 
 public:
-    PossibleWord() : count(0), prefix(0), offset(-1), mark(0), current(0) {};
-    ~PossibleWord() {};
+    PossibleWord() : count(0), prefix(0), offset(-1), mark(0), current(0) {}
+    ~PossibleWord() {}
   
     // Fill the list of candidates if needed, select the longest, and return the number found
     int32_t   candidates( UText *text, DictionaryMatcher *dict, int32_t rangeEnd );
@@ -116,13 +119,13 @@ public:
   
     // Return the longest prefix this candidate location shares with a dictionary word
     // Return value is in code points.
-    int32_t   longestPrefix() { return prefix; };
+    int32_t   longestPrefix() { return prefix; }
   
     // Mark the current candidate as the one we like
-    void      markCurrent() { mark = current; };
+    void      markCurrent() { mark = current; }
     
     // Get length in code points of the marked word.
-    int32_t   markedCPLength() { return cpLengths[mark]; };
+    int32_t   markedCPLength() { return cpLengths[mark]; }
 };
 
 
@@ -192,6 +195,8 @@ ThaiBreakEngine::ThaiBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCode 
     : DictionaryBreakEngine(),
       fDictionary(adoptDictionary)
 {
+    UTRACE_ENTRY(UTRACE_UBRK_CREATE_BREAK_ENGINE);
+    UTRACE_DATA1(UTRACE_INFO, "dictbe=%s", "Thai");
     fThaiWordSet.applyPattern(UNICODE_STRING_SIMPLE("[[:Thai:]&[:LineBreak=SA:]]"), status);
     if (U_SUCCESS(status)) {
         setCharacters(fThaiWordSet);
@@ -211,6 +216,7 @@ ThaiBreakEngine::ThaiBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCode 
     fEndWordSet.compact();
     fBeginWordSet.compact();
     fSuffixSet.compact();
+    UTRACE_EXIT_STATUS(status);
 }
 
 ThaiBreakEngine::~ThaiBreakEngine() {
@@ -434,6 +440,8 @@ LaoBreakEngine::LaoBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCode &s
     : DictionaryBreakEngine(),
       fDictionary(adoptDictionary)
 {
+    UTRACE_ENTRY(UTRACE_UBRK_CREATE_BREAK_ENGINE);
+    UTRACE_DATA1(UTRACE_INFO, "dictbe=%s", "Laoo");
     fLaoWordSet.applyPattern(UNICODE_STRING_SIMPLE("[[:Laoo:]&[:LineBreak=SA:]]"), status);
     if (U_SUCCESS(status)) {
         setCharacters(fLaoWordSet);
@@ -450,6 +458,7 @@ LaoBreakEngine::LaoBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCode &s
     fMarkSet.compact();
     fEndWordSet.compact();
     fBeginWordSet.compact();
+    UTRACE_EXIT_STATUS(status);
 }
 
 LaoBreakEngine::~LaoBreakEngine() {
@@ -630,6 +639,8 @@ BurmeseBreakEngine::BurmeseBreakEngine(DictionaryMatcher *adoptDictionary, UErro
     : DictionaryBreakEngine(),
       fDictionary(adoptDictionary)
 {
+    UTRACE_ENTRY(UTRACE_UBRK_CREATE_BREAK_ENGINE);
+    UTRACE_DATA1(UTRACE_INFO, "dictbe=%s", "Mymr");
     fBurmeseWordSet.applyPattern(UNICODE_STRING_SIMPLE("[[:Mymr:]&[:LineBreak=SA:]]"), status);
     if (U_SUCCESS(status)) {
         setCharacters(fBurmeseWordSet);
@@ -643,6 +654,7 @@ BurmeseBreakEngine::BurmeseBreakEngine(DictionaryMatcher *adoptDictionary, UErro
     fMarkSet.compact();
     fEndWordSet.compact();
     fBeginWordSet.compact();
+    UTRACE_EXIT_STATUS(status);
 }
 
 BurmeseBreakEngine::~BurmeseBreakEngine() {
@@ -823,6 +835,8 @@ KhmerBreakEngine::KhmerBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCod
     : DictionaryBreakEngine(),
       fDictionary(adoptDictionary)
 {
+    UTRACE_ENTRY(UTRACE_UBRK_CREATE_BREAK_ENGINE);
+    UTRACE_DATA1(UTRACE_INFO, "dictbe=%s", "Khmr");
     fKhmerWordSet.applyPattern(UNICODE_STRING_SIMPLE("[[:Khmr:]&[:LineBreak=SA:]]"), status);
     if (U_SUCCESS(status)) {
         setCharacters(fKhmerWordSet);
@@ -848,6 +862,7 @@ KhmerBreakEngine::KhmerBreakEngine(DictionaryMatcher *adoptDictionary, UErrorCod
     fEndWordSet.compact();
     fBeginWordSet.compact();
 //    fSuffixSet.compact();
+    UTRACE_EXIT_STATUS(status);
 }
 
 KhmerBreakEngine::~KhmerBreakEngine() {
@@ -1043,6 +1058,8 @@ foundBest:
 static const uint32_t kuint32max = 0xFFFFFFFF;
 CjkBreakEngine::CjkBreakEngine(DictionaryMatcher *adoptDictionary, LanguageType type, UErrorCode &status)
 : DictionaryBreakEngine(), fDictionary(adoptDictionary) {
+    UTRACE_ENTRY(UTRACE_UBRK_CREATE_BREAK_ENGINE);
+    UTRACE_DATA1(UTRACE_INFO, "dictbe=%s", "Hani");
     // Korean dictionary only includes Hangul syllables
     fHangulWordSet.applyPattern(UNICODE_STRING_SIMPLE("[\\uac00-\\ud7a3]"), status);
     fHanWordSet.applyPattern(UNICODE_STRING_SIMPLE("[:Han:]"), status);
@@ -1064,6 +1081,7 @@ CjkBreakEngine::CjkBreakEngine(DictionaryMatcher *adoptDictionary, LanguageType 
             setCharacters(cjSet);
         }
     }
+    UTRACE_EXIT_STATUS(status);
 }
 
 CjkBreakEngine::~CjkBreakEngine(){
@@ -1204,8 +1222,8 @@ CjkBreakEngine::divideUpDictionaryRange( UText *inText,
                 inputMap->elementAti(inString.length()) : inString.length()+rangeStart;
         normalizedMap->addElement(nativeEnd, status);
 
-        inputMap.moveFrom(normalizedMap);
-        inString.moveFrom(normalizedInput);
+        inputMap = std::move(normalizedMap);
+        inString = std::move(normalizedInput);
     }
 
     int32_t numCodePts = inString.countChar32();

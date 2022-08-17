@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl;
 
 import static android.icu.impl.number.parse.ParsingUtils.safeContains;
@@ -29,6 +29,7 @@ public class StaticUnicodeSets {
      * @hide Only a subset of ICU is exposed in Android
      */
     public static enum Key {
+        EMPTY,
         // Ignorables
         DEFAULT_IGNORABLES,
         STRICT_IGNORABLES,
@@ -43,6 +44,7 @@ public class StaticUnicodeSets {
         PERIOD,
         STRICT_COMMA,
         STRICT_PERIOD,
+        APOSTROPHE_SIGN,
         OTHER_GROUPING_SEPARATORS,
         ALL_SEPARATORS,
         STRICT_ALL_SEPARATORS,
@@ -53,13 +55,14 @@ public class StaticUnicodeSets {
         PLUS_SIGN,
         PERCENT_SIGN,
         PERMILLE_SIGN,
-        INFINITY,
+        INFINITY_SIGN,
 
         // Currency Symbols
         DOLLAR_SIGN,
         POUND_SIGN,
         RUPEE_SIGN,
-        YEN_SIGN, // not in CLDR data, but Currency.java wants it
+        YEN_SIGN,
+        WON_SIGN,
 
         // Other
         DIGITS,
@@ -69,7 +72,7 @@ public class StaticUnicodeSets {
         DIGITS_OR_STRICT_ALL_SEPARATORS,
     };
 
-    private static final Map<Key, UnicodeSet> unicodeSets = new EnumMap<Key, UnicodeSet>(Key.class);
+    private static final Map<Key, UnicodeSet> unicodeSets = new EnumMap<>(Key.class);
 
     /**
      * Gets the static-allocated UnicodeSet according to the provided key.
@@ -131,6 +134,8 @@ public class StaticUnicodeSets {
             return Key.RUPEE_SIGN;
         } else if (get(Key.YEN_SIGN).contains(str)) {
             return Key.YEN_SIGN;
+        } else if (get(Key.WON_SIGN).contains(str)) {
+            return Key.WON_SIGN;
         } else {
             return null;
         }
@@ -202,14 +207,27 @@ public class StaticUnicodeSets {
                                 saveSet(isLenient ? Key.COMMA : Key.STRICT_COMMA, str);
                             } else if (str.indexOf('+') != -1) {
                                 saveSet(Key.PLUS_SIGN, str);
-                            } else if (str.indexOf('‒') != -1) {
+                            } else if (str.indexOf('-') != -1) {
                                 saveSet(Key.MINUS_SIGN, str);
                             } else if (str.indexOf('$') != -1) {
                                 saveSet(Key.DOLLAR_SIGN, str);
                             } else if (str.indexOf('£') != -1) {
                                 saveSet(Key.POUND_SIGN, str);
-                            } else if (str.indexOf('₨') != -1) {
+                            } else if (str.indexOf('₹') != -1) {
                                 saveSet(Key.RUPEE_SIGN, str);
+                            } else if (str.indexOf('¥') != -1) {
+                                saveSet(Key.YEN_SIGN, str);
+                            } else if (str.indexOf('₩') != -1) {
+                                saveSet(Key.WON_SIGN, str);
+                            } else if (str.indexOf('%') != -1) {
+                                saveSet(Key.PERCENT_SIGN, str);
+                            } else if (str.indexOf('‰') != -1) {
+                                saveSet(Key.PERMILLE_SIGN, str);
+                            } else if (str.indexOf('’') != -1) {
+                                saveSet(Key.APOSTROPHE_SIGN, str);
+                            } else {
+                                // TODO(ICU-20428): Make ICU automatically accept new classes?
+                                throw new AssertionError("Unknown class of parse lenients: " + str);
                             }
                         }
                     }
@@ -219,6 +237,7 @@ public class StaticUnicodeSets {
     }
 
     static {
+        unicodeSets.put(Key.EMPTY, new UnicodeSet("[]").freeze());
         // These sets were decided after discussion with icu-design@. See tickets #13084 and #13309.
         // Zs+TAB is "horizontal whitespace" according to UTS #18 (blank property).
         unicodeSets.put(Key.DEFAULT_IGNORABLES,
@@ -235,9 +254,12 @@ public class StaticUnicodeSets {
         assert unicodeSets.containsKey(Key.STRICT_COMMA);
         assert unicodeSets.containsKey(Key.PERIOD);
         assert unicodeSets.containsKey(Key.STRICT_PERIOD);
+        assert unicodeSets.containsKey(Key.APOSTROPHE_SIGN);
 
-        unicodeSets.put(Key.OTHER_GROUPING_SEPARATORS,
-                new UnicodeSet("['٬‘’＇\\u0020\\u00A0\\u2000-\\u200A\\u202F\\u205F\\u3000]").freeze());
+        UnicodeSet otherGrouping = new UnicodeSet(
+                "[٬‘\\u0020\\u00A0\\u2000-\\u200A\\u202F\\u205F\\u3000]");
+        otherGrouping.addAll(unicodeSets.get(Key.APOSTROPHE_SIGN));
+        unicodeSets.put(Key.OTHER_GROUPING_SEPARATORS, otherGrouping.freeze());
         unicodeSets.put(Key.ALL_SEPARATORS,
                 computeUnion(Key.COMMA, Key.PERIOD, Key.OTHER_GROUPING_SEPARATORS));
         unicodeSets.put(Key.STRICT_ALL_SEPARATORS,
@@ -245,15 +267,16 @@ public class StaticUnicodeSets {
 
         assert unicodeSets.containsKey(Key.MINUS_SIGN);
         assert unicodeSets.containsKey(Key.PLUS_SIGN);
+        assert unicodeSets.containsKey(Key.PERCENT_SIGN);
+        assert unicodeSets.containsKey(Key.PERMILLE_SIGN);
 
-        unicodeSets.put(Key.PERCENT_SIGN, new UnicodeSet("[%٪]").freeze());
-        unicodeSets.put(Key.PERMILLE_SIGN, new UnicodeSet("[‰؉]").freeze());
-        unicodeSets.put(Key.INFINITY, new UnicodeSet("[∞]").freeze());
+        unicodeSets.put(Key.INFINITY_SIGN, new UnicodeSet("[∞]").freeze());
 
         assert unicodeSets.containsKey(Key.DOLLAR_SIGN);
         assert unicodeSets.containsKey(Key.POUND_SIGN);
         assert unicodeSets.containsKey(Key.RUPEE_SIGN);
-        unicodeSets.put(Key.YEN_SIGN, new UnicodeSet("[¥\\uffe5]").freeze());
+        assert unicodeSets.containsKey(Key.YEN_SIGN);
+        assert unicodeSets.containsKey(Key.WON_SIGN);
 
         unicodeSets.put(Key.DIGITS, new UnicodeSet("[:digit:]").freeze());
 

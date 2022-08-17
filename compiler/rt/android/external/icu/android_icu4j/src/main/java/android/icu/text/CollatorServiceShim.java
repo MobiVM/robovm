@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /**
 *******************************************************************************
 * Copyright (C) 2003-2016, International Business Machines Corporation and
@@ -180,7 +180,7 @@ final class CollatorServiceShim extends Collator.ServiceShim {
 
     // Ported from C++ Collator::makeInstance().
     private static final Collator makeInstance(ULocale desiredLocale) {
-        Output<ULocale> validLocale = new Output<ULocale>(ULocale.ROOT);
+        Output<ULocale> validLocale = new Output<>(ULocale.ROOT);
         CollationTailoring t =
             CollationLoader.loadTailoring(desiredLocale, validLocale);
         return new RuleBasedCollator(t, validLocale.value);

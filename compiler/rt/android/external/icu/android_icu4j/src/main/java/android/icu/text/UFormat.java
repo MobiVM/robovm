@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2003-2015, International Business Machines Corporation and
@@ -25,6 +25,23 @@ import android.icu.util.ULocale;
 public abstract class UFormat extends Format {
     // jdk1.4.2 serialver
     private static final long serialVersionUID = -4964390515840164416L;
+
+    /**
+     * A field that represents a span of text that may be composed with other fields.
+     * SpanField classes usually have an associated value.
+     *
+     * @hide Only a subset of ICU is exposed in Android
+     */
+    public static abstract class SpanField extends Format.Field {
+        private static final long serialVersionUID = -4732719509273350606L;
+
+        /**
+         * Construct a new instance.
+         */
+        protected SpanField(String name) {
+            super(name);
+        }
+    }
 
     /**
      * Default constructor.
@@ -56,7 +73,7 @@ public abstract class UFormat extends Format {
      * @see android.icu.util.ULocale#ACTUAL_LOCALE
      * @hide draft / provisional / internal are hidden on Android
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage(maxTargetSdk = 30, trackingBug = 170729553)
     public final ULocale getLocale(ULocale.Type type) {
         return type == ULocale.ACTUAL_LOCALE ?
             this.actualLocale : this.validLocale;

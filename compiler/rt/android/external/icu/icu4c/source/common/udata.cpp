@@ -33,6 +33,7 @@ might have to #include some other header
 #include "cstring.h"
 #include "mutex.h"
 #include "putilimp.h"
+#include "restrace.h"
 #include "uassert.h"
 #include "ucln_cmn.h"
 #include "ucmndata.h"
@@ -110,12 +111,31 @@ static u_atomic_int32_t gHaveTriedToLoadCommonData = ATOMIC_INT32_T_INITIALIZER(
 static UHashtable  *gCommonDataCache = NULL;  /* Global hash table of opened ICU data files.  */
 static icu::UInitOnce gCommonDataCacheInitOnce = U_INITONCE_INITIALIZER;
 
-#if U_PLATFORM_HAS_WINUWP_API == 0 
+// Android-changed: On Android, use our patched version of openCommonData() to load the data,
+//   and do not try to load ICU data from other files.
+#if U_PLATFORM == U_PF_ANDROID
+static UDataFileAccess  gDataFileAccess = UDATA_NO_FILES;
+#elif !defined(ICU_DATA_DIR_WINDOWS)
 static UDataFileAccess  gDataFileAccess = UDATA_DEFAULT_ACCESS;  // Access not synchronized.
                                                                  // Modifying is documented as thread-unsafe.
 #else
-static UDataFileAccess  gDataFileAccess = UDATA_NO_FILES;        // Windows UWP looks in one spot explicitly
+// If we are using the Windows data directory, then look in one spot only.
+static UDataFileAccess  gDataFileAccess = UDATA_NO_FILES;
 #endif
+
+// BEGIN Android-added: Include android/host-linux-specific headers and variables.
+#ifdef ANDROID // if using the AOSP build system, e.g. Soong, but not the normal GNU make used by ./updateicudata.py
+  #if U_PLATFORM == U_PF_ANDROID ||  U_PLATFORM == U_PF_LINUX // if targeting Android or host linux
+    #define AOSP_ICU_INIT 1
+  #endif
+#endif
+
+#ifdef AOSP_ICU_INIT
+  #include "androidicuinit/android_icu_init.h"
+  static icu::UInitOnce gAospInitOnce = U_INITONCE_INITIALIZER;
+#endif
+// END Android-added: Include android/host-linux-specific headers and variables.
+
 
 static UBool U_CALLCONV
 udata_cleanup(void)
@@ -133,6 +153,13 @@ udata_cleanup(void)
         gCommonICUDataArray[i] = NULL;
     }
     gHaveTriedToLoadCommonData = 0;
+
+// BEGIN Android-added: Use specialized libandroidicuinit to unload the data on Android/ART host.
+#ifdef AOSP_ICU_INIT
+    android_icu_cleanup();
+    gAospInitOnce.reset();
+#endif
+// END Android-added: Use specialized libandroidicuinit to unload the data on Android/ART host.
 
     return TRUE;                   /* Everything was cleaned up */
 }
@@ -206,7 +233,7 @@ setCommonICUData(UDataMemory *pData,     /*  The new common data.  Belongs to ca
     return didUpdate;
 }
 
-#if U_PLATFORM_HAS_WINUWP_API == 0 
+#if !defined(ICU_DATA_DIR_WINDOWS)
 
 static UBool
 setCommonICUDataPointer(const void *pData, UBool /*warn*/, UErrorCode *pErrorCode) {
@@ -320,7 +347,7 @@ static UDataMemory *udata_findCachedData(const char *path, UErrorCode &err)
         retVal = el->item;
     }
 #ifdef UDATA_DEBUG
-    fprintf(stderr, "Cache: [%s] -> %p\n", baseName, retVal);
+    fprintf(stderr, "Cache: [%s] -> %p\n", baseName, (void*) retVal);
 #endif
     return retVal;
 }
@@ -383,7 +410,7 @@ static UDataMemory *udata_cacheDataItem(const char *path, UDataMemory *item, UEr
 
 #ifdef UDATA_DEBUG
     fprintf(stderr, "Cache: [%s] <<< %p : %s. vFunc=%p\n", newElement->name, 
-    newElement->item, u_errorName(subErr), newElement->item->vFuncs);
+    (void*) newElement->item, u_errorName(subErr), (void*) newElement->item->vFuncs);
 #endif
 
     if (subErr == U_USING_DEFAULT_WARNING || U_FAILURE(subErr)) {
@@ -477,7 +504,7 @@ UDataPathIterator::UDataPathIterator(const char *inPath, const char *pkg,
         nextPath = itemPath.data();
     }
 #ifdef UDATA_DEBUG
-    fprintf(stderr, "SUFFIX=%s [%p]\n", inSuffix, inSuffix);
+    fprintf(stderr, "SUFFIX=%s [%p]\n", inSuffix, (void*) inSuffix);
 #endif
 
     /** Suffix  **/
@@ -492,12 +519,11 @@ UDataPathIterator::UDataPathIterator(const char *inPath, const char *pkg,
     /* pathBuffer will hold the output path strings returned by this iterator */
 
 #ifdef UDATA_DEBUG
-    fprintf(stderr, "%p: init %s -> [path=%s], [base=%s], [suff=%s], [itempath=%s], [nextpath=%s], [checklast4=%s]\n",
-            iter,
+    fprintf(stderr, "0: init %s -> [path=%s], [base=%s], [suff=%s], [itempath=%s], [nextpath=%s], [checklast4=%s]\n",
             item,
             path,
             basename,
-            suffix,
+            suffix.data(),
             itemPath.data(),
             nextPath,
             checkLastFour?"TRUE":"false");
@@ -553,7 +579,7 @@ const char *UDataPathIterator::next(UErrorCode *pErrorCode)
         fprintf(stderr, "rest of path (IDD) = %s\n", currentPath);
         fprintf(stderr, "                     ");
         { 
-            uint32_t qqq;
+            int32_t qqq;
             for(qqq=0;qqq<pathLen;qqq++)
             {
                 fprintf(stderr, " ");
@@ -574,7 +600,7 @@ const char *UDataPathIterator::next(UErrorCode *pErrorCode)
            uprv_strlen(pathBasename)==(basenameLen+4)) { /* base+suffix = full len */
 
 #ifdef UDATA_DEBUG
-            fprintf(stderr, "Have %s file on the path: %s\n", suffix, pathBuffer.data());
+            fprintf(stderr, "Have %s file on the path: %s\n", suffix.data(), pathBuffer.data());
 #endif
             /* do nothing */
         }
@@ -640,7 +666,8 @@ U_NAMESPACE_END
  *      our common data.                                                *
  *                                                                      *
  *----------------------------------------------------------------------*/
-#if U_PLATFORM_HAS_WINUWP_API == 0 // Windows UWP Platform does not support dll icu data at this time
+#if !defined(ICU_DATA_DIR_WINDOWS)
+// When using the Windows system data, we expect only a single data file.
 extern "C" const DataHeader U_DATA_API U_ICUDATA_ENTRY_POINT;
 #endif
 
@@ -690,7 +717,8 @@ openCommonData(const char *path,          /*  Path from OpenChoice?          */
             if(gCommonICUDataArray[commonDataIndex] != NULL) {
                 return gCommonICUDataArray[commonDataIndex];
             }
-#if U_PLATFORM_HAS_WINUWP_API == 0 // Windows UWP Platform does not support dll icu data at this time
+#if !defined(ICU_DATA_DIR_WINDOWS)
+// When using the Windows system data, we expect only a single data file.
             int32_t i;
             for(i = 0; i < commonDataIndex; ++i) {
                 if(gCommonICUDataArray[i]->pHeader == &U_ICUDATA_ENTRY_POINT) {
@@ -700,6 +728,13 @@ openCommonData(const char *path,          /*  Path from OpenChoice?          */
             }
 #endif
         }
+
+// BEGIN Android-added: Use specialized libandroidicuinit to load the data on Android/ART host.
+#ifdef AOSP_ICU_INIT // Do nothing on other platforms, e.g. Windows
+        // android_icu_init() is only called once.
+        umtx_initOnce(gAospInitOnce, &android_icu_init);
+#endif // AOSP_ICU_INIT
+// END Android-added: Use specialized libandroidicuinit to load the data on Android/ART host.
 
         /* Add the linked-in data to the list. */
         /*
@@ -714,7 +749,8 @@ openCommonData(const char *path,          /*  Path from OpenChoice?          */
             setCommonICUDataPointer(uprv_getICUData_conversion(), FALSE, pErrorCode);
         }
         */
-#if U_PLATFORM_HAS_WINUWP_API == 0 // Windows UWP Platform does not support dll icu data at this time
+#if !defined(ICU_DATA_DIR_WINDOWS)
+// When using the Windows system data, we expect only a single data file.
         setCommonICUDataPointer(&U_ICUDATA_ENTRY_POINT, FALSE, pErrorCode);
         {
             Mutex lock;
@@ -831,7 +867,7 @@ static UBool extendICUData(UErrorCode *pErr)
      * Use a specific mutex to avoid nested locks of the global mutex.
      */
 #if MAP_IMPLEMENTATION==MAP_STDIO
-    static UMutex extendICUDataMutex = U_MUTEX_INITIALIZER;
+    static UMutex extendICUDataMutex;
     umtx_lock(&extendICUDataMutex);
 #endif
     if(!umtx_loadAcquire(gHaveTriedToLoadCommonData)) {
@@ -1070,13 +1106,13 @@ static UDataMemory *doLoadFromCommonData(UBool isICUData, const char * /*pkgName
             /* look up the data piece in the common data */
             pHeader=pCommonData->vFuncs->Lookup(pCommonData, tocEntryName, &length, subErrorCode);
 #ifdef UDATA_DEBUG
-            fprintf(stderr, "%s: pHeader=%p - %s\n", tocEntryName, pHeader, u_errorName(*subErrorCode));
+            fprintf(stderr, "%s: pHeader=%p - %s\n", tocEntryName, (void*) pHeader, u_errorName(*subErrorCode));
 #endif
 
             if(pHeader!=NULL) {
                 pEntryData = checkDataItem(pHeader, isAcceptable, context, type, name, subErrorCode, pErrorCode);
 #ifdef UDATA_DEBUG
-                fprintf(stderr, "pEntryData=%p\n", pEntryData);
+                fprintf(stderr, "pEntryData=%p\n", (void*) pEntryData);
 #endif
                 if (U_FAILURE(*pErrorCode)) {
                     return NULL;
@@ -1166,6 +1202,9 @@ doOpenChoice(const char *path, const char *type, const char *name,
     const char         *treeChar;
 
     UBool               isICUData = FALSE;
+
+
+    FileTracer::traceOpen(path, type, name);
 
 
     /* Is this path ICU data? */
@@ -1276,12 +1315,12 @@ doOpenChoice(const char *path, const char *type, const char *name,
     fprintf(stderr, " tocEntryPath = %s\n", tocEntryName.data());
 #endif
 
-#if U_PLATFORM_HAS_WINUWP_API == 0 // Windows UWP Platform does not support dll icu data at this time
+#if !defined(ICU_DATA_DIR_WINDOWS)
     if(path == NULL) {
         path = COMMON_DATA_NAME; /* "icudt26e" */
     }
 #else
-    // Windows UWP expects only a single data file.
+    // When using the Windows system data, we expects only a single data file.
     path = COMMON_DATA_NAME; /* "icudt26e" */
 #endif
 

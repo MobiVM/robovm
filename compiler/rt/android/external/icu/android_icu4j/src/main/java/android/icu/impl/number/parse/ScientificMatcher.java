@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number.parse;
 
 import static android.icu.impl.number.parse.ParsingUtils.safeContains;
@@ -21,6 +21,7 @@ public class ScientificMatcher implements NumberParseMatcher {
 
     private final String exponentSeparatorString;
     private final DecimalMatcher exponentMatcher;
+    private final IgnorablesMatcher ignorablesMatcher;
     private final String customMinusSign;
     private final String customPlusSign;
 
@@ -34,6 +35,7 @@ public class ScientificMatcher implements NumberParseMatcher {
         exponentMatcher = DecimalMatcher.getInstance(symbols,
                 grouper,
                 ParsingUtils.PARSE_FLAG_INTEGER_ONLY | ParsingUtils.PARSE_FLAG_GROUPING_DISABLED);
+        ignorablesMatcher = IgnorablesMatcher.getInstance(ParsingUtils.PARSE_FLAG_STRICT_IGNORABLES);
 
         String minusSign = symbols.getMinusSignString();
         customMinusSign = safeContains(minusSignSet(), minusSign) ? null : minusSign;
@@ -63,15 +65,24 @@ public class ScientificMatcher implements NumberParseMatcher {
 
         // First match the scientific separator, and then match another number after it.
         // NOTE: This is guarded by the smoke test; no need to check exponentSeparatorString length again.
-        int overlap1 = segment.getCommonPrefixLength(exponentSeparatorString);
-        if (overlap1 == exponentSeparatorString.length()) {
+        int initialOffset = segment.getOffset();
+        int overlap = segment.getCommonPrefixLength(exponentSeparatorString);
+        if (overlap == exponentSeparatorString.length()) {
             // Full exponent separator match.
 
             // First attempt to get a code point, returning true if we can't get one.
-            if (segment.length() == overlap1) {
+            if (segment.length() == overlap) {
                 return true;
             }
-            segment.adjustOffset(overlap1);
+            segment.adjustOffset(overlap);
+
+            // Allow ignorables before the sign.
+            // Note: call site is guarded by the segment.length() check above.
+            ignorablesMatcher.match(segment, null);
+            if (segment.length() == 0) {
+                segment.setOffset(initialOffset);
+                return true;
+            }
 
             // Allow a sign, and then try to match digits.
             int exponentSign = 1;
@@ -81,24 +92,36 @@ public class ScientificMatcher implements NumberParseMatcher {
             } else if (segment.startsWith(plusSignSet())) {
                 segment.adjustOffsetByCodePoint();
             } else if (segment.startsWith(customMinusSign)) {
-                // Note: call site is guarded with startsWith, which returns false on empty string
-                int overlap2 = segment.getCommonPrefixLength(customMinusSign);
-                if (overlap2 != customMinusSign.length()) {
-                    // Partial custom sign match; un-match the exponent separator.
-                    segment.adjustOffset(-overlap1);
+                overlap = segment.getCommonPrefixLength(customMinusSign);
+                if (overlap != customMinusSign.length()) {
+                    // Partial custom sign match
+                    segment.setOffset(initialOffset);
                     return true;
                 }
                 exponentSign = -1;
-                segment.adjustOffset(overlap2);
+                segment.adjustOffset(overlap);
             } else if (segment.startsWith(customPlusSign)) {
-                // Note: call site is guarded with startsWith, which returns false on empty string
-                int overlap2 = segment.getCommonPrefixLength(customPlusSign);
-                if (overlap2 != customPlusSign.length()) {
-                    // Partial custom sign match; un-match the exponent separator.
-                    segment.adjustOffset(-overlap1);
+                overlap = segment.getCommonPrefixLength(customPlusSign);
+                if (overlap != customPlusSign.length()) {
+                    // Partial custom sign match
+                    segment.setOffset(initialOffset);
                     return true;
                 }
-                segment.adjustOffset(overlap2);
+                segment.adjustOffset(overlap);
+            }
+
+            // Return true if the segment is empty.
+            if (segment.length() == 0) {
+                segment.setOffset(initialOffset);
+                return true;
+            }
+
+            // Allow ignorables after the sign.
+            // Note: call site is guarded by the segment.length() check above.
+            ignorablesMatcher.match(segment, null);
+            if (segment.length() == 0) {
+                segment.setOffset(initialOffset);
+                return true;
             }
 
             // We are supposed to accept E0 after NaN, so we need to make sure result.quantity is available.
@@ -116,12 +139,12 @@ public class ScientificMatcher implements NumberParseMatcher {
                 // At least one exponent digit was matched.
                 result.flags |= ParsedNumber.FLAG_HAS_EXPONENT;
             } else {
-                // No exponent digits were matched; un-match the exponent separator.
-                segment.adjustOffset(-overlap1);
+                // No exponent digits were matched
+                segment.setOffset(initialOffset);
             }
             return digitsReturnValue;
 
-        } else if (overlap1 == segment.length()) {
+        } else if (overlap == segment.length()) {
             // Partial exponent separator match
             return true;
         }

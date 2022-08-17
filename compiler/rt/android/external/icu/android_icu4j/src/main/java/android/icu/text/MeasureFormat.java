@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  **********************************************************************
  * Copyright (c) 2004-2016, International Business Machines
@@ -24,7 +24,6 @@ import java.text.FieldPosition;
 import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -32,12 +31,18 @@ import java.util.MissingResourceException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import android.icu.impl.DontCareFieldPosition;
+import android.icu.impl.FormattedStringBuilder;
+import android.icu.impl.FormattedValueStringBuilderImpl;
 import android.icu.impl.ICUData;
 import android.icu.impl.ICUResourceBundle;
 import android.icu.impl.SimpleCache;
 import android.icu.impl.SimpleFormatterImpl;
+import android.icu.impl.Utility;
+import android.icu.impl.number.DecimalQuantity;
+import android.icu.impl.number.DecimalQuantity_DualStorageBCD;
 import android.icu.impl.number.LongNameHandler;
-import android.icu.number.FormattedNumber;
+import android.icu.impl.number.RoundingUtils;
+import android.icu.number.IntegerWidth;
 import android.icu.number.LocalizedNumberFormatter;
 import android.icu.number.NumberFormatter;
 import android.icu.number.NumberFormatter.UnitWidth;
@@ -47,7 +52,6 @@ import android.icu.util.Currency;
 import android.icu.util.ICUUncheckedIOException;
 import android.icu.util.Measure;
 import android.icu.util.MeasureUnit;
-import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
 import android.icu.util.ULocale.Category;
 import android.icu.util.UResourceBundle;
@@ -145,24 +149,24 @@ public class MeasureFormat extends UFormat {
         /**
          * Spell out everything.
          */
-        WIDE(ListFormatter.Style.DURATION, UnitWidth.FULL_NAME, UnitWidth.FULL_NAME),
+        WIDE(ListFormatter.Style.UNIT, UnitWidth.FULL_NAME, UnitWidth.FULL_NAME),
 
         /**
          * Abbreviate when possible.
          */
-        SHORT(ListFormatter.Style.DURATION_SHORT, UnitWidth.SHORT, UnitWidth.ISO_CODE),
+        SHORT(ListFormatter.Style.UNIT_SHORT, UnitWidth.SHORT, UnitWidth.ISO_CODE),
 
         /**
          * Brief. Use only a symbol for the unit when possible.
          */
-        NARROW(ListFormatter.Style.DURATION_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
+        NARROW(ListFormatter.Style.UNIT_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
 
         /**
          * Identical to NARROW except when formatMeasures is called with an hour and minute; minute and
          * second; or hour, minute, and second Measures. In these cases formatMeasures formats as 5:37:23
          * instead of 5h, 37m, 23s.
          */
-        NUMERIC(ListFormatter.Style.DURATION_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
+        NUMERIC(ListFormatter.Style.UNIT_NARROW, UnitWidth.NARROW, UnitWidth.SHORT),
 
         /**
          * The default format width for getCurrencyFormat(), which is to show the symbol for currency
@@ -172,7 +176,7 @@ public class MeasureFormat extends UFormat {
          * @hide draft / provisional / internal are hidden on Android
          */
         @Deprecated
-        DEFAULT_CURRENCY(ListFormatter.Style.DURATION, UnitWidth.FULL_NAME, UnitWidth.SHORT);
+        DEFAULT_CURRENCY(ListFormatter.Style.UNIT, UnitWidth.FULL_NAME, UnitWidth.SHORT);
 
         private final ListFormatter.Style listFormatterStyle;
 
@@ -297,9 +301,10 @@ public class MeasureFormat extends UFormat {
         } else if (obj instanceof Measure[]) {
             formatMeasuresInternal(toAppendTo, fpos, (Measure[]) obj);
         } else if (obj instanceof Measure) {
-            FormattedNumber result = formatMeasure((Measure) obj);
-            result.populateFieldPosition(fpos); // No offset: toAppendTo.length() is considered below
-            result.appendTo(toAppendTo);
+            FormattedStringBuilder result = formatMeasure((Measure) obj);
+            // No offset: toAppendTo.length() is considered below
+            FormattedValueStringBuilderImpl.nextFieldPosition(result, fpos);
+            Utility.appendTo(result, toAppendTo);
         } else {
             throw new IllegalArgumentException(obj.toString());
         }
@@ -360,11 +365,13 @@ public class MeasureFormat extends UFormat {
             MeasureUnit perUnit,
             StringBuilder appendTo,
             FieldPosition pos) {
-        FormattedNumber result = getUnitFormatterFromCache(NUMBER_FORMATTER_STANDARD,
-                measure.getUnit(),
-                perUnit).format(measure.getNumber());
-        DecimalFormat.fieldPositionHelper(result, pos, appendTo.length());
-        result.appendTo(appendTo);
+        DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(measure.getNumber());
+        FormattedStringBuilder string = new FormattedStringBuilder();
+        getUnitFormatterFromCache(
+            NUMBER_FORMATTER_STANDARD, measure.getUnit(), perUnit
+        ).formatImpl(dq, string);
+        DecimalFormat.fieldPositionHelper(dq, string, pos, appendTo.length());
+        Utility.appendTo(string, appendTo);
         return appendTo;
     }
 
@@ -406,9 +413,9 @@ public class MeasureFormat extends UFormat {
             return;
         }
         if (measures.length == 1) {
-            FormattedNumber result = formatMeasure(measures[0]);
-            result.populateFieldPosition(fieldPosition);
-            result.appendTo(appendTo);
+            FormattedStringBuilder result = formatMeasure(measures[0]);
+            FormattedValueStringBuilderImpl.nextFieldPosition(result, fieldPosition);
+            Utility.appendTo(result, appendTo);
             return;
         }
 
@@ -437,7 +444,7 @@ public class MeasureFormat extends UFormat {
                 results[i] = formatMeasureInteger(measures[i]).toString();
             }
         }
-        FormattedListBuilder builder = listFormatter.format(Arrays.asList(results), -1);
+        FormattedListBuilder builder = listFormatter.formatImpl(Arrays.asList(results), false);
         builder.appendTo(appendTo);
     }
 
@@ -613,28 +620,28 @@ public class MeasureFormat extends UFormat {
     }
 
     static class NumericFormatters {
-        private DateFormat hourMinute;
-        private DateFormat minuteSecond;
-        private DateFormat hourMinuteSecond;
+        private String hourMinute;
+        private String minuteSecond;
+        private String hourMinuteSecond;
 
         public NumericFormatters(
-                DateFormat hourMinute,
-                DateFormat minuteSecond,
-                DateFormat hourMinuteSecond) {
+                String hourMinute,
+                String minuteSecond,
+                String hourMinuteSecond) {
             this.hourMinute = hourMinute;
             this.minuteSecond = minuteSecond;
             this.hourMinuteSecond = hourMinuteSecond;
         }
 
-        public DateFormat getHourMinute() {
+        public String getHourMinute() {
             return hourMinute;
         }
 
-        public DateFormat getMinuteSecond() {
+        public String getMinuteSecond() {
             return minuteSecond;
         }
 
-        public DateFormat getHourMinuteSecond() {
+        public String getHourMinuteSecond() {
             return hourMinuteSecond;
         }
     }
@@ -700,7 +707,8 @@ public class MeasureFormat extends UFormat {
         } else {
             assert type == NUMBER_FORMATTER_INTEGER;
             formatter = getNumberFormatter().unit(unit).perUnit(perUnit).unitWidth(formatWidth.unitWidth)
-                    .rounding(Precision.integer().withMode(RoundingMode.DOWN));
+                    .precision(Precision.integer().withMode(
+                            RoundingUtils.mathContextUnlimited(RoundingMode.DOWN)));
         }
         formatter3 = formatter2;
         formatter2 = formatter1;
@@ -725,20 +733,26 @@ public class MeasureFormat extends UFormat {
 
     /// END NUMBER FORMATTER CACHING MACHINERY ///
 
-    private FormattedNumber formatMeasure(Measure measure) {
+    private FormattedStringBuilder formatMeasure(Measure measure) {
         MeasureUnit unit = measure.getUnit();
+        DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(measure.getNumber());
+        FormattedStringBuilder string = new FormattedStringBuilder();
         if (unit instanceof Currency) {
-            return getUnitFormatterFromCache(NUMBER_FORMATTER_CURRENCY, unit, null)
-                    .format(measure.getNumber());
+            getUnitFormatterFromCache(NUMBER_FORMATTER_CURRENCY, unit, null)
+                    .formatImpl(dq, string);
         } else {
-            return getUnitFormatterFromCache(NUMBER_FORMATTER_STANDARD, unit, null)
-                    .format(measure.getNumber());
+            getUnitFormatterFromCache(NUMBER_FORMATTER_STANDARD, unit, null)
+                    .formatImpl(dq, string);
         }
+        return string;
     }
 
-    private FormattedNumber formatMeasureInteger(Measure measure) {
-        return getUnitFormatterFromCache(NUMBER_FORMATTER_INTEGER, measure.getUnit(), null)
-                .format(measure.getNumber());
+    private FormattedStringBuilder formatMeasureInteger(Measure measure) {
+        DecimalQuantity dq = new DecimalQuantity_DualStorageBCD(measure.getNumber());
+        FormattedStringBuilder string = new FormattedStringBuilder();
+        getUnitFormatterFromCache(NUMBER_FORMATTER_INTEGER, measure.getUnit(), null)
+                .formatImpl(dq, string);
+        return string;
     }
 
     private void formatMeasuresSlowTrack(
@@ -754,38 +768,36 @@ public class MeasureFormat extends UFormat {
 
         int fieldPositionFoundIndex = -1;
         for (int i = 0; i < measures.length; ++i) {
-            FormattedNumber result;
+            FormattedStringBuilder result;
             if (i == measures.length - 1) {
                 result = formatMeasure(measures[i]);
             } else {
                 result = formatMeasureInteger(measures[i]);
             }
             if (fieldPositionFoundIndex == -1) {
-                result.populateFieldPosition(fpos);
+                FormattedValueStringBuilderImpl.nextFieldPosition(result, fpos);
                 if (fpos.getEndIndex() != 0) {
                     fieldPositionFoundIndex = i;
                 }
             }
             results[i] = result.toString();
         }
-        ListFormatter.FormattedListBuilder builder = listFormatter.format(Arrays.asList(results),
-                fieldPositionFoundIndex);
+        ListFormatter.FormattedListBuilder builder = listFormatter.formatImpl(Arrays.asList(results), true);
 
         // Fix up FieldPosition indexes if our field is found.
-        if (builder.getOffset() != -1) {
-            fieldPosition.setBeginIndex(fpos.getBeginIndex() + builder.getOffset());
-            fieldPosition.setEndIndex(fpos.getEndIndex() + builder.getOffset());
+        int offset = builder.getOffset(fieldPositionFoundIndex);
+        if (offset != -1) {
+            fieldPosition.setBeginIndex(fpos.getBeginIndex() + offset);
+            fieldPosition.setEndIndex(fpos.getEndIndex() + offset);
         }
         builder.appendTo(appendTo);
     }
 
     // type is one of "hm", "ms" or "hms"
-    private static DateFormat loadNumericDurationFormat(ICUResourceBundle r, String type) {
+    private static String loadNumericDurationFormat(ICUResourceBundle r, String type) {
         r = r.getWithFallback(String.format("durationUnits/%s", type));
         // We replace 'h' with 'H' because 'h' does not make sense in the context of durations.
-        DateFormat result = new SimpleDateFormat(r.getString().replace("h", "H"));
-        result.setTimeZone(TimeZone.GMT_ZONE);
-        return result;
+        return r.getString().replace("h", "H");
     }
 
     // Returns hours in [0]; minutes in [1]; seconds in [2] out of measures array. If
@@ -818,116 +830,77 @@ public class MeasureFormat extends UFormat {
     // Formats numeric time duration as 5:00:47 or 3:54. In the process, it replaces any null
     // values in hms with 0.
     private void formatNumeric(Number[] hms, Appendable appendable) {
+        String pattern;
 
-        // find the start and end of non-nil values in hms array. We have to know if we
-        // have hour-minute; minute-second; or hour-minute-second.
-        int startIndex = -1;
-        int endIndex = -1;
-        for (int i = 0; i < hms.length; i++) {
-            if (hms[i] != null) {
-                endIndex = i;
-                if (startIndex == -1) {
-                    startIndex = endIndex;
-                }
-            } else {
-                // Replace nil value with 0.
-                hms[i] = Integer.valueOf(0);
+        // All possible combinations: "h", "m", "s", "hm", "hs", "ms", "hms"
+        if (hms[0] != null && hms[2] != null) { // "hms" & "hs" (we add minutes if "hs")
+            pattern = numericFormatters.getHourMinuteSecond();
+            if (hms[1] == null)
+                hms[1] = 0;
+            hms[1] = Math.floor(hms[1].doubleValue());
+            hms[0] = Math.floor(hms[0].doubleValue());
+        } else if (hms[0] != null && hms[1] != null) { // "hm"
+            pattern = numericFormatters.getHourMinute();
+            hms[0] = Math.floor(hms[0].doubleValue());
+        } else if (hms[1] != null && hms[2] != null) { // "ms"
+            pattern = numericFormatters.getMinuteSecond();
+            hms[1] = Math.floor(hms[1].doubleValue());
+        } else { // h m s, handled outside formatNumeric. No value is also an error.
+            throw new IllegalStateException();
+        }
+
+        // We can create it on demand, but all of the patterns (right now) have mm and ss.
+        // So unless it is hours only we will need a 0-padded 2 digits formatter.
+        LocalizedNumberFormatter numberFormatter2 = numberFormatter.integerWidth(IntegerWidth.zeroFillTo(2));
+        FormattedStringBuilder fsb = new FormattedStringBuilder();
+
+        boolean protect = false;
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+
+            // Also set the proper field in this switch
+            // We don't use DateFormat.Field because this is not a date / time, is a duration.
+            Number value = 0;
+            switch (c) {
+                case 'H': value = hms[0]; break;
+                case 'm': value = hms[1]; break;
+                case 's': value = hms[2]; break;
             }
-        }
-        // convert hours, minutes, seconds into milliseconds.
-        long millis = (long) (((Math.floor(hms[0].doubleValue()) * 60.0
-                + Math.floor(hms[1].doubleValue())) * 60.0 + Math.floor(hms[2].doubleValue())) * 1000.0);
-        Date d = new Date(millis);
-        if (startIndex == 0 && endIndex == 2) {
-            // if hour-minute-second
-            formatNumeric(d,
-                    numericFormatters.getHourMinuteSecond(),
-                    DateFormat.Field.SECOND,
-                    hms[endIndex],
-                    appendable);
-        } else if (startIndex == 1 && endIndex == 2) {
-            // if minute-second
-            formatNumeric(d,
-                    numericFormatters.getMinuteSecond(),
-                    DateFormat.Field.SECOND,
-                    hms[endIndex],
-                    appendable);
-        } else if (startIndex == 0 && endIndex == 1) {
-            // if hour-minute
-            formatNumeric(d,
-                    numericFormatters.getHourMinute(),
-                    DateFormat.Field.MINUTE,
-                    hms[endIndex],
-                    appendable);
-        } else {
-            throw new IllegalStateException();
-        }
-    }
 
-    // Formats a duration as 5:00:37 or 23:59.
-    // duration is a particular duration after epoch.
-    // formatter is a hour-minute-second, hour-minute, or minute-second formatter.
-    // smallestField denotes what the smallest field is in duration: either
-    // hour, minute, or second.
-    // smallestAmount is the value of that smallest field. for 5:00:37.3,
-    // smallestAmount is 37.3. This smallest field is formatted with this object's
-    // NumberFormat instead of formatter.
-    // appendTo is where the formatted string is appended.
-    private void formatNumeric(
-            Date duration,
-            DateFormat formatter,
-            DateFormat.Field smallestField,
-            Number smallestAmount,
-            Appendable appendTo) {
-        // Format the smallest amount ahead of time.
-        String smallestAmountFormatted;
-
-        // Format the smallest amount using this object's number format, but keep track
-        // of the integer portion of this formatted amount. We have to replace just the
-        // integer part with the corresponding value from formatting the date. Otherwise
-        // when formatting 0 minutes 9 seconds, we may get "00:9" instead of "00:09"
-        FieldPosition intFieldPosition = new FieldPosition(NumberFormat.INTEGER_FIELD);
-        FormattedNumber result = getNumberFormatter().format(smallestAmount);
-        result.populateFieldPosition(intFieldPosition);
-        smallestAmountFormatted = result.toString();
-        // Give up if there is no integer field.
-        if (intFieldPosition.getBeginIndex() == 0 && intFieldPosition.getEndIndex() == 0) {
-            throw new IllegalStateException();
-        }
-
-        // Format our duration as a date, but keep track of where the smallest field is
-        // so that we can use it to replace the integer portion of the smallest value.
-        // #13606: DateFormat is not thread-safe, but MeasureFormat advertises itself as thread-safe.
-        FieldPosition smallestFieldPosition = new FieldPosition(smallestField);
-        String draft;
-        synchronized (formatter) {
-            draft = formatter.format(duration, new StringBuffer(), smallestFieldPosition).toString();
+            // There is not enough info to add Field(s) for the unit because all we have are plain
+            // text patterns. For example in "21:51" there is no text for something like "hour",
+            // while in something like "21h51" there is ("h"). But we can't really tell...
+            switch (c) {
+                case 'H':
+                case 'm':
+                case 's':
+                    if (protect) {
+                        fsb.appendChar16(c, null);
+                    } else {
+                        if ((i + 1 < pattern.length()) && pattern.charAt(i + 1) == c) { // doubled
+                            fsb.append(numberFormatter2.format(value), null); // TODO: Use proper Field
+                            i++;
+                        } else {
+                            fsb.append(numberFormatter.format(value), null); // TODO: Use proper Field
+                        }
+                    }
+                    break;
+                case '\'':
+                    // '' is escaped apostrophe
+                    if ((i + 1 < pattern.length()) && pattern.charAt(i + 1) == c) {
+                        fsb.appendChar16(c, null);
+                        i++;
+                    } else {
+                        protect = !protect;
+                    }
+                    break;
+                default:
+                    fsb.appendChar16(c, null);
+            }
         }
 
         try {
-            // If we find the smallest field
-            if (smallestFieldPosition.getBeginIndex() != 0 || smallestFieldPosition.getEndIndex() != 0) {
-                // add everything up to the start of the smallest field in duration.
-                appendTo.append(draft, 0, smallestFieldPosition.getBeginIndex());
-
-                // add everything in the smallest field up to the integer portion
-                appendTo.append(smallestAmountFormatted, 0, intFieldPosition.getBeginIndex());
-
-                // Add the smallest field in formatted duration in lieu of the integer portion
-                // of smallest field
-                appendTo.append(draft,
-                        smallestFieldPosition.getBeginIndex(),
-                        smallestFieldPosition.getEndIndex());
-
-                // Add the rest of the smallest field
-                appendTo.append(smallestAmountFormatted,
-                        intFieldPosition.getEndIndex(),
-                        smallestAmountFormatted.length());
-                appendTo.append(draft, smallestFieldPosition.getEndIndex(), draft.length());
-            } else {
-                // As fallback, just use the formatted duration.
-                appendTo.append(draft);
-            }
+            appendable.append(fsb);
         } catch (IOException e) {
             throw new ICUUncheckedIOException(e);
         }

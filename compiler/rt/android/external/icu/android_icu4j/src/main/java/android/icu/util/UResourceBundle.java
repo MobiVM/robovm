@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2004-2016, International Business Machines Corporation and
@@ -215,7 +215,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      *                If null the bundle for default locale is opened.
      * @return a resource bundle for the given base name and locale
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public static UResourceBundle getBundleInstance(String baseName, ULocale locale) {
         if (baseName == null) {
             baseName = ICUData.ICU_BASE_NAME;
@@ -404,7 +404,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * @throws MissingResourceException If resource bundle is missing.
      * @throws UResourceTypeMismatchException If resource bundle has a type mismatch.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public String getString() {
         throw new UResourceTypeMismatchException("");
     }
@@ -681,7 +681,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      *
      * @return type of the given resource.
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public int getType() {
         return NONE;
     }
@@ -709,7 +709,7 @@ public abstract class UResourceBundle extends ResourceBundle {
      * a key - only those that are members of a table.
      * @return a key associated to this resource, or null if it doesn't have a key
      */
-    @dalvik.annotation.compat.UnsupportedAppUsage
+    @android.compat.annotation.UnsupportedAppUsage
     public String getKey() {
         return null;
     }

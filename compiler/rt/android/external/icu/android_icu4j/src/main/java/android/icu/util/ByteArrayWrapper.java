@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /**
  *******************************************************************************
  * Copyright (C) 1996-2016, International Business Machines Corporation and    *
@@ -226,7 +226,7 @@ public class ByteArrayWrapper implements Comparable<ByteArrayWrapper>
      */
     @Override
     public int hashCode() {
-        int result = bytes.length;
+        int result = size;
         for (int i = 0; i < size; ++i) {
             result = 37*result + bytes[i];
         }

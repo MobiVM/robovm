@@ -1,13 +1,16 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2017 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 package android.icu.impl.number;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+import android.icu.impl.StandardPlural;
+import android.icu.number.Precision;
 import android.icu.number.Scale;
+import android.icu.text.PluralRules;
 
 /** @author sffc 
  * @hide Only a subset of ICU is exposed in Android*/
@@ -220,5 +223,19 @@ public class RoundingUtils {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Computes the plural form after copying the number and applying rounding rules.
+     */
+    public static StandardPlural getPluralSafe(
+            Precision rounder, PluralRules rules, DecimalQuantity dq) {
+        if (rounder == null) {
+            return dq.getStandardPlural(rules);
+        }
+        // TODO(ICU-20500): Avoid the copy?
+        DecimalQuantity copy = dq.createCopy();
+        rounder.apply(copy);
+        return copy.getStandardPlural(rules);
     }
 }

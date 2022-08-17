@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 2004-2014, International Business Machines Corporation and
@@ -9,7 +9,6 @@
 */
 package android.icu.util;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import android.icu.impl.Utility;
 import android.icu.text.BreakIterator;
@@ -181,7 +181,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
         if (locales == null) {
             result = guessLocales();
         } else {
-            result = new ArrayList<ULocale>();
+            result = new ArrayList<>();
             result.addAll(locales);
         }
         return result;
@@ -249,14 +249,10 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
         if (isFrozen()) {
             throw new UnsupportedOperationException("Attempt to modify immutable object");
         }
-        ULocale[] acceptLocales = null;
-        try {
-            acceptLocales = ULocale.parseAcceptLanguage(acceptLanguageString, true);
-        } catch (ParseException pe) {
-            //TODO: revisit after 3.8
-            throw new IllegalArgumentException("Invalid Accept-Language string");
-        }
-        return setLocales(acceptLocales);
+        Set<ULocale> acceptSet = LocalePriorityList.add(acceptLanguageString).build().getULocales();
+        // processLocales() wants a List even though it only iterates front-to-back.
+        locales = processLocales(new ArrayList<>(acceptSet));
+        return this;
     }
 
     /**
@@ -573,7 +569,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
                 Currency temp = new Currency(id);
                 result =temp.getName(locale, type==ID_CURRENCY
                                      ? Currency.LONG_NAME
-                                     : Currency.SYMBOL_NAME, new boolean[1]);
+                                     : Currency.SYMBOL_NAME, null /* isChoiceFormat */);
                 // TODO: have method that doesn't take parameter. Add
                 // function to determine whether string is choice
                 // format.
@@ -784,7 +780,10 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      * @hide draft / provisional / internal are hidden on Android
      */
     protected List<ULocale> processLocales(List<ULocale> inputLocales) {
-        List<ULocale> result = new ArrayList<ULocale>();
+        // Note: Some of the callers, and non-ICU call sites, could be simpler/more efficient
+        // if this method took a Collection or even an Iterable.
+        // Maybe we can change it since this is still @draft and probably not widely overridden.
+        List<ULocale> result = new ArrayList<>();
         /*
          * Step 1: Relocate later occurrence of more specific locale
          * before earlier occurrence of less specific locale.
@@ -793,9 +792,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
          *   Before - en_US, fr_FR, zh, en_US_Boston, zh_TW, zh_Hant, fr_CA
          *   After  - en_US_Boston, en_US, fr_FR, zh_TW, zh_Hant, zh, fr_CA
          */
-        for (int i = 0; i < inputLocales.size(); i++) {
-            ULocale uloc = inputLocales.get(i);
-
+        for (ULocale uloc : inputLocales) {
             String language = uloc.getLanguage();
             String script = uloc.getScript();
             String country = uloc.getCountry();
@@ -1017,7 +1014,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
      */
     protected List<ULocale> guessLocales() {
         if (implicitLocales == null) {
-            List<ULocale> result = new ArrayList<ULocale>(1);
+            List<ULocale> result = new ArrayList<>(1);
             result.add(ULocale.getDefault());
             implicitLocales = processLocales(result);
         }
@@ -1165,7 +1162,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     /*
      * Available locales for service types
      */
-    private static final HashMap<ULocale, BitSet> available_locales = new HashMap<ULocale, BitSet>();
+    private static final HashMap<ULocale, BitSet> available_locales = new HashMap<>();
     private static final int
         TYPE_GENERIC = 0,
         TYPE_CALENDAR = 1,
@@ -1234,7 +1231,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
     /** WARNING: All of this data is temporary, until we start importing from CLDR!!!
      *
      */
-    private static final Map<String, String> language_territory_hack_map = new HashMap<String, String>();
+    private static final Map<String, String> language_territory_hack_map = new HashMap<>();
     private static final String[][] language_territory_hack = {
         {"af", "ZA"},
         {"am", "ET"},
@@ -1396,7 +1393,7 @@ public class GlobalizationPreferences implements Freezable<GlobalizationPreferen
         }
     }
 
-    static final Map<String, String> territory_tzid_hack_map = new HashMap<String, String>();
+    static final Map<String, String> territory_tzid_hack_map = new HashMap<>();
     static final String[][] territory_tzid_hack = {
         {"AQ", "Antarctica/McMurdo"},
         {"AR", "America/Buenos_Aires"},

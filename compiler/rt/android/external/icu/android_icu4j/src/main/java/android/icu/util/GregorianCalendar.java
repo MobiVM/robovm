@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  * Copyright (C) 1996-2016, International Business Machines
  * Corporation and others.  All Rights Reserved.
@@ -350,7 +350,7 @@ public class GregorianCalendar extends Calendar {
      * @param aLocale the given locale.
      */
     public GregorianCalendar(Locale aLocale) {
-        this(TimeZone.getDefault(), aLocale);
+        this(TimeZone.forLocaleOrDefault(aLocale), aLocale);
     }
 
     /**
@@ -359,7 +359,7 @@ public class GregorianCalendar extends Calendar {
      * @param locale the given ulocale.
      */
     public GregorianCalendar(ULocale locale) {
-        this(TimeZone.getDefault(), locale);
+        this(TimeZone.forULocaleOrDefault(locale), locale);
     }
 
     /**

@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2016 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 /*
  *******************************************************************************
  * Copyright (C) 1996-2016, International Business Machines Corporation and
@@ -63,7 +63,7 @@ import android.icu.util.ULocale.Category;
  * <p>
  * This class should not be subclassed.</p>
  * <p>
- * HebrewCalendar usually should be instantiated using 
+ * HebrewCalendar usually should be instantiated using
  * {@link android.icu.util.Calendar#getInstance(ULocale)} passing in a <code>ULocale</code>
  * with the tag <code>"@calendar=hebrew"</code>.</p>
  *
@@ -82,28 +82,28 @@ public class HebrewCalendar extends Calendar {
     //-------------------------------------------------------------------------
 
 
-    /** 
-     * Constant for Tishri, the 1st month of the Hebrew year. 
+    /**
+     * Constant for Tishri, the 1st month of the Hebrew year.
      */
     public static final int TISHRI = 0;
 
     /**
-     * Constant for Heshvan, the 2nd month of the Hebrew year. 
+     * Constant for Heshvan, the 2nd month of the Hebrew year.
      */
     public static final int HESHVAN = 1;
 
     /**
-     * Constant for Kislev, the 3rd month of the Hebrew year. 
+     * Constant for Kislev, the 3rd month of the Hebrew year.
      */
     public static final int KISLEV = 2;
 
     /**
-     * Constant for Tevet, the 4th month of the Hebrew year. 
+     * Constant for Tevet, the 4th month of the Hebrew year.
      */
     public static final int TEVET = 3;
 
     /**
-     * Constant for Shevat, the 5th month of the Hebrew year. 
+     * Constant for Shevat, the 5th month of the Hebrew year.
      */
     public static final int SHEVAT = 4;
 
@@ -114,38 +114,38 @@ public class HebrewCalendar extends Calendar {
      */
     public static final int ADAR_1 = 5;
 
-    /** 
-     * Constant for the Adar, the 7th month of the Hebrew year. 
+    /**
+     * Constant for the Adar, the 7th month of the Hebrew year.
      */
     public static final int ADAR = 6;
 
     /**
-     * Constant for Nisan, the 8th month of the Hebrew year. 
+     * Constant for Nisan, the 8th month of the Hebrew year.
      */
     public static final int NISAN = 7;
 
     /**
-     * Constant for Iyar, the 9th month of the Hebrew year. 
+     * Constant for Iyar, the 9th month of the Hebrew year.
      */
     public static final int IYAR = 8;
 
     /**
-     * Constant for Sivan, the 10th month of the Hebrew year. 
+     * Constant for Sivan, the 10th month of the Hebrew year.
      */
     public static final int SIVAN = 9;
 
     /**
-     * Constant for Tammuz, the 11th month of the Hebrew year. 
+     * Constant for Tammuz, the 11th month of the Hebrew year.
      */
     public static final int TAMUZ = 10;
 
     /**
-     * Constant for Av, the 12th month of the Hebrew year. 
+     * Constant for Av, the 12th month of the Hebrew year.
      */
     public static final int AV = 11;
 
     /**
-     * Constant for Elul, the 13th month of the Hebrew year. 
+     * Constant for Elul, the 13th month of the Hebrew year.
      */
     public static final int ELUL = 12;
 
@@ -257,7 +257,7 @@ public class HebrewCalendar extends Calendar {
     //-------------------------------------------------------------------------
 
     private static CalendarCache cache = new CalendarCache();
-    
+
     //-------------------------------------------------------------------------
     // Constructors...
     //-------------------------------------------------------------------------
@@ -289,7 +289,7 @@ public class HebrewCalendar extends Calendar {
      * @param aLocale The locale for the new calendar.
      */
     public HebrewCalendar(Locale aLocale) {
-        this(TimeZone.getDefault(), aLocale);
+        this(TimeZone.forLocaleOrDefault(aLocale), aLocale);
     }
 
     /**
@@ -299,7 +299,7 @@ public class HebrewCalendar extends Calendar {
      * @param locale The locale for the new calendar.
      */
     public HebrewCalendar(ULocale locale) {
-        this(TimeZone.getDefault(), locale);
+        this(TimeZone.forULocaleOrDefault(locale), locale);
     }
 
     /**
@@ -399,7 +399,7 @@ public class HebrewCalendar extends Calendar {
     /**
      * Add a signed amount to a specified field, using this calendar's rules.
      * For example, to add three days to the current date, you can call
-     * <code>add(Calendar.DATE, 3)</code>. 
+     * <code>add(Calendar.DATE, 3)</code>.
      * <p>
      * When adding to certain fields, the values of other fields may conflict and
      * need to be changed.  For example, when adding one to the {@link #MONTH MONTH} field
@@ -422,10 +422,11 @@ public class HebrewCalendar extends Calendar {
      * @exception   IllegalArgumentException if the field is invalid or refers
      *              to a field that cannot be handled by this method.
      */
+    @Override
     public void add(int field, int amount)
     {
         switch (field) {
-        case MONTH: 
+        case MONTH:
             {
                 // We can't just do a set(MONTH, get(MONTH) + amount).  The
                 // reason is ADAR_1.  Suppose amount is +2 and we land in
@@ -469,7 +470,7 @@ public class HebrewCalendar extends Calendar {
                 pinField(DAY_OF_MONTH);
                 break;
             }
-            
+
         default:
             super.add(field, amount);
             break;
@@ -481,7 +482,7 @@ public class HebrewCalendar extends Calendar {
      * example, to roll the current date up by three days, you can call
      * <code>roll(Calendar.DATE, 3)</code>.  If the
      * field is rolled past its maximum allowable value, it will "wrap" back
-     * to its minimum and continue rolling.  
+     * to its minimum and continue rolling.
      * For example, calling <code>roll(Calendar.DATE, 10)</code>
      * on a Hebrew calendar set to "25 Av 5758" will result in the date "5 Av 5758".
      * <p>
@@ -507,6 +508,7 @@ public class HebrewCalendar extends Calendar {
      * @exception   IllegalArgumentException if the field is invalid or refers
      *              to a field that cannot be handled by this method.
      */
+    @Override
     public void roll(int field, int amount)
     {
         switch (field) {
@@ -514,7 +516,7 @@ public class HebrewCalendar extends Calendar {
             {
                 int month = get(MONTH);
                 int year = get(YEAR);
-                
+
                 boolean leapYear = isLeapYear(year);
                 int yearLength = monthsInYear(year);
                 int newMonth = month + (amount % yearLength);
@@ -546,14 +548,14 @@ public class HebrewCalendar extends Calendar {
     // "parts" (or halakim), which are 1/1080 of an hour, or 3 1/3 seconds.
     private static final long HOUR_PARTS = 1080;
     private static final long DAY_PARTS  = 24*HOUR_PARTS;
-    
+
     // An approximate value for the length of a lunar month.
     // It is used to calculate the approximate year and month of a given
     // absolute date.
     static private final int  MONTH_DAYS = 29;
     static private final long MONTH_FRACT = 12*HOUR_PARTS + 793;
     static private final long MONTH_PARTS = MONTH_DAYS*DAY_PARTS + MONTH_FRACT;
-    
+
     // The time of the new moon (in parts) on 1 Tishri, year 1 (the epoch)
     // counting from noon on the day before.  BAHARAD is an abbreviation of
     // Bet (Monday), Hey (5 hours from sunset), Resh-Daled (204).
@@ -582,9 +584,10 @@ public class HebrewCalendar extends Calendar {
     private static long startOfYear(int year)
     {
         long day = cache.get(year);
-        
+
         if (day == CalendarCache.EMPTY) {
-            int months = (235 * year - 234) / 19;           // # of months before year
+            // # of months before year
+            int months = (int)floorDivide((235 * (long)year - 234), 19);
 
             long frac = months * MONTH_FRACT + BAHARAD;     // Fractional part of day #
             day  = months * 29 + (frac / DAY_PARTS);        // Whole # part of calculation
@@ -682,6 +685,7 @@ public class HebrewCalendar extends Calendar {
 
     /**
      */
+    @Override
     protected int handleGetLimit(int field, int limitType) {
         return LIMITS[field][limitType];
     }
@@ -689,6 +693,7 @@ public class HebrewCalendar extends Calendar {
     /**
      * Returns the length of the given month in the given year
      */
+    @Override
     protected int handleGetMonthLength(int extendedYear, int month) {
         // Resolve out-of-range months.  This is necessary in order to
         // obtain the correct year.  We correct to
@@ -709,7 +714,7 @@ public class HebrewCalendar extends Calendar {
             case KISLEV:
                 // These two month lengths can vary
                 return MONTH_LENGTH[month][yearType(extendedYear)];
-                
+
             default:
                 // The rest are a fixed length
                 return MONTH_LENGTH[month][0];
@@ -719,6 +724,7 @@ public class HebrewCalendar extends Calendar {
     /**
      * Returns the number of days in the given Hebrew year
      */
+    @Override
     protected int handleGetYearLength(int eyear) {
         return (int)(startOfYear(eyear+1) - startOfYear(eyear));
     }
@@ -732,6 +738,7 @@ public class HebrewCalendar extends Calendar {
      * @hide original deprecated declaration
      * @hide draft / provisional / internal are hidden on Android
      */
+    @Override
     @Deprecated
     protected void validateField(int field) {
         if (field == MONTH && !isLeapYear(handleGetExtendedYear()) && internalGet(MONTH) == ADAR_1) {
@@ -755,7 +762,7 @@ public class HebrewCalendar extends Calendar {
      * <li>DAY_OF_MONTH
      * <li>DAY_OF_YEAR
      * <li>EXTENDED_YEAR</ul>
-     * 
+     *
      * Subclasses can refer to the DAY_OF_WEEK and DOW_LOCAL fields,
      * which will be set when this method is called.  Subclasses can
      * also call the getGregorianXxx() methods to obtain Gregorian
@@ -765,10 +772,11 @@ public class HebrewCalendar extends Calendar {
      * fields, that is, fields from BASE_FIELD_COUNT to
      * getFieldCount() - 1.
      */
+    @Override
     protected void handleComputeFields(int julianDay) {
         long d = julianDay - 347997;
-        long m = (d * DAY_PARTS) / MONTH_PARTS;         // Months (approx)
-        int year = (int)((19 * m + 234) / 235) + 1;     // Years (approx)
+        long m = floorDivide((d * DAY_PARTS), MONTH_PARTS); // Months (approx)
+        int year = (int)(floorDivide((19 * m + 234), 235) + 1);   // Years (approx)
         long ys  = startOfYear(year);                   // 1st day of year
         int dayOfYear = (int)(d - ys);
 
@@ -795,7 +803,7 @@ public class HebrewCalendar extends Calendar {
         internalSet(EXTENDED_YEAR, year);
         internalSet(MONTH, month);
         internalSet(DAY_OF_MONTH, dayOfMonth);
-        internalSet(DAY_OF_YEAR, dayOfYear);       
+        internalSet(DAY_OF_YEAR, dayOfYear);
     }
 
     //-------------------------------------------------------------------------
@@ -804,6 +812,7 @@ public class HebrewCalendar extends Calendar {
 
     /**
      */
+    @Override
     protected int handleGetExtendedYear() {
         int year;
         if (newerField(EXTENDED_YEAR, YEAR) == EXTENDED_YEAR) {
@@ -817,6 +826,7 @@ public class HebrewCalendar extends Calendar {
     /**
      * Return JD of start of given month/year.
      */
+    @Override
     protected int handleComputeMonthStart(int eyear, int month, boolean useMonth) {
 
         // Resolve out-of-range months.  This is necessary in order to
@@ -849,6 +859,7 @@ public class HebrewCalendar extends Calendar {
     /**
      * {@inheritDoc}
      */
+    @Override
     public String getType() {
         return "hebrew";
     }

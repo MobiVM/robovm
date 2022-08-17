@@ -1,6 +1,6 @@
 /* GENERATED SOURCE. DO NOT MODIFY. */
 // © 2018 and later: Unicode, Inc. and others.
-// License & terms of use: http://www.unicode.org/copyright.html#License
+// License & terms of use: http://www.unicode.org/copyright.html
 
 // created: 2018may04 Markus W. Scherer
 
@@ -24,7 +24,6 @@ import android.icu.impl.Normalizer2Impl.UTF16Plus;
  *
  * @see MutableCodePointTrie
  * @hide Only a subset of ICU is exposed in Android
- * @hide draft / provisional / internal are hidden on Android
  */
 public abstract class CodePointTrie extends CodePointMap {
     /**
@@ -38,7 +37,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * @see #fromBinary
      * @see #getType
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum Type {
         /**
@@ -46,14 +44,12 @@ public abstract class CodePointTrie extends CodePointMap {
          * The {@link Fast} subclasses have additional functions for lookup for BMP and supplementary code points.
          *
          * @see Fast
-         * @hide draft / provisional / internal are hidden on Android
          */
         FAST,
         /**
          * Small/slower BMP data structure.
          *
          * @see Small
-         * @hide draft / provisional / internal are hidden on Android
          */
         SMALL
     }
@@ -65,27 +61,20 @@ public abstract class CodePointTrie extends CodePointMap {
      * {@link #getValueWidth} will return the actual data value width.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public enum ValueWidth {
         /**
          * The trie stores 16 bits per data value.
          * It returns them as unsigned values 0..0xffff=65535.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         BITS_16,
         /**
          * The trie stores 32 bits per data value.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         BITS_32,
         /**
          * The trie stores 8 bits per data value.
          * It returns them as unsigned values 0..0xff=255.
-         *
-         * @hide draft / provisional / internal are hidden on Android
          */
         BITS_8
     }
@@ -131,7 +120,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * @see MutableCodePointTrie#MutableCodePointTrie(int, int)
      * @see MutableCodePointTrie#buildImmutable(CodePointTrie.Type, CodePointTrie.ValueWidth)
      * @see #toBinary(OutputStream)
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static CodePointTrie fromBinary(Type type, ValueWidth valueWidth, ByteBuffer bytes) {
         ByteOrder outerByteOrder = bytes.order();
@@ -274,20 +262,17 @@ public abstract class CodePointTrie extends CodePointMap {
      * Returns the trie type.
      *
      * @return the trie type
-     * @hide draft / provisional / internal are hidden on Android
      */
     public abstract Type getType();
     /**
      * Returns the number of bits in a trie data value.
      *
      * @return the number of bits in a trie data value
-     * @hide draft / provisional / internal are hidden on Android
      */
     public final ValueWidth getValueWidth() { return data.getValueWidth(); }
 
     /**
      * {@inheritDoc}
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public int get(int c) {
@@ -299,7 +284,6 @@ public abstract class CodePointTrie extends CodePointMap {
      *
      * @param c the input code point; must be U+0000..U+007F
      * @return The ASCII code point's trie value.
-     * @hide draft / provisional / internal are hidden on Android
      */
     public final int asciiGet(int c) {
         return ascii[c];
@@ -321,7 +305,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
     /**
      * {@inheritDoc}
-     * @hide draft / provisional / internal are hidden on Android
      */
     @Override
     public final boolean getRange(int start, ValueFilter filter, Range range) {
@@ -478,7 +461,6 @@ public abstract class CodePointTrie extends CodePointMap {
      *
      * @param os the output stream
      * @return the number of bytes written
-     * @hide draft / provisional / internal are hidden on Android
      */
     public final int toBinary(OutputStream os) {
         try {
@@ -744,7 +726,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#FAST}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static abstract class Fast extends CodePointTrie {
         private Fast(char[] index, Data data, int highStart,
@@ -762,7 +743,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *                  use null to accept any data value width
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Fast fromBinary(ValueWidth valueWidth, ByteBuffer bytes) {
             return (Fast) CodePointTrie.fromBinary(Type.FAST, valueWidth, bytes);
@@ -770,7 +750,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * @return {@link Type#FAST}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final Type getType() { return Type.FAST; }
@@ -782,7 +761,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param c the input code point, must be U+0000..U+FFFF
          * @return The BMP code point's trie value.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public abstract int bmpGet(int c);
 
@@ -792,7 +770,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param c the input code point, must be U+10000..U+10FFFF
          * @return The supplementary code point's trie value.
-         * @hide draft / provisional / internal are hidden on Android
          */
         public abstract int suppGet(int c);
 
@@ -815,7 +792,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final StringIterator stringIterator(CharSequence s, int sIndex) {
@@ -883,7 +859,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#SMALL}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static abstract class Small extends CodePointTrie {
         private Small(char[] index, Data data, int highStart,
@@ -901,7 +876,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *                  use null to accept any data value width
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Small fromBinary(ValueWidth valueWidth, ByteBuffer bytes) {
             return (Small) CodePointTrie.fromBinary(Type.SMALL, valueWidth, bytes);
@@ -909,7 +883,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * @return {@link Type#SMALL}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final Type getType() { return Type.SMALL; }
@@ -933,7 +906,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final StringIterator stringIterator(CharSequence s, int sIndex) {
@@ -1001,7 +973,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#FAST} and {@link ValueWidth#BITS_16}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Fast16 extends Fast {
         private final char[] dataArray;
@@ -1019,7 +990,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Fast16 fromBinary(ByteBuffer bytes) {
             return (Fast16) CodePointTrie.fromBinary(Type.FAST, ValueWidth.BITS_16, bytes);
@@ -1027,7 +997,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int get(int c) {
@@ -1036,7 +1005,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int bmpGet(int c) {
@@ -1046,7 +1014,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int suppGet(int c) {
@@ -1059,7 +1026,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#FAST} and {@link ValueWidth#BITS_32}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Fast32 extends Fast {
         private final int[] dataArray;
@@ -1077,7 +1043,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Fast32 fromBinary(ByteBuffer bytes) {
             return (Fast32) CodePointTrie.fromBinary(Type.FAST, ValueWidth.BITS_32, bytes);
@@ -1085,7 +1050,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int get(int c) {
@@ -1094,7 +1058,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int bmpGet(int c) {
@@ -1104,7 +1067,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int suppGet(int c) {
@@ -1117,7 +1079,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#FAST} and {@link ValueWidth#BITS_8}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Fast8 extends Fast {
         private final byte[] dataArray;
@@ -1135,7 +1096,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Fast8 fromBinary(ByteBuffer bytes) {
             return (Fast8) CodePointTrie.fromBinary(Type.FAST, ValueWidth.BITS_8, bytes);
@@ -1143,7 +1103,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int get(int c) {
@@ -1152,7 +1111,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int bmpGet(int c) {
@@ -1162,7 +1120,6 @@ public abstract class CodePointTrie extends CodePointMap {
 
         /**
          * {@inheritDoc}
-         * @hide draft / provisional / internal are hidden on Android
          */
         @Override
         public final int suppGet(int c) {
@@ -1175,7 +1132,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#SMALL} and {@link ValueWidth#BITS_16}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Small16 extends Small {
         Small16(char[] index, char[] data16, int highStart,
@@ -1190,7 +1146,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Small16 fromBinary(ByteBuffer bytes) {
             return (Small16) CodePointTrie.fromBinary(Type.SMALL, ValueWidth.BITS_16, bytes);
@@ -1201,7 +1156,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#SMALL} and {@link ValueWidth#BITS_32}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Small32 extends Small {
         Small32(char[] index, int[] data32, int highStart,
@@ -1216,7 +1170,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Small32 fromBinary(ByteBuffer bytes) {
             return (Small32) CodePointTrie.fromBinary(Type.SMALL, ValueWidth.BITS_32, bytes);
@@ -1227,7 +1180,6 @@ public abstract class CodePointTrie extends CodePointMap {
      * A CodePointTrie with {@link Type#SMALL} and {@link ValueWidth#BITS_8}.
      *
      * @hide Only a subset of ICU is exposed in Android
-     * @hide draft / provisional / internal are hidden on Android
      */
     public static final class Small8 extends Small {
         Small8(char[] index, byte[] data8, int highStart,
@@ -1242,7 +1194,6 @@ public abstract class CodePointTrie extends CodePointMap {
          *
          * @param bytes a buffer containing the binary data of a CodePointTrie
          * @return the trie
-         * @hide draft / provisional / internal are hidden on Android
          */
         public static Small8 fromBinary(ByteBuffer bytes) {
             return (Small8) CodePointTrie.fromBinary(Type.SMALL, ValueWidth.BITS_8, bytes);
