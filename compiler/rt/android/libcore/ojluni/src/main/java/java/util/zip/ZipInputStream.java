@@ -323,11 +323,16 @@ class ZipInputStream extends InflaterInputStream implements ZipConstants {
         e.method = get16(tmpbuf, LOCHOW);
         e.xdostime = get32(tmpbuf, LOCTIM);
         if ((flag & 8) == 8) {
-            /* "Data Descriptor" present */
-            if (e.method != DEFLATED) {
-                throw new ZipException(
-                        "only DEFLATED entries can have EXT descriptor");
-            }
+            // Android-Changed: Remove the requirement that only DEFLATED entries
+            // can have data descriptors. This is not required by the ZIP spec and
+            // is inconsistent with the behaviour of ZipFile and versions of Android
+            // prior to Android N.
+            //
+            // /* "Data Descriptor" present */
+            // if (e.method != DEFLATED) {
+            //     throw new ZipException(
+            //             "only DEFLATED entries can have EXT descriptor");
+            // }
         } else {
             e.crc = get32(tmpbuf, LOCCRC);
             e.csize = get32(tmpbuf, LOCSIZ);

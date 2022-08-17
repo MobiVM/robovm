@@ -49,7 +49,6 @@ import java.util.Arrays;
  * @author Amit Kapoor
  * @author Hemma Prafullchandra
  */
-
 final public
 class ObjectIdentifier implements Serializable
 {

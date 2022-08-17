@@ -491,6 +491,9 @@ public class LinkedHashMap<K,V>
     // Android-added: eldest(), for internal use in LRU caches
     /**
      * Returns the eldest entry in the map, or {@code null} if the map is empty.
+     *
+     * @return eldest entry in the map, or {@code null} if the map is empty
+     *
      * @hide
      */
     public Map.Entry<K, V> eldest() {

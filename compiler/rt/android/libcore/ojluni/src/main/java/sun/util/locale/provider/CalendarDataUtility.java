@@ -30,6 +30,8 @@ import android.icu.util.ULocale;
 
 import static java.util.Calendar.*;
 
+import libcore.util.NonNull;
+
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -206,7 +208,9 @@ public class CalendarDataUtility {
     private static String normalizeCalendarType(String requestID) {
         String type;
         // Android-changed: normalize "gregory" to "gregorian", not the other way around.
-        // See android.icu.text.DateFormatSymbols.CALENDAR_CLASSES for reference.
+        // Android maps BCP-47 calendar types to LDML defined calendar types, because it uses
+        // ICU directly while the upstream does the opposite because the upstream uses different
+        // data sources. See android.icu.text.DateFormatSymbols.CALENDAR_CLASSES for reference.
         // if (requestID.equals("gregorian") || requestID.equals("iso8601")) {
         //    type = "gregory";
         // } else if (requestID.startsWith("islamic")) {
@@ -285,9 +289,11 @@ public class CalendarDataUtility {
         }
     }
 
-    private static DateFormatSymbols getDateFormatSymbols(String id, Locale locale) {
+    private static DateFormatSymbols getDateFormatSymbols(@NonNull String id, Locale locale) {
         String calendarType = normalizeCalendarType(id);
-        return new DateFormatSymbols(ULocale.forLocale(locale), calendarType);
+        ULocale uLocale = ULocale.forLocale(locale)
+                .setKeywordValue("calendar", calendarType);
+        return new DateFormatSymbols(uLocale);
     }
 
     /**

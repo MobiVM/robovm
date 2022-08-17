@@ -16,6 +16,10 @@
 
 package libcore.util;
 
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
 import com.android.org.kxml2.io.KXmlParser;
 import com.android.org.kxml2.io.KXmlSerializer;
 import org.apache.harmony.xml.ExpatReader;
@@ -28,7 +32,8 @@ import org.xmlpull.v1.XmlSerializer;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public class XmlObjectFactory {
 
     private XmlObjectFactory() {}
@@ -36,26 +41,41 @@ public class XmlObjectFactory {
     /**
      * Returns a new instance of the platform default {@link XmlSerializer} more efficiently than
      * using {@code XmlPullParserFactory.newInstance().newSerializer()}.
+     *
+     * @return platform default {@link XmlSerializer}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static XmlSerializer newXmlSerializer() {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static @NonNull XmlSerializer newXmlSerializer() {
         return new KXmlSerializer();
     }
 
     /**
      * Returns a new instance of the platform default {@link XmlPullParser} more efficiently than
      * using {@code XmlPullParserFactory.newInstance().newPullParser()}.
+     *
+     * @return platform default {@link XmlPullParser}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static XmlPullParser newXmlPullParser() {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static @NonNull XmlPullParser newXmlPullParser() {
         return new KXmlParser();
     }
 
     /**
      * Returns the plaform default {@link XMLReader}.
+     *
+     * @return plaform default {@link XMLReader}
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
-    public static XMLReader newXMLReader() {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static @NonNull XMLReader newXMLReader() {
         return new ExpatReader();
     }
 }

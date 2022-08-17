@@ -600,13 +600,21 @@ public abstract class DateFormat extends Format {
      */
     public static Boolean is24Hour;
 
+    // BEGIN Android-changed: Improve javadoc for stable SystemApi.
     /**
-     * Override the time formatting behavior for SHORT and MEDIUM time formats.
-     * {@code null}: use Locale default. {@code true}: force 24-hour format.
-     * {@code false} force 12-hour format.
+     * Override the time formatting behavior for {@link #SHORT} and {@link #MEDIUM} time formats.
+     * Accepts one of the following:
+     * <ul>
+     *   <li>{@code null}: use Locale default/li>
+     *   <li>{@code true}: force 24-hour format</li>
+     *   <li>{@code false} force 12-hour format</li>
+     * </ul>
+     *
+     * @param is24Hour whether to use 24-hour format or not. {@code null} uses locale default.
      *
      * @hide for internal use only.
      */
+    // END Android-changed: Improve javadoc for stable SystemApi.
     public static final void set24HourTimePref(Boolean is24Hour) {
         DateFormat.is24Hour = is24Hour;
     }

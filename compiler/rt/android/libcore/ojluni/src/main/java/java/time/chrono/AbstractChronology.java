@@ -128,18 +128,16 @@ public abstract class AbstractChronology implements Chronology {
 
     /**
      * ChronoLocalDate order constant.
-     * RoboVM note: not extending Serializable due to lack of proper lambda support
      */
     static final Comparator<ChronoLocalDate> DATE_ORDER =
-        (Comparator<ChronoLocalDate> /* RoboVM: & Serializable*/) (date1, date2) -> {
+        (Comparator<ChronoLocalDate> & Serializable) (date1, date2) -> {
             return Long.compare(date1.toEpochDay(), date2.toEpochDay());
         };
     /**
      * ChronoLocalDateTime order constant.
-     * RoboVM note: not extending Serializable due to lack of proper lambda support
      */
     static final Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> DATE_TIME_ORDER =
-        (Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> /* RoboVM: & Serializable*/) (dateTime1, dateTime2) -> {
+        (Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> & Serializable) (dateTime1, dateTime2) -> {
             int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(), dateTime2.toLocalDate().toEpochDay());
             if (cmp == 0) {
                 cmp = Long.compare(dateTime1.toLocalTime().toNanoOfDay(), dateTime2.toLocalTime().toNanoOfDay());
@@ -148,10 +146,9 @@ public abstract class AbstractChronology implements Chronology {
         };
     /**
      * ChronoZonedDateTime order constant.
-     * RoboVM note: not extending Serializable due to lack of proper lambda support
      */
     static final Comparator<ChronoZonedDateTime<?>> INSTANT_ORDER =
-            (Comparator<ChronoZonedDateTime<?>> /* RoboVM: & Serializable*/) (dateTime1, dateTime2) -> {
+            (Comparator<ChronoZonedDateTime<?>> & Serializable) (dateTime1, dateTime2) -> {
                 int cmp = Long.compare(dateTime1.toEpochSecond(), dateTime2.toEpochSecond());
                 if (cmp == 0) {
                     cmp = Long.compare(dateTime1.toLocalTime().getNano(), dateTime2.toLocalTime().getNano());

@@ -17,60 +17,6 @@
 #ifndef PORTABILITY_H_included
 #define PORTABILITY_H_included
 
-// RoboVM note: Start change
-#if defined(__APPLE__)
-
-// Mac OS.
-//#include <AvailabilityMacros.h> // For MAC_OS_X_VERSION_MAX_ALLOWED
-
-#include <libkern/OSByteOrder.h>
-#define bswap_16 OSSwapInt16
-#define bswap_32 OSSwapInt32
-#define bswap_64 OSSwapInt64
-
-// Mac OS has a 64-bit off_t and no 32-bit compatibility cruft.
-#define flock64 flock
-#define ftruncate64 ftruncate
-#define isnanf __inline_isnanf
-#define lseek64 lseek
-#define pread64 pread
-#define pwrite64 pwrite
-
-#define F_GETLK64 F_GETLK
-#define F_SETLK64 F_SETLK
-#define F_SETLKW64 F_SETLKW
-
-// TODO: Darwin appears to have an fdatasync syscall.
-static inline int fdatasync(int fd) { return fsync(fd); }
-
-#define _SO_CUSTOM_BASE 0x10000000
-#define SO_PASSCRED (_SO_CUSTOM_BASE + 0)
-#define SO_PEERCRED (_SO_CUSTOM_BASE + 1)
-
-// For Linux-compatible sendfile(3).
-#include <sys/socket.h>
-#include <sys/types.h>
-static inline ssize_t sendfile(int out_fd, int in_fd, off_t* offset, size_t count) {
-  off_t in_out_count = count;
-  int result = sendfile(in_fd, out_fd, *offset, &in_out_count, NULL, 0);
-  if (result == -1) {
-    return -1;
-  }
-  return in_out_count;
-}
-
-// For mincore(3).
-#define _DARWIN_C_SOURCE
-#include <sys/mman.h>
-#undef _DARWIN_C_SOURCE
-static inline int mincore(void* addr, size_t length, unsigned char* vec) {
-  return mincore(addr, length, reinterpret_cast<char*>(vec));
-}
-
-#else
-
-// Bionic or glibc.
-
 #include <byteswap.h>
 #include <sys/sendfile.h>
 #include <sys/statvfs.h>
@@ -84,6 +30,17 @@ static inline int android_getaddrinfofornet(const char* hostname, const char* se
   return getaddrinfo(hostname, servname, hints, res);
 }
 #endif
+
+#if __has_include(<linux/vm_sockets.h>)
+#include <linux/vm_sockets.h>
+#else  // __has_include(<linux/vm_sockets.h>)
+// the platform does not support virtio-vsock
+#define AF_VSOCK (-1)
+#define VMADDR_PORT_ANY (-1)
+#define VMADDR_CID_ANY (-1)
+#define VMADDR_CID_LOCAL (-1)
+#define VMADDR_CID_HOST (-1)
+#endif  // __has_include(<linux/vm_sockets.h>)
 
 #if defined(__GLIBC__) && !defined(__LP64__)
 
@@ -101,7 +58,5 @@ static inline int android_getaddrinfofornet(const char* hostname, const char* se
     _rc; })
 
 #endif  // __GLIBC__ && !__LP64__
-
-#endif  // __APPLE__
 
 #endif  // PORTABILITY_H_included

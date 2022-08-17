@@ -46,8 +46,6 @@ public final class AndroidHardcodedSystemProperties {
     // This value is shared with sun.misc.Version. It is defined here so that the compiler
     // can use it.
     public final static String JAVA_VERSION = "0";
-    public final static String ROBOVM_PROJECT_URL = "http://www.robovm.org/";
-    public final static String ROBOVM_PROJECT_NAME = "RoboVM";
 
     final static String[][] STATIC_PROPERTIES = {
         // None of these four are meaningful on Android, but these keys are guaranteed
@@ -55,24 +53,22 @@ public final class AndroidHardcodedSystemProperties {
         // class file version that dx currently supports.
         { "java.class.version", "50.0" },
         { "java.version", JAVA_VERSION },
-        { "java.runtime.version", "0.9" },
-        { "java.runtime.name", "RoboVM Runtime" },
         { "java.compiler", "" },
         { "java.ext.dirs", "" },
 
-        { "java.specification.name", "RoboVM Core Library" },
-        { "java.specification.vendor", ROBOVM_PROJECT_NAME },
+        { "java.specification.name", "Dalvik Core Library" },
+        { "java.specification.vendor", "The Android Project" },
         { "java.specification.version", "0.9" },
 
-        { "java.vendor", ROBOVM_PROJECT_NAME },
-        { "java.vendor.url", ROBOVM_PROJECT_URL },
-        { "java.vm.name", "RoboVM" },
-        { "java.vm.specification.name", "RoboVM Virtual Machine Specification" },
-        { "java.vm.specification.vendor", ROBOVM_PROJECT_NAME },
+        { "java.vendor", "The Android Project" },
+        { "java.vendor.url", "http://www.android.com/" },
+        { "java.vm.name", "Dalvik" },
+        { "java.vm.specification.name", "Dalvik Virtual Machine Specification" },
+        { "java.vm.specification.vendor", "The Android Project" },
         { "java.vm.specification.version", "0.9" },
-        { "java.vm.vendor", ROBOVM_PROJECT_NAME },
+        { "java.vm.vendor", "The Android Project" },
 
-        { "java.vm.vendor.url", ROBOVM_PROJECT_URL },
+        { "java.vm.vendor.url", "http://www.android.com/" },
 
         { "java.net.preferIPv6Addresses", "false" },
 

@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import libcore.net.MimeUtils;
+import libcore.content.type.MimeMap;
 
 /**
  * File type detector that uses a file extension to look up its MIME type
@@ -46,7 +46,7 @@ import libcore.net.MimeUtils;
 
 class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
 
-    // BEGIN Android-removed: Delegate to libcore.net.MimeUtils.
+    // BEGIN Android-removed: Delegate to libcore.content.type.MimeMap.
     /*
     // path to mime.types file
     private final Path mimeTypesFile;
@@ -61,7 +61,7 @@ class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
         mimeTypesFile = filePath;
     }
     */
-    // END Android-removed: Delegate to libcore.net.MimeUtils.
+    // END Android-removed: Delegate to libcore.content.type.MimeMap.
 
 
     @Override
@@ -74,7 +74,7 @@ class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
         if (ext.isEmpty())
             return null;  // no extension
 
-        // Android-removed: Delegate to libcore.net.MimeUtils.
+        // Android-removed: Delegate to libcore.content.type.MimeMap.
         // loadMimeTypes();
         // if (mimeTypeMap == null || mimeTypeMap.isEmpty())
         //    return null;
@@ -82,10 +82,10 @@ class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
         // Case-sensitive search
         String mimeType;
         do {
-            // BEGIN Android-changed: Delegate to libcore.net.MimeUtils.
+            // BEGIN Android-changed: Delegate to libcore.content.type.MimeMap.
             // mimeType = mimeTypeMap.get(ext);
-            mimeType = MimeUtils.guessMimeTypeFromExtension(ext);
-            // END Android-changed: Delegate to libcore.net.MimeUtils.
+            mimeType = MimeMap.getDefault().guessMimeTypeFromExtension(ext);
+            // END Android-changed: Delegate to libcore.content.type.MimeMap.
             if (mimeType == null)
                 ext = getExtension(ext);
         } while (mimeType == null && !ext.isEmpty());
@@ -105,7 +105,7 @@ class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
         return ext;
     }
 
-    // BEGIN Android-removed: Delegate to libcore.net.MimeUtils.
+    // BEGIN Android-removed: Delegate to libcore.content.type.MimeMap.
     /*
     /**
      * Parse the mime types file, and store the type-extension mappings into
@@ -218,5 +218,5 @@ class MimeTypesFileTypeDetector extends AbstractFileTypeDetector {
         }
     }
     */
-    // END Android-removed: Delegate to libcore.net.MimeUtils.
+    // END Android-removed: Delegate to libcore.content.type.MimeMap.
 }

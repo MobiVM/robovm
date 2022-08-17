@@ -16,15 +16,6 @@
 
 package org.apache.harmony.xml;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
-import dalvik.annotation.optimization.ReachabilitySensitive;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import libcore.io.IoUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.DTDHandler;
@@ -34,6 +25,18 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.ext.LexicalHandler;
+
+import android.compat.annotation.UnsupportedAppUsage;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import libcore.io.IoUtils;
+
+import dalvik.annotation.optimization.ReachabilitySensitive;
 
 /**
  * Adapts SAX API to the Expat native XML parser. Not intended for reuse
@@ -265,7 +268,7 @@ class ExpatParser {
          * specify how to tell whether or not the systemId is a URL let alone
          * how to resolve it.
          *
-         * Other implementations do various insane things. We try to keep it
+         * Other implementations do various dangerous things. We try to keep it
          * simple: if the systemId parses as a URI and it's relative, we try to
          * resolve it against the parent document's systemId. If anything goes
          * wrong, we go with the original systemId. If crazybob had designed

@@ -16,7 +16,7 @@
 
 package libcore.io;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * Iterates over big- or little-endian bytes. See {@link MemoryMappedFile#bigEndianIterator} and
@@ -44,13 +44,13 @@ public abstract class BufferIterator {
     public abstract int pos();
 
     /**
-     * Copies {@code byteCount} bytes from the current position into {@code dst}, starting at
-     * {@code dstOffset}, and advances the current position {@code byteCount} bytes.
+     * Copies {@code byteCount} bytes from the current position into {@code bytes}, starting at
+     * {@code arrayOffset}, and advances the current position {@code byteCount} bytes.
      *
      * @throws IndexOutOfBoundsException if the read / write would be outside of the buffer / array
      */
     @UnsupportedAppUsage
-    public abstract void readByteArray(byte[] dst, int dstOffset, int byteCount);
+    public abstract void readByteArray(byte[] bytes, int arrayOffset, int byteCount);
 
     /**
      * Returns the byte at the current position, and advances the current position one byte.
@@ -69,13 +69,21 @@ public abstract class BufferIterator {
     public abstract int readInt();
 
     /**
-     * Copies {@code intCount} 32-bit ints from the current position into {@code dst}, starting at
-     * {@code dstOffset}, and advances the current position {@code 4 * intCount} bytes.
+     * Copies {@code intCount} 32-bit ints from the current position into {@code ints}, starting at
+     * {@code arrayOffset}, and advances the current position {@code 4 * intCount} bytes.
      *
      * @throws IndexOutOfBoundsException if the read / write would be outside of the buffer / array
      */
     @UnsupportedAppUsage
-    public abstract void readIntArray(int[] dst, int dstOffset, int intCount);
+    public abstract void readIntArray(int[] ints, int arrayOffset, int intCount);
+
+    /**
+     * Copies {@code longCount} 64-bit ints from the current position into {@code longs}, starting
+     * at {@code arrayOffset}, and advances the current position {@code 8 * longCount} bytes.
+     *
+     * @throws IndexOutOfBoundsException if the read / write would be outside of the buffer / array
+     */
+    public abstract void readLongArray(long[] longs, int arrayOffset, int longCount);
 
     /**
      * Returns the 16-bit short at the current position, and advances the current position two bytes.

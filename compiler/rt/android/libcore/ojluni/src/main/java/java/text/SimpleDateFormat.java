@@ -39,24 +39,21 @@
 
 package java.text;
 
-import android.icu.text.TimeZoneFormat;
 import android.icu.text.TimeZoneNames;
 import android.icu.util.ULocale;
+
+import com.android.icu.text.ExtendedTimeZoneNames;
+import com.android.icu.text.ExtendedTimeZoneNames.Match;
 
 import java.io.IOException;
 import java.io.InvalidObjectException;
 import java.io.ObjectInputStream;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
+import java.util.NavigableMap;
 import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
@@ -69,6 +66,8 @@ import static java.text.DateFormatSymbols.*;
 
 // Android-changed: Added supported API level, removed unnecessary <br>
 // Android-changed: Clarified info about X symbol time zone parsing
+// Android-changed: Changed MMMMM to MMMM in month format example (ICU behavior).
+// http://b/147860740
 /**
  * <code>SimpleDateFormat</code> is a concrete class for formatting and
  * parsing dates in a locale-sensitive manner. It allows for formatting
@@ -420,7 +419,7 @@ import static java.text.DateFormatSymbols.*;
  *         <td><code>"K:mm a, z"</code>
  *         <td><code>0:08 PM, PDT</code>
  *     <tr style="background-color: rgb(238, 238, 255);">
- *         <td><code>"yyyyy.MMMMM.dd GGG hh:mm aaa"</code>
+ *         <td><code>"yyyyy.MMMM.dd GGG hh:mm aaa"</code>
  *         <td><code>02001.July.04 AD 12:08 PM</code>
  *     <tr>
  *         <td><code>"EEE, d MMM yyyy HH:mm:ss Z"</code>
@@ -592,7 +591,7 @@ public class SimpleDateFormat extends DateFormat {
     /**
      * ICU TimeZoneNames used to format and parse time zone names.
      */
-    private transient TimeZoneNames timeZoneNames;
+    private transient ExtendedTimeZoneNames timeZoneNames;
 
     /**
      * Constructs a <code>SimpleDateFormat</code> using the default pattern and
@@ -1911,12 +1910,16 @@ public class SimpleDateFormat extends DateFormat {
     private int matchString(String text, int start, int field,
                             Map<String,Integer> data, CalendarBuilder calb) {
         if (data != null) {
-            // BEGIN Android-removed: SortedMap instance lookup optimization in matchString().
+            // TODO: make this default when it's in the spec.
+            // BEGIN Android-changed: SortedMap instance lookup optimization in matchString().
             // RI returns not the longest match as matchString(String[]) does. http://b/119913354
             /*
-            // TODO: make this default when it's in the spec.
             if (data instanceof SortedMap) {
                 for (String name : data.keySet()) {
+            */
+            if (data instanceof NavigableMap && ((NavigableMap) data).comparator() == null) {
+                for (String name : ((NavigableMap<String, Integer>) data).descendingKeySet()) {
+            // END Android-changed: SortedMap instance lookup optimization in matchString().
                     if (text.regionMatches(true, start, name, 0, name.length())) {
                         calb.set(field, data.get(name));
                         return start + name.length();
@@ -1924,8 +1927,6 @@ public class SimpleDateFormat extends DateFormat {
                 }
                 return -start;
             }
-            */
-            // END Android-removed: SortedMap instance lookup optimization in matchString().
 
             String bestMatch = null;
 
@@ -1993,27 +1994,16 @@ public class SimpleDateFormat extends DateFormat {
         }
     }
 
-    private TimeZoneNames getTimeZoneNames() {
+    private ExtendedTimeZoneNames getExtendedTimeZoneNames() {
         if (timeZoneNames == null) {
-            timeZoneNames = TimeZoneNames.getInstance(locale);
+            timeZoneNames = ExtendedTimeZoneNames.getInstance(ULocale.forLocale(locale));
         }
         return timeZoneNames;
     }
 
-    /**
-     * The set of name types accepted when parsing time zone names.
-     */
-    private static final EnumSet<TimeZoneNames.NameType> NAME_TYPES =
-            EnumSet.of(TimeZoneNames.NameType.LONG_GENERIC, TimeZoneNames.NameType.LONG_STANDARD,
-                    TimeZoneNames.NameType.LONG_DAYLIGHT, TimeZoneNames.NameType.SHORT_GENERIC,
-                    TimeZoneNames.NameType.SHORT_STANDARD, TimeZoneNames.NameType.SHORT_DAYLIGHT);
-
-    /**
-     * Time zone name types that indicate daylight saving time.
-     */
-    private static final Set<TimeZoneNames.NameType> DST_NAME_TYPES =
-            Collections.unmodifiableSet(EnumSet.of(
-                    TimeZoneNames.NameType.LONG_DAYLIGHT, TimeZoneNames.NameType.SHORT_DAYLIGHT));
+    private TimeZoneNames getTimeZoneNames() {
+        return getExtendedTimeZoneNames().getTimeZoneNames();
+    }
 
     /**
      * Parses the time zone string using the ICU4J class {@link TimeZoneNames}.
@@ -2021,71 +2011,26 @@ public class SimpleDateFormat extends DateFormat {
     private int subParseZoneStringFromICU(String text, int start, CalendarBuilder calb) {
         String currentTimeZoneID = android.icu.util.TimeZone.getCanonicalID(getTimeZone().getID());
 
-        TimeZoneNames tzNames = getTimeZoneNames();
-        TimeZoneNames.MatchInfo bestMatch = null;
-        // The MetaZones associated with the current time zone are needed in two places, both of
-        // which are avoided in some cases, so they are computed lazily.
-        Set<String> currentTzMetaZoneIds = null;
-
-        Collection<TimeZoneNames.MatchInfo> matches = tzNames.find(text, start, NAME_TYPES);
-        for (TimeZoneNames.MatchInfo match : matches) {
-            if (bestMatch == null || bestMatch.matchLength() < match.matchLength()) {
-                bestMatch = match;
-            } else if (bestMatch.matchLength() == match.matchLength()) {
-                if (currentTimeZoneID.equals(match.tzID())) {
-                    // Prefer the currently set timezone over other matches, even if they are
-                    // the same length.
-                    bestMatch = match;
-                    break;
-                } else if (match.mzID() != null) {
-                    if (currentTzMetaZoneIds == null) {
-                        currentTzMetaZoneIds =
-                                tzNames.getAvailableMetaZoneIDs(currentTimeZoneID);
-                    }
-                    if (currentTzMetaZoneIds.contains(match.mzID())) {
-                        bestMatch = match;
-                        break;
-                    }
-                }
-            }
-        }
-        if (bestMatch == null) {
+        Match matchedName = getExtendedTimeZoneNames().matchName(text, start, currentTimeZoneID);
+        if (matchedName == null) {
             // No match found, return error.
             return -start;
         }
 
-        String tzId = bestMatch.tzID();
-        if (tzId == null) {
-            if (currentTzMetaZoneIds == null) {
-                currentTzMetaZoneIds = tzNames.getAvailableMetaZoneIDs(currentTimeZoneID);
-            }
-            if (currentTzMetaZoneIds.contains(bestMatch.mzID())) {
-                tzId = currentTimeZoneID;
-            } else {
-                // Match was for a meta-zone, find the matching reference zone.
-                ULocale uLocale = ULocale.forLocale(locale);
-                String region = uLocale.getCountry();
-                if (region.length() == 0) {
-                    uLocale = ULocale.addLikelySubtags(uLocale);
-                    region = uLocale.getCountry();
-                }
-                tzId = tzNames.getReferenceZoneID(bestMatch.mzID(), region);
-            }
-        }
-
+        String tzId = matchedName.getTzId();
         TimeZone newTimeZone = TimeZone.getTimeZone(tzId);
         if (!currentTimeZoneID.equals(tzId)) {
             setTimeZone(newTimeZone);
         }
 
         // Same logic as in subParseZoneStringFromSymbols, see below for details.
-        boolean isDst = DST_NAME_TYPES.contains(bestMatch.nameType());
+        boolean isDst = matchedName.isDst();
         int dstAmount = isDst ? newTimeZone.getDSTSavings() : 0;
         if (!isDst || dstAmount != 0) {
             calb.clear(Calendar.ZONE_OFFSET).set(Calendar.DST_OFFSET, dstAmount);
         }
 
-        return bestMatch.matchLength() + start;
+        return matchedName.getMatchLength() + start;
     }
 
     /**

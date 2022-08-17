@@ -19,15 +19,6 @@
 #include "JniException.h"
 #include <nativehelper/JNIHelp.h>
 
-void jniThrowExceptionWithErrno(JNIEnv* env, const char* exceptionClassName, int error) {
-    char buf[BUFSIZ];
-    jniThrowException(env, exceptionClassName, jniStrError(error, buf, sizeof(buf)));
-}
-
 void jniThrowOutOfMemoryError(JNIEnv* env, const char* message) {
     jniThrowException(env, "java/lang/OutOfMemoryError", message);
-}
-
-void jniThrowSocketException(JNIEnv* env, int error) {
-    jniThrowExceptionWithErrno(env, "java/net/SocketException", error);
 }

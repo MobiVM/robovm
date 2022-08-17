@@ -93,7 +93,7 @@ public class VM {
         return STATE_GREEN;
     }
 
-    // Android-removed: Not used
+    // Android-removed: Not used.
     /** @deprecated */
     // @Deprecated
     // public static void registerVMNotification(VMNotification n) { }
@@ -233,7 +233,7 @@ public class VM {
         return allowArraySyntax;
     }
 
-    // BEGIN Android-removed: Not used on android
+    // BEGIN Android-removed: Not used on android.
     /**
      * Returns true if the given class loader is in the system domain
      * in which all permissions are granted.
@@ -241,7 +241,7 @@ public class VM {
     // public static boolean isSystemDomainLoader(ClassLoader loader) {
     //     return loader == null;
     // }
-    // END Android-removed: Not used on android
+    // END Android-removed: Not used on android.
 
     /**
      * Returns the system property of the specified key saved at
@@ -403,7 +403,7 @@ public class VM {
     private final static int JVMTI_THREAD_STATE_WAITING_INDEFINITELY = 0x0010;
     private final static int JVMTI_THREAD_STATE_WAITING_WITH_TIMEOUT = 0x0020;
 
-    // BEGIN Android-removed: latestUserDefinedLoader()/initialize() not supported
+    // BEGIN Android-removed: latestUserDefinedLoader()/initialize() not supported.
     // /*
     //  * Returns the first non-null class loader up the execution stack,
     //  * or null if only code from the null class loader is on the stack.
@@ -414,5 +414,5 @@ public class VM {
     //     initialize();
     // }
     // private native static void initialize();
-    // END Android-removed: latestUserDefinedLoader()/initialize() not supported
+    // END Android-removed: latestUserDefinedLoader()/initialize() not supported.
 }

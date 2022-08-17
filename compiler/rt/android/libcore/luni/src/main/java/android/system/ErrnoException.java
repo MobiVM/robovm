@@ -19,6 +19,7 @@ package android.system;
 import java.io.IOException;
 import java.net.SocketException;
 import libcore.io.Libcore;
+import libcore.util.NonNull;
 
 /**
  * A checked exception thrown when {@link Os} methods fail. This exception contains the native
@@ -65,21 +66,26 @@ public final class ErrnoException extends Exception {
     }
 
     /**
-     * @hide - internal use only.
+     * Throws an {@link IOException} with a message based on {@link #getMessage()} and with this
+     * instance as the cause.
+     *
+     * <p>This method always terminates by throwing the exception. Callers can write
+     * {@code throw e.rethrowAsIOException()} to make that clear to the compiler.
      */
-    @libcore.api.CorePlatformApi
-    public IOException rethrowAsIOException() throws IOException {
+    public @NonNull IOException rethrowAsIOException() throws IOException {
         IOException newException = new IOException(getMessage());
         newException.initCause(this);
         throw newException;
     }
 
     /**
-     * @hide - internal use only.
+     * Throws a {@link SocketException} with a message based on {@link #getMessage()} and with this
+     * instance as the cause.
+     *
+     * <p>This method always terminates by throwing the exception. Callers can write
+     * {@code throw e.rethrowAsIOException()} to make that clear to the compiler.
      */
-    @libcore.api.CorePlatformApi
-    @libcore.api.IntraCoreApi
-    public SocketException rethrowAsSocketException() throws SocketException {
+    public @NonNull SocketException rethrowAsSocketException() throws SocketException {
         throw new SocketException(getMessage(), this);
     }
 }

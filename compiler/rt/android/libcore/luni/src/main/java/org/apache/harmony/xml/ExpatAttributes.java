@@ -16,8 +16,9 @@
 
 package org.apache.harmony.xml;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.xml.sax.Attributes;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * Wraps native attribute array.

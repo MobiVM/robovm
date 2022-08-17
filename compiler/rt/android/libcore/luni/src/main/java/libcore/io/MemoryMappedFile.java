@@ -16,17 +16,15 @@
 
 package libcore.io;
 
+import android.compat.annotation.UnsupportedAppUsage;
 import android.system.ErrnoException;
-import dalvik.annotation.compat.UnsupportedAppUsage;
+
 import java.io.FileDescriptor;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.nio.ByteOrder;
-import java.nio.channels.FileChannel;
-import java.nio.NioUtils;
-import libcore.io.Libcore;
-import libcore.io.Memory;
-import static android.system.OsConstants.*;
+
+import static android.system.OsConstants.MAP_SHARED;
+import static android.system.OsConstants.O_RDONLY;
+import static android.system.OsConstants.PROT_READ;
 
 /**
  * A memory-mapped file. Use {@link #mmapRO} to map a file, {@link #close} to unmap a file,

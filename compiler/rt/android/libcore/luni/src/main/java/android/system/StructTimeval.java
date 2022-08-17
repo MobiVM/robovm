@@ -43,11 +43,10 @@ public final class StructTimeval {
         // represented by rounding down to the nearest whole second <= the one we need
         // (i.e. floor()) and adding the necessary micro seconds.
         long tv_sec = millis / 1000;
-        long tv_usec = (millis - (tv_sec * 1000)) * 1000;
-        if (millis < 0) {
-            tv_sec -= 1;
-            tv_usec += 1_000_000;
+        if (tv_sec * 1000 > millis) {
+            --tv_sec;
         }
+        long tv_usec = (millis - (tv_sec * 1000)) * 1000;
         return new StructTimeval(tv_sec, tv_usec);
     }
 

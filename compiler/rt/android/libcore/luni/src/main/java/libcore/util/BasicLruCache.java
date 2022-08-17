@@ -16,7 +16,7 @@
 
 package libcore.util;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

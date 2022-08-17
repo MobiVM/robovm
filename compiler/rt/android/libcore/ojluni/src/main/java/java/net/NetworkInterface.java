@@ -47,6 +47,7 @@ import static android.system.OsConstants.*;
 
 // Android-note: NetworkInterface has been rewritten to avoid native code.
 // Fix upstream bug not returning link-down interfaces. http://b/26238832
+// Android-added: Document restrictions for targetSdkVersion >= R. http://b/141455849
 /**
  * This class represents a Network Interface made up of a name,
  * and a list of IP addresses assigned to this interface.
@@ -54,6 +55,12 @@ import static android.system.OsConstants.*;
  * is joined.
  *
  * Interfaces are normally known by names such as "le0".
+ * <p>
+ * <a name="access-restrictions"></a>Note that information about
+ * {@link NetworkInterface}s may be restricted. For example, non-system apps
+ * with {@code targetSdkVersion >= android.os.Build.VERSION_CODES.R} will only
+ * have access to information about {@link NetworkInterface}s that are
+ * associated with an {@link InetAddress}.
  *
  * @since 1.4
  */
@@ -265,6 +272,7 @@ public final class NetworkInterface {
         return "".equals(displayName) ? null : displayName;
     }
 
+    // Android-added: Document restrictions for targetSdkVersion >= R. http://b/141455849
     /**
      * Searches for the network interface with the specified name.
      *
@@ -272,8 +280,9 @@ public final class NetworkInterface {
      *          The name of the network interface.
      *
      * @return  A {@code NetworkInterface} with the specified name,
-     *          or {@code null} if there is no network interface
-     *          with the specified name.
+     *          or {@code null} if the network interface with the specified
+     *          name does not exist or <a href="#access-restrictions">can't be
+     *          accessed</a>.
      *
      * @throws  SocketException
      *          If an I/O error occurs.
@@ -295,12 +304,14 @@ public final class NetworkInterface {
         return null;
     }
 
+    // Android-added: Document restrictions for targetSdkVersion >= R. http://b/141455849
     /**
      * Get a network interface given its index.
      *
      * @param index an integer, the index of the interface
      * @return the NetworkInterface obtained from its index, or {@code null} if
-     *         there is no interface with such an index on the system
+     *         an interface with the specified index does not exist or
+     *         <a href="#access-restrictions">can't be accessed</a>.
      * @throws  SocketException  if an I/O error occurs.
      * @throws  IllegalArgumentException if index has a negative value
      * @see #getIndex()
@@ -362,6 +373,7 @@ public final class NetworkInterface {
         return null;
     }
 
+    // Android-added: Document restrictions for targetSdkVersion >= R. http://b/141455849
     /**
      * Returns all the interfaces on this machine. The {@code Enumeration}
      * contains at least one element, possibly representing a loopback
@@ -370,20 +382,44 @@ public final class NetworkInterface {
      *
      * NOTE: can use getNetworkInterfaces()+getInetAddresses()
      *       to obtain all IP addresses for this node
+     * <p>
+     * For non-system apps with
+     * {@code targetSdkVersion >= android.os.Build.VERSION_CODES.R}, this
+     * method will only return information for {@link NetworkInterface}s that
+     * are associated with an {@link InetAddress}.
      *
      * @return an Enumeration of NetworkInterfaces found on this machine
+     *         that <a href="#access-restrictions">are accessible</a>.
      * @exception  SocketException  if an I/O error occurs.
      */
 
     public static Enumeration<NetworkInterface> getNetworkInterfaces()
         throws SocketException {
         final NetworkInterface[] netifs = getAll();
-
         // Android-changed: Rewrote NetworkInterface on top of Libcore.io.
-        // specified to return null if no network interfaces
+        // // specified to return null if no network interfaces
+        // if (netifs == null)
         if (netifs.length == 0)
             return null;
 
+        // Android-changed: Rewrote NetworkInterface on top of Libcore.io.
+        /*
+        return new Enumeration<NetworkInterface>() {
+            private int i = 0;
+            public NetworkInterface nextElement() {
+                if (netifs != null && i < netifs.length) {
+                    NetworkInterface netif = netifs[i++];
+                    return netif;
+                } else {
+                    throw new NoSuchElementException();
+                }
+            }
+
+            public boolean hasMoreElements() {
+                return (netifs != null && i < netifs.length);
+            }
+        };
+        */
         return Collections.enumeration(Arrays.asList(netifs));
     }
 
@@ -458,8 +494,11 @@ public final class NetworkInterface {
                 NetworkInterface parent = nis.get(parentName);
 
                 ni.virtual = true;
-                ni.parent = parent;
-                parent.childs.add(ni);
+
+                if (parent != null) {
+                    ni.parent = parent;
+                    parent.childs.add(ni);
+                }
             }
         }
 
@@ -523,6 +562,7 @@ public final class NetworkInterface {
         return (getFlags() & IFF_MULTICAST) != 0;
     }
 
+    // Android-added: Document restrictions for targetSdkVersion >= R. http://b/141455849
     /**
      * Returns the hardware address (usually MAC) of the interface if it
      * has one and if it can be accessed given the current privileges.
@@ -532,7 +572,10 @@ public final class NetworkInterface {
      * @return  a byte array containing the address, or {@code null} if
      *          the address doesn't exist, is not accessible or a security
      *          manager is set and the caller does not have the permission
-     *          NetPermission("getNetworkInformation")
+     *          NetPermission("getNetworkInformation"). For example, this
+     *          method will generally return {@code null} when called by
+     *          non-system apps having
+     *          {@code targetSdkVersion >= android.os.Build.VERSION_CODES.R}.
      *
      * @exception       SocketException if an I/O error occurs.
      * @since 1.6

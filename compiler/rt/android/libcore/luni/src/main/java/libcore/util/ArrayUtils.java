@@ -18,7 +18,6 @@ package libcore.util;
 /**
  * @hide
  */
-@libcore.api.CorePlatformApi
 public final class ArrayUtils {
     private ArrayUtils() {}
 
@@ -30,7 +29,6 @@ public final class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException if the range from {@code offset} with length
      * {@code count} is out of bounds of the array
      */
-    @libcore.api.CorePlatformApi
     public static void throwsIfOutOfBounds(int len, int offset, int count) {
         if (len < 0) {
             throw new ArrayIndexOutOfBoundsException("Negative length: " + len);

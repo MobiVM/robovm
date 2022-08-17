@@ -72,13 +72,13 @@ public class DerValue {
 
     private int                 length;
 
-    // BEGIN Android-added: Original encoded form needed for APKs parsing/validation
+    // BEGIN Android-added: Original encoded form needed for APKs parsing/validation.
     /**
      * The original encoded form of the whole value (tag, length, and value)
      * or null if the form was not provided or was not retained during parsing.
      */
     private byte[]              originalEncodedForm;
-    // END Android-added: Original encoded form needed for APKs parsing/validation
+    // END Android-added: Original encoded form needed for APKs parsing/validation.
 
     /*
      * The type starts at the first byte of the encoding, and
@@ -251,7 +251,7 @@ public class DerValue {
     /*
      * package private
      */
-    // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation
+    // BEGIN Android-changed: Original encoded form needed for APKs parsing/validation.
     DerValue(DerInputBuffer in, boolean originalEncodedFormRetained)
             throws IOException {
         // XXX must also parse BER-encoded constructed
@@ -297,7 +297,7 @@ public class DerValue {
             int consumed = in.getPos() - startPosInInput;
             originalEncodedForm = in.getSlice(startPosInInput, consumed);
         }
-    // END Android-changed: Original encoded form needed for APKs parsing/validation
+    // END Android-changed: Original encoded form needed for APKs parsing/validation.
     }
 
     /**
@@ -838,7 +838,7 @@ public class DerValue {
         }
     }
 
-    // BEGIN Android-added: Original encoded form needed for APKs parsing/validation
+    // BEGIN Android-added: Original encoded form needed for APKs parsing/validation.
     /**
      * Returns the original encoded form or {@code null} if the form was not
      * retained or is not available.
@@ -847,7 +847,7 @@ public class DerValue {
         return (originalEncodedForm != null)
                 ? originalEncodedForm.clone() : null;
     }
-    // END Android-added: Original encoded form needed for APKs parsing/validation
+    // END Android-added: Original encoded form needed for APKs parsing/validation.
 
     /**
      * Returns a DER-encoded value, such that if it's passed to the

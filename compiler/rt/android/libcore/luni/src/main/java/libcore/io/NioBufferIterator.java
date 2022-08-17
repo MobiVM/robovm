@@ -50,10 +50,12 @@ public final class NioBufferIterator extends BufferIterator {
         this.swap = swap;
     }
 
+    @Override
     public void seek(int offset) {
         position = offset;
     }
 
+    @Override
     public void skip(int byteCount) {
         position += byteCount;
     }
@@ -63,14 +65,16 @@ public final class NioBufferIterator extends BufferIterator {
         return position;
     }
 
-    public void readByteArray(byte[] dst, int dstOffset, int byteCount) {
-        checkDstBounds(dstOffset, dst.length, byteCount);
+    @Override
+    public void readByteArray(byte[] bytes, int arrayOffset, int byteCount) {
+        checkArrayBounds(arrayOffset, bytes.length, byteCount);
         file.checkNotClosed();
         checkReadBounds(position, length, byteCount);
-        Memory.peekByteArray(address + position, dst, dstOffset, byteCount);
+        Memory.peekByteArray(address + position, bytes, arrayOffset, byteCount);
         position += byteCount;
     }
 
+    @Override
     public byte readByte() {
         file.checkNotClosed();
         checkReadBounds(position, length, 1);
@@ -79,6 +83,7 @@ public final class NioBufferIterator extends BufferIterator {
         return result;
     }
 
+    @Override
     public int readInt() {
         file.checkNotClosed();
         checkReadBounds(position, length, Integer.BYTES);
@@ -87,15 +92,27 @@ public final class NioBufferIterator extends BufferIterator {
         return result;
     }
 
-    public void readIntArray(int[] dst, int dstOffset, int intCount) {
-        checkDstBounds(dstOffset, dst.length, intCount);
+    @Override
+    public void readIntArray(int[] ints, int arrayOffset, int intCount) {
+        checkArrayBounds(arrayOffset, ints.length, intCount);
         file.checkNotClosed();
         final int byteCount = Integer.BYTES * intCount;
         checkReadBounds(position, length, byteCount);
-        Memory.peekIntArray(address + position, dst, dstOffset, intCount, swap);
+        Memory.peekIntArray(address + position, ints, arrayOffset, intCount, swap);
         position += byteCount;
     }
 
+    @Override
+    public void readLongArray(long[] longs, int arrayOffset, int longCount) {
+        checkArrayBounds(arrayOffset, longs.length, longCount);
+        file.checkNotClosed();
+        final int byteCount = Long.BYTES * longCount;
+        checkReadBounds(position, length, byteCount);
+        Memory.peekLongArray(address + position, longs, arrayOffset, longCount, swap);
+        position += byteCount;
+    }
+
+    @Override
     public short readShort() {
         file.checkNotClosed();
         checkReadBounds(position, length, Short.BYTES);
@@ -118,18 +135,18 @@ public final class NioBufferIterator extends BufferIterator {
         }
     }
 
-    private static void checkDstBounds(int dstOffset, int dstLength, int count) {
-        if (dstOffset < 0 || count < 0) {
+    private static void checkArrayBounds(int arrayOffset, int arrayLength, int count) {
+        if (arrayOffset < 0 || count < 0) {
             throw new IndexOutOfBoundsException(
-                    "Invalid dst args: offset=" + dstLength + ", count=" + count);
+                    "Invalid args: arrayOffset=" + arrayOffset + ", count=" + count);
         }
-        // Use of int here relies on dstLength being an int <= Integer.MAX_VALUE, which it has to
+        // Use of int here relies on arrayLength being an int <= Integer.MAX_VALUE, which it has to
         // be because it's an array length.
-        final int targetPos = dstOffset + count;
-        if (targetPos < 0 || targetPos > dstLength) {
+        final int targetPos = arrayOffset + count;
+        if (targetPos < 0 || targetPos > arrayLength) {
             throw new IndexOutOfBoundsException(
-                    "Write outside range: dst.length=" + dstLength + ", offset="
-                            + dstOffset + ", count=" + count);
+                    "Write outside range: arrayLength=" + arrayLength + ", arrayOffset="
+                            + arrayOffset + ", count=" + count);
         }
     }
 }

@@ -38,10 +38,12 @@ import dalvik.annotation.optimization.FastNative;
  * @author   Mark Reinhold
  * @since    1.2
  */
-// BEGIN Android-changed: Reimplemented to accommodate a different GC and compiler.
-// ClassLinker knows about the fields of this class.
 
 public abstract class Reference<T> {
+    // BEGIN Android-changed: Reimplemented to accommodate a different GC and compiler.
+    // ClassLinker knows about the fields of this class.
+    // Backported refersTo() from OpenJDK 16.
+
     /**
      * Forces JNI path.
      * If GC is not in progress (ie: not going through slow path), the referent
@@ -55,11 +57,16 @@ public abstract class Reference<T> {
      * Used by the reference processor to determine whether or not the referent
      * can be immediately returned. Because the referent might get swept during
      * GC, the slow path, which passes through JNI, must be taken.
+     * This is only modified with mutators suspended, and hence does not need to
+     * be volatile.
      */
     private static boolean slowPathEnabled = false;
 
     // Treated specially by GC. ART's ClassLinker::LinkFields() knows this is the
     // alphabetically last non-static field.
+    // We assume that Reference.get() and Reference.clear() are intended to be
+    // callable concurrently, and thus referent accesses should be treated as
+    // volatile everywhere.
     volatile T referent;
 
     final ReferenceQueue<? super T> queue;
@@ -100,8 +107,28 @@ public abstract class Reference<T> {
      *           <code>null</code> if this reference object has been cleared
      */
     public T get() {
-        return referent;
+        return getReferent();
     }
+
+    @FastNative
+    private final native T getReferent();
+
+    /**
+     * Tests if the referent of this reference object is {@code obj}.
+     * Using a {@code null} {@code obj} returns {@code true} if the
+     * reference object has been cleared.
+     *
+     * @param  obj the object to compare with this reference object's referent
+     * @return {@code true} if {@code obj} is the referent of this reference object
+     * @hide
+     */
+    public final boolean refersTo(T obj) {
+        return refersTo0(obj);
+    }
+
+    /* Implementation of refersTo(). */
+    @FastNative
+    private final native boolean refersTo0(Object o);
 
     /**
      * Clears this reference object.  Invoking this method will not cause this
@@ -110,25 +137,49 @@ public abstract class Reference<T> {
      * <p> This method is invoked only by Java code; when the garbage collector
      * clears references it does so directly, without invoking this method.
      */
-    /**
-     * Makes the referent {@code null}. This does not force the reference
-     * object to be enqueued.
-     */
     public void clear() {
-        referent = null;
+        clearReferent();
     }
+
+    // Direct access to the referent is prohibited, clearReferent blocks and set
+    // the referent to null when it is safe to do so.
+    @FastNative
+    native void clearReferent();
 
     /* -- Queue operations -- */
 
+    // Android-changed: deprecate since 9.
+    // @Deprecated(since="16")
     /**
-     * Tells whether or not this reference object has been enqueued, either by
-     * the program or by the garbage collector.  If this reference object was
-     * not registered with a queue when it was created, then this method will
-     * always return <code>false</code>.
+     * Tests if this reference object is in its associated queue, if any.
+     * This method returns {@code true} only if all of the following conditions
+     * are met:
+     * <ul>
+     * <li>this reference object was registered with a queue when it was created; and
+     * <li>the garbage collector has added this reference object to the queue
+     *     or {@link #enqueue()} is called; and
+     * <li>this reference object is not yet removed from the queue.
+     * </ul>
+     * Otherwise, this method returns {@code false}.
+     * This method may return {@code false} if this reference object has been cleared
+     * but not enqueued due to the race condition.
      *
-     * @return   <code>true</code> if and only if this reference object has
-     *           been enqueued
+     * @deprecated
+     * This method was never implemented to test if a reference object has
+     * been cleared and enqueued as it was previously specified since 1.2.
+     * This method could be misused due to the inherent race condition
+     * or without an associated {@code ReferenceQueue}.
+     * An application relying on this method to release critical resources
+     * could cause serious performance issue.
+     * An application should use {@link ReferenceQueue} to reliably determine
+     * what reference objects that have been enqueued or
+     * {@code refersTo(null)} to determine if this reference
+     * object has been cleared.
+     *
+     * @return   {@code true} if and only if this reference object is
+     *           in its associated queue (if any).
      */
+    @Deprecated(since="9")
     public boolean isEnqueued() {
         // Contrary to what the documentation says, this method returns false
         // after this reference object has been removed from its queue
@@ -161,14 +212,8 @@ public abstract class Reference<T> {
     Reference(T referent, ReferenceQueue<? super T> queue) {
         this.referent = referent;
         this.queue = queue;
-        register(referent);
     }
     // END Android-changed: Reimplemented to accommodate a different GC and compiler.
-
-    /**
-     * RoboVM note: This is not in Android.
-     */
-    private native void register(T r);
 
     // BEGIN Android-added: reachabilityFence() from upstream OpenJDK9+181.
     // The actual implementation differs from OpenJDK9.

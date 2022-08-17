@@ -38,12 +38,11 @@
 #include "openssl/opensslv.h"
 #include "zlib.h"
 #include <nativehelper/JNIHelp.h>
+#include <nativehelper/jni_macros.h>
+
 #if defined(__ANDROID__)
 void android_get_LD_LIBRARY_PATH(char*, size_t);
 #endif
-
-#define NATIVE_METHOD(className, functionName, signature) \
-{ #functionName, signature, (void*)(className ## _ ## functionName) }
 
 #define PUTPROP(props, key, val) \
     if (1) { \
@@ -252,13 +251,13 @@ static void System_log(JNIEnv* env, jclass ignored, jchar type, jstring javaMess
     }
 }
 
-static jlong System_nanoTime(JNIEnv* env, jclass unused) {
+static jlong System_nanoTime() {
   struct timespec now;
   clock_gettime(CLOCK_MONOTONIC, &now);
   return now.tv_sec * 1000000000LL + now.tv_nsec;
 }
 
-static jlong System_currentTimeMillis(JNIEnv* env, jclass unused) {
+static jlong System_currentTimeMillis() {
   return JVM_CurrentTimeMillis(NULL, NULL);
 }
 
@@ -269,8 +268,8 @@ static JNINativeMethod gMethods[] = {
   NATIVE_METHOD(System, setIn0, "(Ljava/io/InputStream;)V"),
   NATIVE_METHOD(System, specialProperties, "()[Ljava/lang/String;"),
   NATIVE_METHOD(System, log, "(CLjava/lang/String;Ljava/lang/Throwable;)V"),
-  NATIVE_METHOD(System, currentTimeMillis, "()J"),
-  NATIVE_METHOD(System, nanoTime, "()J"),
+  CRITICAL_NATIVE_METHOD(System, currentTimeMillis, "()J"),
+  CRITICAL_NATIVE_METHOD(System, nanoTime, "()J"),
 };
 
 void register_java_lang_System(JNIEnv* env) {

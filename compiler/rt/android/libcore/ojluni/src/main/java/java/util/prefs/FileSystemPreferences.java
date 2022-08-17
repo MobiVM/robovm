@@ -34,6 +34,7 @@ import java.security.PrivilegedActionException;
 
 import sun.util.logging.PlatformLogger;
 
+// Android-changed: @hide.
 /**
  * Preferences implementation for Unix.  Preferences are stored in the file
  * system, with one directory per preferences node.  All of the preferences
@@ -50,7 +51,6 @@ import sun.util.logging.PlatformLogger;
  *
  * @hide
  */
-// Android-changed: @hide.
 public class FileSystemPreferences extends AbstractPreferences {
     /**
      * Returns logger for error messages. Backing store exceptions are logged at

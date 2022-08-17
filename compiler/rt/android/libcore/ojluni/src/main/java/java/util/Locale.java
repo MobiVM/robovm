@@ -41,6 +41,7 @@
 
 package java.util;
 
+import com.android.icu.util.LocaleNative;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -524,8 +525,8 @@ import sun.util.locale.ParseStatus;
  *     <td><a href="http://site.icu-project.org/download/60">ICU 60.2</a></td>
  *     <td><a href="http://cldr.unicode.org/index/downloads/cldr-32">CLDR 32.0.1</a></td>
  *     <td><a href="http://www.unicode.org/versions/Unicode10.0.0/">Unicode 10.0</a></td></tr>
- * <tr><td>Android Q</td>
- *     <td><a href="http://site.icu-project.org/download/63">ICU 63.1</a></td>
+ * <tr><td>Android 10.0 (Q)</td>
+ *     <td><a href="http://site.icu-project.org/download/63">ICU 63.2</a></td>
  *     <td><a href="http://cldr.unicode.org/index/downloads/cldr-34">CLDR 34</a></td>
  *     <td><a href="http://www.unicode.org/versions/Unicode11.0.0/">Unicode 11.0</a></td></tr>
  * </table>
@@ -1874,9 +1875,9 @@ public final class Locale implements Cloneable, Serializable {
 
         // TODO: We need a new hack or a complete fix for http://b/8049507 --- We would
         // cover the frameworks' tracks when they were using "tl" instead of "fil".
-        String result = ICU.getDisplayLanguage(this, locale);
+        String result = LocaleNative.getDisplayLanguage(this, locale);
         if (result == null) { // TODO: do we need to do this, or does ICU do it for us?
-            result = ICU.getDisplayLanguage(this, Locale.getDefault());
+            result = LocaleNative.getDisplayLanguage(this, Locale.getDefault());
         }
         return result;
     }
@@ -1949,9 +1950,9 @@ public final class Locale implements Cloneable, Serializable {
             return "";
         }
 
-        String result = ICU.getDisplayScript(this, inLocale);
+        String result = LocaleNative.getDisplayScript(this, inLocale);
         if (result == null) { // TODO: do we need to do this, or does ICU do it for us?
-            result = ICU.getDisplayScript(this, Locale.getDefault(Category.DISPLAY));
+            result = LocaleNative.getDisplayScript(this, Locale.getDefault(Category.DISPLAY));
         }
 
         return result;
@@ -2043,9 +2044,9 @@ public final class Locale implements Cloneable, Serializable {
             return countryCode;
         }
 
-        String result = ICU.getDisplayCountry(this, locale);
+        String result = LocaleNative.getDisplayCountry(this, locale);
         if (result == null) { // TODO: do we need to do this, or does ICU do it for us?
-            result = ICU.getDisplayCountry(this, Locale.getDefault());
+            result = LocaleNative.getDisplayCountry(this, Locale.getDefault());
         }
         return result;
     }
@@ -2154,9 +2155,9 @@ public final class Locale implements Cloneable, Serializable {
             return variantCode;
         }
 
-        String result = ICU.getDisplayVariant(this, inLocale);
+        String result = LocaleNative.getDisplayVariant(this, inLocale);
         if (result == null) { // TODO: do we need to do this, or does ICU do it for us?
-            result = ICU.getDisplayVariant(this, Locale.getDefault());
+            result = LocaleNative.getDisplayVariant(this, Locale.getDefault());
         }
 
         // The "old style" locale constructors allow us to pass in variants that aren't
@@ -2349,7 +2350,7 @@ public final class Locale implements Cloneable, Serializable {
      * <li>{@code new Locale("en").getDisplayName(Locale.US)} -> {@code English}
      * <li>{@code new Locale("en", "US").getDisplayName(Locale.US)} -> {@code English (United States)}
      * <li>{@code new Locale("en", "US", "POSIX").getDisplayName(Locale.US)} -> {@code English (United States,Computer)}
-     * <li>{@code Locale.fromLanguageTag("zh-Hant-CN").getDisplayName(Locale.US)} -> {@code Chinese (Traditional Han,China)}
+     * <li>{@code Locale.forLanguageTag("zh-Hant-CN").getDisplayName(Locale.US)} -> {@code Chinese (Traditional Han,China)}
      * <li>{@code new Locale("en").getDisplayName(Locale.FRANCE)} -> {@code anglais}
      * <li>{@code new Locale("en", "US").getDisplayName(Locale.FRANCE)} -> {@code anglais (États-Unis)}
      * <li>{@code new Locale("en", "US", "POSIX").getDisplayName(Locale.FRANCE)} -> {@code anglais (États-Unis,informatique)}.
@@ -2748,24 +2749,6 @@ public final class Locale implements Cloneable, Serializable {
         }
     }
     */
-
-    // BEGIN Android-added: adjustLanguageCode(), for internal use only.
-    /** @hide for internal use only. */
-    public static String adjustLanguageCode(String languageCode) {
-        String adjusted = languageCode.toLowerCase(Locale.US);
-        // Map new language codes to the obsolete language
-        // codes so the correct resource bundles will be used.
-        if (languageCode.equals("he")) {
-            adjusted = "iw";
-        } else if (languageCode.equals("id")) {
-            adjusted = "in";
-        } else if (languageCode.equals("yi")) {
-            adjusted = "ji";
-        }
-
-        return adjusted;
-    }
-    // END Android-added: adjustLanguageCode(), for internal use only.
 
     /**
      * Enum for locale categories.  These locale categories are used to get/set

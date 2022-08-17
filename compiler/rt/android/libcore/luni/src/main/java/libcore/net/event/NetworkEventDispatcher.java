@@ -16,7 +16,10 @@
 
 package libcore.net.event;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -25,8 +28,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
-public class NetworkEventDispatcher {
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+public final class NetworkEventDispatcher {
 
   private static final NetworkEventDispatcher instance = new NetworkEventDispatcher();
 
@@ -35,20 +39,27 @@ public class NetworkEventDispatcher {
 
   /**
    * Returns the shared {@link NetworkEventDispatcher} instance.
+   *
+   * @return singleton instance of {@link NetworkEventDispatcher}
+   *
+   * @hide
    */
   @UnsupportedAppUsage
-  @libcore.api.CorePlatformApi
+  @SystemApi(client = MODULE_LIBRARIES)
+  @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
   public static NetworkEventDispatcher getInstance() {
     return instance;
   }
 
-  /** Visible for testing. Use {@link #getInstance()} instead. */
-  protected NetworkEventDispatcher() {
+  /** @hide Visible for testing. Use {@link #getInstance()} instead. */
+  public NetworkEventDispatcher() {
   }
 
   /**
    * Registers a listener to be notified when network events occur.
    * It can be deregistered using {@link #removeListener(NetworkEventListener)}
+   *
+   * @hide
    */
   @UnsupportedAppUsage
   public void addListener(NetworkEventListener toAdd) {
@@ -61,6 +72,8 @@ public class NetworkEventDispatcher {
   /**
    * De-registers a listener previously added with {@link #addListener(NetworkEventListener)}. If
    * the listener was not previously registered this is a no-op.
+   *
+   * @hide
    */
   public void removeListener(NetworkEventListener toRemove) {
     for (NetworkEventListener listener : listeners) {
@@ -73,9 +86,12 @@ public class NetworkEventDispatcher {
 
   /**
    * Notifies registered listeners of a network configuration change.
+   *
+   * @hide
    */
-  @libcore.api.CorePlatformApi
-  public void onNetworkConfigurationChanged() {
+  @SystemApi(client = MODULE_LIBRARIES)
+  @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+  public void dispatchNetworkConfigurationChange() {
     for (NetworkEventListener listener : listeners) {
       try {
         listener.onNetworkConfigurationChanged();

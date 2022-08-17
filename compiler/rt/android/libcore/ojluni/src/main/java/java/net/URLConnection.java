@@ -288,13 +288,13 @@ public abstract class URLConnection {
     */
     private static FileNameMap fileNameMap;
 
-    // BEGIN Android-removed: Android has its own mime table.
+    // BEGIN Android-changed: Android has its own mime table.
     /*
+    /**
      * @since 1.2.2
      *
     private static boolean fileNameMapLoaded = false;
-    */
-    // END Android-removed: Android has its own mime table.
+
     /**
      * Loads filename map (a mimetable) from a data file. It will
      * first try to load the user-specific table, defined
@@ -304,14 +304,36 @@ public abstract class URLConnection {
      * @return the FileNameMap
      * @since 1.2
      * @see #setFileNameMap(java.net.FileNameMap)
+     *
+    public static synchronized FileNameMap getFileNameMap() {
+        if ((fileNameMap == null) && !fileNameMapLoaded) {
+            fileNameMap = sun.net.www.MimeTable.loadTable();
+            fileNameMapLoaded = true;
+        }
+
+        return new FileNameMap() {
+            private FileNameMap map = fileNameMap;
+            public String getContentTypeFor(String fileName) {
+                return map.getContentTypeFor(fileName);
+            }
+        };
+    }
+    */
+    /**
+     * Returns a {@link FileNameMap} implementation suitable for guessing a
+     * content type based on a URL's "file" component.
+     *
+     * @see #guessContentTypeFromName(String)
+     * @see #setFileNameMap(java.net.FileNameMap)
+     *
      */
     public static synchronized FileNameMap getFileNameMap() {
-        // Android-changed: Android has its own mime table.
         if (fileNameMap == null) {
             fileNameMap = new DefaultFileNameMap();
         }
         return fileNameMap;
     }
+    // END Android-changed: Android has its own mime table.
 
     /**
      * Sets the FileNameMap.

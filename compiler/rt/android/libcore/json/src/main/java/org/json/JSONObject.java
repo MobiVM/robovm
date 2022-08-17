@@ -16,7 +16,11 @@
 
 package org.json;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -673,11 +677,14 @@ public class JSONObject {
      *
      * See {@link #keys()}.
      *
-     * @hide.
+     * @return set of keys in this object
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
-    public Set<String> keySet() {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    @NonNull public Set<@NonNull String> keySet() {
         return nameValuePairs.keySet();
     }
 

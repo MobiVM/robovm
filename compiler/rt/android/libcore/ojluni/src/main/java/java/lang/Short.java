@@ -25,6 +25,9 @@
 
 package java.lang;
 
+// Android-removed: unsupported @HotSpotIntrinsicCandidate annotation.
+// import jdk.internal.HotSpotIntrinsicCandidate;
+
 /**
  * The {@code Short} class wraps a value of primitive type {@code
  * short} in an object.  An object of type {@code Short} contains a
@@ -38,7 +41,7 @@ package java.lang;
  * @author  Nakul Saraiya
  * @author  Joseph D. Darcy
  * @see     java.lang.Number
- * @since   JDK1.1
+ * @since   1.1
  */
 public final class Short extends Number implements Comparable<Short> {
 
@@ -227,6 +230,8 @@ public final class Short extends Number implements Comparable<Short> {
      * @return a {@code Short} instance representing {@code s}.
      * @since  1.5
      */
+    // Android-removed: unsupported @HotSpotIntrinsicCandidate annotation.
+    // @HotSpotIntrinsicCandidate
     public static Short valueOf(short s) {
         final int offset = 128;
         int sAsInt = s;
@@ -299,7 +304,13 @@ public final class Short extends Number implements Comparable<Short> {
      *
      * @param value     the value to be represented by the
      *                  {@code Short}.
+     *
+     * @deprecated
+     * It is rarely appropriate to use this constructor. The static factory
+     * {@link #valueOf(short)} is generally a better choice, as it is
+     * likely to yield significantly better space and time performance.
      */
+    @Deprecated(since="9")
     public Short(short value) {
         this.value = value;
     }
@@ -315,8 +326,14 @@ public final class Short extends Number implements Comparable<Short> {
      *          {@code Short}
      * @throws  NumberFormatException If the {@code String}
      *          does not contain a parsable {@code short}.
-     * @see     java.lang.Short#parseShort(java.lang.String, int)
+     *
+     * @deprecated
+     * It is rarely appropriate to use this constructor.
+     * Use {@link #parseShort(String)} to convert a string to a
+     * {@code short} primitive, or use {@link #valueOf(String)}
+     * to convert a string to a {@code Short} object.
      */
+    @Deprecated(since="9")
     public Short(String s) throws NumberFormatException {
         this.value = parseShort(s, 10);
     }
@@ -334,6 +351,8 @@ public final class Short extends Number implements Comparable<Short> {
      * Returns the value of this {@code Short} as a
      * {@code short}.
      */
+    // Android-removed: unsupported @HotSpotIntrinsicCandidate annotation.
+    // @HotSpotIntrinsicCandidate
     public short shortValue() {
         return value;
     }
@@ -464,6 +483,22 @@ public final class Short extends Number implements Comparable<Short> {
     }
 
     /**
+     * Compares two {@code short} values numerically treating the values
+     * as unsigned.
+     *
+     * @param  x the first {@code short} to compare
+     * @param  y the second {@code short} to compare
+     * @return the value {@code 0} if {@code x == y}; a value less
+     *         than {@code 0} if {@code x < y} as unsigned values; and
+     *         a value greater than {@code 0} if {@code x > y} as
+     *         unsigned values
+     * @since 9
+     */
+    public static int compareUnsigned(short x, short y) {
+        return Short.toUnsignedInt(x) - Short.toUnsignedInt(y);
+    }
+
+    /**
      * The number of bits used to represent a {@code short} value in two's
      * complement binary form.
      * @since 1.5
@@ -487,6 +522,8 @@ public final class Short extends Number implements Comparable<Short> {
      *     the bytes in the specified {@code short} value.
      * @since 1.5
      */
+    // Android-removed: unsupported @HotSpotIntrinsicCandidate annotation.
+    // @HotSpotIntrinsicCandidate
     public static short reverseBytes(short i) {
         return (short) (((i & 0xFF00) >> 8) | (i << 8));
     }

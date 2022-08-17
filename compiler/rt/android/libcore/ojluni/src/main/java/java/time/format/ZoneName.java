@@ -24,7 +24,6 @@
  */
 package java.time.format;
 
-import android.icu.impl.ZoneMeta;
 import android.icu.text.TimeZoneNames;
 import android.icu.util.TimeZone;
 import android.icu.util.ULocale;
@@ -57,13 +56,27 @@ class ZoneName {
     }
 
     public static String toZid(String zid) {
-        // Android-changed: Use ICU ZoneMeta.
-        String canonicalCldrId = ZoneMeta.getCanonicalCLDRID(zid);
+        // Android-changed: Use ICU TimeZone.getCanonicalID().
+        String canonicalCldrId = getSystemCanonicalID(zid);
         if (canonicalCldrId != null) {
             return canonicalCldrId;
         }
         return zid;
     }
+
+    // BEGIN Android-added: Get non-custom system canonical time zone Id from ICU.
+    public static String getSystemCanonicalID(String zid) {
+        if (TimeZone.UNKNOWN_ZONE_ID.equals(zid)) {
+            return zid;
+        }
+        boolean[] isSystemID = { false };
+        String canonicalID = TimeZone.getCanonicalID(zid, isSystemID);
+        if (canonicalID == null || !isSystemID[0]) {
+            return null;
+        }
+        return canonicalID;
+    }
+    // END Android-added: Get non-custom system canonical time zone Id from ICU.
 
     // Android-removed: zidMap and aliasMap containing zone id data.
     // Android-removed: zidToMzone, mzoneToZid, mzoneToZidL, aliases and their initialization code.

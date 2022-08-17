@@ -56,6 +56,7 @@ import sun.security.util.*;
  * @author Amit Kapoor
  * @author Hemma Prafullchandra
  */
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public class AlgorithmId implements Serializable, DerEncoder {
 
     /** use serialVersionUID from JDK 1.1. for interoperability */
@@ -135,6 +136,9 @@ public class AlgorithmId implements Serializable, DerEncoder {
 
     /**
      * Marshal a DER-encoded "AlgorithmID" sequence on the DER stream.
+     *
+     * @param out {@link DerInputStream} to write encoded data to
+     * @throws IOException on encoding error
      */
     public final void encode(DerOutputStream out) throws IOException {
         derEncode(out);
@@ -225,7 +229,10 @@ public class AlgorithmId implements Serializable, DerEncoder {
      * return a name such as "MD5withRSA" for a signature algorithm on
      * some systems.  It also returns names like "OID.1.2.3.4", when
      * no particular name for the algorithm is known.
+     *
+     * @return name of the algorithm
      */
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public String getName() {
         String algName = nameTable.get(algid);
         if (algName != null) {

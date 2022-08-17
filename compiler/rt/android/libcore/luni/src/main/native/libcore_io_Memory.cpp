@@ -22,12 +22,13 @@
 #include <sys/mman.h>
 
 #include <nativehelper/JNIHelp.h>
-#include <nativehelper/ScopedBytes.h>
+
 #include <nativehelper/ScopedPrimitiveArray.h>
 #include <nativehelper/jni_macros.h>
 
 #include "JniConstants.h"
 #include "Portability.h"
+#include "ScopedBytes.h"
 
 // Use packed structures for access to unaligned data on targets with alignment restrictions.
 // The compiler will generate appropriate code to access these structures without
@@ -316,6 +317,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(Memory, unsafeBulkGet, "(Ljava/lang/Object;II[BIIZ)V"),
     NATIVE_METHOD(Memory, unsafeBulkPut, "([BIILjava/lang/Object;IIZ)V"),
 };
-extern "C" void register_libcore_io_Memory(JNIEnv* env) {
+void register_libcore_io_Memory(JNIEnv* env) {
     jniRegisterNativeMethods(env, "libcore/io/Memory", gMethods, NELEM(gMethods));
 }

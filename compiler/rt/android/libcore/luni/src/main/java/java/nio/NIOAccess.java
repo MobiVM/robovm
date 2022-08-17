@@ -16,14 +16,23 @@
 
 package java.nio;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
- * This class is used via JNI by code in frameworks/base/.
+ * This class is used via JNI by code in frameworks/base/ and
+ * by the JniConstants cache in libnativehelper/.
  * @hide
  */
 // @VisibleForTesting : was default
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public final class NIOAccess {
+
+    private NIOAccess() {}
 
     /**
      * Returns the underlying native pointer to the data of the given
@@ -44,9 +53,16 @@ public final class NIOAccess {
     /**
      * Returns the underlying Java array containing the data of the
      * given Buffer, or null if the Buffer is not backed by a Java array.
+     *
+     * @param b  {@code Buffer} to get its underlying data array
+     * @return   underlying Java array
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    static Object getBaseArray(Buffer b) {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static Object getBaseArray(Buffer b) {
         return b.hasArray() ? b.array() : null;
     }
 
@@ -55,10 +71,17 @@ public final class NIOAccess {
      * Java array object containing the data of the given Buffer to
      * the actual start of the data. The start of the data takes into
      * account the Buffer's current position. This method is only
-     * meaningful if getBaseArray() returns non-null.
+     * meaningful if {@link #getBaseArray(Buffer)} returns non-null.
+     *
+     * @param b {@code Buffer} to get its underlying data array's base offset
+     * @return  underlying Java array's base offset
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    static int getBaseArrayOffset(Buffer b) {
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+    public static int getBaseArrayOffset(Buffer b) {
         return b.hasArray() ? ((b.arrayOffset() + b.position) << b._elementSizeShift) : 0;
     }
 }

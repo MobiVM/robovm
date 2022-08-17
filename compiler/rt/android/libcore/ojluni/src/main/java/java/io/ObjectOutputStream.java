@@ -157,7 +157,7 @@ import sun.reflect.misc.ReflectUtil;
  * @see java.io.ObjectInputStream
  * @see java.io.Serializable
  * @see java.io.Externalizable
- * @see <a href="https://docs.oracle.com/javase/8/docs/platform/serialization/spec/output.html">Object Serialization Specification, Section 2, Object Output Classes</a>
+ * @see <a href="../../../platform/serialization/spec/output.html">Object Serialization Specification, Section 2, Object Output Classes</a>
  * @since       JDK1.1
  */
 public class ObjectOutputStream
@@ -1223,7 +1223,7 @@ public class ObjectOutputStream
                 writeClass((Class) obj, unshared);
             } else if (obj instanceof ObjectStreamClass) {
                 writeClassDesc((ObjectStreamClass) obj, unshared);
-            // END Android-changed:  Make Class and ObjectStreamClass replaceable.
+            // END Android-changed: Make Class and ObjectStreamClass replaceable.
             } else if (obj instanceof String) {
                 writeString((String) obj, unshared);
             } else if (cl.isArray()) {
@@ -1865,7 +1865,7 @@ public class ObjectOutputStream
             return blkmode;
         }
 
-        // BEGIN Android-added: Warning about writing to closed ObjectOutputStream
+        // BEGIN Android-added: Warning about writing to closed ObjectOutputStream.
         /**
          * Warns if the stream has been closed.
          *
@@ -1884,7 +1884,7 @@ public class ObjectOutputStream
                 warnOnceWhenWriting = false;
             }
         }
-        // END Android-added: Warning about writing to closed ObjectOutputStream
+        // END Android-added: Warning about writing to closed ObjectOutputStream.
 
         /* ----------------- generic output stream methods ----------------- */
         /*
@@ -1916,7 +1916,7 @@ public class ObjectOutputStream
         public void close() throws IOException {
             flush();
             out.close();
-            // Android-added: Warning about writing to closed ObjectOutputStream
+            // Android-added: Warning about writing to closed ObjectOutputStream.
             warnOnceWhenWriting = true;
         }
 
@@ -1932,7 +1932,7 @@ public class ObjectOutputStream
             if (!(copy || blkmode)) {           // write directly
                 drain();
                 out.write(b, off, len);
-                // Android-added: Warning about writing to closed ObjectOutputStream
+                // Android-added: Warning about writing to closed ObjectOutputStream.
                 warnIfClosed();
                 return;
             }
@@ -1955,7 +1955,7 @@ public class ObjectOutputStream
                     len -= wlen;
                 }
             }
-            // Android-added: Warning about writing to closed ObjectOutputStream
+            // Android-added: Warning about writing to closed ObjectOutputStream.
             warnIfClosed();
         }
 
@@ -1972,7 +1972,7 @@ public class ObjectOutputStream
             }
             out.write(buf, 0, pos);
             pos = 0;
-            // Android-added: Warning about writing to closed ObjectOutputStream
+            // Android-added: Warning about writing to closed ObjectOutputStream.
             warnIfClosed();
         }
 
@@ -1991,7 +1991,7 @@ public class ObjectOutputStream
                 Bits.putInt(hbuf, 1, len);
                 out.write(hbuf, 0, 5);
             }
-            // Android-added: Warning about writing to closed ObjectOutputStream
+            // Android-added: Warning about writing to closed ObjectOutputStream.
             warnIfClosed();
         }
 

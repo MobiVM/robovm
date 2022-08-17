@@ -16,10 +16,13 @@
 
 package dalvik.system;
 
-import libcore.util.NonNull;
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.annotation.SystemApi;
+import android.compat.annotation.UnsupportedAppUsage;
+
 import java.util.Objects;
+import libcore.util.NonNull;
 
 /**
  * Interface that enables {@code StrictMode} to install callbacks to implement
@@ -34,7 +37,8 @@ import java.util.Objects;
  *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 @libcore.api.IntraCoreApi
 public final class BlockGuard {
 
@@ -46,24 +50,33 @@ public final class BlockGuard {
      *
      * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     @libcore.api.IntraCoreApi
     public interface Policy {
         /**
          * Called on disk writes.
+         *
+         * @hide
          */
-        @libcore.api.CorePlatformApi
+        @SystemApi(client = MODULE_LIBRARIES)
+        @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
         void onWriteToDisk();
 
         /**
          * Called on disk reads.
+         *
+         * @hide
          */
         @UnsupportedAppUsage
-        @libcore.api.CorePlatformApi
+        @SystemApi(client = MODULE_LIBRARIES)
+        @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
         void onReadFromDisk();
 
         /**
          * Called on network operations.
+         *
+         * @hide
          */
         @UnsupportedAppUsage
         @libcore.api.IntraCoreApi
@@ -71,22 +84,32 @@ public final class BlockGuard {
 
         /**
          * Called on unbuffered input/ouput operations.
+         *
+         * @hide
          */
-        @libcore.api.CorePlatformApi
+        @SystemApi(client = MODULE_LIBRARIES)
+        @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
         void onUnbufferedIO();
 
         /**
          * Called on explicit GC request, i.e. Runtime.gc().
+         *
+         * @hide
          */
         void onExplicitGc();
 
         /**
          * Returns the policy bitmask, for shipping over Binder calls
          * to remote threads/processes and reinstantiating the policy
-         * there.  The bits in the mask are from the DISALLOW_* and
-         * PENALTY_* constants.
+         * there. The bits in the mask are from the {@code DISALLOW_*} and
+         * {@code PENALTY_*} constants declared in {@code StrictMode} class.
+         *
+         * @return policy bitmask
+         *
+         * @hide
          */
-        @libcore.api.CorePlatformApi
+        @SystemApi(client = MODULE_LIBRARIES)
+        @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
         int getPolicyMask();
     }
 
@@ -94,7 +117,8 @@ public final class BlockGuard {
      * Per-process interface used to implement {@code StrictMode.VmPolicy}.
      * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public interface VmPolicy {
         /**
          * Called by core libraries code when the given path is accessed. This
@@ -114,13 +138,18 @@ public final class BlockGuard {
          *
          * @param path The path in the local file system that is being accessed
          *            for reading or writing.
+         *
+         * @hide
          */
-        @libcore.api.CorePlatformApi
-        void onPathAccess(String path);
+        @SystemApi(client = MODULE_LIBRARIES)
+        @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
+        void onPathAccess(@NonNull String path);
     }
 
     /**
-     * @deprecated no longer actively used, but kept intact for greylist.
+     * @deprecated no longer actively used, but kept intact for hidden API lists.
+     *
+     * @hide
      */
     @Deprecated
     public static class BlockGuardPolicyException extends RuntimeException {
@@ -166,9 +195,12 @@ public final class BlockGuard {
 
     /**
      * The default, permissive per-thread policy.
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static final Policy LAX_POLICY = new Policy() {
         @Override public String toString() { return "LAX_POLICY"; }
         @Override public void onWriteToDisk() {}
@@ -185,8 +217,11 @@ public final class BlockGuard {
 
     /**
      * The default, permissive per-process policy.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static final VmPolicy LAX_VM_POLICY = new VmPolicy() {
         @Override public String toString() { return "LAX_VM_POLICY"; }
         @Override public void onPathAccess(String path) {}
@@ -206,9 +241,12 @@ public final class BlockGuard {
      *
      * @return the current thread's policy. Will return the {@link #LAX_POLICY}
      *         instance if nothing else is set.
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     @libcore.api.IntraCoreApi
     public static @NonNull Policy getThreadPolicy() {
         return threadPolicy.get();
@@ -222,9 +260,12 @@ public final class BlockGuard {
      *
      * @param policy policy to set. Use the public {@link #LAX_POLICY} if you
      *            want to unset the active policy.
+     *
+     * @hide
      */
     @UnsupportedAppUsage
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static void setThreadPolicy(@NonNull Policy policy) {
         threadPolicy.set(Objects.requireNonNull(policy));
     }
@@ -234,8 +275,11 @@ public final class BlockGuard {
      *
      * @return the current process's policy. Will return the
      *         {@link #LAX_VM_POLICY} instance if nothing else is set.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static @NonNull VmPolicy getVmPolicy() {
         return vmPolicy;
     }
@@ -248,8 +292,11 @@ public final class BlockGuard {
      *
      * @param policy policy to set. Use the public {@link #LAX_VM_POLICY} if you
      *            want to unset the active policy.
+     *
+     * @hide
      */
-    @libcore.api.CorePlatformApi
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public static void setVmPolicy(@NonNull VmPolicy policy) {
         vmPolicy = Objects.requireNonNull(policy);
     }

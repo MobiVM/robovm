@@ -25,8 +25,9 @@
  */
 package java.lang;
 
+import dalvik.annotation.optimization.CriticalNative;
+import dalvik.annotation.optimization.FastNative;
 import android.system.ErrnoException;
-import android.system.StructPasswd;
 import android.system.StructUtsname;
 import dalvik.system.VMRuntime;
 import java.io.*;
@@ -37,9 +38,7 @@ import java.util.Properties;
 import java.util.PropertyPermission;
 import libcore.icu.ICU;
 import libcore.io.Libcore;
-import libcore.timezone.TimeZoneDataFiles;
 
-import org.robovm.rt.VM;
 import sun.reflect.CallerSensitive;
 import sun.reflect.Reflection;
 import sun.security.util.SecurityConstants;
@@ -294,6 +293,7 @@ public final class System {
      *          the current time and midnight, January 1, 1970 UTC.
      * @see     java.util.Date
      */
+    @CriticalNative
     public static native long currentTimeMillis();
 
     /**
@@ -340,173 +340,548 @@ public final class System {
      *         high-resolution time source, in nanoseconds
      * @since 1.5
      */
+    @CriticalNative
     public static native long nanoTime();
 
     /**
-     * Copies {@code length} elements from the array {@code src},
-     * starting at offset {@code srcPos}, into the array {@code dst},
-     * starting at offset {@code dstPos}.
-     *
-     * <p>The source and destination arrays can be the same array,
-     * in which case copying is performed as if the source elements
-     * are first copied into a temporary array and then into the
+     * Copies an array from the specified source array, beginning at the
+     * specified position, to the specified position of the destination array.
+     * A subsequence of array components are copied from the source
+     * array referenced by <code>src</code> to the destination array
+     * referenced by <code>dest</code>. The number of components copied is
+     * equal to the <code>length</code> argument. The components at
+     * positions <code>srcPos</code> through
+     * <code>srcPos+length-1</code> in the source array are copied into
+     * positions <code>destPos</code> through
+     * <code>destPos+length-1</code>, respectively, of the destination
+     * array.
+     * <p>
+     * If the <code>src</code> and <code>dest</code> arguments refer to the
+     * same array object, then the copying is performed as if the
+     * components at positions <code>srcPos</code> through
+     * <code>srcPos+length-1</code> were first copied to a temporary
+     * array with <code>length</code> components and then the contents of
+     * the temporary array were copied into positions
+     * <code>destPos</code> through <code>destPos+length-1</code> of the
      * destination array.
+     * <p>
+     * If <code>dest</code> is <code>null</code>, then a
+     * <code>NullPointerException</code> is thrown.
+     * <p>
+     * If <code>src</code> is <code>null</code>, then a
+     * <code>NullPointerException</code> is thrown and the destination
+     * array is not modified.
+     * <p>
+     * Otherwise, if any of the following is true, an
+     * <code>ArrayStoreException</code> is thrown and the destination is
+     * not modified:
+     * <ul>
+     * <li>The <code>src</code> argument refers to an object that is not an
+     *     array.
+     * <li>The <code>dest</code> argument refers to an object that is not an
+     *     array.
+     * <li>The <code>src</code> argument and <code>dest</code> argument refer
+     *     to arrays whose component types are different primitive types.
+     * <li>The <code>src</code> argument refers to an array with a primitive
+     *    component type and the <code>dest</code> argument refers to an array
+     *     with a reference component type.
+     * <li>The <code>src</code> argument refers to an array with a reference
+     *    component type and the <code>dest</code> argument refers to an array
+     *     with a primitive component type.
+     * </ul>
+     * <p>
+     * Otherwise, if any of the following is true, an
+     * <code>IndexOutOfBoundsException</code> is
+     * thrown and the destination is not modified:
+     * <ul>
+     * <li>The <code>srcPos</code> argument is negative.
+     * <li>The <code>destPos</code> argument is negative.
+     * <li>The <code>length</code> argument is negative.
+     * <li><code>srcPos+length</code> is greater than
+     *     <code>src.length</code>, the length of the source array.
+     * <li><code>destPos+length</code> is greater than
+     *     <code>dest.length</code>, the length of the destination array.
+     * </ul>
+     * <p>
+     * Otherwise, if any actual component of the source array from
+     * position <code>srcPos</code> through
+     * <code>srcPos+length-1</code> cannot be converted to the component
+     * type of the destination array by assignment conversion, an
+     * <code>ArrayStoreException</code> is thrown. In this case, let
+     * <b><i>k</i></b> be the smallest nonnegative integer less than
+     * length such that <code>src[srcPos+</code><i>k</i><code>]</code>
+     * cannot be converted to the component type of the destination
+     * array; when the exception is thrown, source array components from
+     * positions <code>srcPos</code> through
+     * <code>srcPos+</code><i>k</i><code>-1</code>
+     * will already have been copied to destination array positions
+     * <code>destPos</code> through
+     * <code>destPos+</code><i>k</I><code>-1</code> and no other
+     * positions of the destination array will have been modified.
+     * (Because of the restrictions already itemized, this
+     * paragraph effectively applies only to the situation where both
+     * arrays have component types that are reference types.)
      *
-     * @param src
-     *            the source array to copy the content.
-     * @param srcPos
-     *            the starting index of the content in {@code src}.
-     * @param dst
-     *            the destination array to copy the data into.
-     * @param dstPos
-     *            the starting index for the copied content in {@code dst}.
-     * @param length
-     *            the number of elements to be copied.
+     * @param      src      the source array.
+     * @param      srcPos   starting position in the source array.
+     * @param      dest     the destination array.
+     * @param      destPos  starting position in the destination data.
+     * @param      length   the number of array elements to be copied.
+     * @exception  IndexOutOfBoundsException  if copying would cause
+     *               access of data outside array bounds.
+     * @exception  ArrayStoreException  if an element in the <code>src</code>
+     *               array could not be stored into the <code>dest</code> array
+     *               because of a type mismatch.
+     * @exception  NullPointerException if either <code>src</code> or
+     *               <code>dest</code> is <code>null</code>.
      */
-    public static void arraycopy(Object src, int srcPos, Object dst, int dstPos,
-                                 int length) {
-        // RoboVM note: This is native in Android. We're using code from Apache Harmony instead.
+    @FastNative
+    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
+
+
+    // BEGIN Android-changed
+    /**
+     * The char array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_CHAR_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The char[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
+    private static void arraycopy(char[] src, int srcPos, char[] dst, int dstPos, int length) {
         if (src == null) {
             throw new NullPointerException("src == null");
         }
         if (dst == null) {
             throw new NullPointerException("dst == null");
         }
-        Class<?> type1 = src.getClass();
-        Class<?> type2 = dst.getClass();
-        if (!type1.isArray()) {
-            throw new ArrayStoreException("source of type " + type1.getName() + " is not an array");
-        }
-        if (!type2.isArray()) {
-            throw new ArrayStoreException("destination of type " + type2.getName() + " is not an array");
-        }
-        Class<?> componentType1 = type1.getComponentType();
-        Class<?> componentType2 = type2.getComponentType();
-        if (!componentType1.isPrimitive()) {
-            if (componentType2.isPrimitive()) {
-                throw new ArrayStoreException(type1.getCanonicalName() + " and " + type2.getCanonicalName()
-                        + " are incompatible array types");
-            }
-            arraycopy((Object[]) src, srcPos, (Object[]) dst, dstPos, length);
-        } else {
-            if (componentType2 != componentType1) {
-                throw new ArrayStoreException(type1.getCanonicalName() + " and " + type2.getCanonicalName()
-                        + " are incompatible array types");
-            }
-            if (componentType1 == int.class) {
-                arraycopy((int[]) src, srcPos, (int[]) dst, dstPos, length);
-            } else if (componentType1 == byte.class) {
-                arraycopy((byte[]) src, srcPos, (byte[]) dst, dstPos, length);
-            } else if (componentType1 == long.class) {
-                arraycopy((long[]) src, srcPos, (long[]) dst, dstPos, length);
-            } else if (componentType1 == short.class) {
-                arraycopy((short[]) src, srcPos, (short[]) dst, dstPos, length);
-            } else if (componentType1 == char.class) {
-                arraycopy((char[]) src, srcPos, (char[]) dst, dstPos, length);
-            } else if (componentType1 == boolean.class) {
-                arraycopy((boolean[]) src, srcPos, (boolean[]) dst, dstPos, length);
-            } else if (componentType1 == double.class) {
-                arraycopy((double[]) src, srcPos, (double[]) dst, dstPos, length);
-            } else if (componentType1 == float.class) {
-                arraycopy((float[]) src, srcPos, (float[]) dst, dstPos, length);
-            }
-        }
-    }
-
-    private static void arraycopyCheckBounds(int srcLength, int srcPos, int dstLength, int dstPos, int length) {
         if (srcPos < 0 || dstPos < 0 || length < 0 ||
-                srcPos > srcLength - length ||
-                dstPos > dstLength - length) {
-            throw new ArrayIndexOutOfBoundsException("src.length=" + srcLength + " srcPos=" + srcPos
-                    + " dst.length=" + dstLength + " dstPos=" + dstPos + " length=" + length);
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
         }
-    }
-
-    private static void arraycopyFast(Object src, int srcPos, Object dst, int dstPos, int length, int logElemSize) {
-        if (length > 0) {
-            long srcAddr = VM.getArrayValuesAddress(src) + (srcPos << logElemSize);
-            long dstAddr = VM.getArrayValuesAddress(dst) + (dstPos << logElemSize);
-            if (logElemSize == 0) {
-                VM.memmove8(dstAddr, srcAddr, length);
-            } else if (logElemSize == 1) {
-                VM.memmove16(dstAddr, srcAddr, length);
-            } else if (logElemSize == 2) {
-                VM.memmove32(dstAddr, srcAddr, length);
-            } else if (logElemSize == 3) {
-                VM.memmove64(dstAddr, srcAddr, length);
-            } else {
-                throw new AssertionError();
-            }
-        }
-    }
-
-    private static void arraycopy(Object[] src, int srcPos, Object[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        if (length > 0) {
-            // TODO: Use arraycopyFast() if src.class and dst.class have same dimensionality and (src instanceof dst)
-            int i = 0;
-            try {
-                // Check if this is a forward or backwards arraycopy
-                if (src != dst || srcPos > dstPos || srcPos + length <= dstPos) {
-                    for (i = 0; i < length; ++i) {
-                        dst[dstPos + i] = src[srcPos + i];
-                    }
-                } else {
-                    for (i = length - 1; i >= 0; --i) {
-                        dst[dstPos + i] = src[srcPos + i];
-                    }
+        if (length <= ARRAYCOPY_SHORT_CHAR_ARRAY_THRESHOLD) {
+            // Copy char by char for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
                 }
-            } catch (ArrayStoreException e) {
-                // Throw a new one with a more descriptive message.
-                Class<?> srcElemClass = src[i + srcPos].getClass();
-                String srcElemTypeName = srcElemClass.isArray()
-                        ? srcElemClass.getCanonicalName() : srcElemClass.getName();
-                throw new ArrayStoreException(String.format(
-                        "source[%d] of type %s cannot be stored in destination array of type %s",
-                        i + srcPos, srcElemTypeName, dst.getClass().getCanonicalName()));
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
             }
+        } else {
+            // Call the native version for longer arrays.
+            arraycopyCharUnchecked(src, srcPos, dst, dstPos, length);
         }
     }
 
-    private static void arraycopy(int[] src, int srcPos, int[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
-    }
+    /**
+     * The char[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyCharUnchecked(char[] src, int srcPos,
+        char[] dst, int dstPos, int length);
 
+    /**
+     * The byte array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_BYTE_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The byte[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
     private static void arraycopy(byte[] src, int srcPos, byte[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_BYTE_ARRAY_THRESHOLD) {
+            // Copy byte by byte for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for longer arrays.
+            arraycopyByteUnchecked(src, srcPos, dst, dstPos, length);
+        }
     }
 
+    /**
+     * The byte[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyByteUnchecked(byte[] src, int srcPos,
+        byte[] dst, int dstPos, int length);
+
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_SHORT_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The short[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
     private static void arraycopy(short[] src, int srcPos, short[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_SHORT_ARRAY_THRESHOLD) {
+            // Copy short by short for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for longer arrays.
+            arraycopyShortUnchecked(src, srcPos, dst, dstPos, length);
+        }
     }
 
+    /**
+     * The short[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyShortUnchecked(short[] src, int srcPos,
+        short[] dst, int dstPos, int length);
+
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_INT_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The int[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
+    private static void arraycopy(int[] src, int srcPos, int[] dst, int dstPos, int length) {
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_INT_ARRAY_THRESHOLD) {
+            // Copy int by int for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for longer arrays.
+            arraycopyIntUnchecked(src, srcPos, dst, dstPos, length);
+        }
+    }
+
+    /**
+     * The int[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyIntUnchecked(int[] src, int srcPos,
+        int[] dst, int dstPos, int length);
+
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_LONG_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The long[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
     private static void arraycopy(long[] src, int srcPos, long[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_LONG_ARRAY_THRESHOLD) {
+            // Copy long by long for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for longer arrays.
+            arraycopyLongUnchecked(src, srcPos, dst, dstPos, length);
+        }
     }
 
-    private static void arraycopy(char[] src, int srcPos, char[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 1);
-    }
+    /**
+     * The long[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyLongUnchecked(long[] src, int srcPos,
+        long[] dst, int dstPos, int length);
 
-    private static void arraycopy(boolean[] src, int srcPos, boolean[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 0);
-    }
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_FLOAT_ARRAY_THRESHOLD = 32;
 
-    private static void arraycopy(double[] src, int srcPos, double[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 3);
-    }
-
+    /**
+     * The float[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
     private static void arraycopy(float[] src, int srcPos, float[] dst, int dstPos, int length) {
-        arraycopyCheckBounds(src.length, srcPos, dst.length, dstPos, length);
-        arraycopyFast(src, srcPos, dst, dstPos, length, 2);
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_FLOAT_ARRAY_THRESHOLD) {
+            // Copy float by float for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for floater arrays.
+            arraycopyFloatUnchecked(src, srcPos, dst, dstPos, length);
+        }
     }
+
+    /**
+     * The float[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyFloatUnchecked(float[] src, int srcPos,
+        float[] dst, int dstPos, int length);
+
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_DOUBLE_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The double[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
+    private static void arraycopy(double[] src, int srcPos, double[] dst, int dstPos, int length) {
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_DOUBLE_ARRAY_THRESHOLD) {
+            // Copy double by double for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for floater arrays.
+            arraycopyDoubleUnchecked(src, srcPos, dst, dstPos, length);
+        }
+    }
+
+    /**
+     * The double[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyDoubleUnchecked(double[] src, int srcPos,
+        double[] dst, int dstPos, int length);
+
+    /**
+     * The short array length threshold below which to use a Java
+     * (non-native) version of arraycopy() instead of the native
+     * version. See b/7103825.
+     */
+    private static final int ARRAYCOPY_SHORT_BOOLEAN_ARRAY_THRESHOLD = 32;
+
+    /**
+     * The boolean[] specialized version of arraycopy().
+     * Note: This method is required for runtime ART compiler optimizations.
+     * Do not remove or change the signature.
+     */
+    @SuppressWarnings("unused")
+    private static void arraycopy(boolean[] src, int srcPos, boolean[] dst, int dstPos, int length) {
+        if (src == null) {
+            throw new NullPointerException("src == null");
+        }
+        if (dst == null) {
+            throw new NullPointerException("dst == null");
+        }
+        if (srcPos < 0 || dstPos < 0 || length < 0 ||
+            srcPos > src.length - length || dstPos > dst.length - length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "src.length=" + src.length + " srcPos=" + srcPos +
+                " dst.length=" + dst.length + " dstPos=" + dstPos + " length=" + length);
+        }
+        if (length <= ARRAYCOPY_SHORT_BOOLEAN_ARRAY_THRESHOLD) {
+            // Copy boolean by boolean for shorter arrays.
+            if (src == dst && srcPos < dstPos && dstPos < srcPos + length) {
+                // Copy backward (to avoid overwriting elements before
+                // they are copied in case of an overlap on the same
+                // array.)
+                for (int i = length - 1; i >= 0; --i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            } else {
+                // Copy forward.
+                for (int i = 0; i < length; ++i) {
+                    dst[dstPos + i] = src[srcPos + i];
+                }
+            }
+        } else {
+            // Call the native version for floater arrays.
+            arraycopyBooleanUnchecked(src, srcPos, dst, dstPos, length);
+        }
+    }
+
+    /**
+     * The boolean[] specialized, unchecked, native version of
+     * arraycopy(). This assumes error checking has been done.
+     */
+    @FastNative
+    private static native void arraycopyBooleanUnchecked(boolean[] src, int srcPos,
+        boolean[] dst, int dstPos, int length);
+    // END Android-changed
 
     /**
      * Returns the same hash code for the given object as
@@ -519,8 +894,12 @@ public final class System {
      * @return  the hashCode
      * @since   JDK1.1
      */
-    // RoboVM Note: using native implementation
-    public static native int identityHashCode(Object x);
+    public static int identityHashCode(Object x) {
+        if (x == null) {
+            return 0;
+        }
+        return Object.identityHashCode(x);
+    }
 
     /**
      * System properties. The following properties are guaranteed to be defined:
@@ -547,8 +926,6 @@ public final class System {
     private static Properties unchangeableProps;
 
     private static native String[] specialProperties();
-
-    private static native String[] robovmSpecialProperties();
 
     static final class PropertiesWithNonOverrideableDefaults extends Properties {
         PropertiesWithNonOverrideableDefaults(Properties defaults) {
@@ -603,18 +980,13 @@ public final class System {
 
         p.put("java.vm.version", runtime.vmVersion());
 
+        String userName;
         try {
-            StructPasswd passwd = Libcore.os.getpwuid(Libcore.os.getuid());
-            p.put("user.home", passwd.pw_dir);
-            p.put("user.name", passwd.pw_name);
+            userName = Libcore.os.getpwuid(Libcore.os.getuid()).pw_name;
         } catch (ErrnoException exception) {
-            // RoboVM note: Start change. Fall back to environment variables. getpwuid() fails on the iOS simulator.
-            String home = getenv("HOME");
-            String user = getenv("USER");
-            p.put("user.home", home != null ? home : "");
-            p.put("user.name", user != null ? user : "");
-            // RoboVM note: End change.
+            userName = "unknown";
         }
+        p.put("user.name", userName);
 
         StructUtsname info = Libcore.os.uname();
         p.put("os.arch", info.machine);
@@ -623,33 +995,12 @@ public final class System {
         p.put("os.name", info.sysname);
         p.put("os.version", info.release);
 
-        // RoboVM note: Added in RoboVM. Make sure we get sane and consistent
-        // user.home, user.dir and user.name values on iOS.
-        if (info.machine.contains("iOS")) {
-            // On iOS we want user.home and user.dir to point to the app's data
-            // container root dir. This is the dir $HOME points to. We also set
-            // user.name to $USER or hardcode 'mobile' if $USER isn't set (iOS
-            // simulator).
-            String home = getenv("HOME");
-            p.put("user.dir", home != null ? home : "/");
-        }
-        // RoboVM note: End change.
-
         // Android-added: Undocumented properties that exist only on Android.
         p.put("android.icu.library.version", ICU.getIcuVersion());
         p.put("android.icu.unicode.version", ICU.getUnicodeVersion());
         p.put("android.icu.cldr.version", ICU.getCldrVersion());
 
-        // Property override for ICU4J : this is the location of the ICU4C data. This
-        // is prioritized over the properties in ICUConfig.properties. The issue with using
-        // that is that it doesn't play well with jarjar and it needs complicated build rules
-        // to change its default value.
-        String icuDataPath = TimeZoneDataFiles.generateIcuDataPath();
-        p.put("android.icu.impl.ICUBinary.dataPath", icuDataPath);
-
         parsePropertyAssignments(p, specialProperties());
-
-        parsePropertyAssignments(p, robovmSpecialProperties());
 
         // Override built-in properties with settings from the command line.
         // Note: it is not possible to override hardcoded values.
@@ -686,9 +1037,7 @@ public final class System {
         // We check first if the property has not been set already: note that it
         // can only be set from the command line through the '-Djava.io.tmpdir=' option.
         if (!unchangeableProps.containsKey("java.io.tmpdir")) {
-            // RoboVM note: Use value of $TMPDIR if set. Otherwise use /tmp as Android does.
-            String tmpdir = getenv("TMPDIR");
-            p.put("java.io.tmpdir", tmpdir != null ? tmpdir : "/tmp");
+            p.put("java.io.tmpdir", "/tmp");
         }
 
         // Android has always had an empty "user.home" (see docs for getProperty).
@@ -1341,6 +1690,7 @@ public final class System {
         unchangeableProps = initUnchangeableSystemProperties();
         props = initProperties();
         addLegacyLocaleSystemProperties();
+        sun.misc.Version.initSystemProperties();
 
         // TODO: Confirm that this isn't something super important.
         // sun.misc.VM.saveAndRemoveProperties(props);

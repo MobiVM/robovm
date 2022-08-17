@@ -40,11 +40,12 @@ public final class ParameterizedTypeImpl implements ParameterizedType {
         this.loader = loader;
     }
 
-
+    @Override
     public Type[] getActualTypeArguments() {
         return args.getResolvedTypes().clone();
     }
 
+    @Override
     public Type getOwnerType() {
         if (ownerTypeRes == null) {
             if (ownerType0 != null) {
@@ -56,6 +57,7 @@ public final class ParameterizedTypeImpl implements ParameterizedType {
         return ownerTypeRes;
     }
 
+    @Override
     public Class getRawType() {
         if (rawType == null) {
             // Here the actual loading of the class has to be performed and the
@@ -70,9 +72,8 @@ public final class ParameterizedTypeImpl implements ParameterizedType {
         return rawType;
     }
 
-
     Type getResolvedType() {
-        if (args.getResolvedTypes().length == 0) {
+        if (ownerType0 == null && args.getResolvedTypes().length == 0) {
             return getRawType();
         } else {
             return this;
@@ -99,7 +100,15 @@ public final class ParameterizedTypeImpl implements ParameterizedType {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(rawTypeName);
+        if (ownerType0 != null) {
+            // For nested types, use the ownerType because it or its parents may have their own
+            // type arguments.
+            sb.append(ownerType0);
+            sb.append('$');
+            sb.append(getRawType().getSimpleName());
+        } else {
+            sb.append(rawTypeName);
+        }
         if (args.length() > 0) {
             sb.append("<").append(args).append(">");
         }

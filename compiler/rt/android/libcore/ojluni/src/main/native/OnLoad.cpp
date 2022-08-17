@@ -21,7 +21,6 @@
 
 #include <jni.h>
 #include <android-base/logging.h>
-#include <nativehelper/ScopedLocalFrame.h>
 
 extern "C" void register_java_util_zip_ZipFile(JNIEnv* env);
 extern "C" void register_java_util_zip_Inflater(JNIEnv* env);
@@ -36,7 +35,6 @@ extern "C" void register_sun_nio_ch_IOUtil(JNIEnv* env);
 extern "C" void register_sun_nio_ch_SocketChannelImpl(JNIEnv* env);
 extern "C" void register_sun_nio_ch_FileChannelImpl(JNIEnv* env);
 extern "C" void register_sun_nio_ch_FileDispatcherImpl(JNIEnv* env);
-extern "C" void register_java_io_FileOutputStream(JNIEnv* env);
 extern "C" void register_java_io_FileInputStream(JNIEnv* env);
 extern "C" void register_java_util_prefs_FileSystemPreferences(JNIEnv* env);
 extern "C" void register_sun_nio_ch_NativeThread(JNIEnv* env);
@@ -64,28 +62,20 @@ extern "C" void register_java_lang_Runtime(JNIEnv* env);
 extern "C" void register_java_lang_UNIXProcess(JNIEnv* env);
 void register_java_lang_Character(JNIEnv* env);
 
-// RoboVM Note: renamed from JNI_OnLoad
-extern "C" void ojluni_OnLoad(JavaVM* vm, void*) {
-    void* raw_env;
-    jint version = JNI_VERSION_1_6;
-    jint result = vm->GetEnv(&raw_env, version);
-    CHECK_EQ(result, JNI_OK);
-    CHECK(raw_env != nullptr);
-    JNIEnv* env = static_cast<JNIEnv*>(raw_env);
-    ScopedLocalFrame localFrame(env);
+extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void*) {
+  jint version = JNI_VERSION_1_6;
+  void* raw_env;
+  jint result = vm->GetEnv(&raw_env, version);
+  CHECK_EQ(result, JNI_OK);
+  CHECK(raw_env != nullptr);
+  JNIEnv* env = static_cast<JNIEnv*>(raw_env);
 
-    jint net_jni_version = net_JNI_OnLoad(vm, /* ignored */ nullptr);
-    CHECK(net_jni_version == JNI_VERSION_1_2 ||
-          net_jni_version == JNI_VERSION_1_4 ||
-          net_jni_version == JNI_VERSION_1_6);
-}
-
-extern "C" void ojluniRegister(JNIEnv* env) {
   // Some registration functions also do some extra local initialization,
   // creating local references in the process. ART does not expect JNI_OnLoad()
   // to leave any local references in the current frame, so create a new one.
   // Request space for 256 local references (increase if necessary).
-  ScopedLocalFrame localFrame(env);
+  result = env->PushLocalFrame(256);
+  CHECK_EQ(result, 0);
 
   // Some registration functions also record field ids retrieved using
   // GetFieldID(), forcing the initialization of the searched class. As some
@@ -113,7 +103,6 @@ extern "C" void ojluniRegister(JNIEnv* env) {
   register_sun_nio_ch_SocketChannelImpl(env);
   register_sun_nio_ch_FileChannelImpl(env);
   register_sun_nio_ch_FileDispatcherImpl(env);
-  register_java_io_FileOutputStream(env);
   register_java_io_FileInputStream(env);
   register_java_util_prefs_FileSystemPreferences(env);
   register_sun_nio_ch_NativeThread(env);
@@ -123,6 +112,11 @@ extern "C" void ojluniRegister(JNIEnv* env) {
   register_java_io_ObjectOutputStream(env);
   register_java_io_ObjectInputStream(env);
   register_java_net_InetAddress(env);
+
+  jint net_jni_version = net_JNI_OnLoad(vm, /* ignored */ nullptr);
+  CHECK(net_jni_version == JNI_VERSION_1_2 ||
+        net_jni_version == JNI_VERSION_1_4 ||
+        net_jni_version == JNI_VERSION_1_6);
 
   register_sun_nio_ch_Net(env);
   register_java_nio_MappedByteBuffer(env);
@@ -137,4 +131,7 @@ extern "C" void ojluniRegister(JNIEnv* env) {
   register_java_lang_Runtime(env);
   register_java_lang_UNIXProcess(env);
   register_java_lang_Character(env);
+
+  env->PopLocalFrame(/* result */ nullptr);  // Pop the local frame.
+  return version;
 }

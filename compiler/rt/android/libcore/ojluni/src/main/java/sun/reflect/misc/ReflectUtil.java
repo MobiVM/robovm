@@ -116,7 +116,7 @@ public final class ReflectUtil {
         return false;
     }
 
-    // Android-removed: Dead code: Unused method conservativeCheckMemberAccess()
+    // Android-removed: Dead code: Unused method conservativeCheckMemberAccess().
 
     /**
      * Checks package access on the given class.
@@ -262,6 +262,6 @@ public final class ReflectUtil {
         return Proxy.isProxyClass(cls) && !pkg.isEmpty();
     }
 
-    // Android-removed: Dead code: unused method checkProxyMethod()
-    // Android-removed: Dead code: unused method isVMAnonymousClass()
+    // Android-removed: Dead code: unused method checkProxyMethod().
+    // Android-removed: Dead code: unused method isVMAnonymousClass().
 }

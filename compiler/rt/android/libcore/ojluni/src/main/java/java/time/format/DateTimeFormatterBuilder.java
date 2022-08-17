@@ -61,7 +61,6 @@
  */
 package java.time.format;
 
-import android.icu.impl.ZoneMeta;
 import android.icu.text.LocaleDisplayNames;
 import android.icu.text.TimeZoneFormat;
 import android.icu.text.TimeZoneNames;
@@ -77,6 +76,10 @@ import static java.time.temporal.ChronoField.NANO_OF_SECOND;
 import static java.time.temporal.ChronoField.OFFSET_SECONDS;
 import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
 import static java.time.temporal.ChronoField.YEAR;
+
+import com.android.icu.util.ExtendedCalendar;
+
+import libcore.icu.ICU;
 
 import java.lang.ref.SoftReference;
 import java.math.BigDecimal;
@@ -210,14 +213,20 @@ public final class DateTimeFormatterBuilder {
             throw new IllegalArgumentException("Either dateStyle or timeStyle must be non-null");
         }
 
-        // Android-changed: get format string from ICU.
+        // BEGIN Android-changed: get format string from ICU.
         // LocaleResources lr = LocaleProviderAdapter.getResourceBundleBased()
         //         .getLocaleResources(locale);
         // String pattern = lr.getJavaTimeDateTimePattern(
         //         convertStyle(timeStyle), convertStyle(dateStyle), chrono.getCalendarType());
-        String pattern = Calendar.getDateTimeFormatString(
-                ULocale.forLocale(locale), chrono.getCalendarType(),
-                convertStyle(dateStyle), convertStyle(timeStyle));
+        ExtendedCalendar extendedCalendar = ICU.getExtendedCalendar(locale,
+                chrono.getCalendarType());
+        String pattern = extendedCalendar.getDateTimePattern(convertStyle(dateStyle),
+                convertStyle(timeStyle));
+        // Transform the pattern coming from ICU because DateTimeFormatter does not handle some date
+        // symbols, e.g. 'B' / 'b', and thus we use a heuristic algorithm to remove the symbol.
+        // See http://b/174804526.
+        pattern = ICU.transformIcuDateTimePattern_forJavaTime(pattern);
+        // END Android-changed: get format string from ICU.
         return pattern;
     }
 
@@ -3698,9 +3707,9 @@ public final class DateTimeFormatterBuilder {
                 names = new String[TYPES.length + 1];
                 // Zeroth index used for id, other indexes based on NameType constant + 1.
                 names[0] = id;
-                String canonicalId = ZoneMeta.getCanonicalCLDRID(id);
-                timeZoneNames.getDisplayNames(canonicalId, TYPES, System.currentTimeMillis(),
-                        /* dest */ names, /* destoffset */ 1);
+                String canonicalId = ZoneName.getSystemCanonicalID(id);
+                libcore.icu.TimeZoneNames.getDisplayNames(timeZoneNames, canonicalId, TYPES,
+                        System.currentTimeMillis(), /* dest */ names, /* destoffset */ 1);
                 if (names == null) {
                     return null;
                 }
@@ -3826,7 +3835,8 @@ public final class DateTimeFormatterBuilder {
                 for (String zid : regionIds) {
                     tree.add(zid, zid);    // don't convert zid -> metazone
                     zid = ZoneName.toZid(zid, locale);
-                    timeZoneNames.getDisplayNames(zid, types, now, names, 0);
+                    libcore.icu.TimeZoneNames.getDisplayNames(timeZoneNames, zid, types, now,
+                            names, 0);
                     for (int i = 0; i < names.length; i++) {
                         if (names[i] != null) {
                             tree.add(names[i], zid);
@@ -3841,7 +3851,8 @@ public final class DateTimeFormatterBuilder {
                             continue;
                         }
                         String canonicalId = ZoneName.toZid(zid, locale);
-                        timeZoneNames.getDisplayNames(canonicalId, types, now, names, 0);
+                        libcore.icu.TimeZoneNames.getDisplayNames(timeZoneNames, canonicalId, types,
+                                now, names, 0);
                         for (int i = 0; i < names.length; i++) {
                             if (names[i] != null) {
                                 tree.add(names[i], zid);

@@ -16,7 +16,7 @@
 
 package java.lang.ref;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import dalvik.annotation.optimization.FastNative;
 
 /**
@@ -111,11 +111,9 @@ public final class FinalizerReference<T> extends Reference<T> {
                 // Use getReferent() instead of directly accessing the referent field not to race
                 // with GC reference processing. Can't use get() either because it's overridden to
                 // return the zombie.
-                // RoboVM Note: accessing referent directly as it was at dalvik (getReferent() is not available there)
-                //if (r.getReferent() == sentinel) {
-                if (r.referent == sentinel) {
+                if (r.getReferent() == sentinel) {
                     FinalizerReference<Sentinel> sentinelReference = (FinalizerReference<Sentinel>) r;
-                    sentinelReference.clear();
+                    sentinelReference.clearReferent();
                     sentinelReference.zombie = sentinel;
                     // Make a single element list, then enqueue the reference on the daemon unenqueued
                     // list. This is required instead of enqueuing directly on the finalizer queue
@@ -126,10 +124,9 @@ public final class FinalizerReference<T> extends Reference<T> {
                     // races where the GC updates the pendingNext before we do. If it is non null, then
                     // we update the pending next to make a circular list while holding a lock.
                     // b/17462553
-                    // RoboVM Note: using dalvik GC and logic, this API is not available
-                    //if (!sentinelReference.makeCircularListIfUnenqueued()) {
-                    //    return false;
-                    //}
+                    if (!sentinelReference.makeCircularListIfUnenqueued()) {
+                        return false;
+                    }
                     ReferenceQueue.add(sentinelReference);
                     return true;
                 }
@@ -140,11 +137,10 @@ public final class FinalizerReference<T> extends Reference<T> {
         throw new AssertionError("newly-created live Sentinel not on list!");
     }
 
-// RoboVM Note: not availble
-//    @FastNative
-//    private final native T getReferent();
-//    @FastNative
-//    private native boolean makeCircularListIfUnenqueued();
+    @FastNative
+    private final native T getReferent();
+    @FastNative
+    private native boolean makeCircularListIfUnenqueued();
 
     /**
      * A marker object that we can immediately enqueue. When this object's
@@ -164,16 +160,15 @@ public final class FinalizerReference<T> extends Reference<T> {
 
         synchronized void awaitFinalization(long timeout) throws InterruptedException {
             final long startTime = System.nanoTime();
-            final long endTime = startTime + timeout;
+            final long endTime = startTime + timeout;  // May wrap.
             while (!finalized) {
                 // 0 signifies no timeout.
                 if (timeout != 0) {
-                    final long currentTime = System.nanoTime();
-                    if (currentTime >= endTime) {
+                    final long deltaTime = endTime - System.nanoTime();
+                    if (deltaTime <= 0) {
                         break;
                     } else {
-                        final long deltaTime = endTime - currentTime;
-                        wait(deltaTime / 1000000, (int)(deltaTime % 1000000));
+                        wait(deltaTime / 1_000_000, (int)(deltaTime % 1_000_000));
                     }
                 } else {
                     wait();

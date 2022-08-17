@@ -32,13 +32,16 @@
 
 package java.lang;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import dalvik.annotation.optimization.FastNative;
 
 /**
  * A dex cache holds resolved copies of strings, fields, methods, and classes from the dexfile.
  */
 final class DexCache {
+    /** The classloader this dex cache is for. */
+    private ClassLoader classLoader;
+
     /** The location of the associated dex file. */
     private String location;
 
@@ -125,4 +128,3 @@ final class DexCache {
     // Only created by the VM.
     private DexCache() {}
 }
-

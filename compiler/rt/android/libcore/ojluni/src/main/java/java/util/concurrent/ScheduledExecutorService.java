@@ -80,7 +80,7 @@ package java.util.concurrent;
  *     final Runnable beeper = new Runnable() {
  *       public void run() { System.out.println("beep"); }
  *     };
- *     final ScheduledFuture<?> beeperHandle =
+ *     final ScheduledFuture&lt;?&lt; beeperHandle =
  *       scheduler.scheduleAtFixedRate(beeper, 10, 10, SECONDS);
  *     scheduler.schedule(new Runnable() {
  *       public void run() { beeperHandle.cancel(true); }

@@ -16,6 +16,8 @@
 
 package android.system;
 
+import libcore.util.Objects;
+
 import java.net.InetAddress;
 
 /**
@@ -43,5 +45,9 @@ public final class StructIfaddrs {
         this.ifa_netmask = ifa_netmask;
         this.ifa_broadaddr = ifa_broadaddr;
         this.hwaddr = hwaddr;
+    }
+
+    @Override public String toString() {
+        return Objects.toString(this);
     }
 }

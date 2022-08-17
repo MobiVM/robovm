@@ -5,8 +5,9 @@
 
 package org.xml.sax.helpers;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.xml.sax.Locator;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 
 /**

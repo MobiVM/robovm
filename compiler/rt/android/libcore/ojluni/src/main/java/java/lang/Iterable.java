@@ -30,7 +30,6 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.function.Consumer;
 
-// Android-changed: href changed in javadoc for redirection.
 /**
  * Implementing this interface allows an object to be the target of
  * the "for-each loop" statement. See

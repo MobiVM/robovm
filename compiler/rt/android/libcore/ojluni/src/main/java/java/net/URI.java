@@ -44,6 +44,7 @@ import java.lang.Character;             // for javadoc
 import java.lang.NullPointerException;  // for javadoc
 
 
+// Android-changed: Reformat @see links.
 /**
  * Represents a Uniform Resource Identifier (URI) reference.
  *
@@ -455,7 +456,7 @@ import java.lang.NullPointerException;  // for javadoc
  * @see <a href="http://www.ietf.org/rfc/rfc2396.txt">RFC&nbsp;2396: Uniform Resource Identifiers (URI): Generic Syntax</a>
  * @see <a href="http://www.ietf.org/rfc/rfc2732.txt">RFC&nbsp;2732: Format for Literal IPv6 Addresses in URLs</a>
  */
-// Android-changed: Reformat @see links.
+
 public final class URI
     implements Comparable<URI>, Serializable
 {

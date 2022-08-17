@@ -28,11 +28,10 @@ public final class GenericArrayTypeImpl implements GenericArrayType {
     }
 
     public Type getGenericComponentType() {
-        try {
+        if (componentType instanceof ParameterizedTypeImpl) {
             return ((ParameterizedTypeImpl)componentType).getResolvedType();
-        } catch (ClassCastException e) {
-            return componentType;
         }
+        return componentType;
     }
 
     @Override

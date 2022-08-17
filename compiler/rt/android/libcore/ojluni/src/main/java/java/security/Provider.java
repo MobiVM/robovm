@@ -57,7 +57,7 @@ import java.util.function.Function;
  * in each runtime it is installed in.
  *
  * <p>See <a href =
- * "https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html#Provider">The Provider Class</a>
+ * "../../../technotes/guides/security/crypto/CryptoSpec.html#Provider">The Provider Class</a>
  * in the "Java Cryptography Architecture API Specification &amp; Reference"
  * for information about how a particular type of provider, the
  * cryptographic service provider, works and is installed. However,
@@ -95,7 +95,7 @@ public abstract class Provider extends Properties {
     // Declare serialVersionUID to be compatible with JDK1.1
     static final long serialVersionUID = -4298000515446427739L;
 
-    // Android-added: Provider registration
+    // Android-added: Provider registration.
     // Marking a provider as "registered" makes it change the security version when
     // changes to it are made.  As of 2017-05-22 this is only used in ProviderTest.
     // TODO: Change ProviderTest to no longer require this mechanism
@@ -703,7 +703,7 @@ public abstract class Provider extends Properties {
 
     private void readObject(ObjectInputStream in)
                 throws IOException, ClassNotFoundException {
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         registered = false;
         Map<Object,Object> copy = new HashMap<>();
         for (Map.Entry<Object,Object> entry : super.entrySet()) {
@@ -717,7 +717,7 @@ public abstract class Provider extends Properties {
     }
 
     private boolean checkLegacy(Object key) {
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         if (registered) {
             Security.increaseVersion();
         }
@@ -742,7 +742,7 @@ public abstract class Provider extends Properties {
         for (Map.Entry<?,?> e : t.entrySet()) {
             implPut(e.getKey(), e.getValue());
         }
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         if (registered) {
             Security.increaseVersion();
         }
@@ -817,7 +817,7 @@ public abstract class Provider extends Properties {
             if (!checkLegacy(key)) {
                 return null;
             }
-            // BEGIN Android-changed: use compute() instead of computeIfAbsent() to avoid cast fails
+            // BEGIN Android-changed: use compute(), not computeIfAbsent(), to avoid cast fails.
             // The upstream code cannot ever succeed as the cast from BiFunction to Function
             // always fails.
             // legacyStrings.computeIfAbsent((String) key,
@@ -825,7 +825,7 @@ public abstract class Provider extends Properties {
             legacyStrings.compute((String) key,
                     (BiFunction<? super String, ? super String, ? extends String>)
                             remappingFunction);
-            // END Android-changed: use compute() instead of computeIfAbsent() to avoid cast fails
+            // END Android-changed: use compute(), not computeIfAbsent(), to avoid cast fails.
         }
         return super.compute(key, remappingFunction);
     }
@@ -887,7 +887,7 @@ public abstract class Provider extends Properties {
         serviceSet = null;
         super.clear();
         putId();
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         if (registered) {
           Security.increaseVersion();
         }
@@ -1125,7 +1125,7 @@ public abstract class Provider extends Properties {
      * it is replaced by the new service.
      * This method also places information about this service
      * in the provider's Hashtable values in the format described in the
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">
+     * <a href="../../../technotes/guides/security/crypto/CryptoSpec.html">
      * Java Cryptography Architecture API Specification &amp; Reference </a>.
      *
      * <p>Also, if there is a security manager, its
@@ -1192,7 +1192,7 @@ public abstract class Provider extends Properties {
             String key = type + "." + algorithm + " " + entry.getKey();
             super.put(key, entry.getValue());
         }
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         if (registered) {
             Security.increaseVersion();
         }
@@ -1214,7 +1214,7 @@ public abstract class Provider extends Properties {
             String key = type + "." + algorithm + " " + entry.getKey();
             super.remove(key);
         }
-        // Android-added: Provider registration
+        // Android-added: Provider registration.
         if (registered) {
           Security.increaseVersion();
         }
@@ -1415,7 +1415,7 @@ public abstract class Provider extends Properties {
      * suitable services and instantiates them. The valid arguments to those
      * methods depend on the type of service. For the service types defined
      * within Java SE, see the
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">
+     * <a href="../../../technotes/guides/security/crypto/CryptoSpec.html">
      * Java Cryptography Architecture API Specification &amp; Reference </a>
      * for the valid values.
      * Note that components outside of Java SE can define additional types of
@@ -1591,7 +1591,7 @@ public abstract class Provider extends Properties {
          * instantiation in a different way.
          * For details and the values of constructorParameter that are
          * valid for the various types of services see the
-         * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">
+         * <a href="../../../technotes/guides/security/crypto/CryptoSpec.html">
          * Java Cryptography Architecture API Specification &amp;
          * Reference</a>.
          *
@@ -1740,7 +1740,7 @@ public abstract class Provider extends Properties {
          *
          * <p>For details and the values of parameter that are valid for the
          * various types of services see the top of this class and the
-         * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">
+         * <a href="../../../technotes/guides/security/crypto/CryptoSpec.html">
          * Java Cryptography Architecture API Specification &amp;
          * Reference</a>.
          * Security providers can override it to implement their own test.
@@ -1883,7 +1883,7 @@ public abstract class Provider extends Properties {
 
     }
 
-    // BEGIN Android-added: Provider registration
+    // BEGIN Android-added: Provider registration.
     /**
      * @hide
      */
@@ -1922,5 +1922,5 @@ public abstract class Provider extends Properties {
         // stored field, if the services didn't change in the meantime.
         getServices();
     }
-    // END Android-added: Provider registration
+    // END Android-added: Provider registration.
 }

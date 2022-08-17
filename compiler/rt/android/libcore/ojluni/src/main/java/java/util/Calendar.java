@@ -1595,7 +1595,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      */
     protected Calendar(TimeZone zone, Locale aLocale)
     {
-        // BEGIN Android-added: Allow aLocale == null
+        // BEGIN Android-added: Allow aLocale == null.
         // http://b/16938922.
         //
         // TODO: This is for backwards compatibility only. Seems like a better idea to throw
@@ -1603,7 +1603,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         if (aLocale == null) {
             aLocale = Locale.getDefault();
         }
-        // END Android-added: Allow aLocale == null
+        // END Android-added: Allow aLocale == null.
         fields = new int[FIELD_COUNT];
         isSet = new boolean[FIELD_COUNT];
         stamp = new int[FIELD_COUNT];
@@ -1667,7 +1667,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return createCalendar(zone, aLocale);
     }
 
-    // BEGIN Android-added: add getJapaneseImperialInstance()
+    // BEGIN Android-added: add getJapaneseImperialInstance().
     /**
      * Create a Japanese Imperial Calendar.
      * @hide
@@ -1675,14 +1675,14 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
     public static Calendar getJapaneseImperialInstance(TimeZone zone, Locale aLocale) {
         return new JapaneseImperialCalendar(zone, aLocale);
     }
-    // END Android-added: add getJapaneseImperialInstance()
+    // END Android-added: add getJapaneseImperialInstance().
 
     private static Calendar createCalendar(TimeZone zone,
                                            Locale aLocale)
     {
-        // BEGIN Android-changed: only support GregorianCalendar here
+        // BEGIN Android-changed: only support GregorianCalendar here.
         return new GregorianCalendar(zone, aLocale);
-        // END Android-changed: only support GregorianCalendar here
+        // END Android-changed: only support GregorianCalendar here.
     }
 
     /**
@@ -2061,13 +2061,13 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @since 1.6
      */
     public String getDisplayName(int field, int style, Locale locale) {
-        // BEGIN Android-changed: Treat ALL_STYLES as SHORT
+        // BEGIN Android-changed: Treat ALL_STYLES as SHORT.
         // Android has traditionally treated ALL_STYLES as SHORT, even though
         // it's not documented to be a valid value for style.
         if (style == ALL_STYLES) {
             style = SHORT;
         }
-        // END Android-changed: Treat ALL_STYLES as SHORT
+        // END Android-changed: Treat ALL_STYLES as SHORT.
         if (!checkDisplayNameParams(field, style, SHORT, NARROW_FORMAT, locale,
                             ERA_MASK|MONTH_MASK|DAY_OF_WEEK_MASK|AM_PM_MASK)) {
             return null;
@@ -2161,7 +2161,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
                                     ERA_MASK|MONTH_MASK|DAY_OF_WEEK_MASK|AM_PM_MASK)) {
             return null;
         }
-        // Android-added: Add complete() here to fix leniency, see http://b/35382060
+        // Android-added: Add complete() here to fix leniency. http://b/35382060
         complete();
 
         String calendarType = getCalendarType();
@@ -2209,12 +2209,12 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
             baseStyle < minStyle || baseStyle > maxStyle) {
             throw new IllegalArgumentException();
         }
-        // BEGIN Android-added: Check for invalid baseStyle == 3
+        // BEGIN Android-added: Check for invalid baseStyle == 3.
         // 3 is not a valid base style (unlike 1, 2 and 4). Throw if used.
         if (baseStyle == 3) {
             throw new IllegalArgumentException();
         }
-        // END Android-added: Check for invalid baseStyle == 3
+        // END Android-added: Check for invalid baseStyle == 3.
         if (locale == null) {
             throw new NullPointerException();
         }
@@ -2574,12 +2574,12 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
         return style & ~STANDALONE_MASK;
     }
 
-    // BEGIN Android-changed: Make toStandaloneStyle() public to use in java.text.SimpleDateFormat
+    // BEGIN Android-changed: Make toStandaloneStyle() public to use in java.text.SimpleDateFormat.
     /**
      * @hide
      */
     public static int toStandaloneStyle(int style) {
-    // END Android-changed: Make toStandaloneStyle() public to use in java.text.SimpleDateFormat
+    // END Android-changed: Make toStandaloneStyle() public to use in java.text.SimpleDateFormat.
         return style | STANDALONE_MASK;
     }
 
@@ -3376,6 +3376,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      */
     private void setWeekCountData(Locale desiredLocale)
     {
+        desiredLocale = LocaleData.getCompatibleLocaleForBug159514442(desiredLocale);
         /* try to get the Locale data from the cache */
         int[] data = cachedLocaleData.get(desiredLocale);
         if (data == null) {  /* cache miss */

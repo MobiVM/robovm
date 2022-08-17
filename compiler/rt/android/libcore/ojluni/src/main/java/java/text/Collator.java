@@ -226,14 +226,16 @@ public abstract class Collator
      * @see java.util.Locale
      * @see java.util.ResourceBundle
      */
-    // Android-changed: Switched to ICU.
-    public static synchronized Collator getInstance(Locale desiredLocale)
-    {
-        if (desiredLocale == null) {
-            throw new NullPointerException("locale == null");
+    public static Collator getInstance(Locale desiredLocale) {
+        // BEGIN Android-changed: Switched to ICU.
+        synchronized(Collator.class) {
+            if (desiredLocale == null) {
+                throw new NullPointerException("locale == null");
+            }
+            return new RuleBasedCollator((android.icu.text.RuleBasedCollator)
+                    android.icu.text.Collator.getInstance(desiredLocale));
         }
-        return new RuleBasedCollator((android.icu.text.RuleBasedCollator)
-                android.icu.text.Collator.getInstance(desiredLocale));
+        // END Android-changed: Switched to ICU.
     }
 
     /**
@@ -386,7 +388,7 @@ public abstract class Collator
         icuColl.setDecomposition(decompositionMode_Java_ICU(decompositionMode));
     }
 
-    // Android-changed: Removed references to CollatorProvider.
+    // Android-changed: Removed javadoc references to CollatorProvider.
     /**
      * Returns an array of all locales for which the
      * <code>getInstance</code> methods of this class can return
@@ -397,7 +399,7 @@ public abstract class Collator
      */
     public static synchronized Locale[] getAvailableLocales() {
         // Android-changed: Removed reference to CollatorProvider. Switched to ICU.
-        return ICU.getAvailableCollatorLocales();
+        return android.icu.text.Collator.getAvailableLocales();
     }
 
     // BEGIN Android-added: conversion method for decompositionMode constants.
@@ -425,7 +427,7 @@ public abstract class Collator
     }
     // END Android-added: conversion method for decompositionMode constants.
 
-    // Android-changed: improve documentation.
+    // Android-changed: improve clone() documentation.
     /**
      * Returns a new collator with the same decomposition mode and
      * strength value as this collator.

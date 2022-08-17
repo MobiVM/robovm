@@ -237,6 +237,18 @@ class DatagramChannelImpl
                     if (index == -1)
                         throw new IOException("Network interface cannot be identified");
                     Net.setInterface6(fd, index);
+                    // BEGIN Android-added: Apply IP_MULTICAST_IF to dual-stack sockets.
+                    // On dual-stack sockets, IP_MULTICAST_IF sets inet_sk(sk)->mc_index and
+                    // inet_sk(sk)->mc_addr, which are specific to IPv4, and IPV6_MULTICAST_IF sets
+                    // inet6_sk(sk)->mcast_oif, which are specific to IPv6. For IPv4 multicast
+                    // traffic to work over an interface that is not the default, we need to
+                    // configure both. http://b/144222142
+                    Inet4Address target = Net.anyInet4Address(interf);
+                    if (target != null) {
+                        int targetAddress = Net.inet4AsInt(target);
+                        Net.setInterface4(fd, targetAddress);
+                    }
+                    // END Android-added: Apply IP_MULTICAST_IF to dual-stack sockets.
                 } else {
                     // need IPv4 address to identify interface
                     Inet4Address target = Net.anyInet4Address(interf);

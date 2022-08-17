@@ -148,3 +148,27 @@ TEST_MAPPING
 !/external/icu/icu4c/source/stubdata
 /external/icu/icu4c/source/stubdata/*
 !/external/icu/icu4c/source/stubdata/stubdata.cpp
+
+##
+## Libcore
+##
+/libcore/*
+/libcore/**/src/test/**
+/libcore/**/src/benchmark/**
+/libcore/**/test-rules/**
+/libcore/**/src/module/**
+/libcore/**/Android.bp
+/libcore/ojluni/src/lambda
+/libcore/ojluni/annotations/
+/libcore/ojluni/src/generated-annotation
+!/libcore/dalvik
+!/libcore/json
+!/libcore/libart
+!/libcore/luni
+!/libcore/ojluni
+!/libcore/xml
+!/libcore/LICENSE
+!/libcore/NOTICE
+/art/*
+!/art/openjdkjvm
+/art/**/Android.bp

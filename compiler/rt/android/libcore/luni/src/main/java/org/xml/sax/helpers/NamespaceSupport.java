@@ -6,7 +6,7 @@
 
 package org.xml.sax.helpers;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
+import android.compat.annotation.UnsupportedAppUsage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EmptyStackException;

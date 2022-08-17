@@ -5,10 +5,12 @@
 
 package org.xml.sax.ext;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
-import libcore.util.EmptyArray;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.AttributesImpl;
+
+import android.compat.annotation.UnsupportedAppUsage;
+
+import libcore.util.EmptyArray;
 
 /**
  * SAX2 extension helper for additional Attributes information,

@@ -16,25 +16,49 @@
 
 package android.system;
 
+import static android.annotation.SystemApi.Client.MODULE_LIBRARIES;
+
+import android.annotation.SystemApi;
+
 import libcore.util.Objects;
 
 /**
  * Information returned by {@link Os#getrlimit}. Corresponds to C's {@code struct rlimit} from
  * {@code <sys/resource.h>}.
  *
+ * See <a href="https://man7.org/linux/man-pages/man3/vlimit.3.html">getrlimit(2)</a>.
+ *
  * @hide
  */
-@libcore.api.CorePlatformApi
+@SystemApi(client = MODULE_LIBRARIES)
+@libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 public final class StructRlimit {
-    @libcore.api.CorePlatformApi
+
+    /**
+     * Soft limit
+     *
+     * @hide
+     */
+    @SystemApi(client = MODULE_LIBRARIES)
+    @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
     public final long rlim_cur;
+    /**
+     * Hard limit (ceiling for rlim_cur)
+     *
+     * @hide
+     */
     public final long rlim_max;
 
+    /**
+     * @hide
+     */
     public StructRlimit(long rlim_cur, long rlim_max) {
         this.rlim_cur = rlim_cur;
         this.rlim_max = rlim_max;
     }
-
+    /**
+     * @hide
+     */
     @Override public String toString() {
         return Objects.toString(this);
     }

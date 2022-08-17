@@ -134,9 +134,9 @@ public abstract class URLStreamHandler {
 
         boolean isRelPath = false;
         boolean queryOnly = false;
-        // BEGIN Android-changed: App compat
+        // BEGIN Android-changed: App compat.
         boolean querySet = false;
-        // END Android-changed: App compat
+        // END Android-changed: App compat.
 
 // FIX: should not assume query if opaque
         // Strip off the query part
@@ -148,22 +148,22 @@ public abstract class URLStreamHandler {
                 if (limit > queryStart)
                     limit = queryStart;
                 spec = spec.substring(0, queryStart);
-                // BEGIN Android-changed: App compat
+                // BEGIN Android-changed: App compat.
                 querySet = true;
-                // END Android-changed: App compat
+                // END Android-changed: App compat.
             }
         }
 
         int i = 0;
         // Parse the authority part if any
-        // BEGIN Android-changed: App compat
+        // BEGIN Android-changed: App compat.
         // boolean isUNCName = (start <= limit - 4) &&
         //                 (spec.charAt(start) == '/') &&
         //                 (spec.charAt(start + 1) == '/') &&
         //                 (spec.charAt(start + 2) == '/') &&
         //                 (spec.charAt(start + 3) == '/');
         boolean isUNCName = false;
-        // END Android-changed: App compat
+        // END Android-changed: App compat.
         if (!isUNCName && (start <= limit - 2) && (spec.charAt(start) == '/') &&
             (spec.charAt(start + 1) == '/')) {
             start += 2;
@@ -239,7 +239,7 @@ public abstract class URLStreamHandler {
                     if (ind >= 0) {
                         // port can be null according to RFC2396
                         if (host.length() > (ind + 1)) {
-                            // BEGIN Android-changed: App compat
+                            // BEGIN Android-changed: App compat.
                             // port = Integer.parseInt(host.substring(ind + 1));
                             char firstPortChar = host.charAt(ind+1);
                             if (firstPortChar >= '0' && firstPortChar <= '9') {
@@ -248,7 +248,7 @@ public abstract class URLStreamHandler {
                                 throw new IllegalArgumentException("invalid port: " +
                                                                    host.substring(ind + 1));
                             }
-                            // END Android-changed: App compat
+                            // END Android-changed: App compat.
                         }
                         host = host.substring(0, ind);
                     }
@@ -263,14 +263,14 @@ public abstract class URLStreamHandler {
 
             // If the authority is defined then the path is defined by the
             // spec only; See RFC 2396 Section 5.2.4.
-            // BEGIN Android-changed: App compat
+            // BEGIN Android-changed: App compat.
             // if (authority != null && authority.length() > 0)
             //   path = "";
             path = null;
             if (!querySet) {
                 query = null;
             }
-            // END Android-changed: App compat
+            // END Android-changed: App compat.
         }
 
         if (host == null) {
@@ -297,21 +297,21 @@ public abstract class URLStreamHandler {
                 path = seperator + spec.substring(start, limit);
             }
         }
-        // BEGIN Android-changed: App compat
+        // BEGIN Android-changed: App compat.
         //else if (queryOnly && path != null) {
         //    int ind = path.lastIndexOf('/');
         //    if (ind < 0)
         //        ind = 0;
         //    path = path.substring(0, ind) + "/";
         //}
-        // END Android-changed: App compat
+        // END Android-changed: App compat.
         if (path == null)
             path = "";
 
-        // BEGIN Android-changed
+        // BEGIN Android-changed: always assume isRelPath is true.
         //if (isRelPath) {
         if (true) {
-        // END Android-changed
+        // END Android-changed: always assume isRelPath is true.
             // Remove embedded /./
             while ((i = path.indexOf("/./")) >= 0) {
                 path = path.substring(0, i) + path.substring(i + 2);
@@ -319,21 +319,21 @@ public abstract class URLStreamHandler {
             // Remove embedded /../ if possible
             i = 0;
             while ((i = path.indexOf("/../", i)) >= 0) {
-                // BEGIN Android-changed: App compat
+                // BEGIN Android-changed: App compat.
                 /*
                  * Trailing /../
                  */
                 if (i == 0) {
                     path = path.substring(i + 3);
                     i = 0;
-                // END Android-changed: App compat
+                // END Android-changed: App compat.
                 /*
                  * A "/../" will cancel the previous segment and itself,
                  * unless that segment is a "/../" itself
                  * i.e. "/a/b/../c" becomes "/a/c"
                  * but "/../../a" should stay unchanged
                  */
-                // Android-changed: App compat
+                // Android-changed: App compat.
                 // if (i > 0 && (limit = path.lastIndexOf('/', i - 1)) >= 0 &&
                 } else if (i > 0 && (limit = path.lastIndexOf('/', i - 1)) >= 0 &&
                     (path.indexOf("/../", limit) != 0)) {
@@ -360,7 +360,7 @@ public abstract class URLStreamHandler {
             if (path.endsWith("/."))
                 path = path.substring(0, path.length() -1);
 
-            // Android-changed: App compat: Remove trailing ?
+            // Android-changed: App compat: Remove trailing '?'.
             if (path.endsWith("?"))
                 path = path.substring(0, path.length() -1);
         }
@@ -391,7 +391,7 @@ public abstract class URLStreamHandler {
      * @since 1.3
      */
     protected boolean equals(URL u1, URL u2) {
-        // Android-changed: Avoid network I/O
+        // Android-changed: Avoid network I/O.
         return Objects.equals(u1.getRef(), u2.getRef()) &&
                Objects.equals(u1.getQuery(), u2.getQuery()) &&
                // sameFile compares the protocol, file, port & host components of
@@ -408,7 +408,7 @@ public abstract class URLStreamHandler {
      * @since 1.3
      */
     protected int hashCode(URL u) {
-        // Android-changed: Avoid network I/O
+        // Android-changed: Avoid network I/O.
         // Hash on the same set of fields that we compare in equals().
         return Objects.hash(
                 u.getRef(),
@@ -522,7 +522,7 @@ public abstract class URLStreamHandler {
         if (u.getRef() != null)
             len += 1 + u.getRef().length();
 
-        // BEGIN Android-changed: Add a toExternalForm variant that optionally escapes illegal chars
+        // BEGIN Android-changed: New toExternalForm variant that optionally escapes illegal chars.
         // TODO: The variant has been removed. We can potentially revert the change
         StringBuilder result = new StringBuilder(len);
         result.append(u.getProtocol());
@@ -535,7 +535,7 @@ public abstract class URLStreamHandler {
         if (fileAndQuery != null) {
             result.append(fileAndQuery);
         }
-        // END Android-changed: Add a toExternalForm variant that optionally escapes illegal chars
+        // END Android-changed: New toExternalForm variant that optionally escapes illegal chars.
         if (u.getRef() != null) {
             result.append("#");
             result.append(u.getRef());
@@ -543,7 +543,7 @@ public abstract class URLStreamHandler {
         return result.toString();
     }
 
-    // Android-changed: Removed @see tag (target is package-private):
+    // Android-changed: Removed @see tag (target is package-private).
     // @see     java.net.URL#set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)
     /**
      * Sets the fields of the {@code URL} argument to the indicated values.

@@ -34,6 +34,6 @@ static JNINativeMethod gMethods[] = {
     NATIVE_METHOD(MethodHandle, invoke, "([Ljava/lang/Object;)Ljava/lang/Object;"),
 };
 
-extern "C" void register_java_lang_invoke_MethodHandle(JNIEnv* env) {
+void register_java_lang_invoke_MethodHandle(JNIEnv* env) {
     jniRegisterNativeMethods(env, "java/lang/invoke/MethodHandle", gMethods, NELEM(gMethods));
 }

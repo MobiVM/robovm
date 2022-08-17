@@ -12,8 +12,9 @@
 
 package org.w3c.dom.traversal;
 
-import dalvik.annotation.compat.UnsupportedAppUsage;
 import org.w3c.dom.Node;
+
+import android.compat.annotation.UnsupportedAppUsage;
 
 /**
  * Filters are objects that know how to "filter out" nodes. If a

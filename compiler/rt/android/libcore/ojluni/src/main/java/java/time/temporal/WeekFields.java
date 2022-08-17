@@ -285,9 +285,8 @@ public final class WeekFields implements Serializable {
     public static WeekFields of(Locale locale) {
         Objects.requireNonNull(locale, "locale");
         // Android-changed: get Week data from ICU4J
-        ULocale ulocale = ULocale.forLocale(locale);
-        String region = ULocale.getRegionForSupplementalData(ulocale, /* inferRegion */ true);
-        Calendar.WeekData weekData = Calendar.getWeekDataForRegion(region);
+        Calendar calendar = Calendar.getInstance(locale);
+        Calendar.WeekData weekData = calendar.getWeekData();
         DayOfWeek dow = DayOfWeek.SUNDAY.plus(weekData.firstDayOfWeek - 1);
         return WeekFields.of(dow, weekData.minimalDaysInFirstWeek);
     }
@@ -1034,7 +1033,7 @@ public final class WeekFields implements Serializable {
             if (rangeUnit == YEARS) {  // only have values for week-of-year
                 // Android-changed: Use ICU name values.
                 DateTimePatternGenerator dateTimePatternGenerator = DateTimePatternGenerator
-                        .getFrozenInstance(ULocale.forLocale(locale));
+                        .getInstance(ULocale.forLocale(locale));
                 String icuName = dateTimePatternGenerator
                         .getAppendItemName(DateTimePatternGenerator.WEEK_OF_YEAR);
                 return icuName != null && !icuName.isEmpty() ? icuName : name;

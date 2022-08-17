@@ -21,6 +21,7 @@
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -29,6 +30,9 @@
 #include <nativehelper/ScopedLocalRef.h>
 
 #include "JniConstants.h"
+
+#include <log/log.h>
+
 
 jobject sockaddrToInetAddress(JNIEnv* env, const sockaddr_storage& ss, jint* port) {
     // Convert IPv4-mapped IPv6 addresses to IPv4 addresses.
@@ -197,6 +201,325 @@ bool inetAddressToSockaddrVerbatim(JNIEnv* env, jobject inetAddress, int port, s
 
 bool inetAddressToSockaddr(JNIEnv* env, jobject inetAddress, int port, sockaddr_storage& ss, socklen_t& sa_len) {
     return inetAddressToSockaddr(env, inetAddress, port, ss, sa_len, true);
+}
+
+/*
+ * Fill msg_contrl data from structCmsghdr[]
+ */
+bool structCmsghdrArrayToMsgcontrol(JNIEnv* env, jobjectArray cmsgArray, struct msghdr& mhdr) {
+    struct cmsghdr *cm = NULL;
+    int i = 0;
+    jclass structCmsghdrClass = JniConstants::GetStructCmsghdrClass(env);
+    static jfieldID cmsgDataFid = env->GetFieldID(structCmsghdrClass, "cmsg_data", "[B");
+    if (!cmsgDataFid) {
+        return false;
+    }
+    static jfieldID cmsgLevelFid = env->GetFieldID(structCmsghdrClass, "cmsg_level", "I");
+    if (!cmsgLevelFid) {
+        return false;
+    }
+    static jfieldID cmsgTypeFid = env->GetFieldID(structCmsghdrClass, "cmsg_type", "I");
+    if (!cmsgTypeFid) {
+        return false;
+    }
+
+    int cmsgArrayize = env->GetArrayLength(cmsgArray);
+    if (!cmsgArrayize) {
+        // Return true since msg_control is optional parameter.
+        return true;
+    }
+
+    for (int i = 0; i < cmsgArrayize; ++i) {
+        ScopedLocalRef<jobject> cmsg(env, env->GetObjectArrayElement(cmsgArray, i));
+        ScopedLocalRef<jbyteArray> cmsgData(env, reinterpret_cast<jbyteArray>(
+                env->GetObjectField(cmsg.get(), cmsgDataFid)));
+
+        mhdr.msg_controllen += CMSG_SPACE(env->GetArrayLength(cmsgData.get()));
+    }
+
+    mhdr.msg_control = (unsigned char*)malloc(mhdr.msg_controllen);
+    if (mhdr.msg_control == NULL) {
+        jniThrowException(env, "java/lang/OutOfMemoryError", "Out of memory");
+        return false;
+    }
+    memset(mhdr.msg_control, 0, mhdr.msg_controllen);
+
+    // Loop over each cmsghdr header and set data.
+    for (cm = CMSG_FIRSTHDR(&mhdr), i = 0; (cm != NULL); cm = CMSG_NXTHDR(&mhdr, cm), ++i)
+    {
+        size_t data_len = 0;
+        ScopedLocalRef<jobject> cmsg(env, env->GetObjectArrayElement(cmsgArray, i));
+        ScopedLocalRef<jbyteArray> cmsgData(env, reinterpret_cast<jbyteArray>(
+                env->GetObjectField(cmsg.get(), cmsgDataFid)));
+
+        cm->cmsg_level = env->GetIntField(cmsg.get(), cmsgLevelFid);
+        cm->cmsg_type  = env->GetIntField(cmsg.get(), cmsgTypeFid);
+        data_len = env->GetArrayLength(cmsgData.get());
+        cm->cmsg_len   = CMSG_LEN(data_len);
+        env->GetByteArrayRegion(cmsgData.get(), 0,
+                data_len, reinterpret_cast<jbyte*>CMSG_DATA(cm));
+    }
+    return true;
+}
+
+/*
+ * Fill structCmsghdr[] data per msgcontrol data, used when recvmsg
+ */
+bool msgcontrolToStructCmsghdrArray(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr) {
+    struct cmsghdr *cm = NULL;
+    int i = 0;
+
+    static jfieldID msgControlFid = env->GetFieldID(JniConstants::GetStructMsghdrClass(env),
+                                                 "msg_control", "[Landroid/system/StructCmsghdr;");
+    if (!msgControlFid) {
+        return false;
+    }
+
+    static jmethodID cmsgInitMid = env->GetMethodID(JniConstants::GetStructCmsghdrClass(env),
+                                                    "<init>", "(II[B)V");
+    if (!cmsgInitMid) {
+        return false;
+    }
+
+    int cmsghdrNumber = 0;
+    for (cm = CMSG_FIRSTHDR(&mhdr); (cm != NULL); cm = CMSG_NXTHDR(&mhdr, cm)) {
+        cmsghdrNumber++;
+    }
+    if (!cmsghdrNumber)
+        return true;
+
+    jobjectArray structCmsghdrArray = env->NewObjectArray(cmsghdrNumber,
+                                          JniConstants::GetStructCmsghdrClass(env), NULL);
+    if (!structCmsghdrArray) {
+        return false;
+    }
+
+    // Loop over each cmsghdr header and set data.
+    for (cm = CMSG_FIRSTHDR(&mhdr),i=0; (cm!=NULL); cm = CMSG_NXTHDR(&mhdr, cm),i++) {
+        // copy out cmsg_data
+        ScopedLocalRef<jbyteArray> msgData(env,
+            env->NewByteArray(cm->cmsg_len - sizeof(struct cmsghdr)));
+        env->SetByteArrayRegion(msgData.get(),
+                                0,
+                                env->GetArrayLength(msgData.get()),
+                                reinterpret_cast<jbyte*>CMSG_DATA(cm));
+
+        ScopedLocalRef<jobject> objItem(env, env->NewObject(
+                JniConstants::GetStructCmsghdrClass(env),
+                cmsgInitMid, cm->cmsg_level, cm->cmsg_type, msgData.get()));
+
+        env->SetObjectArrayElement(structCmsghdrArray, i, objItem.get());
+    }
+
+    env->SetObjectField(structMsghdr, msgControlFid, structCmsghdrArray);
+
+    return true;
+}
+
+/*
+ * generate ScopedBytes object per ByteBuffer.isDirect
+ * if ByteBuffer.isDirect, generate ScopedBytes object by ByteBuffer itself;
+ * else,  generate ScopedBytes object by ByteBuffer.array;
+ *
+ * Input:  ByteBuffer object, isRW(R only or RW)
+ * Output: byte_len, length of the byte data per ByteBuffer.remaining;
+ * return value: pointer of new ScopedBytesRW or ScopedBytesRO
+ */
+static void* getScopedBytesFromByteBuffer(JNIEnv* env,
+                                          jobject byteBuffer, int& byteLen, bool isRW) {
+
+    jclass byteBufferClass = JniConstants::GetByteBufferClass(env);
+    static jmethodID isDirectMid = env->GetMethodID(byteBufferClass, "isDirect", "()Z");
+    static jmethodID remainingMid = env->GetMethodID(byteBufferClass, "remaining", "()I");
+    static jmethodID arrayMid = env->GetMethodID(byteBufferClass, "array", "()[B");
+
+    if (!isDirectMid || !remainingMid || !arrayMid) {
+        return NULL;
+    }
+
+    byteLen = env->CallIntMethod(byteBuffer, remainingMid);
+    bool isDirect = env->CallBooleanMethod(byteBuffer, isDirectMid);
+    jobject objBuff;
+    if (isDirect == true) {
+        objBuff = env->NewLocalRef(byteBuffer); // Add LocalRef to align with CallObjectMethod
+    } else {
+        // return array
+        objBuff = env->CallObjectMethod(byteBuffer, arrayMid);
+    }
+
+    if (isRW) {
+        return (void*)(new ScopedBytesRW(env, objBuff));
+    } else {
+        return (void*)(new ScopedBytesRO(env, objBuff));
+    }
+
+}
+
+/*
+ *  Convert ByteBuffer[] to mhdr.msg_iov/msg_iovlen
+ */
+bool byteBufferArrayToIOV(JNIEnv* env, jobjectArray msgiovArray, struct msghdr& mhdr,
+                         ScopedByteBufferArray& scopeBufArray) {
+    int msgIovArraySize = env->GetArrayLength(msgiovArray);
+    if (!msgIovArraySize) {
+        /* would not happen since msg_iov is marked as NonNull */
+        mhdr.msg_iov = NULL;
+        mhdr.msg_iovlen = 0;
+    }
+
+    struct iovec* iovarr = (struct iovec*)malloc(sizeof(iovec)*msgIovArraySize);
+    if (!iovarr) {
+        jniThrowException(env, "java/lang/OutOfMemoryError", "Out of memory");
+        return false;
+    }
+
+    if (scopeBufArray.initArray(msgIovArraySize) == false) {
+        jniThrowException(env, "java/lang/OutOfMemoryError", "Out of memory");
+        return false;
+    }
+
+    // Set memory of each msg_iov item by the original bytes address.
+    for (int i=0; i<msgIovArraySize; i++)
+    {
+        jobject msgiovItem = env->GetObjectArrayElement(msgiovArray, i);
+        int byteLen = 0;
+        void* ptr = getScopedBytesFromByteBuffer(env, msgiovItem, byteLen, scopeBufArray.isRW());
+        if (!ptr) {
+            jniThrowException(env, "java/lang/OutOfMemoryError", "Out of memory");
+            return false;
+        }
+
+        scopeBufArray.setArrayItem(i, ptr);
+
+        if (scopeBufArray.isRW()) {
+            iovarr[i].iov_base = (unsigned char*)(((ScopedBytesRW*)ptr)->get());
+        }
+        else {
+            iovarr[i].iov_base = (unsigned char*)(((ScopedBytesRO*)ptr)->get());
+        }
+
+        iovarr[i].iov_len  = byteLen;
+    }
+
+    mhdr.msg_iov = iovarr;
+    mhdr.msg_iovlen = msgIovArraySize;
+
+    return true;
+}
+
+/*
+ * Function: convertStructMsghdrAndmsghdr
+ * Description: convert between Java#StructMsghdr and C#msghdr for sendmsg/recvmsg
+ *
+ * Function Parameters:
+ *   StructMsghdr, input, StructMsghdr
+ *                 for sendmsg,
+ *                   StructMsghdr.msg_name       input(mandatory),
+ *                   StructMsghdr.msg_iov        iput(mandatory)
+ *                   StructMsghdr.msg_control    input(optional)
+ *                   StructMsghdr.msg_flags      input(mandatory)
+ *                 for recvmsg,
+ *                   StructMsghdr.msg_name       input/output(optional),
+ *                   StructMsghdr.msg_iov        input/output(mandatory)
+ *                   StructMsghdr.msg_control    input/output(optional)
+ *                   StructMsghdr.msg_flags      input
+ *   mhdr, input, struct msghdr
+ *   scopeBufArray, output, store buffer array of ScopedBytesRW or ScopedBytesRO
+ *   isFromStructCMsghdrTomsghdr, input,  indicate StructMsghdr->msghdr or msghdr->StructMsghdr
+ *
+ * then in sendmsg scenario, call sequence will be:
+ *             1. convert(StructMsg->msghdr)
+ *             2. sendmsg
+ *      in recvmsg scenario, call sequence will be:
+ *             1. convert(StructMsg->msghdr)
+ *             2. recvmsg
+ *             3. convert again(msghdr->StructMsg)
+ */
+bool convertStructMsghdrAndmsghdr(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr,
+                                  ScopedByteBufferArray& scopeBufArray,
+                                  bool isFromStructCMsghdrTomsghdr) {
+    if (!structMsghdr) {
+        jniThrowNullPointerException(env, "missing structMsghdr");
+        return false;
+    }
+
+    jclass StructMsghdrClass = JniConstants::GetStructMsghdrClass(env);
+
+    // Get fieldID of each item in StructMsghdr.
+    static jfieldID msgIovFid = env->GetFieldID(StructMsghdrClass,
+                                                 "msg_iov",
+                                                 "[Ljava/nio/ByteBuffer;");
+    if (!msgIovFid) {
+        return false;
+    }
+    static jfieldID msgControlFid = env->GetFieldID(StructMsghdrClass,
+                                                    "msg_control",
+                                                    "[Landroid/system/StructCmsghdr;");
+    if (!msgControlFid) {
+        return false;
+    }
+    static jfieldID msgFlagsFid = env->GetFieldID(StructMsghdrClass,
+                                                  "msg_flags",
+                                                  "I");
+    if (!msgFlagsFid) {
+        return false;
+    }
+
+    if (isFromStructCMsghdrTomsghdr) {
+        // Pick StructMsghdr.msg_iov[].
+        jobjectArray msgIovArray = reinterpret_cast<jobjectArray>(
+                                        env->GetObjectField(structMsghdr, msgIovFid));
+        if (!msgIovArray) {
+            jniThrowNullPointerException(env, "null StructMsghdr.msg_iov");
+            return false;
+        }
+        // In case sendmsg, IOV buffer are RO to send data,
+        // in case recvmsg, IOV buffer are RW to store received data.
+        if (byteBufferArrayToIOV(env, msgIovArray, mhdr, scopeBufArray) == false) {
+            return false;
+        }
+
+        if (!scopeBufArray.isRW()) {
+            jobjectArray structCmsghdrObjArray = reinterpret_cast<jobjectArray>(
+                                               env->GetObjectField(structMsghdr, msgControlFid));
+            if (structCmsghdrObjArray != NULL) {
+                // convert StrucCmsg[] <-> msghdr.msgcontrl
+                if (structCmsghdrArrayToMsgcontrol(env, structCmsghdrObjArray, mhdr) == false) {
+                    return false;
+                }
+            }
+        } else {
+            // hardcode 512 for recvmsg/msg_controllen, it should be enough for recvmsg
+            mhdr.msg_controllen = 512;
+            mhdr.msg_control = (unsigned char*)malloc(mhdr.msg_controllen);
+        }
+
+        mhdr.msg_flags = env->GetIntField(structMsghdr, msgFlagsFid);
+    } else {
+        // StructMsghdr.msg_iov[]/msg_control[] are output paramenter.
+        // StructMsghdr.msg_iov[] data are already updated by recvmsg syscall directly.
+        // StructMsghdr.msg_control[] are set below.
+        if (msgcontrolToStructCmsghdrArray(env, structMsghdr, mhdr) == false)
+            return false;
+        env->SetIntField(structMsghdr, msgFlagsFid, mhdr.msg_flags);
+    }
+
+    return true;
+
+}
+
+// Convert Java StructMsghdr to C msghdr.
+bool msghdrJavaToC(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr,
+                          ScopedByteBufferArray& scopedBufArray) {
+    return convertStructMsghdrAndmsghdr(env, structMsghdr, mhdr,
+                                             scopedBufArray, true);
+}
+
+// Convert C msghdr to Java StructMsghdr.
+bool msghdrCToJava(JNIEnv* env, jobject structMsghdr, struct msghdr& mhdr,
+                          ScopedByteBufferArray& scopedBufArray) {
+    return convertStructMsghdrAndmsghdr(env, structMsghdr, mhdr,
+                                             scopedBufArray, false);
 }
 
 bool setBlocking(int fd, bool blocking) {

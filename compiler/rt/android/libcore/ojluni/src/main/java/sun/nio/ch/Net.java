@@ -491,18 +491,17 @@ public class Net {
         return new InetSocketAddress(localInetAddress(fd), localPort(fd));
     }
 
-// RoboVM Note: not used
-//    private static native int remotePort(FileDescriptor fd)
-//        throws IOException;
-//
-//    private static native InetAddress remoteInetAddress(FileDescriptor fd)
-//        throws IOException;
-//
-//    static InetSocketAddress remoteAddress(FileDescriptor fd)
-//        throws IOException
-//    {
-//        return new InetSocketAddress(remoteInetAddress(fd), remotePort(fd));
-//    }
+    private static native int remotePort(FileDescriptor fd)
+        throws IOException;
+
+    private static native InetAddress remoteInetAddress(FileDescriptor fd)
+        throws IOException;
+
+    static InetSocketAddress remoteAddress(FileDescriptor fd)
+        throws IOException
+    {
+        return new InetSocketAddress(remoteInetAddress(fd), remotePort(fd));
+    }
 
     private static native int getIntOption0(FileDescriptor fd, boolean mayNeedConversion,
                                             int level, int opt)

@@ -81,7 +81,7 @@ class ZipFile implements ZipConstants, Closeable {
     private final boolean locsig;  // if zip file starts with LOCSIG (usually true)
     private volatile boolean closeRequested = false;
 
-    // Android-added: CloseGuard support
+    // Android-added: CloseGuard support.
     private final CloseGuard guard = CloseGuard.get();
 
     // Android-added: Do not use unlink() to implement OPEN_DELETE.
@@ -243,7 +243,7 @@ class ZipFile implements ZipConstants, Closeable {
                                                Integer.toHexString(mode));
         }
         String name = file.getPath();
-        // Android-removed: SecurityManager is always null
+        // Android-removed: SecurityManager is always null.
         /*
         SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
@@ -260,16 +260,16 @@ class ZipFile implements ZipConstants, Closeable {
         if (charset == null)
             throw new NullPointerException("charset is null");
         this.zc = ZipCoder.get(charset);
-        // Android-removed: Skip perf counters
+        // Android-removed: Skip perf counters.
         // long t0 = System.nanoTime();
         jzfile = open(name, mode, file.lastModified(), usemmap);
-        // Android-removed: Skip perf counters
+        // Android-removed: Skip perf counters.
         // sun.misc.PerfCounter.getZipFileOpenTime().addElapsedTimeFrom(t0);
         // sun.misc.PerfCounter.getZipFileCount().increment();
         this.name = name;
         this.total = getTotal(jzfile);
         this.locsig = startsWithLOC(jzfile);
-        // Android-added: CloseGuard support
+        // Android-added: CloseGuard support.
         guard.open("close");
     }
 
@@ -668,7 +668,7 @@ class ZipFile implements ZipConstants, Closeable {
     public void close() throws IOException {
         if (closeRequested)
             return;
-        // Android-added: CloseGuard support
+        // Android-added: CloseGuard support.
         if (guard != null) {
             guard.close();
         }
@@ -739,7 +739,7 @@ class ZipFile implements ZipConstants, Closeable {
      * @see    java.util.zip.ZipFile#close()
      */
     protected void finalize() throws IOException {
-        // Android-added: CloseGuard support
+        // Android-added: CloseGuard support.
         if (guard != null) {
             guard.warnIfOpen();
         }
