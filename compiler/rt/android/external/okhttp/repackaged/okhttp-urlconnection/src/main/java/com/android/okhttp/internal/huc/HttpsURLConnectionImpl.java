@@ -28,7 +28,7 @@ import javax.net.ssl.SSLSocketFactory;
  * @hide This class is not part of the Android public SDK API
  */
 public final class HttpsURLConnectionImpl extends DelegatingHttpsURLConnection {
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final HttpURLConnectionImpl delegate;
 
   public HttpsURLConnectionImpl(URL url, OkHttpClient client) {

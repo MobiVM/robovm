@@ -28,11 +28,11 @@ import java.util.List;
  * @hide This class is not part of the Android public SDK API
  */
 public final class Request {
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final HttpUrl url;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final String method;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final Headers headers;
   private final RequestBody body;
   private final Object tag;

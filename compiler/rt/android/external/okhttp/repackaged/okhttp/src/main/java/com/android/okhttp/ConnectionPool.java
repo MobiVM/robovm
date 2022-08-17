@@ -60,7 +60,7 @@ import java.util.concurrent.TimeUnit;
 public final class ConnectionPool {
   private static final long DEFAULT_KEEP_ALIVE_DURATION_MS = 5 * 60 * 1000; // 5 min
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private static final ConnectionPool systemDefault;
 
   static {
@@ -89,9 +89,9 @@ public final class ConnectionPool {
       new LinkedBlockingQueue<Runnable>(), Util.threadFactory("OkHttp ConnectionPool", true));
 
   /** The maximum number of idle connections for each address. */
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final int maxIdleConnections;
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final long keepAliveDurationNs;
   private Runnable cleanupRunnable = new Runnable() {
     @Override public void run() {
@@ -112,7 +112,7 @@ public final class ConnectionPool {
     }
   };
 
-  @dalvik.annotation.compat.UnsupportedAppUsage
+  @android.compat.annotation.UnsupportedAppUsage
   private final Deque<RealConnection> connections = new ArrayDeque<>();
   final RouteDatabase routeDatabase = new RouteDatabase();
 
