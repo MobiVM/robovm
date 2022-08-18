@@ -41,6 +41,7 @@ set(SRC
   # files from luni4
   ${LUNI4_PATH}/libcore_io_Posix.cpp
   ${LUNI4_PATH}/java_nio_charset_Charsets.cpp
+  ${LUNI4_PATH}/android_icu_impl_ICUBinary.cpp
   ${LUNI4_PATH}/java_util_concurrent_atomic_AtomicLong.cpp
 )
 if(LINUX)

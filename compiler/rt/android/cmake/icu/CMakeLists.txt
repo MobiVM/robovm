@@ -1,6 +1,7 @@
 project(android-external-icu4c)
 
 set(ICU_PATH "${ANDROID_RT_PATH}/external/icu/icu4c/source")
+set(LIBCORE_BRIDGE_PATH "${ANDROID_RT_PATH}/external/icu/android_icu4j/libcore_bridge/src/native")
 set(COMMON_PATH "${ICU_PATH}/common")
 set(I18N_PATH "${ICU_PATH}/i18n")
 
@@ -15,9 +16,11 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-sign-compare -Wno-deprecated-declaratio
 
 file(GLOB SRC_COMMON "${COMMON_PATH}/*.cpp")
 file(GLOB SRC_I18N   "${I18N_PATH}/*.cpp")
+file(GLOB SRC_LIBCORE_BRIDGE "${LIBCORE_BRIDGE_PATH}/*.cpp")
 set(SRC
   ${SRC_COMMON}
   ${SRC_I18N}
+  ${SRC_LIBCORE_BRIDGE}
   ${ICU_PATH}/stubdata/stubdata.cpp
 )
 

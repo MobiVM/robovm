@@ -286,21 +286,21 @@ public final class ICUBinary {
     private static final List<DataFile> icuDataFiles = new ArrayList<>();
 
     static {
-        // BEGIN Android-changed: Initialize ICU data file paths.
-        /*
-        // Normally android.icu.impl.ICUBinary.dataPath.
-        String dataPath = ICUConfig.get(ICUBinary.class.getName() + ".dataPath");
-        */
-        String dataPath = null;
-        // Only when runs after repackaging ICU4J. Otherwise the jar should have the ICU resources.
-        if (ICUBinary.class.getName().startsWith("android.icu")) {
-            dataPath = AndroidDataFiles.generateIcuDataPath();
-        }
-        // END Android-changed: Initialize ICU data file paths.
-        if (dataPath != null) {
-            addDataFilesFromPath(dataPath, icuDataFiles);
+        // RoboVM Note: will not provide both icu4j resources and .dat file for native part
+        // instead asking for data file from native part
+        ByteBuffer pkgBytes = getIcuData();
+        if (pkgBytes != null && DatPackageReader.validate(pkgBytes)) {
+            icuDataFiles.add(new PackageDataFile("icudt63l.dat", pkgBytes));
+        } else {
+            throw new IllegalStateException("ICU binary initialization failed!");
         }
     }
+
+    /**
+     * RoboVM Note: retrieves ByteBuffer to icudt file from native part.
+     * To be shared with icu4j code
+     */
+    private static native ByteBuffer getIcuData();
 
     private static void addDataFilesFromPath(String dataPath, List<DataFile> files) {
         // Split the path and find files in each location.
