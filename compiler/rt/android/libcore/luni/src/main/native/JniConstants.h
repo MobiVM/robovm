@@ -23,11 +23,12 @@
  * A cache to avoid calling FindClass at runtime.
  */
 struct JniConstants {
-    // Initialized cached heap objects. This should be called in JNI_OnLoad.
-    static void Initialize(JNIEnv* env);
-
-    // Invalidate cached heap objects. This should be called in JNI_OnUnload.
-    static void Invalidate();
+// RoboVM note: using lazy initialization
+//    // Initialized cached heap objects. This should be called in JNI_OnLoad.
+//    static void Initialize(JNIEnv* env);
+//
+//    // Invalidate cached heap objects. This should be called in JNI_OnUnload.
+//    static void Invalidate();
 
     static jclass GetBooleanClass(JNIEnv* env);
     static jclass GetByteBufferClass(JNIEnv* env);

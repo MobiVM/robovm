@@ -135,23 +135,24 @@ void EnsureJniConstantsInitialized(JNIEnv* env) {
 
 }  // namespace
 
-void JniConstants::Initialize(JNIEnv* env) {
-    EnsureJniConstantsInitialized(env);
-}
-
-void JniConstants::Invalidate() {
-    // This method is called when a new runtime instance is created. There is no
-    // notification of a runtime instance being destroyed in the JNI interface
-    // so we piggyback on creation. Since only one runtime is supported at a
-    // time, we know the constants are invalid when JNI_CreateJavaVM() is
-    // called.
-    //
-    // Clean shutdown would require calling DeleteGlobalRef() for each of the
-    // class references, but JavaVM is unavailable because ART only calls this
-    // once all threads are unregistered.
-    std::lock_guard guard(g_constants_mutex);
-    g_constants_valid = false;
-}
+// RoboVM note: using lazy initialization
+//void JniConstants::Initialize(JNIEnv* env) {
+//    EnsureJniConstantsInitialized(env);
+//}
+//
+//void JniConstants::Invalidate() {
+//    // This method is called when a new runtime instance is created. There is no
+//    // notification of a runtime instance being destroyed in the JNI interface
+//    // so we piggyback on creation. Since only one runtime is supported at a
+//    // time, we know the constants are invalid when JNI_CreateJavaVM() is
+//    // called.
+//    //
+//    // Clean shutdown would require calling DeleteGlobalRef() for each of the
+//    // class references, but JavaVM is unavailable because ART only calls this
+//    // once all threads are unregistered.
+//    std::lock_guard guard(g_constants_mutex);
+//    g_constants_valid = false;
+//}
 
 jclass JniConstants::GetBooleanClass(JNIEnv* env) {
     EnsureJniConstantsInitialized(env);
