@@ -764,9 +764,14 @@ static jboolean getDeclaredClassesIterator(Env* env, char* innerClass, char* out
         return TRUE; // Continue with next attribute
     }
     Class* c = rvmFindClassUsingLoader(env, innerClass, clazz->classLoader);
-    if (!c) return FALSE; // Stop iterating
-    result->values[*index] = (Object*) c;
-    *index = *index + 1;
+    if (c) {
+        result->values[*index] = (Object*) c;
+        *index = *index + 1;
+    } else {
+        // inner class might be dropped due tree-shaker, don't throw exception in this case 
+        // continue with next attribute
+        rvmExceptionClear(env);
+    }
     return TRUE; // Continue with next attribute
 }
 
@@ -922,6 +927,15 @@ ObjectArray* rvmAttributeGetDeclaredClasses(Env* env, Class* clazz) {
     jint index = 0;
     void* data[3] = {result, &index, clazz};
     iterateInnerClasses(env, clazz->attributes, getDeclaredClassesIterator, data);
+    if (index < count) {
+        // not all classes returned some might be dropped due tree-shaker or opted in
+        jint length = index;
+        ObjectArray* old = result;
+        ObjectArray* result = rvmNewObjectArray(env, length, java_lang_Class, NULL, NULL);
+        for (int i = 0; i < length; i++) {
+            result->values[i] = old->values[i];
+        }     
+    }
     return result;
 }
 
