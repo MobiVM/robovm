@@ -143,7 +143,9 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     private static boolean isUdpSocket(FileDescriptor fd) throws ErrnoException {
-        return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_PROTOCOL()) == IPPROTO_UDP();
+        // RoboVM note: SO_PROTOCOL() is not available on Darwin, using SO_TYPE
+        //return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_PROTOCOL()) == IPPROTO_UDP();
+        return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_TYPE()) == SOCK_DGRAM();
     }
 
     @Override public void connect(FileDescriptor fd, InetAddress address, int port)
