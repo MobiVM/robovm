@@ -19,6 +19,8 @@ import android.icu.util.ULocale;
 /**
  * @hide Only a subset of ICU is exposed in Android
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.impl.ICUCurrencyDisplayInfoProvider.class)
 public class CurrencyData {
     public static final CurrencyDisplayInfoProvider provider;
 

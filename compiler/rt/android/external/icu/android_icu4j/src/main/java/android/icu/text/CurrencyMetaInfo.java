@@ -31,6 +31,8 @@ import android.icu.util.Currency.CurrencyUsage;
  *
  * @hide Only a subset of ICU is exposed in Android
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.impl.ICUCurrencyMetaInfo.class)
 public class CurrencyMetaInfo {
     private static final CurrencyMetaInfo impl;
     private static final boolean hasData;

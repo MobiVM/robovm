@@ -57,6 +57,8 @@ import sun.security.util.SecurityConstants;
  * @author Jean-Christophe Collet
  * @since 1.5
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(sun.net.spi.DefaultProxySelector.class)
 public abstract class ProxySelector {
     /**
      * The system wide proxy selector that selects the proxy server to

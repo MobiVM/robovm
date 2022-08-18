@@ -141,6 +141,9 @@ import sun.security.util.SecurityConstants;
  * @author  James Gosling
  * @since JDK1.0
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(com.android.okhttp.HttpHandler.class)
+@org.robovm.rt.annotation.ForceLinkClass(com.android.okhttp.HttpsHandler.class)
 public final class URL implements java.io.Serializable {
 
     // Android-changed: Custom built-in URLStreamHandlers for http, https.

@@ -53,6 +53,11 @@ import java.security.Provider.Service;
  * @author  Andreas Sterbenz
  * @since   1.5
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(com.android.org.conscrypt.OpenSSLProvider.class)
+@org.robovm.rt.annotation.ForceLinkClass(sun.security.provider.CertPathProvider.class)
+@org.robovm.rt.annotation.ForceLinkClass(com.android.org.bouncycastle.jce.provider.BouncyCastleProvider.class)
+@org.robovm.rt.annotation.ForceLinkClass(com.android.org.conscrypt.JSSEProvider.class)
 public final class ProviderList {
 
     final static sun.security.util.Debug debug =

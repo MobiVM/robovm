@@ -538,6 +538,8 @@ import android.icu.util.UResourceBundleIterator;
  * @see PluralRules
  * @hide Only a subset of ICU is exposed in Android
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.impl.text.RbnfScannerProviderImpl.class)
 public class RuleBasedNumberFormat extends NumberFormat {
 
     //-----------------------------------------------------------------------
