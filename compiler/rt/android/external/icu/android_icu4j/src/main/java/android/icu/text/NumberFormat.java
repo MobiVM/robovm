@@ -176,6 +176,8 @@ import android.icu.util.UResourceBundle;
  * @author       Helena Shih
  * @author       Alan Liu
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.text.NumberFormatServiceShim.class)
 public abstract class NumberFormat extends UFormat {
 
     /**

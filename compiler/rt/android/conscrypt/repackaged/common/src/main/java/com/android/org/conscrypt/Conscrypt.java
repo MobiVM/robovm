@@ -46,6 +46,8 @@ import javax.net.ssl.X509TrustManager;
  */
 @libcore.api.CorePlatformApi(status = libcore.api.CorePlatformApi.Status.STABLE)
 @SuppressWarnings("unused")
+// RoboVM note: due treeShaker this dependency might be lost, referencing directly
+@org.robovm.rt.annotation.ForceLinkClass(com.android.org.conscrypt.OpenSSLSocketFactoryImpl.class)
 public final class Conscrypt {
     private Conscrypt() {}
 

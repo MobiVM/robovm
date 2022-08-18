@@ -210,6 +210,8 @@ import android.icu.util.ULocale;
  *
  */
 
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.text.BreakIteratorFactory.class)
 public abstract class BreakIterator implements Cloneable
 {
 

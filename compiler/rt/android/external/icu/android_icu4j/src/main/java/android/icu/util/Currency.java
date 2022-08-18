@@ -58,6 +58,8 @@ import android.icu.util.ULocale.Category;
  * implementation, and adds features not present in the JDK.
  * @author Alan Liu
  */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.util.CurrencyServiceShim.class)
 public class Currency extends MeasureUnit {
     private static final long serialVersionUID = -5839973855554750484L;
     private static final boolean DEBUG = ICUDebug.enabled("currency");

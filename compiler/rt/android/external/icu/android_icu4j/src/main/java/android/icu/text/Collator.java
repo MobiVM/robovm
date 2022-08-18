@@ -132,6 +132,8 @@ import android.icu.util.VersionInfo;
 * @see CollationKey
 * @author Syn Wee Quek
 */
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(android.icu.text.CollatorServiceShim.class)
 public abstract class Collator implements Comparator<Object>, Freezable<Collator>, Cloneable
 {
     // public data members ---------------------------------------------------
