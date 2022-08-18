@@ -43,7 +43,7 @@ public class DependencyGraph {
      */
     private final Set<ClassNode> roots = new HashSet<>();
     /**
-     * {@link Node}s for classes added using {@link #add(Clazz, boolean)}.
+     * {@link Node}s for classes added using {@link #add(Clazz, boolean, Collection)}.
      */
     private final Map<String, ClassNode> classNodes = new HashMap<>();
     /**
@@ -52,9 +52,9 @@ public class DependencyGraph {
     private final Map<String, MethodNode> methodNodes = new HashMap<>();
     /**
      * Used to cache reachable nodes between calls to
-     * {@link #findReachableClasses(TreeShakerMode)} /
-     * {@link #findReachableMethods(TreeShakerMode)} when no call to
-     * {@link #add(Clazz, boolean)} has been done in between.
+     * {@link #findReachableClasses()} /
+     * {@link #findReachableMethods()} when no call to
+     * {@link #add(Clazz, boolean, Collection)} has been done in between.
      */
     private final Set<Node> reachableNodes = new HashSet<>();
 
@@ -77,6 +77,9 @@ public class DependencyGraph {
         ClassNode classNode = getClassNode(clazz.getInternalName());
         if (root) {
             roots.add(classNode);
+        } else {
+            // might be added to roots due @ForceLinkClass annotation processing
+            root = roots.contains(classNode);
         }
 
         ClazzInfo ci = clazz.getClazzInfo();
@@ -90,6 +93,20 @@ public class DependencyGraph {
                 classNode.addEgde(getMethodNode(mdep), mdep.isWeak());
             } else {
                 classNode.addEgde(getClassNode(dep.getClassName()), dep.isWeak());
+            }
+        }
+
+        // check for ForceLinkClass annotations
+        if (Annotations.hasForceLinkClassesAnnotation(clazz.getSootClass())) {
+            String[] forcedLinkClasses = Annotations.getForceLinkClasses(clazz.getSootClass());
+            // add all classes from force link classes as not weak
+            if (forcedLinkClasses != null) {
+                for (String descr : forcedLinkClasses) {
+                    String internalClassName = descr.substring(1, descr.length() - 1);
+                    ClassNode forcedClassNode = getClassNode(internalClassName);
+                    classNode.addEgde(forcedClassNode, false);
+                    roots.add(forcedClassNode);
+                }
             }
         }
 

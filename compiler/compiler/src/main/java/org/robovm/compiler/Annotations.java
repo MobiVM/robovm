@@ -16,25 +16,18 @@
  */
 package org.robovm.compiler;
 
-import static soot.tagkit.AnnotationConstants.*;
+import soot.SootClass;
+import soot.SootMethod;
+import soot.SootResolver;
+import soot.tagkit.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import soot.SootClass;
-import soot.SootMethod;
-import soot.SootResolver;
-import soot.tagkit.AnnotationAnnotationElem;
-import soot.tagkit.AnnotationArrayElem;
-import soot.tagkit.AnnotationElem;
-import soot.tagkit.AnnotationIntElem;
-import soot.tagkit.AnnotationStringElem;
-import soot.tagkit.AnnotationTag;
-import soot.tagkit.Host;
-import soot.tagkit.Tag;
-import soot.tagkit.VisibilityAnnotationTag;
-import soot.tagkit.VisibilityParameterAnnotationTag;
+import static soot.tagkit.AnnotationConstants.*;
 
 /**
  * @author niklas
@@ -69,6 +62,8 @@ public class Annotations {
     public static final String VARIADIC = "Lorg/robovm/rt/bro/annotation/Variadic;";
     public static final String WEAKLY_LINKED = "Lorg/robovm/rt/annotation/WeaklyLinked;";
     public static final String STRONGLY_LINKED = "Lorg/robovm/rt/annotation/StronglyLinked;";
+    public static final String FORCE_LINK_CLASS = "Lorg/robovm/rt/annotation/ForceLinkClass;";
+    public static final String FORCE_LINK_CLASSES = "Lorg/robovm/rt/annotation/ForceLinkClasses;";
 
     public static boolean hasAnnotation(Host host, String annotationType) {
         return getAnnotation(host, annotationType) != null;
@@ -250,6 +245,39 @@ public class Annotations {
         return hasAnnotation(host, STRONGLY_LINKED);
     }
 
+    public static boolean hasForceLinkClassesAnnotation(SootClass host) {
+        return hasAnnotation(host, FORCE_LINK_CLASSES) || hasAnnotation(host, FORCE_LINK_CLASS);
+    }
+
+    public static String[] getForceLinkClasses(SootClass host) {
+        String forceLinkClass = null;
+        List<String> forceLinkClasses = null;
+        AnnotationTag annotation = getAnnotation(host, FORCE_LINK_CLASS);
+        if (annotation != null)
+            forceLinkClass = readClassElem(annotation, "value", null);
+        annotation = getAnnotation(host, FORCE_LINK_CLASSES);
+        if (annotation != null) {
+            forceLinkClasses = readArrayElem(annotation, "value",  e -> {
+                AnnotationTag a = ((AnnotationAnnotationElem) e).getValue();
+                return readClassElem(a, "value", null);
+            });
+        }
+        if (forceLinkClasses != null || forceLinkClass != null) {
+            int size = (forceLinkClasses != null ? forceLinkClasses.size() : 0) + (forceLinkClass != null ? 1 : 0);
+            String[] result = new String[size];
+            int idx = 0;
+            if (forceLinkClasses != null) {
+                for (String s : forceLinkClasses)
+                    result[idx++] = s;
+            }
+            if (forceLinkClass != null)
+                result[idx] = forceLinkClass;
+            return result;
+        } else {
+            return null;
+        }
+    }
+
     public static int getVariadicParameterIndex(SootMethod method) {
         AnnotationTag annotation = getAnnotation(method, VARIADIC);
         return readIntElem(annotation, "value", 0);
@@ -374,6 +402,16 @@ public class Annotations {
     public static int readIntElem(AnnotationTag annotation, String name, int def) {
         AnnotationIntElem elem = (AnnotationIntElem) getElemByName(annotation, name);
         return elem != null ? elem.getValue() : def;
+    }
+
+    public static String readClassElem(AnnotationTag annotation, String name, String def) {
+        AnnotationClassElem elem = (AnnotationClassElem) getElemByName(annotation, name);
+        return elem != null ? elem.getDesc() : def;
+    }
+
+    public static <T> List<T> readArrayElem(AnnotationTag annotation, String name, Function<AnnotationElem, T> transf) {
+        AnnotationArrayElem arrayElem = ((AnnotationArrayElem) getElemByName(annotation, name));
+        return (arrayElem != null) ? arrayElem.getValues().stream().map(transf).collect(Collectors.toList()) : null;
     }
 
     public static VisibilityAnnotationTag getOrCreateRuntimeVisibilityAnnotationTag(Host host) {

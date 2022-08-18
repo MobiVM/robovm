@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.rt.bro.annotation;
+package org.robovm.rt.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Adds a dependency from the annotated class {@code A} to another class
  * {@code B} forcing the compiler to link in {@code B} if {@code A} is
  * referenced in some way by other classes in an app.
  */
-@Retention(RetentionPolicy.RUNTIME)
+@Retention(RetentionPolicy.CLASS)
 @Target({ElementType.TYPE})
+@Repeatable(ForceLinkClasses.class)
 public @interface ForceLinkClass {
     /**
      * Specifies the class which the annotated class depends on.
