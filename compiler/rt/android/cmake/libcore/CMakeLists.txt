@@ -38,6 +38,7 @@ set(SRC
   ${LUNI_PATH}/org_apache_harmony_xml_ExpatParser.cpp
   ${LUNI_PATH}/valueOf.cpp
   ${LUNI_PATH}/AsynchronousCloseMonitor.cpp
+  ${LUNI_PATH}/JniConstants.cpp
   # files from luni4
   ${LUNI4_PATH}/libcore_io_Posix.cpp
   ${LUNI4_PATH}/java_nio_charset_Charsets.cpp
@@ -109,6 +110,7 @@ set(SRC
   ${OJLUNI_PATH}/Character.cpp
   ${OJLUNI_PATH}/socket_tagger_util.cpp
   ${OJLUNI_PATH}/OnLoad.cpp
+  ${OJLUNI_PATH}/JniConstants.cpp
 )
 
 if(LINUX)
