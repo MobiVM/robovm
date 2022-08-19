@@ -15,7 +15,7 @@
  */
 package org.robovm.apple.foundation;
 
-import org.robovm.rt.bro.annotation.ForceLinkClass;
+import org.robovm.rt.annotation.ForceLinkClass;
 
 @ForceLinkClass(NSPOSIXError.class)
 public enum NSPOSIXErrorCode implements NSErrorCode {
