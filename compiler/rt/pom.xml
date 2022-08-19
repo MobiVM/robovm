@@ -44,7 +44,7 @@
                     <include>**/*.java</include>
                 </includes>
             </resource>
-            <resource><directory>android/android_icu4j/src/main/resources</directory></resource>
+            <resource><directory>android/external/icu/android_icu4j/resources</directory></resource>
         </resources>
 
         <plugins>
