@@ -1284,6 +1284,9 @@ public class Config {
             }
             config.archs.clear();
             config.archs.addAll(archs);
+
+            // initialization of sliceArch is needed for IBXcodeProjects where build() is not invoked
+            config.sliceArch = config.archs.isEmpty() ? null : config.archs.get(0);
             return this;
         }
 
