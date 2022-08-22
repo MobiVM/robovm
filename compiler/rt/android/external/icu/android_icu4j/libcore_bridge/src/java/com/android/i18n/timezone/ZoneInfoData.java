@@ -189,7 +189,8 @@ public final class ZoneInfoData {
             throws IOException {
 
         // Skip over the superseded 32-bit header and data.
-        skipOver32BitData(id, it);
+        if (!skipOver32BitData(id, it))
+            return read32BitData(id, it);
 
         // Read the v2+ 64-bit header and data.
         return read64BitData(id, it);
@@ -199,7 +200,7 @@ public final class ZoneInfoData {
      * Skip over the 32-bit data with some minimal validation to make sure sure we reading a valid
      * and supported file.
      */
-    private static void skipOver32BitData(String id, BufferIterator it) throws IOException {
+    private static boolean skipOver32BitData(String id, BufferIterator it) throws IOException {
         // Variable names beginning tzh_ correspond to those in "tzfile.h".
 
         // Check tzh_magic.
@@ -209,6 +210,9 @@ public final class ZoneInfoData {
         }
 
         byte tzh_version = it.readByte();
+        // RoboVM note: will read 32 bit version to support old versions of ios
+        if (tzh_version == 0)
+            return false;
         checkTzifVersionAcceptable(id, tzh_version);
 
         // Skip the unused bytes.
@@ -245,6 +249,44 @@ public final class ZoneInfoData {
         // Skip ttisstds and ttisgmts information. These can be ignored for our usecases as per
         // https://mm.icann.org/pipermail/tz/2006-February/013359.html
         it.skip(tzh_ttisstdcnt + tzh_ttisgmtcnt);
+
+        return true;
+    }
+
+    // RoboVM note: luni4 implementation to support older devices (e.g. ios 7-8) which has v1 of "TZif"
+    private static ZoneInfoData read32BitData(String id, BufferIterator it) {
+        // Skip the uninteresting part of the header.
+        it.skip(27);
+
+        // Read the sizes of the arrays we're about to read.
+        int tzh_timecnt = it.readInt();
+        int tzh_typecnt = it.readInt();
+
+        it.skip(4); // Skip tzh_charcnt.
+
+        long[] transitions = new long[tzh_timecnt];
+        for (int i = 0; i < tzh_timecnt; ++i)
+            transitions[i] = it.readInt();
+
+        byte[] type = new byte[tzh_timecnt];
+        it.readByteArray(type, 0, type.length);
+
+        int[] gmtOffsets = new int[tzh_typecnt];
+        byte[] isDsts = new byte[tzh_typecnt];
+        for (int i = 0; i < tzh_typecnt; ++i) {
+            gmtOffsets[i] = it.readInt();
+            isDsts[i] = it.readByte();
+            // We skip the abbreviation index. This would let us provide historically-accurate
+            // time zone abbreviations (such as "AHST", "YST", and "AKST" for standard time in
+            // America/Anchorage in 1982, 1983, and 1984 respectively). ICU only knows the current
+            // names, though, so even if we did use this data to provide the correct abbreviations
+            // for en_US, we wouldn't be able to provide correct abbreviations for other locales,
+            // nor would we be able to provide correct long forms (such as "Yukon Standard Time")
+            // for any locale. (The RI doesn't do any better than us here either.)
+            it.skip(1);
+        }
+
+        return new ZoneInfoData(id, transitions, type, gmtOffsets, isDsts);
     }
 
     /**
