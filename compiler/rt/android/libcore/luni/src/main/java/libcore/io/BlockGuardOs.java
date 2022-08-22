@@ -35,9 +35,11 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
+import java.security.AccessController;
 
 import dalvik.system.BlockGuard;
 import dalvik.system.SocketTagger;
+import sun.security.action.GetPropertyAction;
 
 import static android.system.OsConstants.*;
 
@@ -45,6 +47,14 @@ import static android.system.OsConstants.*;
  * Informs BlockGuard of any activity it should be aware of.
  */
 public class BlockGuardOs extends ForwardingOs {
+    // RoboVM note: need to know what operating system is used as not all Linux API is available on Darwin
+    private static Boolean _isLinux;
+    private synchronized static boolean isLinux() {
+        if (_isLinux == null)
+            _isLinux = AccessController.doPrivileged(new GetPropertyAction("os.name")).equals("Linux");
+        return _isLinux;
+    }
+
     @UnsupportedAppUsage
     public BlockGuardOs(Os os) {
         super(os);
@@ -122,7 +132,9 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     public static boolean isUnixSocket(FileDescriptor fd) throws ErrnoException {
-        return isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
+        // RoboVM note: SO_DOMAIN is not available on MacOSX
+        if (isLinux()) isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
+        return false;
     }
 
     private static boolean isUnixDomain(int domain) {
@@ -130,7 +142,9 @@ public class BlockGuardOs extends ForwardingOs {
     }
 
     private static boolean isInetSocket(FileDescriptor fd) throws ErrnoException{
-        return isInetDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
+        // RoboVM note: SO_DOMAIN is not available on MacOSX
+        if (isLinux()) return isInetDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
+        return true;
     }
 
     private static boolean isInetDomain(int domain) {
@@ -144,7 +158,7 @@ public class BlockGuardOs extends ForwardingOs {
 
     private static boolean isUdpSocket(FileDescriptor fd) throws ErrnoException {
         // RoboVM note: SO_PROTOCOL() is not available on Darwin, using SO_TYPE
-        //return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_PROTOCOL()) == IPPROTO_UDP();
+        if (isLinux()) return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_PROTOCOL()) == IPPROTO_UDP();
         return Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_TYPE()) == SOCK_DGRAM();
     }
 
