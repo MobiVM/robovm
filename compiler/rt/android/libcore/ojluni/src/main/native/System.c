@@ -40,6 +40,11 @@
 #include <nativehelper/JNIHelp.h>
 #include <nativehelper/jni_macros.h>
 
+#ifdef __APPLE__
+// RoboVM note: Needed for mach_absolute_time() on Darwin
+#include <mach/mach_time.h>
+#endif
+
 #if defined(__ANDROID__)
 void android_get_LD_LIBRARY_PATH(char*, size_t);
 #endif
@@ -253,9 +258,19 @@ JNIEXPORT void JNICALL Java_java_lang_System_log(JNIEnv* env, jclass ignored, jc
 }
 
 JNIEXPORT jlong JNICALL Java_java_lang_System_nanoTime() {
-  struct timespec now;
-  clock_gettime(CLOCK_MONOTONIC, &now);
-  return now.tv_sec * 1000000000LL + now.tv_nsec;
+// RoboVM note: Darwin doesn't have CLOCK_MONOTONIC till iOS 10
+#if defined(__APPLE__)
+    mach_timebase_info_data_t info;
+    mach_timebase_info(&info);
+    uint64_t t = mach_absolute_time();
+    t *= info.numer;
+    t /= info.denom;
+    return (jlong) t;
+#else
+    timespec now;
+    clock_gettime(CLOCK_MONOTONIC, &now);
+    return now.tv_sec * 1000000000LL + now.tv_nsec;
+#endif
 }
 
 JNIEXPORT jlong JNICALL Java_java_lang_System_currentTimeMillis() {
