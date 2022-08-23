@@ -61,6 +61,8 @@
 #include <sys/stat.h>
 #include <sys/statvfs.h>
 #include <sys/xattr.h>
+// Needed for mach_absolute_time() on Darwin
+#include <mach/mach_time.h>
 
 #define stat64 stat
 #define lstat64 lstat
@@ -78,6 +80,15 @@ static int removexattr(const char *path, const char *name) {
 }
 static int setxattr(const char *path, const char *name, const void *value, size_t size, u_int32_t position) {
     return setxattr(path, name, value, size, position, 0);
+}
+static void apple_clock_gettime(struct timespec *ts) {
+    mach_timebase_info_data_t info;
+    mach_timebase_info(&info);
+    uint64_t t = mach_absolute_time();
+    t *= info.numer;
+    t /= info.denom;
+    ts->tv_sec = t / 1000000000LL;
+    ts->tv_nsec = t % 1000000000LL;
 }
 #endif // #if defined(__APPLE__)
 
@@ -2146,7 +2157,12 @@ extern "C" JNIEXPORT jint Java_libcore_io_Linux_poll(JNIEnv* env, jobject, jobje
     int rc;
     while (true) {
         timespec before;
+// RoboVM note: Darwin doesn't have CLOCK_MONOTONIC till iOS 10
+#if defined(__APPLE__)
+        apple_clock_gettime(&before);
+#else
         clock_gettime(CLOCK_MONOTONIC, &before);
+#endif
 
         rc = poll(fds.get(), count, timeoutMs);
         if (rc >= 0 || errno != EINTR) {
@@ -2156,8 +2172,12 @@ extern "C" JNIEXPORT jint Java_libcore_io_Linux_poll(JNIEnv* env, jobject, jobje
         // We got EINTR. Work out how much of the original timeout is still left.
         if (timeoutMs > 0) {
             timespec now;
+// RoboVM note: Darwin doesn't have CLOCK_MONOTONIC till iOS 10
+#if defined(__APPLE__)
+            apple_clock_gettime(&now);
+#else
             clock_gettime(CLOCK_MONOTONIC, &now);
-
+#endif
             timespec diff;
             diff.tv_sec = now.tv_sec - before.tv_sec;
             diff.tv_nsec = now.tv_nsec - before.tv_nsec;
