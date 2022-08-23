@@ -133,7 +133,7 @@ public class BlockGuardOs extends ForwardingOs {
 
     public static boolean isUnixSocket(FileDescriptor fd) throws ErrnoException {
         // RoboVM note: SO_DOMAIN is not available on MacOSX
-        if (isLinux()) isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
+        if (isLinux()) return isUnixDomain(Libcore.os.getsockoptInt(fd, SOL_SOCKET(), SO_DOMAIN()));
         return false;
     }
 
