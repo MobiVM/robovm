@@ -141,6 +141,8 @@ import java.beans.PropertyChangeListener;
  * @since 1.4
 */
 
+// RoboVM note: adding indirect dependency to reduce number of forceLinkClass options
+@org.robovm.rt.annotation.ForceLinkClass(java.util.logging.ConsoleHandler.class)
 public class LogManager {
     // The global LogManager object
     private static final LogManager manager;
