@@ -30,6 +30,7 @@ import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.OrderEnumerator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.ibxcode.IBXcodeProject;
 import org.robovm.idea.RoboVmPlugin;
@@ -244,7 +245,19 @@ public class RoboVmIbXcodeProjectTask {
 
         @Override
         public Config build() {
-            // do not build any complex config as it is time consuming and not required at all for this task
+            // if arch is not set -- setup with empty
+            if (config.getArch() == null) {
+                Arch arch;
+                if (config.getArchs().isEmpty()) {
+                    // there is no information about arch -- use Arm64
+                    arch = Arch.arm64;
+                } else {
+                    arch = config.getArchs().get(0);
+                }
+                arch(arch);
+            }
+
+            // do not build any complex config as it is time-consuming and not required at all for this task
             return this.config;
         }
     }
