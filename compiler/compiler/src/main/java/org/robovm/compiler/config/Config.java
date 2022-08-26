@@ -36,7 +36,6 @@ import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
-import org.robovm.compiler.plugin.desugar.ByteBufferJava9ApiPlugin;
 import org.robovm.compiler.plugin.desugar.StringConcatRewriterPlugin;
 import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
@@ -252,7 +251,6 @@ public class Config {
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
                 new StringConcatRewriterPlugin(),
-                new ByteBufferJava9ApiPlugin(),
                 new LambdaPlugin(),
                 new DebugInformationPlugin(),
                 new DebuggerLaunchPlugin(),
