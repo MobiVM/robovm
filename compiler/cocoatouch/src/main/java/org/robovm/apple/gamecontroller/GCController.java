@@ -42,7 +42,7 @@ import org.robovm.apple.corehaptic.*;
     /*<implements>*/implements GCDevice/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidConnect(final VoidBlock1<GCController> block) {
+        public static NSObject observeDidConnect(final VoidBlock1<GCController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidConnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -50,7 +50,7 @@ import org.robovm.apple.corehaptic.*;
                 }
             });
         }
-        public static NSObjectProtocol observeDidDisconnect(final VoidBlock1<GCController> block) {
+        public static NSObject observeDidDisconnect(final VoidBlock1<GCController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidDisconnectNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

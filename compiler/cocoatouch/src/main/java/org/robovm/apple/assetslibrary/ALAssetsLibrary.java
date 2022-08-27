@@ -43,7 +43,7 @@ import org.robovm.apple.imageio.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeChanged(ALAssetsLibrary object, final VoidBlock2<ALAssetsLibrary, ALAssetsLibraryChangedNotification> block) {
+        public static NSObject observeChanged(ALAssetsLibrary object, final VoidBlock2<ALAssetsLibrary, ALAssetsLibraryChangedNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

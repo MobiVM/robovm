@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeWillProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
+        public static NSObject observeWillProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillProcessEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,7 +64,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeDidProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
+        public static NSObject observeDidProcessEditing(NSTextStorage object, final VoidBlock1<NSTextStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidProcessEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

@@ -43,7 +43,7 @@ import org.robovm.apple.corefoundation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeTokenRefreshed(CTSubscriber object, final VoidBlock1<CTSubscriber> block) {
+        public static NSObject observeTokenRefreshed(CTSubscriber object, final VoidBlock1<CTSubscriber> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TokenRefreshedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

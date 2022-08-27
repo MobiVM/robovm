@@ -42,7 +42,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObjectProtocol observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
+        public static NSObject observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UserPreferencesDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

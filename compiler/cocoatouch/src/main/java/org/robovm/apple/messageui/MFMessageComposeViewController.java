@@ -44,7 +44,7 @@ import org.robovm.apple.messages.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeTextMessageAvailabilityDidChange(final VoidBlock1<Boolean> block) {
+        public static NSObject observeTextMessageAvailabilityDidChange(final VoidBlock1<Boolean> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TextMessageAvailabilityDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

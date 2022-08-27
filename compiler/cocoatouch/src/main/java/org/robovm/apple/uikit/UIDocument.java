@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeStateChanged(UIDocument object, final VoidBlock1<UIDocument> block) {
+        public static NSObject observeStateChanged(UIDocument object, final VoidBlock1<UIDocument> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(StateChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

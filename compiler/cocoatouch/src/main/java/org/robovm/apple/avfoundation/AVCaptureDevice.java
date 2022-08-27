@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasConnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -63,7 +63,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasDisconnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +74,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SubjectAreaDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
