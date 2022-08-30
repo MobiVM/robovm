@@ -335,7 +335,7 @@ public class IOSTarget extends AbstractTarget {
 
     protected void prepareInstall(File installDir) throws IOException {
         createInfoPList(installDir);
-        generateDsym(installDir, getExecutable(), false);
+        generateDsym(getDsymDir(installDir), new File(installDir, getExecutable()));
 
         if (isDeviceArch(arch)) {
             // strip local symbols
@@ -388,7 +388,8 @@ public class IOSTarget extends AbstractTarget {
     protected void prepareLaunch(File appDir) throws IOException {
         super.doInstall(appDir, getExecutable(), appDir);
         createInfoPList(appDir);
-        generateDsym(appDir, getExecutable(), true);
+        generateDsym(getDsymDir(appDir), new File(appDir, getExecutable()));
+        copyToIndexedDir(appDir, getExecutable(), getDsymDir(appDir), new File(appDir, getExecutable()));
 
         // strip symbols to reduce application size, all debugger symbols converted into globals
         strip(appDir, getExecutable());
@@ -760,25 +761,17 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    private void generateDsym(final File dir, final String executable, boolean copyToIndexedDir) throws IOException {
-        final File dsymDir = new File(dir.getParentFile(), dir.getName() + ".dSYM");
-        final File exePath = new File(dir, executable);
+    private File generateDsym(final File dsymDir, final File exePath) throws IOException {
         FileUtils.deleteDirectory(dsymDir);
-        final Process process = new Executor(config.getLogger(), "xcrun")
-                .args("dsymutil", "-o", dsymDir, exePath)
-                .execAsync();
-        if (copyToIndexedDir) {
-            new Thread() {
-                public void run() {
-                    try {
-                        process.waitFor();
-                    } catch (InterruptedException e) {
-                        return;
-                    }
-                    copyToIndexedDir(dir, executable, dsymDir, exePath);
-                }
-            }.start();
-        }
+        ToolchainUtil.generateDsym(config, dsymDir, exePath);
+        return dsymDir;
+    }
+
+    private void dsymToSymbols(File symbolsDir, File dsymDir, String executable) throws IOException {
+        final File dsymExecutable = new File(dsymDir, "/Contents/Resources/DWARF/" + executable);
+        FileUtils.deleteDirectory(symbolsDir);
+        symbolsDir.mkdirs();
+        ToolchainUtil.dsymToSymbols(config, dsymExecutable, symbolsDir);
     }
 
     private void strip(File dir, String executable) throws IOException {
@@ -833,6 +826,9 @@ public class IOSTarget extends AbstractTarget {
         new Executor(config.getLogger(), "cp")
                 .args("-Rp", appDir, payloadDir)
                 .exec();
+
+        config.getLogger().info("Generating Symbols from dsym");
+        dsymToSymbols(new File(tmpDir, "Symbols"), getDsymDir(appDir), getExecutable());
 
         File frameworksDir = new File(appDir, "Frameworks");
         if (frameworksDir.exists() && config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()){
@@ -1023,6 +1019,10 @@ public class IOSTarget extends AbstractTarget {
             }
         }
         return config.getMainClass() != null ? config.getMainClass() : config.getExecutableName();
+    }
+
+    protected File getDsymDir(File appDir) {
+        return new File(appDir.getParentFile(), appDir.getName() + ".dSYM");
     }
 
     protected String getMinimumOSVersion() {

@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observePowerStateDidChange(final Runnable block) {
+        public static NSObject observePowerStateDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PowerStateDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

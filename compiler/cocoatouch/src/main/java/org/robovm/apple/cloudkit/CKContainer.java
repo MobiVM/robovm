@@ -45,7 +45,7 @@ import org.robovm.apple.fileprovider.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeAccountChanged(final Runnable block) {
+        public static NSObject observeAccountChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AccountChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

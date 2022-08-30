@@ -16,9 +16,11 @@
 #ifndef ALIGNED_H
 #define ALIGNED_H
 
+#include <stddef.h>
 #include <robovm.h>
 
-#define ALIGN(pp, t) (void*)(((uintptr_t) (pp) + sizeof(t) - 1) & ~(sizeof(t) - 1))
+#define ALIGN_OF(t) offsetof(struct { char c; t m; }, m)
+#define ALIGN(pp, t) (void*)(((uintptr_t) (pp) + ALIGN_OF(t) - 1) & ~(ALIGN_OF(t) - 1))
 
 static inline jbyte readByte(void** p) {
     jbyte v = *(jbyte*) *p;

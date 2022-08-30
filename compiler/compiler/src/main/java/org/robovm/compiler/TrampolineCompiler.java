@@ -31,6 +31,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.*;
+import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.trampoline.Anewarray;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.FieldAccessor;
@@ -609,6 +610,15 @@ public class TrampolineCompiler {
                 c = !c.isInterface() && c.hasSuperclass() ? c.getSuperclass() : null;
             }
         }
+
+        // allow compiler plugin to resolve method
+        // its possible that method was added during de-sugaring
+        for (CompilerPlugin plugin: config.getCompilerPlugins()) {
+            SootMethod method = plugin.resolveMethod(config, clazz, name, desc);
+            if (method != null)
+                return method;
+        }
+
         return null;
     }
     

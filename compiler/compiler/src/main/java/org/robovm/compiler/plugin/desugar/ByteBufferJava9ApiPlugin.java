@@ -19,6 +19,7 @@ import soot.jimple.Jimple;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,6 +43,9 @@ public class ByteBufferJava9ApiPlugin extends AbstractCompilerPlugin {
     private static final String JAVA_NIO_BYTEBUFFER = "java.nio.ByteBuffer";
     private static final String JAVA_NIO_BUFFER = "java.nio.Buffer";
     private static final String ARG_KEY_ENABLE_PLUGIN = "enableJdk9ByteBufferApi";
+    private static final List<String> ZERO_PARAM_METHODS = Arrays.asList(
+            "flip", "clear", "mark", "reset", "rewind");
+    private static final List<String> INT_PARAM_METHODS = Arrays.asList("position",  "limit");
     private Boolean enabled;
 
     @Override
@@ -71,17 +75,41 @@ public class ByteBufferJava9ApiPlugin extends AbstractCompilerPlugin {
         if (isEnabled(config) && isAcceptableByteBuffer(clazz.getSootClass())) {
             // injects JDK9 compatible trampolines
             SootClass sootClass = clazz.getSootClass();
-            injectMethod(sootClass, "flip", false);
-            injectMethod(sootClass, "clear", false);
-            injectMethod(sootClass, "mark", false);
-            injectMethod(sootClass, "reset", false);
-            injectMethod(sootClass, "rewind", false);
-            injectMethod(sootClass, "position", true);
-            injectMethod(sootClass, "limit", true);
+            for (String name : ZERO_PARAM_METHODS)
+                injectMethod(sootClass, name, false);
+            for (String name : INT_PARAM_METHODS)
+                injectMethod(sootClass, name, true);
 
             // remove this class from vtable cache as it has to be rebuilt to include new methods
             config.getVTableCache().remove(sootClass);
         }
+    }
+
+    @Override
+    public SootMethod resolveMethod(Config config, SootClass sootClass, String name, String desc) {
+        if (isEnabled(config) && isAcceptableByteBuffer(sootClass)) {
+            SootMethod method = null;
+            if ("(I)Ljava/nio/ByteBuffer;".equals(desc)) {
+                // probably target method with int parameter
+                if (INT_PARAM_METHODS.contains(name)) {
+                    method = new SootMethod(name, Collections.singletonList(IntType.v()),
+                            sootClass.getType(), Modifier.PUBLIC);
+                }
+            } else if ("()Ljava/nio/ByteBuffer;".equals(desc)) {
+                // probably target method without parameters
+                if (ZERO_PARAM_METHODS.contains(name)) {
+                    method = new SootMethod(name, Collections.EMPTY_LIST, sootClass.getType(), Modifier.PUBLIC);
+                }
+            }
+
+            if (method != null) {
+                method.setDeclaringClass(sootClass);
+                method.setDeclared(true);
+                return method;
+            }
+        }
+
+        return null;
     }
 
     private boolean isAcceptableByteBuffer(SootClass sootClass) {

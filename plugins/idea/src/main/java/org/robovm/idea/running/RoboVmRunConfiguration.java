@@ -325,8 +325,13 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
             if (targetType != TargetType.Device && targetType != TargetType.Simulator)
                 targetType = TargetType.Device;
 
-            if (simulatorType == EntryType.AUTO || simulatorType == EntryType.AUTO2)
-                simulatorArch = DeviceType.DEFAULT_HOST_ARCH;
+            if (simulatorType == EntryType.AUTO || simulatorType == EntryType.AUTO2) {
+                // allow x86_64 on m1 host
+                if (simulatorArch != DeviceType.DEFAULT_HOST_ARCH
+                        && !(DeviceType.DEFAULT_HOST_ARCH == CpuArch.arm64 && simulatorArch == CpuArch.x86_64)) {
+                    simulatorArch = DeviceType.DEFAULT_HOST_ARCH;
+                }
+            }
 
             // migrate simulator to new code if legacy found
             if (AUTO_SIGNING_IDENTITY_LEGACY.equals(simulator))
