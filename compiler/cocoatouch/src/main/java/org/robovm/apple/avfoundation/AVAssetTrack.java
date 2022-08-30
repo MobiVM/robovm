@@ -52,7 +52,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeTrackAssociationsDidChange(AVAssetTrack object, final VoidBlock1<AVAssetTrack> block) {
+        public static NSObject observeTrackAssociationsDidChange(AVAssetTrack object, final VoidBlock1<AVAssetTrack> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TrackAssociationsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {

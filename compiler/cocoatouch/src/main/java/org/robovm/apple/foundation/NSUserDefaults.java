@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidChange(NSUserDefaults object, final VoidBlock1<NSUserDefaults> block) {
+        public static NSObject observeDidChange(NSUserDefaults object, final VoidBlock1<NSUserDefaults> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

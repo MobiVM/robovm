@@ -53,7 +53,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.2 and later.
          */
-        public static NSObjectProtocol observeCurrentModeDidChange(final VoidBlock1<UITextInputMode> block) {
+        public static NSObject observeCurrentModeDidChange(final VoidBlock1<UITextInputMode> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CurrentInputModeDidChange(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

@@ -44,7 +44,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeDidChange(CNContactStore object, final Runnable block) {
+        public static NSObject observeDidChange(CNContactStore object, final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

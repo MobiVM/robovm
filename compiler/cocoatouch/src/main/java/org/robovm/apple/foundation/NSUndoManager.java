@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeCheckpoint(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeCheckpoint(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CheckpointNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +61,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeWillUndoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeWillUndoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillUndoChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +72,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeWillRedoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeWillRedoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillRedoChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -83,7 +83,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeDidUndoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeDidUndoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidUndoChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -94,7 +94,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeDidRedoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeDidRedoChange(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidRedoChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -105,7 +105,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeDidOpenUndoGroup(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeDidOpenUndoGroup(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidOpenUndoGroupNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -116,7 +116,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeWillCloseUndoGroup(NSUndoManager object, final VoidBlock2<NSUndoManager, Boolean> block) {
+        public static NSObject observeWillCloseUndoGroup(NSUndoManager object, final VoidBlock2<NSUndoManager, Boolean> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WillCloseUndoGroupNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -133,7 +133,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeDidCloseUndoGroup(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
+        public static NSObject observeDidCloseUndoGroup(NSUndoManager object, final VoidBlock1<NSUndoManager> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidCloseUndoGroupNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
