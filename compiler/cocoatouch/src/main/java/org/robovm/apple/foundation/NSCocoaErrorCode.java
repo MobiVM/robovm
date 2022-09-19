@@ -91,6 +91,10 @@ public enum /*<name>*/NSCocoaErrorCode/*</name>*/ implements NSErrorCode {
     XPCConnectionInterrupted(4097L),
     XPCConnectionInvalid(4099L),
     XPCConnectionReplyInvalid(4101L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    XPCConnectionCodeSigningRequirementFailure(4102L),
     XPCConnectionErrorMinimum(4096L),
     XPCConnectionErrorMaximum(4224L),
     UbiquitousFileUnavailable(4353L),

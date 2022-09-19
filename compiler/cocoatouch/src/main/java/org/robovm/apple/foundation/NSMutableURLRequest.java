@@ -114,6 +114,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setAssumesHTTP3Capable:")
     public native void setAssumesHTTP3Capable(boolean v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "requiresDNSSECValidation")
+    public native boolean requiresDNSSECValidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRequiresDNSSECValidation:")
+    public native void setRequiresDNSSECValidation(boolean v);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "attribution")

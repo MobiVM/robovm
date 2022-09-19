@@ -404,6 +404,11 @@ import org.robovm.apple.dispatch.*;
         static { Bro.bind(Keys.class); }
 
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="NSMarkdownSourcePositionAttributeName", optional=true)
+        public static native NSString MarkdownSourcePosition();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="NSReplacementIndexAttributeName", optional=true)

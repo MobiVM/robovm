@@ -57,6 +57,11 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("URLSession:didCreateTask:")
+    public void didCreateTask(NSURLSession session, NSURLSessionTask task) {}
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("URLSession:task:willBeginDelayedRequest:completionHandler:")

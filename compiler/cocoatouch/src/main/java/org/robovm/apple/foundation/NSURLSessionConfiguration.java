@@ -103,6 +103,16 @@ import org.robovm.apple.coreservices.CFProxy;
     @Property(selector = "setAllowsConstrainedNetworkAccess:")
     public native void setAllowsConstrainedNetworkAccess(boolean v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "requiresDNSSECValidation")
+    public native boolean requiresDNSSECValidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRequiresDNSSECValidation:")
+    public native void setRequiresDNSSECValidation(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "waitsForConnectivity")
