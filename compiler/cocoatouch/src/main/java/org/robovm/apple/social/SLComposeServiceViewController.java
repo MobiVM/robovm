@@ -131,6 +131,21 @@ import org.robovm.apple.accounts.*;
     @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "textView:editMenuForTextInRange:suggestedActions:")
+    public native UIMenu getEditMenu(UITextView textView, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "textView:willPresentEditMenuWithAnimator:")
+    public native void willPresentEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "textView:willDismissEditMenuWithAnimator:")
+    public native void willDismissEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")
