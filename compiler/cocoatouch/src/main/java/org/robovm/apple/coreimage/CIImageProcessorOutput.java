@@ -70,6 +70,11 @@ import org.robovm.apple.avfoundation.*;
     MTLTexture getMetalTexture();
     @Property(selector = "metalCommandBuffer")
     MTLCommandBuffer getMetalCommandBuffer();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "digest")
+    long getDigest();
     /*</properties>*/
     /*<methods>*/
     

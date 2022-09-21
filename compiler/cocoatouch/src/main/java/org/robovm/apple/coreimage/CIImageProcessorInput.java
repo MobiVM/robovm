@@ -68,6 +68,11 @@ import org.robovm.apple.avfoundation.*;
     CVPixelBuffer getPixelBuffer();
     @Property(selector = "metalTexture")
     MTLTexture getMetalTexture();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "digest")
+    long getDigest();
     /*</properties>*/
     /*<methods>*/
     
