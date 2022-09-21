@@ -60,13 +60,33 @@ import org.robovm.apple.linkpresentation.*;
     protected UISheetPresentationControllerDetent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native UISheetPresentationControllerDetentIdentifier getIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UISheetPresentationControllerDetentInactive", optional=true)
+    public static native @MachineSizedFloat double Inactive();
+    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resolvedValueInContext:")
+    public native @MachineSizedFloat double resolvedValueInContext(UISheetPresentationControllerDetentResolutionContext context);
     @Method(selector = "mediumDetent")
     public static native UISheetPresentationControllerDetent mediumDetent();
     @Method(selector = "largeDetent")
     public static native UISheetPresentationControllerDetent largeDetent();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "customDetentWithIdentifier:resolver:")
+    public static native UISheetPresentationControllerDetent createCustomDetent(UISheetPresentationControllerDetentIdentifier identifier, @Block Block1<UISheetPresentationControllerDetentResolutionContext, Double> resolver);
     /*</methods>*/
 }

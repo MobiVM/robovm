@@ -592,6 +592,21 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "endFloatingCursor")
     public native void endFloatingCursor();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "editMenuForTextRange:suggestedActions:")
+    public native UIMenu getEditMenu(UITextRange textRange, NSArray<UIMenuElement> suggestedActions);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "willPresentEditMenuWithAnimator:")
+    public native void willPresentEditMenu(UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "willDismissEditMenuWithAnimator:")
+    public native void willDismissEditMenu(UIEditMenuInteractionAnimating animator);
     @Method(selector = "insertText:")
     public native void insertText(String text);
     @Method(selector = "deleteBackward")

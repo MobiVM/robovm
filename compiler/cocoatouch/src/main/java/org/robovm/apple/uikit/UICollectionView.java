@@ -141,6 +141,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setReorderingCadence:")
     public native void setReorderingCadence(UICollectionViewReorderingCadence v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selfSizingInvalidation")
+    public native UICollectionViewSelfSizingInvalidation getSelfSizingInvalidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelfSizingInvalidation:")
+    public native void setSelfSizingInvalidation(UICollectionViewSelfSizingInvalidation v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")

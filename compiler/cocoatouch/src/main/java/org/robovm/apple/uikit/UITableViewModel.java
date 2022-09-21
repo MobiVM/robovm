@@ -242,20 +242,36 @@ public class UITableViewModel extends UIScrollViewDelegateAdapter implements UIT
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Override
+    @NotImplemented("tableView:willDisplayContextMenuWithConfiguration:animator:")
     public void willDisplayContextMenu(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
 
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Override
+    @NotImplemented("tableView:willEndContextMenuInteractionWithConfiguration:animator:")
     public void willEndContextMenuInteraction(UITableView tableView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
 
     /**
      * @since Available in iOS 15.0 and later.
      */
-    @Override
+    @NotImplemented("tableView:selectionFollowsFocusForRowAtIndexPath:")
     public boolean isSelectionFollowsFocus(UITableView tableView, NSIndexPath indexPath) {
         return false;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("tableView:canPerformPrimaryActionForRowAtIndexPath:")
+    public boolean canPerformPrimaryAction(UITableView tableView, NSIndexPath indexPath) {
+        return false;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("tableView:performPrimaryActionForRowAtIndexPath:")
+    public void performPrimaryAction(UITableView tableView, NSIndexPath indexPath) {
+
     }
 }

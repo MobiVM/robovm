@@ -101,6 +101,31 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("decreaseSize:")
     public void decreaseSize(NSObject sender) {}
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("find:")
+    public void find(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("findAndReplace:")
+    public void findAndReplace(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("findNext:")
+    public void findNext(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("findPrevious:")
+    public void findPrevious(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("useSelectionForFind:")
+    public void useSelectionForFind(NSObject sender) {}
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @NotImplemented("updateTextAttributesWithConversionHandler:")
@@ -110,5 +135,25 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("print:")
     public void print(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("rename:")
+    public void rename(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("duplicate:")
+    public void duplicate(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("move:")
+    public void move(NSObject sender) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("export:")
+    public void export(NSObject sender) {}
     /*</methods>*/
 }

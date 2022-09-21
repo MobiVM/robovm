@@ -49,7 +49,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILayoutGuide/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSCoding/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UILayoutGuidePtr extends Ptr<UILayoutGuide, UILayoutGuidePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UILayoutGuide.class); }/*</bind>*/

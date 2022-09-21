@@ -130,6 +130,26 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> getSubtitleTextAttributesTransformer();
     @Property(selector = "setSubtitleTextAttributesTransformer:")
     public native void setSubtitleTextAttributesTransformer(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "indicator")
+    public native UIButtonConfigurationIndicator getIndicator();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setIndicator:")
+    public native void setIndicator(UIButtonConfigurationIndicator v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "indicatorColorTransformer")
+    public native @Block Block1<UIColor, UIColor> getIndicatorColorTransformer();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setIndicatorColorTransformer:")
+    public native void setIndicatorColorTransformer(@Block Block1<UIColor, UIColor> v);
     @Property(selector = "contentInsets")
     public native @ByVal NSDirectionalEdgeInsets getContentInsets();
     @Property(selector = "setContentInsets:")

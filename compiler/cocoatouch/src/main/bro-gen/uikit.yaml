@@ -23,6 +23,7 @@ typedefs:
 private_typedefs:
     AnchorType: NSObject
     UIScribbleElementIdentifier: NSObject
+    UITextSearchDocumentIdentifier: NSObject
     UTType: org.robovm.apple.uniformtypeid.UTType
 
 enums:
@@ -37,6 +38,7 @@ enums:
     NSTextLayoutOrientation: {}
     NSTextStorageEditActions: {}
     NSTextWritingDirection: {}
+    NSTextListOptions: {prefix: NSTextList}
     NSUnderlineStyle: {}
     NSWritingDirection: {}
     UIAccessibilityCustomRotorDirection: {}
@@ -319,6 +321,25 @@ enums:
     NSTextLayoutFragmentState: {} #since 15.0
     NSTextLayoutManagerSegmentType: {} #since 15.0
     NSTextLayoutManagerSegmentOptions: {} #since 15.0
+
+    UIMenuElementSize: {} #since 16.0
+    UIContextMenuConfigurationElementOrder: {} #since 16.0
+    UIAlertControllerSeverity: {} #since 16.0
+    UIButtonConfigurationIndicator: {} #since 16.0
+    UICollectionViewSelfSizingInvalidation: {} #since 16.0
+    UITableViewSelfSizingInvalidation: {} #since 16.0
+    UINavigationItemSearchBarPlacement: {} #since 16.0
+    UINavigationItemStyle: {} #since 16.0
+    UINavigationBarNSToolbarSection: {} #since 16.0
+    UIPageControlDirection: {} #since 16.0
+    UIPasteControlDisplayMode: {} #since 16.0
+    UIScreenReferenceDisplayModeStatus: {} #since 16.0
+    UISearchControllerScopeBarActivation: {} #since 16.0
+    UITextSearchFoundTextStyle: {} #since 16.0
+    UIFindSessionSearchResultDisplayStyle: {}
+    UITextSearchMatchMethod: {}
+    UICalendarViewDecorationSize: {} #since 16.0
+    UIEditMenuArrowDirection: {} #since 16.0
 
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
@@ -1101,6 +1122,16 @@ classes:
                 name: init
             '-initWithImage:menu:':
                 name: init
+            '-initWithPrimaryAction:menu:':
+                name: init
+            '-initWithBarButtonSystemItem:primaryAction:menu:':
+                name: init
+            '-initWithTitle:image:target:action:menu:':
+                name: init
+            '-creatingMovableGroupWithCustomizationIdentifier:':
+                name: creatingMovableGroup
+            '-creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:':
+                name: creatingOptionalGroup
     UIBarButtonItemGroup: # DONE
         properties:
             'barButtonItems':
@@ -1111,6 +1142,12 @@ classes:
                 parameters:
                     barButtonItems:
                         type: NSArray<UIBarButtonItem>
+            '+fixedGroupWithRepresentativeItem:items:':
+                name: createfixedGroup
+            '+movableGroupWithCustomizationIdentifier:representativeItem:items:':
+                name: createMovableGroup
+            '+optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:':
+                name: createOptionalGroup
     UIBarItem: # DONE
         protocols: [NSCoding, UIAppearanceContainer]
         methods:
@@ -1845,6 +1882,8 @@ classes:
                 name: newWithSize
             '+monospacedSystemFontOfSize:weight:':
                 name: getMonospacedSystemFont
+            '+systemFontOfSize:weight:width:':
+                name: getSystemFont
     UIFontDescriptor: # DONE
         properties:
             'fontAttributes':
@@ -2121,6 +2160,10 @@ classes:
                 name: prepareForDisplay
             '-prepareThumbnailOfSize:completionHandler:':
                 name: prepareThumbnail
+            '+systemImageNamed:variableValue:withConfiguration:':
+                name: getSystemImage
+            '+imageNamed:inBundle:variableValue:withConfiguration:':
+                name: getImage
 
     UIImageAsset: # DONE
         methods:
@@ -2415,6 +2458,8 @@ classes:
                 name: getSizeForNumberOfPages
             '-setIndicatorImage:forPage:':
                 name: setIndicatorImage
+            '-setCurrentPageIndicatorImage:forPage:':
+                name: setCurrentPageIndicatorImage
     UIPageViewController: # DONE
         properties:
             'gestureRecognizers':
@@ -3426,6 +3471,8 @@ classes:
             '+traitCollectionWithActiveAppearance:':
                 name: create
                 constructor: true
+            '+traitCollectionWithToolbarItemPresentationSize:':
+                name: createWithToolbarItemPresentationSize
     UIMutableApplicationShortcutItem: # DONE
         skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
@@ -3968,6 +4015,8 @@ classes:
                 name: initForOpeningFilesUsingContentTypes
             '-initForOpeningContentTypes:':
                 static_constructor_name: createForOpeningContentTypes
+            '-renameDocumentAtURL:proposedName:completionHandler:':
+                name: renameDocument
     UIFocusMovementHint: {} #since 12.0
     UITextInputPasswordRules: #since 12.0
         methods:
@@ -4017,6 +4066,10 @@ classes:
                 name: createVerticalGroup
             '+customGroupWithLayoutSize:itemProvider:':
                 name: createCustomGroup
+            '+horizontalGroupWithLayoutSize:repeatingSubitem:count:':
+                name: createHorizontalGroupRepeatingSubitem
+            '+verticalGroupWithLayoutSize:repeatingSubitem:count:':
+                name: createVerticalGroupRepeatingSubitem
     NSCollectionLayoutGroupCustomItem: #since 13.0
         methods:
             '+customItemWithFrame:':
@@ -4340,7 +4393,10 @@ classes:
     UITextInteraction: {} #since 13.0
     UITextPlaceholder: {} #since 13.0
     UIToolbarAppearance: {} #since 13.0
-    UIWindowScene: {} #since 13.0
+    UIWindowScene: #since 13.0
+        methods:
+            '-requestGeometryUpdateWithPreferences:errorHandler:':
+                name: requestGeometryUpdate
     UIWindowSceneDestructionRequestOptions: {} #since 13.0
     UIKey:  #since 13.4
         properties:
@@ -4510,6 +4566,9 @@ classes:
             '-adjustedRangeFromRange:forEditingTextSelection:':
                 name: adjustedRangeFromRange
     NSTextElement: #since 15.0
+        properties:
+            childElements:
+                type: 'NSArray<? extends NSTextElement>'
         methods:
             '-initWithTextContentManager:':
                 name: init
@@ -4620,7 +4679,10 @@ classes:
                 constructor: true
                 name: create
     UISheetPresentationController: {} #since 15.0
-    UISheetPresentationControllerDetent: {} #since 15.0
+    UISheetPresentationControllerDetent: #since 15.0
+        methods:
+            '+customDetentWithIdentifier:resolver:':
+                name: createCustomDetent
     UIToolTipConfiguration: #since 15.0
         methods:
             '+configurationWithToolTip:':
@@ -4654,6 +4716,133 @@ classes:
                 name: init
     UIWindowSceneActivationRequestOptions: {} #since 15.0
     UICellAccessoryDetail: {} #since 15.4
+
+    NSTextList: #since 7.0
+        methods:
+            '-initWithMarkerFormat:options:startingItemNumber:':
+                name: init
+            '-initWithMarkerFormat:options:':
+                name: init
+    NSTextListElement: #since 16.0
+        methods:
+            '-initWithParentElement:textList:contents:markerAttributes:childElements:':
+                name: init
+            '+textListElementWithContents:markerAttributes:textList:childElements:':
+                exclude: true
+            '+textListElementWithChildElements:textList:nestingLevel:':
+                constructor: true
+                name: create
+    UICalendarSelection: {} #since 16.0
+    UICalendarSelectionMultiDate: #since 16.0
+        methods:
+            '-setSelectedDates:animated:':
+                name: setSelectedDates
+            '-initWithDelegate:':
+                name: init
+    UICalendarSelectionSingleDate: #since 16.0
+        methods:
+            '-setSelectedDate:animated:':
+                name: setSelectedDate
+            '-initWithDelegate:':
+                name: init
+    UICalendarView: #since 16.0
+        methods:
+            '-setVisibleDateComponents:animated:':
+                name: setVisibleDateComponents
+            '-reloadDecorationsForDateComponents:animated:':
+                name: reloadDecorations
+    UICalendarViewDecoration: #since 16.0
+        methods:
+            '-initWithImage:color:size:':
+                name: init
+            '-initWithCustomViewProvider:':
+                name: init
+            '+decorationWithColor:size:':
+                constructor: true
+                name: create
+            '+decorationWithImage:':
+                constructor: true
+                name: create
+            '+decorationWithImage:color:size:':
+                exclude: true
+            '+decorationWithCustomViewProvider:':
+                exclude: true
+    UICellAccessoryPopUpMenu: #since 16.0
+        methods:
+            '-initWithMenu:':
+                name: init
+    UIDocumentProperties: #since 16.0
+        methods:
+            '-initWithURL:':
+                name: init
+            '-initWithMetadata:':
+                name: init
+    UIEditMenuConfiguration: #since 16.0
+        methods:
+            '+configurationWithIdentifier:sourcePoint:':
+                constructor: true
+                name: create
+    UIEditMenuInteraction: #since 16.0
+        methods:
+            '-initWithDelegate:':
+                name: init
+            '-presentEditMenuWithConfiguration:':
+                name: presentEditMenu
+    UIFindInteraction: #since 16.0
+        methods:
+            '-initWithSessionDelegate:':
+                name: init
+    UIFindSession: #since 16.0
+        methods:
+            '-performSearchWithQuery:options:':
+                name: performSearch
+            '-performSingleReplacementWithSearchQuery:replacementString:options:':
+                name: performSingleReplacement
+            '-replaceAllInstancesOfSearchQuery:withReplacementString:options:':
+                name: replaceAllInstancesOfSearchQuery
+    UIPasteControl: #since 16.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    UIPasteControlConfiguration: {} #since 16.0
+    UISceneWindowingBehaviors: {} #since 16.0
+    UISearchSuggestionItem: #since 16.0
+        methods:
+            '-initWithLocalizedSuggestion:':
+                name: init
+            '-initWithLocalizedSuggestion:localizedDescription:':
+                name: init
+            '-initWithLocalizedSuggestion:localizedDescription:iconImage:':
+                name: init
+            '-initWithLocalizedAttributedSuggestion:':
+                name: initWithLocalizedAttributedSuggestion$
+            '-initWithLocalizedAttributedSuggestion:localizedDescription:':
+                name: init
+            '-initWithLocalizedAttributedSuggestion:localizedDescription:iconImage:':
+                name: init
+            '+suggestionWithLocalizedSuggestion:':
+                exclude: true
+            '+suggestionWithLocalizedSuggestion:descriptionString:':
+                exclude: true
+            '+suggestionWithLocalizedSuggestion:descriptionString:iconImage:':
+                exclude: true
+            '+suggestionWithLocalizedAttributedSuggestion:':
+                exclude: true
+            '+suggestionWithLocalizedAttributedSuggestion:descriptionString:':
+                exclude: true
+            '+suggestionWithLocalizedAttributedSuggestion:descriptionString:iconImage:':
+                exclude: true
+    UITextSearchOptions: {} #since 16.0
+    UITextSearchingFindSession: #since 16.0
+        methods:
+            '-initWithSearchableObject:':
+                name: init
+    UIWindowSceneGeometry: {} #since 16.0
+    UIWindowSceneGeometryPreferences: {} #since 16.0
+    UIWindowSceneGeometryPreferencesIOS: #since 16.0
+        methods:
+            '-initWithInterfaceOrientations:':
+                name: init
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -4997,6 +5186,16 @@ protocols:
                 name: getTargetIndexPathForMoveOfItemFromOriginalIndexPath
             '-collectionView:sceneActivationConfigurationForItemAtIndexPath:point:':
                 name: getSceneActivationConfiguration
+            '-collectionView:canPerformPrimaryActionForItemAtIndexPath:':
+                name: canPerformPrimaryAction
+            '-collectionView:performPrimaryActionForItemAtIndexPath:':
+                name: performPrimaryAction
+            '-collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:':
+                name: getContextMenuConfiguration
+            '-collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:':
+                name: getContextMenuHighlightPreview
+            '-collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:':
+                name: getContextMenuDismissalPreview
     UICollectionViewDelegateFlowLayout: # DONE
         methods:
             '-collectionView:layout:insetForSectionAtIndex:':
@@ -5371,6 +5570,10 @@ protocols:
                 name: didDismiss
             '-presentSearchController:':
                 name: present
+            '-searchController:willChangeToSearchBarPlacement:':
+                name: willChangeToSearchBarPlacement
+            '-searchController:didChangeFromSearchBarPlacement:':
+                name: didChangeFromSearchBarPlacement
     UISearchDisplayDelegate: # DONE
         methods:
             '-searchDisplayController:didHideSearchResultsTableView:':
@@ -5400,6 +5603,8 @@ protocols:
     UISearchResultsUpdating: # DONE
         methods:
             '-updateSearchResultsForSearchController:':
+                name: updateSearchResults
+            '-updateSearchResultsForSearchController:selectingSearchSuggestion:':
                 name: updateSearchResults
     UISplitViewControllerDelegate: # DONE
         methods:
@@ -5646,6 +5851,10 @@ protocols:
                 name: willEndContextMenuInteraction
             '-tableView:selectionFollowsFocusForRowAtIndexPath:':
                 name: isSelectionFollowsFocus
+            '-tableView:canPerformPrimaryActionForRowAtIndexPath:':
+                name: canPerformPrimaryAction
+            '-tableView:performPrimaryActionForRowAtIndexPath:':
+                name: performPrimaryAction
 
     UITextDocumentProxy: # DONE
         methods:
@@ -5674,6 +5883,12 @@ protocols:
             '-textFieldShouldReturn:':
                 name: shouldReturn
                 default: true
+            '-textField:editMenuForCharactersInRange:suggestedActions:':
+                name: getEditMenu
+            '-textField:willPresentEditMenuWithAnimator:':
+                name: willPresentEditMenu
+            '-textField:willDismissEditMenuWithAnimator:':
+                name: willDismissEditMenu
     UITextInput: # DONE
         properties:
             'markedTextStyle':
@@ -5744,6 +5959,12 @@ protocols:
                 name: setAttributedMarkedText
             '-insertTextPlaceholderWithSize:':
                 name: insertTextPlaceholder
+            '-editMenuForTextRange:suggestedActions:':
+                name: getEditMenu
+            '-willPresentEditMenuWithAnimator:':
+                name: willPresentEditMenu
+            '-willDismissEditMenuWithAnimator:':
+                name: willDismissEditMenu
     UITextInputDelegate: # DONE
         methods:
             '-selectionWillChange:':
@@ -5797,6 +6018,12 @@ protocols:
                 name: shouldInteractWithURL
             '-textView:shouldInteractWithTextAttachment:inRange.*':
                 name: shouldInteractWithTextAttachment
+            '-textView:editMenuForTextInRange:suggestedActions:':
+                name: getEditMenu
+            '-textView:willPresentEditMenuWithAnimator:':
+                name: willPresentEditMenu
+            '-textView:willDismissEditMenuWithAnimator:':
+                name: willDismissEditMenu
     UITimingCurveProvider: {} # DONE
     UIToolbarDelegate: {} # DONE
     UITraitEnvironment: # DONE
@@ -6293,6 +6520,10 @@ protocols:
                 name: willDisplayMenu
             '-contextMenuInteraction:willEndForConfiguration:animator:':
                 name: willEnd
+            '-contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:':
+                name: getHighlightPreview
+            '-contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:':
+                name: getDismissalPreview
     UIFontPickerViewControllerDelegate: {} #since 13.0
     UILargeContentViewerInteractionDelegate: #since 13.0
         methods:
@@ -6341,6 +6572,8 @@ protocols:
         methods:
             '-searchTextField:itemProviderForCopyingToken:':
                 name: getItemProviderForCopyingToken
+            '-searchTextField:didSelectSuggestion:':
+                name: didSelectSuggestion
     UISearchTextFieldPasteItem: {}
     UITextFormattingCoordinatorDelegate: #since 13.0
         methods:
@@ -6487,6 +6720,88 @@ protocols:
         methods:
             '-toolTipInteraction:configurationAtPoint:':
                 name: getConfigurationAtPoint
+    ### ios16 bindings
+    UICalendarSelectionMultiDateDelegate: #since 16.0
+        methods:
+            '-multiDateSelection:didSelectDate:':
+                name: didSelectDate
+            '-multiDateSelection:didDeselectDate:':
+                name: didDeselectDate
+            '-multiDateSelection:canSelectDate:':
+                name: canSelectDate
+            '-multiDateSelection:canDeselectDate:':
+                name: canDeselectDate
+    UICalendarSelectionSingleDateDelegate: #since 16.0
+        methods:
+            '-dateSelection:didSelectDate:':
+                name: didSelectDate
+            '-dateSelection:canSelectDate:':
+                name: canSelectDate
+    UICalendarViewDelegate: #since 16.0
+        methods:
+            '-calendarView:decorationForDateComponents:':
+                name: getDecoration
+    UIEditMenuInteractionAnimating: {} #since 16.0
+    UIEditMenuInteractionDelegate: #since 16.0
+        methods:
+            '-editMenuInteraction:menuForConfiguration:suggestedActions:':
+                name: getMenu
+            '-editMenuInteraction:targetRectForConfiguration:':
+                name: getTargetRect
+            '-editMenuInteraction:willPresentMenuForConfiguration:animator:':
+                name: willPresentMenu
+            '-editMenuInteraction:willDismissMenuForConfiguration:animator:':
+                name: willDismissMenu
+    UIFindInteractionDelegate: #since 16.0
+        methods:
+            '-findInteraction:sessionForView:':
+                name: getSession
+            '-findInteraction:didBeginFindSession:':
+                name: didBeginFindSession
+            '-findInteraction:didEndFindSession:':
+                name: didEndFindSession
+    UILayoutGuideAspectFitting: {}
+    UIMenuLeaf: #since 16.0
+        methods:
+            '-performWithSender:target:':
+                name: perform
+    UINavigationItemRenameDelegate: #since 16.0
+        methods:
+            '-navigationItem:didEndRenamingWithTitle:':
+                name: didEndRenaming
+            '-navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:':
+                name: willBeginRenaming
+            '-navigationItem:shouldEndRenamingWithTitle:':
+                name: shouldEndRenaming
+    UIPopoverPresentationControllerSourceItem: {} #since 16.0
+    UISearchSuggestion: {} #since 16.0
+    UISheetPresentationControllerDetentResolutionContext: {} #since 16.0
+    UITextSearchAggregator: #since 16.0
+        methods:
+            '-foundRange:forSearchString:inDocument:':
+                name: foundRange
+            '-invalidateFoundRange:inDocument:':
+                name: invalidateFoundRange
+    UITextSearching: #since 16.0
+        methods:
+            '-compareFoundRange:toRange:inDocument:':
+                name: compare
+            '-performTextSearchWithQueryString:usingOptions:resultAggregator:':
+                name: performTextSearch
+            '-decorateFoundTextRange:inDocument:usingStyle:':
+                name: decorateFoundTextRange
+            '-shouldReplaceFoundTextInRange:inDocument:withText:':
+                name: shouldReplaceFoundTextInRange
+            '-replaceFoundTextInRange:inDocument:withText:':
+                name: replaceFoundTextInRange
+            '-replaceAllOccurrencesOfQueryString:usingOptions:withText:':
+                name: replaceAllOccurrencesOfQueryString
+            '-willHighlightFoundTextRange:inDocument:':
+                name: willHighlightFoundTextRange
+            '-scrollRangeToVisible:inDocument:':
+                name: scrollRangeToVisible
+            '-compareOrderFromDocument:toDocument:':
+                name: compareOrder
 
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
@@ -7033,6 +7348,9 @@ values:
     UIFontWeight(.*):
         enum: UIFontWeight
         name: '#{g[0]}'
+    UIFontWidth(.*):
+        enum: UIFontWidth
+        name: '#{g[0]}'
 
     # UIImagePickerController
     UIImagePickerController(.*):
@@ -7372,6 +7690,10 @@ values:
         static_class: Notifications
         name: UnsupportedAttributeAdded
 
+    UISheetPresentationControllerDetentInactive:
+        class: UISheetPresentationControllerDetent
+        name: Inactive
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
         class: FIXME
@@ -7427,6 +7749,10 @@ typed_enums:
         type: NSString
         UISheetPresentationControllerDetentIdentifier(.*):
             name: '#{g[0]}'
+    NSTextListMarkerFormat:
+        enum: NSTextListMarkerFormat
+        type: NSString
+        prefix: NSTextList
 
 constants:
     NS(AttachmentCharacter):

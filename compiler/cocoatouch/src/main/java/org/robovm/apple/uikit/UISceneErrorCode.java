@@ -50,7 +50,15 @@ import org.robovm.apple.linkpresentation.*;
 public enum /*<name>*/UISceneErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     MultipleScenesNotSupported(0L),
-    RequestDenied(1L);
+    RequestDenied(1L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    GeometryRequestUnsupported(100L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    GeometryRequestDenied(101L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(UISceneErrorCode.class); }/*</bind>*/

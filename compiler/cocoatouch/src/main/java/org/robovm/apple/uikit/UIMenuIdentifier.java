@@ -159,6 +159,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier Print = new UIMenuIdentifier("Print");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final UIMenuIdentifier Document = new UIMenuIdentifier("Document");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier UndoRedo = new UIMenuIdentifier("UndoRedo");
@@ -280,7 +284,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final UIMenuIdentifier Root = new UIMenuIdentifier("Root");
     /*</constants>*/
     
-    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
+    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
     
     /*<name>*/UIMenuIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -378,6 +382,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIMenuPrint", optional=true)
         public static native NSString Print();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuDocument", optional=true)
+        public static native NSString Document();
         /**
          * @since Available in iOS 13.0 and later.
          */

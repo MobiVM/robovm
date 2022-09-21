@@ -88,6 +88,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "preferredStyle")
     public native UIAlertControllerStyle getPreferredStyle();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "severity")
+    public native UIAlertControllerSeverity getSeverity();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSeverity:")
+    public native void setSeverity(UIAlertControllerSeverity v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isSpringLoaded")

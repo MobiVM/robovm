@@ -161,7 +161,7 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Override
+    @NotImplemented("collectionView:canEditItemAtIndexPath:")
     public boolean canEditItem(UICollectionView collectionView, NSIndexPath indexPath) {
         return false;
     }
@@ -169,19 +169,19 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     /**
      * @since Available in iOS 13.2 and later.
      */
-    @Override
+    @NotImplemented("collectionView:willDisplayContextMenuWithConfiguration:animator:")
     public void willDisplayContextMenu(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
 
     /**
      * @since Available in iOS 13.2 and later.
      */
-    @Override
+    @NotImplemented("collectionView:willEndContextMenuInteractionWithConfiguration:animator:")
     public void willEndContextMenuInteraction(UICollectionView collectionView, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
 
     /**
      * @since Available in iOS 15.0 and later.
      */
-    @Override
+    @NotImplemented("collectionView:selectionFollowsFocusForItemAtIndexPath:")
     public boolean isSelectionFollowsFocus(UICollectionView collectionView, NSIndexPath indexPath) {
         return false;
     }
@@ -189,7 +189,7 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     /**
      * @since Available in iOS 15.0 and later.
      */
-    @Override
+    @NotImplemented("collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:")
     public NSIndexPath getTargetIndexPathForMoveOfItemFromOriginalIndexPath(UICollectionView collectionView, NSIndexPath originalIndexPath, NSIndexPath currentIndexPath, NSIndexPath proposedIndexPath) {
         return null;
     }
@@ -197,8 +197,48 @@ public class UICollectionViewModel extends UIScrollViewDelegateAdapter implement
     /**
      * @since Available in iOS 15.0 and later.
      */
-    @Override
+    @NotImplemented("collectionView:sceneActivationConfigurationForItemAtIndexPath:point:")
     public UIWindowSceneActivationConfiguration getSceneActivationConfiguration(UICollectionView collectionView, NSIndexPath indexPath, CGPoint point) {
+        return null;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("collectionView:canPerformPrimaryActionForItemAtIndexPath:")
+    public boolean canPerformPrimaryAction(UICollectionView collectionView, NSIndexPath indexPath) {
+        return false;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("collectionView:performPrimaryActionForItemAtIndexPath:")
+    public void performPrimaryAction(UICollectionView collectionView, NSIndexPath indexPath) {
+
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:")
+    public UIContextMenuConfiguration getContextMenuConfiguration(UICollectionView collectionView, NSArray<NSIndexPath> indexPaths, CGPoint point) {
+        return null;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:")
+    public UITargetedPreview getContextMenuHighlightPreview(UICollectionView collectionView, UIContextMenuConfiguration configuration, NSIndexPath indexPath) {
+        return null;
+    }
+
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:")
+    public UITargetedPreview getContextMenuDismissalPreview(UICollectionView collectionView, UIContextMenuConfiguration configuration, NSIndexPath indexPath) {
         return null;
     }
 }

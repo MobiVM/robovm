@@ -49,7 +49,9 @@ public enum /*<name>*/UIScrollViewKeyboardDismissMode/*</name>*/ implements Valu
     /*<values>*/
     None(0L),
     OnDrag(1L),
-    Interactive(2L);
+    Interactive(2L),
+    OnDragWithAccessory(3L),
+    InteractiveWithAccessory(4L);
     /*</values>*/
 
     private final long n;

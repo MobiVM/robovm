@@ -87,6 +87,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean allowsCopyingTokens();
     @Property(selector = "setAllowsCopyingTokens:")
     public native void setAllowsCopyingTokens(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "searchSuggestions")
+    public native NSArray<?> getSearchSuggestions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSearchSuggestions:")
+    public native void setSearchSuggestions(NSArray<?> v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

@@ -74,6 +74,36 @@ import org.robovm.apple.linkpresentation.*;
     public native void setRepresentativeItem(UIBarButtonItem v);
     @Property(selector = "isDisplayingRepresentativeItem")
     public native boolean isDisplayingRepresentativeItem();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "alwaysAvailable")
+    public native boolean alwaysAvailable();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAlwaysAvailable:")
+    public native void setAlwaysAvailable(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "menuRepresentation")
+    public native UIMenuElement getMenuRepresentation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMenuRepresentation:")
+    public native void setMenuRepresentation(UIMenuElement v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isHidden")
+    public native boolean isHidden();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setHidden:")
+    public native void setHidden(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,6 +111,21 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSArray<UIBarButtonItem> barButtonItems, UIBarButtonItem representativeItem);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "fixedGroupWithRepresentativeItem:items:")
+    public static native UIBarButtonItemGroup createfixedGroup(UIBarButtonItem representativeItem, NSArray<UIBarButtonItem> items);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "movableGroupWithCustomizationIdentifier:representativeItem:items:")
+    public static native UIBarButtonItemGroup createMovableGroup(String customizationIdentifier, UIBarButtonItem representativeItem, NSArray<UIBarButtonItem> items);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:")
+    public static native UIBarButtonItemGroup createOptionalGroup(String customizationIdentifier, boolean inDefaultCustomization, UIBarButtonItem representativeItem, NSArray<UIBarButtonItem> items);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

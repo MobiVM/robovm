@@ -165,5 +165,20 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("endFloatingCursor")
     public void endFloatingCursor() {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("editMenuForTextRange:suggestedActions:")
+    public UIMenu getEditMenu(UITextRange textRange, NSArray<UIMenuElement> suggestedActions) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("willPresentEditMenuWithAnimator:")
+    public void willPresentEditMenu(UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("willDismissEditMenuWithAnimator:")
+    public void willDismissEditMenu(UIEditMenuInteractionAnimating animator) {}
     /*</methods>*/
 }

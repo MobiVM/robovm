@@ -134,6 +134,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setFocusGroupIdentifier:")
     public native void setFocusGroupIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "interactionActivityTrackingBaseName")
+    public native String getInteractionActivityTrackingBaseName();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setInteractionActivityTrackingBaseName:")
+    public native void setInteractionActivityTrackingBaseName(String v);
     @Property(selector = "isBeingPresented")
     public native boolean isBeingPresented();
     @Property(selector = "isBeingDismissed")
@@ -208,6 +218,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Update supported interface orientations and call setNeedsUpdateOfSupportedInterfaceOrientations to indicate a change.
+     */
+    @Deprecated
     @Property(selector = "shouldAutorotate")
     public native boolean shouldAutorotate();
     @Property(selector = "supportedInterfaceOrientations")
@@ -305,6 +319,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UISheetPresentationController getSheetPresentationController();
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "activePresentationController")
+    public native UIPresentationController getActivePresentationController();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -606,6 +625,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfSupportedInterfaceOrientations")
+    public native void setNeedsUpdateOfSupportedInterfaceOrientations();
+    /**
      * @deprecated Deprecated in iOS 8.0. Header views are animated along with the rest of the view hierarchy
      */
     @Deprecated
@@ -635,6 +659,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Method(selector = "willAnimateRotationToInterfaceOrientation:duration:")
     public native void willAnimateRotation(UIInterfaceOrientation toInterfaceOrientation, double duration);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`.
+     */
+    @Deprecated
     @Method(selector = "attemptRotationToDeviceOrientation")
     public static native void attemptRotationToDeviceOrientation();
     @Method(selector = "setEditing:animated:")

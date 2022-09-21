@@ -254,6 +254,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "defaultContentConfiguration")
     public native UIListContentConfiguration defaultContentConfiguration();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "defaultBackgroundConfiguration")
+    public native UIBackgroundConfiguration defaultBackgroundConfiguration();
     @Method(selector = "prepareForReuse")
     public native void prepareForReuse();
     @Method(selector = "setSelected:animated:")

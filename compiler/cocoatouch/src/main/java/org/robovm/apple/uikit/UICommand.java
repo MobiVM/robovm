@@ -49,7 +49,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UICommand/*</name>*/ 
     extends /*<extends>*/UIMenuElement/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIMenuLeaf/*</implements>*/ {
 
     /*<ptr>*/public static class UICommandPtr extends Ptr<UICommand, UICommandPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UICommand.class); }/*</bind>*/
@@ -90,6 +90,13 @@ import org.robovm.apple.linkpresentation.*;
     public native void setState(UIMenuElementState v);
     @Property(selector = "alternates")
     public native NSArray<UICommandAlternate> getAlternates();
+    @Property(selector = "sender")
+    public native NSObject getSender();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "presentationSourceItem")
+    public native UIPopoverPresentationControllerSourceItem getPresentationSourceItem();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -112,5 +119,7 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(String title, UIImage image, Selector action, NSObject propertyList);
     @Method(selector = "commandWithTitle:image:action:propertyList:alternates:")
     protected static native @Pointer long create(String title, UIImage image, Selector action, NSObject propertyList, NSArray<UICommandAlternate> alternates);
+    @Method(selector = "performWithSender:target:")
+    public native void perform(NSObject sender, NSObject target);
     /*</methods>*/
 }

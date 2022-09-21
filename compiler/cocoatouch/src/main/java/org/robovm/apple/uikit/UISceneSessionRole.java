@@ -103,12 +103,18 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UISceneSessionRole Application = new UISceneSessionRole("Application");
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    public static final UISceneSessionRole ExternalDisplayNonInteractive = new UISceneSessionRole("ExternalDisplayNonInteractive");
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use UIWindowSceneSessionRoleExternalDisplayNonInteractive
+     */
+    @Deprecated
     public static final UISceneSessionRole ExternalDisplay = new UISceneSessionRole("ExternalDisplay");
     /*</constants>*/
     
-    private static /*<name>*/UISceneSessionRole/*</name>*/[] values = new /*<name>*/UISceneSessionRole/*</name>*/[] {/*<value_list>*/Application, ExternalDisplay/*</value_list>*/};
+    private static /*<name>*/UISceneSessionRole/*</name>*/[] values = new /*<name>*/UISceneSessionRole/*</name>*/[] {/*<value_list>*/Application, ExternalDisplayNonInteractive, ExternalDisplay/*</value_list>*/};
     
     /*<name>*/UISceneSessionRole/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -137,8 +143,15 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIWindowSceneSessionRoleApplication", optional=true)
         public static native NSString Application();
         /**
-         * @since Available in iOS 13.0 and later.
+         * @since Available in iOS 16.0 and later.
          */
+        @GlobalValue(symbol="UIWindowSceneSessionRoleExternalDisplayNonInteractive", optional=true)
+        public static native NSString ExternalDisplayNonInteractive();
+        /**
+         * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 16.0. Use UIWindowSceneSessionRoleExternalDisplayNonInteractive
+         */
+        @Deprecated
         @GlobalValue(symbol="UIWindowSceneSessionRoleExternalDisplay", optional=true)
         public static native NSString ExternalDisplay();
         /*</values>*/

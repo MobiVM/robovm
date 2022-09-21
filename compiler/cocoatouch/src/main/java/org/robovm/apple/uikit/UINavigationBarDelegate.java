@@ -65,6 +65,8 @@ import org.robovm.apple.linkpresentation.*;
     boolean shouldPopItem(UINavigationBar navigationBar, UINavigationItem item);
     @Method(selector = "navigationBar:didPopItem:")
     void didPopItem(UINavigationBar navigationBar, UINavigationItem item);
+    @Method(selector = "navigationBarNSToolbarSection:")
+    UINavigationBarNSToolbarSection navigationBarNSToolbarSection(UINavigationBar navigationBar);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

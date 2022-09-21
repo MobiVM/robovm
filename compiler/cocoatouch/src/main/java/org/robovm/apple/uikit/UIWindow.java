@@ -165,10 +165,6 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setWindowScene:", strongRef = true)
     public native void setWindowScene(UIWindowScene v);
-    @Property(selector = "canResizeToFitContent")
-    public native boolean canResizeToFitContent();
-    @Property(selector = "setCanResizeToFitContent:")
-    public native void setCanResizeToFitContent(boolean v);
     @Property(selector = "screen")
     public native UIScreen getScreen();
     @Property(selector = "setScreen:")
@@ -191,6 +187,11 @@ import org.robovm.apple.linkpresentation.*;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "safeAreaAspectFitLayoutGuide")
+    public native UILayoutGuide getSafeAreaAspectFitLayoutGuide();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

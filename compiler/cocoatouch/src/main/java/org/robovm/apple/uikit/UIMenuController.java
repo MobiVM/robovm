@@ -42,9 +42,11 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMenuController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -156,14 +158,34 @@ import org.robovm.apple.linkpresentation.*;
         }
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIMenuControllerWillShowMenuNotification", optional=true)
     public static native NSString WillShowMenuNotification();
+    /**
+     * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIMenuControllerDidShowMenuNotification", optional=true)
     public static native NSString DidShowMenuNotification();
+    /**
+     * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIMenuControllerWillHideMenuNotification", optional=true)
     public static native NSString WillHideMenuNotification();
+    /**
+     * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIMenuControllerDidHideMenuNotification", optional=true)
     public static native NSString DidHideMenuNotification();
+    /**
+     * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+     */
+    @Deprecated
     @GlobalValue(symbol="UIMenuControllerMenuFrameDidChangeNotification", optional=true)
     public static native NSString MenuFrameDidChangeNotification();
     
