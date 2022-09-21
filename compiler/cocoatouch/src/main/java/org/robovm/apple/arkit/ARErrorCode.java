@@ -57,6 +57,14 @@ public enum /*<name>*/ARErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 14.0 and later.
      */
     LocationUnauthorized(105L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    HighResolutionFrameCaptureInProgress(106L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    HighResolutionFrameCaptureFailed(107L),
     WorldTrackingFailed(200L),
     /**
      * @since Available in iOS 14.0 and later.

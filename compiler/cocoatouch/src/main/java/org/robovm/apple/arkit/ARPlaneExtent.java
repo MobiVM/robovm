@@ -44,37 +44,39 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARSCNFaceGeometry/*</name>*/ 
-    extends /*<extends>*/SCNGeometry/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ARPlaneExtent/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class ARSCNFaceGeometryPtr extends Ptr<ARSCNFaceGeometry, ARSCNFaceGeometryPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ARSCNFaceGeometry.class); }/*</bind>*/
+    /*<ptr>*/public static class ARPlaneExtentPtr extends Ptr<ARPlaneExtent, ARPlaneExtentPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ARPlaneExtent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ARSCNFaceGeometry() {}
-    protected ARSCNFaceGeometry(Handle h, long handle) { super(h, handle); }
-    protected ARSCNFaceGeometry(SkipInit skipInit) { super(skipInit); }
-    public ARSCNFaceGeometry(MTLDevice device) { super((Handle) null, create(device)); retain(getHandle()); }
-    public ARSCNFaceGeometry(MTLDevice device, boolean fillMesh) { super((Handle) null, create(device, fillMesh)); retain(getHandle()); }
+    public ARPlaneExtent() {}
+    protected ARPlaneExtent(Handle h, long handle) { super(h, handle); }
+    protected ARPlaneExtent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public ARPlaneExtent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "rotationOnYAxis")
+    public native float getRotationOnYAxis();
+    @Property(selector = "width")
+    public native float getWidth();
+    @Property(selector = "height")
+    public native float getHeight();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "updateFromFaceGeometry:")
-    public native void updateFromFaceGeometry(ARFaceGeometry faceGeometry);
-    @Method(selector = "faceGeometryWithDevice:")
-    protected static native @Pointer long create(MTLDevice device);
-    @Method(selector = "faceGeometryWithDevice:fillMesh:")
-    protected static native @Pointer long create(MTLDevice device, boolean fillMesh);
-    @Method(selector = "geometryWithSources:elements:")
-    public static native ARSCNFaceGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -128,6 +128,8 @@ classes:
                 name: update
             '-getGeoLocationForPoint:completionHandler:':
                 name: getGeoLocation
+            '-captureHighResolutionFrameWithCompletion:':
+                name: captureHighResolutionFrame
     ARWorldTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:
@@ -242,6 +244,7 @@ classes:
     ARMeshAnchor: {} #since 13.4
     ARMeshGeometry: {} #since 13.4
     ARAppClipCodeAnchor: {} #since 14.3
+    ARPlaneExtent: {} #since 16.0
 protocols:
     ARSCNViewDelegate: #since 11.0
         methods:

@@ -71,8 +71,6 @@ import org.robovm.apple.coreanimation.*;
     public native void updateFromPlaneGeometry(ARPlaneGeometry planeGeometry);
     @Method(selector = "planeGeometryWithDevice:")
     protected static native @Pointer long create(MTLDevice device);
-    @Method(selector = "geometry")
-    public static native ARSCNPlaneGeometry createGeometry();
     @Method(selector = "geometryWithSources:elements:")
     public static native ARSCNPlaneGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
     /*</methods>*/

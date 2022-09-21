@@ -75,6 +75,16 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "framesPerSecond")
     public native @MachineSizedSInt long getFramesPerSecond();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isRecommendedForHighResolutionFrameCapturing")
+    public native boolean isRecommendedForHighResolutionFrameCapturing();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isVideoHDRSupported")
+    public native boolean isVideoHDRSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

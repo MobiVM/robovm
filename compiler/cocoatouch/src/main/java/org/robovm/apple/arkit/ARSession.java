@@ -126,5 +126,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "getGeoLocationForPoint:completionHandler:")
     public native void getGeoLocation(@ByVal VectorFloat3 position, @Block("(@ByVal,,)") VoidBlock3<CLLocationCoordinate2D, Double, NSError> completionHandler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "captureHighResolutionFrameWithCompletion:")
+    public native void captureHighResolutionFrame(@Block VoidBlock2<ARFrame, NSError> completion);
     /*</methods>*/
 }
