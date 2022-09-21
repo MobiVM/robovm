@@ -57,6 +57,11 @@ import org.robovm.apple.mapkit.*;
     public native EKSourceType getSourceType();
     @Property(selector = "title")
     public native String getTitle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isDelegate")
+    public native boolean isDelegate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
