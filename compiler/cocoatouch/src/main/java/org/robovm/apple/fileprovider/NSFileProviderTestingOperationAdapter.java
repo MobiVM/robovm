@@ -33,34 +33,39 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderTestingOperationAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSFileProviderTestingOperation/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
+    @NotImplemented("type")
+    public NSFileProviderTestingOperationType getType() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
+    @NotImplemented("asIngestion")
+    public NSFileProviderTestingIngestion asIngestion() { return null; }
+    @NotImplemented("asLookup")
+    public NSFileProviderTestingLookup asLookup() { return null; }
+    @NotImplemented("asCreation")
+    public NSFileProviderTestingCreation asCreation() { return null; }
+    @NotImplemented("asModification")
+    public NSFileProviderTestingModification asModification() { return null; }
+    @NotImplemented("asDeletion")
+    public NSFileProviderTestingDeletion asDeletion() { return null; }
+    @NotImplemented("asContentFetch")
+    public NSFileProviderTestingContentFetch asContentFetch() { return null; }
+    @NotImplemented("asChildrenEnumeration")
+    public NSFileProviderTestingChildrenEnumeration asChildrenEnumeration() { return null; }
+    @NotImplemented("asCollisionResolution")
+    public NSFileProviderTestingCollisionResolution asCollisionResolution() { return null; }
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

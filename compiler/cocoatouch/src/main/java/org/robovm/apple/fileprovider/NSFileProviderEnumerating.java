@@ -34,11 +34,11 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerating/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -47,19 +47,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
+    
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
+    @Method(selector = "enumeratorForContainerItemIdentifier:request:error:")
+    NSFileProviderEnumerator getEnumeratorForContainerItemIdentifier(NSString containerItemIdentifier, NSFileProviderRequest request, NSError.NSErrorPtr error);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

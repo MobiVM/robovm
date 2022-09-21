@@ -34,33 +34,32 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NSFileProviderTestingOperationSide/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Disk(0L),
+    FileProvider(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NSFileProviderTestingOperationSide/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NSFileProviderTestingOperationSide/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSFileProviderTestingOperationSide/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NSFileProviderTestingOperationSide/*</name>*/.class.getName());
+    }
 }

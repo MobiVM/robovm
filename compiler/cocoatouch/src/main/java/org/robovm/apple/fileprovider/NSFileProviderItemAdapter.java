@@ -64,8 +64,18 @@ import org.robovm.apple.uniformtypeid.*;
     @Deprecated
     @NotImplemented("typeIdentifier")
     public String getTypeIdentifier() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("typeAndCreator")
+    public @ByVal NSFileProviderTypeAndCreator getTypeAndCreator() { return null; }
     @NotImplemented("capabilities")
     public NSFileProviderItemCapabilities getCapabilities() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("fileSystemFlags")
+    public NSFileProviderFileSystemFlags getFileSystemFlags() { return null; }
     @NotImplemented("documentSize")
     public NSNumber getDocumentSize() { return null; }
     @NotImplemented("childItemCount")
@@ -74,6 +84,11 @@ import org.robovm.apple.uniformtypeid.*;
     public NSDate getCreationDate() { return null; }
     @NotImplemented("contentModificationDate")
     public NSDate getContentModificationDate() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("extendedAttributes")
+    public NSDictionary<NSString, NSData> getExtendedAttributes() { return null; }
     @NotImplemented("lastUsedDate")
     public NSDate getLastUsedDate() { return null; }
     @NotImplemented("tagData")
@@ -115,8 +130,23 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @NotImplemented("versionIdentifier")
     public NSData getVersionIdentifier() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("itemVersion")
+    public NSFileProviderItemVersion getItemVersion() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("symlinkTargetPath")
+    public String getSymlinkTargetPath() { return null; }
     @NotImplemented("userInfo")
     public NSDictionary<?, ?> getUserInfo() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("contentPolicy")
+    public NSFileProviderContentPolicy getContentPolicy() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

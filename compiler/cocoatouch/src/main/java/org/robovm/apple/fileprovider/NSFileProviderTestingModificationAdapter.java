@@ -33,34 +33,34 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderTestingModificationAdapter/*</name>*/ 
+    extends /*<extends>*/NSFileProviderTestingOperationAdapter/*</extends>*/ 
+    /*<implements>*/implements NSFileProviderTestingModification/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
+    @NotImplemented("targetSide")
+    public NSFileProviderTestingOperationSide getTargetSide() { return null; }
+    @NotImplemented("sourceItem")
+    public NSFileProviderItem getSourceItem() { return null; }
+    @NotImplemented("targetItemIdentifier")
+    public NSString getTargetItemIdentifier() { return null; }
+    @NotImplemented("targetItemBaseVersion")
+    public NSFileProviderItemVersion getTargetItemBaseVersion() { return null; }
+    @NotImplemented("changedFields")
+    public NSFileProviderItemFields getChangedFields() { return null; }
+    @NotImplemented("domainVersion")
+    public NSFileProviderDomainVersion getDomainVersion() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

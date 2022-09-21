@@ -34,11 +34,11 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderTestingOperation/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -47,19 +47,26 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
+    @Property(selector = "type")
+    NSFileProviderTestingOperationType getType();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
+    @Method(selector = "asIngestion")
+    NSFileProviderTestingIngestion asIngestion();
+    @Method(selector = "asLookup")
+    NSFileProviderTestingLookup asLookup();
+    @Method(selector = "asCreation")
+    NSFileProviderTestingCreation asCreation();
+    @Method(selector = "asModification")
+    NSFileProviderTestingModification asModification();
+    @Method(selector = "asDeletion")
+    NSFileProviderTestingDeletion asDeletion();
+    @Method(selector = "asContentFetch")
+    NSFileProviderTestingContentFetch asContentFetch();
+    @Method(selector = "asChildrenEnumeration")
+    NSFileProviderTestingChildrenEnumeration asChildrenEnumeration();
+    @Method(selector = "asCollisionResolution")
+    NSFileProviderTestingCollisionResolution asCollisionResolution();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -34,33 +34,34 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
-
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<properties>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NSFileProviderDomainRemovalMode/*</name>*/ implements ValuedEnum {
+    /*<values>*/
     /**
      * @since Available in iOS 16.0 and later.
      */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    RemoveAll(0L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NSFileProviderDomainRemovalMode/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NSFileProviderDomainRemovalMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSFileProviderDomainRemovalMode/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NSFileProviderDomainRemovalMode/*</name>*/.class.getName());
+    }
 }

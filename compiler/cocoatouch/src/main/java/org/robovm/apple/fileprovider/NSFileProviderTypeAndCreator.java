@@ -33,34 +33,30 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSFileProviderTypeAndCreator/*</name>*/ 
+    extends /*<extends>*/Struct<NSFileProviderTypeAndCreator>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class NSFileProviderTypeAndCreatorPtr extends Ptr<NSFileProviderTypeAndCreator, NSFileProviderTypeAndCreatorPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<constructors>*/
+    public NSFileProviderTypeAndCreator() {}
+    public NSFileProviderTypeAndCreator(int type, int creator) {
+        this.setType(type);
+        this.setCreator(creator);
+    }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native int getType();
+    @StructMember(0) public native NSFileProviderTypeAndCreator setType(int type);
+    @StructMember(1) public native int getCreator();
+    @StructMember(1) public native NSFileProviderTypeAndCreator setCreator(int creator);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

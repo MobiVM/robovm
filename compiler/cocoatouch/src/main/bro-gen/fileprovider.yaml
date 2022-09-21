@@ -13,10 +13,20 @@ enums:
     NSFileProviderErrorCode: {nserror: true, prefix: NSFileProviderError} #since 11.0
     NSFileProviderFileSystemFlags: {prefix: NSFileProviderFileSystem}
     NSFileProviderDomainTestingModes: {prefix: NSFileProviderDomainTestingMode}
+    NSFileProviderItemFields: {prefix: NSFileProviderItem} #since 16.0
+    NSFileProviderContentPolicy: {}
+    NSFileProviderModifyItemOptions: {prefix: NSFileProviderModifyItem} #since 16.0
+    NSFileProviderDomainRemovalMode: {} #since 16.0
+    NSFileProviderCreateItemOptions: {prefix: NSFileProviderCreateItem} #since 16.0
+    NSFileProviderDeleteItemOptions: {prefix: NSFileProviderDeleteItem} #since 16.0
+    NSFileProviderTestingOperationType: {} #since 16.0
+    NSFileProviderTestingOperationSide: {} #since 16.0
 classes:
     NSFileProviderDomain: #since 11.0
         methods:
             '-initWithIdentifier:displayName:pathRelativeToDocumentStorage:':
+                name: init
+            '-initWithIdentifier:displayName:':
                 name: init
     NSFileProviderExtension: #since 8.0
         methods:
@@ -73,6 +83,44 @@ classes:
                 name: getDomains
             '+removeAllDomainsWithCompletionHandler:':
                 name: removeAllDomains
+            '-getUserVisibleURLForItemIdentifier:completionHandler:':
+              name: getUserVisibleURLForItemIdentifier
+            '-temporaryDirectoryURLWithError:':
+              name: getTemporaryDirectoryURL
+              throws: NSErrorException
+            '-signalErrorResolved:completionHandler:':
+              name: signalErrorResolved
+            '+getIdentifierForUserVisibleFileAtURL:completionHandler:':
+              name: getIdentifierForUserVisibleFile
+            '+removeDomain:mode:completionHandler:':
+              name: removeDomain
+            '-reimportItemsBelowItemWithIdentifier:completionHandler:':
+              name: reimportItemsBelowItem
+            '-requestModificationOfFields:forItemWithIdentifier:options:completionHandler:':
+              name: requestModificationOfFields
+            '+importDomain:fromDirectoryAtURL:completionHandler:':
+              name: importDomain
+            '-evictItemWithIdentifier:completionHandler:':
+              name: evictItem
+            '-waitForChangesOnItemsBelowItemWithIdentifier:completionHandler:':
+              name: waitForChangesOnItemsBelowItem
+            '-waitForStabilizationWithCompletionHandler:':
+              name: waitForStabilization
+            '-getServiceWithName:itemIdentifier:completionHandler:':
+              name: getService
+            '-listAvailableTestingOperationsWithError:':
+              name: listAvailableTestingOperations
+              throws: NSErrorException
+            '-runTestingOperations:error:':
+              name: runTestingOperations
+              throws: NSErrorException
+    NSFileProviderTypeAndCreator: {} #since 16.0
+    NSFileProviderDomainVersion: {} #since 16.0
+    NSFileProviderItemVersion: #since 16.0
+        methods:
+            '-initWithContentVersion:metadataVersion:':
+              name: init
+    NSFileProviderRequest: {} #since 16.0
 protocols:
     NSFileProviderChangeObserver:
         methods:
@@ -98,8 +146,58 @@ protocols:
                 name: currentSyncAnchor
     NSFileProviderItem: {}
     NSFileProviderServiceSource: {} #since 11.0
-
-
+    NSFileProviderCustomAction: #since 16.0
+        methods:
+            '-performActionWithIdentifier:onItemsWithIdentifiers:completionHandler:':
+                name: performAction
+    NSFileProviderDomainState: {} #since 16.0
+    NSFileProviderEnumerating: #since 16.0
+        methods:
+            '-enumeratorForContainerItemIdentifier:request:error:':
+                name: getEnumeratorForContainerItemIdentifier
+    NSFileProviderIncrementalContentFetching: #since 16.0
+        methods:
+            '-fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:request:completionHandler:':
+                name: fetchContentsForItem
+    NSFileProviderItemDecorating: {} #since 16.0
+    NSFileProviderPendingSetEnumerator: {} #since 16.0
+    NSFileProviderReplicatedExtension: #since 16.0
+        methods:
+            '-initWithDomain:':
+                name: init
+            '-itemForIdentifier:request:completionHandler:':
+                name: item
+            '-fetchContentsForItemWithIdentifier:version:request:completionHandler:':
+                name: fetchContentsForItem
+            '-createItemBasedOnTemplate:fields:contents:options:request:completionHandler:':
+                name: createItemBasedOnTemplate
+            '-modifyItem:baseVersion:changedFields:contents:options:request:completionHandler:':
+                name: modifyItem
+            '-deleteItemWithIdentifier:baseVersion:options:request:completionHandler:':
+                name: deleteItem
+            '-importDidFinishWithCompletionHandler:':
+                name: importDidFinish
+            '-materializedItemsDidChangeWithCompletionHandler:':
+                name: materializedItemsDidChange
+            '-pendingItemsDidChangeWithCompletionHandler:':
+                name: pendingItemsDidChange
+    NSFileProviderServicing: #since 16.0
+        methods:
+            '-supportedServiceSourcesForItemIdentifier:completionHandler:':
+                name: getSupportedServiceSources
+    NSFileProviderTestingChildrenEnumeration: {} #since 16.0
+    NSFileProviderTestingCollisionResolution: {} #since 16.0
+    NSFileProviderTestingContentFetch: {} #since 16.0
+    NSFileProviderTestingCreation: {} #since 16.0
+    NSFileProviderTestingDeletion: {} #since 16.0
+    NSFileProviderTestingIngestion: {} #since 16.0
+    NSFileProviderTestingLookup: {} #since 16.0
+    NSFileProviderTestingModification: {} #since 16.0
+    NSFileProviderTestingOperation: {} #since 16.0
+    NSFileProviderThumbnailing: #since 16.0
+        methods:
+            '-fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:':
+                name: fetchThumbnailsForItem
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?NSFile.*):
@@ -123,6 +221,11 @@ values:
     NSFileProvider(InitialPageSortedByDate|InitialPageSortedByName):
         class: NSFileProviderManager
         name: 'getEnumeration#{g[0]}'
+        type: NSString
+
+    NSFileProvider(PendingSetDidChange|MaterializedSetDidChange|DomainDidChange|TrashContainerItemIdentifier):
+        class: NSFileProviderManager
+        name: 'get#{g[0]}'
         type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version

@@ -33,34 +33,37 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<properties>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NSFileProviderContentPolicy/*</name>*/ implements ValuedEnum {
+    /*<values>*/
     /**
      * @since Available in iOS 16.0 and later.
      */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    Inherited(0L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    DownloadLazilyAndEvictOnRemoteUpdate(2L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NSFileProviderContentPolicy/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NSFileProviderContentPolicy/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSFileProviderContentPolicy/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NSFileProviderContentPolicy/*</name>*/.class.getName());
+    }
 }

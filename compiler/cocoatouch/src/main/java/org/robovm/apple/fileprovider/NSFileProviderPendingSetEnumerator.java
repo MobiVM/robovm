@@ -34,12 +34,12 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderEnumerationObserver/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSFileProviderPendingSetEnumerator/*</name>*/ 
+    /*<implements>*/extends NSFileProviderEnumerator/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -47,19 +47,18 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    @Property(selector = "domainVersion")
+    NSFileProviderDomainVersion getDomainVersion();
+    @Property(selector = "refreshInterval")
+    double getRefreshInterval();
     /**
      * @since Available in iOS 16.0 and later.
      */
-    @Property(selector = "suggestedPageSize")
-    @MachineSizedSInt long getSuggestedPageSize();
+    @Property(selector = "isMaximumSizeReached")
+    boolean isMaximumSizeReached();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "didEnumerateItems:")
-    void didEnumerateItems(NSArray<?> updatedItems);
-    @Method(selector = "finishEnumeratingUpToPage:")
-    void finishEnumeratingUpToPage(NSData nextPage);
-    @Method(selector = "finishEnumeratingWithError:")
-    void finishEnumerating(NSError error);
+    
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
