@@ -106,7 +106,7 @@ public enum /*<name>*/TKErrorCode/*</name>*/ implements NSErrorCode {
          }
 
         public static String getClassDomain() {
-            /** must be incerted in value section */
+            /** must be inserted in value section */
             return /*<name>*/TKErrorCode/*</name>*/.getClassDomain();
         }
     }
