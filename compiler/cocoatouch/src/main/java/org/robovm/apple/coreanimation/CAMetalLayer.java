@@ -33,6 +33,7 @@ import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,6 +99,26 @@ import org.robovm.apple.metal.*;
     @Property(selector = "setColorspace:")
     public native void setColorspace(CGColorSpace v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "wantsExtendedDynamicRangeContent")
+    public native boolean wantsExtendedDynamicRangeContent();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setWantsExtendedDynamicRangeContent:")
+    public native void setWantsExtendedDynamicRangeContent(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "EDRMetadata")
+    public native CAEDRMetadata getEDRMetadata();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setEDRMetadata:")
+    public native void setEDRMetadata(CAEDRMetadata v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "allowsNextDrawableTimeout")
@@ -107,6 +128,16 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "setAllowsNextDrawableTimeout:")
     public native void setAllowsNextDrawableTimeout(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "developerHUDProperties")
+    public native NSDictionary<?, ?> getDeveloperHUDProperties();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDeveloperHUDProperties:")
+    public native void setDeveloperHUDProperties(NSDictionary<?, ?> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

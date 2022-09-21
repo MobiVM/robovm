@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,27 +37,37 @@ import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 16.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("QuartzCore")/*</annotations>*/
-/*<visibility>*/public final/*</visibility>*/ class /*<name>*/NSValueExtensions/*</name>*/ 
-    extends /*<extends>*/NSExtensions/*</extends>*/ 
+/*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CAEDRMetadata/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSValueExtensions.class); }/*</bind>*/
+    /*<ptr>*/public static class CAEDRMetadataPtr extends Ptr<CAEDRMetadata, CAEDRMetadataPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CAEDRMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    private NSValueExtensions() {}
+    protected CAEDRMetadata() {}
+    protected CAEDRMetadata(Handle h, long handle) { super(h, handle); }
+    protected CAEDRMetadata(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "CATransform3DValue")
-    public static native @ByVal CATransform3D getCATransform3DValue(NSValue thiz);
+    @Property(selector = "HLGMetadata")
+    public static native CAEDRMetadata getHLGMetadata();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isAvailable")
+    public static native boolean isAvailable();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "valueWithCATransform3D:")
-    protected static native NSValue create(ObjCClass clazz, @ByVal CATransform3D t);
-    public static NSValue create(@ByVal CATransform3D t) { return create(ObjCClass.getByType(NSValue.class), t); }
+    @Method(selector = "HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:")
+    public static native CAEDRMetadata createHDR10Metadata(NSData displayData, NSData contentData, float scale);
+    @Method(selector = "HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:")
+    public static native CAEDRMetadata createHDR10Metadata(float minNits, float maxNits, float scale);
     /*</methods>*/
 }
