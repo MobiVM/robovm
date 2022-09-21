@@ -38,6 +38,8 @@ classes:
         methods:
             '-initWithTitle:style:handler:':
                 name: init
+            '-initWithTitle:color:handler:':
+                name: init
     CPAlertTemplate: #since 12.0
         methods:
             '-initWithTitleVariants:actions:':
@@ -267,6 +269,8 @@ classes:
     CPPointOfInterest: #since 14.0
         methods:
             '-initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:':
+                name: init
+            '-initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:selectedPinImage:':
                 name: init
     CPPointOfInterestTemplate: #since 14.0
         methods:
