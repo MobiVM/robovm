@@ -478,6 +478,11 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCVPixelFormatContainsGrayscale", optional=true)
         public static native CFString ContainsGrayscale();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatContainsSenselArray", optional=true)
+        public static native CFString ContainsSenselArray();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCVPixelFormatComponentRange", optional=true)
