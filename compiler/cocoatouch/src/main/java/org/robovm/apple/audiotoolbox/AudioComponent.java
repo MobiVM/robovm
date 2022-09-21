@@ -116,6 +116,21 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="AudioComponentGetVersion", optional=true)
     protected native OSStatus getVersion0(IntPtr outVersion);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentCopyConfigurationInfo", optional=true)
+    public native OSStatus copyConfigurationInfo(NSDictionary.NSDictionaryPtr outConfigurationInfo);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentValidate", optional=true)
+    public native OSStatus validate(NSDictionary inValidationParameters, IntPtr outValidationResult);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentValidateWithResults", optional=true)
+    public native OSStatus validateWithResults(NSDictionary inValidationParameters, @Block VoidBlock2<AudioComponentValidationResult, NSDictionary> inCompletionHandler);
+    /**
      * @deprecated Deprecated in iOS 14.0. Use AudioComponentCopyIcon
      */
     @Deprecated

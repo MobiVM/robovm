@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,30 +35,29 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.uikit.*;
 /*</imports>*/
 
+
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUConfigurationInfo/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+/*<annotations>*/@Library("AudioToolbox")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUEventListener/*</name>*/
+    extends NativeObject
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*/
-    public static final String HasCustomView = "HasCustomView";
-    public static final String ChannelConfigurations = "ChannelConfigurations";
-    public static final String InitialInputs = "InitialInputs";
-    public static final String InitialOutputs = "InitialOutputs";
-    public static final String IconURL = "IconURL";
-    public static final String BusCountWritable = "BusCountWritable";
-    public static final String SupportedChannelLayoutTags = "SupportedChannelLayoutTags";
-    public static final String MIDIProtocol = "MIDIProtocol";
-    public static final String MigrateFromPlugin = "MigrateFromPlugin";
-    /*</constants>*/
+    /*<ptr>*/public static class AUEventListenerPtr extends Ptr<AUEventListener, AUEventListenerPtr> {}/*</ptr>*/
+
+    /*<bind>*/static { Bro.bind(AUEventListener.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    @Bridge(symbol="AUEventListenerCreateWithDispatchQueue", optional=true)
+    protected static native OSStatus create0(AUEventListener.AUEventListenerPtr outListener, float inNotificationInterval, float inValueChangeGranularity, org.robovm.apple.dispatch.DispatchQueue inDispatchQueue, @Block VoidBlock4<VoidPtr, AudioUnitEvent, Long, Float> inBlock);
+    @Bridge(symbol="AUEventListenerAddEventType", optional=true)
+    public native OSStatus addEventType(VoidPtr inObject, AudioUnitEvent inEvent);
+    @Bridge(symbol="AUEventListenerRemoveEventType", optional=true)
+    public native OSStatus removeEventType(VoidPtr inObject, AudioUnitEvent inEvent);
+    @Bridge(symbol="AUEventListenerNotify", optional=true)
+    public native OSStatus notify(VoidPtr inSendingObject, AudioUnitEvent inEvent);
+    /*</methods>*/
 }

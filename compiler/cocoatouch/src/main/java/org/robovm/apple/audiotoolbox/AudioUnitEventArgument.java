@@ -39,32 +39,27 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Failure(1L),
-    Success(2L),
-    SuccessHasMore(3L),
-    NeedsMoreInputData(4L),
-    AtEOF(5L),
-    SuccessConcealed(6L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitEventArgument/*</name>*/
+    extends /*<extends>*/Struct<AudioUnitEventArgument>/*</extends>*/
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class AudioUnitEventArgumentPtr extends Ptr<AudioUnitEventArgument, AudioUnitEventArgumentPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/.class.getName());
+    /*<constructors>*/
+    public AudioUnitEventArgument() {}
+    public AudioUnitEventArgument(AudioUnitParameter mParameter, AudioUnitProperty mProperty) {
+        this.setMParameter(mParameter);
+        this.setMProperty(mProperty);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @ByVal AudioUnitParameter getMParameter();
+    @StructMember(0) public native AudioUnitEventArgument setMParameter(@ByVal AudioUnitParameter mParameter);
+    @StructMember(0) public native @ByVal AudioUnitProperty getMProperty();
+    @StructMember(0) public native AudioUnitEventArgument setMProperty(@ByVal AudioUnitProperty mProperty);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

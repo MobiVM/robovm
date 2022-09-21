@@ -39,32 +39,27 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Failure(1L),
-    Success(2L),
-    SuccessHasMore(3L),
-    NeedsMoreInputData(4L),
-    AtEOF(5L),
-    SuccessConcealed(6L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitEvent/*</name>*/ 
+    extends /*<extends>*/Struct<AudioUnitEvent>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class AudioUnitEventPtr extends Ptr<AudioUnitEvent, AudioUnitEventPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/.class.getName());
+    /*<constructors>*/
+    public AudioUnitEvent() {}
+    public AudioUnitEvent(AudioUnitEventType mEventType, AudioUnitEventArgument mArgument) {
+        this.setMEventType(mEventType);
+        this.setMArgument(mArgument);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native AudioUnitEventType getMEventType();
+    @StructMember(0) public native AudioUnitEvent setMEventType(AudioUnitEventType mEventType);
+    @StructMember(1) public native @ByVal AudioUnitEventArgument getMArgument();
+    @StructMember(1) public native AudioUnitEvent setMArgument(@ByVal AudioUnitEventArgument mArgument);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

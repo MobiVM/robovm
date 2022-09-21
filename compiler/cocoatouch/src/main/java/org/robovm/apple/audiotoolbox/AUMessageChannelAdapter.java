@@ -36,35 +36,27 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Failure(1L),
-    Success(2L),
-    SuccessHasMore(3L),
-    NeedsMoreInputData(4L),
-    AtEOF(5L),
-    SuccessConcealed(6L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUMessageChannelAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements AUMessageChannel/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    @NotImplemented("callHostBlock")
+    public @Block Block1<NSDictionary<?, ?>, NSDictionary<?, ?>> getCallHostBlock() { return null; }
+    @NotImplemented("setCallHostBlock:")
+    public void setCallHostBlock(@Block Block1<NSDictionary<?, ?>, NSDictionary<?, ?>> v) {}
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("callAudioUnit:")
+    public NSDictionary<?, ?> callAudioUnit(NSDictionary<?, ?> message) { return null; }
+    /*</methods>*/
 }

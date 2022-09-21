@@ -55,6 +55,10 @@ public enum /*<name>*/AUTypeEffect/*</name>*/ implements AUSubType {
     NBandEQ(1851942257L),
     Reverb2(1920361010L),
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AUSoundIsolation(1987012979L),
+    /**
      * @deprecated Deprecated in iOS 13.0. Use kAudioUnitSubType_GraphicEQ
      */
     @Deprecated

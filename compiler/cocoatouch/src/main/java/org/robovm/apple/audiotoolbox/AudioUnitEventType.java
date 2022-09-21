@@ -39,14 +39,12 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/AudioUnitEventType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Failure(1L),
-    Success(2L),
-    SuccessHasMore(3L),
-    NeedsMoreInputData(4L),
-    AtEOF(5L),
-    SuccessConcealed(6L);
+    ParameterValueChange(0L),
+    BeginParameterChangeGesture(1L),
+    EndParameterChangeGesture(2L),
+    PropertyChange(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +54,15 @@ public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements 
 
     private final long n;
 
-    private /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AudioUnitEventType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ v : values()) {
+    public static /*<name>*/AudioUnitEventType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AudioUnitEventType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/.class.getName());
+            + /*<name>*/AudioUnitEventType/*</name>*/.class.getName());
     }
 }
