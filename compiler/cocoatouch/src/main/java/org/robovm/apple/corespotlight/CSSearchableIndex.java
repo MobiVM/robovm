@@ -83,5 +83,7 @@ import org.robovm.apple.uniformtypeid.*;
     public native void endIndexBatch(NSData clientState, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "fetchLastClientStateWithCompletionHandler:")
     public native void fetchLastClientState(@Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:")
+    public native void fetchDataForBundleIdentifier(String bundleIdentifier, String itemIdentifier, UTType contentType, @Block VoidBlock2<NSData, NSError> completionHandler);
     /*</methods>*/
 }

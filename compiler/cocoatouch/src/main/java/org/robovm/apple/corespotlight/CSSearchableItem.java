@@ -103,6 +103,11 @@ import org.robovm.apple.uniformtypeid.*;
     
     @Method(selector = "initWithUniqueIdentifier:domainIdentifier:attributeSet:")
     protected native @Pointer long init(String uniqueIdentifier, String domainIdentifier, CSSearchableItemAttributeSet attributeSet);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "compareByRank:")
+    public native NSComparisonResult compareByRank(CSSearchableItem other);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
