@@ -156,8 +156,6 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "requestTemporaryFullAccuracyAuthorizationWithPurposeKey:")
     public native void requestTemporaryFullAccuracyAuthorization(String purposeKey);
-    @Method(selector = "startUpdatingLocation")
-    public native void startUpdatingLocation();
     @Method(selector = "stopUpdatingLocation")
     public native void stopUpdatingLocation();
     /**

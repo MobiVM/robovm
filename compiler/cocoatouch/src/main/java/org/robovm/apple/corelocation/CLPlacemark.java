@@ -45,7 +45,7 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CLPlacemark.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLPlacemark() {}
+    protected CLPlacemark() {}
     protected CLPlacemark(Handle h, long handle) { super(h, handle); }
     protected CLPlacemark(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:")
