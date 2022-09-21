@@ -36,7 +36,11 @@ import org.robovm.apple.foundation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("AutomaticAssessmentConfiguration")/*</annotations>*/
 public enum /*<name>*/AEAssessmentErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    Unknown(1L);
+    Unknown(1L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    UnsupportedPlatform(2L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(AEAssessmentErrorCode.class); }/*</bind>*/
