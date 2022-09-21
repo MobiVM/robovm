@@ -78,7 +78,8 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     AppleProResRAW(1634759278L),
     AppleProResRAWHQ(1634759272L),
     DisparityHEVC(1684632424L),
-    DepthHEVC(1684369512L);
+    DepthHEVC(1684369512L),
+    AV1(1635135537L);
     /*</values>*/
 
     public static class AsListMarshaler {
