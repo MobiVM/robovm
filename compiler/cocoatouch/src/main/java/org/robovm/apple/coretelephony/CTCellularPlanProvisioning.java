@@ -50,7 +50,11 @@ import org.robovm.apple.corefoundation.*;
     protected CTCellularPlanProvisioning(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supportsEmbeddedSIM")
+    public native boolean supportsEmbeddedSIM();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
