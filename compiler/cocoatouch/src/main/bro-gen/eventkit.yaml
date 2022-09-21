@@ -178,6 +178,8 @@ classes:
                 throws: NSErrorException
             '+authorizationStatusForEntityType:':
                 name: getAuthorizationStatusForEntityType
+            '-initWithSources:':
+                name: init
     EKObject: # DONE
         skip_handle_constructor: false
     EKParticipant: # DONE

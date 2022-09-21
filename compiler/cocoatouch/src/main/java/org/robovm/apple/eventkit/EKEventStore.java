@@ -66,7 +66,7 @@ import org.robovm.apple.mapkit.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithSources:")
-    public EKEventStore(NSArray<EKSource> sources) { super((SkipInit) null); initObject(initWithSources(sources)); }
+    public EKEventStore(NSArray<EKSource> sources) { super((SkipInit) null); initObject(init(sources)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "eventStoreIdentifier")
@@ -90,7 +90,7 @@ import org.robovm.apple.mapkit.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithSources:")
-    protected native @Pointer long initWithSources(NSArray<EKSource> sources);
+    protected native @Pointer long init(NSArray<EKSource> sources);
     @Method(selector = "requestAccessToEntityType:completion:")
     public native void requestAccess(EKEntityType entityType, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "sourceWithIdentifier:")
