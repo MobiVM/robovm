@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,27 +54,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "audioPlayerDidFinishPlaying:successfully:")
-    void didFinishPlaying(AVAudioPlayer player, boolean flag);
-    @Method(selector = "audioPlayerDecodeErrorDidOccur:error:")
-    void decodeErrorDidOccur(AVAudioPlayer player, NSError error);
-    /**
-     * @deprecated Deprecated in iOS 8.0.
-     */
-    @Deprecated
-    @Method(selector = "audioPlayerBeginInterruption:")
-    void beginInterruption(AVAudioPlayer player);
-    /**
-     * @deprecated Deprecated in iOS 8.0.
-     */
-    @Deprecated
-    @Method(selector = "audioPlayerEndInterruption:withOptions:")
-    void endInterruption(AVAudioPlayer player, @MachineSizedUInt long flags);
-    /*</methods>*/
+    /*<properties>*//*</properties>*/
+    /*<methods>*//*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
 }

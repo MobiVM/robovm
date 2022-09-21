@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,6 +97,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVMovieReferenceRestrictionsKey", optional=true)
     public static native NSString referenceRestrictionsKey();
+    @Library("AVFoundation")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMovieShouldSupportAliasDataReferencesKey", optional=true)
+        public static native NSString ShouldSupportAliasDataReferences();
+    }
     
     @Method(selector = "initWithURL:options:")
     protected native @Pointer long init(NSURL URL, NSDictionary<NSString, ?> options);
@@ -120,6 +132,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "isCompatibleWithFileType:")
     public native boolean isCompatibleWithFileType(String fileType);
+    /**
+     * @deprecated Use loadTrackWithTrackID:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVMovieTrack getTrack(int trackID);
     /**
@@ -127,6 +143,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
     /**
@@ -134,6 +154,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaCharacteristic:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**

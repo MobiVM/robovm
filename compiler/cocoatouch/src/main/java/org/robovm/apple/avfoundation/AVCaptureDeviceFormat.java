@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,6 +94,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isGlobalToneMappingSupported();
     @Property(selector = "isVideoHDRSupported")
     public native boolean isVideoHDRSupported();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use supportedMaxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "highResolutionStillImageDimensions")
     public native @ByVal CMVideoDimensions getHighResolutionStillImageDimensions();
     /**
@@ -113,14 +119,23 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<NSNumber> getSupportedColorSpaces();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supportedVideoZoomFactorsForDepthDataDelivery
      */
+    @Deprecated
     @Property(selector = "videoMinZoomFactorForDepthDataDelivery")
     public native @MachineSizedFloat double getVideoMinZoomFactorForDepthDataDelivery();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supportedVideoZoomFactorsForDepthDataDelivery
      */
+    @Deprecated
     @Property(selector = "videoMaxZoomFactorForDepthDataDelivery")
     public native @MachineSizedFloat double getVideoMaxZoomFactorForDepthDataDelivery();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supportedVideoZoomFactorsForDepthDataDelivery")
+    public native NSArray<NSNumber> getSupportedVideoZoomFactorsForDepthDataDelivery();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -131,6 +146,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "unsupportedCaptureOutputClasses")
     public native NSArray<?> getUnsupportedCaptureOutputClasses();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supportedMaxPhotoDimensions")
+    public native NSArray<NSValue> getSupportedMaxPhotoDimensions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "secondaryNativeResolutionZoomFactors")
+    public native NSArray<NSNumber> getSecondaryNativeResolutionZoomFactors();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -176,6 +201,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "videoFrameRateRangeForPortraitEffect")
     public native AVFrameRateRange getVideoFrameRateRangeForPortraitEffect();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightSupported")
+    public native boolean isStudioLightSupported();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForStudioLight")
+    public native AVFrameRateRange getVideoFrameRateRangeForStudioLight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

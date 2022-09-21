@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -125,6 +127,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setVideoComposition(AVVideoComposition v);
     @Property(selector = "customVideoCompositor")
     public native AVVideoCompositing getCustomVideoCompositor();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "audioTrackGroupHandling")
+    public native AVAssetTrackGroupOutputHandling getAudioTrackGroupHandling();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAudioTrackGroupHandling:")
+    public native void setAudioTrackGroupHandling(AVAssetTrackGroupOutputHandling v);
     @Property(selector = "canPerformMultiplePassesOverSourceMediaData")
     public native boolean canPerformMultiplePassesOverSourceMediaData();
     @Property(selector = "setCanPerformMultiplePassesOverSourceMediaData:")
@@ -144,6 +156,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native void cancelExport();
     @Method(selector = "allExportPresets")
     public static native @org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset> getAllExportPresets();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "exportPresetsCompatibleWithAsset:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(AVAssetExportPreset.AsListMarshaler.class) List<AVAssetExportPreset> getCompatibleExportPresets(AVAsset asset);
     @Method(selector = "determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:")

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,6 +71,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native float getRate();
     @Property(selector = "setRate:")
     public native void setRate(float v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "defaultRate")
+    public native float getDefaultRate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDefaultRate:")
+    public native void setDefaultRate(float v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -225,6 +237,27 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVPlayerWaitingDuringInterstitialEventReason", optional=true)
     public static native NSString WaitingDuringInterstitialEventReason();
+    @Library("AVFoundation")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerRateDidChangeReasonKey", optional=true)
+        public static native String RateDidChangeReason();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerRateDidChangeOriginatingParticipantKey", optional=true)
+        public static native String RateDidChangeOriginatingParticipant();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerItemTimeJumpedOriginatingParticipantKey", optional=true)
+        public static native String ItemTimeJumpedOriginatingParticipant();
+    }
+
     @Library("AVFoundation")
     public static class Notifications {
         static { Bro.bind(Notifications.class); }

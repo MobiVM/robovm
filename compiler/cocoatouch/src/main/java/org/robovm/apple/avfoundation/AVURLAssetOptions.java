@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -181,6 +183,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVURLAssetURLRequestAttributionKey", optional=true)
         public static native NSString URLRequestAttribution();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetHTTPUserAgentKey", optional=true)
+        public static native NSString HTTPUserAgent();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetPrimarySessionIdentifierKey", optional=true)
+        public static native NSString PrimarySessionIdentifier();
     }
     /*</keys>*/
 }

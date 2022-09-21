@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +64,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithAttributedString:")
     public AVSpeechUtterance(NSAttributedString string) { super((SkipInit) null); initObject(init(string)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSSMLRepresentation:")
+    public static  AVSpeechUtterance createWithSSMLRepresentation(String string) {
+       AVSpeechUtterance res = new AVSpeechUtterance((SkipInit) null);
+       res.initObject(res.initWithSSMLRepresentation(string));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
     public AVSpeechUtterance(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -126,6 +137,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithAttributedString:")
     protected native @Pointer long init(NSAttributedString string);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSSMLRepresentation:")
+    protected native @Pointer long initWithSSMLRepresentation(String string);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

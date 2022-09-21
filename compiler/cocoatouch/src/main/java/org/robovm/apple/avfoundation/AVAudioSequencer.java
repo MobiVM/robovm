@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -122,6 +124,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native double convertBeatsToSeconds(double beats);
     @Method(selector = "beatsForSeconds:")
     public native double convertSecondsToBeats(double seconds);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "reverseEvents")
+    public native void reverseEvents();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "createAndAppendTrack")
+    public native AVMusicTrack createAndAppendTrack();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "removeTrack:")
+    public native boolean removeTrack(AVMusicTrack track);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setUserCallback:")
+    public native void setUserCallback(@Block VoidBlock3<AVMusicTrack, NSData, Double> userCallback);
     public long convertBeatsToHostTime(double beats) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = convertBeatsToHostTime(beats, ptr);

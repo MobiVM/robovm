@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,11 +58,25 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated protected AVVideoComposition(long handle) { super(handle); }
     protected AVVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVVideoComposition(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     */
+    @Deprecated
     public AVVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    public AVVideoComposition(AVAsset asset, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler) { super((Handle) null, create(asset, completionHandler)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     */
+    @Deprecated
     public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> applier, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler) { super((Handle) null, create(asset, applier, completionHandler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "customVideoCompositorClass")
@@ -103,14 +119,39 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
     protected static native @Pointer long create(AVAsset asset);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    @Method(selector = "videoCompositionWithPropertiesOfAsset:completionHandler:")
+    protected static native @Pointer long create(AVAsset asset, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:")
     protected static native @Pointer long create(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:")
+    protected static native @Pointer long create(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> applier, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler);
+    /**
+     * @deprecated Use determineValidityForAsset:timeRange:validationDelegate:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "isValidForAsset:timeRange:validationDelegate:")
     public native boolean isValid(AVAsset asset, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "determineValidityForAsset:timeRange:validationDelegate:completionHandler:")
+    public native void determineValidityForAsset(AVAsset asset, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate, @Block VoidBlock2<Boolean, NSError> completionHandler);
     /*</methods>*/
 }

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,6 +49,11 @@ import org.robovm.apple.audiotoolbox.*;
 public enum /*<name>*/AVAudioSessionInterruptionReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     * @deprecated Deprecated in iOS 16.0. wasSuspended reason no longer present
+     */
+    @Deprecated
     AppWasSuspended(1L),
     BuiltInMicMuted(2L);
     /*</values>*/

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,14 +77,27 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "compositionWithURLAssetInitializationOptions:")
     protected static native @Pointer long create(AVURLAssetOptions urlAssetInitializationOptions);
+    /**
+     * @deprecated Use insertTimeRange:ofAsset:atTime:completionHandler:
+     */
+    @Deprecated
     public boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = insertTimeRange(timeRange, asset, startTime, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Use insertTimeRange:ofAsset:atTime:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "insertTimeRange:ofAsset:atTime:error:")
     private native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "insertTimeRange:ofAsset:atTime:completionHandler:")
+    public native void insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "insertEmptyTimeRange:")
     public native void insertEmptyTimeRange(@ByVal CMTimeRange timeRange);
     @Method(selector = "removeTimeRange:")

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,15 +57,35 @@ import org.robovm.apple.audiotoolbox.*;
     public AVMutableVideoComposition() {}
     protected AVMutableVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVMutableVideoComposition(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     */
+    @Deprecated
     public AVMutableVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler) { super((Handle) null, create0(asset, completionHandler)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:
+     */
+    @Deprecated
     public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction) { super((Handle) null, create(asset, prototypeInstruction)); retain(getHandle()); }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler) { super((Handle) null, create(asset, prototypeInstruction, completionHandler)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     */
+    @Deprecated
     public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> applier, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler) { super((Handle) null, create0(asset, applier, completionHandler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "customVideoCompositorClass")
@@ -143,17 +165,40 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
     protected static native @Pointer long create(AVAsset asset);
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    @Method(selector = "videoCompositionWithPropertiesOfAsset:completionHandler:")
+    protected static native @Pointer long create0(AVAsset asset, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:prototypeInstruction:")
     protected static native @Pointer long create(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    @Method(selector = "videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:")
+    protected static native @Pointer long create(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:")
     protected static native @Pointer long create(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:")
+    protected static native @Pointer long create0(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> applier, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler);
     /*</methods>*/
 }

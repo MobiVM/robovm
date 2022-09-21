@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -83,10 +85,6 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "rawFileType")
     public native String getRawFileType();
-    @Property(selector = "flashMode")
-    public native AVCaptureFlashMode getFlashMode();
-    @Property(selector = "setFlashMode:")
-    public native void setFlashMode(AVCaptureFlashMode v);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -169,10 +167,30 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "isHighResolutionPhotoEnabled")
     public native boolean isHighResolutionPhotoEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "setHighResolutionPhotoEnabled:")
     public native void setHighResolutionPhotoEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxPhotoDimensions")
+    public native @ByVal CMVideoDimensions getMaxPhotoDimensions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMaxPhotoDimensions:")
+    public native void setMaxPhotoDimensions(@ByVal CMVideoDimensions v);
     /**
      * @since Available in iOS 11.0 and later.
      */
