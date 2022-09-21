@@ -37,50 +37,42 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLPredictionOptions/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelAsset/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MLPredictionOptionsPtr extends Ptr<MLPredictionOptions, MLPredictionOptionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLPredictionOptions.class); }/*</bind>*/
+    /*<ptr>*/public static class MLModelAssetPtr extends Ptr<MLModelAsset, MLModelAssetPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLModelAsset.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLPredictionOptions() {}
-    protected MLPredictionOptions(Handle h, long handle) { super(h, handle); }
-    protected MLPredictionOptions(SkipInit skipInit) { super(skipInit); }
+    protected MLModelAsset() {}
+    protected MLModelAsset(Handle h, long handle) { super(h, handle); }
+    protected MLModelAsset(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public MLModelAsset(NSData specificationData) throws NSErrorException {
+       this(specificationData, new NSError.NSErrorPtr());
+    }
+    private MLModelAsset(NSData specificationData, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(specificationData, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 15.0. Use -[MLModelConfiguration computeUnits] instead.
-     */
-    @Deprecated
-    @Property(selector = "usesCPUOnly")
-    public native boolean usesCPUOnly();
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 15.0. Use -[MLModelConfiguration computeUnits] instead.
-     */
-    @Deprecated
-    @Property(selector = "setUsesCPUOnly:")
-    public native void setUsesCPUOnly(boolean v);
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "outputBackings")
-    public native NSDictionary<NSString, ?> getOutputBackings();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "setOutputBackings:")
-    public native void setOutputBackings(NSDictionary<NSString, ?> v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "modelAssetWithSpecificationData:error:")
+    protected static native @Pointer long create(NSData specificationData, NSError.NSErrorPtr error);
     /*</methods>*/
 }

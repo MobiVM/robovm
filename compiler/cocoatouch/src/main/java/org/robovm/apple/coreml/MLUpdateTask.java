@@ -52,16 +52,44 @@ import org.robovm.apple.metal.*;
     protected MLUpdateTask() {}
     protected MLUpdateTask(Handle h, long handle) { super(h, handle); }
     protected MLUpdateTask(SkipInit skipInit) { super(skipInit); }
-    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, configuration, completionHandler, error)); retain(getHandle()); }
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, @Block VoidBlock1<MLUpdateContext> completionHandler) throws NSErrorException {
+       this(modelURL, trainingData, configuration, completionHandler, new NSError.NSErrorPtr());
+    }
+    private MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(modelURL, trainingData, configuration, completionHandler, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /**
      * @since Available in iOS 14.0 and later.
      */
-    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, completionHandler, error)); retain(getHandle()); }
-    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, configuration, progressHandlers, error)); retain(getHandle()); }
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, @Block VoidBlock1<MLUpdateContext> completionHandler) throws NSErrorException {
+       this(modelURL, trainingData, completionHandler, new NSError.NSErrorPtr());
+    }
+    private MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, @Block VoidBlock1<MLUpdateContext> completionHandler, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(modelURL, trainingData, completionHandler, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, MLUpdateProgressHandlers progressHandlers) throws NSErrorException {
+       this(modelURL, trainingData, configuration, progressHandlers, new NSError.NSErrorPtr());
+    }
+    private MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLModelConfiguration configuration, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(modelURL, trainingData, configuration, progressHandlers, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /**
      * @since Available in iOS 14.0 and later.
      */
-    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr error) { super((Handle) null, create(modelURL, trainingData, progressHandlers, error)); retain(getHandle()); }
+    public MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLUpdateProgressHandlers progressHandlers) throws NSErrorException {
+       this(modelURL, trainingData, progressHandlers, new NSError.NSErrorPtr());
+    }
+    private MLUpdateTask(NSURL modelURL, MLBatchProvider trainingData, MLUpdateProgressHandlers progressHandlers, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(modelURL, trainingData, progressHandlers, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     

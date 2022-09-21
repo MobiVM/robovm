@@ -69,6 +69,11 @@ import org.robovm.apple.metal.*;
        initObject(handle);
     }
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithPixelBuffer:shape:")
+    public MLMultiArray(CVPixelBuffer pixelBuffer, NSArray<NSNumber> shape) { super((SkipInit) null); initObject(init(pixelBuffer, shape)); }
+    /**
      * @since Available in iOS 14.0 and later.
      */
     public MLMultiArray(NSArray<MLMultiArray> multiArrays, @MachineSizedSInt long axis, MLMultiArrayDataType dataType) { super((Handle) null, multiArrayByConcatenatingMultiArrays(multiArrays, axis, dataType)); retain(getHandle()); }
@@ -76,6 +81,11 @@ import org.robovm.apple.metal.*;
     public MLMultiArray(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Use getBytesWithHandler or getMutableBytesWithHandler instead. For Swift, use withUnsafeBytes or withUnsafeMutableBytes.
+     */
+    @Deprecated
     @Property(selector = "dataPointer")
     public native VoidPtr getDataPointer();
     @Property(selector = "dataType")
@@ -86,6 +96,11 @@ import org.robovm.apple.metal.*;
     public native NSArray<NSNumber> getStrides();
     @Property(selector = "count")
     public native @MachineSizedSInt long getCount();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pixelBuffer")
+    public native CVPixelBuffer getPixelBuffer();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -95,6 +110,21 @@ import org.robovm.apple.metal.*;
     private native @Pointer long init(NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSError.NSErrorPtr error);
     @Method(selector = "initWithDataPointer:shape:dataType:strides:deallocator:error:")
     private native @Pointer long init(VoidPtr dataPointer, NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides, @Block VoidBlock1<VoidPtr> deallocator, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithPixelBuffer:shape:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, NSArray<NSNumber> shape);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "getBytesWithHandler:")
+    public native void getBytes(@Block("(,@MachineSizedSInt)") VoidBlock2<VoidPtr, Long> handler);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "getMutableBytesWithHandler:")
+    public native void getMutableBytes(@Block("(,@MachineSizedSInt,)") VoidBlock3<VoidPtr, Long, NSArray<NSNumber>> handler);
     /**
      * @since Available in iOS 14.0 and later.
      */
