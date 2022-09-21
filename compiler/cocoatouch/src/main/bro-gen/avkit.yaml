@@ -1,5 +1,5 @@
 package: org.robovm.apple.avkit
-include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation]
+include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation, avrouting]
 library: AVKit
 framework: AVKit
 clang_args: ['-x', 'objective-c']
@@ -40,7 +40,11 @@ classes:
             '-initWithActiveVideoCallSourceView:contentViewController:':
                 name: init
     AVPictureInPictureVideoCallViewController: {} #since 15.0
-
+    AVInterstitialTimeRange: {} #since 16.0
+    AVPlaybackSpeed: #since 16.0
+        methods:
+            '-initWithRate:localizedName:':
+                name: init
 protocols:
     AVPictureInPictureControllerDelegate: # DONE
         methods:
@@ -78,6 +82,10 @@ protocols:
                 name: willEndFullScreenPresentation
             '-playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:':
                 name: restoreUserInterfaceForFullScreenExit
+            '-playerViewController:willPresentInterstitialTimeRange:':
+                name: willPresentInterstitial
+            '-playerViewController:didPresentInterstitialTimeRange:':
+                name: didPresentInterstitial
     AVRoutePickerViewDelegate:
         methods:
             '-routePickerViewWillBeginPresentingRoutes:':

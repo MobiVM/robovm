@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,34 +38,36 @@ import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 16.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVKit") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVKitError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    protected AVKitError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/public static class AVKitErrorPtr extends Ptr<AVKitError, AVKitErrorPtr> {}/*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVKitError.class); }/*</bind>*/
+    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    public AVInterstitialTimeRange() {}
+    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
+    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "timeRange")
+    public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
+    /*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public AVKitErrorCode getErrorCode() {
-        try {
-            return AVKitErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-    }
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @GlobalValue(symbol="AVKitErrorDomain", optional=true)
-    public static native String getClassDomain();
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

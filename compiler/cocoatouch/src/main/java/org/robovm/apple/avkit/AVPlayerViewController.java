@@ -34,6 +34,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,6 +96,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAllowsPictureInPicturePlayback:")
     public native void setAllowsPictureInPicturePlayback(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "allowsVideoFrameAnalysis")
+    public native boolean allowsVideoFrameAnalysis();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAllowsVideoFrameAnalysis:")
+    public native void setAllowsVideoFrameAnalysis(boolean v);
     /**
      * @since Available in iOS 14.2 and later.
      */
@@ -165,6 +176,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(AVPlayerViewControllerDelegate v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "speeds")
+    public native NSArray<AVPlaybackSpeed> getSpeeds();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSpeeds:")
+    public native void setSpeeds(NSArray<AVPlaybackSpeed> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selectedSpeed")
+    public native AVPlaybackSpeed getSelectedSpeed();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -189,6 +215,10 @@ import org.robovm.apple.coreanimation.*;
         AVPlayerViewControllerExtensions.preparePrerollAds();
     }
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "selectSpeed:")
+    public native void selectSpeed(AVPlaybackSpeed speed);
     /*</methods>*/
 }
