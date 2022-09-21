@@ -26,6 +26,7 @@ classes:
             '-initWithWidth:height:hostHasController:':
                 name: init
     AUViewController: {} #since 9.0
+    AUGenericViewController: {} #since 16.0
 protocols: {}
 
 functions:
