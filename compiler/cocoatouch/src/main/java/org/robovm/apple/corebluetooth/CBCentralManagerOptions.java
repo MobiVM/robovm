@@ -130,6 +130,23 @@ import org.robovm.apple.dispatch.*;
         set(Keys.RestoreIdentifier(), new NSString(restoreIdentifier));
         return this;
     }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public boolean isDeviceAccessForMedia() {
+        if (has(Keys.DeviceAccessForMedia())) {
+            NSNumber val = (NSNumber) get(Keys.DeviceAccessForMedia());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public CBCentralManagerOptions setDeviceAccessForMedia(boolean deviceAccessForMedia) {
+        set(Keys.DeviceAccessForMedia(), NSNumber.valueOf(deviceAccessForMedia));
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
@@ -140,6 +157,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString ShowPowerAlert();
         @GlobalValue(symbol="CBCentralManagerOptionRestoreIdentifierKey", optional=true)
         public static native NSString RestoreIdentifier();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="CBCentralManagerOptionDeviceAccessForMedia", optional=true)
+        public static native NSString DeviceAccessForMedia();
     }
     /*</keys>*/
 }
