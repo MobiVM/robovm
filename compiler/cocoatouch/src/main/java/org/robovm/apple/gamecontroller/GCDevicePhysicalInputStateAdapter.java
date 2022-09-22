@@ -34,42 +34,39 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDevicePhysicalInputStateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCDevicePhysicalInputState/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @NotImplemented("device")
+    public GCDevice getDevice() { return null; }
+    @NotImplemented("lastEventTimestamp")
+    public double getLastEventTimestamp() { return 0; }
+    @NotImplemented("lastEventLatency")
+    public double getLastEventLatency() { return 0; }
+    @NotImplemented("elements")
+    public GCPhysicalInputElementCollection getElements() { return null; }
+    @NotImplemented("buttons")
+    public GCPhysicalInputElementCollection getButtons() { return null; }
+    @NotImplemented("axes")
+    public GCPhysicalInputElementCollection getAxes() { return null; }
+    @NotImplemented("switches")
+    public GCPhysicalInputElementCollection getSwitches() { return null; }
+    @NotImplemented("dpads")
+    public GCPhysicalInputElementCollection getDpads() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @NotImplemented("objectForKeyedSubscript:")
+    public GCPhysicalInputElement objectForKeyedSubscript(String key) { return null; }
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

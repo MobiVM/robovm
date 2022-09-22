@@ -34,28 +34,30 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCMouse/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCRacingWheel/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements GCDevice/*</implements>*/ {
 
-    /*<ptr>*/public static class GCMousePtr extends Ptr<GCMouse, GCMousePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCMouse.class); }/*</bind>*/
+    /*<ptr>*/public static class GCRacingWheelPtr extends Ptr<GCRacingWheel, GCRacingWheelPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCRacingWheel.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCMouse() {}
-    protected GCMouse(Handle h, long handle) { super(h, handle); }
-    protected GCMouse(SkipInit skipInit) { super(skipInit); }
+    protected GCRacingWheel() {}
+    protected GCRacingWheel(Handle h, long handle) { super(h, handle); }
+    protected GCRacingWheel(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "mouseInput")
-    public native GCMouseInput getMouseInput();
-    @Property(selector = "current")
-    public static native GCMouse getCurrent();
+    @Property(selector = "connectedRacingWheels")
+    public static native NSSet<GCRacingWheel> getConnectedRacingWheels();
+    @Property(selector = "isAcquired")
+    public native boolean isAcquired();
+    @Property(selector = "wheelInput")
+    public native GCRacingWheelInput getWheelInput();
+    @Property(selector = "isSnapshot")
+    public native boolean isSnapshot();
     @Property(selector = "handlerQueue")
     public native DispatchQueue getHandlerQueue();
     @Property(selector = "setHandlerQueue:")
@@ -81,29 +83,23 @@ import org.robovm.apple.corehaptic.*;
     public static class Notifications {
         static { Bro.bind(Notifications.class); }
 
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCMouseDidConnectNotification", optional=true)
+        @GlobalValue(symbol="GCRacingWheelDidConnectNotification", optional=true)
         public static native NSString DidConnect();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCMouseDidDisconnectNotification", optional=true)
+        @GlobalValue(symbol="GCRacingWheelDidDisconnectNotification", optional=true)
         public static native NSString DidDisconnect();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCMouseDidBecomeCurrentNotification", optional=true)
-        public static native NSString DidBecomeCurrent();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCMouseDidStopBeingCurrentNotification", optional=true)
-        public static native NSString DidStopBeingCurrent();
     }
     
-    @Method(selector = "mice")
-    public static native NSArray<GCMouse> mice();
+    public boolean acquireDevice() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = acquireDevice(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "acquireDeviceWithError:")
+    private native boolean acquireDevice(NSError.NSErrorPtr error);
+    @Method(selector = "relinquishDevice")
+    public native void relinquishDevice();
+    @Method(selector = "capture")
+    public native GCRacingWheel capture();
     /*</methods>*/
 }

@@ -68,6 +68,16 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "hasRemappedElements")
     public native boolean hasRemappedElements();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "valueDidChangeHandler")
+    public native @Block VoidBlock2<GCPhysicalInputProfile, GCControllerElement> getValueDidChangeHandler();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setValueDidChangeHandler:")
+    public native void setValueDidChangeHandler(@Block VoidBlock2<GCPhysicalInputProfile, GCControllerElement> v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "elements")
@@ -209,6 +219,20 @@ import org.robovm.apple.corehaptic.*;
          */
         @GlobalValue(symbol="GCInputButtonShare", optional=true)
         public static native String ButtonShare();
+        @GlobalValue(symbol="GCInputSteeringWheel", optional=true)
+        public static native String SteeringWheel();
+        @GlobalValue(symbol="GCInputShifter", optional=true)
+        public static native String Shifter();
+        @GlobalValue(symbol="GCInputPedalAccelerator", optional=true)
+        public static native String PedalAccelerator();
+        @GlobalValue(symbol="GCInputPedalBrake", optional=true)
+        public static native String PedalBrake();
+        @GlobalValue(symbol="GCInputPedalClutch", optional=true)
+        public static native String PedalClutch();
+        @GlobalValue(symbol="GCInputLeftPaddle", optional=true)
+        public static native String LeftPaddle();
+        @GlobalValue(symbol="GCInputRightPaddle", optional=true)
+        public static native String RightPaddle();
         /**
          * @since Available in iOS 15.0 and later.
          */

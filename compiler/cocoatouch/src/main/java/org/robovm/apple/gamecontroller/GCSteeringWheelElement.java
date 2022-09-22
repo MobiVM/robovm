@@ -34,37 +34,34 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDeviceAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements GCDevice/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCSteeringWheelElement/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCAxisElement/*</implements>*/ {
+
+    /*<ptr>*/public static class GCSteeringWheelElementPtr extends Ptr<GCSteeringWheelElement, GCSteeringWheelElementPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCSteeringWheelElement.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected GCSteeringWheelElement() {}
+    protected GCSteeringWheelElement(Handle h, long handle) { super(h, handle); }
+    protected GCSteeringWheelElement(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @NotImplemented("handlerQueue")
-    public DispatchQueue getHandlerQueue() { return null; }
-    @NotImplemented("setHandlerQueue:")
-    public void setHandlerQueue(DispatchQueue v) {}
-    @NotImplemented("vendorName")
-    public String getVendorName() { return null; }
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @NotImplemented("productCategory")
-    public String getProductCategory() { return null; }
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @NotImplemented("physicalInputProfile")
-    public GCPhysicalInputProfile getPhysicalInputProfile() { return null; }
+    @Property(selector = "maximumDegreesOfRotation")
+    public native float getMaximumDegreesOfRotation();
+    @Property(selector = "absoluteInput")
+    public native GCAxisInput getAbsoluteInput();
+    @Property(selector = "relativeInput")
+    public native GCRelativeInput getRelativeInput();
+    @Property(selector = "sfSymbolsName")
+    public native String getSfSymbolsName();
+    @Property(selector = "localizedName")
+    public native String getLocalizedName();
+    @Property(selector = "aliases")
+    public native NSSet<NSString> getAliases();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

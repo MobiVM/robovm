@@ -35,11 +35,11 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCPressedStateInput/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -48,24 +48,16 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @Property(selector = "pressedDidChangeHandler")
+    @Block VoidBlock3<GCPhysicalInputElement, GCPressedStateInput, Boolean> getPressedDidChangeHandler();
+    @Property(selector = "setPressedDidChangeHandler:")
+    void setPressedDidChangeHandler(@Block VoidBlock3<GCPhysicalInputElement, GCPressedStateInput, Boolean> v);
+    @Property(selector = "isPressed")
+    boolean isPressed();
+    @Property(selector = "lastPressedStateTimestamp")
+    double getLastPressedStateTimestamp();
+    @Property(selector = "lastPressedStateLatency")
+    double getLastPressedStateLatency();
     /*</properties>*/
     /*<methods>*/
     

@@ -34,42 +34,34 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDirectionPadElementAdapter/*</name>*/ 
+    extends /*<extends>*/GCPhysicalInputElementAdapter/*</extends>*/ 
+    /*<implements>*/implements GCDirectionPadElement/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @NotImplemented("xAxis")
+    public GCAxisInput getXAxis() { return null; }
+    @NotImplemented("yAxis")
+    public GCAxisInput getYAxis() { return null; }
+    @NotImplemented("up")
+    public <T0 extends Object & GCLinearInput & GCPressedStateInput> T0 getUp() { return null; }
+    @NotImplemented("down")
+    public <T0 extends Object & GCLinearInput & GCPressedStateInput> T0 getDown() { return null; }
+    @NotImplemented("left")
+    public <T0 extends Object & GCLinearInput & GCPressedStateInput> T0 getLeft() { return null; }
+    @NotImplemented("right")
+    public <T0 extends Object & GCLinearInput & GCPressedStateInput> T0 getRight() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

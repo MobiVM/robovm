@@ -35,12 +35,12 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevicePhysicalInput/*</name>*/ 
+    /*<implements>*/extends GCDevicePhysicalInputState/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -48,27 +48,26 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @Property(selector = "device")
+    GCDevice getDevice();
+    @Property(selector = "elementValueDidChangeHandler")
+    @Block VoidBlock1<GCPhysicalInputElement> getElementValueDidChangeHandler();
+    @Property(selector = "setElementValueDidChangeHandler:")
+    void setElementValueDidChangeHandler(@Block VoidBlock1<GCPhysicalInputElement> v);
+    @Property(selector = "inputStateAvailableHandler")
+    @Block Runnable getInputStateAvailableHandler();
+    @Property(selector = "setInputStateAvailableHandler:")
+    void setInputStateAvailableHandler(@Block Runnable v);
+    @Property(selector = "inputStateQueueDepth")
+    @MachineSizedSInt long getInputStateQueueDepth();
+    @Property(selector = "setInputStateQueueDepth:")
+    void setInputStateQueueDepth(@MachineSizedSInt long v);
     /*</properties>*/
     /*<methods>*/
-    
+    @Method(selector = "capture")
+    GCDevicePhysicalInputState capture();
+    @Method(selector = "nextInputState")
+    <T0 extends Object & GCDevicePhysicalInputState & GCDevicePhysicalInputStateDiff> T0 nextInputState();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

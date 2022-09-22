@@ -34,42 +34,35 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGearShifterElement/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCPhysicalInputElement/*</implements>*/ {
+
+    /*<ptr>*/public static class GCGearShifterElementPtr extends Ptr<GCGearShifterElement, GCGearShifterElementPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCGearShifterElement.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public GCGearShifterElement() {}
+    protected GCGearShifterElement(Handle h, long handle) { super(h, handle); }
+    protected GCGearShifterElement(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @Property(selector = "patternInput")
+    public native GCSwitchPositionInput getPatternInput();
+    @Property(selector = "sequentialInput")
+    public native GCRelativeInput getSequentialInput();
+    @Property(selector = "sfSymbolsName")
+    public native String getSfSymbolsName();
+    @Property(selector = "localizedName")
+    public native String getLocalizedName();
+    @Property(selector = "aliases")
+    public native NSSet<NSString> getAliases();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

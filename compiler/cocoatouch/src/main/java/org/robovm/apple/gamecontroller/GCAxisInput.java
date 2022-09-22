@@ -35,11 +35,11 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCAxisInput/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -48,24 +48,20 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @Property(selector = "valueDidChangeHandler")
+    @Block VoidBlock3<GCPhysicalInputElement, GCAxisInput, Float> getValueDidChangeHandler();
+    @Property(selector = "setValueDidChangeHandler:")
+    void setValueDidChangeHandler(@Block VoidBlock3<GCPhysicalInputElement, GCAxisInput, Float> v);
+    @Property(selector = "value")
+    float getValue();
+    @Property(selector = "isAnalog")
+    boolean isAnalog();
+    @Property(selector = "canWrap")
+    boolean canWrap();
+    @Property(selector = "lastValueTimestamp")
+    double getLastValueTimestamp();
+    @Property(selector = "lastValueLatency")
+    double getLastValueLatency();
     /*</properties>*/
     /*<methods>*/
     

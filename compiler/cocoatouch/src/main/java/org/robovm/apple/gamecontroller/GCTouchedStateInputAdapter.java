@@ -34,42 +34,32 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevice/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCTouchedStateInputAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCTouchedStateInput/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "handlerQueue")
-    DispatchQueue getHandlerQueue();
-    @Property(selector = "setHandlerQueue:")
-    void setHandlerQueue(DispatchQueue v);
-    @Property(selector = "vendorName")
-    String getVendorName();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "productCategory")
-    String getProductCategory();
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
-     */
-    @Deprecated
-    @Property(selector = "physicalInputProfile")
-    GCPhysicalInputProfile getPhysicalInputProfile();
+    @NotImplemented("touchedDidChangeHandler")
+    public @Block VoidBlock3<GCPhysicalInputElement, GCTouchedStateInput, Boolean> getTouchedDidChangeHandler() { return null; }
+    @NotImplemented("setTouchedDidChangeHandler:")
+    public void setTouchedDidChangeHandler(@Block VoidBlock3<GCPhysicalInputElement, GCTouchedStateInput, Boolean> v) {}
+    @NotImplemented("isTouched")
+    public boolean isTouched() { return false; }
+    @NotImplemented("lastTouchedStateTimestamp")
+    public double getLastTouchedStateTimestamp() { return 0; }
+    @NotImplemented("lastTouchedStateLatency")
+    public double getLastTouchedStateLatency() { return 0; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }
