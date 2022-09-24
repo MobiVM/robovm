@@ -97,6 +97,26 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_ip_metadata_get_receive_time", optional=true)
     public native long getIpReceiveTime();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_is_datagram", optional=true)
+    public static native boolean getQuicStreamIsDatagram(NWProtocolOptions options);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_stream_is_datagram", optional=true)
+    public static native void setQuicStreamIsDatagram(NWProtocolOptions options, boolean is_datagram);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_max_datagram_frame_size", optional=true)
+    public static native short getQuicMaxDatagramFrameSize(NWProtocolOptions options);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_quic_set_max_datagram_frame_size", optional=true)
+    public static native void setQuicMaxDatagramFrameSize(NWProtocolOptions options, short max_datagram_frame_size);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Bridge(symbol="nw_protocol_metadata_is_quic", optional=true)
@@ -111,6 +131,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_quic_get_stream_id", optional=true)
     public native long getQuicStreamId();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_type", optional=true)
+    public native byte getQuicStreamType();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -151,6 +176,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_quic_get_remote_max_streams_unidirectional", optional=true)
     public native long getQuicRemoteMaxStreamsUnidirectional();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_quic_get_stream_usable_datagram_frame_size", optional=true)
+    public native short getQuicStreamUsableDatagramFrameSize();
     /**
      * @since Available in iOS 15.0 and later.
      */

@@ -86,6 +86,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_advertise_descriptor_copy_txt_record_object", optional=true)
     public native NWTxtRecord copyTxtRecordObject();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_create_application_service", optional=true)
+    public static native NWAdvertiseDescriptor createApplicationService(BytePtr application_service_name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_advertise_descriptor_get_application_service_name", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getApplicationServiceName();
     
     
     /*</methods>*/

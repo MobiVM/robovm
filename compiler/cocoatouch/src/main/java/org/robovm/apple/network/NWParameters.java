@@ -83,6 +83,11 @@ import org.robovm.apple.security.*;
     @Bridge(symbol="nw_parameters_create_quic", optional=true)
     public static native NWParameters createQuic(@Block VoidBlock1<NWProtocolOptions> configure_quic);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_create_application_service", optional=true)
+    public static native NWParameters createApplicationService();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Bridge(symbol="nw_parameters_create", optional=true)
@@ -272,6 +277,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_parameters_get_expired_dns_behavior", optional=true)
     public native NWParametersExpiredDnsBehavior getExpiredDnsBehavior();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_requires_dnssec_validation", optional=true)
+    public native void setRequiresDnssecValidation(boolean requires_dnssec_validation);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_requires_dnssec_validation", optional=true)
+    public native boolean requiresDnssecValidation();
     
     
     /*</methods>*/

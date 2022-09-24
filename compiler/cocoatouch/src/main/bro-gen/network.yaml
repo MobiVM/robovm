@@ -294,6 +294,11 @@ functions:
             0: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             1: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             2: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+    nw_advertise_descriptor_(get_application_service_name):
+        class: NWAdvertiseDescriptor
+        name: '#{g[0].downcase_first_camelize}'
+        return_type: String
+        return_marshaler: StringMarshalers.AsAsciiZMarshaler
     nw_advertise_descriptor_(.*):
         class: NWAdvertiseDescriptor
         name: '#{g[0].downcase_first_camelize}'
@@ -351,7 +356,7 @@ functions:
             name: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
-    nw_endpoint_(get_hostname|get_bonjour_service_name|get_bonjour_service_type|get_bonjour_service_domain|copy_port_string|copy_address_string|get_url):
+    nw_endpoint_(get_hostname|get_bonjour_service_name|get_bonjour_service_type|get_bonjour_service_domain|copy_port_string|copy_address_string|get_url|get_signature):
         class: NWEndpoint
         name: '#{g[0].downcase_first_camelize}'
         return_type: String
@@ -505,7 +510,7 @@ functions:
         parameters:
             type: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
             domain: {type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
-    nw_browse_descriptor_(get_bonjour_service_type|get_bonjour_service_domain):
+    nw_browse_descriptor_(get_bonjour_service_type|get_bonjour_service_domain|get_application_service_name):
         class: NWBrowseDescriptor
         name: '#{g[0].downcase_first_camelize}'
         return_type: String
@@ -652,10 +657,7 @@ functions:
         class: NWProtocolOptions
         name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
 
-    nw_quic_(add|copy|get|set)_(sec_protocol_metadata|stream_id|stream_application_error|local_max_streams_bidirectional|local_max_streams_unidirectional):
-        class: NWProtocolMetadata
-        name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
-    nw_quic_(add|copy|get|set)_(remote_max_streams_bidirectional|remote_max_streams_unidirectional|application_error|application_error_reason|keepalive_interval|remote_idle_timeout):
+    nw_quic_(add|copy|get|set)_(.*):
         class: NWProtocolMetadata
         name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
 
