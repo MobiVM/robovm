@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -162,9 +163,29 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier AppleWalkingSteadiness = new HKFitnessQuantityTypeIdentifier("AppleWalkingSteadiness");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RunningStrideLength = new HKFitnessQuantityTypeIdentifier("RunningStrideLength");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RunningVerticalOscillation = new HKFitnessQuantityTypeIdentifier("RunningVerticalOscillation");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RunningGroundContactTime = new HKFitnessQuantityTypeIdentifier("RunningGroundContactTime");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RunningPower = new HKFitnessQuantityTypeIdentifier("RunningPower");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RunningSpeed = new HKFitnessQuantityTypeIdentifier("RunningSpeed");
     /*</constants>*/
     
-    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount, VO2Max, DistanceDownhillSnowSports, AppleStandTime, WalkingSpeed, WalkingDoubleSupportPercentage, WalkingAsymmetryPercentage, WalkingStepLength, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, AppleMoveTime, AppleWalkingSteadiness/*</value_list>*/};
+    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/StepCount, DistanceWalkingRunning, DistanceCycling, DistanceWheelchair, BasalEnergyBurned, ActiveEnergyBurned, FlightsClimbed, NikeFuel, AppleExerciseTime, PushCount, DistanceSwimming, SwimmingStrokeCount, VO2Max, DistanceDownhillSnowSports, AppleStandTime, WalkingSpeed, WalkingDoubleSupportPercentage, WalkingAsymmetryPercentage, WalkingStepLength, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, AppleMoveTime, AppleWalkingSteadiness, RunningStrideLength, RunningVerticalOscillation, RunningGroundContactTime, RunningPower, RunningSpeed/*</value_list>*/};
     
     /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -286,6 +307,31 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierAppleWalkingSteadiness", optional=true)
         public static native NSString AppleWalkingSteadiness();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRunningStrideLength", optional=true)
+        public static native NSString RunningStrideLength();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRunningVerticalOscillation", optional=true)
+        public static native NSString RunningVerticalOscillation();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRunningGroundContactTime", optional=true)
+        public static native NSString RunningGroundContactTime();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRunningPower", optional=true)
+        public static native NSString RunningPower();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRunningSpeed", optional=true)
+        public static native NSString RunningSpeed();
         /*</values>*/
     }
 }

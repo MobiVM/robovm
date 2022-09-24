@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -107,21 +108,98 @@ import org.robovm.apple.foundation.*;
     public static native NSPredicate createPredicateForQuantitySamplesWithQuantity(NSPredicateOperatorType operatorType, HKQuantity quantity);
     @Method(selector = "predicateForCategorySamplesWithOperatorType:value:")
     public static native NSPredicate createPredicateForCategorySamplesWithValue(NSPredicateOperatorType operatorType, @MachineSizedSInt long value);
+    @Method(selector = "predicateForCategorySamplesEqualToValues:")
+    public static native NSPredicate predicateForCategorySamplesEqualToValues(NSSet<NSNumber> values);
     @Method(selector = "predicateForWorkoutsWithWorkoutActivityType:")
     public static native NSPredicate createPredicateForWorkoutsWithActivityType(HKWorkoutActivityType workoutActivityType);
     @Method(selector = "predicateForWorkoutsWithOperatorType:duration:")
     public static native NSPredicate createPredicateForWorkoutsWithDuration(NSPredicateOperatorType operatorType, double duration);
+    /**
+     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
+     */
+    @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalEnergyBurned:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalEnergyBurned(NSPredicateOperatorType operatorType, HKQuantity totalEnergyBurned);
+    /**
+     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type
+     */
+    @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalDistance:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalDistance(NSPredicateOperatorType operatorType, HKQuantity totalDistance);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:
+     */
+    @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalSwimmingStrokeCount(NSPredicateOperatorType operatorType, HKQuantity totalSwimmingStrokeCount);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
      */
+    @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalFlightsClimbed:")
     public static native NSPredicate createPredicateForWorkouts(NSPredicateOperatorType operatorType, HKQuantity totalFlightsClimbed);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:")
+    public static native NSPredicate predicateForWorkoutsSumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity sumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:")
+    public static native NSPredicate predicateForWorkoutsMinimumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity minimumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:")
+    public static native NSPredicate predicateForWorkoutsMaximumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity maximumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:")
+    public static native NSPredicate predicateForWorkoutsAverageQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity averageQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithWorkoutActivityType:")
+    public static native NSPredicate predicateForWorkoutActivities(HKWorkoutActivityType workoutActivityType);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithOperatorType:duration:")
+    public static native NSPredicate predicateForWorkoutActivities(NSPredicateOperatorType operatorType, double duration);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithStartDate:endDate:options:")
+    public static native NSPredicate predicateForWorkoutActivities(NSDate startDate, NSDate endDate, HKQueryOptions options);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:")
+    public static native NSPredicate predicateForWorkoutActivitiesSumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity sumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:")
+    public static native NSPredicate predicateForWorkoutActivitiesMinimumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity minimumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:")
+    public static native NSPredicate predicateForWorkoutActivitiesMaximumQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity maximumQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:")
+    public static native NSPredicate predicateForWorkoutActivitiesAverageQuantity(NSPredicateOperatorType operatorType, HKQuantityType quantityType, HKQuantity averageQuantity);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutsWithActivityPredicate:")
+    public static native NSPredicate predicateForWorkouts(NSPredicate activityPredicate);
     /**
      * @since Available in iOS 9.3 and later.
      */

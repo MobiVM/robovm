@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,16 @@ import org.robovm.apple.foundation.*;
     public native NSDictionary<NSString, ?> getMetadata();
     @Property(selector = "workoutEvents")
     public native NSArray<HKWorkoutEvent> getWorkoutEvents();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "workoutActivities")
+    public native NSArray<HKWorkoutActivity> getWorkoutActivities();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "allStatistics")
+    public native NSDictionary<HKQuantityType, HKStatistics> getAllStatistics();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,6 +87,21 @@ import org.robovm.apple.foundation.*;
     public native void addWorkoutEvents(NSArray<HKWorkoutEvent> workoutEvents, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "addMetadata:completion:")
     public native void addMetadata(NSDictionary<NSString, ?> metadata, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "addWorkoutActivity:completion:")
+    public native void addWorkoutActivity(HKWorkoutActivity workoutActivity, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "updateActivityWithUUID:endDate:completion:")
+    public native void updateActivity(NSUUID UUID, NSDate endDate, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "updateActivityWithUUID:addMedatata:completion:")
+    public native void updateActivity(NSUUID UUID, NSDictionary<NSString, ?> metadata, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "endCollectionWithEndDate:completion:")
     public native void endCollection(NSDate endDate, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "finishWorkoutWithCompletion:")

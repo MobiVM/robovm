@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -97,14 +98,54 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setAppleMoveTimeGoal:")
     public native void setAppleMoveTimeGoal(HKQuantity v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Use exerciseTimeGoal
+     */
+    @Deprecated
     @Property(selector = "appleExerciseTimeGoal")
     public native HKQuantity getAppleExerciseTimeGoal();
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Use exerciseTimeGoal
+     */
+    @Deprecated
     @Property(selector = "setAppleExerciseTimeGoal:")
     public native void setAppleExerciseTimeGoal(HKQuantity v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "exerciseTimeGoal")
+    public native HKQuantity getExerciseTimeGoal();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setExerciseTimeGoal:")
+    public native void setExerciseTimeGoal(HKQuantity v);
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Use standHoursGoal
+     */
+    @Deprecated
     @Property(selector = "appleStandHoursGoal")
     public native HKQuantity getAppleStandHoursGoal();
+    /**
+     * @since Available in iOS 9.3 and later.
+     * @deprecated Use standHoursGoal
+     */
+    @Deprecated
     @Property(selector = "setAppleStandHoursGoal:")
     public native void setAppleStandHoursGoal(HKQuantity v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "standHoursGoal")
+    public native HKQuantity getStandHoursGoal();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setStandHoursGoal:")
+    public native void setStandHoursGoal(HKQuantity v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,6 +95,30 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final HKMetadataKey HeartRateMotionContext = new HKMetadataKey("HeartRateMotionContext");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey UserMotionContext = new HKMetadataKey("UserMotionContext");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey SessionEstimate = new HKMetadataKey("SessionEstimate");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey HeartRateRecoveryTestType = new HKMetadataKey("HeartRateRecoveryTestType");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey HeartRateRecoveryActivityType = new HKMetadataKey("HeartRateRecoveryActivityType");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey HeartRateRecoveryActivityDuration = new HKMetadataKey("HeartRateRecoveryActivityDuration");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey HeartRateRecoveryMaxObservedRecoveryHeartRate = new HKMetadataKey("HeartRateRecoveryMaxObservedRecoveryHeartRate");
     public static final HKMetadataKey FoodType = new HKMetadataKey("FoodType");
     public static final HKMetadataKey UDIDeviceIdentifier = new HKMetadataKey("UDIDeviceIdentifier");
     public static final HKMetadataKey UDIProductionIdentifier = new HKMetadataKey("UDIProductionIdentifier");
@@ -242,9 +267,25 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final HKMetadataKey AlgorithmVersion = new HKMetadataKey("AlgorithmVersion");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey SWOLFScore = new HKMetadataKey("SWOLFScore");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey QuantityClampedToLowerBound = new HKMetadataKey("QuantityClampedToLowerBound");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey QuantityClampedToUpperBound = new HKMetadataKey("QuantityClampedToUpperBound");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKMetadataKey GlassesPrescriptionDescription = new HKMetadataKey("GlassesPrescriptionDescription");
     /*</constants>*/
     
-    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold, DateOfEarliestDataUsedForEstimate, AlgorithmVersion/*</value_list>*/};
+    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, UserMotionContext, SessionEstimate, HeartRateRecoveryTestType, HeartRateRecoveryActivityType, HeartRateRecoveryActivityDuration, HeartRateRecoveryMaxObservedRecoveryHeartRate, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold, DateOfEarliestDataUsedForEstimate, AlgorithmVersion, SWOLFScore, QuantityClampedToLowerBound, QuantityClampedToUpperBound, GlassesPrescriptionDescription/*</value_list>*/};
     
     /*<name>*/HKMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -278,6 +319,36 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKMetadataKeyHeartRateMotionContext", optional=true)
         public static native NSString HeartRateMotionContext();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyUserMotionContext", optional=true)
+        public static native NSString UserMotionContext();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeySessionEstimate", optional=true)
+        public static native NSString SessionEstimate();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyHeartRateRecoveryTestType", optional=true)
+        public static native NSString HeartRateRecoveryTestType();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyHeartRateRecoveryActivityType", optional=true)
+        public static native NSString HeartRateRecoveryActivityType();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyHeartRateRecoveryActivityDuration", optional=true)
+        public static native NSString HeartRateRecoveryActivityDuration();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate", optional=true)
+        public static native NSString HeartRateRecoveryMaxObservedRecoveryHeartRate();
         @GlobalValue(symbol="HKMetadataKeyFoodType", optional=true)
         public static native NSString FoodType();
         @GlobalValue(symbol="HKMetadataKeyUDIDeviceIdentifier", optional=true)
@@ -475,6 +546,26 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKMetadataKeyAlgorithmVersion", optional=true)
         public static native NSString AlgorithmVersion();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeySWOLFScore", optional=true)
+        public static native NSString SWOLFScore();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyQuantityClampedToLowerBound", optional=true)
+        public static native NSString QuantityClampedToLowerBound();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyQuantityClampedToUpperBound", optional=true)
+        public static native NSString QuantityClampedToUpperBound();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyGlassesPrescriptionDescription", optional=true)
+        public static native NSString GlassesPrescriptionDescription();
         /*</values>*/
     }
 }

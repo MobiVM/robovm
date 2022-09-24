@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -229,6 +230,41 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "voltUnit")
     public static native HKUnit volt();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "wattUnitWithMetricPrefix:")
+    public static native HKUnit watt(HKMetricPrefix prefix);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "wattUnit")
+    public static native HKUnit watt();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "diopterUnit")
+    public static native HKUnit diopter();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "prismDiopterUnit")
+    public static native HKUnit prismDiopter();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "radianAngleUnitWithMetricPrefix:")
+    public static native HKUnit radianAngle(HKMetricPrefix prefix);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "radianAngleUnit")
+    public static native HKUnit radianAngle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "degreeAngleUnit")
+    public static native HKUnit degreeAngle();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
