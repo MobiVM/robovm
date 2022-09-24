@@ -33,34 +33,25 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("IdentityLookup") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ILMessageFilterQueryRequest/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ILMessageFilterCapabilitiesQueryRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class ILMessageFilterQueryRequestPtr extends Ptr<ILMessageFilterQueryRequest, ILMessageFilterQueryRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ILMessageFilterQueryRequest.class); }/*</bind>*/
+    /*<ptr>*/public static class ILMessageFilterCapabilitiesQueryRequestPtr extends Ptr<ILMessageFilterCapabilitiesQueryRequest, ILMessageFilterCapabilitiesQueryRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ILMessageFilterCapabilitiesQueryRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ILMessageFilterQueryRequest() {}
-    protected ILMessageFilterQueryRequest(Handle h, long handle) { super(h, handle); }
-    protected ILMessageFilterQueryRequest(SkipInit skipInit) { super(skipInit); }
+    protected ILMessageFilterCapabilitiesQueryRequest() {}
+    protected ILMessageFilterCapabilitiesQueryRequest(Handle h, long handle) { super(h, handle); }
+    protected ILMessageFilterCapabilitiesQueryRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public ILMessageFilterQueryRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public ILMessageFilterCapabilitiesQueryRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sender")
-    public native String getSender();
-    @Property(selector = "messageBody")
-    public native String getMessageBody();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "receiverISOCountryCode")
-    public native String getReceiverISOCountryCode();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
