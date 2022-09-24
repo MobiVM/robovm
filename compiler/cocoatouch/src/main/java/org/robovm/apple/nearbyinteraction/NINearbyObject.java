@@ -58,6 +58,16 @@ import org.robovm.apple.dispatch.*;
     public native float getDistance();
     @Property(selector = "direction")
     public native @ByVal VectorFloat3 getDirection();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "verticalDirectionEstimate")
+    public native NINearbyObjectVerticalDirectionEstimate getVerticalDirectionEstimate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "horizontalAngle")
+    public native float getHorizontalAngle();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -73,6 +83,16 @@ import org.robovm.apple.dispatch.*;
      */
     @GlobalValue(symbol="NINearbyObjectDirectionNotAvailable", optional=true)
     public static native @ByVal VectorFloat3 DirectionNotAvailable();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="NINearbyObjectAngleNotAvailable", optional=true)
+    public static native float AngleNotAvailable();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="NINearbyObjectWorldTransformNotAvailable", optional=true)
+    public static native @ByVal MatrixFloat4x4 WorldTransformNotAvailable();
     
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);

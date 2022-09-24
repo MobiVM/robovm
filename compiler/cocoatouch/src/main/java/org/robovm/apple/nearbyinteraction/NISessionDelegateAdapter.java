@@ -64,5 +64,15 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("session:didGenerateShareableConfigurationData:forObject:")
     public void didGenerateShareableConfigurationData(NISession session, NSData shareableConfigurationData, NINearbyObject object) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("session:didUpdateAlgorithmConvergence:forObject:")
+    public void didUpdateAlgorithmConvergence(NISession session, NIAlgorithmConvergence convergence, NINearbyObject object) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("sessionDidStartRunning:")
+    public void sessionDidStartRunning(NISession session) {}
     /*</methods>*/
 }

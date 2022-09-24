@@ -50,8 +50,18 @@ import org.robovm.apple.dispatch.*;
     protected NISession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use deviceCapabilities property and check the supportsPreciseDistanceMeasurement property
+     */
+    @Deprecated
     @Property(selector = "isSupported")
     public static native boolean isSupported();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "deviceCapabilities")
+    public static native NIDeviceCapability getDeviceCapabilities();
     @Property(selector = "delegate")
     public native NISessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -73,5 +83,15 @@ import org.robovm.apple.dispatch.*;
     public native void pause();
     @Method(selector = "invalidate")
     public native void invalidate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setARSession:")
+    public native void setARSession(org.robovm.apple.arkit.ARSession session);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "worldTransformForObject:")
+    public native @ByVal MatrixFloat4x4 worldTransformForObject(NINearbyObject object);
     /*</methods>*/
 }

@@ -33,43 +33,37 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NearbyInteraction") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NINearbyPeerConfiguration/*</name>*/ 
-    extends /*<extends>*/NIConfiguration/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NIAlgorithmConvergence/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NINearbyPeerConfigurationPtr extends Ptr<NINearbyPeerConfiguration, NINearbyPeerConfigurationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NINearbyPeerConfiguration.class); }/*</bind>*/
+    /*<ptr>*/public static class NIAlgorithmConvergencePtr extends Ptr<NIAlgorithmConvergence, NIAlgorithmConvergencePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NIAlgorithmConvergence.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NINearbyPeerConfiguration() {}
-    protected NINearbyPeerConfiguration(Handle h, long handle) { super(h, handle); }
-    protected NINearbyPeerConfiguration(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithPeerToken:")
-    public NINearbyPeerConfiguration(NIDiscoveryToken peerToken) { super((SkipInit) null); initObject(init(peerToken)); }
+    protected NIAlgorithmConvergence() {}
+    protected NIAlgorithmConvergence(Handle h, long handle) { super(h, handle); }
+    protected NIAlgorithmConvergence(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NIAlgorithmConvergence(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "peerDiscoveryToken")
-    public native NIDiscoveryToken getPeerDiscoveryToken();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "isCameraAssistanceEnabled")
-    public native boolean isCameraAssistanceEnabled();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "setCameraAssistanceEnabled:")
-    public native void setCameraAssistanceEnabled(boolean v);
+    @Property(selector = "status")
+    public native NIAlgorithmConvergenceStatus getStatus();
+    @Property(selector = "reasons")
+    public native NSArray<NSString> getReasons();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithPeerToken:")
-    protected native @Pointer long init(NIDiscoveryToken peerToken);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
