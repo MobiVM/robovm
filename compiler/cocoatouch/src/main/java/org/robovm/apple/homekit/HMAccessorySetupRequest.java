@@ -54,6 +54,10 @@ import org.robovm.apple.corelocation.*;
     public native HMAccessorySetupPayload getPayload();
     @Property(selector = "setPayload:")
     public native void setPayload(HMAccessorySetupPayload v);
+    @Property(selector = "matterPayload")
+    public native NSObject getMatterPayload();
+    @Property(selector = "setMatterPayload:")
+    public native void setMatterPayload(NSObject v);
     @Property(selector = "homeUniqueIdentifier")
     public native NSUUID getHomeUniqueIdentifier();
     @Property(selector = "setHomeUniqueIdentifier:")

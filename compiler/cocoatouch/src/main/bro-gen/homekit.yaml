@@ -6,6 +6,8 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/HomeKit.framework/Headers/HomeKit.h
 
+private_typedefs:
+    MTRSetupPayload: NSObject # Matter framework is not handled for now
 enums:
     HMAccessoryCategoryType: {}
     HMActionSetType: {}
