@@ -94,6 +94,11 @@ import org.robovm.apple.imageio.*;
     /**
      * @since Available in iOS 15.0 and later.
      */
+    @Property(selector = "hasAdjustments")
+    public native boolean hasAdjustments();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "adjustmentFormatIdentifier")
     public native String getAdjustmentFormatIdentifier();
     /*</properties>*/
