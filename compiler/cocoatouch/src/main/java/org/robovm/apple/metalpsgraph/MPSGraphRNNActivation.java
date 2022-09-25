@@ -36,28 +36,28 @@ import org.robovm.apple.metalps.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MPSGraphPaddingStyle/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MPSGraphRNNActivation/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 15.4 and later.
      */
-    Explicit(0L),
+    None(0L),
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 15.4 and later.
      */
-    TF_VALID(1L),
+    Relu(1L),
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 15.4 and later.
      */
-    TF_SAME(2L),
+    Tanh(2L),
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 15.4 and later.
      */
-    ExplicitOffset(3L),
+    Sigmoid(3L),
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 15.4 and later.
      */
-    ONNX_SAME_LOWER(4L);
+    HardSigmoid(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -67,15 +67,15 @@ public enum /*<name>*/MPSGraphPaddingStyle/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MPSGraphPaddingStyle/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MPSGraphRNNActivation/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MPSGraphPaddingStyle/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MPSGraphPaddingStyle/*</name>*/ v : values()) {
+    public static /*<name>*/MPSGraphRNNActivation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPSGraphRNNActivation/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MPSGraphPaddingStyle/*</name>*/.class.getName());
+            + /*<name>*/MPSGraphRNNActivation/*</name>*/.class.getName());
     }
 }

@@ -7,7 +7,10 @@ headers:
     - /System/Library/Frameworks/MetalPerformanceShadersGraph.framework/Headers/MetalPerformanceShadersGraph.h
 
 typedefs:
-    
+
+private_typedefs:
+    OS_dispatch_queue: org.robovm.apple.dispatch.DispatchQueue
+
 enums:
     MPSGraphTensorNamedDataLayout: {}
     MPSGraphPaddingStyle: {}
@@ -24,6 +27,10 @@ enums:
     MPSGraphOptimization: {}
     MPSGraphOptimizationProfile: {}
     MPSGraphPoolingReturnIndicesMode: {prefix: MPSGraphPoolingReturnIndices}
+    MPSGraphExecutionStage: {}
+    MPSGraphResizeNearestRoundingMode: {}
+    MPSGraphRNNActivation: {}
+
 categories:
 
 classes:
@@ -520,6 +527,124 @@ classes:
                 name: coordinateAlongAxis
             '-coordinateAlongAxisTensor:withShapeTensor:name:':
                 name: coordinateAlongAxisTensor
+            '-truncateWithTensor:name:':
+                name: truncate
+            '-cumulativeSumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axis:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axisTensor:name:':
+                name: cumulativeSum
+            '-cumulativeProductWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axis:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axisTensor:name:':
+                name: cumulativeProduct
+            '-cumulativeMinimumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axis:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axisTensor:name:':
+                name: cumulativeMinimum
+            '-cumulativeMaximumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axis:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axisTensor:name:':
+                name: cumulativeMaximum
+            '-HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:':
+                name: HammingDistance
+            '-adamWithLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:beta1PowerTensor:beta2PowerTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:':
+                name: adamWithLearningRateTensor
+            '-adamWithCurrentLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:':
+                name: adamWithCurrentLearningRateTensor
+            '-maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:':
+                name: maxPooling2DGradient
+            '-maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:':
+                name: maxPooling2DGradient
+            '-maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:':
+                name: maxPooling4DGradient
+            '-maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:':
+                name: maxPooling4DGradient
+            '-resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:':
+                name: resizeNearestWithTensor
+            '-resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:':
+                name: resizeBilinearWithTensor
+            '-resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:':
+                name: resizeTensor
+            '-resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:':
+                name: resizeNearestWithTensor
+            '-resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:':
+                name: resizeBilinearWithTensor
+            '-resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:':
+                name: resizeNearestWithGradientTensor
+            '-resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:':
+                name: resizeBilinearWithGradientTensor
+            '-resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:':
+                name: resizeWithGradientTensor
+            '-resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:':
+                name: resizeNearestWithGradientTensor
+            '-resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:':
+                name: resizeBilinearWithGradientTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNGradientsWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNGradients
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:':
+                name: singleGateRNNGradientsWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:':
+                name: singleGateRNNGradients
+            '-LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-sortWithTensor:axis:descending:name:':
+                name: sort
+            '-sortWithTensor:axisTensor:descending:name:':
+                name: sort
+            '-sortWithTensor:axis:name:':
+                name: sort
+            '-sortWithTensor:axisTensor:name:':
+                name: sort
+            '-transposeTensor:permutation:name:':
+                name: transposeTensor
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
@@ -545,7 +670,12 @@ classes:
             '+deviceWithMTLDevice:':
                 name: create
                 constructor: true
-    MPSGraphExecutionDescriptor: {} #since 14.0
+    MPSGraphExecutionDescriptor: #since 14.0
+        methods:
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-signalEvent:atExecutionEvent:value:':
+                name: signalEvent
     MPSGraphOperation: {} #since 14.0
     MPSGraphPooling2DOpDescriptor:
         methods:
@@ -607,7 +737,12 @@ classes:
                 name: runAsync
             '-encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:':
                 name: encodeToCommandBuffer
-    MPSGraphExecutableExecutionDescriptor: {} #since 15.0
+    MPSGraphExecutableExecutionDescriptor:  #since 15.0
+        methods:
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-signalEvent:atExecutionEvent:value:':
+                name: signalEvent
     MPSGraphPooling4DOpDescriptor: #since 15.0
         methods:
             '+descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:':
@@ -636,6 +771,9 @@ classes:
                 name: create
                 constructor: true
     MPSGraphType: {} #since 15.0
+    MPSGraphGRUDescriptor: {} #since 16.0
+    MPSGraphLSTMDescriptor: {} #since 15.4
+    MPSGraphSingleGateRNNDescriptor: {} #since 15.4
 protocols:
 
 functions:

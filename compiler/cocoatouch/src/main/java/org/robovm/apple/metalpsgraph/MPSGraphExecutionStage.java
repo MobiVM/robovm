@@ -35,29 +35,13 @@ import org.robovm.apple.metalps.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MPSGraphPaddingStyle/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsLongMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MPSGraphExecutionStage/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    Explicit(0L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    TF_VALID(1L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    TF_SAME(2L),
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    ExplicitOffset(3L),
     /**
      * @since Available in iOS 16.0 and later.
      */
-    ONNX_SAME_LOWER(4L);
+    Completed(0L);
     /*</values>*/
 
     /*<bind>*/
@@ -67,15 +51,15 @@ public enum /*<name>*/MPSGraphPaddingStyle/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MPSGraphPaddingStyle/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MPSGraphExecutionStage/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MPSGraphPaddingStyle/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MPSGraphPaddingStyle/*</name>*/ v : values()) {
+    public static /*<name>*/MPSGraphExecutionStage/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPSGraphExecutionStage/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MPSGraphPaddingStyle/*</name>*/.class.getName());
+            + /*<name>*/MPSGraphExecutionStage/*</name>*/.class.getName());
     }
 }

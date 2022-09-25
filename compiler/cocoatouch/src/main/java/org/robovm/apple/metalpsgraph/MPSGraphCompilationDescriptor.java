@@ -71,6 +71,36 @@ import org.robovm.apple.metalps.*;
      */
     @Property(selector = "setOptimizationProfile:")
     public native void setOptimizationProfile(MPSGraphOptimizationProfile v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "waitForCompilationCompletion")
+    public native boolean isWaitForCompilationCompletion();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setWaitForCompilationCompletion:")
+    public native void setWaitForCompilationCompletion(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "compilationCompletionHandler")
+    public native @Block VoidBlock2<MPSGraphExecutable, NSError> getCompilationCompletionHandler();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCompilationCompletionHandler:")
+    public native void setCompilationCompletionHandler(@Block VoidBlock2<MPSGraphExecutable, NSError> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "dispatchQueue")
+    public native org.robovm.apple.dispatch.DispatchQueue getDispatchQueue();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDispatchQueue:")
+    public native void setDispatchQueue(org.robovm.apple.dispatch.DispatchQueue v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
