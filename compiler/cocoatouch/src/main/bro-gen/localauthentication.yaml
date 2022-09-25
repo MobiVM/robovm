@@ -5,14 +5,15 @@ framework: LocalAuthentication
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/LocalAuthentication.framework/Headers/LocalAuthentication.h
-
+private_typedefs:
+    '__CFString *': String
 enums:
     LAPolicy: {prefix: LAPolicy}
     LAError: {nserror: true, name: LAError}
     LAAccessControlOperation: {}
     LACredentialType: {prefix: LACredentialType}
     LABiometryType: {prefix: LABiometry} #since 11.0
-
+    LARightState: {} #since 16.0
 classes:
     LAContext: # DONE
         methods:
@@ -27,7 +28,57 @@ classes:
                 trim_after_first_colon: true
             '-evaluateAccessControl:operation:localizedReason:reply:':
                 trim_after_first_colon: true
-
+    LAAuthenticationRequirement: #since 16.0
+        methods:
+            '+biometryRequirementWithFallback:':
+                name: create
+                constructor: true
+    LABiometryFallbackRequirement: {} #since 16.0
+    LAPersistedRight: {} #since 16.0
+    LAPrivateKey: #since 16.0
+        methods:
+            '-signData:secKeyAlgorithm:completion:':
+                name: signData
+            '-decryptData:secKeyAlgorithm:completion:':
+                name: decryptData
+            '-exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:':
+                name: exchangeKeys
+    LAPublicKey: #since 16.0
+        methods:
+            '-exportBytesWithCompletion:':
+                name: exportBytes
+            '-encryptData:secKeyAlgorithm:completion:':
+                name: encryptData
+            '-verifyData:signature:secKeyAlgorithm:completion:':
+                name: verifyData
+    LARight: #since 16.0
+        methods:
+            '-initWithRequirement:':
+                name: init
+            '-authorizeWithLocalizedReason:completion:':
+                name: authorizeWithLocalizedReason
+            '-checkCanAuthorizeWithCompletion:':
+                name: checkCanAuthorize
+            '-deauthorizeWithCompletion:':
+                name: deauthorize
+    LARightStore: #since 16.0
+        methods:
+            '-rightForIdentifier:completion:':
+                name: rightForIdentifier
+            '-saveRight:identifier:completion:':
+                name: saveRight
+            '-saveRight:identifier:secret:completion:':
+                name: saveRight
+            '-removeRight:completion:':
+                name: removeRight
+            '-removeRightForIdentifier:completion:':
+                name: removeRightForIdentifier
+            '-removeAllRightsWithCompletion:':
+                name: removeAllRights
+    LASecret: #since 16.0
+        methods:
+            '-loadDataWithCompletion:':
+                name: loadData
 protocols: {}
 
 functions:
