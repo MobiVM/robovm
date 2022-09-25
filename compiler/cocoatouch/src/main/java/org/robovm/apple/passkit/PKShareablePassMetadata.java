@@ -52,21 +52,104 @@ import org.robovm.apple.coreanimation.*;
     public PKShareablePassMetadata() {}
     protected PKShareablePassMetadata(Handle h, long handle) { super(h, handle); }
     protected PKShareablePassMetadata(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:passPreviewMetadata:
+     */
+    @Deprecated
     @Method(selector = "initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:")
     public PKShareablePassMetadata(String credentialIdentifier, String cardConfigurationIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription) { super((SkipInit) null); initObject(init(credentialIdentifier, cardConfigurationIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription)); }
     /**
      * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:passPreviewMetadata:
      */
+    @Deprecated
     @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:")
     public PKShareablePassMetadata(String credentialIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription, String accountHash, String templateIdentifier, String relyingPartyIdentifier, boolean requiresUnifiedAccessCapableDevice) { super((SkipInit) null); initObject(init(credentialIdentifier, sharingInstanceIdentifier, passThumbnailImage, ownerDisplayName, localizedDescription, accountHash, templateIdentifier, relyingPartyIdentifier, requiresUnifiedAccessCapableDevice)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:preview:")
+    public static  PKShareablePassMetadata createUsingCardTemplateIdentifier(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
+       PKShareablePassMetadata res = new PKShareablePassMetadata((SkipInit) null);
+       res.initObject(res.createUsingCardTemplateIdentifier0(credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview));
+       return res;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:preview:")
+    public static  PKShareablePassMetadata createUsingCardConfigurationIdentifier0(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
+       PKShareablePassMetadata res = new PKShareablePassMetadata((SkipInit) null);
+       res.initObject(res.createUsingcardConfigurationIdentifier0(credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "credentialIdentifier")
     public native String getCredentialIdentifier();
-    @Property(selector = "cardConfigurationIdentifier")
-    public native String getCardConfigurationIdentifier();
     @Property(selector = "sharingInstanceIdentifier")
     public native String getSharingInstanceIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use cardTemplateIdentifier
+     */
+    @Deprecated
+    @Property(selector = "templateIdentifier")
+    public native String getTemplateIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "cardTemplateIdentifier")
+    public native String getCardTemplateIdentifier();
+    @Property(selector = "cardConfigurationIdentifier")
+    public native String getCardConfigurationIdentifier();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "requiresUnifiedAccessCapableDevice")
+    public native boolean requiresUnifiedAccessCapableDevice();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRequiresUnifiedAccessCapableDevice:")
+    public native void setRequiresUnifiedAccessCapableDevice(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "serverEnvironmentIdentifier")
+    public native String getServerEnvironmentIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setServerEnvironmentIdentifier:")
+    public native void setServerEnvironmentIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preview")
+    public native PKShareablePassMetadataPreview getPreview();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use preview.passThumbnailImage
+     */
+    @Deprecated
+    @Property(selector = "passThumbnailImage")
+    public native CGImage getPassThumbnailImage();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use preview.localizedDescription
+     */
+    @Deprecated
+    @Property(selector = "localizedDescription")
+    public native String getLocalizedDescription();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use preview.ownerDisplayName
+     */
+    @Deprecated
+    @Property(selector = "ownerDisplayName")
+    public native String getOwnerDisplayName();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -75,30 +158,44 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 15.0 and later.
      */
-    @Property(selector = "templateIdentifier")
-    public native String getTemplateIdentifier();
+    @Property(selector = "setAccountHash:")
+    public native void setAccountHash(String v);
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "relyingPartyIdentifier")
     public native String getRelyingPartyIdentifier();
-    @Property(selector = "requiresUnifiedAccessCapableDevice")
-    public native boolean requiresUnifiedAccessCapableDevice();
-    @Property(selector = "passThumbnailImage")
-    public native CGImage getPassThumbnailImage();
-    @Property(selector = "localizedDescription")
-    public native String getLocalizedDescription();
-    @Property(selector = "ownerDisplayName")
-    public native String getOwnerDisplayName();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "setRelyingPartyIdentifier:")
+    public native void setRelyingPartyIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:passPreviewMetadata:
+     */
+    @Deprecated
     @Method(selector = "initWithProvisioningCredentialIdentifier:cardConfigurationIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:")
     protected native @Pointer long init(String credentialIdentifier, String cardConfigurationIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription);
     /**
      * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:passPreviewMetadata:
      */
+    @Deprecated
     @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:")
     protected native @Pointer long init(String credentialIdentifier, String sharingInstanceIdentifier, CGImage passThumbnailImage, String ownerDisplayName, String localizedDescription, String accountHash, String templateIdentifier, String relyingPartyIdentifier, boolean requiresUnifiedAccessCapableDevice);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:preview:")
+    protected native @Pointer long createUsingCardTemplateIdentifier0(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:preview:")
+    protected native @Pointer long createUsingcardConfigurationIdentifier0(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview);
     /*</methods>*/
 }

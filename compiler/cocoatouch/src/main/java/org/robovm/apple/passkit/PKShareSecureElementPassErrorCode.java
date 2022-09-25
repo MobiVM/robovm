@@ -37,44 +37,39 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.4 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("PassKit")/*</annotations>*/
-public enum /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     UnknownError(0L),
-    UserCanceledError(1L),
-    UnavailableError(2L),
-    InvalidConfigurationError(3L),
-    DeviceNotSupportedError(4L),
-    DeviceNotReadyError(5L),
-    OSVersionNotSupportedError(6L);
+    SetupError(1L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(PKAddSecureElementPassErrorCode.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(PKShareSecureElementPassErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.4 and later.
+     * @since Available in iOS 16.0 and later.
      */
-    @GlobalValue(symbol="PKAddSecureElementPassErrorDomain", optional=true)
+    @GlobalValue(symbol="PKShareSecureElementPassErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ v : values()) {
+    public static /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKShareSecureElementPassErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.class.getName());
+            + /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -85,15 +80,15 @@ public enum /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ implements NSEr
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
          }
 
         public static String getClassDomain() {
-            /** must be incerted in value section */
-            return /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/.getClassDomain();
+            /** must be inserted in value section */
+            return /*<name>*/PKShareSecureElementPassErrorCode/*</name>*/.getClassDomain();
         }
     }
 }

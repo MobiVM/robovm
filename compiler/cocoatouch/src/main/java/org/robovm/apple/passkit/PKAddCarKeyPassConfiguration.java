@@ -68,6 +68,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setSupportedRadioTechnologies:")
     public native void setSupportedRadioTechnologies(PKRadioTechnology v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "manufacturerIdentifier")
+    public native String getManufacturerIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setManufacturerIdentifier:")
+    public native void setManufacturerIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "provisioningTemplateIdentifier")
+    public native String getProvisioningTemplateIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setProvisioningTemplateIdentifier:")
+    public native void setProvisioningTemplateIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

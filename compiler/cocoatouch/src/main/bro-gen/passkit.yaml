@@ -34,6 +34,13 @@ enums:
     PKIssuerProvisioningExtensionAuthorizationResult: {} #since 14.0
     PKRadioTechnology: {} #since 14.5
     PKShippingContactEditingMode: {} #since 15.0
+    PKShareSecureElementPassErrorCode: {prefix: PKShareSecureElementPass, nserror: true} #since 16.0
+    PKShareSecureElementPassResult: {} #since 16.0
+    PKVehicleConnectionErrorCode: {}
+    PKVehicleConnectionSessionConnectionState: {}
+    PKIdentityError: {nserror: true} #since 16.0
+    PKIdentityButtonStyle: {} #since 16.0
+    PKIdentityButtonLabel: {} #since 16.0
 typed_enums:
     PKStoredValuePassBalanceType:
         enum: PKStoredValuePassBalanceType
@@ -127,6 +134,8 @@ classes:
                 name: signData
             '-serviceProviderDataForSecureElementPass:completion:':
                 name: serviceProviderDataForSecureElementPass
+            '-encryptedServiceProviderDataForSecureElementPass:completion:':
+                name: encryptedServiceProviderDataForSecureElementPass
     PKPayment: # DONE
         properties:
             'billingAddress':
@@ -242,8 +251,9 @@ classes:
     PKAddShareablePassConfiguration: #since 14.0
         methods:
             '+configurationForPassMetadata:provisioningPolicyIdentifier:primaryAction:completion:':
-                constructor: true
-                name: create
+                name: configurationForPassMetadata
+            '+configurationForPassMetadata:primaryAction:completion:':
+                name: configurationForPassMetadata
     PKBarcodeEventConfigurationRequest: {} #since 14.0
     PKBarcodeEventMetadataRequest: {} #since 14.0
     PKBarcodeEventMetadataResponse: #since 14.0
@@ -286,6 +296,12 @@ classes:
                 name: init
             '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:passThumbnailImage:ownerDisplayName:localizedDescription:accountHash:templateIdentifier:relyingPartyIdentifier:requiresUnifiedAccessCapableDevice:':
                name: init
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:preview:':
+                static_constructor_name: createUsingCardTemplateIdentifier
+                name: createUsingCardTemplateIdentifier0
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:preview:':
+                static_constructor_name: createUsingCardConfigurationIdentifier0
+                name: createUsingcardConfigurationIdentifier0
     PKDateComponentsRange: #since 15.0
         methods:
             '-initWithStartDateComponents:endDateComponents:':
@@ -298,6 +314,65 @@ classes:
     PKRecurringPaymentSummaryItem: {} #since 15.0
     PKStoredValuePassBalance: {} #since 15.0
     PKStoredValuePassProperties: {} #since 15.0
+    PKAutomaticReloadPaymentRequest: #since 16.0
+        methods:
+            '-initWithPaymentDescription:automaticReloadBilling:managementURL:':
+                name: init
+    PKAutomaticReloadPaymentSummaryItem: {} #since 16.0
+    PKIdentityAuthorizationController: #since 16.0
+        methods:
+            '-checkCanRequestDocument:completion:':
+                name: checkCanRequestDocument
+            '-requestDocument:completion:':
+                name: requestDocument
+    PKIdentityButton: #since 16.0
+        methods:
+            '-initWithLabel:style:':
+                name: init
+            '+buttonWithLabel:style:':
+                exclude: true
+    PKIdentityDocument: {} #since 16.0
+    PKIdentityDriversLicenseDescriptor: {} #since 16.0
+    PKIdentityElement: #since 16.0
+        methods:
+            '+ageThresholdElementWithAge:':
+                name: create
+                constructor: true
+    PKIdentityIntentToStore: {} #since 16.0
+    PKIdentityRequest: {} #since 16.0
+    PKPaymentOrderDetails: #since 16.0
+        methods:
+            '-initWithOrderTypeIdentifier:orderIdentifier:webServiceURL:authenticationToken:':
+                name: init
+    PKPaymentTokenContext: #since 16.0
+        methods:
+            '-initWithMerchantIdentifier:externalIdentifier:merchantName:merchantDomain:amount:':
+                name: init
+    PKRecurringPaymentRequest: #since 16.0
+        methods:
+            '-initWithPaymentDescription:regularBilling:managementURL:':
+                name: init
+    PKShareSecureElementPassViewController: #since 16.0
+        methods:
+            '-initWithSecureElementPass:delegate:':
+                name: init
+    PKShareablePassMetadataPreview: #since 16.0
+        methods:
+            '-initWithPassThumbnail:localizedDescription:':
+                name: init
+            '-initWithTemplateIdentifier:':
+                name: init
+            '+previewWithPassThumbnail:localizedDescription:':
+                exclude: true
+            '+previewWithTemplateIdentifier:':
+                exclude: true
+    PKVehicleConnectionSession: #since 15.4
+        methods:
+            '-sendData:error:':
+                name: sendData
+                throws: NSErrorException
+            '+sessionForPass:delegate:completion:':
+                name: sessionForPass
 protocols:
     PKPaymentAuthorizationControllerDelegate:
         methods:
@@ -402,6 +477,17 @@ protocols:
                 name: handleSignatureRequest
             '-handleConfigurationRequest:completion:':
                 name: handleConfigurationRequest
+    PKIdentityDocumentDescriptor: #since 16.0
+        methods:
+            '-addElements:withIntentToStore:':
+                name: addElements
+    PKShareSecureElementPassViewControllerDelegate: #since 16.0
+        methods:
+            '-shareSecureElementPassViewController:didFinishWithResult:':
+                name: didFinish
+            '-shareSecureElementPassViewController:didCreateShareURL:activationCode:':
+                name: didCreateShareURL
+    PKVehicleConnectionDelegate: {} #since 15.4
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (PK.*):
@@ -424,6 +510,14 @@ values:
     PKPaymentError(.*)UserInfoKey:
         class: PKPaymentErrorCode
         name: '#{g[0]}UserInfoKey'
+
+    PKShareSecureElementPassErrorDomain:
+        class: PKShareSecureElementPassErrorCode
+        name: getClassDomain
+
+    PKIdentityErrorDomain:
+        class: PKIdentityError
+        name: getClassDomain
 
     # PKPassLibrary
     PKPassLibrary(.*Notification):
