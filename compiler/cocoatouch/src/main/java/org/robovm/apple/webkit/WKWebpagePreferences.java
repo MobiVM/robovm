@@ -73,6 +73,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAllowsContentJavaScript:")
     public native void setAllowsContentJavaScript(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isLockdownModeEnabled")
+    public native boolean isLockdownModeEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setLockdownModeEnabled:")
+    public native void setLockdownModeEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -40,12 +40,11 @@ import org.robovm.apple.coreanimation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/WKFullscreenState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/WKDialogResult/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NotInFullscreen(0L),
-    EnteringFullscreen(1L),
-    InFullscreen(2L),
-    ExitingFullscreen(3L);
+    ShowDefault(1L),
+    AskAgain(2L),
+    Handled(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +54,15 @@ public enum /*<name>*/WKFullscreenState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/WKFullscreenState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/WKDialogResult/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/WKFullscreenState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/WKFullscreenState/*</name>*/ v : values()) {
+    public static /*<name>*/WKDialogResult/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WKDialogResult/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/WKFullscreenState/*</name>*/.class.getName());
+            + /*<name>*/WKDialogResult/*</name>*/.class.getName());
     }
 }

@@ -84,7 +84,19 @@ public enum /*<name>*/WKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    JavaScriptAppBoundDomain(14L);
+    JavaScriptAppBoundDomain(14L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    DuplicateCredential(15L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    MalformedCredential(16L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    CredentialNotFound(17L);
     /*</values>*/
 
     /*<bind>*/
