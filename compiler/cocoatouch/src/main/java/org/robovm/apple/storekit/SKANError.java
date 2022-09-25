@@ -50,7 +50,8 @@ public enum /*<name>*/SKANError/*</name>*/ implements NSErrorCode {
     InvalidSourceAppId(7L),
     InvalidAdvertisedAppId(8L),
     InvalidVersion(9L),
-    Unknown(10L);
+    Unknown(10L),
+    ImpressionTooShort(11L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SKANError.class); }/*</bind>*/

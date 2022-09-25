@@ -58,6 +58,10 @@ import org.robovm.apple.coregraphics.*;
     public void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error) {}
     @NotImplemented("paymentQueueRestoreCompletedTransactionsFinished:")
     public void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {}
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @NotImplemented("paymentQueue:updatedDownloads:")
     public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) {}
     /**
