@@ -34,6 +34,10 @@ classes:
         methods:
             '-initWithConfiguration:':
                 name: init
+            '-deselectAssetsWithIdentifiers:':
+                name: deselectAssets
+            '-moveAssetWithIdentifier:afterAssetWithIdentifier:':
+                name: moveAsset
 protocols:
     PHLivePhotoViewDelegate:
         methods:
@@ -43,6 +47,8 @@ protocols:
                 name: didEndPlayback
             '-livePhotoView:canBeginPlaybackWithStyle:':
                 name: canBeginPlayback
+            '-livePhotoView:extraMinimumTouchDurationForTouch:withStyle:':
+                name: getExtraMinimumTouchDuration
     PHContentEditingController: # DONE
         properties:
             'shouldShowCancelConfirmation':

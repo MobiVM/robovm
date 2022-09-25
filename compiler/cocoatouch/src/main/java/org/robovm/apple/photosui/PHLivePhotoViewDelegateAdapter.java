@@ -66,5 +66,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("livePhotoView:didEndPlaybackWithStyle:")
     public void didEndPlayback(PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle) {}
+    /**
+     * @since Available in iOS 9.1 and later.
+     */
+    @NotImplemented("livePhotoView:extraMinimumTouchDurationForTouch:withStyle:")
+    public double getExtraMinimumTouchDuration(PHLivePhotoView livePhotoView, UITouch touch, PHLivePhotoViewPlaybackStyle playbackStyle) { return 0; }
     /*</methods>*/
 }

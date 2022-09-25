@@ -80,5 +80,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithConfiguration:")
     protected native @Pointer long init(PHPickerConfiguration configuration);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "deselectAssetsWithIdentifiers:")
+    public native void deselectAssets(NSArray<NSString> identifiers);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "moveAssetWithIdentifier:afterAssetWithIdentifier:")
+    public native void moveAsset(String identifier, String afterIdentifier);
     /*</methods>*/
 }
