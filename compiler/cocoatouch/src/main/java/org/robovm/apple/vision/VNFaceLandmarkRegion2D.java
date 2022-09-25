@@ -63,6 +63,11 @@ import org.robovm.apple.imageio.*;
      */
     @Property(selector = "precisionEstimatesPerPoint")
     public native NSArray<NSNumber> getPrecisionEstimatesPerPoint();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pointsClassification")
+    public native VNPointsClassification getPointsClassification();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

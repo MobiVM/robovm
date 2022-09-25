@@ -38,23 +38,32 @@ import org.robovm.apple.imageio.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/Vision/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/VNPointsClassification/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Disconnected(0L),
+    OpenPath(1L),
+    ClosedPath(2L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
-    /*<constants>*/
-    public static final int Constant__VNDetectBarcodesRequestRevision2 = 2;
-    public static final int Constant__VNGeneratePersonSegmentationRequestRevision1 = 1;
-    public static final int Constant__VNDetectDocumentSegmentationRequestRevision1 = 1;
-    /*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
+    /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/VNPointsClassification/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/VNPointsClassification/*</name>*/ valueOf(long n) {
+        for (/*<name>*/VNPointsClassification/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/VNPointsClassification/*</name>*/.class.getName());
+    }
 }
