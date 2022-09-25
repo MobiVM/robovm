@@ -44,7 +44,11 @@ public enum /*<name>*/SHErrorCode/*</name>*/ implements NSErrorCode {
     MatchAttemptFailed(202L),
     CustomCatalogInvalid(300L),
     CustomCatalogInvalidURL(301L),
-    MediaLibrarySyncFailed(400L);
+    MediaLibrarySyncFailed(400L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    InternalError(500L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SHErrorCode.class); }/*</bind>*/

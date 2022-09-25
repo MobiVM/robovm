@@ -64,7 +64,14 @@ classes:
             '-appendBuffer:atTime:error:':
                 name: appendBuffer
                 throws: NSErrorException
-
+            '+generateSignatureFromAsset:completionHandler:':
+                name: generateSignature
+    SHRange: #since 16.0
+        methods:
+            '-initWithLowerBound:upperBound:':
+                name: init
+            '+rangeWithLowerBound:upperBound:':
+                exclude: true
 protocols:
     SHSessionDelegate: #since 15.0
         methods:

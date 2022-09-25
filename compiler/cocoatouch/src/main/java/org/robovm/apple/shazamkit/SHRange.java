@@ -33,41 +33,41 @@ import org.robovm.apple.avfoundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ShazamKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SHSignatureGenerator/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SHRange/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SHSignatureGeneratorPtr extends Ptr<SHSignatureGenerator, SHSignatureGeneratorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SHSignatureGenerator.class); }/*</bind>*/
+    /*<ptr>*/public static class SHRangePtr extends Ptr<SHRange, SHRangePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SHRange.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public SHSignatureGenerator() {}
-    protected SHSignatureGenerator(Handle h, long handle) { super(h, handle); }
-    protected SHSignatureGenerator(SkipInit skipInit) { super(skipInit); }
+    protected SHRange() {}
+    protected SHRange(Handle h, long handle) { super(h, handle); }
+    protected SHRange(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithLowerBound:upperBound:")
+    public SHRange(double lowerBound, double upperBound) { super((SkipInit) null); initObject(init(lowerBound, upperBound)); }
+    @Method(selector = "initWithCoder:")
+    public SHRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "lowerBound")
+    public native double getLowerBound();
+    @Property(selector = "upperBound")
+    public native double getUpperBound();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    public boolean appendBuffer(AVAudioPCMBuffer buffer, AVAudioTime time) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = appendBuffer(buffer, time, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "appendBuffer:atTime:error:")
-    private native boolean appendBuffer(AVAudioPCMBuffer buffer, AVAudioTime time, NSError.NSErrorPtr error);
-    @Method(selector = "signature")
-    public native SHSignature signature();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Method(selector = "generateSignatureFromAsset:completionHandler:")
-    public static native void generateSignature(AVAsset asset, @Block VoidBlock2<SHSignature, NSError> completionHandler);
+    @Method(selector = "initWithLowerBound:upperBound:")
+    protected native @Pointer long init(double lowerBound, double upperBound);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
