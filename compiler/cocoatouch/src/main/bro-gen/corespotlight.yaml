@@ -14,7 +14,7 @@ enums:
     CSIndexErrorCode: { nserror: true} #since 9.0
     CSSearchQueryErrorCode: { nserror: true } #since 10.0
     CSSuggestionKind: {}
-
+    CSSearchQuerySourceOptions: {}
 classes:
     CSCustomAttributeKey: #since 9.0
         methods:

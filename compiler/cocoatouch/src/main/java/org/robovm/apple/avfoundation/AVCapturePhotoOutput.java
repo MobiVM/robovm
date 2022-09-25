@@ -171,6 +171,8 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "isCameraCalibrationDataDeliverySupported")
     public native boolean isCameraCalibrationDataDeliverySupported();
+    @Property(selector = "supportedFlashModes")
+    public native NSArray<NSNumber> getSupportedFlashModes();
     /**
      * @since Available in iOS 12.0 and later.
      */

@@ -54,8 +54,27 @@ import org.robovm.apple.uikit.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*//*</properties>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "audioPlayerDidFinishPlaying:successfully:")
+    void didFinishPlaying(AVAudioPlayer player, boolean flag);
+    @Method(selector = "audioPlayerDecodeErrorDidOccur:error:")
+    void decodeErrorDidOccur(AVAudioPlayer player, NSError error);
+    /**
+     * @deprecated Deprecated in iOS 8.0.
+     */
+    @Deprecated
+    @Method(selector = "audioPlayerBeginInterruption:")
+    void beginInterruption(AVAudioPlayer player);
+    /**
+     * @deprecated Deprecated in iOS 8.0.
+     */
+    @Deprecated
+    @Method(selector = "audioPlayerEndInterruption:withOptions:")
+    void endInterruption(AVAudioPlayer player, @MachineSizedUInt long flags);
+    /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
 }

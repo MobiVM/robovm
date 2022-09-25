@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.coretext;
+package org.robovm.apple.corespotlight;
 
 /*<imports>*/
 import java.io.*;
@@ -28,23 +28,18 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coremedia.*;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/CTFontOptions/*</name>*/ extends Bits</*<name>*/CTFontOptions/*</name>*/> {
+public final class /*<name>*/CSSearchQuerySourceOptions/*</name>*/ extends Bits</*<name>*/CSSearchQuerySourceOptions/*</name>*/> {
     /*<values>*/
-    public static final CTFontOptions None = new CTFontOptions(0L);
-    public static final CTFontOptions Default = new CTFontOptions(0L);
-    public static final CTFontOptions PreventAutoActivation = new CTFontOptions(1L);
-    public static final CTFontOptions PreventAutoDownload = new CTFontOptions(2L);
-    public static final CTFontOptions PreferSystemFont = new CTFontOptions(4L);
+    public static final CSSearchQuerySourceOptions None = new CSSearchQuerySourceOptions(0L);
+    public static final CSSearchQuerySourceOptions Default = new CSSearchQuerySourceOptions(0L);
+    public static final CSSearchQuerySourceOptions AllowMail = new CSSearchQuerySourceOptions(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,17 +47,17 @@ public final class /*<name>*/CTFontOptions/*</name>*/ extends Bits</*<name>*/CTF
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/CTFontOptions/*</name>*/[] values = _values(/*<name>*/CTFontOptions/*</name>*/.class);
+    private static final /*<name>*/CSSearchQuerySourceOptions/*</name>*/[] values = _values(/*<name>*/CSSearchQuerySourceOptions/*</name>*/.class);
 
-    public /*<name>*/CTFontOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/CTFontOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/CTFontOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/CTFontOptions/*</name>*/(value, mask);
+    public /*<name>*/CSSearchQuerySourceOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/CSSearchQuerySourceOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/CSSearchQuerySourceOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/CSSearchQuerySourceOptions/*</name>*/(value, mask);
     }
-    protected /*<name>*/CTFontOptions/*</name>*/[] _values() {
+    protected /*<name>*/CSSearchQuerySourceOptions/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/CTFontOptions/*</name>*/[] values() {
+    public static /*<name>*/CSSearchQuerySourceOptions/*</name>*/[] values() {
         return values.clone();
     }
 }

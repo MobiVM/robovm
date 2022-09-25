@@ -85,6 +85,10 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "rawFileType")
     public native String getRawFileType();
+    @Property(selector = "flashMode")
+    public native AVCaptureFlashMode getFlashMode();
+    @Property(selector = "setFlashMode:")
+    public native void setFlashMode(AVCaptureFlashMode v);
     /**
      * @since Available in iOS 12.0 and later.
      */
