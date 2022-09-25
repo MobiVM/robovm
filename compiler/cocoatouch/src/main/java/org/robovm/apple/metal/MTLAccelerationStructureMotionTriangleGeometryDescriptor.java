@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<MTLMotionKeyframeData> getVertexBuffers();
     @Property(selector = "setVertexBuffers:")
     public native void setVertexBuffers(NSArray<MTLMotionKeyframeData> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "vertexFormat")
+    public native MTLAttributeFormat getVertexFormat();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setVertexFormat:")
+    public native void setVertexFormat(MTLAttributeFormat v);
     @Property(selector = "vertexStride")
     public native @MachineSizedUInt long getVertexStride();
     @Property(selector = "setVertexStride:")
@@ -74,6 +84,26 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedUInt long getTriangleCount();
     @Property(selector = "setTriangleCount:")
     public native void setTriangleCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "transformationMatrixBuffer")
+    public native MTLBuffer getTransformationMatrixBuffer();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTransformationMatrixBuffer:")
+    public native void setTransformationMatrixBuffer(MTLBuffer v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "transformationMatrixBufferOffset")
+    public native @MachineSizedUInt long getTransformationMatrixBufferOffset();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTransformationMatrixBufferOffset:")
+    public native void setTransformationMatrixBufferOffset(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

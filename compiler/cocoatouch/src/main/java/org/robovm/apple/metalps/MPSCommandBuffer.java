@@ -190,6 +190,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "accelerationStructureCommandEncoder")
     public native MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "accelerationStructureCommandEncoderWithDescriptor:")
+    public native MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder(MTLAccelerationStructurePassDescriptor descriptor);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "pushDebugGroup:")

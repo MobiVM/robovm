@@ -47,13 +47,32 @@ public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
     Apple6(1006L),
     Apple7(1007L),
     Apple8(1008L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLGPUFamilyMac2
+     */
+    @Deprecated
     Mac1(2001L),
     Mac2(2002L),
     Common1(3001L),
     Common2(3002L),
     Common3(3003L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLGPUFamilyMac2
+     */
+    @Deprecated
     MacCatalyst1(4001L),
-    MacCatalyst2(4002L);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLGPUFamilyMac2
+     */
+    @Deprecated
+    MacCatalyst2(4002L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Metal3(5001L);
     /*</values>*/
 
     /*<bind>*/

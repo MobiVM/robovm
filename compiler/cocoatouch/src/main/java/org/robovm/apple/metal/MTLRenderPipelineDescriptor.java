@@ -64,8 +64,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLVertexDescriptor getVertexDescriptor();
     @Property(selector = "setVertexDescriptor:")
     public native void setVertexDescriptor(MTLVertexDescriptor v);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use rasterSampleCount
+     */
+    @Deprecated
     @Property(selector = "sampleCount")
     public native @MachineSizedUInt long getSampleCount();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use rasterSampleCount
+     */
+    @Deprecated
     @Property(selector = "setSampleCount:")
     public native void setSampleCount(@MachineSizedUInt long v);
     @Property(selector = "rasterSampleCount")

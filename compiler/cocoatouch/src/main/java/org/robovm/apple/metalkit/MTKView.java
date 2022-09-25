@@ -106,6 +106,16 @@ import org.robovm.apple.coreanimation.*;
     public native MTLPixelFormat getDepthStencilPixelFormat();
     @Property(selector = "setDepthStencilPixelFormat:")
     public native void setDepthStencilPixelFormat(MTLPixelFormat v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "depthStencilStorageMode")
+    public native MTLStorageMode getDepthStencilStorageMode();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDepthStencilStorageMode:")
+    public native void setDepthStencilStorageMode(MTLStorageMode v);
     @Property(selector = "sampleCount")
     public native @MachineSizedUInt long getSampleCount();
     @Property(selector = "setSampleCount:")

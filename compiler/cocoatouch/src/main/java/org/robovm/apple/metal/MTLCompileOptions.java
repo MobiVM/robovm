@@ -97,15 +97,25 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setLibraries:")
     public native void setLibraries(NSArray<?> v);
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "preserveInvariance")
     public native boolean isPreserveInvariance();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "setPreserveInvariance:")
     public native void setPreserveInvariance(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "optimizationLevel")
+    public native MTLLibraryOptimizationLevel getOptimizationLevel();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setOptimizationLevel:")
+    public native void setOptimizationLevel(MTLLibraryOptimizationLevel v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

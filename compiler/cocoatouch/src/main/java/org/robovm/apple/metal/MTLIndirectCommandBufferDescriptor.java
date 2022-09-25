@@ -86,6 +86,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxKernelBufferBindCount:")
     public native void setMaxKernelBufferBindCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supportRayTracing")
+    public native boolean isSupportRayTracing();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSupportRayTracing:")
+    public native void setSupportRayTracing(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

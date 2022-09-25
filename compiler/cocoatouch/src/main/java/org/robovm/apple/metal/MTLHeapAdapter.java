@@ -100,5 +100,25 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("newTextureWithDescriptor:offset:")
     public MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithSize:")
+    public MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithDescriptor:")
+    public MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithSize:offset:")
+    public MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size, @MachineSizedUInt long offset) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithDescriptor:offset:")
+    public MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor, @MachineSizedUInt long offset) { return null; }
     /*</methods>*/
 }

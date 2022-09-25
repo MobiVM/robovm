@@ -100,6 +100,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTextureWithDescriptor:offset:")
     MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithSize:")
+    MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithDescriptor:")
+    MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithSize:offset:")
+    MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithDescriptor:offset:")
+    MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor, @MachineSizedUInt long offset);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

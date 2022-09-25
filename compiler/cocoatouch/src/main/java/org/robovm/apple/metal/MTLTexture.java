@@ -143,6 +143,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "compressionType")
     public native MTLTextureCompressionType getCompressionType();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    public native @ByVal MTLResourceID getGpuResourceID();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "swizzle")

@@ -54,8 +54,14 @@ import org.robovm.apple.dispatch.*;
     public native NSArray<?> getFunctions();
     @Property(selector = "setFunctions:")
     public native void setFunctions(NSArray<?> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "binaryFunctions")
     public native NSArray<?> getBinaryFunctions();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setBinaryFunctions:")
     public native void setBinaryFunctions(NSArray<?> v);
     @Property(selector = "groups")

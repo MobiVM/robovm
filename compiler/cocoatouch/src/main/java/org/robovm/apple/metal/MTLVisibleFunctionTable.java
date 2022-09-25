@@ -46,7 +46,11 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    @ByVal MTLResourceID getGpuResourceID();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setFunction:atIndex:")
