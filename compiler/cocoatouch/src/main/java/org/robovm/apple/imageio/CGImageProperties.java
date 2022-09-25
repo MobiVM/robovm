@@ -451,6 +451,11 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyJFIFDictionary", optional=true)
         public static native CFString JFIFDictionary();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEIFDictionary", optional=true)
+        public static native CFString HEIFDictionary();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyHEICSDictionary", optional=true)
@@ -711,6 +716,16 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyGroupImageIsAlternateImage", optional=true)
         public static native CFString GroupImageIsAlternateImage();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageBaseline", optional=true)
+        public static native CFString GroupImageBaseline();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageDisparityAdjustment", optional=true)
+        public static native CFString GroupImageDisparityAdjustment();
     }
     /*</keys>*/
 }
