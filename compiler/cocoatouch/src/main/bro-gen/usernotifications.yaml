@@ -117,6 +117,8 @@ classes:
                 name: getDeliveredNotifications
             '-removeDeliveredNotificationsWithIdentifiers:':
                 name: removeDeliveredNotifications
+            '-setBadgeCount:withCompletionHandler:':
+                name: setBadgeCount
     UNNotificationActionIcon: #since 15.0
         methods:
             '+iconWithTemplateImageName:':
