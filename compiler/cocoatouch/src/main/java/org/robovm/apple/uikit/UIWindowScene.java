@@ -102,6 +102,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "windowingBehaviors")
     public native UISceneWindowingBehaviors getWindowingBehaviors();
+    @Property(selector = "isFullScreen")
+    public native boolean isFullScreen();
     /**
      * @since Available in iOS 15.0 and later.
      */

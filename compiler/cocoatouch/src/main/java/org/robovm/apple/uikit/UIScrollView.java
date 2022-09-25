@@ -177,6 +177,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getDecelerationRate();
     @Property(selector = "setDecelerationRate:")
     public native void setDecelerationRate(@MachineSizedFloat double v);
+    @Property(selector = "indexDisplayMode")
+    public native UIScrollViewIndexDisplayMode getIndexDisplayMode();
+    @Property(selector = "setIndexDisplayMode:")
+    public native void setIndexDisplayMode(UIScrollViewIndexDisplayMode v);
     @Property(selector = "isTracking")
     public native boolean isTracking();
     @Property(selector = "isDragging")
@@ -219,6 +223,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIPanGestureRecognizer getPanGestureRecognizer();
     @Property(selector = "pinchGestureRecognizer")
     public native UIPinchGestureRecognizer getPinchGestureRecognizer();
+    @Property(selector = "directionalPressGestureRecognizer")
+    public native UIGestureRecognizer getDirectionalPressGestureRecognizer();
     @Property(selector = "keyboardDismissMode")
     public native UIScrollViewKeyboardDismissMode getKeyboardDismissMode();
     @Property(selector = "setKeyboardDismissMode:")

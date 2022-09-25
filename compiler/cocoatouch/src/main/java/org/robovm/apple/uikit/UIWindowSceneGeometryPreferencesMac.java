@@ -42,39 +42,32 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneSizeRestrictions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWindowSceneGeometryPreferencesMac/*</name>*/ 
+    extends /*<extends>*/UIWindowSceneGeometryPreferences/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneSizeRestrictionsPtr extends Ptr<UISceneSizeRestrictions, UISceneSizeRestrictionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneSizeRestrictions.class); }/*</bind>*/
+    /*<ptr>*/public static class UIWindowSceneGeometryPreferencesMacPtr extends Ptr<UIWindowSceneGeometryPreferencesMac, UIWindowSceneGeometryPreferencesMacPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UIWindowSceneGeometryPreferencesMac.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UISceneSizeRestrictions() {}
-    protected UISceneSizeRestrictions(Handle h, long handle) { super(h, handle); }
-    protected UISceneSizeRestrictions(SkipInit skipInit) { super(skipInit); }
+    public UIWindowSceneGeometryPreferencesMac() {}
+    protected UIWindowSceneGeometryPreferencesMac(Handle h, long handle) { super(h, handle); }
+    protected UIWindowSceneGeometryPreferencesMac(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSystemFrame:")
+    public UIWindowSceneGeometryPreferencesMac(@ByVal CGRect systemFrame) { super((SkipInit) null); initObject(init(systemFrame)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "minimumSize")
-    public native @ByVal CGSize getMinimumSize();
-    @Property(selector = "setMinimumSize:")
-    public native void setMinimumSize(@ByVal CGSize v);
-    @Property(selector = "maximumSize")
-    public native @ByVal CGSize getMaximumSize();
-    @Property(selector = "setMaximumSize:")
-    public native void setMaximumSize(@ByVal CGSize v);
-    @Property(selector = "allowsFullScreen")
-    public native boolean allowsFullScreen();
-    @Property(selector = "setAllowsFullScreen:")
-    public native void setAllowsFullScreen(boolean v);
+    @Property(selector = "systemFrame")
+    public native @ByVal CGRect getSystemFrame();
+    @Property(selector = "setSystemFrame:")
+    public native void setSystemFrame(@ByVal CGRect v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithSystemFrame:")
+    protected native @Pointer long init(@ByVal CGRect systemFrame);
     /*</methods>*/
 }

@@ -42,39 +42,33 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 13.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UISceneSizeRestrictions/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class UISceneSizeRestrictionsPtr extends Ptr<UISceneSizeRestrictions, UISceneSizeRestrictionsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UISceneSizeRestrictions.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/UINSToolbarItemPresentationSize/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unspecified(-1L),
+    Regular(0L),
+    Small(1L),
+    Large(3L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected UISceneSizeRestrictions() {}
-    protected UISceneSizeRestrictions(Handle h, long handle) { super(h, handle); }
-    protected UISceneSizeRestrictions(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "minimumSize")
-    public native @ByVal CGSize getMinimumSize();
-    @Property(selector = "setMinimumSize:")
-    public native void setMinimumSize(@ByVal CGSize v);
-    @Property(selector = "maximumSize")
-    public native @ByVal CGSize getMaximumSize();
-    @Property(selector = "setMaximumSize:")
-    public native void setMaximumSize(@ByVal CGSize v);
-    @Property(selector = "allowsFullScreen")
-    public native boolean allowsFullScreen();
-    @Property(selector = "setAllowsFullScreen:")
-    public native void setAllowsFullScreen(boolean v);
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/UINSToolbarItemPresentationSize/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/UINSToolbarItemPresentationSize/*</name>*/ valueOf(long n) {
+        for (/*<name>*/UINSToolbarItemPresentationSize/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/UINSToolbarItemPresentationSize/*</name>*/.class.getName());
+    }
 }
