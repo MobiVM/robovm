@@ -32,37 +32,27 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXAppLaunchMetric/*</name>*/ 
-    extends /*<extends>*/MXMetric/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXAppLaunchDiagnostic/*</name>*/ 
+    extends /*<extends>*/MXDiagnostic/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MXAppLaunchMetricPtr extends Ptr<MXAppLaunchMetric, MXAppLaunchMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXAppLaunchMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class MXAppLaunchDiagnosticPtr extends Ptr<MXAppLaunchDiagnostic, MXAppLaunchDiagnosticPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXAppLaunchDiagnostic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXAppLaunchMetric() {}
-    protected MXAppLaunchMetric(Handle h, long handle) { super(h, handle); }
-    protected MXAppLaunchMetric(SkipInit skipInit) { super(skipInit); }
+    public MXAppLaunchDiagnostic() {}
+    protected MXAppLaunchDiagnostic(Handle h, long handle) { super(h, handle); }
+    protected MXAppLaunchDiagnostic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "histogrammedTimeToFirstDraw")
-    public native MXHistogram<NSUnitDuration> getHistogrammedTimeToFirstDraw();
-    @Property(selector = "histogrammedApplicationResumeTime")
-    public native MXHistogram<NSUnitDuration> getHistogrammedApplicationResumeTime();
-    /**
-     * @since Available in iOS 15.2 and later.
-     */
-    @Property(selector = "histogrammedOptimizedTimeToFirstDraw")
-    public native MXHistogram<NSUnitDuration> getHistogrammedOptimizedTimeToFirstDraw();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "histogrammedExtendedLaunch")
-    public native MXHistogram<NSUnitDuration> getHistogrammedExtendedLaunch();
+    @Property(selector = "callStackTree")
+    public native MXCallStackTree getCallStackTree();
+    @Property(selector = "launchDuration")
+    public native NSMeasurement<NSUnitDuration> getLaunchDuration();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
