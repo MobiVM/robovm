@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,9 +38,9 @@ import org.robovm.apple.avfoundation.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPPlayableContentDataSourceAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPNowPlayingSessionDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MPPlayableContentDataSource/*</implements>*/ {
+    /*<implements>*/implements MPNowPlayingSessionDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -53,20 +53,9 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("beginLoadingChildItemsAtIndexPath:completionHandler:")
-    public void beginLoadingChildItems(NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) {}
-    @NotImplemented("childItemsDisplayPlaybackProgressAtIndexPath:")
-    public boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath) { return false; }
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use CarPlay framework
-     */
-    @Deprecated
-    @NotImplemented("contentItemForIdentifier:completionHandler:")
-    public void getContentItem(String identifier, @Block VoidBlock2<MPContentItem, NSError> completionHandler) {}
-    @NotImplemented("numberOfChildItemsAtIndexPath:")
-    public @MachineSizedSInt long getNumberOfChildItems(NSIndexPath indexPath) { return 0; }
-    @NotImplemented("contentItemAtIndexPath:")
-    public MPContentItem getContentItem(NSIndexPath indexPath) { return null; }
+    @NotImplemented("nowPlayingSessionDidChangeActive:")
+    public void nowPlayingSessionDidChangeActive(MPNowPlayingSession nowPlayingSession) {}
+    @NotImplemented("nowPlayingSessionDidChangeCanBecomeActive:")
+    public void nowPlayingSessionDidChangeCanBecomeActive(MPNowPlayingSession nowPlayingSession) {}
     /*</methods>*/
 }

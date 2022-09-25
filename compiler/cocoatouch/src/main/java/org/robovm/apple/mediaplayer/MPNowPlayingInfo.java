@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -407,6 +409,16 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyCurrentPlaybackDate", optional=true)
         public static native NSString CurrentPlaybackDate();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyAdTimeRanges", optional=true)
+        public static native NSString AdTimeRanges();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyCreditsStartTime", optional=true)
+        public static native NSString CreditsStartTime();
     }
     /*</keys>*/
 }
