@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,49 +36,38 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKRoute/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MKRoutePtr extends Ptr<MKRoute, MKRoutePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MKRoute.class); }/*</bind>*/
+    /*<ptr>*/public static class MKMapConfigurationPtr extends Ptr<MKMapConfiguration, MKMapConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKMapConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MKRoute() {}
-    protected MKRoute(Handle h, long handle) { super(h, handle); }
-    protected MKRoute(SkipInit skipInit) { super(skipInit); }
+    protected MKMapConfiguration() {}
+    protected MKMapConfiguration(Handle h, long handle) { super(h, handle); }
+    protected MKMapConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MKMapConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "advisoryNotices")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAdvisoryNotices();
-    @Property(selector = "distance")
-    public native double getDistance();
-    @Property(selector = "expectedTravelTime")
-    public native double getExpectedTravelTime();
-    @Property(selector = "transportType")
-    public native MKDirectionsTransportType getTransportType();
-    @Property(selector = "polyline")
-    public native MKPolyline getPolyline();
-    @Property(selector = "steps")
-    public native NSArray<MKRouteStep> getSteps();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "hasTolls")
-    public native boolean hasTolls();
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Property(selector = "hasHighways")
-    public native boolean hasHighways();
+    @Property(selector = "elevationStyle")
+    public native MKMapElevationStyle getElevationStyle();
+    @Property(selector = "setElevationStyle:")
+    public native void setElevationStyle(MKMapElevationStyle v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

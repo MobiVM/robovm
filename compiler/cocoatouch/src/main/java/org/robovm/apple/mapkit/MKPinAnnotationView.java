@@ -37,7 +37,7 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Use MKMarkerAnnotationView
+ * @deprecated Deprecated in iOS 16.0. Use MKMarkerAnnotationView
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
