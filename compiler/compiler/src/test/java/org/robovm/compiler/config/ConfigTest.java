@@ -445,4 +445,191 @@ public class ConfigTest {
         assertFalse(config.hasSwiftSupport());
         assertNull(config.getSwiftSupport());
     }
+
+
+    @Test
+    public void testXCFrameworkLookupResolved() throws Exception {
+        // testing simple xcframework expansion
+        // path should be expanded with simulator platform
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+        Config.Builder builder = new Config.Builder();
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.arm64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addFramework("candidate");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        assertEquals(
+                Arrays.asList(frameworkLocation, new File(xcFramework, "ios-arm64-simulator/")),
+                config.getFrameworkPaths());
+        assertEquals(Collections.singletonList("library3"), config.getFrameworks());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testXCFrameworkLookupFailedIfNoMatchingLib() throws Exception {
+        // when existing arch/os combination is not found in xcframework -- throw an exception
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+        Config.Builder builder = new Config.Builder();
+        builder.tmpDir(tmpDir);
+        builder.os(OS.macosx);
+        builder.arch(new Arch(CpuArch.arm64, Environment.Native));
+        builder.targetType(ConsoleTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addFramework("candidate");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        config.getFrameworkPaths(); // exception here
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testXCFrameworkLookupFailedIfContainsMultipleMatchingLibs() throws Exception {
+        // when xcframework contains two frameworks matching same os/arch it should fail with exception
+        // it should be ignored as invalid
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+        Config.Builder builder = new Config.Builder();
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.arm64, Environment.Native));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addFramework("candidate");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        config.getFrameworkPaths(); // exception here
+    }
+
+    @Test
+    public void testXCFrameworkLookupResolvedIntoStaticLib() throws Exception {
+        // when xcframework contains static lib
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+        Config.Builder builder = new Config.Builder();
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addFramework("candidate");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        assertEquals(Collections.singletonList(frameworkLocation), config.getFrameworkPaths());
+        assertEquals(Collections.emptyList(), config.getFrameworks());
+        assertEquals(Arrays.asList(
+                new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), false)),
+                config.getLibs());
+    }
+
+    @Test
+    public void testXCFrameworkResolved() throws Exception {
+        // test that stand-alon <xcframeworks><path> parameter is resolved into static lib
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        Config.Builder builder = new Config.Builder();
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addXCFramework(xcFramework);
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        assertEquals(Collections.singletonList(frameworkLocation), config.getFrameworkPaths());
+        assertEquals(Collections.emptyList(), config.getFrameworks());
+        assertEquals(Arrays.asList(
+                        new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), false)),
+                config.getLibs());
+    }
+
+    @Test
+    public void testXCFrameworkLookupCanBeDisabled() throws Exception {
+        // testing that xcFrameworks can be disabled by config settings
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File frameworkLocation = new File(workingDirectory, "Frameworks");
+
+        String configText = "<config>\n" +
+                "  <experimental>\n" +
+                "    <xcFrameworkLookup>false</xcFrameworkLookup>\n" +
+                "  </experimental>\n" +
+                "</config>";
+        Config.Builder builder = new Config.Builder();
+        builder.read(new StringReader(configText), wd);
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.arm64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.addFrameworkPath(frameworkLocation);
+        builder.addFramework("candidate");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        File xcFramework = new File(frameworkLocation, "candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        assertEquals(
+                Collections.singletonList(frameworkLocation),
+                config.getFrameworkPaths());
+        assertEquals(Collections.singletonList("candidate"), config.getFrameworks());
+    }
+
 }
