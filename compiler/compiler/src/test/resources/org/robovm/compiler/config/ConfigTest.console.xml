@@ -19,6 +19,9 @@
     <enable>true</enable>
     <copySwiftLibs>true</copySwiftLibs>
   </swiftSupport>
+  <experimental>
+    <xcFrameworkLookup>true</xcFrameworkLookup>
+  </experimental>
   <resources>
     <resource>resources</resource>
     <resource>/usr/share/resources</resource>
