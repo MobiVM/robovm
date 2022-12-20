@@ -1020,16 +1020,6 @@ public class Config {
         dataLayout = new DataLayout(getTriple());
 
         osArchDepLibDir = new File(new File(home.libVmDir, os.toString()), sliceArch.toString());
-
-        if (treeShakerMode != null && treeShakerMode != TreeShakerMode.none
-                && os.getFamily() == Family.darwin && sliceArch.getCpuArch() == CpuArch.x86) {
-
-            logger.warn("Tree shaking is not supported when building "
-                    + "for OS X/iOS x86 32-bit due to a bug in Xcode's linker. No tree "
-                    + "shaking will be performed. Run in 64-bit mode instead to "
-                    + "use tree shaking.");
-            treeShakerMode = TreeShakerMode.none;
-        }
         dependencyGraph = new DependencyGraph(getTreeShakerMode());
 
         RamDiskTools ramDiskTools = new RamDiskTools();

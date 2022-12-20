@@ -688,8 +688,8 @@ public abstract class AbstractTarget implements Target {
         List<String> archesToRemove = new ArrayList<>();
 
         // simulator ones
-        if(archs.contains(CpuArch.x86.getClangName())) {
-            archesToRemove.add(CpuArch.x86.getClangName());
+        if(archs.contains("i386")) {
+            archesToRemove.add("i386");
         }
         if(archs.contains(CpuArch.x86_64.getClangName())) {
             archesToRemove.add(CpuArch.x86_64.getClangName());

@@ -16,17 +16,15 @@
  */
 package org.robovm.compiler.config;
 
-import java.nio.ByteOrder;
-
 import org.robovm.compiler.CompilerException;
-import org.robovm.llvm.Target;
+
+import java.nio.ByteOrder;
 
 /**
  * @author niklas
  *
  */
 public enum CpuArch {
-    x86("i386", "i386", "penryn", true, false),
     x86_64("x86_64", "x86_64", "penryn", false, false),
     thumbv7("thumbv7", "armv7", true, true),
     arm64("arm64", "arm64", false, true);
@@ -83,8 +81,6 @@ public enum CpuArch {
         String archProp = System.getProperty("os.arch").toLowerCase();
         if (archProp.matches("amd64|x86[-_]64")) {
             return CpuArch.x86_64;
-        } else if (archProp.matches("i386|x86")) {
-            return CpuArch.x86;
         } else if (archProp.matches("aarch64|arm64")) {
             // MacOSX m1 CPU
             return CpuArch.arm64;

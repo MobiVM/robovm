@@ -84,8 +84,8 @@ public class ConfigTest {
         assertEquals(Arrays.asList("javax.**.*"), config.getForceLinkClasses());
         assertEquals(OS.macosx, config.getOs());
         assertEquals(2, config.getArchs().size());
-        assertEquals(Arch.x86, config.getArchs().get(0));
-        assertEquals(Arch.x86_64, config.getArchs().get(1));
+        assertEquals(Arch.x86_64, config.getArchs().get(0));
+        assertEquals(Arch.arm64, config.getArchs().get(1));
     }
     
     @Test
@@ -107,7 +107,7 @@ public class ConfigTest {
         assertEquals(Arrays.asList("javax.**.*"), config.getForceLinkClasses());
         assertEquals(OS.macosx, config.getOs());
         assertEquals(1, config.getArchs().size());
-        assertEquals(Arch.x86, config.getArchs().get(0));
+        assertEquals(Arch.x86_64, config.getArchs().get(0));
     }
     
     @Test
@@ -132,7 +132,7 @@ public class ConfigTest {
                     .flatten(true));
         builder.addForceLinkClass("javax.**.*");
         builder.os(OS.macosx);
-        builder.archs(Arch.x86, Arch.x86_64);
+        builder.archs(Arch.x86_64, Arch.arm64);
         
         StringWriter out = new StringWriter();
         builder.write(out, wd);
@@ -254,17 +254,17 @@ public class ConfigTest {
     public void testMergeConfigsFromClasspath() throws Exception {
         File tmpDir = createTempDir();
         File cacheDir = new File(tmpDir, "cache");
-        File p1 = createMergeConfig(tmpDir, "p1", "Foo", OS.macosx, Arch.x86, false);
-        File p2 = createMergeConfig(tmpDir, "p2", "Wooz", OS.linux, Arch.x86, false);
-        // Create a jar file with both x86 and x86_64 by first creating a folder for x86 in p3/ 
+        File p1 = createMergeConfig(tmpDir, "p1", "Foo", OS.macosx, Arch.arm64, false);
+        File p2 = createMergeConfig(tmpDir, "p2", "Wooz", OS.linux, Arch.x86_64, false);
+        // Create a jar file with both arm64 and x86_64 by first creating a folder for x86 in p3/
         // and then passing p3/ again but this time compress it to a jar.
-                  createMergeConfig(tmpDir, "p3", "Baaz", OS.macosx, Arch.x86, false);
+                  createMergeConfig(tmpDir, "p3", "Baaz", OS.macosx, Arch.arm64, false);
         File p3 = createMergeConfig(tmpDir, "p3", "Raaz", OS.macosx, Arch.x86_64, true);
         
         Config.Builder builder = new Config.Builder();
         builder.cacheDir(cacheDir);
         builder.os(OS.macosx);
-        builder.arch(Arch.x86);
+        builder.arch(Arch.arm64);
         builder.targetType(ConsoleTarget.TYPE);
         builder.mainClass("Main");
         builder.addClasspathEntry(p1);
@@ -280,28 +280,28 @@ public class ConfigTest {
         builder.home(fakeHome);
         Config config = builder.build();
 
-        File p1X86Root = new File(p1, "META-INF/robovm/macosx/x86");
-        File p3X86Cache = config.getCacheDir(config.getClazzes().getClasspathPaths().get(2));
-        File p3X86Root = new File(p3X86Cache.getParentFile(), p3X86Cache.getName() + ".extracted/META-INF/robovm/macosx/x86");
+        File p1XArm64Root = new File(p1, "META-INF/robovm/macosx/arm64");
+        File p3XArm64Cache = config.getCacheDir(config.getClazzes().getClasspathPaths().get(2));
+        File p3XArm64Root = new File(p3XArm64Cache.getParentFile(), p3XArm64Cache.getName() + ".extracted/META-INF/robovm/macosx/arm64");
 
         assertEquals(Arrays.asList("FOO*", "BAAZ*", "YADA*"), config.getExportedSymbols());
         assertEquals(Arrays.asList("com.foo.**", "com.baaz.**", "org.yada.**"), config.getForceLinkClasses());
         assertEquals(Arrays.asList(
-                new File(p1X86Root, "foo/bar"), 
-                new File(p3X86Root, "baaz/bar"), 
+                new File(p1XArm64Root, "foo/bar"),
+                new File(p3XArm64Root, "baaz/bar"),
                 new File(p1, "yada")), 
                 config.getFrameworkPaths());
         assertEquals(Arrays.asList("Foo", "Baaz", "Yada"), config.getFrameworks());
         assertEquals(Arrays.asList(
                 new Lib("foo", true), 
-                new Lib(new File(p1X86Root, "libfoo.a").getAbsolutePath(), true), 
+                new Lib(new File(p1XArm64Root, "libfoo.a").getAbsolutePath(), true),
                 new Lib("baaz", true), 
-                new Lib(new File(p3X86Root, "libbaaz.a").getAbsolutePath(), true), 
+                new Lib(new File(p3XArm64Root, "libbaaz.a").getAbsolutePath(), true),
                 new Lib("yada", true)), 
                 config.getLibs());
         assertEquals(Arrays.asList(
-                new Resource(new File(p1X86Root, "resources")), 
-                new Resource(new File(p3X86Root, "resources")), 
+                new Resource(new File(p1XArm64Root, "resources")),
+                new Resource(new File(p3XArm64Root, "resources")),
                 new Resource(new File(p1, "resources"))), 
                 config.getResources());
         assertEquals(Arrays.asList("WeakFoo", "WeakBaaz", "WeakYada"), config.getWeakFrameworks());
@@ -340,7 +340,7 @@ public class ConfigTest {
         builder.tmpDir(tmpDir);
         builder.cacheDir(cacheDir);
         builder.os(OS.macosx);
-        builder.arch(Arch.x86);
+        builder.arch(Arch.arm64);
         builder.targetType(ConsoleTarget.TYPE);
         builder.mainClass("Main");
         builder.addBootClasspathEntry(new File(tmpDir, "bcp1"));

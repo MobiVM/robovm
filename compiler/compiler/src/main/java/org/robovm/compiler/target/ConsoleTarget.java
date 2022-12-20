@@ -106,7 +106,7 @@ public class ConsoleTarget extends AbstractTarget {
 
         if (config.getOs() == OS.macosx) {
             ccArgs.add("--target=" + config.getClangTriple());
-            if (config.getArch().getCpuArch() == CpuArch.x86 || config.isDebug()) {
+            if (config.isDebug()) {
                 ccArgs.add("-Wl,-no_pie");
             }
         }

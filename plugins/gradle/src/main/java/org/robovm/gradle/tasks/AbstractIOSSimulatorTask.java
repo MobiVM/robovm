@@ -44,7 +44,7 @@ public abstract class AbstractIOSSimulatorTask extends AbstractSimulatorTask {
         if (extArchName != null) {
             Arch arch = Arch.parse(extArchName);
             cpuArch = arch.getCpuArch();
-            if (cpuArch != CpuArch.arm64 && cpuArch != CpuArch.x86_64 && cpuArch != CpuArch.x86)
+            if (cpuArch != CpuArch.arm64 && cpuArch != CpuArch.x86_64)
                 throw new IllegalArgumentException("Unsupported iOS Simulator arch " + extArchName);
         }
         return new Arch(cpuArch, Environment.Simulator);
