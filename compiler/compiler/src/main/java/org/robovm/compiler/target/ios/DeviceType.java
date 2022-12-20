@@ -202,10 +202,6 @@ public class DeviceType implements Comparable<DeviceType> {
                                 archs.add(new Arch(CpuArch.arm64, Environment.Simulator));
                             archs.add(new Arch(CpuArch.x86_64, Environment.Simulator));
                         }
-                        if (DEFAULT_HOST_ARCH != CpuArch.arm64 && !version.isSameOrBetter(ONLY_64BIT_IOS_VERSION)) {
-                            // 32 bit device. not supported on Arm
-                            archs.add(new Arch(CpuArch.x86, Environment.Simulator));
-                        }
 
                         String udid = device.get("udid").toString();
                         DeviceType watchPair = pairs.get(udid);

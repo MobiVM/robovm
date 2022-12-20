@@ -176,11 +176,6 @@ public class FrameworkTarget extends AbstractTarget {
 		ccArgs.add("-current_version");
 		ccArgs.add("1");
 
-		if (this.config.getArch().getCpuArch() == CpuArch.x86) {
-			ccArgs.add("-read_only_relocs");
-			ccArgs.add("suppress");
-		}
-
 		ccArgs.add("-install_name");
 		ccArgs.add(String.format("@rpath/%s.framework/%s", config.getImageName(), config.getImageName()));
 

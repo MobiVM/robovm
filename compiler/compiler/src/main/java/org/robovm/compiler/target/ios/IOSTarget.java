@@ -120,7 +120,7 @@ public class IOSTarget extends AbstractTarget {
         Environment env = arch.getEnv();
         CpuArch cpuArch = arch.getCpuArch();
         return env == Environment.Simulator &&
-                (cpuArch == CpuArch.x86 || cpuArch == CpuArch.x86_64 || cpuArch == CpuArch.arm64);
+                (cpuArch == CpuArch.x86_64 || cpuArch == CpuArch.arm64);
     }
 
     public static boolean isDeviceArch(Arch arch) {
@@ -291,10 +291,6 @@ public class IOSTarget extends AbstractTarget {
             if (config.isEnableBitcode()) {
                 // tells clang to keep bitcode while linking
                 ccArgs.add("-fembed-bitcode");
-            }
-        } else {
-            if (config.getArch().getCpuArch() == CpuArch.x86) {
-                ccArgs.add("-Wl,-no_pie");
             }
         }
         ccArgs.add("-isysroot");

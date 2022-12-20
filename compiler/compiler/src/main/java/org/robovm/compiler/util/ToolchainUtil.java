@@ -434,11 +434,7 @@ public class ToolchainUtil {
         if (config.getCcBinPath() != null) {
             ccPath = config.getCcBinPath().getAbsolutePath();
         } else if (config.getOs() == OS.ios) {
-            if (config.getArch().getCpuArch() == CpuArch.x86) {
-                ccPath = getIOSSimClang();
-            } else {
-                ccPath = getIOSDevClang();
-            }
+            ccPath = getIOSDevClang();
         }
         return ccPath;
     }
