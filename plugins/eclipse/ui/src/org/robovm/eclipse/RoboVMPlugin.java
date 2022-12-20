@@ -107,22 +107,20 @@ public class RoboVMPlugin extends AbstractUIPlugin implements IStartup {
     public static final String IMAGE_NEW_IOS_VIEW_CONTROLLER_BANNER = PLUGIN_ID + ".image.newIOSViewControllerBanner";
     public static final String IMAGE_NEW_IOS_VIEW_BANNER = PLUGIN_ID + ".image.newIOSViewBanner";
 
-    public static final CpuArch[] ALL_ARCH_VALUES = new CpuArch[] { CpuArch.thumbv7, CpuArch.arm64, CpuArch.x86, CpuArch.x86_64 };
+    public static final CpuArch[] ALL_ARCH_VALUES = new CpuArch[] { CpuArch.thumbv7, CpuArch.arm64, CpuArch.x86_64 };
     public static final String[] ALL_ARCH_NAMES =
             new String[] {
                 "32-bit ARM (" + CpuArch.thumbv7 + ")",
                 "64-bit ARM (" + CpuArch.arm64 + ")",
-                "32-bit x86 (" + CpuArch.x86 + ")",
                 "64-bit x86 (" + CpuArch.x86_64 + ")" };
     public static final CpuArch[] IOS_DEVICE_ARCH_VALUES = new CpuArch[] { CpuArch.thumbv7, CpuArch.arm64 };
     public static final String[] IOS_DEVICE_ARCH_NAMES =
             new String[] {
                 "32-bit (" + CpuArch.thumbv7 + ")",
                 "64-bit (" + CpuArch.arm64 + ")" };
-    public static final CpuArch[] IOS_SIM_ARCH_VALUES = new CpuArch[] { CpuArch.x86, CpuArch.x86_64, CpuArch.arm64 };
+    public static final CpuArch[] IOS_SIM_ARCH_VALUES = new CpuArch[] { CpuArch.x86_64, CpuArch.arm64 };
     public static final String[] IOS_SIM_ARCH_NAMES =
             new String[] {
-                "32-bit (" + CpuArch.x86 + ")",
                 "64-bit (" + CpuArch.x86_64 + ")",
                 "64-bit (" + CpuArch.arm64 + ")" };
 
