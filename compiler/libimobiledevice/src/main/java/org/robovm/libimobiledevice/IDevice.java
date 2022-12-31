@@ -19,15 +19,7 @@ package org.robovm.libimobiledevice;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.robovm.libimobiledevice.binding.IDeviceConnectionRefOut;
-import org.robovm.libimobiledevice.binding.IDeviceError;
-import org.robovm.libimobiledevice.binding.IDeviceRef;
-import org.robovm.libimobiledevice.binding.IDeviceRefOut;
-import org.robovm.libimobiledevice.binding.IntOut;
-import org.robovm.libimobiledevice.binding.LibIMobileDevice;
-import org.robovm.libimobiledevice.binding.StringArray;
-import org.robovm.libimobiledevice.binding.StringArrayOut;
-import org.robovm.libimobiledevice.binding.StringOut;
+import org.robovm.libimobiledevice.binding.*;
 
 /**
  * Handles device connection communication.
@@ -54,7 +46,9 @@ public class IDevice implements AutoCloseable {
         }
         IDeviceRefOut refOut = new IDeviceRefOut();
         try {
-            checkResult(LibIMobileDevice.idevice_new(refOut, udid));
+            checkResult(LibIMobileDevice.idevice_new_with_options(refOut, udid,
+                    IDeviceOptions.IDEVICE_LOOKUP_USBMUX.swigValue() |
+                    IDeviceOptions.IDEVICE_LOOKUP_NETWORK.swigValue()));
             this.ref = refOut.getValue();
         } finally {
             refOut.delete();
@@ -133,15 +127,15 @@ public class IDevice implements AutoCloseable {
      * @return the UDIDs of the currently available devices.
      */
     public static String[] listUdids() {
-        StringArrayOut devicesOut = new StringArrayOut();
+        IDeviceInfoArrayOut devicesOut = new IDeviceInfoArrayOut();
         IntOut countOut = new IntOut();
         try {
-            checkResult(LibIMobileDevice.idevice_get_device_list(devicesOut, countOut));
-            StringArray devices = devicesOut.getValue();
+            checkResult(LibIMobileDevice.idevice_get_device_list_extended(devicesOut, countOut));
+            IDeviceInfoArray devices = devicesOut.getValue();
             int count = countOut.getValue();
             String[] udids = new String[count];
             for (int i = 0; i < count; i++) {
-                udids[i] = devices.get(i);
+                udids[i] = devices.get(i).getUdid();
             }
             return udids;
         } catch (LibIMobileDeviceException e) {

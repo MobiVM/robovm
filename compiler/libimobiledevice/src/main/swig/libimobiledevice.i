@@ -17,6 +17,7 @@
 %enddef
 CALLBACK(instproxy_status_cb_t)
 CALLBACK(idevice_event_cb_t)
+CALLBACK(lockdownd_cu_pairing_cb_t)
 
 // Map user_data passed to callbacks as int. We will pass in a
 // callback id which is mapped to a callback object instance in Java.
@@ -24,6 +25,15 @@ CALLBACK(idevice_event_cb_t)
 %typemap(jtype) void *user_data "int"
 %typemap(jstype) void *user_data "int"
 %typemap(javain) void *user_data "$javainput"
+%typemap(jni) void *cb_user_data "jint"
+%typemap(jtype) void *cb_user_data "int"
+%typemap(jstype) void *cb_user_data "int"
+%typemap(javain) void *cb_user_data "$javainput"
+// idevice_options is a bitmap, use it as int to combine options
+%typemap(jni) enum idevice_options options "jint"
+%typemap(jtype) enum idevice_options options "int"
+%typemap(jstype) enum idevice_options options "int"
+%typemap(javain) enum idevice_options options "$javainput"
 
 //
 // Registering pointers to structs
@@ -35,10 +45,10 @@ REF_CLASS(plist_t, PlistRef)
 REF_CLASS(afc_client_t, AfcClientRef)
 REF_CLASS(instproxy_client_t, InstproxyClientRef)
 REF_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRef)
+REF_CLASS(idevice_subscription_context_t, IDeviceSubscriptionContext)
+REF_CLASS(void *conn_data, IDeviceInfoConnData)
 // -- debug server
 REF_CLASS(debugserver_client_t, DebugServerClientRef)
-
-
 
 
 //
@@ -46,6 +56,8 @@ REF_CLASS(debugserver_client_t, DebugServerClientRef)
 //
 ARRAY_CLASS(char *, StringArray)
 ARRAY_CLASS(jbyte, ByteArray)
+ARRAY_CLASS(struct idevice_info*, IDeviceInfoArray)
+ARRAY_ARG(IDeviceInfoArray, idevice_info_t *)
 
 //
 // Registering container classes that will be used to receive value by pointer
@@ -55,6 +67,7 @@ OUT_CLASS(jlong, LongOut)
 OUT_CLASS(char *, StringOut)
 OUT_CLASS(StringArray *, StringArrayOut)
 OUT_CLASS(ByteArray *, ByteArrayOut)
+OUT_CLASS(IDeviceInfoArray *, IDeviceInfoArrayOut, if (self->value) idevice_device_list_extended_free(self->value))
 OUT_CLASS(idevice_t, IDeviceRefOut)
 OUT_CLASS(idevice_connection_t, IDeviceConnectionRefOut)
 OUT_CLASS(lockdownd_client_t, LockdowndClientRefOut)
@@ -63,6 +76,7 @@ OUT_CLASS(afc_client_t, AfcClientRefOut)
 OUT_CLASS(plist_t, PlistRefOut)
 OUT_CLASS(instproxy_client_t, InstproxyClientRefOut)
 OUT_CLASS(mobile_image_mounter_client_t, MobileImageMounterClientRefOut)
+OUT_CLASS(idevice_subscription_context_t, IDeviceSubscriptionContextOut)
 // -- debug server
 OUT_CLASS(debugserver_client_t, DebugServerClientRefOut)
 
@@ -112,6 +126,8 @@ OUT_ARG(PlistRefOut, plist_t *)
 OUT_ARG(AfcClientRefOut, afc_client_t *client)
 OUT_ARG(InstproxyClientRefOut, instproxy_client_t *client)
 OUT_ARG(MobileImageMounterClientRefOut, mobile_image_mounter_client_t *client)
+OUT_ARG(IDeviceInfoArrayOut, idevice_info_t **devices)
+OUT_ARG(IDeviceSubscriptionContextOut, idevice_subscription_context_t *context)
 // -- debug server
 OUT_ARG(DebugServerClientRefOut, debugserver_client_t *client)
 
@@ -119,8 +135,12 @@ OUT_ARG(DebugServerClientRefOut, debugserver_client_t *client)
 %apply jboolean {uint8_t sslBypass};
 
 %rename (IDeviceEvent) idevice_event_t;
+%rename (IDeviceInfo) idevice_info;
+%rename (IDeviceConnectiontype) idevice_connection_type;
+%rename (IDeviceOptions) idevice_options;
 %rename (IDeviceEventType) idevice_event_type;
 %rename (LockdowndPairRecordStruct) lockdownd_pair_record;
+%rename (LockdowndCuPairingCbType) lockdownd_cu_pairing_cb_type_t;
 %rename (LockdowndServiceDescriptorStruct) lockdownd_service_descriptor;
 %rename (AfcLockOperation) afc_lock_op_t;
 %rename (AfcFileMode) afc_file_mode_t;
@@ -151,6 +171,8 @@ OUT_ARG(DebugServerClientRefOut, debugserver_client_t *client)
 %ignore debugserver_client_set_argv;
 %ignore debugserver_client_send_command;
 %ignore debugserver_client_set_ack_mode;
+%ignore debugserver_client_receive_response;
+%ignore debugserver_client_set_receive_params;
 
 // Map just enough of the plist.h functions to be able to convert to/from Java plists.
 extern plist_t plist_new_dict(void);
@@ -163,6 +185,7 @@ extern void delete_StringOut_value(StringOut* s);
 extern void delete_ByteArrayOut_value(ByteArrayOut* s);
 extern void delete_StringArray_values(StringArray* s, int length);
 extern void delete_StringArray_values_z(StringArray* s);
+
 extern jlong get_global_instproxy_status_cb(void);
 extern jlong get_global_idevice_event_cb(void);
 extern mobile_image_mounter_error_t upload_image(mobile_image_mounter_client_t client, const char *image_path, const char *image_type, const char* sig, size_t sig_size);
@@ -198,6 +221,7 @@ void delete_StringArray_values_z(StringArray* s) {
         }
     }
 }
+
 SWIGEXPORT void JNICALL Java_org_robovm_libimobiledevice_binding_LibIMobileDeviceJNI_initNative(JNIEnv *env, jclass cls) {
     class_Callbacks = (*env)->FindClass(env, "org/robovm/libimobiledevice/Callbacks");
     if ((*env)->ExceptionCheck(env)) return;

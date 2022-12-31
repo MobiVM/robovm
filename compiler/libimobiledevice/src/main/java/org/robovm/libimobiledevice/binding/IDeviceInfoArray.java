@@ -8,20 +8,20 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class LockdowndServiceDescriptorStructOut {
+public class IDeviceInfoArray {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected LockdowndServiceDescriptorStructOut(long cPtr, boolean cMemoryOwn) {
+  protected IDeviceInfoArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(LockdowndServiceDescriptorStructOut obj) {
+  protected static long getCPtr(IDeviceInfoArray obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  protected static long swigRelease(LockdowndServiceDescriptorStructOut obj) {
+  protected static long swigRelease(IDeviceInfoArray obj) {
     long ptr = 0;
     if (obj != null) {
       if (!obj.swigCMemOwn)
@@ -42,19 +42,32 @@ public class LockdowndServiceDescriptorStructOut {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        LibIMobileDeviceJNI.delete_LockdowndServiceDescriptorStructOut(swigCPtr);
+        LibIMobileDeviceJNI.delete_IDeviceInfoArray(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public LockdowndServiceDescriptorStruct getValue() {
-    long cPtr = LibIMobileDeviceJNI.LockdowndServiceDescriptorStructOut_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new LockdowndServiceDescriptorStruct(cPtr, false);
+  public void setValue(IDeviceInfo value) {
+    LibIMobileDeviceJNI.IDeviceInfoArray_value_set(swigCPtr, this, IDeviceInfo.getCPtr(value), value);
   }
 
-  public LockdowndServiceDescriptorStructOut() {
-    this(LibIMobileDeviceJNI.new_LockdowndServiceDescriptorStructOut(), true);
+  public IDeviceInfo getValue() {
+    long cPtr = LibIMobileDeviceJNI.IDeviceInfoArray_value_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new IDeviceInfo(cPtr, false);
+  }
+
+  public IDeviceInfoArray(int nelements) {
+    this(LibIMobileDeviceJNI.new_IDeviceInfoArray(nelements), true);
+  }
+
+  public IDeviceInfo get(int index) {
+    long cPtr = LibIMobileDeviceJNI.IDeviceInfoArray_get(swigCPtr, this, index);
+    return (cPtr == 0) ? null : new IDeviceInfo(cPtr, false);
+  }
+
+  public void set(int index, IDeviceInfo value) {
+    LibIMobileDeviceJNI.IDeviceInfoArray_set(swigCPtr, this, index, IDeviceInfo.getCPtr(value), value);
   }
 
 }

@@ -8,18 +8,18 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class LockdowndClientRef {
+public class IDeviceSubscriptionContext {
   private transient long swigCPtr;
 
-  protected LockdowndClientRef(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+  protected IDeviceSubscriptionContext(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected LockdowndClientRef() {
+  protected IDeviceSubscriptionContext() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(LockdowndClientRef obj) {
+  protected static long getCPtr(IDeviceSubscriptionContext obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
@@ -37,7 +37,7 @@ public class LockdowndClientRef {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    LockdowndClientRef other = (LockdowndClientRef) obj;
+    IDeviceSubscriptionContext other = (IDeviceSubscriptionContext) obj;
     return swigCPtr == other.swigCPtr;
   }
 }
