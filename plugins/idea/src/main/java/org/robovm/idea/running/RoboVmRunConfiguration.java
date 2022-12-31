@@ -69,6 +69,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
     private String signingIdentity;
     private EntryType provisioningProfileType;
     private String provisioningProfile;
+    private String targetDeviceUDID;
     private CpuArch simulatorArch;
     private EntryType simulatorType;
     private String simulator;
@@ -102,6 +103,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
             simulatorType = EntryType.AUTO;
             simulatorArch = DeviceType.DEFAULT_HOST_ARCH;
             simulatorLaunchWatch = false;
+            provisioningProfile = null;
         } else if (type instanceof RoboVmConsoleConfigurationType) {
             targetType = TargetType.Console;
             deviceArch = DeviceType.DEFAULT_HOST_ARCH;
@@ -139,6 +141,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         signingIdentity = JDOMExternalizerUtil.readField(element, "signingIdentity");
         provisioningProfileType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "provisioningProfileType"));
         provisioningProfile = JDOMExternalizerUtil.readField(element, "provisioningProfile");
+        targetDeviceUDID = JDOMExternalizerUtil.readField(element, "targetDeviceUDID");
         simulatorType = valueOf(EntryType.class, JDOMExternalizerUtil.readField(element, "simulatorType"));
         simulator = JDOMExternalizerUtil.readField(element, "simulatorName");
         simulatorArch = valueOf(CpuArch.class, JDOMExternalizerUtil.readField(element, "simArch"));
@@ -160,6 +163,7 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
         JDOMExternalizerUtil.writeField(element, "signingIdentity", signingIdentity);
         JDOMExternalizerUtil.writeField(element, "provisioningProfileType", toStringOrNull(provisioningProfileType));
         JDOMExternalizerUtil.writeField(element, "provisioningProfile", provisioningProfile);
+        JDOMExternalizerUtil.writeField(element, "targetDeviceUDID", targetDeviceUDID);
         JDOMExternalizerUtil.writeField(element, "simArch", toStringOrNull(simulatorArch));
         JDOMExternalizerUtil.writeField(element, "simulatorType", toStringOrNull(simulatorType));
         JDOMExternalizerUtil.writeField(element, "simulatorName", simulator);
@@ -207,6 +211,14 @@ public class RoboVmRunConfiguration extends ModuleBasedConfiguration<RoboVmRunCo
 
     public String getProvisioningProfile() {
         return provisioningProfile;
+    }
+
+    public String getTargetDeviceUDID() {
+        return targetDeviceUDID;
+    }
+
+    public void setTargetDeviceUDID(String targetDeviceUDID) {
+        this.targetDeviceUDID = targetDeviceUDID != null && targetDeviceUDID.isEmpty() ? null : targetDeviceUDID;
     }
 
     public void setSimulatorArch(CpuArch simulatorArch) {

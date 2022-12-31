@@ -178,7 +178,7 @@ public class IOSTarget extends AbstractTarget {
         String deviceId = deviceLaunchParameters.getDeviceId();
         int forwardPort = deviceLaunchParameters.getForwardPort();
         AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback();
-        if (deviceId == null) {
+        if (deviceId == null || deviceId.isEmpty()) {
             String[] udids = IDevice.listUdids();
             if (udids.length == 0) {
                 throw new RuntimeException("No devices connected");

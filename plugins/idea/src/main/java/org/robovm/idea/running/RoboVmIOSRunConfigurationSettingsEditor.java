@@ -19,6 +19,7 @@ package org.robovm.idea.running;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
+import com.intellij.ui.components.JBTextField;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -60,6 +61,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private JComboBox<CpuArch> deviceArch;
     private JTextArea args;
     private JCheckBox pairedWatch;
+    private JBTextField targetDeviceUDID;
 
     // copy of data that is time consuming to fetch (fetched only once when dialog is created)
     private List<ModuleNameDecorator> roboVmModules;
@@ -110,6 +112,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             deviceArch.setSelectedItem(config.getDeviceArch());
             signingIdentity.setSelectedItem(getSigningIdentityFromConfig(config));
             provisioningProfile.setSelectedItem(getProvisioningProfileFromConfig(config));
+            targetDeviceUDID.setText(config.getTargetDeviceUDID());
             attachedDeviceRadioButton.setSelected(config.getTargetType() == RoboVmRunConfiguration.TargetType.Device || simType.getItemCount() == 0);
             args.setText(config.getArguments());
         } finally {
@@ -142,6 +145,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setSigningIdentity(Decorator.from(signingIdentity).id);
         config.setProvisioningProfileType(Decorator.from(provisioningProfile).entryType);
         config.setProvisioningProfile(Decorator.from(provisioningProfile).id);
+        config.setTargetDeviceUDID(targetDeviceUDID.getText());
         // simulator related
         config.setSimulatorArch((CpuArch) simArch.getSelectedItem());
         config.setSimulatorType(Decorator.from(simType).entryType);
