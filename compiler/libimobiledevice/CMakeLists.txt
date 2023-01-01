@@ -83,7 +83,7 @@ ExternalProject_Add(extlibusbmuxd
 ExternalProject_Add(extlibimobiledeviceglue
   GIT_REPOSITORY https://github.com/libimobiledevice/libimobiledevice-glue.git
   GIT_TAG 7eaa28ea9529b69da6b1721ba3e791e7ea5e950b # master at Aug 24, 2022
-  CONFIGURE_COMMAND bash -c "CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' LDFLAGS='${LDFLAGS}' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --prefix=${EXTPREFIX}"
+  CONFIGURE_COMMAND bash -c "CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' LDFLAGS='${LDFLAGS}' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --prefix=${EXTPREFIX} --enable-shared=no"
   UPDATE_COMMAND ""
   BUILD_IN_SOURCE 1
 )
