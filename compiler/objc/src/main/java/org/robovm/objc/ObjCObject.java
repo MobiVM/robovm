@@ -104,16 +104,25 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     protected void initObject(long handle) {
-        if (handle == 0) {
-            throw new RuntimeException("Objective-C initialization method returned nil");
-        }
+        // as per Apple doc: Handling Initialization Failure
+        //    > In general, if there is a problem during an initialization method, you should call [self release]
+        //    > and return nil.
+        // this means if handle == 0 old handle was already released and keeping it will cause
+        // EXC_BAD_ACCESS at moment of GC corresponding Java counterpart
+        // to avoid such case in case of receiving 0 -- old references to old handle to be dropped first
+        // and only after this exception to be thrown
         long oldHandle = getHandle();
         if (handle != oldHandle) {
             if (oldHandle != 0) {
                 removePeerObject(this);
             }
             setHandle(handle);
-            setPeerObject(handle, this);
+            if (handle != 0) {
+                setPeerObject(handle, this);
+            }
+        }
+        if (handle == 0) {
+            throw new RuntimeException("Objective-C initialization method returned nil");
         }
     }
 
