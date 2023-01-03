@@ -149,6 +149,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "activeAppearance")
     public native UIUserInterfaceActiveAppearance getActiveAppearance();
+    @Property(selector = "toolbarItemPresentationSize")
+    public native UINSToolbarItemPresentationSize getToolbarItemPresentationSize();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -228,6 +230,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "traitCollectionWithActiveAppearance:")
     protected static native @Pointer long create(UIUserInterfaceActiveAppearance userInterfaceActiveAppearance);
+    @Method(selector = "traitCollectionWithToolbarItemPresentationSize:")
+    public static native UITraitCollection createWithToolbarItemPresentationSize(UINSToolbarItemPresentationSize toolbarItemPresentationSize);
     /**
      * @since Available in iOS 13.0 and later.
      */

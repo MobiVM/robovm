@@ -48,7 +48,8 @@ public enum /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ implements NSEr
     UnavailableError(2L),
     InvalidConfigurationError(3L),
     DeviceNotSupportedError(4L),
-    DeviceNotReadyError(5L);
+    DeviceNotReadyError(5L),
+    OSVersionNotSupportedError(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PKAddSecureElementPassErrorCode.class); }/*</bind>*/

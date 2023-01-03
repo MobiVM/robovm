@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 14.0. Replaced by GKLeaderboardEntry
+ * @deprecated Deprecated in iOS 14.0. Replaced by GKLeaderboardScore
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/

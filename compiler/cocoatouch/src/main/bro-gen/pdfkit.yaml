@@ -111,6 +111,8 @@ classes:
                 name: thumbnail
             '-selectionFromPoint:toPoint:':
                 name: selection
+            '-initWithImage:options:':
+                name: init
     PDFSelection: #since 11.0
         methods:
             '-initWithDocument:':
@@ -152,6 +154,14 @@ protocols:
                 name: willClickOnLink
             '-PDFViewOpenPDF:forRemoteGoToAction:':
                 name: openPDF
+    PDFPageOverlayViewProvider: #since 16.0
+        methods:
+            '-pdfView:overlayViewForPage:':
+                name: getOverlayView
+            '-pdfView:willDisplayOverlayView:forPage:':
+                name: willDisplayOverlayView
+            '-pdfView:willEndDisplayingOverlayView:forPage:':
+                name: willEndDisplayingOverlayView
 functions:
 
     # Make sure we don't miss any functions if new ones are introduced in a later version

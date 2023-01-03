@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -116,6 +117,22 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final HKCategoryTypeIdentifier IntermenstrualBleeding = new HKCategoryTypeIdentifier("IntermenstrualBleeding");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier PersistentIntermenstrualBleeding = new HKCategoryTypeIdentifier("PersistentIntermenstrualBleeding");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier ProlongedMenstrualPeriods = new HKCategoryTypeIdentifier("ProlongedMenstrualPeriods");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier IrregularMenstrualCycles = new HKCategoryTypeIdentifier("IrregularMenstrualCycles");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier InfrequentMenstrualCycles = new HKCategoryTypeIdentifier("InfrequentMenstrualCycles");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -336,7 +353,7 @@ import org.robovm.apple.foundation.*;
     public static final HKCategoryTypeIdentifier Wheezing = new HKCategoryTypeIdentifier("Wheezing");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, PregnancyTestResult, ProgesteroneTestResult, MenstrualFlow, IntermenstrualBleeding, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, Pregnancy, Lactation, Contraceptive, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, LowCardioFitnessEvent, AppleWalkingSteadinessEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, PregnancyTestResult, ProgesteroneTestResult, MenstrualFlow, IntermenstrualBleeding, PersistentIntermenstrualBleeding, ProlongedMenstrualPeriods, IrregularMenstrualCycles, InfrequentMenstrualCycles, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, Pregnancy, Lactation, Contraceptive, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, LowCardioFitnessEvent, AppleWalkingSteadinessEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -396,6 +413,26 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierIntermenstrualBleeding", optional=true)
         public static native NSString IntermenstrualBleeding();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierPersistentIntermenstrualBleeding", optional=true)
+        public static native NSString PersistentIntermenstrualBleeding();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierProlongedMenstrualPeriods", optional=true)
+        public static native NSString ProlongedMenstrualPeriods();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierIrregularMenstrualCycles", optional=true)
+        public static native NSString IrregularMenstrualCycles();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierInfrequentMenstrualCycles", optional=true)
+        public static native NSString InfrequentMenstrualCycles();
         /**
          * @since Available in iOS 9.0 and later.
          */

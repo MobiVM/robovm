@@ -62,6 +62,10 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("supportsConfiguration:")
+    public boolean supportsConfiguration(UIContentConfiguration configuration) { return false; }
     /*</methods>*/
 }

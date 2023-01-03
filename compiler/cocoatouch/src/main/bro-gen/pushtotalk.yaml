@@ -1,0 +1,105 @@
+package: org.robovm.apple.pushtotalk
+include: [foundation, uikit, avfoundation]
+library: PushToTalk 
+framework: PushToTalk 
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/PushToTalk.framework/Headers/PushToTalk.h
+typedefs: {}
+
+enums:
+    PTChannelJoinReason: {} #since 16.0
+    PTChannelLeaveReason: {} #since 16.0
+    PTChannelTransmitRequestSource: {} #since 16.0
+    PTServiceStatus: {} #since 16.0
+    PTTransmissionMode: {} #since 16.0
+    PTInstantiationError: {nserror: true} #since 16.0
+    PTChannelError: {nserror: true} #since 16.0
+
+classes:
+    PTChannelDescriptor: #since 16.0
+        methods:
+            '-initWithName:image:':
+                name: init
+    PTChannelManager: #since 16.0
+        methods:
+            '-requestJoinChannelWithUUID:descriptor:':
+                name: requestJoinChannel
+            '-requestBeginTransmittingWithChannelUUID:':
+                name: requestBeginTransmitting
+            '-stopTransmittingWithChannelUUID:':
+                name: stopTransmitting
+            '-leaveChannelWithUUID:':
+                name: leaveChannel
+            '-setChannelDescriptor:forChannelUUID:completionHandler:':
+                name: setChannelDescriptor
+            '-setActiveRemoteParticipant:forChannelUUID:completionHandler:':
+                name: setActiveRemoteParticipant
+            '-setServiceStatus:forChannelUUID:completionHandler:':
+                name: setServiceStatus
+            '-setTransmissionMode:forChannelUUID:completionHandler:':
+                name: setTransmissionMode
+            '+channelManagerWithDelegate:restorationDelegate:completionHandler:':
+                name: create
+                constructor: true
+    PTParticipant: #since 16.0
+        methods:
+            '-initWithName:image:':
+                name: init
+    PTPushResult: {} #since 16.0
+
+protocols:
+    PTChannelManagerDelegate: #since 16.0
+        methods:
+            '-channelManager:didJoinChannelWithUUID:reason:':
+                name: didJoinChannelWithUUID
+            '-channelManager:didLeaveChannelWithUUID:reason:':
+                name: didLeaveChannelWithUUID
+            '-channelManager:channelUUID:didBeginTransmittingFromSource:':
+                name: didBeginTransmittingFromSource
+            '-channelManager:channelUUID:didEndTransmittingFromSource:':
+                name: didEndTransmittingFromSource
+            '-channelManager:receivedEphemeralPushToken:':
+                name: receivedEphemeralPushToken
+            '-incomingPushResultForChannelManager:channelUUID:pushPayload:':
+                name: incomingPushResultForChannelManager
+            '-channelManager:didActivateAudioSession:':
+                name: didActivateAudioSession
+            '-channelManager:didDeactivateAudioSession:':
+                name: didDeactivateAudioSession
+            '-channelManager:failedToJoinChannelWithUUID:error:':
+                name: failedToJoinChannelWithUUID
+            '-channelManager:failedToLeaveChannelWithUUID:error:':
+                name: failedToLeaveChannelWithUUID
+            '-channelManager:failedToBeginTransmittingInChannelWithUUID:error:':
+                name: failedToBeginTransmittingInChannelWithUUID
+            '-channelManager:failedToStopTransmittingInChannelWithUUID:error:':
+                name: failedToStopTransmittingInChannelWithUUID
+    PTChannelRestorationDelegate: {} #since 16.0
+
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+    PTInstantiationErrorDomain:
+        class: PTInstantiationError
+        name: getClassDomain
+    PTChannelErrorDomain:
+        class: PTChannelError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'

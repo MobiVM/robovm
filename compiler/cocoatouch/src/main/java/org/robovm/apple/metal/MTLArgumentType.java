@@ -32,9 +32,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. Use MTLBindingType
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTLArgumentType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Buffer(0L),

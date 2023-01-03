@@ -17,6 +17,8 @@ enums:
     CMAuthorizationStatus: {} #since 11.0
     CMDeviceMotionSensorLocation: {}
     CMFallDetectionEventUserResolution: {}
+    CMWaterSubmersionState: {}
+    CMWaterSubmersionDepthState: {}
 classes:
     CMError:
         extends: NSError

@@ -17,6 +17,7 @@ enums:
     ASAuthorizationError: {nserror: true} #since 13.0
     ASAuthorizationAppleIDButtonType: {} #since 13.0
     ASAuthorizationAppleIDButtonStyle: {} #since 13.0
+    ASAuthorizationControllerRequestOptions: {prefix: ASAuthorizationControllerRequestOption} #since 16.0
 
 classes:
     ASCredentialIdentityStore: #since 12.0
@@ -78,6 +79,8 @@ classes:
         methods:
             '-initWithAuthorizationRequests:':
                 name: init
+            '-performRequestsWithOptions:':
+                name: performRequests
     ASAuthorizationOpenIDRequest: {} #since 13.0
     ASAuthorizationPasswordProvider: {} #since 13.0
     ASAuthorizationPasswordRequest: {} #since 13.0

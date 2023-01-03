@@ -83,5 +83,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "retrieveCredentialsForExtendedPANID:completion:")
     public native void retrieveCredentialsForExtendedPANID(NSData extendedPANID, @Block VoidBlock2<THCredentials, NSError> completion);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "checkPreferredNetworkForActiveOperationalDataset:completion:")
+    public native void checkPreferredNetworkForActiveOperationalDataset(NSData activeOperationalDataSet, @Block VoidBooleanBlock completion);
     /*</methods>*/
 }

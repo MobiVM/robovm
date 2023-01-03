@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,13 +76,29 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("AVFoundation")
+    public static class Notifications {
+        static { Bro.bind(Notifications.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlaybackCoordinatorOtherParticipantsDidChangeNotification", optional=true)
+        public static native NSString OtherParticipantsDidChange();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVPlaybackCoordinatorSuspensionReasonsDidChangeNotification", optional=true)
+        public static native NSString SuspensionReasonsDidChange();
+    }
+    
     @Method(selector = "beginSuspensionForReason:")
-    public native AVCoordinatedPlaybackSuspension beginSuspensionForReason(String suspensionReason);
+    public native AVCoordinatedPlaybackSuspension beginSuspensionForReason(AVCoordinatedPlaybackSuspensionReason suspensionReason);
     @Method(selector = "expectedItemTimeAtHostTime:")
     public native @ByVal CMTime expectedItemTimeAtHostTime(@ByVal CMTime hostClockTime);
     @Method(selector = "setParticipantLimit:forWaitingOutSuspensionsWithReason:")
-    public native void setParticipantLimitForWaitingOutSuspensions(@MachineSizedSInt long participantLimit, String reason);
+    public native void setParticipantLimitForWaitingOutSuspensions(@MachineSizedSInt long participantLimit, AVCoordinatedPlaybackSuspensionReason reason);
     @Method(selector = "participantLimitForWaitingOutSuspensionsWithReason:")
-    public native @MachineSizedSInt long getParticipantLimitForWaitingOutSuspensions(String reason);
+    public native @MachineSizedSInt long getParticipantLimitForWaitingOutSuspensions(AVCoordinatedPlaybackSuspensionReason reason);
     /*</methods>*/
 }

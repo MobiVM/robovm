@@ -54,5 +54,16 @@ import org.robovm.apple.corefoundation.*;
     public static native NSString NetworkNotificationContactsDidChange();
     @GlobalValue(symbol="MIDINetworkNotificationSessionDidChange", optional=true)
     public static native NSString NetworkNotificationSessionDidChange();
+    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="MIDIBluetoothDriverActivateAllConnections", optional=true)
+    public static native OSStatus function__MIDIBluetoothDriverActivateAllConnections();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="MIDIBluetoothDriverDisconnect", optional=true)
+    public static native OSStatus function__MIDIBluetoothDriverDisconnect(String uuid);
     /*</methods>*/
 }

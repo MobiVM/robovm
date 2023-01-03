@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,9 +66,9 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setDestinationAudioUnit:")
     public native void setDestinationAudioUnit(AVAudioUnit v);
     @Property(selector = "destinationMIDIEndpoint")
-    public native int getDestinationMIDIEndpoint();
+    public native MIDIEndpoint getDestinationMIDIEndpoint();
     @Property(selector = "setDestinationMIDIEndpoint:")
-    public native void setDestinationMIDIEndpoint(int v);
+    public native void setDestinationMIDIEndpoint(MIDIEndpoint v);
     @Property(selector = "loopRange")
     public native @ByVal AVBeatRange getLoopRange();
     @Property(selector = "setLoopRange:")
@@ -101,9 +103,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setLengthInSeconds(double v);
     @Property(selector = "timeResolution")
     public native @MachineSizedUInt long getTimeResolution();
+    @Property(selector = "usesAutomatedParameters")
+    public native boolean usesAutomatedParameters();
+    @Property(selector = "setUsesAutomatedParameters:")
+    public native void setUsesAutomatedParameters(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "addEvent:atBeat:")
+    public native void addEvent(AVMusicEvent event, double beat);
+    @Method(selector = "moveEventsInRange:byAmount:")
+    public native void moveEvents(@ByVal AVBeatRange range, double beatAmount);
+    @Method(selector = "clearEventsInRange:")
+    public native void clearEventsInRange(@ByVal AVBeatRange range);
+    @Method(selector = "cutEventsInRange:")
+    public native void cutEventsInRange(@ByVal AVBeatRange range);
+    @Method(selector = "copyEventsInRange:fromTrack:insertAtBeat:")
+    public native void copyEvents(@ByVal AVBeatRange range, AVMusicTrack sourceTrack, double insertStartBeat);
+    @Method(selector = "copyAndMergeEventsInRange:fromTrack:mergeAtBeat:")
+    public native void copyAndMergeEvents(@ByVal AVBeatRange range, AVMusicTrack sourceTrack, double mergeStartBeat);
+    @Method(selector = "enumerateEventsInRange:usingBlock:")
+    public native void enumerateEvents(@ByVal AVBeatRange range, @Block VoidBlock3<AVMusicEvent, DoublePtr, BooleanPtr> block);
     /*</methods>*/
 }

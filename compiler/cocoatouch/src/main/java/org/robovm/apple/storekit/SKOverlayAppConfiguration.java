@@ -102,5 +102,10 @@ import org.robovm.apple.coregraphics.*;
     public native void setAdditionalValue(NSObject value, String key);
     @Method(selector = "additionalValueForKey:")
     public native NSObject additionalValueForKey(String key);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setAdImpression:")
+    public native void setAdImpression(SKAdImpression impression);
     /*</methods>*/
 }

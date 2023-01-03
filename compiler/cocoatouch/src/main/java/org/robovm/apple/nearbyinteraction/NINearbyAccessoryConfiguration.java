@@ -56,10 +56,31 @@ import org.robovm.apple.dispatch.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithAccessoryData:bluetoothPeerIdentifier:error:")
+    public NINearbyAccessoryConfiguration(NSData accessoryData, NSUUID identifier) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(accessoryData, identifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "accessoryDiscoveryToken")
     public native NIDiscoveryToken getAccessoryDiscoveryToken();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isCameraAssistanceEnabled")
+    public native boolean isCameraAssistanceEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCameraAssistanceEnabled:")
+    public native void setCameraAssistanceEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -67,5 +88,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithData:error:")
     private native @Pointer long init(NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithAccessoryData:bluetoothPeerIdentifier:error:")
+    private native @Pointer long init(NSData accessoryData, NSUUID identifier, NSError.NSErrorPtr error);
     /*</methods>*/
 }

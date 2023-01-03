@@ -24,6 +24,9 @@ enums:
     ICReturnDownloadErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICReturnObjectErrorCode: {prefix: ICReturn, merge_with: ICReturnCode}
     ICMediaPresentation: {} #since 14.0
+    ICDeviceLocationType: {} #since 16.0
+    ICDeviceTypeMask: {} #since 15.2
+    ICDeviceLocationTypeMask: {} #since 15.2
 typed_enums:
     # here most of typed value enums are converted just into const classes as this framework has complicated generic usage (like generic in generic) and bro-gen fails here
     ICDeleteResult:
@@ -62,6 +65,10 @@ typed_enums:
         enum: ICAuthorizationStatus
         type: NSString
         prefix: ICAuthorizationStatus
+    ICDeviceLocationOptions:
+        enum: ICDeviceLocationOptions
+        type: NSString
+        prefix: ICDeviceLocationOptions
 classes:
     ICCameraDevice: #since 13.0
         methods:
@@ -70,6 +77,10 @@ classes:
             '-requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:':
                 name: requestDownloadFile
             '-requestSendPTPCommand:outData:completion:':
+                name: requestSendPTPCommand
+            '-requestReadDataFromFile:atOffset:length:readDelegate:didReadDataSelector:contextInfo:':
+                name: requestReadDataFromFile
+            '-requestSendPTPCommand:outData:sendCommandDelegate:didSendCommandSelector:contextInfo:':
                 name: requestSendPTPCommand
     ICCameraFile: #since 13.0
         methods:

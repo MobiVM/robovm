@@ -46,7 +46,43 @@ public enum /*<name>*/NSFileProviderErrorCode/*</name>*/ implements NSErrorCode 
     PageExpired(-1002L),
     InsufficientQuota(-1003L),
     ServerUnreachable(-1004L),
-    NoSuchItem(-1005L);
+    NoSuchItem(-1005L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    DeletionRejected(-1006L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    DirectoryNotEmpty(-1007L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    ProviderNotFound(-2001L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    CannotSynchronize(-2005L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    NonEvictableChildren(-2006L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    UnsyncedEdits(-2007L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    NonEvictable(-2008L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    ExcludedFromSync(-2010L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    DomainDisabled(-2011L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NSFileProviderErrorCode.class); }/*</bind>*/

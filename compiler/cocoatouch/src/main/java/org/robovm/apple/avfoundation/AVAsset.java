@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -219,6 +221,10 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create(NSURL URL);
     @Method(selector = "cancelLoading")
     public native void cancelLoading();
+    /**
+     * @deprecated Use loadTrackWithTrackID:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVAssetTrack getTrack(int trackID);
     /**
@@ -226,6 +232,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
     /**
@@ -233,6 +243,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaCharacteristic:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**
@@ -240,6 +254,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
     public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadMetadataForFormat:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
     /**
@@ -247,6 +265,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadMetadataForFormat:completionHandler:")
     public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
     /**
@@ -254,6 +276,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:")
     public native void loadChapterMetadataGroups(NSLocale locale, NSArray<NSString> commonKeys, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler
+     */
+    @Deprecated
     @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
     /**
@@ -261,6 +287,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:")
     public native void loadChapterMetadataGroupsBestMatchingPreferredLanguages(NSArray<NSString> preferredLanguages, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
     public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
     /**
@@ -268,6 +298,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadMediaSelectionGroupForMediaCharacteristic:completionHandler:")
     public native void loadMediaSelectionGroupForMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<AVMediaSelectionGroup, NSError> completionHandler);
+    /**
+     * @deprecated Use findUnusedTrackIDWithCompletionHandler:
+     */
+    @Deprecated
     @Method(selector = "unusedTrackID")
     public native int getUnusedTrackID();
     /**

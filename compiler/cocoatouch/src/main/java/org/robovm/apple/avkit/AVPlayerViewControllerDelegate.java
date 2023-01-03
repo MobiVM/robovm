@@ -34,6 +34,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -81,6 +82,16 @@ import org.robovm.apple.coreanimation.*;
     boolean shouldAutomaticallyDismissAtPictureInPictureStart(AVPlayerViewController playerViewController);
     @Method(selector = "playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:")
     void restoreUserInterfaceForPictureInPictureStop(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "playerViewController:willPresentInterstitialTimeRange:")
+    void willPresentInterstitial(AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "playerViewController:didPresentInterstitialTimeRange:")
+    void didPresentInterstitial(AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

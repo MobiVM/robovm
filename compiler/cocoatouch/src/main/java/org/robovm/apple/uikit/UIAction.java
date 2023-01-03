@@ -49,7 +49,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIAction/*</name>*/ 
     extends /*<extends>*/UIMenuElement/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIMenuLeaf/*</implements>*/ {
 
     /*<ptr>*/public static class UIActionPtr extends Ptr<UIAction, UIActionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIAction.class); }/*</bind>*/
@@ -94,6 +94,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "sender")
     public native NSObject getSender();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "presentationSourceItem")
+    public native UIPopoverPresentationControllerSourceItem getPresentationSourceItem();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -111,5 +116,7 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "captureTextFromCameraActionForResponder:identifier:")
     public static native UIAction captureTextFromCameraActionForResponder(UIResponder responder, UIActionIdentifier identifier);
+    @Method(selector = "performWithSender:target:")
+    public native void perform(NSObject sender, NSObject target);
     /*</methods>*/
 }

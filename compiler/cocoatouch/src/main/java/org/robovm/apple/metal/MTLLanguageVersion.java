@@ -41,7 +41,9 @@ public enum /*<name>*/MTLLanguageVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use a newer language standard
      */
+    @Deprecated
     Version1_0(65536L),
     /**
      * @since Available in iOS 9.0 and later.
@@ -70,7 +72,11 @@ public enum /*<name>*/MTLLanguageVersion/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    Version2_4(131076L);
+    Version2_4(131076L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Version3_0(196608L);
     /*</values>*/
 
     /*<bind>*/

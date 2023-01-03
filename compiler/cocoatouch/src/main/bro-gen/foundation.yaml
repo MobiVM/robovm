@@ -4454,7 +4454,10 @@ classes:
                 name: createTableRowIntent
             '+tableCellIntentWithIdentity:column:nestedInsideIntent:':
                 name: createTableCellIntent
-
+    NSAttributedStringMarkdownSourcePosition: #since 16.0
+        methods:
+            '-initWithStartLine:startColumn:endLine:endColumn:':
+                name: init
 
 protocols:
     NSCacheDelegate: # DONE
@@ -4800,6 +4803,8 @@ protocols:
                 name: willBeginDelayedRequest
             '-URLSession:taskIsWaitingForConnectivity:':
                 name: taskIsWaitingForConnectivity
+            '-URLSession:didCreateTask:':
+                name: didCreateTask
     NSUserActivityDelegate: # DONE
         methods:
             '-userActivityWillSave:':
@@ -5836,7 +5841,7 @@ values:
         class: NSAttributedString
         static_class: KeysNSBundle
         name: '#{g[0]}'
-    NS(ReplacementIndex|Morphology|InflectionRule|InflectionAlternative|PresentationIntent)AttributeName:
+    NS(ReplacementIndex|Morphology|InflectionRule|InflectionAlternative|PresentationIntent|MarkdownSourcePosition)AttributeName:
         class: NSAttributedString
         static_class: Keys
         name: '#{g[0]}'

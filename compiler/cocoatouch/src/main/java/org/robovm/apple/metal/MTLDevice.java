@@ -100,7 +100,9 @@ import org.robovm.apple.dispatch.*;
     public native boolean supportsPullModelInterpolation();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supportsShaderBarycentricCoordinates
      */
+    @Deprecated
     @Property(selector = "areBarycentricCoordsSupported")
     public native boolean isBarycentricCoordsSupported();
     /**
@@ -263,15 +265,23 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newDefaultLibraryWithBundle:error:")
-    private native MTLLibrary newDefaultLibrary(NSBundle bundle, NSError.NSErrorPtr error);
+    public native MTLLibrary newDefaultLibrary(NSBundle bundle, NSError.NSErrorPtr error);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use -newLibraryWithURL:error: instead
+     */
+    @Deprecated
     public MTLLibrary newLibraryWithFile(String filepath) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLLibrary result = newLibraryWithFile(filepath, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use -newLibraryWithURL:error: instead
+     */
+    @Deprecated
     @Method(selector = "newLibraryWithFile:error:")
-    private native MTLLibrary newLibraryWithFile(String filepath, NSError.NSErrorPtr error);
+    public native MTLLibrary newLibraryWithFile(String filepath, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -285,7 +295,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newLibraryWithURL:error:")
-    private native MTLLibrary newLibrary(NSURL url, NSError.NSErrorPtr error);
+    public native MTLLibrary newLibrary(NSURL url, NSError.NSErrorPtr error);
     @WeaklyLinked
     public MTLLibrary newLibraryWithData(DispatchData data) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -295,7 +305,7 @@ import org.robovm.apple.dispatch.*;
     }
     @WeaklyLinked
     @Method(selector = "newLibraryWithData:error:")
-    private native MTLLibrary newLibraryWithData(DispatchData data, NSError.NSErrorPtr error);
+    public native MTLLibrary newLibraryWithData(DispatchData data, NSError.NSErrorPtr error);
     public MTLLibrary newLibraryWithSource(String source, MTLCompileOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLLibrary result = newLibraryWithSource(source, options, ptr);
@@ -303,7 +313,7 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     @Method(selector = "newLibraryWithSource:options:error:")
-    private native MTLLibrary newLibraryWithSource(String source, MTLCompileOptions options, NSError.NSErrorPtr error);
+    public native MTLLibrary newLibraryWithSource(String source, MTLCompileOptions options, NSError.NSErrorPtr error);
     @Method(selector = "newLibraryWithSource:options:completionHandler:")
     public native void newLibraryWithSource(String source, MTLCompileOptions options, @Block VoidBlock2<MTLLibrary, NSError> completionHandler);
     /**
@@ -323,7 +333,7 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     @Method(selector = "newRenderPipelineStateWithDescriptor:error:")
-    private native MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
+    public native MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
     public MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLRenderPipelineState result = newRenderPipelineState(descriptor, options, reflection, ptr);
@@ -331,7 +341,7 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     @Method(selector = "newRenderPipelineStateWithDescriptor:options:reflection:error:")
-    private native MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    public native MTLRenderPipelineState newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
     @Method(selector = "newRenderPipelineStateWithDescriptor:completionHandler:")
     public native void newRenderPipelineState(MTLRenderPipelineDescriptor descriptor, @Block VoidBlock2<MTLRenderPipelineState, NSError> completionHandler);
     @Method(selector = "newRenderPipelineStateWithDescriptor:options:completionHandler:")
@@ -343,7 +353,7 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     @Method(selector = "newComputePipelineStateWithFunction:error:")
-    private native MTLComputePipelineState newComputePipelineState(MTLFunction computeFunction, NSError.NSErrorPtr error);
+    public native MTLComputePipelineState newComputePipelineState(MTLFunction computeFunction, NSError.NSErrorPtr error);
     public MTLComputePipelineState newComputePipelineState(MTLFunction computeFunction, MTLPipelineOption options, MTLComputePipelineReflection.MTLComputePipelineReflectionPtr reflection) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLComputePipelineState result = newComputePipelineState(computeFunction, options, reflection, ptr);
@@ -351,7 +361,7 @@ import org.robovm.apple.dispatch.*;
        return result;
     }
     @Method(selector = "newComputePipelineStateWithFunction:options:reflection:error:")
-    private native MTLComputePipelineState newComputePipelineState(MTLFunction computeFunction, MTLPipelineOption options, MTLComputePipelineReflection.MTLComputePipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    public native MTLComputePipelineState newComputePipelineState(MTLFunction computeFunction, MTLPipelineOption options, MTLComputePipelineReflection.MTLComputePipelineReflectionPtr reflection, NSError.NSErrorPtr error);
     @Method(selector = "newComputePipelineStateWithFunction:completionHandler:")
     public native void newComputePipelineState(MTLFunction computeFunction, @Block VoidBlock2<MTLComputePipelineState, NSError> completionHandler);
     @Method(selector = "newComputePipelineStateWithFunction:options:completionHandler:")
@@ -369,7 +379,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "newComputePipelineStateWithDescriptor:options:reflection:error:")
-    private native MTLComputePipelineState newComputePipelineState(MTLComputePipelineDescriptor descriptor, MTLPipelineOption options, MTLComputePipelineReflection.MTLComputePipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    public native MTLComputePipelineState newComputePipelineState(MTLComputePipelineDescriptor descriptor, MTLPipelineOption options, MTLComputePipelineReflection.MTLComputePipelineReflectionPtr reflection, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -380,6 +390,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newFence")
     public native MTLFence newFence();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use supportsFamily instead
+     */
+    @Deprecated
     @Method(selector = "supportsFeatureSet:")
     public native boolean supportsFeatureSet(MTLFeatureSet featureSet);
     /**
@@ -415,12 +429,31 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newRenderPipelineStateWithTileDescriptor:options:reflection:error:")
-    private native MTLRenderPipelineState newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    public native MTLRenderPipelineState newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "newRenderPipelineStateWithTileDescriptor:options:completionHandler:")
     public native void newRenderPipelineState(MTLTileRenderPipelineDescriptor descriptor, MTLPipelineOption options, @Block VoidBlock3<MTLRenderPipelineState, MTLRenderPipelineReflection, NSError> completionHandler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public MTLRenderPipelineState newRenderPipelineState(MTLMeshRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLRenderPipelineState result = newRenderPipelineState(descriptor, options, reflection, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:")
+    public native MTLRenderPipelineState newRenderPipelineState(MTLMeshRenderPipelineDescriptor descriptor, MTLPipelineOption options, MTLRenderPipelineReflection.MTLRenderPipelineReflectionPtr reflection, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:")
+    public native void newRenderPipelineState(MTLMeshRenderPipelineDescriptor descriptor, MTLPipelineOption options, @Block VoidBlock3<MTLRenderPipelineState, MTLRenderPipelineReflection, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -462,6 +495,21 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "newSharedEventWithHandle:")
     public native MTLSharedEvent newSharedEvent(MTLSharedEventHandle sharedEventHandle);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newIOHandleWithURL:error:")
+    public native MTLIOFileHandle newIOHandle(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newIOCommandQueueWithDescriptor:error:")
+    public native MTLIOCommandQueue newIOCommandQueue(MTLIOCommandQueueDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newIOHandleWithURL:compressionMethod:error:")
+    public native MTLIOFileHandle newIOHandle(NSURL url, MTLIOCompressionMethod compressionMethod, NSError.NSErrorPtr error);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "sparseTileSizeWithTextureType:pixelFormat:sampleCount:")
@@ -477,6 +525,16 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:")
     public native void convertSparseTileRegions(MTLRegion tileRegions, MTLRegion pixelRegions, @ByVal MTLSize tileSize, @MachineSizedUInt long numRegions);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sparseTileSizeInBytesForSparsePageSize:")
+    public native @MachineSizedUInt long sparseTileSizeInBytesForSparsePageSize(MTLSparsePageSize sparsePageSize);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:")
+    public native @ByVal MTLSize sparseTileSize(MTLTextureType textureType, MTLPixelFormat pixelFormat, @MachineSizedUInt long sampleCount, MTLSparsePageSize sparsePageSize);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "newCounterSampleBufferWithDescriptor:error:")
@@ -486,6 +544,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "sampleTimestamps:gpuTimestamp:")
     public native void sampleTimestamps(LongPtr cpuTimestamp, LongPtr gpuTimestamp);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newArgumentEncoderWithBufferBinding:")
+    public native MTLArgumentEncoder newArgumentEncoder(MTLBufferBinding bufferBinding);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -526,5 +589,15 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newAccelerationStructureWithDescriptor:")
     public native MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "heapAccelerationStructureSizeAndAlignWithSize:")
+    public native @ByVal MTLSizeAndAlign heapAccelerationStructureSizeAndAlign(@MachineSizedUInt long size);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "heapAccelerationStructureSizeAndAlignWithDescriptor:")
+    public native @ByVal MTLSizeAndAlign heapAccelerationStructureSizeAndAlign(MTLAccelerationStructureDescriptor descriptor);
     /*</methods>*/
 }

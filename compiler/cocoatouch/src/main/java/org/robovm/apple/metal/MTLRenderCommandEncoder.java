@@ -177,7 +177,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "setVertexIntersectionFunctionTables:withBufferRange:")
-    public native void setVertexIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    public native void setVertexIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -260,7 +260,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "setFragmentIntersectionFunctionTables:withBufferRange:")
-    public native void setFragmentIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    public native void setFragmentIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -309,6 +309,126 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setStencilStoreActionOptions:")
     public native void setStencilStoreActionOptions(MTLStoreActionOptions storeActionOptions);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectBytes:length:atIndex:")
+    public native void setObjectBytes(VoidPtr bytes, @MachineSizedUInt long length, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectBuffer:offset:atIndex:")
+    public native void setObjectBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectBufferOffset:atIndex:")
+    public native void setObjectBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectBuffers:offsets:withRange:")
+    public native void setObjectBuffers(MTLBuffer buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectTexture:atIndex:")
+    public native void setObjectTexture(MTLTexture texture, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectTextures:withRange:")
+    public native void setObjectTextures(MTLTexture textures, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectSamplerState:atIndex:")
+    public native void setObjectSamplerState(MTLSamplerState sampler, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectSamplerStates:withRange:")
+    public native void setObjectSamplerStates(MTLSamplerState samplers, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:")
+    public native void setObjectSamplerState(MTLSamplerState sampler, float lodMinClamp, float lodMaxClamp, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
+    public native void setObjectSamplerStates(MTLSamplerState samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setObjectThreadgroupMemoryLength:atIndex:")
+    public native void setObjectThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshBytes:length:atIndex:")
+    public native void setMeshBytes(VoidPtr bytes, @MachineSizedUInt long length, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshBuffer:offset:atIndex:")
+    public native void setMeshBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshBufferOffset:atIndex:")
+    public native void setMeshBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshBuffers:offsets:withRange:")
+    public native void setMeshBuffers(MTLBuffer buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshTexture:atIndex:")
+    public native void setMeshTexture(MTLTexture texture, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshTextures:withRange:")
+    public native void setMeshTextures(MTLTexture textures, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshSamplerState:atIndex:")
+    public native void setMeshSamplerState(MTLSamplerState sampler, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshSamplerStates:withRange:")
+    public native void setMeshSamplerStates(MTLSamplerState samplers, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:")
+    public native void setMeshSamplerState(MTLSamplerState sampler, float lodMinClamp, float lodMaxClamp, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:")
+    public native void setMeshSamplerStates(MTLSamplerState samplers, FloatPtr lodMinClamps, FloatPtr lodMaxClamps, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:")
+    public native void drawMeshThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerObjectThreadgroup, @ByVal MTLSize threadsPerMeshThreadgroup);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:")
+    public native void drawMeshThreads(@ByVal MTLSize threadsPerGrid, @ByVal MTLSize threadsPerObjectThreadgroup, @ByVal MTLSize threadsPerMeshThreadgroup);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:")
+    public native void drawMeshThreadgroups(MTLBuffer indirectBuffer, @MachineSizedUInt long indirectBufferOffset, @ByVal MTLSize threadsPerObjectThreadgroup, @ByVal MTLSize threadsPerMeshThreadgroup);
     @Method(selector = "drawPrimitives:vertexStart:vertexCount:instanceCount:")
     public native void drawPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long vertexStart, @MachineSizedUInt long vertexCount, @MachineSizedUInt long instanceCount);
     @Method(selector = "drawPrimitives:vertexStart:vertexCount:")
@@ -446,7 +566,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "setTileIntersectionFunctionTables:withBufferRange:")
-    public native void setTileIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTable, @ByVal NSRange range);
+    public native void setTileIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -464,12 +584,16 @@ import org.robovm.apple.dispatch.*;
     public native void setThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long offset, @MachineSizedUInt long index);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use useResource:usage:stages: instead
      */
+    @Deprecated
     @Method(selector = "useResource:usage:")
     public native void useResource(MTLResource resource, MTLResourceUsage usage);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use useResources:count:usage:stages: instead
      */
+    @Deprecated
     @Method(selector = "useResources:count:usage:")
     public native void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage);
     /**
@@ -484,12 +608,16 @@ import org.robovm.apple.dispatch.*;
     public native void useResources(MTLResource resources, @MachineSizedUInt long count, MTLResourceUsage usage, MTLRenderStages stages);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use useHeap:stages: instead
      */
+    @Deprecated
     @Method(selector = "useHeap:")
     public native void useHeap(MTLHeap heap);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use useHeaps:count:stages: instead
      */
+    @Deprecated
     @Method(selector = "useHeaps:count:")
     public native void useHeaps(MTLHeap heaps, @MachineSizedUInt long count);
     /**
@@ -512,6 +640,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:")
     public native void executeCommandsInBuffer(MTLIndirectCommandBuffer indirectCommandbuffer, MTLBuffer indirectRangeBuffer, @MachineSizedUInt long indirectBufferOffset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "memoryBarrierWithScope:afterStages:beforeStages:")
+    public native void memoryBarrier(MTLBarrierScope scope, MTLRenderStages after, MTLRenderStages before);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "memoryBarrierWithResources:count:afterStages:beforeStages:")
+    public native void memoryBarrier(MTLResource resources, @MachineSizedUInt long count, MTLRenderStages after, MTLRenderStages before);
     /**
      * @since Available in iOS 14.0 and later.
      */

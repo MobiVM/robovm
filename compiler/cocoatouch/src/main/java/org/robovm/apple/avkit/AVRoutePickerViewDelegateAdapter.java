@@ -34,6 +34,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/

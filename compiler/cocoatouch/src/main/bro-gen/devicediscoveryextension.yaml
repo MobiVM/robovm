@@ -1,0 +1,72 @@
+package: org.robovm.apple.devicediscoveryextension
+include: [foundation, uniformtypeid, network]
+library: DeviceDiscoveryExtension 
+framework: DeviceDiscoveryExtension 
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/DeviceDiscoveryExtension.framework/Headers/DeviceDiscoveryExtension.h
+typedefs: {}
+
+enums:
+    DDDeviceProtocol: {}
+    DDDeviceCategory: {}
+    DDDeviceState: {}
+    DDDeviceMediaPlaybackState: {}
+    DDErrorCode: {nserror: true} #since 16.0
+    DDEventType: {}
+
+typed_enums:
+    DDDeviceProtocolString:
+        enum: DDDeviceProtocolString
+        type: NSString
+        prefix: DDDeviceProtocolString
+
+classes:
+    DDDevice: #since 16.0
+        methods:
+            '-initWithDisplayName:category:protocolType:identifier:':
+                name: init
+    DDDeviceEvent: #since 16.0
+        methods:
+            '-initWithEventType:device:':
+                name: init
+    DDDiscoverySession: {}
+protocols:
+
+functions:
+    DDDeviceProtocolToString:
+        class: DDDeviceProtocol
+        name: toString
+    DDDeviceCategoryToString:
+        class: DDDeviceCategory
+        name: toString
+    DDDeviceStateToString:
+        class: DDDeviceState
+        name: toString
+    DDDeviceMediaPlaybackStateToString:
+        class: DDDeviceMediaPlayback
+        name: toString
+    DDEventTypeToString:
+        class: DDEventTypeToString
+        name: toString
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+    DDErrorDomain:
+        class: DDErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'

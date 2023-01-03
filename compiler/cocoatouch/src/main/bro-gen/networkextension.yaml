@@ -47,6 +47,8 @@ enums:
     NEDNSSettingsManagerError: {nserror: true} #since 14.0
     NEAppPushManagerError: {nserror: true} #since 14.0
     NEHotspotNetworkSecurityType: {} #since 15.0
+
+    NEVPNConnectionError: {nserror: true} #since 16.0
 classes:
     NEProvider:
         methods:
@@ -205,6 +207,8 @@ classes:
             '-startVPNTunnelWithOptions:andReturnError:':
                 name: startVPNTunnel
                 throws: NSErrorException
+            '-fetchLastDisconnectErrorWithCompletionHandler:':
+                name: fetchLastDisconnectError
     NEVPNManager: # DONE
         properties:
             'onDemandRules':
@@ -487,6 +491,9 @@ values:
     NEDNSProxyConfigurationDidChangeNotification:
         class: NEDNSProxyManager
         name: ConfigurationDidChange
+    NEVPNConnectionErrorDomain:
+        class: NEVPNConnectionError
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?NE.*):

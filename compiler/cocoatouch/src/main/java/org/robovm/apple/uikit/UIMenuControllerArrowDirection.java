@@ -42,9 +42,11 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. UIMenuController is deprecated. Use UIEditMenuInteraction instead.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UIMenuControllerArrowDirection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),

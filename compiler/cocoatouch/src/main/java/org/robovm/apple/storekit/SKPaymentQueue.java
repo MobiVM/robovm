@@ -82,12 +82,28 @@ import org.robovm.apple.coregraphics.*;
     public native void restoreCompletedTransactions(String username);
     @Method(selector = "finishTransaction:")
     public native void finishTransaction(SKPaymentTransaction transaction);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @Method(selector = "startDownloads:")
     public native void startDownloads(NSArray<SKDownload> downloads);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @Method(selector = "pauseDownloads:")
     public native void pauseDownloads(NSArray<SKDownload> downloads);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @Method(selector = "resumeDownloads:")
     public native void resumeDownloads(NSArray<SKDownload> downloads);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @Method(selector = "cancelDownloads:")
     public native void cancelDownloads(NSArray<SKDownload> downloads);
     @Method(selector = "addTransactionObserver:")

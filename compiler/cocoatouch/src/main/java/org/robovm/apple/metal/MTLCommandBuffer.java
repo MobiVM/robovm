@@ -160,6 +160,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "accelerationStructureCommandEncoder")
     MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "accelerationStructureCommandEncoderWithDescriptor:")
+    MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder(MTLAccelerationStructurePassDescriptor descriptor);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "pushDebugGroup:")

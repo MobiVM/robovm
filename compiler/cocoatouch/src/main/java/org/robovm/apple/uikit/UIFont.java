@@ -131,6 +131,11 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "monospacedDigitSystemFontOfSize:weight:")
     public static native UIFont getMonospacedDigitSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "systemFontOfSize:weight:width:")
+    public static native UIFont getSystemFont(@MachineSizedFloat double fontSize, @MachineSizedFloat double weight, @MachineSizedFloat double width);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "monospacedSystemFontOfSize:weight:")

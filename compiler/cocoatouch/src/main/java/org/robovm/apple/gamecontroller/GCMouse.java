@@ -69,7 +69,9 @@ import org.robovm.apple.corehaptic.*;
     public native String getProductCategory();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
      */
+    @Deprecated
     @Property(selector = "physicalInputProfile")
     public native GCPhysicalInputProfile getPhysicalInputProfile();
     /*</properties>*/

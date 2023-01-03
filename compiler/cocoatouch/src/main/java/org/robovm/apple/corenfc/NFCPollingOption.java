@@ -50,6 +50,10 @@ public final class /*<name>*/NFCPollingOption/*</name>*/ extends Bits</*<name>*/
      * @since Available in iOS 13.0 and later.
      */
     public static final NFCPollingOption ISO18092 = new NFCPollingOption(4L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final NFCPollingOption PACE = new NFCPollingOption(8L);
     /*</values>*/
 
     /*<bind>*/

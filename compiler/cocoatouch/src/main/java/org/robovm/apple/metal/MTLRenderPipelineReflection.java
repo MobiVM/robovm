@@ -48,13 +48,48 @@ import org.robovm.apple.dispatch.*;
     protected MTLRenderPipelineReflection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "vertexBindings")
+    public native NSArray<?> getVertexBindings();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "fragmentBindings")
+    public native NSArray<?> getFragmentBindings();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "tileBindings")
+    public native NSArray<?> getTileBindings();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "objectBindings")
+    public native NSArray<?> getObjectBindings();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "meshBindings")
+    public native NSArray<?> getMeshBindings();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use vertexBindings
+     */
+    @Deprecated
     @Property(selector = "vertexArguments")
     public native NSArray<MTLArgument> getVertexArguments();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use fragmentBindings
+     */
+    @Deprecated
     @Property(selector = "fragmentArguments")
     public native NSArray<MTLArgument> getFragmentArguments();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use tileBindings
      */
+    @Deprecated
     @Property(selector = "tileArguments")
     public native NSArray<MTLArgument> getTileArguments();
     /*</properties>*/

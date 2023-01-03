@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBarItem/*</name>*/ 
     extends /*<extends>*/UIBarItem/*</extends>*/ 
-    /*<implements>*/implements UISpringLoadedInteractionSupporting/*</implements>*/ {
+    /*<implements>*/implements UISpringLoadedInteractionSupporting, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UITabBarItemPtr extends Ptr<UITabBarItem, UITabBarItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UITabBarItem.class); }/*</bind>*/

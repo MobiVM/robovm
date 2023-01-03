@@ -90,6 +90,11 @@ import org.robovm.apple.linkpresentation.*;
     public native void setStartPage(@MachineSizedSInt long v);
     @Property(selector = "pageCount")
     public native @MachineSizedSInt long getPageCount();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "requiresMainThread")
+    public native boolean requiresMainThread();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -99,5 +99,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIActivityTypeSharePlay", optional=true)
     public static native String SharePlay();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeCollaborationInviteWithLink", optional=true)
+    public static native String CollaborationInviteWithLink();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeCollaborationCopyLink", optional=true)
+    public static native String CollaborationCopyLink();
     /*</methods>*/
 }

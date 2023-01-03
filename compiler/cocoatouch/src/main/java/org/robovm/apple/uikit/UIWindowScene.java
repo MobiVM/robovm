@@ -71,6 +71,11 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "effectiveGeometry")
+    public native UIWindowSceneGeometry getEffectiveGeometry();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "sizeRestrictions")
@@ -93,6 +98,13 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setActivityItemsConfigurationSource:", strongRef = true)
     public native void setActivityItemsConfigurationSource(UIActivityItemsConfigurationProviding v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "windowingBehaviors")
+    public native UISceneWindowingBehaviors getWindowingBehaviors();
+    @Property(selector = "isFullScreen")
+    public native boolean isFullScreen();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "focusSystem")
@@ -107,6 +119,10 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "requestGeometryUpdateWithPreferences:errorHandler:")
+    public native void requestGeometryUpdate(UIWindowSceneGeometryPreferences geometryPreferences, @Block VoidBlock1<NSError> errorHandler);
     /*</methods>*/
 }

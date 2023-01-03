@@ -69,6 +69,11 @@ import org.robovm.apple.corehaptic.*;
     @GlobalValue(symbol="GCProductCategoryXboxOne", optional=true)
     public static native String XboxOne();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="GCProductCategoryHID", optional=true)
+    public static native String HID();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategorySiriRemote1stGen", optional=true)

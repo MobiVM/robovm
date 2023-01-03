@@ -102,6 +102,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setBackButtonDisplayMode:")
     public native void setBackButtonDisplayMode(UINavigationItemBackButtonDisplayMode v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "backAction")
+    public native UIAction getBackAction();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setBackAction:")
+    public native void setBackAction(UIAction v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "titleMenuProvider")
+    public native @Block Block1<NSArray<UIMenuElement>, UIMenu> getTitleMenuProvider();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTitleMenuProvider:")
+    public native void setTitleMenuProvider(@Block Block1<NSArray<UIMenuElement>, UIMenu> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "renameDelegate")
+    public native UINavigationItemRenameDelegate getRenameDelegate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRenameDelegate:", strongRef = true)
+    public native void setRenameDelegate(UINavigationItemRenameDelegate v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "documentProperties")
+    public native UIDocumentProperties getDocumentProperties();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDocumentProperties:")
+    public native void setDocumentProperties(UIDocumentProperties v);
     @Property(selector = "leftBarButtonItems")
     public native NSArray<UIBarButtonItem> getLeftBarButtonItems();
     @Property(selector = "setLeftBarButtonItems:")
@@ -123,6 +163,71 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setRightBarButtonItem:")
     public native void setRightBarButtonItem(UIBarButtonItem v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "customizationIdentifier")
+    public native String getCustomizationIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCustomizationIdentifier:")
+    public native void setCustomizationIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "leadingItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getLeadingItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setLeadingItemGroups:")
+    public native void setLeadingItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "centerItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getCenterItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCenterItemGroups:")
+    public native void setCenterItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "trailingItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getTrailingItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTrailingItemGroups:")
+    public native void setTrailingItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pinnedTrailingGroup")
+    public native UIBarButtonItemGroup getPinnedTrailingGroup();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPinnedTrailingGroup:")
+    public native void setPinnedTrailingGroup(UIBarButtonItemGroup v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "additionalOverflowItems")
+    public native UIDeferredMenuElement getAdditionalOverflowItems();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAdditionalOverflowItems:")
+    public native void setAdditionalOverflowItems(UIDeferredMenuElement v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "overflowPresentationSource")
+    public native UIPopoverPresentationControllerSourceItem getOverflowPresentationSource();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "largeTitleDisplayMode")
@@ -132,6 +237,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setLargeTitleDisplayMode:")
     public native void setLargeTitleDisplayMode(UINavigationItemLargeTitleDisplayMode v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "style")
+    public native UINavigationItemStyle getStyle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setStyle:")
+    public native void setStyle(UINavigationItemStyle v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -152,6 +267,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setHidesSearchBarWhenScrolling:")
     public native void setHidesSearchBarWhenScrolling(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredSearchBarPlacement")
+    public native UINavigationItemSearchBarPlacement getPreferredSearchBarPlacement();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredSearchBarPlacement:")
+    public native void setPreferredSearchBarPlacement(UINavigationItemSearchBarPlacement v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "searchBarPlacement")
+    public native UINavigationItemSearchBarPlacement getSearchBarPlacement();
     /**
      * @since Available in iOS 13.0 and later.
      */

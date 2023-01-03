@@ -100,6 +100,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "relevanceScore")
     public native double getRelevanceScore();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "filterCriteria")
+    public native String getFilterCriteria();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

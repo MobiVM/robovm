@@ -99,6 +99,31 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "decreaseSize:")
     void decreaseSize(NSObject sender);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "find:")
+    void find(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findAndReplace:")
+    void findAndReplace(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findNext:")
+    void findNext(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findPrevious:")
+    void findPrevious(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "useSelectionForFind:")
+    void useSelectionForFind(NSObject sender);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "updateTextAttributesWithConversionHandler:")
@@ -108,6 +133,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "print:")
     void print(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "rename:")
+    void rename(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "duplicate:")
+    void duplicate(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "move:")
+    void move(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "export:")
+    void export(NSObject sender);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

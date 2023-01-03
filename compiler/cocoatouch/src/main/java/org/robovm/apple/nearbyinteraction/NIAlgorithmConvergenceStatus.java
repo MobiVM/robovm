@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.vision;
+package org.robovm.apple.nearbyinteraction;
 
 /*<imports>*/
 import java.io.*;
@@ -28,33 +28,36 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.coreml.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coremedia.*;
-import org.robovm.apple.corevideo.*;
-import org.robovm.apple.metal.*;
-import org.robovm.apple.coreimage.*;
-import org.robovm.apple.imageio.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/Vision/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NIAlgorithmConvergenceStatus/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unknown(0L),
+    NotConverged(1L),
+    Converged(2L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
-    /*<constants>*/
-    public static final int Constant__VNDetectBarcodesRequestRevision2 = 2;
-    public static final int Constant__VNGeneratePersonSegmentationRequestRevision1 = 1;
-    public static final int Constant__VNDetectDocumentSegmentationRequestRevision1 = 1;
-    /*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
+    /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NIAlgorithmConvergenceStatus/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NIAlgorithmConvergenceStatus/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NIAlgorithmConvergenceStatus/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NIAlgorithmConvergenceStatus/*</name>*/.class.getName());
+    }
 }

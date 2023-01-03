@@ -42,7 +42,11 @@ public enum /*<name>*/MTLBinaryArchiveError/*</name>*/ implements NSErrorCode {
     None(0L),
     InvalidFile(1L),
     UnexpectedElement(2L),
-    CompilationFailure(3L);
+    CompilationFailure(3L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    InternalError(4L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MTLBinaryArchiveError.class); }/*</bind>*/

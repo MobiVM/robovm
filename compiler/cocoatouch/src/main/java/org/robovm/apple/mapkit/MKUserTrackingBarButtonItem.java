@@ -89,6 +89,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithImage:menu:")
     public MKUserTrackingBarButtonItem(UIImage image, UIMenu menu) { super(image, menu); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithPrimaryAction:menu:")
+    public MKUserTrackingBarButtonItem(UIAction primaryAction, UIMenu menu) { super(primaryAction, menu); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithBarButtonSystemItem:primaryAction:menu:")
+    public MKUserTrackingBarButtonItem(UIBarButtonSystemItem systemItem, UIAction primaryAction, UIMenu menu) { super(systemItem, primaryAction, menu); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithTitle:image:target:action:menu:")
+    public MKUserTrackingBarButtonItem(String title, UIImage image, NSObject target, Selector action, UIMenu menu) { super(title, image, target, action, menu); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mapView")

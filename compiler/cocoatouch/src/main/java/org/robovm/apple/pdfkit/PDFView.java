@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("PDFKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PDFView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements UIGestureRecognizerDelegate/*</implements>*/ {
+    /*<implements>*/implements UIGestureRecognizerDelegate, UIFindInteractionDelegate/*</implements>*/ {
 
     /*<ptr>*/public static class PDFViewPtr extends Ptr<PDFView, PDFViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(PDFView.class); }/*</bind>*/
@@ -155,6 +155,16 @@ import org.robovm.apple.coreanimation.*;
     public native PDFViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(PDFViewDelegate v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pageOverlayViewProvider")
+    public native PDFPageOverlayViewProvider getPageOverlayViewProvider();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPageOverlayViewProvider:", strongRef = true)
+    public native void setPageOverlayViewProvider(PDFPageOverlayViewProvider v);
     @Property(selector = "scaleFactor")
     public native @MachineSizedFloat double getScaleFactor();
     @Property(selector = "setScaleFactor:")
@@ -223,6 +233,31 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setEnableDataDetectors:")
     public native void setEnableDataDetectors(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isInMarkupMode")
+    public native boolean isInMarkupMode();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setInMarkupMode:")
+    public native void setInMarkupMode(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "findInteraction")
+    public native UIFindInteraction getFindInteraction();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isFindInteractionEnabled")
+    public native boolean isFindInteractionEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setFindInteractionEnabled:")
+    public native void setFindInteractionEnabled(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -336,5 +371,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "gestureRecognizer:shouldReceiveEvent:")
     public native boolean shouldReceiveEvent(UIGestureRecognizer gestureRecognizer, UIEvent event);
+    @Method(selector = "findInteraction:sessionForView:")
+    public native UIFindSession getSession(UIFindInteraction interaction, UIView view);
+    @Method(selector = "findInteraction:didBeginFindSession:")
+    public native void didBeginFindSession(UIFindInteraction interaction, UIFindSession session);
+    @Method(selector = "findInteraction:didEndFindSession:")
+    public native void didEndFindSession(UIFindInteraction interaction, UIFindSession session);
     /*</methods>*/
 }

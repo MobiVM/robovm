@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +67,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setRouteDetectionEnabled(boolean v);
     @Property(selector = "multipleRoutesDetected")
     public native boolean isMultipleRoutesDetected();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "detectsCustomRoutes")
+    public native boolean isDetectsCustomRoutes();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDetectsCustomRoutes:")
+    public native void setDetectsCustomRoutes(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

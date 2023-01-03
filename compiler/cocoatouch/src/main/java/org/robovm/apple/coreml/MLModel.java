@@ -148,8 +148,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "loadContentsOfURL:configuration:completionHandler:")
     public static native void load(NSURL url, MLModelConfiguration configuration, @Block VoidBlock2<MLModel, NSError> handler);
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    @Method(selector = "loadModelAsset:configuration:completionHandler:")
+    public static native void loadModelAsset(MLModelAsset asset, MLModelConfiguration configuration, @Block VoidBlock2<MLModel, NSError> handler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Use the asynchronous interface compileModelAtURL:completionHandler:error: instead.
+     */
+    @Deprecated
     public static NSURL compileModel(NSURL modelURL) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSURL result = compileModel(modelURL, ptr);
@@ -158,8 +165,15 @@ import org.robovm.apple.metal.*;
     }
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use the asynchronous interface compileModelAtURL:completionHandler:error: instead.
      */
+    @Deprecated
     @Method(selector = "compileModelAtURL:error:")
     private static native NSURL compileModel(NSURL modelURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "compileModelAtURL:completionHandler:")
+    public static native void compileModelAtURL(NSURL modelURL, @Block VoidBlock2<NSURL, NSError> handler);
     /*</methods>*/
 }

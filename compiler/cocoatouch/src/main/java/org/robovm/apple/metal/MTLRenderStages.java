@@ -46,6 +46,14 @@ public final class /*<name>*/MTLRenderStages/*</name>*/ extends Bits</*<name>*/M
      * @since Available in iOS 15.0 and later.
      */
     public static final MTLRenderStages Tile = new MTLRenderStages(4L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final MTLRenderStages Object = new MTLRenderStages(8L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final MTLRenderStages Mesh = new MTLRenderStages(16L);
     /*</values>*/
 
     /*<bind>*/

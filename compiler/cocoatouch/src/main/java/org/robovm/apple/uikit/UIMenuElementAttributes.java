@@ -53,6 +53,10 @@ public final class /*<name>*/UIMenuElementAttributes/*</name>*/ extends Bits</*<
     public static final UIMenuElementAttributes Disabled = new UIMenuElementAttributes(1L);
     public static final UIMenuElementAttributes Destructive = new UIMenuElementAttributes(2L);
     public static final UIMenuElementAttributes Hidden = new UIMenuElementAttributes(4L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final UIMenuElementAttributes KeepsMenuPresented = new UIMenuElementAttributes(8L);
     /*</values>*/
 
     /*<bind>*/

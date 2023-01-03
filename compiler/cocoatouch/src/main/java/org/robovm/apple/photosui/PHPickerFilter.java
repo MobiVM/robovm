@@ -67,13 +67,68 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "livePhotosFilter")
     public static native PHPickerFilter getLivePhotosFilter();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "depthEffectPhotosFilter")
+    public static native PHPickerFilter getDepthEffectPhotosFilter();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "burstsFilter")
+    public static native PHPickerFilter getBurstsFilter();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "panoramasFilter")
+    public static native PHPickerFilter getPanoramasFilter();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "screenshotsFilter")
+    public static native PHPickerFilter getScreenshotsFilter();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "screenRecordingsFilter")
+    public static native PHPickerFilter getScreenRecordingsFilter();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "cinematicVideosFilter")
+    public static native PHPickerFilter getCinematicVideosFilter();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "slomoVideosFilter")
+    public static native PHPickerFilter getSlomoVideosFilter();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Property(selector = "timelapseVideosFilter")
+    public static native PHPickerFilter getTimelapseVideosFilter();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "playbackStyleFilter:")
+    public static native PHPickerFilter playbackStyleFilter(PHAssetPlaybackStyle playbackStyle);
     /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "anyFilterMatchingSubfilters:")
     public static native PHPickerFilter anyFilterMatchingSubfilters(NSArray<PHPickerFilter> subfilters);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "allFilterMatchingSubfilters:")
+    public static native PHPickerFilter allFilterMatchingSubfilters(NSArray<PHPickerFilter> subfilters);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "notFilterOfSubfilter:")
+    public static native PHPickerFilter notFilterOfSubfilter(PHPickerFilter subfilter);
     /*</methods>*/
 }

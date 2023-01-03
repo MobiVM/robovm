@@ -47,7 +47,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification, UILargeContentViewerItem/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification, UILargeContentViewerItem, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
@@ -162,6 +162,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getContentScaleFactor();
     @Property(selector = "setContentScaleFactor:")
     public native void setContentScaleFactor(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "anchorPoint")
+    public native @ByVal CGPoint getAnchorPoint();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAnchorPoint:")
+    public native void setAnchorPoint(@ByVal CGPoint v);
     @Property(selector = "isMultipleTouchEnabled")
     public native boolean isMultipleTouchEnabled();
     @Property(selector = "setMultipleTouchEnabled:")
@@ -395,14 +405,29 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "minimumContentSizeCategory")
     public native String getMinimumContentSizeCategory();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "setMinimumContentSizeCategory:")
     public native void setMinimumContentSizeCategory(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "maximumContentSizeCategory")
     public native String getMaximumContentSizeCategory();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "setMaximumContentSizeCategory:")
     public native void setMaximumContentSizeCategory(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "appliedContentSizeCategoryLimitsDescription")
     public native String getAppliedContentSizeCategoryLimitsDescription();
     /**

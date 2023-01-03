@@ -170,10 +170,35 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setUnderPageBackgroundColor:")
     public native void setUnderPageBackgroundColor(UIColor v);
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "fullscreenState")
     public native WKFullscreenState getFullscreenState();
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Property(selector = "minimumViewportInset")
+    public native @ByVal UIEdgeInsets getMinimumViewportInset();
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Property(selector = "maximumViewportInset")
+    public native @ByVal UIEdgeInsets getMaximumViewportInset();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isFindInteractionEnabled")
+    public native boolean isFindInteractionEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setFindInteractionEnabled:")
+    public native void setFindInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "findInteraction")
+    public native UIFindInteraction getFindInteraction();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -332,6 +357,11 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Method(selector = "loadSimulatedRequest:withResponseHTMLString:")
     public native WKNavigation loadSimulatedReques(NSURLRequest request, String string);
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Method(selector = "setMinimumViewportInset:maximumViewportInset:")
+    public native void setMinimumViewportInset(@ByVal UIEdgeInsets minimumViewportInset, @ByVal UIEdgeInsets maximumViewportInset);
     /**
      * @since Available in iOS 11.0 and later.
      */

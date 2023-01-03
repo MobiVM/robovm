@@ -62,7 +62,11 @@ import org.robovm.apple.linkpresentation.*;
     void setConfiguration(UIContentConfiguration v);
     /*</properties>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "supportsConfiguration:")
+    boolean supportsConfiguration(UIContentConfiguration configuration);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

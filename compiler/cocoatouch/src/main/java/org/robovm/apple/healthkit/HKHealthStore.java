@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -80,6 +81,8 @@ import org.robovm.apple.foundation.*;
     public native HKAuthorizationStatus getAuthorizationStatusForType(HKObjectType type);
     @Method(selector = "requestAuthorizationToShareTypes:readTypes:completion:")
     public native void requestAuthorizationToTypes(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<Boolean, NSError> completion);
+    @Method(selector = "requestPerObjectReadAuthorizationForType:predicate:completion:")
+    public native void requestPerObjectReadAuthorization(HKObjectType objectType, NSPredicate predicate, @Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 12.0 and later.
      */

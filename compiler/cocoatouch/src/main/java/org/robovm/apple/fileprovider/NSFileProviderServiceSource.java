@@ -49,6 +49,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*<properties>*/
     @Property(selector = "serviceName")
     NSString getServiceName();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isRestricted")
+    boolean isRestricted();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "makeListenerEndpointAndReturnError:")

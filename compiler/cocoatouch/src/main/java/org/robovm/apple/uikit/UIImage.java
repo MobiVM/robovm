@@ -449,6 +449,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "systemImageNamed:compatibleWithTraitCollection:")
     public static native UIImage getSystemImage(String name, UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "systemImageNamed:variableValue:withConfiguration:")
+    public static native UIImage getSystemImage(String name, double value, UIImageConfiguration configuration);
     @Method(selector = "imageNamed:")
     public static native UIImage getImage(String name);
     /**
@@ -458,6 +463,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native UIImage getImage(String name, NSBundle bundle, UIImageConfiguration configuration);
     @Method(selector = "imageNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIImage getImage(String name, NSBundle bundle, UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "imageNamed:inBundle:variableValue:withConfiguration:")
+    public static native UIImage getImage(String name, NSBundle bundle, double value, UIImageConfiguration configuration);
     @Method(selector = "imageWithContentsOfFile:")
     private static native UIImage getImageWithContentsOfFile(String path);
     @Method(selector = "animatedImageNamed:duration:")

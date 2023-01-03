@@ -23,6 +23,8 @@ classes:
                 name: storeCredentialsForBorderAgent
             '-retrieveCredentialsForExtendedPANID:completion:':
                 name: retrieveCredentialsForExtendedPANID
+            '-checkPreferredNetworkForActiveOperationalDataset:completion:':
+                name: checkPreferredNetworkForActiveOperationalDataset
     THCredentials: {} #since 15.0
 
 protocols:

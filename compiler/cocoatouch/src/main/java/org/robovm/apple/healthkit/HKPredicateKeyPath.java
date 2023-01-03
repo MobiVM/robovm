@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -131,6 +132,26 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKPredicateKeyPath WorkoutTotalFlightsClimbed = new HKPredicateKeyPath("WorkoutTotalFlightsClimbed");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutSumQuantity = new HKPredicateKeyPath("WorkoutSumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutMinimumQuantity = new HKPredicateKeyPath("WorkoutMinimumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutMaximumQuantity = new HKPredicateKeyPath("WorkoutMaximumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutAverageQuantity = new HKPredicateKeyPath("WorkoutAverageQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivity = new HKPredicateKeyPath("WorkoutActivity");
+    /**
      * @since Available in iOS 10.0 and later.
      */
     public static final HKPredicateKeyPath Title = new HKPredicateKeyPath("Title");
@@ -192,9 +213,41 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final HKPredicateKeyPath MostRecentDuration = new HKPredicateKeyPath("MostRecentDuration");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityType = new HKPredicateKeyPath("WorkoutActivityType");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityDuration = new HKPredicateKeyPath("WorkoutActivityDuration");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityStartDate = new HKPredicateKeyPath("WorkoutActivityStartDate");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityEndDate = new HKPredicateKeyPath("WorkoutActivityEndDate");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivitySumQuantity = new HKPredicateKeyPath("WorkoutActivitySumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityMinimumQuantity = new HKPredicateKeyPath("WorkoutActivityMinimumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityMaximumQuantity = new HKPredicateKeyPath("WorkoutActivityMaximumQuantity");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKPredicateKeyPath WorkoutActivityAverageQuantity = new HKPredicateKeyPath("WorkoutActivityAverageQuantity");
     /*</constants>*/
     
-    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, AverageHeartRate, ECGClassification, ECGSymptomsStatus, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Count, Sum, Min, Average, Max, MostRecent, MostRecentStartDate, MostRecentEndDate, MostRecentDuration/*</value_list>*/};
+    private static /*<name>*/HKPredicateKeyPath/*</name>*/[] values = new /*<name>*/HKPredicateKeyPath/*</name>*/[] {/*<value_list>*/DateComponents, UUID, Source, Metadata, Correlation, Workout, Device, SourceRevision, StartDate, EndDate, AverageHeartRate, ECGClassification, ECGSymptomsStatus, WorkoutDuration, WorkoutTotalDistance, WorkoutTotalEnergyBurned, WorkoutType, WorkoutTotalSwimmingStrokeCount, WorkoutTotalFlightsClimbed, WorkoutSumQuantity, WorkoutMinimumQuantity, WorkoutMaximumQuantity, WorkoutAverageQuantity, WorkoutActivity, Title, PatientName, AuthorName, CustodianName, CategoryValue, ClinicalRecordFHIRResourceIdentifier, ClinicalRecordFHIRResourceType, Quantity, Count, Sum, Min, Average, Max, MostRecent, MostRecentStartDate, MostRecentEndDate, MostRecentDuration, WorkoutActivityType, WorkoutActivityDuration, WorkoutActivityStartDate, WorkoutActivityEndDate, WorkoutActivitySumQuantity, WorkoutActivityMinimumQuantity, WorkoutActivityMaximumQuantity, WorkoutActivityAverageQuantity/*</value_list>*/};
     
     /*<name>*/HKPredicateKeyPath/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -280,6 +333,31 @@ import org.robovm.apple.foundation.*;
         @GlobalValue(symbol="HKPredicateKeyPathWorkoutTotalFlightsClimbed", optional=true)
         public static native NSString WorkoutTotalFlightsClimbed();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutSumQuantity", optional=true)
+        public static native NSString WorkoutSumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutMinimumQuantity", optional=true)
+        public static native NSString WorkoutMinimumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutMaximumQuantity", optional=true)
+        public static native NSString WorkoutMaximumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutAverageQuantity", optional=true)
+        public static native NSString WorkoutAverageQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivity", optional=true)
+        public static native NSString WorkoutActivity();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="HKPredicateKeyPathCDATitle", optional=true)
@@ -358,6 +436,46 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKPredicateKeyPathMostRecentDuration", optional=true)
         public static native NSString MostRecentDuration();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityType", optional=true)
+        public static native NSString WorkoutActivityType();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityDuration", optional=true)
+        public static native NSString WorkoutActivityDuration();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityStartDate", optional=true)
+        public static native NSString WorkoutActivityStartDate();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityEndDate", optional=true)
+        public static native NSString WorkoutActivityEndDate();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivitySumQuantity", optional=true)
+        public static native NSString WorkoutActivitySumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityMinimumQuantity", optional=true)
+        public static native NSString WorkoutActivityMinimumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityMaximumQuantity", optional=true)
+        public static native NSString WorkoutActivityMaximumQuantity();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKPredicateKeyPathWorkoutActivityAverageQuantity", optional=true)
+        public static native NSString WorkoutActivityAverageQuantity();
         /*</values>*/
     }
 }

@@ -228,6 +228,31 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "decreaseSize:")
     public native void decreaseSize(NSObject sender);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "find:")
+    public native void find(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findAndReplace:")
+    public native void findAndReplace(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findNext:")
+    public native void findNext(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findPrevious:")
+    public native void findPrevious(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "useSelectionForFind:")
+    public native void useSelectionForFind(NSObject sender);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "updateTextAttributesWithConversionHandler:")
@@ -237,6 +262,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "print:")
     public native void print(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "rename:")
+    public native void rename(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "duplicate:")
+    public native void duplicate(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "move:")
+    public native void move(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "export:")
+    public native void export(NSObject sender);
     @Method(selector = "pasteItemProviders:")
     public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
     @Method(selector = "canPasteItemProviders:")

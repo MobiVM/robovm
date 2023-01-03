@@ -68,6 +68,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @ByVal CGSize getMaximumSize();
     @Property(selector = "setMaximumSize:")
     public native void setMaximumSize(@ByVal CGSize v);
+    @Property(selector = "allowsFullScreen")
+    public native boolean allowsFullScreen();
+    @Property(selector = "setAllowsFullScreen:")
+    public native void setAllowsFullScreen(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

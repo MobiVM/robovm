@@ -83,5 +83,20 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldClear(UITextField textField) { return true; }
     @NotImplemented("textFieldShouldReturn:")
     public boolean shouldReturn(UITextField textField) { return true; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textField:editMenuForCharactersInRange:suggestedActions:")
+    public UIMenu getEditMenu(UITextField textField, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textField:willPresentEditMenuWithAnimator:")
+    public void willPresentEditMenu(UITextField textField, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textField:willDismissEditMenuWithAnimator:")
+    public void willDismissEditMenu(UITextField textField, UIEditMenuInteractionAnimating animator) {}
     /*</methods>*/
 }

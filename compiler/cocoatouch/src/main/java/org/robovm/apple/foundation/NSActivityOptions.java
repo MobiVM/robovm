@@ -49,10 +49,22 @@ public final class /*<name>*/NSActivityOptions/*</name>*/ extends Bits</*<name>*
     public static final NSActivityOptions IdleSystemSleepDisabled = new NSActivityOptions(1048576L);
     public static final NSActivityOptions SuddenTerminationDisabled = new NSActivityOptions(16384L);
     public static final NSActivityOptions AutomaticTerminationDisabled = new NSActivityOptions(32768L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final NSActivityOptions AnimationTrackingEnabled = new NSActivityOptions(35184372088832L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final NSActivityOptions TrackingEnabled = new NSActivityOptions(70368744177664L);
     public static final NSActivityOptions UserInitiated = new NSActivityOptions(16777215L);
     public static final NSActivityOptions UserInitiatedAllowingIdleSystemSleep = new NSActivityOptions(15728639L);
     public static final NSActivityOptions Background = new NSActivityOptions(255L);
     public static final NSActivityOptions LatencyCritical = new NSActivityOptions(1095216660480L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final NSActivityOptions UserInteractive = new NSActivityOptions(1095233437695L);
     /*</values>*/
 
     private static final /*<name>*/NSActivityOptions/*</name>*/[] values = _values(/*<name>*/NSActivityOptions/*</name>*/.class);

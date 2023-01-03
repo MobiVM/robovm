@@ -157,9 +157,13 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 11.3 and later.
      */
     public static final WKWebsiteDataType ServiceWorkerRegistrations = new WKWebsiteDataType("ServiceWorkerRegistrations");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final WKWebsiteDataType FileSystem = new WKWebsiteDataType("FileSystem");
     /*</constants>*/
     
-    private static /*<name>*/WKWebsiteDataType/*</name>*/[] values = new /*<name>*/WKWebsiteDataType/*</name>*/[] {/*<value_list>*/FetchCache, DiskCache, MemoryCache, OfflineWebApplicationCache, Cookies, SessionStorage, LocalStorage, WebSQLDatabases, IndexedDBDatabases, ServiceWorkerRegistrations/*</value_list>*/};
+    private static /*<name>*/WKWebsiteDataType/*</name>*/[] values = new /*<name>*/WKWebsiteDataType/*</name>*/[] {/*<value_list>*/FetchCache, DiskCache, MemoryCache, OfflineWebApplicationCache, Cookies, SessionStorage, LocalStorage, WebSQLDatabases, IndexedDBDatabases, ServiceWorkerRegistrations, FileSystem/*</value_list>*/};
     
     /*<name>*/WKWebsiteDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -232,6 +236,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="WKWebsiteDataTypeServiceWorkerRegistrations", optional=true)
         public static native NSString ServiceWorkerRegistrations();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="WKWebsiteDataTypeFileSystem", optional=true)
+        public static native NSString FileSystem();
         /*</values>*/
     }
 }

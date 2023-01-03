@@ -57,6 +57,10 @@ classes:
             '-initWithTemplateImage:extensionIdentifier:':
                 name: init
     SFSafariViewControllerPrewarmingToken: {} #since 15.0
+    SFSafariViewControllerDataStore: #since 16.0
+        methods:
+            '-clearWebsiteDataWithCompletionHandler:':
+                name: clearWebsiteData
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:

@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreanimation
-include: [foundation, coregraphics, coreimage, coretext, opengles, metal]
+include: [foundation, coregraphics, coreimage, coretext, opengles, metal, corevideo]
 library: QuartzCore
 framework: QuartzCore
 clang_args: ['-x', 'objective-c']
@@ -319,7 +319,19 @@ classes:
                 parameters:
                     name:
                         type: CAValueFunctionName
-
+    CAEDRMetadata: #since 16.0
+        methods:
+            '+HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:':
+                name: createHDR10Metadata
+            '+HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:':
+                name: createHDR10Metadata
+    CARenderer: #since 2.0
+        methods:
+            '-beginFrameAtTime:timeStamp:':
+                name: beginFrame
+            '+rendererWithMTLTexture:options:':
+                name: create
+                constructor: true
 protocols:
     CAAction: # DONE
         methods:
@@ -499,6 +511,13 @@ values:
     CAFrameRateRangeDefault:
         class: CAFrameRateRange
         name: getDefault
+
+    kCARendererColorSpace:
+        class: CARenderer
+        name: getColorSpace
+    kCARendererMetalCommandQueue:
+        class: CARenderer
+        name: getMetalCommandQueue
 
     k?CA(.*):
         class: CoreAnimation

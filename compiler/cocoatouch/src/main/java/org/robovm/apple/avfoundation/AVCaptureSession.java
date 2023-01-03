@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -145,6 +147,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isRunning();
     @Property(selector = "isInterrupted")
     public native boolean isInterrupted();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isMultitaskingCameraAccessSupported")
+    public native boolean isMultitaskingCameraAccessSupported();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isMultitaskingCameraAccessEnabled")
+    public native boolean isMultitaskingCameraAccessEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMultitaskingCameraAccessEnabled:")
+    public native void setMultitaskingCameraAccessEnabled(boolean v);
     @Property(selector = "usesApplicationAudioSession")
     public native boolean usesApplicationAudioSession();
     @Property(selector = "setUsesApplicationAudioSession:")
@@ -174,6 +191,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "hardwareCost")
+    public native float getHardwareCost();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -182,6 +182,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setSeparatorInsetReference:")
     public native void setSeparatorInsetReference(UITableViewSeparatorInsetReference v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selfSizingInvalidation")
+    public native UITableViewSelfSizingInvalidation getSelfSizingInvalidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelfSizingInvalidation:")
+    public native void setSelfSizingInvalidation(UITableViewSelfSizingInvalidation v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")

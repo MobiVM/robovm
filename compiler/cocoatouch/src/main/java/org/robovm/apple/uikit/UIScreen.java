@@ -104,8 +104,16 @@ import org.robovm.apple.linkpresentation.*;
     protected UIScreen(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use UIApplication.shared.openSessions to find open sessions with scenes from other screens
+     */
+    @Deprecated
     @Property(selector = "screens")
     public static native NSArray<UIScreen> getScreens();
+    /**
+     * @deprecated Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen
+     */
+    @Deprecated
     @Property(selector = "mainScreen")
     public static native UIScreen getMainScreen();
     @Property(selector = "bounds")
@@ -163,6 +171,21 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "calibratedLatency")
     public native double getCalibratedLatency();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "referenceDisplayModeStatus")
+    public native UIScreenReferenceDisplayModeStatus getReferenceDisplayModeStatus();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "currentEDRHeadroom")
+    public native @MachineSizedFloat double getCurrentEDRHeadroom();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "potentialEDRHeadroom")
+    public native @MachineSizedFloat double getPotentialEDRHeadroom();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 15.0. Use -[UIWindowScene focusSystem].focusedItem instead
      */
@@ -194,8 +217,16 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens
+     */
+    @Deprecated
     @GlobalValue(symbol="UIScreenDidConnectNotification", optional=true)
     public static native NSString DidConnectNotification();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens
+     */
+    @Deprecated
     @GlobalValue(symbol="UIScreenDidDisconnectNotification", optional=true)
     public static native NSString DidDisconnectNotification();
     @GlobalValue(symbol="UIScreenModeDidChangeNotification", optional=true)
@@ -207,6 +238,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIScreenCapturedDidChangeNotification", optional=true)
     public static native NSString CapturedDidChangeNotification();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UIScreenReferenceDisplayModeStatusDidChangeNotification", optional=true)
+    public static native NSString ReferenceDisplayModeStatusDidChangeNotification();
     
     @WeaklyLinked
     @Method(selector = "displayLinkWithTarget:selector:")

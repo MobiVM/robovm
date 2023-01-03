@@ -49,6 +49,11 @@ import org.robovm.apple.coregraphics.*;
     public SKAdImpression() {}
     protected SKAdImpression(Handle h, long handle) { super(h, handle); }
     protected SKAdImpression(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:")
+    public SKAdImpression(NSNumber sourceAppStoreItemIdentifier, NSNumber advertisedAppStoreItemIdentifier, String adNetworkIdentifier, NSNumber adCampaignIdentifier, String adImpressionIdentifier, NSNumber timestamp, String signature, String version) { super((SkipInit) null); initObject(init(sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, adNetworkIdentifier, adCampaignIdentifier, adImpressionIdentifier, timestamp, signature, version)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sourceAppStoreItemIdentifier")
@@ -98,6 +103,10 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:")
+    protected native @Pointer long init(NSNumber sourceAppStoreItemIdentifier, NSNumber advertisedAppStoreItemIdentifier, String adNetworkIdentifier, NSNumber adCampaignIdentifier, String adImpressionIdentifier, NSNumber timestamp, String signature, String version);
     /*</methods>*/
 }

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -81,6 +83,10 @@ import org.robovm.apple.audiotoolbox.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
     @Method(selector = "isPlayableExtendedMIMEType:")
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
+    /**
+     * @deprecated Use loadTrackWithTrackID:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
     /**
@@ -88,6 +94,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(String mediaType);
     /**
@@ -95,6 +105,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadTracksWithMediaCharacteristic:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(String mediaCharacteristic);
     /**

@@ -69,6 +69,11 @@ import org.robovm.apple.avfoundation.*;
     public MTLTexture getMetalTexture() { return null; }
     @NotImplemented("metalCommandBuffer")
     public MTLCommandBuffer getMetalCommandBuffer() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("digest")
+    public long getDigest() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

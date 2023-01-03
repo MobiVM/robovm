@@ -429,6 +429,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "contextMenuInteraction:willEndForConfiguration:animator:")
     public native void willEnd(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:")
+    public native UITargetedPreview getHighlightPreview(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, NSObject identifier);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:")
+    public native UITargetedPreview getDismissalPreview(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, NSObject identifier);
     @Method(selector = "contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public native void willPerformPreviewAction(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator);
     /*</methods>*/

@@ -316,6 +316,11 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceITUR_709_PQ", optional=true)
     public static native String ITUR_709_PQ();
     /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_709_HLG", optional=true)
+    public static native String ITUR_709_HLG();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceITUR_2020", optional=true)
@@ -565,6 +570,11 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceCreateExtendedLinearized", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createExtendedLinearized(CGColorSpace space);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCreateCopyWithStandardRange", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCopyWithStandardRange(CGColorSpace s);
     /**
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */

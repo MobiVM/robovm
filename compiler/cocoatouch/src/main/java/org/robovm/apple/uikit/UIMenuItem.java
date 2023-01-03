@@ -42,9 +42,11 @@ import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. UIMenuItem is deprecated. Use UIEditMenuInteraction instead.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("UIKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIMenuItem/*</name>*/
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

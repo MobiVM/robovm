@@ -1,0 +1,144 @@
+package: org.robovm.apple.sharedwithyou
+include: [foundation, uikit, coregraphics, uniformtypeid, coreanimation]
+library: SharedWithYou 
+framework: SharedWithYou
+internal_frameworks: [SharedWithYouCore]
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SharedWithYou.framework/Headers/SharedWithYou.h
+    - /System/Library/Frameworks/SharedWithYouCore.framework/Headers/SharedWithYouCore.h
+typedefs: {}
+enums:
+    SWHighlightCenterErrorCode: {} #since 16.0
+    SWHighlightChangeEventTrigger: {} #since 16.0
+    SWHighlightMembershipEventTrigger: {} #since 16.0
+    SWHighlightPersistenceEventTrigger: {} #since 16.0
+    SWAttributionViewDisplayContext: {} #since 16.0
+    SWAttributionViewHorizontalAlignment: {} #since 16.0
+    SWAttributionViewBackgroundStyle: {} #since 16.0
+classes:
+    SWAttributionView: {} #since 16.0
+    SWCollaborationHighlight: {} #since 16.0
+    SWCollaborationView: #since 16.0
+        methods:
+            '-initWithItemProvider:':
+                name: init
+    SWHighlight: {} #since 16.0
+    SWHighlightCenter: #since 16.0
+        methods:
+            '-getHighlightForURL:completionHandler:':
+                name: getHighlight
+            '-collaborationHighlightForIdentifier:error:':
+                name: collaborationHighlight
+            '-getCollaborationHighlightForURL:completionHandler:':
+                name: getCollaborationHighlight
+            '-getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:':
+                name: getSignedIdentityProofForCollaborationHighlight
+    SWHighlightChangeEvent: #since 16.0
+        methods:
+            '-initWithHighlight:trigger:':
+                name: init
+    SWHighlightMembershipEvent: #since 16.0
+        methods:
+            '-initWithHighlight:trigger:':
+                name: init
+    SWHighlightMentionEvent: #since 16.0
+        methods:
+            '-initWithHighlight:mentionedPersonCloudKitShareHandle:':
+                name: init
+            '-initWithHighlight:mentionedPersonIdentity:':
+                name: init
+    SWHighlightPersistenceEvent: #since 16.0
+        methods:
+            '-initWithHighlight:trigger:':
+                name: init
+    SWRemoveParticipantAlertController: #since 16.0
+        methods:
+            '+alertControllerWithParticipant:highlight:':
+                name: create
+                constructor: true
+    SWAction: {} #since 16.0
+    SWCollaborationCoordinator: {} #since 16.0
+    SWCollaborationMetadata: #since 16.0
+        methods:
+            '-initWithLocalIdentifier:':
+                name: init
+    SWCollaborationOption: #since 16.0
+        methods:
+            '-initWithTitle:identifier:':
+                name: init
+            '+optionWithTitle:identifier:':
+                exclude: true
+    SWCollaborationOptionsGroup: #since 16.0
+        methods:
+            '-initWithIdentifier:options:':
+                name: init
+            '+optionsGroupWithIdentifier:options:':
+                exclude: true
+    SWCollaborationOptionsPickerGroup: {} #since 16.0
+    SWCollaborationShareOptions: #since 16.0
+        methods:
+            '-initWithOptionsGroups:summary:':
+                name: init
+            '-initWithOptionsGroups:':
+                name: init
+            '+shareOptionsWithOptionsGroups:summary:':
+                exclude: true
+            '+shareOptionsWithOptionsGroups:':
+                exclude: true
+    SWPerson: #since 16.0
+        methods:
+            '-initWithHandle:identity:displayName:thumbnailImageData:':
+                name: init
+    SWPersonIdentity: #since 16.0
+        methods:
+            '-initWithRootHash:':
+                name: init
+    SWPersonIdentityProof: {} #since 16.0
+    SWSignedPersonIdentityProof: #since 16.0
+        methods:
+            '-initWithPersonIdentityProof:signatureData:':
+                name: init
+    SWStartCollaborationAction: #since 16.0
+        methods:
+            '-fulfillUsingURL:collaborationIdentifier:':
+                name: fulfillUsingURL
+    SWUpdateCollaborationParticipantsAction: {} #since 16.0
+
+protocols:
+    SWCollaborationViewDelegate: {} #since 16.0
+    SWHighlightCenterDelegate: {}
+    SWHighlightEvent: {} #since 16.0
+    SWCollaborationActionHandler: #since 16.0
+        methods:
+            '-collaborationCoordinator:handleStartCollaborationAction:':
+                name: handleStartCollaborationAction
+            '-collaborationCoordinator:handleUpdateCollaborationParticipantsAction:':
+                name: handleUpdateCollaborationParticipantsAction
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+    SWCollaborationMetadataTypeIdentifier:
+        class: SWCollaborationMetadata
+        name: getTypeIdentifier
+    UTCollaborationOptionsTypeIdentifier:
+        class: SWCollaborationOptionsGroup
+        name: getTypeIdentifier
+    SharedWithYouCoreVersion(.*):
+        exclude: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'

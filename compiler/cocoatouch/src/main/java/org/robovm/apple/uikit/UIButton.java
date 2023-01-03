@@ -163,6 +163,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setMenu:")
     public native void setMenu(UIMenu v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredMenuElementOrder")
+    public native UIContextMenuConfigurationElementOrder getPreferredMenuElementOrder();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredMenuElementOrder:")
+    public native void setPreferredMenuElementOrder(UIContextMenuConfigurationElementOrder v);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "changesSelectionAsPrimaryAction")

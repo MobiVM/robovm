@@ -48,6 +48,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "length")
     public native @MachineSizedUInt long getLength();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuAddress")
+    public native long getGpuAddress();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")

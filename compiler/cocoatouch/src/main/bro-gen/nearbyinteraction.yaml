@@ -7,10 +7,15 @@ headers:
     - /System/Library/Frameworks/NearbyInteraction.framework/Headers/NearbyInteraction.h
 
 typedefs:
-    
+
+private_typedefs:
+    'ARSession *': org.robovm.apple.arkit.ARSession
+
 enums:
     NIErrorCode: {nserror: true}
     NINearbyObjectRemovalReason: {}
+    NINearbyObjectVerticalDirectionEstimate: {}
+    NIAlgorithmConvergenceStatus: {}
 
 categories:
 
@@ -31,6 +36,10 @@ classes:
             '-initWithData:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithAccessoryData:bluetoothPeerIdentifier:error:':
+                name: init
+                throws: NSErrorException
+    NIAlgorithmConvergence: {} #since 16.0
 protocols:
     NISessionDelegate: #since 14.0
         methods:
@@ -42,19 +51,26 @@ protocols:
                 name: didInvalidate
             '-session:didGenerateShareableConfigurationData:forObject:':
                 name: didGenerateShareableConfigurationData
-functions:
+            '-session:didUpdateAlgorithmConvergence:forObject:':
+                name: didUpdateAlgorithmConvergence
+    NIDeviceCapability: {} #since 16.0
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?NI.*):
         class: FIXME
         name: 'Function__#{g[0]}'
+functions:
 
+typed_enums:
+    NIAlgorithmConvergenceStatusReason:
+        enum: NIAlgorithmConvergenceStatusReason
+        type: NSString
 values:
     NIErrorDomain:
         class: NIErrorCode
         name: getClassDomain
 
-    NINearbyObject(DistanceNotAvailable|DirectionNotAvailable):
+    NINearbyObject(DistanceNotAvailable|DirectionNotAvailable|AngleNotAvailable|WorldTransformNotAvailable):
         readonly: true
         class: NINearbyObject
         name: '#{g[0]}'

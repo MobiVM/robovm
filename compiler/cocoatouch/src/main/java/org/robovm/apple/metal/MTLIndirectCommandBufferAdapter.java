@@ -47,6 +47,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @NotImplemented("size")
     public @MachineSizedUInt long getSize() { return 0; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("gpuResourceID")
+    public @ByVal MTLResourceID getGpuResourceID() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -54,6 +54,8 @@ import org.robovm.apple.uikit.*;
     public static final String IconURL = "IconURL";
     public static final String BusCountWritable = "BusCountWritable";
     public static final String SupportedChannelLayoutTags = "SupportedChannelLayoutTags";
+    public static final String MIDIProtocol = "MIDIProtocol";
+    public static final String MigrateFromPlugin = "MigrateFromPlugin";
     /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/

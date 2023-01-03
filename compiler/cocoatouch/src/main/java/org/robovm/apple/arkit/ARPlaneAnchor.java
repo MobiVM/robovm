@@ -70,8 +70,18 @@ import org.robovm.apple.coreanimation.*;
     public native ARPlaneAnchorAlignment getAlignment();
     @Property(selector = "center")
     public native @ByVal VectorFloat3 getCenter();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use planeExtent
+     */
+    @Deprecated
     @Property(selector = "extent")
     public native @ByVal VectorFloat3 getExtent();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "planeExtent")
+    public native ARPlaneExtent getPlaneExtent();
     /**
      * @since Available in iOS 11.3 and later.
      */

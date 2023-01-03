@@ -95,5 +95,20 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")
     public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange) { return false; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textView:editMenuForTextInRange:suggestedActions:")
+    public UIMenu getEditMenu(UITextView textView, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textView:willPresentEditMenuWithAnimator:")
+    public void willPresentEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("textView:willDismissEditMenuWithAnimator:")
+    public void willDismissEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator) {}
     /*</methods>*/
 }

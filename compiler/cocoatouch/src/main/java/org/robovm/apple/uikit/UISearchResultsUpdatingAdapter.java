@@ -61,5 +61,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("updateSearchResultsForSearchController:")
     public void updateSearchResults(UISearchController searchController) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("updateSearchResultsForSearchController:selectingSearchSuggestion:")
+    public void updateSearchResults(UISearchController searchController, UISearchSuggestion searchSuggestion) {}
     /*</methods>*/
 }

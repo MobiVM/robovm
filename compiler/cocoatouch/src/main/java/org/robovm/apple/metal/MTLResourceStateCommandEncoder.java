@@ -74,6 +74,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "waitForFence:")
     void waitForFence(MTLFence fence);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:")
+    void moveTextureMappings(MTLTexture sourceTexture, @MachineSizedUInt long sourceSlice, @MachineSizedUInt long sourceLevel, @ByVal MTLOrigin sourceOrigin, @ByVal MTLSize sourceSize, MTLTexture destinationTexture, @MachineSizedUInt long destinationSlice, @MachineSizedUInt long destinationLevel, @ByVal MTLOrigin destinationOrigin);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

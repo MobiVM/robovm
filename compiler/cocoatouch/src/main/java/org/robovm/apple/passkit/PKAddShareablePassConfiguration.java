@@ -52,19 +52,33 @@ import org.robovm.apple.coreanimation.*;
     protected PKAddShareablePassConfiguration() {}
     protected PKAddShareablePassConfiguration(Handle h, long handle) { super(h, handle); }
     protected PKAddShareablePassConfiguration(SkipInit skipInit) { super(skipInit); }
-    public PKAddShareablePassConfiguration(NSArray<PKShareablePassMetadata> passMetadata, String provisioningPolicyIdentifier, PKAddShareablePassConfigurationPrimaryAction action, @Block VoidBlock2<PKAddShareablePassConfiguration, NSError> completion) { super((Handle) null, create(passMetadata, provisioningPolicyIdentifier, action, completion)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "primaryAction")
     public native PKAddShareablePassConfigurationPrimaryAction getPrimaryAction();
     @Property(selector = "credentialsMetadata")
     public native NSArray<PKShareablePassMetadata> getCredentialsMetadata();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. provisioningPolicyIdentifier has been deprecated. You can stop setting this property in the init with no repercussions.
+     */
+    @Deprecated
     @Property(selector = "provisioningPolicyIdentifier")
     public native String getProvisioningPolicyIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use configurationForPassMetadata:primaryAction:completion:
+     */
+    @Deprecated
     @Method(selector = "configurationForPassMetadata:provisioningPolicyIdentifier:primaryAction:completion:")
-    protected static native @Pointer long create(NSArray<PKShareablePassMetadata> passMetadata, String provisioningPolicyIdentifier, PKAddShareablePassConfigurationPrimaryAction action, @Block VoidBlock2<PKAddShareablePassConfiguration, NSError> completion);
+    public static native void configurationForPassMetadata(NSArray<PKShareablePassMetadata> passMetadata, String provisioningPolicyIdentifier, PKAddShareablePassConfigurationPrimaryAction action, @Block VoidBlock2<PKAddShareablePassConfiguration, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "configurationForPassMetadata:primaryAction:completion:")
+    public static native void configurationForPassMetadata(NSArray<PKShareablePassMetadata> passMetadata, PKAddShareablePassConfigurationPrimaryAction action, @Block VoidBlock2<PKAddShareablePassConfiguration, NSError> completion);
     /*</methods>*/
 }

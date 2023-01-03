@@ -1,5 +1,5 @@
 package: org.robovm.apple.mediaplayer
-include: [foundation, uikit, coregraphics, coreanimation]
+include: [foundation, uikit, coregraphics, coreanimation, coremedia, avfoundation]
 library: MediaPlayer
 framework: MediaPlayer
 clang_args: ['-x', 'objective-c']
@@ -347,6 +347,16 @@ classes:
                 trim_after_first_colon: true
             '-initWithPlayParametersQueue:':
                 name: init
+    MPAdTimeRange: #since 16.0
+        methods:
+            '-initWithTimeRange:':
+                name: init
+    MPNowPlayingSession: #since 16.0
+        methods:
+            '-initWithPlayers:':
+                name: init
+            '-becomeActiveIfPossibleWithCompletion:':
+                name: becomeActiveIfPossible
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:
@@ -378,7 +388,7 @@ protocols:
             '-playableContentManager:initializePlaybackQueueWithContentItems:completionHandler:':
                 name: initializePlaybackQueueWithContent
     MPSystemMusicPlayerController: {}
-
+    MPNowPlayingSessionDelegate: {} #since 16.0
 functions:
     MPVolumeSettingsAlert(Show|Hide):
         class: MPVolumeSettings

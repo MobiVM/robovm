@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +64,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*/
     @Property(selector = "URL")
     public native NSURL getURL();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "httpSessionIdentifier")
+    public native NSUUID getHttpSessionIdentifier();
     @Property(selector = "resourceLoader")
     public native AVAssetResourceLoader getResourceLoader();
     /**
@@ -96,6 +103,10 @@ import org.robovm.apple.audiotoolbox.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
     @Method(selector = "isPlayableExtendedMIMEType:")
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
+    /**
+     * @deprecated Use findCompatibleTrackForCompositionTrack:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "compatibleTrackForCompositionTrack:")
     public native AVAssetTrack getCompatibleTrack(AVCompositionTrack compositionTrack);
     /**

@@ -65,5 +65,33 @@ import org.robovm.apple.foundation.*;
     public native void addSubscriber(MXMetricManagerSubscriber subscriber);
     @Method(selector = "removeSubscriber:")
     public native void removeSubscriber(MXMetricManagerSubscriber subscriber);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static boolean extendLaunchMeasurementForTaskID(String taskID) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = extendLaunchMeasurementForTaskID(taskID, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "extendLaunchMeasurementForTaskID:error:")
+    private static native boolean extendLaunchMeasurementForTaskID(String taskID, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static boolean finishExtendedLaunchMeasurementForTaskID(String taskID) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = finishExtendedLaunchMeasurementForTaskID(taskID, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "finishExtendedLaunchMeasurementForTaskID:error:")
+    private static native boolean finishExtendedLaunchMeasurementForTaskID(String taskID, NSError.NSErrorPtr error);
     /*</methods>*/
 }

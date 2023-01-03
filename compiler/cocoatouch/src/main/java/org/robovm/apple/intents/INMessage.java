@@ -51,6 +51,11 @@ import org.robovm.apple.coregraphics.*;
     protected INMessage(Handle h, long handle) { super(h, handle); }
     protected INMessage(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:audioMessageFile:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, INFile audioMessageFile) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType, serviceName, audioMessageFile)); }
+    /**
      * @since Available in iOS 13.2 and later.
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:")
@@ -101,11 +106,18 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "serviceName")
     public native String getServiceName();
+    @Property(selector = "audioMessageFile")
+    public native INFile getAudioMessageFile();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:audioMessageFile:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, INFile audioMessageFile);
     /**
      * @since Available in iOS 13.2 and later.
      */

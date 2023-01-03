@@ -32,9 +32,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. Use MTLGPUFamily instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTLFeatureSet/*</name>*/ implements ValuedEnum {
     /*<values>*/
     iOS_GPUFamily1_v1(0L),

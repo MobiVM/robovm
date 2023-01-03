@@ -111,6 +111,11 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UISheetPresentationControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double AutomaticDimension();
     
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "invalidateDetents")
+    public native void invalidateDetents();
     @Method(selector = "animateChanges:")
     public native void animateChanges(@Block Runnable changes);
     /*</methods>*/

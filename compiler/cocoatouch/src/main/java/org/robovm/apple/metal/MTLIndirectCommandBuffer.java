@@ -48,6 +48,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "size")
     @MachineSizedUInt long getSize();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    @ByVal MTLResourceID getGpuResourceID();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "resetWithRange:")

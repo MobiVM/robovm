@@ -2,7 +2,10 @@ package: org.robovm.apple.coregraphics
 include: [corefoundation.yaml, foundation.yaml, uikit.yaml]
 library: CoreGraphics
 framework: CoreGraphics
-clang_args: ['-x', 'objective-c']
+# TODO: FIXME: CGRect etc structs have been moved to CoreFoundation/CFCGTypes.h to allow these to be
+# re-defined in CoreGraphics -D__COREFOUNDATION_CFCGTYPES__ have to be passed to compiler.
+# subject for changes in next ios versions !
+clang_args: ['-x', 'objective-c', '-D__COREFOUNDATION_CFCGTYPES__']
 header: /System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.h
 typedefs:
     Boolean: boolean
@@ -50,6 +53,7 @@ classes:
 
     # Structs
     CGAffineTransform: {}
+    CGAffineTransformComponents: {}
     CGFunctionCallbacks: {visibility: ''}
     CGPathElement: {visibility: ''}
     CGPatternCallbacks: {visibility: ''}

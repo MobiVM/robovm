@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -489,6 +491,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isPortraitEffectActive")
     public native boolean isPortraitEffectActive();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isContinuityCamera")
+    public native boolean isContinuityCamera();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "companionDeskViewCamera")
+    public native AVCaptureDevice getCompanionDeskViewCamera();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "preferredMicrophoneMode")
@@ -498,6 +510,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "activeMicrophoneMode")
     public static native AVCaptureMicrophoneMode getActiveMicrophoneMode();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightEnabled")
+    public static native boolean isStudioLightEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setStudioLightEnabled:")
+    public static native void setStudioLightEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightActive")
+    public native boolean isStudioLightActive();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

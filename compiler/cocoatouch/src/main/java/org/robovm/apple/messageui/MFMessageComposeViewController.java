@@ -118,6 +118,11 @@ import org.robovm.apple.messages.*;
     public native boolean addAttachment(NSURL attachmentURL, String alternateFilename);
     @Method(selector = "addAttachmentData:typeIdentifier:filename:")
     public native boolean addAttachment(NSData attachmentData, String uti, String filename);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "insertCollaborationItemProvider:")
+    public native boolean insertCollaborationItemProvider(NSItemProvider itemProvider);
     @Method(selector = "canSendText")
     public static native boolean canSendText();
     @Method(selector = "canSendSubject")

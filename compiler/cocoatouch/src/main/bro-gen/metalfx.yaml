@@ -1,0 +1,44 @@
+package: org.robovm.apple.metalfx
+include: [foundation, metal]
+library: MetalFX 
+framework: MetalFX 
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MetalFX.framework/Headers/MetalFX.h
+typedefs: {}
+
+enums:
+    MTLFXSpatialScalerColorProcessingMode: {} #since 16.0
+
+classes:
+    MTLFXSpatialScalerDescriptor: #since 16.0
+        methods:
+            '-newSpatialScalerWithDevice:':
+                name: newSpatialScaler
+    MTLFXTemporalScalerDescriptor: #since 16.0
+        methods:
+            '-newTemporalScalerWithDevice:':
+                name: newTemporalScaler
+
+protocols:
+    MTLFXSpatialScaler: {} #since 16.0
+    MTLFXTemporalScaler: {} #since 16.0
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'

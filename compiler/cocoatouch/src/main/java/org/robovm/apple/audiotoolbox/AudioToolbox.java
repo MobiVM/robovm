@@ -54,6 +54,15 @@ import org.robovm.apple.uikit.*;
         public static final String Program = "program";
     }
 
+    public static class IsolationParams {
+        public static final int WetDryMixPercent = 0;
+        public static final int SoundToIsolate = 1;
+    }
+
+    public static class IsolationSoundTypes {
+        public static final long Voice = 1L;
+    }
+
     public static class Presets {
         public static final String VersionKey = "version";
         public static final String TypeKey = "type";

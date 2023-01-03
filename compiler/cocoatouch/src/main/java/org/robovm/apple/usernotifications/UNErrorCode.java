@@ -48,7 +48,8 @@ public enum /*<name>*/UNErrorCode/*</name>*/ implements ValuedEnum {
     NotificationInvalidNoDate(1400L),
     NotificationInvalidNoContent(1401L),
     ContentProvidingObjectNotAllowed(1500L),
-    ContentProvidingInvalid(1501L);
+    ContentProvidingInvalid(1501L),
+    BadgeInputInvalid(1600L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(UNErrorCode.class); }/*</bind>*/

@@ -1,0 +1,54 @@
+package: org.robovm.apple.avrouting
+include: [foundation, network, uniformtypeid]
+library: AVRouting
+framework: AVRouting
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AVRouting.framework/Headers/AVRouting.h
+typedefs: {}
+
+enums:
+    AVCustomRoutingEventReason: {}
+
+classes:
+    AVCustomDeviceRoute: {} #since 16.0
+    AVCustomRoutingActionItem: {} #since 16.0
+    AVCustomRoutingController: #since 16.0
+        methods:
+            '-setActive:forRoute:':
+                name: setActive
+    AVCustomRoutingEvent: {} #since 16.0
+
+protocols:
+    AVCustomRoutingControllerDelegate: #since 16.0
+        methods:
+            '-customRoutingController:handleEvent:completionHandler:':
+                name: handleEvent
+            '-customRoutingController:eventDidTimeOut:':
+                name: eventDidTimeOut
+            '-customRoutingController:didSelectItem:':
+                name: didSelectItem
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+    AVCustomRoutingController(.*)Notification:
+        class:     AVCustomRoutingController
+        name: '#{g[0]}'
+        static_class: Notifications
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AV.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AV.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'

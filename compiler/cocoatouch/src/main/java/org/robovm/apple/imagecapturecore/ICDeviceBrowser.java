@@ -63,6 +63,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "isSuspended")
     public native boolean isSuspended();
     /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "browsedDeviceTypeMask")
+    public native ICDeviceTypeMask getBrowsedDeviceTypeMask();
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "setBrowsedDeviceTypeMask:")
+    public native void setBrowsedDeviceTypeMask(ICDeviceTypeMask v);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "devices")

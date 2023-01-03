@@ -115,5 +115,10 @@ import org.robovm.apple.network.*;
     private native boolean startVPNTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
     @Method(selector = "stopVPNTunnel")
     public native void stopVPNTunnel();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "fetchLastDisconnectErrorWithCompletionHandler:")
+    public native void fetchLastDisconnectError(@Block VoidBlock1<NSError> handler);
     /*</methods>*/
 }

@@ -88,23 +88,73 @@ import org.robovm.apple.avfoundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty ShazamID = new SHMediaItemProperty("ShazamID");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty Title = new SHMediaItemProperty("Title");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty Subtitle = new SHMediaItemProperty("Subtitle");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty Artist = new SHMediaItemProperty("Artist");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty WebURL = new SHMediaItemProperty("WebURL");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty AppleMusicID = new SHMediaItemProperty("AppleMusicID");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty AppleMusicURL = new SHMediaItemProperty("AppleMusicURL");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty ArtworkURL = new SHMediaItemProperty("ArtworkURL");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty VideoURL = new SHMediaItemProperty("VideoURL");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty ExplicitContent = new SHMediaItemProperty("ExplicitContent");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty Genres = new SHMediaItemProperty("Genres");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty ISRC = new SHMediaItemProperty("ISRC");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final SHMediaItemProperty TimeRanges = new SHMediaItemProperty("TimeRanges");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final SHMediaItemProperty FrequencySkewRanges = new SHMediaItemProperty("FrequencySkewRanges");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty MatchOffset = new SHMediaItemProperty("MatchOffset");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     public static final SHMediaItemProperty FrequencySkew = new SHMediaItemProperty("FrequencySkew");
     /*</constants>*/
     
-    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, MatchOffset, FrequencySkew/*</value_list>*/};
+    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, TimeRanges, FrequencySkewRanges, MatchOffset, FrequencySkew/*</value_list>*/};
     
     /*<name>*/SHMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -127,32 +177,84 @@ import org.robovm.apple.avfoundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemShazamID", optional=true)
         public static native NSString ShazamID();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemTitle", optional=true)
         public static native NSString Title();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemSubtitle", optional=true)
         public static native NSString Subtitle();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemArtist", optional=true)
         public static native NSString Artist();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemWebURL", optional=true)
         public static native NSString WebURL();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemAppleMusicID", optional=true)
         public static native NSString AppleMusicID();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemAppleMusicURL", optional=true)
         public static native NSString AppleMusicURL();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemArtworkURL", optional=true)
         public static native NSString ArtworkURL();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemVideoURL", optional=true)
         public static native NSString VideoURL();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemExplicitContent", optional=true)
         public static native NSString ExplicitContent();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemGenres", optional=true)
         public static native NSString Genres();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemISRC", optional=true)
         public static native NSString ISRC();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="SHMediaItemTimeRanges", optional=true)
+        public static native NSString TimeRanges();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="SHMediaItemFrequencySkewRanges", optional=true)
+        public static native NSString FrequencySkewRanges();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemMatchOffset", optional=true)
         public static native NSString MatchOffset();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="SHMediaItemFrequencySkew", optional=true)
         public static native NSString FrequencySkew();
         /*</values>*/

@@ -94,6 +94,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
     public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "supportsConfiguration:")
+    public native boolean supportsConfiguration(UIContentConfiguration configuration);
     /*</methods>*/
 
     @Override

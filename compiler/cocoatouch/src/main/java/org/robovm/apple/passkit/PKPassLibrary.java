@@ -187,6 +187,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "signData:withSecureElementPass:completion:")
     public native void signData(NSData signData, PKSecureElementPass secureElementPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "encryptedServiceProviderDataForSecureElementPass:completion:")
+    public native void encryptedServiceProviderDataForSecureElementPass(PKSecureElementPass secureElementPass, @Block VoidBlock2<NSDictionary<?, ?>, NSError> completion);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "serviceProviderDataForSecureElementPass:completion:")

@@ -85,7 +85,7 @@ import org.robovm.apple.fileprovider.*;
     public native CKShareParticipantType getParticipantType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use hierarchicalRootRecordID
+     * @deprecated Deprecated in iOS 16.0. Use hierarchicalRootRecordID
      */
     @Deprecated
     @Property(selector = "rootRecordID")

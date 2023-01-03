@@ -67,5 +67,7 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldPopItem(UINavigationBar navigationBar, UINavigationItem item) { return false; }
     @NotImplemented("navigationBar:didPopItem:")
     public void didPopItem(UINavigationBar navigationBar, UINavigationItem item) {}
+    @NotImplemented("navigationBarNSToolbarSection:")
+    public UINavigationBarNSToolbarSection navigationBarNSToolbarSection(UINavigationBar navigationBar) { return null; }
     /*</methods>*/
 }

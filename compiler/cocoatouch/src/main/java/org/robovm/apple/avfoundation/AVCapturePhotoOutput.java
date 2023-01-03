@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -182,10 +184,30 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVCapturePhotoSettings getPhotoSettingsForSceneMonitoring();
     @Property(selector = "setPhotoSettingsForSceneMonitoring:")
     public native void setPhotoSettingsForSceneMonitoring(AVCapturePhotoSettings v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "isHighResolutionCaptureEnabled")
     public native boolean isHighResolutionCaptureEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "setHighResolutionCaptureEnabled:")
     public native void setHighResolutionCaptureEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxPhotoDimensions")
+    public native @ByVal CMVideoDimensions getMaxPhotoDimensions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMaxPhotoDimensions:")
+    public native void setMaxPhotoDimensions(@ByVal CMVideoDimensions v);
     @Property(selector = "maxBracketedCapturePhotoCount")
     public native @MachineSizedUInt long getMaxBracketedCapturePhotoCount();
     @Property(selector = "isLensStabilizationDuringBracketedCaptureSupported")
@@ -200,6 +222,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isLivePhotoCaptureSuspended();
     @Property(selector = "setLivePhotoCaptureSuspended:")
     public native void setLivePhotoCaptureSuspended(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preservesLivePhotoCaptureSuspendedOnSessionStop")
+    public native boolean preservesLivePhotoCaptureSuspendedOnSessionStop();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreservesLivePhotoCaptureSuspendedOnSessionStop:")
+    public native void setPreservesLivePhotoCaptureSuspendedOnSessionStop(boolean v);
     @Property(selector = "isLivePhotoAutoTrimmingEnabled")
     public native boolean isLivePhotoAutoTrimmingEnabled();
     @Property(selector = "setLivePhotoAutoTrimmingEnabled:")

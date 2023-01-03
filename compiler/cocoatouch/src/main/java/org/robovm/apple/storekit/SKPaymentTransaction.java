@@ -55,6 +55,10 @@ import org.robovm.apple.coregraphics.*;
     public native SKPaymentTransaction getOriginalTransaction();
     @Property(selector = "payment")
     public native SKPayment getPayment();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     */
+    @Deprecated
     @Property(selector = "downloads")
     public native NSArray<SKDownload> getDownloads();
     @Property(selector = "transactionDate")

@@ -127,6 +127,10 @@ classes:
                 throws: NSErrorException
             '+loadContentsOfURL:configuration:completionHandler:':
                 name: load
+            '+loadModelAsset:configuration:completionHandler:':
+                name: loadModelAsset
+            '+compileModelAtURL:completionHandler:':
+                name: compileModelAtURL
     MLModelDescription: {} #since 11.0
     MLMultiArray:  #since 11.0
         methods:
@@ -143,6 +147,12 @@ classes:
             '+multiArrayByConcatenatingMultiArrays:alongAxis:dataType:':
                 constructor: true
                 name: multiArrayByConcatenatingMultiArrays
+            '-initWithPixelBuffer:shape:':
+                name: init
+            '-getBytesWithHandler:':
+                name: getBytes
+            '-getMutableBytesWithHandler:':
+                name: getMutableBytes
     MLMultiArrayConstraint: {} #since 11.0
     MLPredictionOptions: {} #since 11.0
     MLArrayBatchProvider: #since 12.0
@@ -186,15 +196,19 @@ classes:
             '+updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:':
                 constructor: true
                 name: create
+                throws: NSErrorException
             '+updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:':
                 constructor: true
                 name: create
+                throws: NSErrorException
             '+updateTaskForModelAtURL:trainingData:completionHandler:error:':
                 constructor: true
                 name: create
+                throws: NSErrorException
             '+updateTaskForModelAtURL:trainingData:progressHandlers:error:':
                 constructor: true
                 name: create
+                throws: NSErrorException
     MLModelCollection: #since 14.0
         methods:
             '+beginAccessingModelCollectionWithIdentifier:completionHandler:':
@@ -202,6 +216,12 @@ classes:
             '+endAccessingModelCollectionWithIdentifier:completionHandler:':
                 name: endAccessingModelCollection
     MLModelCollectionEntry: {} #since 14.0
+    MLModelAsset: #since 16.0
+        methods:
+            '+modelAssetWithSpecificationData:error:':
+                constructor: true
+                name: create
+                throws: NSErrorException
 protocols:
     MLFeatureProvider: {} #since 11.0
     MLBatchProvider: {} #since 12.0

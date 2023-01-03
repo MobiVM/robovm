@@ -121,7 +121,8 @@ classes:
                 parameters:
                     parameters:
                         type: SKStoreProductParameters
-
+            '-loadProductWithParameters:impression:completionBlock:':
+                name: loadProduct
     SKCloudServiceSetupViewController:
         methods:
             '-loadWithOptions:completionHandler:':
@@ -179,7 +180,10 @@ classes:
                 name: setAdditionalValue
     SKOverlayConfiguration: {} #since 14.0
     SKOverlayTransitionContext: {} #since 14.0
-    SKAdImpression: {} #since 14.5
+    SKAdImpression: #since 14.5
+        methods:
+            '-initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:':
+                name: init
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:

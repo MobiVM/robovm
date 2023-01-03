@@ -51,12 +51,27 @@ import org.robovm.apple.coreanimation.*;
     protected CPPointOfInterest() {}
     protected CPPointOfInterest(Handle h, long handle) { super(h, handle); }
     protected CPPointOfInterest(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:selectedPinImage:")
+    public CPPointOfInterest(MKMapItem location, String title, String subtitle, String summary, String detailTitle, String detailSubtitle, String detailSummary, UIImage pinImage, UIImage selectedPinImage) { super((SkipInit) null); initObject(init(location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage, selectedPinImage)); }
     @Method(selector = "initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:")
     public CPPointOfInterest(MKMapItem location, String title, String subtitle, String summary, String detailTitle, String detailSubtitle, String detailSummary, UIImage pinImage) { super((SkipInit) null); initObject(init(location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage)); }
     @Method(selector = "initWithCoder:")
     public CPPointOfInterest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pinImageSize")
+    public static native @ByVal CGSize getPinImageSize();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selectedPinImageSize")
+    public static native @ByVal CGSize getSelectedPinImageSize();
     @Property(selector = "location")
     public native MKMapItem getLocation();
     @Property(selector = "setLocation:")
@@ -89,6 +104,16 @@ import org.robovm.apple.coreanimation.*;
     public native UIImage getPinImage();
     @Property(selector = "setPinImage:")
     public native void setPinImage(UIImage v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selectedPinImage")
+    public native UIImage getSelectedPinImage();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelectedPinImage:")
+    public native void setSelectedPinImage(UIImage v);
     @Property(selector = "primaryButton")
     public native CPTextButton getPrimaryButton();
     @Property(selector = "setPrimaryButton:")
@@ -106,6 +131,11 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:selectedPinImage:")
+    protected native @Pointer long init(MKMapItem location, String title, String subtitle, String summary, String detailTitle, String detailSubtitle, String detailSummary, UIImage pinImage, UIImage selectedPinImage);
     @Method(selector = "initWithLocation:title:subtitle:summary:detailTitle:detailSubtitle:detailSummary:pinImage:")
     protected native @Pointer long init(MKMapItem location, String title, String subtitle, String summary, String detailTitle, String detailSubtitle, String detailSummary, UIImage pinImage);
     @Method(selector = "encodeWithCoder:")

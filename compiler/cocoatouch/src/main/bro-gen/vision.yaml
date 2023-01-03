@@ -17,6 +17,7 @@ enums:
     VNGenerateOpticalFlowRequestComputationAccuracy: {}
     VNChirality: {}
     VNGeneratePersonSegmentationRequestQualityLevel: {}
+    VNPointsClassification: {}
 classes:
     VNBarcodeObservation: {} #since 11.0
     VNClassificationObservation: #since 11.0
@@ -69,8 +70,10 @@ classes:
                 name: create
                 constructor: true
     VNHomographicImageRegistrationRequest: {} #since 11.0
-    VNHorizonObservation: {} #since 11.0
-    VNImageAlignmentObservation: {} #since 11.0
+    VNHorizonObservation: #since 11.0
+        methods:
+            '-transformForImageWidth:height:':
+                name: transform
     VNImageBasedRequest: {} #since 11.0
     VNImageHomographicAlignmentObservation: {} #since 11.0
     VNImageRegistrationRequest: {} #since 11.0
@@ -367,6 +370,7 @@ classes:
         methods:
             '+new': { exclude: true }
     VNHumanObservation: {} #since 15.0
+    VNImageAlignmentObservation: {} #since 11.0
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
     VNRequestRevisionProviding: {} #since 12.0
@@ -517,69 +521,31 @@ constants:
     VNRequest(RevisionUnspecified):
         class: VNRequest
         name: '#{g[0]}'
-    VNClassifyImageRequestRevision(.*):
-        class: VNClassifyImageRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceRectanglesRequestRevision(.*):
-        class: VNDetectFaceRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceLandmarksRequestRevision(.*):
-        class: VNDetectFaceLandmarksRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceCaptureQualityRequestRevision(.*):
-        class: VNDetectFaceCaptureQualityRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHorizonRequestRevision(.*):
-        class: VNDetectHorizonRequest
-        name: 'Revision#{g[0]}'
-    VNDetectRectanglesRequestRevision(.*):
-        class: VNDetectRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNDetectTextRectanglesRequestRevision(.*):
-        class: VNDetectTextRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNRecognizeTextRequestRevision(.*):
-        class: VNRecognizeTextRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateAttentionBasedSaliencyImageRequestRevision(.*):
-        class: VNGenerateAttentionBasedSaliencyImageRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateObjectnessBasedSaliencyImageRequestRevision(.*):
-        class: VNGenerateObjectnessBasedSaliencyImageRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateImageFeaturePrintRequestRevision(.*):
-        class: VNGenerateImageFeaturePrintRequest
-        name: 'Revision#{g[0]}'
-    VNCoreMLRequestRevision(.*):
-        class: VNCoreMLRequest
-        name: 'Revision#{g[0]}'
-    VNTrackObjectRequestRevision(.*):
-        class: VNTrackObjectRequest
-        name: 'Revision#{g[0]}'
-    VNTrackRectangleRequestRevision(.*):
-        class: VNTrackRectangleRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanRectanglesRequestRevision(.*):
-        class: VNDetectHumanRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNRecognizeAnimalsRequestRevision(.*):
-        class: VNRecognizeAnimalsRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateOpticalFlowRequestRevision(.*):
-        class: VNGenerateOpticalFlowRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanBodyPoseRequestRevision(.*):
-        class: VNDetectHumanBodyPoseRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanHandPoseRequestRevision(.*):
-        class: VNDetectHumanHandPoseRequest
-        name: 'Revision#{g[0]}'
+
     VNDetectContourRequestRevision(.*):
         class: VNDetectContoursRequest
         name: 'Revision#{g[0]}'
-    VNDetectTrajectoriesRequestRevision(.*):
-        class: VNDetectTrajectoriesRequest
-        name: 'Revision#{g[0]}'
+
+    (VNClassifyImageRequest|VNDetectFaceRectanglesRequest|VNDetectFaceLandmarksRequest|VNDetectFaceCaptureQualityRequest|VNDetectHorizonRequest|VNDetectRectanglesRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'Revision#{g[1]}'
+
+    (VNDetectTextRectanglesRequest|VNRecognizeTextRequest|VNGenerateAttentionBasedSaliencyImageRequest|VNGenerateObjectnessBasedSaliencyImageRequest|VNGenerateImageFeaturePrintRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'Revision#{g[1]}'
+
+    (VNCoreMLRequest|VNTrackObjectRequest|VNTrackRectangleRequest|VNDetectHumanRectanglesRequest|VNRecognizeAnimalsRequest|VNGenerateOpticalFlowRequest|VNDetectHumanBodyPoseRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'Revision#{g[1]}'
+
+    (VNDetectHumanHandPoseRequest|VNDetectContourRequest|VNDetectTrajectoriesRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'Revision#{g[1]}'
+
+    (VNDetectBarcodesRequest|VNDetectFaceRectanglesRequest|VNDetectFaceLandmarksRequest|VNDetectHorizonRequest|VNDetectRectanglesRequest|VNDetectTextRectanglesRequest|VNCoreMLRequest|VNTrackObjectRequest|VNTrackRectangleRequest|VNGeneratePersonSegmentationRequest|VNDetectDocumentSegmentationRequest)Revision(.*):
+        class: '#{g[0]}'
+        name: 'Revision#{g[1]}'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (VN.*):
         class: Vision

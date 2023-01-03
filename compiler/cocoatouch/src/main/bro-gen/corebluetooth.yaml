@@ -387,7 +387,7 @@ values:
             RequiresANCS:
                 name: requiresANCS
                 type: boolean
-    CBCentralManagerOption(.*)Key:
+    CBCentralManagerOption(.*?)(?:Key)?:
         dictionary: CBCentralManagerOptions
         name: '#{g[0]}'
         type: NSString
@@ -397,7 +397,8 @@ values:
                 type: boolean
             RestoreIdentifier:
                 type: String
-    
+            DeviceAccessForMedia:
+                type: boolean
     # CBCentralManagerDelegate
     CBAdvertisementData(IsConnectable):
         dictionary: CBAdvertisementData

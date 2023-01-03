@@ -412,6 +412,16 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "autoAdjustmentFiltersWithOptions:")
     public native NSArray<CIFilter> getAutoAdjustmentFilters(CIImageAutoAdjustmentOptions options);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "imageByConvertingWorkingSpaceToLab")
+    public native CIImage newImageByConvertingWorkingSpaceToLab();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "imageByConvertingLabToWorkingSpace")
+    public native CIImage newImageByConvertingLabToWorkingSpace();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithDepthData:options:")

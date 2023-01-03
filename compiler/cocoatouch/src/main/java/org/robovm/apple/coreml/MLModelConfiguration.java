@@ -56,6 +56,16 @@ import org.robovm.apple.metal.*;
     public MLModelConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "modelDisplayName")
+    public native String getModelDisplayName();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setModelDisplayName:")
+    public native void setModelDisplayName(String v);
     @Property(selector = "computeUnits")
     public native MLComputeUnits getComputeUnits();
     @Property(selector = "setComputeUnits:")

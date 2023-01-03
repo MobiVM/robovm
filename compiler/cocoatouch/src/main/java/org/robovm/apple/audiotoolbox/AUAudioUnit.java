@@ -357,6 +357,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "disableProfile:cable:onChannel:error:")
     public native boolean disableProfile(MIDICIProfile profile, byte cable, byte channel, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "messageChannelFor:")
+    public native AUMessageChannel messageChannelFor(String channelName);
     @Method(selector = "instantiateWithComponentDescription:options:completionHandler:")
     public static native void instantiate(@ByVal AudioComponentDescription componentDescription, AudioComponentInstantiationOptions options, @Block VoidBlock2<AUAudioUnit, NSError> completionHandler);
     @Method(selector = "startHardwareAndReturnError:")

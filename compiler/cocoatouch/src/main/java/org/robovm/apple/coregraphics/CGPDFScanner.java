@@ -169,5 +169,7 @@ import org.robovm.apple.uikit.*;
     private native boolean popDictionary(CGPDFDictionary.CGPDFDictionaryPtr value);
     @Bridge(symbol="CGPDFScannerPopStream", optional=true)
     private native boolean popStream(CGPDFStream.CGPDFStreamPtr value);
+    @Bridge(symbol="CGPDFScannerStop", optional=true)
+    public native void stop();
     /*</methods>*/
 }

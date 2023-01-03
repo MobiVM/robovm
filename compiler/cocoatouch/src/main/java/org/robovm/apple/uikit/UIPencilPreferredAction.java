@@ -52,7 +52,11 @@ public enum /*<name>*/UIPencilPreferredAction/*</name>*/ implements ValuedEnum {
     Ignore(0L),
     SwitchEraser(1L),
     SwitchPrevious(2L),
-    ShowColorPalette(3L);
+    ShowColorPalette(3L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    ShowInkAttributes(4L);
     /*</values>*/
 
     /*<bind>*/

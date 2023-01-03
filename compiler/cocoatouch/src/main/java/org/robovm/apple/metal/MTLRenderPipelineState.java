@@ -70,6 +70,36 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportIndirectCommandBuffers")
     public native boolean isSupportIndirectCommandBuffers();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxTotalThreadsPerObjectThreadgroup")
+    public native @MachineSizedUInt long getMaxTotalThreadsPerObjectThreadgroup();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxTotalThreadsPerMeshThreadgroup")
+    public native @MachineSizedUInt long getMaxTotalThreadsPerMeshThreadgroup();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "objectThreadExecutionWidth")
+    public native @MachineSizedUInt long getObjectThreadExecutionWidth();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "meshThreadExecutionWidth")
+    public native @MachineSizedUInt long getMeshThreadExecutionWidth();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxTotalThreadgroupsPerMeshGrid")
+    public native @MachineSizedUInt long getMaxTotalThreadgroupsPerMeshGrid();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    public native @ByVal MTLResourceID getGpuResourceID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

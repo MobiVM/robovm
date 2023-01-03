@@ -82,7 +82,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newFunctionWithName:constantValues:error:")
-    private native MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues, NSError.NSErrorPtr error);
+    public native MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.0 and later.
      */

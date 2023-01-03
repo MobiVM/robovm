@@ -110,5 +110,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "configurationPreferringMulticolor")
     public static native UIImageSymbolConfiguration configurationPreferringMulticolor();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "configurationPreferringMonochrome")
+    public static native UIImageSymbolConfiguration configurationPreferringMonochrome();
     /*</methods>*/
 }

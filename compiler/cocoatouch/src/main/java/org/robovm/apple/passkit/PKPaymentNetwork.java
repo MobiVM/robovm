@@ -94,6 +94,14 @@ import org.robovm.apple.coreanimation.*;
     /*<constants>*/
     public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final PKPaymentNetwork Bancomat = new PKPaymentNetwork("Bancomat");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final PKPaymentNetwork Bancontact = new PKPaymentNetwork("Bancontact");
+    /**
      * @since Available in iOS 10.3 and later.
      * @deprecated Deprecated in iOS 11.0. Use PKPaymentNetworkCartesBancaires instead.
      */
@@ -187,7 +195,7 @@ import org.robovm.apple.coreanimation.*;
     public static final PKPaymentNetwork Nanaco = new PKPaymentNetwork("Nanaco");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Bancomat, Bancontact, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -212,6 +220,16 @@ import org.robovm.apple.coreanimation.*;
         /*<values>*/
         @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
         public static native NSString Amex();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkBancomat", optional=true)
+        public static native NSString Bancomat();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkBancontact", optional=true)
+        public static native NSString Bancontact();
         /**
          * @since Available in iOS 10.3 and later.
          * @deprecated Deprecated in iOS 11.0. Use PKPaymentNetworkCartesBancaires instead.

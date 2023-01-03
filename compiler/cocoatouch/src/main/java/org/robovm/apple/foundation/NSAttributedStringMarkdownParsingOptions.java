@@ -73,6 +73,16 @@ import org.robovm.apple.dispatch.*;
     public native String getLanguageCode();
     @Property(selector = "setLanguageCode:")
     public native void setLanguageCode(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "appliesSourcePositionAttributes")
+    public native boolean appliesSourcePositionAttributes();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAppliesSourcePositionAttributes:")
+    public native void setAppliesSourcePositionAttributes(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

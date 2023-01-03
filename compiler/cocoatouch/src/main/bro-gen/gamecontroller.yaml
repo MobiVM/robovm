@@ -17,6 +17,7 @@ enums:
     GCTouchState: {}
     GCDualSenseAdaptiveTriggerMode: {}
     GCDualSenseAdaptiveTriggerStatus: {}
+    GCDevicePhysicalInputElementChange: {prefix: GCDevicePhysicalInputElement}
 classes:
     # Structs
     GCAcceleration: {}
@@ -138,8 +139,37 @@ classes:
                 name: virtualControllerWithConfiguration$
     GCVirtualControllerConfiguration: {} #since 15.0
     GCVirtualControllerElementConfiguration: {} #since 15.0
+    GCGearShifterElement: {}
+    GCPhysicalInputElementCollection: {} #since 16.0
+    GCRacingWheel:
+        methods:
+            '-acquireDeviceWithError:':
+                name: acquireDevice
+                throws: NSErrorException
+    GCRacingWheelInput: {}
+    GCRacingWheelInputState: {}
+    GCSteeringWheelElement: {}
 protocols:
     GCDevice: {} #since 14.0
+    GCAxisElement: {} #since 16.0
+    GCAxisElementName: {}
+    GCAxisInput: {} #since 16.0
+    GCButtonElement: {} #since 16.0
+    GCButtonElementName: {}
+    GCDevicePhysicalInput: {} #since 16.0
+    GCDevicePhysicalInputState: {} #since 16.0
+    GCDevicePhysicalInputStateDiff: {} #since 16.0
+    GCDirectionPadElement: {} #since 16.0
+    GCDirectionPadElementName: {}
+    GCLinearInput: {} #since 16.0
+    GCPhysicalInputElement: {} #since 16.0
+    GCPhysicalInputElementName: {}
+    GCPressedStateInput: {} #since 16.0
+    GCRelativeInput: {} #since 16.0
+    GCSwitchElement: {} #since 16.0
+    GCSwitchElementName: {}
+    GCSwitchPositionInput: {} #since 16.0
+    GCTouchedStateInput: {} #since 16.0
 
 functions:
     (GCExtendedGamepadSnapShotDataV100FromNSData):
@@ -225,6 +255,11 @@ values:
         name: '#{g[0]}'
     GCProductCategory(.*):
         class: GCProductCategory
+        name: '#{g[0]}'
+    GCRacingWheel(.*)Notification:
+        class: GCRacingWheel
+        type: NSString
+        static_class: Notifications
         name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version

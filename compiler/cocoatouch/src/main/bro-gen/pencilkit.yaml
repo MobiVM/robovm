@@ -63,6 +63,8 @@ classes:
         methods:
             '-initWithInk:strokePath:transform:mask:':
                 name: init
+            '-initWithInk:strokePath:transform:mask:randomSeed:':
+                name: init
     PKStrokePath: #since 14.0
         methods:
             '-initWithControlPoints:creationDate:':

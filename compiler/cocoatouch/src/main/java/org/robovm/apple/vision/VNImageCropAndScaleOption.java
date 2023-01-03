@@ -45,7 +45,9 @@ public enum /*<name>*/VNImageCropAndScaleOption/*</name>*/ implements ValuedEnum
     /*<values>*/
     CenterCrop(0L),
     ScaleFit(1L),
-    ScaleFill(2L);
+    ScaleFill(2L),
+    ScaleFitRotate90CCW(257L),
+    ScaleFillRotate90CCW(258L);
     /*</values>*/
 
     /*<bind>*/

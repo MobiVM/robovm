@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -108,9 +109,13 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final HKVitalSignsQuantityTypeIdentifier HeartRateVariabilitySDNN = new HKVitalSignsQuantityTypeIdentifier("HeartRateVariabilitySDNN");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKVitalSignsQuantityTypeIdentifier HeartRateRecoveryOneMinute = new HKVitalSignsQuantityTypeIdentifier("HeartRateRecoveryOneMinute");
     /*</constants>*/
     
-    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, BodyTemperature, BasalBodyTemperature, BloodPressureSystolic, BloodPressureDiastolic, RespiratoryRate, RestingHeartRate, WalkingHeartRateAverage, HeartRateVariabilitySDNN/*</value_list>*/};
+    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, BodyTemperature, BasalBodyTemperature, BloodPressureSystolic, BloodPressureDiastolic, RespiratoryRate, RestingHeartRate, WalkingHeartRateAverage, HeartRateVariabilitySDNN, HeartRateRecoveryOneMinute/*</value_list>*/};
     
     /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -163,6 +168,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateVariabilitySDNN", optional=true)
         public static native NSString HeartRateVariabilitySDNN();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateRecoveryOneMinute", optional=true)
+        public static native NSString HeartRateRecoveryOneMinute();
         /*</values>*/
     }
 }

@@ -85,6 +85,8 @@ import org.robovm.apple.dispatch.*;
     public native void invoke();
     @Method(selector = "invokeWithTarget:")
     public native void invoke(NSObject target);
+    @Method(selector = "invokeUsingIMP:")
+    public native void invokeUsingIMP(FunctionPtr imp);
     @Method(selector = "invocationWithMethodSignature:")
     protected static native @Pointer long create(NSMethodSignature sig);
     /*</methods>*/

@@ -13,7 +13,8 @@ private_typedefs:
 enums:
     CSIndexErrorCode: { nserror: true} #since 9.0
     CSSearchQueryErrorCode: { nserror: true } #since 10.0
-
+    CSSuggestionKind: {}
+    CSSearchQuerySourceOptions: {}
 classes:
     CSCustomAttributeKey: #since 9.0
         methods:
@@ -34,6 +35,8 @@ classes:
         methods:
             '-initWithQueryString:attributes:':
                 name: init
+            '-initWithQueryString:queryContext:':
+                name: init
     CSSearchableIndex: #since 9.0
         methods:
             '-initWithName:protectionClass:':
@@ -52,6 +55,8 @@ classes:
                 name: deleteAllSearchableItems
             '-fetchLastClientStateWithCompletionHandler:':
                 name: fetchLastClientState
+            '-fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:':
+                name: fetchDataForBundleIdentifier
     CSSearchableItem: #since 9.0
         methods:
             '-initWithUniqueIdentifier:domainIdentifier:attributeSet:':
@@ -69,6 +74,17 @@ classes:
             '-updateAttributes:forFileAtURL:error:':
                 name: updateAttributes
                 throws: NSErrorException
+    CSSearchQueryContext: {} #since 10.0
+    CSSuggestion: {} #since 16.0
+    CSUserQuery: #since 16.0
+        methods:
+            '-initWithUserQueryString:userQueryContext:':
+                name: ini
+    CSUserQueryContext: #since 16.0
+        methods:
+            '+userQueryContextWithCurrentSuggestion:':
+                constructor: true
+                name: create
 protocols:
     CSSearchableIndexDelegate: #since 9.0
         methods:
@@ -108,6 +124,9 @@ values:
         class: CSSearchableItem
         name: getActionIdentifier
 
+    CSSuggestionHighlightAttributeName:
+        class: CSSuggestion
+        name: getHighlightAttributeName
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CS.*):

@@ -42,6 +42,11 @@ public final class /*<name>*/MTLResourceUsage/*</name>*/ extends Bits</*<name>*/
     public static final MTLResourceUsage None = new MTLResourceUsage(0L);
     public static final MTLResourceUsage Read = new MTLResourceUsage(1L);
     public static final MTLResourceUsage Write = new MTLResourceUsage(2L);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLResourceUsageRead
+     */
+    @Deprecated
     public static final MTLResourceUsage Sample = new MTLResourceUsage(4L);
     /*</values>*/
 

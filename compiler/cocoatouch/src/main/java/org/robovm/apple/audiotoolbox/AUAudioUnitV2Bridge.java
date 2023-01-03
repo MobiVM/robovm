@@ -58,7 +58,11 @@ import org.robovm.apple.uikit.*;
     public AUAudioUnitV2Bridge(@ByVal AudioComponentDescription componentDescription) throws NSErrorException { super(componentDescription); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "audioUnit")
+    public native AudioUnit getAudioUnit();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

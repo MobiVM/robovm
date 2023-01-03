@@ -32,7 +32,7 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 9.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Contacts") @NativeClass/*</annotations>*/

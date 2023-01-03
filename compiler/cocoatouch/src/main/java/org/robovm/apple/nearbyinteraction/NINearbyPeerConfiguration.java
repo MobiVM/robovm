@@ -54,6 +54,16 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "peerDiscoveryToken")
     public native NIDiscoveryToken getPeerDiscoveryToken();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isCameraAssistanceEnabled")
+    public native boolean isCameraAssistanceEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCameraAssistanceEnabled:")
+    public native void setCameraAssistanceEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

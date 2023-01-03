@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,27 +52,54 @@ import org.robovm.apple.foundation.*;
     public native HKWorkoutActivityType getWorkoutActivityType();
     @Property(selector = "workoutEvents")
     public native NSArray<HKWorkoutEvent> getWorkoutEvents();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "workoutActivities")
+    public native NSArray<HKWorkoutActivity> getWorkoutActivities();
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
+     */
+    @Deprecated
     @Property(selector = "totalEnergyBurned")
     public native HKQuantity getTotalEnergyBurned();
+    /**
+     * @deprecated Use statisticsForType: passing the HKQuantityType for the desired distance type
+     */
+    @Deprecated
     @Property(selector = "totalDistance")
     public native HKQuantity getTotalDistance();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
      */
+    @Deprecated
     @Property(selector = "totalSwimmingStrokeCount")
     public native HKQuantity getTotalSwimmingStrokeCount();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed
      */
+    @Deprecated
     @Property(selector = "totalFlightsClimbed")
     public native HKQuantity getTotalFlightsClimbed();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "allStatistics")
+    public native NSDictionary<HKQuantityType, HKStatistics> getAllStatistics();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "statisticsForType:")
+    public native HKStatistics statisticsForType(HKQuantityType quantityType);
     @Method(selector = "workoutWithActivityType:startDate:endDate:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate);
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:")

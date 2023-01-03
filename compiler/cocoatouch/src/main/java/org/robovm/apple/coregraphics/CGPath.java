@@ -143,5 +143,55 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGPathApplyWithBlock", optional=true)
     public native void applyWithBlock(@Block VoidBlock1<CGPathElement> block);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyByNormalizing", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyByNormalizing(CGPath path, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyByUnioningPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyByUnioningPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyByIntersectingPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyByIntersectingPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyBySubtractingPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyBySubtractingPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyBySymmetricDifferenceOfPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyBySymmetricDifferenceOfPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyOfLineBySubtractingPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyOfLineBySubtractingPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyOfLineByIntersectingPath", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyOfLineByIntersectingPath(CGPath path, CGPath maskPath, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateSeparateComponents", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createSeparateComponents(CGPath path, boolean evenOddFillRule);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathCreateCopyByFlattening", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGPath createCopyByFlattening(CGPath path, @MachineSizedFloat double flatteningThreshold);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGPathIntersectsPath", optional=true)
+    public native boolean intersectsPath(CGPath path2, boolean evenOddFillRule);
     /*</methods>*/
 }

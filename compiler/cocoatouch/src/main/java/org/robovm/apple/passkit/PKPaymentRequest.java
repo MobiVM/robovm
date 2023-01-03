@@ -222,6 +222,36 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "setBillingAddress:", strongRef = true)
     public native void setBillingAddress(ABRecord v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "multiTokenContexts")
+    public native NSArray<PKPaymentTokenContext> getMultiTokenContexts();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMultiTokenContexts:")
+    public native void setMultiTokenContexts(NSArray<PKPaymentTokenContext> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recurringPaymentRequest")
+    public native PKRecurringPaymentRequest getRecurringPaymentRequest();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRecurringPaymentRequest:")
+    public native void setRecurringPaymentRequest(PKRecurringPaymentRequest v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "automaticReloadPaymentRequest")
+    public native PKAutomaticReloadPaymentRequest getAutomaticReloadPaymentRequest();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAutomaticReloadPaymentRequest:")
+    public native void setAutomaticReloadPaymentRequest(PKAutomaticReloadPaymentRequest v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

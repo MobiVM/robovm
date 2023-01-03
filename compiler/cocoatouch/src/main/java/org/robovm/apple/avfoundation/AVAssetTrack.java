@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -129,6 +131,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(AVMetadataFormat.AsListMarshaler.class) List<AVMetadataFormat> getAvailableMetadataFormats();
     @Property(selector = "availableTrackAssociationTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVTrackAssociationType.AsListMarshaler.class) List<AVTrackAssociationType> getAvailableTrackAssociationTypes();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "canProvideSampleCursors")
+    public native boolean canProvideSampleCursors();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -154,6 +161,10 @@ import org.robovm.apple.audiotoolbox.*;
     
     @Method(selector = "hasMediaCharacteristic:")
     public native boolean hasMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    /**
+     * @deprecated Use loadSegmentForTrackTime:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "segmentForTrackTime:")
     public native AVAssetTrackSegment getSegment(@ByVal CMTime trackTime);
     /**
@@ -161,6 +172,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadSegmentForTrackTime:completionHandler:")
     public native void loadSegmentForTrackTime(@ByVal CMTime trackTime, @Block VoidBlock2<AVAssetTrackSegment, NSError> completionHandler);
+    /**
+     * @deprecated Use loadSamplePresentationTimeForTrackTime:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "samplePresentationTimeForTrackTime:")
     public native @ByVal CMTime getSamplePresentationTime(@ByVal CMTime trackTime);
     /**
@@ -168,6 +183,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadSamplePresentationTimeForTrackTime:completionHandler:")
     public native void loadSamplePresentationTimeForTrackTime(@ByVal CMTime trackTime, @Block("(@ByVal,)") VoidBlock2<CMTime, NSError> completionHandler);
+    /**
+     * @deprecated Use loadMetadataForFormat:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadataForFormat(AVMetadataFormat format);
     /**
@@ -175,6 +194,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadMetadataForFormat:completionHandler:")
     public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
+    /**
+     * @deprecated Use loadAssociatedTracksOfType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "associatedTracksOfType:")
     public native NSArray<AVAssetTrack> getAssociatedTracksOfType(AVTrackAssociationType trackAssociationType);
     /**
@@ -182,6 +205,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadAssociatedTracksOfType:completionHandler:")
     public native void loadAssociatedTracksOfType(String trackAssociationType, @Block VoidBlock2<NSArray<AVAssetTrack>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "makeSampleCursorWithPresentationTimeStamp:")
+    public native AVSampleCursor makeSampleCursor(@ByVal CMTime presentationTimeStamp);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "makeSampleCursorAtFirstSampleInDecodeOrder")
+    public native AVSampleCursor makeSampleCursorAtFirstSampleInDecodeOrder();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "makeSampleCursorAtLastSampleInDecodeOrder")
+    public native AVSampleCursor makeSampleCursorAtLastSampleInDecodeOrder();
     @Method(selector = "statusOfValueForKey:error:")
     public native AVKeyValueStatus getStatusOfValue(AVMetadataKey key, NSError.NSErrorPtr outError);
     @Method(selector = "loadValuesAsynchronouslyForKeys:completionHandler:")
