@@ -153,6 +153,11 @@ public class Clazzes {
         return clazz;
     }
 
+    public SootClass loadSootClass(String internalName) {
+        Clazz clazz = load(internalName);
+        return clazz != null ? clazz.getSootClass() : null;
+    }
+
     public List<InputStream> loadResources(String resource) throws IOException {
         List<InputStream> arr = new ArrayList<>();
         for (Path p : getPaths()) {
