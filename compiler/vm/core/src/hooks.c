@@ -307,17 +307,17 @@ void _rvmHookThreadDetaching(Env* env, Object* threadObj, Thread* thread, Object
 
 jboolean _rvmHookSetupTCPChannel(Options* options) {
     DEBUG("Setting up TCP channel");
-    listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
+    listeningSocket = socket(AF_INET6, SOCK_STREAM, 0);
     if (listeningSocket < 0) {
         return FALSE;
     }
     int yes = 1;
     setsockopt(listeningSocket, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
 
-    struct sockaddr_in serverAddr;
+    struct sockaddr_in6 serverAddr;
     memset(&serverAddr, 0, sizeof(serverAddr));
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin6_family = AF_INET6;
+    serverAddr.sin6_addr = in6addr_any;
     if (bind(listeningSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr))) {
         DEBUGF("Couldn't bind debug socket, errno: %d", errno);
         close(listeningSocket);
@@ -330,7 +330,7 @@ jboolean _rvmHookSetupTCPChannel(Options* options) {
     }
     socklen_t len = sizeof(serverAddr);
     getsockname(listeningSocket, (struct sockaddr *) &serverAddr, &len);
-    debugPort = ntohs(serverAddr.sin_port);
+    debugPort = ntohs(serverAddr.sin6_port);
     DEBUGF("Listening for debug client on port %u", debugPort);
     if (options->printDebugPort) {
         if (options->debugPortFile) {

@@ -8,41 +8,38 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public enum AfcFileMode {
-  AFC_FOPEN_RDONLY(0x00000001),
-  AFC_FOPEN_RW(0x00000002),
-  AFC_FOPEN_WRONLY(0x00000003),
-  AFC_FOPEN_WR(0x00000004),
-  AFC_FOPEN_APPEND(0x00000005),
-  AFC_FOPEN_RDAPPEND(0x00000006);
+public enum LockdowndCuPairingCbType {
+  LOCKDOWN_CU_PAIRING_PIN_REQUESTED,
+  LOCKDOWN_CU_PAIRING_DEVICE_INFO,
+  LOCKDOWN_CU_PAIRING_ERROR;
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static AfcFileMode swigToEnum(int swigValue) {
-    AfcFileMode[] swigValues = AfcFileMode.class.getEnumConstants();
+  public static LockdowndCuPairingCbType swigToEnum(int swigValue) {
+    LockdowndCuPairingCbType[] swigValues = LockdowndCuPairingCbType.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (AfcFileMode swigEnum : swigValues)
+    for (LockdowndCuPairingCbType swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + AfcFileMode.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + LockdowndCuPairingCbType.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode() {
+  private LockdowndCuPairingCbType() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode(int swigValue) {
+  private LockdowndCuPairingCbType(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode(AfcFileMode swigEnum) {
+  private LockdowndCuPairingCbType(LockdowndCuPairingCbType swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

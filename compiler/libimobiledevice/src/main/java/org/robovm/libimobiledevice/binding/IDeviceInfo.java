@@ -8,20 +8,20 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class IDeviceEvent {
+public class IDeviceInfo {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected IDeviceEvent(long cPtr, boolean cMemoryOwn) {
+  protected IDeviceInfo(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(IDeviceEvent obj) {
+  protected static long getCPtr(IDeviceInfo obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  protected static long swigRelease(IDeviceEvent obj) {
+  protected static long swigRelease(IDeviceInfo obj) {
     long ptr = 0;
     if (obj != null) {
       if (!obj.swigCMemOwn)
@@ -42,38 +42,39 @@ public class IDeviceEvent {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        LibIMobileDeviceJNI.delete_IDeviceEvent(swigCPtr);
+        LibIMobileDeviceJNI.delete_IDeviceInfo(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public void setEvent(IDeviceEventType value) {
-    LibIMobileDeviceJNI.IDeviceEvent_event_set(swigCPtr, this, value.swigValue());
-  }
-
-  public IDeviceEventType getEvent() {
-    return IDeviceEventType.swigToEnum(LibIMobileDeviceJNI.IDeviceEvent_event_get(swigCPtr, this));
-  }
-
   public void setUdid(String value) {
-    LibIMobileDeviceJNI.IDeviceEvent_udid_set(swigCPtr, this, value);
+    LibIMobileDeviceJNI.IDeviceInfo_udid_set(swigCPtr, this, value);
   }
 
   public String getUdid() {
-    return LibIMobileDeviceJNI.IDeviceEvent_udid_get(swigCPtr, this);
+    return LibIMobileDeviceJNI.IDeviceInfo_udid_get(swigCPtr, this);
   }
 
   public void setConnectionType(IDeviceConnectiontype value) {
-    LibIMobileDeviceJNI.IDeviceEvent_connectionType_set(swigCPtr, this, value.swigValue());
+    LibIMobileDeviceJNI.IDeviceInfo_connectionType_set(swigCPtr, this, value.swigValue());
   }
 
   public IDeviceConnectiontype getConnectionType() {
-    return IDeviceConnectiontype.swigToEnum(LibIMobileDeviceJNI.IDeviceEvent_connectionType_get(swigCPtr, this));
+    return IDeviceConnectiontype.swigToEnum(LibIMobileDeviceJNI.IDeviceInfo_connectionType_get(swigCPtr, this));
   }
 
-  public IDeviceEvent() {
-    this(LibIMobileDeviceJNI.new_IDeviceEvent(), true);
+  public void setConn_data(IDeviceInfoConnData value) {
+    LibIMobileDeviceJNI.IDeviceInfo_conn_data_set(swigCPtr, this, IDeviceInfoConnData.getCPtr(value), value);
+  }
+
+  public IDeviceInfoConnData getConn_data() {
+    long cPtr = LibIMobileDeviceJNI.IDeviceInfo_conn_data_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new IDeviceInfoConnData(cPtr, false);
+  }
+
+  public IDeviceInfo() {
+    this(LibIMobileDeviceJNI.new_IDeviceInfo(), true);
   }
 
 }

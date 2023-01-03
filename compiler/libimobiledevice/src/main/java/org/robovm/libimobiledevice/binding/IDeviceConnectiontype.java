@@ -8,41 +8,37 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public enum AfcFileMode {
-  AFC_FOPEN_RDONLY(0x00000001),
-  AFC_FOPEN_RW(0x00000002),
-  AFC_FOPEN_WRONLY(0x00000003),
-  AFC_FOPEN_WR(0x00000004),
-  AFC_FOPEN_APPEND(0x00000005),
-  AFC_FOPEN_RDAPPEND(0x00000006);
+public enum IDeviceConnectiontype {
+  CONNECTION_USBMUXD(1),
+  CONNECTION_NETWORK;
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static AfcFileMode swigToEnum(int swigValue) {
-    AfcFileMode[] swigValues = AfcFileMode.class.getEnumConstants();
+  public static IDeviceConnectiontype swigToEnum(int swigValue) {
+    IDeviceConnectiontype[] swigValues = IDeviceConnectiontype.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (AfcFileMode swigEnum : swigValues)
+    for (IDeviceConnectiontype swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + AfcFileMode.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + IDeviceConnectiontype.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode() {
+  private IDeviceConnectiontype() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode(int swigValue) {
+  private IDeviceConnectiontype(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private AfcFileMode(AfcFileMode swigEnum) {
+  private IDeviceConnectiontype(IDeviceConnectiontype swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

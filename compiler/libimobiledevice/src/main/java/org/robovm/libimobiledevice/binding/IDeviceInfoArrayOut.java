@@ -8,20 +8,20 @@
 
 package org.robovm.libimobiledevice.binding;
 
-public class LockdowndServiceDescriptorStructOut {
+public class IDeviceInfoArrayOut {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected LockdowndServiceDescriptorStructOut(long cPtr, boolean cMemoryOwn) {
+  protected IDeviceInfoArrayOut(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(LockdowndServiceDescriptorStructOut obj) {
+  protected static long getCPtr(IDeviceInfoArrayOut obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  protected static long swigRelease(LockdowndServiceDescriptorStructOut obj) {
+  protected static long swigRelease(IDeviceInfoArrayOut obj) {
     long ptr = 0;
     if (obj != null) {
       if (!obj.swigCMemOwn)
@@ -42,19 +42,19 @@ public class LockdowndServiceDescriptorStructOut {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        LibIMobileDeviceJNI.delete_LockdowndServiceDescriptorStructOut(swigCPtr);
+        LibIMobileDeviceJNI.delete_IDeviceInfoArrayOut(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public LockdowndServiceDescriptorStruct getValue() {
-    long cPtr = LibIMobileDeviceJNI.LockdowndServiceDescriptorStructOut_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new LockdowndServiceDescriptorStruct(cPtr, false);
+  public IDeviceInfoArray getValue() {
+    long cPtr = LibIMobileDeviceJNI.IDeviceInfoArrayOut_value_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new IDeviceInfoArray(cPtr, false);
   }
 
-  public LockdowndServiceDescriptorStructOut() {
-    this(LibIMobileDeviceJNI.new_LockdowndServiceDescriptorStructOut(), true);
+  public IDeviceInfoArrayOut() {
+    this(LibIMobileDeviceJNI.new_IDeviceInfoArrayOut(), true);
   }
 
 }
