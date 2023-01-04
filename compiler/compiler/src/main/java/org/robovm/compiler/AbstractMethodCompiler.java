@@ -86,7 +86,7 @@ public abstract class AbstractMethodCompiler {
     protected abstract Function doCompile(ModuleBuilder moduleBuilder, SootMethod method);
 
     protected Function createMethodFunction(SootMethod method) {
-        return FunctionBuilder.method(method, false);
+        return FunctionBuilder.method(method, true);
     }
 
     private void compileSynchronizedWrapper(ModuleBuilder moduleBuilder, SootMethod method) {
