@@ -37,6 +37,8 @@ if(DARWIN)
   if(IOS)
     set(OBJC_FLAGS "${OBJC_FLAGS} -fobjc-abi-version=2")
   endif()
+  # disable XCode14 objc-msgsend stubs to allow this lib to be linked with XCode13 and bellow
+  set(OBJC_FLAGS "${OBJC_FLAGS} -fno-objc-msgsend-selector-stubs")
   set_property(SOURCE ${OBJC_SRC} PROPERTY LANGUAGE C)
   set_property(SOURCE ${OBJC_SRC} PROPERTY COMPILE_FLAGS ${OBJC_FLAGS})
 endif()

@@ -1,12 +1,18 @@
-if(APPLE)
+if(DARWIN)
 	project(frameworks)
 
 	include_directories(../../core/include)
 
-	set(SRC
-	  frameworksupport.m
-	)
-
+	set(OBJC_SRC frameworksupport.m)
+	set(SRC ${SRC} ${OBJC_SRC})
+	set(OBJC_FLAGS "-x objective-c")
+	if(IOS)
+	  set(OBJC_FLAGS "${OBJC_FLAGS} -fobjc-abi-version=2")
+	endif()
+	# disable XCode14 objc-msgsend stubs to allow this lib to be linked with XCode13 and bellow
+	set(OBJC_FLAGS "${OBJC_FLAGS} -fno-objc-msgsend-selector-stubs")
+	set_property(SOURCE ${OBJC_SRC} PROPERTY LANGUAGE C)
+	set_property(SOURCE ${OBJC_SRC} PROPERTY COMPILE_FLAGS ${OBJC_FLAGS})
 	add_library(robovm-frameworksupport STATIC ${SRC})
 	add_dependencies(robovm-frameworksupport extgc)
 	set_target_properties(robovm-frameworksupport PROPERTIES SUFFIX "${LIB_SUFFIX}")
