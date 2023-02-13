@@ -61,9 +61,9 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setAllowedCredentials:")
     void setAllowedCredentials(NSArray<T> v);
     @Property(selector = "userVerificationPreference")
-    String getUserVerificationPreference();
+    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(String v);
+    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
     /*</properties>*/
     /*<methods>*/
     

@@ -9,16 +9,51 @@ typedefs: {}
     
 enums:
     ASCredentialIdentityStoreErrorCode: {nserror: true} #since 12.0
-    ASExtensionErrorCode: {} #since 12.0
+    ASExtensionErrorCode: {nserror: true} #since 12.0
     ASCredentialServiceIdentifierType: {} #since 12.0
-    ASWebAuthenticationSessionErrorCode: {} #since 12.0
+    ASWebAuthenticationSessionErrorCode: {nserror: true} #since 12.0
     ASUserDetectionStatus: {}
     ASAuthorizationAppleIDProviderCredentialState: {prefix: ASAuthorizationAppleIDProviderCredential} #since 13.0
     ASAuthorizationError: {nserror: true} #since 13.0
     ASAuthorizationAppleIDButtonType: {} #since 13.0
     ASAuthorizationAppleIDButtonStyle: {} #since 13.0
     ASAuthorizationControllerRequestOptions: {prefix: ASAuthorizationControllerRequestOption} #since 16.0
-
+typed_enums:
+    ASAuthorizationOpenIDOperation:
+        enum: ASAuthorizationOpenIDOperation
+        type: NSString
+        ASAuthorizationOperation(.*):
+            name: "#{g[0]}"
+    ASAuthorizationScope:
+        enum: ASAuthorizationScope
+        type: NSString
+        ASAuthorizationScope(.*):
+            name: "#{g[0]}"
+    ASAuthorizationPublicKeyCredentialUserVerificationPreference:
+        enum: ASAuthorizationPublicKeyCredentialUserVerificationPreference
+        type: NSString
+        ASAuthorizationPublicKeyCredentialUserVerificationPreference(.*):
+            name: "#{g[0]}"
+    ASAuthorizationProviderAuthorizationOperation:
+        enum: ASAuthorizationProviderAuthorizationOperation
+        type: NSString
+        ASAuthorizationProviderAuthorizationOperation(.*):
+            name: "#{g[0]}"
+    ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport:
+        enum: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport
+        type: NSString
+        ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport(.*):
+            name: "#{g[0]}"
+    ASAuthorizationPublicKeyCredentialAttestationKind:
+        enum: ASAuthorizationPublicKeyCredentialAttestationKind
+        type: NSString
+        ASAuthorizationPublicKeyCredentialAttestationKind(.*):
+            name: "#{g[0]}"
+    ASAuthorizationPublicKeyCredentialResidentKeyPreference:
+        enum: ASAuthorizationPublicKeyCredentialResidentKeyPreference
+        type: NSString
+        ASAuthorizationPublicKeyCredentialResidentKeyPreference(.*):
+            name: "#{g[0]}"
 classes:
     ASCredentialIdentityStore: #since 12.0
         methods:
@@ -212,8 +247,12 @@ protocols:
     ASAuthorizationPublicKeyCredentialRegistrationRequest: {} #since 15.0
     ASPublicKeyCredential: {} #since 15.0
 functions:
+    ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports:
+        class: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport
+        name: getAllSupportedPublicKeyCredentialDescriptorTransports
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
-    (k?ASC.*):
+    (k?AS.*):
         class: !!!AuthServicesFixMe
         name: 'Function__#{g[0]}'
 
@@ -224,9 +263,22 @@ values:
     ASAuthorizationErrorDomain:
         class: ASAuthorizationError
         name: getClassDomain
+    ASExtensionLocalizedFailureReasonErrorKey:
+        class: ASExtensionErrorCode
+        name: getLocalizedFailureReasonErrorKey
+    ASExtensionErrorDomain:
+        class: ASExtensionErrorCode
+        name: getClassDomain
+    ASWebAuthenticationSessionErrorDomain:
+        class: ASWebAuthenticationSessionErrorCode
+        name: getClassDomain
+    ASAuthorizationAppleIDProviderCredentialRevokedNotification:
+        class: ASAuthorizationAppleIDProvider
+        static_class: Notifications
+        name: CredentialRevoked
 
     # Make sure we don't miss any values if new ones are introduced in a later version
-    (k?ASC.*):
+    (k?AS.*):
         class: !!!AuthServicesFixMe
         name: 'Value__#{g[0]}'
 
@@ -236,6 +288,6 @@ constants:
         name: '#{g[0]}'
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?ASC.*):
+    (k?AS.*):
         class: !!!AuthServicesFixMe
         name: 'Constant__#{g[0]}'
