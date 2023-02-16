@@ -6746,6 +6746,8 @@ protocols:
         methods:
             '-calendarView:decorationForDateComponents:':
                 name: getDecoration
+            '-calendarView:didChangeVisibleDateComponentsFrom:':
+                name: didChangeVisibleDateComponents
     UIEditMenuInteractionAnimating: {} #since 16.0
     UIEditMenuInteractionDelegate: #since 16.0
         methods:

@@ -57,6 +57,10 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "authorizationStatus")
     public native HMHomeManagerAuthorizationStatus getAuthorizationStatus();
+    /**
+     * @deprecated Deprecated in iOS 16.1. No longer supported.
+     */
+    @Deprecated
     @Property(selector = "primaryHome")
     public native HMHome getPrimaryHome();
     @Property(selector = "homes")
@@ -64,6 +68,10 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 16.1. No longer supported.
+     */
+    @Deprecated
     @Method(selector = "updatePrimaryHome:completionHandler:")
     public native void updatePrimaryHome(HMHome home, @Block VoidBlock1<NSError> completion);
     @Method(selector = "addHomeWithName:completionHandler:")

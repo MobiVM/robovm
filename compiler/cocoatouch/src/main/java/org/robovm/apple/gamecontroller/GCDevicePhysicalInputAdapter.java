@@ -50,13 +50,13 @@ import org.robovm.apple.corehaptic.*;
     @NotImplemented("device")
     public GCDevice getDevice() { return null; }
     @NotImplemented("elementValueDidChangeHandler")
-    public @Block VoidBlock1<GCPhysicalInputElement> getElementValueDidChangeHandler() { return null; }
+    public @Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> getElementValueDidChangeHandler() { return null; }
     @NotImplemented("setElementValueDidChangeHandler:")
-    public void setElementValueDidChangeHandler(@Block VoidBlock1<GCPhysicalInputElement> v) {}
+    public void setElementValueDidChangeHandler(@Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> v) {}
     @NotImplemented("inputStateAvailableHandler")
-    public @Block Runnable getInputStateAvailableHandler() { return null; }
+    public @Block VoidBlock1<GCDevicePhysicalInput> getInputStateAvailableHandler() { return null; }
     @NotImplemented("setInputStateAvailableHandler:")
-    public void setInputStateAvailableHandler(@Block Runnable v) {}
+    public void setInputStateAvailableHandler(@Block VoidBlock1<GCDevicePhysicalInput> v) {}
     @NotImplemented("inputStateQueueDepth")
     public @MachineSizedSInt long getInputStateQueueDepth() { return 0; }
     @NotImplemented("setInputStateQueueDepth:")

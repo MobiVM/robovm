@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.uikit;
+package org.robovm.apple.coremotion;
 
 /*<imports>*/
 import java.io.*;
@@ -28,25 +28,14 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coredata.*;
-import org.robovm.apple.coreimage.*;
-import org.robovm.apple.coretext.*;
-import org.robovm.apple.corelocation.*;
-import org.robovm.apple.cloudkit.*;
-import org.robovm.apple.fileprovider.*;
-import org.robovm.apple.intents.*;
-import org.robovm.apple.usernotifications.*;
-import org.robovm.apple.linkpresentation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UICalendarViewDelegateAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CMWaterSubmersionManagerDelegateAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UICalendarViewDelegate/*</implements>*/ {
+    /*<implements>*/implements CMWaterSubmersionManagerDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -59,12 +48,13 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("calendarView:decorationForDateComponents:")
-    public UICalendarViewDecoration getDecoration(UICalendarView calendarView, NSDateComponents dateComponents) { return null; }
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    @NotImplemented("calendarView:didChangeVisibleDateComponentsFrom:")
-    public void didChangeVisibleDateComponents(UICalendarView calendarView, NSDateComponents previousDateComponents) {}
+    @NotImplemented("manager:didUpdateEvent:")
+    public void didUpdateEvent(CMWaterSubmersionManager manager, CMWaterSubmersionEvent event) {}
+    @NotImplemented("manager:didUpdateMeasurement:")
+    public void didUpdateMeasurement(CMWaterSubmersionManager manager, CMWaterSubmersionMeasurement measurement) {}
+    @NotImplemented("manager:didUpdateTemperature:")
+    public void didUpdateTemperature(CMWaterSubmersionManager manager, CMWaterTemperature measurement) {}
+    @NotImplemented("manager:errorOccurred:")
+    public void errorOccurred(CMWaterSubmersionManager manager, NSError error) {}
     /*</methods>*/
 }

@@ -86,6 +86,16 @@ import org.robovm.apple.coregraphics.*;
     public native void startNearbyPlayersBrowsing(@Block VoidBlock2<GKPlayer, Boolean> reachableHandler);
     @Method(selector = "stopBrowsingForNearbyPlayers")
     public native void stopBrowsingForNearbyPlayers();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "startGroupActivityWithPlayerHandler:")
+    public native void startGroupActivity(@Block VoidBlock1<GKPlayer> handler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "stopGroupActivity")
+    public native void stopGroupActivity();
     @Method(selector = "sharedMatchmaker")
     public static native GKMatchmaker getSharedMatchmaker();
     /**

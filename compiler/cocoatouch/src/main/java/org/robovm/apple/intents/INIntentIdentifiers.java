@@ -73,6 +73,16 @@ import org.robovm.apple.coregraphics.*;
     @GlobalValue(symbol="INStartCallIntentIdentifier", optional=true)
     public static native String StartCall();
     /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @GlobalValue(symbol="INAnswerCallIntentIdentifier", optional=true)
+    public static native String AnswerCall();
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @GlobalValue(symbol="INHangUpCallIntentIdentifier", optional=true)
+    public static native String HangUpCall();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @GlobalValue(symbol="INSetAudioSourceInCarIntentIdentifier", optional=true)

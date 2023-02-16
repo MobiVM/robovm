@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.coreaudiokit;
+package org.robovm.apple.coremotion;
 
 /*<imports>*/
 import java.io.*;
@@ -28,36 +28,33 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.audiotoolbox.*;
-import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("CoreAudioKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AUViewController/*</name>*/ 
-    extends /*<extends>*/UIViewController/*</extends>*/ 
-    /*<implements>*/implements NSExtensionRequestHandling/*</implements>*/ {
 
-    /*<ptr>*/public static class AUViewControllerPtr extends Ptr<AUViewController, AUViewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AUViewController.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Library("CoreMotion") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CMWaterSubmersionManager/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class CMWaterSubmersionManagerPtr extends Ptr<CMWaterSubmersionManager, CMWaterSubmersionManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CMWaterSubmersionManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AUViewController() {}
-    protected AUViewController(Handle h, long handle) { super(h, handle); }
-    protected AUViewController(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithNibName:bundle:")
-    public AUViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
-    @Method(selector = "initWithCoder:")
-    public AUViewController(NSCoder coder) { super(coder); }
+    public CMWaterSubmersionManager() {}
+    protected CMWaterSubmersionManager(Handle h, long handle) { super(h, handle); }
+    protected CMWaterSubmersionManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "delegate")
+    public native CMWaterSubmersionManagerDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(CMWaterSubmersionManagerDelegate v);
+    @Property(selector = "waterSubmersionAvailable")
+    public static native boolean isWaterSubmersionAvailable();
+    @Property(selector = "authorizationStatus")
+    public static native CMAuthorizationStatus getAuthorizationStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

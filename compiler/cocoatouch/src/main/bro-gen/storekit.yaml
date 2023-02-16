@@ -19,6 +19,12 @@ enums:
     SKProductDiscountType: {} #since 12.2
     SKOverlayPosition: {} #since 14.0
     SKANError: { nserror: true } #since 15.4
+typed_enums:
+    SKAdNetworkCoarseConversionValue:
+        enum: SKAdNetworkCoarseConversionValue
+        prefix: SKAdNetworkCoarseConversionValue
+        type: NSString
+
 classes:
     SKCloudServiceController: #since 9.3
         methods:
@@ -148,6 +154,10 @@ classes:
             '+endImpression:completionHandler:':
                 name: endImpression
             '+updatePostbackConversionValue:completionHandler:':
+                name: updatePostbackConversionValue
+            '+updatePostbackConversionValue:coarseValue:completionHandler:':
+                name: updatePostbackConversionValue
+            '+updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:':
                 name: updatePostbackConversionValue
     SKProductDiscount: {} #since 11.2
     SKProductSubscriptionPeriod: {} #since 11.2

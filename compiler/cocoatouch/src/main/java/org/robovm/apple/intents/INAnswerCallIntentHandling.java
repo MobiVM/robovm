@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.businesschat;
+package org.robovm.apple.intents;
 
 /*<imports>*/
 import java.io.*;
@@ -28,40 +28,34 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.eventkit.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.3 and later.
- * @deprecated Deprecated in iOS 16.1.
+ * @since Available in iOS 16.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/BCChatButtonStyle/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Light(0L),
-    Dark(1L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/INAnswerCallIntentHandling/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/BCChatButtonStyle/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/BCChatButtonStyle/*</name>*/ valueOf(long n) {
-        for (/*<name>*/BCChatButtonStyle/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/BCChatButtonStyle/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "handleAnswerCall:completion:")
+    void handleAnswerCall(INAnswerCallIntent intent, @Block VoidBlock1<INAnswerCallIntentResponse> completion);
+    @Method(selector = "confirmAnswerCall:completion:")
+    void confirmAnswerCall(INAnswerCallIntent intent, @Block VoidBlock1<INAnswerCallIntentResponse> completion);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

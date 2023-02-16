@@ -4,6 +4,9 @@ default_class: Dispatch
 header: /usr/include/dispatch/dispatch.h
 path_match: ^.*/usr/include/dispatch/.*$
 force_types: [timespec]
+clang_args: ['-x', 'objective-c', '-DOS_OBJECT_USE_OBJC=0']
+private_typedefs:
+    qos_class_t: int
 typedefs:
     _NSZone: void
     'Protocol *': ObjCProtocol

@@ -64,7 +64,11 @@ import org.robovm.apple.linkpresentation.*;
     public UIHoverGestureRecognizer(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "zOffset")
+    public native @MachineSizedFloat double getZOffset();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

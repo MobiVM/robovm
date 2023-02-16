@@ -645,6 +645,54 @@ classes:
                 name: sort
             '-transposeTensor:permutation:name:':
                 name: transposeTensor
+            '-bitwiseNOTWithTensor:name:':
+                name: bitwiseNOT
+            '-bitwisePopulationCountWithTensor:name:':
+                name: bitwisePopulationCount
+            '-bitwiseANDWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseAND
+            '-bitwiseORWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseOR
+            '-bitwiseXORWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseXOR
+            '-bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseLeftShift
+            '-bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseRightShift
+            '-inverseOfTensor:name:':
+                name: inverseOfTensor
+            '-quantizeTensor:scale:zeroPoint:dataType:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scale:zeroPoint:dataType:name:':
+                name: dequantizeTensor
+            '-quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:':
+                name: dequantizeTensor
+            '-quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:':
+                name: dequantizeTensor
+            '-sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:samplingMode:constantValue:name:':
+                name: sampleGrid
+            '-sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:nearestRoundingMode:constantValue:name:':
+                name: sampleGrid
+            '-argSortWithTensor:axis:descending:name:':
+                name: argSort
+            '-argSortWithTensor:axisTensor:descending:name:':
+                name: argSort
+            '-argSortWithTensor:axis:name:':
+                name: argSort
+            '-argSortWithTensor:axisTensor:name:':
+                name: argSort
+            '-spaceToBatchTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:':
+                name: spaceToBatch
+            '-spaceToBatchTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:':
+                name: spaceToBatch
+            '-batchToSpaceTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:':
+                name: batchToSpace
+            '-batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:':
+                name: batchToSpace
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':

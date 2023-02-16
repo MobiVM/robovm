@@ -95,6 +95,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "attribution")
     public native NSURLRequestAttribution getAttribution();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "requiresDNSSECValidation")
+    public native boolean requiresDNSSECValidation();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "allHTTPHeaderFields")

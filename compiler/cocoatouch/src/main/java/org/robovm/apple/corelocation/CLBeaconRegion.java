@@ -98,12 +98,6 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "initWithBeaconIdentityConstraint:identifier:")
     public CLBeaconRegion(CLBeaconIdentityConstraint beaconIdentityConstraint, String identifier) { super((SkipInit) null); initObject(init(beaconIdentityConstraint, identifier)); }
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super(center, radius, identifier); }
     /*</constructors>*/
     /*<properties>*/
     /**

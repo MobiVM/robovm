@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.homekit;
+package org.robovm.apple.intents;
 
 /*<imports>*/
 import java.io.*;
@@ -28,36 +28,44 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.eventkit.*;
 import org.robovm.apple.corelocation.*;
+import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 16.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAccessorySetupManager/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INHangUpCallIntent/*</name>*/ 
+    extends /*<extends>*/INIntent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class HMAccessorySetupManagerPtr extends Ptr<HMAccessorySetupManager, HMAccessorySetupManagerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMAccessorySetupManager.class); }/*</bind>*/
+    /*<ptr>*/public static class INHangUpCallIntentPtr extends Ptr<INHangUpCallIntent, INHangUpCallIntentPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(INHangUpCallIntent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public HMAccessorySetupManager() {}
-    protected HMAccessorySetupManager(Handle h, long handle) { super(h, handle); }
-    protected HMAccessorySetupManager(SkipInit skipInit) { super(skipInit); }
+    public INHangUpCallIntent() {}
+    protected INHangUpCallIntent(Handle h, long handle) { super(h, handle); }
+    protected INHangUpCallIntent(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "initWithCallIdentifier:")
+    public INHangUpCallIntent(String callIdentifier) { super((SkipInit) null); initObject(init(callIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 15.4 and later.
+     * @since Available in iOS 16.2 and later.
      */
-    @Method(selector = "performAccessorySetupUsingRequest:completionHandler:")
-    public native void performAccessorySetupUsingRequest(HMAccessorySetupRequest request, @Block VoidBlock2<HMAccessorySetupResult, NSError> completion);
+    @Method(selector = "initWithCallIdentifier:")
+    protected native @Pointer long init(String callIdentifier);
     /*</methods>*/
 }
