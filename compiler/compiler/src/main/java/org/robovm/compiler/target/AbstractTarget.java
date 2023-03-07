@@ -911,6 +911,7 @@ public abstract class AbstractTarget implements Target {
         } catch (IOException e) {
             IOUtils.closeQuietly(out);
             output.delete();
+            config.getLogger().error("Filed to strip archive file %s due %s", output, e.getMessage());
         } finally {
             IOUtils.closeQuietly(out);
         }
