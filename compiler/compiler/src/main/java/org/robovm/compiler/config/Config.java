@@ -1779,7 +1779,7 @@ public class Config {
             } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                throw new IOException(e);
+                throw new IOException(e.getLocalizedMessage(), e);
             }
             // <roots> was renamed to <forceLinkClasses> but we still support
             // <roots>. We need to copy <roots> to <forceLinkClasses> and set

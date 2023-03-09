@@ -112,6 +112,11 @@ shadowJar {
     relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
 }
 
+// suppress "warning: no comment"
+tasks.withType(Javadoc) {
+    options.addBooleanOption("Xdoclint:-missing", true)
+}
+
 signing {
     required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
     sign publishing.publications.mavenJava
