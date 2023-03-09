@@ -3,7 +3,7 @@
 ![Build Status](https://github.com/MobiVM/robovm/actions/workflows/build.yml/badge.svg)
 
 
-[**Website**](http://robovm.mobidevelop.com) -
+[**Website**](https://mobivm.github.io) -
 [**Developer Guide**](https://github.com/MobiVM/robovm/wiki/Developer-Guide) -
 [**Changelog**](https://github.com/MobiVM/robovm/wiki/Changelog) -
 [**RoboPods**](https://github.com/MobiVM/robovm-robopods) -
@@ -15,7 +15,7 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Key Features
 
-**iOS 12 and XCode 10** are fully supported.
+**iOS 16 and XCode 14** are fully supported.
 
 **Interface Builder Integration** is also available, details in [this wiki article](https://github.com/MobiVM/robovm/wiki/Is-XCode-interface-builder-supported%3F).
 
