@@ -249,9 +249,11 @@ public class RoboVmPlugin {
             @Override
             public void toolWindowRegistered(@NotNull String id) {
                 if (id.equals(RoboVmToolWindowFactory.ID)) {
-                    ConsoleView consoleView = getConsoleView(project);
-                    if (consoleView != null)
-                        dumpUnprintedMessages(consoleView);
+                    UIUtil.invokeLaterIfNeeded(() -> {
+                        ConsoleView consoleView = getConsoleView(project);
+                        if (consoleView != null)
+                            dumpUnprintedMessages(consoleView);
+                    });
                 }
             }
         });
