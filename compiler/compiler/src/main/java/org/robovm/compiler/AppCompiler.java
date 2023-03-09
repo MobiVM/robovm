@@ -496,7 +496,9 @@ public class AppCompiler {
     }
 
     private void compile() throws IOException {
-        updateCheck();
+        // FIXME: dkimitsa -- update check is disabled as facility is not available anymore and due GDRP related
+        //        moments
+        // updateCheck();
 
         //Let's look, if we really need to recompile
         if (needsRecompilation(config)) {
