@@ -64,6 +64,9 @@ import com.dd.plist.NSNumber;
 import com.dd.plist.NSString;
 import com.dd.plist.PropertyListParser;
 
+import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.DEBUGSERVER_SECURE_SERVICE_NAME;
+import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.DEBUGSERVER_SERVICE_NAME;
+
 /**
  * Launches an application on a device using the {@code com.apple.debuserver}
  * service. The app must have the {@code get-task-allow} entitlement set to 
@@ -72,7 +75,6 @@ import com.dd.plist.PropertyListParser;
 public class AppLauncher {
     public static final int DEFAULT_FORWARD_PORT = 17777;
 
-    private static final String DEBUG_SERVER_SERVICE_NAME = "com.apple.debugserver";
     private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
     private static final int RECEIVE_TIMEOUT = 5000;
     private static final byte[] BREAK = new byte[] { 0x03 };
@@ -682,7 +684,23 @@ public class AppLauncher {
             }
         }
     }
-    
+
+    private LockdowndServiceDescriptor startDebugServerService(LockdowndClient lockdowndClient, String serviceName) {
+        LockdowndServiceDescriptor serviceDescriptor;
+        try {
+            serviceDescriptor = lockdowndClient.startService(serviceName);
+        } catch (LibIMobileDeviceException e) {
+            if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_INVALID_SERVICE.swigValue() &&
+                    DEBUGSERVER_SECURE_SERVICE_NAME.equals(serviceName)) {
+                // fallback with non SSL version
+                return startDebugServerService(lockdowndClient, DEBUGSERVER_SERVICE_NAME);
+            } else {
+                throw e;
+            }
+        }
+        return serviceDescriptor;
+    }
+
     private int launchInternal() throws Exception {
         install();
         
@@ -699,13 +717,13 @@ public class AppLauncher {
                 }
                 LockdowndServiceDescriptor serviceDescriptor;
                 try {
-                    serviceDescriptor = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
+                    serviceDescriptor = startDebugServerService(lockdowndClient, DEBUGSERVER_SECURE_SERVICE_NAME);
                 } catch (LibIMobileDeviceException e) {
                     if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_INVALID_SERVICE.swigValue()) {
                         // This happens when the developer image hasn't been mounted.
                         // Mount and try again.
                         mountDeveloperImage(lockdowndClient);
-                        serviceDescriptor = lockdowndClient.startService(DEBUG_SERVER_SERVICE_NAME);
+                        serviceDescriptor = startDebugServerService(lockdowndClient, DEBUGSERVER_SECURE_SERVICE_NAME);
                     } else {
                         throw e;
                     }
@@ -844,6 +862,8 @@ public class AppLauncher {
                     // when we exit.
                     wasInterrupted = Thread.currentThread().isInterrupted();
                     kill(client);
+                    // FIXME: don't wait to graceful response as recent libmobiledevice returns SSL_ERROR
+                    return -1;
                 }
             }
         } finally {
@@ -942,6 +962,8 @@ public class AppLauncher {
                     // when we exit.
                     wasInterrupted = Thread.currentThread().isInterrupted();
                     kill(client);
+                    // FIXME: don't wait to graceful response as recent libmobiledevice returns SSL_ERROR
+                    return -1;
                 }
             }
         } finally {
