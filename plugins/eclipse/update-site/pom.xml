@@ -11,5 +11,5 @@
 
     <artifactId>org.robovm.eclipse.update-site</artifactId>
     <name>RoboVM for Eclipse Update Site</name>
-    <packaging>eclipse-update-site</packaging>
+    <packaging>eclipse-repository</packaging>
 </project>

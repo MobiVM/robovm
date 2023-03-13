@@ -44,4 +44,4 @@ jobs:
       - name: Deploy idea plugin
         run: aws s3 sync ./plugins/idea/build/distributions/ s3://${{ secrets.AWS_BUCKET }}/snapshots/idea --acl public-read --follow-symlinks --delete
       - name: Deploy eclipse plugin
-        run: aws s3 sync ./plugins/eclipse/update-site/target/site/ s3://${{ secrets.AWS_BUCKET }}/snapshots/eclipse --acl public-read --follow-symlinks --delete
+        run: aws s3 sync ./plugins/eclipse/update-site/target/repository/ s3://${{ secrets.AWS_BUCKET }}/snapshots/eclipse --acl public-read --follow-symlinks --delete

@@ -29,7 +29,7 @@ git push
 
 # Copy the update-site/target/ to whereever you want it
 ssh robovm@robovm.mobidevelop.com "mkdir -p /usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION"
-scp -r update-site/target/site/ robovm@robovm.mobidevelop.com:/usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION/
+scp -r update-site/target/repository/ robovm@robovm.mobidevelop.com:/usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION/
 
 # Set the pom version to the next development version
 mvn org.eclipse.tycho:tycho-versions-plugin:1.5.1:set-version -DnewVersion="$DEVELOPMENT_VERSION-SNAPSHOT"
