@@ -15,17 +15,16 @@
  */
 package org.robovm.gradle.tasks;
 
-import java.io.File;
-
-import org.gradle.api.GradleException;
+import org.gradle.api.tasks.Internal;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
-import org.gradle.api.tasks.Internal;
+import org.robovm.gradle.RoboVMGradleException;
+
+import java.io.File;
 
 /**
  *
@@ -56,7 +55,7 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
                 }
 
                 if (!isWritable) {
-                    throw new GradleException("Unwritable 'stdoutFifo' specified for RoboVM compile: " + stdoutFifo);
+                    throw new RoboVMGradleException("Unwritable 'stdoutFifo' specified for RoboVM compile: " + stdoutFifo);
                 }
 
                 launchParameters.setStdoutFifo(stdoutFifo);
@@ -74,7 +73,7 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
                 }
 
                 if (!isWritable) {
-                    throw new GradleException("Unwritable 'stderrFifo' specified for RoboVM compile: " + stderrFifo);
+                    throw new RoboVMGradleException("Unwritable 'stderrFifo' specified for RoboVM compile: " + stderrFifo);
                 }
 
                 launchParameters.setStderrFifo(stderrFifo);
@@ -82,7 +81,7 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
 
             compiler.launch(launchParameters);
         } catch (Throwable t) {
-            throw new GradleException("Failed to launch simulator", t);
+            throw new RoboVMGradleException("Failed to launch simulator", t);
         }
     }
 

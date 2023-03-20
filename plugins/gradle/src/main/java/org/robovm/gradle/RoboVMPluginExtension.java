@@ -216,10 +216,6 @@ public class RoboVMPluginExtension {
         this.installDir = installDir;
     }
     
-    public String getLicenseKey() {
-        return project.hasProperty("robovm.licenseKey") ? project.getProperties().get("robovm.licenseKey").toString() : null;
-    }
-    
     public void setCachedir(String cacheDir) {
         this.cacheDir = cacheDir;
     }

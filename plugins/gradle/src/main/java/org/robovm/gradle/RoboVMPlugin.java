@@ -20,17 +20,10 @@ import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.gradle.tooling.provider.model.ToolingModelBuilderRegistry;
 import org.robovm.compiler.Version;
-import org.robovm.gradle.tasks.ArchiveTask;
-import org.robovm.gradle.tasks.ConsoleTask;
-import org.robovm.gradle.tasks.IOSDeviceTask;
-import org.robovm.gradle.tasks.IPadSimulatorTask;
-import org.robovm.gradle.tasks.IPhoneSimulatorTask;
-import org.robovm.gradle.tasks.InstallTask;
+import org.robovm.gradle.tasks.*;
 import org.robovm.gradle.tooling.ModelBuilder;
 
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Gradle plugin that extends the Java plugin for RoboVM development.
@@ -55,31 +48,30 @@ public class RoboVMPlugin implements Plugin<Project> {
         registry.register(new ModelBuilder());
 
         project.getExtensions().create(RoboVMPluginExtension.NAME, RoboVMPluginExtension.class, project);
-        project.task(params(IPhoneSimulatorTask.class, "Runs your iOS app in the iPhone simulator"),
-                "launchIPhoneSimulator");
-        project.task(params(IPadSimulatorTask.class,"Runs your iOS app in the iPad simulator"),
-                "launchIPadSimulator");
-        project.task(params(IOSDeviceTask.class, "Runs your iOS app on a connected iOS device."),
-                "launchIOSDevice");
-        project.task(params(ConsoleTask.class, "Runs a console app"),"launchConsole");
-        project.task(params(ArchiveTask.class, "Creates .ipa file. This is an alias for the robovmArchive task"),
-                "createIPA");
-        project.task(params(ArchiveTask.class, "Compiles a binary, archives it in a format suitable for distribution and saves it to build/robovm/"),
-                "robovmArchive");
-        project.task(params(InstallTask.class, "Compiles a binary and installs it to build/robovm/"),
-                "robovmInstall");
+        registerTask(project, "launchIPhoneSimulator", IPhoneSimulatorTask.class,
+                "Runs your iOS app in the iPhone simulator");
+        registerTask(project, "launchIPadSimulator", IPadSimulatorTask.class,
+                "Runs your iOS app in the iPad simulator");
+        registerTask(project, "launchIOSDevice", IOSDeviceTask.class,
+                "Runs your iOS app on a connected iOS device.");
+        registerTask(project, "launchConsole", ConsoleTask.class, "Runs a console app");
+        registerTask(project, "createIPA", ArchiveTask.class,
+                "Creates .ipa file. This is an alias for the robovmArchive task");
+        registerTask(project,"robovmArchive", ArchiveTask.class,
+                "Compiles a binary, archives it in a format suitable for distribution and saves it to build/robovm/");
+        registerTask(project,"robovmInstall", InstallTask.class,
+                "Compiles a binary and installs it to build/robovm/");
     }
 
-    private Map<String, Object> params(Class<? extends  Task> task, String description) {
-        return params(task, description, "build"); // by default depends on build
+
+    private <T extends Task>  void registerTask(Project project, String name, Class<T> type, String description) {
+        registerTask(project, name, type, description, "build");
     }
 
-    private Map<String, Object> params(Class<? extends  Task> task, String description, String... dependencies) {
-        Map<String, Object> params = new HashMap<>();
-        params.put(Task.TASK_TYPE, task);
-        params.put(Task.TASK_DESCRIPTION, description);
-        if (dependencies != null)
-            params.put(Task.TASK_DEPENDS_ON, dependencies);
-        return params;
+    private <T extends Task>  void registerTask(Project project, String name, Class<T> type, String description, String ... dependencies) {
+        project.getTasks().register(name, type, task -> {
+            task.dependsOn((Object[]) dependencies);
+            task.setDescription(description);
+        });
     }
 }
