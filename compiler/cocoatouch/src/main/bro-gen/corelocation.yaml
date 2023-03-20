@@ -56,8 +56,6 @@ classes:
         methods:
             '-initWithCenter:radius:identifier:':
                 name: init
-            '-initCircularRegionWithCenter:radius:identifier:':
-                exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
             '-containsCoordinate:': # Overrides a method in CLRegion
                 exclude: true
     CLFloor: {} # DONE
@@ -177,7 +175,7 @@ classes:
                 name: notifiesOnExit
         methods:
             '-initCircularRegionWithCenter:radius:identifier:':
-                name: init
+                exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
             '-containsCoordinate:':
                 trim_after_first_colon: true
     CLVisit: {} # DONE

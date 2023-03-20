@@ -63,6 +63,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "textInputSessions")
     public native NSArray<SRTextInputSession> getTextInputSessions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supplementalCategories")
+    public native NSArray<SRSupplementalCategory> getSupplementalCategories();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

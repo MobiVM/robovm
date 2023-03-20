@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: macos-latest
 
+    env:
+      MAVEN_ARGS: -Dmaven.resolver.transport=wagon
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.11

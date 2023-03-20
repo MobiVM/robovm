@@ -113,6 +113,24 @@ import org.robovm.apple.dispatch.*;
     public NSString() {}
     protected NSString(Handle h, long handle) { super(h, handle); }
     protected NSString(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithData:encoding:")
+    public NSString(NSData data, NSStringEncoding encoding) { super((SkipInit) null); initObject(init(data, encoding)); }
+    @Method(selector = "initWithContentsOfURL:encoding:error:")
+    public NSString(NSURL url, NSStringEncoding enc) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, enc, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    @Method(selector = "initWithContentsOfFile:encoding:error:")
+    public NSString(String path, NSStringEncoding enc) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(path, enc, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "length")
@@ -696,6 +714,12 @@ import org.robovm.apple.dispatch.*;
     private native boolean writeFile(String path, boolean atomically, NSStringEncoding enc, NSError.NSErrorPtr error);
     @Method(selector = "initWithCharacters:length:")
     protected native @Pointer long init(@Pointer long characters, @MachineSizedUInt long length);
+    @Method(selector = "initWithData:encoding:")
+    protected native @Pointer long init(NSData data, NSStringEncoding encoding);
+    @Method(selector = "initWithContentsOfURL:encoding:error:")
+    private native @Pointer long init(NSURL url, NSStringEncoding enc, NSError.NSErrorPtr error);
+    @Method(selector = "initWithContentsOfFile:encoding:error:")
+    private native @Pointer long init(String path, NSStringEncoding enc, NSError.NSErrorPtr error);
     @Method(selector = "stringWithCharacters:length:")
     protected static native @Pointer long create(@Pointer long characters, @MachineSizedUInt long length);
     public static String readURL(NSURL url, NSStringEncoding enc) throws NSErrorException {

@@ -154,6 +154,8 @@ enums:
     INStartCallCallRecordToCallBackUnsupportedReason: {} #since 14.0
     INShareFocusStatusIntentResponseCode: {} #since 15.0
     INFocusStatusAuthorizationStatus: {} #since 15.0
+    INAnswerCallIntentResponseCode: { } #since 16.2
+    INHangUpCallIntentResponseCode: { } #since 16.2
 typed_enums:
     INCarChargingConnectorType:
         enum: INCarChargingConnectorType
@@ -1725,6 +1727,22 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
+    INAnswerCallIntent: #since 16.2
+        methods:
+            '-initWithAudioRoute:callIdentifier:':
+                name: init
+    INAnswerCallIntentResponse: #since 16.2
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INHangUpCallIntent: #since 16.2
+        methods:
+            '-initWithCallIdentifier:':
+                name: init
+    INHangUpCallIntentResponse: #since 16.2
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
         methods:
@@ -2443,6 +2461,18 @@ protocols:
                 name: handleShareFocusStatus
             '-confirmShareFocusStatus:completion:':
                 name: confirmShareFocusStatus
+    INAnswerCallIntentHandling: #since 16.2
+        methods:
+            '-handleAnswerCall:completion:':
+                name: handleAnswerCall
+            '-confirmAnswerCall:completion:':
+                name: confirmAnswerCall
+    INHangUpCallIntentHandling: #since 16.2
+        methods:
+            '-handleHangUpCall:completion:':
+                name: handleHangUpCall
+            '-confirmHangUpCall:completion:':
+                name: confirmHangUpCall
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (IN.*):

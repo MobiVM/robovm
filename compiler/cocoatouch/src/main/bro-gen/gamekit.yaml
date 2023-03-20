@@ -389,6 +389,8 @@ classes:
                 name: startNearbyPlayersBrowsing
             '+sharedMatchmaker':
                 property: true
+            '-startGroupActivityWithPlayerHandler:':
+                name: startGroupActivity
     GKMatchmakerViewController: # DONE
         methods:
             '-addPlayersToMatch:':

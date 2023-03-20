@@ -33,11 +33,11 @@ import org.gradle.api.tasks.Internal;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.gradle.RoboVMGradleException;
 import org.robovm.gradle.RoboVMPlugin;
 import org.robovm.gradle.RoboVMPluginExtension;
 import org.sonatype.aether.RepositorySystem;
@@ -106,7 +106,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             getLogger().info("Compile RoboVM app completed.");
             return compiler;
         } catch (IOException e) {
-            throw new GradleException("Error building RoboVM executable for app", e);
+            throw new RoboVMGradleException("Error building RoboVM executable for app", e);
         }
     }
 
@@ -117,20 +117,20 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             File propertiesFile = new File(extension.getPropertiesFile());
 
             if (!propertiesFile.exists()) {
-                throw new GradleException("Invalid 'propertiesFile' specified for RoboVM compile: " + propertiesFile);
+                throw new RoboVMGradleException("Invalid 'propertiesFile' specified for RoboVM compile: " + propertiesFile);
             }
             try {
                 getLogger().debug(
                         "Including properties file in RoboVM compiler config: " + propertiesFile.getAbsolutePath());
                 builder.addProperties(propertiesFile);
             } catch (IOException e) {
-                throw new GradleException("Failed to add properties file to RoboVM config: " + propertiesFile);
+                throw new RoboVMGradleException("Failed to add properties file to RoboVM config: " + propertiesFile);
             }
         } else {
             try {
                 builder.readProjectProperties(project.getProjectDir(), false);
             } catch (IOException e) {
-                throw new GradleException(
+                throw new RoboVMGradleException(
                         "Failed to read RoboVM project properties file(s) in "
                                 + project.getProjectDir().getAbsolutePath(), e);
             }
@@ -140,19 +140,19 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             File configFile = new File(extension.getConfigFile());
 
             if (!configFile.exists()) {
-                throw new GradleException("Invalid 'configFile' specified for RoboVM compile: " + configFile);
+                throw new RoboVMGradleException("Invalid 'configFile' specified for RoboVM compile: " + configFile);
             }
             try {
                 getLogger().debug("Loading config file for RoboVM compiler: " + configFile.getAbsolutePath());
                 builder.read(configFile);
             } catch (Exception e) {
-                throw new GradleException("Failed to read RoboVM config file: " + configFile);
+                throw new RoboVMGradleException("Failed to read RoboVM config file: " + configFile);
             }
         } else {
             try {
                 builder.readProjectConfig(project.getProjectDir(), false);
             } catch (Exception e) {
-                throw new GradleException(
+                throw new RoboVMGradleException(
                         "Failed to read project RoboVM config file in "
                                 + project.getProjectDir().getAbsolutePath(), e);
             }
@@ -174,11 +174,11 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         try {
             FileUtils.deleteDirectory(temporaryDirectory);
         } catch (IOException e) {
-            throw new GradleException("Failed to clean output dir " + temporaryDirectory, e);
+            throw new RoboVMGradleException("Failed to clean output dir " + temporaryDirectory, e);
         }
         temporaryDirectory.mkdirs();
 
-        builder.home(new Config.Home(unpack()))
+        builder.home(new Config.Home(extractSdk()))
                 .tmpDir(temporaryDirectory)
                 .skipInstall(true)
                 .installDir(installDir)
@@ -254,7 +254,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     @TaskAction
     abstract public void invoke();
 
-    protected File unpack() throws GradleException {
+    protected File extractSdk() throws GradleException {
+        getLogger().info("Checking for RoboVM SDK (downloading if required)...");
+
         final Artifact artifact = resolveArtifact("com.mobidevelop.robovm:robovm-dist:tar.gz:nocompiler:"
                 + RoboVMPlugin.getRoboVMVersion());
         final File distTarFile = artifact.getFile();
@@ -269,17 +271,17 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             getLogger().info("Extracting '" + distTarFile + "' to: " + unpackedDirectory);
 
             if (!unpackedDirectory.exists() && !unpackedDirectory.mkdirs()) {
-                throw new GradleException("Unable to create base directory to unpack into: " + unpackedDirectory);
+                throw new RoboVMGradleException("Unable to create base directory to unpack into: " + unpackedDirectory);
             }
 
             try {
                 extractTarGz(distTarFile, unpackedDirectory);
             } catch (IOException e) {
-                throw new GradleException("Couldn't extract distribution tar.gz", e);
+                throw new RoboVMGradleException("Couldn't extract distribution tar.gz", e);
             }
 
             if (!unpackedDistDirectory.exists()) {
-                throw new GradleException("Unable to unpack archive");
+                throw new RoboVMGradleException("Unable to unpack archive");
             }
         }
 
@@ -307,7 +309,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         try {
             result = repositorySystem.resolveArtifact(repositorySystemSession, request);
         } catch (ArtifactResolutionException e) {
-            throw new GradleException(e.getMessage(), e);
+            throw new RoboVMGradleException(e.getMessage(), e);
         }
 
         getLogger().debug(

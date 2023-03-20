@@ -359,6 +359,9 @@ values:
         class: WKPreviewActionItemIdentifiers
         name: '#{g[0]}'
 
+    NSReadAccessURLDocumentOption:
+        exclude: true # FIXME: it extends NSAttributedStringDocumentReadingOptionKey that is defined in different framework
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?WK.*):
         class: WebKit

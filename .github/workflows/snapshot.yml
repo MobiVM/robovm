@@ -12,6 +12,7 @@ jobs:
     env:
       MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
       MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      MAVEN_ARGS: -Dmaven.resolver.transport=wagon
 
     steps:
       - uses: actions/checkout@v2

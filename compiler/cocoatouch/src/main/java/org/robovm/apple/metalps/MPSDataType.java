@@ -55,6 +55,18 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      */
     Float16(268435472L),
     /**
+     * @since Available in iOS 16.2 and later.
+     */
+    ComplexBit(16777216L),
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    ComplexFloat32(285212736L),
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    ComplexFloat16(285212704L),
+    /**
      * @since Available in iOS 10.0 and later.
      */
     SignedBit(536870912L),

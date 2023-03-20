@@ -10,7 +10,7 @@ plugins {
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.19-SNAPSHOT'
+version = '2.3.20-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,7 +20,7 @@ compileJava {
 }
 
 ext {
-    roboVMVersion = '2.3.19-SNAPSHOT'
+    roboVMVersion = '2.3.20-SNAPSHOT'
     nexusUsername = System.getenv('MAVEN_USERNAME')
     nexusPassword = System.getenv('MAVEN_PASSWORD')
 }
@@ -110,6 +110,11 @@ shadowJar {
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
     relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
+}
+
+// suppress "warning: no comment"
+tasks.withType(Javadoc) {
+    options.addBooleanOption("Xdoclint:-missing", true)
 }
 
 signing {

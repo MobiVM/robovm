@@ -72,6 +72,16 @@ import org.robovm.apple.coregraphics.*;
     public native NSNumber getAdCampaignIdentifier();
     @Property(selector = "setAdCampaignIdentifier:")
     public native void setAdCampaignIdentifier(NSNumber v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "sourceIdentifier")
+    public native NSNumber getSourceIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSourceIdentifier:")
+    public native void setSourceIdentifier(NSNumber v);
     @Property(selector = "adImpressionIdentifier")
     public native String getAdImpressionIdentifier();
     @Property(selector = "setAdImpressionIdentifier:")

@@ -66,13 +66,13 @@ import org.robovm.apple.coreanimation.*;
     @NotImplemented("setChallenge:")
     public void setChallenge(NSData v) {}
     @NotImplemented("userVerificationPreference")
-    public String getUserVerificationPreference() { return null; }
+    public ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference() { return null; }
     @NotImplemented("setUserVerificationPreference:")
-    public void setUserVerificationPreference(String v) {}
+    public void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v) {}
     @NotImplemented("attestationPreference")
-    public String getAttestationPreference() { return null; }
+    public ASAuthorizationPublicKeyCredentialAttestationKind getAttestationPreference() { return null; }
     @NotImplemented("setAttestationPreference:")
-    public void setAttestationPreference(String v) {}
+    public void setAttestationPreference(ASAuthorizationPublicKeyCredentialAttestationKind v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

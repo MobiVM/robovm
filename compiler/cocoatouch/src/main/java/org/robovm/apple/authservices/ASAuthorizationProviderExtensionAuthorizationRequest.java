@@ -55,7 +55,7 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "url")
     public native NSURL getUrl();
     @Property(selector = "requestedOperation")
-    public native String getRequestedOperation();
+    public native ASAuthorizationProviderAuthorizationOperation getRequestedOperation();
     @Property(selector = "httpHeaders")
     public native NSDictionary<NSString, NSString> getHttpHeaders();
     @Property(selector = "httpBody")

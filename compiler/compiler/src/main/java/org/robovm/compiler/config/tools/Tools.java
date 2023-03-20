@@ -25,8 +25,15 @@ import org.simpleframework.xml.Element;
 public class Tools {
     @Element(required = false)
     private TextureAtlas textureAtlas;
+
+    @Element(required = false)
+    private LinkerOptions linker;
     
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;
+    }
+
+    public LinkerOptions getLinker() {
+        return linker;
     }
 }
