@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2013-2015 RoboVM AB
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,25 +13,21 @@
  */
 package org.robovm.compiler.config.tools;
 
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
- * 
- * @author blueriverteam
- *
+ * Settings to provide custom linker arguments
+ * @author dkimitsa
  */
-public class Tools {
-    @Element(required = false)
-    private TextureAtlas textureAtlas;
+public class LinkerOptions {
+    @ElementList(required = false, entry = "flag")
+    private ArrayList<String> flags;
 
-    @Element(required = false)
-    private LinkerOptions linker;
-    
-    public TextureAtlas getTextureAtlas() {
-        return textureAtlas;
-    }
-
-    public LinkerOptions getLinker() {
-        return linker;
+    public List<String> getLinkerFlags() {
+        return flags != null ? flags : Collections.emptyList();
     }
 }
