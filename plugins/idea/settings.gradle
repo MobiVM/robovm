@@ -1,1 +1,8 @@
+pluginManagement {
+    repositories {
+        mavenCentral() // as workaround for failing jcenter
+        gradlePluginPortal()
+    }
+}
+
 rootProject.name = 'idea'
