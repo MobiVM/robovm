@@ -261,6 +261,10 @@ public abstract class AbstractTarget implements Target {
             }
         }
 
+        if (config.getTools() != null && config.getTools().getLinker() != null) {
+            ccArgs.addAll(config.getTools().getLinker().getLinkerFlags());
+        }
+
         doBuild(outFile, ccArgs, objectFiles, libs);
         return outFile;
     }
