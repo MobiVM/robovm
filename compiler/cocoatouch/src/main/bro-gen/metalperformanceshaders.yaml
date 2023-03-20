@@ -1085,6 +1085,8 @@ classes:
         methods:
             '-initForReadingWithData:device:':
                 name: init
+            '-initWithDevice:':
+                name: init
             '+unarchiveObjectWithData:device:':
                 name: unarchiveObject
             '+unarchiveTopLevelObjectWithData:device:error:':

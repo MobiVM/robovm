@@ -93,6 +93,16 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<HMActionSet> getActionSets();
     @Property(selector = "triggers")
     public native NSArray<HMTrigger> getTriggers();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "matterControllerID")
+    public native String getMatterControllerID();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "matterControllerXPCConnectBlock")
+    public native @Block Block0<NSXPCConnection> getMatterControllerXPCConnectBlock();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

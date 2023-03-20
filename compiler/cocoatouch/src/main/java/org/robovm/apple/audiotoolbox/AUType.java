@@ -51,6 +51,10 @@ public enum /*<name>*/AUType/*</name>*/ implements ValuedEnum {
     Generator(1635084142L),
     OfflineEffect(1635086188L),
     MIDIProcessor(1635085673L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    SpeechSynthesizer(1635087216L),
     RemoteEffect(1635086968L),
     RemoteGenerator(1635086951L),
     RemoteInstrument(1635086953L),

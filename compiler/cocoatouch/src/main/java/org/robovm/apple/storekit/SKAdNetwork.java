@@ -84,5 +84,15 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "updatePostbackConversionValue:completionHandler:")
     public static native void updatePostbackConversionValue(@MachineSizedSInt long conversionValue, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "updatePostbackConversionValue:coarseValue:completionHandler:")
+    public static native void updatePostbackConversionValue(@MachineSizedSInt long fineValue, SKAdNetworkCoarseConversionValue coarseValue, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:")
+    public static native void updatePostbackConversionValue(@MachineSizedSInt long fineValue, SKAdNetworkCoarseConversionValue coarseValue, boolean lockWindow, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

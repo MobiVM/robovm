@@ -1009,6 +1009,12 @@ classes:
                 parameters:
                     locale:
                         type: NSLocale
+            '-initWithMantissa:exponent:isNegative:':
+                name: init
+            '-initWithDecimal:':
+                name: init
+            '-initWithString:':
+                name: init
     NSDecimalNumberHandler: # DONE
         skip_def_constructor: true
         methods:
@@ -3339,6 +3345,14 @@ classes:
                 parameters:
                     characters:
                         type: '@Pointer long'
+            '-initWithData:encoding:':
+                name: init
+            '-initWithContentsOfURL:encoding:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithContentsOfFile:encoding:error:':
+                name: init
+                throws: NSErrorException
             '-init': {}
             '-init.*': { exclude: true }
             '-characterAtIndex:':

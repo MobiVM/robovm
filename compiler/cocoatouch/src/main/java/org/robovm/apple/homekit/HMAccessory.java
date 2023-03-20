@@ -117,6 +117,11 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "supportsIdentify")
     public native boolean supportsIdentify();
     /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "matterNodeID")
+    public native NSNumber getMatterNodeID();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "cameraProfiles")

@@ -50,17 +50,23 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
      */
+    @Deprecated
     @GlobalValue(symbol="BCParameterNameIntent", optional=true)
     public static native NSString Intent();
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
      */
+    @Deprecated
     @GlobalValue(symbol="BCParameterNameGroup", optional=true)
     public static native NSString Group();
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
      */
+    @Deprecated
     @GlobalValue(symbol="BCParameterNameBody", optional=true)
     public static native NSString Body();
     /*</methods>*/

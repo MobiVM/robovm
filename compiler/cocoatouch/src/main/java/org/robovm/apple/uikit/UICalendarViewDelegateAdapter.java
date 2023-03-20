@@ -61,5 +61,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("calendarView:decorationForDateComponents:")
     public UICalendarViewDecoration getDecoration(UICalendarView calendarView, NSDateComponents dateComponents) { return null; }
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @NotImplemented("calendarView:didChangeVisibleDateComponentsFrom:")
+    public void didChangeVisibleDateComponents(UICalendarView calendarView, NSDateComponents previousDateComponents) {}
     /*</methods>*/
 }

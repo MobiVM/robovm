@@ -57,6 +57,7 @@ classes:
     SRWebUsage: {} #since 14.0
     SRWristDetection: {} #since 14.0
     SRTextInputSession: {} #since 15.0
+    SRSupplementalCategory: {} #since 16.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:

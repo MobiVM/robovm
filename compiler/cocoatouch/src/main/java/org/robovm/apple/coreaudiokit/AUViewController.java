@@ -61,7 +61,6 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "beginRequestWithExtensionContext:")
-    public native void beginRequest(NSExtensionContext context);
+    
     /*</methods>*/
 }

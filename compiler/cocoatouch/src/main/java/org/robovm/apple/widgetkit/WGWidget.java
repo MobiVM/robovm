@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
         public static native NSString Kind();
         @GlobalValue(symbol="WGWidgetUserInfoKeyFamily", optional=true)
         public static native NSString Family();
+        @GlobalValue(symbol="WGWidgetUserInfoKeyActivityID", optional=true)
+        public static native NSString ActivityID();
     }
     /*</methods>*/
 }

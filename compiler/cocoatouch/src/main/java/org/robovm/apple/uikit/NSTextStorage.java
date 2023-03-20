@@ -108,6 +108,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void setTextStorageObserver(NSTextStorageObserving v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
+    @Property(selector = "readableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getReadableTypeIdentifiersForItemProvider();
+    @Property(selector = "writableTypeIdentifiersForItemProvider")
+    public static native NSArray<NSString> getWritableTypeIdentifiersForItemProvider0();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -128,5 +132,15 @@ import org.robovm.apple.linkpresentation.*;
     public native void invalidateAttributes(@ByVal NSRange range);
     @Method(selector = "ensureAttributesAreFixedInRange:")
     public native void ensureAttributesAreFixed(@ByVal NSRange range);
+    public static NSTextStorage createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSTextStorage result = createProviderDataObject(data, typeIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "objectWithItemProviderData:typeIdentifier:error:")
+    private static native NSTextStorage createProviderDataObject(NSData data, String typeIdentifier, NSError.NSErrorPtr outError);
+    @Method(selector = "itemProviderVisibilityForRepresentationWithTypeIdentifier:")
+    public static native NSItemProviderRepresentationVisibility getItemProviderVisibility0(String typeIdentifier);
     /*</methods>*/
 }

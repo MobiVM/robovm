@@ -61,9 +61,9 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setExcludedCredentials:")
     public native void setExcludedCredentials(NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor> v);
     @Property(selector = "residentKeyPreference")
-    public native String getResidentKeyPreference();
+    public native ASAuthorizationPublicKeyCredentialResidentKeyPreference getResidentKeyPreference();
     @Property(selector = "setResidentKeyPreference:")
-    public native void setResidentKeyPreference(String v);
+    public native void setResidentKeyPreference(ASAuthorizationPublicKeyCredentialResidentKeyPreference v);
     @Property(selector = "relyingPartyIdentifier")
     public native String getRelyingPartyIdentifier();
     @Property(selector = "userID")
@@ -83,13 +83,13 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setChallenge:")
     public native void setChallenge(NSData v);
     @Property(selector = "userVerificationPreference")
-    public native String getUserVerificationPreference();
+    public native ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")
-    public native void setUserVerificationPreference(String v);
+    public native void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
     @Property(selector = "attestationPreference")
-    public native String getAttestationPreference();
+    public native ASAuthorizationPublicKeyCredentialAttestationKind getAttestationPreference();
     @Property(selector = "setAttestationPreference:")
-    public native void setAttestationPreference(String v);
+    public native void setAttestationPreference(ASAuthorizationPublicKeyCredentialAttestationKind v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
