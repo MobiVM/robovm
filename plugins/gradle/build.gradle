@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.0"
+    id "com.github.johnrengelman.shadow" version "8.1.0"
     id 'java'
     id 'groovy'
     id 'maven-publish'
@@ -103,7 +103,7 @@ java {
 }
 
 shadowJar {
-    classifier = ''
+    archiveClassifier.set('')
     dependencies {
         exclude(dependency("com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"));
     }
