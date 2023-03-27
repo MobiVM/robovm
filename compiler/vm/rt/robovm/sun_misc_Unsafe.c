@@ -110,6 +110,12 @@ jbyte Java_sun_misc_Unsafe_getByte(Env* env, Object* unsafe, Object* obj, jlong 
     return *address;
 }
 
+jdouble Java_sun_misc_Unsafe_getDouble(Env* env, Object* unsafe, Object* obj, jlong offset) {
+    if (!checkNull(env, obj)) return 0;
+    jdouble* address = (jdouble*) getFieldAddress(obj, offset);
+    return *address;
+}
+
 jint Java_sun_misc_Unsafe_getIntVolatile(Env* env, Object* unsafe, Object* obj, jlong offset) {
     if (!checkNull(env, obj)) return 0;
     jint* address = (jint*) getFieldAddress(obj, offset);
@@ -161,6 +167,12 @@ void Java_sun_misc_Unsafe_putBoolean(Env* env, Object* unsafe, Object* obj, jlon
 void Java_sun_misc_Unsafe_putByte(Env* env, Object* unsafe, Object* obj, jlong offset, jbyte newValue) {
     if (!checkNull(env, obj)) return;
     jbyte* address = (jbyte*) getFieldAddress(obj, offset);
+    *address = newValue;
+}
+
+void Java_sun_misc_Unsafe_putDouble(Env* env, Object* unsafe, Object* obj, jlong offset, jdouble newValue) {
+    if (!checkNull(env, obj)) return;
+    jdouble* address = (jdouble*) getFieldAddress(obj, offset);
     *address = newValue;
 }
 
