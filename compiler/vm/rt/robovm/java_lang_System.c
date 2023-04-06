@@ -48,7 +48,7 @@ ObjectArray* Java_java_lang_System_robovmSpecialProperties(Env* env, Class* c) {
 
 #if defined(DARWIN)
     char* osName = NULL;
-#   if defined(IOS) && (defined(RVM_X86) || defined(RVM_X86_64))
+#   if defined(IOS) && defined(RVM_SIMULATOR)
     osName = "os.name=iOS Simulator";
 #   elif defined(IOS)
     osName = "os.name=iOS";
