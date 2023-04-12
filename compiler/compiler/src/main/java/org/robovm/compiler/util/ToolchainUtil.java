@@ -21,8 +21,8 @@ import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.config.tools.ActoolOptions;
 import org.robovm.compiler.config.tools.TextureAtlas;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.log.Logger;
@@ -239,35 +239,78 @@ public class ToolchainUtil {
 
     public static void actool(Config config, File partialInfoPlist, File outDir, List<File> inDirs) throws IOException {
         List<Object> opts = new ArrayList<>();
-
         String appIconSetName = null;
+        boolean appIconSetNameByArgs = false;
         String launchImagesName = null;
+        boolean launchImagesNameByArgs = false;
+        boolean includeAllAppIcons = false;
 
-        final String appiconset = "appiconset";
-        final String launchimage = "launchimage";
+        // pick values from config of robovm.xml
+        if (config.getTools() != null && config.getTools().getActool() != null) {
+            ActoolOptions options = config.getTools().getActool();
+            opts.addAll(options.getArguments());
+            // if "--app-icon" specified in arguments will not use iconName option or look up for asset
+            appIconSetNameByArgs = opts.contains("--app-icon");
+            // if "--launch-image" specified in arguments will not use launchImagesName option or look up for asset
+            launchImagesNameByArgs = opts.contains("--launch-image");
+            // pick other options
+            includeAllAppIcons = options.shouldIncludeAllAppIcons();
+            appIconSetName = appIconSetNameByArgs ? null : options.getAppIconName();
+            launchImagesName = launchImagesNameByArgs ? null: options.getLaunchImageName();
+        }
 
-        for (File inDir : inDirs) {
-            for (String fileName : inDir.list()) {
-                String ext = FilenameUtils.getExtension(fileName);
-                if (ext.equals(appiconset)) {
-                    appIconSetName = FilenameUtils.getBaseName(fileName);
-                } else if (ext.equals(launchimage)) {
-                    launchImagesName = FilenameUtils.getBaseName(fileName);
+        // look for icon and launch image sets if not specified by config
+        // these options might be provided also in argument list. do lookup only if required
+        List<String> availableIcons = appIconSetName == null && !appIconSetNameByArgs ?  new ArrayList<>() : null;
+        List<String> availableImages = launchImagesName == null && !launchImagesNameByArgs ? new ArrayList<>() : null;
+        if (availableIcons != null || availableImages != null) {
+            final String appiconset = "appiconset";
+            final String launchimage = "launchimage";
+
+            for (File inDir : inDirs) {
+                for (String fileName : inDir.list()) {
+                    String ext = FilenameUtils.getExtension(fileName);
+                    if (ext.equals(appiconset)) {
+                        if (availableIcons != null)
+                            availableIcons.add(FilenameUtils.getBaseName(fileName));
+                    } else if (ext.equals(launchimage)) {
+                        if (availableImages != null)
+                            availableImages.add(FilenameUtils.getBaseName(fileName));
+                    }
                 }
             }
-        }
-        if (appIconSetName != null || launchImagesName != null) {
-            if (appIconSetName != null) {
-                opts.add("--app-icon");
-                opts.add(appIconSetName);
-            }
-            if (launchImagesName != null) {
-                opts.add("--launch-image");
-                opts.add(launchImagesName);
-            }
 
+            // pick values
+            if (availableIcons != null && availableIcons.size() >= 1) {
+                appIconSetName = availableIcons.get(0);
+                if (availableIcons.size() > 1)
+                    config.getLogger().error("actool: multiple .appiconset found but %s will be used", appIconSetName);
+            }
+            if (availableImages != null && availableImages.size() >= 1) {
+                launchImagesName = availableImages.get(0);
+                if (availableImages.size() > 1)
+                    config.getLogger().error("actool: multiple .launchimage found but %s will be used", launchImagesName);
+            }
+        }
+
+        if (appIconSetName != null) {
+            opts.add("--app-icon");
+            opts.add(appIconSetName);
+            appIconSetNameByArgs = true;
+        }
+        if (launchImagesName != null) {
+            opts.add("--launch-image");
+            opts.add(launchImagesName);
+            launchImagesNameByArgs = true;
+        }
+
+        if (appIconSetNameByArgs || launchImagesNameByArgs) {
             opts.add("--output-partial-info-plist");
             opts.add(partialInfoPlist);
+        }
+
+        if (includeAllAppIcons) {
+            opts.add("--include-all-app-icons");
         }
 
         opts.add("--platform");
