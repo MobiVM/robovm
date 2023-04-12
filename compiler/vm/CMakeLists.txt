@@ -215,8 +215,10 @@ set(INSTALL_DIR ${CMAKE_SOURCE_DIR}/target/binaries/${OS}/${ARCH})
 # at this point convert remove "-simulator" suffix as it will conflict as sub-modules
 if (ARCH STREQUAL "arm64-simulator")
   set(ARCH arm64)
+  add_definitions(-DRVM_SIMULATOR)
 elseif (ARCH STREQUAL "x86_64-simulator")
   set(ARCH x86_64)
+  add_definitions(-DRVM_SIMULATOR)
 endif()
 
 if (ARCH STREQUAL "x86_64")
