@@ -826,7 +826,10 @@ public class ClassCompiler {
             Function setter = createFieldSetter(f, classFields, classType, instanceFields, instanceType);
             mb.addFunction(getter);
             mb.addFunction(setter);
-            if (f.isStatic() && !f.isPrivate()) {
+            // generate cinit wrapper even for private fields
+            // as with java11 JEP181 there will be no access$$$ wrappers
+            // to access these fields from inner classes
+            if (f.isStatic() /* && !f.isPrivate() */ ) {
                 mb.addFunction(createClassInitWrapperFunction(getter.ref()));
                 if (!f.isFinal()) {
                     mb.addFunction(createClassInitWrapperFunction(setter.ref()));
