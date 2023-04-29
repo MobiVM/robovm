@@ -66,7 +66,7 @@ import org.robovm.apple.linkpresentation.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    public static @Pointer long init(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    public static @Pointer long init(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = init(thiz, url, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -76,15 +76,15 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithURL:options:documentAttributes:error:")
-    private static native @Pointer long init(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
-    public static @Pointer long init(NSAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    private static native @Pointer long init(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    public static @Pointer long init(@Pointer long thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = init(thiz, data, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
     @Method(selector = "initWithData:options:documentAttributes:error:")
-    private static native @Pointer long init(NSAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    private static native @Pointer long init(@Pointer long thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     public static NSData getData(NSAttributedString thiz, @ByVal NSRange range, NSAttributedStringDocumentAttributes dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = getData(thiz, range, dict, ptr);
@@ -110,7 +110,7 @@ import org.robovm.apple.linkpresentation.*;
      * @deprecated Deprecated in iOS 9.0. Use initWithURL:options:documentAttributes:error:
      */
     @Deprecated
-    public static @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    public static @Pointer long initWithFileURL(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = initWithFileURL(thiz, url, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -121,7 +121,7 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Deprecated
     @Method(selector = "initWithFileURL:options:documentAttributes:error:")
-    private static native @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    private static native @Pointer long initWithFileURL(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     @Method(selector = "size")
     public static native @ByVal CGSize getSize(NSAttributedString thiz);
     @Method(selector = "drawAtPoint:")

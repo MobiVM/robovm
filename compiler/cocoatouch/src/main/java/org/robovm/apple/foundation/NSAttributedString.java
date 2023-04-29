@@ -275,7 +275,7 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(NSURL url, NSAttributedStringDocumentAttributes options) throws NSErrorException {
         super((SkipInit) null);
         long h = NSObject.alloc(ObjCClass.getByType(NSAttributedString.class));
-        initObject(NSAttributedStringExtensions.init(ObjCObject.toObjCObject(NSAttributedString.class, h, NSObject.FLAG_NO_RETAIN), url, options, null));
+        initObject(NSAttributedStringExtensions.init(h, url, options, null));
     }
     /**
      * 
@@ -289,7 +289,7 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(NSData data, NSAttributedStringDocumentAttributes options) throws NSErrorException {
         super((SkipInit) null);
         long h = NSObject.alloc(ObjCClass.getByType(NSAttributedString.class));
-        initObject(NSAttributedStringExtensions.init(ObjCObject.toObjCObject(NSAttributedString.class, h, NSObject.FLAG_NO_RETAIN), data, options, null));
+        initObject(NSAttributedStringExtensions.init(h, data, options, null));
     }
     /**
      * 
