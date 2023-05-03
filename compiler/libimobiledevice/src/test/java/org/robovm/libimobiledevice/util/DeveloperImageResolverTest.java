@@ -16,18 +16,18 @@
  */
 package org.robovm.libimobiledevice.util;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
- * Tests {@link AppLauncher}.
+ * Tests {@link DeveloperImageResolver}.
  */
-public class AppLauncherTest {
+public class DeveloperImageResolverTest {
 
     private File createDeveloperImage(Path dsDir, String version) throws Exception {
         return createDeveloperImage(dsDir, version, true);
@@ -56,19 +56,19 @@ public class AppLauncherTest {
         File f92 = createDeveloperImage(dsDir, "9.2");
         File f102 = createDeveloperImage(dsDir, "10.2 (14D123)");
 
-        assertEquals(f703_11B508, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.3", "11B508"));
-        assertEquals(f61, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.3", "10A123"));
-        assertEquals(f61, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.1", "10A123"));
-        assertEquals(f612, AppLauncher.findDeveloperImage(dsDir.toFile(), "6.1.2", "10A123"));
-        assertEquals(f703_11B508, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.3", "12C123"));
-        assertEquals(f70_11A465, AppLauncher.findDeveloperImage(dsDir.toFile(), "7.0.2", "12C123"));
+        assertEquals(f703_11B508, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(7, 0, 3)).dmg);
+        assertEquals(f612, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(6, 1, 2)).dmg);
+        assertEquals(f703_11B508, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(7, 0, 3)).dmg);
         // finding not exact match
-        assertEquals(f812_13B812, AppLauncher.findDeveloperImage(dsDir.toFile(), "8.1.3", "14C710"));
-        assertEquals(f812_13B812, AppLauncher.findDeveloperImage(dsDir.toFile(), "8.2", "14C710"));
-        assertEquals(f92, AppLauncher.findDeveloperImage(dsDir.toFile(), "9.3.3", "15C710"));
-        assertEquals(f92, AppLauncher.findDeveloperImage(dsDir.toFile(), "9.3", "15C710"));
-        assertEquals(f102, AppLauncher.findDeveloperImage(dsDir.toFile(), "10.3.5", "15C710"));
-        assertEquals(f102, AppLauncher.findDeveloperImage(dsDir.toFile(), "10.3", "15C710"));
+        assertEquals(f612, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(6, 1, 3)).dmg);
+        assertEquals(f61, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(6, 1, 1)).dmg);
+        assertEquals(f70_11A465, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(7, 0, 2)).dmg);
+        assertEquals(f812_13B812, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(8, 1, 3)).dmg);
+        assertEquals(f812_13B812, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(8, 2)).dmg);
+        assertEquals(f92, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(9, 3, 3)).dmg);
+        assertEquals(f92, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(9, 3)).dmg);
+        assertEquals(f102, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(10, 3, 5)).dmg);
+        assertEquals(f102, DeveloperImageResolver.findDeveloperImage(dsDir.toFile(), new Version(10, 3)).dmg);
     }
 
 }

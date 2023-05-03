@@ -82,7 +82,6 @@ public class RoboVmRunProfileState extends CommandLineState {
             }
             process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
         }
-        RoboVmPlugin.logInfo(getEnvironment().getProject(), "Launch done");
 
         final OSProcessHandler processHandler = new ColoredProcessHandler(process, null);
         ProcessTerminatedListener.attach(processHandler);

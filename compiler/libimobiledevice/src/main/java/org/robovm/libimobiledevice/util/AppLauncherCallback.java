@@ -24,11 +24,11 @@ import org.robovm.libimobiledevice.IDevice;
  *
  */
 public interface AppLauncherCallback {
-    public void setAppLaunchInfo(AppLauncherInfo info);
+    void setAppLaunchInfo(AppLauncherInfo info);
+
+    byte[] filterOutput(byte[] data);
     
-    public byte[] filterOutput(byte[] data);
-    
-    static class AppLauncherInfo {
+    class AppLauncherInfo {
         final IDevice device;
         final String remoteAppPath;
         final String productVersion;

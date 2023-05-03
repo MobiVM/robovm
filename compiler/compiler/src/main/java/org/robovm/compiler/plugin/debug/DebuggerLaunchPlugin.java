@@ -252,10 +252,20 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         @Override
         public void connect() {
             try {
+                // FIXME: waiting for app to be deployed and prepared, its should not use TARGET_WAIT_TIMEOUT time
+                //        and it has to be moved to pre-launch sequence
                 long ts = System.currentTimeMillis();
+                while (launchInfo == null) {
+                    if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_DEPLOY_TIMEOUT)
+                        throw new DebuggerException("Timeout while waiting app is deployed");
+                    Thread.sleep(200);
+                }
+
+                // waiting for target to start and hooks are available
+                ts = System.currentTimeMillis();
                 while (hooksPort == null) {
                     if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
-                        throw new DebuggerException("Timeout while waiting simulator port file");
+                        throw new DebuggerException("Timeout while waiting app is responding on device");
                     Thread.sleep(200);
                 }
 

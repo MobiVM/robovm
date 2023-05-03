@@ -94,7 +94,7 @@ final class ResolvedLocations {
             }
 
             if (xcFrameworks != null && !xcFrameworks.isEmpty()) {
-                // there is xcframeworks, expand them
+                // there are xcframeworks, expand them
                 handleXCFrameworks();
             }
 
