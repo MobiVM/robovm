@@ -826,6 +826,7 @@ public class Config {
         to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses);
         to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods);
         to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths);
+        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks);
         to.frameworks = mergeLists(from.frameworks, to.frameworks);
         to.libs = mergeLists(from.libs, to.libs);
         to.resources = mergeLists(from.resources, to.resources);
