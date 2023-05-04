@@ -59,11 +59,11 @@ public class AppLauncherProcess extends Process implements Launcher {
 
     @Override
     public Process execAsync() throws IOException {
-        launcher.install();
         this.launcherThread = new Thread("AppLauncherThread-" + threadCounter.getAndIncrement()) {
             @Override
             public void run() {
                 try {
+                    // install and launch
                     exitCode = launcher.launch();
                 } catch (Throwable t) {
                     log.error("AppLauncher failed with an exception:", t.getMessage());

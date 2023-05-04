@@ -34,7 +34,8 @@ import java.util.function.IntSupplier;
  * Configuration file that is to start debugger
  */
 public class DebuggerConfig {
-    public final static int TARGET_WAIT_TIMEOUT = 60000;
+    public final static int TARGET_WAIT_TIMEOUT = 60_000;
+    public final static int TARGET_DEPLOY_TIMEOUT = 120_000;
 
     /**
      * debugger local arch list, corresponds one from compiler

@@ -94,6 +94,7 @@ public class IOSTarget extends AbstractTarget {
     private File entitlementsPList;
     private SigningIdentity signIdentity;
     private ProvisioningProfile provisioningProfile;
+    @Deprecated
     private IDevice device;
     private File partialPListDir;
 
@@ -175,21 +176,24 @@ public class IOSTarget extends AbstractTarget {
             throws IOException {
 
         IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) launchParameters;
-        String deviceId = deviceLaunchParameters.getDeviceId();
+        String deviceUdid = deviceLaunchParameters.getDeviceId();
         int forwardPort = deviceLaunchParameters.getForwardPort();
-        AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback();
-        if (deviceId == null || deviceId.isEmpty()) {
-            String[] udids = IDevice.listUdids();
-            if (udids.length == 0) {
-                throw new RuntimeException("No devices connected");
+
+        // TODO: FIXME: proxy AppLauncherCallback here: device to be captured as it is being used in junit client
+        //              its a subject for future rework
+        AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback() != null ? new AppLauncherCallback() {
+            final AppLauncherCallback delegate = deviceLaunchParameters.getAppPathCallback();
+            @Override
+            public void setAppLaunchInfo(AppLauncherInfo info) {
+                device = info.getDevice();
+                delegate.setAppLaunchInfo(info);
             }
-            if (udids.length > 1) {
-                config.getLogger().warn("More than 1 device connected (%s). "
-                        + "Using %s.", Arrays.asList(udids), udids[0]);
+
+            @Override
+            public byte[] filterOutput(byte[] data) {
+                return delegate.filterOutput(data);
             }
-            deviceId = udids[0];
-        }
-        device = new IDevice(deviceId);
+        } : null;
 
         OutputStream out = null;
         if (launchParameters.getStdoutFifo() != null) {
@@ -205,7 +209,7 @@ public class IOSTarget extends AbstractTarget {
         //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
         env.put("OS_ACTIVITY_DT_MODE", "");
 
-        AppLauncher launcher = new AppLauncher(device, getAppDir()) {
+        AppLauncher launcher = new AppLauncher(deviceUdid, getAppDir()) {
             protected void log(String s, Object... args) {
                 config.getLogger().info(s, args);
             }

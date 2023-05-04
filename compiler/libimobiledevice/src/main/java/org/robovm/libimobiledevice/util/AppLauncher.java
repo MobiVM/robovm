@@ -16,6 +16,30 @@
  */
 package org.robovm.libimobiledevice.util;
 
+import com.dd.plist.NSArray;
+import com.dd.plist.NSDictionary;
+import com.dd.plist.NSNumber;
+import com.dd.plist.NSString;
+import com.dd.plist.PropertyListParser;
+import org.robovm.libimobiledevice.AfcClient;
+import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
+import org.robovm.libimobiledevice.DebugServerClient;
+import org.robovm.libimobiledevice.IDevice;
+import org.robovm.libimobiledevice.InstallationProxyClient;
+import org.robovm.libimobiledevice.InstallationProxyClient.Options;
+import org.robovm.libimobiledevice.InstallationProxyClient.Options.PackageType;
+import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
+import org.robovm.libimobiledevice.LibIMobileDeviceException;
+import org.robovm.libimobiledevice.LockdowndClient;
+import org.robovm.libimobiledevice.LockdowndServiceDescriptor;
+import org.robovm.libimobiledevice.MobileImageMounterClient;
+import org.robovm.libimobiledevice.binding.LockdowndError;
+import org.robovm.libimobiledevice.binding.MobileImageMounterError;
+import org.robovm.libimobiledevice.util.AppLauncherCallback.AppLauncherInfo;
+import org.robovm.libimobiledevice.util.Lambdas.CheckedConsumer;
+import org.robovm.libimobiledevice.util.Lambdas.CheckedFunction;
+import org.robovm.libimobiledevice.util.Lambdas.CheckedSupplier;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,8 +47,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.lang.ProcessBuilder.Redirect;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
@@ -42,27 +64,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeoutException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import org.robovm.libimobiledevice.AfcClient;
-import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
-import org.robovm.libimobiledevice.DebugServerClient;
-import org.robovm.libimobiledevice.IDevice;
-import org.robovm.libimobiledevice.InstallationProxyClient;
-import org.robovm.libimobiledevice.InstallationProxyClient.Options;
-import org.robovm.libimobiledevice.InstallationProxyClient.Options.PackageType;
-import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
-import org.robovm.libimobiledevice.LibIMobileDeviceException;
-import org.robovm.libimobiledevice.LockdowndClient;
-import org.robovm.libimobiledevice.LockdowndServiceDescriptor;
-import org.robovm.libimobiledevice.MobileImageMounterClient;
-import org.robovm.libimobiledevice.binding.LockdowndError;
-import org.robovm.libimobiledevice.util.AppLauncherCallback.AppLauncherInfo;
-
-import com.dd.plist.NSArray;
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSString;
-import com.dd.plist.PropertyListParser;
 
 import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.DEBUGSERVER_SECURE_SERVICE_NAME;
 import static org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants.DEBUGSERVER_SERVICE_NAME;
@@ -82,7 +83,8 @@ public class AppLauncher {
     private byte[] buffer = new byte[4096];
     private StringBuilder bufferedResponses = new StringBuilder(4096);
 
-    private final IDevice device;
+    private final String deviceUdid;
+    private IDevice resolvedDevice;
     private final String appId;
     private final File localAppPath;
     private boolean installed = false;
@@ -96,45 +98,81 @@ public class AppLauncher {
     private volatile boolean killed = false;
     private StatusCallback installStatusCallback;
     private UploadProgressCallback uploadProgressCallback;
-    private String xcodePath;    
-    private int launchOnLockedRetries = 5;
-    private int secondsBetweenLaunchOnLockedRetries = 5;
+    private String xcodePath;
+    private int launchOnLockedRetries = 20;
+    private int secondsBetweenLaunchOnLockedRetries = 1;
     
     /**
      * Creates a new {@link AppLauncher} which will launch an already installed
      * app with the specified id.
      * 
-     * @param device the device to connect to.
+     * @param deviceUdid the device's UDID to connect to (or null to auto pick one).
      * @param appId the id (CFBundleIdentifier) of the app to run.
      */
-    public AppLauncher(IDevice device, String appId) {
-        this(device, appId, null);
+    public AppLauncher(String deviceUdid, String appId) {
+        this(deviceUdid, appId, null);
     }
 
     /**
      * Creates a new {@link AppLauncher} which will install the app from the
      * specified IPA file or app bundle dir and launch it.
-     * 
-     * @param device the device to connect to.
+     *
+     * @param deviceUdid the device's UDID to connect to (or null to auto pick one).
      * @param localAppPath the IPA file of app bundle dir containing the app to 
      *        install and launch.
      */
-    public AppLauncher(IDevice device, File localAppPath) throws IOException {
-        this(device, getAppId(localAppPath), localAppPath);
+    public AppLauncher(String deviceUdid, File localAppPath) throws IOException {
+        this(deviceUdid, getAppId(localAppPath), localAppPath);
     }
 
-    private AppLauncher(IDevice device, String appId, File localAppPath) {
-        if (device == null) {
-            throw new NullPointerException("device");
-        }
+    private AppLauncher(String deviceUdid, String appId, File localAppPath) {
         if (appId == null) {
             throw new NullPointerException("appId");
         }
-        this.device = device;
+        this.deviceUdid = deviceUdid != null && !deviceUdid.isEmpty() ? deviceUdid : null;
         this.appId = appId;
         this.localAppPath = localAppPath;
     }
-    
+
+    private IDevice waitForDevice(String deviceUdid) throws Exception{
+        final int retries = launchOnLockedRetries;
+        int retriesLeft = retries;
+        int secondsBetweenRetries = secondsBetweenLaunchOnLockedRetries;
+
+        while (true) {
+            String[] udids = IDevice.listUdids();
+            if (udids.length == 1 && (deviceUdid == null || deviceUdid.equals(udids[0]))) {
+                // single device and it's a match
+                return new IDevice(udids[0]);
+            }
+
+            String message;
+            if (udids.length == 0) {
+                message = "No devices connected";
+            } else if (deviceUdid != null) {
+                message = String.format("Required %s is not connected (%s)", deviceUdid, Arrays.asList(udids));
+            } else {
+                message = String.format("More than 1 device connected (%s)", Arrays.asList(udids));
+            }
+
+            if (retriesLeft > 0) {
+                retriesLeft -= 1;
+                log("Waiting for device: %s. (retry %d of %d)...", message, (retries - retriesLeft), retries);
+                Thread.sleep(secondsBetweenRetries * 1000L);
+            } else throw new LibIMobileDeviceException(message);
+        }
+    }
+
+    /**
+     * Looks for connected device
+     */
+    private IDevice findDevice() throws Exception{
+        if (resolvedDevice == null)
+            resolvedDevice = waitForDevice(deviceUdid);
+
+        return resolvedDevice;
+    }
+
     private static String getAppId(File f) throws IOException {
         if (f == null) {
             throw new NullPointerException("localAppPath");
@@ -516,7 +554,7 @@ public class AppLauncher {
 
     private String getAppPath(LockdowndClient lockdowndClient, String appId) throws IOException {
         LockdowndServiceDescriptor instService = lockdowndClient.startService(InstallationProxyClient.SERVICE_NAME);
-        try (InstallationProxyClient instClient = new InstallationProxyClient(device, instService)) {
+        try (InstallationProxyClient instClient = new InstallationProxyClient(lockdowndClient.getDevice(), instService)) {
             NSArray apps = instClient.browse();
             for (int i = 0; i < apps.count(); i++) {
                 NSDictionary appInfo = (NSDictionary) apps.objectAtIndex(i);
@@ -538,16 +576,14 @@ public class AppLauncher {
             throw new RuntimeException("No app with id '" + appId + "' found on device");
         }
     }
-    
+
     public void install() throws IOException {
         if (!installed) {
-            try (LockdowndClient lockdowndClient = new LockdowndClient(device, getClass().getSimpleName(), true)) {
-                uploadInternal();
-                if (uploadProgressCallback == null) {
-                    log("[ 50%%] Upload done. Installing app...");
-                }
-                installInternal();
-                installed = true;
+            Retrying<LockdowndClient> lockdownRetrying = new Retrying<>(() -> new LockdowndClient(findDevice(), getClass().getSimpleName(), true));
+            try (lockdownRetrying) {
+                // get lockdown client, retry if password protected
+                LockdowndClient lockdowndClient = lockdownRetrying.perform((client) -> client);
+                install(lockdowndClient);
             } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
@@ -555,221 +591,163 @@ public class AppLauncher {
             }
         }
     }
-    
-    private File getXcodePath() throws Exception {
-        if (xcodePath != null) {
-            return new File(xcodePath);
-        }
-        
-        File tmpFile = File.createTempFile(this.getClass().getSimpleName(), ".tmp");
-        try {
-            int ret = new ProcessBuilder("xcode-select", "-print-path")
-                .redirectErrorStream(true)
-                .redirectOutput(Redirect.to(tmpFile))
-                .start().waitFor();
-            if (ret != 0) {
-                throw new IOException("xcode-select failed with error code: " + ret);
+
+    private void install(LockdowndClient lockdowndClient) throws Exception {
+        if (!installed) {
+            uploadInternal(lockdowndClient);
+            if (uploadProgressCallback == null) {
+                log("[ 50%%] Upload done. Installing app...");
             }
-            
-            return new File(new String(Files.readAllBytes(tmpFile.toPath()), StandardCharsets.UTF_8).trim());
-        } finally {
-            tmpFile.delete();
+            installInternal(lockdowndClient);
+            installed = true;
         }
-    }
-    
-    static File findDeveloperImage(File dsDir, String productVersion, String buildVersion) 
-            throws FileNotFoundException {
-        
-        String[] versionParts = getProductVersionParts(productVersion);
-        
-        String[] patterns = new String[] {
-            // 7.0.3 (11B508)
-            String.format("%s\\.%s\\.%s \\(%s\\)", versionParts[0], versionParts[1], versionParts[2], buildVersion), 
-            // 7.0.3 (*)
-            String.format("%s\\.%s\\.%s \\(.*\\)", versionParts[0], versionParts[1], versionParts[2]),
-            // 7.0.3
-            String.format("%s\\.%s\\.%s", versionParts[0], versionParts[1], versionParts[2]), 
-            // 7.0 (11A465)
-            String.format("%s\\.%s \\(%s\\)", versionParts[0], versionParts[1], buildVersion),
-            // 7.0 (*)
-            String.format("%s\\.%s \\(.*\\)", versionParts[0], versionParts[1]),
-            // 7.0
-            String.format("%s\\.%s", versionParts[0], versionParts[1]),
-            //
-            // wildcard versions to allow newer devices to work with older sdk as long as major version matches
-            // 7.0.* (*)
-            String.format("%s\\.%s\\.\\d+ \\(.*\\)", versionParts[0], versionParts[1]),
-            // 7.0.*
-            String.format("%s\\.%s\\.\\d+", versionParts[0], versionParts[1]),
-            // 7.*.* (*)
-            String.format("%s\\.\\d+\\.\\d+ \\(.*\\)", versionParts[0]),
-            // 7.*.*
-            String.format("%s\\.\\d+\\.\\d+", versionParts[0]),
-            // 7.* (*)
-            String.format("%s\\.\\d+ \\(.*\\)", versionParts[0]),
-            // 7.*
-            String.format("%s\\.\\d+", versionParts[0])
-        };
-        
-        File[] dirs = dsDir.listFiles();
-        for (String pattern : patterns) {
-            for (File dir : dirs) {
-                if (dir.isDirectory() && dir.getName().matches(pattern)) {
-                    File dmg = new File(dir, "DeveloperDiskImage.dmg");
-                    File sig = new File(dir, dmg.getName() + ".signature");
-                    if (dmg.isFile() && sig.isFile()) {
-                        return dmg;
-                    }
-                }
-            }
-        }
-        throw new FileNotFoundException("No DeveloperDiskImage.dmg found in " 
-                + dsDir.getAbsolutePath() + " for iOS version " + productVersion 
-                + " (" + buildVersion + ")");
     }
 
     /**
-     * Splits productVersion and expand to 3 parts (e.g. 7.0 -> 7.0.0)
+     * mounts developer image, first checks if its required
+     * @return version of developer image that was mounted
      */
-    private static String[] getProductVersionParts(String productVersion) {
-        String[] versionParts = Arrays.copyOf(productVersion.split("\\."), 3);
-        for (int i = 0; i < versionParts.length; i++) {
-            if (versionParts[i] == null) {
-                versionParts[i] = "0";
-            }
-        }
-        return versionParts;
-    }
-    
-    private void mountDeveloperImage(LockdowndClient lockdowndClient) throws Exception {
-        // Find the DeveloperDiskImage.dmg path that best matches the current device. Here's what
-        // the paths look like:
-        // Platforms/iPhoneOS.platform/DeviceSupport/5.0/DeveloperDiskImage.dmg
-        // Platforms/iPhoneOS.platform/DeviceSupport/6.0/DeveloperDiskImage.dmg
-        // Platforms/iPhoneOS.platform/DeviceSupport/6.1/DeveloperDiskImage.dmg
-        // Platforms/iPhoneOS.platform/DeviceSupport/7.0/DeveloperDiskImage.dmg
-        // Platforms/iPhoneOS.platform/DeviceSupport/7.0 (11A465)/DeveloperDiskImage.dmg
-        // Platforms/iPhoneOS.platform/DeviceSupport/7.0.3 (11B508)/DeveloperDiskImage.dmg
-        
-        String productVersion = lockdowndClient.getValue(null, "ProductVersion").toString(); // E.g. 7.0.2
-        String buildVersion = lockdowndClient.getValue(null, "BuildVersion").toString(); // E.g. 11B508
-        File deviceSupport = new File(getXcodePath(), "Platforms/iPhoneOS.platform/DeviceSupport");
-        log("Looking up developer disk image for iOS version %s (%s) in %s", productVersion, buildVersion, deviceSupport);
-        File devImage = findDeveloperImage(deviceSupport, productVersion, buildVersion);
-        File devImageSig = new File(devImage.getParentFile(), devImage.getName() + ".signature");
-        byte[] devImageSigBytes = Files.readAllBytes(devImageSig.toPath());
-        
-        LockdowndServiceDescriptor mimService = lockdowndClient.startService(MobileImageMounterClient.SERVICE_NAME);
-        try (MobileImageMounterClient mimClient = new MobileImageMounterClient(device, mimService)) {
+    private Version mountDeveloperImageIfRequired(LockdowndClient lockdowndClient, Version deviceVersion) throws Exception {
+        Retrying<MobileImageMounterClient> retrying = new Retrying<>(() -> {
+            LockdowndServiceDescriptor mimService = lockdowndClient.startService(MobileImageMounterClient.SERVICE_NAME);
+            return new MobileImageMounterClient(lockdowndClient.getDevice(), mimService);
+        });
+        try (retrying) {
+            // check if already mounted
 
-            log("Copying developer disk image %s to device", devImage);
-            
-            int majorVersion = Integer.parseInt(getProductVersionParts(productVersion)[0]);
-            if (majorVersion >= 7) {
-                // Use new upload method
-                mimClient.uploadImage(devImage, null, devImageSigBytes);
-            } else {
-                LockdowndServiceDescriptor afcService = lockdowndClient.startService(AfcClient.SERVICE_NAME);
-                try (AfcClient afcClient = new AfcClient(device, afcService)) {
-                    afcClient.makeDirectory("/PublicStaging");
-                    afcClient.fileCopy(devImage, "/PublicStaging/staging.dimage");
-                }
+            log("Checking if developer disk image requires to be mounted.");
+            NSDictionary result = retrying.perform((mimClient) -> {
+                return mimClient.lookupImage(null);
+            });
+            if (result.objectForKey("ImageSignature") != null) {
+                // already mounted
+                log("Developer disk image is already mounted.");
+                return null;
             }
-            
-            log("Mounting developer disk image");                        
-            NSDictionary result = mimClient.mountImage("/PublicStaging/staging.dimage", devImageSigBytes, null);
+
+            File deviceSupport = DeveloperImageResolver.getDeviceSupportPath();
+            log("Looking up developer disk image for iOS version %s in %s", deviceVersion, deviceSupport);
+            DeveloperImageResolver.Response devImageResp = DeveloperImageResolver.findDeveloperImage(deviceSupport, deviceVersion);
+            byte[] devImageSigBytes = Files.readAllBytes(devImageResp.signature.toPath());
+
+            log("Copying developer disk image %s to device", devImageResp.dmg);
+            retrying.perform((mimClient) -> {
+                mimClient.uploadImage(devImageResp.dmg, null, devImageSigBytes);
+            });
+
+            log("Mounting developer disk image");
+            result = retrying.perform((mimClient) -> {
+                return mimClient.mountImage("/PublicStaging/staging.dimage", devImageSigBytes, null);
+            });
             NSString status = (NSString) result.objectForKey("Status");
             if (status == null || !"Complete".equals(status.toString())) {
-                throw new IOException("Failed to mount " + devImage.getAbsolutePath() + " on the device.");
+                throw new IOException("Failed to mount " + devImageResp.dmg.getAbsolutePath() + " on the device.");
             }
-        }
-    }
 
-    private LockdowndServiceDescriptor startDebugServerService(LockdowndClient lockdowndClient, String serviceName) {
-        LockdowndServiceDescriptor serviceDescriptor;
-        try {
-            serviceDescriptor = lockdowndClient.startService(serviceName);
-        } catch (LibIMobileDeviceException e) {
-            if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_INVALID_SERVICE.swigValue() &&
-                    DEBUGSERVER_SECURE_SERVICE_NAME.equals(serviceName)) {
-                // fallback with non SSL version
-                return startDebugServerService(lockdowndClient, DEBUGSERVER_SERVICE_NAME);
-            } else {
-                throw e;
+            // FIXME: seems to be a delay required between mounting image and ability to start service
+            Thread.sleep(1000);
+
+            // verify that image was mounted
+            result = retrying.perform((mimClient) -> {
+                return mimClient.lookupImage(null);
+            });
+            if (result.objectForKey("ImageSignature") == null) {
+                throw new LibIMobileDeviceException("Developer disk image mounting failed: status not mounted!");
             }
+            return devImageResp.version;
         }
-        return serviceDescriptor;
     }
 
     private int launchInternal() throws Exception {
-        install();
-        
-        int lockedRetriesLeft = launchOnLockedRetries;
-        while (true) {
-            String appPath = null;
-            
-            try (LockdowndClient lockdowndClient = new LockdowndClient(device, getClass().getSimpleName(), true)) {
-                appPath = getAppPath(lockdowndClient, appId);
-                String productVersion = lockdowndClient.getValue(null, "ProductVersion").toString(); // E.g. 7.0.2
-                String buildVersion = lockdowndClient.getValue(null, "BuildVersion").toString(); // E.g. 11B508
-                if(appLauncherCallback != null) {
-                    appLauncherCallback.setAppLaunchInfo(new AppLauncherInfo(device, appPath, productVersion, buildVersion));
-                }
-                LockdowndServiceDescriptor serviceDescriptor;
-                try {
-                    serviceDescriptor = startDebugServerService(lockdowndClient, DEBUGSERVER_SECURE_SERVICE_NAME);
-                } catch (LibIMobileDeviceException e) {
-                    if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_INVALID_SERVICE.swigValue()) {
-                        // This happens when the developer image hasn't been mounted.
-                        // Mount and try again.
-                        mountDeveloperImage(lockdowndClient);
-                        serviceDescriptor = startDebugServerService(lockdowndClient, DEBUGSERVER_SECURE_SERVICE_NAME);
-                    } else {
-                        throw e;
-                    }
-                }
+        String appPath = null;
 
-                try (DebugServerClient client = new DebugServerClient(device, serviceDescriptor)) {
-                    log("Debug server port: " + serviceDescriptor.getPort());
+        Retrying<LockdowndClient> lockdownRetrying = new Retrying<>(() -> new LockdowndClient(findDevice(), getClass().getSimpleName(), true));
+        try (lockdownRetrying) {
+            // get lockdown client, retry if password protected
+            LockdowndClient lockdowndClient = lockdownRetrying.perform((client) -> client);
 
-                    if (localPort != -1) {
-                        String exe = ((NSDictionary) PropertyListParser.parse(new File(localAppPath, "Info.plist"))).objectForKey("CFBundleExecutable").toString();
-                        log("launchios \"" + new File(localAppPath, exe).getAbsolutePath() + "\" \"" + appPath + "\" " + localPort);
-                        StringBuilder argsString = new StringBuilder();
-                        for (String arg : args) {
-                            if (argsString.length() > 0) {
-                                argsString.append(' ');
-                            }
-                            argsString.append(arg);
+            // install if required
+            install(lockdowndClient);
+
+            appPath = getAppPath(lockdowndClient, appId);
+            String productVersion = lockdowndClient.getValue(null, "ProductVersion").toString(); // E.g. 7.0.2
+            String buildVersion = lockdowndClient.getValue(null, "BuildVersion").toString(); // E.g. 11B508
+            Version deviceVersion = Version.parse(productVersion);
+
+            // check if development mode is enabled on ios16+ devices
+            if (deviceVersion.getMajor() >= 16) {
+                NSNumber developerModeStatus = (NSNumber) lockdowndClient.getValue("com.apple.security.mac.amfi", "DeveloperModeStatus");
+                if (!developerModeStatus.boolValue()) {
+                    String msg = "You have to enable Developer Mode on the given device!";
+                    log(msg);
+                    throw new RuntimeException(msg);
+                }
+            }
+
+            // mount dev image if required
+            Version mountedDevImage = mountDeveloperImageIfRequired(lockdowndClient, deviceVersion);
+
+            // start debug server service
+            LockdowndServiceDescriptor debugServerServiceDescriptor;
+            {
+                log("Starting DebugServerService.");
+
+                // check if device is locked here before starting debug server otherwise it will fail without
+                // ability to catch and retry
+                try (Retrying<AutoCloseable> retrying = new Retrying<>(() -> null)) {
+                    retrying.perform((ignored) -> {
+                        NSNumber status = (NSNumber) lockdowndClient.getValue(null, "PasswordProtected");
+                        if (status !=  null && status.boolValue()) {
+                            throw new LibIMobileDeviceException(LockdowndError.LOCKDOWN_E_PASSWORD_PROTECTED.swigValue(),
+                                    LockdowndError.LOCKDOWN_E_PASSWORD_PROTECTED.name());
                         }
-                        log("process launch -- " + argsString);
-                    }
-
-                    if (lockedRetriesLeft == launchOnLockedRetries) {
-                        // First try
-                        log("Remote app path: " + appPath);
-                        log("Launching app...");
-                    } else {
-                        log("Launching app (retry %d of %d)...",
-                                (launchOnLockedRetries - lockedRetriesLeft), launchOnLockedRetries);
-                    }
-
-                    // just pipe stdout if no port forwarding should be done
-                    // otherwise perform port forwarding and stdout piping
-                    if(localPort == -1) {
-                        return pipeStdOut(client, appPath);
-                    } else {
-                        return forward(client, appPath);
-                    }
+                    });
                 }
-            } catch (RuntimeException e) {
-                if (!e.getMessage().contains("Locked") || lockedRetriesLeft == 0) {
-                    throw e;
+
+                // starting from developer image version 13.6 there is secure version of debug server service
+                // if dev image wasn't mounted in this session its version is not known then using
+                // secure only for ios14+
+                String serviceName;
+                if (deviceVersion.getMajor() >= 14 || (mountedDevImage != null && mountedDevImage.compareTo(new Version(13, 6)) >= 0)) {
+                    serviceName = DEBUGSERVER_SECURE_SERVICE_NAME;
+                } else {
+                    serviceName = DEBUGSERVER_SERVICE_NAME;
                 }
-                lockedRetriesLeft--;
-                log("Device locked. Retrying launch in %d seconds...", 
-                        secondsBetweenLaunchOnLockedRetries);
-                Thread.sleep(secondsBetweenLaunchOnLockedRetries * 1000);
+                debugServerServiceDescriptor = lockdowndClient.startService(serviceName);
+            }
+
+            // app is ready to launch
+            if(appLauncherCallback != null) {
+                appLauncherCallback.setAppLaunchInfo(new AppLauncherInfo(lockdowndClient.getDevice(), appPath, productVersion, buildVersion));
+            }
+
+            // start debug service
+            try (DebugServerClient client = new DebugServerClient(lockdowndClient.getDevice(), debugServerServiceDescriptor)) {
+                log("Debug server port: " + debugServerServiceDescriptor.getPort());
+
+                if (localPort != -1) {
+                    String exe = ((NSDictionary) PropertyListParser.parse(new File(localAppPath, "Info.plist"))).objectForKey("CFBundleExecutable").toString();
+                    log("launchios \"" + new File(localAppPath, exe).getAbsolutePath() + "\" \"" + appPath + "\" " + localPort);
+                    StringBuilder argsString = new StringBuilder();
+                    for (String arg : args) {
+                        if (argsString.length() > 0) {
+                            argsString.append(' ');
+                        }
+                        argsString.append(arg);
+                    }
+                    log("process launch -- " + argsString);
+                }
+
+                log("Remote app path: " + appPath);
+                log("Launching app...");
+
+                // just pipe stdout if no port forwarding should be done
+                // otherwise perform port forwarding and stdout piping
+                if(localPort == -1) {
+                    return pipeStdOut(client, appPath);
+                } else {
+                    return forward(client, appPath);
+                }
             }
         }
     }
@@ -992,63 +970,70 @@ public class AppLauncher {
         }
     }
 
-    private void installInternal() throws Exception {
-        try (LockdowndClient lockdowndClient = new LockdowndClient(device, getClass().getSimpleName(), true)) {
-            final LibIMobileDeviceException[] ex = new LibIMobileDeviceException[1];
-            final CountDownLatch countDownLatch = new CountDownLatch(1);
+    private void installInternal(LockdowndClient lockdowndClient) throws Exception {
+        final LibIMobileDeviceException[] ex = new LibIMobileDeviceException[1];
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        Retrying<InstallationProxyClient> retrying = new Retrying<>(() -> {
             LockdowndServiceDescriptor instproxyService = lockdowndClient.startService(InstallationProxyClient.SERVICE_NAME);
-            try (InstallationProxyClient instClient = new InstallationProxyClient(device, instproxyService)) {
-                instClient.upgrade("/PublicStaging/" + localAppPath.getName(), 
-                        new Options().packageType(localAppPath.isDirectory() ? PackageType.Developer : null), 
+            return new InstallationProxyClient(lockdowndClient.getDevice(), instproxyService);
+        });
+        try (retrying) {
+            retrying.perform((instClient) -> {
+                instClient.upgrade("/PublicStaging/" + localAppPath.getName(),
+                        new Options().packageType(localAppPath.isDirectory() ? PackageType.Developer : null),
                         new StatusCallback() {
-                    
-                    @Override
-                    public void progress(String status, int percentComplete) {
-                        if (installStatusCallback != null) {
-                            installStatusCallback.progress(status, percentComplete);
-                        } else {
-                            log("[%3d%%] %s", 50 + percentComplete / 2, status);
-                        }
-                    }
-                    @Override
-                    public void success() {
-                        try {
-                            if (installStatusCallback != null) {
-                                installStatusCallback.success();
-                            } else {
-                                log("[100%%] Installation complete");
+                            @Override
+                            public void progress(String status, int percentComplete) {
+                                if (installStatusCallback != null) {
+                                    installStatusCallback.progress(status, percentComplete);
+                                } else {
+                                    log("[%3d%%] %s", 50 + percentComplete / 2, status);
+                                }
                             }
-                        } finally {
-                            countDownLatch.countDown();
-                        }
-                    }
-                    @Override
-                    public void error(String message) {
-                        try {
-                            ex[0] = new LibIMobileDeviceException(message);
-                            if (installStatusCallback != null) {
-                                installStatusCallback.error(message);
-                            } else {
-                                log("Error: %s", message);
+
+                            @Override
+                            public void success() {
+                                try {
+                                    if (installStatusCallback != null) {
+                                        installStatusCallback.success();
+                                    } else {
+                                        log("[100%%] Installation complete");
+                                    }
+                                } finally {
+                                    countDownLatch.countDown();
+                                }
                             }
-                        } finally {
-                            countDownLatch.countDown();
-                        }
-                    }
-                });
+
+                            @Override
+                            public void error(String message) {
+                                try {
+                                    ex[0] = new LibIMobileDeviceException(message);
+                                    if (installStatusCallback != null) {
+                                        installStatusCallback.error(message);
+                                    } else {
+                                        log("Error: %s", message);
+                                    }
+                                } finally {
+                                    countDownLatch.countDown();
+                                }
+                            }
+                        });
                 countDownLatch.await();
-            }
-            
-            if (ex[0] != null) {
-                throw ex[0];
-            }
+            });
+        }
+
+        if (ex[0] != null) {
+            throw ex[0];
         }
     }
 
-    private void uploadInternal() throws Exception {
-        try (LockdowndClient lockdowndClient = new LockdowndClient(device, getClass().getSimpleName(), true)) {
+    private void uploadInternal(LockdowndClient lockdowndClient) throws Exception {
+        Retrying<AfcClient> retrying = new Retrying<>(() -> {
             LockdowndServiceDescriptor afcService = lockdowndClient.startService(AfcClient.SERVICE_NAME);
-            try (AfcClient afcClient = new AfcClient(device, afcService)) {
+            return new AfcClient(lockdowndClient.getDevice(), afcService);
+        });
+        try (retrying) {
+            retrying.perform((afcClient) -> {
                 afcClient.upload(localAppPath, "/PublicStaging", new UploadProgressCallback() {
                     public void progress(File path, int percentComplete) {
                         if (uploadProgressCallback != null) {
@@ -1070,10 +1055,98 @@ public class AppLauncher {
                         }
                     }
                 });
-            }
+            });
         }
     }
-    
+
+    /**
+     * Helper class that performs retry if skipable errors happen such as Device is locked
+     * clientConstructor -- lambda that construct client that is passed into perform function
+     */
+
+    private class Retrying<Client extends AutoCloseable> implements AutoCloseable {
+
+        final private int retries;
+        final private int secondsBetweenRetries;
+        private int retriesLeft;
+        private Client client;
+        private final CheckedSupplier<Client> clientConstructor;
+
+        public Retrying(int retries, int secondsBetweenRetries, CheckedSupplier<Client> clientConstructor) {
+            this.retries = retries;
+            this.secondsBetweenRetries = secondsBetweenRetries;
+            this.retriesLeft = retries;
+            this.clientConstructor = clientConstructor;
+        }
+
+        public Retrying(CheckedSupplier<Client> clientConstructor) {
+            this(launchOnLockedRetries, secondsBetweenLaunchOnLockedRetries, clientConstructor);
+        }
+
+        private void perform(CheckedConsumer<Client> action) throws Exception {
+            perform((client) -> {
+                action.accept(client);
+                return null;
+            });
+        }
+
+        private <R> R perform(CheckedFunction<Client, R> action) throws Exception {
+            while (true) {
+                try {
+                    if (client == null)
+                        client = clientConstructor.get();
+                    R r = action.apply(client);
+                    // reset retries
+                    this.retriesLeft = retries;
+                    return r;
+                } catch (LibIMobileDeviceException e) {
+                    // if error had happened client to be re-created on next retry if it is not fatal
+                    if (client != null) {
+                        try {
+                            client.close();;
+                        } catch (Exception ignored){
+                        }
+                        client = null;
+                    }
+
+                    String message = null;
+                    boolean fatal = true;
+                    // if there is no retries left threat it as fatal
+                    if (retriesLeft > 0) {
+                        retriesLeft -= 1;
+                        // check if it can be skipped
+                        if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_USER_DENIED_PAIRING.swigValue()) {
+                            message = "Device is not paired with your computer, unlock it and choose to trust this computer when prompted.";
+                        } else if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_PAIRING_DIALOG_RESPONSE_PENDING.swigValue()) {
+                            message = "Pairing in progress. Please choose to trust this computer.";
+                            fatal = false;
+                        } else if (e.getErrorCode() == LockdowndError.LOCKDOWN_E_PASSWORD_PROTECTED.swigValue() ||
+                            e.getErrorCode() == MobileImageMounterError.MOBILE_IMAGE_MOUNTER_E_DEVICE_LOCKED.swigValue()) {
+                            message = "Device is locked. Please unlock to proceed.";
+                            fatal = false;
+                        }
+                    }
+
+                    if (message != null) {
+                        if (!fatal) log(message + " (retry %d of %d)...", (retries - retriesLeft), retries);
+                        else log(message);
+                    }
+
+                    if (fatal)
+                        throw e;
+
+                    Thread.sleep(secondsBetweenRetries * 1000L);
+                }
+            }
+        }
+
+        @Override
+        public void close() throws Exception {
+            if (client != null)
+                client.close();
+        }
+    }
+
     public int launch() throws IOException {
         try {
             return launchInternal();
@@ -1091,7 +1164,7 @@ public class AppLauncher {
             }
         }
     }
-    
+
     private static void printUsageAndExit() {
         System.err.println(AppLauncher.class.getName() + " ...");
         System.err.println("  -appid    the id (CFBundleIdentifier) of the app to launch.");
@@ -1150,26 +1223,11 @@ public class AppLauncher {
             printUsageAndExit();
         }
         
-        if (deviceId == null) {
-            String[] udids = IDevice.listUdids();
-            if (udids.length == 0) {
-                System.err.println("No device connected");
-                return;
-            }
-            if (udids.length > 1) {
-                System.err.println("More than 1 device connected (" 
-                        + Arrays.asList(udids) + "). Using " + udids[0]);
-            }
-            deviceId = udids[0];
-        }
-        
-        IDevice device = new IDevice(deviceId);
-        
         AppLauncher launcher;
         if (localAppPath != null) {
-            launcher = new AppLauncher(device, localAppPath);
+            launcher = new AppLauncher(deviceId, localAppPath);
         } else {
-            launcher = new AppLauncher(device, appId);
+            launcher = new AppLauncher(deviceId, appId);
         }
         
         System.exit(launcher

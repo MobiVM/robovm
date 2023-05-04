@@ -92,7 +92,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         // start JDWP server
         this.jdwpServer.start();
 
-        // start hoocks channel
+        // start hooks channel
         this.hooksChannel.start();
     }
 
