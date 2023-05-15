@@ -128,13 +128,13 @@ public class Config {
     @ElementList(required = false, entry = "symbol")
     private ArrayList<String> unhideSymbols;
     @ElementList(required = false, entry = "framework")
-    private ArrayList<String> frameworks;
+    private ArrayList<QualifiedEntry> frameworks;
     @ElementList(required = false, entry = "framework")
-    private ArrayList<String> weakFrameworks;
+    private ArrayList<QualifiedEntry> weakFrameworks;
     @ElementList(required = false, entry = "path")
     private ArrayList<QualifiedFile> frameworkPaths;
     @ElementList(required = false, entry = "path")
-    private ArrayList<File> xcFrameworks;
+    private ArrayList<QualifiedFile> xcFrameworks;
     @ElementList(required = false, entry = "extension")
     private ArrayList<AppExtension> appExtensions;
     @ElementList(required = false, entry = "path")
@@ -434,8 +434,7 @@ public class Config {
     }
 
     public List<String> getWeakFrameworks() {
-        return weakFrameworks == null ? Collections.emptyList()
-                : Collections.unmodifiableList(weakFrameworks);
+        return getResolvedLocations().weakFrameworks;
     }
 
     private synchronized ResolvedLocations getResolvedLocations() {
@@ -747,7 +746,7 @@ public class Config {
                 return false;
         }
         if (qualified.filterArch() != null) {
-            if (!Arrays.asList(qualified.filterArch()).contains(sliceArch))
+            if (Arrays.stream(qualified.filterArch()).noneMatch((a) -> a.promoteTo(os).equals(sliceArch)))
                 return false;
         }
         if (qualified.filterPlatformVariants() != null) {
@@ -959,11 +958,10 @@ public class Config {
             imageName = executableName;
         }
 
-        // promote environment of arch if it is not ambigious (e.g. x86_64 or iOS exists only
+        // promote environment of arch if it is not ambiguous (e.g. x86_64 or iOS exists only
         // in simulator environment)
         if (archs != null) {
-            for (int idx = 0; idx < archs.size(); idx++)
-                archs.set(idx, archs.get(idx).promoteTo(os));
+            archs.replaceAll(arch -> arch.promoteTo(os));
         }
 
         List<File> realBootclasspath = bootclasspath == null ? new ArrayList<>() : bootclasspath;
@@ -1474,7 +1472,7 @@ public class Config {
             if (config.frameworks == null) {
                 config.frameworks = new ArrayList<>();
             }
-            config.frameworks.add(framework);
+            config.frameworks.add(new QualifiedEntry(framework));
             return this;
         }
 
@@ -1482,7 +1480,7 @@ public class Config {
             if (config.xcFrameworks == null) {
                 config.xcFrameworks = new ArrayList<>();
             }
-            config.xcFrameworks.add(xcFramework);
+            config.xcFrameworks.add(new QualifiedFile(xcFramework));
             return this;
         }
 
@@ -1497,7 +1495,7 @@ public class Config {
             if (config.weakFrameworks == null) {
                 config.weakFrameworks = new ArrayList<>();
             }
-            config.weakFrameworks.add(framework);
+            config.weakFrameworks.add(new QualifiedEntry(framework));
             return this;
         }
 
@@ -1941,6 +1939,29 @@ public class Config {
     }
 
     /**
+     * Container for text entry with platform/arch constraints
+     */
+    public static final class QualifiedEntry extends AbstractQualified {
+        @Text String entry;
+
+        protected QualifiedEntry() {
+        }
+
+        public QualifiedEntry(String entry) {
+            this.entry = entry;
+        }
+
+        public String getEntry() {
+            return entry;
+        }
+
+        @Override
+        public String toString() {
+            return entry + " " + super.toString();
+        }
+    }
+
+    /**
      * Container for file entry with platform/arch constraints
      */
     public static final class QualifiedFile extends AbstractQualified {
@@ -2186,6 +2207,7 @@ public class Config {
     private ResolvedLocations resolveLocations() {
         ResolvedLocations.Resolver resolver = new ResolvedLocations.Resolver(os, sliceArch);
         resolver.setFrameworks(frameworks)
+                .setWeakFrameworks(weakFrameworks)
                 .setFrameworkPaths(frameworkPaths)
                 .setLibs(libs)
                 .setXcFrameworkLookup(experimental.isXCFrameworksEnabled())
