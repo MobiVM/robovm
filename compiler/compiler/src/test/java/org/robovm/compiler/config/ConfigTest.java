@@ -667,6 +667,8 @@ public class ConfigTest {
         builder.tmpDir(tmpDir);
         builder.os(OS.ios);
         builder.targetType(IOSTarget.TYPE);
+        builder.iosSkipSigning(true);
+        builder.skipLinking(true);
         builder.mainClass("Main");
         builder.home(fakeHome);
         builder.addClasspathEntry(new File(tmpDir, "cp1"));
