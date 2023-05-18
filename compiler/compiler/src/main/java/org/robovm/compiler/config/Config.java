@@ -24,7 +24,17 @@ import org.robovm.compiler.*;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.OS.Family;
+import org.robovm.compiler.config.ConfigXmlEntries.AppExtensionsList;
+import org.robovm.compiler.config.ConfigXmlEntries.ClasspathentryList;
+import org.robovm.compiler.config.ConfigXmlEntries.ForceLinkClassesList;
+import org.robovm.compiler.config.ConfigXmlEntries.ForceLinkMethodsList;
+import org.robovm.compiler.config.ConfigXmlEntries.FrameworksList;
+import org.robovm.compiler.config.ConfigXmlEntries.LibsList;
+import org.robovm.compiler.config.ConfigXmlEntries.PathsList;
+import org.robovm.compiler.config.ConfigXmlEntries.PluginArgumentsList;
+import org.robovm.compiler.config.ConfigXmlEntries.ResourcesList;
+import org.robovm.compiler.config.ConfigXmlEntries.RootsList;
+import org.robovm.compiler.config.ConfigXmlEntries.SymbolsList;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
@@ -45,7 +55,6 @@ import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.DigestUtil;
 import org.robovm.compiler.util.InfoPList;
-import org.robovm.compiler.util.XCFrameworkPlist;
 import org.robovm.compiler.util.io.RamDiskTools;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.convert.Converter;
@@ -67,7 +76,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -115,42 +124,42 @@ public class Config {
     private OS os = null;
     @ElementList(required = false, inline = true)
     private ArrayList<Arch> archs = null;
-    @ElementList(required = false, entry = "root")
-    private ArrayList<String> roots;
-    @ElementList(required = false, entry = "pattern")
-    private ArrayList<String> forceLinkClasses;
-    @ElementList(required = false, entry = "entry")
-    private ArrayList<ForceLinkMethodsConfig> forceLinkMethods;
-    @ElementList(required = false, entry = "lib")
-    private ArrayList<Lib> libs;
-    @ElementList(required = false, entry = "symbol")
-    private ArrayList<String> exportedSymbols;
-    @ElementList(required = false, entry = "symbol")
-    private ArrayList<String> unhideSymbols;
-    @ElementList(required = false, entry = "framework")
-    private ArrayList<QualifiedEntry> frameworks;
-    @ElementList(required = false, entry = "framework")
-    private ArrayList<QualifiedEntry> weakFrameworks;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<QualifiedFile> frameworkPaths;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<QualifiedFile> xcFrameworks;
-    @ElementList(required = false, entry = "extension")
-    private ArrayList<AppExtension> appExtensions;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<QualifiedFile> appExtensionPaths;
+    @Element(required = false)
+    private RootsList roots;
+    @Element(required = false)
+    private ForceLinkClassesList forceLinkClasses;
+    @Element(required = false)
+    private ForceLinkMethodsList forceLinkMethods;
+    @Element(required = false)
+    private LibsList libs;
+    @Element(required = false)
+    private SymbolsList exportedSymbols;
+    @Element(required = false)
+    private SymbolsList unhideSymbols;
+    @Element(required = false)
+    private FrameworksList frameworks;
+    @Element(required = false)
+    private FrameworksList weakFrameworks;
+    @Element(required = false)
+    private PathsList frameworkPaths;
+    @Element(required = false)
+    private PathsList xcFrameworks;
+    @Element(required = false)
+    private AppExtensionsList appExtensions;
+    @Element(required = false)
+    private PathsList appExtensionPaths;
     @Element(required = false)
     private SwiftSupport swiftSupport = new SwiftSupport();
     @Element(required = false)
     private ExperimentalFeatures experimental = new ExperimentalFeatures();
-    @ElementList(required = false, entry = "resource")
-    private ArrayList<Resource> resources;
-    @ElementList(required = false, entry = "classpathentry")
-    private ArrayList<File> bootclasspath;
-    @ElementList(required = false, entry = "classpathentry")
-    private ArrayList<File> classpath;
-    @ElementList(required = false, entry = "argument")
-    private ArrayList<String> pluginArguments;
+    @Element(required = false)
+    private ResourcesList resources;
+    @Element(required = false)
+    private ClasspathentryList bootclasspath;
+    @Element(required = false)
+    private ClasspathentryList classpath;
+    @Element(required = false)
+    private PluginArgumentsList pluginArguments;
     @Element(required = false, name = "target")
     private String targetType;
     @Element(required = false, name = "stripArchives")
@@ -806,12 +815,12 @@ public class Config {
         }
     }
 
-    private <T> ArrayList<T> mergeLists(ArrayList<T> from, ArrayList<T> to) {
+    private <E, T extends ArrayList<E>> T mergeLists(T from, T to, Supplier<T> creator) {
         if (from == null) {
             return to;
         }
-        to = to != null ? to : new ArrayList<>();
-        for (T o : from) {
+        to = to != null ? to : creator.get();
+        for (E o : from) {
             if (!to.contains(o)) {
                 to.add(o);
             }
@@ -820,16 +829,16 @@ public class Config {
     }
 
     private void mergeConfig(Config from, Config to) {
-        to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols);
-        to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols);
-        to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses);
-        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods);
-        to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths);
-        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks);
-        to.frameworks = mergeLists(from.frameworks, to.frameworks);
-        to.libs = mergeLists(from.libs, to.libs);
-        to.resources = mergeLists(from.resources, to.resources);
-        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks);
+        to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols, SymbolsList::new);
+        to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols, SymbolsList::new);
+        to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses, ForceLinkClassesList::new);
+        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods, ForceLinkMethodsList::new);
+        to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths, PathsList::new);
+        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks, PathsList::new);
+        to.frameworks = mergeLists(from.frameworks, to.frameworks, FrameworksList::new);
+        to.libs = mergeLists(from.libs, to.libs, LibsList::new);
+        to.resources = mergeLists(from.resources, to.resources, ResourcesList::new);
+        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks, FrameworksList::new);
     }
 
     private void mergeConfigsFromClasspath() throws IOException {
@@ -923,10 +932,10 @@ public class Config {
         }
 
         if (bootclasspath == null) {
-            bootclasspath = new ArrayList<>();
+            bootclasspath = new ClasspathentryList();
         }
         if (classpath == null) {
-            classpath = new ArrayList<>();
+            classpath = new ClasspathentryList();
         }
 
         if (mainJar != null) {
@@ -1275,7 +1284,7 @@ public class Config {
 
         public Builder addClasspathEntry(File f) {
             if (config.classpath == null) {
-                config.classpath = new ArrayList<>();
+                config.classpath = new ClasspathentryList();
             }
             config.classpath.add(f);
             return this;
@@ -1290,7 +1299,7 @@ public class Config {
 
         public Builder addBootClasspathEntry(File f) {
             if (config.bootclasspath == null) {
-                config.bootclasspath = new ArrayList<>();
+                config.bootclasspath = new ClasspathentryList();
             }
             config.bootclasspath.add(f);
             return this;
@@ -1410,7 +1419,7 @@ public class Config {
 
         public Builder addForceLinkClass(String pattern) {
             if (config.forceLinkClasses == null) {
-                config.forceLinkClasses = new ArrayList<>();
+                config.forceLinkClasses = new ForceLinkClassesList();
             }
             config.forceLinkClasses.add(pattern);
             return this;
@@ -1425,7 +1434,7 @@ public class Config {
 
         public Builder addExportedSymbol(String symbol) {
             if (config.exportedSymbols == null) {
-                config.exportedSymbols = new ArrayList<>();
+                config.exportedSymbols = new SymbolsList();
             }
             config.exportedSymbols.add(symbol);
             return this;
@@ -1440,7 +1449,7 @@ public class Config {
 
         public Builder addUnhideSymbol(String symbol) {
             if (config.unhideSymbols == null) {
-                config.unhideSymbols = new ArrayList<>();
+                config.unhideSymbols = new SymbolsList();
             }
             config.unhideSymbols.add(symbol);
             return this;
@@ -1455,7 +1464,7 @@ public class Config {
 
         public Builder addLib(Lib lib) {
             if (config.libs == null) {
-                config.libs = new ArrayList<>();
+                config.libs = new LibsList();
             }
             config.libs.add(lib);
             return this;
@@ -1470,7 +1479,7 @@ public class Config {
 
         public Builder addFramework(String framework) {
             if (config.frameworks == null) {
-                config.frameworks = new ArrayList<>();
+                config.frameworks = new FrameworksList();
             }
             config.frameworks.add(new QualifiedEntry(framework));
             return this;
@@ -1478,7 +1487,7 @@ public class Config {
 
         public Builder addXCFramework(File xcFramework) {
             if (config.xcFrameworks == null) {
-                config.xcFrameworks = new ArrayList<>();
+                config.xcFrameworks = new PathsList();
             }
             config.xcFrameworks.add(new QualifiedFile(xcFramework));
             return this;
@@ -1493,7 +1502,7 @@ public class Config {
 
         public Builder addWeakFramework(String framework) {
             if (config.weakFrameworks == null) {
-                config.weakFrameworks = new ArrayList<>();
+                config.weakFrameworks = new FrameworksList();
             }
             config.weakFrameworks.add(new QualifiedEntry(framework));
             return this;
@@ -1508,7 +1517,7 @@ public class Config {
 
         public Builder addFrameworkPath(File frameworkPath) {
             if (config.frameworkPaths == null) {
-                config.frameworkPaths = new ArrayList<>();
+                config.frameworkPaths = new PathsList();
             }
             config.frameworkPaths.add(new QualifiedFile(frameworkPath));
             return this;
@@ -1523,7 +1532,7 @@ public class Config {
 
         public Builder addExtension(String name, String profile) {
             if (config.appExtensions == null) {
-                config.appExtensions = new ArrayList<>();
+                config.appExtensions = new AppExtensionsList();
             }
             AppExtension extension = new AppExtension();
             extension.name = name;
@@ -1541,7 +1550,7 @@ public class Config {
 
         public Builder addExtenaionPath(File extensionPath) {
             if (config.appExtensionPaths == null) {
-                config.appExtensionPaths = new ArrayList<>();
+                config.appExtensionPaths = new PathsList();
             }
             config.appExtensionPaths.add(new QualifiedFile(extensionPath));
             return this;
@@ -1556,7 +1565,7 @@ public class Config {
 
         public Builder addResource(Resource resource) {
             if (config.resources == null) {
-                config.resources = new ArrayList<>();
+                config.resources = new ResourcesList();
             }
             config.resources.add(resource);
             return this;
@@ -1668,7 +1677,7 @@ public class Config {
 
         public void addPluginArgument(String argName) {
             if (config.pluginArguments == null) {
-                config.pluginArguments = new ArrayList<>();
+                config.pluginArguments = new PluginArgumentsList();
             }
             config.pluginArguments.add(argName);
         }
@@ -1785,7 +1794,7 @@ public class Config {
             // <roots> to null.
             if (config.roots != null && !config.roots.isEmpty()) {
                 if (config.forceLinkClasses == null) {
-                    config.forceLinkClasses = new ArrayList<>();
+                    config.forceLinkClasses = new ForceLinkClassesList();
                 }
                 config.forceLinkClasses.addAll(config.roots);
                 config.roots = null;
