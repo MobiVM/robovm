@@ -55,18 +55,21 @@ public class DefaultFileSystemProvider {
      * Returns the default FileSystemProvider.
      */
     public static FileSystemProvider create() {
+        // RoboVm note: for everything using LinuxFileSystemProvider (creating directly)
         String osname = AccessController
             .doPrivileged(new GetPropertyAction("os.name"));
-        if (osname.equals("SunOS"))
-            return createProvider("sun.nio.fs.SolarisFileSystemProvider");
-        // Android-changed: Fuchsia: Use LinuxFileSystemProvider.
-        // if (osname.equals("Linux"))
-        if (osname.equals("Linux") || osname.equals("Fuchsia"))
-            return createProvider("sun.nio.fs.LinuxFileSystemProvider");
-        if (osname.contains("OS X"))
-            return createProvider("sun.nio.fs.MacOSXFileSystemProvider");
-        if (osname.equals("AIX"))
-            return createProvider("sun.nio.fs.AixFileSystemProvider");
+        if (osname.contains("OS X") || osname.equals("iOS") || osname.equals("iOS Simulator"))
+            return new LinuxFileSystemProvider();
+//        if (osname.equals("SunOS"))
+//            return createProvider("sun.nio.fs.SolarisFileSystemProvider");
+//        // Android-changed: Fuchsia: Use LinuxFileSystemProvider.
+//        // if (osname.equals("Linux"))
+//        if (osname.equals("Linux") || osname.equals("Fuchsia"))
+//            return createProvider("sun.nio.fs.LinuxFileSystemProvider");
+//        if (osname.contains("OS X"))
+//            return createProvider("sun.nio.fs.MacOSXFileSystemProvider");
+//        if (osname.equals("AIX"))
+//            return createProvider("sun.nio.fs.AixFileSystemProvider");
         throw new AssertionError("Platform not recognized");
     }
 }

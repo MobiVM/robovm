@@ -32,6 +32,10 @@ import java.security.PrivilegedAction;
  * Unix system and library calls.
  */
 
+// RoboVM note: these dependencies required by native code, from native init()
+@org.robovm.rt.annotation.ForceLinkClass(UnixFileAttributes.class)
+@org.robovm.rt.annotation.ForceLinkClass(UnixFileStoreAttributes.class)
+@org.robovm.rt.annotation.ForceLinkClass(UnixMountEntry.class)
 class UnixNativeDispatcher {
     protected UnixNativeDispatcher() { }
 
