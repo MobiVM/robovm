@@ -39,7 +39,8 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include <math.h> // RoboVM Note: for `isnan`
+#include <math.h>   // RoboVM Note: for `isnan`
+#include <assert.h> // RoboVM Note: for `assert`
 #include <android-base/logging.h>
 
 #include "../../libcore/ojluni/src/main/native/jvm.h"  // TODO(narayan): fix it

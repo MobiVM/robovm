@@ -8,6 +8,7 @@ add_compile_options(-Wall)
 add_compile_options(-Werror)
 add_compile_options(-Wno-unused-function)
 add_compile_options(-Wno-unused-variable)
+add_compile_options(-Wno-deprecated-non-prototype)
 
 set(SRC
   ${LIB_PATH}/adler32.c
