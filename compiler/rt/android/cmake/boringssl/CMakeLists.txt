@@ -32,7 +32,7 @@ add_definitions(-DOPENSSL_SMALL)
 add_definitions(-D_XOPEN_SOURCE=700)
 add_definitions(-DOPENSSL_NO_ASM)
 add_definitions(-DBORINGSSL_IMPLEMENTATION)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fvisibility=hidden -Werror -Wno-unused-parameter -Wno-deprecated-non-prototype -Wno-error=unused-but-set-variable -Wno-error=array-parameter")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fvisibility=hidden -Wno-unknown-warning-option -Werror -Wno-unused-parameter -Wno-deprecated-non-prototype -Wno-error=unused-but-set-variable -Wno-error=array-parameter")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 
 
