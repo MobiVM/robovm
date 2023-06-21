@@ -40,16 +40,8 @@
 #define NATIVE_METHOD(className, functionName, signature) \
 { #functionName, signature, (void*)(className ## _ ## functionName) }
 
-static jfieldID fd_fdID;        /* for jint 'fd' in java.io.FileDescriptor */
-
-// RoboVM note: registerNatives will be called from class initializer
-JNIEXPORT void JNICALL
-Java_sun_nio_ch_IOUtil_registerNatives(JNIEnv *env, jclass cls) {
-    jclass clazz = (*env)->FindClass(env, "java/io/FileDescriptor");
-    CHECK_NULL(clazz);
-    fd_fdID = (*env)->GetFieldID(env, clazz, "descriptor", "I");
-    CHECK_NULL(fd_fdID);
-}
+// RoboVM note: using external fd_fdID which got registered once FileDescriptor is loaded
+extern jfieldID IO_fd_fdID;        /* for jint 'fd' in java.io.FileDescriptor */
 
 JNIEXPORT jboolean JNICALL
 Java_sun_nio_ch_IOUtil_randomBytes(JNIEnv *env, jclass clazz,
@@ -62,13 +54,13 @@ Java_sun_nio_ch_IOUtil_randomBytes(JNIEnv *env, jclass clazz,
 JNIEXPORT jint JNICALL
 Java_sun_nio_ch_IOUtil_fdVal(JNIEnv *env, jclass clazz, jobject fdo)
 {
-    return (*env)->GetIntField(env, fdo, fd_fdID);
+    return (*env)->GetIntField(env, fdo, IO_fd_fdID);
 }
 
 JNIEXPORT void JNICALL
 Java_sun_nio_ch_IOUtil_setfdVal(JNIEnv *env, jclass clazz, jobject fdo, jint val)
 {
-    (*env)->SetIntField(env, fdo, fd_fdID, val);
+    (*env)->SetIntField(env, fdo, IO_fd_fdID, val);
 }
 
 static int
@@ -204,7 +196,7 @@ convertLongReturnVal(JNIEnv *env, jlong n, jboolean reading)
 jint
 fdval(JNIEnv *env, jobject fdo)
 {
-    return (*env)->GetIntField(env, fdo, fd_fdID);
+    return (*env)->GetIntField(env, fdo, IO_fd_fdID);
 }
 
 // RoboVM Note: Using fully qualified JNI names
