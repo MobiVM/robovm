@@ -21,6 +21,8 @@
 // So the order of the fields here don't match the order in Thread.java
 typedef struct {
   Object object;
+  Object* blocker;
+  Object* blockerLock;
   Object* contextClassLoader;
   Object* group;
   Object* inheritableValues;
