@@ -28,11 +28,14 @@ import android.system.ErrnoException;
 import android.system.StructGroupReq;
 
 import java.io.IOException;
+import java.security.AccessController;
+
 import libcore.io.IoBridge;
 import libcore.io.Libcore;
 import libcore.util.EmptyArray;
 
 import jdk.net.*;
+import sun.security.action.GetPropertyAction;
 
 import static android.system.OsConstants.AF_INET6;
 import static android.system.OsConstants.AF_UNSPEC;
@@ -56,6 +59,14 @@ import static sun.net.ExtendedOptionsImpl.*;
 
 class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
 {
+    // RoboVM note: need to know what operating system is used as not all Linux API is available on Darwin
+    private static Boolean _isLinux;
+    private synchronized static boolean isLinux() {
+        if (_isLinux == null)
+            _isLinux = AccessController.doPrivileged(new GetPropertyAction("os.name")).equals("Linux");
+        return _isLinux;
+    }
+
     // Android-removed: init method has been removed
     // static {
     //     init();
@@ -198,10 +209,13 @@ class PlainDatagramSocketImpl extends AbstractPlainDatagramSocketImpl
         fd = IoBridge.socket(AF_INET6(), SOCK_DGRAM(), 0);
         IoBridge.setSocketOption(fd, SO_BROADCAST, true);
 
-        try {
-            Libcore.os.setsockoptInt(fd, IPPROTO_IP(), IP_MULTICAST_ALL(), 0);
-        } catch (ErrnoException errnoException) {
-            throw errnoException.rethrowAsSocketException();
+        // RoboVM Note: IP_MULTICAST_ALL is not available on Darwin
+        if (isLinux()) {
+            try {
+                Libcore.os.setsockoptInt(fd, IPPROTO_IP(), IP_MULTICAST_ALL(), 0);
+            } catch (ErrnoException errnoException) {
+                throw errnoException.rethrowAsSocketException();
+            }
         }
     }
 
