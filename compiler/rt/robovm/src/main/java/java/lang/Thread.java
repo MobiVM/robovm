@@ -53,6 +53,7 @@ import java.util.List;
 import java.util.Map;
 
 import libcore.util.EmptyArray;
+import sun.nio.ch.Interruptible;
 
 /**
  * A {@code Thread} is a concurrent unit of execution. It has its own call stack
@@ -116,6 +117,27 @@ public class Thread implements Runnable {
          */
         TERMINATED
     }
+
+    // RoboVM Note: FIXME: these changes picked from Libcore12 t allow NIO implementaiton
+    //              these changes are subject to removal once migrated to java.lang.Thread class from LC12
+    /* The object in which this thread is blocked in an interruptible I/O
+     * operation, if any.  The blocker's interrupt method should be invoked
+     * after setting this thread's interrupt status.
+     */
+    private volatile Interruptible blocker;
+    private final Object blockerLock = new Object();
+
+    // Android-changed: Make blockedOn() @hide public, for internal use.
+    // Changed comment to reflect usage on Android
+    /* Set the blocker field; used by java.nio.channels.spi.AbstractInterruptibleChannel
+     */
+    /** @hide */
+    public void blockedOn(Interruptible b) {
+        synchronized (blockerLock) {
+            blocker = b;
+        }
+    }
+    // RoboVM Note: end of changes
 
     /**
      * The maximum priority value allowed for a thread.
@@ -662,10 +684,15 @@ public class Thread implements Runnable {
         // Interrupt this thread before running actions so that other
         // threads that observe the interrupt as a result of an action
         // will see that this thread is in the interrupted state.
-        if (threadPtr != 0) {
-            internalInterrupt(this);
+        synchronized (blockerLock) {
+            Interruptible b = blocker;
+            if (threadPtr != 0) {
+                internalInterrupt(this);
+            }
+            if (b != null) {
+                b.interrupt(this);
+            }
         }
-
         synchronized (interruptActions) {
             for (int i = interruptActions.size() - 1; i >= 0; i--) {
                 interruptActions.get(i).run();
