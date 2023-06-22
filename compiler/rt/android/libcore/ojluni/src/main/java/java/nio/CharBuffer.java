@@ -863,47 +863,55 @@ public abstract class CharBuffer
         return offset;
     }
 
+    // RoboVM Note: using covariant return types directly
     // BEGIN Android-added: covariant overloads of *Buffer methods that return this.
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer position(int newPosition) {
-        return super.position(newPosition);
+    public CharBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer limit(int newLimit) {
-        return super.limit(newLimit);
+    public CharBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer mark() {
-        return super.mark();
+    public CharBuffer mark() {
+        super.mark();
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer reset() {
-        return super.reset();
+    public CharBuffer reset() {
+        super.reset();
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer clear() {
-        return super.clear();
+    public CharBuffer clear() {
+        super.clear();
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer flip() {
-        return super.flip();
+    public CharBuffer flip() {
+        super.flip();
+        return this;
     }
 
     @CovariantReturnType(returnType = CharBuffer.class, presentAfter = 28)
     @Override
-    public Buffer rewind() {
-        return super.rewind();
+    public CharBuffer rewind() {
+        super.rewind();
+        return this;
     }
     // END Android-added: covariant overloads of *Buffer methods that return this.
 

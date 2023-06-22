@@ -637,47 +637,55 @@ public abstract class FloatBuffer
         return offset;
     }
 
+    // RoboVM Note: using covariant return types directly
     // BEGIN Android-added: covariant overloads of *Buffer methods that return this.
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer position(int newPosition) {
-        return super.position(newPosition);
+    public FloatBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer limit(int newLimit) {
-        return super.limit(newLimit);
+    public FloatBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer mark() {
-        return super.mark();
+    public FloatBuffer mark() {
+        super.mark();
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer reset() {
-        return super.reset();
+    public FloatBuffer reset() {
+        super.reset();
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer clear() {
-        return super.clear();
+    public FloatBuffer clear() {
+        super.clear();
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer flip() {
-        return super.flip();
+    public FloatBuffer flip() {
+        super.flip();
+        return this;
     }
 
     @CovariantReturnType(returnType = FloatBuffer.class, presentAfter = 28)
     @Override
-    public Buffer rewind() {
-        return super.rewind();
+    public FloatBuffer rewind() {
+        super.rewind();
+        return this;
     }
     // END Android-added: covariant overloads of *Buffer methods that return this.
 

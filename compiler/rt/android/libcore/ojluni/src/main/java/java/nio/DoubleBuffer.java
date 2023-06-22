@@ -637,47 +637,55 @@ public abstract class DoubleBuffer
         return offset;
     }
 
+    // RoboVM Note: using covariant return types directly
     // BEGIN Android-added: covariant overloads of *Buffer methods that return this.
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer position(int newPosition) {
-        return super.position(newPosition);
+    public DoubleBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer limit(int newLimit) {
-        return super.limit(newLimit);
+    public DoubleBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer mark() {
-        return super.mark();
+    public DoubleBuffer mark() {
+        super.mark();
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer reset() {
-        return super.reset();
+    public DoubleBuffer reset() {
+        super.reset();
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer clear() {
-        return super.clear();
+    public DoubleBuffer clear() {
+        super.clear();
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer flip() {
-        return super.flip();
+    public DoubleBuffer flip() {
+        super.flip();
+        return this;
     }
 
     @CovariantReturnType(returnType = DoubleBuffer.class, presentAfter = 28)
     @Override
-    public Buffer rewind() {
-        return super.rewind();
+    public DoubleBuffer rewind() {
+        super.rewind();
+        return this;
     }
     // END Android-added: covariant overloads of *Buffer methods that return this.
 
