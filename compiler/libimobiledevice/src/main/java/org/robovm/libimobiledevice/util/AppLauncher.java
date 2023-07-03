@@ -619,7 +619,8 @@ public class AppLauncher {
             NSDictionary result = retrying.perform((mimClient) -> {
                 return mimClient.lookupImage(null);
             });
-            if (result.objectForKey("ImageSignature") != null) {
+            NSArray imageSignature = (NSArray) result.objectForKey("ImageSignature");
+            if (imageSignature != null && imageSignature.count() > 0) {
                 // already mounted
                 log("Developer disk image is already mounted.");
                 return null;
