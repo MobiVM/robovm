@@ -468,4 +468,48 @@ public abstract class ShortBuffer extends Buffer implements
      * position, limit and mark are independent.
      */
     public abstract ShortBuffer slice();
+
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final ShortBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final ShortBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

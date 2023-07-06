@@ -1014,7 +1014,7 @@ public abstract class ByteBuffer extends Buffer implements Comparable<ByteBuffer
      */
     public abstract ByteBuffer slice();
 
-    /// RoboVM Note: Java9 API overrides that returns ByteBuffer
+    /// RoboVM Note: Java9 API covariant
     @Override
     public ByteBuffer flip() {
         super.flip();
@@ -1056,5 +1056,5 @@ public abstract class ByteBuffer extends Buffer implements Comparable<ByteBuffer
         super.limit(newLimit);
         return this;
     }
-    /// RoboVM Note: end of Java9 API overrides that returns ByteBuffer
+    /// RoboVM Note: end of Java9 API covariant
 }
