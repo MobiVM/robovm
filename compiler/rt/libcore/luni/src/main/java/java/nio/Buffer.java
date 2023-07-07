@@ -211,7 +211,7 @@ public abstract class Buffer {
      *
      * @return this buffer.
      */
-    public final Buffer clear() {
+    public /*final*/ Buffer clear() { // RoboVm Note: was final on Android
         position = 0;
         mark = UNSET_MARK;
         limit = capacity;
@@ -228,7 +228,7 @@ public abstract class Buffer {
      *
      * @return this buffer.
      */
-    public final Buffer flip() {
+    public /*final*/ Buffer flip() { // RoboVm Note: was final on Android
         limit = position;
         position = 0;
         mark = UNSET_MARK;
@@ -299,7 +299,7 @@ public abstract class Buffer {
      * @exception IllegalArgumentException
      *                if <code>newLimit</code> is invalid.
      */
-    public final Buffer limit(int newLimit) {
+    public /*final*/ Buffer limit(int newLimit) { // RoboVm Note: was final on Android
         if (newLimit < 0 || newLimit > capacity) {
             throw new IllegalArgumentException("Bad limit (capacity " + capacity + "): " + newLimit);
         }
@@ -320,7 +320,7 @@ public abstract class Buffer {
      *
      * @return this buffer.
      */
-    public final Buffer mark() {
+    public /*final*/ Buffer mark() {  // RoboVm Note: was final on Android
         mark = position;
         return this;
     }
@@ -347,7 +347,7 @@ public abstract class Buffer {
      * @exception IllegalArgumentException
      *                if <code>newPosition</code> is invalid.
      */
-    public final Buffer position(int newPosition) {
+    public /*final*/ Buffer position(int newPosition) { // RoboVm Note: was final on Android
         positionImpl(newPosition);
         return this;
     }
@@ -380,7 +380,7 @@ public abstract class Buffer {
      * @exception InvalidMarkException
      *                if the mark is not set.
      */
-    public final Buffer reset() {
+    public /*final*/ Buffer reset() { // RoboVm Note: was final on Android
         if (mark == UNSET_MARK) {
             throw new InvalidMarkException("Mark not set");
         }
@@ -396,7 +396,7 @@ public abstract class Buffer {
      *
      * @return this buffer.
      */
-    public final Buffer rewind() {
+    public /*final*/ Buffer rewind() { // RoboVm Note: was final on Android
         position = 0;
         mark = UNSET_MARK;
         return this;

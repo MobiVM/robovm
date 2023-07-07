@@ -33,7 +33,6 @@ import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
-import org.robovm.compiler.plugin.desugar.ByteBufferJava9ApiPlugin;
 import org.robovm.compiler.plugin.desugar.StringConcatRewriterPlugin;
 import org.robovm.compiler.plugin.lambda.LambdaPlugin;
 import org.robovm.compiler.plugin.objc.*;
@@ -45,7 +44,6 @@ import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.DigestUtil;
 import org.robovm.compiler.util.InfoPList;
-import org.robovm.compiler.util.XCFrameworkPlist;
 import org.robovm.compiler.util.io.RamDiskTools;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.convert.Converter;
@@ -238,7 +236,6 @@ public class Config {
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
                 new StringConcatRewriterPlugin(),
-                new ByteBufferJava9ApiPlugin(),
                 new LambdaPlugin(),
                 new DebugInformationPlugin(),
                 new DebuggerLaunchPlugin(),

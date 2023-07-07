@@ -1013,4 +1013,48 @@ public abstract class ByteBuffer extends Buffer implements Comparable<ByteBuffer
      * position, limit and mark are independent.
      */
     public abstract ByteBuffer slice();
+
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public ByteBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public ByteBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public ByteBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public ByteBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public ByteBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public ByteBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public ByteBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

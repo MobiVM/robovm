@@ -479,4 +479,48 @@ public abstract class FloatBuffer extends Buffer implements
      * position, limit and mark are independent.
      */
     public abstract FloatBuffer slice();
+
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final FloatBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final FloatBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

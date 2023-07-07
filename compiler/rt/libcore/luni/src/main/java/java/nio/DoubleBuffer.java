@@ -480,4 +480,48 @@ public abstract class DoubleBuffer extends Buffer implements
      * position, limit and mark are independent.
      */
     public abstract DoubleBuffer slice();
+
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final DoubleBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final DoubleBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

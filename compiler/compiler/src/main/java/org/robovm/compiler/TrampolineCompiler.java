@@ -610,15 +610,6 @@ public class TrampolineCompiler {
                 c = !c.isInterface() && c.hasSuperclass() ? c.getSuperclass() : null;
             }
         }
-
-        // allow compiler plugin to resolve method
-        // its possible that method was added during de-sugaring
-        for (CompilerPlugin plugin: config.getCompilerPlugins()) {
-            SootMethod method = plugin.resolveMethod(config, clazz, name, desc);
-            if (method != null)
-                return method;
-        }
-
         return null;
     }
     
