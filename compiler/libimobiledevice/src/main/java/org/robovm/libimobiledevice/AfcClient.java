@@ -426,7 +426,10 @@ public class AfcClient implements AutoCloseable {
      * @param path the fully-qualified path to delete.
      */
     public void removePathAndContent(String path) {
-        checkResult(LibIMobileDevice.afc_remove_path_and_contents(getRef(), path));
+        AfcError result = LibIMobileDevice.afc_remove_path_and_contents(getRef(), path);
+        if (result != AfcError.AFC_E_SUCCESS && result != AfcError.AFC_E_OBJECT_NOT_FOUND) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
+        }
     }
 
     /**
