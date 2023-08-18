@@ -1,7 +1,7 @@
-<idea-plugin url="https://github.com/robovm/robovm-idea">
+<idea-plugin url="https://github.com/MobiVM/robovm">
     <id>com.mobidevelop.robovm.intellij</id>
     <version>${project.version}</version>
-    <vendor email="robovm@mobidevelop.com" url="https://github.com/MobiVM/robovm">MobiVM</vendor>
+    <vendor email="tom@asidik.com" url="https://mobivm.github.io">MobiVM</vendor>
 
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
@@ -18,14 +18,8 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.17</b>
-            <li> Debugger improvements, thread statuses </li>
-            <li> IDEA plugin update </li>
-            <li> Memory optimizations </li>
-            <li> Fix debugger crashes </li>
-            <li> iOS 15.4 binding updates </li>
-            <li> Sideloading app fixes </li>
-            <li> m1 arm simulator fixes </li>
+            <b>2.3.20</b>
+
         ]]>
     </change-notes>
 
