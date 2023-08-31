@@ -1014,7 +1014,9 @@ public final class Class<T> implements Serializable, AnnotatedElement, GenericDe
         } catch (NoSuchMethodException e) {
             throw new InstantiationException(e.getMessage());
         } catch (InvocationTargetException e) {
-            throw new InstantiationException(e.getMessage());
+            InstantiationException instantiationException = new InstantiationException(e.getMessage());
+            instantiationException.initCause(e.getTargetException());
+            throw instantiationException;
         }
     }
 
