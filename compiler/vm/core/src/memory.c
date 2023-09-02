@@ -951,9 +951,9 @@ void rvmSetupGcDescriptor(Env* env, Class* clazz) {
         // and will be reachable even if we allocate this using REF_FREE_GC_DESCRIPTOR.
         clazz->gcDescriptor = REF_FREE_GC_DESCRIPTOR;
     } else if (clazz == java_lang_Class || CLASS_IS_FINALIZABLE(clazz) || CLASS_IS_REFERENCE(clazz) 
-        || (clazz->superclass && clazz->superclass == org_robovm_rt_bro_Struct)
         || (clazz->superclass && clazz->superclass == java_nio_MemoryBlock)
-        || (clazz == java_nio_MemoryBlock) || rvmIsSubClass(java_lang_Throwable, clazz)) {
+        || (clazz == java_nio_MemoryBlock) || rvmIsSubClass(java_lang_Throwable, clazz) 
+        || (clazz->superclass && rvmIsSubClass(org_robovm_rt_bro_Struct, clazz))) {
 
         // These types of objects must be marked specially. We could probably
         // do this using GC bitmap descriptors instead.
