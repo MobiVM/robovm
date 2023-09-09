@@ -34,7 +34,7 @@ repositories {
 dependencies {
     compileOnly gradleApi()
     compileOnly localGroovy()
-    implementation "org.apache.commons:commons-compress:1.5"
+    implementation "org.apache.commons:commons-compress:1.22"
     implementation "com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"
     implementation 'org.sonatype.aether:aether:1.13.1'
     implementation 'org.sonatype.aether:aether-connector-wagon:1.13.1'
