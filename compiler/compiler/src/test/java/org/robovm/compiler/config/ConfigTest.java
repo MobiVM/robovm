@@ -632,4 +632,69 @@ public class ConfigTest {
         assertEquals(Collections.singletonList("candidate"), config.getFrameworks());
     }
 
+
+    @Test
+    public void testFrameworkLookupCanBeQualified() throws Exception {
+        // testing whether <frameworks>/<weakFrameworks>/<xcFrameworks>/<frameworkPaths> can be
+        // qualified (by arch in this test)
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(testDir, "wd");
+        String configText = "\n" +
+                "<config>\n" +
+                "  <frameworks>\n" +
+                "     <framework arch=\"x86_64\">x86_64_framework</framework>\n" +
+                "     <framework>uni_framework</framework>\n" +
+                "     <framework arch=\"thumbv7\">thumbv7</framework>\n" +
+                "  </frameworks>\n" +
+                "  <weakFrameworks>\n" +
+                "     <framework arch=\"arm64\">arm64_weakframework</framework>\n" +
+                "     <framework>uni_weakframework</framework>\n" +
+                "  </weakFrameworks>\n" +
+                "  <xcFrameworks>\n" +
+                "     <path arch=\"x86_64,thumbv7\">thumbv7.xcframework</path>\n" +
+                "  </xcFrameworks>\n" +
+                "</config>";
+        // drop xcframework there
+        File xcFramework = new File(workingDirectory, "thumbv7.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+
+        // test
+        Config.Builder builder = new Config.Builder();
+        builder.read(new StringReader(configText), workingDirectory);
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.targetType(IOSTarget.TYPE);
+        builder.iosSkipSigning(true);
+        builder.skipLinking(true);
+        builder.mainClass("Main");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+
+        // arm64
+        builder.arch(new Arch(CpuArch.arm64, Environment.Native));
+        Config config = builder.build();
+        assertEquals(Collections.singletonList("uni_framework"), config.getFrameworks());
+        assertEquals(Arrays.asList("arm64_weakframework", "uni_weakframework"), config.getWeakFrameworks());
+        assertEquals(Collections.emptyList(), config.getFrameworkPaths());
+
+        // x86_64
+        builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
+        config = builder.build();
+        assertEquals(Arrays.asList("x86_64_framework", "uni_framework"), config.getFrameworks());
+        assertEquals(Collections.singletonList("uni_weakframework"), config.getWeakFrameworks());
+        assertEquals(Collections.emptyList(), config.getFrameworkPaths());
+
+        // thumbv7
+        builder.arch(new Arch(CpuArch.thumbv7));
+        config = builder.build();
+        assertEquals(Arrays.asList("uni_framework", "thumbv7", "library1"), config.getFrameworks());
+        assertEquals(Collections.singletonList("uni_weakframework"), config.getWeakFrameworks());
+        assertEquals(Collections.singletonList(new File(xcFramework, "/ios-arm64_armv7")), config.getFrameworkPaths());
+    }
+
+
+
 }
