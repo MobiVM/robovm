@@ -814,6 +814,8 @@ public class IOSTarget extends AbstractTarget {
 
     private void packageApplication(File appDir) throws IOException {
         File ipaFile = new File(config.getInstallDir(), getExecutable() + ".ipa");
+        // remove ipa otherwise its content will get updated
+        FileUtils.deleteQuietly(ipaFile);
         config.getLogger().info("Packaging IPA %s from %s", ipaFile.getName(), appDir.getName());
 
         File tmpDir = new File(config.getInstallDir(), "ipabuild");
