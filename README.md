@@ -23,7 +23,7 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Using RoboVM
 
-There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://robovm.mobidevelop.com/).
+There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://mobivm.github.io/).
 
 For using the RoboVM Gradle plugin, follow the [README in the repository](https://github.com/MobiVM/robovm/tree/master/plugins/gradle)
 
