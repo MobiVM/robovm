@@ -46,8 +46,6 @@ public class CreateIpaDialog extends DialogWrapper {
     private static final String ARCHS = "robovm.ipaConfig.archs";
     private static final String DESTINATION_DIR = "robovm.ipaConfig.destinationDir";
 
-    private static final String ARCHS_ALL = "All - 32-bit (thumbv7) + 64-bit (arm64)";
-    private static final String ARCHS_32BIT = "32-bit (thumbv7)";
     private static final String ARCHS_64BIT = "64-bit (arm64)";
     private JPanel panel;
     private JComboBox<String> archs;
@@ -98,7 +96,7 @@ public class CreateIpaDialog extends DialogWrapper {
         }
 
         // populate architectures
-        for(String arch: new String[] { ARCHS_ALL, ARCHS_32BIT, ARCHS_64BIT }) {
+        for(String arch: new String[] { ARCHS_64BIT }) {
             archs.addItem(arch);
             if(arch.equals(configArchs)) {
                 this.archs.setSelectedIndex(this.archs.getItemCount()-1);
@@ -168,12 +166,6 @@ public class CreateIpaDialog extends DialogWrapper {
         String arch = (String) Objects.requireNonNull(this.archs.getSelectedItem());
         Arch[] archs;
         switch (arch) {
-            case ARCHS_ALL:
-                archs = new Arch[]{Arch.thumbv7, Arch.arm64};
-                break;
-            case ARCHS_32BIT:
-                archs = new Arch[]{Arch.thumbv7};
-                break;
             case ARCHS_64BIT:
                 archs = new Arch[]{Arch.arm64};
                 break;
