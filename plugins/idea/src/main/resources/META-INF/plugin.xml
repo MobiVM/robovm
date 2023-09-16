@@ -20,6 +20,29 @@
         <![CDATA[
             <b>2.3.20</b>
 
+            <h2>New Features</h2>
+            <ul>
+                <li>improvement: Class InvocationTargetException add throwable cause (PR741)[https://github.com/MobiVM/robovm/pull/741]</li>
+                <li>CocoaTouch bindings 16.2 PR 703</li>
+                <li>Gradle plugin -- better error messages PR 707</li>
+                <li>robovm.xml -- support for custom linker flags PR 714</li>
+                <li>support for building using Java 19 PR 709</li>
+                <li>putDouble/getDouble in Unsafe PR715</li>
+                <li>support for iOS Simulator os.name property PR719</li>
+                <li>actool: support for alt-icon and other options PR718</li>
+                <li>libmobiledevice -- better logic to provide retry cycles if device is not ready PR726</li>
+            </ul>
+            <h2>Bug Fixes</h2>
+            <ul>
+                <li>fixed: Gradle plugin breaks Android build issue 740</li>
+                <li>fixed: strict rules for elements in lists inside robovm.xml PR730</li>
+                <li>ffixed 744: delete existing IPA when packaging new one PR745</li>
+                <li>fixed: libgdx/7212 -- crash when getting value by pointer, affected by GC PR743</li>
+                <li>fixed: ByteBuffer (Java9) dessugaring removed and replaced with missing Java code PR728</li>
+                <li>fixed: support for support JEP181(java11) PR725</li>
+                <li>fixed: #608 NSAttributedString causes crash on next GC PR724</li>
+                <li>fixed: xcFramework are now merged from robo-pods robovm.xml PR727</li>
+            </ul>
         ]]>
     </change-notes>
 
@@ -64,9 +87,11 @@
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
                     description="Create an IPA for App Store or ad-hoc distribution"/>
-            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction" text="Create Framework"
+            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction"
+                    text="Create Framework"
                     description="Create a Framework"/>
-            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open in Interface Builder (Xcode)"
+            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction"
+                    text="Open in Interface Builder (Xcode)"
                     description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
             <separator/>
             <action id="org.robovm.idea.clean-build" class="org.robovm.idea.actions.CleanBuildFoldersAction"
@@ -77,9 +102,12 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for Android Studio" popup="true">
-                <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
-                <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New"
+                   description="New project/module workaround for Android Studio" popup="true">
+                <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction"
+                        text="Project..."/>
+                <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction"
+                        text="Module..."/>
             </group>
         </group>
 
