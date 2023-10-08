@@ -46,6 +46,7 @@ import org.robovm.compiler.llvm.ZeroInitializer;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.target.framework.FrameworkTarget;
+import org.robovm.compiler.util.generic.SootClassUtils;
 import org.robovm.compiler.util.generic.SootMethodType;
 import soot.Body;
 import soot.BooleanType;
@@ -87,6 +88,7 @@ import soot.tagkit.AnnotationTag;
 import soot.tagkit.SignatureTag;
 import soot.util.Chain;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -694,6 +696,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     @Override
     public void beforeLinker(Config config, Linker linker, Set<Clazz> classes) {
         preloadClassesForFramework(config, linker, classes);
+        preloadObjCClassHosts(config, linker, classes);
     }
 
     private static <E> List<E> l(E head, List<E> tail) {
@@ -2025,6 +2028,49 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
             if (config.getExportedSymbols().contains("JNI_CreateJavaVM")) {
                 byte[] data = new byte[1];
                 linker.addBcGlobalData("_bcFrameworkSkipJavaVMStartup", data);
+            }
+        }
+    }
+
+    private void preloadObjCClassHosts(Config config, Linker linker, Set<Clazz> classes) {
+        // TODO: remove once resolved on Idea side
+        // affects only debug builds
+        // workaround for Idea Bug: https://youtrack.jetbrains.com/issue/IDEA-332794
+        // Idea debugger is not happy if inner class is being loaded before host ones and
+        // ignores breakpoints inside.
+        // preload if all ObjCClass's is happening in ObjCClass.java, static initializer
+        // workaround -- is to preload all hosts before loading ObjCClass
+        if (config.isDebug()) {
+            SootClass objCObjectClazz = classes.stream()
+                    .filter( c -> c.getClassName().equals(OBJC_OBJECT))
+                    .map(Clazz::getSootClass)
+                    .findFirst()
+                    .orElse(null);
+            Set<String> objClassHosts = new HashSet<>();
+            if (objCObjectClazz != null) {
+                // proceed if we link with ObjObject
+                // look for all ObjCClasses, and these are internal -- preload hosts as well
+                for (Clazz clazz : classes) {
+                    SootClass sootClass = clazz.getSootClass();
+                    // skip if doesn't extend ObjCClass
+                    if (!SootClassUtils.isAssignableFrom(sootClass, objCObjectClazz))
+                        continue;
+                    // skip if not inner
+                    String hostClassName = SootClassUtils.getEnclosingClassName(sootClass);
+                    if (hostClassName == null)
+                        hostClassName = SootClassUtils.getDeclaringClassName(sootClass);
+                    if (hostClassName != null)
+                        objClassHosts.add(hostClassName);
+                }
+
+                if (!objClassHosts.isEmpty()) {
+                    try {
+                        byte[] bytes = StringUtils.join(objClassHosts, ",").getBytes("UTF8");
+                        linker.addRuntimeData(OBJC_CLASS + ".preloadClasses", bytes);
+                    } catch (UnsupportedEncodingException e) {
+                        config.getLogger().error("Failed to prepare ObjCClass' hosts preload list");
+                    }
+                }
             }
         }
     }
