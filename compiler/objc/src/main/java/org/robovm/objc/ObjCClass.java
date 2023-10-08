@@ -15,6 +15,7 @@
  */
 package org.robovm.objc;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +57,31 @@ public final class ObjCClass extends ObjCObject {
 
     static {
         ObjCRuntime.bind(ObjCClass.class);
+
+        // TODO: remove once resolved on Idea side
+        // affects only debug builds
+        // workaround for Idea Bug: https://youtrack.jetbrains.com/issue/IDEA-332794
+        // there is code bellow loads all ObjCClass' and some of them might be Inner ones
+        // idea seems to be ignoring PREPARE class events in case Inner class is
+        // being loaded before the host one
+        byte[] data = VM.getRuntimeData(ObjCClass.class.getName() + ".preloadClasses");
+        if (data != null) {
+            String[] innerClassHosts;
+            try {
+                innerClassHosts = new String(data, "UTF8").split(",");
+            } catch (UnsupportedEncodingException e) {
+                innerClassHosts = new String[0];
+            }
+            for (String host : innerClassHosts) {
+                try {
+                    // preload class.
+                    Class.forName(host);
+                } catch (Throwable t) {
+                    System.err.println("Failed to preload inner ObjCClass host class " + host + ": " + t.getMessage());
+                }
+            }
+        }
+
         @SuppressWarnings("unchecked")
         Class<? extends ObjCObject>[] classes = (Class<? extends ObjCObject>[]) 
                 VM.listClasses(ObjCObject.class, ClassLoader.getSystemClassLoader());
