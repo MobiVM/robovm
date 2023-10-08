@@ -1,0 +1,22 @@
+<html>
+<body>
+Reports classes that implements <code>NSObjectProtocol</code> and doesn't extend from NSObject
+
+Objc/Bro code will not be able to marshal such pure Java object to ObjC/Native side.
+(and will crash with message: <code>CLASSNAME cannot be cast to org.robovm.objc.ObjCObject</code>)
+While there is Object to NSObject promoter plugin that will replace super with NSObject
+during RoboVM compilation phase, it's always better to have it clearly specified in source code.
+<p><b>Example:</b></p>
+<pre><code>
+    // will be reported as warning with option to extend from NSObject
+    class Foo implements NSObjectProtocol {}
+
+    // will be reported as error as Foo doesn't extend from java.lang.Object directly
+    class Foo extends ArrayList implements NSObjectProtocol {}
+</code></pre>
+<!-- tooltip end -->
+<p>
+    This inspection is intended for RoboVM application that use ObjC bindings.
+</p>
+</body>
+</html>
