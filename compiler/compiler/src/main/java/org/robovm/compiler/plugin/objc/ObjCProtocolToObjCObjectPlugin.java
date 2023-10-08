@@ -22,15 +22,11 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.plugin.AbstractCompilerPlugin;
 import org.robovm.compiler.plugin.CompilerPlugin;
-import soot.Body;
-import soot.PatchingChain;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.SootResolver;
-import soot.Unit;
+import soot.*;
 import soot.jimple.InvokeStmt;
 import soot.jimple.SpecialInvokeExpr;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +39,7 @@ public class ObjCProtocolToObjCObjectPlugin extends AbstractCompilerPlugin {
     public static final String OBJC_PROTOCOL = "org.robovm.objc.ObjCProtocol";
     public static final String NS_OBJECT = "org.robovm.apple.foundation.NSObject";
     public static final String OBJC_OBJECT = "org.robovm.objc.ObjCObject";
+    private static final int SYNTHETIC = 0x00001000;
     private SootClass org_robovm_apple_foundation_NSObject = null;
     private SootClass org_robovm_objc_ObjCObject = null;
     private SootClass org_robovm_objc_ObjCProtocol = null;
@@ -106,36 +103,41 @@ public class ObjCProtocolToObjCObjectPlugin extends AbstractCompilerPlugin {
      * @return true if super call was adjusted
      */
     private boolean adjustSuperInitCall(Logger logger, SootClass cls, SootClass newSuper) {
-        // replacing only java.lang.Object supers and there is expected to be only
+        // replacing only java.lang.Object super calls
+        // skipping synthetic constructors and constructors that calls "this".<init> instead of supper
         // single kind of super call <init>() so call directly
         List<SootMethod> constructors = cls.getMethods().stream()
-                .filter((m) -> m.getName().equals("<init>"))
+                .filter((m) -> (m.getModifiers() & SYNTHETIC) == 0 && m.getName().equals("<init>"))
                 .collect(Collectors.toList());
-        if (constructors.size() == 1) {
-            SootMethod method = constructors.get(0);
+        // getting all expressions for modification
+        List<SpecialInvokeExpr> expressionsToAdjust = new ArrayList<>();
+
+        for (SootMethod method: constructors) {
+            // find first SpecialInvokeExpr
             Body body = method.retrieveActiveBody();
             PatchingChain<Unit> units = body.getUnits();
-            for (Unit unit = units.getFirst(); unit != null; unit = body.getUnits().getSuccOf(unit)) {
-                if (unit instanceof InvokeStmt) {
-                    InvokeStmt invoke = (InvokeStmt) unit;
-                    if (invoke.getInvokeExpr() instanceof SpecialInvokeExpr) {
-                        // replace only call to Object() constructor
-                        SpecialInvokeExpr expr = (SpecialInvokeExpr) invoke.getInvokeExpr();
-                        if (expr.getMethodRef().getSignature().equals("<java.lang.Object: void <init>()>")) {
-                            expr.setMethodRef(newSuper.getMethod("void <init>()").makeRef());
-                            return true;
-                        }
-                    }
+            SpecialInvokeExpr expr = units.stream()
+                    .filter(e -> e instanceof InvokeStmt && ((InvokeStmt) e).getInvokeExpr() instanceof SpecialInvokeExpr)
+                    .map(e -> (SpecialInvokeExpr) ((InvokeStmt) e).getInvokeExpr())
+                    .findFirst()
+                    .orElse(null);
+            if (expr != null) {
+                if (expr.getMethodRef().getSignature().equals("<java.lang.Object: void <init>()>")) {
+                    expressionsToAdjust.add(expr);
+                } else if (expr.getMethodRef().declaringClass() != cls) {
+                    // skip "this".<init> calls but fails on other class init call
+                    logger.warn("ObjCProtocol to NSObject failed: missing <java.lang.Object: void <init>()> call in %s", cls.getName());
+                    return false;
                 }
             }
-
-            // constructor was not substituted
-            logger.warn("ObjCProtocol to NSObject failed: missing <java.lang.Object: void <init>()> call in %s", cls.getName());
-        } else {
-            logger.warn("ObjCProtocol to NSObject failed: too many public constructors");
         }
 
-        return false;
+        // patch collected expression
+        SootMethodRef replacement = newSuper.getMethod("void <init>()").makeRef();
+        for (SpecialInvokeExpr expr: expressionsToAdjust)
+            expr.setMethodRef(replacement);
+
+        return true;
     }
 
     @Override

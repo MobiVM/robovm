@@ -6,7 +6,7 @@
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
-    <idea-version since-build="193.1"/>
+    <idea-version since-build="221"/>
 
     <name>MobiVM</name>
     <description>
@@ -61,6 +61,19 @@
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->
         <toolWindow id="RoboVM" anchor="bottom" icon="org.robovm.idea.RoboVmIcons.ROBOVM_SMALL" secondary="true"
                     factoryClass="org.robovm.idea.components.RoboVmToolWindowFactory"/>
+
+        <!--group.names.language.level.specific.issues.and.migration.aids-->
+        <localInspection language="JAVA"
+                         shortName="ClassWithProtocolShouldExtendNSObject"
+                         bundle="robovm.RvmInspectionBundle"
+                         key="robovm.inspection.objcprotocol.shouldbe.in.nsobject"
+                         groupBundle="robovm.RvmInspectionBundle"
+                         groupKey="robovm.inspection.group"
+                         enabledByDefault="true"
+                         level="WARNING"
+                         implementationClass="org.robovm.idea.inspection.ClassWithProtocolShouldExtendNSObject"
+                         cleanupTool="true"/>
+
     </extensions>
 
     <application-components>
