@@ -400,6 +400,17 @@ import org.robovm.apple.dispatch.*;
     }
     /*<methods>*/
     @Library("Foundation")
+    public static class FormattingContextKeys {
+        static { Bro.bind(FormattingContextKeys.class); }
+
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionConceptsKey", optional=true)
+        public static native String InflectionConcepts();
+    }
+
+    @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
 
@@ -421,18 +432,39 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 15.0 and later.
          */
+        @GlobalValue(symbol="NSPresentationIntentAttributeName", optional=true)
+        public static native NSString PresentationIntent();
+    }
+
+    @Library("Foundation")
+    public static class KeysInflection {
+        static { Bro.bind(KeysInflection.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
         @GlobalValue(symbol="NSInflectionRuleAttributeName", optional=true)
-        public static native NSString InflectionRule();
+        public static native NSString Rule();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAgreementArgumentAttributeName", optional=true)
+        public static native NSString AgreementArgument();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAgreementConceptAttributeName", optional=true)
+        public static native NSString AgreementConcept();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionReferentConceptAttributeName", optional=true)
+        public static native NSString ReferentConcept();
         /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="NSInflectionAlternativeAttributeName", optional=true)
-        public static native NSString InflectionAlternative();
-        /**
-         * @since Available in iOS 15.0 and later.
-         */
-        @GlobalValue(symbol="NSPresentationIntentAttributeName", optional=true)
-        public static native NSString PresentationIntent();
+        public static native NSString Alternative();
     }
 
     @Library("Foundation")

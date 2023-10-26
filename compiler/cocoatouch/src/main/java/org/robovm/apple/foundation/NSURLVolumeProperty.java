@@ -170,9 +170,21 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final NSURLVolumeProperty AvailableCapacityForOpportunisticUsage = new NSURLVolumeProperty("AvailableCapacityForOpportunisticUsage");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final NSURLVolumeProperty TypeName = new NSURLVolumeProperty("TypeName");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final NSURLVolumeProperty Subtype = new NSURLVolumeProperty("Subtype");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final NSURLVolumeProperty MountFromLocation = new NSURLVolumeProperty("MountFromLocation");
     /*</constants>*/
     
-    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming, SupportsImmutableFiles, SupportsAccessPermissions, SupportsFileProtection, AvailableCapacityForImportantUsage, AvailableCapacityForOpportunisticUsage/*</value_list>*/};
+    private static /*<name>*/NSURLVolumeProperty/*</name>*/[] values = new /*<name>*/NSURLVolumeProperty/*</name>*/[] {/*<value_list>*/LocalizedFormatDescription, TotalCapacity, AvailableCapacity, ResourceCount, SupportsPersistentIDs, SupportsSymbolicLinks, SupportsHardLinks, SupportsJournaling, IsJournaling, SupportsSparseFiles, SupportsZeroRuns, SupportsCaseSensitiveNames, SupportsCasePreservedNames, SupportsRootDirectoryDates, SupportsVolumeSizes, SupportsRenaming, SupportsAdvisoryFileLocking, SupportsExtendedSecurity, IsBrowsable, MaximumFileSize, IsEjectable, IsRemovable, IsInternal, IsAutomounted, IsLocal, IsReadOnly, CreationDate, URLForRemounting, UUIDString, Name, LocalizedName, IsEncrypted, IsRootFileSystem, SupportsCompression, SupportsFileCloning, SupportsSwapRenaming, SupportsExclusiveRenaming, SupportsImmutableFiles, SupportsAccessPermissions, SupportsFileProtection, AvailableCapacityForImportantUsage, AvailableCapacityForOpportunisticUsage, TypeName, Subtype, MountFromLocation/*</value_list>*/};
     
     /*<name>*/NSURLVolumeProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -312,6 +324,21 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLVolumeAvailableCapacityForOpportunisticUsageKey", optional=true)
         public static native NSString AvailableCapacityForOpportunisticUsage();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeTypeNameKey", optional=true)
+        public static native NSString TypeName();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeSubtypeKey", optional=true)
+        public static native NSString Subtype();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="NSURLVolumeMountFromLocationKey", optional=true)
+        public static native NSString MountFromLocation();
         /*</values>*/
     }
 }

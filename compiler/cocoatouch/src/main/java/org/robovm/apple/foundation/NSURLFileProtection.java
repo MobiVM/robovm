@@ -111,9 +111,13 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final NSURLFileProtection CompleteUntilFirstUserAuthentication = new NSURLFileProtection("CompleteUntilFirstUserAuthentication");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSURLFileProtection CompleteWhenUserInactive = new NSURLFileProtection("CompleteWhenUserInactive");
     /*</constants>*/
     
-    private static /*<name>*/NSURLFileProtection/*</name>*/[] values = new /*<name>*/NSURLFileProtection/*</name>*/[] {/*<value_list>*/None, Complete, CompleteUnlessOpen, CompleteUntilFirstUserAuthentication/*</value_list>*/};
+    private static /*<name>*/NSURLFileProtection/*</name>*/[] values = new /*<name>*/NSURLFileProtection/*</name>*/[] {/*<value_list>*/None, Complete, CompleteUnlessOpen, CompleteUntilFirstUserAuthentication, CompleteWhenUserInactive/*</value_list>*/};
     
     /*<name>*/NSURLFileProtection/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -156,6 +160,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLFileProtectionCompleteUntilFirstUserAuthentication", optional=true)
         public static native NSString CompleteUntilFirstUserAuthentication();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSURLFileProtectionCompleteWhenUserInactive", optional=true)
+        public static native NSString CompleteWhenUserInactive();
         /*</values>*/
     }
 }

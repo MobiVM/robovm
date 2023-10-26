@@ -69,6 +69,11 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     @Method(selector = "initWithString:relativeToURL:")
     public NSURL(String URLString, NSURL baseURL) { super((SkipInit) null); initObject(init(URLString, baseURL)); }
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithString:encodingInvalidCharacters:")
+    public NSURL(String URLString, boolean encodingInvalidCharacters) { super((SkipInit) null); initObject(init(URLString, encodingInvalidCharacters)); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithDataRepresentation:relativeToURL:")
@@ -373,6 +378,11 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     protected native @Pointer long init(String URLString);
     @Method(selector = "initWithString:relativeToURL:")
     protected native @Pointer long init(String URLString, NSURL baseURL);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithString:encodingInvalidCharacters:")
+    protected native @Pointer long init(String URLString, boolean encodingInvalidCharacters);
     /**
      * @since Available in iOS 9.0 and later.
      */

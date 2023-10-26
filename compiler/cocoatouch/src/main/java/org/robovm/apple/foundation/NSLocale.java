@@ -86,10 +86,22 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "languageCode")
     private native String getLanguageCode0();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
+    @Property(selector = "languageIdentifier")
+    public native String getLanguageIdentifier();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use regionCode
+     */
+    @Deprecated
     @Property(selector = "countryCode")
     private native String getCountryCode0();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "regionCode")
+    public native String getRegionCode();
     /**
      * @since Available in iOS 10.0 and later.
      */
