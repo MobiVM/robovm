@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -106,6 +107,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final NSAttributedStringAttribute SpeechQueueAnnouncement = new NSAttributedStringAttribute("SpeechQueueAnnouncement");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechAnnouncementPriority = new NSAttributedStringAttribute("SpeechAnnouncementPriority");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final NSAttributedStringAttribute SpeechIPANotation = new NSAttributedStringAttribute("SpeechIPANotation");
@@ -134,9 +139,21 @@ import org.robovm.apple.linkpresentation.*;
     public static final NSAttributedStringAttribute BaselineOffset = new NSAttributedStringAttribute("BaselineOffset");
     public static final NSAttributedStringAttribute UnderlineColor = new NSAttributedStringAttribute("UnderlineColor");
     public static final NSAttributedStringAttribute StrikethroughColor = new NSAttributedStringAttribute("StrikethroughColor");
-    public static final NSAttributedStringAttribute Obliqueness = new NSAttributedStringAttribute("Obliqueness");
-    public static final NSAttributedStringAttribute Expansion = new NSAttributedStringAttribute("Expansion");
     public static final NSAttributedStringAttribute WritingDirection = new NSAttributedStringAttribute("WritingDirection");
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
+    public static final NSAttributedStringAttribute Obliqueness = new NSAttributedStringAttribute("Obliqueness");
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
+    public static final NSAttributedStringAttribute Expansion = new NSAttributedStringAttribute("Expansion");
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
     /**
      * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
@@ -160,7 +177,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final NSAttributedStringAttribute TextShadowOffset = new NSAttributedStringAttribute("TextShadowOffset");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, Obliqueness, Expansion, WritingDirection, VerticalGlyphForm, TextFont, TextColor, TextShadowColor, TextShadowOffset/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechAnnouncementPriority, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, WritingDirection, Obliqueness, Expansion, VerticalGlyphForm, TextFont, TextColor, TextShadowColor, TextShadowOffset/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -194,6 +211,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIAccessibilitySpeechAttributeQueueAnnouncement", optional=true)
         public static native NSString SpeechQueueAnnouncement();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeAnnouncementPriority", optional=true)
+        public static native NSString SpeechAnnouncementPriority();
         /**
          * @since Available in iOS 11.0 and later.
          */
@@ -243,12 +265,24 @@ import org.robovm.apple.linkpresentation.*;
         public static native NSString UnderlineColor();
         @GlobalValue(symbol="NSStrikethroughColorAttributeName", optional=true)
         public static native NSString StrikethroughColor();
-        @GlobalValue(symbol="NSObliquenessAttributeName", optional=true)
-        public static native NSString Obliqueness();
-        @GlobalValue(symbol="NSExpansionAttributeName", optional=true)
-        public static native NSString Expansion();
         @GlobalValue(symbol="NSWritingDirectionAttributeName", optional=true)
         public static native NSString WritingDirection();
+        /**
+         * @deprecated This attribute is no longer supported with TextKit 2
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSObliquenessAttributeName", optional=true)
+        public static native NSString Obliqueness();
+        /**
+         * @deprecated This attribute is no longer supported with TextKit 2
+         */
+        @Deprecated
+        @GlobalValue(symbol="NSExpansionAttributeName", optional=true)
+        public static native NSString Expansion();
+        /**
+         * @deprecated This attribute is no longer supported with TextKit 2
+         */
+        @Deprecated
         @GlobalValue(symbol="NSVerticalGlyphFormAttributeName", optional=true)
         public static native NSString VerticalGlyphForm();
         /**

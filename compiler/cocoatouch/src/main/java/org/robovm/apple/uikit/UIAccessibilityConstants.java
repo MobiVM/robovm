@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -91,6 +92,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIAccessibilityTextualContextConsole", optional=true)
     public static native String TextualContextConsole();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityPriorityHigh", optional=true)
+    public static native String PriorityHigh();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityPriorityDefault", optional=true)
+    public static native String PriorityDefault();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityPriorityLow", optional=true)
+    public static native String PriorityLow();
     /**
      * @since Available in iOS 11.0 and later.
      */

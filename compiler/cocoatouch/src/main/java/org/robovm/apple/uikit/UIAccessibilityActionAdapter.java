@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,16 @@ import org.robovm.apple.linkpresentation.*;
     public void increment() {}
     @NotImplemented("accessibilityDecrement")
     public void decrement() {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("accessibilityZoomInAtPoint:")
+    public boolean zoomInAtPoint(@ByVal CGPoint point) { return false; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("accessibilityZoomOutAtPoint:")
+    public boolean zoomOutAtPoint(@ByVal CGPoint point) { return false; }
     @NotImplemented("accessibilityScroll:")
     public boolean scroll(UIAccessibilityScrollDirection direction) { return false; }
     @NotImplemented("accessibilityPerformEscape")

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -139,5 +140,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIAccessibilityTraitTabBar", optional=true)
     protected static native long TabBarValue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTraitToggleButton", optional=true)
+    protected static native long ToggleButtonValue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTraitSupportsZoom", optional=true)
+    protected static native long SupportsZoomValue();
     /*</methods>*/
 }

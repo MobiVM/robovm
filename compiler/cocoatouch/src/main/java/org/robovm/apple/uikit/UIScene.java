@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,5 +105,7 @@ import org.robovm.apple.linkpresentation.*;
     public native void extendStateRestoration();
     @Method(selector = "completeStateRestoration")
     public native void completeStateRestoration();
+    @Method(selector = "getDefaultAudioSessionWithCompletionHandler:")
+    public native void getDefaultAudioSession(@Block VoidBlock1<org.robovm.apple.avfoundation.AVAudioSession> handler);
     /*</methods>*/
 }

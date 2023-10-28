@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -90,6 +91,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void setState(UIMenuElementState v);
     @Property(selector = "alternates")
     public native NSArray<UICommandAlternate> getAlternates();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "selectedImage")
+    public native UIImage getSelectedImage();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSelectedImage:")
+    public native void setSelectedImage(UIImage v);
     @Property(selector = "sender")
     public native NSObject getSender();
     /**

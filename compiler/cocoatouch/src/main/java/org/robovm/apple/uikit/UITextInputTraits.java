@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -96,6 +97,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    void setInlinePredictionType(UITextInlinePredictionType v);
     @Property(selector = "keyboardType")
     UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")

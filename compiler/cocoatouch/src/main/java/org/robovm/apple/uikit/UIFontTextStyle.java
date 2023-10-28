@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -103,6 +104,14 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIFontTextStyle LargeTitle = new UIFontTextStyle("LargeTitle");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIFontTextStyle ExtraLargeTitle = new UIFontTextStyle("ExtraLargeTitle");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIFontTextStyle ExtraLargeTitle2 = new UIFontTextStyle("ExtraLargeTitle2");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final UIFontTextStyle Title1 = new UIFontTextStyle("Title1");
@@ -126,7 +135,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final UIFontTextStyle Caption2 = new UIFontTextStyle("Caption2");
     /*</constants>*/
     
-    private static /*<name>*/UIFontTextStyle/*</name>*/[] values = new /*<name>*/UIFontTextStyle/*</name>*/[] {/*<value_list>*/LargeTitle, Title1, Title2, Title3, Headline, Subheadline, Body, Callout, Footnote, Caption1, Caption2/*</value_list>*/};
+    private static /*<name>*/UIFontTextStyle/*</name>*/[] values = new /*<name>*/UIFontTextStyle/*</name>*/[] {/*<value_list>*/LargeTitle, ExtraLargeTitle, ExtraLargeTitle2, Title1, Title2, Title3, Headline, Subheadline, Body, Callout, Footnote, Caption1, Caption2/*</value_list>*/};
     
     /*<name>*/UIFontTextStyle/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -154,6 +163,16 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIFontTextStyleLargeTitle", optional=true)
         public static native NSString LargeTitle();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIFontTextStyleExtraLargeTitle", optional=true)
+        public static native NSString ExtraLargeTitle();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIFontTextStyleExtraLargeTitle2", optional=true)
+        public static native NSString ExtraLargeTitle2();
         /**
          * @since Available in iOS 9.0 and later.
          */

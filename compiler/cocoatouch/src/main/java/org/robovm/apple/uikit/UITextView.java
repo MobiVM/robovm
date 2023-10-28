@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -49,7 +50,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextView/*</name>*/ 
     extends /*<extends>*/UIScrollView/*</extends>*/ 
-    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, UITextSearching/*</implements>*/ {
+    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, UITextSearching/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeDidBeginEditing(UITextView object, final VoidBlock1<UITextView> block) {
@@ -315,6 +316,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setFindInteractionEnabled:")
     public native void setFindInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "borderStyle")
+    public native UITextViewBorderStyle getBorderStyle();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setBorderStyle:")
+    public native void setBorderStyle(UITextViewBorderStyle v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -400,6 +411,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     public native void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    public native UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    public native void setInlinePredictionType(UITextInlinePredictionType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -444,6 +465,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "sizingRule")
+    public native UILetterformAwareSizingRule getSizingRule();
+    @Property(selector = "setSizingRule:")
+    public native void setSizingRule(UILetterformAwareSizingRule v);
     @Property(selector = "textDragDelegate")
     public native UITextDragDelegate getTextDragDelegate();
     @Property(selector = "setTextDragDelegate:", strongRef = true)

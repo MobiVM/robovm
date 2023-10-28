@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -101,6 +102,16 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(NSTextElement textElement, NSTextRange rangeInElement);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textLineFragmentForVerticalOffset:requiresExactMatch:")
+    public native NSTextLineFragment getTextLineFragmentForVerticalOffset(@MachineSizedFloat double verticalOffset, boolean requiresExactMatch);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textLineFragmentForTextLocation:isUpstreamAffinity:")
+    public native NSTextLineFragment getTextLineFragmentForTextLocation(NSTextLocation textLocation, boolean isUpstreamAffinity);
     @Method(selector = "invalidateLayout")
     public native void invalidateLayout();
     @Method(selector = "drawAtPoint:inContext:")

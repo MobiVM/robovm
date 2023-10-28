@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -277,6 +278,16 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setHidden:")
     public native void setHidden(boolean v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isSymbolAnimationEnabled")
+    public native boolean isSymbolAnimationEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSymbolAnimationEnabled:")
+    public native void setSymbolAnimationEnabled(boolean v);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "menuRepresentation")
@@ -413,5 +424,65 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "flexibleSpaceItem")
     public static native UIBarButtonItem flexibleSpaceItem();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:options:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:options:animated:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:")
+    public native void removeSymbolEffectOfType(NSSymbolEffect symbolEffect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:options:")
+    public native void removeSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:options:animated:")
+    public native void removeSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffects")
+    public native void removeAllSymbolEffects();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffectsWithOptions:")
+    public native void removeAllSymbolEffect(NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffectsWithOptions:animated:")
+    public native void removeAllSymbolEffects(NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setSymbolImage:withContentTransition:")
+    public native void setSymbolImage(UIImage symbolImage, NSSymbolContentTransition transition);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setSymbolImage:withContentTransition:options:")
+    public native void setSymbolImage(UIImage symbolImage, NSSymbolContentTransition transition, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "frameInView:")
+    public native @ByVal CGRect frameInView(UIView referenceView);
     /*</methods>*/
 }

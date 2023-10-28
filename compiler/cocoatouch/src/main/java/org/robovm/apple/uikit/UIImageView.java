@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -114,6 +115,14 @@ import org.robovm.apple.linkpresentation.*;
     public native void setTintColor(UIColor v);
     @Property(selector = "isAnimating")
     public native boolean isAnimating();
+    @Property(selector = "preferredImageDynamicRange")
+    public native UIImageDynamicRange getPreferredImageDynamicRange();
+    @Property(selector = "setPreferredImageDynamicRange:")
+    public native void setPreferredImageDynamicRange(UIImageDynamicRange v);
+    @Property(selector = "imageDynamicRange")
+    public native UIImageDynamicRange getImageDynamicRange();
+    @Property(selector = "setImageDynamicRange:")
+    public native void setImageDynamicRange(UIImageDynamicRange v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -142,5 +151,75 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
     public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:options:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:options:animated:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "addSymbolEffect:options:animated:completion:")
+    public native void addSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated, @Block VoidBlock1<UISymbolEffectCompletionContext> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:")
+    public native void removeSymbolEffectOfType(NSSymbolEffect symbolEffect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:options:")
+    public native void removeSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:options:animated:")
+    public native void removeSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeSymbolEffectOfType:options:animated:completion:")
+    public native void removeSymbolEffect(NSSymbolEffect symbolEffect, NSSymbolEffectOptions options, boolean animated, @Block VoidBlock1<UISymbolEffectCompletionContext> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffects")
+    public native void removeAllSymbolEffects();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffectsWithOptions:")
+    public native void removeAllSymbolEffects(NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeAllSymbolEffectsWithOptions:animated:")
+    public native void removeAllSymbolEffects(NSSymbolEffectOptions options, boolean animated);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setSymbolImage:withContentTransition:")
+    public native void setSymbolImage(UIImage symbolImage, NSSymbolContentTransition transition);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setSymbolImage:withContentTransition:options:")
+    public native void setSymbolImage(UIImage symbolImage, NSSymbolContentTransition transition, NSSymbolEffectOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setSymbolImage:withContentTransition:options:completion:")
+    public native void setSymbolImage(UIImage symbolImage, NSSymbolContentTransition transition, NSSymbolEffectOptions options, @Block VoidBlock1<UISymbolEffectCompletionContext> completionHandler);
     /*</methods>*/
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -97,6 +98,11 @@ import org.robovm.apple.linkpresentation.*;
     public native UICollectionLayoutSectionOrthogonalScrollingBehavior getOrthogonalScrollingBehavior();
     @Property(selector = "setOrthogonalScrollingBehavior:")
     public native void setOrthogonalScrollingBehavior(UICollectionLayoutSectionOrthogonalScrollingBehavior v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "orthogonalScrollingProperties")
+    public native UICollectionLayoutSectionOrthogonalScrollingProperties getOrthogonalScrollingProperties();
     @Property(selector = "boundarySupplementaryItems")
     public native NSArray<NSCollectionLayoutBoundarySupplementaryItem> getBoundarySupplementaryItems();
     @Property(selector = "setBoundarySupplementaryItems:")

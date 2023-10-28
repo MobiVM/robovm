@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -231,6 +232,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier Format = new UIMenuIdentifier("Format");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIMenuIdentifier AutoFill = new UIMenuIdentifier("AutoFill");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier Font = new UIMenuIdentifier("Font");
@@ -284,7 +289,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final UIMenuIdentifier Root = new UIMenuIdentifier("Root");
     /*</constants>*/
     
-    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
+    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, AutoFill, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
     
     /*<name>*/UIMenuIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -472,6 +477,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIMenuFormat", optional=true)
         public static native NSString Format();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuAutoFill", optional=true)
+        public static native NSString AutoFill();
         /**
          * @since Available in iOS 13.0 and later.
          */

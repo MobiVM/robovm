@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocument/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSFilePresenter, NSProgressReporting, UIUserActivityRestoring/*</implements>*/ {
+    /*<implements>*/implements NSFilePresenter, NSProgressReporting, UINavigationItemRenameDelegate, UIUserActivityRestoring/*</implements>*/ {
 
     public static class Notifications {
         /**
@@ -240,5 +241,13 @@ import org.robovm.apple.linkpresentation.*;
     public native void presentedSubitemAtURLDidLoseVersion(NSURL url, NSFileVersion version);
     @Method(selector = "presentedSubitemAtURL:didResolveConflictVersion:")
     public native void presentedSubitemAtURLDidResolveConflictVersion(NSURL url, NSFileVersion version);
+    @Method(selector = "navigationItem:didEndRenamingWithTitle:")
+    public native void didEndRenaming(UINavigationItem navigationItem, String title);
+    @Method(selector = "navigationItemShouldBeginRenaming:")
+    public native boolean navigationItemShouldBeginRenaming(UINavigationItem navigationItem);
+    @Method(selector = "navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:")
+    public native String willBeginRenaming(UINavigationItem navigationItem, String title, NSRange selectedRange);
+    @Method(selector = "navigationItem:shouldEndRenamingWithTitle:")
+    public native boolean shouldEndRenaming(UINavigationItem navigationItem, String title);
     /*</methods>*/
 }

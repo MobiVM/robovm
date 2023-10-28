@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,28 +73,6 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "textViewDidChangeSelection:")
     void didChangeSelection(UITextView textView);
     /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "textView:shouldInteractWithURL:inRange:interaction:")
-    boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction);
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
-    boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:interaction:
-     */
-    @Deprecated
-    @Method(selector = "textView:shouldInteractWithURL:inRange:")
-    boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:interaction:
-     */
-    @Deprecated
-    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
-    boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
-    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "textView:editMenuForTextInRange:suggestedActions:")
@@ -108,6 +87,52 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "textView:willDismissEditMenuWithAnimator:")
     void willDismissEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textView:primaryActionForTextItem:defaultAction:")
+    UIAction getPrimaryActionForTextItem(UITextView textView, UITextItem textItem, UIAction defaultAction);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textView:menuConfigurationForTextItem:defaultMenu:")
+    UITextItemMenuConfiguration getMenuConfigurationForTextItem(UITextView textView, UITextItem textItem, UIMenu defaultMenu);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textView:textItemMenuWillDisplayForTextItem:animator:")
+    void textItemMenuWillDisplayForTextItem(UITextView textView, UITextItem textItem, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "textView:textItemMenuWillEndForTextItem:animator:")
+    void textItemMenuWillEndForTextItem(UITextView textView, UITextItem textItem, UIContextMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.
+     */
+    @Deprecated
+    @Method(selector = "textView:shouldInteractWithURL:inRange:interaction:")
+    boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.
+     */
+    @Deprecated
+    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:interaction:")
+    boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction);
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:interaction:
+     */
+    @Deprecated
+    @Method(selector = "textView:shouldInteractWithURL:inRange:")
+    boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange);
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:interaction:
+     */
+    @Deprecated
+    @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
+    boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

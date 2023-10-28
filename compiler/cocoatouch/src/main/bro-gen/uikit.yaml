@@ -12,6 +12,7 @@ include:
     - intents
     - usernotifications
     - linkpresentation
+    - symbols
 library: UIKit
 framework: UIKit
 clang_args: ['-x', 'objective-c']
@@ -25,6 +26,7 @@ private_typedefs:
     UIScribbleElementIdentifier: NSObject
     UITextSearchDocumentIdentifier: NSObject
     UTType: org.robovm.apple.uniformtypeid.UTType
+    "AVAudioSession *": org.robovm.apple.avfoundation.AVAudioSession
 
 enums:
     NSControlCharacterAction: {}
@@ -342,6 +344,18 @@ enums:
     UIEditMenuArrowDirection: {} #since 16.0
     UINSToolbarItemPresentationSize: {}
 
+    UIAccessibilityDirectTouchOptions: {prefix: UIAccessibilityDirectTouchOption} #since 17.0
+    UIImageDynamicRange: {} #since 17.0
+    UISceneCaptureState: {} #since 17.0
+    UITextInlinePredictionType: {} #since 17.0
+    UILetterformAwareSizingRule: {} #since 17.0
+    UICollectionLayoutSectionOrthogonalScrollingBounce: {} #since 17.0
+    UILabelVibrancy: {} #since 17.0
+    UICornerCurve: {}
+    UITextViewBorderStyle: {} #since 17.0
+    UITextItemContentType: {} #since 17.0
+    UIContentUnavailableAlignment: {} #since 17.0
+
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
 
@@ -368,7 +382,7 @@ categories:
         methods:
             '-initWithFileURL:options:documentAttributes:error:':
                 name: initWithFileURL
-                constructor: false
+                owner_type: '@Pointer long'
                 throws: NSErrorException
                 return_type: '@Pointer long'
                 parameters:
@@ -376,6 +390,7 @@ categories:
                         type: NSAttributedStringDocumentAttributes
             '-init.*':
                 name: init
+                owner_type: '@Pointer long'
                 throws: NSErrorException
                 return_type: '@Pointer long'
                 parameters:
@@ -1025,6 +1040,8 @@ classes:
                 name: requestSceneSessionActivation
             '-requestSceneSessionDestruction:options:errorHandler:':
                 name: requestSceneSessionDestruction
+            '-activateSceneSessionForRequest:errorHandler:':
+                name: activateSceneSession
     UIApplicationShortcutIcon: # DONE
         methods:
             '+iconWithSystemImageName:':
@@ -1133,6 +1150,22 @@ classes:
                 name: creatingMovableGroup
             '-creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:':
                 name: creatingOptionalGroup
+            '-addSymbolEffect:options:':
+                name: addSymbolEffect
+            '-addSymbolEffect:options:animated:':
+                name: addSymbolEffect
+            '-removeSymbolEffectOfType:options:':
+                name: removeSymbolEffect
+            '-removeSymbolEffectOfType:options:animated:':
+                name: removeSymbolEffect
+            '-removeAllSymbolEffectsWithOptions:':
+                name: removeAllSymbolEffect
+            '-removeAllSymbolEffectsWithOptions:animated:':
+                name: removeAllSymbolEffects
+            '-setSymbolImage:withContentTransition:':
+                name: setSymbolImage
+            '-setSymbolImage:withContentTransition:options:':
+                name: setSymbolImage
     UIBarButtonItemGroup: # DONE
         properties:
             'barButtonItems':
@@ -2215,6 +2248,28 @@ classes:
                 name: init
             '-initWithImage:highlightedImage:':
                 name: init
+            '-addSymbolEffect:options:':
+                name: addSymbolEffect
+            '-addSymbolEffect:options:animated:':
+                name: addSymbolEffect
+            '-addSymbolEffect:options:animated:completion:':
+                name: addSymbolEffect
+            '-removeSymbolEffectOfType:options:':
+                name: removeSymbolEffect
+            '-removeSymbolEffectOfType:options:animated:':
+                name: removeSymbolEffect
+            '-removeSymbolEffectOfType:options:animated:completion:':
+                name: removeSymbolEffect
+            '-removeAllSymbolEffectsWithOptions:':
+                name: removeAllSymbolEffects
+            '-removeAllSymbolEffectsWithOptions:animated:':
+                name: removeAllSymbolEffects
+            '-setSymbolImage:withContentTransition:':
+                name: setSymbolImage
+            '-setSymbolImage:withContentTransition:options:':
+                name: setSymbolImage
+            '-setSymbolImage:withContentTransition:options:completion:':
+                name: setSymbolImage
     UIImpactFeedbackGenerator: # DONE
         methods:
             '-init.*':
@@ -3052,6 +3107,10 @@ classes:
                 name: init
             '-initWithDampingRatio:':
                 name: init
+            '-initWithDuration:bounce:initialVelocity:':
+                name: init
+            '-initWithDuration:bounce:':
+                name: init
     UIStackView: # DONE
         properties:
             'arrangedSubviews':
@@ -3426,7 +3485,14 @@ classes:
             '-azimuthUnitVectorInView:':
                 name: getAzimuthUnitVectorInView
     UITraitCollection: # DONE
+        properties:
+            systemTraitsAffectingColorAppearance:
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+            systemTraitsAffectingImageLookup:
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
         methods:
+            '-changedTraitsFromTraitCollection:':
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
             '-containsTraitsInCollection:':
                 name: containsTraits
             '+traitCollectionWithTraitsFromCollections:':
@@ -3474,6 +3540,33 @@ classes:
                 constructor: true
             '+traitCollectionWithToolbarItemPresentationSize:':
                 name: createWithToolbarItemPresentationSize
+            '+traitCollectionWithImageDynamicRange:':
+                name: create
+                constructor: true
+            '+traitCollectionWithTypesettingLanguage:':
+                name: create
+                constructor: true
+            '+traitCollectionWithSceneCaptureState:':
+                name: create
+                constructor: true
+            '-traitCollectionByReplacingCGFloatValue:forTrait:':
+                name: traitCollectionByReplacing
+            '-traitCollectionByReplacingNSIntegerValue:forTrait:':
+                name: traitCollectionByReplacing
+            '-traitCollectionByReplacingObject:forTrait:':
+                name: traitCollectionByReplacing
+            '+traitCollectionWithTraits:':
+                name: create
+                constructor: true
+            '+traitCollectionWithCGFloatValue:forTrait:':
+                name: create
+                constructor: true
+            '+traitCollectionWithNSIntegerValue:forTrait:':
+                name: create
+                constructor: true
+            '+traitCollectionWithObject:forTrait:':
+                name: create
+                constructor: true
     UIMutableApplicationShortcutItem: # DONE
         skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
@@ -3546,6 +3639,8 @@ classes:
                 name: animate
             '+animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:':
                 name: animate
+            '+animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:':
+                name: animateWithSpring
             '+transitionFromView:toView:duration:options:completion:':
                 name: transition
             '+transitionWithView:duration:options:animations:completion:':
@@ -4049,7 +4144,10 @@ classes:
             '+backgroundDecorationItemWithElementKind:':
                 constructor: true
                 name: create
-    NSCollectionLayoutDimension: {} #since 13.0
+    NSCollectionLayoutDimension: #since 13.0
+        methods:
+            '+uniformAcrossSiblingsWithEstimate:':
+                name: uniformAcrossSiblings
     NSCollectionLayoutEdgeSpacing: #since 13.0
         methods:
             '+spacingForLeading:top:trailing:bottom:':
@@ -4251,6 +4349,13 @@ classes:
     UIImageConfiguration: #since 13.0
         methods:
             '-configurationWithTraitCollection:':
+                name: applyTraitCollection
+            '-configurationWithLocale:':
+                name: applyLocale
+            '+configurationWithTraitCollection:':
+                constructor: true
+                name: create
+            '+configurationWithLocale:':
                 constructor: true
                 name: create
     UIImageSymbolConfiguration: #since 13.0
@@ -4325,6 +4430,8 @@ classes:
                 name: init
             '-openURL:options:completionHandler:':
                 name: openURL
+            '-getDefaultAudioSessionWithCompletionHandler:':
+                name: getDefaultAudioSession
     UISceneActivationConditions: #since 13.0
         methods:
             '-initWithCoder:':
@@ -4579,6 +4686,10 @@ classes:
                 name: init
             '-drawAtPoint:inContext:':
                 name: drawAtPoint
+            '-textLineFragmentForVerticalOffset:requiresExactMatch:':
+                name: getTextLineFragmentForVerticalOffset
+            '-textLineFragmentForTextLocation:isUpstreamAffinity:':
+                name: getTextLineFragmentForTextLocation
     NSTextLayoutManager: #since 15.0
         methods:
             '-enumerateTextLayoutFragmentsFromLocation:options:usingBlock:':
@@ -4848,6 +4959,136 @@ classes:
         methods:
             '-initWithSystemFrame:':
                 name: init
+
+    UICollectionLayoutSectionOrthogonalScrollingProperties: {} #since 17.0
+    UIContentUnavailableButtonProperties: {} #since 17.0
+    UIContentUnavailableConfiguration: {} #since 17.0
+    UIContentUnavailableConfigurationState: #since 17.0
+        methods:
+            '-initWithTraitCollection:':
+                name: init
+            '-initWithCoder:':
+                name: init
+    UIContentUnavailableImageProperties: {} #since 17.0
+    UIContentUnavailableTextProperties: {} #since 17.0
+    UIContentUnavailableView: #since 17.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    UIDocumentViewController: #since 17.0
+        methods:
+            '-initWithDocument:':
+                name: init
+            '-openDocumentWithCompletionHandler:':
+                name: openDocument
+    UIHoverAutomaticEffect: {} #since 17.0
+    UIHoverHighlightEffect: {} #since 17.0
+    UIHoverLiftEffect: {} #since 17.0
+    UIHoverStyle: #since 17.0
+        methods:
+            '+styleWithEffect:shape:':
+                name: styleWithEffect
+            '+styleWithShape:':
+                name: styleWithShape
+    UIImageReader: #since 17.0
+        methods:
+            '-imageWithContentsOfFileURL:':
+                name: readImage
+            '-imageWithData:':
+                name: readImage
+            '-imageWithContentsOfFileURL:completion:':
+                name: readImage
+            '-imageWithData:completion:':
+                name: readImage
+            '+readerWithConfiguration:':
+                constructor: true
+                name: create
+    UIImageReaderConfiguration: {} #since 17.0
+    UIPageControlProgress: {} #since 17.0
+    UIPageControlTimerProgress: #since 17.0
+        methods:
+            '-initWithPreferredDuration:':
+                name: init
+            '-setDuration:forPage:':
+                name: setDuration
+    UIResolvedShape: {} #since 17.0
+    UISceneSessionActivationRequest: #since 17.0
+        skip_def_constructor: true # conflicts with '+request'
+        methods:
+            '+request':
+                constructor: true
+                name: create
+            '+requestWithRole:':
+                constructor: true
+                name: create
+            '+requestWithSession:':
+                constructor: true
+                name: create
+    UIShape: #since 17.0
+        methods:
+            '+rectShapeWithCornerRadius:':
+                name: rectShapeWithCornerRadius
+            '+rectShapeWithCornerRadius:cornerCurve:':
+                name: rectShapeWithCornerRadius
+            '+rectShapeWithCornerRadius:cornerCurve:maskedCorners:':
+                name: rectShapeWithCornerRadius
+            '+fixedRectShapeWithRect:':
+                name: fixedRectShape
+            '+fixedRectShapeWithRect:cornerRadius:':
+                name: fixedRectShape
+            '+fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:':
+                name: fixedRectShape
+            '+shapeWithBezierPath:':
+                name: shapeWithBezierPath
+            '+shapeWithProvider:':
+                name: shapeWithProvider
+    UIShapeResolutionContext: {} #since 17.0
+    UISymbolEffectCompletionContext: {} #since 17.0
+    UITextInputContext: {} #since 16.4
+    UITextItem: {} #since 17.0
+    UITextItemMenuConfiguration: #since 17.0
+        methods:
+            '+configurationWithMenu:':
+                constructor: true
+                name: create
+            '+configurationWithPreview:menu:':
+                constructor: true
+                name: create
+    UITextItemMenuPreview: #since 17.0
+        methods:
+            '-initWithView:':
+                name: init
+    UITextLoupeSession: #since 17.0
+        methods:
+            '-moveToPoint:withCaretRect:trackingCaret:':
+                name: moveToPoint
+            '+beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:':
+                name: beginLoupeSession
+    UITextSelectionDisplayInteraction: #since 17.0
+        methods:
+            '-initWithTextInput:delegate:':
+                name: init
+    UITraitAccessibilityContrast: {} #since 17.0
+    UITraitActiveAppearance: {} #since 17.0
+    UITraitDisplayGamut: {} #since 17.0
+    UITraitDisplayScale: {} #since 17.0
+    UITraitForceTouchCapability: {} #since 17.0
+    UITraitHorizontalSizeClass: {} #since 17.0
+    UITraitImageDynamicRange: {} #since 17.0
+    UITraitLayoutDirection: {} #since 17.0
+    UITraitLegibilityWeight: {} #since 17.0
+    UITraitPreferredContentSizeCategory: {} #since 17.0
+    UITraitSceneCaptureState: {} #since 17.0
+    UITraitToolbarItemPresentationSize: {} #since 17.0
+    UITraitTypesettingLanguage: {} #since 17.0
+    UITraitUserInterfaceIdiom: {} #since 17.0
+    UITraitUserInterfaceLevel: {} #since 17.0
+    UITraitUserInterfaceStyle: {} #since 17.0
+    UITraitVerticalSizeClass: {} #since 17.0
+    UIWindowSceneDragInteraction: {} #since 17.0
+    UIWindowScenePlacement: {} #since 17.0
+    UIWindowSceneProminentPlacement: {} #since 17.0
+    UIWindowSceneStandardPlacement: {} #since 17.0
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -6029,6 +6270,15 @@ protocols:
                 name: willPresentEditMenu
             '-textView:willDismissEditMenuWithAnimator:':
                 name: willDismissEditMenu
+            '-textView:primaryActionForTextItem:defaultAction:':
+                name: getPrimaryActionForTextItem
+            '-textView:menuConfigurationForTextItem:defaultMenu:':
+                name: getMenuConfigurationForTextItem
+            '-textView:textItemMenuWillDisplayForTextItem:animator:':
+                name: textItemMenuWillDisplayForTextItem
+            '-textView:textItemMenuWillEndForTextItem:animator:':
+                name: textItemMenuWillEndForTextItem
+
     UITimingCurveProvider: {} # DONE
     UIToolbarDelegate: {} # DONE
     UITraitEnvironment: # DONE
@@ -6809,6 +7059,57 @@ protocols:
                 name: scrollRangeToVisible
             '-compareOrderFromDocument:toDocument:':
                 name: compareOrder
+
+    UICGFloatTraitDefinition: {} #since 17.0
+    UIHoverEffect: {} #since 17.0
+    UILetterformAwareAdjusting: {} #since 17.0
+    UILookToDictateCapable: {}
+    UIMutableTraits: #since 17.0
+        methods:
+            '-setCGFloatValue:forTrait:':
+                name: setFloatValue
+            '-setNSIntegerValue:forTrait:':
+                name: setInteger
+            '-setObject:forTrait:':
+                name: setObject
+    UINSIntegerTraitDefinition: {} #since 17.0
+    UIObjectTraitDefinition: {} #since 17.0
+    UIPageControlProgressDelegate: #since 17.0
+        methods:
+            '-pageControlProgress:initialProgressForPage:':
+                name: getInitialProgress
+            '-pageControlProgressVisibilityDidChange:':
+                name: visibilityDidChange
+
+    UIPageControlTimerProgressDelegate: #since 17.0
+        methods:
+            '-pageControlTimerProgress:shouldAdvanceToPage:':
+                name: shouldAdvanceToPage
+            '-pageControlTimerProgressDidChange:':
+                name: didChange
+    UIShapeProvider: {} #since 17.0
+    UITextCursorView: {} #since 17.0
+    UITextSelectionDisplayInteractionDelegate: #since 17.0
+        methods:
+            '-selectionContainerViewBelowTextForSelectionDisplayInteraction:':
+                name: getSelectionContainerViewBelowText
+
+    UITextSelectionHandleView: {} #since 17.0
+    UITextSelectionHighlightView: {} #since 17.0
+    UITraitChangeObservable: #since 17.0
+        methods:
+            '-registerForTraitChanges:withHandler:':
+                # name: registerForTraitChanges
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+            '-registerForTraitChanges:withTarget:action:':
+                # name: registerForTraitChanges
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+            '-registerForTraitChanges:withAction:':
+                # name: registerForTraitChanges
+                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+    UITraitChangeRegistration: {} #since 17.0
+    UITraitDefinition: {} #since 17.0
+    UITraitOverrides: {} #since 17.0
 
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
@@ -7700,6 +8001,15 @@ values:
     UISheetPresentationControllerDetentInactive:
         class: UISheetPresentationControllerDetent
         name: Inactive
+
+    UITextItemTagAttributeName:
+        class: UITextItem
+        name: TagAttributeName
+
+    UICollectionLayoutSectionOrthogonalScrollingDecelerationRate(.*):
+        class: UICollectionLayoutSectionOrthogonalScrollingProperties
+        static_class: DecelerationRate
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):

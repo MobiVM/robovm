@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILabel/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIContentSizeCategoryAdjusting/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting/*</implements>*/ {
 
     /*<ptr>*/public static class UILabelPtr extends Ptr<UILabel, UILabelPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UILabel.class); }/*</bind>*/
@@ -74,6 +75,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIColor getTextColor();
     @Property(selector = "setTextColor:")
     public native void setTextColor(UIColor v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "preferredVibrancy")
+    public native UILabelVibrancy getPreferredVibrancy();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPreferredVibrancy:")
+    public native void setPreferredVibrancy(UILabelVibrancy v);
     @Property(selector = "shadowColor")
     public native UIColor getShadowColor();
     @Property(selector = "setShadowColor:")
@@ -173,6 +184,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "sizingRule")
+    public native UILetterformAwareSizingRule getSizingRule();
+    @Property(selector = "setSizingRule:")
+    public native void setSizingRule(UILetterformAwareSizingRule v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

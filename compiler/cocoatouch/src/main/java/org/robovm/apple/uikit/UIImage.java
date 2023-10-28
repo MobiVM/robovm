@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -162,6 +163,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "symbolConfiguration")
     public native UIImageSymbolConfiguration getSymbolConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isHighDynamicRange")
+    public native boolean isHighDynamicRange();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -313,6 +319,326 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setAccessibilityTextualContext:")
     public native void setAccessibilityTextualContext(String v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityDirectTouchOptions")
+    public native UIAccessibilityDirectTouchOptions getAccessibilityDirectTouchOptions();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityDirectTouchOptions:")
+    public native void setAccessibilityDirectTouchOptions(UIAccessibilityDirectTouchOptions v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isAccessibilityElementBlock")
+    public native @Block BooleanBlock getIsAccessibilityElementBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setIsAccessibilityElementBlock:")
+    public native void setIsAccessibilityElementBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityLabelBlock")
+    public native @Block Block0<String> getAccessibilityLabelBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityLabelBlock:")
+    public native void setAccessibilityLabelBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityValueBlock")
+    public native @Block Block0<String> getAccessibilityValueBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityValueBlock:")
+    public native void setAccessibilityValueBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityHintBlock")
+    public native @Block Block0<String> getAccessibilityHintBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityHintBlock:")
+    public native void setAccessibilityHintBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityTraitsBlock")
+    public native @Block Block0<UIAccessibilityTraits> getAccessibilityTraitsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityTraitsBlock:")
+    public native void setAccessibilityTraitsBlock(@Block Block0<UIAccessibilityTraits> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityIdentifierBlock")
+    public native @Block Block0<String> getAccessibilityIdentifierBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityIdentifierBlock:")
+    public native void setAccessibilityIdentifierBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityHeaderElementsBlock")
+    public native @Block Block0<NSArray<?>> getAccessibilityHeaderElementsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityHeaderElementsBlock:")
+    public native void setAccessibilityHeaderElementsBlock(@Block Block0<NSArray<?>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedLabelBlock")
+    public native @Block Block0<NSAttributedString> getAccessibilityAttributedLabelBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedLabelBlock:")
+    public native void setAccessibilityAttributedLabelBlock(@Block Block0<NSAttributedString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedHintBlock")
+    public native @Block Block0<NSAttributedString> getAccessibilityAttributedHintBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedHintBlock:")
+    public native void setAccessibilityAttributedHintBlock(@Block Block0<NSAttributedString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityLanguageBlock")
+    public native @Block Block0<String> getAccessibilityLanguageBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityLanguageBlock:")
+    public native void setAccessibilityLanguageBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityTextualContextBlock")
+    public native @Block Block0<String> getAccessibilityTextualContextBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityTextualContextBlock:")
+    public native void setAccessibilityTextualContextBlock(@Block Block0<String> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityUserInputLabelsBlock")
+    public native @Block Block0<NSArray<NSString>> getAccessibilityUserInputLabelsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityUserInputLabelsBlock:")
+    public native void setAccessibilityUserInputLabelsBlock(@Block Block0<NSArray<NSString>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedUserInputLabelsBlock")
+    public native @Block Block0<NSArray<NSAttributedString>> getAccessibilityAttributedUserInputLabelsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedUserInputLabelsBlock:")
+    public native void setAccessibilityAttributedUserInputLabelsBlock(@Block Block0<NSArray<NSAttributedString>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityAttributedValueBlock")
+    public native @Block Block0<NSAttributedString> getAccessibilityAttributedValueBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityAttributedValueBlock:")
+    public native void setAccessibilityAttributedValueBlock(@Block Block0<NSAttributedString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityElementsHiddenBlock")
+    public native @Block BooleanBlock getAccessibilityElementsHiddenBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityElementsHiddenBlock:")
+    public native void setAccessibilityElementsHiddenBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityRespondsToUserInteractionBlock")
+    public native @Block BooleanBlock getAccessibilityRespondsToUserInteractionBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityRespondsToUserInteractionBlock:")
+    public native void setAccessibilityRespondsToUserInteractionBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityViewIsModalBlock")
+    public native @Block BooleanBlock getAccessibilityViewIsModalBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityViewIsModalBlock:")
+    public native void setAccessibilityViewIsModalBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityShouldGroupAccessibilityChildrenBlock")
+    public native @Block BooleanBlock getAccessibilityShouldGroupAccessibilityChildrenBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityShouldGroupAccessibilityChildrenBlock:")
+    public native void setAccessibilityShouldGroupAccessibilityChildrenBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityElementsBlock")
+    public native @Block Block0<NSArray<?>> getAccessibilityElementsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityElementsBlock:")
+    public native void setAccessibilityElementsBlock(@Block Block0<NSArray<?>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "automationElementsBlock")
+    public native @Block Block0<NSArray<?>> getAutomationElementsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAutomationElementsBlock:")
+    public native void setAutomationElementsBlock(@Block Block0<NSArray<?>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityContainerTypeBlock")
+    public native @Block Block0<UIAccessibilityContainerType> getAccessibilityContainerTypeBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityContainerTypeBlock:")
+    public native void setAccessibilityContainerTypeBlock(@Block Block0<UIAccessibilityContainerType> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityActivationPointBlock")
+    public native @Block Block0<CGPoint> getAccessibilityActivationPointBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityActivationPointBlock:")
+    public native void setAccessibilityActivationPointBlock(@Block Block0<CGPoint> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityFrameBlock")
+    public native @Block Block0<CGRect> getAccessibilityFrameBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityFrameBlock:")
+    public native void setAccessibilityFrameBlock(@Block Block0<CGRect> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityNavigationStyleBlock")
+    public native @Block Block0<UIAccessibilityNavigationStyle> getAccessibilityNavigationStyleBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityNavigationStyleBlock:")
+    public native void setAccessibilityNavigationStyleBlock(@Block Block0<UIAccessibilityNavigationStyle> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityPathBlock")
+    public native @Block Block0<UIBezierPath> getAccessibilityPathBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityPathBlock:")
+    public native void setAccessibilityPathBlock(@Block Block0<UIBezierPath> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityActivateBlock")
+    public native @Block BooleanBlock getAccessibilityActivateBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityActivateBlock:")
+    public native void setAccessibilityActivateBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityIncrementBlock")
+    public native @Block Runnable getAccessibilityIncrementBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityIncrementBlock:")
+    public native void setAccessibilityIncrementBlock(@Block Runnable v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityDecrementBlock")
+    public native @Block Runnable getAccessibilityDecrementBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityDecrementBlock:")
+    public native void setAccessibilityDecrementBlock(@Block Runnable v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityPerformEscapeBlock")
+    public native @Block BooleanBlock getAccessibilityPerformEscapeBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityPerformEscapeBlock:")
+    public native void setAccessibilityPerformEscapeBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityMagicTapBlock")
+    public native @Block BooleanBlock getAccessibilityMagicTapBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityMagicTapBlock:")
+    public native void setAccessibilityMagicTapBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "accessibilityCustomActionsBlock")
+    public native @Block Block0<NSArray<UIAccessibilityCustomAction>> getAccessibilityCustomActionsBlock();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAccessibilityCustomActionsBlock:")
+    public native void setAccessibilityCustomActionsBlock(@Block Block0<NSArray<UIAccessibilityCustomAction>> v);
     @Property(selector = "accessibilityIdentifier")
     public native String getAccessibilityIdentifier();
     @Property(selector = "setAccessibilityIdentifier:")
@@ -337,6 +663,11 @@ import org.robovm.apple.linkpresentation.*;
     public native NSData toPNGData();
     @Bridge(symbol="UIImageJPEGRepresentation", optional=true)
     public native NSData toJPEGData(@MachineSizedFloat double compressionQuality);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="UIImageHEICRepresentation", optional=true)
+    public native NSData toHEICData();
     @Bridge(symbol="UIImageWriteToSavedPhotosAlbum", optional=true)
     public native void saveToPhotosAlbum(NSObject completionTarget, Selector completionSelector, @Pointer long contextInfo);
     
@@ -434,6 +765,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "prepareThumbnailOfSize:completionHandler:")
     public native void prepareThumbnail(@ByVal CGSize size, @Block VoidBlock1<UIImage> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "imageRestrictedToStandardDynamicRange")
+    public native UIImage imageRestrictedToStandardDynamicRange();
     /**
      * @since Available in iOS 13.0 and later.
      */

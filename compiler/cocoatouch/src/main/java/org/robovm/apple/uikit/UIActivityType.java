@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -109,5 +110,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIActivityTypeCollaborationCopyLink", optional=true)
     public static native String CollaborationCopyLink();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeAddToHomeScreen", optional=true)
+    public static native String AddToHomeScreen();
     /*</methods>*/
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -79,6 +80,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean hidesForSinglePage();
     @Property(selector = "setHidesForSinglePage:")
     public native void setHidesForSinglePage(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "progress")
+    public native UIPageControlProgress getProgress();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setProgress:")
+    public native void setProgress(UIPageControlProgress v);
     @Property(selector = "pageIndicatorTintColor")
     public native UIColor getPageIndicatorTintColor();
     @Property(selector = "setPageIndicatorTintColor:")

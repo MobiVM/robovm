@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -297,8 +298,16 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "statusBarFrame")
     public native @ByVal CGRect getStatusBarFrame();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead.
+     */
+    @Deprecated
     @Property(selector = "applicationIconBadgeNumber")
     public native @MachineSizedSInt long getApplicationIconBadgeNumber();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead.
+     */
+    @Deprecated
     @Property(selector = "setApplicationIconBadgeNumber:")
     public native void setApplicationIconBadgeNumber(@MachineSizedSInt long v);
     @Property(selector = "applicationSupportsShakeToEdit")
@@ -586,8 +595,15 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "setMinimumBackgroundFetchInterval:")
     public native void setMinimumBackgroundFetchInterval(double minimumBackgroundFetchInterval);
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
+    @Method(selector = "activateSceneSessionForRequest:errorHandler:")
+    public native void activateSceneSession(UISceneSessionActivationRequest request, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Please use activateSceneSessionForRequest:errorHandler:
+     */
+    @Deprecated
     @Method(selector = "requestSceneSessionActivation:userActivity:options:errorHandler:")
     public native void requestSceneSessionActivation(UISceneSession sceneSession, NSUserActivity userActivity, UISceneActivationRequestOptions options, @Block VoidBlock1<NSError> errorHandler);
     /**
