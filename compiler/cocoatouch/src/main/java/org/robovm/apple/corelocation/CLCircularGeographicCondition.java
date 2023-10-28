@@ -35,35 +35,35 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use CLBeaconIdentityCondition
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
+/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLCircularGeographicCondition/*</name>*/ 
+    extends /*<extends>*/CLCondition/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class CLCircularGeographicConditionPtr extends Ptr<CLCircularGeographicCondition, CLCircularGeographicConditionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLCircularGeographicCondition.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLBeaconIdentityConstraint() {}
-    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
-    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
-    @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
-    @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
+    protected CLCircularGeographicCondition() {}
+    protected CLCircularGeographicCondition(Handle h, long handle) { super(h, handle); }
+    protected CLCircularGeographicCondition(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCenter:radius:")
+    public CLCircularGeographicCondition(@ByVal CLLocationCoordinate2D center, double radius) { super((SkipInit) null); initObject(init(center, radius)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "center")
+    public native @ByVal CLLocationCoordinate2D getCenter();
+    @Property(selector = "radius")
+    public native double getRadius();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithCenter:radius:")
+    protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius);
     /*</methods>*/
 }

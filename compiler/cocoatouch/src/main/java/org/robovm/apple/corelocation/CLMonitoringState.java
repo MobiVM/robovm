@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.network;
+package org.robovm.apple.corelocation;
 
 /*<imports>*/
 import java.io.*;
@@ -28,24 +28,20 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
-import org.robovm.apple.security.*;
+import org.robovm.apple.addressbook.*;
+import org.robovm.apple.corebluetooth.*;
+import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWPathUnsatisfiedReason/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CLMonitoringState/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    not_available(0L),
-    cellular_denied(1L),
-    wifi_denied(2L),
-    local_network_denied(3L),
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    vpn_inactive(4L);
+    Unknown(0L),
+    Satisfied(1L),
+    Unsatisfied(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +51,15 @@ public enum /*<name>*/NWPathUnsatisfiedReason/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWPathUnsatisfiedReason/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CLMonitoringState/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWPathUnsatisfiedReason/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWPathUnsatisfiedReason/*</name>*/ v : values()) {
+    public static /*<name>*/CLMonitoringState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CLMonitoringState/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWPathUnsatisfiedReason/*</name>*/.class.getName());
+            + /*<name>*/CLMonitoringState/*</name>*/.class.getName());
     }
 }

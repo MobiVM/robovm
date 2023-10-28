@@ -35,35 +35,45 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use CLBeaconIdentityCondition
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
+/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityCondition/*</name>*/ 
+    extends /*<extends>*/CLCondition/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class CLBeaconIdentityConditionPtr extends Ptr<CLBeaconIdentityCondition, CLBeaconIdentityConditionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityCondition.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLBeaconIdentityConstraint() {}
-    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
-    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
+    protected CLBeaconIdentityCondition() {}
+    protected CLBeaconIdentityCondition(Handle h, long handle) { super(h, handle); }
+    protected CLBeaconIdentityCondition(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
+    public CLBeaconIdentityCondition(NSUUID uuid) { super((SkipInit) null); initObject(init(uuid)); }
     @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
+    public CLBeaconIdentityCondition(NSUUID uuid, short major) { super((SkipInit) null); initObject(init(uuid, major)); }
     @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
+    public CLBeaconIdentityCondition(NSUUID uuid, short major, short minor) { super((SkipInit) null); initObject(init(uuid, major, minor)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "UUID")
+    public native NSUUID getUUID();
+    @Property(selector = "major")
+    public native NSNumber getMajor();
+    @Property(selector = "minor")
+    public native NSNumber getMinor();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithUUID:")
+    protected native @Pointer long init(NSUUID uuid);
+    @Method(selector = "initWithUUID:major:")
+    protected native @Pointer long init(NSUUID uuid, short major);
+    @Method(selector = "initWithUUID:major:minor:")
+    protected native @Pointer long init(NSUUID uuid, short major, short minor);
     /*</methods>*/
 }

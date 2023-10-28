@@ -34,9 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use CLBeaconIdentityCondition
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconRegion/*</name>*/ 
     extends /*<extends>*/CLRegion/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

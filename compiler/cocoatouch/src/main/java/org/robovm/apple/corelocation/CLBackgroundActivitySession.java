@@ -35,35 +35,36 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use CLBeaconIdentityCondition
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBackgroundActivitySession/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class CLBackgroundActivitySessionPtr extends Ptr<CLBackgroundActivitySession, CLBackgroundActivitySessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLBackgroundActivitySession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLBeaconIdentityConstraint() {}
-    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
-    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
-    @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
-    @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
+    protected CLBackgroundActivitySession() {}
+    protected CLBackgroundActivitySession(Handle h, long handle) { super(h, handle); }
+    protected CLBackgroundActivitySession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "invalidate")
+    public native void invalidate();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "backgroundActivitySession")
+    public static native CLBackgroundActivitySession backgroundActivitySession();
     /*</methods>*/
 }

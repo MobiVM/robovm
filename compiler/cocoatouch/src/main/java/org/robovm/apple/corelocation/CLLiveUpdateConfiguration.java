@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.network;
+package org.robovm.apple.corelocation;
 
 /*<imports>*/
 import java.io.*;
@@ -28,24 +28,22 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
-import org.robovm.apple.security.*;
+import org.robovm.apple.addressbook.*;
+import org.robovm.apple.corebluetooth.*;
+import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWPathUnsatisfiedReason/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CLLiveUpdateConfiguration/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    not_available(0L),
-    cellular_denied(1L),
-    wifi_denied(2L),
-    local_network_denied(3L),
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    vpn_inactive(4L);
+    Default(0L),
+    AutomotiveNavigation(1L),
+    OtherNavigation(2L),
+    Fitness(3L),
+    Airborne(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +53,15 @@ public enum /*<name>*/NWPathUnsatisfiedReason/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWPathUnsatisfiedReason/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CLLiveUpdateConfiguration/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWPathUnsatisfiedReason/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWPathUnsatisfiedReason/*</name>*/ v : values()) {
+    public static /*<name>*/CLLiveUpdateConfiguration/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CLLiveUpdateConfiguration/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWPathUnsatisfiedReason/*</name>*/.class.getName());
+            + /*<name>*/CLLiveUpdateConfiguration/*</name>*/.class.getName());
     }
 }

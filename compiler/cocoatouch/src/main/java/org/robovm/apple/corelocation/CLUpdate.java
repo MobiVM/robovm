@@ -35,32 +35,33 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use CLBeaconIdentityCondition
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLUpdate/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class CLUpdatePtr extends Ptr<CLUpdate, CLUpdatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLUpdate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLBeaconIdentityConstraint() {}
-    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
-    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
-    @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
-    @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
+    public CLUpdate() {}
+    protected CLUpdate(Handle h, long handle) { super(h, handle); }
+    protected CLUpdate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isStationary")
+    public native boolean isStationary();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "location")
+    public native CLLocation getLocation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

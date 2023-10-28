@@ -35,35 +35,37 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use CLBeaconIdentityCondition
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
+/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLMonitoringRecord/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
+    /*<ptr>*/public static class CLMonitoringRecordPtr extends Ptr<CLMonitoringRecord, CLMonitoringRecordPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLMonitoringRecord.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLBeaconIdentityConstraint() {}
-    protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
-    protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
-    @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
-    @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
+    protected CLMonitoringRecord() {}
+    protected CLMonitoringRecord(Handle h, long handle) { super(h, handle); }
+    protected CLMonitoringRecord(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CLMonitoringRecord(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "condition")
+    public native CLCondition getCondition();
+    @Property(selector = "lastEvent")
+    public native CLMonitoringEvent getLastEvent();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
