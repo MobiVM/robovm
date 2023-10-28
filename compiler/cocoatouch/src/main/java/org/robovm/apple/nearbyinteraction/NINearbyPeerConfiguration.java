@@ -64,6 +64,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setCameraAssistanceEnabled:")
     public native void setCameraAssistanceEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isExtendedDistanceMeasurementEnabled")
+    public native boolean isExtendedDistanceMeasurementEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setExtendedDistanceMeasurementEnabled:")
+    public native void setExtendedDistanceMeasurementEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

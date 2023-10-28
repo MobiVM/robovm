@@ -74,6 +74,11 @@ import org.robovm.apple.avfoundation.*;
     public static native boolean process(NSArray<?> inputs, NSDictionary<NSString, ?> arguments, CIImageProcessorOutput output, NSError.NSErrorPtr error);
     @Method(selector = "roiForInput:arguments:outputRect:")
     public static native @ByVal CGRect roiForInput(int input, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "roiTileArrayForInput:arguments:outputRect:")
+    public static native NSArray<CIVector> roiTileArrayForInput(int input, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
     @Method(selector = "formatForInputAtIndex:")
     public static native int formatForInputAtIndex(int input);
     @Method(selector = "applyWithExtent:inputs:arguments:error:")

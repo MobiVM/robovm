@@ -153,10 +153,17 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIImageToneMapHDRtoSDR", optional=true)
         public static native CFString ToneMapHDRtoSDR();
         /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageExpandToHDR", optional=true)
+        public static native CFString ExpandToHDR();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="kCIImageNearestSampling", optional=true)
         public static native CFString NearestSampling();
+        @GlobalValue(symbol="kCIImageCacheImmediately", optional=true)
+        public static native CFString CacheImmediately();
         @GlobalValue(symbol="kCIImageProperties", optional=true)
         public static native CFString Properties();
         /**
@@ -204,6 +211,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageAuxiliarySemanticSegmentationSkyMatte", optional=true)
         public static native CFString AuxiliarySemanticSegmentationSkyMatte();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCIImageAuxiliaryHDRGainMap", optional=true)
+        public static native CFString AuxiliaryHDRGainMap();
         /**
          * @since Available in iOS 9.0 and later.
          */

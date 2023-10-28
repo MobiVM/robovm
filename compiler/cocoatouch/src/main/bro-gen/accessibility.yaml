@@ -90,6 +90,12 @@ functions:
     AXMFiHearingDevicePairedUUIDs:
         class: AXHearingUtilities
         name: getMFiHearingDevicePairedUUIDs
+    AXPrefersHorizontalTextLayout:
+        class: AXSettings
+        name: prefersHorizontalTextLayout
+    AXAnimatedImagesEnabled:
+        class: AXSettings
+        name: isAnimatedImagesEnabled
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AX.*):
@@ -97,14 +103,14 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
-    AXMFiHearingDeviceStreamingEarDidChangeNotification:
+    AX(MFiHearingDeviceStreamingEarDidChange|MFiHearingDevicePairedUUIDsDidChange)Notification:
         class: AXHearingUtilities
         static_class: Notifications
-        name: MFiHearingDeviceStreamingEarDidChange
-    AXMFiHearingDevicePairedUUIDsDidChangeNotification:
-        class: AXHearingUtilities
+        name: '#{g[0]}'
+    AX(PrefersHorizontalTextLayoutDidChange|AnimatedImagesEnabledDidChange)Notification:
+        class: AXSettings
         static_class: Notifications
-        name: MFiHearingDevicePairedUUIDsDidChange
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AX.*):

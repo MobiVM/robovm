@@ -33,35 +33,44 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AXCustomContentProviderAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements AXCustomContentProvider/*</implements>*/ {
+/*<annotations>*/@Library("Accessibility")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AXSettings/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(AXSettings.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("accessibilityCustomContent")
-    public NSArray<AXCustomContent> getAccessibilityCustomContent() { return null; }
-    @NotImplemented("setAccessibilityCustomContent:")
-    public void setAccessibilityCustomContent(NSArray<AXCustomContent> v) {}
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @NotImplemented("accessibilityCustomContentBlock")
-    public @Block Block0<NSArray<AXCustomContent>> getAccessibilityCustomContentBlock() { return null; }
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @NotImplemented("setAccessibilityCustomContentBlock:")
-    public void setAccessibilityCustomContentBlock(@Block Block0<NSArray<AXCustomContent>> v) {}
-    /*</properties>*/
+    /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("Accessibility")
+    public static class Notifications {
+        static { Bro.bind(Notifications.class); }
+
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AXPrefersHorizontalTextLayoutDidChangeNotification", optional=true)
+        public static native String PrefersHorizontalTextLayoutDidChange();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AXAnimatedImagesEnabledDidChangeNotification", optional=true)
+        public static native String AnimatedImagesEnabledDidChange();
+    }
     
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AXPrefersHorizontalTextLayout", optional=true)
+    public static native boolean prefersHorizontalTextLayout();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AXAnimatedImagesEnabled", optional=true)
+    public static native boolean isAnimatedImagesEnabled();
     /*</methods>*/
 }

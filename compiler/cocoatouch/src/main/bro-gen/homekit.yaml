@@ -89,7 +89,10 @@ classes:
         properties:
             'categoryType':
                 type: HMAccessoryCategoryType
-    HMAction: {} # DONE
+    HMAction: # DONE
+        methods:
+            '+new':
+                exclude: true
     HMActionSet: # DONE
         skip_def_constructor: true
         properties:
@@ -142,7 +145,12 @@ classes:
                 type: HMCharacteristicMetadataFormat
             'units':
                 type: HMCharacteristicMetadataUnits
-    HMEvent: {} # DONE
+    HMEvent: # DONE
+        visibility: public abstract
+        methods:
+            '+new':
+                exclude: true
+
     HMEventTrigger: # DONE
         skip_def_constructor: true
         properties:
@@ -345,6 +353,8 @@ classes:
         skip_def_constructor: true
         methods:
             '-initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:':
+                name: init
+            '-initWithName:fireDate:recurrence:':
                 name: init
             '-updateFireDate:completionHandler:':
                 trim_after_first_colon: true
