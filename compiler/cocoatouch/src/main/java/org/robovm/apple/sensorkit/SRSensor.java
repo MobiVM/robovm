@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -139,9 +143,29 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 15.4 and later.
      */
     public static final SRSensor AmbientPressure = new SRSensor("AmbientPressure");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final SRSensor MediaEvents = new SRSensor("MediaEvents");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final SRSensor WristTemperature = new SRSensor("WristTemperature");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final SRSensor HeartRate = new SRSensor("HeartRate");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final SRSensor FaceMetrics = new SRSensor("FaceMetrics");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final SRSensor Odometer = new SRSensor("Odometer");
     /*</constants>*/
     
-    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure/*</value_list>*/};
+    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure, MediaEvents, WristTemperature, HeartRate, FaceMetrics, Odometer/*</value_list>*/};
     
     /*<name>*/SRSensor/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -229,6 +253,31 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="SRSensorAmbientPressure", optional=true)
         public static native NSString AmbientPressure();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="SRSensorMediaEvents", optional=true)
+        public static native NSString MediaEvents();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorWristTemperature", optional=true)
+        public static native NSString WristTemperature();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorHeartRate", optional=true)
+        public static native NSString HeartRate();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorFaceMetrics", optional=true)
+        public static native NSString FaceMetrics();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorOdometer", optional=true)
+        public static native NSString Odometer();
         /*</values>*/
     }
 }

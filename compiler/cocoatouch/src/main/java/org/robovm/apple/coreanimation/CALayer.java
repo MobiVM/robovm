@@ -146,6 +146,16 @@ import org.robovm.apple.corevideo.*;
      */
     @Property(selector = "setContentsFormat:")
     public native void setContentsFormat(CALayerContentsFormat v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "wantsExtendedDynamicRangeContent")
+    public native boolean wantsExtendedDynamicRangeContent();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setWantsExtendedDynamicRangeContent:")
+    public native void setWantsExtendedDynamicRangeContent(boolean v);
     @Property(selector = "minificationFilter")
     public native CAFilter getMinificationFilter();
     @Property(selector = "setMinificationFilter:")

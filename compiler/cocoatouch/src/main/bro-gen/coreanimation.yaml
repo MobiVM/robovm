@@ -255,7 +255,10 @@ classes:
                 type: CALineCap
             'lineJoin':
                 type: CALineJoin
-    CASpringAnimation: {} # DONE
+    CASpringAnimation:  # DONE
+        methods:
+            '-initWithPerceptualDuration:bounce:':
+                name: init
     CATextLayer: # DONE
         properties:
             'string':
@@ -325,6 +328,8 @@ classes:
                 name: createHDR10Metadata
             '+HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:':
                 name: createHDR10Metadata
+            '+HLGMetadataWithAmbientViewingEnvironment:':
+                name: createHLGMetadata
     CARenderer: #since 2.0
         methods:
             '-beginFrameAtTime:timeStamp:':
@@ -332,6 +337,15 @@ classes:
             '+rendererWithMTLTexture:options:':
                 name: create
                 constructor: true
+    CAMetalDisplayLink: #since 17.0
+        methods:
+            '-initWithMetalLayer:':
+                name: init
+            '-addToRunLoop:forMode:':
+                name: addToRunLoop
+            '-removeFromRunLoop:forMode:':
+                name: removeFromRunLoop
+    CAMetalDisplayLinkUpdate: {} #since 17.0
 protocols:
     CAAction: # DONE
         methods:
@@ -368,7 +382,10 @@ protocols:
         properties:
             'texture':
                 annotations: ['@WeaklyLinked']
-
+    CAMetalDisplayLinkDelegate: #since 17.0
+        methods:
+            '-metalDisplayLink:needsUpdate:':
+                name: needsUpdate
 functions:
     # CATransform3D
     CATransform3DMake(.*):

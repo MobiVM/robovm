@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +67,11 @@ import org.robovm.apple.foundation.*;
     public native @MachineSizedSInt long getTotalUnlocks();
     @Property(selector = "totalUnlockDuration")
     public native double getTotalUnlockDuration();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "version")
+    public native String getVersion();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

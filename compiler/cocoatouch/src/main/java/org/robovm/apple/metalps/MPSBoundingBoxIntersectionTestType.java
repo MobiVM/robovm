@@ -35,16 +35,19 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MPSBoundingBoxIntersectionTestType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
     AxisAligned(1L),
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     Fast(2L);
     /*</values>*/
 

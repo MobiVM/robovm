@@ -53,6 +53,11 @@ import org.robovm.apple.corevideo.*;
     public CASpringAnimation() {}
     protected CASpringAnimation(Handle h, long handle) { super(h, handle); }
     protected CASpringAnimation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPerceptualDuration:bounce:")
+    public CASpringAnimation(double perceptualDuration, @MachineSizedFloat double bounce) { super((SkipInit) null); initObject(init(perceptualDuration, bounce)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mass")
@@ -71,13 +76,38 @@ import org.robovm.apple.corevideo.*;
     public native @MachineSizedFloat double getInitialVelocity();
     @Property(selector = "setInitialVelocity:")
     public native void setInitialVelocity(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "allowsOverdamping")
+    public native boolean allowsOverdamping();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAllowsOverdamping:")
+    public native void setAllowsOverdamping(boolean v);
     @Property(selector = "settlingDuration")
     public native double getSettlingDuration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "perceptualDuration")
+    public native double getPerceptualDuration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "bounce")
+    public native @MachineSizedFloat double getBounce();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPerceptualDuration:bounce:")
+    protected native @Pointer long init(double perceptualDuration, @MachineSizedFloat double bounce);
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
     /*</methods>*/
