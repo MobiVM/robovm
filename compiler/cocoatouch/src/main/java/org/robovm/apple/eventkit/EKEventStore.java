@@ -91,6 +91,25 @@ import org.robovm.apple.mapkit.*;
      */
     @Method(selector = "initWithSources:")
     protected native @Pointer long init(NSArray<EKSource> sources);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestFullAccessToEventsWithCompletion:")
+    public native void requestFullAccessToEvents(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestWriteOnlyAccessToEventsWithCompletion:")
+    public native void requestWriteOnlyAccessToEventsWithCompletion(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestFullAccessToRemindersWithCompletion:")
+    public native void requestFullAccessToReminders(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:
+     */
+    @Deprecated
     @Method(selector = "requestAccessToEntityType:completion:")
     public native void requestAccess(EKEntityType entityType, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "sourceWithIdentifier:")

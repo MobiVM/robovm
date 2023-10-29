@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKShareMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKShareMetadata() {}
+    protected CKShareMetadata() {}
     protected CKShareMetadata(Handle h, long handle) { super(h, handle); }
     protected CKShareMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")

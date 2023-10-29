@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,17 +34,13 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/CKApplicationPermissionStatus/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CKSyncEnginePendingRecordZoneChangeType/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    InitialState(0L),
-    CouldNotComplete(1L),
-    Denied(2L),
-    Granted(3L);
+    SaveRecord(0L),
+    DeleteRecord(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,15 +50,15 @@ public enum /*<name>*/CKApplicationPermissionStatus/*</name>*/ implements Valued
 
     private final long n;
 
-    private /*<name>*/CKApplicationPermissionStatus/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CKSyncEnginePendingRecordZoneChangeType/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CKApplicationPermissionStatus/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CKApplicationPermissionStatus/*</name>*/ v : values()) {
+    public static /*<name>*/CKSyncEnginePendingRecordZoneChangeType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CKSyncEnginePendingRecordZoneChangeType/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CKApplicationPermissionStatus/*</name>*/.class.getName());
+            + /*<name>*/CKSyncEnginePendingRecordZoneChangeType/*</name>*/.class.getName());
     }
 }

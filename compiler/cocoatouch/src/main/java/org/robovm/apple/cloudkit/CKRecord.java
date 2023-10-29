@@ -131,6 +131,16 @@ import org.robovm.apple.fileprovider.*;
         put(NSArray.fromStrings(object), key);
     }
     /*<methods>*/
+    @GlobalValue(symbol="CKRecordRecordIDKey", optional=true)
+    public static native String RecordIDKey();
+    @GlobalValue(symbol="CKRecordCreatorUserRecordIDKey", optional=true)
+    public static native String CreatorUserRecordIDKey();
+    @GlobalValue(symbol="CKRecordCreationDateKey", optional=true)
+    public static native String CreationDateKey();
+    @GlobalValue(symbol="CKRecordLastModifiedUserRecordIDKey", optional=true)
+    public static native String LastModifiedUserRecordIDKey();
+    @GlobalValue(symbol="CKRecordModificationDateKey", optional=true)
+    public static native String ModificationDateKey();
     /**
      * @since Available in iOS 10.0 and later.
      */

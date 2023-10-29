@@ -50,6 +50,11 @@ import org.robovm.apple.fileprovider.*;
     protected CKQuerySubscription() {}
     protected CKQuerySubscription(Handle h, long handle) { super(h, handle); }
     protected CKQuerySubscription(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Use initWithRecordType:predicate:subscriptionID:options:
+     */
+    @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
     public CKQuerySubscription(String recordType, NSPredicate predicate, CKQuerySubscriptionOptions querySubscriptionOptions) { super((SkipInit) null); initObject(init(recordType, predicate, querySubscriptionOptions)); }
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
@@ -73,6 +78,11 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Use initWithRecordType:predicate:subscriptionID:options:
+     */
+    @Deprecated
     @Method(selector = "initWithRecordType:predicate:options:")
     protected native @Pointer long init(String recordType, NSPredicate predicate, CKQuerySubscriptionOptions querySubscriptionOptions);
     @Method(selector = "initWithRecordType:predicate:subscriptionID:options:")
