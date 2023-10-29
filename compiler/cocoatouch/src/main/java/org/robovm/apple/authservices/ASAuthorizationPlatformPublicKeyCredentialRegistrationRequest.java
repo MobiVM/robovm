@@ -52,6 +52,16 @@ import org.robovm.apple.coreanimation.*;
     protected ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "largeBlob")
+    public native ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput getLargeBlob();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setLargeBlob:")
+    public native void setLargeBlob(ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput v);
     @Property(selector = "relyingPartyIdentifier")
     public native String getRelyingPartyIdentifier();
     @Property(selector = "userID")

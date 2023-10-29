@@ -8,6 +8,7 @@ include:
     - coreimage
     - coremedia
     - imageio
+    - uniformtypeid
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
@@ -268,6 +269,9 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-renderedContentURLForType:error:':
+                throws: NSErrorException
+                name: renderedContentURL
     PHFetchOptions: # DONE
         properties:
             'includeHiddenAssets':
