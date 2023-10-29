@@ -52,7 +52,11 @@ public enum /*<name>*/INStartCallIntentResponseCode/*</name>*/ implements Valued
     FailureAirplaneModeEnabled(8L),
     FailureUnableToHandOff(9L),
     FailureAppConfigurationRequired(10L),
-    FailureCallInProgress(11L);
+    FailureCallInProgress(11L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FailureRequiringInAppAuthentication(13L);
     /*</values>*/
 
     /*<bind>*/

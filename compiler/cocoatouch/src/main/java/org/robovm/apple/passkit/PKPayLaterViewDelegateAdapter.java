@@ -36,38 +36,24 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 15.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKShippingContactEditingMode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Available(1L),
-    StorePickup(2L),
-    /**
-     * @deprecated Use PKShippingContactEditingModeAvailable instead
-     */
-    @Deprecated
-    Enabled(1L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPayLaterViewDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements PKPayLaterViewDelegate/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/PKShippingContactEditingMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/PKShippingContactEditingMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKShippingContactEditingMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKShippingContactEditingMode/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("payLaterViewDidUpdateHeight:")
+    public void payLaterViewDidUpdateHeight(PKPayLaterView view) {}
+    /*</methods>*/
 }

@@ -34,14 +34,13 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("CoreMIDI")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIEventPacket/*</name>*/ 
     extends /*<extends>*/Struct<MIDIEventPacket>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MIDIEventPacketPtr extends Ptr<MIDIEventPacket, MIDIEventPacketPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(MIDIEventPacket.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public MIDIEventPacket() {}
@@ -60,5 +59,11 @@ import org.robovm.apple.corefoundation.*;
     @StructMember(2) public native @Array({64}) IntBuffer getWords();
     @StructMember(2) public native MIDIEventPacket setWords(@Array({64}) IntBuffer words);
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="MIDIEventPacketSysexBytesForGroup", optional=true)
+    public native OSStatus getSysexBytesForGroup(byte groupIndex, NSData.NSDataPtr outData);
+    /*</methods>*/
 }

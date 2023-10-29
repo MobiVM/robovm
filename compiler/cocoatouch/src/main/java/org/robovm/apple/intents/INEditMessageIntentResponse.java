@@ -35,39 +35,33 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.2 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/INHangUpCallIntent/*</name>*/ 
-    extends /*<extends>*/INIntent/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INEditMessageIntentResponse/*</name>*/ 
+    extends /*<extends>*/INIntentResponse/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class INHangUpCallIntentPtr extends Ptr<INHangUpCallIntent, INHangUpCallIntentPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(INHangUpCallIntent.class); }/*</bind>*/
+    /*<ptr>*/public static class INEditMessageIntentResponsePtr extends Ptr<INEditMessageIntentResponse, INEditMessageIntentResponsePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(INEditMessageIntentResponse.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INHangUpCallIntent() {}
-    protected INHangUpCallIntent(Handle h, long handle) { super(h, handle); }
-    protected INHangUpCallIntent(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    @Method(selector = "initWithCallIdentifier:")
-    public INHangUpCallIntent(String callIdentifier) { super((SkipInit) null); initObject(init(callIdentifier)); }
+    protected INEditMessageIntentResponse() {}
+    protected INEditMessageIntentResponse(Handle h, long handle) { super(h, handle); }
+    protected INEditMessageIntentResponse(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCode:userActivity:")
+    public INEditMessageIntentResponse(INEditMessageIntentResponseCode code, NSUserActivity userActivity) { super((SkipInit) null); initObject(init(code, userActivity)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "callIdentifier")
-    public native String getCallIdentifier();
+    @Property(selector = "code")
+    public native INEditMessageIntentResponseCode getCode();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    @Method(selector = "initWithCallIdentifier:")
-    protected native @Pointer long init(String callIdentifier);
+    @Method(selector = "initWithCode:userActivity:")
+    protected native @Pointer long init(INEditMessageIntentResponseCode code, NSUserActivity userActivity);
     /*</methods>*/
 }

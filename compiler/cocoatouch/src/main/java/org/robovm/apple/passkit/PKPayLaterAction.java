@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.intents;
+package org.robovm.apple.passkit;
 
 /*<imports>*/
 import java.io.*;
@@ -28,38 +28,23 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.eventkit.*;
-import org.robovm.apple.corelocation.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.addressbook.*;
+import org.robovm.apple.contacts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PKPayLaterAction/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    NoAccount(1L),
-    Offline(2L),
-    MessagingServiceNotEnabledForRecipient(3L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    NoValidHandle(4L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    RequestedHandleInvalid(5L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    NoHandleForLabel(6L),
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    RequiringInAppAuthentication(7L);
+    LearnMore(0L),
+    Calculator(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -69,15 +54,15 @@ public enum /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ impleme
 
     private final long n;
 
-    private /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKPayLaterAction/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ valueOf(long n) {
-        for (/*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ v : values()) {
+    public static /*<name>*/PKPayLaterAction/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKPayLaterAction/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/.class.getName());
+            + /*<name>*/PKPayLaterAction/*</name>*/.class.getName());
     }
 }

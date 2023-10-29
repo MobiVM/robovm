@@ -41,6 +41,10 @@ enums:
     PKIdentityError: {nserror: true} #since 16.0
     PKIdentityButtonStyle: {} #since 16.0
     PKIdentityButtonLabel: {} #since 16.0
+    PKDisbursementErrorCode: {nserror: true,  prefix: PKDisbursement } #since 17.0
+    PKApplePayLaterAvailability: { prefix: PKApplePayLater } #since 17.0
+    PKPayLaterDisplayStyle: { } #since 17.0
+    PKPayLaterAction: { } #since 17.0
 typed_enums:
     PKStoredValuePassBalanceType:
         enum: PKStoredValuePassBalanceType
@@ -69,6 +73,8 @@ classes:
                 parameters:
                     passes:
                         type: NSArray<PKPass>
+            '-initWithIssuerData:signature:error:':
+                name: init
     PKAddPaymentPassRequest: {} # DONE
     PKAddPaymentPassRequestConfiguration: # DONE
         methods:
@@ -154,6 +160,10 @@ classes:
                     supportedNetworks:
                         type: List<PKPaymentNetwork>
                         marshaler: PKPaymentNetwork.AsListMarshaler
+            '-initWithDisbursementRequest:':
+                name: init
+            '+supportsDisbursementsUsingNetworks:capabilities:':
+                name: supportsDisbursementsUsingNetworks
     PKPaymentButton: # DONE
         methods:
             '-initWithPaymentButtonType:paymentButtonStyle:':
@@ -212,6 +222,10 @@ classes:
                 name: present
             '-dismissWithCompletion:':
                 name: dismiss
+            '-initWithDisbursementRequest:':
+                name: init
+            '+supportsDisbursementsUsingNetworks:capabilities:':
+                name: supportsDisbursementsUsingNetworks
     PKSuicaPassProperties: {}
     PKPaymentAuthorizationResult: #since 11.0
         methods:
@@ -237,7 +251,6 @@ classes:
                 name: init
             '-authorizeDisbursementWithCompletion:':
                 name: authorizeDisbursement
-    PKDisbursementRequest: {}
     PKDisbursementVoucher: {}
     PKSecureElementPass: {} #since 13.4
     PKAddCarKeyPassConfiguration: {} #since 13.4
@@ -373,6 +386,22 @@ classes:
                 throws: NSErrorException
             '+sessionForPass:delegate:completion:':
                 name: sessionForPass
+    PKDeferredPaymentRequest: #since 16.4
+        methods:
+            '-initWithPaymentDescription:deferredBilling:managementURL:':
+                name: init
+    PKDisbursementSummaryItem: {} #since 17.0
+    PKInstantFundsOutFeeSummaryItem: {} #since 17.0
+    PKPayLaterView: #since 17.0
+        methods:
+            '-initWithAmount:currencyCode:':
+                name: init
+    PKDisbursementRequest: #since 17.0
+        methods:
+            '-initWithMerchantIdentifier:currencyCode:regionCode:supportedNetworks:merchantCapabilities:summaryItems:':
+                name: init
+            '+disbursementContactInvalidErrorWithContactField:localizedDescription:':
+                name: createDisbursementContactInvalidError
 protocols:
     PKPaymentAuthorizationControllerDelegate:
         methods:
@@ -488,7 +517,12 @@ protocols:
             '-shareSecureElementPassViewController:didCreateShareURL:activationCode:':
                 name: didCreateShareURL
     PKVehicleConnectionDelegate: {} #since 15.4
+    PKPayLaterViewDelegate: {} #since 17.0
 functions:
+    PKPayLaterValidateAmount:
+        class: PKPayLPKPayLaterValidator
+        name: validateAmount
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (PK.*):
         class: PassKit
@@ -518,6 +552,14 @@ values:
     PKIdentityErrorDomain:
         class: PKIdentityError
         name: getClassDomain
+
+    PKDisbursementErrorDomain:
+        class: PKDisbursementErrorCode
+        name: getClassDomain
+
+    PKDisbursementErrorContactFieldUserInfoKey:
+        class: PKDisbursementErrorCode
+        name: getContactFieldUserInfoKey
 
     # PKPassLibrary
     PKPassLibrary(.*Notification):

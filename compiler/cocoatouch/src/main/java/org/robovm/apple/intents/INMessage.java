@@ -51,8 +51,10 @@ import org.robovm.apple.coregraphics.*;
     protected INMessage(Handle h, long handle) { super(h, handle); }
     protected INMessage(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:attachmentFiles:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, NSArray<INFile> attachmentFiles) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType, serviceName, attachmentFiles)); }
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:audioMessageFile:")
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, INFile audioMessageFile) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType, serviceName, audioMessageFile)); }
     /**
@@ -72,6 +74,16 @@ import org.robovm.apple.coregraphics.*;
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INMessageType messageType) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, messageType)); }
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
     public INMessage(String identifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients) { super((SkipInit) null); initObject(init(identifier, content, dateSent, sender, recipients)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:linkMetadata:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageLinkMetadata linkMetadata) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, linkMetadata)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:numberOfAttachments:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, NSNumber numberOfAttachments) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, messageType, numberOfAttachments)); }
     @Method(selector = "initWithCoder:")
     public INMessage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -106,16 +118,38 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "serviceName")
     public native String getServiceName();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "attachmentFiles")
+    public native NSArray<INFile> getAttachmentFiles();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "numberOfAttachments")
+    public native NSNumber getNumberOfAttachments();
+    /**
+     * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use attachmentFile instead
+     */
+    @Deprecated
     @Property(selector = "audioMessageFile")
     public native INFile getAudioMessageFile();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "linkMetadata")
+    public native INMessageLinkMetadata getLinkMetadata();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:attachmentFiles:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, NSArray<INFile> attachmentFiles);
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:audioMessageFile:")
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName, INFile audioMessageFile);
     /**
@@ -135,6 +169,16 @@ import org.robovm.apple.coregraphics.*;
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INMessageType messageType);
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
     protected native @Pointer long init(String identifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:linkMetadata:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageLinkMetadata linkMetadata);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:numberOfAttachments:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, NSNumber numberOfAttachments);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

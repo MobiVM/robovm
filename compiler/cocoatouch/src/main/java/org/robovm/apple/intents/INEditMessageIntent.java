@@ -35,39 +35,35 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.2 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/INHangUpCallIntent/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INEditMessageIntent/*</name>*/ 
     extends /*<extends>*/INIntent/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class INHangUpCallIntentPtr extends Ptr<INHangUpCallIntent, INHangUpCallIntentPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(INHangUpCallIntent.class); }/*</bind>*/
+    /*<ptr>*/public static class INEditMessageIntentPtr extends Ptr<INEditMessageIntent, INEditMessageIntentPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(INEditMessageIntent.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public INHangUpCallIntent() {}
-    protected INHangUpCallIntent(Handle h, long handle) { super(h, handle); }
-    protected INHangUpCallIntent(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    @Method(selector = "initWithCallIdentifier:")
-    public INHangUpCallIntent(String callIdentifier) { super((SkipInit) null); initObject(init(callIdentifier)); }
+    public INEditMessageIntent() {}
+    protected INEditMessageIntent(Handle h, long handle) { super(h, handle); }
+    protected INEditMessageIntent(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithMessageIdentifier:editedContent:")
+    public INEditMessageIntent(String messageIdentifier, String editedContent) { super((SkipInit) null); initObject(init(messageIdentifier, editedContent)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "callIdentifier")
-    public native String getCallIdentifier();
+    @Property(selector = "messageIdentifier")
+    public native String getMessageIdentifier();
+    @Property(selector = "editedContent")
+    public native String getEditedContent();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    @Method(selector = "initWithCallIdentifier:")
-    protected native @Pointer long init(String callIdentifier);
+    @Method(selector = "initWithMessageIdentifier:editedContent:")
+    protected native @Pointer long init(String messageIdentifier, String editedContent);
     /*</methods>*/
 }

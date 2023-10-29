@@ -104,6 +104,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAutomaticReloadPaymentRequest:")
     public native void setAutomaticReloadPaymentRequest(PKAutomaticReloadPaymentRequest v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "deferredPaymentRequest")
+    public native PKDeferredPaymentRequest getDeferredPaymentRequest();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setDeferredPaymentRequest:")
+    public native void setDeferredPaymentRequest(PKDeferredPaymentRequest v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

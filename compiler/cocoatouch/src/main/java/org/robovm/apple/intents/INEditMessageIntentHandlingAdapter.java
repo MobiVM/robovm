@@ -34,42 +34,28 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INSendMessageIntentResponseCode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unspecified(0L),
-    Ready(1L),
-    InProgress(2L),
-    Success(3L),
-    Failure(4L),
-    FailureRequiringAppLaunch(5L),
-    FailureMessageServiceNotAvailable(6L),
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    FailureRequiringInAppAuthentication(7L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INEditMessageIntentHandlingAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements INEditMessageIntentHandling/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/INSendMessageIntentResponseCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/INSendMessageIntentResponseCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/INSendMessageIntentResponseCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/INSendMessageIntentResponseCode/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("handleEditMessage:completion:")
+    public void handleEditMessage(INEditMessageIntent intent, @Block VoidBlock1<INEditMessageIntentResponse> completion) {}
+    @NotImplemented("confirmEditMessage:completion:")
+    public void confirmEditMessage(INEditMessageIntent intent, @Block VoidBlock1<INEditMessageIntentResponse> completion) {}
+    @NotImplemented("resolveEditedContentForEditMessage:withCompletion:")
+    public void resolveEditedContent(INEditMessageIntent intent, @Block VoidBlock1<INStringResolutionResult> completion) {}
+    /*</methods>*/
 }

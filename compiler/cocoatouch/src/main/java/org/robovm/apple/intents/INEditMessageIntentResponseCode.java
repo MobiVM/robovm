@@ -35,63 +35,24 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/INEditMessageIntentResponseCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unspecified(0L),
-    Text(1L),
-    Audio(2L),
-    DigitalTouch(3L),
-    Handwriting(4L),
-    Sticker(5L),
-    TapbackLiked(6L),
-    TapbackDisliked(7L),
-    TapbackEmphasized(8L),
-    TapbackLoved(9L),
-    TapbackQuestioned(10L),
-    TapbackLaughed(11L),
-    MediaCalendar(12L),
-    MediaLocation(13L),
-    MediaAddressCard(14L),
-    MediaImage(15L),
-    MediaVideo(16L),
-    MediaPass(17L),
-    MediaAudio(18L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    PaymentSent(19L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    PaymentRequest(20L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    PaymentNote(21L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Animoji(22L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    ActivitySnippet(23L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    File(24L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Link(25L),
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    Reaction(26L);
+    Ready(1L),
+    InProgress(2L),
+    Success(3L),
+    Failure(4L),
+    FailureRequiringAppLaunch(5L),
+    FailureMessageNotFound(6L),
+    FailurePastEditTimeLimit(7L),
+    FailureMessageTypeUnsupported(8L),
+    FailureUnsupportedOnService(9L),
+    FailureMessageServiceNotAvailable(10L),
+    FailureRequiringInAppAuthentication(11L);
     /*</values>*/
 
     /*<bind>*/
@@ -101,15 +62,15 @@ public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/INMessageType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/INEditMessageIntentResponseCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/INMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/INMessageType/*</name>*/ v : values()) {
+    public static /*<name>*/INEditMessageIntentResponseCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/INEditMessageIntentResponseCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/INMessageType/*</name>*/.class.getName());
+            + /*<name>*/INEditMessageIntentResponseCode/*</name>*/.class.getName());
     }
 }
