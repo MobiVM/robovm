@@ -92,6 +92,8 @@ classes:
                 name: requestDownload
             '-requestReadDataAtOffset:length:completion:':
                 name: requestReadData
+            '-requestSecurityScopedURLWithCompletion:':
+                name: requestSecurityScopedURL
     ICCameraFolder: {} #since 13.0
     ICCameraItem: {} #since 13.0
     ICDevice: #since 13.0

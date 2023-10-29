@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.imagecapturecore;
+package org.robovm.apple.coremedia;
 
 /*<imports>*/
 import java.io.*;
@@ -28,49 +28,36 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.corevideo.*;
+import org.robovm.apple.audiotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("ImageCaptureCore")/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ICDeviceTransport/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+/*<annotations>*/@Library("CoreMedia")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CMTaggedBufferGroup/*</name>*/ 
+    extends /*<extends>*/CFType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(ICDeviceTransport.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<ptr>*/public static class CMTaggedBufferGroupPtr extends Ptr<CMTaggedBufferGroup, CMTaggedBufferGroupPtr> {}/*</ptr>*/
+    /*<bind>*/static { Bro.bind(CMTaggedBufferGroup.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int FormatTypeTaggedBufferGroup = 1952606066;
+    /*</constants>*/
+    /*<constructors>*/
+    protected CMTaggedBufferGroup() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @GlobalValue(symbol="ICTransportTypeUSB", optional=true)
-    public static native NSString USB();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @GlobalValue(symbol="ICTransportTypeMassStorage", optional=true)
-    public static native NSString MassStorage();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="ICTransportTypeExFAT", optional=true)
-    public static native NSString ExFAT();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @GlobalValue(symbol="ICTransportTypeTCPIP", optional=true)
-    public static native NSString TCPIP();
-    /**
      * @since Available in iOS 17.0 and later.
      */
-    @GlobalValue(symbol="ICTransportTypeProximity", optional=true)
-    public static native NSString Proximity();
+    @Bridge(symbol="CMTaggedBufferGroupGetTypeID", optional=true)
+    public static native @MachineSizedUInt long getClassTypeID();
     /*</methods>*/
 }

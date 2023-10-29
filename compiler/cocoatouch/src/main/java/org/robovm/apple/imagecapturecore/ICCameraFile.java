@@ -194,5 +194,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestReadDataAtOffset:length:completion:")
     public native void requestReadData(long offset, long length, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestSecurityScopedURLWithCompletion:")
+    public native void requestSecurityScopedURL(@Block VoidBlock2<NSURL, NSError> completion);
     /*</methods>*/
 }

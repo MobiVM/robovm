@@ -15,7 +15,7 @@ enums:
     NEVPNIKEv2EncryptionAlgorithm: {}
     NEVPNIKEv2IntegrityAlgorithm: {}
     NEVPNIKEv2DeadPeerDetectionRate: {}
-    NEVPNIKEv2DiffieHellmanGroup: {}
+    NEVPNIKEv2DiffieHellmanGroup: { prefix: NEVPNIKEv2DiffieHellman}
     NEOnDemandRuleAction: {}
     NEOnDemandRuleInterfaceType: {}
     NEEvaluateConnectionRuleAction: {}
@@ -49,6 +49,7 @@ enums:
     NEHotspotNetworkSecurityType: {} #since 15.0
 
     NEVPNConnectionError: {nserror: true} #since 16.0
+    NERelayManagerError: {nserror: true} #since 17.0
 classes:
     NEProvider:
         methods:
@@ -396,6 +397,8 @@ classes:
                 name: stop
             '-reportIncomingCallWithUserInfo:':
                 name: reportIncomingCall
+            '-reportPushToTalkMessageWithUserInfo:':
+                name: reportPushToTalkMessage
     NEDNSOverHTTPSSettings: {} #since 14.0
     NEDNSOverTLSSettings: {} #since 14.0
     NEDNSSettingsManager: #since 14.0
@@ -407,6 +410,21 @@ classes:
             '-saveToPreferencesWithCompletionHandler:':
                 name: saveToPreferences
     NEPrivateLTENetwork: {} #since 15.0
+    NEFailureHandlerProvider: #since 17.0
+        methods:
+            '-handleFailure:completionHandler:':
+                name: handleFailure
+    NERelay: { } #since 17.0
+    NERelayManager: #since 17.0
+        methods:
+            '-loadFromPreferencesWithCompletionHandler:':
+                name: loadFromPreferences
+            '-removeFromPreferencesWithCompletionHandler:':
+                name: removeFromPreferences
+            '-saveToPreferencesWithCompletionHandler:':
+                name: saveToPreferences
+            '+loadAllManagersFromPreferencesWithCompletionHandler:':
+                name: loadAllManagersFromPreferences
 protocols:
     NWTCPConnectionAuthenticationDelegate:
         methods:
@@ -454,6 +472,14 @@ values:
     NEAppPushErrorDomain:
         class: NEAppPushManagerError
         name: getClassDomain
+    NERelayErrorDomain:
+        class: NERelayManagerError
+        name: getClassDomain
+
+    NERelay(ConfigurationDidChange)Notification:
+        class: NERelay
+        static_class: Notifications
+        name: '#{g[0]}'
 
     NEDNSSettingsConfiguration(DidChangeNotification):
         class: NEDNSSettingsManager

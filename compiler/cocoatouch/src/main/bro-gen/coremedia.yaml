@@ -56,6 +56,15 @@ enums:
     CMMetadataDataTypeRegistryErrorCode: { first: kCMMetadataDataTypeRegistryError_AllocationFailed }
     CMPersistentTrackID: {first: kCMPersistentTrackID_Invalid, prefix: kCMPersistentTrackID_}
     CMMemoryPoolError: {prefix: kCMMemoryPoolError_, first: kCMMemoryPoolError_AllocationFailed} #since 6.0
+    CMTagError: { prefix: kCMTagError_ } #since 17.0
+    CMTagCategory: { prefix: kCMTagCategory_ } #since 17.0
+    CMTagDataType: { prefix: kCMTagDataType_ } #since 17.0
+    CMStereoViewComponents: { prefix: kCMStereoView_ } #since 17.0
+    CMStereoViewInterpretationOptions: { prefix: kCMStereoViewInterpretation_ } #since 17.0
+    CMProjectionType: { prefix: kCMProjectionType_ } #since 17.0
+    CMPackingType: { prefix: kCMPackingType_ } #since 17.0
+    CMTagCollectionError: { prefix: kCMTagCollectionError_ } #since 17.0
+    CMTaggedBufferGroupError: { prefix: kCMTaggedBufferGroupError_ } #since 17.0
 classes:
     # Opaque Types
     CMAttachmentBearer:
@@ -130,6 +139,12 @@ classes:
     opaqueCMSimpleQueue:
         name: CMSimpleQueue
         extends: CFType
+    OpaqueCMTagCollection:
+        name: CMTagCollection
+        extends: CFType
+    OpaqueCMTaggedBufferGroup:
+        name: CMTaggedBufferGroup
+        extends: CFType
 
     # Structs
     CMBlockBufferCustomBlockSource:
@@ -155,6 +170,7 @@ classes:
     CMTimeMapping:
         annotations: ['@Packed(4)']
     CMBufferHandlers: {}
+    CMTag: {}
 
 protocols: {}
 
@@ -885,6 +901,17 @@ functions:
         class: CMVideoFormatDescription
         name: '#{g[0]}'
 
+    CMTagCollection(Create.*):
+        class: CMTagCollection
+        name: '#{g[0]}0'
+        visibility: private
+    CMTagCollection(.*):
+        class: CMTagCollection
+        name: '#{g[0].downcase_first}'
+    CMTag(.*):
+        class: CMTag
+        name: '#{g[0].downcase_first}'
+
     CMSwap.*:
         exclude: true
     CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout:
@@ -903,7 +930,7 @@ typed_enums:
 
 values:
     # CMFormatDescription
-    kCMFormatDescriptionExtension_(OriginalCompressionSettings|SampleDescriptionExtensionAtoms|VerbatimSampleDescription|VerbatimISOSampleEntry):
+    kCMFormatDescriptionExtension_(OriginalCompressionSettings|SampleDescriptionExtensionAtoms|VerbatimSampleDescription|VerbatimISOSampleEntry|HeroEye):
         dictionary: CMFormatDescriptionExtension
         name: '#{g[0]}'
         type: CFString
@@ -1346,6 +1373,15 @@ values:
         class: CMVideoFormatDescription
         name: 'AlphaChannelMode#{g[0]}'
         type: CFString
+    kCMFormatDescriptionHeroEye_(.*):
+        class: CMVideoFormatDescription
+        name: 'HeroEye#{g[0]}'
+        type: CFString
+
+    kCMTag(.*):
+        class: CMTag
+        static_class: Constants
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CM.*):
@@ -1362,6 +1398,10 @@ constants:
     kCMTime(MaxTimescale):
         class: CMTime
         name: '#{g[0]}'
+
+    kCMTaggedBufferGroupFormatType_(.*):
+        class: CMTaggedBufferGroup
+        name: 'FormatType#{g[0]}'
 
     kCMPersistentTrackID_Invalid:
         exclude: true
