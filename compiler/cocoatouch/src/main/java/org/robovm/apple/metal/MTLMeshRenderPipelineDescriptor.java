@@ -126,6 +126,46 @@ import org.robovm.apple.dispatch.*;
     public native MTLPixelFormat getStencilAttachmentPixelFormat();
     @Property(selector = "setStencilAttachmentPixelFormat:")
     public native void setStencilAttachmentPixelFormat(MTLPixelFormat v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportIndirectCommandBuffers")
+    public native boolean isSupportIndirectCommandBuffers();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSupportIndirectCommandBuffers:")
+    public native void setSupportIndirectCommandBuffers(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "objectLinkedFunctions")
+    public native MTLLinkedFunctions getObjectLinkedFunctions();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setObjectLinkedFunctions:")
+    public native void setObjectLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "meshLinkedFunctions")
+    public native MTLLinkedFunctions getMeshLinkedFunctions();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMeshLinkedFunctions:")
+    public native void setMeshLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "fragmentLinkedFunctions")
+    public native MTLLinkedFunctions getFragmentLinkedFunctions();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setFragmentLinkedFunctions:")
+    public native void setFragmentLinkedFunctions(MTLLinkedFunctions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

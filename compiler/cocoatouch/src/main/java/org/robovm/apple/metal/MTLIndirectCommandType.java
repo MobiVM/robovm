@@ -52,6 +52,14 @@ public final class /*<name>*/MTLIndirectCommandType/*</name>*/ extends Bits</*<n
      * @since Available in iOS 13.0 and later.
      */
     public static final MTLIndirectCommandType ConcurrentDispatchThreads = new MTLIndirectCommandType(64L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLIndirectCommandType DrawMeshThreadgroups = new MTLIndirectCommandType(128L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLIndirectCommandType DrawMeshThreads = new MTLIndirectCommandType(256L);
     /*</values>*/
 
     /*<bind>*/

@@ -32,34 +32,32 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLBindingAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MTLBinding/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLBindingAccess/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    ReadOnly(0L),
+    ReadWrite(1L),
+    WriteOnly(2L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("name")
-    public String getName() { return null; }
-    @NotImplemented("type")
-    public MTLBindingType getType() { return null; }
-    @NotImplemented("access")
-    public MTLBindingAccess getAccess() { return null; }
-    @NotImplemented("index")
-    public @MachineSizedUInt long getIndex() { return 0; }
-    @NotImplemented("isUsed")
-    public boolean isUsed() { return false; }
-    @NotImplemented("isArgument")
-    public boolean isArgument() { return false; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MTLBindingAccess/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLBindingAccess/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLBindingAccess/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLBindingAccess/*</name>*/.class.getName());
+    }
 }

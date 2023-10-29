@@ -45,6 +45,10 @@ public final class /*<name>*/MTLTextureUsage/*</name>*/ extends Bits</*<name>*/M
     public static final MTLTextureUsage ShaderWrite = new MTLTextureUsage(2L);
     public static final MTLTextureUsage RenderTarget = new MTLTextureUsage(4L);
     public static final MTLTextureUsage PixelFormatView = new MTLTextureUsage(16L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLTextureUsage ShaderAtomic = new MTLTextureUsage(32L);
     /*</values>*/
 
     /*<bind>*/

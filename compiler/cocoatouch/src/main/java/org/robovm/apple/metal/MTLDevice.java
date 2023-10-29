@@ -54,6 +54,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "registryID")
     public native long getRegistryID();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "architecture")
+    public native MTLArchitecture getArchitecture();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "maxThreadsPerThreadgroup")
@@ -63,6 +68,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "hasUnifiedMemory")
     public native boolean hasUnifiedMemory();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recommendedMaxWorkingSetSize")
+    public native long getRecommendedMaxWorkingSetSize();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -93,6 +103,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsQueryTextureLOD")
     public native boolean supportsQueryTextureLOD();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "supportsBCTextureCompression")
+    public native boolean supportsBCTextureCompression();
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -496,7 +511,9 @@ import org.robovm.apple.dispatch.*;
     public native MTLSharedEvent newSharedEvent(MTLSharedEventHandle sharedEventHandle);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use newIOFileHandleWithURL:error: instead
      */
+    @Deprecated
     @Method(selector = "newIOHandleWithURL:error:")
     public native MTLIOFileHandle newIOHandle(NSURL url, NSError.NSErrorPtr error);
     /**
@@ -506,9 +523,39 @@ import org.robovm.apple.dispatch.*;
     public native MTLIOCommandQueue newIOCommandQueue(MTLIOCommandQueueDescriptor descriptor, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use newIOFileHandleWithURL:compressionMethod:error: instead
      */
+    @Deprecated
     @Method(selector = "newIOHandleWithURL:compressionMethod:error:")
     public native MTLIOFileHandle newIOHandle(NSURL url, MTLIOCompressionMethod compressionMethod, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public MTLIOFileHandle newIOFileHandle(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLIOFileHandle result = newIOFileHandle(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "newIOFileHandleWithURL:error:")
+    public native MTLIOFileHandle newIOFileHandle(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public MTLIOFileHandle newIOFileHandle(NSURL url, MTLIOCompressionMethod compressionMethod) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLIOFileHandle result = newIOFileHandle(url, compressionMethod, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "newIOFileHandleWithURL:compressionMethod:error:")
+    public native MTLIOFileHandle newIOFileHandle(NSURL url, MTLIOCompressionMethod compressionMethod, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */

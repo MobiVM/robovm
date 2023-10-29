@@ -87,7 +87,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("newBufferWithLength:options:")
     public MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options) { return null; }
     @NotImplemented("newTextureWithDescriptor:")
-    public MTLTexture newTexture(MTLTextureDescriptor desc) { return null; }
+    public MTLTexture newTexture(MTLTextureDescriptor descriptor) { return null; }
     @NotImplemented("setPurgeableState:")
     public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
     /**

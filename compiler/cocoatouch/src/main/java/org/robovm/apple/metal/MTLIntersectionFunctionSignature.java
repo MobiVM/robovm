@@ -55,6 +55,14 @@ public final class /*<name>*/MTLIntersectionFunctionSignature/*</name>*/ extends
      * @since Available in iOS 15.0 and later.
      */
     public static final MTLIntersectionFunctionSignature ExtendedLimits = new MTLIntersectionFunctionSignature(32L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature MaxLevels = new MTLIntersectionFunctionSignature(64L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature CurveData = new MTLIntersectionFunctionSignature(128L);
     /*</values>*/
 
     /*<bind>*/

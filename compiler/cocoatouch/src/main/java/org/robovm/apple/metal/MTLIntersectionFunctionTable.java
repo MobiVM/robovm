@@ -65,6 +65,10 @@ import org.robovm.apple.dispatch.*;
     void setOpaqueTriangleIntersectionFunction(MTLIntersectionFunctionSignature signature, @MachineSizedUInt long index);
     @Method(selector = "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:")
     void setOpaqueTriangleIntersectionFunction(MTLIntersectionFunctionSignature signature, @ByVal NSRange range);
+    @Method(selector = "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:")
+    void setOpaqueCurveIntersectionFunction(MTLIntersectionFunctionSignature signature, @MachineSizedUInt long index);
+    @Method(selector = "setOpaqueCurveIntersectionFunctionWithSignature:withRange:")
+    void setOpaqueCurveIntersectionFunction(MTLIntersectionFunctionSignature signature, @ByVal NSRange range);
     @Method(selector = "setVisibleFunctionTable:atBufferIndex:")
     void setVisibleFunctionTable(MTLVisibleFunctionTable functionTable, @MachineSizedUInt long bufferIndex);
     @Method(selector = "setVisibleFunctionTables:withBufferRange:")

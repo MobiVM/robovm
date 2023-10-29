@@ -116,6 +116,36 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setOptimizationLevel:")
     public native void setOptimizationLevel(MTLLibraryOptimizationLevel v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "compileSymbolVisibility")
+    public native MTLCompileSymbolVisibility getCompileSymbolVisibility();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setCompileSymbolVisibility:")
+    public native void setCompileSymbolVisibility(MTLCompileSymbolVisibility v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "allowReferencingUndefinedSymbols")
+    public native boolean isAllowReferencingUndefinedSymbols();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setAllowReferencingUndefinedSymbols:")
+    public native void setAllowReferencingUndefinedSymbols(boolean v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "maxTotalThreadsPerThreadgroup")
+    public native @MachineSizedUInt long getMaxTotalThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setMaxTotalThreadsPerThreadgroup:")
+    public native void setMaxTotalThreadsPerThreadgroup(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

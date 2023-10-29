@@ -52,6 +52,8 @@ import org.robovm.apple.coreanimation.*;
     protected MSSticker(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithContentsOfFileURL:localizedDescription:error:")
     public MSSticker(NSURL fileURL, String localizedDescription, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(fileURL, localizedDescription, error)); }
+    @Method(selector = "initWithFileURL:identifier:localizedDescription:")
+    public MSSticker(NSURL url, NSUUID identifier, String localizedDescription) { super((SkipInit) null); initObject(init(url, identifier, localizedDescription)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "imageFileURL")
@@ -63,5 +65,7 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithContentsOfFileURL:localizedDescription:error:")
     protected native @Pointer long init(NSURL fileURL, String localizedDescription, NSError.NSErrorPtr error);
+    @Method(selector = "initWithFileURL:identifier:localizedDescription:")
+    protected native @Pointer long init(NSURL url, NSUUID identifier, String localizedDescription);
     /*</methods>*/
 }

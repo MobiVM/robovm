@@ -32,34 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 16.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLBindingAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MTLBinding/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTLCompileSymbolVisibility/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Default(0L),
+    Hidden(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("name")
-    public String getName() { return null; }
-    @NotImplemented("type")
-    public MTLBindingType getType() { return null; }
-    @NotImplemented("access")
-    public MTLBindingAccess getAccess() { return null; }
-    @NotImplemented("index")
-    public @MachineSizedUInt long getIndex() { return 0; }
-    @NotImplemented("isUsed")
-    public boolean isUsed() { return false; }
-    @NotImplemented("isArgument")
-    public boolean isArgument() { return false; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MTLCompileSymbolVisibility/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTLCompileSymbolVisibility/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTLCompileSymbolVisibility/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTLCompileSymbolVisibility/*</name>*/.class.getName());
+    }
 }

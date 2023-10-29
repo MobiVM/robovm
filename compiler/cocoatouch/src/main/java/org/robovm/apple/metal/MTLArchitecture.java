@@ -33,31 +33,25 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLTextureReferenceType/*</name>*/ 
-    extends /*<extends>*/MTLType/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLArchitecture/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLTextureReferenceTypePtr extends Ptr<MTLTextureReferenceType, MTLTextureReferenceTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLTextureReferenceType.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLArchitecturePtr extends Ptr<MTLArchitecture, MTLArchitecturePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLArchitecture.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLTextureReferenceType() {}
-    protected MTLTextureReferenceType(Handle h, long handle) { super(h, handle); }
-    protected MTLTextureReferenceType(SkipInit skipInit) { super(skipInit); }
+    public MTLArchitecture() {}
+    protected MTLArchitecture(Handle h, long handle) { super(h, handle); }
+    protected MTLArchitecture(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "textureDataType")
-    public native MTLDataType getTextureDataType();
-    @Property(selector = "textureType")
-    public native MTLTextureType getTextureType();
-    @Property(selector = "access")
-    public native MTLBindingAccess getAccess();
-    @Property(selector = "isDepthTexture")
-    public native boolean isDepthTexture();
+    @Property(selector = "name")
+    public native String getName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

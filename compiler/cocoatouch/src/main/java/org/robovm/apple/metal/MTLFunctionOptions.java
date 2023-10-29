@@ -44,6 +44,10 @@ public final class /*<name>*/MTLFunctionOptions/*</name>*/ extends Bits</*<name>
      * @since Available in iOS 14.0 and later.
      */
     public static final MTLFunctionOptions CompileToBinary = new MTLFunctionOptions(1L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final MTLFunctionOptions StoreFunctionInMetalScript = new MTLFunctionOptions(2L);
     /*</values>*/
 
     /*<bind>*/

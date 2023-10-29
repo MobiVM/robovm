@@ -32,7 +32,6 @@ enums:
     MTLStoreAction: {}
     MTLDataType: {}
     MTLArgumentType: {}
-    MTLArgumentAccess: {}
     MTLBlendFactor: {}
     MTLBlendOperation: {}
     MTLColorWriteMask: {}
@@ -108,6 +107,15 @@ enums:
     MTLIOError: {nserror: true} #since 16.0
     MTLIOStatus: {} #since 16.0
     MTLIOCompressionStatus: {} #since 16.0
+
+    MTLBindingAccess: {
+        prefix: MTLBindingAccess,
+        ignore: "MTLArgumentAccess(.*)"
+    }
+    MTLCompileSymbolVisibility: { } #since 16.4
+    MTLCurveType: { } #since 17.0
+    MTLCurveBasis: { } #since 17.0
+    MTLCurveEndCaps: { } #since 17.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -172,6 +180,8 @@ classes:
     MTLResourceID: {} #since 16.0
     MTLIOCompressionContext:
         extends: NativeObject
+    MTLIndirectAccelerationStructureInstanceDescriptor: {} #since 17.0
+    MTLIndirectAccelerationStructureMotionInstanceDescriptor: {} #since 17.0
 
     MTLArgument: {} # DONE
     MTLArrayType: # DONE
@@ -409,6 +419,10 @@ classes:
                 name: setObject
     MTLIOCommandQueueDescriptor: {} #since 16.0
     MTLMeshRenderPipelineDescriptor: {} #since 16.0
+    MTLAccelerationStructureCurveGeometryDescriptor: {} #since 17.0
+    MTLAccelerationStructureMotionCurveGeometryDescriptor: {} #since 17.0
+    MTLArchitecture: {} #since 17.0
+    MTLIndirectInstanceAccelerationStructureDescriptor: {} #since 17.0
 protocols:
     MTLHeap:
         methods:
@@ -631,6 +645,15 @@ protocols:
                 name: setAccelerationStructure
             '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
                 name: sampleCountersInBuffer
+            '-setBuffer:offset:attributeStride:atIndex:':
+                name: setBuffer
+            '-setBuffers:offsets:attributeStrides:withRange:':
+                name: setBuffers
+            '-setBufferOffset:attributeStride:atIndex:':
+                name: setBufferOffset
+            '-setBytes:length:attributeStride:atIndex:':
+                name: setBytes
+
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -776,6 +799,12 @@ protocols:
                 name: heapAccelerationStructureSizeAndAlign
             '-heapAccelerationStructureSizeAndAlignWithDescriptor:':
                 name: heapAccelerationStructureSizeAndAlign
+            '-newIOFileHandleWithURL:error:':
+                name: newIOFileHandle
+                throws: NSErrorException
+            '-newIOFileHandleWithURL:compressionMethod:error:':
+                name: newIOFileHandle
+                throws: NSErrorException
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -1084,6 +1113,14 @@ protocols:
                 name: memoryBarrier
             '-memoryBarrierWithResources:count:afterStages:beforeStages:':
                 name: memoryBarrier
+            '-setVertexBuffer:offset:attributeStride:atIndex:':
+                name: setVertexBuffer
+            '-setVertexBuffers:offsets:attributeStrides:withRange:':
+                name: setVertexBuffers
+            '-setVertexBufferOffset:attributeStride:atIndex:':
+                name: setVertexBufferOffset
+            '-setVertexBytes:length:attributeStride:atIndex:':
+                name: setVertexBytes
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -1198,6 +1235,18 @@ protocols:
                 trim_after_first_colon: true
             '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:':
                 trim_after_first_colon: true
+            '-setVertexBuffer:offset:attributeStride:atIndex:':
+                name: setVertexBuffer
+            '-setObjectThreadgroupMemoryLength:atIndex:':
+                name: setObjectThreadgroupMemoryLength
+            '-setObjectBuffer:offset:atIndex:':
+                name: setObjectBuffer
+            '-setMeshBuffer:offset:atIndex:':
+                name: setMeshBuffer
+            '-drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreads
     MTLSharedEvent: #since 12.0
         methods:
             '-notifyListener:atValue:block:':
@@ -1214,6 +1263,8 @@ protocols:
                 name: setThreadgroupMemoryLength
             '-setImageblockWidth:height:':
                 name: setImageblockWidth
+            '-setKernelBuffer:offset:attributeStride:atIndex:':
+                name: setKernelBuffer
     MTLRasterizationRateMap: #since 13.0
         methods:
             '-copyParameterDataToBuffer:offset:':
@@ -1300,6 +1351,10 @@ protocols:
                 name: setVisibleFunctionTable
             '-setVisibleFunctionTables:withBufferRange:':
                 name: setVisibleFunctionTables
+            '-setOpaqueCurveIntersectionFunctionWithSignature:atIndex:':
+                name: setOpaqueCurveIntersectionFunction
+            '-setOpaqueCurveIntersectionFunctionWithSignature:withRange:':
+                name: setOpaqueCurveIntersectionFunction
     MTLLogContainer: {} #since 14.0
     MTLVisibleFunctionTable: #since 14.0
         methods:

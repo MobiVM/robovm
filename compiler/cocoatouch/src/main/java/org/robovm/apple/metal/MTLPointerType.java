@@ -53,7 +53,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "elementType")
     public native MTLDataType getElementType();
     @Property(selector = "access")
-    public native MTLArgumentAccess getAccess();
+    public native MTLBindingAccess getAccess();
     @Property(selector = "alignment")
     public native @MachineSizedUInt long getAlignment();
     @Property(selector = "dataSize")

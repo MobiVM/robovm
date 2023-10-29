@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     public void setComputePipelineState(MTLComputePipelineState pipelineState) {}
     @NotImplemented("setKernelBuffer:offset:atIndex:")
     public void setKernelBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setKernelBuffer:offset:attributeStride:atIndex:")
+    public void setKernelBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index) {}
     @NotImplemented("concurrentDispatchThreadgroups:threadsPerThreadgroup:")
     public void concurrentDispatchThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerThreadgroup) {}
     @NotImplemented("concurrentDispatchThreads:threadsPerThreadgroup:")

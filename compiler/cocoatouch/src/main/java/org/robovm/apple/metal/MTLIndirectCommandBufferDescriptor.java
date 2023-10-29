@@ -87,6 +87,46 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setMaxKernelBufferBindCount:")
     public native void setMaxKernelBufferBindCount(@MachineSizedUInt long v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maxKernelThreadgroupMemoryBindCount")
+    public native @MachineSizedUInt long getMaxKernelThreadgroupMemoryBindCount();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaxKernelThreadgroupMemoryBindCount:")
+    public native void setMaxKernelThreadgroupMemoryBindCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maxObjectBufferBindCount")
+    public native @MachineSizedUInt long getMaxObjectBufferBindCount();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaxObjectBufferBindCount:")
+    public native void setMaxObjectBufferBindCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maxMeshBufferBindCount")
+    public native @MachineSizedUInt long getMaxMeshBufferBindCount();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaxMeshBufferBindCount:")
+    public native void setMaxMeshBufferBindCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maxObjectThreadgroupMemoryBindCount")
+    public native @MachineSizedUInt long getMaxObjectThreadgroupMemoryBindCount();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaxObjectThreadgroupMemoryBindCount:")
+    public native void setMaxObjectThreadgroupMemoryBindCount(@MachineSizedUInt long v);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "supportRayTracing")
@@ -96,6 +136,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setSupportRayTracing:")
     public native void setSupportRayTracing(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportDynamicAttributeStride")
+    public native boolean isSupportDynamicAttributeStride();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSupportDynamicAttributeStride:")
+    public native void setSupportDynamicAttributeStride(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

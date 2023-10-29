@@ -58,6 +58,11 @@ import org.robovm.apple.dispatch.*;
     public void setVertexBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
     @NotImplemented("setFragmentBuffer:offset:atIndex:")
     public void setFragmentBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setVertexBuffer:offset:attributeStride:atIndex:")
+    public void setVertexBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index) {}
     @NotImplemented("drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:")
     public void drawPatches(@MachineSizedUInt long numberOfPatchControlPoints, @MachineSizedUInt long patchStart, @MachineSizedUInt long patchCount, MTLBuffer patchIndexBuffer, @MachineSizedUInt long patchIndexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance, MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long instanceStride) {}
     @NotImplemented("drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:")
@@ -66,6 +71,41 @@ import org.robovm.apple.dispatch.*;
     public void drawPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long vertexStart, @MachineSizedUInt long vertexCount, @MachineSizedUInt long instanceCount, @MachineSizedUInt long baseInstance) {}
     @NotImplemented("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:")
     public void drawIndexedPrimitives(MTLPrimitiveType primitiveType, @MachineSizedUInt long indexCount, MTLIndexType indexType, MTLBuffer indexBuffer, @MachineSizedUInt long indexBufferOffset, @MachineSizedUInt long instanceCount, @MachineSizedSInt long baseVertex, @MachineSizedUInt long baseInstance) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setObjectThreadgroupMemoryLength:atIndex:")
+    public void setObjectThreadgroupMemoryLength(@MachineSizedUInt long length, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setObjectBuffer:offset:atIndex:")
+    public void setObjectBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setMeshBuffer:offset:atIndex:")
+    public void setMeshBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:")
+    public void drawMeshThreadgroups(@ByVal MTLSize threadgroupsPerGrid, @ByVal MTLSize threadsPerObjectThreadgroup, @ByVal MTLSize threadsPerMeshThreadgroup) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:")
+    public void drawMeshThreads(@ByVal MTLSize threadsPerGrid, @ByVal MTLSize threadsPerObjectThreadgroup, @ByVal MTLSize threadsPerMeshThreadgroup) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setBarrier")
+    public void setBarrier() {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("clearBarrier")
+    public void clearBarrier() {}
     @NotImplemented("reset")
     public void reset() {}
     /*</methods>*/
