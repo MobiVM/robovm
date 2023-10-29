@@ -222,6 +222,8 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isMultiline();
     @Property(selector = "setMultiline:")
     public native void setMultiline(boolean v);
+    @Property(selector = "isActivatableTextField")
+    public native boolean isActivatableTextField();
     @Property(selector = "isPasswordField")
     public native boolean isPasswordField();
     @Property(selector = "hasComb")

@@ -74,6 +74,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<PKStroke> getStrokes();
     @Property(selector = "bounds")
     public native @ByVal CGRect getBounds();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "requiredContentVersion")
+    public native PKContentVersion getRequiredContentVersion();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

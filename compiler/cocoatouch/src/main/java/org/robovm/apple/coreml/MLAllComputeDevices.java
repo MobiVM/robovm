@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.pencilkit;
+package org.robovm.apple.coreml;
 
 /*<imports>*/
 import java.io.*;
@@ -28,41 +28,32 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.corevideo.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKEraserType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Vector(0L),
-    Bitmap(1L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    FixedWidthBitmap(2L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreML")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLAllComputeDevices/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(MLAllComputeDevices.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/PKEraserType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/PKEraserType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKEraserType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKEraserType/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="MLAllComputeDevices", optional=true)
+    public static native NSArray<?> getAllComputeDevices();
+    /*</methods>*/
 }

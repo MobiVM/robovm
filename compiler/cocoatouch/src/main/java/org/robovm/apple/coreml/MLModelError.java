@@ -73,7 +73,11 @@ public enum /*<name>*/MLModelError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    ModelCollection(10L);
+    ModelCollection(10L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    PredictionCancelled(11L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MLModelError.class); }/*</bind>*/

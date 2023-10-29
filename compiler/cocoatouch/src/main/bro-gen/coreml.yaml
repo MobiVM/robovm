@@ -122,6 +122,10 @@ classes:
             '-predictionsFromBatch:error:':
                 name: getPredictionsFromBatch
                 throws: NSErrorException
+            '-predictionFromFeatures:completionHandler:':
+                name: getPredictionFromFeatures
+            '-predictionFromFeatures:options:completionHandler:':
+                name: getPredictionFromFeatures
             '-parameterValueForKey:error:':
                 name: getParameterValue
                 throws: NSErrorException
@@ -222,6 +226,9 @@ classes:
                 constructor: true
                 name: create
                 throws: NSErrorException
+    MLCPUComputeDevice: {} #since 17.0
+    MLGPUComputeDevice: {} #since 17.0
+    MLNeuralEngineComputeDevice: {} #since 17.0
 protocols:
     MLFeatureProvider: {} #since 11.0
     MLBatchProvider: {} #since 12.0
@@ -249,7 +256,12 @@ protocols:
         methods:
             '-writeToURL:error:':
                 name: writeToURL
+    MLComputeDeviceProtocol: {} #since 17.0
 functions:
+    MLAllComputeDevices:
+        class: MLAllComputeDevices
+        name: getAllComputeDevices
+
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (ML.*):
         class: CoreML

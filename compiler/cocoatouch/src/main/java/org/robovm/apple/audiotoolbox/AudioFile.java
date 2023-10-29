@@ -407,8 +407,18 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus countUserData0(int inUserDataID, IntPtr outNumberItems);
     @Bridge(symbol="AudioFileGetUserDataSize", optional=true)
     protected native OSStatus getUserDataSize0(int inUserDataID, int inIndex, IntPtr outUserDataSize);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AudioFileGetUserDataSize64", optional=true)
+    protected native OSStatus getUserDataSize640(int inUserDataID, int inIndex, LongPtr outUserDataSize);
     @Bridge(symbol="AudioFileGetUserData", optional=true)
     protected native OSStatus getUserData0(int inUserDataID, int inIndex, IntPtr ioUserDataSize, VoidPtr outUserData);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AudioFileGetUserDataAtOffset", optional=true)
+    protected native OSStatus getUserDataAtOffset0(int inUserDataID, int inIndex, long inOffset, IntPtr ioUserDataSize, VoidPtr outUserData);
     @Bridge(symbol="AudioFileSetUserData", optional=true)
     protected native OSStatus setUserData0(int inUserDataID, int inIndex, int inUserDataSize, VoidPtr inUserData);
     @Bridge(symbol="AudioFileRemoveUserData", optional=true)

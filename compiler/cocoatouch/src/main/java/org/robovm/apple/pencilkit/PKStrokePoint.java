@@ -52,6 +52,8 @@ import org.robovm.apple.coreanimation.*;
     protected PKStrokePoint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:")
     public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude)); }
+    @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:")
+    public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -68,10 +70,17 @@ import org.robovm.apple.coreanimation.*;
     public native @MachineSizedFloat double getForce();
     @Property(selector = "altitude")
     public native @MachineSizedFloat double getAltitude();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "secondaryScale")
+    public native @MachineSizedFloat double getSecondaryScale();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:")
     protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude);
+    @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:")
+    protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale);
     /*</methods>*/
 }

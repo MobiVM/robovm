@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.pencilkit;
+package org.robovm.apple.coreml;
 
 /*<imports>*/
 import java.io.*;
@@ -28,45 +28,37 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
+import org.robovm.apple.corevideo.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.imageio.*;
+import org.robovm.apple.vision.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("PencilKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKInk/*</name>*/ 
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLNeuralEngineComputeDevice/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements MLComputeDeviceProtocol/*</implements>*/ {
 
-    /*<ptr>*/public static class PKInkPtr extends Ptr<PKInk, PKInkPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKInk.class); }/*</bind>*/
+    /*<ptr>*/public static class MLNeuralEngineComputeDevicePtr extends Ptr<MLNeuralEngineComputeDevice, MLNeuralEngineComputeDevicePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLNeuralEngineComputeDevice.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKInk() {}
-    protected PKInk(Handle h, long handle) { super(h, handle); }
-    protected PKInk(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithInkType:color:")
-    public PKInk(PKInkType type, UIColor color) { super((SkipInit) null); initObject(init(type, color)); }
+    protected MLNeuralEngineComputeDevice() {}
+    protected MLNeuralEngineComputeDevice(Handle h, long handle) { super(h, handle); }
+    protected MLNeuralEngineComputeDevice(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inkType")
-    public native PKInkType getInkType();
-    @Property(selector = "color")
-    public native UIColor getColor();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "requiredContentVersion")
-    public native PKContentVersion getRequiredContentVersion();
+    @Property(selector = "totalCoreCount")
+    public native @MachineSizedSInt long getTotalCoreCount();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithInkType:color:")
-    protected native @Pointer long init(PKInkType type, UIColor color);
+    
     /*</methods>*/
 }

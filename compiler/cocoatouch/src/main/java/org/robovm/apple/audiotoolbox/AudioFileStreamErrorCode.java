@@ -52,7 +52,8 @@ public enum /*<name>*/AudioFileStreamErrorCode/*</name>*/ implements ValuedEnum 
     DataUnavailable(1836020325L),
     IllegalOperation(1852797029L),
     UnspecifiedError(2003334207L),
-    DiscontinuityCantRecover(1685283617L);
+    DiscontinuityCantRecover(1685283617L),
+    OpenUsingHint(1752069183L);
     /*</values>*/
 
     /*<bind>*/

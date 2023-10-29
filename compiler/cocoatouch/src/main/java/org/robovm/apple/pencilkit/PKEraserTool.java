@@ -52,14 +52,44 @@ import org.robovm.apple.coreanimation.*;
     protected PKEraserTool(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithEraserType:")
     public PKEraserTool(PKEraserType eraserType) { super((SkipInit) null); initObject(init(eraserType)); }
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithEraserType:width:")
+    public PKEraserTool(PKEraserType eraserType, @MachineSizedFloat double width) { super((SkipInit) null); initObject(init(eraserType, width)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "eraserType")
     public native PKEraserType getEraserType();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "width")
+    public native @MachineSizedFloat double getWidth();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithEraserType:")
     protected native @Pointer long init(PKEraserType eraserType);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithEraserType:width:")
+    protected native @Pointer long init(PKEraserType eraserType, @MachineSizedFloat double width);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "defaultWidthForEraserType:")
+    public static native @MachineSizedFloat double defaultWidthForEraserType(PKEraserType eraserType);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "minimumWidthForEraserType:")
+    public static native @MachineSizedFloat double minimumWidthForEraserType(PKEraserType eraserType);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "maximumWidthForEraserType:")
+    public static native @MachineSizedFloat double maximumWidthForEraserType(PKEraserType eraserType);
     /*</methods>*/
 }

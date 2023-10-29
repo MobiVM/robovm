@@ -80,6 +80,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "configuration")
     public native MLModelConfiguration getConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "availableComputeDevices")
+    public static native NSArray<?> getAvailableComputeDevices();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,6 +98,16 @@ import org.robovm.apple.metal.*;
     private native MLFeatureProvider predictionFromFeatures(MLFeatureProvider input, NSError.NSErrorPtr error);
     @Method(selector = "predictionFromFeatures:options:error:")
     public native MLFeatureProvider predictionFromFeatures(MLFeatureProvider input, MLPredictionOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "predictionFromFeatures:completionHandler:")
+    public native void getPredictionFromFeatures(MLFeatureProvider input, @Block VoidBlock2<MLFeatureProvider, NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "predictionFromFeatures:options:completionHandler:")
+    public native void getPredictionFromFeatures(MLFeatureProvider input, MLPredictionOptions options, @Block VoidBlock2<MLFeatureProvider, NSError> completionHandler);
     /**
      * @since Available in iOS 12.0 and later.
      */

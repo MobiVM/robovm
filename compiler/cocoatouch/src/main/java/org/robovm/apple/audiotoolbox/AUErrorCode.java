@@ -67,7 +67,8 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     ExtensionNotFound(-66744L),
     InvalidParameterValue(-66743L),
     InvalidFilePath(-66742L),
-    MissingKey(-66741L);
+    MissingKey(-66741L),
+    ComponentManagerNotSupported(-66740L);
     /*</values>*/
 
     /*<bind>*/

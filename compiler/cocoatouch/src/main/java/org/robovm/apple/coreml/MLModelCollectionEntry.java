@@ -38,9 +38,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 14.0 and later.
+ * @deprecated Use Background Assets or NSURLSession instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreML") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelCollectionEntry/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -54,13 +55,28 @@ import org.robovm.apple.metal.*;
     protected MLModelCollectionEntry(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Property(selector = "modelIdentifier")
     public native String getModelIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Property(selector = "modelURL")
     public native NSURL getModelURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Method(selector = "isEqualToModelCollectionEntry:")
     public native boolean isEqualToModelCollectionEntry(MLModelCollectionEntry entry);
     /*</methods>*/

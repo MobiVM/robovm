@@ -76,6 +76,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "randomSeed")
     public native int getRandomSeed();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "requiredContentVersion")
+    public native PKContentVersion getRequiredContentVersion();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

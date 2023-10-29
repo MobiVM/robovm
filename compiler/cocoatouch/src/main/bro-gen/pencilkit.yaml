@@ -13,6 +13,7 @@ typedefs:
 enums:
     PKEraserType: {}
     PKCanvasViewDrawingPolicy: {}
+    PKContentVersion: {}
 typed_enums:
     PKInkType:
         enum: PKInkType
@@ -34,6 +35,8 @@ classes:
     PKEraserTool: #since 13.0
         methods:
             '-initWithEraserType:':
+                name: init
+            '-initWithEraserType:width:':
                 name: init
     PKInkingTool: #since 13.0
         methods:
@@ -82,6 +85,8 @@ classes:
     PKStrokePoint: #since 14.0
         methods:
             '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:':
+                name: init
+            '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:':
                 name: init
 protocols:
     PKCanvasViewDelegate: {} #since 13.0

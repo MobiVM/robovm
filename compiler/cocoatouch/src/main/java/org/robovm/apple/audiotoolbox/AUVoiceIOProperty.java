@@ -45,6 +45,7 @@ public enum /*<name>*/AUVoiceIOProperty/*</name>*/ implements AUPropertyType {
     VoiceProcessingEnableAGC(2101L),
     MuteOutput(2104L),
     MutedSpeechActivityEventListener(2106L),
+    OtherAudioDuckingConfiguration(2108L),
     DuckNonVoiceAudio(2102L),
     VoiceProcessingQuality(2103L);
     /*</values>*/
