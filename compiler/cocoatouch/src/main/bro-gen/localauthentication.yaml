@@ -114,6 +114,8 @@ constants:
         exclude: true
     kLACredential.*:
         exclude: true
+    kLABiometryType.*:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?LA.*):

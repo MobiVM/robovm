@@ -116,6 +116,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "colorTransferFunction")
     public native String getColorTransferFunction();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "perFrameHDRDisplayMetadataPolicy")
+    public native AVVideoCompositionPerFrameHDRDisplayMetadataPolicy getPerFrameHDRDisplayMetadataPolicy();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -72,5 +72,10 @@ import org.robovm.apple.uikit.*;
     public void didCancelSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance) {}
     @NotImplemented("speechSynthesizer:willSpeakRangeOfSpeechString:utterance:")
     public void willSpeak(AVSpeechSynthesizer synthesizer, @ByVal NSRange characterRange, AVSpeechUtterance utterance) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("speechSynthesizer:willSpeakMarker:utterance:")
+    public void willSpeakMarker(AVSpeechSynthesizer synthesizer, AVSpeechSynthesisMarker marker, AVSpeechUtterance utterance) {}
     /*</methods>*/
 }

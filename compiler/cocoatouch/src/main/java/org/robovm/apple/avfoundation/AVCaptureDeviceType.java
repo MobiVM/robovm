@@ -58,10 +58,15 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
+    @GlobalValue(symbol="AVCaptureDeviceTypeExternal", optional=true)
+    public static native String External();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeMicrophone", optional=true)
+    public static native String Microphone();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -103,11 +108,23 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInLiDARDepthCamera", optional=true)
     public static native String BuiltInLiDARDepthCamera();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeContinuityCamera", optional=true)
+    public static native String ContinuityCamera();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use AVCaptureDeviceTypeBuiltInDualCamera instead.
      */
     @Deprecated
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
     public static native String BuiltInDuoCamera();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use AVCaptureDeviceTypeMicrophone
+     */
+    @Deprecated
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
+    public static native String BuiltInMicrophone();
     /*</methods>*/
 }

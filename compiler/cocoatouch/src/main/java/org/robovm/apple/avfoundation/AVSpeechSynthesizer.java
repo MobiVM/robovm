@@ -97,6 +97,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setMixToTelephonyUplink:")
     public native void setMixToTelephonyUplink(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "personalVoiceAuthorizationStatus")
+    public static native AVSpeechSynthesisPersonalVoiceAuthorizationStatus getPersonalVoiceAuthorizationStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -118,5 +123,10 @@ import org.robovm.apple.uikit.*;
     public native boolean pauseSpeaking(AVSpeechBoundary boundary);
     @Method(selector = "continueSpeaking")
     public native boolean continueSpeaking();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestPersonalVoiceAuthorizationWithCompletionHandler:")
+    public static native void requestPersonalVoiceAuthorization(@Block VoidBlock1<AVSpeechSynthesisPersonalVoiceAuthorizationStatus> handler);
     /*</methods>*/
 }

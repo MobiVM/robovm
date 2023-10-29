@@ -77,6 +77,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setLivePhoto:")
     public native void setLivePhoto(PHLivePhoto v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "contentsRect")
+    public native @ByVal org.robovm.apple.coregraphics.CGRect getContentsRect();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setContentsRect:")
+    public native void setContentsRect(@ByVal org.robovm.apple.coregraphics.CGRect v);
+    /**
      * @since Available in iOS 9.1 and later.
      */
     @Property(selector = "isMuted")

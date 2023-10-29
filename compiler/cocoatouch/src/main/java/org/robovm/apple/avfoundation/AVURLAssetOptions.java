@@ -159,6 +159,11 @@ import org.robovm.apple.uikit.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="AVURLAssetPreferPreciseDurationAndTimingKey", optional=true)
         public static native NSString PreferPreciseDurationAndTiming();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetOverrideMIMETypeKey", optional=true)
+        public static native NSString OverrideMIMEType();
         @GlobalValue(symbol="AVURLAssetReferenceRestrictionsKey", optional=true)
         public static native NSString ReferenceRestrictions();
         @GlobalValue(symbol="AVURLAssetHTTPCookiesKey", optional=true)

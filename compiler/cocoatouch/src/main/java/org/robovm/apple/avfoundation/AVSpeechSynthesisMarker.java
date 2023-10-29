@@ -61,6 +61,51 @@ import org.robovm.apple.uikit.*;
     protected AVSpeechSynthesisMarker(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMarkerType:forTextRange:atByteSampleOffset:")
     public AVSpeechSynthesisMarker(AVSpeechSynthesisMarkerMark type, @ByVal NSRange range, @MachineSizedUInt long byteSampleOffset) { super((SkipInit) null); initObject(init(type, range, byteSampleOffset)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithWordRange:atByteSampleOffset:")
+    public static  AVSpeechSynthesisMarker createWithWordRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+       AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
+       res.initObject(res.initWithWordRange(range, byteSampleOffset));
+       return res;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithSentenceRange:atByteSampleOffset:")
+    public static  AVSpeechSynthesisMarker createWithSentenceRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+       AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
+       res.initObject(res.initWithSentenceRange(range, byteSampleOffset));
+       return res;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithParagraphRange:atByteSampleOffset:")
+    public static  AVSpeechSynthesisMarker createWithParagraphRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+       AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
+       res.initObject(res.initWithParagraphRange(range, byteSampleOffset));
+       return res;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPhonemeString:atByteSampleOffset:")
+    public static  AVSpeechSynthesisMarker createWithPhonemeString(String phoneme, @MachineSizedSInt long byteSampleOffset) {
+       AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
+       res.initObject(res.initWithPhonemeString(phoneme, byteSampleOffset));
+       return res;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithBookmarkName:atByteSampleOffset:")
+    public static  AVSpeechSynthesisMarker createWithBookmarkName(String mark, @MachineSizedSInt long byteSampleOffset) {
+       AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
+       res.initObject(res.initWithBookmarkName(mark, byteSampleOffset));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
     public AVSpeechSynthesisMarker(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -77,6 +122,26 @@ import org.robovm.apple.uikit.*;
     public native @ByVal NSRange getTextRange();
     @Property(selector = "setTextRange:")
     public native void setTextRange(@ByVal NSRange v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "bookmarkName")
+    public native String getBookmarkName();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setBookmarkName:")
+    public native void setBookmarkName(String v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "phoneme")
+    public native String getPhoneme();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPhoneme:")
+    public native void setPhoneme(String v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -84,6 +149,31 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithMarkerType:forTextRange:atByteSampleOffset:")
     protected native @Pointer long init(AVSpeechSynthesisMarkerMark type, @ByVal NSRange range, @MachineSizedUInt long byteSampleOffset);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithWordRange:atByteSampleOffset:")
+    protected native @Pointer long initWithWordRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithSentenceRange:atByteSampleOffset:")
+    protected native @Pointer long initWithSentenceRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithParagraphRange:atByteSampleOffset:")
+    protected native @Pointer long initWithParagraphRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPhonemeString:atByteSampleOffset:")
+    protected native @Pointer long initWithPhonemeString(String phoneme, @MachineSizedSInt long byteSampleOffset);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithBookmarkName:atByteSampleOffset:")
+    protected native @Pointer long initWithBookmarkName(String mark, @MachineSizedSInt long byteSampleOffset);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -107,6 +107,36 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setPreselectedAssetIdentifiers:")
     public native void setPreselectedAssetIdentifiers(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "mode")
+    public native PHPickerMode getMode();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMode:")
+    public native void setMode(PHPickerMode v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "edgesWithoutContentMargins")
+    public native NSDirectionalRectEdge getEdgesWithoutContentMargins();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setEdgesWithoutContentMargins:")
+    public native void setEdgesWithoutContentMargins(NSDirectionalRectEdge v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "disabledCapabilities")
+    public native PHPickerCapabilities getDisabledCapabilities();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setDisabledCapabilities:")
+    public native void setDisabledCapabilities(PHPickerCapabilities v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -62,5 +62,10 @@ import org.robovm.apple.uikit.*;
     
     @Bridge(symbol="AVMakeRectWithAspectRatioInsideRect", optional=true)
     public static native @ByVal CGRect createRectWithAspectRatioInsideRect(@ByVal CGSize aspectRatio, @ByVal CGRect boundingRect);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AVCaptureReactionSystemImageNameForType", optional=true)
+    public static native String function__AVCaptureReactionSystemImageNameForType(AVCaptureReactionType reactionType);
     /*</methods>*/
 }

@@ -50,7 +50,11 @@ public enum /*<name>*/LABiometryType/*</name>*/ implements ValuedEnum {
     @Deprecated
     None(0L),
     TypeTouchID(1L),
-    TypeFaceID(2L);
+    TypeFaceID(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    TypeOpticID(4L);
     /*</values>*/
 
     /*<bind>*/

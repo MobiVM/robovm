@@ -42,7 +42,15 @@ import org.robovm.apple.coreanimation.*;
 public enum /*<name>*/PHPickerConfigurationSelection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
-    Ordered(1L);
+    Ordered(1L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Continuous(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ContinuousAndOrdered(3L);
     /*</values>*/
 
     /*<bind>*/

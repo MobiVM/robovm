@@ -63,6 +63,21 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "channelCount")
     public native @MachineSizedSInt long getChannelCount();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isBinaural")
+    public native boolean isBinaural();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isImmersive")
+    public native boolean isImmersive();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isDownmix")
+    public native boolean isDownmix();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

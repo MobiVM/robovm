@@ -123,9 +123,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final AVOutputSettingsPreset SizeHEVC3840x2160WithAlpha = new AVOutputSettingsPreset("SizeHEVC3840x2160WithAlpha");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeMVHEVC960x960 = new AVOutputSettingsPreset("SizeMVHEVC960x960");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeMVHEVC1440x1440 = new AVOutputSettingsPreset("SizeMVHEVC1440x1440");
     /*</constants>*/
     
-    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC1920x1080WithAlpha, SizeHEVC3840x2160, SizeHEVC3840x2160WithAlpha/*</value_list>*/};
+    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC1920x1080WithAlpha, SizeHEVC3840x2160, SizeHEVC3840x2160WithAlpha, SizeMVHEVC960x960, SizeMVHEVC1440x1440/*</value_list>*/};
     
     /*<name>*/AVOutputSettingsPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -181,6 +189,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVOutputSettingsPresetHEVC3840x2160WithAlpha", optional=true)
         public static native NSString SizeHEVC3840x2160WithAlpha();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC960x960", optional=true)
+        public static native NSString SizeMVHEVC960x960();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC1440x1440", optional=true)
+        public static native NSString SizeMVHEVC1440x1440();
         /*</values>*/
     }
 }

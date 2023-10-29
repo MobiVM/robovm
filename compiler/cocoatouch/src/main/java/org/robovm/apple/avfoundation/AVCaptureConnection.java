@@ -87,10 +87,32 @@ import org.robovm.apple.uikit.*;
     public native boolean automaticallyAdjustsVideoMirroring();
     @Property(selector = "setAutomaticallyAdjustsVideoMirroring:")
     public native void setAutomaticallyAdjustsVideoMirroring(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoRotationAngle")
+    public native @MachineSizedFloat double getVideoRotationAngle();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setVideoRotationAngle:")
+    public native void setVideoRotationAngle(@MachineSizedFloat double v);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -isVideoRotationAngleSupported: instead
+     */
+    @Deprecated
     @Property(selector = "isVideoOrientationSupported")
     public native boolean supportsVideoOrientation();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -videoRotationAngle instead
+     */
+    @Deprecated
     @Property(selector = "videoOrientation")
     public native AVCaptureVideoOrientation getVideoOrientation();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -videoRotationAngle instead
+     */
+    @Deprecated
     @Property(selector = "setVideoOrientation:")
     public native void setVideoOrientation(AVCaptureVideoOrientation v);
     /**
@@ -183,5 +205,7 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output);
     @Method(selector = "initWithInputPort:videoPreviewLayer:")
     protected native @Pointer long init(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer);
+    @Method(selector = "isVideoRotationAngleSupported:")
+    public native boolean isVideoRotationAngleSupported(@MachineSizedFloat double videoRotationAngle);
     /*</methods>*/
 }

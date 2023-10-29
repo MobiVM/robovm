@@ -55,7 +55,11 @@ public enum /*<name>*/AVAudioSessionInterruptionReason/*</name>*/ implements Val
      */
     @Deprecated
     AppWasSuspended(1L),
-    BuiltInMicMuted(2L);
+    BuiltInMicMuted(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    RouteDisconnected(4L);
     /*</values>*/
 
     /*<bind>*/

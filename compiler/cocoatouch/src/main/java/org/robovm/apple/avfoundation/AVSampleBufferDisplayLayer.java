@@ -88,17 +88,44 @@ import org.robovm.apple.uikit.*;
     public native AVLayerVideoGravity getVideoGravity();
     @Property(selector = "setVideoGravity:")
     public native void setVideoGravity(AVLayerVideoGravity v);
+    /**
+     * @deprecated Use sampleBufferRenderer's timebase instead
+     */
+    @Deprecated
+    @Property(selector = "timebase")
+    public native CMTimebase getTimebase();
+    /**
+     * @deprecated Use sampleBufferRenderer's status instead
+     */
+    @Deprecated
     @Property(selector = "status")
     public native AVQueuedSampleBufferRenderingStatus getStatus();
+    /**
+     * @deprecated Use sampleBufferRenderer's error instead
+     */
+    @Deprecated
     @Property(selector = "error")
     public native NSError getError();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Use sampleBufferRenderer's requiresFlushToResumeDecoding instead
      */
+    @Deprecated
     @Property(selector = "requiresFlushToResumeDecoding")
     public native boolean requiresFlushToResumeDecoding();
+    /**
+     * @deprecated Use sampleBufferRenderer's readyForMoreMediaData instead
+     */
+    @Deprecated
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
+    /**
+     * @since Available in iOS 14.5 and later.
+     * @deprecated Use sampleBufferRenderer's hasSufficientMediaDataForReliablePlaybackStart instead
+     */
+    @Deprecated
+    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
+    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -124,13 +151,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "outputObscuredDueToInsufficientExternalProtection")
     public native boolean isOutputObscuredDueToInsufficientExternalProtection();
-    @Property(selector = "timebase")
-    public native CMTimebase getTimebase();
     /**
-     * @since Available in iOS 14.5 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
-    public native boolean hasSufficientMediaDataForReliablePlaybackStart();
+    @Property(selector = "sampleBufferRenderer")
+    public native AVSampleBufferVideoRenderer getSampleBufferRenderer();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -162,15 +187,35 @@ import org.robovm.apple.uikit.*;
     public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
+    /**
+     * @deprecated Use sampleBufferRenderer's enqueueSampleBuffer: instead
+     */
+    @Deprecated
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
+    /**
+     * @deprecated Use sampleBufferRenderer's flush instead
+     */
+    @Deprecated
     @Method(selector = "flush")
     public native void flush();
+    /**
+     * @deprecated Use sampleBufferRenderer's flushWithRemovalOfDisplayedImage:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "flushAndRemoveImage")
     public native void flushAndRemoveImage();
+    /**
+     * @deprecated Use sampleBufferRenderer's requestMediaDataWhenReadyOnQueue:usingBlock: instead
+     */
+    @Deprecated
     @WeaklyLinked
     @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
     public native void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
+    /**
+     * @deprecated Use sampleBufferRenderer's stopRequestingMediaData instead
+     */
+    @Deprecated
     @Method(selector = "stopRequestingMediaData")
     public native void stopRequestingMediaData();
     /*</methods>*/

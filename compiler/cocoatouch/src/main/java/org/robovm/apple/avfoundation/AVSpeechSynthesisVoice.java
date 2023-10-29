@@ -93,6 +93,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "audioFileSettings")
     public native NSDictionary<NSString, ?> getAudioFileSettings();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "voiceTraits")
+    public native AVSpeechSynthesisVoiceTraits getVoiceTraits();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

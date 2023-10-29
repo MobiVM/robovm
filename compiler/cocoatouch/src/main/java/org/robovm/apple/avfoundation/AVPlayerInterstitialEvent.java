@@ -120,6 +120,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "userDefinedAttributes")
     public native NSDictionary<?, ?> getUserDefinedAttributes();
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "assetListResponse")
+    public native NSDictionary<?, ?> getAssetListResponse();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "setPrimaryItem:", strongRef = true)
