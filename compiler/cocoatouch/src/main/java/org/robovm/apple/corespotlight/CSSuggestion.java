@@ -71,6 +71,10 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSComparisonResult compareByRank(CSSuggestion other);
     @Method(selector = "compare:")
     public native NSComparisonResult compare(CSSuggestion other);
+    @Method(selector = "score")
+    public native NSNumber score();
+    @Method(selector = "suggestionDataSources")
+    public native NSArray<?> suggestionDataSources();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

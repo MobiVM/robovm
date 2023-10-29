@@ -38,7 +38,9 @@ import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVPlayerViewControllerDelegate/*</name>*/ 
@@ -68,18 +70,39 @@ import org.robovm.apple.avrouting.*;
      */
     @Method(selector = "playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:")
     void restoreUserInterfaceForFullScreenExit(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewControllerWillStartPictureInPicture:")
     void willStartPictureInPicture(AVPlayerViewController playerViewController);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewControllerDidStartPictureInPicture:")
     void didStartPictureInPicture(AVPlayerViewController playerViewController);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewController:failedToStartPictureInPictureWithError:")
     void failedToStartPictureInPicture(AVPlayerViewController playerViewController, NSError error);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewControllerWillStopPictureInPicture:")
     void willStopPictureInPicture(AVPlayerViewController playerViewController);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewControllerDidStopPictureInPicture:")
     void didStopPictureInPicture(AVPlayerViewController playerViewController);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:")
     boolean shouldAutomaticallyDismissAtPictureInPictureStart(AVPlayerViewController playerViewController);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:")
     void restoreUserInterfaceForPictureInPictureStop(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler);
     /**

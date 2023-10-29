@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.avkit;
+package org.robovm.apple.backgroundtasks;
 
 /*<imports>*/
 import java.io.*;
@@ -28,38 +28,32 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.avfoundation.*;
-import org.robovm.apple.coremedia.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.iad.*;
-import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.avrouting.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVRoutePickerViewDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("BackgroundTasks") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/BGHealthResearchTask/*</name>*/ 
+    extends /*<extends>*/BGProcessingTask/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class BGHealthResearchTaskPtr extends Ptr<BGHealthResearchTask, BGHealthResearchTaskPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(BGHealthResearchTask.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected BGHealthResearchTask() {}
+    protected BGHealthResearchTask(Handle h, long handle) { super(h, handle); }
+    protected BGHealthResearchTask(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "routePickerViewWillBeginPresentingRoutes:")
-    void willBeginPresentingRoutes(AVRoutePickerView routePickerView);
-    @Method(selector = "routePickerViewDidEndPresentingRoutes:")
-    void didEndPresentingRoutes(AVRoutePickerView routePickerView);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

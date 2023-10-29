@@ -75,7 +75,9 @@ import org.robovm.apple.corefoundation.*;
     public native void setDelegate(CTTelephonyNetworkInfoDelegate v);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Deprecated with no replacement
      */
+    @Deprecated
     @Property(selector = "serviceSubscriberCellularProviders")
     public native NSDictionary<NSString, CTCarrier> getServiceSubscriberCellularProviders();
     /**
@@ -86,12 +88,16 @@ import org.robovm.apple.corefoundation.*;
     public native CTCarrier getSubscriberCellularProvider();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Deprecated with no replacement
      */
+    @Deprecated
     @Property(selector = "serviceSubscriberCellularProvidersDidUpdateNotifier")
     public native @Block VoidBlock1<NSString> getServiceSubscriberCellularProvidersDidUpdateNotifier();
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Deprecated with no replacement
      */
+    @Deprecated
     @Property(selector = "setServiceSubscriberCellularProvidersDidUpdateNotifier:")
     public native void setServiceSubscriberCellularProvidersDidUpdateNotifier(@Block VoidBlock1<NSString> v);
     /**

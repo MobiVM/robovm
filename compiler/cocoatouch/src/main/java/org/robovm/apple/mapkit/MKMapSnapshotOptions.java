@@ -52,6 +52,16 @@ import org.robovm.apple.coreanimation.*;
     protected MKMapSnapshotOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "preferredConfiguration")
+    public native MKMapConfiguration getPreferredConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPreferredConfiguration:")
+    public native void setPreferredConfiguration(MKMapConfiguration v);
     @Property(selector = "camera")
     public native MKMapCamera getCamera();
     @Property(selector = "setCamera:")
@@ -64,34 +74,54 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal MKCoordinateRegion getRegion();
     @Property(selector = "setRegion:")
     public native void setRegion(@ByVal MKCoordinateRegion v);
+    /**
+     * @deprecated Use preferredConfiguration
+     */
+    @Deprecated
     @Property(selector = "mapType")
     public native MKMapType getMapType();
+    /**
+     * @deprecated Use preferredConfiguration
+     */
+    @Deprecated
     @Property(selector = "setMapType:")
     public native void setMapType(MKMapType v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use preferredConfiguration
      */
+    @Deprecated
     @Property(selector = "pointOfInterestFilter")
     public native MKPointOfInterestFilter getPointOfInterestFilter();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use preferredConfiguration
      */
+    @Deprecated
     @Property(selector = "setPointOfInterestFilter:")
     public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     /**
-     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
+     * @deprecated Deprecated in iOS 13.0. Use preferredConfiguration
      */
     @Deprecated
     @Property(selector = "showsPointsOfInterest")
     public native boolean showsPointsOfInterest();
     /**
-     * @deprecated Deprecated in iOS 13.0. Use pointOfInterestFilter
+     * @deprecated Deprecated in iOS 13.0. Use preferredConfiguration
      */
     @Deprecated
     @Property(selector = "setShowsPointsOfInterest:")
     public native void setShowsPointsOfInterest(boolean v);
+    /**
+     * @deprecated No longer supported.
+     */
+    @Deprecated
     @Property(selector = "showsBuildings")
     public native boolean showsBuildings();
+    /**
+     * @deprecated No longer supported.
+     */
+    @Deprecated
     @Property(selector = "setShowsBuildings:")
     public native void setShowsBuildings(boolean v);
     @Property(selector = "size")

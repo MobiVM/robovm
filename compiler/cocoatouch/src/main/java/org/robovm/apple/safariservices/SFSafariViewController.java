@@ -111,6 +111,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="SFExtensionMessageKey", optional=true)
     public static native String getExtensionMessageKey();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="SFExtensionProfileKey", optional=true)
+    public static native String getExtensionProfileKey();
     
     /**
      * @since Available in iOS 11.0 and later.

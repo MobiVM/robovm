@@ -107,6 +107,21 @@ import org.robovm.apple.avrouting.*;
     @Property(selector = "setAllowsVideoFrameAnalysis:")
     public native void setAllowsVideoFrameAnalysis(boolean v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoFrameAnalysisTypes")
+    public native AVVideoFrameAnalysisType getVideoFrameAnalysisTypes();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setVideoFrameAnalysisTypes:")
+    public native void setVideoFrameAnalysisTypes(AVVideoFrameAnalysisType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "toggleLookupAction")
+    public native UIAction getToggleLookupAction();
+    /**
      * @since Available in iOS 14.2 and later.
      */
     @Property(selector = "canStartPictureInPictureAutomaticallyFromInline")

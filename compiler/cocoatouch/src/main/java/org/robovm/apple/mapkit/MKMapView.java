@@ -145,6 +145,26 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setPitchEnabled:")
     public native void setPitchEnabled(boolean v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "showsUserTrackingButton")
+    public native boolean showsUserTrackingButton();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setShowsUserTrackingButton:")
+    public native void setShowsUserTrackingButton(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "pitchButtonVisibility")
+    public native MKFeatureVisibility getPitchButtonVisibility();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPitchButtonVisibility:")
+    public native void setPitchButtonVisibility(MKFeatureVisibility v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "showsCompass")
