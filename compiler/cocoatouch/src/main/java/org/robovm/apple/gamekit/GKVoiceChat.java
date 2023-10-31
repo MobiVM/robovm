@@ -66,19 +66,19 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "players")
     public native NSArray<GKPlayer> getPlayers();
     /**
-     * @deprecated Deprecated in iOS 8.0. use setPlayerVoiceChatStateDidChangeHandler:
+     * @deprecated Deprecated in iOS 8.0. Use -setPlayerVoiceChatStateDidChangeHandler:
      */
     @Deprecated
     @Property(selector = "playerStateUpdateHandler")
     public native @Block VoidBlock2<NSString, GKVoiceChatPlayerState> getPlayerStateUpdateHandler();
     /**
-     * @deprecated Deprecated in iOS 8.0. use setPlayerVoiceChatStateDidChangeHandler:
+     * @deprecated Deprecated in iOS 8.0. Use -setPlayerVoiceChatStateDidChangeHandler:
      */
     @Deprecated
     @Property(selector = "setPlayerStateUpdateHandler:")
     public native void setPlayerStateUpdateHandler(@Block VoidBlock2<NSString, GKVoiceChatPlayerState> v);
     /**
-     * @deprecated Deprecated in iOS 8.0. use players
+     * @deprecated Deprecated in iOS 8.0. Use -players:
      */
     @Deprecated
     @Property(selector = "playerIDs")
@@ -95,7 +95,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "isVoIPAllowed")
     public static native boolean isVoIPAllowed();
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use setPlayer:muted:
+     * @deprecated Deprecated in iOS 8.0. Use -setPlayer:muted:
      */
     @Deprecated
     @Method(selector = "setMute:forPlayer:")

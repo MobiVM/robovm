@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "expectedPlayerCount")
     public native @MachineSizedUInt long getExpectedPlayerCount();
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use players instead.
+     * @deprecated Deprecated in iOS 8.0. Use -players:
      */
     @Deprecated
     @Property(selector = "playerIDs")
@@ -91,13 +91,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "rematchWithCompletionHandler:")
     public native void rematch(@Block VoidBlock2<GKMatch, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use chooseBestHostingPlayerWithCompletionHandler:
+     * @deprecated Deprecated in iOS 8.0. Use -chooseBestHostingPlayerWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "chooseBestHostPlayerWithCompletionHandler:")
     public native void chooseBestHostPlayer(@Block VoidBlock1<NSString> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. Use -sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     public boolean sendDataToPlayers(NSData data, List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
@@ -107,7 +107,7 @@ import org.robovm.apple.coregraphics.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. Use -sendData:toPlayers:dataMode:error:
      */
     @Deprecated
     @Method(selector = "sendData:toPlayers:withDataMode:error:")

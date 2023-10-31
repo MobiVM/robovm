@@ -53,7 +53,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "player:didRequestMatchWithRecipients:")
     void didRequestMatch(GKPlayer player, NSArray<GKPlayer> recipientPlayers);
     /**
-     * @deprecated Deprecated in iOS 8.0. This method is obsolete.  It will never be invoked its implementation does nothing, use player:didRequestMatchWithRecipients:
+     * @deprecated Deprecated in iOS 8.0. Use -player:didRequestMatchWithRecipients:
      */
     @Deprecated
     @Method(selector = "player:didRequestMatchWithPlayers:")

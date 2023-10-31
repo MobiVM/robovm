@@ -97,14 +97,14 @@ import org.robovm.apple.coregraphics.*;
     public static native void removeSession(String identifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayer's registerListener: to register for GKLocalPlayerListener event notifications.
+     * @deprecated Deprecated in iOS 12.0. Use -[GKLocalPlayer registerListener:]
      */
     @Deprecated
     @Method(selector = "addEventListener:")
     public static native void addEventListener(GKGameSessionEventListener listener);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayer's unregisterListener: or unregisterAllListeners to unregister from GKLocalPlayerListener event notifications.
+     * @deprecated Deprecated in iOS 12.0. -[GKLocalPlayer unregisterListener:] or -[GKLocalPlayer unregisterAllListeners:]
      */
     @Deprecated
     @Method(selector = "removeEventListener:")

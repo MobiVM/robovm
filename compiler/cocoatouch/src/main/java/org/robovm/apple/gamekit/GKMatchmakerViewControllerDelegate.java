@@ -59,13 +59,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "matchmakerViewController:hostedPlayerDidAccept:")
     void hostedPlayerDidAccept(GKMatchmakerViewController viewController, GKPlayer player);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use matchmakerViewController:didFindHostedPlayers:
+     * @deprecated Deprecated in iOS 8.0. Use -matchmakerViewController:didFindHostedPlayers:
      */
     @Deprecated
     @Method(selector = "matchmakerViewController:didFindPlayers:")
     void didFindPlayers(GKMatchmakerViewController viewController, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use matchmakerViewController:hostedPlayerDidAccept:
+     * @deprecated Deprecated in iOS 8.0. Use -matchmakerViewController:hostedPlayerDidAccept:
      */
     @Deprecated
     @Method(selector = "matchmakerViewController:didReceiveAcceptFromHostedPlayer:")

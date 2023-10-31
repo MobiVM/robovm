@@ -32,34 +32,39 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXDiagnostic/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXSignpostRecord/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MXDiagnosticPtr extends Ptr<MXDiagnostic, MXDiagnosticPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXDiagnostic.class); }/*</bind>*/
+    /*<ptr>*/public static class MXSignpostRecordPtr extends Ptr<MXSignpostRecord, MXSignpostRecordPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MXSignpostRecord.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXDiagnostic() {}
-    protected MXDiagnostic(Handle h, long handle) { super(h, handle); }
-    protected MXDiagnostic(SkipInit skipInit) { super(skipInit); }
+    public MXSignpostRecord() {}
+    protected MXSignpostRecord(Handle h, long handle) { super(h, handle); }
+    protected MXSignpostRecord(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MXDiagnostic(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MXSignpostRecord(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "metaData")
-    public native MXMetaData getMetaData();
-    @Property(selector = "applicationVersion")
-    public native String getApplicationVersion();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "signpostData")
-    public native NSArray<MXSignpostRecord> getSignpostData();
+    @Property(selector = "subsystem")
+    public native String getSubsystem();
+    @Property(selector = "category")
+    public native String getCategory();
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "beginTimeStamp")
+    public native NSDate getBeginTimeStamp();
+    @Property(selector = "endTimeStamp")
+    public native NSDate getEndTimeStamp();
+    @Property(selector = "duration")
+    public native NSMeasurement<NSUnitDuration> getDuration();
+    @Property(selector = "isInterval")
+    public native boolean isInterval();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

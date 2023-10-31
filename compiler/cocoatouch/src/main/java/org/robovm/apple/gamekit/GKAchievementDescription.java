@@ -68,7 +68,12 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "isReplayable")
     public native boolean isReplayable();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use loadImageWithCompletionHandler: instead
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "rarityPercent")
+    public native NSNumber getRarityPercent();
+    /**
+     * @deprecated Deprecated in iOS 7.0. Use -loadImageWithCompletionHandler:
      */
     @Deprecated
     @Property(selector = "image")

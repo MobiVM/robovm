@@ -165,6 +165,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="CBConnectPeripheralOptionRequiresANCS", optional=true)
         public static native NSString RequiresANCS();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="CBConnectPeripheralOptionEnableAutoReconnect", optional=true)
+        public static native NSString EnableAutoReconnect();
     }
     /*</keys>*/
 }

@@ -64,13 +64,13 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "message")
     public native String getMessage();
     /**
-     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use issuingPlayer instead
+     * @deprecated Deprecated in iOS 8.0. Use -issuingPlayer:
      */
     @Deprecated
     @Property(selector = "issuingPlayerID")
     public native String getIssuingPlayerID();
     /**
-     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use receivingPlayer instead
+     * @deprecated Deprecated in iOS 8.0. Use -receivingPlayer:
      */
     @Deprecated
     @Property(selector = "receivingPlayerID")

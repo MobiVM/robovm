@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 7.0. Use MCSession from the MultipeerConnectivity framework instead
+ * @deprecated Deprecated in iOS 7.0. Use GKMatch
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/

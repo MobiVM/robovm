@@ -79,7 +79,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "addRecipientPlayers:")
     public native void addRecipientPlayers(NSArray<GKPlayer> players);
     /**
-     * @deprecated Deprecated in iOS 8.0. use addRecipientPlayers:
+     * @deprecated Deprecated in iOS 8.0. Use -addRecipientPlayers:
      */
     @Deprecated
     @Method(selector = "addRecipientsWithPlayerIDs:")

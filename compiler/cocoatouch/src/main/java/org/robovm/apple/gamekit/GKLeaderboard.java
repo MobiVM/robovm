@@ -48,13 +48,13 @@ import org.robovm.apple.coregraphics.*;
     protected GKLeaderboard(Handle h, long handle) { super(h, handle); }
     protected GKLeaderboard(SkipInit skipInit) { super(skipInit); }
     /**
-     * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
+     * @deprecated Deprecated in iOS 8.0. Use -initWithPlayers:
      */
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
     public GKLeaderboard(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs) { super((SkipInit) null); initObject(init(playerIDs)); }
     /**
-     * @deprecated Deprecated in iOS 14.0. Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use +loadEntriesForPlayers:timeScope:completionHandler:
      */
     @Deprecated
     @Method(selector = "initWithPlayers:")
@@ -91,85 +91,85 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "duration")
     public native double getDuration();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use identifier instead
+     * @deprecated Deprecated in iOS 7.0. Use -identifier
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use identifier instead
+     * @deprecated Deprecated in iOS 7.0. Use -identifier
      */
     @Deprecated
     @Property(selector = "setCategory:")
     public native void setCategory(String v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "timeScope")
     public native GKLeaderboardTimeScope getTimeScope();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "setTimeScope:")
     public native void setTimeScope(GKLeaderboardTimeScope v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "playerScope")
     public native GKLeaderboardPlayerScope getPlayerScope();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "setPlayerScope:")
     public native void setPlayerScope(GKLeaderboardPlayerScope v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "identifier")
     public native String getIdentifier();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "range")
     public native @ByVal NSRange getRange();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "setRange:")
     public native void setRange(@ByVal NSRange v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: to obtain scores.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "scores")
     public native NSArray<GKScore> getScores();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain the size of the leaderboard.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "maxRange")
     public native @MachineSizedUInt long getMaxRange();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "localPlayerScore")
     public native GKScore getLocalPlayerScore();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler: method to obtain scores.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Property(selector = "isLoading")
@@ -208,31 +208,31 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "submitScore:context:player:leaderboardIDs:completionHandler:")
     public static native void submitScore(@MachineSizedSInt long score, @MachineSizedUInt long context, GKPlayer player, NSArray<NSString> leaderboardIDs, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use initWithPlayers: instead
+     * @deprecated Deprecated in iOS 8.0. Use -initWithPlayers:
      */
     @Deprecated
     @Method(selector = "initWithPlayerIDs:")
     protected native @Pointer long init(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use instance method loadEntriesForPlayers:timeScope:completionHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use +loadEntriesForPlayers:timeScope:completionHandler:
      */
     @Deprecated
     @Method(selector = "initWithPlayers:")
     protected native @Pointer long init(NSArray<GKPlayer> players);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadEntriesForPlayerScope:timeScope:range:completionHandler:.
+     * @deprecated Deprecated in iOS 14.0. Use -loadEntriesForPlayerScope:timeScope:range:completionHandler:
      */
     @Deprecated
     @Method(selector = "loadScoresWithCompletionHandler:")
     public native void loadScores(@Block VoidBlock2<NSArray<GKScore>, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use setDefaultLeaderboardIdentifier:completionHandler: on GKLocalPlayer instead
+     * @deprecated Deprecated in iOS 7.0. Use -setDefaultLeaderboardIdentifier:completionHandler:
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboard:withCompletionHandler:")
     public static native void setDefaultLeaderboard(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use class method loadLeaderboardsWithIDs:completionHandler:
+     * @deprecated Deprecated in iOS 14.0. Use +loadLeaderboardsWithIDs:completionHandler:
      */
     @Deprecated
     @Method(selector = "loadLeaderboardsWithCompletionHandler:")

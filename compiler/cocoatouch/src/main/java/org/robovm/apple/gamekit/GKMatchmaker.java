@@ -50,13 +50,13 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead
+     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead.
      */
     @Deprecated
     @Property(selector = "inviteHandler")
     public native @Block VoidBlock2<GKInvite, NSArray<?>> getInviteHandler();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead
+     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead.
      */
     @Deprecated
     @Property(selector = "setInviteHandler:")
@@ -87,31 +87,31 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "stopBrowsingForNearbyPlayers")
     public native void stopBrowsingForNearbyPlayers();
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 16.2 and later.
      */
     @Method(selector = "startGroupActivityWithPlayerHandler:")
     public native void startGroupActivity(@Block VoidBlock1<GKPlayer> handler);
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 16.2 and later.
      */
     @Method(selector = "stopGroupActivity")
     public native void stopGroupActivity();
     @Method(selector = "sharedMatchmaker")
     public static native GKMatchmaker getSharedMatchmaker();
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, Use startBrowsingForNearbyPlayersWithHandler: instead
+     * @deprecated Deprecated in iOS 8.0. Use -startBrowsingForNearbyPlayersWithHandler:
      */
     @Deprecated
     @Method(selector = "startBrowsingForNearbyPlayersWithReachableHandler:")
     public native void startBrowsingForNearbyPlayers(@Block VoidBlock2<NSString, Boolean> reachableHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use cancelPendingInviteToPlayer:
+     * @deprecated Deprecated in iOS 8.0. Use -cancelPendingInviteToPlayer:
      */
     @Deprecated
     @Method(selector = "cancelInviteToPlayer:")
     public native void cancelInvite(String playerID);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use findPlayersForHostedRequest:
+     * @deprecated Deprecated in iOS 8.0. Use -findPlayersForHostedRequest:
      */
     @Deprecated
     @Method(selector = "findPlayersForHostedMatchRequest:withCompletionHandler:")

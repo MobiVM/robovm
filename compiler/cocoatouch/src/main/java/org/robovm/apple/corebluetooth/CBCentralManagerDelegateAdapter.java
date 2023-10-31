@@ -62,6 +62,8 @@ import org.robovm.apple.dispatch.*;
     public void didFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) {}
     @NotImplemented("centralManager:didDisconnectPeripheral:error:")
     public void didDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) {}
+    @NotImplemented("centralManager:didDisconnectPeripheral:timestamp:isReconnecting:error:")
+    public void didDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, double timestamp, boolean isReconnecting, NSError error) {}
     /**
      * @since Available in iOS 13.0 and later.
      */

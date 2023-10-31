@@ -64,6 +64,21 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "platformArchitecture")
     public native String getPlatformArchitecture();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "lowPowerModeEnabled")
+    public native boolean isLowPowerModeEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isTestFlightApp")
+    public native boolean isTestFlightApp();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "pid")
+    public native int getPid();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

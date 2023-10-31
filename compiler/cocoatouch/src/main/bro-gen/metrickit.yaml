@@ -61,6 +61,8 @@ classes:
     MXForegroundExitData: {} #since 14.0
     MXHangDiagnostic: {} #since 14.0
     MXAppLaunchDiagnostic: {} #since 16.0
+    MXCrashDiagnosticObjectiveCExceptionReason: {} #since 17.0
+    MXSignpostRecord: {} #since 17.0
 protocols:
     MXMetricManagerSubscriber: {} #since 13.0
 

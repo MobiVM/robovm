@@ -14,7 +14,12 @@ enums:
     SFSpeechRecognitionTaskHint: {} #since 10.0
     SFSpeechRecognitionTaskState: {} #since 10.0
     SFSpeechRecognizerAuthorizationStatus: {} #since 10.0
-
+    SFSpeechErrorCode: { nserror: true } #since 17.0
+    # private
+    _SFEARResultType: { exclude: true } #since 17.0
+    _SFCommandRecognizerArgumentPresence: {  exclude: true  } #since 17.0
+    _SFTranscriptionOptions: { exclude: true } #since 17.0
+    _SFTranscriptionResultAttributeOptions: {  exclude: true  } #since 17.0
 typed_enums:
 
 classes:
@@ -39,6 +44,23 @@ classes:
     SFTranscriptionSegment: {} #since 10.0
     SFVoiceAnalytics: {} #since 13.0
     SFSpeechRecognitionMetadata: {} #since 14.0
+    SFSpeechLanguageModel: #since 17.0
+        methods:
+            '+prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:':
+                name: prepareCustomLanguageModel
+            '+prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:':
+                name: prepareCustomLanguageModel
+    SFSpeechLanguageModelConfiguration: #since 17.0
+        methods:
+            '-initWithLanguageModel:':
+                name: init
+            '-initWithLanguageModel:vocabulary:':
+                name: init
+
+    _SF.*:
+        exclude: true # private
+    _ST.*:
+        exclude: true # private
 protocols:
     SFSpeechRecognitionTaskDelegate: #since 10.0
         methods:
@@ -52,7 +74,8 @@ protocols:
         methods:
             '-speechRecognizer:availabilityDidChange:':
                 name: availabilityDidChange
-
+    _SF.*:
+        exclude: true # private
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?SF.*):
@@ -60,6 +83,13 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
+    SFSpeechErrorDomain:
+        class: SFSpeechErrorCode
+        name: getClassDomain
+
+    SFAnalysisContextTag(.*):
+        exclude: true # private
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SF.*):
         class: FixMe
