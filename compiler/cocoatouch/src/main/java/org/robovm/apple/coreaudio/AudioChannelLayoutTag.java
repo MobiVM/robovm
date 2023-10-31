@@ -232,6 +232,12 @@ public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<na
     public static final AudioChannelLayoutTag CICP_18 = new AudioChannelLayoutTag(13697038L);
     public static final AudioChannelLayoutTag CICP_19 = new AudioChannelLayoutTag(13762572L);
     public static final AudioChannelLayoutTag CICP_20 = new AudioChannelLayoutTag(13828110L);
+    public static final AudioChannelLayoutTag Ogg_3_0 = new AudioChannelLayoutTag(9830403L);
+    public static final AudioChannelLayoutTag Ogg_4_0 = new AudioChannelLayoutTag(12124164L);
+    public static final AudioChannelLayoutTag Ogg_5_0 = new AudioChannelLayoutTag(13893637L);
+    public static final AudioChannelLayoutTag Ogg_5_1 = new AudioChannelLayoutTag(13959174L);
+    public static final AudioChannelLayoutTag Ogg_6_1 = new AudioChannelLayoutTag(14024711L);
+    public static final AudioChannelLayoutTag Ogg_7_1 = new AudioChannelLayoutTag(14090248L);
     public static final AudioChannelLayoutTag BeginReserved = new AudioChannelLayoutTag(4026531840L);
     public static final AudioChannelLayoutTag EndReserved = new AudioChannelLayoutTag(4294901759L);
     public static final AudioChannelLayoutTag Unknown = new AudioChannelLayoutTag(4294901760L);

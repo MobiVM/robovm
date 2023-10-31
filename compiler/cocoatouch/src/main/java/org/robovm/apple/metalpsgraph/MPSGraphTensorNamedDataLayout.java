@@ -65,7 +65,23 @@ public enum /*<name>*/MPSGraphTensorNamedDataLayout/*</name>*/ implements Valued
     /**
      * @since Available in iOS 14.0 and later.
      */
-    HW(6L);
+    HW(6L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    NCDHW(7L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    NDHWC(8L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    OIDHW(9L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    DHWIO(10L);
     /*</values>*/
 
     /*<bind>*/

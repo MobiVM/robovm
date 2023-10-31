@@ -33,28 +33,41 @@ import org.robovm.apple.metalps.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 15.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphType/*</name>*/ 
-    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSGraphTypePtr extends Ptr<MPSGraphType, MPSGraphTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPSGraphType.class); }/*</bind>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsLongMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MPSGraphDeploymentPlatform/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    MacOS(0L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    IOS(1L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    TvOS(2L);
+    /*</values>*/
+
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public MPSGraphType() {}
-    protected MPSGraphType(Handle h, long handle) { super(h, handle); }
-    protected MPSGraphType(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MPSGraphDeploymentPlatform/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MPSGraphDeploymentPlatform/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPSGraphDeploymentPlatform/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MPSGraphDeploymentPlatform/*</name>*/.class.getName());
+    }
 }

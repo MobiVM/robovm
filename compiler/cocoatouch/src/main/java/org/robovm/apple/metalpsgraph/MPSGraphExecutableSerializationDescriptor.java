@@ -34,24 +34,35 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphType/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphExecutableSerializationDescriptor/*</name>*/ 
     extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSGraphTypePtr extends Ptr<MPSGraphType, MPSGraphTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPSGraphType.class); }/*</bind>*/
+    /*<ptr>*/public static class MPSGraphExecutableSerializationDescriptorPtr extends Ptr<MPSGraphExecutableSerializationDescriptor, MPSGraphExecutableSerializationDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSGraphExecutableSerializationDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSGraphType() {}
-    protected MPSGraphType(Handle h, long handle) { super(h, handle); }
-    protected MPSGraphType(SkipInit skipInit) { super(skipInit); }
+    public MPSGraphExecutableSerializationDescriptor() {}
+    protected MPSGraphExecutableSerializationDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MPSGraphExecutableSerializationDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "append")
+    public native boolean isAppend();
+    @Property(selector = "setAppend:")
+    public native void setAppend(boolean v);
+    @Property(selector = "deploymentPlatform")
+    public native MPSGraphDeploymentPlatform getDeploymentPlatform();
+    @Property(selector = "setDeploymentPlatform:")
+    public native void setDeploymentPlatform(MPSGraphDeploymentPlatform v);
+    @Property(selector = "minimumDeploymentTarget")
+    public native String getMinimumDeploymentTarget();
+    @Property(selector = "setMinimumDeploymentTarget:")
+    public native void setMinimumDeploymentTarget(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

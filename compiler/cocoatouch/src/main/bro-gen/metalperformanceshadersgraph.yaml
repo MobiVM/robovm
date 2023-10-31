@@ -30,6 +30,9 @@ enums:
     MPSGraphExecutionStage: {}
     MPSGraphResizeNearestRoundingMode: {}
     MPSGraphRNNActivation: {}
+    MPSGraphDeploymentPlatform: { }
+    MPSGraphFFTScalingMode: { }
+    MPSGraphNonMaximumSuppressionCoordinateMode: { }
 
 categories:
 
@@ -464,9 +467,9 @@ classes:
             '-topKWithSourceTensor:kTensor:name:':
                 name: topK
             '-topKWithGradientTensor:source:k:name:':
-                name: topK
+                name: topKWithGradient
             '-topKWithGradientTensor:source:kTensor:name:':
-                name: topK
+                name: topKWithGradient
             '+new':
                 exclude: true
             '-gatherAlongAxis:withUpdatesTensor:indicesTensor:name:':
@@ -693,6 +696,90 @@ classes:
                 name: batchToSpace
             '-batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:':
                 name: batchToSpace
+            '-absoluteSquareWithTensor:name:':
+                name: absoluteSquare
+            '-conjugateWithTensor:name:':
+                name: conjugate
+            '-realPartOfTensor:name:':
+                name: realPart
+            '-imaginaryPartOfTensor:name:':
+                name: imaginaryPart
+            '-complexTensorWithRealTensor:imaginaryTensor:name:':
+                name: complexTensorWithRealTensor
+            '-convolution3DWithSourceTensor:weightsTensor:descriptor:name:':
+                name: convolution3D
+            '-convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution3DDataGradient
+            '-convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution3DDataGradient
+            '-convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution3DWeightsGradient
+            '-convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution3DWeightsGradient
+            '-fastFourierTransformWithTensor:axes:descriptor:name:':
+                name: fastFourierTransformWithTensor$axes$descriptor$name$
+            '-fastFourierTransformWithTensor:axesTensor:descriptor:name:':
+                name: fastFourierTransform
+            '-realToHermiteanFFTWithTensor:axes:descriptor:name:':
+                name: realToHermiteanFFT
+            '-realToHermiteanFFTWithTensor:axesTensor:descriptor:name:':
+                name: realToHermiteanFFT
+            '-HermiteanToRealFFTWithTensor:axes:descriptor:name:':
+                name: HermiteanToRealFFT
+            '-HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:':
+                name: HermiteanToRealFFT
+            '-imToColWithSourceTensor:descriptor:name:':
+                name: imToCol
+            '-colToImWithSourceTensor:outputShape:descriptor:name:':
+                name: colToIm
+            '-constantWithRealPart:imaginaryPart:':
+                name: constant
+            '-constantWithRealPart:imaginaryPart:dataType:':
+                name: constant
+            '-constantWithRealPart:imaginaryPart:shape:dataType:':
+                name: constant
+            '-nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:':
+                name: nonMaximumSuppression
+            '-nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:':
+                name: nonMaximumSuppression
+            '-nonZeroIndicesOfTensor:name:':
+                name: nonZeroIndices
+            '-resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:':
+                name: resize
+            '-resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:':
+                name: resizeTensor
+            '-resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:':
+                name: resizeWithGradient
+            '-resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:':
+                name: resizeNearest
+            '-resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:':
+                name: resizeNearest
+            '-resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:':
+                name: resizeNearestWithGradient
+            '-resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:':
+                name: resizeBilinear
+            '-resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:':
+                name: resizeBilinear
+            '-resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:':
+                name: resizeBilinearWithGradient
+            '-reinterpretCastTensor:toType:name:':
+                name: reinterpretCast
+            '-topKWithSourceTensor:axis:k:name:':
+                name: topK
+            '-topKWithSourceTensor:axisTensor:kTensor:name:':
+                name: topK
+            '-topKWithGradientTensor:source:axis:k:name:':
+                name: topKWithGradient
+            '-topKWithGradientTensor:source:axisTensor:kTensor:name:':
+                name: topKWithGradient
+            '-bottomKWithSourceTensor:axis:k:name:':
+                name: bottomK
+            '-bottomKWithSourceTensor:axisTensor:kTensor:name:':
+                name: bottomK
+            '-bottomKWithGradientTensor:source:axis:k:name:':
+                name: bottomKWithGradient
+            '-bottomKWithGradientTensor:source:axisTensor:kTensor:name:':
+                name: bottomKWithGradient
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
@@ -785,6 +872,12 @@ classes:
                 name: runAsync
             '-encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:':
                 name: encodeToCommandBuffer
+            '-getOutputTypesWithDevice:inputTypes:compilationDescriptor:':
+                name: getOutputTypes
+            '-serializeToMPSGraphPackageAtURL:descriptor:':
+                name: serializeToMPSGraphPackage
+            '-initWithMPSGraphPackageAtURL:compilationDescriptor:':
+                name: init
     MPSGraphExecutableExecutionDescriptor:  #since 15.0
         methods:
             '-waitForEvent:value:':
@@ -822,6 +915,29 @@ classes:
     MPSGraphGRUDescriptor: {} #since 16.0
     MPSGraphLSTMDescriptor: {} #since 15.4
     MPSGraphSingleGateRNNDescriptor: {} #since 15.4
+    MPSGraphConvolution3DOpDescriptor: #since 16.3
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:':
+                name: setExplicitPadding
+            '+descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:':
+                constructor: true
+                name: create
+            '+descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingStyle:dataLayout:weightsLayout:':
+                constructor: true
+                name: create
+    MPSGraphExecutableSerializationDescriptor: {} #since 17.0
+    MPSGraphFFTDescriptor: {} #since 17.0
+    MPSGraphImToColOpDescriptor: #since 17.0
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
+                name: setExplicitPadding
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:':
+                constructor: true
+                name: create
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:':
+                constructor: true
+                name: create
+    MPSGraphObject: {} #since 17.0
 protocols:
 
 functions:

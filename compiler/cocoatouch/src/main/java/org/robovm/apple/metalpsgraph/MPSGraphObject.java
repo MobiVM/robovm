@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.gamecontroller;
+package org.robovm.apple.metalpsgraph;
 
 /*<imports>*/
 import java.io.*;
@@ -28,24 +28,28 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.corehaptic.*;
+import org.robovm.apple.metal.*;
+import org.robovm.apple.metalps.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 17.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCDirectionPadElementNameAdapter/*</name>*/ 
-    extends /*<extends>*/GCPhysicalInputElementNameAdapter/*</extends>*/ 
-    /*<implements>*/implements GCDirectionPadElementName/*</implements>*/ {
+/*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphObject/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MPSGraphObjectPtr extends Ptr<MPSGraphObject, MPSGraphObjectPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSGraphObject.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public MPSGraphObject() {}
+    protected MPSGraphObject(Handle h, long handle) { super(h, handle); }
+    protected MPSGraphObject(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/

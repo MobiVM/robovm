@@ -34,25 +34,33 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphDepthwiseConvolution2DOpDescriptor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphImToColOpDescriptor/*</name>*/ 
     extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSGraphDepthwiseConvolution2DOpDescriptorPtr extends Ptr<MPSGraphDepthwiseConvolution2DOpDescriptor, MPSGraphDepthwiseConvolution2DOpDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPSGraphDepthwiseConvolution2DOpDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class MPSGraphImToColOpDescriptorPtr extends Ptr<MPSGraphImToColOpDescriptor, MPSGraphImToColOpDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSGraphImToColOpDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSGraphDepthwiseConvolution2DOpDescriptor() {}
-    protected MPSGraphDepthwiseConvolution2DOpDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MPSGraphDepthwiseConvolution2DOpDescriptor(SkipInit skipInit) { super(skipInit); }
-    public MPSGraphDepthwiseConvolution2DOpDescriptor(@MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, @MachineSizedUInt long paddingLeft, @MachineSizedUInt long paddingRight, @MachineSizedUInt long paddingTop, @MachineSizedUInt long paddingBottom, MPSGraphPaddingStyle paddingStyle, MPSGraphTensorNamedDataLayout dataLayout, MPSGraphTensorNamedDataLayout weightsLayout) { super((Handle) null, create(strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout)); retain(getHandle()); }
-    public MPSGraphDepthwiseConvolution2DOpDescriptor(MPSGraphTensorNamedDataLayout dataLayout, MPSGraphTensorNamedDataLayout weightsLayout) { super((Handle) null, create(dataLayout, weightsLayout)); retain(getHandle()); }
+    public MPSGraphImToColOpDescriptor() {}
+    protected MPSGraphImToColOpDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MPSGraphImToColOpDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MPSGraphImToColOpDescriptor(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, @MachineSizedUInt long paddingLeft, @MachineSizedUInt long paddingRight, @MachineSizedUInt long paddingTop, @MachineSizedUInt long paddingBottom, MPSGraphTensorNamedDataLayout dataLayout) { super((Handle) null, create(kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, dataLayout)); retain(getHandle()); }
+    public MPSGraphImToColOpDescriptor(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, MPSGraphTensorNamedDataLayout dataLayout) { super((Handle) null, create(kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, dataLayout)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "kernelWidth")
+    public native @MachineSizedUInt long getKernelWidth();
+    @Property(selector = "setKernelWidth:")
+    public native void setKernelWidth(@MachineSizedUInt long v);
+    @Property(selector = "kernelHeight")
+    public native @MachineSizedUInt long getKernelHeight();
+    @Property(selector = "setKernelHeight:")
+    public native void setKernelHeight(@MachineSizedUInt long v);
     @Property(selector = "strideInX")
     public native @MachineSizedUInt long getStrideInX();
     @Property(selector = "setStrideInX:")
@@ -85,26 +93,18 @@ import org.robovm.apple.metalps.*;
     public native @MachineSizedUInt long getPaddingBottom();
     @Property(selector = "setPaddingBottom:")
     public native void setPaddingBottom(@MachineSizedUInt long v);
-    @Property(selector = "paddingStyle")
-    public native MPSGraphPaddingStyle getPaddingStyle();
-    @Property(selector = "setPaddingStyle:")
-    public native void setPaddingStyle(MPSGraphPaddingStyle v);
     @Property(selector = "dataLayout")
     public native MPSGraphTensorNamedDataLayout getDataLayout();
     @Property(selector = "setDataLayout:")
     public native void setDataLayout(MPSGraphTensorNamedDataLayout v);
-    @Property(selector = "weightsLayout")
-    public native MPSGraphTensorNamedDataLayout getWeightsLayout();
-    @Property(selector = "setWeightsLayout:")
-    public native void setWeightsLayout(MPSGraphTensorNamedDataLayout v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:")
     public native void setExplicitPadding(@MachineSizedUInt long paddingLeft, @MachineSizedUInt long paddingRight, @MachineSizedUInt long paddingTop, @MachineSizedUInt long paddingBottom);
-    @Method(selector = "descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:")
-    protected static native @Pointer long create(@MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, @MachineSizedUInt long paddingLeft, @MachineSizedUInt long paddingRight, @MachineSizedUInt long paddingTop, @MachineSizedUInt long paddingBottom, MPSGraphPaddingStyle paddingStyle, MPSGraphTensorNamedDataLayout dataLayout, MPSGraphTensorNamedDataLayout weightsLayout);
-    @Method(selector = "descriptorWithDataLayout:weightsLayout:")
-    protected static native @Pointer long create(MPSGraphTensorNamedDataLayout dataLayout, MPSGraphTensorNamedDataLayout weightsLayout);
+    @Method(selector = "descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:")
+    protected static native @Pointer long create(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, @MachineSizedUInt long paddingLeft, @MachineSizedUInt long paddingRight, @MachineSizedUInt long paddingTop, @MachineSizedUInt long paddingBottom, MPSGraphTensorNamedDataLayout dataLayout);
+    @Method(selector = "descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:")
+    protected static native @Pointer long create(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long strideInX, @MachineSizedUInt long strideInY, @MachineSizedUInt long dilationRateInX, @MachineSizedUInt long dilationRateInY, MPSGraphTensorNamedDataLayout dataLayout);
     /*</methods>*/
 }

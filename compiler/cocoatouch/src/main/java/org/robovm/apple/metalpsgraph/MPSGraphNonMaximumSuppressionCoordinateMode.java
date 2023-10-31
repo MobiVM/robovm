@@ -36,32 +36,24 @@ import org.robovm.apple.metalps.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MPSGraphNonMaximumSuppressionCoordinateMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    RoundPreferCeil(0L),
+    CornersHeightFirst(0L),
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    RoundPreferFloor(1L),
+    CornersWidthFirst(1L),
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    Ceil(2L),
+    CentersHeightFirst(2L),
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    Floor(3L),
-    /**
-     * @since Available in iOS 16.3 and later.
-     */
-    RoundToEven(4L),
-    /**
-     * @since Available in iOS 16.3 and later.
-     */
-    RoundToOdd(5L);
+    CentersWidthFirst(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -71,15 +63,15 @@ public enum /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/ implements Va
 
     private final long n;
 
-    private /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MPSGraphNonMaximumSuppressionCoordinateMode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/ v : values()) {
+    public static /*<name>*/MPSGraphNonMaximumSuppressionCoordinateMode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MPSGraphNonMaximumSuppressionCoordinateMode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/.class.getName());
+            + /*<name>*/MPSGraphNonMaximumSuppressionCoordinateMode/*</name>*/.class.getName());
     }
 }

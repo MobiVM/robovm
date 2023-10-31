@@ -34,27 +34,39 @@ import org.robovm.apple.metalps.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphType/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphFFTDescriptor/*</name>*/ 
     extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPSGraphTypePtr extends Ptr<MPSGraphType, MPSGraphTypePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPSGraphType.class); }/*</bind>*/
+    /*<ptr>*/public static class MPSGraphFFTDescriptorPtr extends Ptr<MPSGraphFFTDescriptor, MPSGraphFFTDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPSGraphFFTDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MPSGraphType() {}
-    protected MPSGraphType(Handle h, long handle) { super(h, handle); }
-    protected MPSGraphType(SkipInit skipInit) { super(skipInit); }
+    public MPSGraphFFTDescriptor() {}
+    protected MPSGraphFFTDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MPSGraphFFTDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "inverse")
+    public native boolean isInverse();
+    @Property(selector = "setInverse:")
+    public native void setInverse(boolean v);
+    @Property(selector = "scalingMode")
+    public native MPSGraphFFTScalingMode getScalingMode();
+    @Property(selector = "setScalingMode:")
+    public native void setScalingMode(MPSGraphFFTScalingMode v);
+    @Property(selector = "roundToOddHermitean")
+    public native boolean isRoundToOddHermitean();
+    @Property(selector = "setRoundToOddHermitean:")
+    public native void setRoundToOddHermitean(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "descriptor")
+    public static native MPSGraphFFTDescriptor descriptor();
     /*</methods>*/
 }
