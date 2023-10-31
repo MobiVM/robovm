@@ -35,59 +35,55 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCDevicePhysicalInput/*</name>*/ 
-    /*<implements>*/extends GCDevicePhysicalInputState/*</implements>*/ {
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerLiveInput/*</name>*/ 
+    extends /*<extends>*/GCControllerInputState/*</extends>*/ 
+    /*<implements>*/implements GCDevicePhysicalInput/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GCControllerLiveInputPtr extends Ptr<GCControllerLiveInput, GCControllerLiveInputPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCControllerLiveInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public GCControllerLiveInput() {}
+    protected GCControllerLiveInput(Handle h, long handle) { super(h, handle); }
+    protected GCControllerLiveInput(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "unmappedInput")
+    public native GCControllerLiveInput getUnmappedInput();
     @Property(selector = "device")
-    GCDevice getDevice();
+    public native GCDevice getDevice();
     /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "queue")
-    DispatchQueue getQueue();
+    public native DispatchQueue getQueue();
     /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "setQueue:")
-    void setQueue(DispatchQueue v);
+    public native void setQueue(DispatchQueue v);
     @Property(selector = "elementValueDidChangeHandler")
-    @Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> getElementValueDidChangeHandler();
+    public native @Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> getElementValueDidChangeHandler();
     @Property(selector = "setElementValueDidChangeHandler:")
-    void setElementValueDidChangeHandler(@Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> v);
+    public native void setElementValueDidChangeHandler(@Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> v);
     @Property(selector = "inputStateAvailableHandler")
-    @Block VoidBlock1<GCDevicePhysicalInput> getInputStateAvailableHandler();
+    public native @Block VoidBlock1<GCDevicePhysicalInput> getInputStateAvailableHandler();
     @Property(selector = "setInputStateAvailableHandler:")
-    void setInputStateAvailableHandler(@Block VoidBlock1<GCDevicePhysicalInput> v);
+    public native void setInputStateAvailableHandler(@Block VoidBlock1<GCDevicePhysicalInput> v);
     @Property(selector = "inputStateQueueDepth")
-    @MachineSizedSInt long getInputStateQueueDepth();
+    public native @MachineSizedSInt long getInputStateQueueDepth();
     @Property(selector = "setInputStateQueueDepth:")
-    void setInputStateQueueDepth(@MachineSizedSInt long v);
+    public native void setInputStateQueueDepth(@MachineSizedSInt long v);
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "capture")
-    GCDevicePhysicalInputState capture();
+    public native GCControllerInputState capture();
     @Method(selector = "nextInputState")
-    NSObjectProtocol nextInputState();
+    public native NSObjectProtocol nextInputState();
     /*</methods>*/
-
-    // dkimitsa: manually added wrappers
-    default GCDevicePhysicalInputState nextPhysicalInputState() {
-        return (GCDevicePhysicalInputState) nextInputState();
-    }
-    default GCDevicePhysicalInputStateDiff nextPhysicalInputStateDiff() {
-        return (GCDevicePhysicalInputStateDiff) nextInputState();
-    }
-
-    /*<adapter>*/
-    /*</adapter>*/
 }

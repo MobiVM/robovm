@@ -63,6 +63,11 @@ import org.robovm.apple.corehaptic.*;
     public double getLastPositionTimestamp() { return 0; }
     @NotImplemented("lastPositionLatency")
     public double getLastPositionLatency() { return 0; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("sources")
+    public NSSet<?> getSources() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

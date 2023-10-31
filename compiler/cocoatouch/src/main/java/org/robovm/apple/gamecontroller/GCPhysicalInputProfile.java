@@ -138,87 +138,87 @@ import org.robovm.apple.corehaptic.*;
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonA", optional=true)
-        public static native String ButtonA();
+        public static native NSString ButtonA();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonB", optional=true)
-        public static native String ButtonB();
+        public static native NSString ButtonB();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonX", optional=true)
-        public static native String ButtonX();
+        public static native NSString ButtonX();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonY", optional=true)
-        public static native String ButtonY();
+        public static native NSString ButtonY();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputDirectionPad", optional=true)
-        public static native String DirectionPad();
+        public static native NSString DirectionPad();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftThumbstick", optional=true)
-        public static native String LeftThumbstick();
+        public static native NSString LeftThumbstick();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputRightThumbstick", optional=true)
-        public static native String RightThumbstick();
+        public static native NSString RightThumbstick();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftShoulder", optional=true)
-        public static native String LeftShoulder();
+        public static native NSString LeftShoulder();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputRightShoulder", optional=true)
-        public static native String RightShoulder();
+        public static native NSString RightShoulder();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftTrigger", optional=true)
-        public static native String LeftTrigger();
+        public static native NSString LeftTrigger();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputRightTrigger", optional=true)
-        public static native String RightTrigger();
+        public static native NSString RightTrigger();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftThumbstickButton", optional=true)
-        public static native String LeftThumbstickButton();
+        public static native NSString LeftThumbstickButton();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputRightThumbstickButton", optional=true)
-        public static native String RightThumbstickButton();
+        public static native NSString RightThumbstickButton();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonHome", optional=true)
-        public static native String ButtonHome();
+        public static native NSString ButtonHome();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonMenu", optional=true)
-        public static native String ButtonMenu();
+        public static native NSString ButtonMenu();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonOptions", optional=true)
-        public static native String ButtonOptions();
+        public static native NSString ButtonOptions();
         /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonShare", optional=true)
-        public static native String ButtonShare();
+        public static native NSString ButtonShare();
         /**
          * @since Available in iOS 15.0 and later.
          */
@@ -269,17 +269,17 @@ import org.robovm.apple.corehaptic.*;
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputDualShockTouchpadOne", optional=true)
-        public static native String TouchpadOne();
+        public static native NSString TouchpadOne();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputDualShockTouchpadTwo", optional=true)
-        public static native String TouchpadTwo();
+        public static native NSString TouchpadTwo();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputDualShockTouchpadButton", optional=true)
-        public static native String TouchpadButton();
+        public static native NSString TouchpadButton();
     }
 
     @Library("GameController")
@@ -290,23 +290,29 @@ import org.robovm.apple.corehaptic.*;
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputXboxPaddleOne", optional=true)
-        public static native String PaddleOne();
+        public static native NSString PaddleOne();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputXboxPaddleTwo", optional=true)
-        public static native String PaddleTwo();
+        public static native NSString PaddleTwo();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputXboxPaddleThree", optional=true)
-        public static native String PaddleThree();
+        public static native NSString PaddleThree();
         /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputXboxPaddleFour", optional=true)
-        public static native String PaddleFour();
+        public static native NSString PaddleFour();
     }
+    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="GCInputArcadeButtonName", optional=true)
+    public static native NSString getArcadeButtonName(@MachineSizedSInt long row, @MachineSizedSInt long column);
     
     /**
      * @since Available in iOS 14.0 and later.

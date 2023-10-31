@@ -39,11 +39,11 @@ import org.robovm.apple.corehaptic.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCPhysicalInputElementCollection<Key extends String, Element extends NSObject & GCPhysicalInputElement>/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCPhysicalInputElementCollection<Key extends NSString, Element extends NSObject & GCPhysicalInputElement>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSFastEnumeration/*</implements>*/ {
 
-    /*<ptr>*/public static class GCPhysicalInputElementCollectionPtr<Key extends String, Element extends NSObject & GCPhysicalInputElement> extends Ptr<GCPhysicalInputElementCollection<Key, Element>, GCPhysicalInputElementCollectionPtr<Key, Element>> {}/*</ptr>*/
+    /*<ptr>*/public static class GCPhysicalInputElementCollectionPtr<Key extends NSString, Element extends NSObject & GCPhysicalInputElement> extends Ptr<GCPhysicalInputElementCollection<Key, Element>, GCPhysicalInputElementCollectionPtr<Key, Element>> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(GCPhysicalInputElementCollection.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/

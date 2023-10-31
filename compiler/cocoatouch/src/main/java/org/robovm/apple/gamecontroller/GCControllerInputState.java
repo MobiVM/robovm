@@ -34,32 +34,24 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 17.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCRacingWheelInputState/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCControllerInputState/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements GCDevicePhysicalInputState/*</implements>*/ {
 
-    /*<ptr>*/public static class GCRacingWheelInputStatePtr extends Ptr<GCRacingWheelInputState, GCRacingWheelInputStatePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(GCRacingWheelInputState.class); }/*</bind>*/
+    /*<ptr>*/public static class GCControllerInputStatePtr extends Ptr<GCControllerInputState, GCControllerInputStatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCControllerInputState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public GCRacingWheelInputState() {}
-    protected GCRacingWheelInputState(Handle h, long handle) { super(h, handle); }
-    protected GCRacingWheelInputState(SkipInit skipInit) { super(skipInit); }
+    public GCControllerInputState() {}
+    protected GCControllerInputState(Handle h, long handle) { super(h, handle); }
+    protected GCControllerInputState(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "wheel")
-    public native GCSteeringWheelElement getWheel();
-    @Property(selector = "acceleratorPedal")
-    public native GCButtonElement getAcceleratorPedal();
-    @Property(selector = "brakePedal")
-    public native GCButtonElement getBrakePedal();
-    @Property(selector = "clutchPedal")
-    public native GCButtonElement getClutchPedal();
-    @Property(selector = "shifter")
-    public native GCGearShifterElement getShifter();
     @Property(selector = "device")
     public native GCDevice getDevice();
     @Property(selector = "lastEventTimestamp")
@@ -67,19 +59,19 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "lastEventLatency")
     public native double getLastEventLatency();
     @Property(selector = "elements")
-    public native GCPhysicalInputElementCollection getElements();
+    public native GCPhysicalInputElementCollection<NSString, ?> getElements();
     @Property(selector = "buttons")
-    public native GCPhysicalInputElementCollection getButtons();
+    public native GCPhysicalInputElementCollection<NSString, ?> getButtons();
     @Property(selector = "axes")
-    public native GCPhysicalInputElementCollection getAxes();
+    public native GCPhysicalInputElementCollection<NSString, ?> getAxes();
     @Property(selector = "switches")
-    public native GCPhysicalInputElementCollection getSwitches();
+    public native GCPhysicalInputElementCollection<NSString, ?> getSwitches();
     @Property(selector = "dpads")
-    public native GCPhysicalInputElementCollection getDpads();
+    public native GCPhysicalInputElementCollection<NSString, ?> getDpads();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "objectForKeyedSubscript:")
-    public native GCPhysicalInputElement objectForKeyedSubscript(String key);
+    public native GCPhysicalInputElement objectForKeyedSubscript(NSString key);
     /*</methods>*/
 }

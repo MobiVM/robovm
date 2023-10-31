@@ -64,6 +64,11 @@ import org.robovm.apple.corehaptic.*;
     double getLastPositionTimestamp();
     @Property(selector = "lastPositionLatency")
     double getLastPositionLatency();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "sources")
+    NSSet<?> getSources();
     /*</properties>*/
     /*<methods>*/
     

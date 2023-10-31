@@ -34,23 +34,30 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCAxisElementName/*</name>*/ 
-    /*<implements>*/extends GCPhysicalInputElementName/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCPhysicalInputSourceAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCPhysicalInputSource/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("elementAliases")
+    public NSSet<NSString> getElementAliases() { return null; }
+    @NotImplemented("elementLocalizedName")
+    public String getElementLocalizedName() { return null; }
+    @NotImplemented("sfSymbolsName")
+    public String getSfSymbolsName() { return null; }
+    @NotImplemented("direction")
+    public GCPhysicalInputSourceDirection getDirection() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

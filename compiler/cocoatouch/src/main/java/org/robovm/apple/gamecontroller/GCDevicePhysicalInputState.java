@@ -55,19 +55,19 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "lastEventLatency")
     double getLastEventLatency();
     @Property(selector = "elements")
-    GCPhysicalInputElementCollection getElements();
+    GCPhysicalInputElementCollection<NSString, ?> getElements();
     @Property(selector = "buttons")
-    GCPhysicalInputElementCollection getButtons();
+    GCPhysicalInputElementCollection<NSString, ?> getButtons();
     @Property(selector = "axes")
-    GCPhysicalInputElementCollection getAxes();
+    GCPhysicalInputElementCollection<NSString, ?> getAxes();
     @Property(selector = "switches")
-    GCPhysicalInputElementCollection getSwitches();
+    GCPhysicalInputElementCollection<NSString, ?> getSwitches();
     @Property(selector = "dpads")
-    GCPhysicalInputElementCollection getDpads();
+    GCPhysicalInputElementCollection<NSString, ?> getDpads();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "objectForKeyedSubscript:")
-    GCPhysicalInputElement objectForKeyedSubscript(String key);
+    GCPhysicalInputElement objectForKeyedSubscript(NSString key);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
