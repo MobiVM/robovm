@@ -121,5 +121,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("webView:showLockdownModeFirstUseMessage:completionHandler:")
     public void showLockdownModeFirstUseMessage(WKWebView webView, String message, @Block VoidBlock1<WKDialogResult> completionHandler) {}
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @NotImplemented("webView:willPresentEditMenuWithAnimator:")
+    public void willPresentEditMenu(WKWebView webView, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @NotImplemented("webView:willDismissEditMenuWithAnimator:")
+    public void willDismissEditMenu(WKWebView webView, UIEditMenuInteractionAnimating animator) {}
     /*</methods>*/
 }

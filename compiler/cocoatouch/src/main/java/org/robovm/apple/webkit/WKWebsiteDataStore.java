@@ -62,6 +62,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "httpCookieStore")
     public native WKHTTPCookieStore getHttpCookieStore();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native NSUUID getIdentifier();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "proxyConfigurations")
+    public native NSArray<?> getProxyConfigurations();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setProxyConfigurations:")
+    public native void setProxyConfigurations(NSArray<?> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -79,6 +94,21 @@ import org.robovm.apple.coreanimation.*;
     public static native WKWebsiteDataStore getNonPersistentDataStore();
     @Method(selector = "allWebsiteDataTypes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(WKWebsiteDataType.AsSetMarshaler.class) Set<WKWebsiteDataType> getAllWebsiteDataTypes();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "dataStoreForIdentifier:")
+    public static native WKWebsiteDataStore dataStoreForIdentifier(NSUUID identifier);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeDataStoreForIdentifier:completionHandler:")
+    public static native void removeDataStore(NSUUID identifier, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "fetchAllDataStoreIdentifiers:")
+    public static native void fetchAllDataStoreIdentifiers(@Block VoidBlock1<NSArray<NSUUID>> completionHandler);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -67,5 +67,15 @@ import org.robovm.apple.coreanimation.*;
     public native void addObserver(WKHTTPCookieStoreObserver observer);
     @Method(selector = "removeObserver:")
     public native void removeObserver(WKHTTPCookieStoreObserver observer);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setCookiePolicy:completionHandler:")
+    public native void setCookiePolicy(WKCookiePolicy policy, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "getCookiePolicy:")
+    public native void getCookiePolicy(@Block VoidBlock1<WKCookiePolicy> completionHandler);
     /*</methods>*/
 }
