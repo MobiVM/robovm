@@ -58,6 +58,11 @@ import org.robovm.apple.imageio.*;
     public VNImageRequestHandler(CVPixelBuffer pixelBuffer, VNImageOption options) { super((SkipInit) null); initObject(init(pixelBuffer, options)); }
     @Method(selector = "initWithCVPixelBuffer:orientation:options:")
     public VNImageRequestHandler(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(pixelBuffer, orientation, options)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithCVPixelBuffer:depthData:orientation:options:")
+    public VNImageRequestHandler(CVPixelBuffer pixelBuffer, org.robovm.apple.avfoundation.AVDepthData depthData, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(pixelBuffer, depthData, orientation, options)); }
     @Method(selector = "initWithCGImage:options:")
     public VNImageRequestHandler(CGImage image, VNImageOption options) { super((SkipInit) null); initObject(init(image, options)); }
     @Method(selector = "initWithCGImage:orientation:options:")
@@ -84,6 +89,11 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "initWithCMSampleBuffer:orientation:options:")
     public VNImageRequestHandler(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, orientation, options)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:depthData:orientation:options:")
+    public VNImageRequestHandler(CMSampleBuffer sampleBuffer, org.robovm.apple.avfoundation.AVDepthData depthData, CGImagePropertyOrientation orientation, VNImageOption options) { super((SkipInit) null); initObject(init(sampleBuffer, depthData, orientation, options)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -94,6 +104,11 @@ import org.robovm.apple.imageio.*;
     protected native @Pointer long init(CVPixelBuffer pixelBuffer, VNImageOption options);
     @Method(selector = "initWithCVPixelBuffer:orientation:options:")
     protected native @Pointer long init(CVPixelBuffer pixelBuffer, CGImagePropertyOrientation orientation, VNImageOption options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithCVPixelBuffer:depthData:orientation:options:")
+    protected native @Pointer long init(CVPixelBuffer pixelBuffer, org.robovm.apple.avfoundation.AVDepthData depthData, CGImagePropertyOrientation orientation, VNImageOption options);
     @Method(selector = "initWithCGImage:options:")
     protected native @Pointer long init(CGImage image, VNImageOption options);
     @Method(selector = "initWithCGImage:orientation:options:")
@@ -120,6 +135,11 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "initWithCMSampleBuffer:orientation:options:")
     protected native @Pointer long init(CMSampleBuffer sampleBuffer, CGImagePropertyOrientation orientation, VNImageOption options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithCMSampleBuffer:depthData:orientation:options:")
+    protected native @Pointer long init(CMSampleBuffer sampleBuffer, org.robovm.apple.avfoundation.AVDepthData depthData, CGImagePropertyOrientation orientation, VNImageOption options);
     public boolean performRequests(NSArray<VNRequest> requests) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = performRequests(requests, ptr);

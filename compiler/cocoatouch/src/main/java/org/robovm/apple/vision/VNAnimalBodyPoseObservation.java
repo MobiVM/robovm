@@ -39,34 +39,35 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTextObservation/*</name>*/ 
-    extends /*<extends>*/VNRectangleObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNAnimalBodyPoseObservation/*</name>*/ 
+    extends /*<extends>*/VNRecognizedPointsObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNTextObservationPtr extends Ptr<VNTextObservation, VNTextObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNTextObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNAnimalBodyPoseObservationPtr extends Ptr<VNAnimalBodyPoseObservation, VNAnimalBodyPoseObservationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNAnimalBodyPoseObservation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNTextObservation() {}
-    protected VNTextObservation(Handle h, long handle) { super(h, handle); }
-    protected VNTextObservation(SkipInit skipInit) { super(skipInit); }
+    protected VNAnimalBodyPoseObservation() {}
+    protected VNAnimalBodyPoseObservation(Handle h, long handle) { super(h, handle); }
+    protected VNAnimalBodyPoseObservation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "characterBoxes")
-    public native NSArray<VNRectangleObservation> getCharacterBoxes();
+    @Property(selector = "availableJointNames")
+    public native NSArray<NSString> getAvailableJointNames();
+    @Property(selector = "availableJointGroupNames")
+    public native NSArray<NSString> getAvailableJointGroupNames();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
-    public static native VNTextObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
+    @Method(selector = "recognizedPointForJointName:error:")
+    public native VNRecognizedPoint getRecognizedPoint(VNAnimalBodyPoseObservationJointName jointName, NSError.NSErrorPtr error);
+    @Method(selector = "recognizedPointsForJointsGroupName:error:")
+    public native NSDictionary<NSString, VNRecognizedPoint> getRecognizedPoints(VNAnimalBodyPoseObservationJointsGroupName jointsGroupName, NSError.NSErrorPtr error);
     /*</methods>*/
 }

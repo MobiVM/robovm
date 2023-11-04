@@ -39,35 +39,29 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTrackingRequest/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNDetectAnimalBodyPoseRequest/*</name>*/ 
     extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNTrackingRequestPtr extends Ptr<VNTrackingRequest, VNTrackingRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNTrackingRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNDetectAnimalBodyPoseRequestPtr extends Ptr<VNDetectAnimalBodyPoseRequest, VNDetectAnimalBodyPoseRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNDetectAnimalBodyPoseRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    protected VNTrackingRequest() {}
-    protected VNTrackingRequest(Handle h, long handle) { super(h, handle); }
-    protected VNTrackingRequest(SkipInit skipInit) { super(skipInit); }
+    public VNDetectAnimalBodyPoseRequest() {}
+    protected VNDetectAnimalBodyPoseRequest(Handle h, long handle) { super(h, handle); }
+    protected VNDetectAnimalBodyPoseRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNDetectAnimalBodyPoseRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputObservation")
-    public native VNDetectedObjectObservation getInputObservation();
-    @Property(selector = "setInputObservation:")
-    public native void setInputObservation(VNDetectedObjectObservation v);
-    @Property(selector = "trackingLevel")
-    public native VNRequestTrackingLevel getTrackingLevel();
-    @Property(selector = "setTrackingLevel:")
-    public native void setTrackingLevel(VNRequestTrackingLevel v);
-    @Property(selector = "isLastFrame")
-    public native boolean isLastFrame();
-    @Property(selector = "setLastFrame:")
-    public native void setLastFrame(boolean v);
+    @Property(selector = "results")
+    public native NSArray<VNAnimalBodyPoseObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -86,10 +80,9 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Method(selector = "supportedNumberOfTrackersAndReturnError:")
-    public native @MachineSizedUInt long supportedNumberOfTrackersAndReturnError(NSError.NSErrorPtr error);
+    @Method(selector = "supportedJointNamesAndReturnError:")
+    public native NSArray<NSString> supportedJointNamesAndReturnError(NSError.NSErrorPtr error);
+    @Method(selector = "supportedJointsGroupNamesAndReturnError:")
+    public native NSArray<NSString> supportedJointsGroupNamesAndReturnError(NSError.NSErrorPtr error);
     /*</methods>*/
 }

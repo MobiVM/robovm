@@ -39,35 +39,31 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTrackingRequest/*</name>*/ 
-    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTrackHomographicImageRegistrationRequest/*</name>*/ 
+    extends /*<extends>*/VNStatefulRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNTrackingRequestPtr extends Ptr<VNTrackingRequest, VNTrackingRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNTrackingRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNTrackHomographicImageRegistrationRequestPtr extends Ptr<VNTrackHomographicImageRegistrationRequest, VNTrackHomographicImageRegistrationRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNTrackHomographicImageRegistrationRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    protected VNTrackingRequest() {}
-    protected VNTrackingRequest(Handle h, long handle) { super(h, handle); }
-    protected VNTrackingRequest(SkipInit skipInit) { super(skipInit); }
+    public VNTrackHomographicImageRegistrationRequest() {}
+    protected VNTrackHomographicImageRegistrationRequest(Handle h, long handle) { super(h, handle); }
+    protected VNTrackHomographicImageRegistrationRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNTrackHomographicImageRegistrationRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
+    @Method(selector = "initWithFrameAnalysisSpacing:completionHandler:")
+    public VNTrackHomographicImageRegistrationRequest(@ByVal CMTime frameAnalysisSpacing, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(frameAnalysisSpacing, completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputObservation")
-    public native VNDetectedObjectObservation getInputObservation();
-    @Property(selector = "setInputObservation:")
-    public native void setInputObservation(VNDetectedObjectObservation v);
-    @Property(selector = "trackingLevel")
-    public native VNRequestTrackingLevel getTrackingLevel();
-    @Property(selector = "setTrackingLevel:")
-    public native void setTrackingLevel(VNRequestTrackingLevel v);
-    @Property(selector = "isLastFrame")
-    public native boolean isLastFrame();
-    @Property(selector = "setLastFrame:")
-    public native void setLastFrame(boolean v);
+    @Property(selector = "results")
+    public native NSArray<VNImageHomographicAlignmentObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -86,10 +82,7 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Method(selector = "supportedNumberOfTrackersAndReturnError:")
-    public native @MachineSizedUInt long supportedNumberOfTrackersAndReturnError(NSError.NSErrorPtr error);
+    @Method(selector = "initWithCompletionHandler:")
+    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

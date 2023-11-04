@@ -63,5 +63,10 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     @Method(selector = "topCandidates:")
     public native NSArray<VNRecognizedText> topCandidates(@MachineSizedUInt long maxCandidateCount);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
+    public static native VNRecognizedTextObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
     /*</methods>*/
 }

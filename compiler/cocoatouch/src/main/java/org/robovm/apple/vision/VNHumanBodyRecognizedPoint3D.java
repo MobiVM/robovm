@@ -39,34 +39,34 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTextObservation/*</name>*/ 
-    extends /*<extends>*/VNRectangleObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNHumanBodyRecognizedPoint3D/*</name>*/ 
+    extends /*<extends>*/VNRecognizedPoint3D/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNTextObservationPtr extends Ptr<VNTextObservation, VNTextObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNTextObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNHumanBodyRecognizedPoint3DPtr extends Ptr<VNHumanBodyRecognizedPoint3D, VNHumanBodyRecognizedPoint3DPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNHumanBodyRecognizedPoint3D.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNTextObservation() {}
-    protected VNTextObservation(Handle h, long handle) { super(h, handle); }
-    protected VNTextObservation(SkipInit skipInit) { super(skipInit); }
+    protected VNHumanBodyRecognizedPoint3D() {}
+    protected VNHumanBodyRecognizedPoint3D(Handle h, long handle) { super(h, handle); }
+    protected VNHumanBodyRecognizedPoint3D(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPosition:")
+    public VNHumanBodyRecognizedPoint3D(@ByVal MatrixFloat4x4 position) { super(position); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "characterBoxes")
-    public native NSArray<VNRectangleObservation> getCharacterBoxes();
+    @Property(selector = "localPosition")
+    public native @ByVal MatrixFloat4x4 getLocalPosition();
+    @Property(selector = "parentJoint")
+    public native VNHumanBodyPose3DObservationJointName getParentJoint();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
-    public static native VNTextObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
+    
     /*</methods>*/
 }

@@ -39,29 +39,43 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNStatefulRequest/*</name>*/ 
-    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTrackOpticalFlowRequest/*</name>*/ 
+    extends /*<extends>*/VNStatefulRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNStatefulRequestPtr extends Ptr<VNStatefulRequest, VNStatefulRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNStatefulRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<ptr>*/public static class VNTrackOpticalFlowRequestPtr extends Ptr<VNTrackOpticalFlowRequest, VNTrackOpticalFlowRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNTrackOpticalFlowRequest.class); }/*</bind>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
-    protected VNStatefulRequest() {}
-    protected VNStatefulRequest(Handle h, long handle) { super(h, handle); }
-    protected VNStatefulRequest(SkipInit skipInit) { super(skipInit); }
+    public VNTrackOpticalFlowRequest() {}
+    protected VNTrackOpticalFlowRequest(Handle h, long handle) { super(h, handle); }
+    protected VNTrackOpticalFlowRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCompletionHandler:")
+    public VNTrackOpticalFlowRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
     @Method(selector = "initWithFrameAnalysisSpacing:completionHandler:")
-    public VNStatefulRequest(@ByVal CMTime frameAnalysisSpacing, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(frameAnalysisSpacing, completionHandler)); }
+    public VNTrackOpticalFlowRequest(@ByVal CMTime frameAnalysisSpacing, @Block VoidBlock2<VNRequest, NSError> completionHandler) { super(frameAnalysisSpacing, completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "minimumLatencyFrameCount")
-    public native @MachineSizedSInt long getMinimumLatencyFrameCount();
-    @Property(selector = "frameAnalysisSpacing")
-    public native @ByVal CMTime getFrameAnalysisSpacing();
+    @Property(selector = "computationAccuracy")
+    public native VNTrackOpticalFlowRequestComputationAccuracy getComputationAccuracy();
+    @Property(selector = "setComputationAccuracy:")
+    public native void setComputationAccuracy(VNTrackOpticalFlowRequestComputationAccuracy v);
+    @Property(selector = "outputPixelFormat")
+    public native int getOutputPixelFormat();
+    @Property(selector = "setOutputPixelFormat:")
+    public native void setOutputPixelFormat(int v);
+    @Property(selector = "keepNetworkOutput")
+    public native boolean isKeepNetworkOutput();
+    @Property(selector = "setKeepNetworkOutput:")
+    public native void setKeepNetworkOutput(boolean v);
+    @Property(selector = "results")
+    public native NSArray<VNPixelBufferObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -80,7 +94,7 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithFrameAnalysisSpacing:completionHandler:")
-    protected native @Pointer long init(@ByVal CMTime frameAnalysisSpacing, @Block VoidBlock2<VNRequest, NSError> completionHandler);
+    @Method(selector = "initWithCompletionHandler:")
+    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
     /*</methods>*/
 }

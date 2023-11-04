@@ -39,34 +39,39 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNTextObservation/*</name>*/ 
-    extends /*<extends>*/VNRectangleObservation/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNPoint3D/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class VNTextObservationPtr extends Ptr<VNTextObservation, VNTextObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNTextObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNPoint3DPtr extends Ptr<VNPoint3D, VNPoint3DPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNPoint3D.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNTextObservation() {}
-    protected VNTextObservation(Handle h, long handle) { super(h, handle); }
-    protected VNTextObservation(SkipInit skipInit) { super(skipInit); }
+    protected VNPoint3D() {}
+    protected VNPoint3D(Handle h, long handle) { super(h, handle); }
+    protected VNPoint3D(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPosition:")
+    public VNPoint3D(@ByVal MatrixFloat4x4 position) { super((SkipInit) null); initObject(init(position)); }
+    @Method(selector = "initWithCoder:")
+    public VNPoint3D(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "characterBoxes")
-    public native NSArray<VNRectangleObservation> getCharacterBoxes();
+    @Property(selector = "position")
+    public native @ByVal MatrixFloat4x4 getPosition();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
-    public static native VNTextObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
+    @Method(selector = "initWithPosition:")
+    protected native @Pointer long init(@ByVal MatrixFloat4x4 position);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
