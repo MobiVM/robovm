@@ -1,0 +1,42 @@
+package: org.robovm.apple.sensitivecontentanalysis
+include: [foundation, coregraphics, imageio]
+library: SensitiveContentAnalysis
+framework: SensitiveContentAnalysis
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SensitiveContentAnalysis.framework/Headers/SensitiveContentAnalysis.h
+typedefs: {}
+
+enums:
+    SCSensitivityAnalysisPolicy: {} #since 17.0
+
+classes:
+    SCSensitivityAnalysis: {} #since 17.0
+    SCSensitivityAnalyzer: #since 17.0
+        methods:
+            '-analyzeImageFile:completionHandler:':
+                name: analyzeImageFile
+            '-analyzeCGImage:completionHandler:':
+                name: analyzeCGImage
+            '-analyzeVideoFile:completionHandler:':
+                name: analyzeVideoFile
+
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Function__#{g[0]}'
+
+values:
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: Fixme!
+        name: 'Constant__#{g[0]}'
