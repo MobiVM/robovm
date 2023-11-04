@@ -64,6 +64,11 @@ enums:
     HKHeartRateRecoveryTestType: {} #since 16.0
     HKPrismBase: {} #since 16.0
     HKVisionEye: {} #since 16.0
+    HKWaterSalinity: {} #since 17.0
+    HKCyclingFunctionalThresholdPowerTestType: {} #since 17.0
+    HKPhysicalEffortEstimationType: {} #since 17.0
+    HKWorkoutSessionState: {} #since 17.0
+    HKWorkoutSessionType: {} #since 17.0
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -773,8 +778,34 @@ classes:
         methods:
             '-initWithWorkoutConfiguration:startDate:endDate:metadata:':
                 name: init
+    HKWorkoutSession: #since 17.0
+        methods:
+            '-startActivityWithDate:':
+                name: startActivity
+            '-stopActivityWithDate:':
+                name: stopActivity
+            '-beginNewActivityWithConfiguration:date:metadata:':
+                name: beginNewActivity
+            '-sendDataToRemoteWorkoutSession:completion:':
+                name: sendDataToRemoteWorkoutSession
 protocols:
-    HKWorkoutSessionDelegate: {}
+    HKWorkoutSessionDelegate: #since 17.0
+        methods:
+            '-workoutSession:didChangeToState:fromState:date:':
+                name: didChangeToState
+            '-workoutSession:didFailWithError:':
+                name: didFail
+            '-workoutSession:didGenerateEvent:':
+                name: didGenerateEvent
+            '-workoutSession:didBeginActivityWithConfiguration:date:':
+                name: didBeginActivity
+            '-workoutSession:didEndActivityWithConfiguration:date:':
+                name: didEndActivity
+            '-workoutSession:didReceiveDataFromRemoteWorkoutSession:':
+                name: didReceiveDataFromRemoteWorkoutSession
+            '-workoutSession:didDisconnectFromRemoteDeviceWithError:':
+                name: didDisconnectFromRemoteDevice
+
 
 functions:
     HKAppleWalkingSteadinessClassificationForQuantity:
@@ -813,6 +844,11 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
+    HKQuantityTypeIdentifier(CyclingCadence|CyclingFunctionalThresholdPower|CyclingPower|CyclingSpeed|PhysicalEffort):
+        enum: HKFitnessQuantityTypeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
     HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate|RestingHeartRate|WalkingHeartRateAverage|HeartRateVariabilitySDNN|HeartRateRecoveryOneMinute):
         enum: HKVitalSignsQuantityTypeIdentifier
         name: '#{g[0]}'
@@ -823,7 +859,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(BloodAlcoholContent|ForcedVitalCapacity|ForcedExpiratoryVolume1|PeakExpiratoryFlowRate|EnvironmentalAudioExposure|HeadphoneAudioExposure):
+    HKQuantityTypeIdentifier(BloodAlcoholContent|ForcedVitalCapacity|ForcedExpiratoryVolume1|PeakExpiratoryFlowRate|EnvironmentalAudioExposure|EnvironmentalSoundReduction|HeadphoneAudioExposure):
         enum: HKResultsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
@@ -908,14 +944,14 @@ values:
         class: HKDevice
         name: 'Property#{g[0]}'
 
-    HKQuantityTypeIdentifier(AtrialFibrillationBurden):
+    HKQuantityTypeIdentifier(AtrialFibrillationBurden|TimeInDaylight):
         enum: HKOtherQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
 
     HKQuantityTypeIdentifier(.*): # since ios 11
-        class: !!FIXME  # dkimitsa: these probably should be put in different locations
+        class: FIXME  # dkimitsa: these probably should be put in different locations
         name: '#{g[0]}'
     HKSourceRevision(.*): # since ios 11
         class: HKSourceRevision

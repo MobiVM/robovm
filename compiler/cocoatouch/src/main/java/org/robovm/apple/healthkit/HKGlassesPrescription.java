@@ -39,7 +39,7 @@ import org.robovm.apple.uniformtypeid.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKGlassesPrescription/*</name>*/ 
     extends /*<extends>*/HKVisionPrescription/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKGlassesPrescriptionPtr extends Ptr<HKGlassesPrescription, HKGlassesPrescriptionPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKGlassesPrescription.class); }/*</bind>*/

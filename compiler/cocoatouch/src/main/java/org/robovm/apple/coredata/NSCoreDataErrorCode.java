@@ -85,7 +85,10 @@ public enum /*<name>*/NSCoreDataErrorCode/*</name>*/ implements NSErrorCode {
     SQLite(134180L),
     InferredMappingModel(134190L),
     ExternalRecordImport(134200L),
-    PersistentHistoryTokenExpired(134301L);
+    PersistentHistoryTokenExpired(134301L),
+    ManagedObjectModelReferenceNotFound(134504L),
+    StagedMigrationFrameworkVersionMismatch(134505L),
+    StagedMigrationBackwardMigration(134506L);
     /*</values>*/
 
     /*<bind>*/

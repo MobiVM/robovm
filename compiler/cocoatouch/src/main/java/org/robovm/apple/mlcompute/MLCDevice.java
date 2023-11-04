@@ -35,9 +35,10 @@ import org.robovm.apple.metalps.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 14.0 and later.
+ * @deprecated Use Metal Performance Shaders Graph or BNNS instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MLCompute") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCDevice/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -54,7 +55,7 @@ import org.robovm.apple.metalps.*;
      * @since Available in iOS 14.5 and later.
      */
     public MLCDevice(MLCDeviceType type, boolean selectsMultipleComputeDevices) { super((Handle) null, create(type, selectsMultipleComputeDevices)); retain(getHandle()); }
-    public MLCDevice(NSArray<?> gpus) { super((Handle) null, create(gpus)); retain(getHandle()); }
+    public MLCDevice(NSArray<MTLDevice> gpus) { super((Handle) null, create(gpus)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "type")
@@ -65,7 +66,7 @@ import org.robovm.apple.metalps.*;
     @Property(selector = "actualDeviceType")
     public native MLCDeviceType getActualDeviceType();
     @Property(selector = "gpuDevices")
-    public native NSArray<?> getGpuDevices();
+    public native NSArray<MTLDevice> getGpuDevices();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -86,6 +87,6 @@ import org.robovm.apple.metalps.*;
     @Method(selector = "deviceWithType:selectsMultipleComputeDevices:")
     protected static native @Pointer long create(MLCDeviceType type, boolean selectsMultipleComputeDevices);
     @Method(selector = "deviceWithGPUDevices:")
-    protected static native @Pointer long create(NSArray<?> gpus);
+    protected static native @Pointer long create(NSArray<MTLDevice> gpus);
     /*</methods>*/
 }

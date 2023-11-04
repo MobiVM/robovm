@@ -92,9 +92,13 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 16.0 and later.
      */
     public static final HKOtherQuantityTypeIdentifier AtrialFibrillationBurden = new HKOtherQuantityTypeIdentifier("AtrialFibrillationBurden");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final HKOtherQuantityTypeIdentifier TimeInDaylight = new HKOtherQuantityTypeIdentifier("TimeInDaylight");
     /*</constants>*/
     
-    private static /*<name>*/HKOtherQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKOtherQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/AtrialFibrillationBurden/*</value_list>*/};
+    private static /*<name>*/HKOtherQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKOtherQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/AtrialFibrillationBurden, TimeInDaylight/*</value_list>*/};
     
     /*<name>*/HKOtherQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -122,6 +126,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierAtrialFibrillationBurden", optional=true)
         public static native NSString AtrialFibrillationBurden();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierTimeInDaylight", optional=true)
+        public static native NSString TimeInDaylight();
         /*</values>*/
     }
 }

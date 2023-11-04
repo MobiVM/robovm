@@ -57,6 +57,9 @@ import org.robovm.apple.uniformtypeid.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
     @Method(selector = "requiresPerObjectAuthorization")
     public native boolean requiresPerObjectAuthorization();
     @Method(selector = "quantityTypeForIdentifier:")

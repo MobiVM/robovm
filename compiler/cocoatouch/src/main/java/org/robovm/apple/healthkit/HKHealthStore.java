@@ -62,7 +62,16 @@ import org.robovm.apple.uniformtypeid.*;
     protected HKHealthStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "workoutSessionMirroringStartHandler")
+    public native @Block VoidBlock1<HKWorkoutSession> getWorkoutSessionMirroringStartHandler();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setWorkoutSessionMirroringStartHandler:")
+    public native void setWorkoutSessionMirroringStartHandler(@Block VoidBlock1<HKWorkoutSession> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,6 +90,9 @@ import org.robovm.apple.uniformtypeid.*;
     public native HKAuthorizationStatus getAuthorizationStatusForType(HKObjectType type);
     @Method(selector = "requestAuthorizationToShareTypes:readTypes:completion:")
     public native void requestAuthorizationToTypes(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
     @Method(selector = "requestPerObjectReadAuthorizationForType:predicate:completion:")
     public native void requestPerObjectReadAuthorization(HKObjectType objectType, NSPredicate predicate, @Block VoidBlock2<Boolean, NSError> completion);
     /**
@@ -206,6 +218,10 @@ import org.robovm.apple.uniformtypeid.*;
     public native HKActivityMoveModeObject getActivityMoveMode(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
+     */
+    @Deprecated
     @Method(selector = "addSamples:toWorkout:completion:")
     public native void addSamplesToWorkout(NSArray<HKSample> samples, HKWorkout workout, @Block VoidBlock2<Boolean, NSError> completion);
     /**

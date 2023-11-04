@@ -90,15 +90,15 @@ import org.robovm.apple.coregraphics.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 16.1 and later.
      */
     public static final SKAdNetworkCoarseConversionValue High = new SKAdNetworkCoarseConversionValue("High");
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 16.1 and later.
      */
     public static final SKAdNetworkCoarseConversionValue Medium = new SKAdNetworkCoarseConversionValue("Medium");
     /**
-     * @since Available in iOS 16.0 and later.
+     * @since Available in iOS 16.1 and later.
      */
     public static final SKAdNetworkCoarseConversionValue Low = new SKAdNetworkCoarseConversionValue("Low");
     /*</constants>*/
@@ -127,17 +127,17 @@ import org.robovm.apple.coregraphics.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 16.0 and later.
+         * @since Available in iOS 16.1 and later.
          */
         @GlobalValue(symbol="SKAdNetworkCoarseConversionValueHigh", optional=true)
         public static native NSString High();
         /**
-         * @since Available in iOS 16.0 and later.
+         * @since Available in iOS 16.1 and later.
          */
         @GlobalValue(symbol="SKAdNetworkCoarseConversionValueMedium", optional=true)
         public static native NSString Medium();
         /**
-         * @since Available in iOS 16.0 and later.
+         * @since Available in iOS 16.1 and later.
          */
         @GlobalValue(symbol="SKAdNetworkCoarseConversionValueLow", optional=true)
         public static native NSString Low();

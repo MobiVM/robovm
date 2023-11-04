@@ -265,6 +265,16 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "degreeAngleUnit")
     public static native HKUnit degreeAngle();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "luxUnitWithMetricPrefix:")
+    public static native HKUnit lux(HKMetricPrefix prefix);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "luxUnit")
+    public static native HKUnit lux();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

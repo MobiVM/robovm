@@ -88,35 +88,39 @@ import org.robovm.apple.uniformtypeid.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final HKResultsQuantityTypeIdentifier OxygenSaturation = new HKResultsQuantityTypeIdentifier("OxygenSaturation");
-    public static final HKResultsQuantityTypeIdentifier PeripheralPerfusionIndex = new HKResultsQuantityTypeIdentifier("PeripheralPerfusionIndex");
-    public static final HKResultsQuantityTypeIdentifier BloodGlucose = new HKResultsQuantityTypeIdentifier("BloodGlucose");
-    public static final HKResultsQuantityTypeIdentifier NumberOfTimesFallen = new HKResultsQuantityTypeIdentifier("NumberOfTimesFallen");
     public static final HKResultsQuantityTypeIdentifier ElectrodermalActivity = new HKResultsQuantityTypeIdentifier("ElectrodermalActivity");
-    public static final HKResultsQuantityTypeIdentifier InhalerUsage = new HKResultsQuantityTypeIdentifier("InhalerUsage");
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    public static final HKResultsQuantityTypeIdentifier InsulinDelivery = new HKResultsQuantityTypeIdentifier("InsulinDelivery");
-    public static final HKResultsQuantityTypeIdentifier BloodAlcoholContent = new HKResultsQuantityTypeIdentifier("BloodAlcoholContent");
-    public static final HKResultsQuantityTypeIdentifier ForcedVitalCapacity = new HKResultsQuantityTypeIdentifier("ForcedVitalCapacity");
-    public static final HKResultsQuantityTypeIdentifier ForcedExpiratoryVolume1 = new HKResultsQuantityTypeIdentifier("ForcedExpiratoryVolume1");
-    public static final HKResultsQuantityTypeIdentifier PeakExpiratoryFlowRate = new HKResultsQuantityTypeIdentifier("PeakExpiratoryFlowRate");
     /**
      * @since Available in iOS 13.0 and later.
      */
     public static final HKResultsQuantityTypeIdentifier EnvironmentalAudioExposure = new HKResultsQuantityTypeIdentifier("EnvironmentalAudioExposure");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier EnvironmentalSoundReduction = new HKResultsQuantityTypeIdentifier("EnvironmentalSoundReduction");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final HKResultsQuantityTypeIdentifier HeadphoneAudioExposure = new HKResultsQuantityTypeIdentifier("HeadphoneAudioExposure");
+    public static final HKResultsQuantityTypeIdentifier PeripheralPerfusionIndex = new HKResultsQuantityTypeIdentifier("PeripheralPerfusionIndex");
+    public static final HKResultsQuantityTypeIdentifier BloodAlcoholContent = new HKResultsQuantityTypeIdentifier("BloodAlcoholContent");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier InsulinDelivery = new HKResultsQuantityTypeIdentifier("InsulinDelivery");
     /**
      * @since Available in iOS 15.0 and later.
      */
     public static final HKResultsQuantityTypeIdentifier NumberOfAlcoholicBeverages = new HKResultsQuantityTypeIdentifier("NumberOfAlcoholicBeverages");
+    public static final HKResultsQuantityTypeIdentifier NumberOfTimesFallen = new HKResultsQuantityTypeIdentifier("NumberOfTimesFallen");
+    public static final HKResultsQuantityTypeIdentifier ForcedExpiratoryVolume1 = new HKResultsQuantityTypeIdentifier("ForcedExpiratoryVolume1");
+    public static final HKResultsQuantityTypeIdentifier ForcedVitalCapacity = new HKResultsQuantityTypeIdentifier("ForcedVitalCapacity");
+    public static final HKResultsQuantityTypeIdentifier InhalerUsage = new HKResultsQuantityTypeIdentifier("InhalerUsage");
+    public static final HKResultsQuantityTypeIdentifier OxygenSaturation = new HKResultsQuantityTypeIdentifier("OxygenSaturation");
+    public static final HKResultsQuantityTypeIdentifier PeakExpiratoryFlowRate = new HKResultsQuantityTypeIdentifier("PeakExpiratoryFlowRate");
+    public static final HKResultsQuantityTypeIdentifier BloodGlucose = new HKResultsQuantityTypeIdentifier("BloodGlucose");
     /*</constants>*/
     
-    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/OxygenSaturation, PeripheralPerfusionIndex, BloodGlucose, NumberOfTimesFallen, ElectrodermalActivity, InhalerUsage, InsulinDelivery, BloodAlcoholContent, ForcedVitalCapacity, ForcedExpiratoryVolume1, PeakExpiratoryFlowRate, EnvironmentalAudioExposure, HeadphoneAudioExposure, NumberOfAlcoholicBeverages/*</value_list>*/};
+    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/ElectrodermalActivity, EnvironmentalAudioExposure, EnvironmentalSoundReduction, HeadphoneAudioExposure, PeripheralPerfusionIndex, BloodAlcoholContent, InsulinDelivery, NumberOfAlcoholicBeverages, NumberOfTimesFallen, ForcedExpiratoryVolume1, ForcedVitalCapacity, InhalerUsage, OxygenSaturation, PeakExpiratoryFlowRate, BloodGlucose/*</value_list>*/};
     
     /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -139,46 +143,51 @@ import org.robovm.apple.uniformtypeid.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="HKQuantityTypeIdentifierOxygenSaturation", optional=true)
-        public static native NSString OxygenSaturation();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierPeripheralPerfusionIndex", optional=true)
-        public static native NSString PeripheralPerfusionIndex();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodGlucose", optional=true)
-        public static native NSString BloodGlucose();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfTimesFallen", optional=true)
-        public static native NSString NumberOfTimesFallen();
         @GlobalValue(symbol="HKQuantityTypeIdentifierElectrodermalActivity", optional=true)
         public static native NSString ElectrodermalActivity();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierInhalerUsage", optional=true)
-        public static native NSString InhalerUsage();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="HKQuantityTypeIdentifierInsulinDelivery", optional=true)
-        public static native NSString InsulinDelivery();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodAlcoholContent", optional=true)
-        public static native NSString BloodAlcoholContent();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierForcedVitalCapacity", optional=true)
-        public static native NSString ForcedVitalCapacity();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierForcedExpiratoryVolume1", optional=true)
-        public static native NSString ForcedExpiratoryVolume1();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierPeakExpiratoryFlowRate", optional=true)
-        public static native NSString PeakExpiratoryFlowRate();
         /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierEnvironmentalAudioExposure", optional=true)
         public static native NSString EnvironmentalAudioExposure();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierEnvironmentalSoundReduction", optional=true)
+        public static native NSString EnvironmentalSoundReduction();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeadphoneAudioExposure", optional=true)
         public static native NSString HeadphoneAudioExposure();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierPeripheralPerfusionIndex", optional=true)
+        public static native NSString PeripheralPerfusionIndex();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodAlcoholContent", optional=true)
+        public static native NSString BloodAlcoholContent();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierInsulinDelivery", optional=true)
+        public static native NSString InsulinDelivery();
         /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfAlcoholicBeverages", optional=true)
         public static native NSString NumberOfAlcoholicBeverages();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfTimesFallen", optional=true)
+        public static native NSString NumberOfTimesFallen();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierForcedExpiratoryVolume1", optional=true)
+        public static native NSString ForcedExpiratoryVolume1();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierForcedVitalCapacity", optional=true)
+        public static native NSString ForcedVitalCapacity();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierInhalerUsage", optional=true)
+        public static native NSString InhalerUsage();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierOxygenSaturation", optional=true)
+        public static native NSString OxygenSaturation();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierPeakExpiratoryFlowRate", optional=true)
+        public static native NSString PeakExpiratoryFlowRate();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodGlucose", optional=true)
+        public static native NSString BloodGlucose();
         /*</values>*/
     }
 }

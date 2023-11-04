@@ -35,9 +35,10 @@ import org.robovm.apple.metalps.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 14.0 and later.
+ * @deprecated Use Metal Performance Shaders Graph or BNNS instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MLCompute") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCReshapeLayer/*</name>*/ 
     extends /*<extends>*/MLCLayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

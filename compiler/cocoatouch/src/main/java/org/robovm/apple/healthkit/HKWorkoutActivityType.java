@@ -206,6 +206,10 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.0 and later.
      */
     Transition(83L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnderwaterDiving(84L),
     Other(3000L);
     /*</values>*/
 

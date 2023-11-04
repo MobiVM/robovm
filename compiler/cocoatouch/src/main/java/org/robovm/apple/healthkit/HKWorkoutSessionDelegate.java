@@ -32,7 +32,9 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 17.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/HKWorkoutSessionDelegate/*</name>*/ 
@@ -43,8 +45,40 @@ import org.robovm.apple.uniformtypeid.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*//*</properties>*/
-    /*<methods>*//*</methods>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "workoutSession:didChangeToState:fromState:date:")
+    void didChangeToState(HKWorkoutSession workoutSession, HKWorkoutSessionState toState, HKWorkoutSessionState fromState, NSDate date);
+    @Method(selector = "workoutSession:didFailWithError:")
+    void didFail(HKWorkoutSession workoutSession, NSError error);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "workoutSession:didGenerateEvent:")
+    void didGenerateEvent(HKWorkoutSession workoutSession, HKWorkoutEvent event);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "workoutSession:didBeginActivityWithConfiguration:date:")
+    void didBeginActivity(HKWorkoutSession workoutSession, HKWorkoutConfiguration workoutConfiguration, NSDate date);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "workoutSession:didEndActivityWithConfiguration:date:")
+    void didEndActivity(HKWorkoutSession workoutSession, HKWorkoutConfiguration workoutConfiguration, NSDate date);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "workoutSession:didReceiveDataFromRemoteWorkoutSession:")
+    void didReceiveDataFromRemoteWorkoutSession(HKWorkoutSession workoutSession, NSArray<NSData> data);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "workoutSession:didDisconnectFromRemoteDeviceWithError:")
+    void didDisconnectFromRemoteDevice(HKWorkoutSession workoutSession, NSError error);
+    /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
 }
