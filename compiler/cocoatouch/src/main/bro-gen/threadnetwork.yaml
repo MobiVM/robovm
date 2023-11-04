@@ -25,6 +25,8 @@ classes:
                 name: retrieveCredentialsForExtendedPANID
             '-checkPreferredNetworkForActiveOperationalDataset:completion:':
                 name: checkPreferredNetworkForActiveOperationalDataset
+            '-isPreferredNetworkAvailableWithCompletion:':
+                name: isPreferredNetworkAvailable
     THCredentials: {} #since 15.0
 
 protocols:

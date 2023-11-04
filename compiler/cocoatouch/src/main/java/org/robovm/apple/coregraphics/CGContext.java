@@ -346,6 +346,11 @@ import org.robovm.apple.uikit.*;
     public native void drawLinearGradient(CGGradient gradient, @ByVal CGPoint startPoint, @ByVal CGPoint endPoint, CGGradientDrawingOptions options);
     @Bridge(symbol="CGContextDrawRadialGradient", optional=true)
     public native void drawRadialGradient(CGGradient gradient, @ByVal CGPoint startCenter, @MachineSizedFloat double startRadius, @ByVal CGPoint endCenter, @MachineSizedFloat double endRadius, CGGradientDrawingOptions options);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="CGContextDrawConicGradient", optional=true)
+    public native void drawConicGradient(CGGradient gradient, @ByVal CGPoint center, @MachineSizedFloat double angle);
     @Bridge(symbol="CGContextDrawShading", optional=true)
     public native void drawShading(CGShading shading);
     @Bridge(symbol="CGContextSetCharacterSpacing", optional=true)
