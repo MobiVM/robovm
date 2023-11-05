@@ -1,0 +1,92 @@
+package: org.robovm.apple.backgroundassets
+include: [foundation]
+library: BackgroundAssets
+framework: BackgroundAssets
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/BackgroundAssets.framework/Headers/BackgroundAssets.h
+typedefs: {}
+    
+enums:
+    BAContentRequest: {}
+    BADownloadState: {}
+    BAErrorCode: { nserror: true } #since 17.0
+
+classes:
+    BAAppExtensionInfo: {} #since 16.1
+    BADownload: {} #since 16.1
+    BADownloadManager: #since 16.1
+        methods:
+            '-fetchCurrentDownloadsWithCompletionHandler:':
+                name: fetchCurrentDownloads
+            '-scheduleDownload:error:':
+                name: scheduleDownload
+                throws: NSErrorException
+            '-performWithExclusiveControl:':
+                name: performWithExclusiveControl
+            '-performWithExclusiveControlBeforeDate:performHandler:':
+                name: performWithExclusiveControl
+            '-startForegroundDownload:error:':
+                name: startForegroundDownload
+                throws: NSErrorException
+            '-cancelDownload:error:':
+                name: cancelDownload
+                throws: NSErrorException
+    BAURLDownload: #since 16.1
+        methods:
+            '-initWithIdentifier:request:fileSize:applicationGroupIdentifier:':
+                name: init
+            '-initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:':
+                name: init
+            '-initWithIdentifier:request:applicationGroupIdentifier:':
+                name: init
+            '-initWithIdentifier:request:applicationGroupIdentifier:priority:':
+                name: init
+
+protocols:
+    BADownloadManagerDelegate: #since 16.1
+        methods:
+            '-download:didWriteBytes:totalBytesWritten:totalBytesExpectedToWrite:':
+                name: didWriteBytes
+            '-download:didReceiveChallenge:completionHandler:':
+                name: didReceiveChallenge
+            '-download:failedWithError:':
+                name: failed
+            '-download:finishedWithFileURL:':
+                name: finished
+    BADownloaderExtension: #since 16.1
+        methods:
+            '-downloadsForRequest:manifestURL:extensionInfo:':
+                name: getDownloads
+            '-backgroundDownload:didReceiveChallenge:completionHandler:':
+                name: backgroundDownloadDidReceiveChallenge
+            '-backgroundDownload:failedWithError:':
+                name: backgroundDownloadFailed
+            '-backgroundDownload:finishedWithFileURL:':
+                name: backgroundDownloadFinished
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    BAErrorDomain:
+        class: BAErrorCode
+        name: getClassDomain
+    BADownloaderPriority(.*):
+        class: BADownload
+        static_class: Priority
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'
