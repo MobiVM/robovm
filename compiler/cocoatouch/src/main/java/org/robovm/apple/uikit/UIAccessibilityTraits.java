@@ -48,6 +48,8 @@ import org.robovm.apple.symbols.*;
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/UIAccessibilityTraits/*</name>*/ 
     extends /*<extends>*/Bits<UIAccessibilityTraits>/*</extends>*/  {
 
+    /*<bind>*/static { Bro.bind(UIAccessibilityTraits.class); }/*</bind>*/
+
     /*<values>*/
     public static final UIAccessibilityTraits None = new UIAccessibilityTraits(NoneValue());
     public static final UIAccessibilityTraits Button = new UIAccessibilityTraits(ButtonValue());
@@ -84,6 +86,15 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final UIAccessibilityTraits TabBarValue = new UIAccessibilityTraits(TabBarValue());
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIAccessibilityTraits ToggleButtonValue = new UIAccessibilityTraits(ToggleButtonValue());
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIAccessibilityTraits SupportsZoomValue = new UIAccessibilityTraits(SupportsZoomValue());
+
     /*</values>*/
 
     private static final /*<name>*/UIAccessibilityTraits/*</name>*/[] values = _values(/*<name>*/UIAccessibilityTraits/*</name>*/.class);
