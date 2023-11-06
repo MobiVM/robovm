@@ -51,17 +51,17 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vertexAdditionalBinaryFunctions")
-    public native NSArray<?> getVertexAdditionalBinaryFunctions();
+    public native NSArray<MTLFunction> getVertexAdditionalBinaryFunctions();
     @Property(selector = "setVertexAdditionalBinaryFunctions:")
-    public native void setVertexAdditionalBinaryFunctions(NSArray<?> v);
+    public native void setVertexAdditionalBinaryFunctions(NSArray<MTLFunction> v);
     @Property(selector = "fragmentAdditionalBinaryFunctions")
-    public native NSArray<?> getFragmentAdditionalBinaryFunctions();
+    public native NSArray<MTLFunction> getFragmentAdditionalBinaryFunctions();
     @Property(selector = "setFragmentAdditionalBinaryFunctions:")
-    public native void setFragmentAdditionalBinaryFunctions(NSArray<?> v);
+    public native void setFragmentAdditionalBinaryFunctions(NSArray<MTLFunction> v);
     @Property(selector = "tileAdditionalBinaryFunctions")
-    public native NSArray<?> getTileAdditionalBinaryFunctions();
+    public native NSArray<MTLFunction> getTileAdditionalBinaryFunctions();
     @Property(selector = "setTileAdditionalBinaryFunctions:")
-    public native void setTileAdditionalBinaryFunctions(NSArray<?> v);
+    public native void setTileAdditionalBinaryFunctions(NSArray<MTLFunction> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

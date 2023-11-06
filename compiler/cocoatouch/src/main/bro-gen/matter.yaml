@@ -5,7 +5,10 @@ framework: Matter
 clang_args: [ '-x', 'objective-c' ]
 headers:
     - /System/Library/Frameworks/Matter.framework/Headers/Matter.h
-exclude_deprecated: true
+
+# drop anything that is deprecated in version 17.0 and below
+min_usable_version: 17.0
+
 private_typedefs:
     NSCopying: NSObject
 

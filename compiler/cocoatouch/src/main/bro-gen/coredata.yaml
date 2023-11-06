@@ -897,6 +897,10 @@ protocols:
                 name: getSectionIndexTitle
             '-controller:didChangeContentWithSnapshot:':
                 name: didChangeContent
+                parameters:
+                    snapshot:
+                        type: NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID> # as its declared in UIKit and template parameters are not picked from cursor_obj_c_class_ref
+
             '-controller:didChangeContentWithDifference:':
                 name: didChangeContent
     NSFetchedResultsSectionInfo: # DONE
