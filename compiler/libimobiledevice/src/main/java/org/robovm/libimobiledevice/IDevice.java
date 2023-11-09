@@ -17,7 +17,9 @@
 package org.robovm.libimobiledevice;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.robovm.libimobiledevice.binding.*;
 
@@ -133,11 +135,11 @@ public class IDevice implements AutoCloseable {
             checkResult(LibIMobileDevice.idevice_get_device_list_extended(devicesOut, countOut));
             IDeviceInfoArray devices = devicesOut.getValue();
             int count = countOut.getValue();
-            String[] udids = new String[count];
+            Set<String> udids = new LinkedHashSet<>();
             for (int i = 0; i < count; i++) {
-                udids[i] = devices.get(i).getUdid();
+                udids.add(devices.get(i).getUdid());
             }
-            return udids;
+            return udids.toArray(new String[0]);
         } catch (LibIMobileDeviceException e) {
         	if (e.getErrorCode() == IDeviceError.IDEVICE_E_NO_DEVICE.swigValue()) {
         		// This happens when usbmuxd isn't running

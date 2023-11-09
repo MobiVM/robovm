@@ -144,6 +144,9 @@ public class AppLauncher {
             if (udids.length == 1 && (deviceUdid == null || deviceUdid.equals(udids[0]))) {
                 // single device and it's a match
                 return new IDevice(udids[0]);
+            } else if (udids.length > 1 && deviceUdid != null && Arrays.asList(udids).contains(deviceUdid)) {
+                // multiple devices connected but specified is there
+                return new IDevice(deviceUdid);
             }
 
             String message;
