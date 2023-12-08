@@ -29,6 +29,8 @@ import org.robovm.compiler.target.ios.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.compiler.util.InfoPList;
+import org.robovm.compiler.util.PList;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.running.RoboVmRunConfiguration.EntryType;
 import org.robovm.libimobiledevice.IDevice;
@@ -423,9 +425,10 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
             if (config != null) {
                 Properties properties = config.getProperties();
-                String bundleID = (String) properties.getOrDefault("app.id", null);
-                if (bundleID != null) {
-                    bundleLabel.setText(bundleID);
+                InfoPList infoPList = config.getInfoPList();
+                infoPList.parse(properties);
+                if (infoPList != null) {
+                    bundleLabel.setText(infoPList.getBundleIdentifier());
                     bundleLabel.setForeground(JBColor.foreground());
                 } else {
                     bundleLabel.setForeground(Color.GRAY);

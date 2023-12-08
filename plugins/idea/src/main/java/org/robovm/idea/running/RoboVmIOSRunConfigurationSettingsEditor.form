@@ -116,6 +116,7 @@
                         </constraints>
                         <properties>
                           <background color="-12829119"/>
+                          <editable value="false"/>
                           <foreground color="-37766"/>
                           <text value=""/>
                         </properties>
