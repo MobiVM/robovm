@@ -695,6 +695,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         entitlementsRequiredInProfile.add("com.apple.developer.networking.multipath");
         entitlementsRequiredInProfile.add("com.apple.developer.nfc.readersession.formats");
         entitlementsRequiredInProfile.add("com.apple.developer.networking.vpn.api");
+        entitlementsRequiredInProfile.add("aps-environment");
         entitlementsRequiredInProfile.add("com.apple.developer.push-to-talk");
         entitlementsRequiredInProfile.add("com.apple.developer.shared-with-you");
         entitlementsRequiredInProfile.add("com.apple.developer.applesignin");
@@ -702,6 +703,12 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         entitlementsRequiredInProfile.add("com.apple.developer.weatherkit");
         entitlementsRequiredInProfile.add("com.apple.developer.usernotifications.time-sensitive");
         entitlementsRequiredInProfile.add("com.apple.developer.siri");
+        entitlementsRequiredInProfile.add("com.apple.developer.user-fonts");
+        entitlementsRequiredInProfile.add("com.apple.developer.associated-domains");
+        entitlementsRequiredInProfile.add("com.apple.security.application-groups");
+        entitlementsRequiredInProfile.add("com.apple.developer.in-app-payments");
+        entitlementsRequiredInProfile.add("com.apple.developer.networking.networkextension");
+
     }
     private boolean isEntitlementRequiredToBeInProfile(String key) {
         return entitlementsRequiredInProfile.contains(key);
