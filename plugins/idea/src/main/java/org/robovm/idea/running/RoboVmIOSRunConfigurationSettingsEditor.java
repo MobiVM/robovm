@@ -427,7 +427,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
                 Properties properties = config.getProperties();
                 InfoPList infoPList = config.getInfoPList();
                 infoPList.parse(properties);
-                if (infoPList != null) {
+                if (infoPList.getBundleIdentifier() != null) {
                     bundleLabel.setText(infoPList.getBundleIdentifier());
                     bundleLabel.setForeground(JBColor.foreground());
                 } else {
@@ -651,6 +651,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
                 NSDictionary entitlementsFromProfile = profile.getEntitlements();
 
                 for (String key : entitlementsFromProject.keySet()) {
+                    if (!isEntitlementRequiredToBeInProfile(key)) continue;
+
                     if (!entitlementsFromProfile.containsKey(key)) {
                         currentlyCompatible = false;
                         if (createErrorStrings) {
@@ -670,6 +672,40 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         return currentlyCompatible;
     }
 
+    private static final HashSet<String> entitlementsRequiredInProfile = new HashSet<>();
+    static {
+        entitlementsRequiredInProfile.add("com.apple.developer.networking.wifi-info");
+        entitlementsRequiredInProfile.add("com.apple.developer.devicecheck.appattest-environment");
+        entitlementsRequiredInProfile.add("com.apple.developer.authentication-services.autofill-credential-provider");
+        entitlementsRequiredInProfile.add("com.apple.developer.ClassKit-environment");
+        entitlementsRequiredInProfile.add("com.apple.developer.driverkit.communicates-with-drivers");
+        entitlementsRequiredInProfile.add("com.apple.developer.usernotifications.communication");
+        entitlementsRequiredInProfile.add("com.apple.developer.default-data-protection");
+        entitlementsRequiredInProfile.add("com.apple.developer.kernel.extended-virtual-addressing");
+        entitlementsRequiredInProfile.add("com.apple.developer.family-controls");
+        entitlementsRequiredInProfile.add("com.apple.developer.group-session");
+        entitlementsRequiredInProfile.add("com.apple.developer.healthkit");
+        entitlementsRequiredInProfile.add("com.apple.developer.homekit");
+        entitlementsRequiredInProfile.add("com.apple.developer.networking.HotspotConfiguration");
+        entitlementsRequiredInProfile.add("ICloudContainerIdentifiers");
+        entitlementsRequiredInProfile.add("com.apple.developer.kernel.increased-memory-limit");
+        entitlementsRequiredInProfile.add("inter-app-audio");
+        entitlementsRequiredInProfile.add("keychain-access-groups");
+        entitlementsRequiredInProfile.add("com.apple.developer.associated-domains.mdm-managed");
+        entitlementsRequiredInProfile.add("com.apple.developer.networking.multipath");
+        entitlementsRequiredInProfile.add("com.apple.developer.nfc.readersession.formats");
+        entitlementsRequiredInProfile.add("com.apple.developer.networking.vpn.api");
+        entitlementsRequiredInProfile.add("com.apple.developer.push-to-talk");
+        entitlementsRequiredInProfile.add("com.apple.developer.shared-with-you");
+        entitlementsRequiredInProfile.add("com.apple.developer.applesignin");
+        entitlementsRequiredInProfile.add("com.apple.external-accessory.wireless-configuration");
+        entitlementsRequiredInProfile.add("com.apple.developer.weatherkit");
+        entitlementsRequiredInProfile.add("com.apple.developer.usernotifications.time-sensitive");
+        entitlementsRequiredInProfile.add("com.apple.developer.siri");
+    }
+    private boolean isEntitlementRequiredToBeInProfile(String key) {
+        return entitlementsRequiredInProfile.contains(key);
+    }
 
 
     private void markCompatibleProfiles() {
