@@ -156,6 +156,9 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
         return appIdPrefix;
     }
 
+    public String getAppId () {
+        return appId;
+    }
     public Date getCreationDate() {
         return creationDate;
     }
