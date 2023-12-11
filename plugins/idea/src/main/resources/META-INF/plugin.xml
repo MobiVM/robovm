@@ -95,7 +95,7 @@
     </module-components>
 
     <actions>
-        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu">
+        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu" popup="true">
             <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu"/>
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
