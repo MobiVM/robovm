@@ -152,6 +152,14 @@ public class IDevice implements AutoCloseable {
         }
     }
 
+    public static boolean isConnected (String uuid) {
+        String[] strings = listUdids();
+        for (String string : strings) {
+            if (string.equalsIgnoreCase(uuid)) return true;
+        }
+        return false;
+    }
+
     /**
      * Registers a new {@link EventListener} which will be called when devices
      * are added and removed.
