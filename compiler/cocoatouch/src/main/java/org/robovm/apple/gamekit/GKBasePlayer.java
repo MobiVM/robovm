@@ -52,7 +52,7 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 13.0. use the teamPlayerID property to identify a player
+     * @deprecated Deprecated in iOS 13.0. Use either the gamePlayerID or teamPlayerID property to identify a player.
      */
     @Deprecated
     @Property(selector = "playerID")

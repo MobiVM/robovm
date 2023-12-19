@@ -118,7 +118,15 @@ public enum /*<name>*/MTLVertexFormat/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 11.0 and later.
      */
-    Half(53L);
+    Half(53L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FloatRG11B10(54L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FloatRGB9E5(55L);
     /*</values>*/
 
     /*<bind>*/

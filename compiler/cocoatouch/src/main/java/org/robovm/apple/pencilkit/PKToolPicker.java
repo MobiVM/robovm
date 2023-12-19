@@ -72,6 +72,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setStateAutosaveName:")
     public native void setStateAutosaveName(String v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maximumSupportedContentVersion")
+    public native PKContentVersion getMaximumSupportedContentVersion();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaximumSupportedContentVersion:")
+    public native void setMaximumSupportedContentVersion(PKContentVersion v);
     @Property(selector = "overrideUserInterfaceStyle")
     public native UIUserInterfaceStyle getOverrideUserInterfaceStyle();
     @Property(selector = "setOverrideUserInterfaceStyle:")

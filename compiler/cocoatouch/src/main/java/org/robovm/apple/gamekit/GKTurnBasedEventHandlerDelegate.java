@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer with an object that implements the GKTurnBasedEventListener protocol
+ * @deprecated Deprecated in iOS 7.0. Use -[GKLocalPlayer registerListener:]
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

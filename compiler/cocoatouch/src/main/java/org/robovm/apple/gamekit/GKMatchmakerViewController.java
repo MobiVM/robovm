@@ -109,7 +109,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "setHostedPlayer:didConnect:")
     public native void setHostedPlayer(GKPlayer player, boolean connected);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use setHostedPlayer:didConnect:
+     * @deprecated Deprecated in iOS 8.0. Use -setHostedPlayer:didConnect:
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")

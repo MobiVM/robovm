@@ -54,6 +54,16 @@ import org.robovm.apple.coreanimation.*;
     public ASAuthorizationPlatformPublicKeyCredentialAssertion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 16.6 and later.
+     */
+    @Property(selector = "attachment")
+    public native ASAuthorizationPublicKeyCredentialAttachment getAttachment();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "largeBlob")
+    public native ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput getLargeBlob();
     @Property(selector = "rawAuthenticatorData")
     public native NSData getRawAuthenticatorData();
     @Property(selector = "userID")

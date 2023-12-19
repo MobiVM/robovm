@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -79,14 +80,14 @@ import org.robovm.apple.linkpresentation.*;
     public void willEnd(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:previewForHighlightingItemWithIdentifier:
+     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:
      */
     @Deprecated
     @NotImplemented("contextMenuInteraction:previewForHighlightingMenuWithConfiguration:")
     public UITargetedPreview getPreviewForHighlightingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration) { return null; }
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:previewForDismissingToItemWithIdentifier:
+     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:
      */
     @Deprecated
     @NotImplemented("contextMenuInteraction:previewForDismissingMenuWithConfiguration:")

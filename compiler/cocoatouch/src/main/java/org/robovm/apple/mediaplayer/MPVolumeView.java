@@ -109,8 +109,16 @@ import org.robovm.apple.avfoundation.*;
     @Deprecated
     @Property(selector = "isWirelessRouteActive")
     public native boolean isWirelessRouteActive();
+    /**
+     * @deprecated Deprecated in iOS 17.0. This is no longer supported
+     */
+    @Deprecated
     @Property(selector = "volumeWarningSliderImage")
     public native UIImage getVolumeWarningSliderImage();
+    /**
+     * @deprecated Deprecated in iOS 17.0. This is no longer supported
+     */
+    @Deprecated
     @Property(selector = "setVolumeWarningSliderImage:")
     public native void setVolumeWarningSliderImage(UIImage v);
     @WeaklyLinked

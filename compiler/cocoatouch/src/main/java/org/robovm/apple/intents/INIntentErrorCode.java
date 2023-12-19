@@ -72,7 +72,9 @@ public enum /*<name>*/INIntentErrorCode/*</name>*/ implements NSErrorCode {
     VoiceShortcutDeleteFailed(7002L),
     EncodingGeneric(8000L),
     EncodingFailed(8001L),
-    DecodingGeneric(9000L);
+    DecodingGeneric(9000L),
+    UnableToCreateAppIntentRepresentation(10000L),
+    NoAppIntent(10001L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(INIntentErrorCode.class); }/*</bind>*/

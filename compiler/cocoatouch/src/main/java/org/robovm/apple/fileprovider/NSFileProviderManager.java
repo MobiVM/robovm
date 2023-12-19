@@ -250,9 +250,9 @@ import org.robovm.apple.uniformtypeid.*;
     /**
      * @since Available in iOS 16.0 and later.
      */
-    public NSDictionary<?, ?> runTestingOperations(NSArray<?> operations) throws NSErrorException {
+    public NSDictionary<?, NSError> runTestingOperations(NSArray<?> operations) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       NSDictionary<?, ?> result = runTestingOperations(operations, ptr);
+       NSDictionary<?, NSError> result = runTestingOperations(operations, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
@@ -260,6 +260,6 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "runTestingOperations:error:")
-    private native NSDictionary<?, ?> runTestingOperations(NSArray<?> operations, NSError.NSErrorPtr error);
+    private native NSDictionary<?, NSError> runTestingOperations(NSArray<?> operations, NSError.NSErrorPtr error);
     /*</methods>*/
 }

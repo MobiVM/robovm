@@ -34,9 +34,11 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/CKApplicationPermissionStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     InitialState(0L),

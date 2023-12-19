@@ -1,0 +1,124 @@
+package: org.robovm.apple.cinematic
+include: [foundation, avfoundation, coremedia, coregraphics, corevideo, metal]
+library: Cinematic
+framework: Cinematic
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Cinematic.framework/Headers/Cinematic.h
+
+private_typedefs:
+
+typedefs:
+
+enums:
+    CNCinematicErrorCode: { nserror: true } #since 17.0
+    CNRenderingQuality: {} #since 17.0
+    CNDetectionType: {} #since 17.0
+
+typed_enums:
+
+classes:
+    CNAssetInfo: #since 17.0
+        methods:
+            '+checkIfCinematic:completionHandler:':
+                name: checkIfCinematic
+            '+loadFromAsset:completionHandler:':
+                name: load
+    CNBoundsPrediction: {} #since 17.0
+    CNCompositionInfo: #since 17.0
+        methods:
+            '-insertTimeRange:ofCinematicAssetInfo:atTime:error:':
+                name: insert
+    CNCustomDetectionTrack: #since 17.0
+        methods:
+            '-initWithDetections:smooth:':
+                name: init
+    CNDecision: #since 17.0
+        methods:
+            '-initWithTime:detectionID:strong:':
+                name: init
+            '-initWithTime:detectionGroupID:strong:':
+                static_constructor_name: createUsingGroupID
+                name: initWithTimeDetectionGroupID
+    CNDetection: #since 17.0
+        methods:
+            '-initWithTime:detectionType:normalizedRect:focusDisparity:':
+                name: init
+            '+disparityInNormalizedRect:sourceDisparity:detectionType:priorDisparity:':
+                name: disparity
+    CNDetectionTrack: {} #since 17.0
+    CNFixedDetectionTrack: #since 17.0
+        methods:
+            '-initWithFocusDisparity:':
+                name: init
+            '-initWithOriginalDetection:':
+                name: init
+    CNObjectTracker: #since 17.0
+        methods:
+            '-initWithCommandQueue:':
+                name: init
+            '-findObjectAtPoint:sourceImage:':
+                name: findObject
+            '-startTrackingAt:within:sourceImage:sourceDisparity:':
+                name: startTracking
+            '-continueTrackingAt:sourceImage:sourceDisparity:':
+                name: continueTracking
+    CNRenderingSession: #since 17.0
+        methods:
+            '-initWithCommandQueue:sessionAttributes:preferredTransform:quality:':
+                name: init
+            '-encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationImage:':
+                name: encodeRender
+            '-encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationRGBA:':
+                name: encodeRender
+            '-encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:':
+                name: encodeRender
+    CNRenderingSessionAttributes: #since 17.0
+        methods:
+            '+loadFromAsset:completionHandler:':
+                name: load
+    CNRenderingSessionFrameAttributes: #since 17.0
+        methods:
+            '-initWithSampleBuffer:sessionAttributes:':
+                name: init
+            '-initWithTimedMetadataGroup:sessionAttributes:':
+                name: init
+    CNScript: #since 17.0
+        methods:
+            '-reloadWithChanges:':
+                name: reload
+            '-frameAtTime:tolerance:':
+                name: getFrame
+            '-decisionAtTime:tolerance:':
+                name: getDecision
+            '+loadFromAsset:changes:progress:completionHandler:':
+                name: load
+    CNScriptChanges: #since 17.0
+        methods:
+            '-initWithDataRepresentation:':
+                name: init
+    CNScriptFrame: {} #since 17.0
+
+protocols:
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    CNCinematicErrorDomain:
+        class: CNCinematicErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

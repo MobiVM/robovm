@@ -52,61 +52,66 @@ import org.robovm.apple.corehaptic.*;
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryDualSense", optional=true)
-    public static native String DualSense();
+    public static native NSString DualSense();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryDualShock4", optional=true)
-    public static native String DualShock4();
+    public static native NSString DualShock4();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryMFi", optional=true)
-    public static native String MFi();
+    public static native NSString MFi();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryXboxOne", optional=true)
-    public static native String XboxOne();
+    public static native NSString XboxOne();
     /**
      * @since Available in iOS 16.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryHID", optional=true)
-    public static native String HID();
+    public static native NSString HID();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="GCProductCategoryArcadeStick", optional=true)
+    public static native NSString ArcadeStick();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategorySiriRemote1stGen", optional=true)
-    public static native String SiriRemote1stGen();
+    public static native NSString SiriRemote1stGen();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategorySiriRemote2ndGen", optional=true)
-    public static native String SiriRemote2ndGen();
+    public static native NSString SiriRemote2ndGen();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryControlCenterRemote", optional=true)
-    public static native String ControlCenterRemote();
+    public static native NSString ControlCenterRemote();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryUniversalElectronicsRemote", optional=true)
-    public static native String UniversalElectronicsRemote();
+    public static native NSString UniversalElectronicsRemote();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryCoalescedRemote", optional=true)
-    public static native String CoalescedRemote();
+    public static native NSString CoalescedRemote();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryMouse", optional=true)
-    public static native String Mouse();
+    public static native NSString Mouse();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryKeyboard", optional=true)
-    public static native String Keyboard();
+    public static native NSString Keyboard();
     /*</methods>*/
 }

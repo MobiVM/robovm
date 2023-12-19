@@ -79,7 +79,15 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    Timeout(20L);
+    Timeout(20L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnsupportedComputeStage(21L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnsupportedComputeDevice(22L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

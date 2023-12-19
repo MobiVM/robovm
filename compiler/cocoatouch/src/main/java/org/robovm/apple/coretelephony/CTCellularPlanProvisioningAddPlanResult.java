@@ -50,7 +50,11 @@ public enum /*<name>*/CTCellularPlanProvisioningAddPlanResult/*</name>*/ impleme
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Success(2L);
+    Success(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Cancel(3L);
     /*</values>*/
 
     /*<bind>*/

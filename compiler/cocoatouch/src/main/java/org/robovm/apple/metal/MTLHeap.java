@@ -87,7 +87,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "newBufferWithLength:options:")
     MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options);
     @Method(selector = "newTextureWithDescriptor:")
-    MTLTexture newTexture(MTLTextureDescriptor desc);
+    MTLTexture newTexture(MTLTextureDescriptor descriptor);
     @Method(selector = "setPurgeableState:")
     MTLPurgeableState setPurgeableState(MTLPurgeableState state);
     /**

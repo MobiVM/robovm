@@ -119,6 +119,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "renderingAPI")
     SCNRenderingAPI getRenderingAPI();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "workingColorSpace")
+    CGColorSpace getWorkingColorSpace();
     @WeaklyLinked
     @Property(selector = "context")
     EAGLContext getContext();

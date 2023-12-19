@@ -146,6 +146,26 @@ import org.robovm.apple.dispatch.*;
     public native void setVertexBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setVertexBuffers:offsets:withRange:")
     protected native void setVertexBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setVertexBuffer:offset:attributeStride:atIndex:")
+    public native void setVertexBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setVertexBuffers:offsets:attributeStrides:withRange:")
+    public native void setVertexBuffers(MTLBuffer buffers, MachineSizedUIntPtr offsets, MachineSizedUIntPtr strides, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setVertexBufferOffset:attributeStride:atIndex:")
+    public native void setVertexBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setVertexBytes:length:attributeStride:atIndex:")
+    public native void setVertexBytes(VoidPtr bytes, @MachineSizedUInt long length, @MachineSizedUInt long stride, @MachineSizedUInt long index);
     @Method(selector = "setVertexTexture:atIndex:")
     public native void setVertexTexture(MTLTexture texture, @MachineSizedUInt long index);
     @Method(selector = "setVertexTextures:withRange:")

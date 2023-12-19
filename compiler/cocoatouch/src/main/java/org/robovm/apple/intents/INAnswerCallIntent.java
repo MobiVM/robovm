@@ -57,6 +57,10 @@ import org.robovm.apple.coregraphics.*;
     public INAnswerCallIntent(INCallAudioRoute audioRoute, String callIdentifier) { super((SkipInit) null); initObject(init(audioRoute, callIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "audioRoute")
+    public native INCallAudioRoute getAudioRoute();
+    @Property(selector = "callIdentifier")
+    public native String getCallIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

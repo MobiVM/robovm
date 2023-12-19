@@ -50,6 +50,16 @@ import org.robovm.apple.corehaptic.*;
     /*<properties>*/
     @Property(selector = "device")
     GCDevice getDevice();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "queue")
+    DispatchQueue getQueue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setQueue:")
+    void setQueue(DispatchQueue v);
     @Property(selector = "elementValueDidChangeHandler")
     @Block VoidBlock2<GCDevicePhysicalInput, GCPhysicalInputElement> getElementValueDidChangeHandler();
     @Property(selector = "setElementValueDidChangeHandler:")
@@ -67,8 +77,17 @@ import org.robovm.apple.corehaptic.*;
     @Method(selector = "capture")
     GCDevicePhysicalInputState capture();
     @Method(selector = "nextInputState")
-    <T0 extends Object & GCDevicePhysicalInputState & GCDevicePhysicalInputStateDiff> T0 nextInputState();
+    NSObjectProtocol nextInputState();
     /*</methods>*/
+
+    // dkimitsa: manually added wrappers
+    default GCDevicePhysicalInputState nextPhysicalInputState() {
+        return (GCDevicePhysicalInputState) nextInputState();
+    }
+    default GCDevicePhysicalInputStateDiff nextPhysicalInputStateDiff() {
+        return (GCDevicePhysicalInputStateDiff) nextInputState();
+    }
+
     /*<adapter>*/
     /*</adapter>*/
 }

@@ -90,5 +90,7 @@ import org.robovm.apple.corevideo.*;
     public static native NSObject get(CATransactionProperty key);
     @Method(selector = "setValue:forKey:")
     protected static native void set(NSObject anObject, CATransactionProperty key);
+    @Method(selector = "batch")
+    public static native void batch();
     /*</methods>*/
 }

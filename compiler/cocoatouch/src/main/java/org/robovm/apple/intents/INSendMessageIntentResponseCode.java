@@ -47,7 +47,11 @@ public enum /*<name>*/INSendMessageIntentResponseCode/*</name>*/ implements Valu
     Success(3L),
     Failure(4L),
     FailureRequiringAppLaunch(5L),
-    FailureMessageServiceNotAvailable(6L);
+    FailureMessageServiceNotAvailable(6L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FailureRequiringInAppAuthentication(7L);
     /*</values>*/
 
     /*<bind>*/

@@ -1,0 +1,325 @@
+package: org.robovm.apple.phase
+include: [foundation, coreaudio, avfoundation, modelio]
+library: PHASE
+framework: PHASE
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/PHASE.framework/Headers/PHASE.h
+typedefs:
+    
+enums:
+    PHASEUpdateMode: { }
+    PHASERenderingState: { }
+    PHASESpatializationMode: { }
+    PHASEReverbPreset: { }
+    PHASEError: { nserror: true }
+    PHASESoundEventError: {  nserror: true }
+    PHASEAssetError: {  nserror: true }
+    PHASESoundEventPrepareHandlerReason: { }
+    PHASESoundEventStartHandlerReason: { }
+    PHASESoundEventSeekHandlerReason: { }
+    PHASESoundEventPrepareState: { }
+    PHASEAssetType: { }
+    PHASECurveType: { }
+    PHASECullOption: { }
+    PHASEPlaybackMode: { }
+    PHASENormalizationMode: { }
+    PHASECalibrationMode: { }
+    PHASEPushStreamBufferOptions: { prefix: PHASEPushStreamBuffer }
+    PHASEPushStreamCompletionCallbackCondition: { prefix: PHASEPushStreamCompletion }
+    PHASEMediumPreset: { }
+    PHASEMaterialPreset: { }
+    PHASESpatialPipelineFlags: { prefix: PHASESpatialPipelineFlag }
+
+classes:
+    PHASEAmbientMixerDefinition: #since 15.0
+        methods:
+            '-initWithChannelLayout:orientation:identifier:':
+                name: init
+            '-initWithChannelLayout:orientation:':
+                name: init
+    PHASEAsset: {} #since 15.0
+    PHASEAssetRegistry: #since 15.0
+        methods:
+            '-registerGlobalMetaParameter:error:':
+                name: registerGlobalMetaParameter
+                throws: NSErrorException
+            '-registerSoundEventAssetWithRootNode:identifier:error:':
+                name: registerSoundEventAsset
+                throws: NSErrorException
+            '-registerSoundAssetAtURL:identifier:assetType:channelLayout:normalizationMode:error:':
+                name: registerSoundAsset
+                throws: NSErrorException
+            '-registerSoundAssetWithData:identifier:format:normalizationMode:error:':
+                name: registerSoundAsset
+                throws: NSErrorException
+            '-unregisterAssetWithIdentifier:completion:':
+                name: unregisterAsset
+    PHASEBlendNodeDefinition: #since 15.0
+        methods:
+            '-initWithBlendMetaParameterDefinition:identifier:':
+                name: init
+            '-initWithBlendMetaParameterDefinition:':
+                name: init
+            '-initDistanceBlendWithSpatialMixerDefinition:identifier:':
+                name: init
+            '-initDistanceBlendWithSpatialMixerDefinition:':
+                name: init
+            '-addRangeForInputValuesBelow:fullGainAtValue:fadeCurveType:subtree:':
+                name: addRangeForInputValuesBelow
+            '-addRangeForInputValuesBetween:highValue:fullGainAtLowValue:fullGainAtHighValue:lowFadeCurveType:highFadeCurveType:subtree:':
+                name: addRangeForInputValuesBetween
+            '-addRangeForInputValuesAbove:fullGainAtValue:fadeCurveType:subtree:':
+                name: addRangeForInputValuesAbove
+            '-addRangeWithEnvelope:subtree:':
+                name: addRangeWithEnvelope
+    PHASECardioidDirectivityModelParameters: #since 15.0
+        methods:
+            '-initWithSubbandParameters:':
+                name: init
+    PHASECardioidDirectivityModelSubbandParameters: {} #since 15.0
+    PHASEChannelMixerDefinition: #since 15.0
+        methods:
+            '-initWithChannelLayout:identifier:':
+                name: init
+            '-initWithChannelLayout:':
+                name: init
+    PHASEConeDirectivityModelParameters: #since 15.0
+        methods:
+            '-initWithSubbandParameters:':
+                name: init
+    PHASEConeDirectivityModelSubbandParameters: #since 15.0
+        methods:
+            '-setInnerAngle:outerAngle:':
+                name: setAngles
+    PHASEContainerNodeDefinition: #since 15.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+            '+new':
+                exclude: true
+    PHASEDefinition: {} #since 15.0
+    PHASEDirectivityModelParameters: {} #since 15.0
+    PHASEDistanceModelFadeOutParameters: #since 15.0
+        methods:
+            '-initWithCullDistance:':
+                name: init
+    PHASEDistanceModelParameters: {} #since 15.0
+    PHASEDucker: #since 15.0
+        methods:
+            '-initWithEngine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:':
+                name: init
+    PHASEEngine: #since 15.0
+        methods:
+            '-initWithUpdateMode:':
+                name: init
+    PHASEEnvelope: #since 15.0
+        methods:
+            '-initWithStartPoint:segments:':
+                name: init
+    PHASEEnvelopeDistanceModelParameters: #since 15.0
+        methods:
+            '-initWithEnvelope:':
+                name: init
+    PHASEEnvelopeSegment: #since 15.0
+        methods:
+            '-initWithEndPoint:curveType:':
+                name: init
+    PHASEGeneratorNodeDefinition: #since 15.0
+        methods:
+            '-setCalibrationMode:level:':
+                name: setCalibrationMode
+    PHASEGeometricSpreadingDistanceModelParameters: {} #since 15.0
+    PHASEGlobalMetaParameterAsset: {} #since 15.0
+    PHASEGroup: #since 15.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+            '-registerWithEngine:':
+                name: register
+            '-fadeGain:duration:curveType:':
+                name: fadeGain
+            '-fadeRate:duration:curveType:':
+                name: fadeRate
+    PHASEGroupPreset: #since 15.0
+        methods:
+            '-initWithEngine:settings:timeToTarget:timeToReset:':
+                name: init
+            '-activateWithTimeToTargetOverride:':
+                name: activate
+            '-deactivateWithTimeToResetOverride:':
+                name: deactivate
+    PHASEGroupPresetSetting: #since 15.0
+        methods:
+            '-initWithGain:rate:gainCurveType:rateCurveType:':
+                name: init
+    PHASEListener: {} #since 15.0
+    PHASEMappedMetaParameterDefinition: #since 15.0
+        methods:
+            '-initWithInputMetaParameterDefinition:envelope:identifier:':
+                name: init
+            '-initWithInputMetaParameterDefinition:envelope:':
+                name: init
+    PHASEMaterial: #since 15.0
+        methods:
+            '-initWithEngine:preset:':
+                name: init
+    PHASEMedium: #since 15.0
+        methods:
+            '-initWithEngine:preset:':
+                name: init
+    PHASEMetaParameter: {} #since 15.0
+    PHASEMetaParameterDefinition: {} #since 15.0
+    PHASEMixer: {} #since 15.0
+    PHASEMixerDefinition: {} #since 15.0
+    PHASEMixerParameters: #since 15.0
+        methods:
+            '-addSpatialMixerParametersWithIdentifier:source:listener:':
+                name: addSpatialMixerParameters
+            '-addAmbientMixerParametersWithIdentifier:listener:':
+                name: addAmbientMixerParameters
+    PHASENumberMetaParameter: #since 15.0
+        methods:
+            '-fadeToValue:duration:':
+                name: fadeToValue
+    PHASENumberMetaParameterDefinition: #since 15.0
+        methods:
+            '-initWithValue:identifier:':
+                name: init
+            '-initWithValue:':
+                name: init
+            '-initWithValue:minimum:maximum:identifier:':
+                name: init
+            '-initWithValue:minimum:maximum:':
+                name: init
+    PHASENumericPair: #since 15.0
+        methods:
+            '-initWithFirstValue:secondValue:':
+                name: init
+    PHASEObject: #since 15.0
+        methods:
+            '-initWithEngine:':
+                name: init
+            '-addChild:error:':
+                name: addChild
+                throws: NSErrorException
+    PHASEOccluder: #since 15.0
+        methods:
+            '-initWithEngine:shapes:':
+                name: init
+    PHASEPushStreamNode: #since 15.0
+        methods:
+            '-scheduleBuffer:completionCallbackType:completionHandler:':
+                name: scheduleBuffer
+            '-scheduleBuffer:atTime:options:':
+                name: scheduleBuffer
+            '-scheduleBuffer:atTime:options:completionCallbackType:completionHandler:':
+                name: scheduleBuffer
+    PHASEPushStreamNodeDefinition: #since 15.0
+        methods:
+            '-initWithMixerDefinition:format:identifier:':
+                name: init
+            '-initWithMixerDefinition:format:':
+                name: init
+    PHASERandomNodeDefinition: #since 15.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+            '-addSubtree:weight:':
+                name: addSubtree
+    PHASESamplerNodeDefinition: #since 15.0
+        methods:
+            '-initWithSoundAssetIdentifier:mixerDefinition:identifier:':
+                name: init
+            '-initWithSoundAssetIdentifier:mixerDefinition:':
+                name: init
+    PHASEShape: #since 15.0
+        methods:
+            '-initWithEngine:mesh:':
+                name: init
+            '-initWithEngine:mesh:materials:':
+                name: init
+    PHASEShapeElement: {} #since 15.0
+    PHASESoundAsset: {} #since 15.0
+    PHASESoundEvent: #since 15.0
+        methods:
+            '-initWithEngine:assetIdentifier:mixerParameters:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithEngine:assetIdentifier:error:':
+                name: init
+                throws: NSErrorException
+            '-prepareWithCompletion:':
+                name: prepare
+            '-startWithCompletion:':
+                name: start
+            '-seekToTime:completion:':
+                name: seekToTime
+    PHASESoundEventNodeAsset: {} #since 15.0
+    PHASESoundEventNodeDefinition: {} #since 15.0
+    PHASESource: #since 15.0
+        methods:
+            '-initWithEngine:shapes:':
+                name: init
+    PHASESpatialMixerDefinition: #since 15.0
+        methods:
+            '-initWithSpatialPipeline:':
+                name: init
+            '-initWithSpatialPipeline:identifier:':
+                name: init
+    PHASESpatialPipeline: #since 15.0
+        methods:
+            '-initWithFlags:':
+                name: init
+    PHASESpatialPipelineEntry: {} #since 15.0
+    PHASEStringMetaParameter: {} #since 15.0
+    PHASEStringMetaParameterDefinition: #since 15.0
+        methods:
+            '-initWithValue:identifier:':
+                name: init
+            '-initWithValue:':
+                name: init
+    PHASESwitchNodeDefinition: #since 15.0
+        methods:
+            '-initWithSwitchMetaParameterDefinition:identifier:':
+                name: init
+            '-initWithSwitchMetaParameterDefinition:':
+                name: init
+            '-addSubtree:switchValue:':
+                name: addSubtree
+protocols:
+
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    PHASEErrorDomain:
+        class: PHASEError
+        name: getClassDomain
+    PHASESoundEventErrorDomain:
+        class: PHASESoundEventError
+        name: getClassDomain
+    PHASEAssetErrorDomain:
+        class: PHASEAssetError
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+typed_enums:
+    PHASESpatialCategory:
+        enum: PHASESpatialCategory
+        prefix: PHASESpatialCategory
+        type: NSString
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

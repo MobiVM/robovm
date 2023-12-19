@@ -295,6 +295,34 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "currentPersistentHistoryTokenFromStores:")
     public native NSPersistentHistoryToken currentPersistentHistoryTokenFromStores(NSArray<?> stores);
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean finishDeferredLightweightMigration() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = finishDeferredLightweightMigration(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "finishDeferredLightweightMigration:")
+    private native boolean finishDeferredLightweightMigration(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean finishDeferredLightweightMigrationTask() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = finishDeferredLightweightMigrationTask(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "finishDeferredLightweightMigrationTask:")
+    private native boolean finishDeferredLightweightMigrationTask(NSError.NSErrorPtr error);
+    /**
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */
     @Deprecated

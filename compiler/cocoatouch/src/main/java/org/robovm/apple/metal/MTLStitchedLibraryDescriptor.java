@@ -55,9 +55,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setFunctionGraphs:")
     public native void setFunctionGraphs(NSArray<MTLFunctionStitchingGraph> v);
     @Property(selector = "functions")
-    public native NSArray<?> getFunctions();
+    public native NSArray<MTLFunction> getFunctions();
     @Property(selector = "setFunctions:")
-    public native void setFunctions(NSArray<?> v);
+    public native void setFunctions(NSArray<MTLFunction> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

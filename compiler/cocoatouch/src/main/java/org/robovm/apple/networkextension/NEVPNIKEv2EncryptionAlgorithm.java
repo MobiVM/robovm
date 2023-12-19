@@ -38,13 +38,27 @@ import org.robovm.apple.network.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
+     */
+    @Deprecated
     DES(1L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
+     */
+    @Deprecated
     _3DES(2L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
+     */
+    @Deprecated
     AES128(3L),
     AES256(4L),
     /**
      * @since Available in iOS 8.3 and later.
+     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
      */
+    @Deprecated
     AES128GCM(5L),
     /**
      * @since Available in iOS 8.3 and later.

@@ -101,6 +101,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setMovieFragmentInterval:")
     public native void setMovieFragmentInterval(@ByVal CMTime v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "initialMovieFragmentInterval")
+    public native @ByVal CMTime getInitialMovieFragmentInterval();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInitialMovieFragmentInterval:")
+    public native void setInitialMovieFragmentInterval(@ByVal CMTime v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "initialMovieFragmentSequenceNumber")

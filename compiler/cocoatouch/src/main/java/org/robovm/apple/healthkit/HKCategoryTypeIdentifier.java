@@ -88,93 +88,10 @@ import org.robovm.apple.uniformtypeid.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final HKCategoryTypeIdentifier SleepAnalysis = new HKCategoryTypeIdentifier("SleepAnalysis");
     /**
      * @since Available in iOS 9.0 and later.
      */
     public static final HKCategoryTypeIdentifier AppleStandHour = new HKCategoryTypeIdentifier("AppleStandHour");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier CervicalMucusQuality = new HKCategoryTypeIdentifier("CervicalMucusQuality");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier OvulationTestResult = new HKCategoryTypeIdentifier("OvulationTestResult");
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier PregnancyTestResult = new HKCategoryTypeIdentifier("PregnancyTestResult");
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier ProgesteroneTestResult = new HKCategoryTypeIdentifier("ProgesteroneTestResult");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier MenstrualFlow = new HKCategoryTypeIdentifier("MenstrualFlow");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier IntermenstrualBleeding = new HKCategoryTypeIdentifier("IntermenstrualBleeding");
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier PersistentIntermenstrualBleeding = new HKCategoryTypeIdentifier("PersistentIntermenstrualBleeding");
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier ProlongedMenstrualPeriods = new HKCategoryTypeIdentifier("ProlongedMenstrualPeriods");
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier IrregularMenstrualCycles = new HKCategoryTypeIdentifier("IrregularMenstrualCycles");
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier InfrequentMenstrualCycles = new HKCategoryTypeIdentifier("InfrequentMenstrualCycles");
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier SexualActivity = new HKCategoryTypeIdentifier("SexualActivity");
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier MindfulSession = new HKCategoryTypeIdentifier("MindfulSession");
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
-    public static final HKCategoryTypeIdentifier HighHeartRateEvent = new HKCategoryTypeIdentifier("HighHeartRateEvent");
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
-    public static final HKCategoryTypeIdentifier LowHeartRateEvent = new HKCategoryTypeIdentifier("LowHeartRateEvent");
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
-    public static final HKCategoryTypeIdentifier IrregularHeartRhythmEvent = new HKCategoryTypeIdentifier("IrregularHeartRhythmEvent");
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
-     */
-    @Deprecated
-    public static final HKCategoryTypeIdentifier AudioExposureEvent = new HKCategoryTypeIdentifier("AudioExposureEvent");
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    public static final HKCategoryTypeIdentifier ToothbrushingEvent = new HKCategoryTypeIdentifier("ToothbrushingEvent");
-    /**
-     * @since Available in iOS 14.3 and later.
-     */
-    public static final HKCategoryTypeIdentifier Pregnancy = new HKCategoryTypeIdentifier("Pregnancy");
-    /**
-     * @since Available in iOS 14.3 and later.
-     */
-    public static final HKCategoryTypeIdentifier Lactation = new HKCategoryTypeIdentifier("Lactation");
-    /**
-     * @since Available in iOS 14.3 and later.
-     */
-    public static final HKCategoryTypeIdentifier Contraceptive = new HKCategoryTypeIdentifier("Contraceptive");
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -184,17 +101,94 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKCategoryTypeIdentifier HeadphoneAudioExposureEvent = new HKCategoryTypeIdentifier("HeadphoneAudioExposureEvent");
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 12.2 and later.
      */
-    public static final HKCategoryTypeIdentifier HandwashingEvent = new HKCategoryTypeIdentifier("HandwashingEvent");
+    public static final HKCategoryTypeIdentifier HighHeartRateEvent = new HKCategoryTypeIdentifier("HighHeartRateEvent");
+    /**
+     * @since Available in iOS 12.2 and later.
+     */
+    public static final HKCategoryTypeIdentifier IrregularHeartRhythmEvent = new HKCategoryTypeIdentifier("IrregularHeartRhythmEvent");
     /**
      * @since Available in iOS 14.3 and later.
      */
     public static final HKCategoryTypeIdentifier LowCardioFitnessEvent = new HKCategoryTypeIdentifier("LowCardioFitnessEvent");
     /**
+     * @since Available in iOS 12.2 and later.
+     */
+    public static final HKCategoryTypeIdentifier LowHeartRateEvent = new HKCategoryTypeIdentifier("LowHeartRateEvent");
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MindfulSession = new HKCategoryTypeIdentifier("MindfulSession");
+    /**
      * @since Available in iOS 15.0 and later.
      */
     public static final HKCategoryTypeIdentifier AppleWalkingSteadinessEvent = new HKCategoryTypeIdentifier("AppleWalkingSteadinessEvent");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier HandwashingEvent = new HKCategoryTypeIdentifier("HandwashingEvent");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier ToothbrushingEvent = new HKCategoryTypeIdentifier("ToothbrushingEvent");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier CervicalMucusQuality = new HKCategoryTypeIdentifier("CervicalMucusQuality");
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    public static final HKCategoryTypeIdentifier Contraceptive = new HKCategoryTypeIdentifier("Contraceptive");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier InfrequentMenstrualCycles = new HKCategoryTypeIdentifier("InfrequentMenstrualCycles");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier IntermenstrualBleeding = new HKCategoryTypeIdentifier("IntermenstrualBleeding");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier IrregularMenstrualCycles = new HKCategoryTypeIdentifier("IrregularMenstrualCycles");
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    public static final HKCategoryTypeIdentifier Lactation = new HKCategoryTypeIdentifier("Lactation");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MenstrualFlow = new HKCategoryTypeIdentifier("MenstrualFlow");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier OvulationTestResult = new HKCategoryTypeIdentifier("OvulationTestResult");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier PersistentIntermenstrualBleeding = new HKCategoryTypeIdentifier("PersistentIntermenstrualBleeding");
+    /**
+     * @since Available in iOS 14.3 and later.
+     */
+    public static final HKCategoryTypeIdentifier Pregnancy = new HKCategoryTypeIdentifier("Pregnancy");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier PregnancyTestResult = new HKCategoryTypeIdentifier("PregnancyTestResult");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier ProgesteroneTestResult = new HKCategoryTypeIdentifier("ProgesteroneTestResult");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier ProlongedMenstrualPeriods = new HKCategoryTypeIdentifier("ProlongedMenstrualPeriods");
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier SexualActivity = new HKCategoryTypeIdentifier("SexualActivity");
+    public static final HKCategoryTypeIdentifier SleepAnalysis = new HKCategoryTypeIdentifier("SleepAnalysis");
     /**
      * @since Available in iOS 13.6 and later.
      */
@@ -351,9 +345,15 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 13.6 and later.
      */
     public static final HKCategoryTypeIdentifier Wheezing = new HKCategoryTypeIdentifier("Wheezing");
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
+     */
+    @Deprecated
+    public static final HKCategoryTypeIdentifier AudioExposureEvent = new HKCategoryTypeIdentifier("AudioExposureEvent");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/SleepAnalysis, AppleStandHour, CervicalMucusQuality, OvulationTestResult, PregnancyTestResult, ProgesteroneTestResult, MenstrualFlow, IntermenstrualBleeding, PersistentIntermenstrualBleeding, ProlongedMenstrualPeriods, IrregularMenstrualCycles, InfrequentMenstrualCycles, SexualActivity, MindfulSession, HighHeartRateEvent, LowHeartRateEvent, IrregularHeartRhythmEvent, AudioExposureEvent, ToothbrushingEvent, Pregnancy, Lactation, Contraceptive, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HandwashingEvent, LowCardioFitnessEvent, AppleWalkingSteadinessEvent, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleStandHour, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HighHeartRateEvent, IrregularHeartRhythmEvent, LowCardioFitnessEvent, LowHeartRateEvent, MindfulSession, AppleWalkingSteadinessEvent, HandwashingEvent, ToothbrushingEvent, CervicalMucusQuality, Contraceptive, InfrequentMenstrualCycles, IntermenstrualBleeding, IrregularMenstrualCycles, Lactation, MenstrualFlow, OvulationTestResult, PersistentIntermenstrualBleeding, Pregnancy, PregnancyTestResult, ProgesteroneTestResult, ProlongedMenstrualPeriods, SexualActivity, SleepAnalysis, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing, AudioExposureEvent/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -376,115 +376,11 @@ import org.robovm.apple.uniformtypeid.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="HKCategoryTypeIdentifierSleepAnalysis", optional=true)
-        public static native NSString SleepAnalysis();
         /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierAppleStandHour", optional=true)
         public static native NSString AppleStandHour();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierCervicalMucusQuality", optional=true)
-        public static native NSString CervicalMucusQuality();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierOvulationTestResult", optional=true)
-        public static native NSString OvulationTestResult();
-        /**
-         * @since Available in iOS 15.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierPregnancyTestResult", optional=true)
-        public static native NSString PregnancyTestResult();
-        /**
-         * @since Available in iOS 15.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierProgesteroneTestResult", optional=true)
-        public static native NSString ProgesteroneTestResult();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierMenstrualFlow", optional=true)
-        public static native NSString MenstrualFlow();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierIntermenstrualBleeding", optional=true)
-        public static native NSString IntermenstrualBleeding();
-        /**
-         * @since Available in iOS 16.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierPersistentIntermenstrualBleeding", optional=true)
-        public static native NSString PersistentIntermenstrualBleeding();
-        /**
-         * @since Available in iOS 16.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierProlongedMenstrualPeriods", optional=true)
-        public static native NSString ProlongedMenstrualPeriods();
-        /**
-         * @since Available in iOS 16.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierIrregularMenstrualCycles", optional=true)
-        public static native NSString IrregularMenstrualCycles();
-        /**
-         * @since Available in iOS 16.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierInfrequentMenstrualCycles", optional=true)
-        public static native NSString InfrequentMenstrualCycles();
-        /**
-         * @since Available in iOS 9.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierSexualActivity", optional=true)
-        public static native NSString SexualActivity();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierMindfulSession", optional=true)
-        public static native NSString MindfulSession();
-        /**
-         * @since Available in iOS 12.2 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierHighHeartRateEvent", optional=true)
-        public static native NSString HighHeartRateEvent();
-        /**
-         * @since Available in iOS 12.2 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierLowHeartRateEvent", optional=true)
-        public static native NSString LowHeartRateEvent();
-        /**
-         * @since Available in iOS 12.2 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierIrregularHeartRhythmEvent", optional=true)
-        public static native NSString IrregularHeartRhythmEvent();
-        /**
-         * @since Available in iOS 13.0 and later.
-         * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
-         */
-        @Deprecated
-        @GlobalValue(symbol="HKCategoryTypeIdentifierAudioExposureEvent", optional=true)
-        public static native NSString AudioExposureEvent();
-        /**
-         * @since Available in iOS 13.0 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierToothbrushingEvent", optional=true)
-        public static native NSString ToothbrushingEvent();
-        /**
-         * @since Available in iOS 14.3 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierPregnancy", optional=true)
-        public static native NSString Pregnancy();
-        /**
-         * @since Available in iOS 14.3 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierLactation", optional=true)
-        public static native NSString Lactation();
-        /**
-         * @since Available in iOS 14.3 and later.
-         */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierContraceptive", optional=true)
-        public static native NSString Contraceptive();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -496,20 +392,117 @@ import org.robovm.apple.uniformtypeid.*;
         @GlobalValue(symbol="HKCategoryTypeIdentifierHeadphoneAudioExposureEvent", optional=true)
         public static native NSString HeadphoneAudioExposureEvent();
         /**
-         * @since Available in iOS 14.0 and later.
+         * @since Available in iOS 12.2 and later.
          */
-        @GlobalValue(symbol="HKCategoryTypeIdentifierHandwashingEvent", optional=true)
-        public static native NSString HandwashingEvent();
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHighHeartRateEvent", optional=true)
+        public static native NSString HighHeartRateEvent();
+        /**
+         * @since Available in iOS 12.2 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierIrregularHeartRhythmEvent", optional=true)
+        public static native NSString IrregularHeartRhythmEvent();
         /**
          * @since Available in iOS 14.3 and later.
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierLowCardioFitnessEvent", optional=true)
         public static native NSString LowCardioFitnessEvent();
         /**
+         * @since Available in iOS 12.2 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierLowHeartRateEvent", optional=true)
+        public static native NSString LowHeartRateEvent();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMindfulSession", optional=true)
+        public static native NSString MindfulSession();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierAppleWalkingSteadinessEvent", optional=true)
         public static native NSString AppleWalkingSteadinessEvent();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHandwashingEvent", optional=true)
+        public static native NSString HandwashingEvent();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierToothbrushingEvent", optional=true)
+        public static native NSString ToothbrushingEvent();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierCervicalMucusQuality", optional=true)
+        public static native NSString CervicalMucusQuality();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierContraceptive", optional=true)
+        public static native NSString Contraceptive();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierInfrequentMenstrualCycles", optional=true)
+        public static native NSString InfrequentMenstrualCycles();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierIntermenstrualBleeding", optional=true)
+        public static native NSString IntermenstrualBleeding();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierIrregularMenstrualCycles", optional=true)
+        public static native NSString IrregularMenstrualCycles();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierLactation", optional=true)
+        public static native NSString Lactation();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMenstrualFlow", optional=true)
+        public static native NSString MenstrualFlow();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierOvulationTestResult", optional=true)
+        public static native NSString OvulationTestResult();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierPersistentIntermenstrualBleeding", optional=true)
+        public static native NSString PersistentIntermenstrualBleeding();
+        /**
+         * @since Available in iOS 14.3 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierPregnancy", optional=true)
+        public static native NSString Pregnancy();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierPregnancyTestResult", optional=true)
+        public static native NSString PregnancyTestResult();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierProgesteroneTestResult", optional=true)
+        public static native NSString ProgesteroneTestResult();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierProlongedMenstrualPeriods", optional=true)
+        public static native NSString ProlongedMenstrualPeriods();
+        /**
+         * @since Available in iOS 9.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierSexualActivity", optional=true)
+        public static native NSString SexualActivity();
+        @GlobalValue(symbol="HKCategoryTypeIdentifierSleepAnalysis", optional=true)
+        public static native NSString SleepAnalysis();
         /**
          * @since Available in iOS 13.6 and later.
          */
@@ -705,6 +698,13 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierWheezing", optional=true)
         public static native NSString Wheezing();
+        /**
+         * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 14.0. Use HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent
+         */
+        @Deprecated
+        @GlobalValue(symbol="HKCategoryTypeIdentifierAudioExposureEvent", optional=true)
+        public static native NSString AudioExposureEvent();
         /*</values>*/
     }
 }

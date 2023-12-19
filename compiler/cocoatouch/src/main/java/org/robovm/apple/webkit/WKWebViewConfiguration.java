@@ -139,6 +139,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setLimitsNavigationsToAppBoundDomains:")
     public native void setLimitsNavigationsToAppBoundDomains(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "allowsInlinePredictions")
+    public native boolean allowsInlinePredictions();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAllowsInlinePredictions:")
+    public native void setAllowsInlinePredictions(boolean v);
     @Property(selector = "allowsInlineMediaPlayback")
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")

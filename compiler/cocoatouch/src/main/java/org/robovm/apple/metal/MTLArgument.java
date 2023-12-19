@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "type")
     public native MTLArgumentType getType();
     @Property(selector = "access")
-    public native MTLArgumentAccess getAccess();
+    public native MTLBindingAccess getAccess();
     @Property(selector = "index")
     public native @MachineSizedUInt long getIndex();
     @Property(selector = "isActive")

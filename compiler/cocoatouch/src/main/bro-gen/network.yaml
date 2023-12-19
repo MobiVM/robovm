@@ -31,7 +31,6 @@ enums:
     nw_browser_state_t: {prefix: nw_browser_state_, name: NWBrowseState}
     nw_report_resolution_source_t: {prefix: nw_report_resolution_source_, name: NWReportResolutionSource}
     nw_data_transfer_report_state_t: {prefix: nw_data_transfer_report_state_, name: NWDataTransferReportState}
-    nw_ethernet_channel_state_t: {prefix: nw_ethernet_channel_state_, name: NWEthernetChannelState}
     nw_framer_start_result_t: {prefix: nw_framer_start_result_, name: NWFramerStartResult}
     nw_ip_local_address_preference_t: {prefix: nw_ip_local_address_preference_, name: NWIpLocalAddressPreference, nw_ip_local_address_preference_default: Default}
     nw_ws_opcode_t: {prefix: nw_ws_opcode_, name: NWWsOpcode}
@@ -281,6 +280,19 @@ protocols:
         name: NWResolverConfig
         extends: NWObject
         visibility: 'public final'
+
+    OS_nw_proxy_config:
+        class: true
+        name: NWProxyConfig
+        extends: NWObject
+        visibility: 'public final'
+
+    OS_nw_relay_hop:
+        class: true
+        name: NWRelayHop
+        extends: NWObject
+        visibility: 'public final'
+
     NWResolverConfig:  # FIXME: this is workaround as bro-gen uses javaname when merging annotations
         annotations: ['@NativeClass("NSObject")']
 
@@ -660,6 +672,35 @@ functions:
     nw_quic_(add|copy|get|set)_(.*):
         class: NWProtocolMetadata
         name: '#{g[0]}Quic#{g[1].upcase_first_camelize}'
+
+    # NWProxyConfig
+    nw_proxy_config_(create_relay|create_oblivious_http|create_http_connect|create_socksv5):
+        class: NWProxyConfig
+        name: '#{g[0].downcase_first_camelize}'
+        parameters:
+            gateway_key_config: {type: "byte[]" }
+    nw_proxy_config_(.*):
+        class: NWProxyConfig
+        name: '#{g[0].downcase_first_camelize}'
+        parameters:
+            relay_resource_path: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            username: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            password: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            match_domain: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            excluded_domain: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+
+    # NWRelayHop
+    nw_relay_hop_(create):
+        class: NWRelayHop
+        constructor: true
+        name: '#{g[0].downcase_first_camelize}'
+    nw_relay_hop_(.*):
+        class: NWRelayHop
+        name: '#{g[0].downcase_first_camelize}'
+        parameters:
+            field_name: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+            field_value: { type: String, marshaler: StringMarshalers.AsAsciiZMarshaler }
+
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?nw_.*):

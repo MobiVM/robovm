@@ -110,6 +110,26 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setBuffers:offsets:withRange:")
     protected native void setBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBuffer:offset:attributeStride:atIndex:")
+    public native void setBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBuffers:offsets:attributeStrides:withRange:")
+    public native void setBuffers(MTLBuffer buffers, MachineSizedUIntPtr offsets, MachineSizedUIntPtr strides, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBufferOffset:attributeStride:atIndex:")
+    public native void setBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBytes:length:attributeStride:atIndex:")
+    public native void setBytes(VoidPtr bytes, @MachineSizedUInt long length, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "setVisibleFunctionTable:atBufferIndex:")

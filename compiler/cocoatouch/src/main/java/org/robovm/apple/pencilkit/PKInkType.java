@@ -102,9 +102,25 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final PKInkType Marker = new PKInkType("Marker");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final PKInkType Monoline = new PKInkType("Monoline");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final PKInkType FountainPen = new PKInkType("FountainPen");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final PKInkType Watercolor = new PKInkType("Watercolor");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final PKInkType Crayon = new PKInkType("Crayon");
     /*</constants>*/
     
-    private static /*<name>*/PKInkType/*</name>*/[] values = new /*<name>*/PKInkType/*</name>*/[] {/*<value_list>*/Pen, Pencil, Marker/*</value_list>*/};
+    private static /*<name>*/PKInkType/*</name>*/[] values = new /*<name>*/PKInkType/*</name>*/[] {/*<value_list>*/Pen, Pencil, Marker, Monoline, FountainPen, Watercolor, Crayon/*</value_list>*/};
     
     /*<name>*/PKInkType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +158,26 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="PKInkTypeMarker", optional=true)
         public static native NSString Marker();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="PKInkTypeMonoline", optional=true)
+        public static native NSString Monoline();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="PKInkTypeFountainPen", optional=true)
+        public static native NSString FountainPen();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="PKInkTypeWatercolor", optional=true)
+        public static native NSString Watercolor();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="PKInkTypeCrayon", optional=true)
+        public static native NSString Crayon();
         /*</values>*/
     }
 }

@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 14.0. Replaced by GKLeaderboardScore
+ * @deprecated Deprecated in iOS 14.0. Use GKLeaderboardScore
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
@@ -54,7 +54,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithLeaderboardIdentifier:player:")
     public GKScore(String identifier, GKPlayer player) { super((SkipInit) null); initObject(init(identifier, player)); }
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use initWithLeaderboardIdentifier:player:
+     * @deprecated Deprecated in iOS 8.0. Use -initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
@@ -88,19 +88,19 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setShouldSetDefaultLeaderboard:")
     public native void setShouldSetDefaultLeaderboard(boolean v);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
+     * @deprecated Deprecated in iOS 7.0. Use -leaderboardIdentifier
      */
     @Deprecated
     @Property(selector = "category")
     public native String getCategory();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use leaderboardIdentifier instead
+     * @deprecated Deprecated in iOS 7.0. Use -leaderboardIdentifier
      */
     @Deprecated
     @Property(selector = "setCategory:")
     public native void setCategory(String v);
     /**
-     * @deprecated Deprecated in iOS 8.0. use player instead
+     * @deprecated Deprecated in iOS 8.0. Use -player:
      */
     @Deprecated
     @Property(selector = "playerID")
@@ -117,19 +117,19 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "reportScores:withCompletionHandler:")
     public static native void reportScores(NSArray<GKScore> scores, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use +reportScores:withCompletionhandler: instead
+     * @deprecated Deprecated in iOS 7.0. Use +reportScores:withCompletionhandler:
      */
     @Deprecated
     @Method(selector = "reportScoreWithCompletionHandler:")
     public native void reportScore(@Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use initWithLeaderboardIdentifier:player:
+     * @deprecated Deprecated in iOS 8.0. Use -initWithLeaderboardIdentifier:player:
      */
     @Deprecated
     @Method(selector = "initWithLeaderboardIdentifier:forPlayer:")
     protected native @Pointer long init(String identifier, String playerID);
     /**
-     * @deprecated Deprecated in iOS 14.0. pass GKLeaderboardScore to reportLeaderboardScores:withEligibleChallenges:withCompletionHandler instead
+     * @deprecated Deprecated in iOS 14.0. Use -reportLeaderboardScores:withEligibleChallenges:withCompletionHandler
      */
     @Deprecated
     @Method(selector = "reportScores:withEligibleChallenges:withCompletionHandler:")
@@ -140,15 +140,24 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:")
     public static native void reportLeaderboardScores(NSArray<GKLeaderboardScore> scores, NSArray<GKChallenge> challenges, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 7.0. This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players:completionHandler: and present the view controller instead
+     * @deprecated Deprecated in iOS 7.0. Use -challengeComposeControllerWithMessage:players:completionHandler:
      */
     @Deprecated
     @Method(selector = "issueChallengeToPlayers:message:")
     public native void issueChallengeToPlayers(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs, String message);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -challengeComposeControllerWithMessage:players:completion:
+     */
+    @Deprecated
     @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
     public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, pass GKPlayers to challengeComposeControllerWithMessage:players: instead
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "challengeComposeControllerWithMessage:players:completion:")
+    public native UIViewController getChallengeComposeControllerIos17(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use -challengeComposeControllerWithMessage:players:completion:
      */
     @Deprecated
     @Method(selector = "challengeComposeControllerWithPlayers:message:completionHandler:")

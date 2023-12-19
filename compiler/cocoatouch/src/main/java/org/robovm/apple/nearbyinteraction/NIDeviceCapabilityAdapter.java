@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     public boolean supportsDirectionMeasurement() { return false; }
     @NotImplemented("supportsCameraAssistance")
     public boolean supportsCameraAssistance() { return false; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("supportsExtendedDistanceMeasurement")
+    public boolean supportsExtendedDistanceMeasurement() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

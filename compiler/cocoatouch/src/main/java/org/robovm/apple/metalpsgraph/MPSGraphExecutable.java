@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphExecutable/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphExecutablePtr extends Ptr<MPSGraphExecutable, MPSGraphExecutablePtr> {}/*</ptr>*/
@@ -49,6 +49,11 @@ import org.robovm.apple.metalps.*;
     public MPSGraphExecutable() {}
     protected MPSGraphExecutable(Handle h, long handle) { super(h, handle); }
     protected MPSGraphExecutable(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithMPSGraphPackageAtURL:compilationDescriptor:")
+    public MPSGraphExecutable(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor) { super((SkipInit) null); initObject(init(mpsgraphPackageURL, compilationDescriptor)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "options")
@@ -64,11 +69,26 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "specializeWithDevice:inputTypes:compilationDescriptor:")
     public native void specialize(MPSGraphDevice device, NSArray<MPSGraphType> inputTypes, MPSGraphCompilationDescriptor compilationDescriptor);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "getOutputTypesWithDevice:inputTypes:compilationDescriptor:")
+    public native NSArray<MPSGraphShapedType> getOutputTypes(MPSGraphDevice device, NSArray<MPSGraphType> inputTypes, MPSGraphCompilationDescriptor compilationDescriptor);
     @Method(selector = "runWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:")
     public native NSArray<MPSGraphTensorData> run(MTLCommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
     @Method(selector = "runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:")
     public native NSArray<MPSGraphTensorData> runAsync(MTLCommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
     @Method(selector = "encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:")
     public native NSArray<MPSGraphTensorData> encodeToCommandBuffer(MPSCommandBuffer commandBuffer, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "serializeToMPSGraphPackageAtURL:descriptor:")
+    public native void serializeToMPSGraphPackage(NSURL url, MPSGraphExecutableSerializationDescriptor descriptor);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithMPSGraphPackageAtURL:compilationDescriptor:")
+    protected native @Pointer long init(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor);
     /*</methods>*/
 }

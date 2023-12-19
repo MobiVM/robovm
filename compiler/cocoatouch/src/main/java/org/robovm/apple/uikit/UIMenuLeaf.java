@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +65,16 @@ import org.robovm.apple.linkpresentation.*;
     UIImage getImage();
     @Property(selector = "setImage:")
     void setImage(UIImage v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "selectedImage")
+    UIImage getSelectedImage();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSelectedImage:")
+    void setSelectedImage(UIImage v);
     @Property(selector = "discoverabilityTitle")
     String getDiscoverabilityTitle();
     @Property(selector = "setDiscoverabilityTitle:")

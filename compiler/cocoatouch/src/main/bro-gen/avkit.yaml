@@ -10,7 +10,7 @@ typedefs: {}
 enums:
     AVKitError: {name: AVKitErrorCode}
     AVAudioSessionRouteSelection: {} #since 13.0
-
+    AVVideoFrameAnalysisType: {} #since 17.0
 classes:
     AVKitError: # DONE
         annotations: ['@StronglyLinked']

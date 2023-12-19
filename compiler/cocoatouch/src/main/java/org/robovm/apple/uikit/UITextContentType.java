@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -218,9 +219,61 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final UITextContentType DateTime = new UITextContentType("DateTime");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType Birthdate = new UITextContentType("Birthdate");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType BirthdateDay = new UITextContentType("BirthdateDay");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType BirthdateMonth = new UITextContentType("BirthdateMonth");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType BirthdateYear = new UITextContentType("BirthdateYear");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardSecurityCode = new UITextContentType("CreditCardSecurityCode");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardName = new UITextContentType("CreditCardName");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardGivenName = new UITextContentType("CreditCardGivenName");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardMiddleName = new UITextContentType("CreditCardMiddleName");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardFamilyName = new UITextContentType("CreditCardFamilyName");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardExpiration = new UITextContentType("CreditCardExpiration");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardExpirationMonth = new UITextContentType("CreditCardExpirationMonth");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardExpirationYear = new UITextContentType("CreditCardExpirationYear");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UITextContentType CreditCardType = new UITextContentType("CreditCardType");
     /*</constants>*/
     
-    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode, ShipmentTrackingNumber, FlightNumber, DateTime/*</value_list>*/};
+    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode, ShipmentTrackingNumber, FlightNumber, DateTime, Birthdate, BirthdateDay, BirthdateMonth, BirthdateYear, CreditCardSecurityCode, CreditCardName, CreditCardGivenName, CreditCardMiddleName, CreditCardFamilyName, CreditCardExpiration, CreditCardExpirationMonth, CreditCardExpirationYear, CreditCardType/*</value_list>*/};
     
     /*<name>*/UITextContentType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -393,6 +446,71 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UITextContentTypeDateTime", optional=true)
         public static native NSString DateTime();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeBirthdate", optional=true)
+        public static native NSString Birthdate();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeBirthdateDay", optional=true)
+        public static native NSString BirthdateDay();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeBirthdateMonth", optional=true)
+        public static native NSString BirthdateMonth();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeBirthdateYear", optional=true)
+        public static native NSString BirthdateYear();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardSecurityCode", optional=true)
+        public static native NSString CreditCardSecurityCode();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardName", optional=true)
+        public static native NSString CreditCardName();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardGivenName", optional=true)
+        public static native NSString CreditCardGivenName();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardMiddleName", optional=true)
+        public static native NSString CreditCardMiddleName();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardFamilyName", optional=true)
+        public static native NSString CreditCardFamilyName();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardExpiration", optional=true)
+        public static native NSString CreditCardExpiration();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardExpirationMonth", optional=true)
+        public static native NSString CreditCardExpirationMonth();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardExpirationYear", optional=true)
+        public static native NSString CreditCardExpirationYear();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCreditCardType", optional=true)
+        public static native NSString CreditCardType();
         /*</values>*/
     }
 }

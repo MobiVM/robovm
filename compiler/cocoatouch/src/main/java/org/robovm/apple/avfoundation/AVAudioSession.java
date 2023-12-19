@@ -160,6 +160,10 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "allowHapticsAndSystemSoundsDuringRecording")
     public native boolean isAllowHapticsAndSystemSoundsDuringRecording();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Please use AVAudioApplication recordPermission
+     */
+    @Deprecated
     @Property(selector = "recordPermission")
     public native AVAudioSessionRecordPermission getRecordPermission();
     @Property(selector = "preferredInput")
@@ -237,6 +241,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "supportsMultichannelContent")
     public native boolean supportsMultichannelContent();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "prefersInterruptionOnRouteDisconnect")
+    public native boolean prefersInterruptionOnRouteDisconnect();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -334,6 +343,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "setAllowHapticsAndSystemSoundsDuringRecording:error:")
     private native boolean setAllowHapticsAndSystemSoundsDuringRecording(boolean inValue, NSError.NSErrorPtr outError);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Please use AVAudioApplication requestRecordPermissionWithCompletionHandler
+     */
+    @Deprecated
     @Method(selector = "requestRecordPermission:")
     public native void requestRecordPermission(@Block VoidBooleanBlock response);
     public boolean overrideOutputAudioPort(AVAudioSessionPortOverride portOverride) throws NSErrorException {
@@ -482,5 +495,19 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "setSupportsMultichannelContent:error:")
     private native boolean setSupportsMultichannelContent(boolean inValue, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public boolean setPrefersInterruptionOnRouteDisconnect(boolean inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setPrefersInterruptionOnRouteDisconnect(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setPrefersInterruptionOnRouteDisconnect:error:")
+    private native boolean setPrefersInterruptionOnRouteDisconnect(boolean inValue, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

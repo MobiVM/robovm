@@ -205,7 +205,15 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    AirPlayReceiverTemporarilyUnavailable(-11882L);
+    AirPlayReceiverTemporarilyUnavailable(-11882L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    EncodeFailed(-11883L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    SandboxExtensionDenied(-11884L);
     /*</values>*/
 
     /*<bind>*/

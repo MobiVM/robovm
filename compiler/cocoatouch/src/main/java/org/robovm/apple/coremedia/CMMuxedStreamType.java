@@ -45,7 +45,11 @@ public enum /*<name>*/CMMuxedStreamType/*</name>*/ implements ValuedEnum {
     MPEG1System(1836069235L),
     MPEG2Transport(1836069492L),
     MPEG2Program(1836069488L),
-    DV(1685463072L);
+    DV(1685463072L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    EmbeddedDeviceScreenRecording(1769173536L);
     /*</values>*/
 
     /*<bind>*/

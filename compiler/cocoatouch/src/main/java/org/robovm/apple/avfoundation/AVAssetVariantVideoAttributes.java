@@ -69,6 +69,11 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGSize getPresentationSize();
     @Property(selector = "nominalFrameRate")
     public native double getNominalFrameRate();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoLayoutAttributes")
+    public native NSArray<AVAssetVariantVideoLayoutAttributes> getVideoLayoutAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

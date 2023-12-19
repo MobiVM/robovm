@@ -44,7 +44,8 @@ public enum /*<name>*/CXErrorCodeIncomingCallError/*</name>*/ implements NSError
     Unentitled(1L),
     CallUUIDAlreadyExists(2L),
     FilteredByDoNotDisturb(3L),
-    FilteredByBlockList(4L);
+    FilteredByBlockList(4L),
+    FilteredDuringRestrictedSharingMode(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CXErrorCodeIncomingCallError.class); }/*</bind>*/

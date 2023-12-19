@@ -175,7 +175,7 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="SKStoreProductParameterAdNetworkCampaignIdentifier", optional=true)
         public static native NSString AdNetworkCampaignIdentifier();
         /**
-         * @since Available in iOS 16.0 and later.
+         * @since Available in iOS 16.1 and later.
          */
         @GlobalValue(symbol="SKStoreProductParameterAdNetworkSourceIdentifier", optional=true)
         public static native NSString AdNetworkSourceIdentifier();

@@ -256,6 +256,21 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVPlayerItemTimeJumpedOriginatingParticipantKey", optional=true)
         public static native String ItemTimeJumpedOriginatingParticipant();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeEventKey", optional=true)
+        public static native String InterstitialEventMonitorAssetListResponseStatusDidChangeEvent();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey", optional=true)
+        public static native String InterstitialEventMonitorAssetListResponseStatusDidChangeStatus();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey", optional=true)
+        public static native String InterstitialEventMonitorAssetListResponseStatusDidChangeError();
     }
 
     @Library("AVFoundation")
@@ -282,6 +297,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventDidChangeNotification", optional=true)
         public static native NSString InterstitialEventMonitorCurrentEventDidChange();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventMonitorAssetListResponseStatusDidChange();
     }
     
     @Method(selector = "initWithURL:")

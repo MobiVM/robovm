@@ -74,6 +74,8 @@ classes:
                         marshaler: NSArray.AsStringListMarshaler
                     completionHandler:
                         type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<NSString>>' # TODO asStringListMarshaler
+            '-challengeComposeControllerWithMessage:players:completion:':
+                name: challengeComposeControllerIos17 # conflicts with deprecated
             '-selectChallengeablePlayers:withCompletionHandler:':
                 trim_after_first_colon: true
                 parameters:
@@ -459,6 +461,8 @@ classes:
                         type: NSArray<GKPlayer>
                     completionHandler:
                         type: '@Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>>'
+            '-challengeComposeControllerWithMessage:players:completion:':
+                name: getChallengeComposeControllerIos17 # conflicts with deprecated
             '-challengeComposeControllerWithPlayers:message:completionHandler:':
                 name: getChallengeComposeController
                 parameters:
@@ -674,13 +678,15 @@ classes:
     GKLeaderboardEntry: #since 14.0
         methods:
             '-challengeComposeControllerWithMessage:players:completionHandler:':
-                name: challengeComposeController
+                name: challengeComposeController # deprecated now
+            '-challengeComposeControllerWithMessage:players:completion:':
+                name: getChallengeComposeController
 categories:
     GKGameSession :
         methods:
-            '+addEventListener:': 
+            '+addEventListener:':
                 name: addEventListener
-            '+removeEventListener:': 
+            '+removeEventListener:':
                 name: removeEventListener
 protocols:
     GKAchievementViewControllerDelegate: # DONE

@@ -99,7 +99,9 @@ import org.robovm.apple.dispatch.*;
     public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLDevice's newArgumentEncoderWithBufferBinding: instead
      */
+    @Deprecated
     @Method(selector = "newArgumentEncoderWithBufferIndex:reflection:")
     public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex, MTLArgument.MTLArgumentPtr reflection);
     /*</methods>*/

@@ -81,6 +81,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithConfiguration:")
     protected native @Pointer long init(PHPickerConfiguration configuration);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "updatePickerUsingConfiguration:")
+    public native void updatePickerUsingConfiguration(PHPickerUpdateConfiguration configuration);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "deselectAssetsWithIdentifiers:")
@@ -90,5 +95,20 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "moveAssetWithIdentifier:afterAssetWithIdentifier:")
     public native void moveAsset(String identifier, String afterIdentifier);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "scrollToInitialPosition")
+    public native void scrollToInitialPosition();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "zoomIn")
+    public native void zoomIn();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "zoomOut")
+    public native void zoomOut();
     /*</methods>*/
 }

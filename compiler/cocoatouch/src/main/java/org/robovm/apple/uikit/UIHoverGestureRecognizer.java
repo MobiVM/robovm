@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,9 +70,23 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "zOffset")
     public native @MachineSizedFloat double getZOffset();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "altitudeAngle")
+    public native @MachineSizedFloat double getAltitudeAngle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "azimuthAngleInView:")
+    public native @MachineSizedFloat double azimuthAngleInView(UIView view);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "azimuthUnitVectorInView:")
+    public native @ByVal CGVector azimuthUnitVectorInView(UIView view);
     /*</methods>*/
 }

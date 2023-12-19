@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphStencilOpDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphStencilOpDescriptorPtr extends Ptr<MPSGraphStencilOpDescriptor, MPSGraphStencilOpDescriptorPtr> {}/*</ptr>*/

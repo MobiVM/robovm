@@ -129,6 +129,15 @@ enums:
     AVMIDIControlChangeMessageType: { }
     AVMIDIMetaEventType: { }
     AVSpeechSynthesisMarkerMark: { } #since 16.0
+    # ios 17
+    AVPlayerLooperItemOrdering: {} #since 17.0
+    AVPlayerInterstitialEventAssetListResponseStatus: {} #since 16.4
+    AVAudioVoiceProcessingSpeechActivityEvent: {prefix: AVAudioVoiceProcessingSpeechActivity} #since 17.0
+    AVAudioVoiceProcessingOtherAudioDuckingLevel: {} #since 17.0
+    AVSpeechSynthesisPersonalVoiceAuthorizationStatus: {} #since 17.0
+    AVSpeechSynthesisVoiceTraits: {prefix: AVSpeechSynthesisVoiceTrait} #since 17.0
+    AVAudioApplicationRecordPermission: {}
+    AVCapturePhotoOutputCaptureReadiness: {} #since 17.0
 
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
@@ -179,6 +188,14 @@ typed_enums:
         enum: AVCoordinatedPlaybackSuspensionReason
         type: NSString
         prefix: AVCoordinatedPlaybackSuspensionReason
+    AVVideoCompositionPerFrameHDRDisplayMetadataPolicy:
+        enum: AVVideoCompositionPerFrameHDRDisplayMetadataPolicy
+        type: NSString
+        prefix: AVVideoCompositionPerFrameHDRDisplayMetadataPolicy
+    AVCaptureReactionType:
+        enum: AVCaptureReactionType
+        type: NSString
+        prefix: AVCaptureReactionType
 categories:
     NSValueAVFoundationExtensions: # DONE
         methods:
@@ -211,6 +228,7 @@ classes:
     AVCaptureWhiteBalanceTemperatureAndTintValues: {}
     AVEdgeWidths: {}
     AVPixelAspectRatio: {}
+    AVAudioVoiceProcessingOtherAudioDuckingConfiguration: {} #since 17.0
     
     AVError:
         extends: NSError
@@ -1142,6 +1160,9 @@ classes:
             '-setSupportsMultichannelContent:error:':
                 name: setSupportsMultichannelContent
                 throws: NSErrorException
+            '-setPrefersInterruptionOnRouteDisconnect:error:':
+                name: setPrefersInterruptionOnRouteDisconnect
+                throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
         properties:
@@ -1629,6 +1650,8 @@ classes:
                 name: getRecommendedVideoSettings
             '-availableVideoCodecTypesForAssetWriterWithOutputFileType:':
                 name: getAvailableVideoCodecTypes
+            '-recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:':
+                name: getRecommendedVideoSettings
     AVCaptureVideoPreviewLayer: # DONE
         properties:
             'videoGravity':
@@ -2360,6 +2383,8 @@ classes:
         methods:
             '-initWithPlayer:templateItem:timeRange:':
                 name: init
+            '-initWithPlayer:templateItem:timeRange:existingItemsOrdering:':
+                name: init
             '+playerLooperWithPlayer:templateItem:timeRange:':
                 exclude: true
             '+playerLooperWithPlayer:templateItem:':
@@ -2439,6 +2464,8 @@ classes:
                 name: writeUtterance
             '-writeUtterance:toBufferCallback:toMarkerCallback:':
                 name: writeUtterance
+            '+requestPersonalVoiceAuthorizationWithCompletionHandler:':
+                name: requestPersonalVoiceAuthorization
     AVSpeechUtterance: # DONE
         methods:
             '-initWithString:':
@@ -2973,6 +3000,12 @@ classes:
                 name: predicateForPresentationWidth
             '+predicateForPresentationHeight:operatorType:':
                 name: predicateForPresentationHeight
+            '+predicateForBinauralAudio:mediaSelectionOption:':
+                name: predicateForBinauralAudio
+            '+predicateForImmersiveAudio:mediaSelectionOption:':
+                name: predicateForImmersiveAudio
+            '+predicateForDownmixAudio:mediaSelectionOption:':
+                name: predicateForDownmixAudio
     AVAssetVariantVideoAttributes: {} #since 15.0
     AVCoordinatedPlaybackParticipant: {} #since 15.0
     AVCoordinatedPlaybackSuspension: {} #since 15.0
@@ -3106,6 +3139,21 @@ classes:
         methods:
             '-initWithMarkerType:forTextRange:atByteSampleOffset:':
                 name: init
+            '-initWithWordRange:atByteSampleOffset:':
+                static_constructor_name: createWithWordRange
+                name: initWithWordRange
+            '-initWithSentenceRange:atByteSampleOffset:':
+                static_constructor_name: createWithSentenceRange
+                name: initWithSentenceRange
+            '-initWithParagraphRange:atByteSampleOffset:':
+                static_constructor_name: createWithParagraphRange
+                name: initWithParagraphRange
+            '-initWithPhonemeString:atByteSampleOffset:':
+                static_constructor_name: createWithPhonemeString
+                name: initWithPhonemeString
+            '-initWithBookmarkName:atByteSampleOffset:':
+                static_constructor_name: createWithBookmarkName
+                name: initWithBookmarkName
     AVSpeechSynthesisProviderAudioUnit: {} #since 16.0
     AVSpeechSynthesisProviderRequest: #since 16.0
         methods:
@@ -3115,6 +3163,45 @@ classes:
         methods:
             '-initWithName:identifier:primaryLanguages:supportedLanguages:':
                 name: init
+    AVAssetVariantVideoLayoutAttributes: {} #since 17.0
+    AVAssetWriterInputTaggedPixelBufferGroupAdaptor: #since 17.0
+        methods:
+            '-initWithAssetWriterInput:sourcePixelBufferAttributes:':
+                name: init
+            '-appendTaggedPixelBufferGroup:withPresentationTime:':
+                name: appendTaggedPixelBufferGroup
+            '+assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:':
+                name: assetWriterInputTaggedPixelBufferGroupAdaptor
+    AVAudioApplication: #since 17.0
+        methods:
+            '-setInputMuted:error:':
+                name: setInputMuted
+                throws: NSErrorException
+            '+requestRecordPermissionWithCompletionHandler:':
+                name: requestRecordPermission
+    AVCaptureDeferredPhotoProxy: {} #since 17.0
+    AVCaptureDeviceRotationCoordinator: #since 17.0
+        methods:
+            '-initWithDevice:previewLayer:':
+                name: init
+    AVCapturePhotoOutputReadinessCoordinator: #since 17.0
+        methods:
+            '-initWithPhotoOutput:':
+                name: init
+    AVCaptureReactionEffectState: {} #since 17.0
+    AVExternalStorageDevice: #since 17.0
+        methods:
+            '-nextAvailableURLsWithPathExtensions:error:':
+                throws: NSErrorException
+                name: getNextAvailableURLs
+            '+requestAccessWithCompletionHandler:':
+                name: requestAccess
+    AVExternalStorageDeviceDiscoverySession: {} #since 17.0
+    AVMetadataHumanFullBodyObject: {} #since 17.0
+    AVSampleBufferVideoRenderer: #since 17.0
+        methods:
+            '-flushWithRemovalOfDisplayedImage:completionHandler:':
+                name: flush
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -3136,6 +3223,8 @@ protocols:
                 name: didFinishCaptureForResolvedSettings
             '-captureOutput:didFinishProcessingPhoto:error:':
                 name: didFinishProcessingPhoto
+            '-captureOutput:didFinishCapturingDeferredPhotoProxy:error:':
+                name: didFinishCapturingDeferredPhotoProxy
 
     AVContentKeyRecipient:
         skip_adapter: true
@@ -3332,6 +3421,8 @@ protocols:
                 name: didCancelSpeechUtterance
             '-speechSynthesizer:willSpeakRangeOfSpeechString:utterance:':
                 name: willSpeak
+            '-speechSynthesizer:willSpeakMarker:utterance:':
+                name: willSpeakMarker
     AVVideoCompositionValidationHandling: # DONE
         methods:
             '-videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:':
@@ -3399,6 +3490,10 @@ protocols:
                 name: identifierForPlayerItem
             '-playbackCoordinator:interstitialTimeRangesForPlayerItem:':
                 name: interstitialTimeRangesForPlayerItem
+    AVCapturePhotoOutputReadinessCoordinatorDelegate: #since 17.0
+        methods:
+            '-readinessCoordinator:captureReadinessDidChange:':
+                name: captureReadinessDidChange
 functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation
@@ -3762,6 +3857,10 @@ values:
         class: AVSpeechSynthesisAttributes
         name: '#{g[0]}'
         type: NSString
+    AVSpeechSynthesis(.*)Notification:
+        class: AVSpeechSynthesisNotifications
+        name: '#{g[0]}'
+        type: NSString
 
 
 
@@ -4031,6 +4130,27 @@ values:
         static_class: Keys
         name: '#{g[0]}'
         type: NSString
+    AVSampleBufferVideoRenderer(.*)Notification:
+        class: AVSampleBufferVideoRenderer
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVSampleBufferVideoRenderer(.*)Key:
+        class: AVSampleBufferVideoRenderer
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioApplication(.*)Notification:
+        class: AVAudioApplication
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioApplication(.*)Key:
+        class: AVAudioApplication
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AV.*):

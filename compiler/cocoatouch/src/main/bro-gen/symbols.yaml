@@ -1,0 +1,107 @@
+package: org.robovm.apple.symbols
+include: [foundation]
+library: Symbols
+framework: Symbols
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/Symbols.framework/Headers/Symbols.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+    NSSymbolAppearEffect: #since 17.0
+        methods:
+            '-effectWithByLayer':
+                name: withByLayer
+            '-effectWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolAutomaticContentTransition: {} #since 17.0
+    NSSymbolBounceEffect: #since 17.0
+        methods:
+            '-effectWithByLayer':
+                name: withByLayer
+            '-effectWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolContentTransition: {} #since 17.0
+    NSSymbolDisappearEffect: #since 17.0
+        methods:
+            '-effectWithByLayer':
+                name: withByLayer
+            '-effectWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolEffect: {} #since 17.0
+    NSSymbolEffectOptions: #since 17.0
+        methods:
+            '-optionsWithRepeating':
+                name: withRepeating
+            '-optionsWithNonRepeating':
+                name: withNonRepeating
+            '-optionsWithRepeatCount:':
+                name: withRepeatCount$
+            '-optionsWithSpeed:':
+                name: withSpeed$
+            '+optionsWithRepeating':
+                name: optionsWithRepeating
+            '+optionsWithNonRepeating':
+                name: optionsWithNonRepeating
+            '+optionsWithRepeatCount:':
+                name: optionsWithRepeatCount$
+            '+optionsWithSpeed:':
+                name: optionsWithSpeed$
+    NSSymbolPulseEffect: #since 17.0
+        methods:
+            '-effectWithByLayer':
+                name: withByLayer
+            '-effectWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolReplaceContentTransition: #since 17.0
+        methods:
+            '-transitionWithByLayer':
+                name: withByLayer
+            '-transitionWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolScaleEffect: #since 17.0
+        methods:
+            '-effectWithByLayer':
+                name: withByLayer
+            '-effectWithWholeSymbol':
+                name: withWholeSymbol
+    NSSymbolVariableColorEffect: #since 17.0
+        methods:
+            '-effectWithIterative':
+                name: withIterative
+            '-effectWithCumulative':
+                name: withCumulative
+            '-effectWithReversing':
+                name: withReversing
+            '-effectWithNonReversing':
+                name: withNonReversing
+            '-effectWithHideInactiveLayers':
+                name: withHideInactiveLayers
+            '-effectWithDimInactiveLayers':
+                name: withDimInactiveLayers
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

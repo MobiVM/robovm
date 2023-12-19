@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,16 @@ import org.robovm.apple.linkpresentation.*;
     public UISpringTimingParameters(@MachineSizedFloat double mass, @MachineSizedFloat double stiffness, @MachineSizedFloat double damping, @ByVal CGVector velocity) { super((SkipInit) null); initObject(init(mass, stiffness, damping, velocity)); }
     @Method(selector = "initWithDampingRatio:")
     public UISpringTimingParameters(@MachineSizedFloat double ratio) { super((SkipInit) null); initObject(init(ratio)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDuration:bounce:initialVelocity:")
+    public UISpringTimingParameters(double duration, @MachineSizedFloat double bounce, @ByVal CGVector velocity) { super((SkipInit) null); initObject(init(duration, bounce, velocity)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDuration:bounce:")
+    public UISpringTimingParameters(double duration, @MachineSizedFloat double bounce) { super((SkipInit) null); initObject(init(duration, bounce)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "initialVelocity")
@@ -87,6 +98,16 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(@MachineSizedFloat double mass, @MachineSizedFloat double stiffness, @MachineSizedFloat double damping, @ByVal CGVector velocity);
     @Method(selector = "initWithDampingRatio:")
     protected native @Pointer long init(@MachineSizedFloat double ratio);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDuration:bounce:initialVelocity:")
+    protected native @Pointer long init(double duration, @MachineSizedFloat double bounce, @ByVal CGVector velocity);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDuration:bounce:")
+    protected native @Pointer long init(double duration, @MachineSizedFloat double bounce);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

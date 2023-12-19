@@ -44,6 +44,12 @@ enums:
     CKShareParticipantRole: {} #since 12.0
     CKSharingParticipantAccessOption: {} #since 16.0
     CKSharingParticipantPermissionOption: {} #since 16.0
+    CKSyncEnginePendingRecordZoneChangeType: {}
+    CKSyncEnginePendingDatabaseChangeType: {}
+    CKSyncEngineSyncReason: {}
+    CKSyncEngineEventType: {}
+    CKSyncEngineAccountChangeType: {}
+    CKSyncEngineZoneDeletionReason: {}
 classes:
     CKError:
         extends: NSError
@@ -476,6 +482,89 @@ classes:
         methods:
             '-initWithContainer:':
                 name: init
+    CKSyncEngine: #since 17.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+            '-fetchChangesWithCompletionHandler:':
+                name: fetchChanges
+            '-fetchChangesWithOptions:completionHandler:':
+                name: fetchChanges
+            '-sendChangesWithCompletionHandler:':
+                name: sendChanges
+            '-sendChangesWithOptions:completionHandler:':
+                name: sendChanges
+            '-cancelOperationsWithCompletionHandler:':
+                name: cancelOperations
+    CKSyncEngineAccountChangeEvent: {} #since 17.0
+    CKSyncEngineConfiguration: #since 17.0
+        methods:
+            '-initWithDatabase:stateSerialization:delegate:':
+                name: init
+    CKSyncEngineDidFetchChangesEvent: {} #since 17.0
+    CKSyncEngineDidFetchRecordZoneChangesEvent: {} #since 17.0
+    CKSyncEngineDidSendChangesEvent: {} #since 17.0
+    CKSyncEngineEvent: {} #since 17.0
+    CKSyncEngineFailedRecordSave: {} #since 17.0
+    CKSyncEngineFailedZoneSave: {} #since 17.0
+    CKSyncEngineFetchChangesContext: {} #since 17.0
+    CKSyncEngineFetchChangesOptions: #since 17.0
+        methods:
+            '-initWithScope:':
+                name: init
+    CKSyncEngineFetchChangesScope: #since 17.0
+        methods:
+            '-initWithZoneIDs:':
+                name: init
+            '-initWithExcludedZoneIDs:':
+                static_constructor_name: createWithExcludedZoneIDs
+                name: initWithExcludedZoneIDs
+    CKSyncEngineFetchedDatabaseChangesEvent: {} #since 17.0
+    CKSyncEngineFetchedRecordDeletion: {} #since 17.0
+    CKSyncEngineFetchedRecordZoneChangesEvent: {} #since 17.0
+    CKSyncEngineFetchedZoneDeletion: {} #since 17.0
+    CKSyncEnginePendingDatabaseChange: {} #since 17.0
+    CKSyncEnginePendingRecordZoneChange: #since 17.0
+        methods:
+            '-initWithRecordID:type:':
+                name: init
+    CKSyncEnginePendingZoneDelete: #since 17.0
+        methods:
+            '-initWithZoneID:':
+                name: init
+    CKSyncEnginePendingZoneSave: #since 17.0
+        methods:
+            '-initWithZone:':
+                name: init
+    CKSyncEngineRecordZoneChangeBatch: #since 17.0
+        methods:
+            '-initWithPendingChanges:recordProvider:':
+                name: init
+            '-initWithRecordsToSave:recordIDsToDelete:atomicByZone:':
+                name: init
+    CKSyncEngineSendChangesContext: {} #since 17.0
+    CKSyncEngineSendChangesOptions: #since 17.0
+        methods:
+            '-initWithScope:':
+                name: init
+    CKSyncEngineSendChangesScope: #since 17.0
+        methods:
+            '-initWithZoneIDs:':
+                name: init
+            '-initWithExcludedZoneIDs:':
+                static_constructor_name: createWithExcludedZoneIDs
+                name: initWithExcludedZoneIDs
+            '-initWithRecordIDs:':
+                static_constructor_name: createWithRecordIDs
+                name: initWithRecordIDs
+    CKSyncEngineSentDatabaseChangesEvent: {} #since 17.0
+    CKSyncEngineSentRecordZoneChangesEvent: {} #since 17.0
+    CKSyncEngineState: {} #since 17.0
+    CKSyncEngineStateSerialization: {} #since 17.0
+    CKSyncEngineStateUpdateEvent: {} #since 17.0
+    CKSyncEngineWillFetchChangesEvent: {} #since 17.0
+    CKSyncEngineWillFetchRecordZoneChangesEvent: {} #since 17.0
+    CKSyncEngineWillSendChangesEvent: {} #since 17.0
 protocols:
     CKRecordValue: # DONE
         adapter: false
@@ -501,7 +590,14 @@ protocols:
                 property: true
                 return_type: List<String>
                 return_marshaler: NSArray.AsStringListMarshaler
-
+    CKSyncEngineDelegate: #since 17.0
+        methods:
+            '-syncEngine:handleEvent:':
+                name: handleEvent
+            '-syncEngine:nextRecordZoneChangeBatchForContext:':
+                name: nextRecordZoneChangeBatch
+            '-syncEngine:nextFetchChangesOptionsForContext:':
+                name: nextFetchChangesOptions
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CK.*):

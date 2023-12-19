@@ -62,7 +62,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "timeoutDate")
     public native NSDate getTimeoutDate();
     /**
-     * @deprecated Deprecated in iOS 8.0. use player
+     * @deprecated Deprecated in iOS 8.0. Use -player:
      */
     @Deprecated
     @Property(selector = "playerID")

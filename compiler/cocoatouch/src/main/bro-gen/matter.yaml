@@ -1,0 +1,1139 @@
+package: org.robovm.apple.matter
+include: [ foundation, dispatch, security ]
+library: Matter
+framework: Matter
+clang_args: [ '-x', 'objective-c' ]
+headers:
+    - /System/Library/Frameworks/Matter.framework/Headers/Matter.h
+
+# drop anything that is deprecated in version 17.0 and below
+min_usable_version: 17.0
+
+private_typedefs:
+    NSCopying: NSObject
+
+enums:
+    MTRTransportType: { } #since 16.4
+    MTREventTimeType: { } #since 16.5
+    MTREventPriority: { } #since 16.5
+    MTRIdentifyEffectIdentifier: { } #since 16.1
+    MTRIdentifyEffectVariant: { } #since 16.1
+    MTRIdentifyType: { } #since 16.1
+    MTRGroupsFeature: { } #since 17.0
+    MTRGroupsNameSupportBitmap: { } #since 17.0
+    MTRScenesFeature: { } #since 17.0
+    MTRScenesCopyMode: { } #since 16.1
+    MTROnOffDelayedAllOffEffectVariant: { } #since 16.1
+    MTROnOffDyingLightEffectVariant: { } #since 16.1
+    MTROnOffEffectIdentifier: { } #since 16.1
+    MTROnOffStartUpOnOff: { } #since 16.1
+    MTROnOffFeature: { } #since 16.1
+    MTROnOffControl: { } #since 16.1
+    MTRLevelControlMoveMode: { } #since 16.1
+    MTRLevelControlStepMode: { } #since 16.1
+    MTRLevelControlFeature: { } #since 16.1
+    MTRLevelControlOptions: { } #since 16.4
+    MTRAccessControlEntryAuthMode: { } #since 16.4
+    MTRAccessControlEntryPrivilege: { } #since 16.4
+    MTRAccessControlChangeType: { } #since 16.1
+    MTRActionsActionError: { } #since 16.1
+    MTRActionsActionState: { } #since 16.1
+    MTRActionsActionType: { } #since 16.1
+    MTRActionsEndpointListType: { } #since 16.1
+    MTRActionsCommandBits: { } #since 16.1
+    MTRBasicInformationColor: { } #since 17.0
+    MTRBasicInformationProductFinish: { } #since 17.0
+    MTROTASoftwareUpdateProviderOTAApplyUpdateAction: { } #since 16.4
+    MTROTASoftwareUpdateProviderOTADownloadProtocol: { } #since 16.4
+    MTROTASoftwareUpdateProviderOTAQueryStatus: { } #since 16.4
+    MTROTASoftwareUpdateRequestorOTAAnnouncementReason: { } #since 16.4
+    MTROTASoftwareUpdateRequestorOTAChangeReason: { } #since 16.4
+    MTROTASoftwareUpdateRequestorOTAUpdateState: { } #since 16.4
+    MTRTimeFormatLocalizationCalendarType: { } #since 16.1
+    MTRTimeFormatLocalizationHourFormat: { } #since 16.1
+    MTRUnitLocalizationTempUnit: { } #since 16.1
+    MTRUnitLocalizationFeature: { } #since 16.1
+    MTRPowerSourceBatApprovedChemistry: { } #since 16.5
+    MTRPowerSourceBatChargeFault: { } #since 16.1
+    MTRPowerSourceBatChargeLevel: { } #since 16.1
+    MTRPowerSourceBatChargeState: { } #since 16.1
+    MTRPowerSourceBatCommonDesignation: { } #since 16.5
+    MTRPowerSourceBatFault: { } #since 16.1
+    MTRPowerSourceBatReplaceability: { } #since 16.1
+    MTRPowerSourceStatus: { } #since 16.1
+    MTRPowerSourceWiredCurrentType: { } #since 16.1
+    MTRPowerSourceWiredFault: { } #since 16.1
+    MTRPowerSourceFeature: { } #since 16.1
+    MTRGeneralCommissioningCommissioningError: { } #since 16.1
+    MTRGeneralCommissioningRegulatoryLocationType: { } #since 16.1
+    MTRNetworkCommissioningStatus: { } #since 16.1
+    MTRNetworkCommissioningWiFiBand: { } #since 16.1
+    MTRNetworkCommissioningFeature: { } #since 16.1
+    MTRNetworkCommissioningWiFiSecurityBitmap: { } #since 17.0
+    MTRDiagnosticLogsIntent: { } #since 16.5
+    MTRDiagnosticLogsStatus: { } #since 16.5
+    MTRDiagnosticLogsTransferProtocol: { } #since 16.5
+    MTRGeneralDiagnosticsBootReason: { } #since 16.4
+    MTRGeneralDiagnosticsHardwareFault: { } #since 16.4
+    MTRGeneralDiagnosticsInterfaceType: { } #since 16.1
+    MTRGeneralDiagnosticsNetworkFault: { } #since 16.4
+    MTRGeneralDiagnosticsRadioFault: { } #since 16.4
+    MTRSoftwareDiagnosticsFeature: { } #since 16.1
+    MTRThreadNetworkDiagnosticsConnectionStatus: { } #since 16.4
+    MTRThreadNetworkDiagnosticsNetworkFault: { } #since 16.1
+    MTRThreadNetworkDiagnosticsRoutingRole: { } #since 16.1
+    MTRThreadNetworkDiagnosticsFeature: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsAssociationFailureCause: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsConnectionStatus: { } #since 16.5
+    MTRWiFiNetworkDiagnosticsSecurityType: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsWiFiVersion: { } #since 16.5
+    MTRWiFiNetworkDiagnosticsFeature: { } #since 16.4
+    MTREthernetNetworkDiagnosticsPHYRate: { } #since 16.4
+    MTREthernetNetworkDiagnosticsFeature: { } #since 16.4
+    MTRTimeSynchronizationGranularity: { } #since 16.1
+    MTRTimeSynchronizationTimeSource: { } #since 16.1
+    MTRBridgedDeviceBasicInformationColor: { } #since 17.0
+    MTRBridgedDeviceBasicInformationProductFinish: { } #since 17.0
+    MTRSwitchFeature: { } #since 16.2
+    MTRAdministratorCommissioningCommissioningWindowStatus: { } #since 16.1
+    MTRAdministratorCommissioningStatusCode: { } #since 16.1
+    MTROperationalCredentialsCertificateChainType: { } #since 16.4
+    MTROperationalCredentialsNodeOperationalCertStatus: { } #since 16.4
+    MTRGroupKeyManagementGroupKeySecurityPolicy: { } #since 16.1
+    MTRModeSelectFeature: { } #since 16.1
+    MTRDoorLockAlarmCode: { } #since 16.4
+    MTRDoorLockCredentialRule: { } #since 16.4
+    MTRDoorLockCredentialType: { } #since 16.4
+    MTRDoorLockDataOperationType: { } #since 16.4
+    MTRDoorLockDlLockState: { } #since 16.1
+    MTRDoorLockDlLockType: { } #since 16.1
+    MTRDoorLockDlStatus: { } #since 16.1
+    MTRDoorLockDoorState: { } #since 16.4
+    MTRDoorLockLockDataType: { } #since 16.4
+    MTRDoorLockLockOperationType: { } #since 16.4
+    MTRDoorLockOperatingMode: { } #since 16.4
+    MTRDoorLockOperationError: { } #since 16.4
+    MTRDoorLockOperationSource: { } #since 16.4
+    MTRDoorLockUserStatus: { } #since 16.1
+    MTRDoorLockUserType: { } #since 16.1
+    MTRDoorLockDaysMaskMap: { } #since 16.4
+    MTRDoorLockDlCredentialRuleMask: { } #since 16.1
+    MTRDoorLockDlCredentialRulesSupport: { } #since 16.1
+    MTRDoorLockDlDefaultConfigurationRegister: { } #since 16.1
+    MTRDoorLockDlKeypadOperationEventMask: { } #since 16.1
+    MTRDoorLockDlKeypadProgrammingEventMask: { } #since 16.1
+    MTRDoorLockDlLocalProgrammingFeatures: { } #since 16.1
+    MTRDoorLockDlManualOperationEventMask: { } #since 16.1
+    MTRDoorLockDlRFIDOperationEventMask: { } #since 16.1
+    MTRDoorLockDlRFIDProgrammingEventMask: { } #since 16.1
+    MTRDoorLockDlRemoteOperationEventMask: { } #since 16.1
+    MTRDoorLockDlRemoteProgrammingEventMask: { } #since 16.1
+    MTRDoorLockDlSupportedOperatingModes: { } #since 16.1
+    MTRDoorLockDayOfWeek: { } #since 16.1
+    MTRDoorLockFeature: { } #since 16.1
+    MTRWindowCoveringEndProductType: { } #since 16.1
+    MTRWindowCoveringType: { } #since 16.1
+    MTRWindowCoveringConfigStatus: { } #since 16.1
+    MTRWindowCoveringFeature: { } #since 16.1
+    MTRWindowCoveringMode: { } #since 16.1
+    MTRWindowCoveringOperationalStatus: { } #since 16.1
+    MTRWindowCoveringSafetyStatus: { } #since 16.1
+    MTRPumpConfigurationAndControlControlMode: { } #since 16.5
+    MTRPumpConfigurationAndControlOperationMode: { } #since 16.5
+    MTRPumpConfigurationAndControlFeature: { } #since 17.0
+    MTRPumpConfigurationAndControlPumpStatusBitmap: { } #since 16.5
+    MTRThermostatSetpointAdjustMode: { } #since 16.1
+    MTRThermostatControlSequence: { } #since 16.1
+    MTRThermostatRunningMode: { } #since 16.1
+    MTRThermostatSystemMode: { } #since 16.1
+    MTRThermostatDayOfWeek: { } #since 16.1
+    MTRThermostatFeature: { } #since 16.1
+    MTRThermostatModeForSequence: { } #since 16.1
+    MTRFanControlFanMode: { } #since 17.0
+    MTRFanControlFanModeSequence: { } #since 17.0
+    MTRFanControlFeature: { } #since 16.1
+    MTRFanControlRockBitmap: { } #since 17.0
+    MTRFanControlWindBitmap: { } #since 17.0
+    MTRColorControlColorLoopAction: { } #since 16.1
+    MTRColorControlColorLoopDirection: { } #since 16.1
+    MTRColorControlColorMode: { } #since 16.1
+    MTRColorControlHueDirection: { } #since 16.1
+    MTRColorControlHueMoveMode: { } #since 16.1
+    MTRColorControlHueStepMode: { } #since 16.1
+    MTRColorControlSaturationMoveMode: { } #since 16.1
+    MTRColorControlSaturationStepMode: { } #since 16.1
+    MTRColorControlColorCapabilities: { } #since 16.1
+    MTRColorControlColorLoopUpdateFlags: { } #since 16.1
+    MTRColorControlFeature: { } #since 16.1
+    MTRIlluminanceMeasurementLightSensorType: { } #since 16.1
+    MTRPressureMeasurementFeature: { } #since 17.0
+    MTROccupancySensingOccupancySensorType: { } #since 16.5
+    MTROccupancySensingOccupancyBitmap: { } #since 16.5
+    MTROccupancySensingOccupancySensorTypeBitmap: { } #since 16.5
+    MTRChannelStatus: { } #since 16.1
+    MTRChannelLineupInfoType: { } #since 16.1
+    MTRChannelFeature: { } #since 16.1
+    MTRTargetNavigatorStatus: { } #since 16.1
+    MTRMediaPlaybackStatus: { } #since 16.1
+    MTRMediaPlaybackPlaybackState: { } #since 16.1
+    MTRMediaPlaybackFeature: { } #since 16.2
+    MTRMediaInputInputType: { } #since 16.1
+    MTRMediaInputFeature: { } #since 16.1
+    MTRKeypadInputCecKeyCode: { } #since 16.1
+    MTRKeypadInputStatus: { } #since 16.1
+    MTRKeypadInputFeature: { } #since 16.1
+    MTRContentLauncherContentLaunchStatus: { } #since 16.1
+    MTRContentLauncherMetricType: { } #since 16.1
+    MTRContentLauncherParameter: { } #since 16.1
+    MTRContentLauncherFeature: { } #since 16.1
+    MTRContentLauncherSupportedStreamingProtocol: { } #since 16.1
+    MTRAudioOutputOutputType: { } #since 16.1
+    MTRAudioOutputFeature: { } #since 16.1
+    MTRApplicationLauncherStatus: { } #since 16.1
+    MTRApplicationLauncherFeature: { } #since 16.1
+    MTRApplicationBasicApplicationStatus: { } #since 16.1
+    MTRUnitTestingSimple: { } #since 16.4
+    MTRUnitTestingBitmap16MaskMap: { } #since 16.4
+    MTRUnitTestingBitmap32MaskMap: { } #since 16.4
+    MTRUnitTestingBitmap64MaskMap: { } #since 16.4
+    MTRUnitTestingBitmap8MaskMap: { } #since 16.4
+    MTRUnitTestingSimpleBitmap: { } #since 16.4
+    MTRFaultInjectionFaultType: { } #since 16.1
+    MTRClusterIDType: { prefix: MTRCluster }
+    MTRAttributeIDType: { prefix: MTR }
+    MTRCommandIDType: { prefix: MTRC }
+    MTREventIDType: { prefix: MTR }
+    MTRDeviceState: { }
+    MTRCommissioningStatus: { } #since 16.4
+    MTRErrorCode: { nserror: true }
+    MTRInteractionErrorCode: { nserror: true }
+    MTRLogType: { }
+    MTROTAImageDigestType: { }
+    MTRDiscoveryCapabilities: { }
+    MTRCommissioningFlow: { }
+    MTROptionalQRCodeInfoType: { }
+
+# common configuration for all classes. if method config is not found in particular
+# class it will be looked in here
+# useful when there are tonn same methods along multiple classes
+default_methods_config:
+    '-(.*?)WithParams:.*':
+        name: "#{g[0]}"
+    '+(.*?)WithParams:.*':
+        name: "{g[0]}"
+    '-(.*?)WithValue:.*':
+        name: "#{g[0]}"
+    '+(.*?)WithValue:.*':
+        name: "{g[0]}"
+    '-(.*?)WithClusterStateCache:.*':
+        name: "#{g[0]}"
+    '+(.*?)WithClusterStateCache:.*':
+        name: "#{g[0]}"
+    '-(.*?)WithCompletion:.*':
+        name: "#{g[0]}"
+    '+(.*?)WithCompletion:.*':
+        name: "#{g[0]}"
+    '-(.*?)WithExpectedValues:.*':
+        name: "#{g[0]}"
+    '+(.*?)WithExpectedValues:.*':
+        name: "#{g[0]}"
+    '-(.*?)WithEndpointID:.*':
+        name: "#{g[0]}"
+
+    '-initWithResponseValue:error:':
+        name: init
+        throws: NSErrorException
+    '-initWithDevice:endpointID:queue:':
+        name: init
+
+classes:
+    MTRAccessControlClusterAccessControlEntryChangedEvent: { } #since 16.1
+    MTRAccessControlClusterAccessControlEntryStruct: { } #since 16.4
+    MTRAccessControlClusterAccessControlExtensionChangedEvent: { } #since 16.1
+    MTRAccessControlClusterAccessControlExtensionStruct: { } #since 16.4
+    MTRAccessControlClusterAccessControlTargetStruct: { } #since 17.0
+    MTRAccountLoginClusterGetSetupPINParams: { } #since 16.1
+    MTRAccountLoginClusterGetSetupPINResponseParams: #since 16.1
+        methods:
+            '-initWithResponseValue:error:':
+                name: init
+                throws: NSErrorException
+    MTRAccountLoginClusterLoginParams: { } #since 16.1
+    MTRAccountLoginClusterLogoutParams: { } #since 16.1
+    MTRActionsClusterActionFailedEvent: { } #since 16.1
+    MTRActionsClusterActionStruct: { } #since 16.1
+    MTRActionsClusterDisableActionParams: { } #since 16.1
+    MTRActionsClusterDisableActionWithDurationParams: { } #since 16.1
+    MTRActionsClusterEnableActionParams: { } #since 16.1
+    MTRActionsClusterEnableActionWithDurationParams: { } #since 16.1
+    MTRActionsClusterEndpointListStruct: { } #since 16.1
+    MTRActionsClusterInstantActionParams: { } #since 16.1
+    MTRActionsClusterInstantActionWithTransitionParams: { } #since 16.1
+    MTRActionsClusterPauseActionParams: { } #since 16.1
+    MTRActionsClusterPauseActionWithDurationParams: { } #since 16.1
+    MTRActionsClusterResumeActionParams: { } #since 16.1
+    MTRActionsClusterStartActionParams: { } #since 16.1
+    MTRActionsClusterStartActionWithDurationParams: { } #since 16.1
+    MTRActionsClusterStateChangedEvent: { } #since 16.1
+    MTRActionsClusterStopActionParams: { } #since 16.1
+    MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams: { } #since 16.1
+    MTRAdministratorCommissioningClusterOpenCommissioningWindowParams: { } #since 16.1
+    MTRAdministratorCommissioningClusterRevokeCommissioningParams: { } #since 16.1
+    MTRApplicationBasicClusterApplicationStruct: { } #since 16.4
+    MTRApplicationLauncherClusterApplicationEPStruct: { } #since 16.4
+    MTRApplicationLauncherClusterApplicationStruct: { } #since 16.4
+    MTRApplicationLauncherClusterHideAppParams: { } #since 16.1
+    MTRApplicationLauncherClusterLaunchAppParams: { } #since 16.1
+    MTRApplicationLauncherClusterLauncherResponseParams: { } #since 16.1
+    MTRApplicationLauncherClusterStopAppParams: { } #since 16.1
+    MTRAsyncCallbackQueueWorkItem:
+        methods:
+            '-initWithQueue:':
+                name: init
+    MTRAsyncCallbackWorkQueue:
+        methods:
+            '-initWithContext:queue:':
+                name: init
+    MTRAttributePath:
+        methods:
+            '+attributePathWithEndpointID:clusterID:attributeID:':
+                name: create
+                constructor: true
+    MTRAttributeReport: { }
+    MTRAttributeRequestPath: #since 17.0
+        methods:
+            '+requestPathWithEndpointID:clusterID:attributeID:':
+                name: create
+                constructor: true
+    MTRAudioOutputClusterOutputInfoStruct: { } #since 16.4
+    MTRAudioOutputClusterRenameOutputParams: { } #since 16.1
+    MTRAudioOutputClusterSelectOutputParams: { } #since 16.1
+    MTRBarrierControlClusterBarrierControlGoToPercentParams: { } #since 16.1
+    MTRBarrierControlClusterBarrierControlStopParams: { } #since 16.1
+    MTRBaseClusterAccessControl: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+
+    MTRBaseClusterAccountLogin: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+            '-getSetupPINWithParams:completion:':
+                name: getSetupPIN
+            '-loginWithParams:completion:':
+                name: login
+            '-logoutWithParams:completion:':
+                name: logout
+            '-logoutWithCompletion:':
+                name: logout
+    MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams: { } #since 16.4
+    MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent: { } #since 16.4
+    MTROTASoftwareUpdateRequestorClusterProviderLocation: { } #since 16.4
+    MTROTASoftwareUpdateRequestorClusterStateTransitionEvent: { } #since 16.4
+    MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent: { } #since 16.4
+    MTROnOffClusterOffParams: { } #since 16.1
+    MTROnOffClusterOffWithEffectParams: { } #since 16.1
+    MTROnOffClusterOnParams: { } #since 16.1
+    MTROnOffClusterOnWithRecallGlobalSceneParams: { } #since 16.1
+    MTROnOffClusterOnWithTimedOffParams: { } #since 16.1
+    MTROnOffClusterToggleParams: { } #since 16.1
+    MTROperationalCSRInfo: #since 16.4
+        methods:
+            '-initWithCSR:csrNonce:csrElementsTLV:attestationSignature:':
+                name: init
+            '-initWithCSRNonce:csrElementsTLV:attestationSignature:':
+                name: init
+            '-initWithCSRElementsTLV:attestationSignature:':
+                name: init
+            '-initWithCSRResponseParams:':
+                name: init
+    MTROperationalCertificateChain: #since 16.4
+        methods:
+            '-initWithOperationalCertificate:intermediateCertificate:rootCertificate:adminSubject:':
+                name: init
+    MTROperationalCredentialsClusterAddNOCParams: { } #since 16.1
+    MTROperationalCredentialsClusterAddTrustedRootCertificateParams: { } #since 16.1
+    MTROperationalCredentialsClusterAttestationRequestParams: { } #since 16.1
+    MTROperationalCredentialsClusterAttestationResponseParams: { } #since 16.1
+    MTROperationalCredentialsClusterCSRRequestParams: { } #since 16.1
+    MTROperationalCredentialsClusterCSRResponseParams: { } #since 16.1
+    MTROperationalCredentialsClusterCertificateChainRequestParams: { } #since 16.1
+    MTROperationalCredentialsClusterCertificateChainResponseParams: { } #since 16.1
+    MTROperationalCredentialsClusterFabricDescriptorStruct: { } #since 16.4
+    MTROperationalCredentialsClusterNOCResponseParams: { } #since 16.1
+    MTROperationalCredentialsClusterNOCStruct: { } #since 16.1
+    MTROperationalCredentialsClusterRemoveFabricParams: { } #since 16.1
+    MTROperationalCredentialsClusterUpdateFabricLabelParams: { } #since 16.1
+    MTROperationalCredentialsClusterUpdateNOCParams: { } #since 16.1
+    MTROptionalQRCodeInfo: { }
+    MTRPowerSourceClusterBatChargeFaultChangeEvent: { } #since 16.4
+    MTRPowerSourceClusterBatFaultChangeEvent: { } #since 16.4
+    MTRPowerSourceClusterWiredFaultChangeEvent: { } #since 16.4
+    MTRProductIdentity: #since 17.0
+        methods:
+            '-initWithVendorID:productID:':
+                name: init
+    MTRPumpConfigurationAndControlClusterAirDetectionEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterDryRunningEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterElectronicFatalFailureEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterGeneralFaultEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterLeakageEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterPumpBlockedEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterSensorFailureEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterSystemPressureHighEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterSystemPressureLowEvent: { } #since 16.1
+    MTRPumpConfigurationAndControlClusterTurbineOperationEvent: { } #since 16.1
+    MTRReadParams: { }
+    MTRScenesClusterAddSceneParams: { } #since 16.1
+    MTRScenesClusterAddSceneResponseParams: { } #since 16.1
+    MTRScenesClusterAttributeValuePair: { } #since 16.1
+    MTRScenesClusterCopySceneParams: { } #since 16.1
+    MTRScenesClusterCopySceneResponseParams: { } #since 16.1
+    MTRScenesClusterEnhancedAddSceneParams: { } #since 16.1
+    MTRScenesClusterEnhancedAddSceneResponseParams: { } #since 16.1
+    MTRScenesClusterEnhancedViewSceneParams: { } #since 16.1
+    MTRScenesClusterEnhancedViewSceneResponseParams: { } #since 16.1
+    MTRScenesClusterExtensionFieldSet: { } #since 16.1
+    MTRScenesClusterGetSceneMembershipParams: { } #since 16.1
+    MTRScenesClusterGetSceneMembershipResponseParams: { } #since 16.1
+    MTRScenesClusterRecallSceneParams: { } #since 16.1
+    MTRScenesClusterRemoveAllScenesParams: { } #since 16.1
+    MTRScenesClusterRemoveAllScenesResponseParams: { } #since 16.1
+    MTRScenesClusterRemoveSceneParams: { } #since 16.1
+    MTRScenesClusterRemoveSceneResponseParams: { } #since 16.1
+    MTRScenesClusterStoreSceneParams: { } #since 16.1
+    MTRScenesClusterStoreSceneResponseParams: { } #since 16.1
+    MTRScenesClusterViewSceneParams: { } #since 16.1
+    MTRScenesClusterViewSceneResponseParams: { } #since 16.1
+    MTRSetupPayload:
+        methods:
+            '-initWithSetupPasscode:discriminator:':
+                name: init
+            '+setupPayloadWithOnboardingPayload:error:':
+                name: setupPayload
+                constructor: true
+                throws: NSErrorException
+    MTRSoftwareDiagnosticsClusterResetWatermarksParams: { } #since 16.1
+    MTRSoftwareDiagnosticsClusterSoftwareFaultEvent: { } #since 16.1
+    MTRSoftwareDiagnosticsClusterThreadMetricsStruct: { } #since 16.4
+    MTRSubscribeParams:
+        methods:
+            '-initWithMinInterval:maxInterval:':
+                name: init
+    MTRSwitchClusterInitialPressEvent: { } #since 16.1
+    MTRSwitchClusterLongPressEvent: { } #since 16.1
+    MTRSwitchClusterLongReleaseEvent: { } #since 16.1
+    MTRSwitchClusterMultiPressCompleteEvent: { } #since 16.1
+    MTRSwitchClusterMultiPressOngoingEvent: { } #since 16.1
+    MTRSwitchClusterShortReleaseEvent: { } #since 16.1
+    MTRSwitchClusterSwitchLatchedEvent: { } #since 16.1
+    MTRTargetNavigatorClusterNavigateTargetParams: { } #since 16.1
+    MTRTargetNavigatorClusterNavigateTargetResponseParams: { } #since 16.1
+    MTRTargetNavigatorClusterTargetInfoStruct: { } #since 16.4
+    MTRThermostatClusterClearWeeklyScheduleParams: { } #since 16.1
+    MTRThermostatClusterGetWeeklyScheduleParams: { } #since 16.1
+    MTRThermostatClusterGetWeeklyScheduleResponseParams: { } #since 16.1
+    MTRThermostatClusterSetWeeklyScheduleParams: { } #since 16.1
+    MTRThermostatClusterSetpointRaiseLowerParams: { } #since 16.1
+    MTRThermostatClusterThermostatScheduleTransition: { } #since 16.1
+    MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent: { } #since 16.1
+    MTRThreadNetworkDiagnosticsClusterNeighborTableStruct: { } #since 17.0
+    MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent: { } #since 16.1
+    MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents: { } #since 16.1
+    MTRThreadNetworkDiagnosticsClusterResetCountsParams: { } #since 16.1
+    MTRThreadNetworkDiagnosticsClusterRouteTableStruct: { } #since 17.0
+    MTRThreadNetworkDiagnosticsClusterSecurityPolicy: { } #since 16.1
+    MTRThreadOperationalDataset:
+        methods:
+            '-initWithNetworkName:extendedPANID:masterKey:PSKc:channelNumber:panID:':
+                name: init
+            '-initWithData:':
+                name: init
+    MTRTimeSynchronizationClusterDSTOffsetStruct: { } #since 16.5
+    MTRTimeSynchronizationClusterSetUtcTimeParams: { } #since 16.1
+    MTRTimeSynchronizationClusterTimeZoneStruct: { } #since 16.5
+    MTRUnitTestingClusterBooleanResponseParams: { } #since 16.4
+    MTRUnitTestingClusterDoubleNestedStructList: { } #since 16.4
+    MTRUnitTestingClusterNestedStruct: { } #since 16.4
+    MTRUnitTestingClusterNestedStructList: { } #since 16.4
+    MTRUnitTestingClusterNullablesAndOptionalsStruct: { } #since 16.4
+    MTRUnitTestingClusterSimpleStruct: { } #since 16.4
+    MTRUnitTestingClusterSimpleStructEchoRequestParams: { } #since 16.4
+    MTRUnitTestingClusterSimpleStructResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestAddArgumentsParams: { } #since 16.4
+    MTRUnitTestingClusterTestAddArgumentsResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestComplexNullableOptionalRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestComplexNullableOptionalResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestEmitTestEventRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestEmitTestEventResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestEnumsRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestEnumsResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestEventEvent: { } #since 16.4
+    MTRUnitTestingClusterTestFabricScoped: { } #since 16.4
+    MTRUnitTestingClusterTestFabricScopedEventEvent: { } #since 16.4
+    MTRUnitTestingClusterTestListInt8UArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestListInt8UReverseRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestListInt8UReverseResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestListNestedStructListArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestListStructArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestListStructOctet: { } #since 16.4
+    MTRUnitTestingClusterTestNestedStructArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestNestedStructListArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestNotHandledParams: { } #since 16.4
+    MTRUnitTestingClusterTestNullableOptionalRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestNullableOptionalResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestParams: { } #since 16.4
+    MTRUnitTestingClusterTestSimpleArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestSimpleArgumentResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestSpecificParams: { } #since 16.4
+    MTRUnitTestingClusterTestSpecificResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestStructArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestStructArrayArgumentRequestParams: { } #since 16.4
+    MTRUnitTestingClusterTestStructArrayArgumentResponseParams: { } #since 16.4
+    MTRUnitTestingClusterTestUnknownCommandParams: { } #since 16.4
+    MTRUnitTestingClusterTimedInvokeRequestParams: { } #since 16.4
+    MTRUserLabelClusterLabelStruct: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent: { } #since 16.1
+    MTRWiFiNetworkDiagnosticsClusterResetCountsParams: { } #since 16.1
+    MTRWindowCoveringClusterDownOrCloseParams: { } #since 16.1
+    MTRWindowCoveringClusterGoToLiftPercentageParams: { } #since 16.1
+    MTRWindowCoveringClusterGoToLiftValueParams: { } #since 16.1
+    MTRWindowCoveringClusterGoToTiltPercentageParams: { } #since 16.1
+    MTRWindowCoveringClusterGoToTiltValueParams: { } #since 16.1
+    MTRWindowCoveringClusterStopMotionParams: { } #since 16.1
+    MTRWindowCoveringClusterUpOrOpenParams: { } #since 16.1
+    MTRWriteParams: { }
+    MTRColorControlClusterColorLoopSetParams: { } #since 16.1
+    MTRColorControlClusterEnhancedMoveHueParams: { } #since 16.1
+    MTRColorControlClusterEnhancedMoveToHueAndSaturationParams: { } #since 16.1
+    MTRColorControlClusterEnhancedMoveToHueParams: { } #since 16.1
+    MTRColorControlClusterEnhancedStepHueParams: { } #since 16.1
+    MTRColorControlClusterMoveColorParams: { } #since 16.1
+    MTRColorControlClusterMoveColorTemperatureParams: { } #since 16.1
+    MTRColorControlClusterMoveHueParams: { } #since 16.1
+    MTRColorControlClusterMoveSaturationParams: { } #since 16.1
+    MTRColorControlClusterMoveToColorParams: { } #since 16.1
+    MTRColorControlClusterMoveToColorTemperatureParams: { } #since 16.1
+    MTRColorControlClusterMoveToHueAndSaturationParams: { } #since 16.1
+    MTRColorControlClusterMoveToHueParams: { } #since 16.1
+    MTRColorControlClusterMoveToSaturationParams: { } #since 16.1
+    MTRColorControlClusterStepColorParams: { } #since 16.1
+    MTRColorControlClusterStepColorTemperatureParams: { } #since 16.1
+    MTRColorControlClusterStepHueParams: { } #since 16.1
+    MTRColorControlClusterStepSaturationParams: { } #since 16.1
+    MTRColorControlClusterStopMoveStepParams: { } #since 16.1
+    MTRCommandPath:
+        methods:
+            '+commandPathWithEndpointID:clusterID:commandID:':
+                name: create
+                constructor: true
+    MTRCommissionableBrowserResult: { } #since 17.0
+    MTRCommissioningParameters: { }
+    MTRContentLauncherClusterAdditionalInfoStruct: { } #since 16.4
+    MTRContentLauncherClusterBrandingInformationStruct: { } #since 16.4
+    MTRContentLauncherClusterContentSearchStruct: { } #since 16.4
+    MTRContentLauncherClusterDimensionStruct: { } #since 16.4
+    MTRContentLauncherClusterLaunchContentParams: { } #since 16.1
+    MTRContentLauncherClusterLaunchURLParams: { } #since 16.1
+    MTRContentLauncherClusterLauncherResponseParams: { } #since 16.4
+    MTRContentLauncherClusterParameterStruct: { } #since 16.4
+    MTRContentLauncherClusterStyleInformationStruct: { } #since 16.4
+    MTRDescriptorClusterDeviceTypeStruct: { } #since 16.2
+    MTRDevice:
+        methods:
+            '-setDelegate:queue:':
+                name: setDelegate
+            '-readAttributeWithEndpointID:clusterID:attributeID:params:':
+                name: readAttribute
+            '-writeAttributeWithEndpointID:clusterID:attributeID:value:expectedValueInterval:timedWriteTimeout:':
+                name: writeAttribute
+            '-invokeCommandWithEndpointID:clusterID:commandID:commandFields:expectedValues:expectedValueInterval:timedInvokeTimeout:queue:completion:':
+                name: invokeCommand
+            '-openCommissioningWindowWithSetupPasscode:discriminator:duration:queue:completion:':
+                name: openCommissioningWindow
+            '-openCommissioningWindowWithDiscriminator:duration:queue:completion:':
+                name: openCommissioningWindow
+            '+deviceWithNodeID:controller:':
+                name: create
+                constructor: true
+    MTRDeviceAttestationDeviceInfo: { }
+    MTRDeviceAttestationInfo: #since 16.4
+        methods:
+            '-initWithDeviceAttestationChallenge:nonce:elementsTLV:elementsSignature:deviceAttestationCertificate:productAttestationIntermediateCertificate:certificationDeclaration:firmwareInfo:':
+                name: init
+    MTRDeviceController:
+        methods:
+            '-setupCommissioningSessionWithPayload:newNodeID:error:':
+                name: setupCommissioningSession
+                throws: NSErrorException
+            '-setupCommissioningSessionWithDiscoveredDevice:payload:newNodeID:error:':
+                name: setupCommissioningSession
+                throws: NSErrorException
+            '-commissionNodeWithID:commissioningParams:error:':
+                name: commissionNode
+                throws: NSErrorException
+            '-continueCommissioningDevice:ignoreAttestationFailure:error:':
+                name: continueCommissioning
+                throws: NSErrorException
+            '-cancelCommissioningForNodeID:error:':
+                name: cancelCommissioning
+                throws: NSErrorException
+            '-deviceBeingCommissionedWithNodeID:error:':
+                name: deviceBeingCommissioned
+                throws: NSErrorException
+            '-setDeviceControllerDelegate:queue:':
+                name: setDeviceControllerDelegate
+            '-startBrowseForCommissionables:queue:':
+                name: startBrowse
+            '+computePASEVerifierForSetupPasscode:iterations:salt:error:':
+                name: computePASEVerifier
+                throws: NSErrorException
+            '+sharedControllerWithID:xpcConnectBlock:':
+                name: getSharedController
+    MTRDeviceControllerFactory: #since 16.4
+        methods:
+            '-startControllerFactory:error:':
+                name: startControllerFactory
+                throws: NSErrorException
+            '-createControllerOnExistingFabric:error:':
+                name: createControllerOnExistingFabric
+                throws: NSErrorException
+            '-createControllerOnNewFabric:error:':
+                name: createControllerOnNewFabric
+                throws: NSErrorException
+    MTRDeviceControllerFactoryParams: #since 16.4
+        methods:
+            '-initWithStorage:':
+                name: init
+    MTRDeviceControllerStartupParams:
+        methods:
+            '-initWithIPK:fabricID:nocSigner:':
+                name: init
+            '-initWithIPK:operationalKeypair:operationalCertificate:intermediateCertificate:rootCertificate:':
+                name: init
+    MTRDiagnosticLogsClusterRetrieveLogsRequestParams: { } #since 16.1
+    MTRDiagnosticLogsClusterRetrieveLogsResponseParams: { } #since 16.1
+    MTRDistinguishedNameInfo: { } #since 16.4
+    MTRDoorLockClusterClearCredentialParams: { } #since 16.1
+    MTRDoorLockClusterClearHolidayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterClearUserParams: { } #since 16.1
+    MTRDoorLockClusterClearWeekDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterClearYearDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterCredentialStruct: { } #since 16.4
+    MTRDoorLockClusterDoorLockAlarmEvent: { } #since 16.1
+    MTRDoorLockClusterDoorStateChangeEvent: { } #since 16.1
+    MTRDoorLockClusterGetCredentialStatusParams: { } #since 16.1
+    MTRDoorLockClusterGetCredentialStatusResponseParams: { } #since 16.1
+    MTRDoorLockClusterGetHolidayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterGetHolidayScheduleResponseParams: { } #since 16.1
+    MTRDoorLockClusterGetUserParams: { } #since 16.1
+    MTRDoorLockClusterGetUserResponseParams: { } #since 16.1
+    MTRDoorLockClusterGetWeekDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterGetWeekDayScheduleResponseParams: { } #since 16.1
+    MTRDoorLockClusterGetYearDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterGetYearDayScheduleResponseParams: { } #since 16.1
+    MTRDoorLockClusterLockDoorParams: { } #since 16.1
+    MTRDoorLockClusterLockOperationErrorEvent: { } #since 16.1
+    MTRDoorLockClusterLockOperationEvent: { } #since 16.1
+    MTRDoorLockClusterLockUserChangeEvent: { } #since 16.1
+    MTRDoorLockClusterSetCredentialParams: { } #since 16.1
+    MTRDoorLockClusterSetCredentialResponseParams: { } #since 16.1
+    MTRDoorLockClusterSetHolidayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterSetUserParams: { } #since 16.1
+    MTRDoorLockClusterSetWeekDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterSetYearDayScheduleParams: { } #since 16.1
+    MTRDoorLockClusterUnlockDoorParams: { } #since 16.1
+    MTRDoorLockClusterUnlockWithTimeoutParams: { } #since 16.1
+    MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams: { } #since 16.1
+    MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams: { } #since 16.1
+    MTRElectricalMeasurementClusterGetProfileInfoCommandParams: { } #since 16.1
+    MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams: { } #since 16.1
+    MTREthernetNetworkDiagnosticsClusterResetCountsParams: { } #since 16.1
+    MTREventPath:
+        methods:
+            '+eventPathWithEndpointID:clusterID:eventID:':
+                name: create
+                constructor: true
+    MTREventReport: { }
+    MTREventRequestPath: #since 17.0
+        methods:
+            '+requestPathWithEndpointID:clusterID:eventID:':
+                name: create
+                constructor: true
+    MTRFabricInfo: { } #since 16.5
+    MTRFaultInjectionClusterFailAtFaultParams: { } #since 16.1
+    MTRFaultInjectionClusterFailRandomlyAtFaultParams: { } #since 16.1
+    MTRFixedLabelClusterLabelStruct: { } #since 16.1
+    MTRGeneralCommissioningClusterArmFailSafeParams: { } #since 16.1
+    MTRGeneralCommissioningClusterArmFailSafeResponseParams: { } #since 16.1
+    MTRGeneralCommissioningClusterBasicCommissioningInfo: { } #since 16.1
+    MTRGeneralCommissioningClusterCommissioningCompleteParams: { } #since 16.1
+    MTRGeneralCommissioningClusterCommissioningCompleteResponseParams: { } #since 16.1
+    MTRGeneralCommissioningClusterSetRegulatoryConfigParams: { } #since 16.1
+    MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams: { } #since 16.1
+    MTRGeneralDiagnosticsClusterBootReasonEvent: { } #since 16.1
+    MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent: { } #since 16.1
+    MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent: { } #since 16.1
+    MTRGeneralDiagnosticsClusterNetworkInterface: { } #since 16.4
+    MTRGeneralDiagnosticsClusterRadioFaultChangeEvent: { } #since 16.1
+    MTRGeneralDiagnosticsClusterTestEventTriggerParams: { } #since 16.1
+    MTRGroupKeyManagementClusterGroupInfoMapStruct: { } #since 16.1
+    MTRGroupKeyManagementClusterGroupKeyMapStruct: { } #since 16.1
+    MTRGroupKeyManagementClusterGroupKeySetStruct: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetReadAllIndicesParams: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetReadParams: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetReadResponseParams: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetRemoveParams: { } #since 16.1
+    MTRGroupKeyManagementClusterKeySetWriteParams: { } #since 16.1
+    MTRGroupsClusterAddGroupIfIdentifyingParams: { } #since 16.1
+    MTRGroupsClusterAddGroupParams: { } #since 16.1
+    MTRGroupsClusterAddGroupResponseParams: { } #since 16.1
+    MTRGroupsClusterGetGroupMembershipParams: { } #since 16.1
+    MTRGroupsClusterGetGroupMembershipResponseParams: { } #since 16.1
+    MTRGroupsClusterRemoveAllGroupsParams: { } #since 16.1
+    MTRGroupsClusterRemoveGroupParams: { } #since 16.1
+    MTRGroupsClusterRemoveGroupResponseParams: { } #since 16.1
+    MTRGroupsClusterViewGroupParams: { } #since 16.1
+    MTRGroupsClusterViewGroupResponseParams: { } #since 16.1
+    MTRIdentifyClusterIdentifyParams: { } #since 16.1
+    MTRIdentifyClusterTriggerEffectParams: { } #since 16.1
+    MTRKeypadInputClusterSendKeyParams: { } #since 16.1
+    MTRKeypadInputClusterSendKeyResponseParams: { } #since 16.1
+    MTRLevelControlClusterMoveParams: { } #since 16.1
+    MTRLevelControlClusterMoveToClosestFrequencyParams: { } #since 16.1
+    MTRLevelControlClusterMoveToLevelParams: { } #since 16.1
+    MTRLevelControlClusterMoveToLevelWithOnOffParams: { } #since 16.1
+    MTRLevelControlClusterMoveWithOnOffParams: { } #since 16.1
+    MTRLevelControlClusterStepParams: { } #since 16.1
+    MTRLevelControlClusterStepWithOnOffParams: { } #since 16.1
+    MTRLevelControlClusterStopParams: { } #since 16.1
+    MTRLevelControlClusterStopWithOnOffParams: { } #since 16.1
+    MTRLowPowerClusterSleepParams: { } #since 16.1
+    MTRMediaInputClusterHideInputStatusParams: { } #since 16.1
+    MTRMediaInputClusterInputInfoStruct: { } #since 16.4
+    MTRMediaInputClusterRenameInputParams: { } #since 16.1
+    MTRMediaInputClusterSelectInputParams: { } #since 16.1
+    MTRMediaInputClusterShowInputStatusParams: { } #since 16.1
+    MTRMediaPlaybackClusterFastForwardParams: { } #since 16.1
+    MTRMediaPlaybackClusterNextParams: { } #since 16.1
+    MTRMediaPlaybackClusterPauseParams: { } #since 16.1
+    MTRMediaPlaybackClusterPlayParams: { } #since 16.1
+    MTRMediaPlaybackClusterPlaybackPositionStruct: { } #since 16.4
+    MTRMediaPlaybackClusterPlaybackResponseParams: { } #since 16.1
+    MTRMediaPlaybackClusterPreviousParams: { } #since 16.1
+    MTRMediaPlaybackClusterRewindParams: { } #since 16.1
+    MTRMediaPlaybackClusterSeekParams: { } #since 16.1
+    MTRMediaPlaybackClusterSkipBackwardParams: { } #since 16.1
+    MTRMediaPlaybackClusterSkipForwardParams: { } #since 16.1
+    MTRMediaPlaybackClusterStartOverParams: { } #since 16.1
+    MTRMediaPlaybackClusterStopParams: { } #since 16.4
+    MTRModeSelectClusterChangeToModeParams: { } #since 16.1
+    MTRModeSelectClusterModeOptionStruct: { } #since 16.1
+    MTRModeSelectClusterSemanticTagStruct: { } #since 16.4
+    MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams: { } #since 16.1
+    MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams: { } #since 16.1
+    MTRNetworkCommissioningClusterConnectNetworkParams: { } #since 16.1
+    MTRNetworkCommissioningClusterConnectNetworkResponseParams: { } #since 16.1
+    MTRNetworkCommissioningClusterNetworkConfigResponseParams: { } #since 16.1
+    MTRNetworkCommissioningClusterNetworkInfoStruct: { } #since 17.0
+    MTRNetworkCommissioningClusterRemoveNetworkParams: { } #since 16.1
+    MTRNetworkCommissioningClusterReorderNetworkParams: { } #since 16.1
+    MTRNetworkCommissioningClusterScanNetworksParams: { } #since 16.1
+    MTRNetworkCommissioningClusterScanNetworksResponseParams: { } #since 16.1
+    MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct: { } #since 17.0
+    MTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct: { } #since 17.0
+    MTROTAHeader:
+        methods:
+            '-initWithData:':
+                name: init
+    MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams: { } #since 16.4
+    MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams: { } #since 16.4
+    MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams: { } #since 16.4
+    MTROTASoftwareUpdateProviderClusterQueryImageParams: { } #since 16.4
+    MTROTASoftwareUpdateProviderClusterQueryImageResponseParams: { } #since 16.4
+    MTRClusterUnitLocalization: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+    MTRClusterUnitTesting: #since 16.4
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+    MTRClusterUserLabel: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+    MTRClusterWakeOnLAN: #since 16.4
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+    MTRClusterWiFiNetworkDiagnostics: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+            '-resetCountsWithParams:expectedValues:expectedValueInterval:completion:':
+                name: resetCounts
+            '-resetCountsWithExpectedValues:expectedValueInterval:completion:':
+                name: resetCounts
+    MTRClusterWindowCovering: #since 16.1
+        methods:
+            '-initWithDevice:endpointID:queue:':
+                name: init
+    MTRBaseClusterActions: { } #since 16.1
+    MTRBaseClusterAdministratorCommissioning: { } #since 16.1
+    MTRBaseClusterApplicationBasic: { } #since 16.1
+    MTRBaseClusterApplicationLauncher: { } #since 16.1
+    MTRBaseClusterAudioOutput: { } #since 16.1
+    MTRBaseClusterBallastConfiguration: { } #since 16.1
+    MTRBaseClusterBarrierControl: { } #since 16.1
+    MTRBaseClusterBasicInformation: { } #since 16.4
+    MTRBaseClusterBinaryInputBasic: { } #since 16.1
+    MTRBaseClusterBinding: { } #since 16.1
+    MTRBaseClusterBooleanState: { } #since 16.1
+    MTRBaseClusterBridgedDeviceBasicInformation: { } #since 16.4
+    MTRBaseClusterChannel: { } #since 16.1
+    MTRBaseClusterColorControl: { } #since 16.1
+    MTRBaseClusterContentLauncher: { } #since 16.1
+    MTRBaseClusterDescriptor: { } #since 16.1
+    MTRBaseClusterDiagnosticLogs: { } #since 16.1
+    MTRBaseClusterDoorLock: { } #since 16.1
+    MTRBaseClusterElectricalMeasurement: { } #since 16.1
+    MTRBaseClusterEthernetNetworkDiagnostics: { } #since 16.1
+    MTRBaseClusterFanControl: { } #since 16.1
+    MTRBaseClusterFixedLabel: { } #since 16.1
+    MTRBaseClusterFlowMeasurement: { } #since 16.1
+    MTRBaseClusterGeneralCommissioning: { } #since 16.1
+    MTRBaseClusterGeneralDiagnostics: { } #since 16.1
+    MTRBaseClusterGroupKeyManagement: { } #since 16.1
+    MTRBaseClusterGroups: { } #since 16.1
+    MTRBaseClusterIdentify: { } #since 16.1
+    MTRBaseClusterIlluminanceMeasurement: { } #since 16.1
+    MTRBaseClusterKeypadInput: { } #since 16.1
+    MTRBaseClusterLevelControl: { } #since 16.1
+    MTRBaseClusterLocalizationConfiguration: { } #since 16.1
+    MTRBaseClusterLowPower: { } #since 16.1
+    MTRBaseClusterMediaInput: { } #since 16.1
+    MTRBaseClusterMediaPlayback: { } #since 16.1
+    MTRBaseClusterModeSelect: { } #since 16.1
+    MTRBaseClusterNetworkCommissioning: { } #since 16.1
+    MTRBaseClusterOTASoftwareUpdateProvider: { } #since 16.4
+    MTRBaseClusterOTASoftwareUpdateRequestor: { } #since 16.4
+    MTRBaseClusterOccupancySensing: { } #since 16.1
+    MTRBaseClusterOnOff: { } #since 16.1
+    MTRBaseClusterOnOffSwitchConfiguration: { } #since 16.1
+    MTRBaseClusterOperationalCredentials: { } #since 16.1
+    MTRBaseClusterPowerSource: { } #since 16.1
+    MTRBaseClusterPowerSourceConfiguration: { } #since 16.1
+    MTRBaseClusterPressureMeasurement: { } #since 16.1
+    MTRBaseClusterPumpConfigurationAndControl: { } #since 16.1
+    MTRBaseClusterRelativeHumidityMeasurement: { } #since 16.1
+    MTRBaseClusterScenes: { } #since 16.1
+    MTRBaseClusterSoftwareDiagnostics: { } #since 16.1
+    MTRBaseClusterSwitch: { } #since 16.1
+    MTRBaseClusterTargetNavigator: { } #since 16.1
+    MTRBaseClusterTemperatureMeasurement: { } #since 16.1
+    MTRBaseClusterThermostat: { } #since 16.1
+    MTRBaseClusterThermostatUserInterfaceConfiguration: { } #since 16.1
+    MTRBaseClusterThreadNetworkDiagnostics: { } #since 16.1
+    MTRBaseClusterTimeFormatLocalization: { } #since 16.1
+    MTRBaseClusterUnitLocalization: { } #since 16.1
+    MTRBaseClusterUnitTesting: { } #since 16.4
+    MTRBaseClusterUserLabel: { } #since 16.1
+    MTRBaseClusterWakeOnLAN: { } #since 16.4
+    MTRBaseClusterWiFiNetworkDiagnostics: { } #since 16.1
+    MTRBaseClusterWindowCovering: { } #since 16.1
+    MTRBaseDevice:
+        methods:
+            '-subscribeWithQueue:params:clusterStateCacheContainer:attributeReportHandler:eventReportHandler:errorHandler:subscriptionEstablished:resubscriptionScheduled:':
+                name: subscribe
+            '-readAttributePaths:eventPaths:params:queue:completion:':
+                name: readAttributePaths
+            '-subscribeToAttributePaths:eventPaths:params:queue:reportHandler:subscriptionEstablished:resubscriptionScheduled:':
+                name: subscribeToAttributePaths
+            '-deregisterReportHandlersWithQueue:completion:':
+                name: deregisterReportHandlers
+            '-openCommissioningWindowWithSetupPasscode:discriminator:duration:queue:completion:':
+                name: openCommissioningWindow
+            '-openCommissioningWindowWithDiscriminator:duration:queue:completion:':
+                name: openCommissioningWindow
+            '+deviceWithNodeID:controller:':
+                name: createDevice
+    MTRBasicInformationClusterCapabilityMinimaStruct: { } #since 16.4
+    MTRBasicInformationClusterLeaveEvent: { } #since 16.4
+    MTRBasicInformationClusterProductAppearanceStruct: { } #since 17.0
+    MTRBasicInformationClusterReachableChangedEvent: { } #since 16.4
+    MTRBasicInformationClusterShutDownEvent: { } #since 16.4
+    MTRBasicInformationClusterStartUpEvent: { } #since 16.4
+    MTRBindingClusterTargetStruct: { } #since 16.1
+    MTRBooleanStateClusterStateChangeEvent: { } #since 16.1
+    MTRBridgedDeviceBasicInformationClusterLeaveEvent: { } #since 16.4
+    MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct: { } #since 17.0
+    MTRBridgedDeviceBasicInformationClusterReachableChangedEvent: { } #since 16.4
+    MTRBridgedDeviceBasicInformationClusterShutDownEvent: { } #since 16.4
+    MTRBridgedDeviceBasicInformationClusterStartUpEvent: { } #since 16.4
+    MTRCertificateInfo: #since 16.4
+        methods:
+            '-initWithTLVBytes:':
+                name: init
+    MTRCertificates:
+        methods:
+            '+createRootCertificate:issuerID:fabricID:validityPeriod:error:':
+                name: createRootCertificate
+                throws: NSErrorException
+            '+createRootCertificate:issuerID:fabricID:error:':
+                name: createRootCertificate
+                throws: NSErrorException
+            '+createIntermediateCertificate:rootCertificate:intermediatePublicKey:issuerID:fabricID:validityPeriod:error:':
+                name: createIntermediateCertificate
+                throws: NSErrorException
+            '+createIntermediateCertificate:rootCertificate:intermediatePublicKey:issuerID:fabricID:error:':
+                name: createIntermediateCertificate
+                throws: NSErrorException
+            '+createOperationalCertificate:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:validityPeriod:error:':
+                name: createOperationalCertificate
+                throws: NSErrorException
+            '+createOperationalCertificate:signingCertificate:operationalPublicKey:fabricID:nodeID:caseAuthenticatedTags:error:':
+                name: createOperationalCertificate
+                throws: NSErrorException
+            '+keypair:matchesCertificate:':
+                name: keypairMatchesCertificate
+            '+isCertificate:equalTo:':
+                name: isCertificateEquals
+            '+createCertificateSigningRequest:error:':
+                name: createCertificateSigningRequest
+                throws: NSErrorException
+            '+publicKeyFromCSR:error:':
+                name: publicKeyFromCSR
+                throws: NSErrorException
+    MTRChannelClusterChangeChannelByNumberParams: { } #since 16.1
+    MTRChannelClusterChangeChannelParams: { } #since 16.1
+    MTRChannelClusterChangeChannelResponseParams: { } #since 16.1
+    MTRChannelClusterChannelInfoStruct: { } #since 16.4
+    MTRChannelClusterLineupInfoStruct: { } #since 16.4
+    MTRChannelClusterSkipChannelParams: { } #since 16.1
+    MTRCluster: { }
+    MTRClusterAccessControl: { } #since 16.1
+    MTRClusterAccountLogin: { } #since 16.1
+    MTRClusterActions: { } #since 16.1
+    MTRClusterAdministratorCommissioning: { } #since 16.1
+    MTRClusterApplicationBasic: { } #since 16.1
+    MTRClusterApplicationLauncher: { } #since 16.1
+    MTRClusterAudioOutput: { } #since 16.1
+    MTRClusterBallastConfiguration: { } #since 16.1
+    MTRClusterBarrierControl: { } #since 16.1
+    MTRClusterBasicInformation: { } #since 16.4
+    MTRClusterBinaryInputBasic: { } #since 16.1
+    MTRClusterBinding: { } #since 16.1
+    MTRClusterBooleanState: { } #since 16.1
+    MTRClusterBridgedDeviceBasicInformation: { } #since 16.4
+    MTRClusterChannel: { } #since 16.1
+    MTRClusterColorControl: { } #since 16.1
+    MTRClusterContentLauncher: { } #since 16.1
+    MTRClusterDescriptor: { } #since 16.1
+    MTRClusterDiagnosticLogs: { } #since 16.1
+    MTRClusterDoorLock: { } #since 16.1
+    MTRClusterElectricalMeasurement: { } #since 16.1
+    MTRClusterEthernetNetworkDiagnostics: { } #since 16.1
+    MTRClusterFanControl: { } #since 16.1
+    MTRClusterFixedLabel: { } #since 16.1
+    MTRClusterFlowMeasurement: { } #since 16.1
+    MTRClusterGeneralCommissioning: { } #since 16.1
+    MTRClusterGeneralDiagnostics: { } #since 16.1
+    MTRClusterGroupKeyManagement: { } #since 16.1
+    MTRClusterGroups: { } #since 16.1
+    MTRClusterIdentify: { } #since 16.1
+    MTRClusterIlluminanceMeasurement: { } #since 16.1
+    MTRClusterKeypadInput: { } #since 16.1
+    MTRClusterLevelControl: { } #since 16.1
+    MTRClusterLocalizationConfiguration: { } #since 16.1
+    MTRClusterLowPower: { } #since 16.1
+    MTRClusterMediaInput: { } #since 16.1
+    MTRClusterMediaPlayback: { } #since 16.1
+    MTRClusterModeSelect: { } #since 16.1
+    MTRClusterNetworkCommissioning: { } #since 16.1
+    MTRClusterOTASoftwareUpdateProvider: { } #since 16.4
+    MTRClusterOTASoftwareUpdateRequestor: { } #since 16.4
+    MTRClusterOccupancySensing: { } #since 16.1
+    MTRClusterOnOff: { } #since 16.1
+    MTRClusterOnOffSwitchConfiguration: { } #since 16.1
+    MTRClusterOperationalCredentials: { } #since 16.1
+    MTRClusterPath: #since 16.4
+        methods:
+            '+clusterPathWithEndpointID:clusterID:':
+                name: createClusterPath
+    MTRClusterPowerSource: { } #since 16.1
+    MTRClusterPowerSourceConfiguration: { } #since 16.1
+    MTRClusterPressureMeasurement: { } #since 16.1
+    MTRClusterPumpConfigurationAndControl: { } #since 16.1
+    MTRClusterRelativeHumidityMeasurement: { } #since 16.1
+    MTRClusterScenes: { } #since 16.1
+    MTRClusterSoftwareDiagnostics: { } #since 16.1
+    MTRClusterStateCacheContainer: { } #since 16.4
+    MTRClusterSwitch: { } #since 16.1
+    MTRClusterTargetNavigator: { } #since 16.1
+    MTRClusterTemperatureMeasurement: { } #since 16.1
+    MTRClusterThermostat: { } #since 16.1
+    MTRClusterThermostatUserInterfaceConfiguration: { } #since 16.1
+    MTRClusterThreadNetworkDiagnostics: { } #since 16.1
+    MTRClusterTimeFormatLocalization: { } #since 16.1
+
+
+protocols:
+    MTRCommissionableBrowserDelegate: #since 17.0
+        methods:
+            '-controller:didFindCommissionableDevice:':
+                name: didFindCommissionableDevice
+            '-controller:didRemoveCommissionableDevice:':
+                name: didRemoveCommissionableDevice
+    MTRDeviceAttestationDelegate:
+        methods:
+            '-deviceAttestationCompletedForController:opaqueDeviceHandle:attestationDeviceInfo:error:':
+                name: deviceAttestationCompleted
+            '-deviceAttestationFailedForController:opaqueDeviceHandle:error:':
+                name: deviceAttestationFailed
+            '-deviceAttestation:completedForDevice:attestationDeviceInfo:error:':
+                name: deviceAttestationCompleted
+            '-deviceAttestation:failedForDevice:error:':
+                name: deviceAttestationFailed
+    MTRDeviceControllerClientProtocol:
+        methods:
+            '-handleReportWithController:nodeId:values:error:':
+                name: handleReport
+    MTRDeviceControllerDelegate: #since 16.4
+        methods:
+            '-controller:statusUpdate:':
+                name: statusUpdate
+            '-controller:commissioningSessionEstablishmentDone:':
+                name: commissioningSessionEstablishmentDone
+            '-controller:commissioningComplete:':
+                name: commissioningComplete
+            '-controller:commissioningComplete:nodeID:':
+                name: commissioningComplete
+            '-controller:readCommissioningInfo:':
+                name: readCommissioningInfo
+    MTRDeviceControllerServerProtocol:
+        methods:
+            '-getDeviceControllerWithFabricId:completion:':
+                name: getDeviceController
+            '-getAnyDeviceControllerWithCompletion:':
+                name: getAnyDeviceController
+            '-readAttributeWithController:nodeId:endpointId:clusterId:attributeId:params:completion:':
+                name: readAttribute
+            '-writeAttributeWithController:nodeId:endpointId:clusterId:attributeId:value:timedWriteTimeout:completion:':
+                name: writeAttribute
+            '-invokeCommandWithController:nodeId:endpointId:clusterId:commandId:fields:timedInvokeTimeout:completion:':
+                name: invokeCommand
+            '-subscribeAttributeWithController:nodeId:endpointId:clusterId:attributeId:minInterval:maxInterval:params:establishedHandler:':
+                name: subscribeAttribute
+            '-stopReportsWithController:nodeId:completion:':
+                name: stopReports
+            '-subscribeWithController:nodeId:minInterval:maxInterval:params:shouldCache:completion:':
+                name: subscribe
+            '-readAttributeCacheWithController:nodeId:endpointId:clusterId:attributeId:completion:':
+                name: readAttributeCache
+    MTRDeviceDelegate:
+        methods:
+            '-device:stateChanged:':
+                name: stateChanged
+            '-device:receivedAttributeReport:':
+                name: receivedAttributeReport
+            '-device:receivedEventReport:':
+                name: receivedEventReport
+    MTRKeypair: { }
+    MTROTAProviderDelegate:
+        methods:
+            '-handleQueryImageForNodeID:controller:params:completion:':
+                name: handleQueryImage
+            '-handleQueryImageForNodeID:controller:params:completionHandler:':
+                name: handleQueryImage
+            '-handleApplyUpdateRequestForNodeID:controller:params:completion:':
+                name: handleApplyUpdateRequest
+            '-handleApplyUpdateRequestForNodeID:controller:params:completionHandler:':
+                name: handleApplyUpdateRequest
+            '-handleNotifyUpdateAppliedForNodeID:controller:params:completion:':
+                name: handleNotifyUpdateApplied
+            '-handleNotifyUpdateAppliedForNodeID:controller:params:completionHandler:':
+                name: handleNotifyUpdateApplied
+            '-handleBDXTransferSessionBeginForNodeID:controller:fileDesignator:offset:completion:':
+                name: handleBDXTransferSessionBegin
+            '-handleBDXTransferSessionBeginForNodeID:controller:fileDesignator:offset:completionHandler:':
+                name: handleBDXTransferSessionBegin
+            '-handleBDXTransferSessionEndForNodeID:controller:error:':
+                name: handleBDXTransferSessionEnd
+            '-handleBDXQueryForNodeID:controller:blockSize:blockIndex:bytesToSkip:completion:':
+                name: handleBDXQuery
+            '-handleBDXQueryForNodeID:controller:blockSize:blockIndex:bytesToSkip:completionHandler:':
+                name: handleBDXQuery
+    MTROperationalCertificateIssuer: #since 16.4
+        methods:
+            '-issueOperationalCertificateForRequest:attestationInfo:controller:completion:':
+                name: issueOperationalCertificate
+    MTRStorage: #since 16.4
+        methods:
+            '-setStorageData:forKey:':
+                name: setStorageData
+functions:
+    MTRSetLogCallback:
+        class: MTRLogging
+        name: setLogCallback
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    MTRErrorDomain:
+        class: MTRErrorCode
+        name: getClassDomain
+    MTRInteractionErrorDomain:
+        class: MTRInteractionErrorCode
+        name: getClassDomain
+
+    MTR(AttributePathKey|CommandPathKey|EventPathKey|DataKey|ErrorKey|TypeKey|ValueKey|ContextTagKey):
+        class: MTRBaseDevice
+        type: NSString
+        static_class: Values
+    MTR(SignedIntegerValueType|UnsignedIntegerValueType|BooleanValueType|UTF8StringValueType):
+        class: MTRBaseDevice
+        type: NSString
+        static_class: Values
+    MTR(OctetStringValueType|FloatValueType|DoubleValueType|NullValueType|StructureValueType):
+        class: MTRBaseDevice
+        type: NSString
+        static_class: Values
+    MTR(ArrayValueType|EventNumberKey|EventPriorityKey|EventTimeTypeKey|EventSystemUpTimeKey|EventTimestampDateKey):
+        class: MTRBaseDevice
+        type: NSString
+        static_class: Values
+
+    MTRSize(ThreadNetworkName|ThreadExtendedPANID|ThreadMasterKey|ThreadPSKc|ThreadPANID):
+        class: MTRThreadOperationalDataset
+        static_class: SizeOf
+
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?LA.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

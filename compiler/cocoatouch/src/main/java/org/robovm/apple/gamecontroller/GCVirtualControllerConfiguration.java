@@ -56,6 +56,16 @@ import org.robovm.apple.corehaptic.*;
     public native NSSet<NSString> getElements();
     @Property(selector = "setElements:")
     public native void setElements(NSSet<NSString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isHidden")
+    public native boolean isHidden();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setHidden:")
+    public native void setHidden(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

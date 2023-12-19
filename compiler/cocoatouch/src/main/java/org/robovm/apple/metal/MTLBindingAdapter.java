@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("type")
     public MTLBindingType getType() { return null; }
     @NotImplemented("access")
-    public MTLArgumentAccess getAccess() { return null; }
+    public MTLBindingAccess getAccess() { return null; }
     @NotImplemented("index")
     public @MachineSizedUInt long getIndex() { return 0; }
     @NotImplemented("isUsed")

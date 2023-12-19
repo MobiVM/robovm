@@ -44,7 +44,11 @@ public enum /*<name>*/LPError/*</name>*/ implements NSErrorCode {
     Unknown(1L),
     MetadataFetchFailed(2L),
     MetadataFetchCancelled(3L),
-    MetadataFetchTimedOut(4L);
+    MetadataFetchTimedOut(4L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    MetadataFetchNotAllowed(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(LPError.class); }/*</bind>*/

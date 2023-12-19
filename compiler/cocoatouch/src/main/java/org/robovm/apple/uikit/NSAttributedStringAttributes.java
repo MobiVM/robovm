@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -339,6 +340,10 @@ import org.robovm.apple.linkpresentation.*;
         set(NSAttributedStringAttribute.StrikethroughColor, strikethroughColor);
         return this;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public double getObliqueness() {
         if (has(NSAttributedStringAttribute.Obliqueness)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.Obliqueness);
@@ -346,10 +351,18 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public NSAttributedStringAttributes setObliqueness(double obliqueness) {
         set(NSAttributedStringAttribute.Obliqueness, NSNumber.valueOf(obliqueness));
         return this;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public double getExpansion() {
         if (has(NSAttributedStringAttribute.Expansion)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.Expansion);
@@ -357,10 +370,18 @@ import org.robovm.apple.linkpresentation.*;
         }
         return 0;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public NSAttributedStringAttributes setExpansion(double expansion) {
         set(NSAttributedStringAttribute.Expansion, NSNumber.valueOf(expansion));
         return this;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public boolean isVerticalText() {
         if (has(NSAttributedStringAttribute.VerticalGlyphForm)) {
             NSNumber val = (NSNumber) get(NSAttributedStringAttribute.VerticalGlyphForm);
@@ -368,6 +389,10 @@ import org.robovm.apple.linkpresentation.*;
         }
         return false;
     }
+    /**
+     * @deprecated This attribute is no longer supported with TextKit 2
+     */
+    @Deprecated
     public NSAttributedStringAttributes setVerticalText(boolean verticalText) {
         set(NSAttributedStringAttribute.VerticalGlyphForm, NSNumber.valueOf(verticalText));
         return this;

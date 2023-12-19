@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -239,6 +240,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setRefreshControl:")
     public native void setRefreshControl(UIRefreshControl v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "allowsKeyboardScrolling")
+    public native boolean allowsKeyboardScrolling();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAllowsKeyboardScrolling:")
+    public native void setAllowsKeyboardScrolling(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

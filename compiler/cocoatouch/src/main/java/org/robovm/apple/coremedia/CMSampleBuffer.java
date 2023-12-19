@@ -729,5 +729,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected native OSStatus callForEachSample0(FunctionPtr callback, @Pointer long refcon);
     @Bridge(symbol="CMSampleBufferCallBlockForEachSample", optional=true)
     protected native OSStatus callForEachSample0(@Block Block2<CMSampleBuffer, Long, OSStatus> handler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @WeaklyLinked
+    @Bridge(symbol="CMSampleBufferCreateForTaggedBufferGroup", optional=true)
+    protected static native OSStatus createForTaggedBufferGroup0(CFAllocator allocator, CMTaggedBufferGroup taggedBufferGroup, @ByVal CMTime sbufPTS, @ByVal CMTime sbufDuration, CMFormatDescription formatDescription, CMSampleBuffer.CMSampleBufferPtr sBufOut);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="CMSampleBufferGetTaggedBufferGroup", optional=true)
+    public native CMTaggedBufferGroup getTaggedBufferGroup();
     /*</methods>*/
 }

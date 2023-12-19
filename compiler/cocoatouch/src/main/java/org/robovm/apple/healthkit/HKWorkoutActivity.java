@@ -39,7 +39,7 @@ import org.robovm.apple.uniformtypeid.*;
 /*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/HKWorkoutActivity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class HKWorkoutActivityPtr extends Ptr<HKWorkoutActivity, HKWorkoutActivityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(HKWorkoutActivity.class); }/*</bind>*/
@@ -50,6 +50,8 @@ import org.robovm.apple.uniformtypeid.*;
     protected HKWorkoutActivity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithWorkoutConfiguration:startDate:endDate:metadata:")
     public HKWorkoutActivity(HKWorkoutConfiguration workoutConfiguration, NSDate startDate, NSDate endDate, NSDictionary<NSString, ?> metadata) { super((SkipInit) null); initObject(init(workoutConfiguration, startDate, endDate, metadata)); }
+    @Method(selector = "initWithCoder:")
+    public HKWorkoutActivity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "UUID")
@@ -71,6 +73,8 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "allStatistics")
     public native NSDictionary<HKQuantityType, HKStatistics> getAllStatistics();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +82,9 @@ import org.robovm.apple.uniformtypeid.*;
     public native HKStatistics statisticsForType(HKQuantityType quantityType);
     @Method(selector = "initWithWorkoutConfiguration:startDate:endDate:metadata:")
     protected native @Pointer long init(HKWorkoutConfiguration workoutConfiguration, NSDate startDate, NSDate endDate, NSDictionary<NSString, ?> metadata);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

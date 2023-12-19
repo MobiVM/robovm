@@ -313,8 +313,17 @@ import org.robovm.apple.audiotoolbox.*;
     public native CFType dequeueAndRetain();
     @Bridge(symbol="CMBufferQueueDequeueIfDataReadyAndRetain", optional=true)
     public native CFType dequeueIfDataReadyAndRetain();
+    /**
+     * @deprecated Use CMBufferQueueCopyHead
+     */
+    @Deprecated
     @Bridge(symbol="CMBufferQueueGetHead", optional=true)
     public native CFType getHead();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="CMBufferQueueCopyHead", optional=true)
+    public native CFType copyHead();
     @Bridge(symbol="CMBufferQueueIsEmpty", optional=true)
     public native boolean isEmpty();
     @Bridge(symbol="CMBufferQueueMarkEndOfData", optional=true)

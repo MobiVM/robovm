@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,7 +52,11 @@ public enum /*<name>*/UIMenuElementSize/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Small(0L),
     Medium(1L),
-    Large(2L);
+    Large(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Automatic(-1L);
     /*</values>*/
 
     /*<bind>*/

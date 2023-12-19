@@ -108,6 +108,62 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     RGBA32Uint(123L),
     RGBA32Sint(124L),
     RGBA32Float(125L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC1_RGBA(130L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC1_RGBA_sRGB(131L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC2_RGBA(132L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC2_RGBA_sRGB(133L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC3_RGBA(134L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC3_RGBA_sRGB(135L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC4_RUnorm(140L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC4_RSnorm(141L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC5_RGUnorm(142L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC5_RGSnorm(143L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC6H_RGBFloat(150L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC6H_RGBUfloat(151L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC7_RGBAUnorm(152L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    BC7_RGBAUnorm_sRGB(153L),
     PVRTC_RGB_2BPP(160L),
     PVRTC_RGB_2BPP_sRGB(161L),
     PVRTC_RGB_4BPP(162L),

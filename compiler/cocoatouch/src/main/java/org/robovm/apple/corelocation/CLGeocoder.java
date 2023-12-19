@@ -69,8 +69,6 @@ import org.robovm.apple.contacts.*;
     @WeaklyLinked
     @Method(selector = "geocodeAddressDictionary:completionHandler:")
     public native void geocodeAddress(ABPersonAddress addressDictionary, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
-    @Method(selector = "geocodeAddressString:completionHandler:")
-    public native void geocodeAddress(String addressString, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     @Method(selector = "geocodeAddressString:inRegion:completionHandler:")
     public native void geocodeAddress(String addressString, CLRegion region, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
@@ -78,6 +76,8 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "geocodeAddressString:inRegion:preferredLocale:completionHandler:")
     public native void geocodeAddress(String addressString, CLRegion region, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    @Method(selector = "geocodeAddressString:completionHandler:")
+    public native void geocodeAddress(String addressString, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     @Method(selector = "cancelGeocode")
     public native void cancelGeocode();
     /**

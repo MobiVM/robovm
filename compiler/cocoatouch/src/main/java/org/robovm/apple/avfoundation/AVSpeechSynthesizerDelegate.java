@@ -70,6 +70,11 @@ import org.robovm.apple.uikit.*;
     void didCancelSpeechUtterance(AVSpeechSynthesizer synthesizer, AVSpeechUtterance utterance);
     @Method(selector = "speechSynthesizer:willSpeakRangeOfSpeechString:utterance:")
     void willSpeak(AVSpeechSynthesizer synthesizer, @ByVal NSRange characterRange, AVSpeechUtterance utterance);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "speechSynthesizer:willSpeakMarker:utterance:")
+    void willSpeakMarker(AVSpeechSynthesizer synthesizer, AVSpeechSynthesisMarker marker, AVSpeechUtterance utterance);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

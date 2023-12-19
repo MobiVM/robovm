@@ -71,7 +71,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "isPersonalizedCommunicationRestricted")
     public native boolean isPersonalizedCommunicationRestricted();
     /**
-     * @deprecated Deprecated in iOS 8.0. This property is obsolete, Use loadFriendPlayersWithCompletionHandler: instead
+     * @deprecated Deprecated in iOS 8.0. Use -loadFriendPlayersWithCompletionHandler:
      */
     @Deprecated
     @Property(selector = "friends")
@@ -119,13 +119,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "unregisterAllListeners")
     public native void unregisterAllListeners();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use setDefaultLeaderboardIdentifier:completionHandler: instead
+     * @deprecated Deprecated in iOS 7.0. Use -setDefaultLeaderboardIdentifier:completionHandler:
      */
     @Deprecated
     @Method(selector = "setDefaultLeaderboardCategoryID:completionHandler:")
     public native void setDefaultLeaderboardCategoryID(String categoryID, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use loadDefaultLeaderboardIdentifierWithCompletionHandler: instead
+     * @deprecated Deprecated in iOS 7.0. Use -loadDefaultLeaderboardIdentifierWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "loadDefaultLeaderboardCategoryIDWithCompletionHandler:")
@@ -137,13 +137,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "loadFriendPlayersWithCompletionHandler:")
     public native void loadFriendPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 13.5. API deprecated. Use fetchItemsForIdentityVerificationSignature: and the teamPlayerID value to verify a user identity.
+     * @deprecated Deprecated in iOS 13.5. Use -fetchItemsForIdentityVerificationSignature:completionHandler:
      */
     @Deprecated
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. This is never invoked and its implementation does nothing, use loadRecentPlayersWithCompletionHandler: instead
+     * @deprecated Deprecated in iOS 8.0. Use -loadRecentPlayersWithCompletionHandler:
      */
     @Deprecated
     @Method(selector = "loadFriendsWithCompletionHandler:")

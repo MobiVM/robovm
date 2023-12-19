@@ -35,9 +35,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSRayIntersector/*</name>*/ 
     extends /*<extends>*/MPSKernel/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
@@ -79,12 +80,16 @@ import org.robovm.apple.metal.*;
     public native void setRayMaskOptions(MPSRayMaskOptions v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "rayMaskOperator")
     public native MPSRayMaskOperator getRayMaskOperator();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "setRayMaskOperator:")
     public native void setRayMaskOperator(MPSRayMaskOperator v);
     @Property(selector = "rayStride")
@@ -105,22 +110,30 @@ import org.robovm.apple.metal.*;
     public native void setIntersectionDataType(MPSIntersectionDataType v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "rayIndexDataType")
     public native MPSDataType getRayIndexDataType();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "setRayIndexDataType:")
     public native void setRayIndexDataType(MPSDataType v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "rayMask")
     public native int getRayMask();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Property(selector = "setRayMask:")
     public native void setRayMask(int v);
     @Property(selector = "supportsSecureCoding")
@@ -144,17 +157,23 @@ import org.robovm.apple.metal.*;
     public native void encodeIntersection(MTLCommandBuffer commandBuffer, MPSIntersectionType intersectionType, MTLBuffer rayBuffer, @MachineSizedUInt long rayBufferOffset, MTLBuffer intersectionBuffer, @MachineSizedUInt long intersectionBufferOffset, MTLBuffer rayCountBuffer, @MachineSizedUInt long rayCountBufferOffset, MPSAccelerationStructure accelerationStructure);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Method(selector = "encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:")
     public native void encodeIntersection(MTLCommandBuffer commandBuffer, MPSIntersectionType intersectionType, MTLBuffer rayBuffer, @MachineSizedUInt long rayBufferOffset, MTLBuffer rayIndexBuffer, @MachineSizedUInt long rayIndexBufferOffset, MTLBuffer intersectionBuffer, @MachineSizedUInt long intersectionBufferOffset, @MachineSizedUInt long rayIndexCount, MPSAccelerationStructure accelerationStructure);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Method(selector = "encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:")
     public native void encodeIntersection(MTLCommandBuffer commandBuffer, MPSIntersectionType intersectionType, MTLBuffer rayBuffer, @MachineSizedUInt long rayBufferOffset, MTLBuffer rayIndexBuffer, @MachineSizedUInt long rayIndexBufferOffset, MTLBuffer intersectionBuffer, @MachineSizedUInt long intersectionBufferOffset, MTLBuffer rayIndexCountBuffer, @MachineSizedUInt long rayIndexCountBufferOffset, MPSAccelerationStructure accelerationStructure);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     @Method(selector = "encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:")
     public native void encodeIntersection(MTLCommandBuffer commandBuffer, MPSIntersectionType intersectionType, MTLTexture rayTexture, MTLTexture intersectionTexture, MPSAccelerationStructure accelerationStructure);
     /*</methods>*/

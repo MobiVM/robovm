@@ -495,6 +495,10 @@ classes:
                         type: NSArray<NSManagedObjectModel>
                     metadata:
                         type: NSPersistentStoreMetadata
+            '+checksumsForVersionedModelAtURL:error:':
+                name: getChecksumsForVersionedModel
+                throws: NSErrorException
+
     NSMappingModel: # DONE
         properties:
             'entityMappings':
@@ -712,6 +716,11 @@ classes:
                 parameters:
                     options:
                         type: NSPersistentStoreOptions
+            '-finishDeferredLightweightMigrationTask:':
+                throws: NSErrorException
+            '-finishDeferredLightweightMigration:':
+                throws: NSErrorException
+
     NSPersistentStoreRequest: # DONE
         properties:
             'affectedStores':
@@ -849,6 +858,30 @@ classes:
     NSPersistentCloudKitContainerEvent: {} #since 14.0
     NSPersistentCloudKitContainerEventRequest: {} #since 14.0
     NSPersistentCloudKitContainerEventResult: {} #since 14.0
+    NSCompositeAttributeDescription: {} #since 17.0
+    NSCustomMigrationStage: #since 17.0
+        methods:
+            '-initWithCurrentModelReference:nextModelReference:':
+                name: init
+    NSLightweightMigrationStage: #since 17.0
+        methods:
+            '-initWithVersionChecksums:':
+                name: init
+    NSManagedObjectModelReference: #since 17.0
+        methods:
+            '-initWithModel:versionChecksum:':
+                name: init
+            '-initWithFileURL:versionChecksum:':
+                name: init
+            '-initWithEntityVersionHashes:inBundle:versionChecksum:':
+                name: init
+            '-initWithName:inBundle:versionChecksum:':
+                name: init
+    NSMigrationStage: {} #since 17.0
+    NSStagedMigrationManager: #since 17.0
+        methods:
+            '-initWithMigrationStages:':
+                name: init
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
         methods:
@@ -864,6 +897,10 @@ protocols:
                 name: getSectionIndexTitle
             '-controller:didChangeContentWithSnapshot:':
                 name: didChangeContent
+                parameters:
+                    snapshot:
+                        type: NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID> # as its declared in UIKit and template parameters are not picked from cursor_obj_c_class_ref
+
             '-controller:didChangeContentWithDifference:':
                 name: didChangeContent
     NSFetchedResultsSectionInfo: # DONE

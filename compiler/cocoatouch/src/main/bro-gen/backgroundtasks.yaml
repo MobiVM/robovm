@@ -36,6 +36,8 @@ classes:
                 name: cancelTaskRequest
             '-getPendingTaskRequestsWithCompletionHandler:':
                 name: getPendingTaskRequests
+    BGHealthResearchTask: {} #since 17.0
+    BGHealthResearchTaskRequest: {} #since 17.0
 protocols: {}
 
 functions:

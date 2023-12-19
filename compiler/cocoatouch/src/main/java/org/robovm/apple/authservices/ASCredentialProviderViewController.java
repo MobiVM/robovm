@@ -63,11 +63,41 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "prepareCredentialListForServiceIdentifiers:")
     public native void prepareCredentialListForServiceIdentifiers(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareCredentialListForServiceIdentifiers:requestParameters:")
+    public native void prepareCredentialList(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers, ASPasskeyCredentialRequestParameters requestParameters);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use provideCredentialWithoutUserInteractionForRequest:
+     */
+    @Deprecated
     @Method(selector = "provideCredentialWithoutUserInteractionForIdentity:")
     public native void provideCredentialWithoutUserInteraction(ASPasswordCredentialIdentity credentialIdentity);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "provideCredentialWithoutUserInteractionForRequest:")
+    public native void provideCredentialWithoutUserInteraction(ASCredentialRequest credentialRequest);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use prepareInterfaceToProvideCredentialForRequest:
+     */
+    @Deprecated
     @Method(selector = "prepareInterfaceToProvideCredentialForIdentity:")
     public native void prepareInterfaceToProvideCredentialForIdentity(ASPasswordCredentialIdentity credentialIdentity);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareInterfaceToProvideCredentialForRequest:")
+    public native void prepareInterfaceToProvideCredentialForRequest(ASCredentialRequest credentialRequest);
     @Method(selector = "prepareInterfaceForExtensionConfiguration")
     public native void prepareInterfaceForExtensionConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareInterfaceForPasskeyRegistration:")
+    public native void prepareInterfaceForPasskeyRegistration(ASCredentialRequest registrationRequest);
     /*</methods>*/
 }

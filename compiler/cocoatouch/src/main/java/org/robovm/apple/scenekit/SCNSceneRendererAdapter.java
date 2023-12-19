@@ -121,6 +121,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @NotImplemented("renderingAPI")
     public SCNRenderingAPI getRenderingAPI() { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("workingColorSpace")
+    public CGColorSpace getWorkingColorSpace() { return null; }
     @WeaklyLinked
     @NotImplemented("context")
     public EAGLContext getContext() { return null; }

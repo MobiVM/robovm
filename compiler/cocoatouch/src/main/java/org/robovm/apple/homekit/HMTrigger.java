@@ -53,6 +53,10 @@ import org.robovm.apple.corelocation.*;
     public native boolean isEnabled();
     @Property(selector = "actionSets")
     public native NSArray<HMActionSet> getActionSets();
+    /**
+     * @deprecated Deprecated in iOS 17.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "lastFireDate")
     public native NSDate getLastFireDate();
     /**

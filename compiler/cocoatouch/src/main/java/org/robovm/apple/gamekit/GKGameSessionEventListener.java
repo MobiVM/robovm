@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayerListener for multiplayer event notifications.
+ * @deprecated Deprecated in iOS 12.0. Use GKLocalPlayerListener
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

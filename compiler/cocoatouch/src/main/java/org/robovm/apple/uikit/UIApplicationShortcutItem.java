@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,7 +59,7 @@ import org.robovm.apple.linkpresentation.*;
     protected UIApplicationShortcutItem(Handle h, long handle) { super(h, handle); }
     protected UIApplicationShortcutItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
-    public UIApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo) { super((SkipInit) null); initObject(init(type, localizedTitle, localizedSubtitle, icon, userInfo)); }
+    public UIApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<NSString, ?> userInfo) { super((SkipInit) null); initObject(init(type, localizedTitle, localizedSubtitle, icon, userInfo)); }
     @Method(selector = "initWithType:localizedTitle:")
     public UIApplicationShortcutItem(String type, String localizedTitle) { super((SkipInit) null); initObject(init(type, localizedTitle)); }
     /*</constructors>*/
@@ -72,7 +73,7 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "icon")
     public native UIApplicationShortcutIcon getIcon();
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary<NSString, ?> getUserInfo();
     @Property(selector = "targetContentIdentifier")
     public native NSObject getTargetContentIdentifier();
     /*</properties>*/
@@ -92,13 +93,13 @@ import org.robovm.apple.linkpresentation.*;
         throw new UnsupportedOperationException("UIApplicationShortcutItem is immutable");
     }
 
-    public void setUserInfo(NSDictionary<?, ?> v) {
+    public void setUserInfo(NSDictionary<NSString, ?> v) {
         throw new UnsupportedOperationException("UIApplicationShortcutItem is immutable");
     }
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
-    protected native @Pointer long init(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo);
+    protected native @Pointer long init(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<NSString, ?> userInfo);
     @Method(selector = "initWithType:localizedTitle:")
     protected native @Pointer long init(String type, String localizedTitle);
     /*</methods>*/

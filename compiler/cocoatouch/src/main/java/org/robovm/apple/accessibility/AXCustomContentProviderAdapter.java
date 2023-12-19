@@ -49,6 +49,16 @@ import org.robovm.apple.coregraphics.*;
     public NSArray<AXCustomContent> getAccessibilityCustomContent() { return null; }
     @NotImplemented("setAccessibilityCustomContent:")
     public void setAccessibilityCustomContent(NSArray<AXCustomContent> v) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("accessibilityCustomContentBlock")
+    public @Block Block0<NSArray<AXCustomContent>> getAccessibilityCustomContentBlock() { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setAccessibilityCustomContentBlock:")
+    public void setAccessibilityCustomContentBlock(@Block Block0<NSArray<AXCustomContent>> v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

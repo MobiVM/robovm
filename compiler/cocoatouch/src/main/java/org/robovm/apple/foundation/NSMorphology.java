@@ -72,6 +72,56 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setNumber:")
     public native void setNumber(NSGrammaticalNumber v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "grammaticalCase")
+    public native NSGrammaticalCase getGrammaticalCase();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setGrammaticalCase:")
+    public native void setGrammaticalCase(NSGrammaticalCase v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "determination")
+    public native NSGrammaticalDetermination getDetermination();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setDetermination:")
+    public native void setDetermination(NSGrammaticalDetermination v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "grammaticalPerson")
+    public native NSGrammaticalPerson getGrammaticalPerson();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setGrammaticalPerson:")
+    public native void setGrammaticalPerson(NSGrammaticalPerson v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "pronounType")
+    public native NSGrammaticalPronounType getPronounType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPronounType:")
+    public native void setPronounType(NSGrammaticalPronounType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "definiteness")
+    public native NSGrammaticalDefiniteness getDefiniteness();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setDefiniteness:")
+    public native void setDefiniteness(NSGrammaticalDefiniteness v);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "isUnspecified")
@@ -86,8 +136,18 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use NSTermOfAddress instead
+     */
+    @Deprecated
     @Method(selector = "customPronounForLanguage:")
     public native NSMorphologyCustomPronoun customPronounForLanguage(String language);
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use NSTermOfAddress instead
+     */
+    @Deprecated
     @Method(selector = "setCustomPronoun:forLanguage:error:")
     public native boolean setCustomPronoun(NSMorphologyCustomPronoun features, String language, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")

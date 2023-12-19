@@ -38,6 +38,11 @@ import org.robovm.apple.uniformtypeid.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    UnknownError(0L),
+    /**
+     * @deprecated Use HKUnknownError
+     */
+    @Deprecated
     NoError(0L),
     ErrorHealthDataUnavailable(1L),
     ErrorHealthDataRestricted(2L),
@@ -61,7 +66,19 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    ErrorNoData(11L);
+    ErrorNoData(11L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ErrorWorkoutActivityNotAllowed(12L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ErrorDataSizeExceeded(13L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ErrorBackgroundWorkoutSessionNotAllowed(14L);
     /*</values>*/
 
     /*<bind>*/

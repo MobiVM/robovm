@@ -40,7 +40,11 @@ import org.robovm.apple.coreanimation.*;
 public enum /*<name>*/PKEraserType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Vector(0L),
-    Bitmap(1L);
+    Bitmap(1L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    FixedWidthBitmap(2L);
     /*</values>*/
 
     /*<bind>*/

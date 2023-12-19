@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,7 +59,7 @@ import org.robovm.apple.linkpresentation.*;
     protected UIMutableApplicationShortcutItem(Handle h, long handle) { super(h, handle); }
     protected UIMutableApplicationShortcutItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithType:localizedTitle:localizedSubtitle:icon:userInfo:")
-    public UIMutableApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<?, ?> userInfo) { super(type, localizedTitle, localizedSubtitle, icon, userInfo); }
+    public UIMutableApplicationShortcutItem(String type, String localizedTitle, String localizedSubtitle, UIApplicationShortcutIcon icon, NSDictionary<NSString, ?> userInfo) { super(type, localizedTitle, localizedSubtitle, icon, userInfo); }
     @Method(selector = "initWithType:localizedTitle:")
     public UIMutableApplicationShortcutItem(String type, String localizedTitle) { super(type, localizedTitle); }
     /*</constructors>*/
@@ -80,9 +81,9 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setIcon:")
     public native void setIcon(UIApplicationShortcutIcon v);
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary<NSString, ?> getUserInfo();
     @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSDictionary<?, ?> v);
+    public native void setUserInfo(NSDictionary<NSString, ?> v);
     @Property(selector = "targetContentIdentifier")
     public native NSObject getTargetContentIdentifier();
     @Property(selector = "setTargetContentIdentifier:")

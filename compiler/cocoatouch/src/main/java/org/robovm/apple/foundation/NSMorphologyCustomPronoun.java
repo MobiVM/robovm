@@ -41,9 +41,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 15.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use NSTermOfAddress instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Foundation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMorphologyCustomPronoun/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {

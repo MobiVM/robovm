@@ -87,7 +87,11 @@ public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Link(25L);
+    Link(25L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Reaction(26L);
     /*</values>*/
 
     /*<bind>*/

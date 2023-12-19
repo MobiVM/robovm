@@ -209,6 +209,11 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "PNGRepresentationOfImage:format:colorSpace:options:")
     public native NSData PNGRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "OpenEXRRepresentationOfImage:options:error:")
+    public native NSData getOpenEXRRepresentation(CIImage image, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:")
@@ -233,6 +238,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:")
     public native boolean writeHEIF10Representation(CIImage image, NSURL url, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "writeOpenEXRRepresentationOfImage:toURL:options:error:")
+    public native boolean writeOpenEXRRepresentation(CIImage image, NSURL url, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 12.0 and later.
      */

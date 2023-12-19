@@ -145,6 +145,10 @@ import org.robovm.apple.avfoundation.*;
      */
     public static final SHMediaItemProperty FrequencySkewRanges = new SHMediaItemProperty("FrequencySkewRanges");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final SHMediaItemProperty CreationDate = new SHMediaItemProperty("CreationDate");
+    /**
      * @since Available in iOS 15.0 and later.
      */
     public static final SHMediaItemProperty MatchOffset = new SHMediaItemProperty("MatchOffset");
@@ -154,7 +158,7 @@ import org.robovm.apple.avfoundation.*;
     public static final SHMediaItemProperty FrequencySkew = new SHMediaItemProperty("FrequencySkew");
     /*</constants>*/
     
-    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, TimeRanges, FrequencySkewRanges, MatchOffset, FrequencySkew/*</value_list>*/};
+    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, TimeRanges, FrequencySkewRanges, CreationDate, MatchOffset, FrequencySkew/*</value_list>*/};
     
     /*<name>*/SHMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -247,6 +251,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SHMediaItemFrequencySkewRanges", optional=true)
         public static native NSString FrequencySkewRanges();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="SHMediaItemCreationDate", optional=true)
+        public static native NSString CreationDate();
         /**
          * @since Available in iOS 15.0 and later.
          */

@@ -56,8 +56,10 @@ import org.robovm.apple.imageio.*;
     protected VNRectangleObservation(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:
      */
-    public VNRectangleObservation(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight) { super((Handle) null, create(requestRevision, topLeft, bottomLeft, bottomRight, topRight)); retain(getHandle()); }
+    @Deprecated
+    public VNRectangleObservation(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight) { super((Handle) null, createDeprecated(requestRevision, topLeft, bottomLeft, bottomRight, topRight)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topLeft")
@@ -75,8 +77,15 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:
      */
+    @Deprecated
     @Method(selector = "rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:")
-    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight);
+    protected static native @Pointer long createDeprecated(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
+    public static native VNRectangleObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
     /*</methods>*/
 }

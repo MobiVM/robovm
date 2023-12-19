@@ -107,6 +107,11 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "setPlayerIndex:")
     public native void setPlayerIndex(GCControllerPlayerIndex v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "input")
+    public native GCControllerLiveInput getInput();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "battery")

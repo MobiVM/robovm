@@ -80,20 +80,50 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportedJointNamesAndReturnError:")
+    public native NSArray<NSString> supportedJointNamesAndReturnError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportedJointsGroupNamesAndReturnError:")
+    public native NSArray<NSString> supportedJointsGroupNamesAndReturnError(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use supportedJointNamesAndReturnError
+     */
+    @Deprecated
     public static NSArray<NSString> getSupportedJointNames(@MachineSizedUInt long revision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<NSString> result = getSupportedJointNames(revision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use supportedJointNamesAndReturnError
+     */
+    @Deprecated
     @Method(selector = "supportedJointNamesForRevision:error:")
     private static native NSArray<NSString> getSupportedJointNames(@MachineSizedUInt long revision, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use supportedJointsGroupNamesAndReturnError
+     */
+    @Deprecated
     public static NSArray<NSString> getSupportedJointsGroupNames(@MachineSizedUInt long revision) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<NSString> result = getSupportedJointsGroupNames(revision, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use supportedJointsGroupNamesAndReturnError
+     */
+    @Deprecated
     @Method(selector = "supportedJointsGroupNamesForRevision:error:")
     private static native NSArray<NSString> getSupportedJointsGroupNames(@MachineSizedUInt long revision, NSError.NSErrorPtr error);
     /*</methods>*/

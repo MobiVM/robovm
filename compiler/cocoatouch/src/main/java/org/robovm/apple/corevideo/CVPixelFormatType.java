@@ -71,6 +71,7 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _4444YpCbCrA8R(1916022840L),
     _4444AYpCbCr8(2033463352L),
     _4444AYpCbCr16(2033463606L),
+    _4444AYpCbCrFloat(1916036716L),
     _444YpCbCr8(1983066168L),
     _422YpCbCr16(1983000886L),
     _422YpCbCr10(1983000880L),

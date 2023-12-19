@@ -101,9 +101,13 @@ import org.robovm.apple.dispatch.*;
      */
     public static final NSURLSessionErrorUserInfoKey NetworkUnavailableReason = new NSURLSessionErrorUserInfoKey("NetworkUnavailableReason");
     public static final NSURLSessionErrorUserInfoKey DownloadTaskResumeData = new NSURLSessionErrorUserInfoKey("DownloadTaskResumeData");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSURLSessionErrorUserInfoKey UploadTaskResumeData = new NSURLSessionErrorUserInfoKey("UploadTaskResumeData");
     /*</constants>*/
     
-    private static /*<name>*/NSURLSessionErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSURLSessionErrorUserInfoKey/*</name>*/[] {/*<value_list>*/BackgroundTaskCancelledReason, NetworkUnavailableReason, DownloadTaskResumeData/*</value_list>*/};
+    private static /*<name>*/NSURLSessionErrorUserInfoKey/*</name>*/[] values = new /*<name>*/NSURLSessionErrorUserInfoKey/*</name>*/[] {/*<value_list>*/BackgroundTaskCancelledReason, NetworkUnavailableReason, DownloadTaskResumeData, UploadTaskResumeData/*</value_list>*/};
     
     /*<name>*/NSURLSessionErrorUserInfoKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -135,6 +139,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString NetworkUnavailableReason();
         @GlobalValue(symbol="NSURLSessionDownloadTaskResumeData", optional=true)
         public static native NSString DownloadTaskResumeData();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSURLSessionUploadTaskResumeData", optional=true)
+        public static native NSString UploadTaskResumeData();
         /*</values>*/
     }
 }

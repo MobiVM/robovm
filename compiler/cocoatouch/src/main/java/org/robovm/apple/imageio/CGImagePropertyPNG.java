@@ -117,6 +117,10 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyPNG Warning = new CGImagePropertyPNG("Warning");
     public static final CGImagePropertyPNG XPixelsPerMeter = new CGImagePropertyPNG("XPixelsPerMeter");
     public static final CGImagePropertyPNG YPixelsPerMeter = new CGImagePropertyPNG("YPixelsPerMeter");
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public static final CGImagePropertyPNG PixelsAspectRatio = new CGImagePropertyPNG("PixelsAspectRatio");
     public static final CGImagePropertyPNG LoopCount = new CGImagePropertyPNG("LoopCount");
     public static final CGImagePropertyPNG DelayTime = new CGImagePropertyPNG("DelayTime");
     public static final CGImagePropertyPNG UnclampedDelayTime = new CGImagePropertyPNG("UnclampedDelayTime");
@@ -142,7 +146,7 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyPNG Transparency = new CGImagePropertyPNG("Transparency");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, LoopCount, DelayTime, UnclampedDelayTime, FrameInfoArray, CanvasPixelWidth, CanvasPixelHeight, CompressionFilter, Transparency/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyPNG/*</name>*/[] values = new /*<name>*/CGImagePropertyPNG/*</name>*/[] {/*<value_list>*/Author, Chromaticities, Comment, Copyright, CreationTime, Description, Disclaimer, Gamma, InterlaceType, ModificationTime, Software, Source, sRGBIntent, Title, Warning, XPixelsPerMeter, YPixelsPerMeter, PixelsAspectRatio, LoopCount, DelayTime, UnclampedDelayTime, FrameInfoArray, CanvasPixelWidth, CanvasPixelHeight, CompressionFilter, Transparency/*</value_list>*/};
     
     /*<name>*/CGImagePropertyPNG/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -211,6 +215,11 @@ import org.robovm.apple.coregraphics.*;
         public static native CFString XPixelsPerMeter();
         @GlobalValue(symbol="kCGImagePropertyPNGYPixelsPerMeter", optional=true)
         public static native CFString YPixelsPerMeter();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPNGPixelsAspectRatio", optional=true)
+        public static native CFString PixelsAspectRatio();
         @GlobalValue(symbol="kCGImagePropertyAPNGLoopCount", optional=true)
         public static native CFString LoopCount();
         @GlobalValue(symbol="kCGImagePropertyAPNGDelayTime", optional=true)

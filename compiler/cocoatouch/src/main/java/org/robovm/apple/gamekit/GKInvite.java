@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "playerAttributes")
     public native int getPlayerAttributes();
     /**
-     * @deprecated Deprecated in iOS 8.0. This property is obsolete, use sender instead
+     * @deprecated Deprecated in iOS 8.0. Use -sender:
      */
     @Deprecated
     @Property(selector = "inviter")

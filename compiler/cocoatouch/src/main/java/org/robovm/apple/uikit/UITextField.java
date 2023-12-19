@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -49,7 +50,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextField/*</name>*/ 
     extends /*<extends>*/UIControl/*</extends>*/ 
-    /*<implements>*/implements UITextInput, NSCoding, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
+    /*<implements>*/implements UITextInput, NSCoding, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeDidBeginEditing(UITextField object, final VoidBlock1<UITextField> block) {
@@ -398,6 +399,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     public native void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    public native UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    public native void setInlinePredictionType(UITextInlinePredictionType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -442,6 +453,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "sizingRule")
+    public native UILetterformAwareSizingRule getSizingRule();
+    @Property(selector = "setSizingRule:")
+    public native void setSizingRule(UILetterformAwareSizingRule v);
     @Property(selector = "textDragDelegate")
     public native UITextDragDelegate getTextDragDelegate();
     @Property(selector = "setTextDragDelegate:", strongRef = true)

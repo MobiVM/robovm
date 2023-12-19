@@ -38,22 +38,38 @@ import org.robovm.apple.network.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2DiffieHellmanGroup/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(0L),
-    _1(1L),
-    _2(2L),
-    _5(5L),
-    _14(14L),
-    _15(15L),
-    _16(16L),
-    _17(17L),
-    _18(18L),
-    _19(19L),
-    _20(20L),
-    _21(21L),
+    GroupInvalid(0L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     */
+    @Deprecated
+    Group1(1L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     */
+    @Deprecated
+    Group2(2L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     */
+    @Deprecated
+    Group5(5L),
+    Group14(14L),
+    Group15(15L),
+    Group16(16L),
+    Group17(17L),
+    Group18(18L),
+    Group19(19L),
+    Group20(20L),
+    Group21(21L),
     /**
      * @since Available in iOS 13.0 and later.
      */
-    _31(31L);
+    Group31(31L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Group32(32L);
     /*</values>*/
 
     /*<bind>*/

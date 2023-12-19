@@ -14,6 +14,7 @@ enums:
     NLTaggerOptions: {prefix: NLTagger}
     NLDistanceType: {}
     NLTaggerAssetsResult: {}
+    NLContextualEmbeddingAssetsResult: {}
 typed_enums:
     NLLanguage:
         enum: NLLanguage
@@ -26,6 +27,14 @@ typed_enums:
     NLTag:
         enum: NLTag
         prefix: NLTag
+        type: NSString
+    NLScript:
+        enum: NLScript
+        prefix: NLScript
+        type: NSString
+    NLContextualEmbeddingKey:
+        enum: NLContextualEmbeddingKey
+        prefix: NLContextualEmbeddingKey
         type: NSString
 
 classes:
@@ -131,6 +140,31 @@ classes:
                 exclude: true
             '+writeGazetteerForDictionary:language:toURL:error:':
                 exclude: true
+    NLContextualEmbedding: #since 17.0
+        methods:
+            '-loadWithError:':
+                name: load
+                throws: NSErrorException
+            '-embeddingResultForString:language:error:':
+                name: embeddingResult
+                throws: NSErrorException
+            '-requestEmbeddingAssetsWithCompletionHandler:':
+                name: requestEmbeddingAssets
+            '+contextualEmbeddingWithModelIdentifier:':
+                name: create
+                constructor: true
+            '+contextualEmbeddingWithLanguage:':
+                name: create
+                constructor: true
+            '+contextualEmbeddingWithScript:':
+                name: create
+                constructor: true
+    NLContextualEmbeddingResult: #since 17.0
+        methods:
+            '-enumerateTokenVectorsInRange:usingBlock:':
+                name: enumerateTokenVectors
+            '-tokenVectorAtIndex:tokenRange:':
+                name: getTokenVector
 protocols: {}
 
 functions:

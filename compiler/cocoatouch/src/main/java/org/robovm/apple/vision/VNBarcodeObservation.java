@@ -62,11 +62,45 @@ import org.robovm.apple.imageio.*;
     public native CIBarcodeDescriptor getBarcodeDescriptor();
     @Property(selector = "payloadStringValue")
     public native String getPayloadStringValue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "payloadData")
+    public native NSData getPayloadData();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isGS1DataCarrier")
+    public native boolean isGS1DataCarrier();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isColorInverted")
+    public native boolean isColorInverted();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supplementalCompositeType")
+    public native VNBarcodeCompositeType getSupplementalCompositeType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supplementalPayloadString")
+    public native String getSupplementalPayloadString();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supplementalPayloadData")
+    public native NSData getSupplementalPayloadData();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
+    public static native VNBarcodeObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
     /*</methods>*/
 }

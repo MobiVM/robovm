@@ -41,7 +41,11 @@ public enum /*<name>*/NWPathUnsatisfiedReason/*</name>*/ implements ValuedEnum {
     not_available(0L),
     cellular_denied(1L),
     wifi_denied(2L),
-    local_network_denied(3L);
+    local_network_denied(3L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    vpn_inactive(4L);
     /*</values>*/
 
     /*<bind>*/

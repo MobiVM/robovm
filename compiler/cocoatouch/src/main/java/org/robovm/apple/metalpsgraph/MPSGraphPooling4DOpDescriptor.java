@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphPooling4DOpDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphPooling4DOpDescriptorPtr extends Ptr<MPSGraphPooling4DOpDescriptor, MPSGraphPooling4DOpDescriptorPtr> {}/*</ptr>*/

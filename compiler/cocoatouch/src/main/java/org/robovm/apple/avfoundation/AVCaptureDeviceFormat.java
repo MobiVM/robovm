@@ -133,7 +133,9 @@ import org.robovm.apple.uikit.*;
     public native @MachineSizedFloat double getVideoMaxZoomFactorForDepthDataDelivery();
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use supportedVideoZoomRangesForDepthDataDelivery
      */
+    @Deprecated
     @Property(selector = "supportedVideoZoomFactorsForDepthDataDelivery")
     public native NSArray<NSNumber> getSupportedVideoZoomFactorsForDepthDataDelivery();
     /**
@@ -211,6 +213,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "videoFrameRateRangeForStudioLight")
     public native AVFrameRateRange getVideoFrameRateRangeForStudioLight();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "reactionEffectsSupported")
+    public native boolean isReactionEffectsSupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForReactionEffectsInProgress")
+    public native AVFrameRateRange getVideoFrameRateRangeForReactionEffectsInProgress();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

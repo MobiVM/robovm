@@ -508,6 +508,11 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyWebPDictionary", optional=true)
         public static native CFString WebPDictionary();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAVISDictionary", optional=true)
+        public static native CFString AVISDictionary();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyTGADictionary", optional=true)

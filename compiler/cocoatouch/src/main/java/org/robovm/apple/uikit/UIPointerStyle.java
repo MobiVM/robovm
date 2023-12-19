@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,7 +49,7 @@ import org.robovm.apple.linkpresentation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPointerStyle/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/UIHoverStyle/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class UIPointerStylePtr extends Ptr<UIPointerStyle, UIPointerStylePtr> {}/*</ptr>*/
@@ -86,5 +87,9 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "systemPointerStyle")
     public static native UIPointerStyle systemPointerStyle();
+    @Method(selector = "styleWithShape:")
+    public static native UIPointerStyle styleWithShape(UIShape shape);
+    @Method(selector = "automaticStyle")
+    public static native UIPointerStyle automaticStyle();
     /*</methods>*/
 }

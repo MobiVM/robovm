@@ -185,10 +185,22 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "stopMonitoringLocationPushes")
     public native void stopMonitoringLocationPushes();
+    /**
+     * @deprecated Use CLMonitor to start or stop monitoring constraint
+     */
+    @Deprecated
     @Method(selector = "stopMonitoringForRegion:")
     public native void stopMonitoring(CLRegion region);
+    /**
+     * @deprecated Use CLMonitor to start or stop monitoring constraint
+     */
+    @Deprecated
     @Method(selector = "startMonitoringForRegion:")
     public native void startMonitoring(CLRegion region);
+    /**
+     * @deprecated Use CLMonitor to track and query the state for monitored constraints
+     */
+    @Deprecated
     @Method(selector = "requestStateForRegion:")
     public native void requestState(CLRegion region);
     /**

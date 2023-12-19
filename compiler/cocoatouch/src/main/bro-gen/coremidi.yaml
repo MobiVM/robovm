@@ -192,6 +192,7 @@ classes:
                 name: sendProfile
     MIDIEventList: {}
     MIDIEventPacket: {}
+    MIDISysexSendRequestUMP: {}
 protocols:
     MIDICIProfileResponderDelegate: #since 14.0
         methods:
@@ -207,7 +208,7 @@ functions:
         class: MIDI
         name: "#{g[0]}"
         return_type: MIDIError
-    MIDI(SendSysex):
+    MIDI(SendSysex|SendUMPSysex|SendUMPSysex8):
         class: MIDI
         name: "#{g[0]}"
         return_type: MIDIError
@@ -237,6 +238,9 @@ functions:
     MIDI(SendEventList|ReceivedEventList|EventListInit|EventListAdd):
         class: MIDI
         name: "#{g[0]}"
+    MIDIEventPacket(SysexBytesForGroup):
+        class: MIDIEventPacket
+        name: "get#{g[0]}"
 
     # MIDISetup
     MIDISetup(.*):

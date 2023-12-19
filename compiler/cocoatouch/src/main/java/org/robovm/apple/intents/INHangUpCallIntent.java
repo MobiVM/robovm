@@ -57,6 +57,8 @@ import org.robovm.apple.coregraphics.*;
     public INHangUpCallIntent(String callIdentifier) { super((SkipInit) null); initObject(init(callIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "callIdentifier")
+    public native String getCallIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

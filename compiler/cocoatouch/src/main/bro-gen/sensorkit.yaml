@@ -1,5 +1,5 @@
 package: org.robovm.apple.sensorkit
-include: [foundation]
+include: [foundation, coremedia, arkit, speech, soundanalysis]
 library: SensorKit
 framework: SensorKit
 clang_args: ['-x', 'objective-c']
@@ -19,6 +19,10 @@ enums:
     SRCrownOrientation: {} #since 14.0
     SRTextInputSessionType: {} #since 15.0
     SRKeyboardMetricsSentimentCategory: {} #since 15.0
+    SRWristTemperatureCondition: {} #since 17.0
+    SRMediaEventType: {prefix: SRMediaEvent} #since 16.4
+    SRSpeechMetricsSessionFlags: {} #since 17.0
+    SRFaceMetricsContext: {} #since 17.0
 categories:
     SensorKit@NSDate:
         methods:
@@ -58,6 +62,14 @@ classes:
     SRWristDetection: {} #since 14.0
     SRTextInputSession: {} #since 15.0
     SRSupplementalCategory: {} #since 16.0
+    SRAudioLevel: {} #since 17.0
+    SRFaceMetrics: {} #since 17.0
+    SRFaceMetricsExpression: {} #since 17.0
+    SRMediaEvent: {} #since 16.4
+    SRSpeechExpression: {} #since 17.0
+    SRSpeechMetrics: {} #since 17.0
+    SRWristTemperature: {} #since 17.0
+    SRWristTemperatureSession: {} #since 17.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:
@@ -110,6 +122,9 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    SR_ARKIT_SUPPORTED:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?SR.*):
         class: FIXME

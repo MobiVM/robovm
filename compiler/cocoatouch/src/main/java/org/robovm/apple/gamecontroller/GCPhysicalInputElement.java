@@ -48,12 +48,12 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "sfSymbolsName")
-    String getSfSymbolsName();
-    @Property(selector = "localizedName")
-    String getLocalizedName();
     @Property(selector = "aliases")
     NSSet<NSString> getAliases();
+    @Property(selector = "localizedName")
+    String getLocalizedName();
+    @Property(selector = "sfSymbolsName")
+    String getSfSymbolsName();
     /*</properties>*/
     /*<methods>*/
     

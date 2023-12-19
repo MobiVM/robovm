@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +65,11 @@ import org.robovm.apple.foundation.*;
     public native String getSystemName();
     @Property(selector = "systemVersion")
     public native String getSystemVersion();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "productType")
+    public native String getProductType();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

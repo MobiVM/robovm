@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,7 +69,11 @@ public enum /*<name>*/PHAssetResourceType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    AdjustmentBaseVideo(12L);
+    AdjustmentBaseVideo(12L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    PhotoProxy(19L);
     /*</values>*/
 
     public static class AsListMarshaler {

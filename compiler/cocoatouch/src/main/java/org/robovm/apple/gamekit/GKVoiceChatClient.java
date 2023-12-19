@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 7.0. Use GKVoiceChat instead
+ * @deprecated Deprecated in iOS 7.0. Use GKVoiceChat
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

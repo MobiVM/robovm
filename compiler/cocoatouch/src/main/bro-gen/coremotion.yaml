@@ -19,6 +19,8 @@ enums:
     CMFallDetectionEventUserResolution: {}
     CMWaterSubmersionState: {}
     CMWaterSubmersionDepthState: {}
+    CMHighFrequencyHeartRateDataConfidence: {} #since 17.0
+    CMOdometerOriginDevice: {} #since 15.4
 classes:
     CMError:
         extends: NSError
@@ -153,6 +155,14 @@ classes:
     CMWaterSubmersionManager: {}
     CMWaterSubmersionMeasurement: {}
     CMWaterTemperature: {}
+    CMBatchedSensorManager:
+        methods:
+            '-startAccelerometerUpdatesWithHandler:':
+                name: startAccelerometerUpdates
+            '-startDeviceMotionUpdatesWithHandler:':
+                name: startDeviceMotionUpdates
+    CMHighFrequencyHeartRateData: {} #since 17.0
+    CMOdometerData: {} #since 8.0
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
     CMWaterSubmersionManagerDelegate:

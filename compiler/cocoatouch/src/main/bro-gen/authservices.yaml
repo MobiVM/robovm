@@ -18,6 +18,12 @@ enums:
     ASAuthorizationAppleIDButtonType: {} #since 13.0
     ASAuthorizationAppleIDButtonStyle: {} #since 13.0
     ASAuthorizationControllerRequestOptions: {prefix: ASAuthorizationControllerRequestOption} #since 16.0
+    ASAuthorizationPublicKeyCredentialAttachment: {}
+    ASCredentialRequestType: {} #since 17.0
+    ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation: {} #since 17.0
+    ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement: {} #since 17.0
+    ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState: {}
+    ASPublicKeyCredentialClientDataCrossOriginValue: {}
 typed_enums:
     ASAuthorizationOpenIDOperation:
         enum: ASAuthorizationOpenIDOperation
@@ -67,14 +73,28 @@ classes:
                 name: getCredentialIdentityStoreState
             '-removeAllCredentialIdentitiesWithCompletion:':
                 name: removeAllCredentialIdentities
+            '-saveCredentialIdentityEntries:completion:':
+                name: saveCredentialIdentityEntries
+            '-removeCredentialIdentityEntries:completion:':
+                name: removeCredentialIdentityEntries
+            '-replaceCredentialIdentityEntries:completion:':
+                name: replaceCredentialIdentityEntries
     ASCredentialIdentityStoreState: {} #since 12.0
     ASCredentialProviderExtensionContext: #since 12.0
         methods:
             '-completeRequestWithSelectedCredential:completionHandler:':
                 name: completeRequest
+            '-completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:':
+                name: completeAssertionRequest
+            '-completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:':
+                name: completeRegistrationRequest
     ASCredentialProviderViewController:  #since 12.0
         methods:
             '-provideCredentialWithoutUserInteractionForIdentity:':
+                name: provideCredentialWithoutUserInteraction
+            '-prepareCredentialListForServiceIdentifiers:requestParameters:':
+                name: prepareCredentialList
+            '-provideCredentialWithoutUserInteractionForRequest:':
                 name: provideCredentialWithoutUserInteraction
     ASCredentialServiceIdentifier: #since 12.0
         methods:
@@ -209,6 +229,53 @@ classes:
                 name: createCredentialAssertionRequest
     ASAuthorizationSecurityKeyPublicKeyCredentialRegistration: {} #since 15.0
     ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest: {} #since 15.0
+    ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput: #since 17.0
+        methods:
+            '-initWithOperation:':
+                name: init
+    ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput: {} #since 17.0
+    ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput: #since 17.0
+        methods:
+            '-initWithSupportRequirement:':
+                name: init
+    ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput: {} #since 17.0
+    ASPasskeyAssertionCredential: #since 17.0
+        methods:
+            '-initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:':
+                name: init
+            '+credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:':
+                exclude: true # same as init
+    ASPasskeyCredentialIdentity: #since 17.0
+        methods:
+            '-initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:':
+                name: init
+            '+identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:':
+                exclude: true # same as init
+    ASPasskeyCredentialRequest: #since 17.0
+        methods:
+            '-initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:':
+                name: init
+            '+requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:':
+                exclude: true # same as init
+    ASPasskeyCredentialRequestParameters: {} #since 17.0
+    ASPasskeyRegistrationCredential: #since 17.0
+        methods:
+            '-initWithRelyingParty:clientDataHash:credentialID:attestationObject:':
+                name: init
+            '+credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:':
+                exclude: true # same as init
+    ASPasswordCredentialRequest: #since 17.0
+        methods:
+            '-initWithCredentialIdentity:':
+                name: init
+            '+requestWithCredentialIdentity:':
+                exclude: true # same as init
+    ASSettingsHelper: #since 17.0
+        methods:
+            '+openCredentialProviderAppSettingsWithCompletionHandler:':
+                name: openCredentialProviderAppSettings
+            '+openVerificationCodeAppSettingsWithCompletionHandler:':
+                name: openVerificationCodeAppSettings
 protocols:
     ASAuthorizationControllerDelegate: #since 13.0
         methods:
@@ -246,6 +313,8 @@ protocols:
     ASAuthorizationPublicKeyCredentialRegistration: {} #since 15.0
     ASAuthorizationPublicKeyCredentialRegistrationRequest: {} #since 15.0
     ASPublicKeyCredential: {} #since 15.0
+    ASCredentialIdentity: {} #since 17.0
+    ASCredentialRequest: {} #since 17.0
 functions:
     ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports:
         class: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport

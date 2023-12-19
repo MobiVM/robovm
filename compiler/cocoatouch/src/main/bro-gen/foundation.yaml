@@ -94,6 +94,7 @@ structdefs:
     simd_float4: 'VectorFloat4'
     simd_quatf: 'VectorFloat4'
     simd_quatd: 'VectorDouble4'
+    simd_double2: 'VectorDouble2'
     matrix_float2x2: 'MatrixFloat2x4'
     matrix_float3x2: 'MatrixFloat3x4'
     matrix_float4x2: 'MatrixFloat4x4'
@@ -246,6 +247,12 @@ enums:
     NSGrammaticalPartOfSpeech: { } #since 15.0
     NSGrammaticalNumber: { } #since 15.0
     NSURLRequestAttribution: { } #since 15.0
+
+    NSGrammaticalCase: {} #since 17.0
+    NSGrammaticalPronounType: {} #since 17.0
+    NSGrammaticalPerson: {} #since 17.0
+    NSGrammaticalDetermination: {} #since 17.0
+    NSGrammaticalDefiniteness: {} #since 17.0
 
     IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
     IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
@@ -4068,6 +4075,10 @@ classes:
                 name: newUploadTask
             '-uploadTaskWithRequest:fromData:completionHandler:':
                 name: newUploadTask
+            '-uploadTaskWithResumeData:':
+                name: newUploadTask
+            '-uploadTaskWithResumeData:completionHandler:':
+                name: newUploadTask
             '-downloadTaskWithRequest:completionHandler:':
                 name: newDownloadTask
             '-downloadTaskWithURL:completionHandler:':
@@ -4370,9 +4381,13 @@ classes:
                 name: init
             '-initWithString:':
                 name: init
+            '-initWithString:encodingInvalidCharacters:':
+                name: init
             '+componentsWithURL:resolvingAgainstBaseURL:':
                 exclude: true
             '+componentsWithString:':
+                exclude: true
+            '+componentsWithString:encodingInvalidCharacters:':
                 exclude: true
     NSURLQueryItem:  #since 8.0
         methods:
@@ -4472,7 +4487,15 @@ classes:
         methods:
             '-initWithStartLine:startColumn:endLine:endColumn:':
                 name: init
-
+    NSMorphologyPronoun: #since 17.0
+        methods:
+            '-initWithPronoun:morphology:dependentMorphology:':
+                name: init
+    NSTermOfAddress: #since 17.0
+        methods:
+            '+localizedForLanguageIdentifier:withPronouns:':
+                constructor: true
+                name: create
 protocols:
     NSCacheDelegate: # DONE
         methods:
@@ -4813,12 +4836,15 @@ protocols:
             '-URLSession:task:didFinishCollectingMetrics:':
                 name: didFinishCollectingMetrics
             '-URLSession:task:willBeginDelayedRequest:completionHandler:':
-                #trim_after_first_colon: true
                 name: willBeginDelayedRequest
             '-URLSession:taskIsWaitingForConnectivity:':
                 name: taskIsWaitingForConnectivity
             '-URLSession:didCreateTask:':
                 name: didCreateTask
+            '-URLSession:task:needNewBodyStreamFromOffset:completionHandler:':
+                name: needNewBodyStream
+            '-URLSession:task:didReceiveInformationalResponse:':
+                name: didReceiveInformationalResponse
     NSUserActivityDelegate: # DONE
         methods:
             '-userActivityWillSave:':
@@ -5155,7 +5181,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: NSErrorUserInfoKey
-    NSURLSession(DownloadTaskResumeData):
+    NSURLSession(DownloadTaskResumeData|UploadTaskResumeData):
         enum: NSURLSessionErrorUserInfoKey
         name: '#{g[0]}'
         type: NSString
@@ -5855,9 +5881,19 @@ values:
         class: NSAttributedString
         static_class: KeysNSBundle
         name: '#{g[0]}'
-    NS(ReplacementIndex|Morphology|InflectionRule|InflectionAlternative|PresentationIntent|MarkdownSourcePosition)AttributeName:
+    NSInflection(.*)AttributeName:
+        class: NSAttributedString
+        static_class: KeysInflection
+        name: '#{g[0]}'
+    NS(ReplacementIndex|Morphology|PresentationIntent|MarkdownSourcePosition)AttributeName:
         class: NSAttributedString
         static_class: Keys
+        name: '#{g[0]}'
+
+    # NSAttributedStringFormattingContextKey
+    NS(InflectionConcepts)Key:
+        class: NSAttributedString
+        static_class: FormattingContextKeys
         name: '#{g[0]}'
 
     # Foundation

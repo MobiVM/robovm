@@ -51,6 +51,8 @@ classes:
                 name: endIndexBatch
             '-initWithName:':
                 name: init
+            '-initWithName:protectionClass:bundleIdentifier:options:':
+                name: init
             '-deleteAllSearchableItemsWithCompletionHandler:':
                 name: deleteAllSearchableItems
             '-fetchLastClientStateWithCompletionHandler:':

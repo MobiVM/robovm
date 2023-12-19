@@ -87,6 +87,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "frequencySkewRanges")
     public native NSArray<SHRange> getFrequencySkewRanges();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "creationDate")
+    public native NSDate getCreationDate();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

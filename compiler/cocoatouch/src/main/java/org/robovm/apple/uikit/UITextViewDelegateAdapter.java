@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,28 +75,6 @@ import org.robovm.apple.linkpresentation.*;
     @NotImplemented("textViewDidChangeSelection:")
     public void didChangeSelection(UITextView textView) {}
     /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @NotImplemented("textView:shouldInteractWithURL:inRange:interaction:")
-    public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:interaction:")
-    public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:interaction:
-     */
-    @Deprecated
-    @NotImplemented("textView:shouldInteractWithURL:inRange:")
-    public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange) { return false; }
-    /**
-     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:interaction:
-     */
-    @Deprecated
-    @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")
-    public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange) { return false; }
-    /**
      * @since Available in iOS 16.0 and later.
      */
     @NotImplemented("textView:editMenuForTextInRange:suggestedActions:")
@@ -110,5 +89,51 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("textView:willDismissEditMenuWithAnimator:")
     public void willDismissEditMenu(UITextView textView, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("textView:primaryActionForTextItem:defaultAction:")
+    public UIAction getPrimaryActionForTextItem(UITextView textView, UITextItem textItem, UIAction defaultAction) { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("textView:menuConfigurationForTextItem:defaultMenu:")
+    public UITextItemMenuConfiguration getMenuConfigurationForTextItem(UITextView textView, UITextItem textItem, UIMenu defaultMenu) { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("textView:textItemMenuWillDisplayForTextItem:animator:")
+    public void textItemMenuWillDisplayForTextItem(UITextView textView, UITextItem textItem, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("textView:textItemMenuWillEndForTextItem:animator:")
+    public void textItemMenuWillEndForTextItem(UITextView textView, UITextItem textItem, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.
+     */
+    @Deprecated
+    @NotImplemented("textView:shouldInteractWithURL:inRange:interaction:")
+    public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.
+     */
+    @Deprecated
+    @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:interaction:")
+    public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange, UITextItemInteraction interaction) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithURL:inRange:interaction:
+     */
+    @Deprecated
+    @NotImplemented("textView:shouldInteractWithURL:inRange:")
+    public boolean shouldInteractWithURL(UITextView textView, NSURL URL, @ByVal NSRange characterRange) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 10.0. Use textView:shouldInteractWithTextAttachment:inRange:interaction:
+     */
+    @Deprecated
+    @NotImplemented("textView:shouldInteractWithTextAttachment:inRange:")
+    public boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange) { return false; }
     /*</methods>*/
 }

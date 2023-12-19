@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,16 @@ import org.robovm.apple.linkpresentation.*;
     void increment();
     @Method(selector = "accessibilityDecrement")
     void decrement();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "accessibilityZoomInAtPoint:")
+    boolean zoomInAtPoint(@ByVal CGPoint point);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "accessibilityZoomOutAtPoint:")
+    boolean zoomOutAtPoint(@ByVal CGPoint point);
     @Method(selector = "accessibilityScroll:")
     boolean scroll(UIAccessibilityScrollDirection direction);
     @Method(selector = "accessibilityPerformEscape")

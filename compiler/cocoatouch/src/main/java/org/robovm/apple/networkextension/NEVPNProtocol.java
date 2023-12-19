@@ -116,6 +116,26 @@ import org.robovm.apple.network.*;
     @Property(selector = "setExcludeLocalNetworks:")
     public native void setExcludeLocalNetworks(boolean v);
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "excludeCellularServices")
+    public native boolean isExcludeCellularServices();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setExcludeCellularServices:")
+    public native void setExcludeCellularServices(boolean v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "excludeAPNs")
+    public native boolean isExcludeAPNs();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setExcludeAPNs:")
+    public native void setExcludeAPNs(boolean v);
+    /**
      * @since Available in iOS 14.2 and later.
      */
     @Property(selector = "enforceRoutes")

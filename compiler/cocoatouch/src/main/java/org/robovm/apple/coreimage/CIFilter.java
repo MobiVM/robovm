@@ -203,14 +203,26 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "localizedReferenceDocumentationForFilterName:")
     public static native NSURL localizedReferenceDocumentationForFilterName(String filterName);
+    /**
+     * @deprecated Deprecated in iOS 17.0.
+     */
+    @Deprecated
     @Method(selector = "serializedXMPFromFilters:inputImageExtent:")
     public static native NSData serializeToXMP(NSArray<CIFilter> filters, @ByVal CGRect extent);
+    /**
+     * @deprecated Deprecated in iOS 17.0.
+     */
+    @Deprecated
     public static NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSArray<CIFilter> result = deserializeFromXMP(xmpData, extent, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 17.0.
+     */
+    @Deprecated
     @Method(selector = "filterArrayFromSerializedXMP:inputImageExtent:error:")
     private static native NSArray<CIFilter> deserializeFromXMP(NSData xmpData, @ByVal CGRect extent, NSError.NSErrorPtr outError);
     /**

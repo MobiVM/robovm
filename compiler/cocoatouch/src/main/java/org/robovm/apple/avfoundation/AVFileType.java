@@ -142,6 +142,10 @@ import org.robovm.apple.uikit.*;
      */
     public static final AVFileType TIFF = new AVFileType("TIFF");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVFileType AHAP = new AVFileType("AHAP");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVFileType StreamingKeyDeliveryContentKey = new AVFileType("StreamingKeyDeliveryContentKey");
@@ -159,7 +163,7 @@ import org.robovm.apple.uikit.*;
     public static final AVFileType ProfileMPEG4CMAFCompliant = new AVFileType("ProfileMPEG4CMAFCompliant");
     /*</constants>*/
     
-    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
+    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, AHAP, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
     
     /*<name>*/AVFileType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -245,6 +249,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVFileTypeTIFF", optional=true)
         public static native NSString TIFF();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeAHAP", optional=true)
+        public static native NSString AHAP();
         /**
          * @since Available in iOS 9.0 and later.
          */

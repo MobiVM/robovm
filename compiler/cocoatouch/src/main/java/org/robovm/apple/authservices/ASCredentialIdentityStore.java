@@ -59,13 +59,43 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "getCredentialIdentityStoreStateWithCompletion:")
     public native void getCredentialIdentityStoreState(@Block VoidBlock1<ASCredentialIdentityStoreState> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use saveCredentialIdentityEntries:completion:
+     */
+    @Deprecated
     @Method(selector = "saveCredentialIdentities:completion:")
     public native void saveCredentialIdentities(NSArray<ASPasswordCredentialIdentity> credentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "saveCredentialIdentityEntries:completion:")
+    public native void saveCredentialIdentityEntries(NSArray<?> credentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use removeCredentialIdentityEntries:completion:
+     */
+    @Deprecated
     @Method(selector = "removeCredentialIdentities:completion:")
     public native void removeCredentialIdentities(NSArray<ASPasswordCredentialIdentity> credentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "removeCredentialIdentityEntries:completion:")
+    public native void removeCredentialIdentityEntries(NSArray<?> credentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "removeAllCredentialIdentitiesWithCompletion:")
     public native void removeAllCredentialIdentities(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use replaceCredentialIdentityEntries:completion:
+     */
+    @Deprecated
     @Method(selector = "replaceCredentialIdentitiesWithIdentities:completion:")
     public native void replaceCredentialIdentities(NSArray<ASPasswordCredentialIdentity> newCredentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "replaceCredentialIdentityEntries:completion:")
+    public native void replaceCredentialIdentityEntries(NSArray<?> newCredentialIdentities, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

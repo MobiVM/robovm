@@ -53,7 +53,8 @@ public enum /*<name>*/AVSpeechSynthesisMarkerMark/*</name>*/ implements ValuedEn
     Phoneme(0L),
     Word(1L),
     Sentence(2L),
-    Paragraph(3L);
+    Paragraph(3L),
+    Bookmark(4L);
     /*</values>*/
 
     /*<bind>*/

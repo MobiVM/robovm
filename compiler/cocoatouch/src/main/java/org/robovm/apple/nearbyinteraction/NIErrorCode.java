@@ -50,7 +50,15 @@ public enum /*<name>*/NIErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    AccessoryPeerDeviceUnavailable(-5882L);
+    AccessoryPeerDeviceUnavailable(-5882L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    IncompatiblePeerDevice(-5881L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ActiveExtendedDistanceSessionsLimitExceeded(-5880L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NIErrorCode.class); }/*</bind>*/

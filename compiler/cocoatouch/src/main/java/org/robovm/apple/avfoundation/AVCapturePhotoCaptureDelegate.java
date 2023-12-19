@@ -72,6 +72,11 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "captureOutput:didFinishProcessingPhoto:error:")
     void didFinishProcessingPhoto(AVCapturePhotoOutput output, AVCapturePhoto photo, NSError error);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "captureOutput:didFinishCapturingDeferredPhotoProxy:error:")
+    void didFinishCapturingDeferredPhotoProxy(AVCapturePhotoOutput output, AVCaptureDeferredPhotoProxy deferredPhotoProxy, NSError error);
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -captureOutput:didFinishProcessingPhoto:error:
      */

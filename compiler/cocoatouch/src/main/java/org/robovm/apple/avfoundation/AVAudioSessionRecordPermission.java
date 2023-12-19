@@ -48,8 +48,20 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVAudioSessionRecordPermission/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionUndetermined
+     */
+    @Deprecated
     Undetermined(1970168948L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionDenied
+     */
+    @Deprecated
     Denied(1684369017L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionGranted
+     */
+    @Deprecated
     Granted(1735552628L);
     /*</values>*/
 

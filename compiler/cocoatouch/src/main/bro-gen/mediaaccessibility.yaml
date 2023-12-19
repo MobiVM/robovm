@@ -1,0 +1,85 @@
+package: org.robovm.apple.mediaaccessibility
+include: [foundation, corefoundation, coretext, coregraphics, iosurface, ]
+library: MediaAccessibility
+framework: MediaAccessibility
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/MediaAccessibility.framework/Headers/MediaAccessibility.h
+
+private_typedefs:
+    '__CFString *': String
+    '__CFData': NSData
+    '__CFURL': NSURL
+    '__CFDictionary': NSDictionary
+    '__CFArray': NSArray
+    '__CFError': NSError
+enums:
+    MACaptionAppearanceDomain: {prefix: kMACaptionAppearanceDomain} #since 7.0
+    MACaptionAppearanceDisplayType: {prefix: kMACaptionAppearanceDisplayType} #since 7.0
+    MACaptionAppearanceBehavior: {prefix: kMACaptionAppearanceBehaviorUse} #since 7.0
+    MACaptionAppearanceFontStyle: {prefix: kMACaptionAppearanceFontStyle} #since 7.0
+    MACaptionAppearanceTextEdgeStyle: {prefix: kMACaptionAppearanceTextEdgeStyle} #since 7.0
+
+classes:
+    MAFlashingLightsProcessor: #since 17.0
+        methods:
+            '-processSurface:outSurface:timestamp:options:':
+                #trim_after_first_colon: true
+                name: processSurface$outSurface$timestamp$options$
+    MAFlashingLightsProcessorResult: {} #since 17.0
+
+protocols:
+
+functions:
+    MACaptionAppearance(.*):
+        class: MACaptionAppearance
+        name: '#{g[0].downcase_first}'
+    MAImageCaptioning(.*):
+        class: MAImageCaptioning
+        name: '#{g[0].downcase_first}'
+    MADimFlashingLightsEnabled:
+        class: MAVideoAccommodations
+        name: isDimFlashingLightsEnabled
+    MAAudibleMediaCopyPreferredCharacteristics:
+        class: MAAudibleMedia
+        name: copyPreferredCharacteristics
+
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    kMADimFlashingLightsChangedNotification:
+        class: MAVideoAccommodations
+        name: DimFlashingLightsChangedNotification
+        type: NSString
+    kMAAudibleMediaSettingsChangedNotification:
+        class: MAAudibleMedia
+        name: SettingsChangedNotification
+        type: NSString
+    kMACaptionAppearanceSettingsChangedNotification:
+        class: MACaptionAppearance
+        name: SettingsChangedNotification
+        type: NSString
+    MAMediaCharacteristic(DescribesVideoForAccessibility):
+        class: MAAudibleMedia
+        static_class: MediaCharacteristic
+        name: '#{g[0]}'
+    MAMediaCharacteristic(DescribesMusicAndSoundForAccessibility|TranscribesSpokenDialogForAccessibility):
+        class: MACaptionAppearance
+        static_class: MediaCharacteristic
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?LA.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

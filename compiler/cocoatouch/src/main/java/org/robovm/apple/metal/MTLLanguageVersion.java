@@ -76,7 +76,11 @@ public enum /*<name>*/MTLLanguageVersion/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    Version3_0(196608L);
+    Version3_0(196608L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Version3_1(196609L);
     /*</values>*/
 
     /*<bind>*/

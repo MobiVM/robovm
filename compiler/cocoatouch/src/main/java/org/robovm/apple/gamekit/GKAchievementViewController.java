@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 7.0. Use GKGameCenterViewController instead
+ * @deprecated Deprecated in iOS 7.0. Use GKGameCenterViewController
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/

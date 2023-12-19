@@ -60,6 +60,11 @@ import org.robovm.apple.corehaptic.*;
     double getLastDeltaTimestamp();
     @Property(selector = "lastDeltaLatency")
     double getLastDeltaLatency();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "sources")
+    NSSet<?> getSources();
     /*</properties>*/
     /*<methods>*/
     

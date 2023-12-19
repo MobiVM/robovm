@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,6 +95,22 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 14.0 and later.
      */
     public UITraitCollection(UIUserInterfaceActiveAppearance userInterfaceActiveAppearance) { super((Handle) null, create(userInterfaceActiveAppearance)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UITraitCollection(UIImageDynamicRange imageDynamicRange) { super((Handle) null, create(imageDynamicRange)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UITraitCollection(String language) { super((Handle) null, create(language)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UITraitCollection(UISceneCaptureState sceneCaptureState) { super((Handle) null, create(sceneCaptureState)); retain(getHandle()); }
+    public UITraitCollection(@Block VoidBlock1<UIMutableTraits> mutations) { super((Handle) null, create(mutations)); retain(getHandle()); }
+    public UITraitCollection(@MachineSizedFloat double value, Class<?> trait) { super((Handle) null, create(value, trait)); retain(getHandle()); }
+    public UITraitCollection(@MachineSizedSInt long value, Class<?> trait) { super((Handle) null, create(value, trait)); retain(getHandle()); }
+    public UITraitCollection(NSObject object, Class<?> trait) { super((Handle) null, create(object, trait)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "userInterfaceIdiom")
@@ -152,6 +169,21 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "toolbarItemPresentationSize")
     public native UINSToolbarItemPresentationSize getToolbarItemPresentationSize();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "imageDynamicRange")
+    public native UIImageDynamicRange getImageDynamicRange();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "typesettingLanguage")
+    public native String getTypesettingLanguage();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "sceneCaptureState")
+    public native UISceneCaptureState getSceneCaptureState();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "currentTraitCollection")
@@ -173,8 +205,16 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Compare values for specific traits in the trait collections instead
+     */
+    @Deprecated
     @Method(selector = "containsTraitsInCollection:")
     public native boolean containsTraits(UITraitCollection trait);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use +[UITraitCollection traitCollectionWithTraits:] and -[UITraitCollection traitCollectionByModifyingTraits:] to create and modify trait collections
+     */
+    @Deprecated
     @Method(selector = "traitCollectionWithTraitsFromCollections:")
     public static native UITraitCollection createWithTraits(NSArray<UITraitCollection> traitCollections);
     @Method(selector = "traitCollectionWithUserInterfaceIdiom:")
@@ -232,6 +272,43 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(UIUserInterfaceActiveAppearance userInterfaceActiveAppearance);
     @Method(selector = "traitCollectionWithToolbarItemPresentationSize:")
     public static native UITraitCollection createWithToolbarItemPresentationSize(UINSToolbarItemPresentationSize toolbarItemPresentationSize);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "traitCollectionWithImageDynamicRange:")
+    protected static native @Pointer long create(UIImageDynamicRange imageDynamicRange);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "traitCollectionWithTypesettingLanguage:")
+    protected static native @Pointer long create(String language);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "traitCollectionWithSceneCaptureState:")
+    protected static native @Pointer long create(UISceneCaptureState sceneCaptureState);
+    @Method(selector = "traitCollectionByModifyingTraits:")
+    public native UITraitCollection traitCollectionByModifyingTraits(@Block VoidBlock1<UIMutableTraits> mutations);
+    @Method(selector = "traitCollectionByReplacingCGFloatValue:forTrait:")
+    public native UITraitCollection traitCollectionByReplacing(@MachineSizedFloat double value, Class<?> trait);
+    @Method(selector = "valueForCGFloatTrait:")
+    public native @MachineSizedFloat double valueForCGFloatTrait(Class<?> trait);
+    @Method(selector = "traitCollectionByReplacingNSIntegerValue:forTrait:")
+    public native UITraitCollection traitCollectionByReplacing(@MachineSizedSInt long value, Class<?> trait);
+    @Method(selector = "valueForNSIntegerTrait:")
+    public native @MachineSizedSInt long valueForNSIntegerTrait(Class<?> trait);
+    @Method(selector = "traitCollectionByReplacingObject:forTrait:")
+    public native UITraitCollection traitCollectionByReplacing(NSObject object, Class<?> trait);
+    @Method(selector = "objectForTrait:")
+    public native NSObject objectForTrait(Class<?> trait);
+    @Method(selector = "traitCollectionWithTraits:")
+    protected static native @Pointer long create(@Block VoidBlock1<UIMutableTraits> mutations);
+    @Method(selector = "traitCollectionWithCGFloatValue:forTrait:")
+    protected static native @Pointer long create(@MachineSizedFloat double value, Class<?> trait);
+    @Method(selector = "traitCollectionWithNSIntegerValue:forTrait:")
+    protected static native @Pointer long create(@MachineSizedSInt long value, Class<?> trait);
+    @Method(selector = "traitCollectionWithObject:forTrait:")
+    protected static native @Pointer long create(NSObject object, Class<?> trait);
     /**
      * @since Available in iOS 13.0 and later.
      */

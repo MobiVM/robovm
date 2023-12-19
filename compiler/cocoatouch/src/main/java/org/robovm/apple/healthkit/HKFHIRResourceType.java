@@ -101,6 +101,14 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKFHIRResourceType Coverage = new HKFHIRResourceType("Coverage");
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final HKFHIRResourceType DiagnosticReport = new HKFHIRResourceType("DiagnosticReport");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final HKFHIRResourceType DocumentReference = new HKFHIRResourceType("DocumentReference");
+    /**
      * @since Available in iOS 12.0 and later.
      */
     public static final HKFHIRResourceType Immunization = new HKFHIRResourceType("Immunization");
@@ -130,7 +138,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKFHIRResourceType Procedure = new HKFHIRResourceType("Procedure");
     /*</constants>*/
     
-    private static /*<name>*/HKFHIRResourceType/*</name>*/[] values = new /*<name>*/HKFHIRResourceType/*</name>*/[] {/*<value_list>*/AllergyIntolerance, Condition, Coverage, Immunization, MedicationDispense, MedicationOrder, MedicationRequest, MedicationStatement, Observation, Procedure/*</value_list>*/};
+    private static /*<name>*/HKFHIRResourceType/*</name>*/[] values = new /*<name>*/HKFHIRResourceType/*</name>*/[] {/*<value_list>*/AllergyIntolerance, Condition, Coverage, DiagnosticReport, DocumentReference, Immunization, MedicationDispense, MedicationOrder, MedicationRequest, MedicationStatement, Observation, Procedure/*</value_list>*/};
     
     /*<name>*/HKFHIRResourceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -168,6 +176,16 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKFHIRResourceTypeCoverage", optional=true)
         public static native NSString Coverage();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="HKFHIRResourceTypeDiagnosticReport", optional=true)
+        public static native NSString DiagnosticReport();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="HKFHIRResourceTypeDocumentReference", optional=true)
+        public static native NSString DocumentReference();
         /**
          * @since Available in iOS 12.0 and later.
          */

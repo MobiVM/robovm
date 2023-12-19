@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,11 +65,35 @@ import org.robovm.apple.imageio.*;
     public native void setAdjustmentData(PHAdjustmentData v);
     @Property(selector = "renderedContentURL")
     public native NSURL getRenderedContentURL();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "defaultRenderedContentType")
+    public native UTType getDefaultRenderedContentType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportedRenderedContentTypes")
+    public native NSArray<UTType> getSupportedRenderedContentTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithContentEditingInput:")
     protected native @Pointer long init(PHContentEditingInput contentEditingInput);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public NSURL renderedContentURL(UTType type) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSURL result = renderedContentURL(type, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "renderedContentURLForType:error:")
+    private native NSURL renderedContentURL(UTType type, NSError.NSErrorPtr error);
     @Method(selector = "initWithPlaceholderForCreatedAsset:")
     protected native @Pointer long init(PHObjectPlaceholder placeholderForCreatedAsset);
     /*</methods>*/

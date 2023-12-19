@@ -44,7 +44,7 @@ import org.robovm.apple.corevideo.*;
 /*<annotations>*/@Library("QuartzCore") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CAEDRMetadata/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CAEDRMetadataPtr extends Ptr<CAEDRMetadata, CAEDRMetadataPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CAEDRMetadata.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.corevideo.*;
     protected CAEDRMetadata() {}
     protected CAEDRMetadata(Handle h, long handle) { super(h, handle); }
     protected CAEDRMetadata(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public CAEDRMetadata(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "HLGMetadata")
@@ -62,6 +64,8 @@ import org.robovm.apple.corevideo.*;
      */
     @Property(selector = "isAvailable")
     public static native boolean isAvailable();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,5 +73,14 @@ import org.robovm.apple.corevideo.*;
     public static native CAEDRMetadata createHDR10Metadata(NSData displayData, NSData contentData, float scale);
     @Method(selector = "HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:")
     public static native CAEDRMetadata createHDR10Metadata(float minNits, float maxNits, float scale);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "HLGMetadataWithAmbientViewingEnvironment:")
+    public static native CAEDRMetadata createHLGMetadata(NSData data);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

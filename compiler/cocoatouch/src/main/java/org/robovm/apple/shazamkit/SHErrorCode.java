@@ -48,7 +48,11 @@ public enum /*<name>*/SHErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    InternalError(500L);
+    InternalError(500L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    MediaItemFetchFailed(600L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SHErrorCode.class); }/*</bind>*/

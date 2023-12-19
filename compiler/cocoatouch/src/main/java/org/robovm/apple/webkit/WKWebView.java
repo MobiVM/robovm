@@ -199,6 +199,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "findInteraction")
     public native UIFindInteraction getFindInteraction();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "isInspectable")
+    public native boolean isInspectable();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setInspectable:")
+    public native void setInspectable(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

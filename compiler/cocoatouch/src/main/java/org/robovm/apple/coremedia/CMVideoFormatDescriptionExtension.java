@@ -414,6 +414,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMFormatDescriptionExtension_ContentLightLevelInfo", optional=true)
         public static native CFString ContentLightLevelInfo();
         /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ContentColorVolume", optional=true)
+        public static native CFString ContentColorVolume();
+        /**
          * @since Available in iOS 12.0 and later.
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_AlternativeTransferCharacteristics", optional=true)
@@ -443,6 +448,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_HorizontalFieldOfView", optional=true)
         public static native CFString HorizontalFieldOfView();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_StereoCameraBaseline", optional=true)
+        public static native CFString StereoCameraBaseline();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HorizontalDisparityAdjustment", optional=true)
+        public static native CFString HorizontalDisparityAdjustment();
         /**
          * @since Available in iOS 15.0 and later.
          */

@@ -47,12 +47,12 @@ import org.robovm.apple.corehaptic.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("sfSymbolsName")
-    public String getSfSymbolsName() { return null; }
-    @NotImplemented("localizedName")
-    public String getLocalizedName() { return null; }
     @NotImplemented("aliases")
     public NSSet<NSString> getAliases() { return null; }
+    @NotImplemented("localizedName")
+    public String getLocalizedName() { return null; }
+    @NotImplemented("sfSymbolsName")
+    public String getSfSymbolsName() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

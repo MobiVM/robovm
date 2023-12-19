@@ -56,6 +56,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> getAllowedCredentials();
     @Property(selector = "setAllowedCredentials:")
     public native void setAllowedCredentials(NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "largeBlob")
+    public native ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput getLargeBlob();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setLargeBlob:")
+    public native void setLargeBlob(ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput v);
     @Property(selector = "challenge")
     public native NSData getChallenge();
     @Property(selector = "setChallenge:")

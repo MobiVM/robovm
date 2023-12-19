@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWindowScene/*</name>*/ 
     extends /*<extends>*/UIScene/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UITraitEnvironment, UITraitChangeObservable/*</implements>*/ {
 
     /*<ptr>*/public static class UIWindowScenePtr extends Ptr<UIWindowScene, UIWindowScenePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIWindowScene.class); }/*</bind>*/
@@ -104,6 +105,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UISceneWindowingBehaviors getWindowingBehaviors();
     @Property(selector = "isFullScreen")
     public native boolean isFullScreen();
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -124,5 +127,13 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "requestGeometryUpdateWithPreferences:errorHandler:")
     public native void requestGeometryUpdate(UIWindowSceneGeometryPreferences geometryPreferences, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
+    @Method(selector = "traitCollectionDidChange:")
+    public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
     /*</methods>*/
 }

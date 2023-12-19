@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,6 +119,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> getTitleTextAttributesTransformer();
     @Property(selector = "setTitleTextAttributesTransformer:")
     public native void setTitleTextAttributesTransformer(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> v);
+    @Property(selector = "titleLineBreakMode")
+    public native NSLineBreakMode getTitleLineBreakMode();
+    @Property(selector = "setTitleLineBreakMode:")
+    public native void setTitleLineBreakMode(NSLineBreakMode v);
     @Property(selector = "subtitle")
     public native String getSubtitle();
     @Property(selector = "setSubtitle:")
@@ -130,6 +135,10 @@ import org.robovm.apple.linkpresentation.*;
     public native @Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> getSubtitleTextAttributesTransformer();
     @Property(selector = "setSubtitleTextAttributesTransformer:")
     public native void setSubtitleTextAttributesTransformer(@Block Block1<NSDictionary<NSString, ?>, NSDictionary<NSString, ?>> v);
+    @Property(selector = "subtitleLineBreakMode")
+    public native NSLineBreakMode getSubtitleLineBreakMode();
+    @Property(selector = "setSubtitleLineBreakMode:")
+    public native void setSubtitleLineBreakMode(NSLineBreakMode v);
     /**
      * @since Available in iOS 16.0 and later.
      */

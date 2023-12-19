@@ -53,7 +53,15 @@ public enum /*<name>*/MPSGraphResizeNearestRoundingMode/*</name>*/ implements Va
     /**
      * @since Available in iOS 16.0 and later.
      */
-    Floor(3L);
+    Floor(3L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    RoundToEven(4L),
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    RoundToOdd(5L);
     /*</values>*/
 
     /*<bind>*/

@@ -55,6 +55,10 @@ public enum /*<name>*/AVCaptureVideoStabilizationMode/*</name>*/ implements Valu
      * @since Available in iOS 13.0 and later.
      */
     CinematicExtended(3L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    PreviewOptimized(4L),
     Auto(-1L);
     /*</values>*/
 

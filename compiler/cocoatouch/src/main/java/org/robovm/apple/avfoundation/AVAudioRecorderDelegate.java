@@ -63,13 +63,13 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "audioRecorderEncodeErrorDidOccur:error:")
     void encodeErrorDidOccur(AVAudioRecorder recorder, NSError error);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Deprecated - use AVAudioSession instead
      */
     @Deprecated
     @Method(selector = "audioRecorderBeginInterruption:")
     void beginInterruption(AVAudioRecorder recorder);
     /**
-     * @deprecated Deprecated in iOS 8.0.
+     * @deprecated Deprecated in iOS 8.0. Deprecated - use AVAudioSession instead
      */
     @Deprecated
     @Method(selector = "audioRecorderEndInterruption:withOptions:")

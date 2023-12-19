@@ -47,6 +47,7 @@ public enum /*<name>*/MTLGPUFamily/*</name>*/ implements ValuedEnum {
     Apple6(1006L),
     Apple7(1007L),
     Apple8(1008L),
+    Apple9(1009L),
     /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 16.0. Use MTLGPUFamilyMac2

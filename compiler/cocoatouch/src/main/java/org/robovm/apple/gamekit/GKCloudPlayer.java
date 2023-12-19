@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0. GKGameSession is deprecated. Use GKPlayer for both real-time and turn-based matchmaking APIs.
+ * @deprecated Deprecated in iOS 12.0. Use GKPlayer
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/

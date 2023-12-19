@@ -44,7 +44,8 @@ public enum /*<name>*/CLLocationPushServiceError/*</name>*/ implements NSErrorCo
     Unknown(0L),
     MissingPushExtension(1L),
     MissingPushServerEnvironment(2L),
-    MissingEntitlement(3L);
+    MissingEntitlement(3L),
+    UnsupportedPlatform(4L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CLLocationPushServiceError.class); }/*</bind>*/

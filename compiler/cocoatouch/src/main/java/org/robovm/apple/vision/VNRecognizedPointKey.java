@@ -227,7 +227,12 @@ import org.robovm.apple.imageio.*;
     }
     
     /*<methods>*//*</methods>*/
-    
+
+    // dkimitsa: manually added code to support subclasses
+    protected VNRecognizedPointKey (Class<?> clazz, String getterName) {
+        super(clazz, getterName);
+    }
+
     /*<annotations>*/@Library("Vision") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }

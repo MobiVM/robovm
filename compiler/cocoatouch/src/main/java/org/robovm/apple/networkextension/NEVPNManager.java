@@ -76,13 +76,13 @@ import org.robovm.apple.network.*;
     @Property(selector = "setLocalizedDescription:")
     public native void setLocalizedDescription(String v);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration
      */
     @Deprecated
     @Property(selector = "protocol")
     public native NEVPNProtocol getProtocol();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration
      */
     @Deprecated
     @Property(selector = "setProtocol:")

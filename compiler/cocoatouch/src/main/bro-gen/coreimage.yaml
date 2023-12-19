@@ -121,6 +121,10 @@ classes:
                 name: getHEIF10Representation
             '-writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:':
                 name: writeHEIF10Representation
+            '-OpenEXRRepresentationOfImage:options:error:':
+                name: getOpenEXRRepresentation
+            '-writeOpenEXRRepresentationOfImage:toURL:options:error:':
+                name: writeOpenEXRRepresentation
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -336,6 +340,8 @@ classes:
                 trim_after_first_colon: true
             '+applyWithExtent:inputs:arguments:error:':
                 name: apply
+            '+roiTileArrayForInput:arguments:outputRect:':
+                name: roiTileArrayForInput
     CIPDF417CodeDescriptor: #since 11.0
         methods:
             '-initWithPayload:isCompact:rowCount:columnCount:':

@@ -52,7 +52,11 @@ public enum /*<name>*/INStartCallContactUnsupportedReason/*</name>*/ implements 
      */
     @Deprecated
     NoCallHistoryForRedial(6L),
-    NoUsableHandleForRedial(7L);
+    NoUsableHandleForRedial(7L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    RequiringInAppAuthentication(8L);
     /*</values>*/
 
     /*<bind>*/

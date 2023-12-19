@@ -105,6 +105,41 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setMaxPhotoQualityPrioritization:")
     public native void setMaxPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isFastCapturePrioritizationSupported")
+    public native boolean isFastCapturePrioritizationSupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setFastCapturePrioritizationSupported:")
+    public native void setFastCapturePrioritizationSupported(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isFastCapturePrioritizationEnabled")
+    public native boolean isFastCapturePrioritizationEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setFastCapturePrioritizationEnabled:")
+    public native void setFastCapturePrioritizationEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isAutoDeferredPhotoDeliverySupported")
+    public native boolean isAutoDeferredPhotoDeliverySupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isAutoDeferredPhotoDeliveryEnabled")
+    public native boolean isAutoDeferredPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAutoDeferredPhotoDeliveryEnabled:")
+    public native void setAutoDeferredPhotoDeliveryEnabled(boolean v);
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use maxPhotoQualityPrioritization
      */
@@ -256,6 +291,41 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setContentAwareDistortionCorrectionEnabled:")
     public native void setContentAwareDistortionCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isZeroShutterLagSupported")
+    public native boolean isZeroShutterLagSupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isZeroShutterLagEnabled")
+    public native boolean isZeroShutterLagEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setZeroShutterLagEnabled:")
+    public native void setZeroShutterLagEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isResponsiveCaptureSupported")
+    public native boolean isResponsiveCaptureSupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isResponsiveCaptureEnabled")
+    public native boolean isResponsiveCaptureEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setResponsiveCaptureEnabled:")
+    public native void setResponsiveCaptureEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "captureReadiness")
+    public native AVCapturePhotoOutputCaptureReadiness getCaptureReadiness();
     /**
      * @since Available in iOS 11.0 and later.
      */

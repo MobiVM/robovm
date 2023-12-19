@@ -97,6 +97,16 @@ import org.robovm.apple.coremedia.*;
      */
     @Property(selector = "setAddsPunctuation:")
     public native void setAddsPunctuation(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "customizedLanguageModel")
+    public native SFSpeechLanguageModelConfiguration getCustomizedLanguageModel();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setCustomizedLanguageModel:")
+    public native void setCustomizedLanguageModel(SFSpeechLanguageModelConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

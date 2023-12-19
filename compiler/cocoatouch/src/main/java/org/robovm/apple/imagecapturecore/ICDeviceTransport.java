@@ -67,5 +67,10 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="ICTransportTypeTCPIP", optional=true)
     public static native NSString TCPIP();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="ICTransportTypeProximity", optional=true)
+    public static native NSString Proximity();
     /*</methods>*/
 }

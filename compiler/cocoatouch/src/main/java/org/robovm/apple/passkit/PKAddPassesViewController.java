@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     public PKAddPassesViewController(PKPass pass) { super((SkipInit) null); initObject(init(pass)); }
     @Method(selector = "initWithPasses:")
     public PKAddPassesViewController(NSArray<PKPass> passes) { super((SkipInit) null); initObject(init(passes)); }
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithIssuerData:signature:error:")
+    public PKAddPassesViewController(NSData issuerData, NSData signature, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(issuerData, signature, error)); }
     @Method(selector = "initWithNibName:bundle:")
     public PKAddPassesViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
@@ -71,6 +76,11 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(PKPass pass);
     @Method(selector = "initWithPasses:")
     protected native @Pointer long init(NSArray<PKPass> passes);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithIssuerData:signature:error:")
+    protected native @Pointer long init(NSData issuerData, NSData signature, NSError.NSErrorPtr error);
     @Method(selector = "canAddPasses")
     public static native boolean canAddPasses();
     /*</methods>*/

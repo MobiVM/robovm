@@ -82,49 +82,49 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setGameCenterDelegate:", strongRef = true)
     public native void setGameCenterDelegate(GKGameCenterControllerDelegate v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithState: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithState:
      */
     @Deprecated
     @Property(selector = "viewState")
     public native GKGameCenterViewControllerState getViewState();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithState: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithState:
      */
     @Deprecated
     @Property(selector = "setViewState:")
     public native void setViewState(GKGameCenterViewControllerState v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "leaderboardTimeScope")
     public native GKLeaderboardTimeScope getLeaderboardTimeScope();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "setLeaderboardTimeScope:")
     public native void setLeaderboardTimeScope(GKLeaderboardTimeScope v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "leaderboardIdentifier")
     public native String getLeaderboardIdentifier();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 14.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "setLeaderboardIdentifier:")
     public native void setLeaderboardIdentifier(String v);
     /**
-     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 7.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "leaderboardCategory")
     public native String getLeaderboardCategory();
     /**
-     * @deprecated Deprecated in iOS 7.0. GKGameCenterViewController's leaderboardCategory property is deprecated. Use -initWithLeaderboard: instead
+     * @deprecated Deprecated in iOS 7.0. Use -initWithLeaderboard:
      */
     @Deprecated
     @Property(selector = "setLeaderboardCategory:")

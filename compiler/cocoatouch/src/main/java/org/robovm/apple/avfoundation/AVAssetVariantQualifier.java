@@ -73,6 +73,21 @@ import org.robovm.apple.uikit.*;
     protected static native @Pointer long create(AVAssetVariant variant);
     @Method(selector = "predicateForChannelCount:mediaSelectionOption:operatorType:")
     public static native NSPredicate predicateForChannelCount(@MachineSizedSInt long channelCount, AVMediaSelectionOption mediaSelectionOption, NSPredicateOperatorType operatorType);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "predicateForBinauralAudio:mediaSelectionOption:")
+    public static native NSPredicate predicateForBinauralAudio(boolean isBinauralAudio, AVMediaSelectionOption mediaSelectionOption);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "predicateForImmersiveAudio:mediaSelectionOption:")
+    public static native NSPredicate predicateForImmersiveAudio(boolean isImmersiveAudio, AVMediaSelectionOption mediaSelectionOption);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "predicateForDownmixAudio:mediaSelectionOption:")
+    public static native NSPredicate predicateForDownmixAudio(boolean isDownmixAudio, AVMediaSelectionOption mediaSelectionOption);
     @Method(selector = "predicateForPresentationWidth:operatorType:")
     public static native NSPredicate predicateForPresentationWidth(@MachineSizedFloat double width, NSPredicateOperatorType operatorType);
     @Method(selector = "predicateForPresentationHeight:operatorType:")

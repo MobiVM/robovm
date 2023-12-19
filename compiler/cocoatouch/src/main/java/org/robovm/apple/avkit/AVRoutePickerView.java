@@ -64,8 +64,14 @@ import org.robovm.apple.avrouting.*;
     public native AVRoutePickerViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(AVRoutePickerViewDelegate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "activeTintColor")
     public native UIColor getActiveTintColor();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setActiveTintColor:")
     public native void setActiveTintColor(UIColor v);
     /**

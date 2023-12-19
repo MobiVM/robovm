@@ -52,6 +52,11 @@ import org.robovm.apple.dispatch.*;
     boolean supportsDirectionMeasurement();
     @Property(selector = "supportsCameraAssistance")
     boolean supportsCameraAssistance();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportsExtendedDistanceMeasurement")
+    boolean supportsExtendedDistanceMeasurement();
     /*</properties>*/
     /*<methods>*/
     

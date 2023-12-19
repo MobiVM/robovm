@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification, UILargeContentViewerItem, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UITraitChangeObservable, UIAccessibilityIdentification, UILargeContentViewerItem, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
@@ -430,6 +431,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "appliedContentSizeCategoryLimitsDescription")
     public native String getAppliedContentSizeCategoryLimitsDescription();
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -500,6 +503,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setLargeContentImageInsets:")
     public native void setLargeContentImageInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "hoverStyle")
+    public native UIHoverStyle getHoverStyle();
+    @Property(selector = "setHoverStyle:")
+    public native void setHoverStyle(UIHoverStyle v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -641,6 +648,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native void animate(double duration, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "animateWithDuration:animations:")
     public static native void animate(double duration, @Block Runnable animations);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:")
+    public static native void animateWithSpring(double duration, @MachineSizedFloat double bounce, @MachineSizedFloat double velocity, double delay, UIViewAnimationOptions options, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:")
     public static native void animate(double duration, double delay, @MachineSizedFloat double dampingRatio, @MachineSizedFloat double velocity, UIViewAnimationOptions options, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "transitionWithView:duration:options:animations:completion:")
@@ -810,6 +822,8 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Method(selector = "setAnimationTransition:forView:cache:")
     public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
+    @Method(selector = "updateTraitsIfNeeded")
+    public native void updateTraitsIfNeeded();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -828,6 +842,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void draw(@ByVal CGRect rect, UIViewPrintFormatter formatter);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     @Method(selector = "convertPoint:toCoordinateSpace:")
@@ -866,5 +884,12 @@ import org.robovm.apple.linkpresentation.*;
     public native void layoutSublayers(CALayer layer);
     @Method(selector = "actionForLayer:forKey:")
     public native CAAction getAction(CALayer layer, String event);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "frameInView:")
+    public native @ByVal CGRect frameInView(UIView referenceView);
     /*</methods>*/
 }

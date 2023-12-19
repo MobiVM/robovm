@@ -771,6 +771,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="UTTypeLog", optional=true)
         public static native UTType Log();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeAHAP", optional=true)
+        public static native UTType AHAP();
     }
 
     @Library("UniformTypeIdentifiers")

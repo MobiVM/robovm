@@ -54,6 +54,7 @@ public enum /*<name>*/AudioFileErrorCode/*</name>*/ implements ValuedEnum {
     InvalidPacketDependency(1684369471L),
     InvalidFile(1685348671L),
     OperationNotSupported(1869627199L),
+    OpenUsingHint(1752069183L),
     NotOpen(-38L),
     EndOfFile(-39L),
     Position(-40L),

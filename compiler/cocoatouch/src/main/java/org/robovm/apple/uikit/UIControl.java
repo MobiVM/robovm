@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -140,6 +141,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "toolTipInteraction")
     public native UIToolTipInteraction getToolTipInteraction();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isSymbolAnimationEnabled")
+    public native boolean isSymbolAnimationEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSymbolAnimationEnabled:")
+    public native void setSymbolAnimationEnabled(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

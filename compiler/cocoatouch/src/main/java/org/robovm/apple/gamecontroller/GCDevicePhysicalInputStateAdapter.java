@@ -54,19 +54,19 @@ import org.robovm.apple.corehaptic.*;
     @NotImplemented("lastEventLatency")
     public double getLastEventLatency() { return 0; }
     @NotImplemented("elements")
-    public GCPhysicalInputElementCollection getElements() { return null; }
+    public GCPhysicalInputElementCollection<NSString, ?> getElements() { return null; }
     @NotImplemented("buttons")
-    public GCPhysicalInputElementCollection getButtons() { return null; }
+    public GCPhysicalInputElementCollection<NSString, ?> getButtons() { return null; }
     @NotImplemented("axes")
-    public GCPhysicalInputElementCollection getAxes() { return null; }
+    public GCPhysicalInputElementCollection<NSString, ?> getAxes() { return null; }
     @NotImplemented("switches")
-    public GCPhysicalInputElementCollection getSwitches() { return null; }
+    public GCPhysicalInputElementCollection<NSString, ?> getSwitches() { return null; }
     @NotImplemented("dpads")
-    public GCPhysicalInputElementCollection getDpads() { return null; }
+    public GCPhysicalInputElementCollection<NSString, ?> getDpads() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("objectForKeyedSubscript:")
-    public GCPhysicalInputElement objectForKeyedSubscript(String key) { return null; }
+    public GCPhysicalInputElement objectForKeyedSubscript(NSString key) { return null; }
     /*</methods>*/
 }

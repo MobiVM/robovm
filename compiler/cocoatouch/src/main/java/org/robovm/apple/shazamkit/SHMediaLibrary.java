@@ -34,9 +34,10 @@ import org.robovm.apple.avfoundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 15.0 and later.
+ * @deprecated Use SHLibrary instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ShazamKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ShazamKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SHMediaLibrary/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

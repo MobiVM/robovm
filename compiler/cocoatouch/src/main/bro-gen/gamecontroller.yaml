@@ -5,6 +5,15 @@ framework: GameController
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/GameController.framework/Headers/GameController.h
+
+private_typedefs:
+    'NSString<GCPhysicalInputElementName> *': NSString
+    'NSString<GCSwitchElementName> *': NSString
+    'NSString<GCDirectionPadElementName> *': NSString
+    'NSString<GCButtonElementName> *': NSString
+    'NSString<GCAxisElementName> *': NSString
+    CGPoint: org.robovm.apple.coregraphics.CGPoint
+
 typedefs:
     'void (^)(GCController *)': '@Block VoidBlock1<GCController>'
     
@@ -18,6 +27,7 @@ enums:
     GCDualSenseAdaptiveTriggerMode: {}
     GCDualSenseAdaptiveTriggerStatus: {}
     GCDevicePhysicalInputElementChange: {prefix: GCDevicePhysicalInputElement}
+    GCPhysicalInputSourceDirection: {}
 classes:
     # Structs
     GCAcceleration: {}
@@ -137,10 +147,23 @@ classes:
                 name: updateConfiguration
             '+virtualControllerWithConfiguration:':
                 name: virtualControllerWithConfiguration$
+            '-setValue:forButtonElement:':
+                name: setValue
+                parameters:
+                    element:
+                        type: NSString
+            '-setPosition:forDirectionPadElement:':
+                name: setPosition
+                parameters:
+                    element:
+                        type: NSString
     GCVirtualControllerConfiguration: {} #since 15.0
     GCVirtualControllerElementConfiguration: {} #since 15.0
     GCGearShifterElement: {}
-    GCPhysicalInputElementCollection: {} #since 16.0
+    GCPhysicalInputElementCollection: #since 16.0
+        template_parameters:
+            Key:
+                type: NSString
     GCRacingWheel:
         methods:
             '-acquireDeviceWithError:':
@@ -149,27 +172,76 @@ classes:
     GCRacingWheelInput: {}
     GCRacingWheelInputState: {}
     GCSteeringWheelElement: {}
+    GCControllerInputState: {} #since 17.0
+    GCControllerLiveInput: {} #since 17.0
 protocols:
     GCDevice: {} #since 14.0
     GCAxisElement: {} #since 16.0
-    GCAxisElementName: {}
-    GCAxisInput: {} #since 16.0
+    GCAxisInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
     GCButtonElement: {} #since 16.0
-    GCButtonElementName: {}
-    GCDevicePhysicalInput: {} #since 16.0
-    GCDevicePhysicalInputState: {} #since 16.0
-    GCDevicePhysicalInputStateDiff: {} #since 16.0
+    GCDevicePhysicalInput: #since 16.0
+        methods:
+            '-nextInputState':
+                return_type: NSObjectProtocol # there are two default wrappers,
+    GCDevicePhysicalInputState: #since 16.0
+        properties:
+            elements:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            buttons:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            axes:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            switches:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            dpads:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+        methods:
+            '-objectForKeyedSubscript:':
+                parameters:
+                    key:
+                        type: NSString
+    GCDevicePhysicalInputStateDiff: #since 16.0
+        methods:
+            '-changedElements':
+                return_type: NSEnumerator<?> # FIXME: once NS collections allows id/protocols
     GCDirectionPadElement: {} #since 16.0
-    GCDirectionPadElementName: {}
-    GCLinearInput: {} #since 16.0
+    GCLinearInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
     GCPhysicalInputElement: {} #since 16.0
-    GCPhysicalInputElementName: {}
-    GCPressedStateInput: {} #since 16.0
-    GCRelativeInput: {} #since 16.0
+    GCPressedStateInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCRelativeInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
     GCSwitchElement: {} #since 16.0
-    GCSwitchElementName: {}
-    GCSwitchPositionInput: {} #since 16.0
-    GCTouchedStateInput: {} #since 16.0
+    GCSwitchPositionInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCTouchedStateInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCPhysicalInputSource: {} #since 17.0
+
+    GCSwitchElementName:
+        exclude: true # used to simulate typed enum
+    GCPhysicalInputElementName:
+        exclude: true # used to simulate typed enum
+    GCDirectionPadElementName:
+        exclude: true # used to simulate typed enum
+    GCButtonElementName:
+        exclude: true # used to simulate typed enum
+    GCAxisElementName:
+        exclude: true # used to simulate typed enum
 
 functions:
     (GCExtendedGamepadSnapShotDataV100FromNSData):
@@ -199,6 +271,10 @@ functions:
     GCMicroGamepadSnapshotDataFromNSData:
         class: GCMicroGamepadSnapshot
         name: getDataFromNSData
+
+    GCInputArcadeButtonName:
+        class: GCPhysicalInputProfile
+        name: getArcadeButtonName
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?GC.*):
@@ -255,11 +331,7 @@ values:
         name: '#{g[0]}'
     GCProductCategory(.*):
         class: GCProductCategory
-        name: '#{g[0]}'
-    GCRacingWheel(.*)Notification:
-        class: GCRacingWheel
         type: NSString
-        static_class: Notifications
         name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version

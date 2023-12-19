@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,35 +58,35 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @NotImplemented("previewingGestureRecognizerForFailureRelationship")
     public UIGestureRecognizer getPreviewingGestureRecognizerForFailureRelationship() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @NotImplemented("delegate")
     public UIViewControllerPreviewingDelegate getDelegate() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @NotImplemented("sourceView")
     public UIView getSourceView() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @NotImplemented("sourceRect")
     public @ByVal CGRect getSourceRect() { return null; }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @NotImplemented("setSourceRect:")

@@ -32,9 +32,11 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 9.0.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/ABPersonImageFormat/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Thumbnail(0L),

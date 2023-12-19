@@ -72,7 +72,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "loadLeaderboardSetsWithCompletionHandler:")
     public static native void loadLeaderboardSets(@Block VoidBlock2<GKLeaderboardSet, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use loadLeaderboardsWithHandler: instead.
+     * @deprecated Deprecated in iOS 14.0. Use -loadLeaderboardsWithHandler:.
      */
     @Deprecated
     @Method(selector = "loadLeaderboardsWithCompletionHandler:")

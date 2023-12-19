@@ -229,6 +229,26 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageSourceSubsampleFactor", optional=true)
         public static native CFString SubsampleFactor();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceDecodeRequest", optional=true)
+        public static native CFString DecodeRequest();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceDecodeToHDR", optional=true)
+        public static native CFString DecodeToHDR();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceDecodeToSDR", optional=true)
+        public static native CFString DecodeToSDR();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceDecodeRequestOptions", optional=true)
+        public static native CFString DecodeRequestOptions();
     }
     /*</keys>*/
 }

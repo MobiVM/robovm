@@ -54,6 +54,10 @@ public final class /*<name>*/AVCaptureSystemPressureFactors/*</name>*/ extends B
     public static final AVCaptureSystemPressureFactors SystemTemperature = new AVCaptureSystemPressureFactors(1L);
     public static final AVCaptureSystemPressureFactors PeakPower = new AVCaptureSystemPressureFactors(2L);
     public static final AVCaptureSystemPressureFactors DepthModuleTemperature = new AVCaptureSystemPressureFactors(4L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVCaptureSystemPressureFactors CameraTemperature = new AVCaptureSystemPressureFactors(8L);
     /*</values>*/
 
     /*<bind>*/
