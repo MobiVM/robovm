@@ -1,4 +1,4 @@
-package org.robovm.compiler.plugin.desugar;
+package org.robovm.compiler.plugin.invokedynamic.stringconcat;
 
 import soot.*;
 import soot.jimple.Jimple;

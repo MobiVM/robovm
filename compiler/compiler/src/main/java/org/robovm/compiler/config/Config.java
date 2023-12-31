@@ -24,17 +24,7 @@ import org.robovm.compiler.*;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.ConfigXmlEntries.AppExtensionsList;
-import org.robovm.compiler.config.ConfigXmlEntries.ClasspathentryList;
-import org.robovm.compiler.config.ConfigXmlEntries.ForceLinkClassesList;
-import org.robovm.compiler.config.ConfigXmlEntries.ForceLinkMethodsList;
-import org.robovm.compiler.config.ConfigXmlEntries.FrameworksList;
-import org.robovm.compiler.config.ConfigXmlEntries.LibsList;
-import org.robovm.compiler.config.ConfigXmlEntries.PathsList;
-import org.robovm.compiler.config.ConfigXmlEntries.PluginArgumentsList;
-import org.robovm.compiler.config.ConfigXmlEntries.ResourcesList;
-import org.robovm.compiler.config.ConfigXmlEntries.RootsList;
-import org.robovm.compiler.config.ConfigXmlEntries.SymbolsList;
+import org.robovm.compiler.config.ConfigXmlEntries.*;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
@@ -43,8 +33,7 @@ import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
-import org.robovm.compiler.plugin.desugar.StringConcatRewriterPlugin;
-import org.robovm.compiler.plugin.lambda.LambdaPlugin;
+import org.robovm.compiler.plugin.invokedynamic.InvokeDynamicCompilerPlugin;
 import org.robovm.compiler.plugin.objc.*;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.Target;
@@ -245,8 +234,7 @@ public class Config {
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
-                new StringConcatRewriterPlugin(),
-                new LambdaPlugin(),
+                new InvokeDynamicCompilerPlugin(),
                 new DebugInformationPlugin(),
                 new DebuggerLaunchPlugin(),
                 new BuildGarbageCollectorPlugin()
