@@ -49,8 +49,17 @@ gradlePlugin {
     website = "https://mobivm.github.io"
     vcsUrl = "https://github.com/MobiVM/robovm"
     plugins {
-        create("RoboVM") {
+        // Users can apply this in plugins block with the marker artifact id.
+        create("robovmNew") {
             id = "com.mobidevelop.robovm"
+            implementationClass = "org.robovm.gradle.RoboVMPlugin"
+            displayName = "RoboVM Gradle Plugin"
+            description = "The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle."
+        }
+
+        // Legacy plugin id, to compat users applying this plugin via buildscript classpath.
+        create("robovmLegacy") {
+            id = "robovm"
             implementationClass = "org.robovm.gradle.RoboVMPlugin"
             displayName = "RoboVM Gradle Plugin"
             description = "The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle."
