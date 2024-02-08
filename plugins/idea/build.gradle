@@ -36,10 +36,12 @@ dependencies {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-console'
     }
     robovm_dist "com.mobidevelop.robovm:robovm-dist:${roboVMVersion}:nocompiler@tar.gz"
+
+    implementation 'org.apache.commons:commons-compress:1.25.0'
 }
 
 intellij {
-    version = '2021.1'   // we are compiles against this API version
+    version = '2022.3'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
 }
