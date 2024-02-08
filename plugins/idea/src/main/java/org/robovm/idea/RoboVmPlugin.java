@@ -42,7 +42,7 @@ import com.intellij.openapi.wm.ex.ToolWindowManagerListener;
 import com.intellij.ui.content.Content;
 import com.intellij.util.PlatformUtils;
 import com.intellij.util.ui.UIUtil;
-import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -325,7 +325,7 @@ public class RoboVmPlugin {
         archive = "/" + archive;
         try (TarArchiveInputStream in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)))) {
             boolean filesWereUpdated = false;
-            ArchiveEntry entry;
+            TarArchiveEntry entry;
             while ((entry = in.getNextEntry()) != null) {
                 File f = new File(dest, entry.getName());
                 if (entry.isDirectory()) {
