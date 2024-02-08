@@ -41,11 +41,10 @@ import java.util.Set;
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String IOS_VERSION_PREFIX = "com.apple.CoreSimulator.SimRuntime.iOS-";
-    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone 8";
+    public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone SE";
     public static final String PREFERRED_IPAD_SIM_NAME = "iPad Air";
 
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
-    public static final Version ONLY_64BIT_IOS_VERSION = new Version(11, 0, 0);
     public static final Version ARM64_IOS_VERSION = new Version(14, 0, 0);
 
     public enum DeviceFamily {
@@ -309,7 +308,7 @@ public class DeviceType implements Comparable<DeviceType> {
                 // match for specified device
                 if (exact == null || (version == null && type.version.versionCode > exact.version.versionCode))
                     exact = type;
-            } else if (deviceName == null && type.getDeviceName().equals(preferredDeviceName)) {
+            } else if (deviceName == null && type.getDeviceName().startsWith(preferredDeviceName)) {
                 // match for preferable device
                 if (bestDefault == null || (version == null && type.version.versionCode > bestDefault.version.versionCode))
                     bestDefault = type;
