@@ -30,11 +30,6 @@ public class ASNewProjectAction extends AnAction {
     }
 
     @Override
-    public boolean startInTransaction() {
-        return true;
-    }
-
-    @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         NewProjectWizard wizard = new NewProjectWizard(null, ModulesProvider.EMPTY_MODULES_PROVIDER, null);
         NewProjectUtil.createNewProject(null, wizard); // have to use outdated as replacement was introduced only in 2019.3

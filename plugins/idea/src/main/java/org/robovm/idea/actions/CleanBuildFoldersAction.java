@@ -18,6 +18,7 @@ package org.robovm.idea.actions;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.module.Module;
@@ -45,6 +46,11 @@ public class CleanBuildFoldersAction extends AnAction {
         if (!busy.get()) {
             ProgressManager.getInstance().run(new CleanTask(e.getProject()));
         }
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.EDT;
     }
 
     @Override
