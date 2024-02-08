@@ -71,6 +71,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private JTextArea args;
     private JCheckBox pairedWatch;
     private JComboBox<IDeviceDecorator> targetDeviceUDID;
+    private JPanel errorsPanel;
     private JTextPane errors;
 
     // copy of data that is time consuming to fetch (fetched only once when dialog is created)
@@ -88,9 +89,9 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     // true if editor internally updating data and listeners should ignore the events
     private boolean updatingData;
 
-    private ArrayList<String> provisioningProfileErrors = new ArrayList<>();
-    private ArrayList<String> signingIdentityErrors = new ArrayList<>();
-    private ArrayList<String> deviceIdentityErrors = new ArrayList<>();
+    private final ArrayList<String> provisioningProfileErrors = new ArrayList<>();
+    private final ArrayList<String> signingIdentityErrors = new ArrayList<>();
+    private final ArrayList<String> deviceIdentityErrors = new ArrayList<>();
     private IDevice.EventListener ideviceListener;
 
     @NotNull
@@ -466,6 +467,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private void updateErrors() {
         if (provisioningProfileErrors.isEmpty() && signingIdentityErrors.isEmpty() && deviceIdentityErrors.isEmpty()) {
             errors.setText("");
+            errorsPanel.setVisible(false);
             return;
         };
 
@@ -495,7 +497,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             buffer.append("\n");
         }
         errors.setText(buffer.toString());
-
+        errorsPanel.setVisible(true);
     }
 
     private void checkSelectedProvisioningProfile () {
@@ -629,17 +631,23 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             provisioningProfileErrors.clear();
         }
 
-        String appIdPrefix = profile.getAppIdPrefix();
-        String appId = profile.getAppId();
-        String appIdNoPrefix = appId.split(appIdPrefix + ".")[1];
+        String bundleId = bundleLabel.getText();
+        String candidateAppId = profile.getAppIdPrefix() + "." + bundleId;
+        String profileAppId = profile.getAppId();
 
-        boolean currentlyCompatible = true;
+        // check the id
+        boolean currentlyCompatible = profileAppId.equalsIgnoreCase(candidateAppId);
+        if (!currentlyCompatible){
+            // check for wildcard
+            if (profileAppId.endsWith(".*")) {
+                currentlyCompatible = candidateAppId.startsWith(profileAppId.substring(0, profileAppId.length() - 1));
+            }
+        }
 
-        //Check the id
-        if (!bundleLabel.getText().equalsIgnoreCase(appIdNoPrefix)) {
-            currentlyCompatible = false;
+        if (!currentlyCompatible) {
             if (createErrorStrings) {
-                provisioningProfileErrors.add("Bundle ID from profile=[" + appIdNoPrefix + "] does not match module Bundle ID [" + bundleLabel.getText() + "]");
+                String profileAppIdNoPrefix = profileAppId.substring(profile.getAppIdPrefix() .length() + 1);
+                provisioningProfileErrors.add("Bundle ID from profile=[" + profileAppIdNoPrefix + "] does not match module Bundle ID [" + bundleId + "]");
             }
         }
 
