@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.plugin.lambda;
+package org.robovm.compiler.plugin.invokedynamic.lambda;
 
 import java.util.List;
 
