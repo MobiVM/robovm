@@ -1,5 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.0"
+    id "com.gradle.plugin-publish" version "1.2.1"
     id 'java'
     id 'groovy'
     id 'maven-publish'
@@ -42,6 +43,19 @@ dependencies {
     implementation 'org.apache.maven.wagon:wagon-provider-api:2.4'
     implementation 'org.apache.maven.wagon:wagon-http:2.4'
     testImplementation group: 'junit', name: 'junit', version: '4.11'
+}
+
+gradlePlugin {
+    website = "https://mobivm.github.io"
+    vcsUrl = "https://github.com/MobiVM/robovm"
+    plugins {
+        create("robovm") {
+            id = "com.mobidevelop.robovm"
+            implementationClass = "org.robovm.gradle.RoboVMPlugin"
+            displayName = "RoboVM Gradle Plugin"
+            description = "The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle."
+        }
+    }
 }
 
 publishing {
@@ -125,3 +139,7 @@ signing {
 assemble.dependsOn('shadowJar')
 publishToMavenLocal.dependsOn('shadowJar')
 publish.dependsOn('shadowJar')
+
+tasks.withType(AbstractPublishToMaven).configureEach {
+    dependsOn(tasks.withType(Sign))
+}
