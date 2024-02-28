@@ -6,7 +6,7 @@
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
-    <idea-version since-build="221"/>
+    <idea-version since-build="223"/>
 
     <name>MobiVM</name>
     <description>
@@ -18,30 +18,20 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.20</b>
+            <b>2.3.21</b>
 
             <h2>New Features</h2>
             <ul>
-                <li>improvement: Class InvocationTargetException add throwable cause (PR741)[https://github.com/MobiVM/robovm/pull/741]</li>
-                <li>CocoaTouch bindings 16.2 PR 703</li>
-                <li>Gradle plugin -- better error messages PR 707</li>
-                <li>robovm.xml -- support for custom linker flags PR 714</li>
-                <li>support for building using Java 19 PR 709</li>
-                <li>putDouble/getDouble in Unsafe PR715</li>
-                <li>support for iOS Simulator os.name property PR719</li>
-                <li>actool: support for alt-icon and other options PR718</li>
-                <li>libmobiledevice -- better logic to provide retry cycles if device is not ready PR726</li>
+                <li>iOS 17 bindings</li>
+                <li>IDEA 2024.1 support</li>
+                <li>IDEA Run configuration enhancements and debugging</li>
             </ul>
             <h2>Bug Fixes</h2>
             <ul>
-                <li>fixed: Gradle plugin breaks Android build issue 740</li>
-                <li>fixed: strict rules for elements in lists inside robovm.xml PR730</li>
-                <li>ffixed 744: delete existing IPA when packaging new one PR745</li>
-                <li>fixed: libgdx/7212 -- crash when getting value by pointer, affected by GC PR743</li>
-                <li>fixed: ByteBuffer (Java9) dessugaring removed and replaced with missing Java code PR728</li>
-                <li>fixed: support for support JEP181(java11) PR725</li>
-                <li>fixed: #608 NSAttributedString causes crash on next GC PR724</li>
-                <li>fixed: xcFramework are now merged from robo-pods robovm.xml PR727</li>
+                <li>Run configuration enhancements and debugging</li>
+                <li>Device deployment fix for multiple connected devices</li>
+                <li>Fix case of private classes with multiple constructors</li>
+                <li>Workaround for debugger inner class</li>
             </ul>
         ]]>
     </change-notes>
