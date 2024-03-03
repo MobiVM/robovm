@@ -12,6 +12,7 @@ import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.JdkUtil;
 import com.intellij.openapi.projectRoots.ProjectJdkTable;
 import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class JdkSetupDialog extends JDialog {
@@ -40,7 +42,10 @@ public class JdkSetupDialog extends JDialog {
         setTitle("RoboVM Setup");
         infoText.setText("<html>RoboVM requires Java Development Kit (JDK) 8.0 or higher.<br><br>Please specify the location of your JDK.");
 
-        for (String jdkLocation : JavaSdk.getInstance().suggestHomePaths()) {
+        final Collection<String> existingSdks = ApplicationManager.getApplication().runWriteAction(
+                (Computable<Collection<String>>) () -> JavaSdk.getInstance().suggestHomePaths()
+        );
+        for (String jdkLocation : existingSdks) {
             jdkHome.setText(jdkLocation);
             break;
         }
