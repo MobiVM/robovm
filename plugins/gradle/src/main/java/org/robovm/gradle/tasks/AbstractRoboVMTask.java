@@ -227,13 +227,21 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         builder.clearClasspathEntries();
 
         // configure the runtime classpath
-        Set<File> classpathEntries = project.getConfigurations().getByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME).getFiles();
-        classpathEntries.add(new File(project.getBuildDir(), "classes/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/java/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/groovy/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/scala/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/kotlin/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "resources/main"));
+        Set<File> classpathEntries;
+        if(extension.getConfigurationName() != null) {
+            classpathEntries = project.getConfigurations().getByName(extension.getConfigurationName()).getFiles();
+        } else {
+            classpathEntries = project.getConfigurations().getByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME).getFiles();
+        }
+
+        if(!extension.isSkipDefaultClasspathEntries()) {
+            classpathEntries.add(new File(project.getBuildDir(), "classes/main"));
+            classpathEntries.add(new File(project.getBuildDir(), "classes/java/main"));
+            classpathEntries.add(new File(project.getBuildDir(), "classes/groovy/main"));
+            classpathEntries.add(new File(project.getBuildDir(), "classes/scala/main"));
+            classpathEntries.add(new File(project.getBuildDir(), "classes/kotlin/main"));
+            classpathEntries.add(new File(project.getBuildDir(), "resources/main"));
+        }
 
         if (project.hasProperty("output.classesDir")) {
             classpathEntries.add((File) project.property("output.classesDir"));
