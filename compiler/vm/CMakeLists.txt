@@ -260,6 +260,8 @@ else()
 endif()
 
 set(EXTGC_C_FLAGS "${C_CXX_FLAGS} -DGC_DISABLE_INCREMENTAL -DGC_DISCOVER_TASK_THREADS -DGC_FORCE_UNMAP_ON_GCOLLECT -DMARK_DESCR_OFFSET=${EXTGC_MARK_DESCR_OFFSET}")
+# disable errors on clang clang-1500.3.9.4
+set(EXTGC_C_FLAGS "${EXTGC_C_FLAGS} -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion")
 set(EXTGC_LD_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
 if(DARWIN)
   set(EXTGC_C_FLAGS "${EXTGC_C_FLAGS} -DNO_DYLD_BIND_FULLY_IMAGE --sysroot=${SYSROOT}")
