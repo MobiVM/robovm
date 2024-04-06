@@ -29,8 +29,8 @@
 
     <properties>
         <robovm.version>2.3.22-SNAPSHOT</robovm.version>
-        <tycho.version>3.0.3</tycho.version>
-        <eclipse-site>https://download.eclipse.org/releases/2021-09/</eclipse-site>
+        <tycho.version>4.0.7</tycho.version>
+        <eclipse-site>https://download.eclipse.org/releases/2024-06/</eclipse-site>
     </properties>
 
     <repositories>
