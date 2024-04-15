@@ -30,7 +30,6 @@ import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.InfoPList;
-import org.robovm.compiler.util.PList;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.running.RoboVmRunConfiguration.EntryType;
 import org.robovm.libimobiledevice.IDevice;
@@ -194,7 +193,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         config.setSigningIdentity(Decorator.from(signingIdentity).id);
         config.setProvisioningProfileType(Decorator.from(provisioningProfile).entryType);
         config.setProvisioningProfile(Decorator.from(provisioningProfile).id);
-        config.setTargetDeviceUDID(Decorator.from(targetDeviceUDID).id);
+        // TargetDeviceUDID is optional
+        config.setTargetDeviceUDID(Decorator.idOrNullFrom(targetDeviceUDID));
         // simulator related
         config.setSimulatorArch((CpuArch) simArch.getSelectedItem());
         config.setSimulatorType(Decorator.from(simType).entryType);
@@ -815,6 +815,15 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         static <T> Decorator<T> from(JComboBox<? extends Decorator<T>> cb) {
             //noinspection unchecked
             return (Decorator<T>) cb.getSelectedItem();
+        }
+
+        /**
+         * @return id from decorator if it presents
+         */
+        static <T> String idOrNullFrom(JComboBox<? extends Decorator<T>> cb) {
+            //noinspection unchecked
+            Decorator<T> decorator = (Decorator<T>) cb.getSelectedItem();
+            return decorator != null ? decorator.id : null;
         }
     }
 

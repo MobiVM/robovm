@@ -1,7 +1,7 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.0"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
     id "com.gradle.plugin-publish" version "1.2.1"
-    id 'java'
+    id 'java-gradle-plugin'
     id 'groovy'
     id 'maven-publish'
     id 'signing'
@@ -60,11 +60,7 @@ gradlePlugin {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            groupId = 'com.mobidevelop.robovm'
-            artifactId = 'robovm-gradle-plugin'
-            from components.java
-
+        pluginMaven(MavenPublication) {
             pom {
                 name = 'RoboVM Gradle Plugin'
                 packaging = 'jar'
@@ -118,9 +114,6 @@ java {
 
 shadowJar {
     archiveClassifier.set('')
-    dependencies {
-        exclude(dependency("com.mobidevelop.robovm:robovm-compiler:${roboVMVersion}"));
-    }
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
     relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
@@ -133,7 +126,7 @@ tasks.withType(Javadoc) {
 
 signing {
     required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
-    sign publishing.publications.mavenJava
+    sign publishing.publications.pluginMaven
 }
 
 assemble.dependsOn('shadowJar')

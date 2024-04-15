@@ -94,7 +94,6 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
     @Internal
     protected abstract Arch getArch();
 
-    @Internal
     protected DeviceType getDeviceType(DeviceType.DeviceFamily family) {
         String deviceName = (String) project.getProperties().get("robovm.device.name");
         String sdkVersion = (String) project.getProperties().get("robovm.sdk.version");
