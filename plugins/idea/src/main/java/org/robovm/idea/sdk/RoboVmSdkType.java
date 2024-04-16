@@ -75,6 +75,13 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
         return SDK_NAME + " " + Version.getCompilerVersion();
     }
 
+    @Override
+    public @Nullable String getVersionString(@NotNull String sdkHome) {
+        if (sdkHome.equals(suggestHomePath()))
+            return Version.getCompilerVersion();
+        else return null;
+    }
+
     @Nullable
     @Override
     public AdditionalDataConfigurable createAdditionalDataConfigurable(@NotNull SdkModel sdkModel, @NotNull SdkModificator sdkModificator) {
@@ -123,7 +130,9 @@ public class RoboVmSdkType extends SdkType implements JavaSdkType {
         sdkModificator.setHomePath(RoboVmPlugin.getSdkHome().getAbsolutePath());
 
         // commit changes and let IDEA handle the rest
-        sdkModificator.commitChanges();
+        ApplicationManager.getApplication().invokeAndWait(() ->
+                ApplicationManager.getApplication().runWriteAction(sdkModificator::commitChanges)
+        );
     }
 
     public static void createSdkIfNotExists() {
