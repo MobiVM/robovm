@@ -851,7 +851,7 @@ public class IOSTarget extends AbstractTarget {
                 }
 
                 swiftSupportDir.mkdirs();
-                copySwiftLibs(Arrays.asList(swiftLibs), swiftSupportDir, false);
+                copySwiftLibs(Arrays.asList(swiftLibs), Collections.emptyList(), swiftSupportDir, false);
             }
         }
 
