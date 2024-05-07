@@ -328,8 +328,16 @@ public abstract class ObjCObject extends NativeObject {
                 }
             }
 
-            ObjCClass objCClass = ObjCClass.getFromObject(handle);
-            if (!expectedType.isAssignableFrom(objCClass.getType())) {
+            // dkimitsa: when ObjCProxy is a target at java level it expected to return Interface/Protocol implementation
+            // But not always is possible to recognizable ObjC object implementing the protocol behind the handle.
+            // For example in case protocol is implemented by pure Swift object.
+            // In this cause case ObjCClass might not be resolved (cause ObjCClassNotFoundException)
+            // or not resolve to one that implement the protocol (not isAssignableFrom).
+            // To workaround -- allow getFromObject to be optional and return Null.
+            // in this case objCClass will be resolved using getByType() from provided $ObjCProxy
+            // it's the case when proper ObjC object that implement the protocol can't be identified
+            ObjCClass objCClass = ObjCClass.getFromObject(handle, expectedType != cls);
+            if (objCClass == null || !expectedType.isAssignableFrom(objCClass.getType())) {
                 /*
                  * If the expected return type is incompatible with the type of
                  * the native instance we have to make sure we return an
