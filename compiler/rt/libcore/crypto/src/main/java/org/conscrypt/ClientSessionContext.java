@@ -26,6 +26,15 @@ import javax.net.ssl.SSLSession;
  */
 public class ClientSessionContext extends AbstractSessionContext {
 
+    // dkimitsa: FIXME: session caching was disabled as current implementation cause
+    //                  multiple usage of SINGLE native session.
+    //           ISSUE: this session was de-allocated multiple times in OpenSSLSocketImpl.free
+    //                  as SSL_free also frees session
+    // can be enabled by declaring SSL_FAULTY_RFC4507_ON property.
+    // it known to cause connection issues and application crashes.
+    // check #601 #585 #557 #306
+    final boolean sessionCachingEnabled = System.getProperty("SSL_FAULTY_RFC4507_ON") != null;
+
     /**
      * Sessions indexed by host and port. Protect from concurrent
      * access by holding a lock on sessionsByHostAndPort.
@@ -40,6 +49,8 @@ public class ClientSessionContext extends AbstractSessionContext {
     }
 
     public int size() {
+        if (!sessionCachingEnabled) return 0;
+
         return sessionsByHostAndPort.size();
     }
 
@@ -48,6 +59,8 @@ public class ClientSessionContext extends AbstractSessionContext {
     }
 
     protected void sessionRemoved(SSLSession session) {
+        if (!sessionCachingEnabled) return;
+
         String host = session.getPeerHost();
         int port = session.getPeerPort();
         if (host == null) {
@@ -67,6 +80,8 @@ public class ClientSessionContext extends AbstractSessionContext {
      * @return cached session or null if none found
      */
     public SSLSession getSession(String host, int port) {
+        if (!sessionCachingEnabled) return null;
+
         if (host == null) {
             return null;
         }
@@ -99,6 +114,8 @@ public class ClientSessionContext extends AbstractSessionContext {
 
     @Override
     public void putSession(SSLSession session) {
+        if (!sessionCachingEnabled) return;
+
         super.putSession(session);
 
         String host = session.getPeerHost();
