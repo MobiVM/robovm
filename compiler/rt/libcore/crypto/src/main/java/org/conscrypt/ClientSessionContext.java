@@ -30,8 +30,9 @@ public class ClientSessionContext extends AbstractSessionContext {
      * Sessions indexed by host and port. Protect from concurrent
      * access by holding a lock on sessionsByHostAndPort.
      */
-    final Map<HostAndPort, SSLSession> sessionsByHostAndPort
-        = new HashMap<HostAndPort, SSLSession>();
+// dkimitsa: FIXME: session caching was disabled
+//    final Map<HostAndPort, SSLSession> sessionsByHostAndPort
+//        = new HashMap<HostAndPort, SSLSession>();
 
     private SSLClientSessionCache persistentCache;
 
@@ -40,7 +41,9 @@ public class ClientSessionContext extends AbstractSessionContext {
     }
 
     public int size() {
-        return sessionsByHostAndPort.size();
+// dkimitsa: FIXME: session caching was disabled
+//        return sessionsByHostAndPort.size();
+        return 0;
     }
 
     public void setPersistentCache(SSLClientSessionCache persistentCache) {
@@ -48,15 +51,16 @@ public class ClientSessionContext extends AbstractSessionContext {
     }
 
     protected void sessionRemoved(SSLSession session) {
-        String host = session.getPeerHost();
-        int port = session.getPeerPort();
-        if (host == null) {
-            return;
-        }
-        HostAndPort hostAndPortKey = new HostAndPort(host, port);
-        synchronized (sessionsByHostAndPort) {
-            sessionsByHostAndPort.remove(hostAndPortKey);
-        }
+// dkimitsa: FIXME: session caching was disabled
+//        String host = session.getPeerHost();
+//        int port = session.getPeerPort();
+//        if (host == null) {
+//            return;
+//        }
+//        HostAndPort hostAndPortKey = new HostAndPort(host, port);
+//        synchronized (sessionsByHostAndPort) {
+//            sessionsByHostAndPort.remove(hostAndPortKey);
+//        }
     }
 
     /**
@@ -67,58 +71,64 @@ public class ClientSessionContext extends AbstractSessionContext {
      * @return cached session or null if none found
      */
     public SSLSession getSession(String host, int port) {
-        if (host == null) {
-            return null;
-        }
-        SSLSession session;
-        HostAndPort hostAndPortKey = new HostAndPort(host, port);
-        synchronized (sessionsByHostAndPort) {
-            session = sessionsByHostAndPort.get(hostAndPortKey);
-        }
-        if (session != null && session.isValid()) {
-            return session;
-        }
-
-        // Look in persistent cache.
-        if (persistentCache != null) {
-            byte[] data = persistentCache.getSessionData(host, port);
-            if (data != null) {
-                session = toSession(data, host, port);
-                if (session != null && session.isValid()) {
-                    super.putSession(session);
-                    synchronized (sessionsByHostAndPort) {
-                        sessionsByHostAndPort.put(hostAndPortKey, session);
-                    }
-                    return session;
-                }
-            }
-        }
+// dkimitsa: FIXME: session caching was disabled as current implementation cause
+//                  multiple usage of SINGLE native session. 
+//           ISSUE: this session was de-allocated multiple times in OpenSSLSocketImpl.free
+//                  as SSL_free also frees session
+//        
+//        if (host == null) {
+//            return null;
+//        }
+//        SSLSession session;
+//        HostAndPort hostAndPortKey = new HostAndPort(host, port);
+//        synchronized (sessionsByHostAndPort) {
+//            session = sessionsByHostAndPort.get(hostAndPortKey);
+//        }
+//        if (session != null && session.isValid()) {
+//            return session;
+//        }
+//
+//        // Look in persistent cache.
+//        if (persistentCache != null) {
+//            byte[] data = persistentCache.getSessionData(host, port);
+//            if (data != null) {
+//                session = toSession(data, host, port);
+//                if (session != null && session.isValid()) {
+//                    super.putSession(session);
+//                    synchronized (sessionsByHostAndPort) {
+//                        sessionsByHostAndPort.put(hostAndPortKey, session);
+//                    }
+//                    return session;
+//                }
+//            }
+//        }
 
         return null;
     }
 
     @Override
     public void putSession(SSLSession session) {
-        super.putSession(session);
-
-        String host = session.getPeerHost();
-        int port = session.getPeerPort();
-        if (host == null) {
-            return;
-        }
-
-        HostAndPort hostAndPortKey = new HostAndPort(host, port);
-        synchronized (sessionsByHostAndPort) {
-            sessionsByHostAndPort.put(hostAndPortKey, session);
-        }
-
-        // TODO: This in a background thread.
-        if (persistentCache != null) {
-            byte[] data = toBytes(session);
-            if (data != null) {
-                persistentCache.putSessionData(session, data);
-            }
-        }
+// dkimitsa: FIXME: session caching was disabled
+//        super.putSession(session);
+//
+//        String host = session.getPeerHost();
+//        int port = session.getPeerPort();
+//        if (host == null) {
+//            return;
+//        }
+//
+//        HostAndPort hostAndPortKey = new HostAndPort(host, port);
+//        synchronized (sessionsByHostAndPort) {
+//            sessionsByHostAndPort.put(hostAndPortKey, session);
+//        }
+//
+//        // TODO: This in a background thread.
+//        if (persistentCache != null) {
+//            byte[] data = toBytes(session);
+//            if (data != null) {
+//                persistentCache.putSessionData(session, data);
+//            }
+//        }
     }
 
     static class HostAndPort {
