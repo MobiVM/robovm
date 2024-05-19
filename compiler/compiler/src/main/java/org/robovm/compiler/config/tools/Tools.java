@@ -23,6 +23,8 @@ import org.simpleframework.xml.Element;
  *
  */
 public class Tools {
+    public static Tools Empty = new Tools();
+
     @Element(required = false)
     private TextureAtlas textureAtlas;
 
@@ -31,6 +33,9 @@ public class Tools {
 
     @Element(required = false)
     private ActoolOptions actool;
+
+    @Element(required = false)
+    private IBXOptions ibx;
 
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;
@@ -42,5 +47,9 @@ public class Tools {
 
     public ActoolOptions getActool() {
         return actool;
+    }
+
+    public IBXOptions getIbx() {
+        return ibx;
     }
 }

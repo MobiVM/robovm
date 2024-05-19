@@ -63,12 +63,16 @@ public class RoboVmIbXcodeProjectTask {
         Project project = this.module.getProject();
         File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(module);
 
-        // load the robovm.xml file
+        // load the robovm.xml file (it will also merge alls robovm.xmls from robopods)
         try {
-            this.builder = new IBConfigBuilder();
+            this.builder = new Config.Builder();
             this.builder.logger(RoboVmPlugin.getLogger(project));
             this.builder.readProjectProperties(moduleBaseDir, false);
             this.builder.readProjectConfig(moduleBaseDir, false);
+
+            // disable linking/signing to not fail on missing signing identities
+            this.builder.skipLinking(true);
+            this.builder.iosSkipSigning(true);
         } catch (IOException e) {
             this.complete(e);
             return;
@@ -148,7 +152,7 @@ public class RoboVmIbXcodeProjectTask {
     private void complete(@Nullable String errorMessage) {
         // single exit point
         if (errorMessage != null) {
-            Notifications.Bus.notify(new Notification( "XCode project", "XCode project",
+            Notifications.Bus.notify(new Notification( "RoboVM", "XCode project",
                     "Failed due error: " + errorMessage, NotificationType.ERROR));
         }
 
@@ -237,30 +241,5 @@ public class RoboVmIbXcodeProjectTask {
             }
         }
     }
-
-
-    static class IBConfigBuilder extends Config.Builder {
-        IBConfigBuilder() {
-        }
-
-        @Override
-        public Config build() {
-            // if arch is not set -- setup with empty
-            if (config.getArch() == null) {
-                Arch arch;
-                if (config.getArchs().isEmpty()) {
-                    // there is no information about arch -- use Arm64
-                    arch = Arch.arm64;
-                } else {
-                    arch = config.getArchs().get(0);
-                }
-                arch(arch);
-            }
-
-            // do not build any complex config as it is time-consuming and not required at all for this task
-            return this.config;
-        }
-    }
 }
-
 

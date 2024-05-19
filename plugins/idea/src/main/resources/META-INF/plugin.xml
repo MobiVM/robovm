@@ -63,6 +63,7 @@
                          level="WARNING"
                          implementationClass="org.robovm.idea.inspection.ClassWithProtocolShouldExtendNSObject"
                          cleanupTool="true"/>
+        <notificationGroup id="RoboVM" displayType="BALLOON"/>
 
     </extensions>
 
