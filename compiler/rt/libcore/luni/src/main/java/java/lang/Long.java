@@ -289,6 +289,10 @@ public final class Long extends Number implements Comparable<Long> {
         return (int) (value ^ (value >>> 32));
     }
 
+    public static int hashCode(long value) {
+        return (int) (value ^ (value >>> 32));
+    }
+
     @Override
     public int intValue() {
         return (int) value;
