@@ -224,6 +224,10 @@ public final class Float extends Number implements Comparable<Float> {
         return floatToIntBits(value);
     }
 
+    public static int hashCode(float value) {
+        return floatToIntBits(value);
+    }
+
     /**
      * Returns the <a href="http://en.wikipedia.org/wiki/IEEE_754-1985">IEEE 754</a>
      * single precision float corresponding to the given {@code bits}.
