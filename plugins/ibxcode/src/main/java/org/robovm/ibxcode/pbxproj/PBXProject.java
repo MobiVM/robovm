@@ -2,18 +2,16 @@ package org.robovm.ibxcode.pbxproj;
 
 import java.io.File;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 public class PBXProject extends PBXNode {
     private final File projectDir;
 
-    private final PBXGroup rootGroup = new PBXGroup(this, "root");;
-    private final PBXGroup sourcesGroup = rootGroup.addChild(new PBXGroup(this, "sources"));;
+    private final PBXGroup rootGroup = new PBXGroup(this, "root");
+    private final PBXGroup sourcesGroup = rootGroup.addChild(new PBXGroup(this, "sources"));
     private final PBXGroup resourcesGroup = rootGroup.addChild(new PBXGroup(this, "resources"));
     private final PBXGroup frameworksGroup = rootGroup.addChild(new PBXGroup(this, "frameworks"));
-    private final PBXGroup buildFilesGroup = new PBXGroup(this, "buildFileGroup");;
+    private final PBXGroup buildFilesGroup = new PBXGroup(this, "buildFileGroup");
     private final PBXNode buildConfigurationList = new PBXNode(this, "Build configuration list for PBXProject");
     private final PBXNode buildConfigurationRoboVM = new PBXNode(this, "RoboVM");
     private final PBXNode sourcesBuildPhaseRoboVM = new PBXNode(this, "Sources");
@@ -191,8 +189,11 @@ public class PBXProject extends PBXNode {
         bodyPs.println("buildSettings = {");
         childPs.println("SDKROOT = iphoneos;");
         childPs.println("PRODUCT_NAME = \"RoboVM\";");
+        childPs.println("CLANG_ENABLE_MODULES = \"YES\";");
         childPs.println("GCC_PRECOMPILE_PREFIX_HEADER = \"YES\";");
         childPs.println("GCC_PREFIX_HEADER = Prefix.pch;");
+        childPs.println("GENERATE_INFOPLIST_FILE = \"YES\";");
+        childPs.println("INFOPLIST_FILE = Info.plist;");
         bodyPs.println("};");
         bodyPs.println("name = \"" + buildConfigurationRoboVM.getName() +"\";");
         ps.println("};");
@@ -221,7 +222,7 @@ public class PBXProject extends PBXNode {
         bodyPs.println("buildActionMask = 2147483647;");
         bodyPs.println("files = (");
         for (PBXNode node : buildFilesGroup.getChildren())
-            if (node.getName().endsWith(".framework"))
+            if (node.getName().endsWith(".framework") || node.getName().endsWith(".xcframework"))
                 childPs.println(node.uuidWithComment() + ",");
         bodyPs.println(");");
         bodyPs.println("runOnlyForDeploymentPostprocessing = 0;");
@@ -271,20 +272,17 @@ public class PBXProject extends PBXNode {
     }
 
     /** comparator to sort items */
-    private Comparator<PBXNode> PROJECT_ITEM_COMPARATOR = new Comparator<PBXNode>() {
-        @Override
-        public int compare(PBXNode o1, PBXNode o2) {
-            // put groups top
-            boolean g1 = o1 instanceof PBXGroup;
-            boolean g2 = o2 instanceof PBXGroup;
-            if (g1 == g2) {
-                // both are groups or both are not
-                // compare names
-                return o1.getName().compareTo(o2.getName());
-            } else {
-                // node that is group will go top
-                return g1 ? -1 : 1;
-            }
+    private final Comparator<PBXNode> PROJECT_ITEM_COMPARATOR = (o1, o2) -> {
+        // put groups top
+        boolean g1 = o1 instanceof PBXGroup;
+        boolean g2 = o2 instanceof PBXGroup;
+        if (g1 == g2) {
+            // both are groups or both are not
+            // compare names
+            return o1.getName().compareTo(o2.getName());
+        } else {
+            // node that is group will go top
+            return g1 ? -1 : 1;
         }
     };
 

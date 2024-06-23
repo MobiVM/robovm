@@ -1,11 +1,6 @@
 package org.robovm.ibxcode.pbxproj;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PBXGroup extends PBXNode{
     private final List<PBXNode>children = new ArrayList<>();
@@ -18,7 +13,7 @@ public class PBXGroup extends PBXNode{
         GROUP("PBXGroup"),
         VARIANT_GROUP("PBXVariantGroup");
 
-        private String value;
+        private final String value;
         Type(String s) {
             value = s;
         }
@@ -48,9 +43,8 @@ public class PBXGroup extends PBXNode{
     }
 
     public List<PBXNode> getSortedChildren(Comparator<? super PBXNode> comparator) {
-        List<PBXNode> sortedList = new ArrayList<>();
-        sortedList.addAll(children);
-        Collections.sort(sortedList, comparator);
+        List<PBXNode> sortedList = new ArrayList<>(children);
+        sortedList.sort(comparator);
         return sortedList;
     }
 

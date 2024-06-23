@@ -798,7 +798,7 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     public List<Arch> getDefaultArchs() {
-        return Arrays.asList(new Arch(CpuArch.thumbv7), new Arch(CpuArch.arm64));
+        return List.of(new Arch(CpuArch.arm64));
     }
 
     public void archive() throws IOException {

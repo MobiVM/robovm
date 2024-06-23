@@ -20,9 +20,16 @@ import java.io.File;
 public class FrameworkExportData {
     public final String name;
     public final File path;
+    public final File frameworkPath;
 
-    public FrameworkExportData(String name, File path) {
+    /**
+     * @param name           - name of framework with .framework or .xcframework suffix
+     * @param path           - location of framework: either .xcframework or .framwork folder
+     * @param frameworkPath  - location of framework in case of .xcframwork otherwise same as path
+     */
+    public FrameworkExportData(String name, File path, File frameworkPath) {
         this.name = name;
         this.path = path;
+        this.frameworkPath = frameworkPath;
     }
 }

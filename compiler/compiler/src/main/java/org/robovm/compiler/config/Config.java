@@ -632,7 +632,7 @@ public class Config {
     }
 
     public Tools getTools() {
-        return tools;
+        return tools != null ? tools : Tools.Empty;
     }
 
     public WatchKitApp getWatchKitApp() {
