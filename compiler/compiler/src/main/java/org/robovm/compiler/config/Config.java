@@ -1577,6 +1577,11 @@ public class Config {
             return this;
         }
 
+        public Builder addProperties(Map<String, ?> properties) {
+            config.properties.putAll(properties);
+            return this;
+        }
+
         public Builder addProperties(File file) throws IOException {
             Properties props = new Properties();
             try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
