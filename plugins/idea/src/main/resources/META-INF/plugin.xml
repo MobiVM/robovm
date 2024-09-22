@@ -18,20 +18,19 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.21</b>
+            <b>2.3.22</b>
 
             <h2>New Features</h2>
             <ul>
-                <li>iOS 17 bindings</li>
-                <li>IDEA 2024.1 support</li>
-                <li>IDEA Run configuration enhancements and debugging</li>
+                <li>static hashcode functions for scalar types</li>
+                <li>Transforms unknown dynamic invoke into NoSuchMethodError</li>
             </ul>
             <h2>Bug Fixes</h2>
             <ul>
-                <li>Run configuration enhancements and debugging</li>
-                <li>Device deployment fix for multiple connected devices</li>
-                <li>Fix case of private classes with multiple constructors</li>
-                <li>Workaround for debugger inner class</li>
+                <li>manual adding of RoboVM SDK from File/Project structure</li>
+                <li>SSL session caching memory corruption fix</li>
+                <li>Idea run dialog was not saving Sim details if no device is attached and selected in preferred device udid</li>
+                <li>compilation failed due swift lib not found (libswiftXPC.dylib is not found in swift paths)</li>
             </ul>
         ]]>
     </change-notes>
