@@ -21,6 +21,7 @@ import org.apache.commons.io.FileUtils;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.util.InfoPList;
 import org.robovm.ibxcode.export.FrameworkExportData;
 import org.robovm.ibxcode.export.IBClassExportData;
 import org.robovm.ibxcode.export.XCodeProjectExporter;
@@ -29,7 +30,6 @@ import org.robovm.ibxcode.parser.IBClassHierarchyResolver;
 import org.robovm.ibxcode.parser.IBClassMemberParser;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileVisitResult;
@@ -94,8 +94,14 @@ public class IBXcodeProject {
         // resolve frameworks list
         List<FrameworkExportData> frameworks = resolveFrameworks();
 
+        // resolve info.plist entries
+        InfoPList plist = config.getInfoPList();
+        plist.parse(config.getProperties());
+
         // now create and write xcode project
-        XCodeProjectExporter projectExporter = new XCodeProjectExporter(exportDatas, resources, frameworks,
+        XCodeProjectExporter projectExporter = new XCodeProjectExporter(
+                config.getTools().getIbx(),
+                exportDatas, resources, frameworks, plist,
                 projectDir, exportDir, projectName);
         projectExporter.export();
 
@@ -106,7 +112,7 @@ public class IBXcodeProject {
 
     private void processDirectoryClassPath(final Path dirPath, final Map<String, JavaClass> classesData) {
         // add files from directory
-        SimpleFileVisitor<Path> walker = new SimpleFileVisitor<Path>() {
+        SimpleFileVisitor<Path> walker = new SimpleFileVisitor<>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                 if (!file.getFileName().toString().endsWith(".class"))
@@ -114,7 +120,7 @@ public class IBXcodeProject {
                 String relative = dirPath.relativize(file).toString();
                 if (Utils.isSystemLikeClassPath(relative.substring(0, relative.length() - ".class".length())))
                     return CONTINUE;
-                try (InputStream is = new FileInputStream(file.toFile())) {
+                try (InputStream is = Files.newInputStream(file.toFile().toPath())) {
                     // get class path for early skip
                     ClassParser cp = new ClassParser(is, file.toString());
                     JavaClass jc = cp.parse();
@@ -180,11 +186,13 @@ public class IBXcodeProject {
                     for (File file : files) {
                         if (file.getName().equals(projectName + ".xcodeproj"))
                             continue;
-                        if (file.isFile())
-                            if (!file.delete())
+                        if (file.isFile()) {
+                            if (!file.delete()) {
                                 throw new IOException("Can't delete " + file.getAbsolutePath());
-                        else
+                            }
+                        } else {
                             FileUtils.deleteDirectory(file);
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -203,29 +211,44 @@ public class IBXcodeProject {
         List<String> frameworkList = config.getFrameworks();
         if (!frameworkList.contains("UIKIT")) {
             // add uikit to be present in precompiled headers
-            frameworkList = new ArrayList<>();
-            frameworkList.addAll(config.getFrameworks());
+            frameworkList = new ArrayList<>(config.getFrameworks());
             frameworkList.add("UIKIT");
         }
         List<File> frameworkPaths = config.getFrameworkPaths();
         for (String name : frameworkList) {
             // add suffix if it is not there
             String frameWorkName = name.endsWith(".framework") ? name : name + ".framework";
+            String xcFrameWorkName = name.endsWith(".xcframework") ? name : name + ".xcframework";
             // look for framework in all possible framework locations
             FrameworkExportData frameWorkData = null;
             if (frameworkPaths != null) {
+                File xcFrameWorkPath = null;
                 for (File path : frameworkPaths) {
+                    if (xcFrameWorkPath == null) {
+                        // looks for possible xcframework and save it
+                        // xcframework location expected to be before resolved location of particular
+                        // framework for target arch in it. that is how resolver in Config class
+                        // works.
+                        File candidate = new File(path, xcFrameWorkName);
+                        if (candidate.isDirectory())
+                            xcFrameWorkPath = candidate;
+                    }
+
                     File frameWorkPath = new File(path, frameWorkName);
-                    if (!frameWorkPath.isDirectory())
-                        continue;
-                    // it is local framework
-                    frameWorkData = new FrameworkExportData(frameWorkName, frameWorkPath);
-                    break;
+                    if (frameWorkPath.isDirectory()) {
+                        // framework found, but if there was a xcframework located before, save data
+                        // as xcframework one
+                        if (xcFrameWorkPath != null)
+                            frameWorkData = new FrameworkExportData(xcFrameWorkName, xcFrameWorkPath, frameWorkPath);
+                        else
+                            frameWorkData = new FrameworkExportData(frameWorkName, frameWorkPath, frameWorkPath);
+                        break;
+                    }
                 }
             }
             if (frameWorkData == null) {
                 // probably global framework
-                frameWorkData = new FrameworkExportData(frameWorkName, null);
+                frameWorkData = new FrameworkExportData(frameWorkName, null, null);
             }
 
             frameworks.add(frameWorkData);
@@ -238,7 +261,7 @@ public class IBXcodeProject {
         // add all to map. key is target location in destination folder.
         // so this wil emulate override resource (.e.g later declared resource will override previous one)
         final Map<String, File> resources = new HashMap<>();
-        if (config.getResources() == null || config.getResources().size() == 0)
+        if (config.getResources() == null || config.getResources().isEmpty())
             return Collections.emptyList();
 
         // contains list of groups. If any file inside this group it has to be
