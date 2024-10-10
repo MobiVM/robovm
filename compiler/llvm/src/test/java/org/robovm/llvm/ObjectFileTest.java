@@ -50,7 +50,7 @@ public class ObjectFileTest {
                     List<Symbol> symbols = objectFile.getSymbols();
                     assertEquals(1, symbols.size());
                     assertEquals("_foo", symbols.get(0).getName());
-                    assertTrue(symbols.get(0).getAddress() == 0);
+                    assertEquals(0, symbols.get(0).getAddress());
                     assertTrue(symbols.get(0).getSize() > 0);
                 }
             }
@@ -73,8 +73,8 @@ public class ObjectFileTest {
                         byte[] contents = new byte[(int) it.getSize()];
                         assertEquals(it.getSize(), it.copyContents(contents));
                         long sum = 0;
-                        for (int i = 0; i < contents.length; i++) {
-                            sum += contents[i];
+                        for (byte content : contents) {
+                            sum += content;
                         }
                         assertTrue(sum != 0);
                         
@@ -115,6 +115,7 @@ public class ObjectFileTest {
         executor.setWorkingDirectory(cFile.getParentFile());
         executor.execute(new CommandLine(cc)
             .addArgument("-g")
+            .addArgument("-gdwarf-2")
             .addArgument("-c")
             .addArgument(cFile.getAbsolutePath()));
         
