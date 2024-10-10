@@ -221,9 +221,6 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         if (extension.isDumpIntermediates())
             builder.dumpIntermediates(true);
 
-        if (extension.isEnableBitcode())
-            builder.enableBitcode(true);
-
         builder.clearClasspathEntries();
 
         // configure the runtime classpath

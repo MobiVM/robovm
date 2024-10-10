@@ -107,12 +107,6 @@ The `robovmInstall` task is very similar to the `robovmArchive` task but doesn't
 gradle -Probovm.archs=x86:x86_64 robovmInstall
 ```
 
-To enable bitcode when running `createIPA`, `robovmArchive` or `robovmInstall` add `-Probovm.enableBitcode=true`:
-
-```
-gradle -Probovm.enableBitcode=true -Probovm.archs=thumbv7:arm64 robovmArchive
-```
-
 ## Headless code signing
 
 When building iOS/tvOS apps on a CI server `codesign` may need a password in order to unlock the keychain where the signing key is located. The Gradle plugin recognizes two properties which can be used to specify this password. If none of these properties have been specified the compiler will also look for a `KEYCHAIN_PASSWORD` environment variable.

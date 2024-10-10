@@ -197,12 +197,27 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
     }
     
     public static List<ProvisioningProfile> list() {
-        File dir = new File(new File(System.getProperty("user.home")), "Library/MobileDevice/Provisioning Profiles");
+        List<ProvisioningProfile> result = new ArrayList<>();
+        File userHome = new File(System.getProperty("user.home"));
+        listTo(result, new File(userHome, "Library/MobileDevice/Provisioning Profiles"));
+        listTo(result, new File(userHome, "Library/Developer/Xcode/UserData/Provisioning Profiles"));
+
+        Collections.sort(result);
+        return result;
+    }
+
+    /**
+     * Scans for provisioning profiles in given dir
+     * @param result list to add profiles to
+     * @param dir    to scan for profiles
+     */
+    private static void listTo(List<ProvisioningProfile> result, File dir) {
         if (!dir.exists() || !dir.isDirectory()) {
-            return Collections.emptyList();
+            return;
         }
-        List<ProvisioningProfile> result = new ArrayList<ProvisioningProfile>();
-        for (File f : dir.listFiles()) {
+        File[] files = dir.listFiles();
+        if (files == null) return;
+        for (File f : files) {
             if (f.getName().endsWith(".mobileprovision")) {
                 try {
                     // it was wrapped in try-catch instead of just returning null by purpose. With idea to provide information
@@ -216,8 +231,6 @@ public class ProvisioningProfile implements Comparable<ProvisioningProfile> {
                 }
             }
         }
-        Collections.sort(result);
-        return result;
     }
 
     public static ProvisioningProfile find(List<ProvisioningProfile> profiles, String search) {

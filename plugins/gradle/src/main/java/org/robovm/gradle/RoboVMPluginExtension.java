@@ -39,7 +39,6 @@ public class RoboVMPluginExtension {
     private int debugPort = -1;
     private boolean skipLaunch = false;
     private boolean skipLinking = false;
-    private boolean enableBitcode = false;
     private String archs;
     private String installDir;    
     private String cacheDir;
@@ -173,16 +172,6 @@ public class RoboVMPluginExtension {
         this.skipLinking = skipLinking;
     }
 
-    public boolean isEnableBitcode() {
-        return project.hasProperty("robovm.enableBitcode")
-                ? Boolean.parseBoolean(project.getProperties().get("robovm.enableBitcode").toString())
-                : enableBitcode;
-    }
-
-    public void setEnableBitcode(boolean enableBitcode) {
-        this.enableBitcode = enableBitcode;
-    }
-    
     public int getDebugPort() {
         return project.hasProperty("robovm.debugPort") 
                 ? Integer.parseInt(project.getProperties().get("robovm.debugPort").toString()) 
