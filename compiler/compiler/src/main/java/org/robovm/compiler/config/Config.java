@@ -172,9 +172,6 @@ public class Config {
     @Element(required = false)
     private Tools tools;
 
-    @Element(required = false)
-    private Boolean enableBitcode;
-
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
     private String iosDeviceType;
@@ -621,14 +618,23 @@ public class Config {
         return iosSkipSigning;
     }
 
-    public boolean isEnableBitcode() {return enableBitcode != null && enableBitcode && shouldEmitBitcode(); }
+    public boolean isEnableBitcode() {
+        // TODO: FIXME: bitcode forced to be disabled as with XCode16 it is deprecated and Apple will not accept
+        //              binaries with it. Infrastructure is kept for a while
+
+        return false;
+    }
 
     public boolean shouldEmitBitcode() {
         // emit bitcode to object file even if it is not enabled.
         // as currently only `__LLVM,__asm` is being added
         // but build should match criteria
-        return !debug && os == OS.ios && sliceArch.getEnv() == Environment.Native &&
-                (sliceArch.getCpuArch() == CpuArch.arm64 || sliceArch.getCpuArch() == CpuArch.thumbv7);
+        // return !debug && os == OS.ios && sliceArch.getEnv() == Environment.Native &&
+        //        (sliceArch.getCpuArch() == CpuArch.arm64 || sliceArch.getCpuArch() == CpuArch.thumbv7);
+
+        // TODO: FIXME: bitcode forced to be disabled as with XCode16 it is deprecated and Apple will not accept
+        //              binaries with it. Infrastructure is kept for a while
+        return false;
     }
 
     public Tools getTools() {
@@ -1653,11 +1659,6 @@ public class Config {
 
         public Builder addTargetPlugin(TargetPlugin plugin) {
             config.plugins.add(plugin);
-            return this;
-        }
-
-        public Builder enableBitcode(boolean enableBitcode) {
-            config.enableBitcode = enableBitcode;
             return this;
         }
 
