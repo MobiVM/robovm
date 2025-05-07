@@ -43,6 +43,7 @@ import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.idea.RoboVmLocations;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
@@ -53,13 +54,7 @@ import org.robovm.idea.utils.RoboFileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Initially was a CompileTask that was attached as last chain in compilation
@@ -96,7 +91,7 @@ public class RoboVmCompileTask {
                 builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), ipaConfig.getProvisioningProfile()));
             }
             configureClassAndSourcepaths(project, ipaConfig.getModule(), builder);
-            builder.home(RoboVmPlugin.getRoboVmHome());
+            builder.home(RoboVmLocations.getRoboVmHome());
             Config config = builder.build();
 
             progress.setFraction(0.5);
@@ -146,7 +141,7 @@ public class RoboVmCompileTask {
             configureClassAndSourcepaths(project, frameworkConfig.getModule(), builder);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmPlugin.getRoboVmHome();
+            Config.Home home = RoboVmLocations.getRoboVmHome();
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);
@@ -241,7 +236,7 @@ public class RoboVmCompileTask {
             configureTarget(builder, runConfig);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmPlugin.getRoboVmHome();
+            Config.Home home = RoboVmLocations.getRoboVmHome();
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);

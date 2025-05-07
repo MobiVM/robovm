@@ -11,6 +11,7 @@
         <ij.plugin>true</ij.plugin>
         <ij.pluginDescriptor>src/main/resources/META-INF/plugin.xml</ij.pluginDescriptor>
         <robovm.version>2.3.24-SNAPSHOT</robovm.version>
+        <kotlin.version>2.1.20</kotlin.version>
     </properties>
 
     <scm>
@@ -60,6 +61,17 @@
             <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-ibxcode</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,7 +82,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <release>8</release>
+                    <release>17</release>
                     <debug>true</debug>
                     <optimize>true</optimize>
                     <encoding>UTF-8</encoding>
@@ -111,6 +123,29 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <source>src/main/java</source>
+                                <source>target/generated-sources/annotations</source>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>17</jvmTarget>
                 </configuration>
             </plugin>
         </plugins>

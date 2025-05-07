@@ -1,1 +1,5 @@
-<idea-plugin url="https://github.com/MobiVM/robovm"/>
+<idea-plugin url="https://github.com/MobiVM/robovm">
+    <extensions defaultExtensionNs="org.jetbrains.idea.maven">
+        <importer implementation="org.robovm.idea.maven.sync.RoboVmMavenImporter"/>
+    </extensions>
+</idea-plugin>

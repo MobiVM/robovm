@@ -19,33 +19,19 @@ package org.robovm.idea;
 
 import com.intellij.execution.ui.ConsoleView;
 import com.intellij.execution.ui.ConsoleViewContentType;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompilerManager;
+import com.intellij.facet.FacetManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.projectRoots.ProjectJdkTable;
-import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.OrderEntry;
-import com.intellij.openapi.roots.OrderEnumerator;
-import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.openapi.vfs.newvfs.BulkFileListener;
-import com.intellij.openapi.vfs.newvfs.events.VFileEvent;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener;
 import com.intellij.ui.content.Content;
 import com.intellij.util.PlatformUtils;
 import com.intellij.util.ui.UIUtil;
-import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
-import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
@@ -54,25 +40,19 @@ import org.robovm.compiler.config.Resource;
 import org.robovm.compiler.log.Logger;
 import org.robovm.idea.compilation.RoboVmCompileTask;
 import org.robovm.idea.components.RoboVmToolWindowFactory;
-import org.robovm.idea.config.RoboVmGlobalConfig;
-import org.robovm.idea.sdk.RoboVmSdkType;
+import org.robovm.idea.facet.RoboVmFacet;
+import org.robovm.idea.facet.RoboVmFacetConfiguration;
+import org.robovm.idea.facet.RoboVmFacetType;
 import org.robovm.idea.utils.RoboFileUtils;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
-import java.util.zip.GZIPInputStream;
 
 /**
  * Provides util for the other components of the plugin such
@@ -236,19 +216,11 @@ public class RoboVmPlugin {
             logInfo(project, "RoboVM plugin initialized");
         });
 
-        // initialize virtual file change listener so we can
-        // trigger recompiles on file saves
-        project.getMessageBus().connect().subscribe(VirtualFileManager.VFS_CHANGES, new BulkFileListener() {
-            @Override
-            public void after(@NotNull List<? extends VFileEvent> events) {
-                compileIfChanged(events, project);
-            }
-        });
         // also dump unprinted messages once tool window is registered
         project.getMessageBus().connect().subscribe(ToolWindowManagerListener.TOPIC, new ToolWindowManagerListener() {
             @Override
-            public void toolWindowRegistered(@NotNull String id) {
-                if (id.equals(RoboVmToolWindowFactory.ID)) {
+            public void toolWindowsRegistered(@NotNull List<String> ids, @NotNull ToolWindowManager toolWindowManager) {
+                if (ids.contains(RoboVmToolWindowFactory.ID)) {
                     UIUtil.invokeLaterIfNeeded(() -> {
                         ConsoleView consoleView = getConsoleView(project);
                         if (consoleView != null)
@@ -259,125 +231,16 @@ public class RoboVmPlugin {
         });
     }
 
-    private static void compileIfChanged(List<? extends VFileEvent> events, final Project project) {
-        if (!RoboVmGlobalConfig.isCompileOnSave()) {
-            return;
-        }
-
-        // find out if RoboVM module was changed
-        for (VFileEvent event : events) {
-            VirtualFile file = event.getFile();
-            if (file == null)
-                continue;
-
-            for (Module module : ModuleManager.getInstance(project).getModules()) {
-                if (ModuleRootManager.getInstance(module).getFileIndex().isInContent(file) && isRoboVmModule(module)) {
-                    OrderEntry orderEntry = ModuleRootManager.getInstance(module).getFileIndex().getOrderEntryForFile(file);
-                    if (orderEntry != null && orderEntry.getFiles(OrderRootType.SOURCES).length != 0) {
-                        ApplicationManager.getApplication().invokeLater(() -> {
-                            if (!CompilerManager.getInstance(project).isCompilationActive()) {
-                                CompileScope scope = CompilerManager.getInstance(project).createModuleCompileScope(module, true);
-                                CompilerManager.getInstance(project).compile(scope, null);
-                            }
-                        });
-                    }
-
-                    // processed
-                    return;
-                }
-            }
-        }
-    }
-
-    public static void extractSdk() {
-        File sdkHome = getSdkHomeBase();
-        if (!sdkHome.exists()) {
-            if (!sdkHome.mkdirs()) {
-                logError(null, "Couldn't create sdk dir in %s", sdkHome.getAbsolutePath());
-                throw new RuntimeException("Couldn't create sdk dir in " + sdkHome.getAbsolutePath());
-            }
-        }
-        extractArchive("robovm-dist", sdkHome);
-
-        // create an SDK if it doesn't exist yet
-        RoboVmSdkType.createSdkIfNotExists();
-    }
-
-    public static File getSdkHome() {
-        return new File(getSdkHomeBase(), "robovm-" + Version.getCompilerVersion());
-    }
-
-    public static File getSdkHomeBase() {
-        return new File(System.getProperty("user.home"), ".robovm-sdks");
-    }
-
-    public static Sdk getSdk() {
-        RoboVmSdkType sdkType = new RoboVmSdkType();
-        for (Sdk sdk : ProjectJdkTable.getInstance().getAllJdks()) {
-            if (sdkType.suggestSdkName(null, null).equals(sdk.getName())) {
-                return sdk;
-            }
-        }
-        return null;
-    }
-
-    private static void extractArchive(String archive, File dest) {
-        archive = "/" + archive;
-        try (TarArchiveInputStream in = new TarArchiveInputStream(new GZIPInputStream(RoboVmPlugin.class.getResourceAsStream(archive)))) {
-            boolean filesWereUpdated = false;
-            TarArchiveEntry entry;
-            while ((entry = in.getNextEntry()) != null) {
-                File f = new File(dest, entry.getName());
-                if (entry.isDirectory()) {
-                    RoboFileUtils.mkdirs(f);
-                } else {
-                    // skip extracting if file looks to be same as in archive (ts and size matches)
-                    if (f.exists() && f.lastModified() == entry.getLastModifiedDate().getTime() && f.length() == entry.getSize()) {
-                        continue;
-                    }
-                    RoboFileUtils.mkdirs(f.getParentFile());
-                    try (OutputStream out = new FileOutputStream(f)) {
-                        IOUtils.copy(in, out);
-                    }
-
-                    // set last modification time stamp as it was inside tar otherwise
-                    // robovm will see new time stamp and will rebuild all classes that were inside jar
-                    RoboFileUtils.setLastModified(f, entry.getLastModifiedDate().getTime());
-
-                    // mark that there was a change to SDK files
-                    filesWereUpdated = true;
-                }
-            }
-            logInfo(null, "Installed RoboVM SDK %s to %s", Version.getCompilerVersion(), dest.getAbsolutePath());
-
-            if (filesWereUpdated) {
-                File cacheLog = new File(System.getProperty("user.home"), ".robovm/cache");
-                logInfo(null, "Clearing ~/.robovm/cache folder due SDK files changed.");
-                try {
-                    FileUtils.deleteDirectory(cacheLog);
-                } catch (IOException ignored) {
-                }
-            }
-
-            for (File file : RoboFileUtils.listFiles(new File(getSdkHome(), "bin"))) {
-                RoboFileUtils.setExecutable(file, true);
-            }
-        } catch (Throwable t) {
-            logError(null, "Couldn't extract SDK to %s", dest.getAbsolutePath());
-            throw new RuntimeException("Couldn't extract SDK to " + dest.getAbsolutePath(), t);
-        }
-    }
-
     /**
      * @return all sdk runtime libraries and their source jars
      */
     public static List<File> getSdkLibraries() {
         List<File> libs = new ArrayList<>();
 
-        Config.Home home = getRoboVmHome();
+        Config.Home home = RoboVmLocations.getRoboVmHome();
         if (home.isDev()) {
             // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
-            File rootDir = home.getRtPath().getParentFile().getParentFile().getParentFile();
+            File rootDir = home.getHomeDir();
             libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + ".jar"));
             libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + "-sources.jar"));
             libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getCompilerVersion() + ".jar"));
@@ -387,7 +250,7 @@ public class RoboVmPlugin {
             libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
         } else {
             // normal run
-            File libsDir = new File(getSdkHome(), "lib");
+            File libsDir = new File(RoboVmLocations.getSdkHome(), "lib");
             try {
                 libs.addAll(Arrays.asList(RoboFileUtils.listFiles(libsDir, (dir, name) -> name.endsWith(".jar") && !name.contains("cacerts"))));
             } catch (IOException e) {
@@ -415,13 +278,6 @@ public class RoboVmPlugin {
         return libs;
     }
 
-    public static Config.Home getRoboVmHome() {
-        try {
-            return Config.Home.find();
-        } catch (Throwable t) {
-            return new Config.Home(getSdkHome());
-        }
-    }
 
     public static List<Module> getRoboVmModules(Project project) {
         return getRoboVmModules(project, (Predicate<String>)null);
@@ -451,29 +307,12 @@ public class RoboVmPlugin {
         return validModules;
     }
 
+
+    /**
+     * Only if RoboVM facet is attached
+     */
     public static boolean isRoboVmModule(Module module) {
-        // HACK! to identify if the module uses a robovm sdk
-        Sdk sdk = ModuleRootManager.getInstance(module).getSdk();
-        if (sdk != null && sdk.getSdkType().getName().toLowerCase().contains("robovm")) {
-            return true;
-        }
-
-        // check if there's any RoboVM RT libs in the classpath
-        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().withoutSdk().compileOnly();
-        for (String path : classes.getPathsList().getPathList()) {
-            if (isSdkLibrary(path)) {
-                return true;
-            }
-        }
-
-        // check if there's a robovm.xml file in the root of the module
-        for (VirtualFile file : ModuleRootManager.getInstance(module).getContentRoots()) {
-            if (file.findChild("robovm.xml") != null) {
-                return true;
-            }
-        }
-
-        return false;
+        return FacetManager.getInstance(module).getFacetByType(RoboVmFacetType.TYPE_ID) != null;
     }
 
     public static Config loadRawModuleConfig(Module module) {
@@ -541,22 +380,26 @@ public class RoboVmPlugin {
         return classesDir;
     }
 
+    /**
+     * get module content root from facet
+     */
     public static File getModuleBaseDir(Module module) {
-        File root = new File(ModuleRootManager.getInstance(module).getContentRoots()[0].getPath());
-        while (root.exists()) {
-            File robovmXml = new File(root, "robovm.xml");
-            if (robovmXml.exists()) break;
-            if (root.getParent() != null) root = root.getParentFile();
-            else break;
+        RoboVmFacet facet = FacetManager.getInstance(module).getFacetByType(RoboVmFacetType.TYPE_ID);
+        RoboVmFacetConfiguration.Settings configuration = facet != null ? facet.getConfiguration().getSettings() : null;
+        if (configuration == null) {
+            throw new IllegalStateException("Modules has no RoboVM facet configured!");
         }
-        return root;
+        if (configuration.getContentRoot() == null) {
+            throw new IllegalStateException("RoboVM facet has no content root configured!");
+        }
+        return new File(configuration.getContentRoot());
     }
 
     public static Set<File> getModuleResourcePaths(Module module) {
         try {
             File moduleBaseDir = getModuleBaseDir(module);
             Config.Builder configBuilder = new Config.Builder();
-            configBuilder.home(RoboVmPlugin.getRoboVmHome());
+            configBuilder.home(RoboVmLocations.getRoboVmHome());
             configBuilder.addClasspathEntry(new File(".")); // Fake a classpath to make Config happy
             configBuilder.skipLinking(true);
             RoboVmCompileTask.loadConfig(module.getProject(), configBuilder, moduleBaseDir, false);

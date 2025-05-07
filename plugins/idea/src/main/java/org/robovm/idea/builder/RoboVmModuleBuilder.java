@@ -16,6 +16,8 @@
  */
 package org.robovm.idea.builder;
 
+import com.intellij.facet.FacetManager;
+import com.intellij.facet.ModifiableFacetModel;
 import com.intellij.ide.util.projectWizard.JavaModuleBuilder;
 import com.intellij.ide.util.projectWizard.ModuleWizardStep;
 import com.intellij.ide.util.projectWizard.WizardContext;
@@ -31,18 +33,14 @@ import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.StdModuleTypes;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ContentEntry;
-import com.intellij.openapi.roots.LanguageLevelModuleExtension;
-import com.intellij.openapi.roots.LanguageLevelProjectExtension;
-import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.roots.SourceFolder;
+import com.intellij.openapi.roots.*;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.java.LanguageLevel;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.idea.maven.project.MavenProjectsManager;
@@ -51,6 +49,9 @@ import org.jetbrains.plugins.gradle.settings.GradleProjectSettings;
 import org.jetbrains.plugins.gradle.util.GradleConstants;
 import org.robovm.compiler.Version;
 import org.robovm.idea.RoboVmPlugin;
+import org.robovm.idea.facet.RoboVmFacet;
+import org.robovm.idea.facet.RoboVmFacetConfiguration;
+import org.robovm.idea.facet.RoboVmFacetType;
 import org.robovm.idea.sdk.RoboVmSdkType;
 import org.robovm.templater.Templater;
 
@@ -119,7 +120,7 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
     @Override
     public void setupRootModel(@NotNull final ModifiableRootModel modifiableRootModel) throws ConfigurationException {
         // set the Java SDK
-        myJdk = RoboVmPlugin.getSdk();
+        myJdk = RoboVmSdkType.setUpSdkIfNeeded(modifiableRootModel.getProject());
 
         // set a project jdk if none is set
         ProjectRootManager manager = ProjectRootManager.getInstance(modifiableRootModel.getProject());
@@ -146,6 +147,9 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
         } else {
             applyTemplate(project, module, contentRootFile);
 
+            // attach facet so plugin can recognise it as RoboVM mdule
+            attachFacet(module, RoboVmFacetConfiguration.BuildSystem.IntelliJ, contentRootFile.getPath());
+
             // fix path for project/module without build system
             for (ContentEntry entry : modifiableRootModel.getContentEntries()) {
                 for (SourceFolder srcFolder : entry.getSourceFolders()) {
@@ -166,6 +170,17 @@ public class RoboVmModuleBuilder extends JavaModuleBuilder {
                 }
             }
         }
+    }
+
+    private void attachFacet(Module module, RoboVmFacetConfiguration.BuildSystem facetBuildSystem, @NonNls @NotNull String contentRoot) {
+        FacetManager facetManager = FacetManager.getInstance(module);
+        ModifiableFacetModel model = facetManager.createModifiableModel();
+        RoboVmFacetConfiguration configuration = new RoboVmFacetConfiguration(
+                new RoboVmFacetConfiguration.Settings(facetBuildSystem, contentRoot, Version.getCompilerVersion())
+        );
+        RoboVmFacet facet = RoboVmFacetType.getINSTANCE().createFacet(module, RoboVmFacetType.NAME, configuration, null);
+        model.addFacet(facet);
+        model.commit();
     }
 
     private void applyTemplate(Project project, @SuppressWarnings("unused") Module module, VirtualFile contentRootFile) {

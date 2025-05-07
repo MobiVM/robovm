@@ -6,7 +6,7 @@
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
-    <idea-version since-build="223"/>
+    <idea-version since-build="232.8660.185"/>
 
     <name>MobiVM</name>
     <description>
@@ -32,14 +32,16 @@
     </change-notes>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.gradle">
-        <projectResolve implementation="org.robovm.idea.gradle.RoboVMGradleProjectResolver"/>
+        <projectResolve implementation="org.robovm.idea.gradle.sync.RoboVMGradleProjectResolver"/>
     </extensions>
+
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="org.robovm.idea.running.RoboVmIOSConfigurationType"/>
         <configurationType implementation="org.robovm.idea.running.RoboVmConsoleConfigurationType"/>
         <programRunner implementation="org.robovm.idea.running.RoboVmRunner"/>
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
+        <postStartupActivity implementation="org.robovm.idea.components.RoboVmProjectStartupActivity"/>
         <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
         <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
@@ -58,26 +60,9 @@
                          level="WARNING"
                          implementationClass="org.robovm.idea.inspection.ClassWithProtocolShouldExtendNSObject"
                          cleanupTool="true"/>
-
+        <externalProjectDataService implementation="org.robovm.idea.gradle.sync.RoboVmModuleDataService" order="last"/>
+        <facetType implementation="org.robovm.idea.facet.RoboVmFacetType"/>
     </extensions>
-
-    <application-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmApplicationComponent</implementation-class>
-        </component>
-    </application-components>
-
-    <project-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmProjectComponent</implementation-class>
-        </component>
-    </project-components>
-
-    <module-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmSdkUpdateComponent</implementation-class>
-        </component>
-    </module-components>
 
     <actions>
         <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu" popup="true">
