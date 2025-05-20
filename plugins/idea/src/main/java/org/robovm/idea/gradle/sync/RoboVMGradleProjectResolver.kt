@@ -35,11 +35,12 @@ class RoboVMGradleProjectResolver : AbstractProjectResolverExtension() {
     override fun createModule(gradleModule: IdeaModule, projectDataNode: DataNode<ProjectData>): DataNode<ModuleData>? {
         val model = resolverCtx.getExtraProject(gradleModule, RoboVMGradleModel::class.java)
         if (model != null) {
-            val saved = resolverCtx.settings.isResolveModulePerSourceSet
+            // settings are nullable till 2024.3
+            val saved = resolverCtx.settings?.isResolveModulePerSourceSet
             // robovm module (uses robovm plugin in build.gradle)
             try {
                 // disable modules per source set for RoboVM module
-                resolverCtx.settings.isResolveModulePerSourceSet = false
+                resolverCtx.settings?.run { isResolveModulePerSourceSet = false }
                 return super.createModule(gradleModule, projectDataNode)?.also {
                     val externalSettings = RoboVmFacetConfiguration.Settings(
                         buildSystem = RoboVmFacetConfiguration.BuildSystem.Gradle,
@@ -49,7 +50,8 @@ class RoboVMGradleProjectResolver : AbstractProjectResolverExtension() {
                     it.createChild(RoboVmGradleModelKey, externalSettings)
                 }
             } catch (e: Exception) {
-                resolverCtx.settings.isResolveModulePerSourceSet = saved
+                if (saved != null)
+                    resolverCtx.settings?.run { isResolveModulePerSourceSet = saved }
                 throw e
             }
         } else {

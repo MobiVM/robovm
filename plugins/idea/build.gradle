@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "org.jetbrains.kotlin.jvm" version "2.1.20"
     id "org.jetbrains.intellij" version "1.13.2"
 }
 
@@ -41,7 +42,7 @@ dependencies {
 }
 
 intellij {
-    version = '2022.3'   // we are compiles against this API version
+    version = '2024.2'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
 }
@@ -53,8 +54,8 @@ def copyRoboVmDist = tasks.register("copyRoboVmDist", Copy) {
 }
 
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 17
+targetCompatibility = 17
 tasks.named("patchPluginXml").configure {
     dependsOn copyRoboVmDist
 }

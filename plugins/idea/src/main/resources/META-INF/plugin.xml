@@ -6,7 +6,7 @@
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
-    <idea-version since-build="232.8660.185"/>
+    <idea-version since-build="242.20224.300"/>
 
     <name>MobiVM</name>
     <description>

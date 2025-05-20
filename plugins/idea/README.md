@@ -15,6 +15,7 @@ Not supported any more due removed `-extdir` in Java9+
 * Checkout the branch that corresponds to the respective IDEA version you installed, e.g. 139 for Idea 14.0.x, see http://www.jetbrains.org/pages/viewpage.action?pageId=983225
 * Open Intellij IDEA CE, setup the IDEA sdk pointing it at your IDEA installation. Add source path to root of repo cloned above. Also add following JARs to SDK from IDEA directory:
  - /Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven.jar
+ - /Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven-server.jar
  - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle.jar
  - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle/lib/gradle-api-?.?.jar
  - /Applications/IntelliJ IDEA CE.app/Contents/plugins/gradle-java/lib/gradle-java.jar
@@ -29,3 +30,11 @@ Not supported any more due removed `-extdir` in Java9+
 ### Development with Gradle
 Simply open gradle file as project, create Run configuration and debug  
 
+### if maven based project doesn't deploy plugin
+Check `plugins/idea/org.robovm.idea.iml` for module type field missing should be as bellow:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4" type="PLUGIN_MODULE">
+  <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/src/main/resources/META-INF/plugin.xml" />
+</module>
+```
