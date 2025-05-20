@@ -17,8 +17,7 @@ Options:
                           MacOSX:
                              macosx-x86_64, macosx-arm64
                           iOS:
-                             ios-thumbv7, ios-arm64, ios-x86_64-simulator,
-                             ios-arm64-simulator
+                             ios-arm64, ios-x86_64-simulator, ios-arm64-simulator
                           Linux:
                              linux-x86_64
                           Enclose multiple targets in quotes and 
@@ -58,7 +57,7 @@ if [ "x$TARGETS" = 'x' ]; then
   OS=$(uname)
   case $OS in
   Darwin)
-    TARGETS="macosx-x86_64 macosx-arm64 ios-x86_64-simulator ios-arm64-simulator ios-thumbv7 ios-arm64"
+    TARGETS="macosx-x86_64 macosx-arm64 ios-x86_64-simulator ios-arm64-simulator ios-arm64"
     ;;
   Linux)
     TARGETS="linux-x86_64"

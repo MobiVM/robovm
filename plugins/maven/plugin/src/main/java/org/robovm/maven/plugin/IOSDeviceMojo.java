@@ -39,13 +39,7 @@ public class IOSDeviceMojo extends AbstractRoboVMMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         try {
-
-            Arch arch = Arch.arm64;
-            if (super.arch != null && super.arch.equals(Arch.thumbv7.toString())) {
-                arch = Arch.thumbv7;
-            }
-
-            AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
+            AppCompiler compiler = build(OS.ios, Arch.arm64, IOSTarget.TYPE);
             Config config = compiler.getConfig();
             LaunchParameters launchParameters = config.getTarget()
                     .createLaunchParameters();

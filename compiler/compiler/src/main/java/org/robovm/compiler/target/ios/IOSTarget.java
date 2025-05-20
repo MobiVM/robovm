@@ -127,7 +127,7 @@ public class IOSTarget extends AbstractTarget {
     public static boolean isDeviceArch(Arch arch) {
         Environment env = arch.getEnv();
         CpuArch cpuArch = arch.getCpuArch();
-        return env == Environment.Native &&  (cpuArch == CpuArch.thumbv7 || cpuArch == CpuArch.arm64);
+        return env == Environment.Native && cpuArch == CpuArch.arm64;
     }
 
     /**
@@ -798,7 +798,7 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     public List<Arch> getDefaultArchs() {
-        return Arrays.asList(new Arch(CpuArch.thumbv7), new Arch(CpuArch.arm64));
+        return List.of(new Arch(CpuArch.arm64));
     }
 
     public void archive() throws IOException {

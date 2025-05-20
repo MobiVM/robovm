@@ -16,12 +16,6 @@
  */
 package org.robovm.compiler.config;
 
-import static org.junit.Assert.*;
-
-import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
@@ -33,6 +27,13 @@ import org.robovm.compiler.config.Config.Lib;
 import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.zeroturnaround.zip.ZipUtil;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests {@link Config}.
@@ -645,18 +646,17 @@ public class ConfigTest {
                 "  <frameworks>\n" +
                 "     <framework arch=\"x86_64\">x86_64_framework</framework>\n" +
                 "     <framework>uni_framework</framework>\n" +
-                "     <framework arch=\"thumbv7\">thumbv7</framework>\n" +
                 "  </frameworks>\n" +
                 "  <weakFrameworks>\n" +
                 "     <framework arch=\"arm64\">arm64_weakframework</framework>\n" +
                 "     <framework>uni_weakframework</framework>\n" +
                 "  </weakFrameworks>\n" +
                 "  <xcFrameworks>\n" +
-                "     <path arch=\"x86_64,thumbv7\">thumbv7.xcframework</path>\n" +
+                "     <path variant=\"simulator\" arch=\"x86_64\">x86_64.xcframework</path>\n" +
                 "  </xcFrameworks>\n" +
                 "</config>";
         // drop xcframework there
-        File xcFramework = new File(workingDirectory, "thumbv7.xcframework");
+        File xcFramework = new File(workingDirectory, "x86_64.xcframework");
         xcFramework.mkdirs();
         byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
         FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
@@ -684,15 +684,9 @@ public class ConfigTest {
         builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
         config = builder.build();
         assertEquals(Arrays.asList("x86_64_framework", "uni_framework"), config.getFrameworks());
+        assertEquals(List.of(new Lib(xcFramework.getAbsolutePath() + "/ios-x86_64-simulator/library-static3.a", false)), config.getLibs());
         assertEquals(Collections.singletonList("uni_weakframework"), config.getWeakFrameworks());
         assertEquals(Collections.emptyList(), config.getFrameworkPaths());
-
-        // thumbv7
-        builder.arch(new Arch(CpuArch.thumbv7));
-        config = builder.build();
-        assertEquals(Arrays.asList("uni_framework", "thumbv7", "library1"), config.getFrameworks());
-        assertEquals(Collections.singletonList("uni_weakframework"), config.getWeakFrameworks());
-        assertEquals(Collections.singletonList(new File(xcFramework, "/ios-arm64_armv7")), config.getFrameworkPaths());
     }
 
 

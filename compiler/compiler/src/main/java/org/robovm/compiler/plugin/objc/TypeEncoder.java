@@ -46,11 +46,11 @@ public class TypeEncoder {
     public static final String OBJC_CLASS = "org.robovm.objc.ObjCClass";
     public static final String OBJC_BLOCK = "org.robovm.objc.ObjCBlock";
 
-    public String encode(SootMethod method, boolean is64bit) {
+    public String encode(SootMethod method) {
         StringBuilder sb = new StringBuilder();
-        sb.append(encodeOne(method, method.getReturnType(), -1, is64bit));
+        sb.append(encodeOne(method, method.getReturnType(), -1));
         for (int i = 0; i < method.getParameterCount(); i++) {
-            sb.append(encodeOne(method, method.getParameterType(i), i, is64bit));
+            sb.append(encodeOne(method, method.getParameterType(i), i));
         }
         return sb.toString();
     }
@@ -63,19 +63,19 @@ public class TypeEncoder {
         }
     }
 
-    private String encodeOne(SootMethod method, Type t, int idx, boolean is64bit) {
+    private String encodeOne(SootMethod method, Type t, int idx) {
         if (t instanceof VoidType) {
             return encodeVoid((VoidType) t);
         }
         if (t instanceof PrimType) {
-            return encodePrimitive(method, (PrimType) t, idx, is64bit);
+            return encodePrimitive(method, (PrimType) t, idx);
         }
         if (Types.isStruct(method.getDeclaringClass()) && hasAnno(method, idx, ARRAY)) {
             throw new IllegalArgumentException("Cannot not determine type encoding for @Array annotated method "
                     + method + ". @Array is not yet supported. Use an explicit @TypeEncoding annotation instead.");
         }
         if (t instanceof RefType) {
-            return encodeRef(method, (RefType) t, idx, is64bit);
+            return encodeRef(method, (RefType) t, idx);
         }
         throw new IllegalArgumentException("Unsupported type "
                 + t.getClass().getName() + " " + t);
@@ -85,7 +85,7 @@ public class TypeEncoder {
         return "v";
     }
 
-    private String encodeRef(SootMethod method, RefType t, int idx, boolean is64bit) {
+    private String encodeRef(SootMethod method, RefType t, int idx) {
         if (SELECTOR.equals(t.getClassName())) {
             return ":";
         }
@@ -98,7 +98,7 @@ public class TypeEncoder {
         if (Types.isStruct(t)) {
             if (hasAnno(method, idx, BY_VAL)) {
                 // Encode as struct
-                return encodeStruct(method, t, idx, is64bit);
+                return encodeStruct(method, t, idx);
             }
             return "^v"; // Encode any type of pointer as void*
         }
@@ -114,10 +114,10 @@ public class TypeEncoder {
         return true;
     }
 
-    private String encodeStruct(SootMethod method, RefType t, int idx, boolean is64bit) {
+    private String encodeStruct(SootMethod method, RefType t, int idx) {
         // We wrap in a TreeSet to filter out duplicate types that could come
         // from getters/setters.
-        TreeSet<Member> members = new TreeSet<Member>(getStructMembers(t.getSootClass(), is64bit));
+        TreeSet<Member> members = new TreeSet<Member>(getStructMembers(t.getSootClass()));
         StringBuilder sb = new StringBuilder();
         boolean union = isUnion(members);
         sb.append(union ? '(' : '{');
@@ -129,7 +129,7 @@ public class TypeEncoder {
         return sb.toString();
     }
 
-    private String encodePrimitive(SootMethod method, PrimType t, int idx, boolean is64bit) {
+    private String encodePrimitive(SootMethod method, PrimType t, int idx) {
         if (t.equals(soot.BooleanType.v())) {
             return "c";
         } else if (t.equals(soot.ByteType.v())) {
@@ -145,20 +145,20 @@ public class TypeEncoder {
                 return "^v"; // void*
             }
             if (hasAnno(method, idx, MACHINE_SIZED_S_INT)) {
-                return is64bit ? "q" : "i";
+                return "q";
             }
             if (hasAnno(method, idx, MACHINE_SIZED_U_INT)) {
-                return is64bit ? "Q" : "I";
+                return "Q";
             }
             return "q";
         } else if (t.equals(soot.FloatType.v())) {
             if (hasAnno(method, idx, MACHINE_SIZED_FLOAT)) {
-                return is64bit ? "d" : "f";
+                return "d";
             }
             return "f";
         } else if (t.equals(soot.DoubleType.v())) {
             if (hasAnno(method, idx, MACHINE_SIZED_FLOAT)) {
-                return is64bit ? "d" : "f";
+                return "d";
             }
             return "d";
         } else {
@@ -213,13 +213,13 @@ public class TypeEncoder {
         }
     }
 
-    private List<Member> getStructMembers(SootClass clazz, boolean is64bit) {
+    private List<Member> getStructMembers(SootClass clazz) {
         List<Member> members = new ArrayList<>();
 
         if (clazz.hasSuperclass()) {
             SootClass superclass = clazz.getSuperclass();
             if (!superclass.getName().equals("org.robovm.rt.bro.Struct")) {
-                members.addAll(getStructMembers(clazz, is64bit));
+                members.addAll(getStructMembers(clazz));
             }
         }
 
@@ -247,7 +247,7 @@ public class TypeEncoder {
 
                 Member member = new Member();
                 member.offset = offset;
-                member.type = encodeOne(method, type, idx, is64bit);
+                member.type = encodeOne(method, type, idx);
                 members.add(member);
             }
         }

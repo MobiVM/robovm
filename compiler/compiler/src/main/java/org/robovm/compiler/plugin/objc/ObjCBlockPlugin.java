@@ -555,7 +555,7 @@ public class ObjCBlockPlugin extends AbstractCompilerPlugin {
 
         // build and add encoding
         TypeEncoder encoder = new TypeEncoder();
-        String typeEncoding = encoder.encode(methodForEncoder, !config.getArch().is32Bit());
+        String typeEncoding = encoder.encode(methodForEncoder);
         // attach @TypeEncoding annotation to allow ObjCBlock to use it to create proper description
         AnnotationVisitor av = mv.visitAnnotation(TYPE_ENCODING, true);
         av.visit("value", typeEncoding);
