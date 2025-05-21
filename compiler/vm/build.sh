@@ -133,7 +133,7 @@ for T in $TARGETS; do
     BUILD_TYPE=$B
     mkdir -p "$BASE/target/build/$T-$B"
     rm -rf "$BASE/binaries/$OS/$ARCH/$B"
-    bash -c "cd '$BASE/target/build/$T-$B'; cmake --trace-expand -Wno-dev $SYSTEM_NAME_PARAM -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make -j $WORKERS $VERBOSE install"
+    bash -c "cd '$BASE/target/build/$T-$B'; cmake $SYSTEM_NAME_PARAM -DCMAKE_OSX_SYSROOT=`xcrun --show-sdk-path` -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make -j $WORKERS $VERBOSE install"
     R=$?
     if [[ $R != 0 ]]; then
       echo "$T-$B build failed"
