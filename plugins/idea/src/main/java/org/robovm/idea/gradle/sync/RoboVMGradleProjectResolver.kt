@@ -41,13 +41,13 @@ class RoboVMGradleProjectResolver : AbstractProjectResolverExtension() {
             try {
                 // disable modules per source set for RoboVM module
                 resolverCtx.settings?.run { isResolveModulePerSourceSet = false }
-                return super.createModule(gradleModule, projectDataNode)?.also {
+                return super.createModule(gradleModule, projectDataNode)?.also { moduleDataNode ->
                     val externalSettings = RoboVmFacetConfiguration.Settings(
                         buildSystem = RoboVmFacetConfiguration.BuildSystem.Gradle,
-                        contentRoot = projectDataNode.data.linkedExternalProjectPath,
+                        contentRoot = moduleDataNode.data.linkedExternalProjectPath,
                         externalVersion = model.version
                     )
-                    it.createChild(RoboVmGradleModelKey, externalSettings)
+                    moduleDataNode.createChild(RoboVmGradleModelKey, externalSettings)
                 }
             } catch (e: Exception) {
                 if (saved != null)
