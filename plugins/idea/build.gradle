@@ -41,6 +41,10 @@ dependencies {
     implementation 'org.apache.commons:commons-compress:1.25.0'
 }
 
+kotlin {
+  jvmToolchain(17)
+}
+
 intellij {
     version = '2024.2'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
