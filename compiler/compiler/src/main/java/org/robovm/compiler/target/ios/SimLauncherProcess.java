@@ -142,7 +142,7 @@ public class SimLauncherProcess extends Process implements Launcher {
                     List<Object> args = new ArrayList<>();
                     args.add("simctl");
                     args.add("launch");
-                    args.add("--console");
+                    args.add("--console-pty");
                     args.add(deviceType.getUdid());
                     args.add(bundleId);
                     args.addAll(arguments);
