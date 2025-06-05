@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-15
 
     env:
       MAVEN_ARGS: -Dmaven.resolver.transport=wagon

@@ -638,7 +638,7 @@ public class Config {
     }
 
     public Tools getTools() {
-        return tools;
+        return tools != null ? tools : Tools.Empty;
     }
 
     public WatchKitApp getWatchKitApp() {
@@ -1575,6 +1575,11 @@ public class Config {
         }
 
         public Builder addProperties(Properties properties) {
+            config.properties.putAll(properties);
+            return this;
+        }
+
+        public Builder addProperties(Map<String, ?> properties) {
             config.properties.putAll(properties);
             return this;
         }

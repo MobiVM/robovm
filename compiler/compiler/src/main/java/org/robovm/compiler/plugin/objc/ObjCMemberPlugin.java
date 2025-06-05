@@ -1466,7 +1466,7 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
 
     private String generateTypeEncoding(SootMethod method) {
         TypeEncoder encoder = new TypeEncoder();
-        return encoder.encode(method, !config.getArch().is32Bit());
+        return encoder.encode(method);
     }
 
     private SootMethod findStrongRefGetter(SootClass sootClass,

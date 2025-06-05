@@ -49,7 +49,7 @@ import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_PROVISIONING_P
 import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_SIGNING_IDENTITY;
 
 public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<RoboVmRunConfiguration> {
-    private static final CpuArch[] DEVICE_ARCHS = {CpuArch.arm64, CpuArch.thumbv7};
+    private static final CpuArch[] DEVICE_ARCHS = {CpuArch.arm64};
     private static final CpuArch[] SIMULATOR_ARCHS = {CpuArch.arm64, CpuArch.x86_64};
 
     public static final String AUTO_SIMULATOR_IPHONE_TITLE = "Auto (prefers '" + DeviceType.PREFERRED_IPHONE_SIM_NAME + "')";

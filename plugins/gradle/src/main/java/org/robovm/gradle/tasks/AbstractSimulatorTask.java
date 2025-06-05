@@ -15,7 +15,9 @@
  */
 package org.robovm.gradle.tasks;
 
+import org.apache.tools.ant.types.Commandline;
 import org.gradle.api.tasks.Internal;
+import org.gradle.api.tasks.options.Option;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -25,11 +27,18 @@ import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
 import org.robovm.gradle.RoboVMGradleException;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  *
  */
 public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
+    private String[] args;
+
+    @Option(option = "args", description = "Command line arguments passed to app.")
+    public void setArgs(String args) {
+        this.args = Commandline.translateCommandline(args);
+    }
 
     protected void launch(DeviceType type) {
         try {
@@ -42,6 +51,9 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
             Config config = compiler.getConfig();
             IOSSimulatorLaunchParameters launchParameters = (IOSSimulatorLaunchParameters) config.getTarget().createLaunchParameters();
             launchParameters.setDeviceType(type);
+            if (args != null) {
+                launchParameters.setArguments(Arrays.asList(args));
+            }
 
             if (extension.getStdoutFifo() != null) {
                 File stdoutFifo = new File(extension.getStdoutFifo());

@@ -475,14 +475,7 @@ public class MarshalerLookup {
                 if (hasPointerAnnotation(method)) {
                     return I8_PTR;
                 }
-                if (arch.is32Bit() && (hasMachineSizedSIntAnnotation(method) 
-                        || hasMachineSizedUIntAnnotation(method))) {
-                    return I32;
-                }
-                if (arch.is32Bit() && (hasMachineSizedFloatAnnotation(method))) {
-                    return FLOAT;
-                }
-                if (!arch.is32Bit() && (hasMachineSizedFloatAnnotation(method))) {
+                if (hasMachineSizedFloatAnnotation(method)) {
                     return DOUBLE;
                 }
                 return Types.getType(method.getReturnType());
@@ -490,14 +483,7 @@ public class MarshalerLookup {
                 if (hasPointerAnnotation(method, 1)) {
                     return I8_PTR;
                 }
-                if (arch.is32Bit() && (hasMachineSizedSIntAnnotation(method, 1) 
-                        || hasMachineSizedUIntAnnotation(method, 1))) {
-                    return I32;
-                }
-                if (arch.is32Bit() && (hasMachineSizedFloatAnnotation(method, 1))) {
-                    return FLOAT;
-                }
-                if (!arch.is32Bit() && (hasMachineSizedFloatAnnotation(method, 1))) {
+                if (hasMachineSizedFloatAnnotation(method, 1)) {
                     return DOUBLE;
                 }
                 return Types.getType(method.getParameterType(1));

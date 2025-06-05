@@ -62,6 +62,8 @@
                          cleanupTool="true"/>
         <externalProjectDataService implementation="org.robovm.idea.gradle.sync.RoboVmModuleDataService" order="last"/>
         <facetType implementation="org.robovm.idea.facet.RoboVmFacetType"/>
+        <notificationGroup id="RoboVM" displayType="BALLOON"/>
+
     </extensions>
 
     <actions>

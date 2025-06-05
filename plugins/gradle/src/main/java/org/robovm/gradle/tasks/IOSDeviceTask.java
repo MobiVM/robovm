@@ -15,6 +15,8 @@
  */
 package org.robovm.gradle.tasks;
 
+import org.apache.tools.ant.types.Commandline;
+import org.gradle.api.tasks.options.Option;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -23,21 +25,25 @@ import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.gradle.RoboVMGradleException;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Junji Takakura
  */
 public class IOSDeviceTask extends AbstractRoboVMTask {
 
+    private String[] args;
+
+    @Option(option = "args", description = "Command line arguments passed to app.")
+    public void setArgs(String args) {
+        this.args = Commandline.translateCommandline(args);
+    }
+
     @Override
     public void invoke() {
         try {
-            Arch arch = Arch.arm64;
-            if (extension.getArch() != null && extension.getArch().equals(Arch.thumbv7.toString())) {
-                arch = Arch.thumbv7;
-            }
-
-            AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
+            AppCompiler compiler = build(OS.ios, Arch.arm64, IOSTarget.TYPE);
             if (extension.isSkipLaunch()) {
                 return;
             }
@@ -47,6 +53,9 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
 			if(udid != null && !udid.isEmpty()){
 				launchParameters.setDeviceId(udid);
 			}
+            if (args != null) {
+                launchParameters.setArguments(Arrays.asList(args));
+            }
             compiler.launch(launchParameters);
         } catch (Throwable t) {
             throw new RoboVMGradleException("Failed to launch IOS Device", t);

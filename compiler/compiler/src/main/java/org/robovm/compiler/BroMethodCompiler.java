@@ -16,65 +16,33 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Annotations.*;
-import static org.robovm.compiler.Bro.*;
-import static org.robovm.compiler.Functions.*;
-import static org.robovm.compiler.Types.*;
-import static org.robovm.compiler.llvm.Type.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.robovm.compiler.MarshalerLookup.ArrayMarshalerMethod;
 import org.robovm.compiler.MarshalerLookup.MarshalSite;
 import org.robovm.compiler.MarshalerLookup.MarshalerMethod;
 import org.robovm.compiler.MarshalerLookup.ValueMarshalerMethod;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.llvm.AggregateType;
-import org.robovm.compiler.llvm.Alloca;
+import org.robovm.compiler.llvm.*;
 import org.robovm.compiler.llvm.ArrayType;
-import org.robovm.compiler.llvm.Bitcast;
-import org.robovm.compiler.llvm.ConstantBitcast;
-import org.robovm.compiler.llvm.DataLayout;
-import org.robovm.compiler.llvm.Fpext;
-import org.robovm.compiler.llvm.Fptrunc;
-import org.robovm.compiler.llvm.Function;
-import org.robovm.compiler.llvm.FunctionRef;
-import org.robovm.compiler.llvm.FunctionType;
-import org.robovm.compiler.llvm.GlobalRef;
-import org.robovm.compiler.llvm.IntegerConstant;
 import org.robovm.compiler.llvm.IntegerType;
-import org.robovm.compiler.llvm.Inttoptr;
-import org.robovm.compiler.llvm.Load;
-import org.robovm.compiler.llvm.PackedStructureType;
-import org.robovm.compiler.llvm.PointerType;
-import org.robovm.compiler.llvm.PrimitiveType;
-import org.robovm.compiler.llvm.Ptrtoint;
-import org.robovm.compiler.llvm.Sext;
-import org.robovm.compiler.llvm.Store;
-import org.robovm.compiler.llvm.StructureType;
-import org.robovm.compiler.llvm.Trunc;
 import org.robovm.compiler.llvm.Type;
 import org.robovm.compiler.llvm.Value;
-import org.robovm.compiler.llvm.Variable;
-import org.robovm.compiler.llvm.VectorStructureType;
-import org.robovm.compiler.llvm.Zext;
 import org.robovm.compiler.trampoline.Invokestatic;
 import org.robovm.compiler.trampoline.LdcClass;
 import org.robovm.compiler.trampoline.Trampoline;
-
-import soot.DoubleType;
-import soot.FloatType;
-import soot.LongType;
-import soot.PrimType;
-import soot.RefType;
-import soot.SootClass;
-import soot.SootMethod;
-import soot.VoidType;
+import soot.*;
 import soot.tagkit.AnnotationIntElem;
 import soot.tagkit.AnnotationTag;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static org.robovm.compiler.Annotations.*;
+import static org.robovm.compiler.Bro.*;
+import static org.robovm.compiler.Functions.*;
+import static org.robovm.compiler.Types.*;
+import static org.robovm.compiler.llvm.Type.*;
 
 
 /**
@@ -286,43 +254,21 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
     }
 
     protected Value marshalMachineSizedSIntToLong(Function fn, Value value) {
-        if (config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(I64);
-            fn.add(new Sext(result, value, I64));
-            return result.ref();
-        } else {
-            return value;
-        }
+        return value;
     }
 
     protected Value marshalMachineSizedUIntToLong(Function fn, Value value) {
-        if (config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(I64);
-            fn.add(new Zext(result, value, I64));
-            return result.ref();
-        } else {
-            return value;
-        }
+        return value;
     }
 
     protected Value marshalMachineSizedFloatToDouble(Function fn, Value value) {
-        if (config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(DOUBLE);
-            fn.add(new Fpext(result, value, DOUBLE));
-            return result.ref();
-        } else {
-            return value;
-        }
+        return value;
     }
 
     protected Value marshalMachineSizedFloatToFloat(Function fn, Value value) {
-        if (!config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(FLOAT);
-            fn.add(new Fptrunc(result, value, FLOAT));
-            return result.ref();
-        } else {
-            return value;
-        }
+        Variable result = fn.newVariable(FLOAT);
+        fn.add(new Fptrunc(result, value, FLOAT));
+        return result.ref();
     }
 
     protected Value marshalObjectToNative(Function fn, MarshalerMethod marshalerMethod, MarshaledArg marshaledArg, 
@@ -386,33 +332,17 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
     }
 
     protected Value marshalLongToMachineSizedInt(Function fn, Value value) {
-        if (config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(I32);
-            fn.add(new Trunc(result, value, I32));
-            return result.ref();
-        } else {
-            return value;
-        }
+        return value;
     }
 
     protected Value marshalDoubleToMachineSizedFloat(Function fn, Value value) {
-        if (config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(FLOAT);
-            fn.add(new Fptrunc(result, value, FLOAT));
-            return result.ref();
-        } else {
-            return value;
-        }
+        return value;
     }
 
     protected Value marshalFloatToMachineSizedFloat(Function fn, Value value) {
-        if (!config.getArch().is32Bit()) {
-            Variable result = fn.newVariable(DOUBLE);
-            fn.add(new Fpext(result, value, DOUBLE));
-            return result.ref();
-        } else {
-            return value;
-        }
+        Variable result = fn.newVariable(DOUBLE);
+        fn.add(new Fpext(result, value, DOUBLE));
+        return result.ref();
     }
 
     private Type getReturnType(String anno, SootMethod method) {
@@ -429,14 +359,14 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                 throw new IllegalArgumentException(anno + " annotated method " 
                         + method + " must return float or double when annotated with @MachineSizedFloat");
             }
-            return config.getArch().is32Bit() ? FLOAT : DOUBLE;
+            return DOUBLE;
         }        
         if (hasMachineSizedSIntAnnotation(method) || hasMachineSizedUIntAnnotation(method)) {
             if (!sootType.equals(LongType.v())) {
                 throw new IllegalArgumentException(anno + " annotated method " 
                         + method + " must return long when annotated with @MachineSizedSInt or @MachineSizedUInt");
             }
-            return config.getArch().is32Bit() ? I32 : I64;
+            return I64;
         }        
         if (isStruct(sootType)) {
             if (!isPassByValue(method)) {
@@ -475,7 +405,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                         + " of " + anno + " annotated method " + method 
                         + " must be of type float or double when annotated with @MachineSizedFloat.");
             }
-            return config.getArch().is32Bit() ? FLOAT : DOUBLE;
+            return DOUBLE;
         }
         if (hasMachineSizedSIntAnnotation(method, i) || hasMachineSizedUIntAnnotation(method, i)) {
             if (!sootType.equals(LongType.v())) {
@@ -484,7 +414,7 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
                         + " must be of type long when annotated with " 
                         + "@MachineSizedSInt or @MachineSizedUInt");
             }
-            return config.getArch().is32Bit() ? I32 : I64;
+            return I64;
         }        
         if (hasStructRetAnnotation(method, i)) {
             if (i > 0) {
@@ -911,10 +841,10 @@ public abstract class BroMethodCompiler extends AbstractMethodCompiler {
         if (getter != null && hasPointerAnnotation(getter) || setter != null && hasPointerAnnotation(setter, 0)) {
             memberType = I8_PTR;
         } else if (getter != null && hasMachineSizedFloatAnnotation(getter) || setter != null && hasMachineSizedFloatAnnotation(setter, 0)) {
-            memberType = config.getArch().is32Bit() ? FLOAT : DOUBLE;
+            memberType = DOUBLE;
         } else if (getter != null && (hasMachineSizedSIntAnnotation(getter) || hasMachineSizedUIntAnnotation(getter)) 
                 || setter != null && (hasMachineSizedSIntAnnotation(setter, 0) || hasMachineSizedUIntAnnotation(setter, 0))) {
-            memberType = config.getArch().is32Bit() ? I32 : I64;
+            memberType = I64;
         } else if (type instanceof PrimType) {
             memberType = getType(type);
         } else if (getter != null && hasArrayAnnotation(getter) || setter != null && hasArrayAnnotation(setter, 0)) {

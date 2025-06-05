@@ -58,10 +58,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -135,6 +133,13 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
                                 + project.getProjectDir().getAbsolutePath(), e);
             }
         }
+
+        // add project properties on top of one read from property file
+        // leave only not nullable string values
+        Map<String, String> gradleProperties = project.getProperties().entrySet().stream()
+                .filter( e -> e.getValue() instanceof String)
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().toString()));
+        builder.addProperties(gradleProperties);
 
         if (extension.getConfigFile() != null) {
             File configFile = new File(extension.getConfigFile());

@@ -462,7 +462,7 @@ public class ToolchainUtil {
                 opts.add("-Wl,-filelist," + objectsFile.getAbsolutePath());
             }
         } else {
-            opts.add(config.getArch().is32Bit() ? "-m32" : "-m64");
+            opts.add("-m64");
             for (File objectsFile : objectsFiles) {
                 opts.add("@" + objectsFile.getAbsolutePath());
             }

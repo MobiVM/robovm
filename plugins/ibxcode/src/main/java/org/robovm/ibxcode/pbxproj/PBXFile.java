@@ -59,6 +59,8 @@ public class PBXFile extends PBXNode{
             return "text.plist.strings";
         else if (fileName.endsWith(".framework"))
             return "wrapper.framework";
+        else if (fileName.endsWith(".xcframework"))
+            return "wrapper.xcframework";
         else if (fileName.endsWith(".plist"))
             return "text.plist.xml";
         else if (file != null && file.isDirectory())

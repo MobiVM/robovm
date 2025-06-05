@@ -17,8 +17,7 @@ Options:
                           MacOSX:
                              macosx-x86_64, macosx-arm64
                           iOS:
-                             ios-thumbv7, ios-arm64, ios-x86_64-simulator,
-                             ios-arm64-simulator
+                             ios-arm64, ios-x86_64-simulator, ios-arm64-simulator
                           Linux:
                              linux-x86_64
                           Enclose multiple targets in quotes and 
@@ -58,7 +57,7 @@ if [ "x$TARGETS" = 'x' ]; then
   OS=$(uname)
   case $OS in
   Darwin)
-    TARGETS="macosx-x86_64 macosx-arm64 ios-x86_64-simulator ios-arm64-simulator ios-thumbv7 ios-arm64"
+    TARGETS="macosx-arm64 macosx-x86_64 ios-x86_64-simulator ios-arm64-simulator ios-arm64"
     ;;
   Linux)
     TARGETS="linux-x86_64"
@@ -134,7 +133,7 @@ for T in $TARGETS; do
     BUILD_TYPE=$B
     mkdir -p "$BASE/target/build/$T-$B"
     rm -rf "$BASE/binaries/$OS/$ARCH/$B"
-    bash -c "cd '$BASE/target/build/$T-$B'; cmake $SYSTEM_NAME_PARAM -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make -j $WORKERS $VERBOSE install"
+    bash -c "cd '$BASE/target/build/$T-$B'; cmake $SYSTEM_NAME_PARAM -DCMAKE_OSX_SYSROOT=`xcrun --show-sdk-path` -DCMAKE_C_COMPILER=$CC -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DOS=$OS -DARCH=$ARCH '$BASE'; make -j $WORKERS $VERBOSE install"
     R=$?
     if [[ $R != 0 ]]; then
       echo "$T-$B build failed"

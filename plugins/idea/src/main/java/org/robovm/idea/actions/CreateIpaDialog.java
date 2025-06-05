@@ -35,19 +35,14 @@ import org.robovm.idea.RoboVmPlugin;
 
 import javax.swing.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class CreateIpaDialog extends DialogWrapper {
     private static final String MODULE_NAME = "robovm.ipaConfig.moduleName";
     private static final String SIGNING_IDENTITY = "robovm.ipaConfig.signingIdentity";
     private static final String PROVISIONING_PROFILE = "robovm.ipaConfig.provisioningProfile";
-    private static final String ARCHS = "robovm.ipaConfig.archs";
     private static final String DESTINATION_DIR = "robovm.ipaConfig.destinationDir";
 
-    private static final String ARCHS_ALL = "All - 32-bit (thumbv7) + 64-bit (arm64)";
-    private static final String ARCHS_32BIT = "32-bit (thumbv7)";
     private static final String ARCHS_64BIT = "64-bit (arm64)";
     private JPanel panel;
     private JComboBox<String> archs;
@@ -72,7 +67,6 @@ public class CreateIpaDialog extends DialogWrapper {
         String configSigning = properties.getValue(SIGNING_IDENTITY, "");
         String configProvisioning = properties.getValue(PROVISIONING_PROFILE, "");
         String configDestDir = properties.getValue(DESTINATION_DIR, "");
-        String configArchs = properties.getValue(ARCHS, "");
 
         for(Module module: RoboVmPlugin.getRoboVmModules(project, IOSTarget.TYPE)) {
             this.module.addItem(module.getName());
@@ -97,13 +91,9 @@ public class CreateIpaDialog extends DialogWrapper {
             }
         }
 
-        // populate architectures
-        for(String arch: new String[] { ARCHS_ALL, ARCHS_32BIT, ARCHS_64BIT }) {
-            archs.addItem(arch);
-            if(arch.equals(configArchs)) {
-                this.archs.setSelectedIndex(this.archs.getItemCount()-1);
-            }
-        }
+        // populate architectures (doesn't affect anything, showing user that building for arm64)
+        archs.addItem(ARCHS_64BIT);
+        this.archs.setSelectedIndex(0);
 
         if(!configDestDir.isEmpty()) {
             destinationDir.setText(configDestDir);
@@ -165,21 +155,7 @@ public class CreateIpaDialog extends DialogWrapper {
         Module module = ModuleManager.getInstance(project).findModuleByName((String) Objects.requireNonNull(this.module.getSelectedItem()));
         String signingIdentity = (String) Objects.requireNonNull(this.signingIdentity.getSelectedItem());
         String provisioningProile = (String) Objects.requireNonNull(this.provisioningProfile.getSelectedItem());
-        String arch = (String) Objects.requireNonNull(this.archs.getSelectedItem());
-        Arch[] archs;
-        switch (arch) {
-            case ARCHS_ALL:
-                archs = new Arch[]{Arch.thumbv7, Arch.arm64};
-                break;
-            case ARCHS_32BIT:
-                archs = new Arch[]{Arch.thumbv7};
-                break;
-            case ARCHS_64BIT:
-                archs = new Arch[]{Arch.arm64};
-                break;
-            default:
-                throw new IllegalStateException("Unknown arch configuration!");
-        }
+        Arch[] archs = new Arch[]{Arch.arm64};
         return new CreateIpaAction.IpaConfig(module, new File(this.destinationDir.getText()), signingIdentity, provisioningProile, archs);
     }
 
@@ -188,7 +164,6 @@ public class CreateIpaDialog extends DialogWrapper {
         properties.setValue(MODULE_NAME, (String)module.getSelectedItem());
         properties.setValue(SIGNING_IDENTITY, (String)signingIdentity.getSelectedItem());
         properties.setValue(PROVISIONING_PROFILE, (String)provisioningProfile.getSelectedItem());
-        properties.setValue(ARCHS, (String)archs.getSelectedItem());
         properties.setValue(DESTINATION_DIR, destinationDir.getText());
     }
 }
