@@ -183,12 +183,18 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         }
         temporaryDirectory.mkdirs();
 
-        builder.home(new Config.Home(extractSdk()))
+        Config.Home home = Config.Home.suggestDevHome();
+        if (home == null) home = new Config.Home(extractSdk());
+        builder.home(home)
                 .tmpDir(temporaryDirectory)
                 .skipInstall(true)
                 .installDir(installDir)
                 .cacheDir(cacheDir);
-
+	    if (home.isDev()) {
+            builder.useDebugLibs(true);
+            builder.dumpIntermediates(true);
+            builder.addPluginArgument("debug:logconsole=true");
+        }
         if (project.hasProperty("mainClassName")) {
             builder.mainClass((String) project.property("mainClassName"));
         }

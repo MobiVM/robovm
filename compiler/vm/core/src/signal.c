@@ -469,6 +469,11 @@ static void signalHandler_dump_thread(int signum, siginfo_t* info, void* context
             // Signalled in non-native code
             fakeFrame.prev = (Frame*) getFramePointer((ucontext_t*) context);
             fakeFrame.returnAddress = getPC((ucontext_t*) context);
+            captureCallStack(env, &fakeFrame, dumpThreadStackTraceCallStack, MAX_CALL_STACK_LENGTH);
+        } else if (env->gatewayFrames == NULL) {
+            // there is no any frames attached: either main thread is still waiting for debugger resume (not entered into VM frame)
+            // or thread is detached (should not happen), anyway to not crash just returning empty stack
+            dumpThreadStackTraceCallStack->length = 0;
         } else {
             // The thread was signalled while in native code, possibly a system 
             // function. We cannot trust that this code uses proper frame 
@@ -476,9 +481,8 @@ static void signalHandler_dump_thread(int signum, siginfo_t* info, void* context
             // most GatewayFrame in env was pushed when native code was entered.
             // Use its frame as frame pointer.
             fakeFrame = *(Frame*) env->gatewayFrames->frameAddress;
+            captureCallStack(env, &fakeFrame, dumpThreadStackTraceCallStack, MAX_CALL_STACK_LENGTH);
         }
-
-        captureCallStack(env, &fakeFrame, dumpThreadStackTraceCallStack, MAX_CALL_STACK_LENGTH);
     }
 
     // check if its required to run suspend loop by hook.

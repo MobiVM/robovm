@@ -10,6 +10,7 @@ Not supported any more due removed `-extdir` in Java9+
 
 ### Development with Maven 
 * Install recent *Intellij IDEA Community Edition * under /Applications/Intellij IDEA CE.app/ (https://download.jetbrains.com/idea/)
+* Install Swing UI Designer plugin
 * Install this plugin, it allows us to use [Maven for plugin development](https://plugins.jetbrains.com/plugin/7127?pr=). *Note*: outdated and might not work for recent versions of Idea, open source alternative is available at [dkimitsa/support-maven-devkit-plugins](https://github.com/dkimitsa/support-maven-devkit-plugins).   
 * Clone this repo https://github.com/JetBrains/intellij-community.git
 * Checkout the branch that corresponds to the respective IDEA version you installed, e.g. 139 for Idea 14.0.x, see http://www.jetbrains.org/pages/viewpage.action?pageId=983225

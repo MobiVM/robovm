@@ -54,7 +54,9 @@ public class LaunchParameters {
     }
 
     public void setArguments(List<String> arguments) {
-        this.arguments = arguments;
+        // copy arguments as provided list might be immutable
+        this.arguments.clear();
+        this.arguments.addAll(arguments);
     }
     
     public Map<String, String> getEnvironment() {
