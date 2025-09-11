@@ -24,6 +24,5 @@ jobs:
           brew install autoconf
           brew install automake
           brew install libtool
-          brew install cmake
       - name: build natives
         run: ./build.sh
