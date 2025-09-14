@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,28 +39,34 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 26.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ extends Bits</*<name>*/NSURLBookmarkCreationOptions/*</name>*/> {
+public final class /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/ extends Bits</*<name>*/NSFileManagerSupportedSyncControls/*</name>*/> {
     /*<values>*/
-    public static final NSURLBookmarkCreationOptions None = new NSURLBookmarkCreationOptions(0L);
-    public static final NSURLBookmarkCreationOptions MinimalBookmark = new NSURLBookmarkCreationOptions(512L);
-    public static final NSURLBookmarkCreationOptions SuitableForBookmarkFile = new NSURLBookmarkCreationOptions(1024L);
-    public static final NSURLBookmarkCreationOptions WithoutImplicitSecurityScope = new NSURLBookmarkCreationOptions(536870912L);
+    public static final NSFileManagerSupportedSyncControls None = new NSFileManagerSupportedSyncControls(0L);
+    public static final NSFileManagerSupportedSyncControls PauseSync = new NSFileManagerSupportedSyncControls(1L);
+    public static final NSFileManagerSupportedSyncControls FailUploadOnConflict = new NSFileManagerSupportedSyncControls(2L);
     /*</values>*/
 
-    private static final /*<name>*/NSURLBookmarkCreationOptions/*</name>*/[] values = _values(/*<name>*/NSURLBookmarkCreationOptions/*</name>*/.class);
+    /*<bind>*/
+    /*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<methods>*//*</methods>*/
 
-    public /*<name>*/NSURLBookmarkCreationOptions/*</name>*/(long value) { super(value); }
-    private /*<name>*/NSURLBookmarkCreationOptions/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/NSURLBookmarkCreationOptions/*</name>*/(value, mask);
+    private static final /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/[] values = _values(/*<name>*/NSFileManagerSupportedSyncControls/*</name>*/.class);
+
+    public /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/(long value) { super(value); }
+    private /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/(value, mask);
     }
-    protected /*<name>*/NSURLBookmarkCreationOptions/*</name>*/[] _values() {
+    protected /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/NSURLBookmarkCreationOptions/*</name>*/[] values() {
+    public static /*<name>*/NSFileManagerSupportedSyncControls/*</name>*/[] values() {
         return values.clone();
     }
 }

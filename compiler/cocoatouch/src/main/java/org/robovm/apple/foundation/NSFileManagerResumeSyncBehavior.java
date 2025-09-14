@@ -40,21 +40,15 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NSFileManagerResumeSyncBehavior/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    NetworkLoad(1L),
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 18.4. Server push is no longer supported as of iOS 17 and aligned releases
-     */
-    @Deprecated
-    ServerPush(2L),
-    LocalCache(3L);
+    PreserveLocalChanges(0L),
+    AfterUploadWithFailOnConflict(1L),
+    DropLocalChanges(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -64,15 +58,15 @@ public enum /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ implem
 
     private final long n;
 
-    private /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NSFileManagerResumeSyncBehavior/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ v : values()) {
+    public static /*<name>*/NSFileManagerResumeSyncBehavior/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NSFileManagerResumeSyncBehavior/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/.class.getName());
+            + /*<name>*/NSFileManagerResumeSyncBehavior/*</name>*/.class.getName());
     }
 }

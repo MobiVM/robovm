@@ -430,6 +430,16 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="NSMorphologyAttributeName", optional=true)
         public static native NSString Morphology();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSLocalizedNumberFormatAttributeName", optional=true)
+        public static native NSString LocalizedNumberFormat();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSListItemDelimiterAttributeName", optional=true)
+        public static native NSString ListItemDelimiter();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="NSPresentationIntentAttributeName", optional=true)

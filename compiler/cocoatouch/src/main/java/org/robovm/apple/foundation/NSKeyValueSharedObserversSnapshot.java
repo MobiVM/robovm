@@ -40,39 +40,27 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(0L),
-    NetworkLoad(1L),
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 18.4. Server push is no longer supported as of iOS 17 and aligned releases
-     */
-    @Deprecated
-    ServerPush(2L),
-    LocalCache(3L);
-    /*</values>*/
+/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSKeyValueSharedObserversSnapshot/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NSKeyValueSharedObserversSnapshotPtr extends Ptr<NSKeyValueSharedObserversSnapshot, NSKeyValueSharedObserversSnapshotPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSKeyValueSharedObserversSnapshot.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected NSKeyValueSharedObserversSnapshot() {}
+    protected NSKeyValueSharedObserversSnapshot(Handle h, long handle) { super(h, handle); }
+    protected NSKeyValueSharedObserversSnapshot(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

@@ -254,10 +254,15 @@ enums:
     NSGrammaticalDetermination: {} #since 17.0
     NSGrammaticalDefiniteness: {} #since 17.0
 
+    NSFileManagerSupportedSyncControls: {} #since 26.0
+    NSFileManagerResumeSyncBehavior: {} #since 26.0
+    NSFileManagerUploadLocalVersionConflictPolicy: {prefix: NSFileManagerUploadConflictPolicy} #since 26.0
+
     IGNORED1: {first: NS_UnknownByteOrder, exclude: true}  # ignored same as constants
     IGNORED2: {first: NSWrapCalendarComponents, exclude: true} # deprecated
     IGNORED3: {first: NSDateComponentUndefined, exclude: true} # ignored as seems to be constant only
     IGNORED4: {first: NSTextCheckingAllSystemTypes, exclude: true}
+    IGNORED5: {first: NSOpenStepUnicodeReservedBase, exclude: true}
 categories:
     NSErrorRecoveryAttempting@NSObject: {protocol: true}
 
@@ -724,6 +729,10 @@ classes:
             '-decodeDictionaryWithKeysOfClasses:objectsOfClasses:forKey:':
                 name: decodeDictionary
                 visibility: protected
+            '-decodeBytesWithMinimumLength:':
+                name: decodeBytes
+            '-decodeBytesForKey:minimumLength:':
+                name: decodeBytes
     NSComparisonPredicate: # DONE
         methods:
             '-init.*':
@@ -983,15 +992,15 @@ classes:
                 exclude: true
             'doubleValue':
                 exclude: true
-            'maximumDecimalNumber':
+            '+maximumDecimalNumber':
                 name: max
-            'minimumDecimalNumber':
+            '+minimumDecimalNumber':
                 name: min
-            'notANumber':
+            '+notANumber':
                 name: NaN
-            'zero':
+            '+zero':
                 getter: zero
-            'one':
+            '+one':
                 getter: one
         methods:
             '+decimalNumber.*': {exclude: true}
@@ -1204,7 +1213,7 @@ classes:
                 name: createWritingIntent
     NSFileCoordinator: # DONE
         properties:
-            'filePresenters':
+            '+filePresenters':
                 type: List<NSFilePresenter>
                 marshaler: NSArray.AsListMarshaler
         methods:
@@ -1247,7 +1256,7 @@ classes:
                 trim_after_first_colon: true
     NSFileHandle: # DONE
         properties:
-            'fileHandleWith(.*)':
+            '+fileHandleWith(.*)':
                 name: '#{g[0]}'
         methods:
             '-init.*':
@@ -1523,6 +1532,15 @@ classes:
                 name: trashItemAtURL
             '-getFileProviderServicesForItemAtURL:completionHandler:':
                 trim_after_first_colon: true
+            '-pauseSyncForUbiquitousItemAtURL:completionHandler:':
+                name: pauseSyncForUbiquitousItem
+            '-resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:':
+                name: resumeSyncForUbiquitousItem
+            '-fetchLatestRemoteVersionOfItemAtURL:completionHandler:':
+                name: fetchLatestRemoteVersionOfItem
+            '-uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:':
+                name: uploadLocalVersionOfUbiquitousItem
+
     NSFileVersion: # DONE
         methods:
             '-replaceItemAtURL:options:error:':
@@ -2136,7 +2154,7 @@ classes:
             '(localeIdentifier|languageCode|countryCode|scriptCode|variantCode|exemplarCharacterSet|collationIdentifier|usesMetricSystem|decimalSeparator|groupingSeparator|currencySymbol|currencyCode|collatorIdentifier|quotationBeginDelimiter|quotationEndDelimiter|alternateQuotationBeginDelimiter|alternateQuotationEndDelimiter)':
                 name: '#{g[0]}0'
                 visibility: private
-            '(ISO.*|availableLocaleIdentifiers|commonISOCurrencyCodes|preferredLanguages)':
+            '+(ISO.*|availableLocaleIdentifiers|commonISOCurrencyCodes|preferredLanguages)':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
@@ -3061,7 +3079,7 @@ classes:
             'arguments':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
-            'processInfo':
+            '+processInfo':
                 name: sharedProcessInfo
         methods:
             '-operatingSystem':
@@ -3186,9 +3204,9 @@ classes:
                 name: newStringByReplacingMatches
     NSRunLoop: # DONE
         properties:
-            'currentRunLoop':
+            '+currentRunLoop':
                 name: current
-            'mainRunLoop':
+            '+mainRunLoop':
                 name: main
         methods:
             '-runMode:beforeDate:':
@@ -3580,10 +3598,10 @@ classes:
         properties:
             'description':
                 exclude: true
-            'knownTimeZoneNames':
+            '+knownTimeZoneNames':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
-            'abbreviationDictionary':
+            '+abbreviationDictionary':
                 type: Map<String, String>
                 marshaler: NSDictionary.AsStringStringMapMarshaler
         methods:
@@ -3678,6 +3696,8 @@ classes:
                 name: getUndoMenuTitle
             '-redoMenuTitleForUndoActionName:':
                 name: getRedoMenuTitle
+            '-setActionUserInfoValue:forKey:':
+                name: setActionUserInfo
     NSUnit: # DONE
         methods:
             '-init.*':
@@ -4375,6 +4395,10 @@ classes:
             '+interfaceWithProtocol:':
                 constructor: true
                 name: create
+            '-setXPCType:forSelector:argumentIndex:ofReply:':
+                exclude: true # TODO: xpc low level types are not supported
+            '-XPCTypeForSelector:argumentIndex:ofReply:':
+                exclude: true # TODO: xpc low level types are not supported
     NSURLComponents: #since 7.0
         methods:
             '-initWithURL:resolvingAgainstBaseURL:':
@@ -4496,6 +4520,14 @@ classes:
             '+localizedForLanguageIdentifier:withPronouns:':
                 constructor: true
                 name: create
+    NSKeyValueSharedObservers: #since 18.0
+        methods:
+            '-initWithObservableClass:':
+                name: init
+            '-addSharedObserver:forKey:options:context:':
+                name: addSharedObserver
+    NSKeyValueSharedObserversSnapshot: {} #since 18.0
+    NSLocalizedNumberFormatRule: {} #since 18.0
 protocols:
     NSCacheDelegate: # DONE
         methods:
@@ -4606,6 +4638,8 @@ protocols:
                 name: presentedSubitemAtURLDidLoseVersion
             '-presentedSubitemAtURL:didResolveConflictVersion:':
                 name: presentedSubitemAtURLDidResolveConflictVersion
+            '-accommodatePresentedItemEvictionWithCompletionHandler:':
+                name: accommodatePresentedItemEviction
     NSKeyedArchiverDelegate: # DONE
         methods:
             '-archiver:willEncodeObject:':
@@ -5885,7 +5919,7 @@ values:
         class: NSAttributedString
         static_class: KeysInflection
         name: '#{g[0]}'
-    NS(ReplacementIndex|Morphology|PresentationIntent|MarkdownSourcePosition)AttributeName:
+    NS(ReplacementIndex|Morphology|PresentationIntent|MarkdownSourcePosition|LocalizedNumberFormat|ListItemDelimiter)AttributeName:
         class: NSAttributedString
         static_class: Keys
         name: '#{g[0]}'

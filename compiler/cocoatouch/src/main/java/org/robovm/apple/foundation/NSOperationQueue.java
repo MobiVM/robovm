@@ -82,7 +82,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "underlyingQueue")
     public native DispatchQueue getUnderlyingQueue();
     @WeaklyLinked
-    @Property(selector = "setUnderlyingQueue:")
+    @Property(selector = "setUnderlyingQueue:", strongRef = true)
     public native void setUnderlyingQueue(DispatchQueue v);
     @Property(selector = "currentQueue")
     public static native NSOperationQueue getCurrentQueue();

@@ -143,17 +143,23 @@ import org.robovm.apple.dispatch.*;
     public static native NSString SizeLimitExceededNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsNoCloudAccountNotification", optional=true)
     public static native NSString NoCloudAccountNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsDidChangeAccountsNotification", optional=true)
     public static native NSString DidChangeAccountsNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsCompletedInitialSyncNotification", optional=true)
     public static native NSString CompletedInitialSyncNotification();
     @GlobalValue(symbol="NSUserDefaultsDidChangeNotification", optional=true)
@@ -209,12 +215,6 @@ import org.robovm.apple.dispatch.*;
     protected native void setVolatileDomain(NSDictionary<NSString, ?> domain, String domainName);
     @Method(selector = "removeVolatileDomainForName:")
     public native void removeVolatileDomain(String domainName);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Not recommended
-     */
-    @Deprecated
-    @Method(selector = "persistentDomainNames")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPersistentDomainNames();
     @Method(selector = "persistentDomainForName:")
     public native NSDictionary<NSString, ?> getPersistentDomain(String domainName);
     @Method(selector = "setPersistentDomain:forName:")

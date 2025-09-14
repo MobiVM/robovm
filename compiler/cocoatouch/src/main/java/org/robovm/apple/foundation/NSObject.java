@@ -147,6 +147,8 @@ import org.robovm.apple.dispatch.*;
     public native Class<? extends NSObject> getClassForCoder();
     @Property(selector = "autoContentAccessingProxy")
     public native NSObject getAutoContentAccessingProxy();
+    @Property(selector = "accessInstanceVariablesDirectly")
+    public static native boolean isAccessInstanceVariablesDirectly();
     @Property(selector = "observationInfo")
     public native VoidPtr getObservationInfo();
     @Property(selector = "setObservationInfo:")

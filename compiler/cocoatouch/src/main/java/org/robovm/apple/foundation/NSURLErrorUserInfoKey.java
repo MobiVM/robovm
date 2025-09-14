@@ -97,6 +97,10 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*/
     public static final NSURLErrorUserInfoKey KeysOfUnsetValues = new NSURLErrorUserInfoKey("KeysOfUnsetValues");
     public static final NSURLErrorUserInfoKey FailingURL = new NSURLErrorUserInfoKey("FailingURL");
+    /**
+     * @deprecated Deprecated in iOS 18.4. Use NSURLErrorFailingURLErrorKey instead
+     */
+    @Deprecated
     public static final NSURLErrorUserInfoKey FailingURLString = new NSURLErrorUserInfoKey("FailingURLString");
     public static final NSURLErrorUserInfoKey FailingURLPeerTrust = new NSURLErrorUserInfoKey("FailingURLPeerTrust");
     /*</constants>*/
@@ -128,6 +132,10 @@ import org.robovm.apple.dispatch.*;
         public static native NSString KeysOfUnsetValues();
         @GlobalValue(symbol="NSURLErrorFailingURLErrorKey", optional=true)
         public static native NSString FailingURL();
+        /**
+         * @deprecated Deprecated in iOS 18.4. Use NSURLErrorFailingURLErrorKey instead
+         */
+        @Deprecated
         @GlobalValue(symbol="NSURLErrorFailingURLStringErrorKey", optional=true)
         public static native NSString FailingURLString();
         @GlobalValue(symbol="NSURLErrorFailingURLPeerTrustErrorKey", optional=true)

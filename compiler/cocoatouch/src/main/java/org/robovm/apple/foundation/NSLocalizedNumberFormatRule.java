@@ -40,48 +40,32 @@ import org.robovm.apple.dispatch.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTermOfAddress/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NSLocalizedNumberFormatRule/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class NSTermOfAddressPtr extends Ptr<NSTermOfAddress, NSTermOfAddressPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NSTermOfAddress.class); }/*</bind>*/
+    /*<ptr>*/public static class NSLocalizedNumberFormatRulePtr extends Ptr<NSLocalizedNumberFormatRule, NSLocalizedNumberFormatRulePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NSLocalizedNumberFormatRule.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected NSTermOfAddress() {}
-    protected NSTermOfAddress(Handle h, long handle) { super(h, handle); }
-    protected NSTermOfAddress(SkipInit skipInit) { super(skipInit); }
-    public NSTermOfAddress(String language, NSArray<NSMorphologyPronoun> pronouns) { super((Handle) null, create(language, pronouns)); retain(getHandle()); }
+    protected NSLocalizedNumberFormatRule() {}
+    protected NSLocalizedNumberFormatRule(Handle h, long handle) { super(h, handle); }
+    protected NSLocalizedNumberFormatRule(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public NSTermOfAddress(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public NSLocalizedNumberFormatRule(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "languageIdentifier")
-    public native String getLanguageIdentifier();
-    @Property(selector = "pronouns")
-    public native NSArray<NSMorphologyPronoun> getPronouns();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "neutral")
-    public static native NSTermOfAddress neutral();
-    @Method(selector = "feminine")
-    public static native NSTermOfAddress feminine();
-    @Method(selector = "masculine")
-    public static native NSTermOfAddress masculine();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "currentUser")
-    public static native NSTermOfAddress currentUser();
-    @Method(selector = "localizedForLanguageIdentifier:withPronouns:")
-    protected static native @Pointer long create(String language, NSArray<NSMorphologyPronoun> pronouns);
+    @Method(selector = "automatic")
+    public static native NSLocalizedNumberFormatRule automatic();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

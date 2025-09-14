@@ -124,10 +124,22 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 26.0. This notification does not protect against data races
+     */
+    @Deprecated
     @GlobalValue(symbol="NSWillBecomeMultiThreadedNotification", optional=true)
     public static native NSString WillBecomeMultiThreadedNotification();
+    /**
+     * @deprecated Deprecated in iOS 26.0. Programs no longer transition to single-threaded mode from threaded environments
+     */
+    @Deprecated
     @GlobalValue(symbol="NSDidBecomeSingleThreadedNotification", optional=true)
     public static native NSString DidBecomeSingleThreadedNotification();
+    /**
+     * @deprecated Deprecated in iOS 26.0. This notification does not protect against data races
+     */
+    @Deprecated
     @GlobalValue(symbol="NSThreadWillExitNotification", optional=true)
     public static native NSString WillExitNotification();
     

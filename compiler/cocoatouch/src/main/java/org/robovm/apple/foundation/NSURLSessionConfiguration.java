@@ -186,8 +186,16 @@ import org.robovm.apple.coreservices.CFProxy;
      */
     @Property(selector = "setTLSMaximumSupportedProtocolVersion:")
     public native void setTLSMaximumSupportedProtocolVersion(TlsProtocolVersion v);
+    /**
+     * @deprecated Deprecated in iOS 18.4. Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead
+     */
+    @Deprecated
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
+    /**
+     * @deprecated Deprecated in iOS 18.4. Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead
+     */
+    @Deprecated
     @Property(selector = "setHTTPShouldUsePipelining:")
     public native void setShouldUseHTTPPipelining(boolean v);
     @Property(selector = "HTTPShouldSetCookies")
@@ -220,12 +228,16 @@ import org.robovm.apple.coreservices.CFProxy;
     public native void setURLCache(NSURLCache v);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.4. Not supported
      */
+    @Deprecated
     @Property(selector = "shouldUseExtendedBackgroundIdleMode")
     public native boolean shouldUseExtendedBackgroundIdleMode();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.4. Not supported
      */
+    @Deprecated
     @Property(selector = "setShouldUseExtendedBackgroundIdleMode:")
     public native void setShouldUseExtendedBackgroundIdleMode(boolean v);
     @Property(selector = "protocolClasses")
@@ -242,6 +254,26 @@ import org.robovm.apple.coreservices.CFProxy;
      */
     @Property(selector = "setMultipathServiceType:")
     public native void setMultipathServiceType(NSURLSessionMultipathServiceType v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "usesClassicLoadingMode")
+    public native boolean usesClassicLoadingMode();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setUsesClassicLoadingMode:")
+    public native void setUsesClassicLoadingMode(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "enablesEarlyData")
+    public native boolean enablesEarlyData();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setEnablesEarlyData:")
+    public native void setEnablesEarlyData(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

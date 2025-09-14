@@ -360,6 +360,16 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     public native NSFormattingContext getFormattingContext();
     @Property(selector = "setFormattingContext:")
     public native void setFormattingContext(NSFormattingContext v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "minimumGroupingDigits")
+    public native @MachineSizedSInt long getMinimumGroupingDigits();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMinimumGroupingDigits:")
+    public native void setMinimumGroupingDigits(@MachineSizedSInt long v);
     @Property(selector = "numberStyle")
     public native NSNumberFormatterStyle getNumberStyle();
     @Property(selector = "setNumberStyle:")

@@ -133,6 +133,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setRequiresDNSSECValidation:")
     public native void setRequiresDNSSECValidation(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowsPersistentDNS")
+    public native boolean allowsPersistentDNS();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowsPersistentDNS:")
+    public native void setAllowsPersistentDNS(boolean v);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "cookiePartitionIdentifier")
+    public native String getCookiePartitionIdentifier();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "setCookiePartitionIdentifier:")
+    public native void setCookiePartitionIdentifier(String v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "HTTPMethod")
@@ -155,8 +175,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean shouldHandleHTTPCookies();
     @Property(selector = "setHTTPShouldHandleCookies:")
     public native void setShouldHandleHTTPCookies(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 18.4. Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead
+     */
+    @Deprecated
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
+    /**
+     * @deprecated Deprecated in iOS 18.4. Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead
+     */
+    @Deprecated
     @Property(selector = "setHTTPShouldUsePipelining:")
     public native void setShouldUseHTTPPipelining(boolean v);
     /*</properties>*/
