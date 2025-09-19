@@ -36,7 +36,7 @@ class ScopedIcuLocale {
       return;
     }
 
-    UErrorCode err;
+    UErrorCode err = U_ZERO_ERROR; // dkimitsa: should be initiated!
     icu::Locale locale = icu::Locale::forLanguageTag(languageTag.c_str(), err);
     if (U_FAILURE(err)) {
       return;
