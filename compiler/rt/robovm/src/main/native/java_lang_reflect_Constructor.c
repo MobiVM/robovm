@@ -16,7 +16,7 @@
 #include <robovm.h>
 #include "reflection_helpers.h"
 
-Object* Java_java_lang_reflect_Constructor_internalNewInstance(Env* env, Class* clazz, jlong methodPtr, ObjectArray* parameterTypes, ObjectArray* args) {
+Object* Java_java_lang_reflect_Constructor_internalNewInstance(Env* env, Class* clazz, jlong methodPtr, Class* declaringClazz, ObjectArray* parameterTypes, ObjectArray* args) {
     Method* method = (Method*) LONG_TO_PTR(methodPtr);
 
     /*
@@ -28,7 +28,7 @@ Object* Java_java_lang_reflect_Constructor_internalNewInstance(Env* env, Class* 
     jvalue* jvalueArgs = validateAndUnwrapArgs(env, parameterTypes, args);
     if (!jvalueArgs) return NULL;
 
-    Object* o = rvmNewObjectA(env, method->clazz, method, jvalueArgs);
+    Object* o = rvmNewObjectA(env, declaringClazz, method, jvalueArgs);
     if (!o) {
         Object* exception = rvmExceptionOccurred(env);
         if (exception->clazz != java_lang_ExceptionInInitializerError) {

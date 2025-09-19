@@ -478,10 +478,10 @@ public final class Constructor<T> extends AccessibleObject implements GenericDec
             }
         }
         
-        return (T) internalNewInstance(method, pTypes, args);
+        return (T) internalNewInstance(method, clazz, pTypes, args);
     }
 
-    private native static Object internalNewInstance(long method, Class<?>[] pTypes, Object[] args) throws InstantiationException, IllegalAccessException,
+    private native static Object internalNewInstance(long method, Class<?> declaringClass, Class<?>[] pTypes, Object[] args) throws InstantiationException, IllegalAccessException,
         IllegalArgumentException, InvocationTargetException;
     
     /**
@@ -525,7 +525,11 @@ public final class Constructor<T> extends AccessibleObject implements GenericDec
     }
 
     public Constructor<?> serializationCopy(Class<?> declaringClass, Class<?> cl) {
-        // RoboVM Note: FIXME: TODO: required by Libcore10, not implemented yet
-        throw new UnsupportedOperationException();
+        // returns a copy of constructor with predefined declaring class
+        // all validation expected to be done before calling this method
+        Constructor<T> cons = new Constructor<T>(this);
+        //noinspection unchecked
+        cons.declaringClass = (Class<T>) cl;
+        return cons;
     }
 }
