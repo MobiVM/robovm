@@ -107,6 +107,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setInlinePredictionType:")
     void setInlinePredictionType(UITextInlinePredictionType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathExpressionCompletionType")
+    UITextMathExpressionCompletionType getMathExpressionCompletionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathExpressionCompletionType:")
+    void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
     @Property(selector = "keyboardType")
     UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -147,6 +157,40 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setPasswordRules:")
     void setPasswordRules(UITextInputPasswordRules v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    void setWritingToolsBehavior(UIWritingToolsBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowedWritingToolsResultOptions")
+    UIWritingToolsResultOptions getAllowedWritingToolsResultOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowedWritingToolsResultOptions:")
+    void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "conversationContext")
+    UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    void setConversationContext(UIConversationContext v);
+    @Property(selector = "allowsNumberPadPopover")
+    boolean allowsNumberPadPopover();
+    @Property(selector = "setAllowsNumberPadPopover:")
+    void setAllowsNumberPadPopover(boolean v);
     /*</properties>*/
     /*<methods>*/
     

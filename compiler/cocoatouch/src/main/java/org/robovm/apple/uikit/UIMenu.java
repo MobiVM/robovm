@@ -90,6 +90,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "selectedElements")
     public native NSArray<UIMenuElement> getSelectedElements();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "displayPreferences")
+    public native UIMenuDisplayPreferences getDisplayPreferences();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setDisplayPreferences:")
+    public native void setDisplayPreferences(UIMenuDisplayPreferences v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -113,6 +113,10 @@ import org.robovm.apple.symbols.*;
     }
     
 
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.handoffUserActivityType instead.
+     */
+    @Deprecated
     public String getType() {
         if (has(Keys.Type())) {
             NSString val = (NSString) get(Keys.Type());
@@ -126,6 +130,10 @@ import org.robovm.apple.symbols.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.handoffUserActivityType instead.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityTypeKey", optional=true)
         public static native NSString Type();
     }

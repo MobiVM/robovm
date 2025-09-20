@@ -57,12 +57,111 @@ import org.robovm.apple.symbols.*;
     public UITabBarController() {}
     protected UITabBarController(Handle h, long handle) { super(h, handle); }
     protected UITabBarController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithTabs:")
+    public UITabBarController(NSArray<UITab> tabs) { super((SkipInit) null); initObject(init(tabs)); }
     @Method(selector = "initWithNibName:bundle:")
     public UITabBarController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
     public UITabBarController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "delegate")
+    public native UITabBarControllerDelegate getDelegate();
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(UITabBarControllerDelegate v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mode")
+    public native UITabBarControllerMode getMode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMode:")
+    public native void setMode(UITabBarControllerMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "sidebar")
+    public native UITabBarControllerSidebar getSidebar();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "customizationIdentifier")
+    public native String getCustomizationIdentifier();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setCustomizationIdentifier:")
+    public native void setCustomizationIdentifier(String v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "compactTabIdentifiers")
+    public native NSArray<NSString> getCompactTabIdentifiers();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setCompactTabIdentifiers:")
+    public native void setCompactTabIdentifiers(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "selectedTab")
+    public native UITab getSelectedTab();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSelectedTab:")
+    public native void setSelectedTab(UITab v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "tabs")
+    public native NSArray<UITab> getTabs();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTabs:")
+    public native void setTabs(NSArray<UITab> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "tabBarMinimizeBehavior")
+    public native UITabBarMinimizeBehavior getTabBarMinimizeBehavior();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setTabBarMinimizeBehavior:")
+    public native void setTabBarMinimizeBehavior(UITabBarMinimizeBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isTabBarHidden")
+    public native boolean isTabBarHidden();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTabBarHidden:")
+    public native void setTabBarHidden(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentLayoutGuide")
+    public native UILayoutGuide getContentLayoutGuide();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "bottomAccessory")
+    public native UITabAccessory getBottomAccessory();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setBottomAccessory:")
+    public native void setBottomAccessory(UITabAccessory v);
     @Property(selector = "viewControllers")
     public native NSArray<UIViewController> getViewControllers();
     @Property(selector = "setViewControllers:")
@@ -83,13 +182,34 @@ import org.robovm.apple.symbols.*;
     public native void setCustomizableViewControllers(NSArray<UIViewController> v);
     @Property(selector = "tabBar")
     public native UITabBar getTabBar();
-    @Property(selector = "delegate")
-    public native UITabBarControllerDelegate getDelegate();
-    @Property(selector = "setDelegate:", strongRef = true)
-    public native void setDelegate(UITabBarControllerDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "setTabs:animated:")
+    public native void setTabs(NSArray<UITab> tabs, boolean animated);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabForIdentifier:")
+    public native UITab tabForIdentifier(String identifier);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithTabs:")
+    protected native @Pointer long init(NSArray<UITab> tabs);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "setTabBarHidden:animated:")
+    public native void setTabBarHidden(boolean hidden, boolean animated);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setBottomAccessory:animated:")
+    public native void setBottomAccessory(UITabAccessory bottomAccessory, boolean animated);
     @Method(selector = "setViewControllers:animated:")
     public native void setViewControllers(NSArray<UIViewController> viewControllers, boolean animated);
     @Method(selector = "tabBar:didSelectItem:")

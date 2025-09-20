@@ -74,6 +74,8 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "focusGroupPriority")
     @MachineSizedSInt long getFocusGroupPriority();
+    @Property(selector = "focusItemDeferralMode")
+    UIFocusItemDeferralMode getFocusItemDeferralMode();
     /**
      * @since Available in iOS 15.0 and later.
      */

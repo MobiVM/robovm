@@ -45,9 +45,10 @@ import org.robovm.apple.symbols.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 17.1. Please use UIContextMenuInteraction.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/UIPreviewActionStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),

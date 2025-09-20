@@ -236,6 +236,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setInlinePredictionType:")
     public native void setInlinePredictionType(UITextInlinePredictionType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathExpressionCompletionType")
+    public native UITextMathExpressionCompletionType getMathExpressionCompletionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathExpressionCompletionType:")
+    public native void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -276,6 +286,40 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setPasswordRules:")
     public native void setPasswordRules(UITextInputPasswordRules v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    public native UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    public native void setWritingToolsBehavior(UIWritingToolsBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowedWritingToolsResultOptions")
+    public native UIWritingToolsResultOptions getAllowedWritingToolsResultOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowedWritingToolsResultOptions:")
+    public native void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "conversationContext")
+    public native UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    public native void setConversationContext(UIConversationContext v);
+    @Property(selector = "allowsNumberPadPopover")
+    public native boolean allowsNumberPadPopover();
+    @Property(selector = "setAllowsNumberPadPopover:")
+    public native void setAllowsNumberPadPopover(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**

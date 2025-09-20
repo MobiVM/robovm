@@ -50,7 +50,7 @@ import org.robovm.apple.symbols.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIFeedbackGenerator/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIInteraction/*</implements>*/ {
 
     /*<ptr>*/public static class UIFeedbackGeneratorPtr extends Ptr<UIFeedbackGenerator, UIFeedbackGeneratorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIFeedbackGenerator.class); }/*</bind>*/
@@ -61,11 +61,21 @@ import org.robovm.apple.symbols.*;
     protected UIFeedbackGenerator(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "view")
+    public native UIView getView();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "prepare")
     public native void prepare();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UIFeedbackGenerator feedbackGeneratorForView(UIView view);
+    @Method(selector = "willMoveToView:")
+    public native void willMoveToView(UIView view);
+    @Method(selector = "didMoveToView:")
+    public native void didMoveToView(UIView view);
     /*</methods>*/
 }

@@ -87,6 +87,11 @@ import org.robovm.apple.symbols.*;
     public native boolean allowsDocumentCreation();
     @Property(selector = "setAllowsDocumentCreation:")
     public native void setAllowsDocumentCreation(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "activeDocumentCreationIntent")
+    public native UIDocumentCreationIntent getActiveDocumentCreationIntent();
     @Property(selector = "allowsPickingMultipleItems")
     public native boolean allowsPickingMultipleItems();
     @Property(selector = "setAllowsPickingMultipleItems:")

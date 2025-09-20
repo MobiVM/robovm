@@ -112,7 +112,7 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "screens")
     public static native NSArray<UIScreen> getScreens();
     /**
-     * @deprecated Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen
+     * @deprecated Deprecated in iOS 26.0. Use a UIScreen instance found through context instead (i.e, view.window.windowScene.screen), or for properties like UIScreen.scale with trait equivalents, use a traitCollection found through context.
      */
     @Deprecated
     @Property(selector = "mainScreen")
@@ -142,7 +142,9 @@ import org.robovm.apple.symbols.*;
     public native UIScreen getMirroredScreen();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use the sceneCaptureState in UITraitCollection instead.
      */
+    @Deprecated
     @Property(selector = "isCaptured")
     public native boolean isCaptured();
     @Property(selector = "brightness")

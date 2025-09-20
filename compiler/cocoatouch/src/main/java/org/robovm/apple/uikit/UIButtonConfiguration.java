@@ -99,6 +99,16 @@ import org.robovm.apple.symbols.*;
     public native UIImageSymbolConfiguration getPreferredSymbolConfigurationForImage();
     @Property(selector = "setPreferredSymbolConfigurationForImage:")
     public native void setPreferredSymbolConfigurationForImage(UIImageSymbolConfiguration v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "symbolContentTransition")
+    public native UISymbolContentTransition getSymbolContentTransition();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSymbolContentTransition:")
+    public native void setSymbolContentTransition(UISymbolContentTransition v);
     @Property(selector = "showsActivityIndicator")
     public native boolean showsActivityIndicator();
     @Property(selector = "setShowsActivityIndicator:")
@@ -208,6 +218,26 @@ import org.robovm.apple.symbols.*;
     public static native UIButtonConfiguration borderedTintedButtonConfiguration();
     @Method(selector = "borderedProminentButtonConfiguration")
     public static native UIButtonConfiguration borderedProminentButtonConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "glassButtonConfiguration")
+    public static native UIButtonConfiguration glassButtonConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "prominentGlassButtonConfiguration")
+    public static native UIButtonConfiguration prominentGlassButtonConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "clearGlassButtonConfiguration")
+    public static native UIButtonConfiguration clearGlassButtonConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "prominentClearGlassButtonConfiguration")
+    public static native UIButtonConfiguration prominentClearGlassButtonConfiguration();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

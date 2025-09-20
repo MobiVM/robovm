@@ -75,5 +75,10 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("activityViewControllerLinkMetadata:")
     public LPLinkMetadata activityViewControllerLinkMetadata(UIActivityViewController activityViewController) { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("activityViewControllerShareRecipients:")
+    public NSArray<INPerson> activityViewControllerShareRecipients(UIActivityViewController activityViewController) { return null; }
     /*</methods>*/
 }

@@ -59,12 +59,27 @@ import org.robovm.apple.symbols.*;
     public UIPencilInteraction() {}
     protected UIPencilInteraction(Handle h, long handle) { super(h, handle); }
     protected UIPencilInteraction(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "initWithDelegate:")
+    public UIPencilInteraction(UIPencilInteractionDelegate delegate) { super((SkipInit) null); initObject(init(delegate)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredTapAction")
     public static native UIPencilPreferredAction getPreferredTapAction();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "preferredSqueezeAction")
+    public static native UIPencilPreferredAction getPreferredSqueezeAction();
     @Property(selector = "prefersPencilOnlyDrawing")
     public static native boolean prefersPencilOnlyDrawing();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "prefersHoverToolPreview")
+    public static native boolean prefersHoverToolPreview();
     @Property(selector = "delegate")
     public native UIPencilInteractionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -78,6 +93,11 @@ import org.robovm.apple.symbols.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "initWithDelegate:")
+    protected native @Pointer long init(UIPencilInteractionDelegate delegate);
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

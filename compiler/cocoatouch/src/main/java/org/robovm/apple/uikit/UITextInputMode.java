@@ -86,12 +86,6 @@ import org.robovm.apple.symbols.*;
     @GlobalValue(symbol="UITextInputCurrentInputModeDidChangeNotification", optional=true)
     public static native NSString CurrentInputModeDidChange();
     
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "currentInputMode")
-    public static native UITextInputMode getCurrentInputMode();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

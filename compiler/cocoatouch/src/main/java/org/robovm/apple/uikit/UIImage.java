@@ -330,6 +330,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setAccessibilityDirectTouchOptions:")
     public native void setAccessibilityDirectTouchOptions(UIAccessibilityDirectTouchOptions v);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accessibilityExpandedStatus")
+    public native UIAccessibilityExpandedStatus getAccessibilityExpandedStatus();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAccessibilityExpandedStatus:")
+    public native void setAccessibilityExpandedStatus(UIAccessibilityExpandedStatus v);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "isAccessibilityElementBlock")
@@ -509,6 +519,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setAccessibilityShouldGroupAccessibilityChildrenBlock:")
     public native void setAccessibilityShouldGroupAccessibilityChildrenBlock(@Block BooleanBlock v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accessibilityExpandedStatusBlock")
+    public native @Block Block0<UIAccessibilityExpandedStatus> getAccessibilityExpandedStatusBlock();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAccessibilityExpandedStatusBlock:")
+    public native void setAccessibilityExpandedStatusBlock(@Block Block0<UIAccessibilityExpandedStatus> v);
     /**
      * @since Available in iOS 17.0 and later.
      */

@@ -93,6 +93,11 @@ import org.robovm.apple.symbols.*;
     public native void setDelegate(UINavigationControllerDelegate v);
     @Property(selector = "interactivePopGestureRecognizer")
     public native UIGestureRecognizer getInteractivePopGestureRecognizer();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "interactiveContentPopGestureRecognizer")
+    public native UIGestureRecognizer getInteractiveContentPopGestureRecognizer();
     @Property(selector = "hidesBarsWhenKeyboardAppears")
     public native boolean hidesBarsWhenKeyboardAppears();
     @Property(selector = "setHidesBarsWhenKeyboardAppears:")

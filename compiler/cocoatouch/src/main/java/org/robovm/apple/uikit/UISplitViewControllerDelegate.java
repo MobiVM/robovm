@@ -133,6 +133,16 @@ import org.robovm.apple.symbols.*;
     @Method(selector = "splitViewController:willHideColumn:")
     void willHideColumn(UISplitViewController svc, UISplitViewControllerColumn column);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "splitViewController:didShowColumn:")
+    void didShowColumn(UISplitViewController svc, UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "splitViewController:didHideColumn:")
+    void didHideColumn(UISplitViewController svc, UISplitViewControllerColumn column);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "splitViewControllerInteractivePresentationGestureWillBegin:")

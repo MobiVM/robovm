@@ -78,5 +78,10 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "initWithItemProvider:")
     protected native @Pointer long init(NSItemProvider itemProvider);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "setNeedsDropPreviewUpdate")
+    public native void setNeedsDropPreviewUpdate();
     /*</methods>*/
 }

@@ -51,7 +51,11 @@ public enum /*<name>*/UIDatePickerMode/*</name>*/ implements ValuedEnum {
     Time(0L),
     Date(1L),
     DateAndTime(2L),
-    CountDownTimer(3L);
+    CountDownTimer(3L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    YearAndMonth(4L);
     /*</values>*/
 
     private final long n;

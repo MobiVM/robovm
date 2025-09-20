@@ -63,10 +63,6 @@ import org.robovm.apple.symbols.*;
     public NSTextContainer(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "layoutManager")
-    public native NSLayoutManager getLayoutManager();
-    @Property(selector = "setLayoutManager:", strongRef = true)
-    public native void setLayoutManager(NSLayoutManager v);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -76,10 +72,6 @@ import org.robovm.apple.symbols.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "setSize:")
     public native void setSize(@ByVal CGSize v);
-    @Property(selector = "exclusionPaths")
-    public native NSArray<UIBezierPath> getExclusionPaths();
-    @Property(selector = "setExclusionPaths:")
-    public native void setExclusionPaths(NSArray<UIBezierPath> v);
     @Property(selector = "lineBreakMode")
     public native NSLineBreakMode getLineBreakMode();
     @Property(selector = "setLineBreakMode:")
@@ -105,6 +97,20 @@ import org.robovm.apple.symbols.*;
     public native boolean heightTracksTextView();
     @Property(selector = "setHeightTracksTextView:")
     public native void setHeightTracksTextView(boolean v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "layoutManager")
+    public native NSLayoutManager getLayoutManager();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setLayoutManager:", strongRef = true)
+    public native void setLayoutManager(NSLayoutManager v);
+    @Property(selector = "exclusionPaths")
+    public native NSArray<UIBezierPath> getExclusionPaths();
+    @Property(selector = "setExclusionPaths:")
+    public native void setExclusionPaths(NSArray<UIBezierPath> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "layoutOrientation")
@@ -116,13 +122,13 @@ import org.robovm.apple.symbols.*;
     protected native @Pointer long init(@ByVal CGSize size);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:")
+    public native @ByVal CGRect getLineFragmentRect(@ByVal CGRect proposedRect, @MachineSizedUInt long characterIndex, NSWritingDirection baseWritingDirection, CGRect remainingRect);
     /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "replaceLayoutManager:")
     public native void replaceLayoutManager(NSLayoutManager newLayoutManager);
-    @Method(selector = "lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:")
-    public native @ByVal CGRect getLineFragmentRect(@ByVal CGRect proposedRect, @MachineSizedUInt long characterIndex, NSWritingDirection baseWritingDirection, CGRect remainingRect);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

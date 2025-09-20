@@ -63,12 +63,27 @@ import org.robovm.apple.symbols.*;
     void setWindow(UIWindow v);
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use windowScene(_: didUpdateEffectiveGeometry:) to be notified of the scene's geometry changes, or use traits whose values are inherited from the scene via the traitCollection of views and view controllers instead.
+     */
+    @Deprecated
     @Method(selector = "windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:")
     void didUpdateCoordinateSpace(UIWindowScene windowScene, UICoordinateSpace previousCoordinateSpace, UIInterfaceOrientation previousInterfaceOrientation, UITraitCollection previousTraitCollection);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "windowScene:didUpdateEffectiveGeometry:")
+    void didUpdateEffectiveGeometry(UIWindowScene windowScene, UIWindowSceneGeometry previousEffectiveGeometry);
     @Method(selector = "windowScene:performActionForShortcutItem:completionHandler:")
     void performAction(UIWindowScene windowScene, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "windowScene:userDidAcceptCloudKitShareWithMetadata:")
     void userDidAcceptCloudKitShare(UIWindowScene windowScene, CKShareMetadata cloudKitShareMetadata);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "preferredWindowingControlStyleForScene:")
+    UISceneWindowingControlStyle preferredWindowingControlStyleForScene(UIWindowScene windowScene);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

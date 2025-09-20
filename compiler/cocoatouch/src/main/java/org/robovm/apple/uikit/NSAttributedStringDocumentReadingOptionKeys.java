@@ -138,6 +138,11 @@ import org.robovm.apple.symbols.*;
          */
         @GlobalValue(symbol="NSSourceTextScalingDocumentOption", optional=true)
         public static native NSString NSSourceTextScalingDocumentOption();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSTextKit1ListMarkerFormatDocumentOption", optional=true)
+        public static native NSString NSTextKit1ListMarkerFormatDocumentOption();
     }
     /*</keys>*/
 }

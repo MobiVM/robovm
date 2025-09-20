@@ -75,6 +75,10 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getCornerRadius();
     @Property(selector = "setCornerRadius:")
     public native void setCornerRadius(@MachineSizedFloat double v);
+    @Property(selector = "imagePlacement")
+    public native NSDirectionalRectEdge getImagePlacement();
+    @Property(selector = "setImagePlacement:")
+    public native void setImagePlacement(NSDirectionalRectEdge v);
     @Property(selector = "baseForegroundColor")
     public native UIColor getBaseForegroundColor();
     @Property(selector = "setBaseForegroundColor:")

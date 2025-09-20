@@ -76,6 +76,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setContentInset:")
     public native void setContentInset(@ByVal UIEdgeInsets v);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "contentAlignmentPoint")
+    public native @ByVal CGPoint getContentAlignmentPoint();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setContentAlignmentPoint:")
+    public native void setContentAlignmentPoint(@ByVal CGPoint v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "adjustedContentInset")
@@ -122,6 +132,26 @@ import org.robovm.apple.symbols.*;
     public native boolean bounces();
     @Property(selector = "setBounces:")
     public native void setBounces(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "bouncesHorizontally")
+    public native boolean bouncesHorizontally();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setBouncesHorizontally:")
+    public native void setBouncesHorizontally(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "bouncesVertically")
+    public native boolean bouncesVertically();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setBouncesVertically:")
+    public native void setBouncesVertically(boolean v);
     @Property(selector = "alwaysBounceVertical")
     public native boolean alwaysBounceVertical();
     @Property(selector = "setAlwaysBounceVertical:")
@@ -138,6 +168,26 @@ import org.robovm.apple.symbols.*;
     public native boolean isScrollEnabled();
     @Property(selector = "setScrollEnabled:")
     public native void setScrollEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "transfersHorizontalScrollingToParent")
+    public native boolean isTransfersHorizontalScrollingToParent();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setTransfersHorizontalScrollingToParent:")
+    public native void setTransfersHorizontalScrollingToParent(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "transfersVerticalScrollingToParent")
+    public native boolean isTransfersVerticalScrollingToParent();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setTransfersVerticalScrollingToParent:")
+    public native void setTransfersVerticalScrollingToParent(boolean v);
     @Property(selector = "showsVerticalScrollIndicator")
     public native boolean showsVerticalScrollIndicator();
     @Property(selector = "setShowsVerticalScrollIndicator:")
@@ -182,12 +232,37 @@ import org.robovm.apple.symbols.*;
     public native UIScrollViewIndexDisplayMode getIndexDisplayMode();
     @Property(selector = "setIndexDisplayMode:")
     public native void setIndexDisplayMode(UIScrollViewIndexDisplayMode v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "topEdgeEffect")
+    public native UIScrollEdgeEffect getTopEdgeEffect();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "leftEdgeEffect")
+    public native UIScrollEdgeEffect getLeftEdgeEffect();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "bottomEdgeEffect")
+    public native UIScrollEdgeEffect getBottomEdgeEffect();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "rightEdgeEffect")
+    public native UIScrollEdgeEffect getRightEdgeEffect();
     @Property(selector = "isTracking")
     public native boolean isTracking();
     @Property(selector = "isDragging")
     public native boolean isDragging();
     @Property(selector = "isDecelerating")
     public native boolean isDecelerating();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "isScrollAnimating")
+    public native boolean isScrollAnimating();
     @Property(selector = "delaysContentTouches")
     public native boolean delaysContentTouches();
     @Property(selector = "setDelaysContentTouches:")
@@ -216,6 +291,11 @@ import org.robovm.apple.symbols.*;
     public native boolean isZooming();
     @Property(selector = "isZoomBouncing")
     public native boolean isZoomBouncing();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "isZoomAnimating")
+    public native boolean isZoomAnimating();
     @Property(selector = "scrollsToTop")
     public native boolean scrollsToTop();
     @Property(selector = "setScrollsToTop:")
@@ -274,6 +354,11 @@ import org.robovm.apple.symbols.*;
     public native void scrollRectToVisible(@ByVal CGRect rect, boolean animated);
     @Method(selector = "flashScrollIndicators")
     public native void flashScrollIndicators();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "withScrollIndicatorsShownForContentOffsetChanges:")
+    public native void withScrollIndicatorsShownForContentOffsetChanges(@Block Runnable changes);
     @Method(selector = "touchesShouldBegin:withEvent:inContentView:")
     public native boolean touchesShouldBegin(NSSet<UITouch> touches, UIEvent event, UIView view);
     @Method(selector = "touchesShouldCancelInContentView:")
@@ -282,6 +367,11 @@ import org.robovm.apple.symbols.*;
     public native void setZoomScale(@MachineSizedFloat double scale, boolean animated);
     @Method(selector = "zoomToRect:animated:")
     public native void zoomToRect(@ByVal CGRect rect, boolean animated);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "stopScrollingAndZooming")
+    public native void stopScrollingAndZooming();
     /**
      * @since Available in iOS 9.0 and later.
      */

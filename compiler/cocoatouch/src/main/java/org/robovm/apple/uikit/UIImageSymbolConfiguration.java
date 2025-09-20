@@ -116,5 +116,15 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "configurationPreferringMonochrome")
     public static native UIImageSymbolConfiguration configurationPreferringMonochrome();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "configurationWithVariableValueMode:")
+    public static native UIImageSymbolConfiguration getConfigurationWithVariableValueMode(UIImageSymbolVariableValueMode variableValueMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "configurationWithColorRenderingMode:")
+    public static native UIImageSymbolConfiguration getConfigurationWithColorRenderingMode(UIImageSymbolColorRenderingMode mode);
     /*</methods>*/
 }

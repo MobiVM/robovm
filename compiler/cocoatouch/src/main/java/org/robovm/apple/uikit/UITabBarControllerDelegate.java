@@ -58,6 +58,51 @@ import org.robovm.apple.symbols.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:shouldSelectTab:")
+    boolean shouldSelectTab(UITabBarController tabBarController, UITab tab);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:didSelectTab:previousTab:")
+    void didSelectTab(UITabBarController tabBarController, UITab selectedTab, UITab previousTab);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:tab:operationForAcceptingItemsFromDropSession:")
+    UIDropOperation getOperationForAcceptingItemsFromDropSession(UITabBarController tabBarController, UITab tab, UIDropSession session);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:tab:acceptItemsFromDropSession:")
+    void acceptItemsFromDropSession(UITabBarController tabBarController, UITab tab, UIDropSession session);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarControllerWillBeginEditing:")
+    void tabBarControllerWillBeginEditing(UITabBarController tabBarController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarControllerDidEndEditing:")
+    void tabBarControllerDidEndEditing(UITabBarController tabBarController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:visibilityDidChangeForTabs:")
+    void visibilityDidChangeForTabs(UITabBarController tabBarController, NSArray<UITab> tabs);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:displayOrderDidChangeForGroup:")
+    void displayOrderDidChangeForGroup(UITabBarController tabBarController, UITabGroup group);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "tabBarController:displayedViewControllersForTab:proposedViewControllers:")
+    NSArray<UIViewController> getDisplayedViewControllers(UITabBarController tabBarController, UITab tab, NSArray<UIViewController> proposedViewControllers);
     @Method(selector = "tabBarController:shouldSelectViewController:")
     boolean shouldSelectViewController(UITabBarController tabBarController, UIViewController viewController);
     @Method(selector = "tabBarController:didSelectViewController:")

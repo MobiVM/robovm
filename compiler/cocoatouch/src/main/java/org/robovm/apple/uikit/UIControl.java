@@ -384,6 +384,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "removeActionForIdentifier:forControlEvents:")
     public native void removeAction(UIActionIdentifier actionIdentifier, UIControlEvents controlEvents);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "performPrimaryAction")
+    public native void performPrimaryAction();
     @Method(selector = "actionsForTarget:forControlEvent:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getActions(NSObject target, UIControlEvents controlEvent);
     /**

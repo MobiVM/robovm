@@ -75,7 +75,7 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "attributedString")
     public native NSAttributedString getAttributedString();
     @Property(selector = "childElements")
-    public native NSArray<NSTextListElement> getChildElements();
+    public native NSArray<? extends NSTextElement> getChildElements();
     @Property(selector = "parentElement")
     public native NSTextListElement getParentElement();
     /*</properties>*/

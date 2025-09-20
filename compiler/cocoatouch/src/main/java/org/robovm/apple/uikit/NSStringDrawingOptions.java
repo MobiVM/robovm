@@ -53,6 +53,10 @@ public final class /*<name>*/NSStringDrawingOptions/*</name>*/ extends Bits</*<n
     public static final NSStringDrawingOptions UsesFontLeading = new NSStringDrawingOptions(2L);
     public static final NSStringDrawingOptions UsesDeviceMetrics = new NSStringDrawingOptions(8L);
     public static final NSStringDrawingOptions TruncatesLastVisibleLine = new NSStringDrawingOptions(32L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSStringDrawingOptions OptionsResolvesNaturalAlignmentWithBaseWritingDirection = new NSStringDrawingOptions(512L);
     /*</values>*/
 
     /*<bind>*/

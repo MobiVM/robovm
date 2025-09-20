@@ -74,6 +74,10 @@ public final class /*<name>*/UIViewAnimationOptions/*</name>*/ extends Bits</*<n
     public static final UIViewAnimationOptions PreferredFramesPerSecondDefault = new UIViewAnimationOptions(0L);
     public static final UIViewAnimationOptions PreferredFramesPerSecond60 = new UIViewAnimationOptions(50331648L);
     public static final UIViewAnimationOptions PreferredFramesPerSecond30 = new UIViewAnimationOptions(117440512L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final UIViewAnimationOptions FlushUpdates = new UIViewAnimationOptions(268435456L);
     /*</values>*/
 
     private static final /*<name>*/UIViewAnimationOptions/*</name>*/[] values = _values(/*<name>*/UIViewAnimationOptions/*</name>*/.class);

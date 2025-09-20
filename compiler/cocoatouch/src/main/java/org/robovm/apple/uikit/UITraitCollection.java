@@ -107,6 +107,22 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 17.0 and later.
      */
     public UITraitCollection(UISceneCaptureState sceneCaptureState) { super((Handle) null, create(sceneCaptureState)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public UITraitCollection(UIListEnvironment listEnvironment) { super((Handle) null, create(listEnvironment)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public UITraitCollection(UITabAccessoryEnvironment tabAccessoryEnvironment) { super((Handle) null, create(tabAccessoryEnvironment)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public UITraitCollection(UIHDRHeadroomUsageLimit hdrHeadroomUsageLimit) { super((Handle) null, create(hdrHeadroomUsageLimit)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public UITraitCollection(boolean resolvesNaturalAlignmentWithBaseWritingDirection) { super((Handle) null, create(resolvesNaturalAlignmentWithBaseWritingDirection)); retain(getHandle()); }
     public UITraitCollection(@Block VoidBlock1<UIMutableTraits> mutations) { super((Handle) null, create(mutations)); retain(getHandle()); }
     public UITraitCollection(@MachineSizedFloat double value, Class<?> trait) { super((Handle) null, create(value, trait)); retain(getHandle()); }
     public UITraitCollection(@MachineSizedSInt long value, Class<?> trait) { super((Handle) null, create(value, trait)); retain(getHandle()); }
@@ -183,6 +199,35 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "sceneCaptureState")
     public native UISceneCaptureState getSceneCaptureState();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "listEnvironment")
+    public native UIListEnvironment getListEnvironment();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "tabAccessoryEnvironment")
+    public native UITabAccessoryEnvironment getTabAccessoryEnvironment();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "splitViewControllerLayoutEnvironment")
+    public native UISplitViewControllerLayoutEnvironment getSplitViewControllerLayoutEnvironment();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "hdrHeadroomUsageLimit")
+    public native UIHDRHeadroomUsageLimit getHdrHeadroomUsageLimit();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "resolvesNaturalAlignmentWithBaseWritingDirection")
+    public native boolean isResolvesNaturalAlignmentWithBaseWritingDirection();
+    @Property(selector = "systemTraitsAffectingColorAppearance")
+    public static native NSArray<?> getSystemTraitsAffectingColorAppearance();
+    @Property(selector = "systemTraitsAffectingImageLookup")
+    public static native NSArray<?> getSystemTraitsAffectingImageLookup();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -287,6 +332,26 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "traitCollectionWithSceneCaptureState:")
     protected static native @Pointer long create(UISceneCaptureState sceneCaptureState);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "traitCollectionWithListEnvironment:")
+    protected static native @Pointer long create(UIListEnvironment listEnvironment);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "traitCollectionWithTabAccessoryEnvironment:")
+    protected static native @Pointer long create(UITabAccessoryEnvironment tabAccessoryEnvironment);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "traitCollectionWithHDRHeadroomUsageLimit:")
+    protected static native @Pointer long create(UIHDRHeadroomUsageLimit hdrHeadroomUsageLimit);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:")
+    protected static native @Pointer long create(boolean resolvesNaturalAlignmentWithBaseWritingDirection);
     @Method(selector = "traitCollectionByModifyingTraits:")
     public native UITraitCollection traitCollectionByModifyingTraits(@Block VoidBlock1<UIMutableTraits> mutations);
     @Method(selector = "traitCollectionByReplacingCGFloatValue:forTrait:")

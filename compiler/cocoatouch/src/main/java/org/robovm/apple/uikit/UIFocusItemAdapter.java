@@ -73,6 +73,8 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("focusGroupPriority")
     public @MachineSizedSInt long getFocusGroupPriority() { return 0; }
+    @NotImplemented("focusItemDeferralMode")
+    public UIFocusItemDeferralMode getFocusItemDeferralMode() { return null; }
     /**
      * @since Available in iOS 15.0 and later.
      */

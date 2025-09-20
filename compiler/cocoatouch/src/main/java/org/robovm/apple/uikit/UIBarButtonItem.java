@@ -215,7 +215,7 @@ import org.robovm.apple.symbols.*;
     public native void setAction(Selector v);
     @Property(selector = "target")
     public native NSObject getTarget();
-    @Property(selector = "setTarget:")
+    @Property(selector = "setTarget:", strongRef = true)
     public native void setTarget(NSObject v);
     /**
      * @since Available in iOS 14.0 and later.
@@ -297,6 +297,36 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setMenuRepresentation:")
     public native void setMenuRepresentation(UIMenuElement v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "hidesSharedBackground")
+    public native boolean hidesSharedBackground();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setHidesSharedBackground:")
+    public native void setHidesSharedBackground(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "sharesBackground")
+    public native boolean isSharesBackground();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSharesBackground:")
+    public native void setSharesBackground(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setIdentifier:")
+    public native void setIdentifier(String v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")
@@ -307,13 +337,17 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "buttonGroup")
     public native UIBarButtonItemGroup getButtonGroup();
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
+    @Property(selector = "badge")
+    public native UIBarButtonItemBadge getBadge();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setBadge:")
+    public native void setBadge(UIBarButtonItemBadge v);
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/
@@ -424,6 +458,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "flexibleSpaceItem")
     public static native UIBarButtonItem flexibleSpaceItem();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fixedSpaceItem")
+    public static native UIBarButtonItem fixedSpaceItem();
     /**
      * @since Available in iOS 17.0 and later.
      */

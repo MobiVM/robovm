@@ -124,6 +124,22 @@ import org.robovm.apple.dispatch.*;
         super(NSAttributedStringExtensions.create(attachment));
         retain(getHandle());
     }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @WeaklyLinked
+    public NSAttributedString(NSTextAttachment attachment, NSDictionary<NSString, ?> attributes) {
+        super(NSAttributedStringExtensions.create(attachment, attributes));
+        retain(getHandle());
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @WeaklyLinked
+    public NSAttributedString(NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes) {
+        super(NSAttributedStringExtensions.create(adaptiveImageGlyph, attributes));
+        retain(getHandle());
+    }
     /*<properties>*/
     @Property(selector = "string")
     public native String getString();

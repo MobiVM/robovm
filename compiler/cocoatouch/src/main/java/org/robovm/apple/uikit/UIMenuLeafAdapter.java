@@ -86,6 +86,10 @@ import org.robovm.apple.symbols.*;
     public UIMenuElementState getState() { return null; }
     @NotImplemented("setState:")
     public void setState(UIMenuElementState v) {}
+    @NotImplemented("repeatBehavior")
+    public UIMenuElementRepeatBehavior getRepeatBehavior() { return null; }
+    @NotImplemented("setRepeatBehavior:")
+    public void setRepeatBehavior(UIMenuElementRepeatBehavior v) {}
     @NotImplemented("sender")
     public NSObject getSender() { return null; }
     /**

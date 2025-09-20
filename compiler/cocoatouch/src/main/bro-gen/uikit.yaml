@@ -26,6 +26,7 @@ private_typedefs:
     UIScribbleElementIdentifier: NSObject
     UITextSearchDocumentIdentifier: NSObject
     UTType: org.robovm.apple.uniformtypeid.UTType
+    "UTType *": org.robovm.apple.uniformtypeid.UTType
     "AVAudioSession *": org.robovm.apple.avfoundation.AVAudioSession
 
 enums:
@@ -356,6 +357,46 @@ enums:
     UITextItemContentType: {} #since 17.0
     UIContentUnavailableAlignment: {} #since 17.0
 
+    UIAccessibilityExpandedStatus: {} #since 18.0
+    UIColorProminence: {} #since 18.0
+    UIImageSymbolVariableValueMode: {} #since 26.0
+    UIImageSymbolColorRenderingMode: {} #since 26.0
+    UIMenuElementRepeatBehavior: {} #since 26.0
+    UIHDRHeadroomUsageLimit: {}
+    UIListEnvironment: {} #since 18.0
+    UITabAccessoryEnvironment: {} #since 26.0
+    UISplitViewControllerLayoutEnvironment: {} #since 26.0
+    UIFocusItemDeferralMode: {} #since 18.0
+    UIViewLayoutRegionAdaptivityAxis: {} #since 26.0
+    UITextMathExpressionCompletionType: {} #since 18.0
+    UIWritingToolsBehavior: {} #since 18.0
+    UIWritingToolsResultOptions: {prefix: UIWritingToolsResult} #since 18.0
+    UIApplicationCategory: {} #since 18.2
+    UIApplicationCategoryDefaultStatus: {} #since 18.2
+    UIApplicationCategoryDefaultErrorCode: {nserror: true, prefix: UIApplicationCategoryDefaultError} #since 18.2
+    UITableViewContentHuggingElements: {} #since 18.0
+    UICollectionLayoutListContentHuggingElements: {} #since 18.0
+    UIGlassEffectStyle: {} #since 26.0
+    UISliderStyle: {} #since 26.0
+    UITabBarControllerMode: {} #since 18.0
+    UITabBarMinimizeBehavior: {} #since 26.0
+    UIPencilInteractionPhase: {} #since 17.5
+    UIMenuSystemElementGroupPreference: {} #since 26.0
+    UIMenuSystemFindElementGroupConfigurationStyle: {} #since 26.0
+    UITabPlacement: {} #since 18.0
+    UITabGroupSidebarAppearance: {} #since 18.0
+    UITabBarControllerSidebarLayout: {} #since 18.0
+    UITextFormattingViewControllerComponentSize: {} #since 18.0
+    UIWritingToolsCoordinatorTextUpdateReason: {} #since 18.2
+    UIWritingToolsCoordinatorState: {} #since 18.2
+    UIWritingToolsCoordinatorTextReplacementReason: {} #since 18.2
+    UIWritingToolsCoordinatorContextScope: {} #since 18.2
+    UIWritingToolsCoordinatorTextAnimation: {} #since 18.2
+    UIMailConversationEntryKind: {} #since 18.4
+    UIMessageConversationEntryDataKind: {} #since 18.4
+    UIActivityCollaborationMode: {} #since 18.0
+    UIActivitySectionTypes: {} #since 18.0
+
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
 
@@ -397,6 +438,12 @@ categories:
                     options:
                         type: NSAttributedStringDocumentAttributes
             '+attributedStringWithAttachment:':
+                name: create
+                return_type: '@Pointer long'
+            '+attributedStringWithAttachment:attributes:':
+                name: create
+                return_type: '@Pointer long'
+            '+attributedStringWithAdaptiveImageGlyph:attributes:':
                 name: create
                 return_type: '@Pointer long'
             '-boundingRectWithSize:options:context:':
@@ -932,6 +979,8 @@ classes:
         properties:
             'activity(.*)':
                 name: '#{g[0]}'
+            '+activity(.*)':
+                name: '#{g[0]}'
         methods:
             '-activityDidFinish:':
                 name: didFinish
@@ -1042,6 +1091,9 @@ classes:
                 name: requestSceneSessionDestruction
             '-activateSceneSessionForRequest:errorHandler:':
                 name: activateSceneSession
+            '-defaultStatusForCategory:error:':
+                name: getDefaultStatus
+                throws: NSErrorException
     UIApplicationShortcutIcon: # DONE
         methods:
             '+iconWithSystemImageName:':
@@ -1407,9 +1459,9 @@ classes:
     UICollectionViewFocusUpdateContext: {} # DONE
     UICollectionViewLayout: # DONE
         properties:
-            'layoutAttributesClass':
+            '+layoutAttributesClass':
                 type: 'Class<? extends UICollectionViewLayoutAttributes>'
-            'invalidationContextClass':
+            '+invalidationContextClass':
                 type: 'Class<? extends UICollectionViewLayoutInvalidationContext>'
         methods:
             '-finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:':
@@ -1548,10 +1600,20 @@ classes:
     UIColor: # DONE
         properties:
             '(CIColor|CGColor)': {}
-            '(.*)Color':
+            '+(.*)Color':
                 getter: '#{g[0]}'
         methods:
-            '-init.*':
+            '-initWithRed:green:blue:alpha:':
+                name: init
+            '-initWithCGColor:':
+                name: init
+            '-initWithCIColor:':
+                name: init
+            '-initWithRed:green:blue:alpha:exposure:':
+                exclude: true
+            '-initWithRed:green:blue:alpha:linearExposure:':
+                exclude: true
+            '-initWithDynamicProvider:':
                 name: init
             '-initWithHue:saturation:brightness:alpha:':
                 exclude: true
@@ -1594,6 +1656,12 @@ classes:
                 name: resolvedColorWithTraitCollection
             '+colorWithDynamicProvider:':
                 exclude: true # as has init
+            '+colorWithRed:green:blue:alpha:exposure:':
+                name: fromExposure
+            '+colorWithRed:green:blue:alpha:linearExposure:':
+                name: fromLinearExposure
+            '-colorWithProminence:':
+                name: toColorWithProminence
     UIContentSizeCategoryAdjusting: {} # DONE
     UIControl: # DONE
         skip_handle_constructor: false
@@ -1877,7 +1945,7 @@ classes:
     UIFocusUpdateContext: {} # DONE
     UIFont: # DONE
         properties:
-            'familyNames':
+            '+familyNames':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
@@ -2276,6 +2344,10 @@ classes:
                 name: init
             '-impactOccurredWithIntensity:':
                 name: impactOccurred
+            '-impactOccurredWithIntensity:atLocation:':
+                name: impactOccurred
+            '+feedbackGeneratorWithStyle:forView:':
+                name: feedbackGeneratorForView
     UIInputView: # DONE
         methods:
             '-initWithFrame:inputViewStyle:':
@@ -2508,6 +2580,8 @@ classes:
         methods:
             '-notificationOccurred:':
                 trim_after_first_colon: true
+            '-notificationOccurred:atLocation:':
+                name: notificationOccurred
     UIPageControl: # DONE
         methods:
             '-sizeForNumberOfPages:':
@@ -2740,7 +2814,7 @@ classes:
                 constructor: true
     UIPrintInteractionController: # DONE
         properties:
-            'printableUTIs':
+            '+printableUTIs':
                 type: Set<String>
                 marshaler: NSSet.AsStringSetMarshaler
         methods:
@@ -3207,6 +3281,14 @@ classes:
                 parameters:
                     viewControllers:
                         type: NSArray<UIViewController>
+            '-setTabs:animated:':
+                name: setTabs
+            '-initWithTabs:':
+                name: init
+            '-setTabBarHidden:animated:':
+                name: setTabBarHidden
+            '-setBottomAccessory:animated:':
+                name: setBottomAccessory
     UITabBarItem: # DONE
         methods:
             '-initWithTitle:image:tag:':
@@ -3360,7 +3442,10 @@ classes:
     UITapGestureRecognizer: {} # DONE
     UITextChecker: # DONE
         properties:
-            '(ignoredWords|availableLanguages)':
+            'ignoredWords':
+                type: List<String>
+                marshaler: NSArray.AsStringListMarshaler
+            '+availableLanguages':
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
@@ -3449,6 +3534,8 @@ classes:
                 name: init
             '-scrollRangeToVisible:':
                 trim_after_first_colon: true
+            '-drawTextHighlightBackgroundForTextRange:origin:':
+                name: drawTextHighlightBackground
     UIToolbar: # DONE
         properties:
             'items':
@@ -3486,10 +3573,10 @@ classes:
                 name: getAzimuthUnitVectorInView
     UITraitCollection: # DONE
         properties:
-            systemTraitsAffectingColorAppearance:
-                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
-            systemTraitsAffectingImageLookup:
-                exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+            '+systemTraitsAffectingColorAppearance':
+                type: 'NSArray<?>'  # TODO: FIXME: revert once ObjObject is allowed with NSArray
+            '+systemTraitsAffectingImageLookup':
+                type: 'NSArray<?>'  # TODO: FIXME: revert once ObjObject is allowed with NSArray
         methods:
             '-changedTraitsFromTraitCollection:':
                 exclude: true  # TODO: FIXME: revert once ObjObject is allowed with NSArray
@@ -3567,6 +3654,18 @@ classes:
             '+traitCollectionWithObject:forTrait:':
                 name: create
                 constructor: true
+            '+traitCollectionWithListEnvironment:':
+                name: create
+                constructor: true
+            '+traitCollectionWithTabAccessoryEnvironment:':
+                name: create
+                constructor: true
+            '+traitCollectionWithHDRHeadroomUsageLimit:':
+                name: create
+                constructor: true
+            '+traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:':
+                name: create
+                constructor: true
     UIMutableApplicationShortcutItem: # DONE
         skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
@@ -3625,7 +3724,7 @@ classes:
                 type: NSArray<NSLayoutConstraint>
             'layoutGuides':
                 type: NSArray<UILayoutGuide>
-            'layerClass':
+            '+layerClass':
                 type: 'Class<? extends CALayer>'
                 annotations: ['@WeaklyLinked']
         methods:
@@ -4119,7 +4218,10 @@ classes:
             '+passwordRulesWithDescriptor:':
                 name: create
                 constructor: true
-    UIPencilInteraction: {} #since 12.1
+    UIPencilInteraction: #since 12.1
+        methods:
+            '-initWithDelegate:':
+                name: init
 
     # iOS13
     NSCollectionLayoutAnchor: #since 13.0
@@ -4390,6 +4492,10 @@ classes:
                 name: getConfigurationWithHierarchicalColor
             '+configurationWithPaletteColors:':
                 name: getConfigurationWithPaletteColors
+            '+configurationWithVariableValueMode:':
+                name: getConfigurationWithVariableValueMode
+            '+configurationWithColorRenderingMode:':
+                name: getConfigurationWithColorRenderingMode
     UILargeContentViewerInteraction: #since 13.0
         methods:
             '-initWithDelegate:':
@@ -4581,6 +4687,8 @@ classes:
                 name: elementWithProvider
             '+elementWithUncachedProvider:':
                 name: elementWithUncachedProvider
+            '+elementUsingFocusWithIdentifier:shouldCacheItems:':
+                name: elementUsingFocus
     UIIndirectScribbleInteraction: #since 14.0
         methods:
             '-initWithDelegate:':
@@ -5089,6 +5197,243 @@ classes:
     UIWindowScenePlacement: {} #since 17.0
     UIWindowSceneProminentPlacement: {} #since 17.0
     UIWindowSceneStandardPlacement: {} #since 17.0
+    NSAdaptiveImageGlyph: #since 18.0
+        methods:
+            '-initWithImageContent:':
+                name: init
+            '-initWithCoder:':
+                name: init
+    UIActivityCollaborationModeRestriction: #since 18.0
+        methods:
+            '-initWithDisabledMode:':
+                name: init
+            '-initWithDisabledMode:alertTitle:alertMessage:':
+                name: init
+            '-initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:':
+                name: init
+            '-initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:':
+                name: init
+    UIBackgroundExtensionView: {} #since 26.0
+    UIBarButtonItemBadge: #since 26.0
+        methods:
+            '+badgeWithCount:':
+                name: getBadge
+            '+badgeWithString:':
+                name: getBadge
+    UICalendarSelectionWeekOfYear: #since 18.0
+        methods:
+            '-setSelectedWeekOfYear:animated:':
+                name: setSelectedWeekOfYear
+            '-initWithDelegate:':
+                name: init
+    UICanvasFeedbackGenerator: {} #since 17.5
+    UIContextMenuSystem: {} #since 26.0
+    UIConversationContext: {} #since 18.4
+    UIConversationEntry: {} #since 18.4
+    UICornerConfiguration: #since 26.0
+        methods:
+            '+configurationWithRadius:':
+                name: getConfiguration
+            '+configurationWithTopLeftRadius:topRightRadius:bottomLeftRadius:bottomRightRadius:':
+                name: getConfiguration
+            '+capsuleConfigurationWithMaximumRadius:':
+                name: getCapsuleConfiguration
+            '+configurationWithUniformRadius:':
+                name: getConfigurationWithUniformRadius
+            '+configurationWithUniformTopRadius:uniformBottomRadius:':
+                name: getConfigurationWithUniformTopBottomRadius
+            '+configurationWithUniformLeftRadius:uniformRightRadius:':
+                name: getConfigurationWithUniformLeftRightRadius
+            '+configurationWithUniformTopRadius:bottomLeftRadius:bottomRightRadius:':
+                name: getConfigurationWithUniformTopRadius
+            '+configurationWithUniformBottomRadius:topLeftRadius:topRightRadius:':
+                name: getConfigurationWithUniformBottomRadius
+            '+configurationWithUniformLeftRadius:topRightRadius:bottomRightRadius:':
+                name: getConfigurationWithUniformLeftRadius
+            '+configurationWithUniformRightRadius:topLeftRadius:bottomLeftRadius:':
+                name: getConfigurationWithUniformRightRadius
+    UICornerRadius: #since 26.0
+        methods:
+            '+containerConcentricRadiusWithMinimum:':
+                name: containerConcentricRadiusWithMinimum
+    UIDeferredMenuElementProvider: #since 26.0
+        methods:
+            '+providerWithElementProvider:':
+                name: create
+                constructor: true
+    UIDocumentViewControllerLaunchOptions: #since 18.0
+        methods:
+            '+createDocumentActionWithIntent:':
+                name: createDocumentAction
+    UIGlassContainerEffect: {} #since 26.0
+    UIGlassEffect: #since 26.0
+        methods:
+            '+effectWithStyle:':
+                name: create
+                constructor: true
+    UIInputSuggestion: {} #since 18.4
+    UIMailConversationContext: {} #since 18.4
+    UIMailConversationEntry: {} #since 18.4
+    UIMainMenuSystem: #since 26.0
+        methods:
+            '-setBuildConfiguration:buildHandler:':
+                name: setBuildConfiguration
+    UIMainMenuSystemConfiguration: {} #since 26.0
+    UIMenuDisplayPreferences: {} #since 17.4
+    UIMenuSystemFindElementGroupConfiguration: {} #since 26.0
+    UIMessageConversationContext: {} #since 18.4
+    UIMessageConversationEntry: {} #since 18.4
+    UIPencilHoverPose: {} #since 17.5
+    UIPencilInteractionSqueeze: {} #since 17.5
+    UIPencilInteractionTap: {} #since 17.5
+    UISceneDestructionCondition: {} #since 26.0
+    UISceneSystemProtectionManager: {} #since 18.0
+    UISceneWindowingControlStyle: {} #since 26.0
+    UIScrollEdgeEffect: {} #since 26.0
+    UIScrollEdgeEffectStyle: {} #since 26.0
+    UIScrollEdgeElementContainerInteraction: {} #since 26.0
+    UISearchTab: #since 18.0
+        methods:
+            '-initWithViewControllerProvider:':
+                name: init
+    UIShadowProperties: {} #since 18.0
+    UISliderTick: #since 26.0
+        methods:
+            '+tickWithPosition:title:image:':
+                name: create
+                constructor: true
+    UISliderTrackConfiguration: #since 26.0
+        methods:
+            '+configurationWithTicks:':
+                name: create
+                constructor: true
+            '+configurationWithNumberOfTicks:':
+                name: create
+                constructor: true
+    UISmartReplySuggestion: {} #since 18.4
+    UIStandardTextCursorView: {} #since 17.4
+    UISymbolContentTransition: #since 26.0
+        methods:
+            '+transitionWithContentTransition:':
+                name: create
+                constructor: true
+            '+transitionWithContentTransition:options:':
+                name: create
+                constructor: true
+    UITab: #since 18.0
+        methods:
+            '-initWithTitle:image:identifier:viewControllerProvider:':
+                name: init
+    UITabAccessory: #since 26.0
+        methods:
+            '-initWithContentView:':
+                name: init
+    UITabBarControllerSidebar: #since 18.0
+        methods:
+            '-scrollToTarget:animated:':
+                name: scrollTo
+    UITabGroup: #since 18.0
+        methods:
+            '-initWithTitle:image:identifier:children:viewControllerProvider:':
+                name: init
+    UITabSidebarItem: {} #since 18.0
+    UITabSidebarItemRequest: {} #since 18.0
+    UITabSidebarScrollTarget: {} #since 18.0
+    UITextCursorDropPositionAnimator: #since 17.4
+        methods:
+            '-initWithTextCursorView:textInput:':
+                name: init
+            '-setCursorVisible:animated:':
+                name: setCursorVisible
+            '-placeCursorAtPosition:animated:':
+                name: placeCursor
+            '-animateAlongsideChanges:completion:':
+                name: animateAlongsideChanges
+    UITextFormattingViewController: #since 18.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    UITextFormattingViewControllerChangeValue: {} #since 18.0
+    UITextFormattingViewControllerComponent: #since 18.0
+        methods:
+            '-initWithComponentKey:preferredSize:':
+                name: init
+    UITextFormattingViewControllerComponentGroup: #since 18.0
+        methods:
+            '-initWithComponents:':
+                name: init
+    UITextFormattingViewControllerConfiguration: #since 18.0
+        methods:
+            '-initWithGroups:':
+                name: init
+    UITextFormattingViewControllerFormattingDescriptor: #since 18.0
+        methods:
+            '-initWithString:range:':
+                name: init
+            '-initWithAttributes:':
+                name: init
+    UITextFormattingViewControllerFormattingStyle: #since 18.0
+        methods:
+            '-initWithStyleKey:title:attributes:':
+                name: init
+    UITraitHDRHeadroomUsageLimit: {} #since 26.0
+    UITraitListEnvironment: {} #since 18.0
+    UITraitResolvesNaturalAlignmentWithBaseWritingDirection: {} #since 26.0
+    UITraitSplitViewControllerLayoutEnvironment: {} #since 26.0
+    UITraitTabAccessoryEnvironment: {} #since 26.0
+    UIUpdateActionPhase: {} #since 18.0
+    UIUpdateInfo: #since 18.0
+        methods:
+    UIUpdateLink: #since 18.0
+        methods:
+            '-addActionToPhase:handler:':
+                name: addAction
+            '-addActionToPhase:target:selector:':
+                name: addAction
+            '-addActionWithHandler:':
+                name: addAction
+            '-addActionWithTarget:selector:':
+                name: addAction
+            '+updateLinkForWindowScene:actionHandler:':
+                name: updateLink
+            '+updateLinkForWindowScene:actionTarget:selector:':
+                name: updateLink
+            '+updateLinkForView:actionHandler:':
+                name: updateLink
+            '+updateLinkForView:actionTarget:selector:':
+                name: updateLink
+    UIViewControllerTransition: #since 18.0
+        methods:
+            '+zoomWithOptions:sourceViewProvider:':
+                name: zoomFromView
+            '+zoomWithOptions:sourceBarButtonItemProvider:':
+                name: zoomFromBarButtonItem
+    UIViewLayoutRegion: #since 26.0
+        methods:
+            '+safeAreaLayoutRegionWithCornerAdaptation:':
+                name: safeAreaLayoutRegionWithCornerAdaptation
+            '+marginsLayoutRegionWithCornerAdaptation:':
+                name: marginsLayoutRegionWithCornerAdaptation
+            '+readableContentLayoutRegionWithCornerAdaptation:':
+                name: readableContentLayoutRegionWithCornerAdaptation
+    UIWritingToolsCoordinator: #since 18.2
+        methods:
+            '-initWithDelegate:':
+                name: init
+            '-updateRange:withText:reason:forContextWithIdentifier:':
+                name: update
+            '-updateForReflowedTextInContextWithIdentifier:':
+                name: updateForReflowedTextInContext
+    UIWritingToolsCoordinatorAnimationParameters: {} #since 18.2
+    UIWritingToolsCoordinatorContext: #since 18.2
+        methods:
+            '-initWithAttributedString:range:':
+                name: init
+    UIZoomTransitionAlignmentRectContext: {} #since 18.0
+    UIZoomTransitionInteractionContext: {} #since 18.0
+    UIZoomTransitionOptions: {} #since 18.0
+    UIZoomTransitionSourceViewProviderContext: {} #since 18.0
+
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -5804,6 +6149,8 @@ protocols:
                 name: didBeginEditing
             '-searchBarTextDidEndEditing:':
                 name: didEndEditing
+            '-searchBar:shouldChangeTextInRanges:replacementText:':
+                name: shouldChangeText
     UISearchControllerDelegate: # DONE
         methods:
             '-willPresentSearchController:':
@@ -5898,6 +6245,10 @@ protocols:
                 name: interactivePresentationGestureWillBegin
             '-splitViewControllerInteractivePresentationGestureDidEnd:':
                 name: interactivePresentationGestureDidEnd
+            '-splitViewController:didShowColumn:':
+                name: didShowColumn
+            '-splitViewController:didHideColumn:':
+                name: didHideColumn
     UIStateRestoring: # DONE
         methods:
             '-decodeRestorableStateWithCoder:':
@@ -5934,6 +6285,20 @@ protocols:
                 name: getInteractionController
             '-tabBarController:animationControllerForTransitionFromViewController:toViewController:':
                 name: getAnimationController
+            '-tabBarController:shouldSelectTab:':
+                name: shouldSelectTab
+            '-tabBarController:didSelectTab:previousTab:':
+                name: didSelectTab
+            '-tabBarController:tab:operationForAcceptingItemsFromDropSession:':
+                name: getOperationForAcceptingItemsFromDropSession
+            '-tabBarController:tab:acceptItemsFromDropSession:':
+                name: acceptItemsFromDropSession
+            '-tabBarController:visibilityDidChangeForTabs:':
+                name: visibilityDidChangeForTabs
+            '-tabBarController:displayOrderDidChangeForGroup:':
+                name: displayOrderDidChangeForGroup
+            '-tabBarController:displayedViewControllersForTab:proposedViewControllers:':
+                name: getDisplayedViewControllers
     UITabBarDelegate: # DONE
         methods:
             '-tabBar:didBeginCustomizingItems:':
@@ -6135,6 +6500,13 @@ protocols:
                 name: willPresentEditMenu
             '-textField:willDismissEditMenuWithAnimator:':
                 name: willDismissEditMenu
+            '-textField:shouldChangeCharactersInRanges:replacementString:':
+                name: shouldChangeCharacters
+            '-textField:editMenuForCharactersInRanges:suggestedActions:':
+                name: editMenuForCharacters
+            '-textField:insertInputSuggestion:':
+                name: insertInputSuggestion
+
     UITextInput: # DONE
         properties:
             'markedTextStyle':
@@ -6211,6 +6583,10 @@ protocols:
                 name: willPresentEditMenu
             '-willDismissEditMenuWithAnimator:':
                 name: willDismissEditMenu
+            '-insertAdaptiveImageGlyph:replacementRange:':
+                name: insertAdaptiveImageGlyph
+            '-replaceRange:withAttributedText:':
+                name: replaceRange
     UITextInputDelegate: # DONE
         methods:
             '-selectionWillChange:':
@@ -6221,6 +6597,8 @@ protocols:
                 name: textWillChange
             '-textDidChange:':
                 name: textDidChange
+            '-conversationContext:didChange:':
+                name: didChange
     UITextInputTokenizer: # DONE
         methods:
             '-positionFromPosition:toBoundary:inDirection:':
@@ -6278,6 +6656,22 @@ protocols:
                 name: textItemMenuWillDisplayForTextItem
             '-textView:textItemMenuWillEndForTextItem:animator:':
                 name: textItemMenuWillEndForTextItem
+            '-textView:shouldChangeTextInRanges:replacementText:':
+                name: shouldChangeTextInRanges
+            '-textView:editMenuForTextInRanges:suggestedActions:':
+                name: editMenuForTextInRanges
+            '-textView:writingToolsIgnoredRangesInEnclosingRange:':
+                name: getWritingToolsIgnoredRanges
+            '-textView:willBeginFormattingWithViewController:':
+                name: willBeginFormatting
+            '-textView:didBeginFormattingWithViewController:':
+                name: didBeginFormatting
+            '-textView:willEndFormattingWithViewController:':
+                name: willEndFormatting
+            '-textView:didEndFormattingWithViewController:':
+                name: didEndFormatting
+            '-textView:insertInputSuggestion:':
+                name: insertInputSuggestion
 
     UITimingCurveProvider: {} # DONE
     UIToolbarDelegate: {} # DONE
@@ -6747,7 +7141,13 @@ protocols:
     UIFocusItemScrollableContainer: {} #since 12.0
     UIInputViewAudioFeedback: {}
     UIUserActivityRestoring: {} #since 8.0
-    UIPencilInteractionDelegate: {} #since 12.1
+    UIPencilInteractionDelegate: #since 12.1
+        methods:
+            '-pencilInteraction:didReceiveTap:':
+                name: didReceiveTap
+            '-pencilInteraction:didReceiveSqueeze:':
+                name: didReceiveSqueeze
+
     # iOS13
     NSCollectionLayoutContainer: {} #since 13.0
     NSCollectionLayoutEnvironment: {} #since 13.0
@@ -6803,6 +7203,31 @@ protocols:
                 name: insertChildMenuAtStart
             '-insertChildMenu:atEndOfMenuForIdentifier:':
                 name: insertChildMenuAtEnd
+            '-replaceMenuForIdentifier:withElements:':
+                name: replaceMenu
+            '-replaceActionForIdentifier:withElements:':
+                name: replaceAction
+            '-replaceCommandForAction:propertyList:withElements:':
+                name: replaceCommand
+            '-insertElements:beforeMenuForIdentifier:':
+                name: insertElementsBeforeMenu
+            '-insertElements:afterMenuForIdentifier:':
+                name: insertElementsAfterMenu
+            '-insertElements:beforeActionForIdentifier:':
+                name: insertElementsBeforeAction
+            '-insertElements:afterActionForIdentifier:':
+                name: insertElementsAfterAction
+            '-insertElements:beforeCommandForAction:propertyList:':
+                name: insertElementsBeforeCommand
+            '-insertElements:afterCommandForAction:propertyList:':
+                name: insertElementsAfterCommand
+            '-insertElements:atStartOfMenuForIdentifier:':
+                name: insertElementsAtStartOfMenu
+            '-insertElements:atEndOfMenuForIdentifier:':
+                name: insertElementsAtEndOfMenu
+            '-removeCommandForAction:propertyList:':
+                name: removeCommandForAction
+
     UISceneDelegate: #since 13.0
         methods:
             '-scene:willConnectToSession:options:':
@@ -6846,6 +7271,8 @@ protocols:
                 name: performAction
             '-windowScene:userDidAcceptCloudKitShareWithMetadata:':
                 name: userDidAcceptCloudKitShare
+            '-windowScene:didUpdateEffectiveGeometry:':
+                name: didUpdateEffectiveGeometry
     UIContextMenuInteractionAnimating: {} #since 13.0
 
     UIColorPickerViewControllerDelegate:  #since 14.0
@@ -7111,6 +7538,77 @@ protocols:
     UITraitDefinition: {} #since 17.0
     UITraitOverrides: {} #since 17.0
 
+    UICalendarSelectionWeekOfYearDelegate: #since 18.0
+        methods:
+            '-weekOfYearSelection:didSelectWeekOfYear:':
+                name: didSelectWeekOfYear
+            '-weekOfYearSelection:canSelectWeekOfYear:':
+                name: canSelectWeekOfYear
+    UIItemProviderReadingAugmentationDesignating: {}
+    UIItemProviderReadingAugmentationProviding:
+        exclude: true # TODO: contains only class methods/properties
+    UITabBarControllerSidebarAnimating: {} #since 18.0
+    UITabBarControllerSidebarDelegate: #since 18.0
+        methods:
+            '-tabBarController:sidebarVisibilityWillChange:animator:':
+                name: sidebarVisibilityWillChange
+            '-tabBarController:sidebar:itemForRequest:':
+                name: getItem
+            '-tabBarController:sidebar:updateItem:':
+                name: updateItem
+            '-tabBarController:sidebar:willBeginDisplayingTab:':
+                name: willBeginDisplayingTab
+            '-tabBarController:sidebar:didEndDisplayingTab:':
+                name: didEndDisplayingTab
+            '-tabBarController:sidebar:leadingSwipeActionsConfigurationForTab:':
+                name: getLeadingSwipeActionsConfiguration
+            '-tabBarController:sidebar:trailingSwipeActionsConfigurationForTab:':
+                name: getTrailingSwipeActionsConfiguration
+            '-tabBarController:sidebar:contextMenuConfigurationForTab:':
+                name: getContextMenuConfiguration
+            '-tabBarController:sidebar:itemsForBeginningDragSession:tab:':
+                name: getItemsForBeginningDragSession
+            '-tabBarController:sidebar:itemsForAddingToDragSession:tab:':
+                name: getItemsForAddingToDragSession
+            '-tabBarController:sidebar:sidebarAction:group:operationForAcceptingItemsFromDropSession:':
+                name: getOperationForAcceptingItems
+            '-tabBarController:sidebar:sidebarAction:group:acceptItemsFromDropSession:':
+                name: acceptItemsFromDropSession
+    UITextFormattingViewControllerDelegate: #since 18.0
+        methods:
+            '-textFormattingViewController:didChangeValue:':
+                name: didChangeValue
+            '-textFormattingViewController:shouldPresentFontPicker:':
+                name: shouldPresentFontPicker
+            '-textFormattingViewController:shouldPresentColorPicker:':
+                name: shouldPresentColorPicker
+    UIWritingToolsCoordinatorDelegate: #since 18.2
+        methods:
+            '-writingToolsCoordinator:requestsContextsForScope:completion:':
+                name: requestsContexts
+            '-writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:':
+                name: replaceRange
+            '-writingToolsCoordinator:selectRanges:inContext:completion:':
+                name: selectRanges
+            '-writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:':
+                name: requestsBoundingBezierPaths
+            '-writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:':
+                name: requestsUnderlinePaths
+            '-writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:':
+                name: prepareForTextAnimation
+            '-writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:':
+                name: requestsPreviewForTextAnimation
+            '-writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:':
+                name: finishTextAnimation
+            '-writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:':
+                name: requestsSingleContainerSubrangesOfRange
+            '-writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:':
+                name: requestsDecorationContainerView
+            '-writingToolsCoordinator:willChangeToState:completion:':
+                name: willChangeToState
+            '-writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:':
+                name: requestsRangeInContext
+
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
 
@@ -7247,6 +7745,10 @@ functions:
     UICellAccessoryPosition(.*):
         class: UICellAccessory
         name: 'getPosition#{g[0]}'
+
+    UIWritingToolsCoordinatorTextAnimationDebugDescription:
+        class: UIWritingToolsCoordinatorTextAnimation
+        name: debugDescription
 
     # Make sure we don't miss any functions if new ones are introduced in a later UIKit
     (CG.*):
@@ -7533,7 +8035,7 @@ values:
     UI(MinimumKeepAliveTimeout):
         class: UIApplication
         name: 'get#{g[0]}'
-    UIApplication(OpenSettingsURLString|OpenNotificationSettingsURLString):
+    UIApplication(OpenSettingsURLString|OpenNotificationSettingsURLString|OpenDefaultApplicationsSettingsURLString):
         class: UIApplication
         name: 'get#{g[0]}'
     UIApplication(.*)ExtensionPointIdentifier:
@@ -7582,6 +8084,10 @@ values:
 
     # UIDocument
     UIDocument(.*Notification):
+        class: UIDocument
+        name: '#{g[0]}'
+        type: NSString
+    UIDocument(.*Key):
         class: UIDocument
         name: '#{g[0]}'
         type: NSString
@@ -8011,6 +8517,15 @@ values:
         static_class: DecelerationRate
         name: '#{g[0]}'
 
+    UIApplicationCategoryDefaultErrorDomain:
+        class: UIApplicationCategoryDefaultErrorCode
+        name: getClassDomain
+    UIApplicationCategoryDefault(.*)ErrorKey:
+        class: UIApplicationCategoryDefaultErrorCode
+        static_class: ErrorKeys
+        name: '#{g[0]}'
+
+
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):
         class: FIXME
@@ -8070,6 +8585,40 @@ typed_enums:
         enum: NSTextListMarkerFormat
         type: NSString
         prefix: NSTextList
+    NSTextHighlightColorScheme:
+        enum: NSTextHighlightColorScheme
+        type: NSString
+        prefix: NSTextHighlightColorScheme
+    NSTextHighlightStyle:
+        enum: NSTextHighlightStyle
+        type: NSString
+        prefix: NSTextHighlightStyle
+    UIDocumentCreationIntent:
+        enum: UIDocumentCreationIntent
+        type: NSString
+        prefix: UIDocumentCreationIntent
+    UITextFormattingViewControllerTextAlignment:
+        enum: UITextFormattingViewControllerTextAlignment
+        type: NSString
+        prefix: UITextFormattingViewControllerTextAlignment
+    UITextFormattingViewControllerTextList:
+        enum: UITextFormattingViewControllerTextList
+        type: NSString
+        prefix: UITextFormattingViewControllerTextList
+    UITextFormattingViewControllerHighlight:
+        enum: UITextFormattingViewControllerHighlight
+        type: NSString
+        prefix: UITextFormattingViewControllerHighlight
+    UITextFormattingViewControllerChangeType:
+        enum: UITextFormattingViewControllerChangeType
+        type: NSString
+        prefix: UITextFormattingViewController
+        suffix: ChangeType
+    UITextFormattingViewControllerComponentKey:
+        enum: UITextFormattingViewControllerComponentKey
+        type: NSString
+        prefix: UITextFormattingViewController
+        suffix: ComponentKey
 
 constants:
     NS(AttachmentCharacter):

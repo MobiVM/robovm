@@ -52,7 +52,8 @@ public enum /*<name>*/UIPasteControlDisplayMode/*</name>*/ implements ValuedEnum
     /*<values>*/
     IconAndLabel(0L),
     IconOnly(1L),
-    LabelOnly(2L);
+    LabelOnly(2L),
+    ArrowAndLabel(3L);
     /*</values>*/
 
     /*<bind>*/
