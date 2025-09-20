@@ -197,16 +197,6 @@ import org.robovm.apple.avfoundation.*;
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "focusBehavior")
-    public native SCNNodeFocusBehavior getFocusBehavior();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "setFocusBehavior:")
-    public native void setFocusBehavior(SCNNodeFocusBehavior v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "localUp")
     public static native @ByVal SCNVector3 getLocalUp();
     /**
@@ -364,6 +354,16 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "simdWorldFront")
     public native @ByVal VectorFloat3 getSimdWorldFront();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "focusBehavior")
+    public native SCNNodeFocusBehavior getFocusBehavior();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "setFocusBehavior:")
+    public native void setFocusBehavior(SCNNodeFocusBehavior v);
     @Property(selector = "particleSystems")
     public native NSArray<SCNParticleSystem> getParticleSystems();
     /**
@@ -396,6 +396,8 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "focusGroupPriority")
     public native @MachineSizedSInt long getFocusGroupPriority();
+    @Property(selector = "focusItemDeferralMode")
+    public native UIFocusItemDeferralMode getFocusItemDeferralMode();
     /**
      * @since Available in iOS 15.0 and later.
      */
