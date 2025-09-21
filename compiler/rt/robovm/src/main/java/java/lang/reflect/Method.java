@@ -351,6 +351,33 @@ public final class Method extends AccessibleObject implements GenericDeclaration
     }
 
     /**
+     * Returns {@code true} if this method is a default
+     * method; returns {@code false} otherwise.
+     *
+     * A default method is a public non-abstract instance method, that
+     * is, a non-static method with a body, declared in an interface
+     * type.
+     *
+     * @return true if and only if this method is a default
+     * method as defined by the Java Language Specification.
+     * @since 1.8
+     */
+    public boolean isDefault() {
+        // TODO: FIXME: quick and dirty implementation, TODO: rework using Modifiers
+        // the declaring class is an interface.
+        if (!getDeclaringClass().isInterface())
+            return false;
+
+        // the method is not abstract and not static
+        int modifiers = getModifiers();
+        if (Modifier.isAbstract(modifiers) || Modifier.isStatic(modifiers))
+            return false;
+
+        // must be public
+        return Modifier.isPublic(modifiers);
+    }
+
+    /**
      * Returns the default value for the annotation member represented by this
      * method.
      *
