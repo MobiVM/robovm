@@ -52,6 +52,16 @@ import org.robovm.apple.coreanimation.*;
     protected ASPasskeyCredentialRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:")
     public ASPasskeyCredentialRequest(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms) { super((SkipInit) null); initObject(init(credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:")
+    public ASPasskeyCredentialRequest(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms, ASPasskeyAssertionCredentialExtensionInput assertionExtensionInput) { super((SkipInit) null); initObject(init(credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, assertionExtensionInput)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:")
+    public ASPasskeyCredentialRequest(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms, ASPasskeyRegistrationCredentialExtensionInput registrationExtensionInput) { super((SkipInit) null); initObject(init(credentialIdentity, clientDataHash, userVerificationPreference, supportedAlgorithms, registrationExtensionInput)); }
     @Method(selector = "initWithCoder:")
     public ASPasskeyCredentialRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -64,6 +74,21 @@ import org.robovm.apple.coreanimation.*;
     public native void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
     @Property(selector = "supportedAlgorithms")
     public native NSArray<NSNumber> getSupportedAlgorithms();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "excludedCredentials")
+    public native NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> getExcludedCredentials();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "assertionExtensionInput")
+    public native ASPasskeyAssertionCredentialExtensionInput getAssertionExtensionInput();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "registrationExtensionInput")
+    public native ASPasskeyRegistrationCredentialExtensionInput getRegistrationExtensionInput();
     @Property(selector = "type")
     public native ASCredentialRequestType getType();
     @Property(selector = "credentialIdentity")
@@ -75,6 +100,16 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:")
     protected native @Pointer long init(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:")
+    protected native @Pointer long init(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms, ASPasskeyAssertionCredentialExtensionInput assertionExtensionInput);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:")
+    protected native @Pointer long init(ASPasskeyCredentialIdentity credentialIdentity, NSData clientDataHash, ASAuthorizationPublicKeyCredentialUserVerificationPreference userVerificationPreference, NSArray<NSNumber> supportedAlgorithms, ASPasskeyRegistrationCredentialExtensionInput registrationExtensionInput);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

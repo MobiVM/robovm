@@ -35,35 +35,34 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASWebAuthenticationSessionCallback/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASWebAuthenticationSessionCallbackPtr extends Ptr<ASWebAuthenticationSessionCallback, ASWebAuthenticationSessionCallbackPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASWebAuthenticationSessionCallback.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    protected ASWebAuthenticationSessionCallback() {}
+    protected ASWebAuthenticationSessionCallback(Handle h, long handle) { super(h, handle); }
+    protected ASWebAuthenticationSessionCallback(SkipInit skipInit) { super(skipInit); }
+    public ASWebAuthenticationSessionCallback(String customScheme) { super((Handle) null, create(customScheme)); retain(getHandle()); }
+    public ASWebAuthenticationSessionCallback(String host, String path) { super((Handle) null, create(host, path)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    @Method(selector = "matchesURL:")
+    public native boolean matchesURL(NSURL url);
+    @Method(selector = "callbackWithCustomScheme:")
+    protected static native @Pointer long create(String customScheme);
+    @Method(selector = "callbackWithHTTPSHost:path:")
+    protected static native @Pointer long create(String host, String path);
     /*</methods>*/
 }

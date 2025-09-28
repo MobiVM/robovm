@@ -35,35 +35,33 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPublicKeyCredentialPRFAssertionInputValues/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationPublicKeyCredentialPRFAssertionInputValuesPtr extends Ptr<ASAuthorizationPublicKeyCredentialPRFAssertionInputValues, ASAuthorizationPublicKeyCredentialPRFAssertionInputValuesPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPublicKeyCredentialPRFAssertionInputValues.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    public ASAuthorizationPublicKeyCredentialPRFAssertionInputValues() {}
+    protected ASAuthorizationPublicKeyCredentialPRFAssertionInputValues(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationPublicKeyCredentialPRFAssertionInputValues(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSaltInput1:saltInput2:")
+    public ASAuthorizationPublicKeyCredentialPRFAssertionInputValues(NSData saltInput1, NSData saltInput2) { super((SkipInit) null); initObject(init(saltInput1, saltInput2)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "saltInput1")
+    public native NSData getSaltInput1();
+    @Property(selector = "saltInput2")
+    public native NSData getSaltInput2();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    @Method(selector = "initWithSaltInput1:saltInput2:")
+    protected native @Pointer long init(NSData saltInput1, NSData saltInput2);
     /*</methods>*/
 }

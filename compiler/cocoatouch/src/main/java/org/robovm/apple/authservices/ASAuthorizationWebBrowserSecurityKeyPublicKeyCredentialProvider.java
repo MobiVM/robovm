@@ -35,12 +35,12 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -48,25 +48,13 @@ import org.robovm.apple.coreanimation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "challenge")
-    NSData getChallenge();
-    @Property(selector = "setChallenge:")
-    void setChallenge(NSData v);
-    @Property(selector = "relyingPartyIdentifier")
-    String getRelyingPartyIdentifier();
-    @Property(selector = "setRelyingPartyIdentifier:")
-    void setRelyingPartyIdentifier(String v);
-    @Property(selector = "allowedCredentials")
-    NSArray<?> getAllowedCredentials();
-    @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<?> v);
-    @Property(selector = "userVerificationPreference")
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
-    @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    
     /*</properties>*/
     /*<methods>*/
-    
+    @Method(selector = "createCredentialRegistrationRequestWithClientData:displayName:name:userID:")
+    ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(ASPublicKeyCredentialClientData clientData, String displayName, String name, NSData userID);
+    @Method(selector = "createCredentialAssertionRequestWithClientData:")
+    ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(ASPublicKeyCredentialClientData clientData);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

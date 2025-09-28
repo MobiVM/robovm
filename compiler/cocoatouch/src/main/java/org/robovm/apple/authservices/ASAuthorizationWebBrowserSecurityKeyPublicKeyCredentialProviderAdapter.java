@@ -34,40 +34,26 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 15.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProviderAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "challenge")
-    NSData getChallenge();
-    @Property(selector = "setChallenge:")
-    void setChallenge(NSData v);
-    @Property(selector = "relyingPartyIdentifier")
-    String getRelyingPartyIdentifier();
-    @Property(selector = "setRelyingPartyIdentifier:")
-    void setRelyingPartyIdentifier(String v);
-    @Property(selector = "allowedCredentials")
-    NSArray<?> getAllowedCredentials();
-    @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<?> v);
-    @Property(selector = "userVerificationPreference")
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
-    @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
-    /*</properties>*/
-    /*<methods>*/
     
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("createCredentialRegistrationRequestWithClientData:displayName:name:userID:")
+    public ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(ASPublicKeyCredentialClientData clientData, String displayName, String name, NSData userID) { return null; }
+    @NotImplemented("createCredentialAssertionRequestWithClientData:")
+    public ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(ASPublicKeyCredentialClientData clientData) { return null; }
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

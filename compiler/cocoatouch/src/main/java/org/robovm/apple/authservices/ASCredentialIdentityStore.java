@@ -60,6 +60,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "getCredentialIdentityStoreStateWithCompletion:")
     public native void getCredentialIdentityStoreState(@Block VoidBlock1<ASCredentialIdentityStoreState> completion);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:")
+    public native void getCredentialIdentitiesForService(ASCredentialServiceIdentifier serviceIdentifier, ASCredentialIdentityTypes credentialIdentityTypes, @Block VoidBlock1<NSArray<?>> completionHandler);
+    /**
      * @since Available in iOS 12.0 and later.
      * @deprecated Deprecated in iOS 17.0. Use saveCredentialIdentityEntries:completion:
      */

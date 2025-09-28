@@ -35,39 +35,32 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
+/*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationPublicKeyCredentialPRFRegistrationOutputPtr extends Ptr<ASAuthorizationPublicKeyCredentialPRFRegistrationOutput, ASAuthorizationPublicKeyCredentialPRFRegistrationOutputPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPublicKeyCredentialPRFRegistrationOutput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public ASAuthorizationPublicKeyCredentialPRFRegistrationOutput() {}
+    protected ASAuthorizationPublicKeyCredentialPRFRegistrationOutput(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationPublicKeyCredentialPRFRegistrationOutput(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "challenge")
-    NSData getChallenge();
-    @Property(selector = "setChallenge:")
-    void setChallenge(NSData v);
-    @Property(selector = "relyingPartyIdentifier")
-    String getRelyingPartyIdentifier();
-    @Property(selector = "setRelyingPartyIdentifier:")
-    void setRelyingPartyIdentifier(String v);
-    @Property(selector = "allowedCredentials")
-    NSArray<?> getAllowedCredentials();
-    @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<?> v);
-    @Property(selector = "userVerificationPreference")
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
-    @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    @Property(selector = "isSupported")
+    public native boolean isSupported();
+    @Property(selector = "first")
+    public native NSData getFirst();
+    @Property(selector = "second")
+    public native NSData getSecond();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

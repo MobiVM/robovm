@@ -35,35 +35,39 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASOneTimeCodeCredential/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationCredential/*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASOneTimeCodeCredentialPtr extends Ptr<ASOneTimeCodeCredential, ASOneTimeCodeCredentialPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASOneTimeCodeCredential.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    protected ASOneTimeCodeCredential() {}
+    protected ASOneTimeCodeCredential(Handle h, long handle) { super(h, handle); }
+    protected ASOneTimeCodeCredential(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCode:")
+    public ASOneTimeCodeCredential(String code) { super((SkipInit) null); initObject(init(code)); }
+    @Method(selector = "initWithCoder:")
+    public ASOneTimeCodeCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "code")
+    public native String getCode();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    @Method(selector = "initWithCode:")
+    protected native @Pointer long init(String code);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

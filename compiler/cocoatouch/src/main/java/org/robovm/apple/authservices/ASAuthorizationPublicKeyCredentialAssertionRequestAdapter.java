@@ -34,40 +34,38 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 15.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequestAdapter/*</name>*/ 
+    extends /*<extends>*/NSCodingAdapter/*</extends>*/ 
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertionRequest/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "challenge")
-    NSData getChallenge();
-    @Property(selector = "setChallenge:")
-    void setChallenge(NSData v);
-    @Property(selector = "relyingPartyIdentifier")
-    String getRelyingPartyIdentifier();
-    @Property(selector = "setRelyingPartyIdentifier:")
-    void setRelyingPartyIdentifier(String v);
-    @Property(selector = "allowedCredentials")
-    NSArray<?> getAllowedCredentials();
-    @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<?> v);
-    @Property(selector = "userVerificationPreference")
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
-    @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    @NotImplemented("challenge")
+    public NSData getChallenge() { return null; }
+    @NotImplemented("setChallenge:")
+    public void setChallenge(NSData v) {}
+    @NotImplemented("relyingPartyIdentifier")
+    public String getRelyingPartyIdentifier() { return null; }
+    @NotImplemented("setRelyingPartyIdentifier:")
+    public void setRelyingPartyIdentifier(String v) {}
+    @NotImplemented("allowedCredentials")
+    public NSArray<?> getAllowedCredentials() { return null; }
+    @NotImplemented("setAllowedCredentials:")
+    public void setAllowedCredentials(NSArray<?> v) {}
+    @NotImplemented("userVerificationPreference")
+    public ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference() { return null; }
+    @NotImplemented("setUserVerificationPreference:")
+    public void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v) {}
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

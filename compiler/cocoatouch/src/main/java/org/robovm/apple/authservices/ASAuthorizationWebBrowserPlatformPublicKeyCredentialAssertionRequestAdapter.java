@@ -34,40 +34,28 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 15.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequestAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "challenge")
-    NSData getChallenge();
-    @Property(selector = "setChallenge:")
-    void setChallenge(NSData v);
-    @Property(selector = "relyingPartyIdentifier")
-    String getRelyingPartyIdentifier();
-    @Property(selector = "setRelyingPartyIdentifier:")
-    void setRelyingPartyIdentifier(String v);
-    @Property(selector = "allowedCredentials")
-    NSArray<?> getAllowedCredentials();
-    @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<?> v);
-    @Property(selector = "userVerificationPreference")
-    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
-    @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    @NotImplemented("clientData")
+    public ASPublicKeyCredentialClientData getClientData() { return null; }
+    @NotImplemented("shouldShowHybridTransport")
+    public boolean shouldShowHybridTransport() { return false; }
+    @NotImplemented("setShouldShowHybridTransport:")
+    public void setShouldShowHybridTransport(boolean v) {}
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

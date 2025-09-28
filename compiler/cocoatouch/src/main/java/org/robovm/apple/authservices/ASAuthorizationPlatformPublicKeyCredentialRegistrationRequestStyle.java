@@ -35,22 +35,14 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialRequestType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Password(0L),
-    PasskeyAssertion(1L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    PasskeyRegistration(2L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    OneTimeCode(3L);
+    Standard(0L),
+    Conditional(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,15 +52,15 @@ public enum /*<name>*/ASCredentialRequestType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ASCredentialRequestType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialRequestType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialRequestType/*</name>*/ v : values()) {
+    public static /*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialRequestType/*</name>*/.class.getName());
+            + /*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle/*</name>*/.class.getName());
     }
 }

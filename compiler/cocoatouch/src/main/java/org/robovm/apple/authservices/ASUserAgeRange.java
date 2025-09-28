@@ -39,18 +39,11 @@ import org.robovm.apple.coreanimation.*;
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialRequestType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASUserAgeRange/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Password(0L),
-    PasskeyAssertion(1L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    PasskeyRegistration(2L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    OneTimeCode(3L);
+    Unknown(0L),
+    Child(1L),
+    NotChild(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,15 +53,15 @@ public enum /*<name>*/ASCredentialRequestType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/ASCredentialRequestType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASUserAgeRange/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialRequestType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialRequestType/*</name>*/ v : values()) {
+    public static /*<name>*/ASUserAgeRange/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASUserAgeRange/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialRequestType/*</name>*/.class.getName());
+            + /*<name>*/ASUserAgeRange/*</name>*/.class.getName());
     }
 }

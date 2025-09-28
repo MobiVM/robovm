@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/*</name>*/ 
     extends /*<extends>*/ASAuthorizationRequest/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertionRequest/*</implements>*/<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor> {
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertionRequest, ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequestPtr extends Ptr<ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest, ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest.class); }/*</bind>*/
@@ -53,9 +53,19 @@ import org.robovm.apple.coreanimation.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "allowedCredentials")
-    public native NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor> getAllowedCredentials();
+    public native NSArray<?> getAllowedCredentials();
     @Property(selector = "setAllowedCredentials:")
-    public native void setAllowedCredentials(NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor> v);
+    public native void setAllowedCredentials(NSArray<?> v);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "appID")
+    public native String getAppID();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "setAppID:")
+    public native void setAppID(String v);
     @Property(selector = "challenge")
     public native NSData getChallenge();
     @Property(selector = "setChallenge:")
@@ -68,6 +78,8 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")
     public native void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    @Property(selector = "clientData")
+    public native ASPublicKeyCredentialClientData getClientData();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

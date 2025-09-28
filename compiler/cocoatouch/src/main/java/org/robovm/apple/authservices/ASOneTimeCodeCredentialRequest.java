@@ -35,41 +35,38 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSecurityKeyPublicKeyCredentialRegistration/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASOneTimeCodeCredentialRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationPublicKeyCredentialRegistration/*</implements>*/ {
+    /*<implements>*/implements ASCredentialRequest/*</implements>*/ {
 
-    /*<ptr>*/public static class ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationPtr extends Ptr<ASAuthorizationSecurityKeyPublicKeyCredentialRegistration, ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSecurityKeyPublicKeyCredentialRegistration.class); }/*</bind>*/
+    /*<ptr>*/public static class ASOneTimeCodeCredentialRequestPtr extends Ptr<ASOneTimeCodeCredentialRequest, ASOneTimeCodeCredentialRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASOneTimeCodeCredentialRequest.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public ASAuthorizationSecurityKeyPublicKeyCredentialRegistration() {}
-    protected ASAuthorizationSecurityKeyPublicKeyCredentialRegistration(Handle h, long handle) { super(h, handle); }
-    protected ASAuthorizationSecurityKeyPublicKeyCredentialRegistration(SkipInit skipInit) { super(skipInit); }
+    protected ASOneTimeCodeCredentialRequest() {}
+    protected ASOneTimeCodeCredentialRequest(Handle h, long handle) { super(h, handle); }
+    protected ASOneTimeCodeCredentialRequest(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCredentialIdentity:")
+    public ASOneTimeCodeCredentialRequest(ASOneTimeCodeCredentialIdentity credentialIdentity) { super((SkipInit) null); initObject(init(credentialIdentity)); }
     @Method(selector = "initWithCoder:")
-    public ASAuthorizationSecurityKeyPublicKeyCredentialRegistration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public ASOneTimeCodeCredentialRequest(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 17.5 and later.
-     */
-    @Property(selector = "transports")
-    public native NSArray<NSString> getTransports();
-    @Property(selector = "rawAttestationObject")
-    public native NSData getRawAttestationObject();
-    @Property(selector = "rawClientDataJSON")
-    public native NSData getRawClientDataJSON();
-    @Property(selector = "credentialID")
-    public native NSData getCredentialID();
+    @Property(selector = "type")
+    public native ASCredentialRequestType getType();
+    @Property(selector = "credentialIdentity")
+    public native ASCredentialIdentity getCredentialIdentity();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithCredentialIdentity:")
+    protected native @Pointer long init(ASOneTimeCodeCredentialIdentity credentialIdentity);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

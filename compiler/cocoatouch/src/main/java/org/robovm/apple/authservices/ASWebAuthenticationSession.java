@@ -50,8 +50,18 @@ import org.robovm.apple.coreanimation.*;
     protected ASWebAuthenticationSession() {}
     protected ASWebAuthenticationSession(Handle h, long handle) { super(h, handle); }
     protected ASWebAuthenticationSession(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Use initWithURL:callback:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "initWithURL:callbackURLScheme:completionHandler:")
     public ASWebAuthenticationSession(NSURL URL, String callbackURLScheme, @Block VoidBlock2<NSURL, NSError> completionHandler) { super((SkipInit) null); initObject(init(URL, callbackURLScheme, completionHandler)); }
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "initWithURL:callback:completionHandler:")
+    public ASWebAuthenticationSession(NSURL URL, ASWebAuthenticationSessionCallback callback, @Block VoidBlock2<NSURL, NSError> completionHandler) { super((SkipInit) null); initObject(init(URL, callback, completionHandler)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -75,6 +85,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setPrefersEphemeralWebBrowserSession:")
     public native void setPrefersEphemeralWebBrowserSession(boolean v);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "additionalHeaderFields")
+    public native NSDictionary<NSString, NSString> getAdditionalHeaderFields();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setAdditionalHeaderFields:")
+    public native void setAdditionalHeaderFields(NSDictionary<NSString, NSString> v);
+    /**
      * @since Available in iOS 13.4 and later.
      */
     @Property(selector = "canStart")
@@ -82,8 +102,18 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Use initWithURL:callback:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "initWithURL:callbackURLScheme:completionHandler:")
     protected native @Pointer long init(NSURL URL, String callbackURLScheme, @Block VoidBlock2<NSURL, NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "initWithURL:callback:completionHandler:")
+    protected native @Pointer long init(NSURL URL, ASWebAuthenticationSessionCallback callback, @Block VoidBlock2<NSURL, NSError> completionHandler);
     @Method(selector = "start")
     public native boolean start();
     @Method(selector = "cancel")

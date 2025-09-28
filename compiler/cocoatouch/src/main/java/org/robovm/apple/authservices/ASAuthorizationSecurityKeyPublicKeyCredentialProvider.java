@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSecurityKeyPublicKeyCredentialProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationProvider/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationProvider, ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationSecurityKeyPublicKeyCredentialProviderPtr extends Ptr<ASAuthorizationSecurityKeyPublicKeyCredentialProvider, ASAuthorizationSecurityKeyPublicKeyCredentialProviderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSecurityKeyPublicKeyCredentialProvider.class); }/*</bind>*/
@@ -65,5 +65,9 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(NSData challenge, String displayName, String name, NSData userID);
     @Method(selector = "createCredentialAssertionRequestWithChallenge:")
     public native ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(NSData challenge);
+    @Method(selector = "createCredentialRegistrationRequestWithClientData:displayName:name:userID:")
+    public native ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(ASPublicKeyCredentialClientData clientData, String displayName, String name, NSData userID);
+    @Method(selector = "createCredentialAssertionRequestWithClientData:")
+    public native ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(ASPublicKeyCredentialClientData clientData);
     /*</methods>*/
 }

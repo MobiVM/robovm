@@ -35,35 +35,31 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationWebBrowserPublicKeyCredentialManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationWebBrowserPublicKeyCredentialManagerPtr extends Ptr<ASAuthorizationWebBrowserPublicKeyCredentialManager, ASAuthorizationWebBrowserPublicKeyCredentialManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationWebBrowserPublicKeyCredentialManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    public ASAuthorizationWebBrowserPublicKeyCredentialManager() {}
+    protected ASAuthorizationWebBrowserPublicKeyCredentialManager(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationWebBrowserPublicKeyCredentialManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "authorizationStateForPlatformCredentials")
+    public native ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState getAuthorizationStateForPlatformCredentials();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    @Method(selector = "requestAuthorizationForPublicKeyCredentials:")
+    public native void requestAuthorizationForPublicKeyCredentials(@Block VoidBlock1<ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState> completionHandler);
+    @Method(selector = "platformCredentialsForRelyingParty:completionHandler:")
+    public native void platformCredentialsForRelyingParty(String relyingParty, @Block VoidBlock1<NSArray<ASAuthorizationWebBrowserPlatformPublicKeyCredential>> completionHandler);
     /*</methods>*/
 }

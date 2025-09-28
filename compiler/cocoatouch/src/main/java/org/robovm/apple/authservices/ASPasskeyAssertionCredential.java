@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected ASPasskeyAssertionCredential(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:")
     public ASPasskeyAssertionCredential(NSData userHandle, String relyingParty, NSData signature, NSData clientDataHash, NSData authenticatorData, NSData credentialID) { super((SkipInit) null); initObject(init(userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:")
+    public ASPasskeyAssertionCredential(NSData userHandle, String relyingParty, NSData signature, NSData clientDataHash, NSData authenticatorData, NSData credentialID, ASPasskeyAssertionCredentialExtensionOutput extensionOutput) { super((SkipInit) null); initObject(init(userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID, extensionOutput)); }
     @Method(selector = "initWithCoder:")
     public ASPasskeyAssertionCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -68,6 +73,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSData getAuthenticatorData();
     @Property(selector = "credentialID")
     public native NSData getCredentialID();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "extensionOutput")
+    public native ASPasskeyAssertionCredentialExtensionOutput getExtensionOutput();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setExtensionOutput:")
+    public native void setExtensionOutput(ASPasskeyAssertionCredentialExtensionOutput v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -75,6 +90,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:")
     protected native @Pointer long init(NSData userHandle, String relyingParty, NSData signature, NSData clientDataHash, NSData authenticatorData, NSData credentialID);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:")
+    protected native @Pointer long init(NSData userHandle, String relyingParty, NSData signature, NSData clientDataHash, NSData authenticatorData, NSData credentialID, ASPasskeyAssertionCredentialExtensionOutput extensionOutput);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

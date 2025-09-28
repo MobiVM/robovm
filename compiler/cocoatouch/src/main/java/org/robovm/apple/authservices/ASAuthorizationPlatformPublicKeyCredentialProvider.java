@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPlatformPublicKeyCredentialProvider/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationProvider/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationProvider, ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationPlatformPublicKeyCredentialProviderPtr extends Ptr<ASAuthorizationPlatformPublicKeyCredentialProvider, ASAuthorizationPlatformPublicKeyCredentialProviderPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPlatformPublicKeyCredentialProvider.class); }/*</bind>*/
@@ -63,7 +63,21 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(String relyingPartyIdentifier);
     @Method(selector = "createCredentialRegistrationRequestWithChallenge:name:userID:")
     public native ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(NSData challenge, String name, NSData userID);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:")
+    public native ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(NSData challenge, String name, NSData userID, ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle requestStyle);
     @Method(selector = "createCredentialAssertionRequestWithChallenge:")
     public native ASAuthorizationPlatformPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(NSData challenge);
+    @Method(selector = "createCredentialRegistrationRequestWithClientData:name:userID:")
+    public native ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(ASPublicKeyCredentialClientData clientData, String name, NSData userID);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "createCredentialRegistrationRequestWithClientData:name:userID:requestStyle:")
+    public native ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest createCredentialRegistrationRequest(ASPublicKeyCredentialClientData clientData, String name, NSData userID, ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle requestStyle);
+    @Method(selector = "createCredentialAssertionRequestWithClientData:")
+    public native ASAuthorizationPlatformPublicKeyCredentialAssertionRequest createCredentialAssertionRequest(ASPublicKeyCredentialClientData clientData);
     /*</methods>*/
 }

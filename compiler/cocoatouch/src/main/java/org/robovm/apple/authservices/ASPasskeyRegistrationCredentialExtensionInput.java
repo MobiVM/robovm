@@ -35,35 +35,35 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASPasskeyRegistrationCredentialExtensionInput/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASPasskeyRegistrationCredentialExtensionInputPtr extends Ptr<ASPasskeyRegistrationCredentialExtensionInput, ASPasskeyRegistrationCredentialExtensionInputPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASPasskeyRegistrationCredentialExtensionInput.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    protected ASPasskeyRegistrationCredentialExtensionInput() {}
+    protected ASPasskeyRegistrationCredentialExtensionInput(Handle h, long handle) { super(h, handle); }
+    protected ASPasskeyRegistrationCredentialExtensionInput(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public ASPasskeyRegistrationCredentialExtensionInput(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "largeBlob")
+    public native ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput getLargeBlob();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

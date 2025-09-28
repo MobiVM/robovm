@@ -35,35 +35,41 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASSettingsHelper/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationWebBrowserPlatformPublicKeyCredential/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASSettingsHelperPtr extends Ptr<ASSettingsHelper, ASSettingsHelperPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASSettingsHelper.class); }/*</bind>*/
+    /*<ptr>*/public static class ASAuthorizationWebBrowserPlatformPublicKeyCredentialPtr extends Ptr<ASAuthorizationWebBrowserPlatformPublicKeyCredential, ASAuthorizationWebBrowserPlatformPublicKeyCredentialPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationWebBrowserPlatformPublicKeyCredential.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASSettingsHelper() {}
-    protected ASSettingsHelper(Handle h, long handle) { super(h, handle); }
-    protected ASSettingsHelper(SkipInit skipInit) { super(skipInit); }
+    protected ASAuthorizationWebBrowserPlatformPublicKeyCredential() {}
+    protected ASAuthorizationWebBrowserPlatformPublicKeyCredential(Handle h, long handle) { super(h, handle); }
+    protected ASAuthorizationWebBrowserPlatformPublicKeyCredential(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "name")
+    public native String getName();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "customTitle")
+    public native String getCustomTitle();
+    @Property(selector = "relyingParty")
+    public native String getRelyingParty();
+    @Property(selector = "credentialID")
+    public native NSData getCredentialID();
+    @Property(selector = "userHandle")
+    public native NSData getUserHandle();
+    @Property(selector = "providerName")
+    public native String getProviderName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "openCredentialProviderAppSettingsWithCompletionHandler:")
-    public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
-    public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
-    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
+    
     /*</methods>*/
 }

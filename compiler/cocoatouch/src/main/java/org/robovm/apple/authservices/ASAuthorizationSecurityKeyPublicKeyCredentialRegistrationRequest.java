@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest/*</name>*/ 
     extends /*<extends>*/ASAuthorizationRequest/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationPublicKeyCredentialRegistrationRequest/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialRegistrationRequest, ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequestPtr extends Ptr<ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest, ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest.class); }/*</bind>*/
@@ -90,6 +90,8 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialAttestationKind getAttestationPreference();
     @Property(selector = "setAttestationPreference:")
     public native void setAttestationPreference(ASAuthorizationPublicKeyCredentialAttestationKind v);
+    @Property(selector = "clientData")
+    public native ASPublicKeyCredentialClientData getClientData();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
