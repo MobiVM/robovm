@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,27 +39,30 @@ import org.robovm.apple.uikit.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
+public enum /*<name>*/AudioCodecContentSource/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AUConverter(1668247158L),
-    Varispeed(1986097769L),
-    DeferredRenderer(1684366962L),
-    Splitter(1936747636L),
-    MultiSplitter(1836281964L),
-    Merger(1835364967L),
-    NewTimePitch(1853191280L),
-    AUiPodTimeOther(1768977519L),
-    RoundTripAAC(1918984547L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    AUAudioMix(1634560376L),
-    TimePitch(1953329268L),
-    /**
-     * @deprecated Deprecated in iOS 13.0. Use kAudioUnitSubType_NewTimePitch
-     */
-    @Deprecated
-    AUiPodTime(1768977517L);
+    Unspecified(-1L),
+    Reserved(0L),
+    AppleCapture_Traditional(1L),
+    AppleCapture_Spatial(2L),
+    AppleCapture_Spatial_Enhanced(3L),
+    AppleMusic_Traditional(4L),
+    AppleMusic_Spatial(5L),
+    AppleAV_Traditional_Offline(6L),
+    AppleAV_Spatial_Offline(7L),
+    AppleAV_Traditional_Live(8L),
+    AppleAV_Spatial_Live(9L),
+    ApplePassthrough(10L),
+    Capture_Traditional(33L),
+    Capture_Spatial(34L),
+    Capture_Spatial_Enhanced(35L),
+    Music_Traditional(36L),
+    Music_Spatial(37L),
+    AV_Traditional_Offline(38L),
+    AV_Spatial_Offline(39L),
+    AV_Traditional_Live(40L),
+    AV_Spatial_Live(41L),
+    Passthrough(42L);
     /*</values>*/
 
     /*<bind>*/
@@ -69,15 +72,15 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
 
     private final long n;
 
-    private /*<name>*/AUTypeConverter/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AudioCodecContentSource/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AUTypeConverter/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AUTypeConverter/*</name>*/ v : values()) {
+    public static /*<name>*/AudioCodecContentSource/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AudioCodecContentSource/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AUTypeConverter/*</name>*/.class.getName());
+            + /*<name>*/AudioCodecContentSource/*</name>*/.class.getName());
     }
 }

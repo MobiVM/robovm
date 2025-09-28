@@ -403,6 +403,11 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus readPackets0(boolean inUseCache, IntPtr outNumBytes, AudioStreamPacketDescription outPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr outBuffer);
     @Bridge(symbol="AudioFileWritePackets", optional=true)
     protected native OSStatus writePackets0(boolean inUseCache, int inNumBytes, AudioStreamPacketDescription inPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr inBuffer);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AudioFileWritePacketsWithDependencies", optional=true)
+    protected native OSStatus writePacketsWithDependencies0(boolean inUseCache, int inNumBytes, AudioStreamPacketDescription inPacketDescriptions, AudioStreamPacketDependencyDescription inPacketDependencies, long inStartingPacket, IntPtr ioNumPackets, VoidPtr inBuffer);
     @Bridge(symbol="AudioFileCountUserData", optional=true)
     protected native OSStatus countUserData0(int inUserDataID, IntPtr outNumberItems);
     @Bridge(symbol="AudioFileGetUserDataSize", optional=true)

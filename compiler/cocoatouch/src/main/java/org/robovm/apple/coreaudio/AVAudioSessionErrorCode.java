@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.audiotoolbox;
+package org.robovm.apple.coreaudio;
 
 /*<imports>*/
 import java.io.*;
@@ -29,37 +29,29 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremidi.*;
-import org.robovm.apple.avfoundation.*;
-import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVAudioSessionErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    AUConverter(1668247158L),
-    Varispeed(1986097769L),
-    DeferredRenderer(1684366962L),
-    Splitter(1936747636L),
-    MultiSplitter(1836281964L),
-    Merger(1835364967L),
-    NewTimePitch(1853191280L),
-    AUiPodTimeOther(1768977519L),
-    RoundTripAAC(1918984547L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    AUAudioMix(1634560376L),
-    TimePitch(1953329268L),
-    /**
-     * @deprecated Deprecated in iOS 13.0. Use kAudioUnitSubType_NewTimePitch
-     */
-    @Deprecated
-    AUiPodTime(1768977517L);
+    None(0L),
+    MediaServicesFailed(1836282486L),
+    IsBusy(560030580L),
+    IncompatibleCategory(560161140L),
+    CannotInterruptOthers(560557684L),
+    MissingEntitlement(1701737535L),
+    SiriIsRecording(1936290409L),
+    CannotStartPlaying(561015905L),
+    CannotStartRecording(561145187L),
+    BadParam(-50L),
+    InsufficientPriority(561017449L),
+    ResourceNotAvailable(561145203L),
+    Unspecified(2003329396L),
+    ExpiredSession(561210739L),
+    SessionNotActive(1768841571L);
     /*</values>*/
 
     /*<bind>*/
@@ -69,15 +61,15 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
 
     private final long n;
 
-    private /*<name>*/AUTypeConverter/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/AVAudioSessionErrorCode/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/AUTypeConverter/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AUTypeConverter/*</name>*/ v : values()) {
+    public static /*<name>*/AVAudioSessionErrorCode/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVAudioSessionErrorCode/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AUTypeConverter/*</name>*/.class.getName());
+            + /*<name>*/AVAudioSessionErrorCode/*</name>*/.class.getName());
     }
 }

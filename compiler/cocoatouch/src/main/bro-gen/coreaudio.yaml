@@ -2,13 +2,14 @@ package: org.robovm.apple.coreaudio
 include: [foundation.yaml, corefoundation.yaml]
 library: CoreAudio
 framework: CoreAudio
+internal_frameworks: [CoreAudioTypes]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreAudio.framework/Headers/CoreAudioTypes.h
 typedefs: {}
     
 enums:
-    AudioErrorCode: {first: kAudio_UnimplementedError, suffix: Error}
+    AudioErrorCode: {first: kAudio_NoError, suffix: Error}
     AudioFormat: {first: kAudioFormatLinearPCM}
     AudioFormatFlags: 
         first: kAudioFormatFlagIsFloat
@@ -27,6 +28,7 @@ enums:
     AudioChannelFlags: {}
     AudioChannelLayoutTag: {first: kAudioChannelLayoutTag_UseChannelDescriptions, skip_none: true, bits: true, marshaler: Bits.AsIntMarshaler} # due UInt32 AudioChannelLayoutTag
     MPEG4ObjectID: {}
+    AVAudioSessionErrorCode: {}
 classes:
     # Structs:
     AudioValueRange: # DONE
@@ -161,7 +163,8 @@ classes:
             name: channelDescriptions0
             visibility: protected
             type: AudioChannelDescription.AudioChannelDescriptionPtr
-
+    AudioFormatListItem: {}
+    AudioStreamPacketDependencyDescription: {}
 protocols: {}
 
 functions:

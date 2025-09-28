@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,34 +35,27 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/AudioErrorCode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    No(0L),
-    Unimplemented(-4L),
-    FileNotFound(-43L),
-    FilePermission(-54L),
-    TooManyFilesOpen(-42L),
-    BadFilePath(561017960L),
-    Param(-50L),
-    MemFull(-108L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioFormatListItem/*</name>*/ 
+    extends /*<extends>*/Struct<AudioFormatListItem>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class AudioFormatListItemPtr extends Ptr<AudioFormatListItem, AudioFormatListItemPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/AudioErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/AudioErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/AudioErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/AudioErrorCode/*</name>*/.class.getName());
+    /*<constructors>*/
+    public AudioFormatListItem() {}
+    public AudioFormatListItem(AudioStreamBasicDescription mASBD, AudioChannelLayoutTag mChannelLayoutTag) {
+        this.setMASBD(mASBD);
+        this.setMChannelLayoutTag(mChannelLayoutTag);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @ByVal AudioStreamBasicDescription getMASBD();
+    @StructMember(0) public native AudioFormatListItem setMASBD(@ByVal AudioStreamBasicDescription mASBD);
+    @StructMember(1) public native AudioChannelLayoutTag getMChannelLayoutTag();
+    @StructMember(1) public native AudioFormatListItem setMChannelLayoutTag(AudioChannelLayoutTag mChannelLayoutTag);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }
