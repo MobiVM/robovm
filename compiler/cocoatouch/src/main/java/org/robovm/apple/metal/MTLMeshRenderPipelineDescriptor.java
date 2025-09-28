@@ -137,6 +137,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setSupportIndirectCommandBuffers:")
     public native void setSupportIndirectCommandBuffers(boolean v);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "binaryArchives")
+    public native NSArray<?> getBinaryArchives();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setBinaryArchives:")
+    public native void setBinaryArchives(NSArray<?> v);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "objectLinkedFunctions")
@@ -166,6 +176,36 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setFragmentLinkedFunctions:")
     public native void setFragmentLinkedFunctions(MTLLinkedFunctions v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shaderValidation")
+    public native MTLShaderValidation getShaderValidation();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShaderValidation:")
+    public native void setShaderValidation(MTLShaderValidation v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerObjectThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerObjectThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequiredThreadsPerObjectThreadgroup:")
+    public native void setRequiredThreadsPerObjectThreadgroup(@ByVal MTLSize v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerMeshThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerMeshThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequiredThreadsPerMeshThreadgroup:")
+    public native void setRequiredThreadsPerMeshThreadgroup(@ByVal MTLSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

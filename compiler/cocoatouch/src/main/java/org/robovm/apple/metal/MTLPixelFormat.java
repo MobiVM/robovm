@@ -164,13 +164,45 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     BC7_RGBAUnorm_sRGB(153L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGB_2BPP(160L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGB_2BPP_sRGB(161L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGB_4BPP(162L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGB_4BPP_sRGB(163L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGBA_2BPP(164L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGBA_2BPP_sRGB(165L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGBA_4BPP(166L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Usage of ASTC/ETC2/BC formats is recommended instead.
+     */
+    @Deprecated
     PVRTC_RGBA_4BPP_sRGB(167L),
     EAC_R11Unorm(170L),
     EAC_R11Snorm(172L),
@@ -281,7 +313,11 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 10.0 and later.
      */
-    X32_Stencil8(261L);
+    X32_Stencil8(261L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Unspecialized(263L);
     /*</values>*/
 
     /*<bind>*/

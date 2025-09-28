@@ -49,7 +49,11 @@ public enum /*<name>*/MTLBindingType/*</name>*/ implements ValuedEnum {
     PrimitiveAccelerationStructure(25L),
     InstanceAccelerationStructure(26L),
     IntersectionFunctionTable(27L),
-    ObjectPayload(34L);
+    ObjectPayload(34L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Tensor(37L);
     /*</values>*/
 
     /*<bind>*/

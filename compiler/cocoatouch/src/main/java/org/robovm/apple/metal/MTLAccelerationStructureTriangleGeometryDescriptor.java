@@ -108,6 +108,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setTransformationMatrixBufferOffset:")
     public native void setTransformationMatrixBufferOffset(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "transformationMatrixLayout")
+    public native MTLMatrixLayout getTransformationMatrixLayout();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTransformationMatrixLayout:")
+    public native void setTransformationMatrixLayout(MTLMatrixLayout v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -76,5 +76,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "elementPointerType")
     public native MTLPointerType elementPointerType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "elementTensorReferenceType")
+    public native MTLTensorReferenceType elementTensorReferenceType();
     /*</methods>*/
 }

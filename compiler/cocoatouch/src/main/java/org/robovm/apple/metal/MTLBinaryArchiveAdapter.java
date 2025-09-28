@@ -60,6 +60,16 @@ import org.robovm.apple.dispatch.*;
     public boolean addRenderPipelineFunctions(MTLRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error) { return false; }
     @NotImplemented("addTileRenderPipelineFunctionsWithDescriptor:error:")
     public boolean addTileRenderPipelineFunctions(MTLTileRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error) { return false; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("addMeshRenderPipelineFunctionsWithDescriptor:error:")
+    public boolean addMeshRenderPipelineFunctions(MTLMeshRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error) { return false; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("addLibraryWithDescriptor:error:")
+    public boolean addLibrary(MTLStitchedLibraryDescriptor descriptor, NSError.NSErrorPtr error) { return false; }
     @NotImplemented("serializeToURL:error:")
     public boolean serializeToURL(NSURL url, NSError.NSErrorPtr error) { return false; }
     /**

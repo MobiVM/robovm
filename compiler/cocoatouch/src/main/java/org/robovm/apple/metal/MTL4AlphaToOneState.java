@@ -32,31 +32,33 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 26.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLDynamicLibraryAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements MTLDynamicLibrary/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MTL4AlphaToOneState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Disabled(0L),
+    Enabled(1L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*/
-    @NotImplemented("label")
-    public String getLabel() { return null; }
-    @NotImplemented("setLabel:")
-    public void setLabel(String v) {}
-    @NotImplemented("device")
-    public MTLDevice getDevice() { return null; }
-    @NotImplemented("installName")
-    public String getInstallName() { return null; }
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    @NotImplemented("serializeToURL:error:")
-    public boolean serializeToUR(NSURL url, NSError.NSErrorPtr error) { return false; }
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/MTL4AlphaToOneState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/MTL4AlphaToOneState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MTL4AlphaToOneState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/MTL4AlphaToOneState/*</name>*/.class.getName());
+    }
 }

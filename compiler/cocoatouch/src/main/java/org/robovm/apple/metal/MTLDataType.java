@@ -245,7 +245,15 @@ public enum /*<name>*/MTLDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    BFloat4(124L);
+    BFloat4(124L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    DepthStencilState(139L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Tensor(140L);
     /*</values>*/
 
     /*<bind>*/

@@ -52,6 +52,14 @@ import org.robovm.apple.dispatch.*;
     public native void setLabel(String v);
     @Property(selector = "device")
     public native MTLDevice getDevice();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +78,25 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "insertDebugCaptureBoundary")
     public native void insertDebugCaptureBoundary();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addResidencySet:")
+    public native void addResidencySet(MTLResidencySet residencySet);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addResidencySets:count:")
+    public native void addResidencySets(MTLResidencySet residencySets, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "removeResidencySet:")
+    public native void removeResidencySet(MTLResidencySet residencySet);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "removeResidencySets:count:")
+    public native void removeResidencySets(MTLResidencySet residencySets, @MachineSizedUInt long count);
     /*</methods>*/
 }

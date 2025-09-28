@@ -86,6 +86,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setBorderColor:")
     public native void setBorderColor(MTLSamplerBorderColor v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "reductionMode")
+    public native MTLSamplerReductionMode getReductionMode();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setReductionMode:")
+    public native void setReductionMode(MTLSamplerReductionMode v);
     @Property(selector = "normalizedCoordinates")
     public native boolean normalizesCoordinates();
     @Property(selector = "setNormalizedCoordinates:")
@@ -108,6 +118,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setLodAverage:")
     public native void setLodAverage(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "lodBias")
+    public native float getLodBias();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLodBias:")
+    public native void setLodBias(float v);
     /**
      * @since Available in iOS 9.0 and later.
      */

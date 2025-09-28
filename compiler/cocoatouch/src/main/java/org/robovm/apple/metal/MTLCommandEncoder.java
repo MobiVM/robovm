@@ -54,6 +54,11 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "endEncoding")
     void endEncoding();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "barrierAfterQueueStages:beforeStages:")
+    void barrierAfterQueueStages(MTLStages afterQueueStages, MTLStages beforeStages);
     @Method(selector = "insertDebugSignpost:")
     void insertDebugSignpost(String string);
     @Method(selector = "pushDebugGroup:")

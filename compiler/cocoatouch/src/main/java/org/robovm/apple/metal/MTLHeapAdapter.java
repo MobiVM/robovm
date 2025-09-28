@@ -35,7 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLHeapAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLAllocationAdapter/*</extends>*/ 
     /*<implements>*/implements MTLHeap/*</implements>*/ {
 
     /*<ptr>*/

@@ -58,6 +58,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLCommandBufferErrorOption getErrorOptions();
     @Property(selector = "setErrorOptions:")
     public native void setErrorOptions(MTLCommandBufferErrorOption v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "logState")
+    public native MTLLogState getLogState();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setLogState:")
+    public native void setLogState(MTLLogState v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

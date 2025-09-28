@@ -99,28 +99,28 @@ import org.robovm.apple.dispatch.*;
     public native void setSupportIndirectCommandBuffers(boolean v);
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries instead.
+     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries
      */
     @Deprecated
     @Property(selector = "insertLibraries")
-    public native NSArray<?> getInsertLibraries();
+    public native NSArray<MTLDynamicLibrary> getInsertLibraries();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries instead.
+     * @deprecated Deprecated in iOS 15.0. Use preloadedLibraries
      */
     @Deprecated
     @Property(selector = "setInsertLibraries:")
-    public native void setInsertLibraries(NSArray<?> v);
+    public native void setInsertLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "preloadedLibraries")
-    public native NSArray<?> getPreloadedLibraries();
+    public native NSArray<MTLDynamicLibrary> getPreloadedLibraries();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setPreloadedLibraries:")
-    public native void setPreloadedLibraries(NSArray<?> v);
+    public native void setPreloadedLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -161,6 +161,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxCallStackDepth:")
     public native void setMaxCallStackDepth(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shaderValidation")
+    public native MTLShaderValidation getShaderValidation();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShaderValidation:")
+    public native void setShaderValidation(MTLShaderValidation v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequiredThreadsPerThreadgroup:")
+    public native void setRequiredThreadsPerThreadgroup(@ByVal MTLSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -38,7 +38,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLLogContainer/*</name>*/ 
-    /*<implements>*/extends NSFastEnumeration/*</implements>*/ {
+    /*<implements>*/extends NSObjectProtocol, NSFastEnumeration/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/

@@ -195,6 +195,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsPrimitiveMotionBlur")
     public native boolean supportsPrimitiveMotionBlur();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     public MTLBuffer newBuffer(byte[] bytes, MTLResourceOptions options) {
@@ -218,11 +226,26 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Bridge(symbol="MTLCreateSystemDefaultDevice", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLDevice getSystemDefaultDevice();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="MTLCopyAllDevices", optional=true)
+    public static native NSArray<MTLDevice> copyAllDevices();
     
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "newLogStateWithDescriptor:error:")
+    public native MTLLogState newLogState(MTLLogStateDescriptor descriptor, NSError.NSErrorPtr error);
     @Method(selector = "newCommandQueue")
     public native MTLCommandQueue newCommandQueue();
     @Method(selector = "newCommandQueueWithMaxCommandBufferCount:")
     public native MTLCommandQueue newCommandQueue(@MachineSizedUInt long maxCommandBufferCount);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "newCommandQueueWithDescriptor:")
+    public native MTLCommandQueue newCommandQueue(MTLCommandQueueDescriptor descriptor);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -545,15 +568,6 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 17.0 and later.
      */
-    public MTLIOFileHandle newIOFileHandle(NSURL url, MTLIOCompressionMethod compressionMethod) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       MTLIOFileHandle result = newIOFileHandle(url, compressionMethod, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
     @Method(selector = "newIOFileHandleWithURL:compressionMethod:error:")
     public native MTLIOFileHandle newIOFileHandle(NSURL url, MTLIOCompressionMethod compressionMethod, NSError.NSErrorPtr error);
     /**
@@ -646,5 +660,100 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "heapAccelerationStructureSizeAndAlignWithDescriptor:")
     public native @ByVal MTLSizeAndAlign heapAccelerationStructureSizeAndAlign(MTLAccelerationStructureDescriptor descriptor);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "newResidencySetWithDescriptor:error:")
+    public native MTLResidencySet newResidencySet(MTLResidencySetDescriptor desc, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "tensorSizeAndAlignWithDescriptor:")
+    public native @ByVal MTLSizeAndAlign tensorSizeAndAlign(MTLTensorDescriptor descriptor);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newTensorWithDescriptor:error:")
+    public native MTLTensor newTensor(MTLTensorDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "functionHandleWithFunction:")
+    public native MTLFunctionHandle functionHandle(MTLFunction function);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newCommandAllocator")
+    public native MTL4CommandAllocator newCommandAllocator();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newCommandAllocatorWithDescriptor:error:")
+    public native MTL4CommandAllocator newCommandAllocator(MTL4CommandAllocatorDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newMTL4CommandQueue")
+    public native MTL4CommandQueue newMTL4CommandQueue();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newMTL4CommandQueueWithDescriptor:error:")
+    public native MTL4CommandQueue newMTL4CommandQueue(MTL4CommandQueueDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newCommandBuffer")
+    public native MTL4CommandBuffer newCommandBuffer();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newArgumentTableWithDescriptor:error:")
+    public native MTL4ArgumentTable newArgumentTable(MTL4ArgumentTableDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newTextureViewPoolWithDescriptor:error:")
+    public native MTLTextureViewPool newTextureViewPool(MTLResourceViewPoolDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newCompilerWithDescriptor:error:")
+    public native MTL4Compiler newCompiler(MTL4CompilerDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newArchiveWithURL:error:")
+    public native MTL4Archive newArchive(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newPipelineDataSetSerializerWithDescriptor:")
+    public native MTL4PipelineDataSetSerializer newPipelineDataSetSerializer(MTL4PipelineDataSetSerializerDescriptor descriptor);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newBufferWithLength:options:placementSparsePageSize:")
+    public native MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options, MTLSparsePageSize placementSparsePageSize);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newCounterHeapWithDescriptor:error:")
+    public native MTL4CounterHeap newCounterHeap(MTL4CounterHeapDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "sizeOfCounterHeapEntry:")
+    public native @MachineSizedUInt long sizeOfCounterHeapEntry(MTL4CounterHeapType type);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "queryTimestampFrequency")
+    public native long queryTimestampFrequency();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "functionHandleWithBinaryFunction:")
+    public native MTLFunctionHandle functionHandle(MTL4BinaryFunction function);
     /*</methods>*/
 }

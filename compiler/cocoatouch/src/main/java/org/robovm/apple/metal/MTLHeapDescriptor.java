@@ -102,6 +102,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setType:")
     public native void setType(MTLHeapType v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maxCompatiblePlacementSparsePageSize")
+    public native MTLSparsePageSize getMaxCompatiblePlacementSparsePageSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMaxCompatiblePlacementSparsePageSize:")
+    public native void setMaxCompatiblePlacementSparsePageSize(MTLSparsePageSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

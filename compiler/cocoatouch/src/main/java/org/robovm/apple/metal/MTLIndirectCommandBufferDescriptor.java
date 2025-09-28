@@ -68,6 +68,66 @@ import org.robovm.apple.dispatch.*;
     public native boolean isInheritBuffers();
     @Property(selector = "setInheritBuffers:")
     public native void setInheritBuffers(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritDepthStencilState")
+    public native boolean isInheritDepthStencilState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritDepthStencilState:")
+    public native void setInheritDepthStencilState(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritDepthBias")
+    public native boolean isInheritDepthBias();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritDepthBias:")
+    public native void setInheritDepthBias(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritDepthClipMode")
+    public native boolean isInheritDepthClipMode();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritDepthClipMode:")
+    public native void setInheritDepthClipMode(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritCullMode")
+    public native boolean isInheritCullMode();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritCullMode:")
+    public native void setInheritCullMode(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritFrontFacingWinding")
+    public native boolean isInheritFrontFacingWinding();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritFrontFacingWinding:")
+    public native void setInheritFrontFacingWinding(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "inheritTriangleFillMode")
+    public native boolean isInheritTriangleFillMode();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setInheritTriangleFillMode:")
+    public native void setInheritTriangleFillMode(boolean v);
     @Property(selector = "maxVertexBufferBindCount")
     public native @MachineSizedUInt long getMaxVertexBufferBindCount();
     @Property(selector = "setMaxVertexBufferBindCount:")
@@ -146,6 +206,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setSupportDynamicAttributeStride:")
     public native void setSupportDynamicAttributeStride(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportColorAttachmentMapping")
+    public native boolean isSupportColorAttachmentMapping();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSupportColorAttachmentMapping:")
+    public native void setSupportColorAttachmentMapping(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
