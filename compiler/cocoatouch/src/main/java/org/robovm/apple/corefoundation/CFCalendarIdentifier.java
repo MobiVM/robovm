@@ -104,9 +104,53 @@ import org.robovm.apple.coretext.*;
     public static final CFCalendarIdentifier ISO8601 = new CFCalendarIdentifier("ISO8601");
     public static final CFCalendarIdentifier IslamicTabular = new CFCalendarIdentifier("IslamicTabular");
     public static final CFCalendarIdentifier IslamicUmmAlQura = new CFCalendarIdentifier("IslamicUmmAlQura");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Bangla = new CFCalendarIdentifier("Bangla");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Gujarati = new CFCalendarIdentifier("Gujarati");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Kannada = new CFCalendarIdentifier("Kannada");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Malayalam = new CFCalendarIdentifier("Malayalam");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Marathi = new CFCalendarIdentifier("Marathi");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Odia = new CFCalendarIdentifier("Odia");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Tamil = new CFCalendarIdentifier("Tamil");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Telugu = new CFCalendarIdentifier("Telugu");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Vikram = new CFCalendarIdentifier("Vikram");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Dangi = new CFCalendarIdentifier("Dangi");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFCalendarIdentifier Vietnamese = new CFCalendarIdentifier("Vietnamese");
     /*</constants>*/
     
-    private static /*<name>*/CFCalendarIdentifier/*</name>*/[] values = new /*<name>*/CFCalendarIdentifier/*</name>*/[] {/*<value_list>*/Gregorian, Buddhist, Chinese, Hebrew, Islamic, IslamicCivil, Japanese, RepublicOfChina, Persian, Indian, ISO8601, IslamicTabular, IslamicUmmAlQura/*</value_list>*/};
+    private static /*<name>*/CFCalendarIdentifier/*</name>*/[] values = new /*<name>*/CFCalendarIdentifier/*</name>*/[] {/*<value_list>*/Gregorian, Buddhist, Chinese, Hebrew, Islamic, IslamicCivil, Japanese, RepublicOfChina, Persian, Indian, ISO8601, IslamicTabular, IslamicUmmAlQura, Bangla, Gujarati, Kannada, Malayalam, Marathi, Odia, Tamil, Telugu, Vikram, Dangi, Vietnamese/*</value_list>*/};
     
     /*<name>*/CFCalendarIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -155,6 +199,61 @@ import org.robovm.apple.coretext.*;
         public static native CFString IslamicTabular();
         @GlobalValue(symbol="kCFIslamicUmmAlQuraCalendar", optional=true)
         public static native CFString IslamicUmmAlQura();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFBanglaCalendar", optional=true)
+        public static native CFString Bangla();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFGujaratiCalendar", optional=true)
+        public static native CFString Gujarati();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFKannadaCalendar", optional=true)
+        public static native CFString Kannada();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFMalayalamCalendar", optional=true)
+        public static native CFString Malayalam();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFMarathiCalendar", optional=true)
+        public static native CFString Marathi();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFOdiaCalendar", optional=true)
+        public static native CFString Odia();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFTamilCalendar", optional=true)
+        public static native CFString Tamil();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFTeluguCalendar", optional=true)
+        public static native CFString Telugu();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFVikramCalendar", optional=true)
+        public static native CFString Vikram();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFDangiCalendar", optional=true)
+        public static native CFString Dangi();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFVietnameseCalendar", optional=true)
+        public static native CFString Vietnamese();
         /*</values>*/
     }
 }
