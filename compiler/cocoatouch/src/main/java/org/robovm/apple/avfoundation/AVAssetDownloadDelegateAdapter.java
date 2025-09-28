@@ -62,12 +62,16 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Use URLSession:assetDownloadTask:willDownloadToURL: instead
      */
+    @Deprecated
     @NotImplemented("URLSession:assetDownloadTask:didFinishDownloadingToURL:")
     public void didFinishDownloadingToURL(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSURL location) {}
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use NSURLSessionTask.progress instead
      */
+    @Deprecated
     @NotImplemented("URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:")
     public void didLoadTimeRange(NSURLSession session, AVAssetDownloadTask assetDownloadTask, @ByVal CMTimeRange timeRange, @org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> loadedTimeRanges, @ByVal CMTimeRange timeRangeExpectedToLoad) {}
     /**
@@ -76,24 +80,40 @@ import org.robovm.apple.uikit.*;
     @NotImplemented("URLSession:assetDownloadTask:didResolveMediaSelection:")
     public void didResolveMediaSelection(NSURLSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection) {}
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @NotImplemented("URLSession:assetDownloadTask:willDownloadToURL:")
+    public void willDownloadToURL(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSURL location) {}
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Use URLSession:assetDownloadTask:willDownloadToURL: instead
+     */
+    @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:willDownloadToURL:")
     public void willDownloadToURL(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, NSURL location) {}
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use the NSURLSessionDownloadDelegate method instead, URLSession:task:didCompleteWithError:
      */
+    @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:")
     public void didCompleteForMediaSelection(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, AVMediaSelection mediaSelection) {}
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use NSURLSessionTask.progress: instead
      */
+    @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:")
     public void didLoadTimeRange(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, @ByVal CMTimeRange timeRange, NSArray<NSValue> loadedTimeRanges, @ByVal CMTimeRange timeRangeExpectedToLoad, AVMediaSelection mediaSelection) {}
     /**
      * @since Available in iOS 15.0 and later.
      */
     @NotImplemented("URLSession:assetDownloadTask:willDownloadVariants:")
-    public void assetDownloadTask(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSArray<AVAssetVariant> variants) {}
+    public void willDownloadVariants(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSArray<AVAssetVariant> variants) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("URLSession:assetDownloadTask:didReceiveMetricEvent:")
+    public void didReceiveMetricEvent(NSURLSession session, AVAssetDownloadTask assetDownloadTask, AVMetricEvent metricEvent) {}
     /*</methods>*/
 }

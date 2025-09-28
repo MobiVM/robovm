@@ -60,6 +60,21 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")
     void didStartRecording(AVCaptureFileOutput output, NSURL fileURL, NSArray<AVCaptureConnection> connections);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "captureOutput:didStartRecordingToOutputFileAtURL:startPTS:fromConnections:")
+    void didStartRecordingToOutputFile(AVCaptureFileOutput output, NSURL fileURL, @ByVal CMTime startPTS, NSArray<AVCaptureConnection> connections);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "captureOutput:didPauseRecordingToOutputFileAtURL:fromConnections:")
+    void didPauseRecordingToOutputFile(AVCaptureFileOutput output, NSURL fileURL, NSArray<AVCaptureConnection> connections);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "captureOutput:didResumeRecordingToOutputFileAtURL:fromConnections:")
+    void didResumeRecordingToOutputFile(AVCaptureFileOutput output, NSURL fileURL, NSArray<AVCaptureConnection> connections);
     @Method(selector = "captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:")
     void didFinishRecording(AVCaptureFileOutput output, NSURL outputFileURL, NSArray<AVCaptureConnection> connections, NSError error);
     /*</methods>*/

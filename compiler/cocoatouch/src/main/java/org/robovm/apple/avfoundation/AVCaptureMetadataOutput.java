@@ -74,6 +74,11 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGRect getRectOfInterest();
     @Property(selector = "setRectOfInterest:")
     public native void setRectOfInterest(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredMetadataObjectTypesForCinematicVideoCapture")
+    public native NSArray<NSString> getRequiredMetadataObjectTypesForCinematicVideoCapture();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

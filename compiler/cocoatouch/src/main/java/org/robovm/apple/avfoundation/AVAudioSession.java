@@ -173,6 +173,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "prefersNoInterruptionsFromSystemAlerts")
     public native boolean prefersNoInterruptionsFromSystemAlerts();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "renderingMode")
+    public native AVAudioSessionRenderingMode getRenderingMode();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "prefersEchoCancelledInput")
+    public native boolean prefersEchoCancelledInput();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "isEchoCancelledInputEnabled")
+    public native boolean isEchoCancelledInputEnabled();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "isEchoCancelledInputAvailable")
+    public native boolean isEchoCancelledInputAvailable();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isOutputMuted")
+    public native boolean isOutputMuted();
     @Property(selector = "preferredSampleRate")
     public native double getPreferredSampleRate();
     @Property(selector = "preferredIOBufferDuration")
@@ -221,6 +246,11 @@ import org.robovm.apple.uikit.*;
     public native double getOutputLatency();
     @Property(selector = "IOBufferDuration")
     public native double getIOBufferDuration();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "supportedOutputChannelLayouts")
+    public native NSArray<AVAudioChannelLayout> getSupportedOutputChannelLayouts();
     @Property(selector = "isOtherAudioPlaying")
     public native boolean isOtherAudioPlaying();
     @Property(selector = "secondaryAudioShouldBeSilencedHint")
@@ -246,6 +276,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "prefersInterruptionOnRouteDisconnect")
     public native boolean prefersInterruptionOnRouteDisconnect();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "preferredMicrophoneInjectionMode")
+    public native AVAudioSessionMicrophoneInjectionMode getPreferredMicrophoneInjectionMode();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "isMicrophoneInjectionAvailable")
+    public native boolean isMicrophoneInjectionAvailable();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -264,17 +304,62 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification", optional=true)
     public static native NSString SpatialPlaybackCapabilitiesChangedNotification();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionRenderingModeChangeNotification", optional=true)
+    public static native NSString RenderingModeChangeNotification();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionRenderingCapabilitiesChangeNotification", optional=true)
+    public static native NSString RenderingCapabilitiesChangeNotification();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification", optional=true)
+    public static native NSString MicrophoneInjectionCapabilitiesChangeNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionOutputMuteStateChangeNotification", optional=true)
+    public static native NSString OutputMuteStateChangeNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionUserIntentToUnmuteOutputNotification", optional=true)
+    public static native NSString UserIntentToUnmuteOutputNotification();
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintTypeKey", optional=true)
     protected static native NSString SilenceSecondaryAudioHintTypeKey();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionAvailableInputsChangeNotification", optional=true)
+    public static native NSString AvailableInputsChangeNotification();
     @Library("AVFoundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
 
         /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionMuteStateKey", optional=true)
+        public static native NSString MuteState();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="AVAudioSessionSpatialAudioEnabledKey", optional=true)
         public static native NSString SpatialAudioEnabled();
+        /**
+         * @since Available in iOS 17.2 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionRenderingModeNewRenderingModeKey", optional=true)
+        public static native NSString RenderingModeNewRenderingMode();
+        /**
+         * @since Available in iOS 18.2 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionMicrophoneInjectionIsAvailableKey", optional=true)
+        public static native NSString MicrophoneInjectionIsAvailable();
     }
     
     public boolean setCategory(AVAudioSessionCategory category) throws NSErrorException {
@@ -379,6 +464,34 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "setPrefersNoInterruptionsFromSystemAlerts:error:")
     private native boolean setPrefersNoInterruptionsFromSystemAlerts(boolean inValue, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public boolean setPrefersEchoCancelledInput(boolean value) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setPrefersEchoCancelledInput(value, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "setPrefersEchoCancelledInput:error:")
+    private native boolean setPrefersEchoCancelledInput(boolean value, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public boolean setOutputMuted(boolean muted) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setOutputMuted(muted, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setOutputMuted:error:")
+    private native boolean setOutputMuted(boolean muted, NSError.NSErrorPtr outError);
     @Method(selector = "sharedInstance")
     public static native AVAudioSession getSharedInstance();
     public boolean setActive(boolean active) throws NSErrorException {
@@ -509,5 +622,19 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "setPrefersInterruptionOnRouteDisconnect:error:")
     private native boolean setPrefersInterruptionOnRouteDisconnect(boolean inValue, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public boolean setPreferredMicrophoneInjectionMode(AVAudioSessionMicrophoneInjectionMode inValue) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setPreferredMicrophoneInjectionMode(inValue, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "setPreferredMicrophoneInjectionMode:error:")
+    private native boolean setPreferredMicrophoneInjectionMode(AVAudioSessionMicrophoneInjectionMode inValue, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

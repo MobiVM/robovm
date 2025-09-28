@@ -64,6 +64,16 @@ import org.robovm.apple.uikit.*;
     @WeaklyLinked
     @Property(selector = "sampleBufferCallbackQueue")
     public native DispatchQueue getSampleBufferCallbackQueue();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "spatialAudioChannelLayoutTag")
+    public native AudioChannelLayoutTag getSpatialAudioChannelLayoutTag();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSpatialAudioChannelLayoutTag:")
+    public native void setSpatialAudioChannelLayoutTag(AudioChannelLayoutTag v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

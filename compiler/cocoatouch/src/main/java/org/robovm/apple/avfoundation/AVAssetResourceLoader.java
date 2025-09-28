@@ -74,6 +74,10 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setPreloadsEligibleContentKeys:")
     public native void setPreloadsEligibleContentKeys(boolean v);
+    @Property(selector = "sendsCommonMediaClientDataAsHTTPHeaders")
+    public native boolean sendsCommonMediaClientDataAsHTTPHeaders();
+    @Property(selector = "setSendsCommonMediaClientDataAsHTTPHeaders:")
+    public native void setSendsCommonMediaClientDataAsHTTPHeaders(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

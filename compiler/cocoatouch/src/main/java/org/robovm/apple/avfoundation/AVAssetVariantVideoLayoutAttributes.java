@@ -63,6 +63,8 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "stereoViewComponents")
     public native CMStereoViewComponents getStereoViewComponents();
+    @Property(selector = "projectionType")
+    public native CMProjectionType getProjectionType();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

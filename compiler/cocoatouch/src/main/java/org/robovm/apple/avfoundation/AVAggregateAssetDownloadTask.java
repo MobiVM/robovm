@@ -45,9 +45,10 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Use assetDownloadTaskWithConfiguration: instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAggregateAssetDownloadTask/*</name>*/ 
     extends /*<extends>*/NSURLSessionTask/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

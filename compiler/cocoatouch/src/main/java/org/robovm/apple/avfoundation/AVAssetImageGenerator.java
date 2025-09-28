@@ -75,6 +75,16 @@ import org.robovm.apple.uikit.*;
     public native AVAssetImageGeneratorApertureMode getApertureMode();
     @Property(selector = "setApertureMode:")
     public native void setApertureMode(AVAssetImageGeneratorApertureMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "dynamicRangePolicy")
+    public native AVAssetImageGeneratorDynamicRangePolicy getDynamicRangePolicy();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDynamicRangePolicy:")
+    public native void setDynamicRangePolicy(AVAssetImageGeneratorDynamicRangePolicy v);
     @Property(selector = "videoComposition")
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
@@ -95,7 +105,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "initWithAsset:")
     protected native @Pointer long init(AVAsset asset);
     /**
-     * @deprecated Use generateCGImageAsynchronouslyForTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use generateCGImageAsynchronouslyForTime:completionHandler: instead
      */
     @Deprecated
     @WeaklyLinked
@@ -106,7 +116,7 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @deprecated Use generateCGImageAsynchronouslyForTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use generateCGImageAsynchronouslyForTime:completionHandler: instead
      */
     @Deprecated
     @WeaklyLinked

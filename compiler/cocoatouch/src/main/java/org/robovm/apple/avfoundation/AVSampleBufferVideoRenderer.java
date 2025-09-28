@@ -67,6 +67,11 @@ import org.robovm.apple.uikit.*;
     public native NSError getError();
     @Property(selector = "requiresFlushToResumeDecoding")
     public native boolean requiresFlushToResumeDecoding();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "recommendedPixelBufferAttributes")
+    public native NSDictionary<NSString, ?> getRecommendedPixelBufferAttributes();
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
     @Property(selector = "isReadyForMoreMediaData")
@@ -108,6 +113,31 @@ import org.robovm.apple.uikit.*;
     
     @Method(selector = "flushWithRemovalOfDisplayedImage:completionHandler:")
     public native void flush(boolean removeDisplayedImage, @Block Runnable handler);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "copyDisplayedPixelBuffer")
+    public native CVPixelBuffer copyDisplayedPixelBuffer();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "expectMinimumUpcomingSampleBufferPresentationTime:")
+    public native void expectMinimumUpcomingSampleBufferPresentationTime(@ByVal CMTime minimumUpcomingPresentationTime);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes")
+    public native void expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "resetUpcomingSampleBufferPresentationTimeExpectations")
+    public native void resetUpcomingSampleBufferPresentationTimeExpectations();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "loadVideoPerformanceMetricsWithCompletionHandler:")
+    public native void loadVideoPerformanceMetrics(@Block VoidBlock1<AVVideoPerformanceMetrics> completionHandler);
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
     @Method(selector = "flush")

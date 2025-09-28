@@ -85,6 +85,21 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "isPreviewing")
     public native boolean isPreviewing();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isDeferredStartSupported")
+    public native boolean isDeferredStartSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isDeferredStartEnabled")
+    public native boolean isDeferredStartEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setDeferredStartEnabled:")
+    public native void setDeferredStartEnabled(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -73,6 +73,11 @@ import org.robovm.apple.uikit.*;
     @NotImplemented("supportsHDRSourceFrames")
     public boolean supportsHDRSourceFrames() { return false; }
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("supportsSourceTaggedBuffers")
+    public boolean supportsSourceTaggedBuffers() { return false; }
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @NotImplemented("canConformColorOfSourceFrames")

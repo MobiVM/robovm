@@ -83,6 +83,11 @@ import org.robovm.apple.uikit.*;
     public native AVAudioSessionDataSourceDescription getSelectedDataSource();
     @Property(selector = "preferredDataSource")
     public native AVAudioSessionDataSourceDescription getPreferredDataSource();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "bluetoothMicrophoneExtension")
+    public native AVAudioSessionPortExtensionBluetoothMicrophone getBluetoothMicrophoneExtension();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

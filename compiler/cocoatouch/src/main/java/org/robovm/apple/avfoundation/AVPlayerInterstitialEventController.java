@@ -67,6 +67,26 @@ import org.robovm.apple.uikit.*;
     public native NSArray<AVPlayerInterstitialEvent> getEvents();
     @Property(selector = "setEvents:")
     public native void setEvents(NSArray<AVPlayerInterstitialEvent> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "localizedStringsBundle")
+    public native NSBundle getLocalizedStringsBundle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLocalizedStringsBundle:")
+    public native void setLocalizedStringsBundle(NSBundle v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "localizedStringsTableName")
+    public native String getLocalizedStringsTableName();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLocalizedStringsTableName:")
+    public native void setLocalizedStringsTableName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -74,5 +94,10 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(AVPlayer primaryPlayer);
     @Method(selector = "cancelCurrentEventWithResumptionOffset:")
     public native void cancelCurrentEvent(@ByVal CMTime resumptionOffset);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "skipCurrentEvent")
+    public native void skipCurrentEvent();
     /*</methods>*/
 }

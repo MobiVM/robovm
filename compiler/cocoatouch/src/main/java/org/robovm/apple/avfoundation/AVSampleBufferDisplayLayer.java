@@ -89,39 +89,44 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setVideoGravity:")
     public native void setVideoGravity(AVLayerVideoGravity v);
     /**
-     * @deprecated Use sampleBufferRenderer's timebase instead
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "isReadyForDisplay")
+    public native boolean isReadyForDisplay();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's timebase instead
      */
     @Deprecated
     @Property(selector = "timebase")
     public native CMTimebase getTimebase();
     /**
-     * @deprecated Use sampleBufferRenderer's status instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's status instead
      */
     @Deprecated
     @Property(selector = "status")
     public native AVQueuedSampleBufferRenderingStatus getStatus();
     /**
-     * @deprecated Use sampleBufferRenderer's error instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's error instead
      */
     @Deprecated
     @Property(selector = "error")
     public native NSError getError();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Use sampleBufferRenderer's requiresFlushToResumeDecoding instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's requiresFlushToResumeDecoding instead
      */
     @Deprecated
     @Property(selector = "requiresFlushToResumeDecoding")
     public native boolean requiresFlushToResumeDecoding();
     /**
-     * @deprecated Use sampleBufferRenderer's readyForMoreMediaData instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's readyForMoreMediaData instead
      */
     @Deprecated
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
     /**
      * @since Available in iOS 14.5 and later.
-     * @deprecated Use sampleBufferRenderer's hasSufficientMediaDataForReliablePlaybackStart instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's hasSufficientMediaDataForReliablePlaybackStart instead
      */
     @Deprecated
     @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
@@ -175,6 +180,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChangeNotification", optional=true)
     public static native NSString OutputObscuredDueToInsufficientExternalProtectionDidChangeNotification();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @GlobalValue(symbol="AVSampleBufferDisplayLayerReadyForDisplayDidChangeNotification", optional=true)
+    public static native NSString ReadyForDisplayDidChangeNotification();
     
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
@@ -188,32 +198,32 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
     /**
-     * @deprecated Use sampleBufferRenderer's enqueueSampleBuffer: instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's enqueueSampleBuffer: instead
      */
     @Deprecated
     @Method(selector = "enqueueSampleBuffer:")
     public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
     /**
-     * @deprecated Use sampleBufferRenderer's flush instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's flush instead
      */
     @Deprecated
     @Method(selector = "flush")
     public native void flush();
     /**
-     * @deprecated Use sampleBufferRenderer's flushWithRemovalOfDisplayedImage:completionHandler: instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's flushWithRemovalOfDisplayedImage:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "flushAndRemoveImage")
     public native void flushAndRemoveImage();
     /**
-     * @deprecated Use sampleBufferRenderer's requestMediaDataWhenReadyOnQueue:usingBlock: instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's requestMediaDataWhenReadyOnQueue:usingBlock: instead
      */
     @Deprecated
     @WeaklyLinked
     @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
     public native void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
     /**
-     * @deprecated Use sampleBufferRenderer's stopRequestingMediaData instead
+     * @deprecated Deprecated in iOS 18.0. Use sampleBufferRenderer's stopRequestingMediaData instead
      */
     @Deprecated
     @Method(selector = "stopRequestingMediaData")

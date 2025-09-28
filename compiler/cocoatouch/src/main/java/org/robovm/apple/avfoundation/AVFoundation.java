@@ -60,6 +60,21 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="AVCoreAnimationBeginTimeAtZero", optional=true)
     public static native double CoreAnimationBeginTimeAtZero();
     
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AVCaptionDimensionMake", optional=true)
+    public static native @ByVal AVCaptionDimension function__AVCaptionDimensionMake(@MachineSizedFloat double value, AVCaptionUnitsType units);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AVCaptionPointMake", optional=true)
+    public static native @ByVal AVCaptionPoint function__AVCaptionPointMake(@ByVal AVCaptionDimension x, @ByVal AVCaptionDimension y);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AVCaptionSizeMake", optional=true)
+    public static native @ByVal AVCaptionSize function__AVCaptionSizeMake(@ByVal AVCaptionDimension width, @ByVal AVCaptionDimension height);
     @Bridge(symbol="AVMakeRectWithAspectRatioInsideRect", optional=true)
     public static native @ByVal CGRect createRectWithAspectRatioInsideRect(@ByVal CGSize aspectRatio, @ByVal CGRect boundingRect);
     /**
@@ -67,5 +82,20 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="AVCaptureReactionSystemImageNameForType", optional=true)
     public static native String function__AVCaptureReactionSystemImageNameForType(AVCaptureReactionType reactionType);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp", optional=true)
+    public static native CMSampleBuffer function__AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp(@ByVal AVCaptureTimecode timecode, @ByVal CMTime presentationTimeStamp);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AVCaptureTimecodeCreateMetadataSampleBufferForDuration", optional=true)
+    public static native CMSampleBuffer function__AVCaptureTimecodeCreateMetadataSampleBufferForDuration(@ByVal AVCaptureTimecode timecode, @ByVal CMTime duration);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AVCaptureTimecodeAdvancedByFrames", optional=true)
+    public static native @ByVal AVCaptureTimecode function__AVCaptureTimecodeAdvancedByFrames(@ByVal AVCaptureTimecode timecode, long framesToAdd);
     /*</methods>*/
 }

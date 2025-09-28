@@ -79,6 +79,11 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setInterstitialMediaSelectionCriteria:forMediaCharacteristic:")
+    public native void setInterstitialMediaSelectionCriteria(NSArray<AVPlayerMediaSelectionCriteria> criteria, String mediaCharacteristic);
     @Method(selector = "downloadConfigurationWithAsset:title:")
     protected static native @Pointer long create(AVURLAsset asset, String title);
     /*</methods>*/

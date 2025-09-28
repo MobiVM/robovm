@@ -64,6 +64,14 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 11.0 and later.
      */
     public AVCapturePhotoBracketSettings(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType, NSArray<AVCaptureBracketedStillImageSettings> bracketedSettings) { super((Handle) null, create(rawPixelFormatType, rawFileType, processedFormat, processedFileType, bracketedSettings)); retain(getHandle()); }
+    public AVCapturePhotoBracketSettings(NSDictionary<NSString, ?> format) { super((Handle) null, create(format)); retain(getHandle()); }
+    public AVCapturePhotoBracketSettings(int rawPixelFormatType) { super((Handle) null, create(rawPixelFormatType)); retain(getHandle()); }
+    public AVCapturePhotoBracketSettings(int rawPixelFormatType, NSDictionary<NSString, ?> processedFormat) { super((Handle) null, create(rawPixelFormatType, processedFormat)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public AVCapturePhotoBracketSettings(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType) { super((Handle) null, create(rawPixelFormatType, rawFileType, processedFormat, processedFileType)); retain(getHandle()); }
+    public AVCapturePhotoBracketSettings(AVCapturePhotoSettings photoSettings) { super((Handle) null, create(photoSettings)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "bracketedSettings")
@@ -82,5 +90,18 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:")
     protected static native @Pointer long create(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType, NSArray<AVCaptureBracketedStillImageSettings> bracketedSettings);
+    @Method(selector = "photoSettingsWithFormat:")
+    protected static native @Pointer long create(NSDictionary<NSString, ?> format);
+    @Method(selector = "photoSettingsWithRawPixelFormatType:")
+    protected static native @Pointer long create(int rawPixelFormatType);
+    @Method(selector = "photoSettingsWithRawPixelFormatType:processedFormat:")
+    protected static native @Pointer long create(int rawPixelFormatType, NSDictionary<NSString, ?> processedFormat);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:")
+    protected static native @Pointer long create(int rawPixelFormatType, String rawFileType, NSDictionary<NSString, ?> processedFormat, String processedFileType);
+    @Method(selector = "photoSettingsFromPhotoSettings:")
+    protected static native @Pointer long create(AVCapturePhotoSettings photoSettings);
     /*</methods>*/
 }

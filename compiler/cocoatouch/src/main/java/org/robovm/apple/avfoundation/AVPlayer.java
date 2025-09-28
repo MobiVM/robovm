@@ -147,7 +147,9 @@ import org.robovm.apple.uikit.*;
     public native boolean outputObscuredDueToInsufficientExternalProtection();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 26.0. Use eligibleForHDRPlayback instead
      */
+    @Deprecated
     @Property(selector = "availableHDRModes")
     public static native AVPlayerHDRMode getAvailableHDRModes();
     /**
@@ -180,6 +182,35 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "playbackCoordinator")
     public native AVPlayerPlaybackCoordinator getPlaybackCoordinator();
+    @Property(selector = "videoOutput")
+    public native AVPlayerVideoOutput getVideoOutput();
+    @Property(selector = "setVideoOutput:")
+    public native void setVideoOutput(AVPlayerVideoOutput v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "networkResourcePriority")
+    public native AVPlayerNetworkResourcePriority getNetworkResourcePriority();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setNetworkResourcePriority:")
+    public native void setNetworkResourcePriority(AVPlayerNetworkResourcePriority v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "audioOutputSuppressedDueToNonMixableAudioRoute")
+    public native boolean isAudioOutputSuppressedDueToNonMixableAudioRoute();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isObservationEnabled")
+    public static native boolean isObservationEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setObservationEnabled:")
+    public static native void setObservationEnabled(boolean v);
     /**
      * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
@@ -193,13 +224,13 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setClosedCaptionDisplayEnabled:")
     public native void setClosedCaptionDisplayEnabled(boolean v);
     /**
-     * @deprecated Use sourceClock
+     * @deprecated Deprecated in iOS 18.0. Use sourceClock
      */
     @Deprecated
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
     /**
-     * @deprecated Use sourceClock
+     * @deprecated Deprecated in iOS 18.0. Use sourceClock
      */
     @Deprecated
     @Property(selector = "setMasterClock:")
@@ -229,7 +260,9 @@ import org.robovm.apple.uikit.*;
     public static native NSString WaitingForCoordinatedPlaybackReason();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 26.0. Use AVPlayerEligibleForHDRPlaybackDidChangeNotification
      */
+    @Deprecated
     @GlobalValue(symbol="AVPlayerAvailableHDRModesDidChangeNotification", optional=true)
     public static native String AvailableHDRModesDidChangeNotification();
     /**
@@ -271,6 +304,56 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey", optional=true)
         public static native String InterstitialEventMonitorAssetListResponseStatusDidChangeError();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey", optional=true)
+        public static native String InterstitialEventMonitorCurrentEventSkippableStateDidChangeEvent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey", optional=true)
+        public static native String InterstitialEventMonitorCurrentEventSkippableStateDidChangeState();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey", optional=true)
+        public static native String InterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabel();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey", optional=true)
+        public static native String InterstitialEventMonitorCurrentEventSkippedEvent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey", optional=true)
+        public static native String InterstitialEventMonitorInterstitialEventWasUnscheduledEvent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey", optional=true)
+        public static native String InterstitialEventMonitorInterstitialEventWasUnscheduledError();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey", optional=true)
+        public static native String InterstitialEventMonitorInterstitialEventDidFinishEvent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey", optional=true)
+        public static native String InterstitialEventMonitorInterstitialEventDidFinishPlayoutTime();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey", optional=true)
+        public static native String InterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEvent();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey", optional=true)
+        public static native String IntegratedTimelineSnapshotsOutOfSyncReason();
     }
 
     @Library("AVFoundation")
@@ -302,6 +385,31 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeNotification", optional=true)
         public static native NSString InterstitialEventMonitorAssetListResponseStatusDidChange();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification", optional=true)
+        public static native NSString InterstitialEventMonitorCurrentEventSkippableStateDidChange();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification", optional=true)
+        public static native NSString InterstitialEventMonitorCurrentEventSkipped();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification", optional=true)
+        public static native NSString InterstitialEventMonitorInterstitialEventWasUnscheduled();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification", optional=true)
+        public static native NSString InterstitialEventMonitorInterstitialEventDidFinish();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification", optional=true)
+        public static native NSString IntegratedTimelineSnapshotsOutOfSync();
     }
     
     @Method(selector = "initWithURL:")
