@@ -36,54 +36,46 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 18.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTrip/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPNowPlayingSportsTeam/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CPTripPtr extends Ptr<CPTrip, CPTripPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPTrip.class); }/*</bind>*/
+    /*<ptr>*/public static class CPNowPlayingSportsTeamPtr extends Ptr<CPNowPlayingSportsTeam, CPNowPlayingSportsTeamPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPNowPlayingSportsTeam.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPTrip() {}
-    protected CPTrip(Handle h, long handle) { super(h, handle); }
-    protected CPTrip(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    public CPTrip(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices) { super((SkipInit) null); initObject(init(origin, destination, routeChoices)); }
+    protected CPNowPlayingSportsTeam() {}
+    protected CPNowPlayingSportsTeam(Handle h, long handle) { super(h, handle); }
+    protected CPNowPlayingSportsTeam(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:logo:teamStandings:eventScore:possessionIndicator:favorite:")
+    public CPNowPlayingSportsTeam(String name, CPNowPlayingSportsTeamLogo logo, String teamStandings, String eventScore, UIImage possessionIndicator, boolean favorite) { super((SkipInit) null); initObject(init(name, logo, teamStandings, eventScore, possessionIndicator, favorite)); }
     @Method(selector = "initWithCoder:")
-    public CPTrip(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CPNowPlayingSportsTeam(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "origin")
-    public native MKMapItem getOrigin();
-    @Property(selector = "destination")
-    public native MKMapItem getDestination();
-    @Property(selector = "routeChoices")
-    public native NSArray<CPRouteChoice> getRouteChoices();
-    @Property(selector = "userInfo")
-    public native NSObject getUserInfo();
-    @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSObject v);
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
-    @Property(selector = "destinationNameVariants")
-    public native NSArray<NSString> getDestinationNameVariants();
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
-    @Property(selector = "setDestinationNameVariants:")
-    public native void setDestinationNameVariants(NSArray<NSString> v);
+    @Property(selector = "name")
+    public native String getName();
+    @Property(selector = "logo")
+    public native CPNowPlayingSportsTeamLogo getLogo();
+    @Property(selector = "teamStandings")
+    public native String getTeamStandings();
+    @Property(selector = "eventScore")
+    public native String getEventScore();
+    @Property(selector = "possessionIndicator")
+    public native UIImage getPossessionIndicator();
+    @Property(selector = "isFavorite")
+    public native boolean isFavorite();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    protected native @Pointer long init(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices);
+    @Method(selector = "initWithName:logo:teamStandings:eventScore:possessionIndicator:favorite:")
+    protected native @Pointer long init(String name, CPNowPlayingSportsTeamLogo logo, String teamStandings, String eventScore, UIImage possessionIndicator, boolean favorite);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

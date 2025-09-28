@@ -57,6 +57,36 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<CPManeuver> getUpcomingManeuvers();
     @Property(selector = "setUpcomingManeuvers:")
     public native void setUpcomingManeuvers(NSArray<CPManeuver> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "currentLaneGuidance")
+    public native CPLaneGuidance getCurrentLaneGuidance();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setCurrentLaneGuidance:")
+    public native void setCurrentLaneGuidance(CPLaneGuidance v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "currentRoadNameVariants")
+    public native NSArray<NSString> getCurrentRoadNameVariants();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setCurrentRoadNameVariants:")
+    public native void setCurrentRoadNameVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "maneuverState")
+    public native CPManeuverState getManeuverState();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setManeuverState:")
+    public native void setManeuverState(CPManeuverState v);
     @Property(selector = "trip")
     public native CPTrip getTrip();
     /*</properties>*/
@@ -69,10 +99,25 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "pauseTripForReason:description:turnCardColor:")
     public native void pauseTripForReason(CPTripPauseReason reason, String description, UIColor turnCardColor);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "resumeTripWithUpdatedRouteInformation:")
+    public native void resumeTrip(CPRouteInformation routeInformation);
     @Method(selector = "finishTrip")
     public native void finishTrip();
     @Method(selector = "cancelTrip")
     public native void cancelTrip();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "addManeuvers:")
+    public native void addManeuvers(NSArray<CPManeuver> maneuvers);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "addLaneGuidances:")
+    public native void addLaneGuidances(NSArray<CPLaneGuidance> laneGuidances);
     @Method(selector = "updateTravelEstimates:forManeuver:")
     public native void updateTravelEstimates(CPTravelEstimates estimates, CPManeuver maneuver);
     /*</methods>*/

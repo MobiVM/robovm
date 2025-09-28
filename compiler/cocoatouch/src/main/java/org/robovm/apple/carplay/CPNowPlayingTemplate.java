@@ -69,6 +69,16 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isAlbumArtistButtonEnabled();
     @Property(selector = "setAlbumArtistButtonEnabled:")
     public native void setAlbumArtistButtonEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "nowPlayingMode")
+    public native CPNowPlayingMode getNowPlayingMode();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setNowPlayingMode:")
+    public native void setNowPlayingMode(CPNowPlayingMode v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

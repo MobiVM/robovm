@@ -36,54 +36,50 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTrip/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPLaneGuidance/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CPTripPtr extends Ptr<CPTrip, CPTripPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPTrip.class); }/*</bind>*/
+    /*<ptr>*/public static class CPLaneGuidancePtr extends Ptr<CPLaneGuidance, CPLaneGuidancePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPLaneGuidance.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPTrip() {}
-    protected CPTrip(Handle h, long handle) { super(h, handle); }
-    protected CPTrip(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    public CPTrip(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices) { super((SkipInit) null); initObject(init(origin, destination, routeChoices)); }
+    public CPLaneGuidance() {}
+    protected CPLaneGuidance(Handle h, long handle) { super(h, handle); }
+    protected CPLaneGuidance(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CPTrip(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CPLaneGuidance(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "origin")
-    public native MKMapItem getOrigin();
-    @Property(selector = "destination")
-    public native MKMapItem getDestination();
-    @Property(selector = "routeChoices")
-    public native NSArray<CPRouteChoice> getRouteChoices();
-    @Property(selector = "userInfo")
-    public native NSObject getUserInfo();
-    @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSObject v);
     /**
      * @since Available in iOS 17.4 and later.
      */
-    @Property(selector = "destinationNameVariants")
-    public native NSArray<NSString> getDestinationNameVariants();
+    @Property(selector = "lanes")
+    public native NSArray<CPLane> getLanes();
     /**
      * @since Available in iOS 17.4 and later.
      */
-    @Property(selector = "setDestinationNameVariants:")
-    public native void setDestinationNameVariants(NSArray<NSString> v);
+    @Property(selector = "setLanes:")
+    public native void setLanes(NSArray<CPLane> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "instructionVariants")
+    public native NSArray<NSString> getInstructionVariants();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setInstructionVariants:")
+    public native void setInstructionVariants(NSArray<NSString> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    protected native @Pointer long init(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

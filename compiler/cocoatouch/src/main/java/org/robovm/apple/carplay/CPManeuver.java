@@ -169,6 +169,86 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setNotificationAttributedInstructionVariants:")
     public native void setNotificationAttributedInstructionVariants(NSArray<NSAttributedString> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "maneuverType")
+    public native CPManeuverType getManeuverType();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setManeuverType:")
+    public native void setManeuverType(CPManeuverType v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "roadFollowingManeuverVariants")
+    public native NSArray<NSString> getRoadFollowingManeuverVariants();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setRoadFollowingManeuverVariants:")
+    public native void setRoadFollowingManeuverVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "trafficSide")
+    public native CPTrafficSide getTrafficSide();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setTrafficSide:")
+    public native void setTrafficSide(CPTrafficSide v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "junctionType")
+    public native CPJunctionType getJunctionType();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setJunctionType:")
+    public native void setJunctionType(CPJunctionType v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "junctionExitAngle")
+    public native NSMeasurement<NSUnitAngle> getJunctionExitAngle();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setJunctionExitAngle:")
+    public native void setJunctionExitAngle(NSMeasurement<NSUnitAngle> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "junctionElementAngles")
+    public native NSSet<?> getJunctionElementAngles();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setJunctionElementAngles:")
+    public native void setJunctionElementAngles(NSSet<?> v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "linkedLaneGuidance")
+    public native CPLaneGuidance getLinkedLaneGuidance();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setLinkedLaneGuidance:", strongRef = true)
+    public native void setLinkedLaneGuidance(CPLaneGuidance v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "highwayExitLabel")
+    public native String getHighwayExitLabel();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setHighwayExitLabel:")
+    public native void setHighwayExitLabel(String v);
     @Property(selector = "userInfo")
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")

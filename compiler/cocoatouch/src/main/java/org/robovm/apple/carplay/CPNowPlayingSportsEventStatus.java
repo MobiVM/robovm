@@ -36,54 +36,40 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 18.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPTrip/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CPNowPlayingSportsEventStatus/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CPTripPtr extends Ptr<CPTrip, CPTripPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CPTrip.class); }/*</bind>*/
+    /*<ptr>*/public static class CPNowPlayingSportsEventStatusPtr extends Ptr<CPNowPlayingSportsEventStatus, CPNowPlayingSportsEventStatusPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CPNowPlayingSportsEventStatus.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CPTrip() {}
-    protected CPTrip(Handle h, long handle) { super(h, handle); }
-    protected CPTrip(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    public CPTrip(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices) { super((SkipInit) null); initObject(init(origin, destination, routeChoices)); }
+    protected CPNowPlayingSportsEventStatus() {}
+    protected CPNowPlayingSportsEventStatus(Handle h, long handle) { super(h, handle); }
+    protected CPNowPlayingSportsEventStatus(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithEventStatusText:eventStatusImage:eventClock:")
+    public CPNowPlayingSportsEventStatus(NSArray<NSString> eventStatusText, UIImage eventStatusImage, CPNowPlayingSportsClock eventClock) { super((SkipInit) null); initObject(init(eventStatusText, eventStatusImage, eventClock)); }
     @Method(selector = "initWithCoder:")
-    public CPTrip(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CPNowPlayingSportsEventStatus(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "origin")
-    public native MKMapItem getOrigin();
-    @Property(selector = "destination")
-    public native MKMapItem getDestination();
-    @Property(selector = "routeChoices")
-    public native NSArray<CPRouteChoice> getRouteChoices();
-    @Property(selector = "userInfo")
-    public native NSObject getUserInfo();
-    @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSObject v);
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
-    @Property(selector = "destinationNameVariants")
-    public native NSArray<NSString> getDestinationNameVariants();
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
-    @Property(selector = "setDestinationNameVariants:")
-    public native void setDestinationNameVariants(NSArray<NSString> v);
+    @Property(selector = "eventStatusText")
+    public native NSArray<NSString> getEventStatusText();
+    @Property(selector = "eventClock")
+    public native CPNowPlayingSportsClock getEventClock();
+    @Property(selector = "eventStatusImage")
+    public native UIImage getEventStatusImage();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithOrigin:destination:routeChoices:")
-    protected native @Pointer long init(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices);
+    @Method(selector = "initWithEventStatusText:eventStatusImage:eventClock:")
+    protected native @Pointer long init(NSArray<NSString> eventStatusText, UIImage eventStatusImage, CPNowPlayingSportsClock eventClock);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

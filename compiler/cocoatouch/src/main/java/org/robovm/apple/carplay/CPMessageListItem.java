@@ -103,11 +103,23 @@ import org.robovm.apple.coreanimation.*;
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "leadingDetailTextImage")
+    public native UIImage getLeadingDetailTextImage();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLeadingDetailTextImage:")
+    public native void setLeadingDetailTextImage(UIImage v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @GlobalValue(symbol="CPMaximumMessageItemImageSize", optional=true)
     public static native @ByVal CGSize getMaximumImageSize();
+    @GlobalValue(symbol="CPMaximumMessageItemLeadingDetailTextImageSize", optional=true)
+    public static native @ByVal CGSize getMaximumMessageItemLeadingDetailTextImageSize();
     
     @Method(selector = "initWithConversationIdentifier:text:leadingConfiguration:trailingConfiguration:detailText:trailingText:")
     protected native @Pointer long initUsingConversationIdentifier(String conversationIdentifier, String text, CPMessageListItemLeadingConfiguration leadingConfiguration, CPMessageListItemTrailingConfiguration trailingConfiguration, String detailText, String trailingText);

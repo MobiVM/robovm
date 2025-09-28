@@ -51,8 +51,61 @@ import org.robovm.apple.coreanimation.*;
     public CPListImageRowItem() {}
     protected CPListImageRowItem(Handle h, long handle) { super(h, handle); }
     protected CPListImageRowItem(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use initWithText:elements:allowsMultipleLines:
+     */
+    @Deprecated
     @Method(selector = "initWithText:images:")
     public CPListImageRowItem(String text, NSArray<UIImage> images) { super((SkipInit) null); initObject(init(text, images)); }
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 26.0. Use initWithText:elements:allowsMultipleLines:
+     */
+    @Deprecated
+    @Method(selector = "initWithText:images:imageTitles:")
+    public CPListImageRowItem(String text, NSArray<UIImage> images, NSArray<NSString> imageTitles) { super((SkipInit) null); initObject(init(text, images, imageTitles)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:elements:allowsMultipleLines:")
+    public CPListImageRowItem(String text, NSArray<CPListImageRowItemRowElement> elements, boolean allowsMultipleLines) { super((SkipInit) null); initObject(init(text, elements, allowsMultipleLines)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:cardElements:allowsMultipleLines:")
+    public static  CPListImageRowItem createWithCardElements(String text, NSArray<CPListImageRowItemCardElement> elements, boolean allowsMultipleLines) {
+       CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
+       res.initObject(res.initWithCardElements(text, elements, allowsMultipleLines));
+       return res;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:condensedElements:allowsMultipleLines:")
+    public static  CPListImageRowItem createWithCondensedElements(String text, NSArray<CPListImageRowItemCondensedElement> elements, boolean allowsMultipleLines) {
+       CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
+       res.initObject(res.initWithCondensedElements(text, elements, allowsMultipleLines));
+       return res;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:gridElements:allowsMultipleLines:")
+    public static  CPListImageRowItem createWithGridElements(String text, NSArray<CPListImageRowItemGridElement> elements, boolean allowsMultipleLines) {
+       CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
+       res.initObject(res.initWithGridElements(text, elements, allowsMultipleLines));
+       return res;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:imageGridElements:allowsMultipleLines:")
+    public static  CPListImageRowItem createWithImageGridElements(String text, NSArray<CPListImageRowItemImageGridElement> elements, boolean allowsMultipleLines) {
+       CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
+       res.initObject(res.initWithImageGridElements(text, elements, allowsMultipleLines));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "text")
@@ -83,12 +136,44 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "gridImages")
     public native NSArray<UIImage> getGridImages();
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
+     */
+    @Deprecated
+    @Property(selector = "imageTitles")
+    public native NSArray<NSString> getImageTitles();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "elements")
+    public native NSArray<CPListImageRowItemElement> getElements();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setElements:")
+    public native void setElements(NSArray<CPListImageRowItemElement> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsMultipleLines")
+    public native boolean allowsMultipleLines();
     @Property(selector = "listImageRowHandler")
     public native @Block("(,@MachineSizedSInt,@Block)") VoidBlock3<CPListImageRowItem, Long, Runnable> getListImageRowHandler();
     @Property(selector = "setListImageRowHandler:")
     public native void setListImageRowHandler(@Block("(,@MachineSizedSInt,@Block)") VoidBlock3<CPListImageRowItem, Long, Runnable> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use +[CPListImageRowItemElement maximumImageSize] on an appropriate element
+     */
+    @Deprecated
     @Property(selector = "maximumImageSize")
     public static native @ByVal CGSize getMaximumImageSize();
     /*</properties>*/
@@ -97,8 +182,50 @@ import org.robovm.apple.coreanimation.*;
     @GlobalValue(symbol="CPMaximumNumberOfGridImages", optional=true)
     public static native @MachineSizedUInt long getMaximumNumberOfGridImages();
     
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use initWithText:elements:allowsMultipleLines:
+     */
+    @Deprecated
     @Method(selector = "initWithText:images:")
     protected native @Pointer long init(String text, NSArray<UIImage> images);
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 26.0. Use initWithText:elements:allowsMultipleLines:
+     */
+    @Deprecated
+    @Method(selector = "initWithText:images:imageTitles:")
+    protected native @Pointer long init(String text, NSArray<UIImage> images, NSArray<NSString> imageTitles);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:elements:allowsMultipleLines:")
+    protected native @Pointer long init(String text, NSArray<CPListImageRowItemRowElement> elements, boolean allowsMultipleLines);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:cardElements:allowsMultipleLines:")
+    protected native @Pointer long initWithCardElements(String text, NSArray<CPListImageRowItemCardElement> elements, boolean allowsMultipleLines);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:condensedElements:allowsMultipleLines:")
+    protected native @Pointer long initWithCondensedElements(String text, NSArray<CPListImageRowItemCondensedElement> elements, boolean allowsMultipleLines);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:gridElements:allowsMultipleLines:")
+    protected native @Pointer long initWithGridElements(String text, NSArray<CPListImageRowItemGridElement> elements, boolean allowsMultipleLines);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithText:imageGridElements:allowsMultipleLines:")
+    protected native @Pointer long initWithImageGridElements(String text, NSArray<CPListImageRowItemImageGridElement> elements, boolean allowsMultipleLines);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
+     */
+    @Deprecated
     @Method(selector = "updateImages:")
     public native void updateImages(NSArray<UIImage> gridImages);
     /*</methods>*/
