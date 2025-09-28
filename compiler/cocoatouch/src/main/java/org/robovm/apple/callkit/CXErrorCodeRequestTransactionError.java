@@ -47,7 +47,8 @@ public enum /*<name>*/CXErrorCodeRequestTransactionError/*</name>*/ implements N
     UnknownCallUUID(4L),
     CallUUIDAlreadyExists(5L),
     InvalidAction(6L),
-    MaximumCallGroupsReached(7L);
+    MaximumCallGroupsReached(7L),
+    CallIsProtected(8L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CXErrorCodeRequestTransactionError.class); }/*</bind>*/

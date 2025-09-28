@@ -20,6 +20,7 @@ enums:
     CXCallEndedReason: {} #since 10.0
     CXCallDirectoryEnabledStatus: {} #since 10.0
     CXErrorCodeNotificationServiceExtensionError: {nserror: true} #since 14.5
+    CXTranslationEngine: {}
 typed_enums:
 
 classes:
@@ -138,7 +139,10 @@ classes:
                 name: init
             '-initWithAction:':
                 name: init
-
+    CXSetTranslatingCallAction: #since 26.0
+        methods:
+            '-initWithCallUUID:isTranslating:localLanguage:remoteLanguage:':
+                name: init
 protocols:
     CXCallDirectoryExtensionContextDelegate: #since 10.0
         methods:
@@ -172,6 +176,8 @@ protocols:
                 name: didActivateAudioSession
             '-provider:didDeactivateAudioSession:':
                 name: didDeactivateAudioSession
+            '-provider:performSetTranslatingCallAction:':
+                name: performSetTranslatingCallAction
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CX.*):
