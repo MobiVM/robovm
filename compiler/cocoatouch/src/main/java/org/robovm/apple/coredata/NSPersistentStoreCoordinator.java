@@ -118,7 +118,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setName:")
     public native void setName(String v);
     @Property(selector = "registeredStoreTypes")
-    public static native NSDictionary<NSString, NSPersistentStore> getRegisteredStoreTypes();
+    public static native NSDictionary<NSString, NSValue> getRegisteredStoreTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -322,6 +322,8 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "finishDeferredLightweightMigrationTask:")
     private native boolean finishDeferredLightweightMigrationTask(NSError.NSErrorPtr error);
+    @Method(selector = "managedObjectIDFromUTF8String:length:")
+    public native NSManagedObjectID managedObjectIDFromUTF8String(BytePtr utf8string, @MachineSizedUInt long len);
     /**
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */

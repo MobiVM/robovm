@@ -720,6 +720,8 @@ classes:
                 throws: NSErrorException
             '-finishDeferredLightweightMigration:':
                 throws: NSErrorException
+            '-managedObjectIDFromUTF8String:length:':
+                name: managedObjectIDFromUTF8String
 
     NSPersistentStoreRequest: # DONE
         properties:
