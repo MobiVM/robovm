@@ -100,6 +100,10 @@ public class ClassInfoImpl extends ClassInfo {
 //                errorMessage = reader.readStringZ(ptr);
 //            }
 //            System.out.println("!Class " + className + " has error " + errorType + " due " + errorMessage);
+            // debugger might ask this info even if class reported as ClassStatus.ERROR
+            interfaces = new ClassInfo[0];
+            fields = new FieldInfo[0];
+            methods = new MethodInfo[0];
             return;
         }
 
