@@ -40,7 +40,19 @@ public enum /*<name>*/AEAssessmentErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    UnsupportedPlatform(2L);
+    UnsupportedPlatform(2L),
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    MultipleParticipantsNotSupported(3L),
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    ConfigurationUpdatesNotSupported(4L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    RequiredParticipantsNotAvailable(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(AEAssessmentErrorCode.class); }/*</bind>*/
@@ -52,6 +64,21 @@ public enum /*<name>*/AEAssessmentErrorCode/*</name>*/ implements NSErrorCode {
      */
     @GlobalValue(symbol="AEAssessmentErrorDomain", optional=true)
     public static native String getClassDomain();
+    @Library("AutomaticAssessmentConfiguration")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AENotInstalledParticipantsKey", optional=true)
+        public static native String NotInstalledParticipants();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AERestrictedSystemParticipantsKey", optional=true)
+        public static native String RestrictedSystemParticipants();
+    }
     /*</methods>*/
 
     private final long n;

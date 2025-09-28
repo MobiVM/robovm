@@ -51,6 +51,16 @@ import org.robovm.apple.foundation.*;
     public AEAssessmentSession(AEAssessmentConfiguration configuration) { super((SkipInit) null); initObject(init(configuration)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "supportsMultipleParticipants")
+    public static native boolean supportsMultipleParticipants();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "supportsConfigurationUpdates")
+    public static native boolean supportsConfigurationUpdates();
     @Property(selector = "delegate")
     public native AEAssessmentSessionDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
@@ -71,5 +81,10 @@ import org.robovm.apple.foundation.*;
     public native void begin();
     @Method(selector = "end")
     public native void end();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "updateToConfiguration:")
+    public native void updateToConfiguration(AEAssessmentConfiguration configuration);
     /*</methods>*/
 }
