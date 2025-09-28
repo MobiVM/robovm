@@ -52,7 +52,11 @@ import org.robovm.apple.fileprovider.*;
     protected CKSyncEngineDidFetchChangesEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "context")
+    public native CKSyncEngineFetchChangesContext getContext();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

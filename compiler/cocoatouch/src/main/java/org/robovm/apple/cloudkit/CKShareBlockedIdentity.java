@@ -35,40 +35,29 @@ import org.robovm.apple.fileprovider.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKUserIdentity/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CKShareBlockedIdentity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CKUserIdentityPtr extends Ptr<CKUserIdentity, CKUserIdentityPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CKUserIdentity.class); }/*</bind>*/
+    /*<ptr>*/public static class CKShareBlockedIdentityPtr extends Ptr<CKShareBlockedIdentity, CKShareBlockedIdentityPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CKShareBlockedIdentity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CKUserIdentity() {}
-    protected CKUserIdentity(Handle h, long handle) { super(h, handle); }
-    protected CKUserIdentity(SkipInit skipInit) { super(skipInit); }
+    protected CKShareBlockedIdentity() {}
+    protected CKShareBlockedIdentity(Handle h, long handle) { super(h, handle); }
+    protected CKShareBlockedIdentity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CKUserIdentity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CKShareBlockedIdentity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "userRecordID")
-    public native CKRecordID getUserRecordID();
-    @Property(selector = "lookupInfo")
-    public native CKUserIdentityLookupInfo getLookupInfo();
-    @Property(selector = "nameComponents")
-    public native NSPersonNameComponents getNameComponents();
-    @Property(selector = "hasiCloudAccount")
-    public native boolean isHasiCloudAccount();
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
-     */
-    @Deprecated
-    @Property(selector = "contactIdentifiers")
-    public native NSArray<NSString> getContactIdentifiers();
+    @Property(selector = "userIdentity")
+    public native CKUserIdentity getUserIdentity();
+    @Property(selector = "contact")
+    public native CNContact getContact();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -34,21 +34,13 @@ import org.robovm.apple.fileprovider.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CKShareParticipantRole/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CKRecordZoneEncryptionScope/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    Owner(1L),
-    PrivateUser(3L),
-    PublicUser(4L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    Administrator(2L);
+    PerRecord(0L),
+    PerZone(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,15 +50,15 @@ public enum /*<name>*/CKShareParticipantRole/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/CKShareParticipantRole/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CKRecordZoneEncryptionScope/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CKShareParticipantRole/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CKShareParticipantRole/*</name>*/ v : values()) {
+    public static /*<name>*/CKRecordZoneEncryptionScope/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CKRecordZoneEncryptionScope/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CKShareParticipantRole/*</name>*/.class.getName());
+            + /*<name>*/CKRecordZoneEncryptionScope/*</name>*/.class.getName());
     }
 }

@@ -64,8 +64,28 @@ import org.robovm.apple.fileprovider.*;
     public native CKSharingParticipantAccessOption getAllowedParticipantAccessOptions();
     @Property(selector = "setAllowedParticipantAccessOptions:")
     public native void setAllowedParticipantAccessOptions(CKSharingParticipantAccessOption v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsParticipantsToInviteOthers")
+    public native boolean allowsParticipantsToInviteOthers();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsParticipantsToInviteOthers:")
+    public native void setAllowsParticipantsToInviteOthers(boolean v);
     @Property(selector = "standardOptions")
     public static native CKAllowedSharingOptions getStandardOptions();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsAccessRequests")
+    public native boolean allowsAccessRequests();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsAccessRequests:")
+    public native void setAllowsAccessRequests(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -71,5 +71,10 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(NSSet<CKRecordZoneID> zoneIDs);
     @Method(selector = "initWithExcludedZoneIDs:")
     protected native @Pointer long initWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Method(selector = "containsZoneID:")
+    public native boolean containsZoneID(CKRecordZoneID zoneID);
     /*</methods>*/
 }

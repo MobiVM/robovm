@@ -50,6 +50,7 @@ enums:
     CKSyncEngineEventType: {}
     CKSyncEngineAccountChangeType: {}
     CKSyncEngineZoneDeletionReason: {}
+    CKRecordZoneEncryptionScope: {}
 classes:
     CKError:
         extends: NSError
@@ -565,6 +566,12 @@ classes:
     CKSyncEngineWillFetchChangesEvent: {} #since 17.0
     CKSyncEngineWillFetchRecordZoneChangesEvent: {} #since 17.0
     CKSyncEngineWillSendChangesEvent: {} #since 17.0
+    CKShareAccessRequester: { } #since 26.0
+    CKShareBlockedIdentity: { } #since 26.0
+    CKShareRequestAccessOperation: #since 26.0
+        methods:
+            '-initWithShareURLs:':
+                name: init
 protocols:
     CKRecordValue: # DONE
         adapter: false
