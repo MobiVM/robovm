@@ -210,6 +210,8 @@ classes:
                 name: scrollTo
             '-scrollRectToVisible:':
                 name: scrollTo
+            '+layerWithRemoteClientId:':
+                name: layerWithRemoteClientId
     CAMediaTimingFunction: # DONE
         methods:
             '-initWithControlPoints::::':
@@ -562,6 +564,14 @@ typed_enums:
         type: NSString
         kCACornerCurve(.*):
             name: '#{g[0]}'
+    CAToneMapMode:
+        enum: CAToneMapMode
+        type: NSString
+        prefix: CAToneMapMode
+    CADynamicRange:
+        enum: CADynamicRange
+        type: NSString
+        prefix: CADynamicRange
 constants:
     CA_TEST:
         exclude: true

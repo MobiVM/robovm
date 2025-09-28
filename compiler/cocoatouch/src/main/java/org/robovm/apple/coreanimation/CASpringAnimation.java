@@ -58,6 +58,7 @@ import org.robovm.apple.corevideo.*;
      */
     @Method(selector = "initWithPerceptualDuration:bounce:")
     public CASpringAnimation(double perceptualDuration, @MachineSizedFloat double bounce) { super((SkipInit) null); initObject(init(perceptualDuration, bounce)); }
+    public CASpringAnimation(String path) { super((Handle) null, create(path)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mass")
@@ -108,6 +109,8 @@ import org.robovm.apple.corevideo.*;
      */
     @Method(selector = "initWithPerceptualDuration:bounce:")
     protected native @Pointer long init(double perceptualDuration, @MachineSizedFloat double bounce);
+    @Method(selector = "animationWithKeyPath:")
+    protected static native @Pointer long create(String path);
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
     /*</methods>*/

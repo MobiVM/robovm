@@ -39,25 +39,25 @@ import org.robovm.apple.corevideo.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @StronglyLinked/*</annotations>*/
-@Marshaler(/*<name>*/CALayerContentsFormat/*</name>*/.Marshaler.class)
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CALayerContentsFormat/*</name>*/ 
+@Marshaler(/*<name>*/CAToneMapMode/*</name>*/.Marshaler.class)
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CAToneMapMode/*</name>*/ 
     extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
-    static { Bro.bind(/*<name>*/CALayerContentsFormat/*</name>*/.class); }
+    static { Bro.bind(/*<name>*/CAToneMapMode/*</name>*/.class); }
 
     /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
-        public static CALayerContentsFormat toObject(Class<CALayerContentsFormat> cls, long handle, long flags) {
+        public static CAToneMapMode toObject(Class<CAToneMapMode> cls, long handle, long flags) {
             NSString o = (NSString) NSObject.Marshaler.toObject(NSString.class, handle, flags);
             if (o == null) {
                 return null;
             }
-            return CALayerContentsFormat.valueOf(o);
+            return CAToneMapMode.valueOf(o);
         }
         @MarshalsPointer
-        public static long toNative(CALayerContentsFormat o, long flags) {
+        public static long toNative(CAToneMapMode o, long flags) {
             if (o == null) {
                 return 0L;
             }
@@ -67,24 +67,24 @@ import org.robovm.apple.corevideo.*;
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
-        public static List<CALayerContentsFormat> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+        public static List<CAToneMapMode> toObject(Class<? extends NSObject> cls, long handle, long flags) {
             NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
-            List<CALayerContentsFormat> list = new ArrayList<>();
+            List<CAToneMapMode> list = new ArrayList<>();
             for (int i = 0; i < o.size(); i++) {
-                list.add(CALayerContentsFormat.valueOf(o.get(i)));
+                list.add(CAToneMapMode.valueOf(o.get(i)));
             }
             return list;
         }
         @MarshalsPointer
-        public static long toNative(List<CALayerContentsFormat> l, long flags) {
+        public static long toNative(List<CAToneMapMode> l, long flags) {
             if (l == null) {
                 return 0L;
             }
             NSArray<NSString> array = new NSMutableArray<>();
-            for (CALayerContentsFormat o : l) {
+            for (CAToneMapMode o : l) {
                 array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
@@ -94,37 +94,33 @@ import org.robovm.apple.corevideo.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    public static final CALayerContentsFormat RGBA8Uint = new CALayerContentsFormat("RGBA8Uint");
+    public static final CAToneMapMode Automatic = new CAToneMapMode("Automatic");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    public static final CALayerContentsFormat RGBA16Float = new CALayerContentsFormat("RGBA16Float");
+    public static final CAToneMapMode Never = new CAToneMapMode("Never");
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    public static final CALayerContentsFormat Gray8Uint = new CALayerContentsFormat("Gray8Uint");
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    public static final CALayerContentsFormat Automatic = new CALayerContentsFormat("Automatic");
+    public static final CAToneMapMode IfSupported = new CAToneMapMode("IfSupported");
     /*</constants>*/
     
-    private static /*<name>*/CALayerContentsFormat/*</name>*/[] values = new /*<name>*/CALayerContentsFormat/*</name>*/[] {/*<value_list>*/RGBA8Uint, RGBA16Float, Gray8Uint, Automatic/*</value_list>*/};
+    private static /*<name>*/CAToneMapMode/*</name>*/[] values = new /*<name>*/CAToneMapMode/*</name>*/[] {/*<value_list>*/Automatic, Never, IfSupported/*</value_list>*/};
     
-    /*<name>*/CALayerContentsFormat/*</name>*/ (String getterName) {
+    /*<name>*/CAToneMapMode/*</name>*/ (String getterName) {
         super(Values.class, getterName);
     }
     
-    public static /*<name>*/CALayerContentsFormat/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
-        for (/*<name>*/CALayerContentsFormat/*</name>*/ v : values) {
+    public static /*<name>*/CAToneMapMode/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/CAToneMapMode/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
-            + /*<name>*/CALayerContentsFormat/*</name>*/.class.getName());
+            + /*<name>*/CAToneMapMode/*</name>*/.class.getName());
     }
     
     /*<methods>*//*</methods>*/
@@ -135,25 +131,20 @@ import org.robovm.apple.corevideo.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 10.0 and later.
+         * @since Available in iOS 18.0 and later.
          */
-        @GlobalValue(symbol="kCAContentsFormatRGBA8Uint", optional=true)
-        public static native NSString RGBA8Uint();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCAContentsFormatRGBA16Float", optional=true)
-        public static native NSString RGBA16Float();
-        /**
-         * @since Available in iOS 10.0 and later.
-         */
-        @GlobalValue(symbol="kCAContentsFormatGray8Uint", optional=true)
-        public static native NSString Gray8Uint();
-        /**
-         * @since Available in iOS 12.0 and later.
-         */
-        @GlobalValue(symbol="kCAContentsFormatAutomatic", optional=true)
+        @GlobalValue(symbol="CAToneMapModeAutomatic", optional=true)
         public static native NSString Automatic();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="CAToneMapModeNever", optional=true)
+        public static native NSString Never();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="CAToneMapModeIfSupported", optional=true)
+        public static native NSString IfSupported();
         /*</values>*/
     }
 }
