@@ -50,6 +50,7 @@ public enum /*<name>*/BAErrorCode/*</name>*/ implements NSErrorCode {
     DownloadEssentialDownloadNotPermitted(109L),
     DownloadBackgroundActivityProhibited(111L),
     DownloadWouldExceedAllowance(112L),
+    DownloadDoesNotExist(113L),
     SessionDownloadDisallowedByDomain(202L),
     SessionDownloadDisallowedByAllowance(203L),
     SessionDownloadAllowanceExceeded(204L),
