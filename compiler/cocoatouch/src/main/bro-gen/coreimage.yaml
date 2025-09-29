@@ -342,6 +342,14 @@ classes:
                 name: apply
             '+roiTileArrayForInput:arguments:outputRect:':
                 name: roiTileArrayForInput
+            '+processWithInputs:arguments:outputs:error:':
+                name: process
+                throws: NSErrorException
+            '+outputFormatAtIndex:arguments:':
+                name: getOutputFormat
+            '+applyWithExtents:inputs:arguments:error:':
+                name: apply
+                throws: NSErrorException
     CIPDF417CodeDescriptor: #since 11.0
         methods:
             '-initWithPayload:isCompact:rowCount:columnCount:':
@@ -459,6 +467,10 @@ typed_enums:
         enum: CIRAWDecoderVersion
         type: NSString
         prefix: CIRAWDecoder
+    CIDynamicRangeOption:
+        enum: CIDynamicRangeOption
+        type: NSString
+        prefix: kCIDynamicRange
 
 values:
     # CIContext
