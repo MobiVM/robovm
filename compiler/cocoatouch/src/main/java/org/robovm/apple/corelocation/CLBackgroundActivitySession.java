@@ -66,5 +66,10 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "backgroundActivitySession")
     public static native CLBackgroundActivitySession backgroundActivitySession();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "backgroundActivitySessionWithQueue:handler:")
+    public static native CLBackgroundActivitySession backgroundActivitySession(org.robovm.apple.dispatch.DispatchQueue queue, @Block VoidBlock1<CLBackgroundActivitySessionDiagnostic> handler);
     /*</methods>*/
 }

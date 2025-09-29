@@ -36,16 +36,12 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/CLMonitoringState/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/CLServiceSessionAuthorizationRequirement/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Unknown(0L),
-    Satisfied(1L),
-    Unsatisfied(2L),
-    /**
-     * @since Available in iOS 17.2 and later.
-     */
-    Unmonitored(3L);
+    None(0L),
+    WhenInUse(1L),
+    Always(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +51,15 @@ public enum /*<name>*/CLMonitoringState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/CLMonitoringState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CLServiceSessionAuthorizationRequirement/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CLMonitoringState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CLMonitoringState/*</name>*/ v : values()) {
+    public static /*<name>*/CLServiceSessionAuthorizationRequirement/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CLServiceSessionAuthorizationRequirement/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CLMonitoringState/*</name>*/.class.getName());
+            + /*<name>*/CLServiceSessionAuthorizationRequirement/*</name>*/.class.getName());
     }
 }

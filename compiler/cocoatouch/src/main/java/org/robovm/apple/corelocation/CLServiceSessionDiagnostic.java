@@ -35,39 +35,42 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLMonitor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLServiceSessionDiagnostic/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CLMonitorPtr extends Ptr<CLMonitor, CLMonitorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLMonitor.class); }/*</bind>*/
+    /*<ptr>*/public static class CLServiceSessionDiagnosticPtr extends Ptr<CLServiceSessionDiagnostic, CLServiceSessionDiagnosticPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLServiceSessionDiagnostic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLMonitor() {}
-    protected CLMonitor(Handle h, long handle) { super(h, handle); }
-    protected CLMonitor(SkipInit skipInit) { super(skipInit); }
+    public CLServiceSessionDiagnostic() {}
+    protected CLServiceSessionDiagnostic(Handle h, long handle) { super(h, handle); }
+    protected CLServiceSessionDiagnostic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "name")
-    public native String getName();
-    @Property(selector = "monitoredIdentifiers")
-    public native NSArray<NSString> getMonitoredIdentifiers();
+    @Property(selector = "authorizationDenied")
+    public native boolean isAuthorizationDenied();
+    @Property(selector = "authorizationDeniedGlobally")
+    public native boolean isAuthorizationDeniedGlobally();
+    @Property(selector = "authorizationRestricted")
+    public native boolean isAuthorizationRestricted();
+    @Property(selector = "insufficientlyInUse")
+    public native boolean isInsufficientlyInUse();
+    @Property(selector = "serviceSessionRequired")
+    public native boolean isServiceSessionRequired();
+    @Property(selector = "fullAccuracyDenied")
+    public native boolean isFullAccuracyDenied();
+    @Property(selector = "alwaysAuthorizationDenied")
+    public native boolean alwaysAuthorizationDenied();
+    @Property(selector = "authorizationRequestInProgress")
+    public native boolean isAuthorizationRequestInProgress();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addConditionForMonitoring:identifier:")
-    public native void addCondition(CLCondition condition, String identifier);
-    @Method(selector = "addConditionForMonitoring:identifier:assumedState:")
-    public native void addCondition(CLCondition condition, String identifier, CLMonitoringState state);
-    @Method(selector = "removeConditionFromMonitoringWithIdentifier:")
-    public native void removeCondition(String identifier);
-    @Method(selector = "monitoringRecordForIdentifier:")
-    public native CLMonitoringRecord monitoringRecordForIdentifier(String identifier);
-    @Method(selector = "requestMonitorWithConfiguration:completion:")
-    public static native void requestMonitor(CLMonitorConfiguration config, @Block VoidBlock1<CLMonitor> completionHandler);
+    
     /*</methods>*/
 }

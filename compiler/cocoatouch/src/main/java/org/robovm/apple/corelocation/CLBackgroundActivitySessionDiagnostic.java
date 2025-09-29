@@ -35,73 +35,31 @@ import org.robovm.apple.contacts.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLMonitoringEvent/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBackgroundActivitySessionDiagnostic/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class CLMonitoringEventPtr extends Ptr<CLMonitoringEvent, CLMonitoringEventPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CLMonitoringEvent.class); }/*</bind>*/
+    /*<ptr>*/public static class CLBackgroundActivitySessionDiagnosticPtr extends Ptr<CLBackgroundActivitySessionDiagnostic, CLBackgroundActivitySessionDiagnosticPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CLBackgroundActivitySessionDiagnostic.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected CLMonitoringEvent() {}
-    protected CLMonitoringEvent(Handle h, long handle) { super(h, handle); }
-    protected CLMonitoringEvent(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public CLMonitoringEvent(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CLBackgroundActivitySessionDiagnostic() {}
+    protected CLBackgroundActivitySessionDiagnostic(Handle h, long handle) { super(h, handle); }
+    protected CLBackgroundActivitySessionDiagnostic(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "identifier")
-    public native String getIdentifier();
-    @Property(selector = "refinement")
-    public native CLCondition getRefinement();
-    @Property(selector = "state")
-    public native CLMonitoringState getState();
-    @Property(selector = "date")
-    public native NSDate getDate();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
     @Property(selector = "authorizationDenied")
     public native boolean isAuthorizationDenied();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
     @Property(selector = "authorizationDeniedGlobally")
     public native boolean isAuthorizationDeniedGlobally();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
     @Property(selector = "authorizationRestricted")
     public native boolean isAuthorizationRestricted();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
     @Property(selector = "insufficientlyInUse")
     public native boolean isInsufficientlyInUse();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Property(selector = "accuracyLimited")
-    public native boolean isAccuracyLimited();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Property(selector = "conditionUnsupported")
-    public native boolean isConditionUnsupported();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Property(selector = "conditionLimitExceeded")
-    public native boolean isConditionLimitExceeded();
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Property(selector = "persistenceUnavailable")
-    public native boolean isPersistenceUnavailable();
     /**
      * @since Available in iOS 18.0 and later.
      */
@@ -112,14 +70,9 @@ import org.robovm.apple.contacts.*;
      */
     @Property(selector = "authorizationRequestInProgress")
     public native boolean isAuthorizationRequestInProgress();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }
