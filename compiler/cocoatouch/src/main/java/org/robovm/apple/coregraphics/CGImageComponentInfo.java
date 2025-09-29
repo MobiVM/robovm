@@ -33,23 +33,13 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CGImageComponentInfo/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @deprecated Use kCGBitmapPixelFormatInfoMask
-     */
-    @Deprecated
-    Mask(983040L),
-    Packed(0L),
-    RGB555(65536L),
-    RGB565(131072L),
-    RGB101010(196608L),
-    RGBCIF10(262144L);
+    Integer(0L),
+    Float(256L);
     /*</values>*/
 
     /*<bind>*/
@@ -59,15 +49,15 @@ public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/CGImagePixelFormatInfo/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CGImageComponentInfo/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/CGImagePixelFormatInfo/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CGImagePixelFormatInfo/*</name>*/ v : values()) {
+    public static /*<name>*/CGImageComponentInfo/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CGImageComponentInfo/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CGImagePixelFormatInfo/*</name>*/.class.getName());
+            + /*<name>*/CGImageComponentInfo/*</name>*/.class.getName());
     }
 }

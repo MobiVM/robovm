@@ -126,69 +126,6 @@ import org.robovm.apple.uikit.*;
         first.update(points);
         strokeLineSegments(first, points.length);
     }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void selectFont(String name, double size, CGTextEncoding textEncoding) {
-        selectFont(VM.getStringUTFChars(name), size, textEncoding);
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void showText(String string) {
-        byte[] bytes = string.getBytes();
-        showText(VM.getArrayValuesAddress(bytes), bytes.length);
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void showTextAtPoint(double x, double y, String string) {
-        byte[] bytes = string.getBytes();
-        showTextAtPoint(x, y, VM.getArrayValuesAddress(bytes), bytes.length);
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void showGlyphs(char[] glyphs) {
-        showGlyphs(VM.getArrayValuesAddress(glyphs), glyphs.length);
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void showGlyphsAtPoint(double x, double y, char[] glyphs) {
-        showGlyphsAtPoint(x, y, VM.getArrayValuesAddress(glyphs), glyphs.length);
-    }
-    public void showGlyphsAtPositions(char[] glyphs, CGPoint[] positions, long count) {
-        if (glyphs.length != positions.length) {
-            throw new IllegalArgumentException("glyphs.length != positions.length");
-        }
-        CGPoint first = Struct.allocate(CGPoint.class, positions.length);
-        first.update(positions);
-        showGlyphsAtPositions(VM.getArrayValuesAddress(glyphs), first, glyphs.length);
-    }
-    /**
-     * @since Available in iOS 2.0 and later.
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    public void showGlyphsWithAdvances(char[] glyphs, CGSize[] advances) {
-        if (glyphs.length != advances.length) {
-            throw new IllegalArgumentException("glyphs.length != advances.length");
-        }
-        CGSize first = Struct.allocate(CGSize.class, advances.length);
-        first.update(advances);
-        showGlyphsWithAdvances(VM.getArrayValuesAddress(glyphs), first, glyphs.length);
-    }    
     /*<methods>*/
     @Bridge(symbol="CGContextGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
@@ -330,10 +267,35 @@ import org.robovm.apple.uikit.*;
     public native void setCMYKStrokeColor(@MachineSizedFloat double cyan, @MachineSizedFloat double magenta, @MachineSizedFloat double yellow, @MachineSizedFloat double black, @MachineSizedFloat double alpha);
     @Bridge(symbol="CGContextSetRenderingIntent", optional=true)
     public native void setRenderingIntent(CGColorRenderingIntent intent);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGContextSetEDRTargetHeadroom", optional=true)
+    public native boolean setEDRTargetHeadroom(float headroom);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGContextGetEDRTargetHeadroom", optional=true)
+    public native float getEDRTargetHeadroom();
     @Bridge(symbol="CGContextDrawImage", optional=true)
     public native void drawImage(@ByVal CGRect rect, CGImage image);
     @Bridge(symbol="CGContextDrawTiledImage", optional=true)
     public native void drawTiledImage(@ByVal CGRect rect, CGImage image);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGContextDrawImageApplyingToneMapping", optional=true)
+    public native boolean drawImageApplyingToneMapping(@ByVal CGRect r, CGImage image, CGToneMapping method, NSDictionary options);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGContextGetContentToneMappingInfo", optional=true)
+    public native @ByVal CGContentToneMappingInfo getContentToneMappingInfo();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGContextSetContentToneMappingInfo", optional=true)
+    public native void setContentToneMappingInfo(@ByVal CGContentToneMappingInfo info);
     @Bridge(symbol="CGContextGetInterpolationQuality", optional=true)
     public native CGInterpolationQuality getInterpolationQuality();
     @Bridge(symbol="CGContextSetInterpolationQuality", optional=true)
@@ -381,6 +343,11 @@ import org.robovm.apple.uikit.*;
     public native void flush();
     @Bridge(symbol="CGContextSynchronize", optional=true)
     public native void synchronize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGContextSynchronizeAttributes", optional=true)
+    public native void synchronizeAttributes();
     @Bridge(symbol="CGContextSetShouldAntialias", optional=true)
     public native void setShouldAntialias(boolean shouldAntialias);
     @Bridge(symbol="CGContextSetAllowsAntialiasing", optional=true)
@@ -417,42 +384,6 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGRect convertRectToDeviceSpace(@ByVal CGRect rect);
     @Bridge(symbol="CGContextConvertRectToUserSpace", optional=true)
     public native @ByVal CGRect convertRectToUserSpace(@ByVal CGRect rect);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextSelectFont", optional=true)
-    private native void selectFont(@Pointer long name, @MachineSizedFloat double size, CGTextEncoding textEncoding);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextShowText", optional=true)
-    private native void showText(@Pointer long string, @MachineSizedUInt long length);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextShowTextAtPoint", optional=true)
-    private native void showTextAtPoint(@MachineSizedFloat double x, @MachineSizedFloat double y, @Pointer long string, @MachineSizedUInt long length);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextShowGlyphs", optional=true)
-    private native void showGlyphs(@Pointer long g, @MachineSizedUInt long count);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextShowGlyphsAtPoint", optional=true)
-    private native void showGlyphsAtPoint(@MachineSizedFloat double x, @MachineSizedFloat double y, @Pointer long glyphs, @MachineSizedUInt long count);
-    /**
-     * @deprecated Deprecated in iOS 7.0. No longer supported
-     */
-    @Deprecated
-    @Bridge(symbol="CGContextShowGlyphsWithAdvances", optional=true)
-    private native void showGlyphsWithAdvances(@Pointer long glyphs, CGSize advances, @MachineSizedUInt long count);
     @Bridge(symbol="CGContextDrawLayerInRect", optional=true)
     public native void drawLayerInRect(@ByVal CGRect rect, CGLayer layer);
     @Bridge(symbol="CGContextDrawLayerAtPoint", optional=true)

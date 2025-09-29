@@ -33,23 +33,18 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
+public final class /*<name>*/CGColorModel/*</name>*/ extends Bits</*<name>*/CGColorModel/*</name>*/> {
     /*<values>*/
-    /**
-     * @deprecated Use kCGBitmapPixelFormatInfoMask
-     */
-    @Deprecated
-    Mask(983040L),
-    Packed(0L),
-    RGB555(65536L),
-    RGB565(131072L),
-    RGB101010(196608L),
-    RGBCIF10(262144L);
+    public static final CGColorModel None = new CGColorModel(0L);
+    public static final CGColorModel NoColorant = new CGColorModel(0L);
+    public static final CGColorModel Gray = new CGColorModel(1L);
+    public static final CGColorModel RGB = new CGColorModel(2L);
+    public static final CGColorModel CMYK = new CGColorModel(4L);
+    public static final CGColorModel Lab = new CGColorModel(8L);
+    public static final CGColorModel DeviceN = new CGColorModel(16L);
     /*</values>*/
 
     /*<bind>*/
@@ -57,17 +52,17 @@ public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/CGColorModel/*</name>*/[] values = _values(/*<name>*/CGColorModel/*</name>*/.class);
 
-    private /*<name>*/CGImagePixelFormatInfo/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CGImagePixelFormatInfo/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CGImagePixelFormatInfo/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CGImagePixelFormatInfo/*</name>*/.class.getName());
+    public /*<name>*/CGColorModel/*</name>*/(long value) { super(value); }
+    private /*<name>*/CGColorModel/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/CGColorModel/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/CGColorModel/*</name>*/(value, mask);
+    }
+    protected /*<name>*/CGColorModel/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/CGColorModel/*</name>*/[] values() {
+        return values.clone();
     }
 }

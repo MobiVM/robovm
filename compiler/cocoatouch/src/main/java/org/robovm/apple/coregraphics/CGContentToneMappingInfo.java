@@ -33,41 +33,30 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    /**
-     * @deprecated Use kCGBitmapPixelFormatInfoMask
-     */
-    @Deprecated
-    Mask(983040L),
-    Packed(0L),
-    RGB555(65536L),
-    RGB565(131072L),
-    RGB101010(196608L),
-    RGBCIF10(262144L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CGContentToneMappingInfo/*</name>*/ 
+    extends /*<extends>*/Struct<CGContentToneMappingInfo>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class CGContentToneMappingInfoPtr extends Ptr<CGContentToneMappingInfo, CGContentToneMappingInfoPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/CGImagePixelFormatInfo/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/CGImagePixelFormatInfo/*</name>*/ valueOf(long n) {
-        for (/*<name>*/CGImagePixelFormatInfo/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/CGImagePixelFormatInfo/*</name>*/.class.getName());
+    /*<constructors>*/
+    public CGContentToneMappingInfo() {}
+    public CGContentToneMappingInfo(CGToneMapping method, NSDictionary options) {
+        this.setMethod(method);
+        this.setOptions(options);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native CGToneMapping getMethod();
+    @StructMember(0) public native CGContentToneMappingInfo setMethod(CGToneMapping method);
+    @StructMember(1) public native NSDictionary getOptions();
+    @StructMember(1) public native CGContentToneMappingInfo setOptions(NSDictionary options);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }
