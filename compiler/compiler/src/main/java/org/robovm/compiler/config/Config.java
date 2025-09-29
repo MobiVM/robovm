@@ -970,6 +970,7 @@ public class Config {
         if (!isSkipRuntimeLib()) {
             realBootclasspath = new ArrayList<>(bootclasspath);
             realBootclasspath.add(0, home.rtJarPath);
+            realBootclasspath.add(1, home.broBridgeJarPath);
         }
 
         this.vtableCache = new VTable.Cache();
@@ -1050,6 +1051,7 @@ public class Config {
         private final File binDir;
         private final File libVmDir;
         private final File rtJarPath;
+        private final File broBridgeJarPath;
         private final Map<Cacerts, File> cacertsPath;
         private final boolean dev;
 
@@ -1062,17 +1064,19 @@ public class Config {
             binDir = new File(homeDir, "bin");
             libVmDir = new File(homeDir, "lib/vm");
             rtJarPath = new File(homeDir, "lib/robovm-rt.jar");
+            broBridgeJarPath = new File(homeDir, "lib/robovm-bro-bridge.jar");
             cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(homeDir, "lib/robovm-cacerts-full.jar"));
             dev = false;
             if (validate) validate();
         }
 
-        private Home(File devDir, File binDir, File libVmDir, File rtJarPath) {
+        private Home(File devDir, File binDir, File libVmDir, File rtJarPath, File broBridgeJarPath) {
             this.homeDir = devDir;
             this.binDir = binDir;
             this.libVmDir = libVmDir;
             this.rtJarPath = rtJarPath;
+            this.broBridgeJarPath = broBridgeJarPath;
             cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(devDir,
                     "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
@@ -1119,7 +1123,9 @@ public class Config {
             File binDir = new File(devDir, "bin");
             String rtJarName = "robovm-rt-" + Version.getCompilerVersion() + ".jar";
             File rtJar = new File(devDir, "rt/target/" + rtJarName);
-            return new Home(devDir, binDir, vmBinariesDir, rtJar);
+            String broBridgeJarName = "robovm-bro-bridge-" + Version.getCompilerVersion() + ".jar";
+            File broBridgeJar = new File(devDir, "bro-bridge/target/" + broBridgeJarName);
+            return new Home(devDir, binDir, vmBinariesDir, rtJar, broBridgeJar);
         }
 
         public static Home find() {
@@ -1176,6 +1182,9 @@ public class Config {
             }
             if (!rtJarPath.exists() || !rtJarPath.isFile()) {
                 throw new IllegalArgumentException(error + relativize(rtJarPath, homeDir) + " missing or invalid");
+            }
+            if (!broBridgeJarPath.exists() || !broBridgeJarPath.isFile()) {
+                throw new IllegalArgumentException(error + relativize(broBridgeJarPath, homeDir) + " missing or invalid");
             }
 
             // Compare the version of this compiler with the version of the
