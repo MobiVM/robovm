@@ -18,6 +18,8 @@ enums:
     MLComputeUnits: {} #since 12.0
     MLTaskState: {} #since 13.0
     MLUpdateProgressEvent: {} #since 13.0
+    MLReshapeFrequencyHint: { } #since 17.4
+    MLSpecializationStrategy: { } #since 18.0
 typed_enums:
     MLFeatureValueImageOption:
         dictionary: MLFeatureValueImageOption
@@ -135,6 +137,12 @@ classes:
                 name: loadModelAsset
             '+compileModelAtURL:completionHandler:':
                 name: compileModelAtURL
+            '-predictionFromFeatures:usingState:error:':
+                name: predictionFromFeatures
+            '-predictionFromFeatures:usingState:options:error:':
+                name: predictionFromFeatures
+            '-predictionFromFeatures:usingState:options:completionHandler:':
+                name: predictionFromFeatures
     MLModelDescription: {} #since 11.0
     MLMultiArray:  #since 11.0
         methods:
@@ -157,6 +165,8 @@ classes:
                 name: getBytes
             '-getMutableBytesWithHandler:':
                 name: getMutableBytes
+            '-initWithShape:dataType:strides:':
+                name: init
     MLMultiArrayConstraint: {} #since 11.0
     MLPredictionOptions: {} #since 11.0
     MLArrayBatchProvider: #since 12.0
@@ -226,9 +236,55 @@ classes:
                 constructor: true
                 name: create
                 throws: NSErrorException
+            '-modelDescriptionWithCompletionHandler:':
+                name: modelDescription
+            '-modelDescriptionOfFunctionNamed:completionHandler:':
+                name: modelDescriptionOfFunction
+            '-functionNamesWithCompletionHandler:':
+                name: functionNames
+            '+modelAssetWithSpecificationData:blobMapping:error:':
+                constructor: true
+                name: create
+                throws: NSErrorException
+            '+modelAssetWithURL:error:':
+                constructor: true
+                name: create
+                throws: NSErrorException
     MLCPUComputeDevice: {} #since 17.0
     MLGPUComputeDevice: {} #since 17.0
     MLNeuralEngineComputeDevice: {} #since 17.0
+    MLComputePlan: #since 17.4
+        methods:
+            '+loadContentsOfURL:configuration:completionHandler:':
+                name: loadContentsOfURL
+            '+loadModelAsset:configuration:completionHandler:':
+                name: loadModelAsset
+    MLComputePlanCost: {} #since 17.4
+    MLComputePlanDeviceUsage: {} #since 17.4
+    MLModelStructure: #since 17.4
+        methods:
+            '+loadContentsOfURL:completionHandler:':
+                name: loadContentsOfURL
+            '+loadModelAsset:completionHandler:':
+                name: loadModelAsset
+    MLModelStructureNeuralNetwork: {} #since 17.4
+    MLModelStructureNeuralNetworkLayer: {} #since 17.4
+    MLModelStructurePipeline: {} #since 17.4
+    MLModelStructureProgram: {} #since 17.4
+    MLModelStructureProgramArgument: {} #since 17.4
+    MLModelStructureProgramBinding: {} #since 17.4
+    MLModelStructureProgramBlock: {} #since 17.4
+    MLModelStructureProgramFunction: {} #since 17.4
+    MLModelStructureProgramNamedValueType: {} #since 17.4
+    MLModelStructureProgramOperation: {} #since 17.4
+    MLModelStructureProgramValue: {} #since 17.4
+    MLModelStructureProgramValueType: {} #since 17.4
+    MLOptimizationHints: {} #since 17.4
+    MLState: #since 18.0
+        methods:
+            '-getMultiArrayForStateNamed:handler:':
+                name: getMultiArray
+    MLStateConstraint: {} #since 18.0
 protocols:
     MLFeatureProvider: {} #since 11.0
     MLBatchProvider: {} #since 12.0

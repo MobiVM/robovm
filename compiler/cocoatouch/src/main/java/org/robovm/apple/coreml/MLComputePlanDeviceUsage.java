@@ -37,45 +37,30 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Invalid(0L),
-    Int64(1L),
-    Double(2L),
-    String(3L),
-    Image(4L),
-    MultiArray(5L),
-    Dictionary(6L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Sequence(7L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    State(8L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLComputePlanDeviceUsage/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MLComputePlanDeviceUsagePtr extends Ptr<MLComputePlanDeviceUsage, MLComputePlanDeviceUsagePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLComputePlanDeviceUsage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLFeatureType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLFeatureType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLFeatureType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLFeatureType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected MLComputePlanDeviceUsage() {}
+    protected MLComputePlanDeviceUsage(Handle h, long handle) { super(h, handle); }
+    protected MLComputePlanDeviceUsage(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "supportedComputeDevices")
+    public native NSArray<?> getSupportedComputeDevices();
+    @Property(selector = "preferredComputeDevice")
+    public native MLComputeDeviceProtocol getPreferredComputeDevice();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

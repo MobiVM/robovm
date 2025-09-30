@@ -37,27 +37,14 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MLSpecializationStrategy/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(0L),
-    Int64(1L),
-    Double(2L),
-    String(3L),
-    Image(4L),
-    MultiArray(5L),
-    Dictionary(6L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Sequence(7L),
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    State(8L);
+    Default(0L),
+    FastPrediction(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -67,15 +54,15 @@ public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MLFeatureType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MLSpecializationStrategy/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MLFeatureType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLFeatureType/*</name>*/ v : values()) {
+    public static /*<name>*/MLSpecializationStrategy/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MLSpecializationStrategy/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLFeatureType/*</name>*/.class.getName());
+            + /*<name>*/MLSpecializationStrategy/*</name>*/.class.getName());
     }
 }

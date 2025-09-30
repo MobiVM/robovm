@@ -37,45 +37,31 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Invalid(0L),
-    Int64(1L),
-    Double(2L),
-    String(3L),
-    Image(4L),
-    MultiArray(5L),
-    Dictionary(6L),
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    Sequence(7L),
+/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLState/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class MLStatePtr extends Ptr<MLState, MLStatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLState.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected MLState() {}
+    protected MLState(Handle h, long handle) { super(h, handle); }
+    protected MLState(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     /**
      * @since Available in iOS 18.0 and later.
      */
-    State(8L);
-    /*</values>*/
-
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MLFeatureType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MLFeatureType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MLFeatureType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MLFeatureType/*</name>*/.class.getName());
-    }
+    @Method(selector = "getMultiArrayForStateNamed:handler:")
+    public native void getMultiArray(String stateName, @Block VoidBlock1<MLMultiArray> handler);
+    /*</methods>*/
 }

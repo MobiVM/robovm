@@ -37,51 +37,39 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLOptimizationHints/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLOptimizationHintsPtr extends Ptr<MLOptimizationHints, MLOptimizationHintsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLOptimizationHints.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    public MLOptimizationHints() {}
+    protected MLOptimizationHints(Handle h, long handle) { super(h, handle); }
+    protected MLOptimizationHints(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MLModelDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MLOptimizationHints(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
+    @Property(selector = "reshapeFrequency")
+    public native MLReshapeFrequencyHint getReshapeFrequency();
+    @Property(selector = "setReshapeFrequency:")
+    public native void setReshapeFrequency(MLReshapeFrequencyHint v);
     /**
      * @since Available in iOS 18.0 and later.
      */
-    @Property(selector = "stateDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getStateDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<NSString, ?> getMetadata();
+    @Property(selector = "specializationStrategy")
+    public native MLSpecializationStrategy getSpecializationStrategy();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    @Property(selector = "classLabels")
-    public native NSArray<?> getClassLabels();
-    @Property(selector = "isUpdatable")
-    public native boolean isUpdatable();
-    @Property(selector = "trainingInputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getTrainingInputDescriptionsByName();
-    @Property(selector = "parameterDescriptionsByKey")
-    public native NSDictionary<MLParameterKey, MLParameterDescription> getParameterDescriptionsByKey();
+    @Property(selector = "setSpecializationStrategy:")
+    public native void setSpecializationStrategy(MLSpecializationStrategy v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

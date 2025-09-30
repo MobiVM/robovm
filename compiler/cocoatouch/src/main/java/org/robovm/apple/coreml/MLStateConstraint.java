@@ -37,51 +37,35 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelDescription/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MLStateConstraint/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class MLModelDescriptionPtr extends Ptr<MLModelDescription, MLModelDescriptionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MLModelDescription.class); }/*</bind>*/
+    /*<ptr>*/public static class MLStateConstraintPtr extends Ptr<MLStateConstraint, MLStateConstraintPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MLStateConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MLModelDescription() {}
-    protected MLModelDescription(Handle h, long handle) { super(h, handle); }
-    protected MLModelDescription(SkipInit skipInit) { super(skipInit); }
+    public MLStateConstraint() {}
+    protected MLStateConstraint(Handle h, long handle) { super(h, handle); }
+    protected MLStateConstraint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public MLModelDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public MLStateConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "inputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
-    @Property(selector = "outputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
     /**
      * @since Available in iOS 18.0 and later.
      */
-    @Property(selector = "stateDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getStateDescriptionsByName();
-    @Property(selector = "predictedFeatureName")
-    public native String getPredictedFeatureName();
-    @Property(selector = "predictedProbabilitiesName")
-    public native String getPredictedProbabilitiesName();
-    @Property(selector = "metadata")
-    public native NSDictionary<NSString, ?> getMetadata();
+    @Property(selector = "bufferShape")
+    public native NSArray<NSNumber> getBufferShape();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    @Property(selector = "classLabels")
-    public native NSArray<?> getClassLabels();
-    @Property(selector = "isUpdatable")
-    public native boolean isUpdatable();
-    @Property(selector = "trainingInputDescriptionsByName")
-    public native NSDictionary<NSString, MLFeatureDescription> getTrainingInputDescriptionsByName();
-    @Property(selector = "parameterDescriptionsByKey")
-    public native NSDictionary<MLParameterKey, MLParameterDescription> getParameterDescriptionsByKey();
+    @Property(selector = "dataType")
+    public native MLMultiArrayDataType getDataType();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -70,6 +70,16 @@ import org.robovm.apple.metal.*;
     public native MLComputeUnits getComputeUnits();
     @Property(selector = "setComputeUnits:")
     public native void setComputeUnits(MLComputeUnits v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "optimizationHints")
+    public native MLOptimizationHints getOptimizationHints();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setOptimizationHints:")
+    public native void setOptimizationHints(MLOptimizationHints v);
     @Property(selector = "allowLowPrecisionAccumulationOnGPU")
     public native boolean isAllowLowPrecisionAccumulationOnGPU();
     @Property(selector = "setAllowLowPrecisionAccumulationOnGPU:")
@@ -82,6 +92,16 @@ import org.robovm.apple.metal.*;
     public native NSDictionary<MLParameterKey, ?> getParameters();
     @Property(selector = "setParameters:")
     public native void setParameters(NSDictionary<MLParameterKey, ?> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "functionName")
+    public native String getFunctionName();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setFunctionName:")
+    public native void setFunctionName(String v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
