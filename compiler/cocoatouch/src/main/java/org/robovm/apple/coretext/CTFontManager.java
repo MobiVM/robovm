@@ -125,20 +125,36 @@ import org.robovm.apple.uikit.*;
     }
     @Bridge(symbol="CTFontManagerUnregisterFontsForURL", optional=true)
     private static native boolean unregisterFonts(NSURL fontURL, CTFontManagerScope scope, NSError.NSErrorPtr error);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL
+     */
+    @Deprecated
     public static boolean registerGraphicsFont(CGFont font) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = registerGraphicsFont(font, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL
+     */
+    @Deprecated
     @Bridge(symbol="CTFontManagerRegisterGraphicsFont", optional=true)
     private static native boolean registerGraphicsFont(CGFont font, NSError.NSErrorPtr error);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use the API corresponding to the one used to register the font
+     */
+    @Deprecated
     public static boolean unregisterGraphicsFont(CGFont font) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = unregisterGraphicsFont(font, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use the API corresponding to the one used to register the font
+     */
+    @Deprecated
     @Bridge(symbol="CTFontManagerUnregisterGraphicsFont", optional=true)
     private static native boolean unregisterGraphicsFont(CGFont font, NSError.NSErrorPtr error);
     /**
