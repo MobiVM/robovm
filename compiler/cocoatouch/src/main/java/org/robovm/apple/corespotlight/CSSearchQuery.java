@@ -53,6 +53,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "initWithQueryString:queryContext:")
     public CSSearchQuery(String queryString, CSSearchQueryContext queryContext) { super((SkipInit) null); initObject(init(queryString, queryContext)); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithQueryString:queryContext instead
+     */
+    @Deprecated
     @Method(selector = "initWithQueryString:attributes:")
     public CSSearchQuery(String queryString, NSArray<NSString> attributes) { super((SkipInit) null); initObject(init(queryString, attributes)); }
     /*</constructors>*/
@@ -81,6 +86,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "initWithQueryString:queryContext:")
     protected native @Pointer long init(String queryString, CSSearchQueryContext queryContext);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithQueryString:queryContext instead
+     */
+    @Deprecated
     @Method(selector = "initWithQueryString:attributes:")
     protected native @Pointer long init(String queryString, NSArray<NSString> attributes);
     @Method(selector = "start")
