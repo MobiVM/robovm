@@ -21,6 +21,7 @@ enums:
     CMWaterSubmersionDepthState: {}
     CMHighFrequencyHeartRateDataConfidence: {} #since 17.0
     CMOdometerOriginDevice: {} #since 15.4
+    CMHeadphoneActivityStatus: {}
 classes:
     CMError:
         extends: NSError
@@ -163,6 +164,12 @@ classes:
                 name: startDeviceMotionUpdates
     CMHighFrequencyHeartRateData: {} #since 17.0
     CMOdometerData: {} #since 8.0
+    CMHeadphoneActivityManager: #since 18.0
+        methods:
+            '-startActivityUpdatesToQueue:withHandler:':
+                name: startActivityUpdates
+            '-startStatusUpdatesToQueue:withHandler:':
+                name: startStatusUpdates
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
     CMWaterSubmersionManagerDelegate:
