@@ -35,36 +35,24 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDI2DeviceManufacturer/*</name>*/ 
+    extends /*<extends>*/Struct<MIDI2DeviceManufacturer>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class MIDI2DeviceManufacturerPtr extends Ptr<MIDI2DeviceManufacturer, MIDI2DeviceManufacturerPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MIDI2DeviceManufacturer() {}
+    public MIDI2DeviceManufacturer(ByteBuffer sysExIDByte) {
+        this.setSysExIDByte(sysExIDByte);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @Array({3}) ByteBuffer getSysExIDByte();
+    @StructMember(0) public native MIDI2DeviceManufacturer setSysExIDByte(@Array({3}) ByteBuffer sysExIDByte);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

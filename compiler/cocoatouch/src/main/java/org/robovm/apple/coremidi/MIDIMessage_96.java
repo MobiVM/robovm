@@ -35,36 +35,30 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIMessage_96/*</name>*/ 
+    extends /*<extends>*/Struct<MIDIMessage_96>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class MIDIMessage_96Ptr extends Ptr<MIDIMessage_96, MIDIMessage_96Ptr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MIDIMessage_96() {}
+    public MIDIMessage_96(int word0, int word1, int word2) {
+        this.setWord0(word0);
+        this.setWord1(word1);
+        this.setWord2(word2);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native int getWord0();
+    @StructMember(0) public native MIDIMessage_96 setWord0(int word0);
+    @StructMember(1) public native int getWord1();
+    @StructMember(1) public native MIDIMessage_96 setWord1(int word1);
+    @StructMember(2) public native int getWord2();
+    @StructMember(2) public native MIDIMessage_96 setWord2(int word2);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

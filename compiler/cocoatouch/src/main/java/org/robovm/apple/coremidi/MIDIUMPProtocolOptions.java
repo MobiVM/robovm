@@ -34,19 +34,12 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MIDIUMPProtocolOptions/*</name>*/ extends Bits</*<name>*/MIDIUMPProtocolOptions/*</name>*/> {
     /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
+    public static final MIDIUMPProtocolOptions None = new MIDIUMPProtocolOptions(0L);
+    public static final MIDIUMPProtocolOptions _1 = new MIDIUMPProtocolOptions(1L);
+    public static final MIDIUMPProtocolOptions _2 = new MIDIUMPProtocolOptions(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,17 +47,17 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/MIDIUMPProtocolOptions/*</name>*/[] values = _values(/*<name>*/MIDIUMPProtocolOptions/*</name>*/.class);
 
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    public /*<name>*/MIDIUMPProtocolOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/MIDIUMPProtocolOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MIDIUMPProtocolOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MIDIUMPProtocolOptions/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MIDIUMPProtocolOptions/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MIDIUMPProtocolOptions/*</name>*/[] values() {
+        return values.clone();
     }
 }

@@ -32,39 +32,29 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<annotations>*/@Library("CoreMIDI")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIBluetoothDriver/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(MIDIBluetoothDriver.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="MIDIBluetoothDriverActivateAllConnections", optional=true)
+    public static native OSStatus activateAllConnections();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="MIDIBluetoothDriverDisconnect", optional=true)
+    public static native OSStatus disconnect(String uuid);
+    /*</methods>*/
 }

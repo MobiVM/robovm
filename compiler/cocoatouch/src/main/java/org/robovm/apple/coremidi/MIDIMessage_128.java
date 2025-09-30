@@ -35,36 +35,33 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDIMessage_128/*</name>*/ 
+    extends /*<extends>*/Struct<MIDIMessage_128>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class MIDIMessage_128Ptr extends Ptr<MIDIMessage_128, MIDIMessage_128Ptr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MIDIMessage_128() {}
+    public MIDIMessage_128(int word0, int word1, int word2, int word3) {
+        this.setWord0(word0);
+        this.setWord1(word1);
+        this.setWord2(word2);
+        this.setWord3(word3);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native int getWord0();
+    @StructMember(0) public native MIDIMessage_128 setWord0(int word0);
+    @StructMember(1) public native int getWord1();
+    @StructMember(1) public native MIDIMessage_128 setWord1(int word1);
+    @StructMember(2) public native int getWord2();
+    @StructMember(2) public native MIDIMessage_128 setWord2(int word2);
+    @StructMember(3) public native int getWord3();
+    @StructMember(3) public native MIDIMessage_128 setWord3(int word3);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

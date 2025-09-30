@@ -35,18 +35,11 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MIDIUMPFunctionBlockMIDI1Info/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
+    NotMIDI1(0L),
+    UnrestrictedBandwidth(1L),
+    RestrictedBandwidth(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +49,15 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MIDIUMPFunctionBlockMIDI1Info/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
+    public static /*<name>*/MIDIUMPFunctionBlockMIDI1Info/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MIDIUMPFunctionBlockMIDI1Info/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+            + /*<name>*/MIDIUMPFunctionBlockMIDI1Info/*</name>*/.class.getName());
     }
 }

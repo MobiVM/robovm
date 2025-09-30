@@ -38,6 +38,24 @@ enums:
     MIDICVStatus: {prefix: kMIDICVStatus}
     MIDISystemStatus: {prefix: kMIDIStatus}
     MIDISysExStatus: {prefix: kMIDISysExStatus}
+    MIDIUtilityStatus: {prefix: kMIDIUtilityStatus}
+    UMPStreamMessageStatus: {prefix: kUMPStreamMessageStatus}
+    MIDINoteAttribute: {prefix: kMIDINoteAttribute}
+    MIDIProgramChangeOptions: {}
+    MIDIPerNoteManagementOptions: {prefix: kMIDIPerNoteManagement}
+    MIDIUMPFunctionBlockMIDI1Info: {prefix: kMIDIUMPFunctionBlockMIDI1Info}
+    MIDIUMPFunctionBlockUIHint: {prefix: kMIDIUMPFunctionBlockUIHint}
+    MIDIUMPFunctionBlockDirection: {prefix: kMIDIUMPFunctionBlockDirection}
+    UMPStreamMessageFormat: {prefix: kUMPStreamMessageFormat}
+    MIDICICategoryOptions: {prefix: kMIDICICategoryOptions}
+    MIDICIDeviceType: {prefix: kMIDICIDeviceType}
+    MIDICIProfileMessageType: {prefix: kMIDICIProfileMessageType}
+    MIDICIPropertyExchangeMessageType: {prefix: kMIDICIPropertyExchangeMessageType}
+    MIDICIProcessInquiryMessageType: {prefix: kMIDICIProcessInquiryMessageType}
+    MIDICIManagementMessageType: {prefix: kMIDICIManagementMessageType}
+    MIDICIProfileType: {prefix: kMIDICIProfileType}
+    MIDIUMPCIObjectBackingType: {prefix: kMIDIUMPCIObjectBackingType}
+    MIDIUMPProtocolOptions: {prefix: kMIDIUMPProtocolOptionsMIDI}
 
 classes:
     MIDINetworkConnection: # DONE
@@ -156,6 +174,14 @@ classes:
                 name: sendProfile
 
     # Structs
+    MIDI2DeviceManufacturer: { }
+    MIDI2DeviceRevisionLevel: { }
+    MIDICIProfileID: { }
+    MIDICIProfileIDManufacturerSpecific: { }
+    MIDICIProfileIDStandard: { }
+    MIDIMessage_128: { }
+    MIDIMessage_64: { }
+    MIDIMessage_96: { }
     MIDIPacketList:
         annotations: ['@Packed(4)']
         skip_def_constructor: true
@@ -193,6 +219,45 @@ classes:
     MIDIEventList: {}
     MIDIEventPacket: {}
     MIDISysexSendRequestUMP: {}
+    MIDI2DeviceInfo: #since 18.0
+        methods:
+            '-initWithManufacturerID:family:modelNumber:revisionLevel:':
+                name: init
+    MIDICIDevice: {} #since 18.0
+    MIDICIDeviceManager: {} #since 18.0
+    MIDIUMPCIProfile: #since 18.0
+        methods:
+            '-setProfileState:enabledChannelCount:error:':
+                name: setProfileState
+    MIDIUMPEndpoint: {} #since 18.0
+    MIDIUMPEndpointManager: {} #since 18.0
+    MIDIUMPFunctionBlock: {} #since 18.0
+    MIDIUMPMutableEndpoint: #since 18.0
+        methods:
+            '-initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:':
+                name: init
+            '-setName:error:':
+                name: setName
+                throws: NSErrorException
+            '-registerFunctionBlocks:markAsStatic:error:':
+                name: registerFunctionBlocks
+                throws: NSErrorException
+            '-setEnabled:error:':
+                name: setEnabled
+                throws: NSErrorException
+    MIDIUMPMutableFunctionBlock: #since 18.0
+        methods:
+            '-initWithName:direction:firstGroup:totalGroupsSpanned:maxSysEx8Streams:MIDI1Info:UIHint:isEnabled:':
+                name: init
+            '-setEnabled:error:':
+                name: setEnabled
+                throws: NSErrorException
+            '-setName:error:':
+                name: setName
+                throws: NSErrorException
+            '-reconfigureWithFirstGroup:direction:MIDI1Info:UIHint:error:':
+                name: reconfigure
+                throws: NSErrorException
 protocols:
     MIDICIProfileResponderDelegate: #since 14.0
         methods:
@@ -241,6 +306,9 @@ functions:
     MIDIEventPacket(SysexBytesForGroup):
         class: MIDIEventPacket
         name: "get#{g[0]}"
+    MIDIBluetoothDriver(ActivateAllConnections|Disconnect):
+        class: MIDIBluetoothDriver
+        name: '#{g[0].downcase_first}'
 
     # MIDISetup
     MIDISetup(.*):
@@ -513,23 +581,47 @@ functions:
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (MIDI.*):
-        class: CoreMIDI
+        class: FIXME
         name: "Function__#{g[0]}"
 
 values:
     MIDINetwork(.*)ServiceType:
         class: CoreMIDI
-        name: "NetworkServiceType#{g[0]}"
+        static_class: NetworkServiceType
+        name: "#{g[0]}"
         type: NSString
     MIDINetworkNotification(.*):
         class: CoreMIDI
-        name: "NetworkNotification#{g[0]}"
+        static_class: NetworkNotification
+        name: "#{g[0]}"
         type: NSString
-   
+    MIDICI(.*)Notification:
+        class: MIDICIDeviceManager
+        static_class: Notifications
+        name: "#{g[0]}"
+        type: NSString
+    MIDICI(DeviceObject|ProfileObject)Key:
+        class: MIDICIDeviceManager
+        static_class: Keys
+        name: "#{g[0]}"
+        type: NSString
+    MIDIUMP(.*)Notification:
+        class: MIDIUMPEndpointManager
+        static_class: Notifications
+        name: "#{g[0]}"
+        type: NSString
+
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (MIDI.*):
-        class: CoreMIDI
+        class: FIXME
         name: 'Value__#{g[0]}'
+
+typed_enums:
+    MIDIUMPEndpointManagerDictionaryKey:
+        enum: MIDIUMPEndpointManagerDictionaryKey
+        prefix: MIDIUMP
+        type: NSString
 
 constants:
     MIDIChannelsWholePort:
@@ -538,5 +630,5 @@ constants:
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (MIDI.*):
-        class: CoreMIDI
+        class: FIXME
         name: 'Constant__#{g[0]}'

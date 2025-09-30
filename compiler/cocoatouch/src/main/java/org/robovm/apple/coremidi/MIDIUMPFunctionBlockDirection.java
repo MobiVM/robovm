@@ -35,18 +35,12 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MIDIUMPFunctionBlockDirection/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
+    Unknown(0L),
+    Input(1L),
+    Output(2L),
+    Bidirectional(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +50,15 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MIDIUMPFunctionBlockDirection/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
+    public static /*<name>*/MIDIUMPFunctionBlockDirection/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MIDIUMPFunctionBlockDirection/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+            + /*<name>*/MIDIUMPFunctionBlockDirection/*</name>*/.class.getName());
     }
 }

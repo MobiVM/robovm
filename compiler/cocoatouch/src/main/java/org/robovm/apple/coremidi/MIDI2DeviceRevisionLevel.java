@@ -35,36 +35,24 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDI2DeviceRevisionLevel/*</name>*/ 
+    extends /*<extends>*/Struct<MIDI2DeviceRevisionLevel>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class MIDI2DeviceRevisionLevelPtr extends Ptr<MIDI2DeviceRevisionLevel, MIDI2DeviceRevisionLevelPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MIDI2DeviceRevisionLevel() {}
+    public MIDI2DeviceRevisionLevel(ByteBuffer revisionLevel) {
+        this.setRevisionLevel(revisionLevel);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @Array({4}) ByteBuffer getRevisionLevel();
+    @StructMember(0) public native MIDI2DeviceRevisionLevel setRevisionLevel(@Array({4}) ByteBuffer revisionLevel);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

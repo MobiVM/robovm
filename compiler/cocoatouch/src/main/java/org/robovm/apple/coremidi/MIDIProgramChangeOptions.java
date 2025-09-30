@@ -34,19 +34,11 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+public final class /*<name>*/MIDIProgramChangeOptions/*</name>*/ extends Bits</*<name>*/MIDIProgramChangeOptions/*</name>*/> {
     /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
+    public static final MIDIProgramChangeOptions None = new MIDIProgramChangeOptions(0L);
+    public static final MIDIProgramChangeOptions kMIDIProgramChangeBankValid = new MIDIProgramChangeOptions(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,17 +46,17 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/MIDIProgramChangeOptions/*</name>*/[] values = _values(/*<name>*/MIDIProgramChangeOptions/*</name>*/.class);
 
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    public /*<name>*/MIDIProgramChangeOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/MIDIProgramChangeOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MIDIProgramChangeOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MIDIProgramChangeOptions/*</name>*/(value, mask);
+    }
+    protected /*<name>*/MIDIProgramChangeOptions/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/MIDIProgramChangeOptions/*</name>*/[] values() {
+        return values.clone();
     }
 }

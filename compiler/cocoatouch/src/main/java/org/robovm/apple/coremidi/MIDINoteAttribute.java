@@ -34,19 +34,13 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+public enum /*<name>*/MIDINoteAttribute/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
+    None(0L),
+    ManufacturerSpecific(1L),
+    ProfileSpecific(2L),
+    Pitch(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +50,15 @@ public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MIDINoteAttribute/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
+    public static /*<name>*/MIDINoteAttribute/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MIDINoteAttribute/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+            + /*<name>*/MIDINoteAttribute/*</name>*/.class.getName());
     }
 }

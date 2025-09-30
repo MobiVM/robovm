@@ -35,36 +35,27 @@ import org.robovm.apple.corefoundation.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/MIDIMessageType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Utility(0L),
-    System(1L),
-    ChannelVoice1(2L),
-    SysEx(3L),
-    ChannelVoice2(4L),
-    Data128(5L),
-    FlexData(13L),
-    UnknownF(15L),
-    Stream(15L),
-    Invalid(255L);
-    /*</values>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICIProfileID/*</name>*/ 
+    extends /*<extends>*/Struct<MIDICIProfileID>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
+    /*<ptr>*/public static class MIDICIProfileIDPtr extends Ptr<MIDICIProfileID, MIDICIProfileIDPtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MIDIMessageType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MIDIMessageType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MIDIMessageType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MIDIMessageType/*</name>*/.class.getName());
+    /*<constructors>*/
+    public MIDICIProfileID() {}
+    public MIDICIProfileID(MIDICIProfileIDStandard standard, MIDICIProfileIDManufacturerSpecific manufacturerSpecific) {
+        this.setStandard(standard);
+        this.setManufacturerSpecific(manufacturerSpecific);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native @ByVal MIDICIProfileIDStandard getStandard();
+    @StructMember(0) public native MIDICIProfileID setStandard(@ByVal MIDICIProfileIDStandard standard);
+    @StructMember(0) public native @ByVal MIDICIProfileIDManufacturerSpecific getManufacturerSpecific();
+    @StructMember(0) public native MIDICIProfileID setManufacturerSpecific(@ByVal MIDICIProfileIDManufacturerSpecific manufacturerSpecific);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }
