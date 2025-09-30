@@ -68,5 +68,15 @@ import org.robovm.apple.corefoundation.*;
      */
     @Method(selector = "addPlanWith:completionHandler:")
     public native void addPlan(CTCellularPlanProvisioningRequest request, @Block VoidBlock1<CTCellularPlanProvisioningAddPlanResult> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "addPlanWithRequest:properties:completionHandler:")
+    public native void addPlan(CTCellularPlanProvisioningRequest request, CTCellularPlanProperties properties, @Block VoidBlock1<CTCellularPlanProvisioningAddPlanResult> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateCellularPlanProperties:completionHandler:")
+    public native void updateCellularPlanProperties(CTCellularPlanProperties properties, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

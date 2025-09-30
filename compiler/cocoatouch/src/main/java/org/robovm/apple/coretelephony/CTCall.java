@@ -32,9 +32,11 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreTelephony") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCall/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,13 +51,13 @@ import org.robovm.apple.corefoundation.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     @Property(selector = "callState")
     public native CTCallState getCallState();
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     @Property(selector = "callID")
