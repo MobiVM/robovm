@@ -130,10 +130,20 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMTagProjectionTypeEquirectangular", optional=true)
         public static native @ByVal CMTag ProjectionTypeEquirectangular();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMTagProjectionTypeHalfEquirectangular", optional=true)
+        public static native @ByVal CMTag ProjectionTypeHalfEquirectangular();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="kCMTagProjectionTypeFisheye", optional=true)
         public static native @ByVal CMTag ProjectionTypeFisheye();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMTagProjectionTypeParametricImmersive", optional=true)
+        public static native @ByVal CMTag ProjectionTypeParametricImmersive();
         /**
          * @since Available in iOS 17.0 and later.
          */
@@ -378,6 +388,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Bridge(symbol="CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup", optional=true)
     public static native OSStatus gedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(CFAllocator allocator, CMTaggedBufferGroup taggedBufferGroup, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions", optional=true)
+    public static native OSStatus gedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(CFAllocator allocator, CMTaggedBufferGroup taggedBufferGroup, NSDictionary extensions, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
     /**
      * @since Available in iOS 17.0 and later.
      */
