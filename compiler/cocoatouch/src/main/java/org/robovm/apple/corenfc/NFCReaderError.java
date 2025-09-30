@@ -62,6 +62,14 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
      */
     ReaderErrorRadioDisabled(6L),
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    ReaderErrorIneligible(7L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    ReaderErrorAccessNotAccepted(8L),
+    /**
      * @since Available in iOS 11.0 and later.
      */
     ReaderTransceiveErrorTagConnectionLost(100L),
