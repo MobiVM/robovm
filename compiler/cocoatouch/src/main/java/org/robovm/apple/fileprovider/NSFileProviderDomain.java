@@ -95,9 +95,25 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "backingStoreIdentity")
     public native NSData getBackingStoreIdentity();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsSyncingTrash")
+    public native boolean supportsSyncingTrash();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupportsSyncingTrash:")
+    public native void setSupportsSyncingTrash(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="NSFileProviderUserInfoExperimentIDKey", optional=true)
+    public static native NSString UserInfoExperimentIDKey();
+    
     /**
      * @since Available in iOS 11.0 and later.
      */
