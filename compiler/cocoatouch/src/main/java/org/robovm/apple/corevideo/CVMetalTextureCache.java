@@ -37,7 +37,7 @@ import org.robovm.apple.iosurface.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreVideo") @WeaklyLinked/*</annotations>*/
+/*<annotations>*/@Library("CoreVideo")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CVMetalTextureCache/*</name>*/ 
     extends /*<extends>*/CFType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -45,7 +45,9 @@ import org.robovm.apple.iosurface.*;
     /*<ptr>*/public static class CVMetalTextureCachePtr extends Ptr<CVMetalTextureCache, CVMetalTextureCachePtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVMetalTextureCache.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVMetalTextureCache() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**

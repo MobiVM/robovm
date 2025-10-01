@@ -42,11 +42,12 @@ import org.robovm.apple.iosurface.*;
     extends /*<extends>*/CVBuffer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class CVImageBufferPtr extends Ptr<CVImageBuffer, CVImageBufferPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVImageBuffer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVImageBuffer() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -137,6 +138,8 @@ import org.robovm.apple.iosurface.*;
     public native @ByVal CGRect getCleanRect();
     @Bridge(symbol="CVImageBufferIsFlipped", optional=true)
     public native boolean isFlipped();
+    @Bridge(symbol="CVImageBufferGetColorSpace", optional=true)
+    public native CGColorSpace getColorSpace();
     /**
      * @since Available in iOS 10.0 and later.
      */

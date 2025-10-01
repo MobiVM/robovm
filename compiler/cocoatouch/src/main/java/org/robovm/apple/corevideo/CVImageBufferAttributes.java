@@ -304,6 +304,159 @@ import org.robovm.apple.iosurface.*;
         set(CVImageBufferAttribute.AlphaChannelMode, alphaChannelMode.value());
         return this;
     }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public CFData getMasteringDisplayColorVolume() {
+        if (has(CVImageBufferAttribute.MasteringDisplayColorVolume)) {
+            CFData val = get(CVImageBufferAttribute.MasteringDisplayColorVolume, CFData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public CVImageBufferAttributes setMasteringDisplayColorVolume(CFData masteringDisplayColorVolume) {
+        set(CVImageBufferAttribute.MasteringDisplayColorVolume, masteringDisplayColorVolume);
+        return this;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public CFData getContentLightLevelInfo() {
+        if (has(CVImageBufferAttribute.ContentLightLevelInfo)) {
+            CFData val = get(CVImageBufferAttribute.ContentLightLevelInfo, CFData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public CVImageBufferAttributes setContentLightLevelInfo(CFData contentLightLevelInfo) {
+        set(CVImageBufferAttribute.ContentLightLevelInfo, contentLightLevelInfo);
+        return this;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public CFData getAmbientViewingEnvironment() {
+        if (has(CVImageBufferAttribute.AmbientViewingEnvironment)) {
+            CFData val = get(CVImageBufferAttribute.AmbientViewingEnvironment, CFData.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public CVImageBufferAttributes setAmbientViewingEnvironment(CFData ambientViewingEnvironment) {
+        set(CVImageBufferAttribute.AmbientViewingEnvironment, ambientViewingEnvironment);
+        return this;
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public long getSceneIllumination() {
+        if (has(CVImageBufferAttribute.SceneIllumination)) {
+            CFNumber val = get(CVImageBufferAttribute.SceneIllumination, CFNumber.class);
+            return val.longValue();
+        }
+        return 0;
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public CVImageBufferAttributes setSceneIllumination(long sceneIllumination) {
+        set(CVImageBufferAttribute.SceneIllumination, CFNumber.valueOf(sceneIllumination));
+        return this;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public CFDictionary getRegionOfInterest() {
+        if (has(CVImageBufferAttribute.RegionOfInterest)) {
+            CFDictionary val = get(CVImageBufferAttribute.RegionOfInterest, CFDictionary.class);
+            return val;
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public CVImageBufferAttributes setRegionOfInterest(CFDictionary regionOfInterest) {
+        set(CVImageBufferAttribute.RegionOfInterest, regionOfInterest);
+        return this;
+    }
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    public CVImageBufferLogTransferFunction getLogTransferFunction() {
+        if (has(CVImageBufferAttribute.LogTransferFunction)) {
+            CFString val = get(CVImageBufferAttribute.LogTransferFunction, CFString.class);
+            return CVImageBufferLogTransferFunction.valueOf(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    public CVImageBufferAttributes setLogTransferFunction(CVImageBufferLogTransferFunction logTransferFunction) {
+        set(CVImageBufferAttribute.LogTransferFunction, logTransferFunction.value());
+        return this;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferDisplayMaskRectangle getDisplayMaskRectangle() {
+        if (has(CVImageBufferAttribute.DisplayMaskRectangle)) {
+            CFDictionary val = get(CVImageBufferAttribute.DisplayMaskRectangle, CFDictionary.class);
+            return new CVImageBufferDisplayMaskRectangle(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferAttributes setDisplayMaskRectangle(CVImageBufferDisplayMaskRectangle displayMaskRectangle) {
+        set(CVImageBufferAttribute.DisplayMaskRectangle, displayMaskRectangle.getDictionary());
+        return this;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferDisplayMaskRectangle getDisplayMaskRectangleStereoLeft() {
+        if (has(CVImageBufferAttribute.DisplayMaskRectangleStereoLeft)) {
+            CFDictionary val = get(CVImageBufferAttribute.DisplayMaskRectangleStereoLeft, CFDictionary.class);
+            return new CVImageBufferDisplayMaskRectangle(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferAttributes setDisplayMaskRectangleStereoLeft(CVImageBufferDisplayMaskRectangle displayMaskRectangleStereoLeft) {
+        set(CVImageBufferAttribute.DisplayMaskRectangleStereoLeft, displayMaskRectangleStereoLeft.getDictionary());
+        return this;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferDisplayMaskRectangle getDisplayMaskRectangleStereoRight() {
+        if (has(CVImageBufferAttribute.DisplayMaskRectangleStereoRight)) {
+            CFDictionary val = get(CVImageBufferAttribute.DisplayMaskRectangleStereoRight, CFDictionary.class);
+            return new CVImageBufferDisplayMaskRectangle(val);
+        }
+        return null;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public CVImageBufferAttributes setDisplayMaskRectangleStereoRight(CVImageBufferDisplayMaskRectangle displayMaskRectangleStereoRight) {
+        set(CVImageBufferAttribute.DisplayMaskRectangleStereoRight, displayMaskRectangleStereoRight.getDictionary());
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
