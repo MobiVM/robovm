@@ -34,19 +34,16 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 18.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GKMatchmakingMode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/GKReleaseState/*</name>*/ extends Bits</*<name>*/GKReleaseState/*</name>*/> {
     /*<values>*/
-    Default(0L),
-    NearbyOnly(1L),
-    AutomatchOnly(2L),
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    InviteOnly(3L);
+    public static final GKReleaseState None = new GKReleaseState(0L);
+    public static final GKReleaseState Unknown = new GKReleaseState(0L);
+    public static final GKReleaseState Released = new GKReleaseState(1L);
+    public static final GKReleaseState Prereleased = new GKReleaseState(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -54,17 +51,17 @@ public enum /*<name>*/GKMatchmakingMode/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/GKReleaseState/*</name>*/[] values = _values(/*<name>*/GKReleaseState/*</name>*/.class);
 
-    private /*<name>*/GKMatchmakingMode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GKMatchmakingMode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GKMatchmakingMode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GKMatchmakingMode/*</name>*/.class.getName());
+    public /*<name>*/GKReleaseState/*</name>*/(long value) { super(value); }
+    private /*<name>*/GKReleaseState/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/GKReleaseState/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/GKReleaseState/*</name>*/(value, mask);
+    }
+    protected /*<name>*/GKReleaseState/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/GKReleaseState/*</name>*/[] values() {
+        return values.clone();
     }
 }

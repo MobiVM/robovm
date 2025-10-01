@@ -68,7 +68,7 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("player:wantsToQuitMatch:")
     public void wantsToQuitMatch(GKPlayer player, GKTurnBasedMatch match) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -didRequestMatchWithOtherPlayers:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKTurnBasedEventListener/player(_:didRequestMatchWithOtherPlayers:)`` method instead.
      */
     @Deprecated
     @NotImplemented("player:didRequestMatchWithPlayers:")

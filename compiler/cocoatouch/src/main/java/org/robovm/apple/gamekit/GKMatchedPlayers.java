@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,29 +34,32 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 10.0. No longer supported.
+ * @since Available in iOS 17.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GKFriendRequestComposeViewControllerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GKMatchedPlayers/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GKMatchedPlayersPtr extends Ptr<GKMatchedPlayers, GKMatchedPlayersPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GKMatchedPlayers.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    public GKMatchedPlayers() {}
+    protected GKMatchedPlayers(Handle h, long handle) { super(h, handle); }
+    protected GKMatchedPlayers(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "properties")
+    public native NSDictionary<NSString, ?> getProperties();
+    @Property(selector = "players")
+    public native NSArray<GKPlayer> getPlayers();
+    @Property(selector = "playerProperties")
+    public native NSDictionary<GKPlayer, NSDictionary<NSString, ?>> getPlayerProperties();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 10.0. No longer supported.
-     */
-    @Deprecated
-    @Method(selector = "friendRequestComposeViewControllerDidFinish:")
-    void didFinish(GKFriendRequestComposeViewController viewController);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

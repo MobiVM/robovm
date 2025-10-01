@@ -68,14 +68,16 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 17.0. Use -challengeComposeControllerWithMessage:players:completion:
+     * @deprecated Deprecated in iOS 17.0. Use the ``GKAchievement/challengeComposeController(withMessage:players:completion:)`` method instead.
      */
     @Deprecated
     @Method(selector = "challengeComposeControllerWithMessage:players:completionHandler:")
     public native UIViewController challengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<NSString>> completionHandler);
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use Replaced by developer defined challenges, see ``GKChallengeDefinition``
      */
+    @Deprecated
     @Method(selector = "challengeComposeControllerWithMessage:players:completion:")
     public native UIViewController getChallengeComposeController(String message, NSArray<GKPlayer> players, @Block VoidBlock3<UIViewController, Boolean, NSArray<GKPlayer>> completionHandler);
     /*</methods>*/

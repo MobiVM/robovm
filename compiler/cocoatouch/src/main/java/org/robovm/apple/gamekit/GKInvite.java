@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "playerAttributes")
     public native int getPlayerAttributes();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -sender:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKInvite/sender`` property instead.
      */
     @Deprecated
     @Property(selector = "inviter")

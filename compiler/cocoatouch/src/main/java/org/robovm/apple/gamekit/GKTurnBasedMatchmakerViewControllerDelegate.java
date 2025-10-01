@@ -53,13 +53,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "turnBasedMatchmakerViewController:didFailWithError:")
     void didFail(GKTurnBasedMatchmakerViewController viewController, NSError error);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use -player:receivedTurnEventForMatch:didBecomeActive:
+     * @deprecated Deprecated in iOS 9.0. Use ``GKTurnBasedEventListener`` method ``GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)`` instead.
      */
     @Deprecated
     @Method(selector = "turnBasedMatchmakerViewController:didFindMatch:")
     void didFindMatch(GKTurnBasedMatchmakerViewController viewController, GKTurnBasedMatch match);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use -player:wantsToQuitMatch:
+     * @deprecated Deprecated in iOS 9.0. Use ``GKTurnBasedEventListener`` method ``GKTurnBasedEventListener/player(_:wantsToQuitMatch:)`` instead.
      */
     @Deprecated
     @Method(selector = "turnBasedMatchmakerViewController:playerQuitForMatch:")

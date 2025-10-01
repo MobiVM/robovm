@@ -74,13 +74,13 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "isInvitable")
     public native boolean isInvitable();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -[GKLocalPlayer loadFriendPlayersWithCompletionHandler:]
+     * @deprecated Deprecated in iOS 8.0. Use ``GKLocalPlayer/loadFriendPlayers(completionHandler:)`` instead.
      */
     @Deprecated
     @Property(selector = "isFriend")
     public native boolean isFriend();
     /**
-     * @deprecated Deprecated in iOS 13.0. Use either the gamePlayerID or teamPlayerID property to identify a player.
+     * @deprecated Deprecated in iOS 13.0. Use ``GKPlayer/gamePlayerID`` or ``GKPlayer/teamPlayerID`` instead.
      */
     @Deprecated
     @Property(selector = "playerID")
@@ -109,7 +109,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "loadPhotoForSize:withCompletionHandler:")
     public native void loadPhoto(GKPhotoSize size, @Block VoidBlock2<UIImage, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 14.5. Use -[GKLocalPlayer loadFriendsWithIdentifiers:completionHandler:]
+     * @deprecated Deprecated in iOS 14.5. Use ``GKLocalPlayer/loadFriends(identifiedBy:completionHandler:)`` instead.
      */
     @Deprecated
     @Method(selector = "loadPlayersForIdentifiers:withCompletionHandler:")

@@ -55,7 +55,7 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("player:didRequestMatchWithRecipients:")
     public void didRequestMatch(GKPlayer player, NSArray<GKPlayer> recipientPlayers) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -player:didRequestMatchWithRecipients:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKInviteEventListener/player(_:didRequestMatchWithRecipients:)`` method instead.
      */
     @Deprecated
     @NotImplemented("player:didRequestMatchWithPlayers:")

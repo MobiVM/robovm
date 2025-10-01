@@ -58,7 +58,17 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "expectedPlayerCount")
     public native @MachineSizedUInt long getExpectedPlayerCount();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -players:
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "properties")
+    public native NSDictionary<NSString, ?> getProperties();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "playerProperties")
+    public native NSDictionary<GKPlayer, NSDictionary<NSString, ?>> getPlayerProperties();
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatch/players`` property instead.
      */
     @Deprecated
     @Property(selector = "playerIDs")
@@ -84,20 +94,24 @@ import org.robovm.apple.coregraphics.*;
     private native boolean sendDataToAllPlayers(NSData data, GKMatchSendDataMode mode, NSError.NSErrorPtr error);
     @Method(selector = "disconnect")
     public native void disconnect();
-    @Method(selector = "voiceChatWithName:")
-    public native GKVoiceChat getVoiceChat(String name);
     @Method(selector = "chooseBestHostingPlayerWithCompletionHandler:")
     public native void chooseBestHostingPlayer(@Block VoidBlock1<GKPlayer> completionHandler);
     @Method(selector = "rematchWithCompletionHandler:")
     public native void rematch(@Block VoidBlock2<GKMatch, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -chooseBestHostingPlayerWithCompletionHandler:
+     * @deprecated Deprecated in iOS 18.0. No longer supported
+     */
+    @Deprecated
+    @Method(selector = "voiceChatWithName:")
+    public native GKVoiceChat getVoiceChat(String name);
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatch/chooseBestHostingPlayer(completionHandler:)`` method instead.
      */
     @Deprecated
     @Method(selector = "chooseBestHostPlayerWithCompletionHandler:")
     public native void chooseBestHostPlayer(@Block VoidBlock1<NSString> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatch/sendData(toAllPlayers:with:)`` method instead.
      */
     @Deprecated
     public boolean sendDataToPlayers(NSData data, List<String> playerIDs, GKMatchSendDataMode mode) throws NSErrorException {
@@ -107,7 +121,7 @@ import org.robovm.apple.coregraphics.*;
        return result;
     }
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -sendData:toPlayers:dataMode:error:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatch/sendData(toAllPlayers:with:)`` method instead.
      */
     @Deprecated
     @Method(selector = "sendData:toPlayers:withDataMode:error:")

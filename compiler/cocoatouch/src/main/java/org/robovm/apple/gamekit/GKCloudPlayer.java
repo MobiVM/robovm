@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 12.0. Use GKPlayer
+ * @deprecated Deprecated in iOS 12.0. Use ``GKPlayer`` instead.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
