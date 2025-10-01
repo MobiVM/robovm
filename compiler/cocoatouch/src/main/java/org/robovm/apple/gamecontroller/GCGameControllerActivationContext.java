@@ -35,34 +35,28 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(-1L),
-    Discharging(0L),
-    Charging(1L),
-    Full(2L);
-    /*</values>*/
+/*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCGameControllerActivationContext/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GCGameControllerActivationContextPtr extends Ptr<GCGameControllerActivationContext, GCGameControllerActivationContextPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(GCGameControllerActivationContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GCDeviceBatteryState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GCDeviceBatteryState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCDeviceBatteryState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCDeviceBatteryState/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected GCGameControllerActivationContext() {}
+    protected GCGameControllerActivationContext(Handle h, long handle) { super(h, handle); }
+    protected GCGameControllerActivationContext(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "previousApplicationBundleID")
+    public native String getPreviousApplicationBundleID();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

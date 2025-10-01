@@ -28,6 +28,7 @@ enums:
     GCDualSenseAdaptiveTriggerStatus: {}
     GCDevicePhysicalInputElementChange: {prefix: GCDevicePhysicalInputElement}
     GCPhysicalInputSourceDirection: {}
+    GCUIEventTypes: {prefix: GCUIEventType} #since 18.0
 classes:
     # Structs
     GCAcceleration: {}
@@ -42,6 +43,7 @@ classes:
         annotations: ['@Packed(1)']
     GCDualSenseAdaptiveTriggerPositionalAmplitudes: {} #since 15.4
     GCDualSenseAdaptiveTriggerPositionalResistiveStrengths: {} #since 15.4
+    GCPoint2: {}
 
     GCController: # DONE
         methods:
@@ -174,6 +176,8 @@ classes:
     GCSteeringWheelElement: {}
     GCControllerInputState: {} #since 17.0
     GCControllerLiveInput: {} #since 17.0
+    GCEventInteraction: { } #since 18.0
+    GCGameControllerActivationContext: { } #since 18.0
 protocols:
     GCDevice: {} #since 14.0
     GCAxisElement: {} #since 16.0
@@ -231,7 +235,11 @@ protocols:
             sources:
                 type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
     GCPhysicalInputSource: {} #since 17.0
-
+    GCAxis2DInput: {} #since 17.4
+    GCGameControllerSceneDelegate: #since 18.0
+        methods:
+            '-scene:didActivateGameControllerWithContext:':
+                name: didActivateGameController
     GCSwitchElementName:
         exclude: true # used to simulate typed enum
     GCPhysicalInputElementName:
@@ -275,6 +283,11 @@ functions:
     GCInputArcadeButtonName:
         class: GCPhysicalInputProfile
         name: getArcadeButtonName
+
+    GCInput(BackLeftButton|BackRightButton):
+        class: GCPhysicalInputProfile
+        name: 'get#{g[0]}'
+
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?GC.*):
@@ -333,6 +346,9 @@ values:
         class: GCProductCategory
         type: NSString
         name: '#{g[0]}'
+    GCPoint2Zero:
+        class: GCPoint2
+        name: Zero
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?GC.*):

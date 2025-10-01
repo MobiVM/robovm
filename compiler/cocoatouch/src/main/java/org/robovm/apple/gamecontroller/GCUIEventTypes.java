@@ -35,16 +35,14 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/GCUIEventTypes/*</name>*/ extends Bits</*<name>*/GCUIEventTypes/*</name>*/> {
     /*<values>*/
-    Unknown(-1L),
-    Discharging(0L),
-    Charging(1L),
-    Full(2L);
+    public static final GCUIEventTypes None = new GCUIEventTypes(0L);
+    public static final GCUIEventTypes Gamepad = new GCUIEventTypes(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -52,17 +50,17 @@ public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/GCUIEventTypes/*</name>*/[] values = _values(/*<name>*/GCUIEventTypes/*</name>*/.class);
 
-    private /*<name>*/GCDeviceBatteryState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GCDeviceBatteryState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCDeviceBatteryState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCDeviceBatteryState/*</name>*/.class.getName());
+    public /*<name>*/GCUIEventTypes/*</name>*/(long value) { super(value); }
+    private /*<name>*/GCUIEventTypes/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/GCUIEventTypes/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/GCUIEventTypes/*</name>*/(value, mask);
+    }
+    protected /*<name>*/GCUIEventTypes/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/GCUIEventTypes/*</name>*/[] values() {
+        return values.clone();
     }
 }

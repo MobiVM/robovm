@@ -35,34 +35,39 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(-1L),
-    Discharging(0L),
-    Charging(1L),
-    Full(2L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCAxis2DInput/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GCDeviceBatteryState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GCDeviceBatteryState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCDeviceBatteryState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCDeviceBatteryState/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    @Property(selector = "valueDidChangeHandler")
+    @Block("(,,@ByVal)") VoidBlock3<GCPhysicalInputElement, GCAxis2DInput, GCPoint2> getValueDidChangeHandler();
+    @Property(selector = "setValueDidChangeHandler:")
+    void setValueDidChangeHandler(@Block("(,,@ByVal)") VoidBlock3<GCPhysicalInputElement, GCAxis2DInput, GCPoint2> v);
+    @Property(selector = "value")
+    @ByVal GCPoint2 getValue();
+    @Property(selector = "isAnalog")
+    boolean isAnalog();
+    @Property(selector = "canWrap")
+    boolean canWrap();
+    @Property(selector = "lastValueTimestamp")
+    double getLastValueTimestamp();
+    @Property(selector = "lastValueLatency")
+    double getLastValueLatency();
+    @Property(selector = "sources")
+    NSSet<?> getSources();
+    /*</properties>*/
+    /*<methods>*/
+    
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

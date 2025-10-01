@@ -81,7 +81,8 @@ import org.robovm.apple.corehaptic.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController capture] instead
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the -[GCController capture] method instead
      */
     @Deprecated
     @Method(selector = "saveSnapshot")

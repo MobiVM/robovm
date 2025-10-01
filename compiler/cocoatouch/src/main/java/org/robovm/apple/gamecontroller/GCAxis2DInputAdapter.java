@@ -36,9 +36,9 @@ import org.robovm.apple.corehaptic.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCButtonElementAdapter/*</name>*/ 
-    extends /*<extends>*/GCPhysicalInputElementAdapter/*</extends>*/ 
-    /*<implements>*/implements GCButtonElement/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCAxis2DInputAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCAxis2DInput/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -47,15 +47,22 @@ import org.robovm.apple.corehaptic.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("pressedInput")
-    public <T0 extends Object & GCPressedStateInput & GCLinearInput> T0 getPressedInput() { return null; }
-    @NotImplemented("touchedInput")
-    public GCTouchedStateInput getTouchedInput() { return null; }
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @NotImplemented("forceInput")
-    public GCLinearInput getForceInput() { return null; }
+    @NotImplemented("valueDidChangeHandler")
+    public @Block("(,,@ByVal)") VoidBlock3<GCPhysicalInputElement, GCAxis2DInput, GCPoint2> getValueDidChangeHandler() { return null; }
+    @NotImplemented("setValueDidChangeHandler:")
+    public void setValueDidChangeHandler(@Block("(,,@ByVal)") VoidBlock3<GCPhysicalInputElement, GCAxis2DInput, GCPoint2> v) {}
+    @NotImplemented("value")
+    public @ByVal GCPoint2 getValue() { return null; }
+    @NotImplemented("isAnalog")
+    public boolean isAnalog() { return false; }
+    @NotImplemented("canWrap")
+    public boolean canWrap() { return false; }
+    @NotImplemented("lastValueTimestamp")
+    public double getLastValueTimestamp() { return 0; }
+    @NotImplemented("lastValueLatency")
+    public double getLastValueLatency() { return 0; }
+    @NotImplemented("sources")
+    public NSSet<?> getSources() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

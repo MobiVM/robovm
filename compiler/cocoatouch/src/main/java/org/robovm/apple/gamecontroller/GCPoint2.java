@@ -34,35 +34,35 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 14.0 and later.
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(-1L),
-    Discharging(0L),
-    Charging(1L),
-    Full(2L);
-    /*</values>*/
+/*<annotations>*/@Library("GameController")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCPoint2/*</name>*/ 
+    extends /*<extends>*/Struct<GCPoint2>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class GCPoint2Ptr extends Ptr<GCPoint2, GCPoint2Ptr> {}/*</ptr>*/
+    /*<bind>*/static { Bro.bind(GCPoint2.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/GCDeviceBatteryState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/GCDeviceBatteryState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCDeviceBatteryState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCDeviceBatteryState/*</name>*/.class.getName());
+    /*<constructors>*/
+    public GCPoint2() {}
+    public GCPoint2(float x, float y) {
+        this.setX(x);
+        this.setY(y);
     }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native float getX();
+    @StructMember(0) public native GCPoint2 setX(float x);
+    @StructMember(1) public native float getY();
+    @StructMember(1) public native GCPoint2 setY(float y);
+    /*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @GlobalValue(symbol="GCPoint2Zero", optional=true)
+    public static native @ByVal GCPoint2 Zero();
+    /*</methods>*/
 }

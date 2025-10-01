@@ -48,6 +48,11 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "xyAxes")
+    GCAxis2DInput getXyAxes();
     @Property(selector = "xAxis")
     GCAxisInput getXAxis();
     @Property(selector = "yAxis")

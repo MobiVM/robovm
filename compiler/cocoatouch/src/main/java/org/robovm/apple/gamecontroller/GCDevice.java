@@ -48,8 +48,14 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "handlerQueue")
     DispatchQueue getHandlerQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setHandlerQueue:")
     void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
