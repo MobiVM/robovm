@@ -32,42 +32,38 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 26.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/TKSmartCardSlotManager/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/TKSmartCardSlotNFCSession/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class TKSmartCardSlotManagerPtr extends Ptr<TKSmartCardSlotManager, TKSmartCardSlotManagerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(TKSmartCardSlotManager.class); }/*</bind>*/
+    /*<ptr>*/public static class TKSmartCardSlotNFCSessionPtr extends Ptr<TKSmartCardSlotNFCSession, TKSmartCardSlotNFCSessionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(TKSmartCardSlotNFCSession.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public TKSmartCardSlotManager() {}
-    protected TKSmartCardSlotManager(Handle h, long handle) { super(h, handle); }
-    protected TKSmartCardSlotManager(SkipInit skipInit) { super(skipInit); }
+    protected TKSmartCardSlotNFCSession() {}
+    protected TKSmartCardSlotNFCSession(Handle h, long handle) { super(h, handle); }
+    protected TKSmartCardSlotNFCSession(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "defaultManager")
-    public static native TKSmartCardSlotManager getDefaultManager();
-    @Property(selector = "slotNames")
-    public native NSArray<NSString> getSlotNames();
+    @Property(selector = "slotName")
+    public native String getSlotName();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "getSlotWithName:reply:")
-    public native void getSlot(String name, @Block VoidBlock1<TKSmartCardSlot> reply);
-    @Method(selector = "slotNamed:")
-    public native TKSmartCardSlot slotNamed(String name);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @Method(selector = "createNFCSlotWithMessage:completion:")
-    public native void createNFCSlot(String message, @Block VoidBlock2<TKSmartCardSlotNFCSession, NSError> completion);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @Method(selector = "isNFCSupported")
-    public native boolean isNFCSupported();
+    public boolean update(String message) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = update(message, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "updateWithMessage:error:")
+    private native boolean update(String message, NSError.NSErrorPtr error);
+    @Method(selector = "endSession")
+    public native void endSession();
     /*</methods>*/
 }
