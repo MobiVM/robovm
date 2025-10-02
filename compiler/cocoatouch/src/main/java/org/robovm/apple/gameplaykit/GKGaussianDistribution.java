@@ -54,6 +54,7 @@ import org.robovm.apple.uikit.*;
     public GKGaussianDistribution(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((SkipInit) null); initObject(init(source, lowestInclusive, highestInclusive)); }
     @Method(selector = "initWithRandomSource:mean:deviation:")
     public GKGaussianDistribution(GKRandom source, float mean, float deviation) { super((SkipInit) null); initObject(init(source, mean, deviation)); }
+    public GKGaussianDistribution(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((Handle) null, create(lowestInclusive, highestInclusive)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "mean")
@@ -67,6 +68,8 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     @Method(selector = "initWithRandomSource:mean:deviation:")
     protected native @Pointer long init(GKRandom source, float mean, float deviation);
+    @Method(selector = "distributionWithLowestValue:highestValue:")
+    protected static native @Pointer long create(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     @Method(selector = "distributionForDieWithSideCount:")
     public static native GKGaussianDistribution die(@MachineSizedSInt long sideCount);
     @Method(selector = "d6")

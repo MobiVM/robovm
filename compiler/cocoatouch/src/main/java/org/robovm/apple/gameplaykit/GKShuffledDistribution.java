@@ -52,12 +52,15 @@ import org.robovm.apple.uikit.*;
     protected GKShuffledDistribution(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRandomSource:lowestValue:highestValue:")
     public GKShuffledDistribution(GKRandom source, @MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super(source, lowestInclusive, highestInclusive); }
+    public GKShuffledDistribution(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive) { super((Handle) null, create(lowestInclusive, highestInclusive)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "distributionWithLowestValue:highestValue:")
+    protected static native @Pointer long create(@MachineSizedSInt long lowestInclusive, @MachineSizedSInt long highestInclusive);
     @Method(selector = "distributionForDieWithSideCount:")
     public static native GKShuffledDistribution die(@MachineSizedSInt long sideCount);
     @Method(selector = "d6")
