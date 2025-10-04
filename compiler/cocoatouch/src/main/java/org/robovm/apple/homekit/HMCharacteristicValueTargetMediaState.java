@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,30 +33,33 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMAccessoryCategory/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HMCharacteristicValueTargetMediaState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Play(0L),
+    Pause(1L),
+    Stop(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class HMAccessoryCategoryPtr extends Ptr<HMAccessoryCategory, HMAccessoryCategoryPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMAccessoryCategory.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    protected HMAccessoryCategory() {}
-    protected HMAccessoryCategory(Handle h, long handle) { super(h, handle); }
-    protected HMAccessoryCategory(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "categoryType")
-    public native HMAccessoryCategoryType getCategoryType();
-    @Property(selector = "localizedDescription")
-    public native String getLocalizedDescription();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HMCharacteristicValueTargetMediaState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HMCharacteristicValueTargetMediaState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueTargetMediaState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HMCharacteristicValueTargetMediaState/*</name>*/.class.getName());
+    }
 }

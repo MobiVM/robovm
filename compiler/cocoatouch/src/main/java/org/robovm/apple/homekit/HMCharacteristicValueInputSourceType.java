@@ -30,34 +30,44 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corelocation.*;
 /*</imports>*/
-import org.robovm.apple.uikit.UIView; // manually added
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("HomeKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/HMCameraView/*</name>*/ 
-    extends /*<extends>*/UIView/*</extends>*/
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HMCharacteristicValueInputSourceType/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Other(0L),
+    HomeScreen(1L),
+    Tuner(2L),
+    HDMI(3L),
+    CompositeVideo(4L),
+    SVideo(5L),
+    ComponentVideo(6L),
+    DVI(7L),
+    AirPlay(8L),
+    USB(9L),
+    Application(10L);
+    /*</values>*/
 
-    /*<ptr>*/public static class HMCameraViewPtr extends Ptr<HMCameraView, HMCameraViewPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(HMCameraView.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public HMCameraView() {}
-    protected HMCameraView(Handle h, long handle) { super(h, handle); }
-    protected HMCameraView(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "cameraSource")
-    public native HMCameraSource getCameraSource();
-    @Property(selector = "setCameraSource:")
-    public native void setCameraSource(HMCameraSource v);
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HMCharacteristicValueInputSourceType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HMCharacteristicValueInputSourceType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HMCharacteristicValueInputSourceType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HMCharacteristicValueInputSourceType/*</name>*/.class.getName());
+    }
 }

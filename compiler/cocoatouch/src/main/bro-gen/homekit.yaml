@@ -65,6 +65,20 @@ enums:
     HMCharacteristicValueCurrentHeatingCooling: { } #since 8.0
     HMCharacteristicValueTargetLockMechanismState: { } #since 8.0
     HMCharacteristicValueTargetDoorState: { } #since 8.0
+    HMCharacteristicValueVolumeControlType: {} #since 18.0
+    HMCharacteristicValueVolumeSelector: {} #since 18.0
+    HMCharacteristicValueInputSourceType: {} #since 18.0
+    HMCharacteristicValueInputDeviceType: {} #since 18.0
+    HMCharacteristicValueClosedCaptions: {} #since 18.0
+    HMCharacteristicValuePowerModeSelection: {} #since 18.0
+    HMCharacteristicValueCurrentMediaState: {} #since 18.0
+    HMCharacteristicValueRemoteKey: {} #since 18.0
+    HMCharacteristicValuePictureMode: {} #since 18.0
+    HMCharacteristicValueTargetVisibilityState: {} #since 18.0
+    HMCharacteristicValueCurrentVisibilityState: {} #since 18.0
+    HMCharacteristicValueTargetMediaState: {} #since 18.0
+    HMCharacteristicValueRouterStatus: {} #since 18.0
+    HMCharacteristicValueWiFiSatelliteStatus: {} #since 18.0
 classes:
     HMError:
         extends: NSError
