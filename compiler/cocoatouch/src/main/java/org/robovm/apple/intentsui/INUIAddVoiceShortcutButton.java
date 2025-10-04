@@ -60,6 +60,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithFrame:primaryAction:")
     public INUIAddVoiceShortcutButton(@ByVal CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
+    public INUIAddVoiceShortcutButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public INUIAddVoiceShortcutButton(UIButtonType buttonType, UIAction primaryAction) { super((Handle) null, create0(buttonType, primaryAction)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public INUIAddVoiceShortcutButton(UIButtonConfiguration configuration, UIAction primaryAction) { super((Handle) null, create(configuration, primaryAction)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "style")
@@ -92,6 +101,8 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithStyle:")
     protected native @Pointer long init(INUIAddVoiceShortcutButtonStyle style);
+    @Method(selector = "buttonWithType:")
+    protected static native @Pointer long create0(UIButtonType buttonType);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -102,6 +113,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "systemButtonWithPrimaryAction:")
     public static native INUIAddVoiceShortcutButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "buttonWithType:primaryAction:")
+    protected static native @Pointer long create0(UIButtonType buttonType, UIAction primaryAction);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "buttonWithConfiguration:primaryAction:")
+    protected static native @Pointer long create(UIButtonConfiguration configuration, UIAction primaryAction);
     /**
      * @since Available in iOS 9.0 and later.
      */
