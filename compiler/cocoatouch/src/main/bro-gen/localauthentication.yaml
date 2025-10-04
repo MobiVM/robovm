@@ -14,6 +14,7 @@ enums:
     LACredentialType: {prefix: LACredentialType}
     LABiometryType: {prefix: LABiometry} #since 11.0
     LARightState: {} #since 16.0
+    LACompanionType: {} #since 18.0
 classes:
     LAContext: # DONE
         methods:
@@ -79,7 +80,20 @@ classes:
         methods:
             '-loadDataWithCompletion:':
                 name: loadData
-protocols: {}
+    LADomainState: {} #since 18.0
+    LADomainStateBiometry: {} #since 18.0
+    LADomainStateCompanion: {} #since 18.0
+    LAEnvironment: {} #since 18.0
+    LAEnvironmentMechanism: {} #since 18.0
+    LAEnvironmentMechanismBiometry: {} #since 18.0
+    LAEnvironmentMechanismCompanion: {} #since 18.0
+    LAEnvironmentMechanismUserPassword: {} #since 18.0
+    LAEnvironmentState: {} #since 18.0
+protocols:
+    LAEnvironmentObserver: #since 18.0
+        methods:
+            '-environment:stateDidChangeFromOldState:':
+                name: stateDidChange
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -106,7 +120,11 @@ constants:
     # Unused as these defines are used to initialize enums
     kLAPolicyDeviceOwnerAuthentication(.*):
         exclude: true
+    kLAAccessControlOperation(.*):
+        exclude: true
     kLAPolicyDeviceOwnerAuthentication:
+        exclude: true
+    kLACompanionTypeNone:
         exclude: true
     kLAError.*:
         exclude: true
