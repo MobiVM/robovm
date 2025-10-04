@@ -102,6 +102,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "predicateForObjectsAssociatedWithElectrocardiogram:")
     public static native NSPredicate createPredicateForObjectsAssociatedWithElectrocardiogram(HKElectrocardiogram electrocardiogram);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "predicateForWorkoutEffortSamplesRelatedToWorkout:activity:")
+    public static native NSPredicate predicateForWorkoutEffortSamplesRelatedToWorkout(HKWorkout workout, HKWorkoutActivity activity);
     @Method(selector = "predicateForSamplesWithStartDate:endDate:options:")
     public static native NSPredicate createPredicateForSamplesWithDate(NSDate startDate, NSDate endDate, HKQueryOptions options);
     @Method(selector = "predicateForQuantitySamplesWithOperatorType:quantity:")
@@ -115,27 +120,27 @@ import org.robovm.apple.uniformtypeid.*;
     @Method(selector = "predicateForWorkoutsWithOperatorType:duration:")
     public static native NSPredicate createPredicateForWorkoutsWithDuration(NSPredicateOperatorType operatorType, double duration);
     /**
-     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
+     * @deprecated Deprecated in iOS 18.0. Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
      */
     @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalEnergyBurned:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalEnergyBurned(NSPredicateOperatorType operatorType, HKQuantity totalEnergyBurned);
     /**
-     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type
+     * @deprecated Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type
      */
     @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalDistance:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalDistance(NSPredicateOperatorType operatorType, HKQuantity totalDistance);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:
+     * @deprecated Deprecated in iOS 18.0. Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
      */
     @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalSwimmingStrokeCount:")
     public static native NSPredicate createPredicateForWorkoutsWithTotalSwimmingStrokeCount(NSPredicateOperatorType operatorType, HKQuantity totalSwimmingStrokeCount);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
+     * @deprecated Deprecated in iOS 18.0. Use predicateForWorkoutsWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed
      */
     @Deprecated
     @Method(selector = "predicateForWorkoutsWithOperatorType:totalFlightsClimbed:")
@@ -235,5 +240,58 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:")
     public static native NSPredicate predicateForVerifiableClinicalRecords(NSDateInterval dateInterval);
+    @Method(selector = "predicateForStatesOfMindWithValence:operatorType:")
+    public static native NSPredicate predicateForStatesOfMindWithValence(double valence, NSPredicateOperatorType operatorType);
+    @Method(selector = "predicateForStatesOfMindWithKind:")
+    public static native NSPredicate predicateForStatesOfMindWithKind(HKStateOfMindKind kind);
+    @Method(selector = "predicateForStatesOfMindWithLabel:")
+    public static native NSPredicate predicateForStatesOfMindWithLabel(HKStateOfMindLabel label);
+    @Method(selector = "predicateForStatesOfMindWithAssociation:")
+    public static native NSPredicate predicateForStatesOfMindWithAssociation(HKStateOfMindAssociation association);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithStatus:")
+    public static native NSPredicate predicateForMedicationDoseEventWithStatus(HKMedicationDoseEventLogStatus status);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithStatuses:")
+    public static native NSPredicate predicateForMedicationDoseEventWithStatuses(NSSet<NSNumber> statuses);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithScheduledDate:")
+    public static native NSPredicate predicateForMedicationDoseEventWithScheduledDate(NSDate scheduledDate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithScheduledDates:")
+    public static native NSPredicate predicateForMedicationDoseEventWithScheduledDates(NSSet<NSDate> scheduledDates);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithScheduledStartDate:endDate:")
+    public static native NSPredicate predicateForMedicationDoseEventWithScheduledRange(NSDate startDate, NSDate endDate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithMedicationConceptIdentifier:")
+    public static native NSPredicate predicateForMedicationDoseEventWithMedicationConceptIdentifier(HKHealthConceptIdentifier medicationConceptIdentifier);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForMedicationDoseEventWithMedicationConceptIdentifiers:")
+    public static native NSPredicate predicateForMedicationDoseEventWithMedicationConceptIdentifiers(NSSet<HKHealthConceptIdentifier> medicationConceptIdentifiers);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForUserAnnotatedMedicationsWithIsArchived:")
+    public static native NSPredicate predicateForUserAnnotatedMedicationsWithIsArchived(boolean isArchived);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "predicateForUserAnnotatedMedicationsWithHasSchedule:")
+    public static native NSPredicate predicateForUserAnnotatedMedicationsWithHasSchedule(boolean hasSchedule);
     /*</methods>*/
 }

@@ -60,7 +60,7 @@ import org.robovm.apple.uniformtypeid.*;
     @Property(selector = "duration")
     public native double getDuration();
     /**
-     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
      */
     @Deprecated
     @Property(selector = "totalEnergyBurned")
@@ -73,14 +73,14 @@ import org.robovm.apple.uniformtypeid.*;
     public native HKQuantity getTotalDistance();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
      */
     @Deprecated
     @Property(selector = "totalSwimmingStrokeCount")
     public native HKQuantity getTotalSwimmingStrokeCount();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed
      */
     @Deprecated
     @Property(selector = "totalFlightsClimbed")
