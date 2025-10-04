@@ -94,5 +94,10 @@ import org.robovm.apple.coregraphics.*;
      */
     @Bridge(symbol="CGImageSourceCopyAuxiliaryDataInfoAtIndex", optional=true)
     public native NSDictionary copyAuxiliaryDataInfoAtIndex(@MachineSizedUInt long index, String auxiliaryImageDataType);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Bridge(symbol="CGImageSourceSetAllowableTypes", optional=true)
+    public static native OSStatus setAllowableTypes(NSArray allowableTypes);
     /*</methods>*/
 }
