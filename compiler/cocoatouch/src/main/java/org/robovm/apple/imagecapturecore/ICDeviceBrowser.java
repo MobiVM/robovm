@@ -77,6 +77,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "devices")
     public native NSArray<ICDevice> getDevices();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentsAuthorizationStatus")
+    public native ICAuthorizationStatus getContentsAuthorizationStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "controlAuthorizationStatus")
+    public native ICAuthorizationStatus getControlAuthorizationStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,18 +103,8 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "contentsAuthorizationStatus")
-    public native ICAuthorizationStatus contentsAuthorizationStatus();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     @Method(selector = "requestContentsAuthorizationWithCompletion:")
     public native void requestContentsAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Method(selector = "controlAuthorizationStatus")
-    public native ICAuthorizationStatus controlAuthorizationStatus();
     /**
      * @since Available in iOS 14.0 and later.
      */
