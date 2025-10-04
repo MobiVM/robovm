@@ -102,9 +102,13 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final MKDirectionsMode Transit = new MKDirectionsMode("Transit");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final MKDirectionsMode Cycling = new MKDirectionsMode("Cycling");
     /*</constants>*/
     
-    private static /*<name>*/MKDirectionsMode/*</name>*/[] values = new /*<name>*/MKDirectionsMode/*</name>*/[] {/*<value_list>*/Default, Driving, Walking, Transit/*</value_list>*/};
+    private static /*<name>*/MKDirectionsMode/*</name>*/[] values = new /*<name>*/MKDirectionsMode/*</name>*/[] {/*<value_list>*/Default, Driving, Walking, Transit, Cycling/*</value_list>*/};
     
     /*<name>*/MKDirectionsMode/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -141,6 +145,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MKLaunchOptionsDirectionsModeTransit", optional=true)
         public static native NSString Transit();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="MKLaunchOptionsDirectionsModeCycling", optional=true)
+        public static native NSString Cycling();
         /*</values>*/
     }
 }

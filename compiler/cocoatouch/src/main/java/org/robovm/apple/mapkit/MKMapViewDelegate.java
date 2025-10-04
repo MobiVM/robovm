@@ -90,6 +90,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "mapView:didDeselectAnnotation:")
     void didDeselectAnnotation(MKMapView mapView, MKAnnotation annotation);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "mapView:selectionAccessoryForAnnotation:")
+    MKSelectionAccessory getSelectionAccessoryForAnnotation(MKMapView mapView, MKAnnotation annotation);
     @Method(selector = "mapViewWillStartLocatingUser:")
     void willStartLocatingUser(MKMapView mapView);
     @Method(selector = "mapViewDidStopLocatingUser:")

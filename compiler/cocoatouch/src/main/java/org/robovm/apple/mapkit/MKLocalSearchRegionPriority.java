@@ -37,18 +37,14 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/MKLocalSearchRegionPriority/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Leading(0L),
-    Trailing(1L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    Center(2L);
+    Default(0L),
+    Required(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,15 +54,15 @@ public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/MKScaleViewAlignment/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/MKLocalSearchRegionPriority/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/MKScaleViewAlignment/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKScaleViewAlignment/*</name>*/ v : values()) {
+    public static /*<name>*/MKLocalSearchRegionPriority/*</name>*/ valueOf(long n) {
+        for (/*<name>*/MKLocalSearchRegionPriority/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKScaleViewAlignment/*</name>*/.class.getName());
+            + /*<name>*/MKLocalSearchRegionPriority/*</name>*/.class.getName());
     }
 }

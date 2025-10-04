@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,23 +36,20 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 18.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/MKDirectionsTransportType/*</name>*/ extends Bits</*<name>*/MKDirectionsTransportType/*</name>*/> {
+public final class /*<name>*/MKAddressFilterOption/*</name>*/ extends Bits</*<name>*/MKAddressFilterOption/*</name>*/> {
     /*<values>*/
-    public static final MKDirectionsTransportType None = new MKDirectionsTransportType(0L);
-    public static final MKDirectionsTransportType Automobile = new MKDirectionsTransportType(1L);
-    public static final MKDirectionsTransportType Walking = new MKDirectionsTransportType(2L);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public static final MKDirectionsTransportType Transit = new MKDirectionsTransportType(4L);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    public static final MKDirectionsTransportType Cycling = new MKDirectionsTransportType(8L);
-    public static final MKDirectionsTransportType Any = new MKDirectionsTransportType(268435455L);
+    public static final MKAddressFilterOption None = new MKAddressFilterOption(0L);
+    public static final MKAddressFilterOption Country = new MKAddressFilterOption(1L);
+    public static final MKAddressFilterOption AdministrativeArea = new MKAddressFilterOption(2L);
+    public static final MKAddressFilterOption SubAdministrativeArea = new MKAddressFilterOption(4L);
+    public static final MKAddressFilterOption Locality = new MKAddressFilterOption(8L);
+    public static final MKAddressFilterOption SubLocality = new MKAddressFilterOption(16L);
+    public static final MKAddressFilterOption PostalCode = new MKAddressFilterOption(32L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,17 +57,17 @@ public final class /*<name>*/MKDirectionsTransportType/*</name>*/ extends Bits</
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/MKDirectionsTransportType/*</name>*/[] values = _values(/*<name>*/MKDirectionsTransportType/*</name>*/.class);
+    private static final /*<name>*/MKAddressFilterOption/*</name>*/[] values = _values(/*<name>*/MKAddressFilterOption/*</name>*/.class);
 
-    public /*<name>*/MKDirectionsTransportType/*</name>*/(long value) { super(value); }
-    private /*<name>*/MKDirectionsTransportType/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/MKDirectionsTransportType/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/MKDirectionsTransportType/*</name>*/(value, mask);
+    public /*<name>*/MKAddressFilterOption/*</name>*/(long value) { super(value); }
+    private /*<name>*/MKAddressFilterOption/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/MKAddressFilterOption/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/MKAddressFilterOption/*</name>*/(value, mask);
     }
-    protected /*<name>*/MKDirectionsTransportType/*</name>*/[] _values() {
+    protected /*<name>*/MKAddressFilterOption/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/MKDirectionsTransportType/*</name>*/[] values() {
+    public static /*<name>*/MKAddressFilterOption/*</name>*/[] values() {
         return values.clone();
     }
 }

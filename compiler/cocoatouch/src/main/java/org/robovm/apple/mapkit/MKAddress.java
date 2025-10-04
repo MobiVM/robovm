@@ -37,36 +37,33 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Leading(0L),
-    Trailing(1L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    Center(2L);
-    /*</values>*/
+/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKAddress/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MKAddressPtr extends Ptr<MKAddress, MKAddressPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MKAddress.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MKScaleViewAlignment/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKScaleViewAlignment/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKScaleViewAlignment/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKScaleViewAlignment/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected MKAddress() {}
+    protected MKAddress(Handle h, long handle) { super(h, handle); }
+    protected MKAddress(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithFullAddress:shortAddress:")
+    public MKAddress(String fullAddress, String shortAddress) { super((SkipInit) null); initObject(init(fullAddress, shortAddress)); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "fullAddress")
+    public native String getFullAddress();
+    @Property(selector = "shortAddress")
+    public native String getShortAddress();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @Method(selector = "initWithFullAddress:shortAddress:")
+    protected native @Pointer long init(String fullAddress, String shortAddress);
+    /*</methods>*/
 }

@@ -16,21 +16,18 @@
 package org.robovm.apple.social;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
-import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
-import org.robovm.rt.bro.*;
-import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
+
+import org.robovm.apple.coregraphics.CGPoint;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.accounts.*;
+import org.robovm.objc.ObjCRuntime;
+import org.robovm.objc.annotation.Method;
+import org.robovm.objc.annotation.NativeClass;
+import org.robovm.objc.annotation.Property;
+import org.robovm.rt.bro.annotation.ByVal;
+import org.robovm.rt.bro.annotation.Library;
+import org.robovm.rt.bro.annotation.MachineSizedFloat;
+import org.robovm.rt.bro.ptr.Ptr;
 /*</imports>*/
 
 /*<javadoc>*/

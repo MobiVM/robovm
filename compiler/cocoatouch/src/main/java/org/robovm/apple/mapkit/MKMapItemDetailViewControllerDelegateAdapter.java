@@ -2,7 +2,6 @@
  * Copyright (C) 2013-2015 RoboVM AB
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *      http://www.apache.org/licenses/LICENSE-2.0
@@ -36,37 +35,24 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 11.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Leading(0L),
-    Trailing(1L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    Center(2L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MKMapItemDetailViewControllerDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MKMapItemDetailViewControllerDelegate/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MKScaleViewAlignment/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKScaleViewAlignment/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKScaleViewAlignment/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKScaleViewAlignment/*</name>*/.class.getName());
-    }
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    @NotImplemented("mapItemDetailViewControllerDidFinish:")
+    public void mapItemDetailViewControllerDidFinish(MKMapItemDetailViewController detailViewController) {}
+    /*</methods>*/
 }

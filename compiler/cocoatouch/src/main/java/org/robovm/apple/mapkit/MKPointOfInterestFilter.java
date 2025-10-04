@@ -53,13 +53,13 @@ import org.robovm.apple.coreanimation.*;
     protected MKPointOfInterestFilter(Handle h, long handle) { super(h, handle); }
     protected MKPointOfInterestFilter(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initIncludingCategories:")
-    public static  MKPointOfInterestFilter createIncludingCategories(NSArray<NSString> categories) {
+    public static MKPointOfInterestFilter createIncludingCategories(NSArray<NSString> categories) {
        MKPointOfInterestFilter res = new MKPointOfInterestFilter((SkipInit) null);
        res.initObject(res.initIncludingCategories(categories));
        return res;
     }
     @Method(selector = "initExcludingCategories:")
-    public static  MKPointOfInterestFilter createExcludingCategories(NSArray<NSString> categories) {
+    public static MKPointOfInterestFilter createExcludingCategories(NSArray<NSString> categories) {
        MKPointOfInterestFilter res = new MKPointOfInterestFilter((SkipInit) null);
        res.initObject(res.initExcludingCategories(categories));
        return res;

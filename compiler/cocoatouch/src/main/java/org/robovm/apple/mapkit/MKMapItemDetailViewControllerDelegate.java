@@ -37,36 +37,25 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Leading(0L),
-    Trailing(1L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    Center(2L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MKMapItemDetailViewControllerDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/MKScaleViewAlignment/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/MKScaleViewAlignment/*</name>*/ valueOf(long n) {
-        for (/*<name>*/MKScaleViewAlignment/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/MKScaleViewAlignment/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    @Method(selector = "mapItemDetailViewControllerDidFinish:")
+    void mapItemDetailViewControllerDidFinish(MKMapItemDetailViewController detailViewController);
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }
