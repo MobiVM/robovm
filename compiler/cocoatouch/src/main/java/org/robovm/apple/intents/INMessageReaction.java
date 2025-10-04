@@ -35,50 +35,40 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/INObjectCollection<T extends NSObject>/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INMessageReaction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class INObjectCollectionPtr<T extends NSObject> extends Ptr<INObjectCollection<T>, INObjectCollectionPtr<T>> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(INObjectCollection.class); }/*</bind>*/
+    /*<ptr>*/public static class INMessageReactionPtr extends Ptr<INMessageReaction, INMessageReactionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(INMessageReaction.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected INObjectCollection() {}
-    protected INObjectCollection(Handle h, long handle) { super(h, handle); }
-    protected INObjectCollection(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSections:")
-    public static INObjectCollection createFromSections(NSArray<?> sections) {
-       INObjectCollection res = new INObjectCollection((SkipInit) null);
-       res.initObject(res.initFromSection(sections));
-       return res;
-    }
-    @Method(selector = "initWithItems:")
-    public INObjectCollection(NSArray<T> items) { super((SkipInit) null); initObject(init(items)); }
+    public INMessageReaction() {}
+    protected INMessageReaction(Handle h, long handle) { super(h, handle); }
+    protected INMessageReaction(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithReactionType:reactionDescription:emoji:")
+    public INMessageReaction(INMessageReactionType reactionType, String reactionDescription, String emoji) { super((SkipInit) null); initObject(init(reactionType, reactionDescription, emoji)); }
     @Method(selector = "initWithCoder:")
-    public INObjectCollection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public INMessageReaction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sections")
-    public native NSArray<?> getSections();
-    @Property(selector = "allItems")
-    public native NSArray<T> getAllItems();
-    @Property(selector = "usesIndexedCollation")
-    public native boolean usesIndexedCollation();
-    @Property(selector = "setUsesIndexedCollation:")
-    public native void setUsesIndexedCollation(boolean v);
+    @Property(selector = "reactionType")
+    public native INMessageReactionType getReactionType();
+    @Property(selector = "reactionDescription")
+    public native String getReactionDescription();
+    @Property(selector = "emoji")
+    public native String getEmoji();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSections:")
-    protected native @Pointer long initFromSection(NSArray<?> sections);
-    @Method(selector = "initWithItems:")
-    protected native @Pointer long init(NSArray<T> items);
+    @Method(selector = "initWithReactionType:reactionDescription:emoji:")
+    protected native @Pointer long init(INMessageReactionType reactionType, String reactionDescription, String emoji);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

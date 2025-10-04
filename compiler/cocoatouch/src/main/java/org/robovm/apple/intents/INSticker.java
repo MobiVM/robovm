@@ -35,50 +35,38 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/INObjectCollection<T extends NSObject>/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/INSticker/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class INObjectCollectionPtr<T extends NSObject> extends Ptr<INObjectCollection<T>, INObjectCollectionPtr<T>> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(INObjectCollection.class); }/*</bind>*/
+    /*<ptr>*/public static class INStickerPtr extends Ptr<INSticker, INStickerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(INSticker.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected INObjectCollection() {}
-    protected INObjectCollection(Handle h, long handle) { super(h, handle); }
-    protected INObjectCollection(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithSections:")
-    public static INObjectCollection createFromSections(NSArray<?> sections) {
-       INObjectCollection res = new INObjectCollection((SkipInit) null);
-       res.initObject(res.initFromSection(sections));
-       return res;
-    }
-    @Method(selector = "initWithItems:")
-    public INObjectCollection(NSArray<T> items) { super((SkipInit) null); initObject(init(items)); }
+    public INSticker() {}
+    protected INSticker(Handle h, long handle) { super(h, handle); }
+    protected INSticker(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithType:emoji:")
+    public INSticker(INStickerType type, String emoji) { super((SkipInit) null); initObject(init(type, emoji)); }
     @Method(selector = "initWithCoder:")
-    public INObjectCollection(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public INSticker(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sections")
-    public native NSArray<?> getSections();
-    @Property(selector = "allItems")
-    public native NSArray<T> getAllItems();
-    @Property(selector = "usesIndexedCollation")
-    public native boolean usesIndexedCollation();
-    @Property(selector = "setUsesIndexedCollation:")
-    public native void setUsesIndexedCollation(boolean v);
+    @Property(selector = "type")
+    public native INStickerType getType();
+    @Property(selector = "emoji")
+    public native String getEmoji();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithSections:")
-    protected native @Pointer long initFromSection(NSArray<?> sections);
-    @Method(selector = "initWithItems:")
-    protected native @Pointer long init(NSArray<T> items);
+    @Method(selector = "initWithType:emoji:")
+    protected native @Pointer long init(INStickerType type, String emoji);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
