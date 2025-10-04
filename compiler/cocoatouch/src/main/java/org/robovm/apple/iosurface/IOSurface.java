@@ -74,6 +74,11 @@ import org.robovm.apple.corefoundation.*;
     public native @MachineSizedSInt long getElementWidth();
     @Property(selector = "elementHeight")
     public native @MachineSizedSInt long getElementHeight();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "surfaceID")
+    public native int getSurfaceID();
     @Property(selector = "seed")
     public native int getSeed();
     @Property(selector = "planeCount")
@@ -82,8 +87,6 @@ import org.robovm.apple.corefoundation.*;
     public native boolean isInUse();
     @Property(selector = "localUseCount")
     public native int getLocalUseCount();
-    @Property(selector = "setLocalUseCount:")
-    public native void setLocalUseCount(int v);
     @Property(selector = "allowsPixelSizeCasting")
     public native boolean allowsPixelSizeCasting();
     @Property(selector = "supportsSecureCoding")
@@ -331,6 +334,11 @@ import org.robovm.apple.corefoundation.*;
      */
     @Bridge(symbol="IOSurfaceSetPurgeable", optional=true)
     public native int iOSurfaceSetPurgeable(int newState, IntPtr oldState);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Bridge(symbol="IOSurfaceSetOwnershipIdentity", optional=true)
+    public native int iOSurfaceSetOwnershipIdentity(int task_id_token, int newLedgerTag, int newLedgerOptions);
     
     @Method(selector = "initWithProperties:")
     protected native @Pointer long init(NSDictionary<?, ?> properties);
