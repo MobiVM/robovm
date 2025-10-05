@@ -138,6 +138,11 @@ import org.robovm.apple.coreanimation.*;
     public native MTLTexture getMultisampleColorTexture();
     @Property(selector = "currentRenderPassDescriptor")
     public native MTLRenderPassDescriptor getCurrentRenderPassDescriptor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "currentMTL4RenderPassDescriptor")
+    public native MTL4RenderPassDescriptor getCurrentMTL4RenderPassDescriptor();
     @Property(selector = "preferredFramesPerSecond")
     public native @MachineSizedSInt long getPreferredFramesPerSecond();
     @Property(selector = "setPreferredFramesPerSecond:")
