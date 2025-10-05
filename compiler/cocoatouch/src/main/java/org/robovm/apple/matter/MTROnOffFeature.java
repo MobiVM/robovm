@@ -45,6 +45,20 @@ public final class /*<name>*/MTROnOffFeature/*</name>*/ extends Bits</*<name>*/M
      * @since Available in iOS 16.1 and later.
      */
     public static final MTROnOffFeature Lighting = new MTROnOffFeature(1L);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    public static final MTROnOffFeature DeadFrontBehavior = new MTROnOffFeature(2L);
+    /**
+     * @since Available in iOS 17.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffFeatureDeadFrontBehavior
+     */
+    @Deprecated
+    public static final MTROnOffFeature DeadFront = new MTROnOffFeature(2L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTROnOffFeature OffOnly = new MTROnOffFeature(4L);
     /*</values>*/
 
     /*<bind>*/

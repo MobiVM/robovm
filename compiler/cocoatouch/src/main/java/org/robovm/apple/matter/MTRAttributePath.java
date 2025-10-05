@@ -33,12 +33,14 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRAttributePath/*</name>*/ 
     extends /*<extends>*/MTRClusterPath/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRAttributePathPtr extends Ptr<MTRAttributePath, MTRAttributePathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRAttributePath.class); }/*</bind>*/
@@ -55,6 +57,8 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     @Property(selector = "attribute")
     public native NSNumber getAttribute();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

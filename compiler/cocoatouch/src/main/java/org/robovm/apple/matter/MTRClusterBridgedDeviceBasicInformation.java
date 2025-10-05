@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterBridgedDeviceBasicInformation/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterBridgedDeviceBasicInformationPtr extends Ptr<MTRClusterBridgedDeviceBasicInformation, MTRClusterBridgedDeviceBasicInformationPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "keepActiveWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void keepActive(MTRBridgedDeviceBasicInformationClusterKeepActiveParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -80,6 +80,11 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeProductNameWithParams:")
     public native NSDictionary<NSString, ?> readAttributeProductName(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeProductIDWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeProductID(MTRReadParams params);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -180,5 +185,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterDoorLock/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterDoorLockPtr extends Ptr<MTRBaseClusterDoorLock, MTRBaseClusterDoorLockPtr> {}/*</ptr>*/
@@ -63,18 +63,23 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "lockDoorWithParams:completion:")
     public native void lockDoor(MTRDoorLockClusterLockDoorParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "lockDoorWithCompletion:")
+    public native void lockDoor(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "unlockDoorWithParams:completion:")
     public native void unlockDoor(MTRDoorLockClusterUnlockDoorParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "unlockDoorWithCompletion:")
+    public native void unlockDoor(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -155,6 +160,31 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "clearCredentialWithParams:completion:")
     public native void clearCredential(MTRDoorLockClusterClearCredentialParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "unboltDoorWithParams:completion:")
+    public native void unboltDoor(MTRDoorLockClusterUnboltDoorParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "unboltDoorWithCompletion:")
+    public native void unboltDoor(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setAliroReaderConfigWithParams:completion:")
+    public native void setAliroReaderConfig(MTRDoorLockClusterSetAliroReaderConfigParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "clearAliroReaderConfigWithParams:completion:")
+    public native void clearAliroReaderConfig(MTRDoorLockClusterClearAliroReaderConfigParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "clearAliroReaderConfigWithCompletion:")
+    public native void clearAliroReaderConfig(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -696,6 +726,96 @@ import org.robovm.apple.security.*;
     @Method(selector = "subscribeAttributeExpiringUserTimeoutWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeExpiringUserTimeout(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderVerificationKeyWithCompletion:")
+    public native void readAttributeAliroReaderVerificationKey(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroReaderVerificationKeyWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroReaderVerificationKey(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupIdentifierWithCompletion:")
+    public native void readAttributeAliroReaderGroupIdentifier(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroReaderGroupIdentifierWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroReaderGroupIdentifier(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupSubIdentifierWithCompletion:")
+    public native void readAttributeAliroReaderGroupSubIdentifier(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroReaderGroupSubIdentifierWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroReaderGroupSubIdentifier(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroExpeditedTransactionSupportedProtocolVersionsWithCompletion:")
+    public native void readAttributeAliroExpeditedTransactionSupportedProtocolVersions(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroExpeditedTransactionSupportedProtocolVersionsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroExpeditedTransactionSupportedProtocolVersions(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroGroupResolvingKeyWithCompletion:")
+    public native void readAttributeAliroGroupResolvingKey(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroGroupResolvingKeyWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroGroupResolvingKey(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroSupportedBLEUWBProtocolVersionsWithCompletion:")
+    public native void readAttributeAliroSupportedBLEUWBProtocolVersions(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroSupportedBLEUWBProtocolVersionsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroSupportedBLEUWBProtocolVersions(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroBLEAdvertisingVersionWithCompletion:")
+    public native void readAttributeAliroBLEAdvertisingVersion(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAliroBLEAdvertisingVersionWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAliroBLEAdvertisingVersion(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroCredentialIssuerKeysSupportedWithCompletion:")
+    public native void readAttributeNumberOfAliroCredentialIssuerKeysSupported(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfAliroCredentialIssuerKeysSupportedWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfAliroCredentialIssuerKeysSupported(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroEndpointKeysSupportedWithCompletion:")
+    public native void readAttributeNumberOfAliroEndpointKeysSupported(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfAliroEndpointKeysSupportedWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfAliroEndpointKeysSupported(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
@@ -926,6 +1046,51 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeExpiringUserTimeoutWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeExpiringUserTimeout(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderVerificationKeyWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroReaderVerificationKey(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupIdentifierWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroReaderGroupIdentifier(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupSubIdentifierWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroReaderGroupSubIdentifier(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroExpeditedTransactionSupportedProtocolVersionsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroExpeditedTransactionSupportedProtocolVersions(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroGroupResolvingKeyWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroGroupResolvingKey(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroSupportedBLEUWBProtocolVersionsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroSupportedBLEUWBProtocolVersions(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroBLEAdvertisingVersionWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAliroBLEAdvertisingVersion(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroCredentialIssuerKeysSupportedWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfAliroCredentialIssuerKeysSupported(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroEndpointKeysSupportedWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfAliroEndpointKeysSupported(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -950,5 +1115,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

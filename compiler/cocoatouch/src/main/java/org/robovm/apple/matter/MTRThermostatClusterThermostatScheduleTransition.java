@@ -35,11 +35,12 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRThermostatClusterThermostatScheduleTransition/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTRThermostatClusterWeeklyScheduleTransitionStruct/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRThermostatClusterThermostatScheduleTransitionPtr extends Ptr<MTRThermostatClusterThermostatScheduleTransition, MTRThermostatClusterThermostatScheduleTransitionPtr> {}/*</ptr>*/
@@ -53,32 +54,44 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "transitionTime")
     public native NSNumber getTransitionTime();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "setTransitionTime:")
     public native void setTransitionTime(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "heatSetpoint")
     public native NSNumber getHeatSetpoint();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "setHeatSetpoint:")
     public native void setHeatSetpoint(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "coolSetpoint")
     public native NSNumber getCoolSetpoint();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatClusterWeeklyScheduleTransitionStruct
      */
+    @Deprecated
     @Property(selector = "setCoolSetpoint:")
     public native void setCoolSetpoint(NSNumber v);
     /*</properties>*/

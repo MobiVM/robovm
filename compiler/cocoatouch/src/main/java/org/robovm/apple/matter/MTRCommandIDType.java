@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
@@ -86,82 +86,6 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterGroupsCommandAddGroupIfIdentifyingID(5L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandAddSceneID(0L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandAddSceneResponseID(0L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandViewSceneID(1L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandViewSceneResponseID(1L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandRemoveSceneID(2L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandRemoveSceneResponseID(2L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandRemoveAllScenesID(3L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandRemoveAllScenesResponseID(3L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandStoreSceneID(4L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandStoreSceneResponseID(4L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandRecallSceneID(5L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandGetSceneMembershipID(6L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandGetSceneMembershipResponseID(6L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandEnhancedAddSceneID(64L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandEnhancedAddSceneResponseID(64L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandEnhancedViewSceneID(65L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandEnhancedViewSceneResponseID(65L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandCopySceneID(66L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    ommandIDTypeClusterScenesCommandCopySceneResponseID(66L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -222,6 +146,14 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterLevelControlCommandMoveToClosestFrequencyID(8L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterAccessControlCommandReviewFabricRestrictionsID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterAccessControlCommandReviewFabricRestrictionsResponseID(1L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -367,6 +299,22 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterGeneralDiagnosticsCommandTestEventTriggerID(0L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterGeneralDiagnosticsCommandTimeSnapshotID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterGeneralDiagnosticsCommandTimeSnapshotResponseID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterGeneralDiagnosticsCommandPayloadTestRequestID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterGeneralDiagnosticsCommandPayloadTestResponseID(4L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterSoftwareDiagnosticsCommandResetWatermarksID(0L),
@@ -383,9 +331,37 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterEthernetNetworkDiagnosticsCommandResetCountsID(0L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetUTCTimeID(0L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterTimeSynchronizationCommandSetUtcTimeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetTrustedTimeSourceID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetTimeZoneID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetTimeZoneResponseID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetDSTOffsetID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTimeSynchronizationCommandSetDefaultNTPID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterBridgedDeviceBasicInformationCommandKeepActiveID(128L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -471,9 +447,273 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterGroupKeyManagementCommandKeySetReadAllIndicesResponseID(5L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterICDManagementCommandRegisterClientID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterICDManagementCommandRegisterClientResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterICDManagementCommandUnregisterClientID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterICDManagementCommandStayActiveRequestID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterICDManagementCommandStayActiveResponseID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterOvenCavityOperationalStateCommandStopID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterOvenCavityOperationalStateCommandStartID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterOvenCavityOperationalStateCommandOperationalCommandResponseID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterOvenModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterOvenModeCommandChangeToModeResponseID(1L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterModeSelectCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterLaundryWasherModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterLaundryWasherModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCRunModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCRunModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCCleanModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCCleanModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterTemperatureControlCommandSetTemperatureID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDishwasherModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDishwasherModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterSmokeCOAlarmCommandSelfTestRequestID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDishwasherAlarmCommandResetID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDishwasherAlarmCommandModifyEnabledAlarmsID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMicrowaveOvenControlCommandSetCookingParametersID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMicrowaveOvenControlCommandAddMoreTimeID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterOperationalStateCommandPauseID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterOperationalStateCommandStopID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterOperationalStateCommandStartID(2L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterOperationalStateCommandResumeID(3L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterOperationalStateCommandOperationalCommandResponseID(4L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCOperationalStateCommandPauseID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCOperationalStateCommandResumeID(3L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    ommandIDTypeClusterRVCOperationalStateCommandOperationalCommandResponseID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterRVCOperationalStateCommandGoHomeID(128L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterHEPAFilterMonitoringCommandResetConditionID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterActivatedCarbonFilterMonitoringCommandResetConditionID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterBooleanStateConfigurationCommandSuppressAlarmID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterBooleanStateConfigurationCommandEnableDisableAlarmID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterValveConfigurationAndControlCommandOpenID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterValveConfigurationAndControlCommandCloseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWaterHeaterManagementCommandBoostID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWaterHeaterManagementCommandCancelBoostID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMessagesCommandPresentMessagesRequestID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMessagesCommandCancelMessagesRequestID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandPowerAdjustRequestID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandCancelPowerAdjustRequestID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandStartTimeAdjustRequestID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandPauseRequestID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandResumeRequestID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandModifyForecastRequestID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandRequestConstraintBasedForecastID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementCommandCancelRequestID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandGetTargetsResponseID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandDisableID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandEnableChargingID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandStartDiagnosticsID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandSetTargetsID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandGetTargetsID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSECommandClearTargetsID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSEModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterEnergyEVSEModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWaterHeaterModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWaterHeaterModeCommandChangeToModeResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementModeCommandChangeToModeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDeviceEnergyManagementModeCommandChangeToModeResponseID(1L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -571,6 +811,18 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterDoorLockCommandClearCredentialID(38L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDoorLockCommandUnboltDoorID(39L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDoorLockCommandSetAliroReaderConfigID(40L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterDoorLockCommandClearAliroReaderConfigID(41L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterWindowCoveringCommandUpOrOpenID(0L),
@@ -599,13 +851,21 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterWindowCoveringCommandGoToTiltPercentageID(8L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterBarrierControlCommandBarrierControlGoToPercentID(0L),
+    ommandIDTypeClusterServiceAreaCommandSelectAreasID(0L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterBarrierControlCommandBarrierControlStopID(1L),
+    ommandIDTypeClusterServiceAreaCommandSelectAreasResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterServiceAreaCommandSkipAreaID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterServiceAreaCommandSkipAreaResponseID(3L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -626,6 +886,26 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterThermostatCommandClearWeeklyScheduleID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThermostatCommandSetActiveScheduleRequestID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThermostatCommandSetActivePresetRequestID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThermostatCommandAtomicResponseID(253L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThermostatCommandAtomicRequestID(254L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    ommandIDTypeClusterFanControlCommandStepID(0L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -703,6 +983,50 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterColorControlCommandStepColorTemperatureID(76L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWiFiNetworkManagementCommandNetworkPassphraseRequestID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterWiFiNetworkManagementCommandNetworkPassphraseResponseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadBorderRouterManagementCommandGetActiveDatasetRequestID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadBorderRouterManagementCommandGetPendingDatasetRequestID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadBorderRouterManagementCommandDatasetResponseID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadBorderRouterManagementCommandSetActiveDatasetRequestID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadBorderRouterManagementCommandSetPendingDatasetRequestID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadNetworkDirectoryCommandAddNetworkID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadNetworkDirectoryCommandRemoveNetworkID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadNetworkDirectoryCommandGetOperationalDatasetID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterThreadNetworkDirectoryCommandOperationalDatasetResponseID(3L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterChannelCommandChangeChannelID(0L),
@@ -718,6 +1042,22 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterChannelCommandSkipChannelID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterChannelCommandGetProgramGuideID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterChannelCommandProgramGuideResponseID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterChannelCommandRecordProgramID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterChannelCommandCancelRecordProgramID(7L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -774,6 +1114,18 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     ommandIDTypeClusterMediaPlaybackCommandSeekID(11L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMediaPlaybackCommandActivateAudioTrackID(12L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMediaPlaybackCommandActivateTextTrackID(13L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterMediaPlaybackCommandDeactivateTextTrackID(14L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -855,21 +1207,25 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
      */
     ommandIDTypeClusterAccountLoginCommandLogoutID(3L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterElectricalMeasurementCommandGetProfileInfoResponseCommandID(0L),
+    ommandIDTypeClusterContentAppObserverCommandContentAppMessageID(0L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterElectricalMeasurementCommandGetProfileInfoCommandID(0L),
+    ommandIDTypeClusterContentAppObserverCommandContentAppMessageResponseID(1L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterElectricalMeasurementCommandGetMeasurementProfileResponseCommandID(1L),
+    ommandIDTypeClusterCommissionerControlCommandRequestCommissioningApprovalID(0L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    ommandIDTypeClusterElectricalMeasurementCommandGetMeasurementProfileCommandID(1L),
+    ommandIDTypeClusterCommissionerControlCommandCommissionNodeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    ommandIDTypeClusterCommissionerControlCommandReverseOpenCommissioningWindowID(2L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1008,12 +1364,40 @@ public enum /*<name>*/MTRCommandIDType/*</name>*/ implements ValuedEnum {
     ommandIDTypeClusterUnitTestingCommandTestEmitTestFabricScopedEventRequestID(21L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierControlGoToPercent command will be removed
      */
-    ommandIDTypeClusterFaultInjectionCommandFailAtFaultID(0L),
+    @Deprecated
+    ommandIDTypeClusterBarrierControlCommandBarrierControlGoToPercentID(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierControlStop command will be removed
      */
-    ommandIDTypeClusterFaultInjectionCommandFailRandomlyAtFaultID(1L);
+    @Deprecated
+    ommandIDTypeClusterBarrierControlCommandBarrierControlStopID(1L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GetProfileInfoResponseCommand command will be removed
+     */
+    @Deprecated
+    ommandIDTypeClusterElectricalMeasurementCommandGetProfileInfoResponseCommandID(0L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GetProfileInfoCommand command will be removed
+     */
+    @Deprecated
+    ommandIDTypeClusterElectricalMeasurementCommandGetProfileInfoCommandID(0L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GetMeasurementProfileResponseCommand command will be removed
+     */
+    @Deprecated
+    ommandIDTypeClusterElectricalMeasurementCommandGetMeasurementProfileResponseCommandID(1L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GetMeasurementProfileCommand command will be removed
+     */
+    @Deprecated
+    ommandIDTypeClusterElectricalMeasurementCommandGetMeasurementProfileCommandID(1L);
     /*</values>*/
 
     /*<bind>*/

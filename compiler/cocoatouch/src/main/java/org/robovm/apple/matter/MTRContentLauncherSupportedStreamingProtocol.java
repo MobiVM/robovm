@@ -35,19 +35,24 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRContentLauncherSupportedProtocolsBitmap
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public final class /*<name>*/MTRContentLauncherSupportedStreamingProtocol/*</name>*/ extends Bits</*<name>*/MTRContentLauncherSupportedStreamingProtocol/*</name>*/> {
     /*<values>*/
     public static final MTRContentLauncherSupportedStreamingProtocol None = new MTRContentLauncherSupportedStreamingProtocol(0L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRContentLauncherSupportedProtocolsBitmapDASH
      */
+    @Deprecated
     public static final MTRContentLauncherSupportedStreamingProtocol DASH = new MTRContentLauncherSupportedStreamingProtocol(1L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRContentLauncherSupportedProtocolsBitmapHLS
      */
+    @Deprecated
     public static final MTRContentLauncherSupportedStreamingProtocol HLS = new MTRContentLauncherSupportedStreamingProtocol(2L);
     /*</values>*/
 

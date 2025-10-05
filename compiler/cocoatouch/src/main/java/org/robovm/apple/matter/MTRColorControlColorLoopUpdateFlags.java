@@ -35,27 +35,36 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlUpdateFlagsBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTRColorControlColorLoopUpdateFlags/*</name>*/ extends Bits</*<name>*/MTRColorControlColorLoopUpdateFlags/*</name>*/> {
     /*<values>*/
     public static final MTRColorControlColorLoopUpdateFlags None = new MTRColorControlColorLoopUpdateFlags(0L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlUpdateFlagsBitmapUpdateAction
      */
+    @Deprecated
     public static final MTRColorControlColorLoopUpdateFlags UpdateAction = new MTRColorControlColorLoopUpdateFlags(1L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlUpdateFlagsBitmapUpdateDirection
      */
+    @Deprecated
     public static final MTRColorControlColorLoopUpdateFlags UpdateDirection = new MTRColorControlColorLoopUpdateFlags(2L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlUpdateFlagsBitmapUpdateTime
      */
+    @Deprecated
     public static final MTRColorControlColorLoopUpdateFlags UpdateTime = new MTRColorControlColorLoopUpdateFlags(4L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlUpdateFlagsBitmapUpdateStartHue
      */
+    @Deprecated
     public static final MTRColorControlColorLoopUpdateFlags UpdateStartHue = new MTRColorControlColorLoopUpdateFlags(8L);
     /*</values>*/
 

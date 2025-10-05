@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterThermostat/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterThermostatPtr extends Ptr<MTRBaseClusterThermostat, MTRBaseClusterThermostatPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -90,6 +85,21 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "clearWeeklyScheduleWithCompletion:")
     public native void clearWeeklySchedule(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setActiveScheduleRequestWithParams:completion:")
+    public native void setActiveScheduleRequest(MTRThermostatClusterSetActiveScheduleRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setActivePresetRequestWithParams:completion:")
+    public native void setActivePresetRequest(MTRThermostatClusterSetActivePresetRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "atomicRequestWithParams:completion:")
+    public native void atomicRequest(MTRThermostatClusterAtomicRequestParams params, @Block VoidBlock2<MTRThermostatClusterAtomicResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -851,6 +861,136 @@ import org.robovm.apple.security.*;
     @Method(selector = "subscribeAttributeACCapacityformatWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeACCapacityformat(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetTypesWithCompletion:")
+    public native void readAttributePresetTypes(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributePresetTypesWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributePresetTypes(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeScheduleTypesWithCompletion:")
+    public native void readAttributeScheduleTypes(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeScheduleTypesWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeScheduleTypes(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfPresetsWithCompletion:")
+    public native void readAttributeNumberOfPresets(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfPresetsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfPresets(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfSchedulesWithCompletion:")
+    public native void readAttributeNumberOfSchedules(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfSchedulesWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfSchedules(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionsWithCompletion:")
+    public native void readAttributeNumberOfScheduleTransitions(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfScheduleTransitionsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfScheduleTransitions(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionPerDayWithCompletion:")
+    public native void readAttributeNumberOfScheduleTransitionPerDay(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeNumberOfScheduleTransitionPerDayWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeNumberOfScheduleTransitionPerDay(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActivePresetHandleWithCompletion:")
+    public native void readAttributeActivePresetHandle(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeActivePresetHandleWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeActivePresetHandle(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActiveScheduleHandleWithCompletion:")
+    public native void readAttributeActiveScheduleHandle(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeActiveScheduleHandleWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeActiveScheduleHandle(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetsWithCompletion:")
+    public native void readAttributePresets(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributePresetsWithValue:completion:")
+    public native void writeAttributePresets(NSArray<?> value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributePresetsWithValue:params:completion:")
+    public native void writeAttributePresets(NSArray<?> value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributePresetsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributePresets(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSchedulesWithCompletion:")
+    public native void readAttributeSchedules(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeSchedulesWithValue:completion:")
+    public native void writeAttributeSchedules(NSArray<?> value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeSchedulesWithValue:params:completion:")
+    public native void writeAttributeSchedules(NSArray<?> value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeSchedulesWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeSchedules(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSetpointHoldExpiryTimestampWithCompletion:")
+    public native void readAttributeSetpointHoldExpiryTimestamp(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeSetpointHoldExpiryTimestampWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeSetpointHoldExpiryTimestamp(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
@@ -1146,6 +1286,61 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeACCapacityformatWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeACCapacityformat(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetTypesWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributePresetTypes(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeScheduleTypesWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeScheduleTypes(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfPresetsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfPresets(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfSchedulesWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfSchedules(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfScheduleTransitions(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionPerDayWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeNumberOfScheduleTransitionPerDay(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActivePresetHandleWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeActivePresetHandle(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActiveScheduleHandleWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeActiveScheduleHandle(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributePresets(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSchedulesWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeSchedules(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSetpointHoldExpiryTimestampWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeSetpointHoldExpiryTimestamp(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -1170,5 +1365,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

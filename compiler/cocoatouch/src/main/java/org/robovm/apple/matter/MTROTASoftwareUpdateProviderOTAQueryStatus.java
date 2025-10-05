@@ -35,26 +35,35 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.4 and later.
+ * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderStatus
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTROTASoftwareUpdateProviderOTAQueryStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderStatusUpdateAvailable
      */
+    @Deprecated
     UpdateAvailable(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderStatusBusy
      */
+    @Deprecated
     Busy(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderStatusNotAvailable
      */
+    @Deprecated
     NotAvailable(2L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderStatusDownloadProtocolNotSupported
      */
+    @Deprecated
     DownloadProtocolNotSupported(3L);
     /*</values>*/
 

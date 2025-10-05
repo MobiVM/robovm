@@ -41,16 +41,28 @@ import org.robovm.apple.security.*;
 public enum /*<name>*/MTROnOffDelayedAllOffEffectVariant/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.2 and later.
      */
+    DelayedOffFastFade(0L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffDelayedAllOffEffectVariantDelayedOffFastFade
+     */
+    @Deprecated
     FadeToOffIn0p8Seconds(0L),
     /**
      * @since Available in iOS 16.1 and later.
      */
     NoFade(1L),
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.2 and later.
      */
+    DelayedOffSlowFade(2L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffDelayedAllOffEffectVariantDelayedOffSlowFade
+     */
+    @Deprecated
     _50PercentDimDownIn0p8SecondsThenFadeToOffIn12Seconds(2L);
     /*</values>*/
 

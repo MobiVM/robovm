@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRDeviceController/*</name>*/ 
@@ -47,18 +49,54 @@ import org.robovm.apple.security.*;
     protected MTRDeviceController() {}
     protected MTRDeviceController(Handle h, long handle) { super(h, handle); }
     protected MTRDeviceController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithParameters:error:")
+    public MTRDeviceController(MTRDeviceControllerAbstractParameters parameters, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(parameters, error)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isRunning")
     public native boolean isRunning();
     /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "isSuspended")
+    public native boolean isSuspended();
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Property(selector = "uniqueIdentifier")
+    public native NSUUID getUniqueIdentifier();
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Property(selector = "controllerNodeID")
     public native NSNumber getControllerNodeID();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "devices")
+    public native NSArray<MTRDevice> getDevices();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "nodesWithStoredData")
+    public native NSArray<NSNumber> getNodesWithStoredData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Bridge(symbol="MTRDeviceControllerStorageClasses", optional=true)
+    public static native NSSet<?> getStorageClasses();
+    
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithParameters:error:")
+    protected native @Pointer long init(MTRDeviceControllerAbstractParameters parameters, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 16.2 and later.
      */
@@ -139,7 +177,9 @@ import org.robovm.apple.security.*;
     private native MTRBaseDevice deviceBeingCommissioned(NSNumber nodeID, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.6. -[MTRDeviceControllerFactory preWarmCommissioningSession]
      */
+    @Deprecated
     @Method(selector = "preWarmCommissioningSession")
     public native void preWarmCommissioningSession();
     /**
@@ -147,6 +187,16 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "setDeviceControllerDelegate:queue:")
     public native void setDeviceControllerDelegate(MTRDeviceControllerDelegate delegate, DispatchQueue queue);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "addDeviceControllerDelegate:queue:")
+    public native void addDeviceControllerDelegate(MTRDeviceControllerDelegate delegate, DispatchQueue queue);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "removeDeviceControllerDelegate:")
+    public native void removeDeviceControllerDelegate(MTRDeviceControllerDelegate delegate);
     /**
      * @since Available in iOS 17.0 and later.
      */
@@ -162,6 +212,36 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "attestationChallengeForDeviceID:")
     public native NSData attestationChallengeForDeviceID(NSNumber deviceID);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "addServerEndpoint:")
+    public native boolean addServerEndpoint(MTRServerEndpoint endpoint);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "removeServerEndpoint:queue:completion:")
+    public native void removeServerEndpoint(MTRServerEndpoint endpoint, DispatchQueue queue, @Block Runnable completion);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "removeServerEndpoint:")
+    public native void removeServerEndpoint(MTRServerEndpoint endpoint);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "forgetDeviceWithNodeID:")
+    public native void forgetDevice(NSNumber nodeID);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "suspend")
+    public native void suspend();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "resume")
+    public native void resume();
     @Method(selector = "shutdown")
     public native void shutdown();
     /**

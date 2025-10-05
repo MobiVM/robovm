@@ -83,7 +83,19 @@ public enum /*<name>*/MTRDoorLockLockDataType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.5 and later.
      */
-    Face(10L);
+    Face(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AliroCredentialIssuerKey(11L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AliroEvictableEndpointKey(12L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AliroNonEvictableEndpointKey(13L);
     /*</values>*/
 
     /*<bind>*/

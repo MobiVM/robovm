@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterFanControl/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterFanControlPtr extends Ptr<MTRBaseClusterFanControl, MTRBaseClusterFanControlPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 17.6 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "stepWithParams:completion:")
+    public native void step(MTRFanControlClusterStepParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -236,6 +236,26 @@ import org.robovm.apple.security.*;
     @Method(selector = "subscribeAttributeWindSettingWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeWindSetting(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "readAttributeAirflowDirectionWithCompletion:")
+    public native void readAttributeAirflowDirection(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "writeAttributeAirflowDirectionWithValue:completion:")
+    public native void writeAttributeAirflowDirection(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "writeAttributeAirflowDirectionWithValue:params:completion:")
+    public native void writeAttributeAirflowDirection(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "subscribeAttributeAirflowDirectionWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAirflowDirection(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
@@ -341,6 +361,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeWindSettingWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeWindSetting(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "readAttributeAirflowDirectionWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAirflowDirection(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -365,5 +390,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

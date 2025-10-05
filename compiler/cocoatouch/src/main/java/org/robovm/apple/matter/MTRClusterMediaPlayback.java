@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterMediaPlayback/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterMediaPlaybackPtr extends Ptr<MTRClusterMediaPlayback, MTRClusterMediaPlaybackPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -161,6 +156,26 @@ import org.robovm.apple.security.*;
     @Method(selector = "seekWithParams:expectedValues:expectedValueInterval:completion:")
     public native void seek(MTRMediaPlaybackClusterSeekParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRMediaPlaybackClusterPlaybackResponseParams, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "activateAudioTrackWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void activateAudioTrack(MTRMediaPlaybackClusterActivateAudioTrackParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "activateTextTrackWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void activateTextTrack(MTRMediaPlaybackClusterActivateTextTrackParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "deactivateTextTrackWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void deactivateTextTrack(MTRMediaPlaybackClusterDeactivateTextTrackParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "deactivateTextTrackWithExpectedValues:expectedValueInterval:completion:")
+    public native void deactivateTextTrack(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeCurrentStateWithParams:")
@@ -220,5 +235,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

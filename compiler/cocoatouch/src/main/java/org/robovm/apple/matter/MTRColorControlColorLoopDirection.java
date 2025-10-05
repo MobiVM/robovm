@@ -41,12 +41,24 @@ import org.robovm.apple.security.*;
 public enum /*<name>*/MTRColorControlColorLoopDirection/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 18.2 and later.
      */
-    DecrementHue(0L),
+    Decrement(0L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorLoopDirectionDecrement
      */
+    @Deprecated
+    DecrementHue(0L),
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    Increment(1L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorLoopDirectionIncrement
+     */
+    @Deprecated
     IncrementHue(1L);
     /*</values>*/
 

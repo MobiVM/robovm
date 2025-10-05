@@ -81,6 +81,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setData:")
     public native void setData(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "useCurrentContext")
+    public native NSNumber getUseCurrentContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setUseCurrentContext:")
+    public native void setUseCurrentContext(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")
     public native NSNumber getTimedInvokeTimeoutMs();
     @Property(selector = "setTimedInvokeTimeoutMs:")

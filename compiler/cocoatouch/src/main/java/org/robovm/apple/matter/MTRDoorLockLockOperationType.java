@@ -55,7 +55,11 @@ public enum /*<name>*/MTRDoorLockLockOperationType/*</name>*/ implements ValuedE
     /**
      * @since Available in iOS 16.4 and later.
      */
-    ForcedUserEvent(3L);
+    ForcedUserEvent(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Unlatch(4L);
     /*</values>*/
 
     /*<bind>*/

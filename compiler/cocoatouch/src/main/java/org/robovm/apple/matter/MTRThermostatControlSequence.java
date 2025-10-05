@@ -35,34 +35,47 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperation
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTRThermostatControlSequence/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationCoolingOnly
      */
+    @Deprecated
     CoolingOnly(0L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationCoolingWithReheat
      */
+    @Deprecated
     CoolingWithReheat(1L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationHeatingOnly
      */
+    @Deprecated
     HeatingOnly(2L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationHeatingWithReheat
      */
+    @Deprecated
     HeatingWithReheat(3L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationCoolingAndHeating
      */
+    @Deprecated
     CoolingAndHeating(4L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatControlSequenceOfOperationCoolingAndHeatingWithReheat
      */
+    @Deprecated
     CoolingAndHeatingWithReheat(5L);
     /*</values>*/
 

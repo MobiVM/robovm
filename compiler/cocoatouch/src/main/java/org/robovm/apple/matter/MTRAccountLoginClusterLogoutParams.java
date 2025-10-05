@@ -51,6 +51,16 @@ import org.robovm.apple.security.*;
     protected MTRAccountLoginClusterLogoutParams(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "node")
+    public native NSNumber getNode();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setNode:")
+    public native void setNode(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")
     public native NSNumber getTimedInvokeTimeoutMs();
     @Property(selector = "setTimedInvokeTimeoutMs:")

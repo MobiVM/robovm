@@ -112,6 +112,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setNextCredentialIndex:")
     public native void setNextCredentialIndex(NSNumber v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "credentialData")
+    public native NSData getCredentialData();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setCredentialData:")
+    public native void setCredentialData(NSData v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

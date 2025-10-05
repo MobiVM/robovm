@@ -49,8 +49,14 @@ public enum /*<name>*/MTROnOffStartUpOnOff/*</name>*/ implements ValuedEnum {
      */
     On(1L),
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.2 and later.
      */
+    Toggle(2L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffStartUpOnOffToggle
+     */
+    @Deprecated
     TogglePreviousOnOff(2L);
     /*</values>*/
 

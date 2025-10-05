@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterGeneralDiagnostics/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterGeneralDiagnosticsPtr extends Ptr<MTRClusterGeneralDiagnostics, MTRClusterGeneralDiagnosticsPtr> {}/*</ptr>*/
@@ -63,13 +63,23 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "testEventTriggerWithParams:expectedValues:expectedValueInterval:completion:")
     public native void testEventTrigger(MTRGeneralDiagnosticsClusterTestEventTriggerParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "timeSnapshotWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void timeSnapshot(MTRGeneralDiagnosticsClusterTimeSnapshotParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "timeSnapshotWithExpectedValues:expectedValueInterval:completion:")
+    public native void timeSnapshot(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "payloadTestRequestWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void payloadTestRequest(MTRGeneralDiagnosticsClusterPayloadTestRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRGeneralDiagnosticsClusterPayloadTestResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -140,5 +150,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

@@ -46,8 +46,14 @@ public final class /*<name>*/MTRPumpConfigurationAndControlPumpStatusBitmap/*</n
      */
     public static final MTRPumpConfigurationAndControlPumpStatusBitmap DeviceFault = new MTRPumpConfigurationAndControlPumpStatusBitmap(1L);
     /**
-     * @since Available in iOS 16.5 and later.
+     * @since Available in iOS 17.4 and later.
      */
+    public static final MTRPumpConfigurationAndControlPumpStatusBitmap SupplyFault = new MTRPumpConfigurationAndControlPumpStatusBitmap(2L);
+    /**
+     * @since Available in iOS 16.5 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRPumpConfigurationAndControlPumpStatusBitmapSupplyFault
+     */
+    @Deprecated
     public static final MTRPumpConfigurationAndControlPumpStatusBitmap Supplyfault = new MTRPumpConfigurationAndControlPumpStatusBitmap(2L);
     /**
      * @since Available in iOS 16.5 and later.

@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRSetupPayload/*</name>*/ 
@@ -48,21 +50,15 @@ import org.robovm.apple.security.*;
     protected MTRSetupPayload(Handle h, long handle) { super(h, handle); }
     protected MTRSetupPayload(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithPayload:")
+    public MTRSetupPayload(String payload) { super((SkipInit) null); initObject(init(payload)); }
+    /**
      * @since Available in iOS 16.2 and later.
      */
     @Method(selector = "initWithSetupPasscode:discriminator:")
     public MTRSetupPayload(NSNumber setupPasscode, NSNumber discriminator) { super((SkipInit) null); initObject(init(setupPasscode, discriminator)); }
-    /**
-     * @since Available in iOS 16.2 and later.
-     */
-    public MTRSetupPayload(String onboardingPayload) throws NSErrorException {
-       this(onboardingPayload, new NSError.NSErrorPtr());
-    }
-    private MTRSetupPayload(String onboardingPayload, NSError.NSErrorPtr ptr) throws NSErrorException {
-       super((Handle) null, setupPayload(onboardingPayload, ptr));
-       retain(getHandle());
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-    }
     @Method(selector = "initWithCoder:")
     public MTRSetupPayload(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -115,13 +111,36 @@ import org.robovm.apple.security.*;
     public native String getSerialNumber();
     @Property(selector = "setSerialNumber:")
     public native void setSerialNumber(String v);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Property(selector = "vendorElements")
+    public native NSArray<MTROptionalQRCodeInfo> getVendorElements();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "getAllOptionalVendorData:")
-    public native NSArray<MTROptionalQRCodeInfo> getAllOptionalVendorData(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithPayload:")
+    protected native @Pointer long init(String payload);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "vendorElementWithTag:")
+    public native MTROptionalQRCodeInfo vendorElement(NSNumber tag);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "removeVendorElementWithTag:")
+    public native void removeVendorElement(NSNumber tag);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "addOrReplaceVendorElement:")
+    public native void addOrReplaceVendorElement(MTROptionalQRCodeInfo element);
     /**
      * @since Available in iOS 16.2 and later.
      */
@@ -130,10 +149,15 @@ import org.robovm.apple.security.*;
     @Method(selector = "manualEntryCode")
     public native String manualEntryCode();
     /**
-     * @since Available in iOS 16.2 and later.
+     * @since Available in iOS 17.6 and later.
      */
-    @Method(selector = "qrCodeString:")
-    public native String qrCodeString(NSError.NSErrorPtr error);
+    @Method(selector = "qrCodeString")
+    public native String qrCodeString();
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.4. Please use generateRandomSetupPasscode
+     */
+    @Deprecated
     @Method(selector = "generateRandomPIN")
     public static native @MachineSizedUInt long generateRandomPIN();
     /**
@@ -142,10 +166,24 @@ import org.robovm.apple.security.*;
     @Method(selector = "generateRandomSetupPasscode")
     public static native NSNumber generateRandomSetupPasscode();
     /**
-     * @since Available in iOS 16.2 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    @Method(selector = "setupPayloadWithOnboardingPayload:error:")
-    protected static native @Pointer long setupPayload(String onboardingPayload, NSError.NSErrorPtr error);
+    @Method(selector = "isValidSetupPasscode:")
+    public static native boolean isValidSetupPasscode(NSNumber setupPasscode);
+    /**
+     * @since Available in iOS 16.2 and later.
+     * @deprecated Deprecated in iOS 17.6. Please use -qrCodeString
+     */
+    @Deprecated
+    @Method(selector = "qrCodeString:")
+    public native String qrCodeString(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. Please use -vendorElements
+     */
+    @Deprecated
+    @Method(selector = "getAllOptionalVendorData:")
+    public native NSArray<MTROptionalQRCodeInfo> getAllOptionalVendorData(NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

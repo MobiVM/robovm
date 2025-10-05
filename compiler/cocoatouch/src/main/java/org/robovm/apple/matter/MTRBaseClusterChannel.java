@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterChannel/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterChannelPtr extends Ptr<MTRBaseClusterChannel, MTRBaseClusterChannelPtr> {}/*</ptr>*/
@@ -63,11 +63,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "changeChannelWithParams:completion:")
     public native void changeChannel(MTRChannelClusterChangeChannelParams params, @Block VoidBlock2<MTRChannelClusterChangeChannelResponseParams, NSError> completion);
     /**
@@ -80,6 +75,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "skipChannelWithParams:completion:")
     public native void skipChannel(MTRChannelClusterSkipChannelParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "getProgramGuideWithParams:completion:")
+    public native void getProgramGuide(MTRChannelClusterGetProgramGuideParams params, @Block VoidBlock2<MTRChannelClusterProgramGuideResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "getProgramGuideWithCompletion:")
+    public native void getProgramGuide(@Block VoidBlock2<MTRChannelClusterProgramGuideResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "recordProgramWithParams:completion:")
+    public native void recordProgram(MTRChannelClusterRecordProgramParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelRecordProgramWithParams:completion:")
+    public native void cancelRecordProgram(MTRChannelClusterCancelRecordProgramParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -200,5 +215,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

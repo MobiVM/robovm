@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterNetworkCommissioning/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterNetworkCommissioningPtr extends Ptr<MTRClusterNetworkCommissioning, MTRClusterNetworkCommissioningPtr> {}/*</ptr>*/
@@ -63,13 +63,13 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "scanNetworksWithParams:expectedValues:expectedValueInterval:completion:")
     public native void scanNetworks(MTRNetworkCommissioningClusterScanNetworksParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRNetworkCommissioningClusterScanNetworksResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "scanNetworksWithExpectedValues:expectedValueInterval:completion:")
+    public native void scanNetworks(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRNetworkCommissioningClusterScanNetworksResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -146,6 +146,21 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeLastConnectErrorValueWithParams:")
     public native NSDictionary<NSString, ?> readAttributeLastConnectErrorValue(MTRReadParams params);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedWiFiBandsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeSupportedWiFiBands(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedThreadFeaturesWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeSupportedThreadFeatures(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeThreadVersionWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeThreadVersion(MTRReadParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -170,5 +185,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

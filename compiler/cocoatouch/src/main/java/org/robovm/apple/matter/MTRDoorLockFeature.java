@@ -89,6 +89,18 @@ public final class /*<name>*/MTRDoorLockFeature/*</name>*/ extends Bits</*<name>
      * @since Available in iOS 16.1 and later.
      */
     public static final MTRDoorLockFeature HolidaySchedules = new MTRDoorLockFeature(2048L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRDoorLockFeature Unbolt = new MTRDoorLockFeature(4096L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRDoorLockFeature AliroProvisioning = new MTRDoorLockFeature(8192L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRDoorLockFeature AliroBLEUWB = new MTRDoorLockFeature(16384L);
     /*</values>*/
 
     /*<bind>*/

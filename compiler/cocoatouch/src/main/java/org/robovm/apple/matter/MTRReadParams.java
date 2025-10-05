@@ -33,12 +33,14 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRReadParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRReadParamsPtr extends Ptr<MTRReadParams, MTRReadParamsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRReadParams.class); }/*</bind>*/
@@ -47,6 +49,8 @@ import org.robovm.apple.security.*;
     public MTRReadParams() {}
     protected MTRReadParams(Handle h, long handle) { super(h, handle); }
     protected MTRReadParams(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MTRReadParams(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -69,9 +73,24 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setMinEventNumber:")
     public native void setMinEventNumber(NSNumber v);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Property(selector = "shouldAssumeUnknownAttributesReportable")
+    public native boolean isAssumeUnknownAttributesReportable();
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Property(selector = "setAssumeUnknownAttributesReportable:")
+    public native void setAssumeUnknownAttributesReportable(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

@@ -61,6 +61,11 @@ import org.robovm.apple.security.*;
     public native NSDate getNotBefore();
     @Property(selector = "notAfter")
     public native NSDate getNotAfter();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "publicKeyData")
+    public native NSData getPublicKeyData();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -49,6 +49,18 @@ public final class /*<name>*/MTRContentLauncherFeature/*</name>*/ extends Bits</
      * @since Available in iOS 16.1 and later.
      */
     public static final MTRContentLauncherFeature URLPlayback = new MTRContentLauncherFeature(2L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRContentLauncherFeature AdvancedSeek = new MTRContentLauncherFeature(4L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRContentLauncherFeature TextTracks = new MTRContentLauncherFeature(8L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRContentLauncherFeature AudioTracks = new MTRContentLauncherFeature(16L);
     /*</values>*/
 
     /*<bind>*/

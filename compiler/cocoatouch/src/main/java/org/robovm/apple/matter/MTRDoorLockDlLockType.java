@@ -83,7 +83,11 @@ public enum /*<name>*/MTRDoorLockDlLockType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.1 and later.
      */
-    DoorFurniture(10L);
+    DoorFurniture(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Eurocylinder(11L);
     /*</values>*/
 
     /*<bind>*/

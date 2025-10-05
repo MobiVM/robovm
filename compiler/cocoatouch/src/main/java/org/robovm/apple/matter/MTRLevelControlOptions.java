@@ -35,19 +35,24 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.4 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRLevelControlOptionsBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTRLevelControlOptions/*</name>*/ extends Bits</*<name>*/MTRLevelControlOptions/*</name>*/> {
     /*<values>*/
     public static final MTRLevelControlOptions None = new MTRLevelControlOptions(0L);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRLevelControlOptionsBitmapExecuteIfOff
      */
+    @Deprecated
     public static final MTRLevelControlOptions ExecuteIfOff = new MTRLevelControlOptions(1L);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRLevelControlOptionsBitmapCoupleColorTempToLevel
      */
+    @Deprecated
     public static final MTRLevelControlOptions CoupleColorTempToLevel = new MTRLevelControlOptions(2L);
     /*</values>*/
 

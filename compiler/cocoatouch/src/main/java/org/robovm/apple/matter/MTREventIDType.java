@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
@@ -46,6 +46,10 @@ public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     EventIDTypeClusterAccessControlEventAccessControlExtensionChangedID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterAccessControlEventFabricRestrictionReviewUpdateID(2L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -135,6 +139,26 @@ public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
      */
     EventIDTypeClusterWiFiNetworkDiagnosticsEventConnectionStatusID(2L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTimeSynchronizationEventDSTTableEmptyID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTimeSynchronizationEventDSTStatusID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTimeSynchronizationEventTimeZoneStatusID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTimeSynchronizationEventTimeFailureID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTimeSynchronizationEventMissingTrustedTimeSourceID(4L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     EventIDTypeClusterBridgedDeviceBasicInformationEventStartUpID(0L),
@@ -150,6 +174,10 @@ public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     EventIDTypeClusterBridgedDeviceBasicInformationEventReachableChangedID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterBridgedDeviceBasicInformationEventActiveChangedID(128L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -182,6 +210,170 @@ public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     EventIDTypeClusterBooleanStateEventStateChangeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterOvenCavityOperationalStateEventOperationalErrorID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterOvenCavityOperationalStateEventOperationCompletionID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterRefrigeratorAlarmEventNotifyID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventSmokeAlarmID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventCOAlarmID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventLowBatteryID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventHardwareFaultID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventEndOfServiceID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventSelfTestCompleteID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventAlarmMutedID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventMuteEndedID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventInterconnectSmokeAlarmID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventInterconnectCOAlarmID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterSmokeCOAlarmEventAllClearID(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterDishwasherAlarmEventNotifyID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    EventIDTypeClusterOperationalStateEventOperationalErrorID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    EventIDTypeClusterOperationalStateEventOperationCompletionID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    EventIDTypeClusterRVCOperationalStateEventOperationalErrorID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    EventIDTypeClusterRVCOperationalStateEventOperationCompletionID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterBooleanStateConfigurationEventAlarmsStateChangedID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterBooleanStateConfigurationEventSensorFaultID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterValveConfigurationAndControlEventValveStateChangedID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterValveConfigurationAndControlEventValveFaultID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterElectricalPowerMeasurementEventMeasurementPeriodRangesID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterElectricalEnergyMeasurementEventCumulativeEnergyMeasuredID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    EventIDTypeClusterElectricalEnergyMeasurementEventPeriodicEnergyMeasuredID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterWaterHeaterManagementEventBoostStartedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterWaterHeaterManagementEventBoostEndedID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterMessagesEventMessageQueuedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterMessagesEventMessagePresentedID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterMessagesEventMessageCompleteID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterDeviceEnergyManagementEventPowerAdjustStartID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterDeviceEnergyManagementEventPowerAdjustEndID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterDeviceEnergyManagementEventPausedID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterDeviceEnergyManagementEventResumedID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventEVConnectedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventEVNotDetectedID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventEnergyTransferStartedID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventEnergyTransferStoppedID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventFaultID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterEnergyEVSEEventRFIDID(5L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -270,6 +462,26 @@ public enum /*<name>*/MTREventIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     EventIDTypeClusterPumpConfigurationAndControlEventTurbineOperationID(16L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterOccupancySensingEventOccupancyChangedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterTargetNavigatorEventTargetUpdatedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterMediaPlaybackEventStateChangedID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterAccountLoginEventLoggedOutID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    EventIDTypeClusterCommissionerControlEventCommissioningRequestResultID(0L),
     /**
      * @since Available in iOS 16.4 and later.
      */

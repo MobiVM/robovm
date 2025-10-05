@@ -40,27 +40,35 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRProductIdentity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRProductIdentityPtr extends Ptr<MTRProductIdentity, MTRProductIdentityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRProductIdentity.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTRProductIdentity() {}
+    protected MTRProductIdentity() {}
     protected MTRProductIdentity(Handle h, long handle) { super(h, handle); }
     protected MTRProductIdentity(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithVendorID:productID:")
     public MTRProductIdentity(NSNumber vendorID, NSNumber productID) { super((SkipInit) null); initObject(init(vendorID, productID)); }
+    @Method(selector = "initWithCoder:")
+    public MTRProductIdentity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "vendorID")
     public native NSNumber getVendorID();
     @Property(selector = "productID")
     public native NSNumber getProductID();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithVendorID:productID:")
     protected native @Pointer long init(NSNumber vendorID, NSNumber productID);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }
