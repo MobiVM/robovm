@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,45 +36,37 @@ import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 19.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("MediaPlayer") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPNowPlayingInfoCenter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MPMediaItemAnimatedArtwork/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MPNowPlayingInfoCenterPtr extends Ptr<MPNowPlayingInfoCenter, MPNowPlayingInfoCenterPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MPNowPlayingInfoCenter.class); }/*</bind>*/
+    /*<ptr>*/public static class MPMediaItemAnimatedArtworkPtr extends Ptr<MPMediaItemAnimatedArtwork, MPMediaItemAnimatedArtworkPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MPMediaItemAnimatedArtwork.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected MPNowPlayingInfoCenter() {}
-    protected MPNowPlayingInfoCenter(Handle h, long handle) { super(h, handle); }
-    protected MPNowPlayingInfoCenter(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "nowPlayingInfo")
-    public native MPNowPlayingInfo getNowPlayingInfo();
-    @Property(selector = "setNowPlayingInfo:")
-    public native void setNowPlayingInfo(MPNowPlayingInfo v);
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "playbackState")
-    public native MPNowPlayingPlaybackState getPlaybackState();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "setPlaybackState:")
-    public native void setPlaybackState(MPNowPlayingPlaybackState v);
+    protected MPMediaItemAnimatedArtwork() {}
+    protected MPMediaItemAnimatedArtwork(Handle h, long handle) { super(h, handle); }
+    protected MPMediaItemAnimatedArtwork(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 19.0 and later.
      */
-    @Property(selector = "supportedAnimatedArtworkKeys")
-    public static native NSArray<NSString> getSupportedAnimatedArtworkKeys();
+    @Method(selector = "initWithArtworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:")
+    public MPMediaItemAnimatedArtwork(String artworkID, @Block("(@ByVal,@Block)") VoidBlock2<CGSize, VoidBlock1<UIImage>> previewImageRequestHandler, @Block("(@ByVal,@Block)") VoidBlock2<CGSize, VoidBlock1<NSURL>> videoAssetFileURLRequestHandler) { super((SkipInit) null); initObject(init(artworkID, previewImageRequestHandler, videoAssetFileURLRequestHandler)); }
+    /*</constructors>*/
+    /*<properties>*/
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "defaultCenter")
-    public static native MPNowPlayingInfoCenter getDefaultCenter();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "initWithArtworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:")
+    protected native @Pointer long init(String artworkID, @Block("(@ByVal,@Block)") VoidBlock2<CGSize, VoidBlock1<UIImage>> previewImageRequestHandler, @Block("(@ByVal,@Block)") VoidBlock2<CGSize, VoidBlock1<NSURL>> videoAssetFileURLRequestHandler);
     /*</methods>*/
 }
