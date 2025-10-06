@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,35 +33,41 @@ import org.robovm.apple.browserenginekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 17.4 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("SafariServices") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SSReadingListError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/SFAddToHomeScreenActivityItem/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    protected SSReadingListError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
     /*<ptr>*/
     /*</ptr>*/
-    /*<bind>*/static { Bro.bind(SSReadingListError.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    @Override
-    public SSReadingListErrorCode getErrorCode() {
-        SSReadingListErrorCode code = null;
-        try {
-            code = SSReadingListErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
+    /*<properties>*/
+    @Property(selector = "URL")
+    NSURL getURL();
+    @Property(selector = "title")
+    String getTitle();
+    @Property(selector = "iconItemProvider")
+    NSItemProvider getIconItemProvider();
+    /*</properties>*/
     /*<methods>*/
-    @GlobalValue(symbol="SSReadingListErrorDomain", optional=true)
-    public static native String getClassDomain();
+    /**
+     * @since Available in iOS 17.5 and later.
+     * @deprecated Create a SFAddToHomeScreenInfo instead
+     */
+    @Deprecated
+    @Method(selector = "getWebAppManifestWithCompletionHandler:")
+    void getWebAppManifest(@Block VoidBlock1<BEWebAppManifest> completionHandler);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "getHomeScreenWebAppInfoWithCompletionHandler:")
+    void getHomeScreenWebAppInfo(@Block VoidBlock1<SFAddToHomeScreenInfo> completionHandler);
     /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }

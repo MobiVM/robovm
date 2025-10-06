@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,37 +33,36 @@ import org.robovm.apple.browserenginekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 18.2 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SafariServices") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SSReadingList/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SFAddToHomeScreenInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class SSReadingListPtr extends Ptr<SSReadingList, SSReadingListPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SSReadingList.class); }/*</bind>*/
+    /*<ptr>*/public static class SFAddToHomeScreenInfoPtr extends Ptr<SFAddToHomeScreenInfo, SFAddToHomeScreenInfoPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SFAddToHomeScreenInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected SSReadingList() {}
-    protected SSReadingList(Handle h, long handle) { super(h, handle); }
-    protected SSReadingList(SkipInit skipInit) { super(skipInit); }
+    protected SFAddToHomeScreenInfo() {}
+    protected SFAddToHomeScreenInfo(Handle h, long handle) { super(h, handle); }
+    protected SFAddToHomeScreenInfo(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithManifest:")
+    public SFAddToHomeScreenInfo(BEWebAppManifest manifest) { super((SkipInit) null); initObject(init(manifest)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "manifest")
+    public native BEWebAppManifest getManifest();
+    @Property(selector = "websiteCookies")
+    public native NSArray<NSHTTPCookie> getWebsiteCookies();
+    @Property(selector = "setWebsiteCookies:")
+    public native void setWebsiteCookies(NSArray<NSHTTPCookie> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    public boolean addReadingListItem(NSURL URL, String title, String previewText) throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = addReadingListItem(URL, title, previewText, ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "addReadingListItemWithURL:title:previewText:error:")
-    private native boolean addReadingListItem(NSURL URL, String title, String previewText, NSError.NSErrorPtr error);
-    @Method(selector = "defaultReadingList")
-    public static native SSReadingList getDefaultReadingList();
-    @Method(selector = "supportsURL:")
-    public static native boolean supportsURL(NSURL URL);
+    @Method(selector = "initWithManifest:")
+    protected native @Pointer long init(BEWebAppManifest manifest);
     /*</methods>*/
 }
