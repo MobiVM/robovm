@@ -54,6 +54,16 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "initWithCoder:")
     public MPSCNNDepthWiseConvolutionDescriptor(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0. Use Please use neuronType, neuronParameterA and neuronParameterB properties instead.
+     */
+    @Deprecated
+    public MPSCNNDepthWiseConvolutionDescriptor(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long inputFeatureChannels, @MachineSizedUInt long outputFeatureChannels, MPSCNNNeuron neuronFilter) { super((Handle) null, create(kernelWidth, kernelHeight, inputFeatureChannels, outputFeatureChannels, neuronFilter)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public MPSCNNDepthWiseConvolutionDescriptor(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long inputFeatureChannels, @MachineSizedUInt long outputFeatureChannels) { super((Handle) null, create(kernelWidth, kernelHeight, inputFeatureChannels, outputFeatureChannels)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "channelMultiplier")
@@ -66,6 +76,17 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 11.0. Use Please use neuronType, neuronParameterA and neuronParameterB properties instead.
+     */
+    @Deprecated
+    @Method(selector = "cnnConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannels:outputFeatureChannels:neuronFilter:")
+    protected static native @Pointer long create(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long inputFeatureChannels, @MachineSizedUInt long outputFeatureChannels, MPSCNNNeuron neuronFilter);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "cnnConvolutionDescriptorWithKernelWidth:kernelHeight:inputFeatureChannels:outputFeatureChannels:")
+    protected static native @Pointer long create(@MachineSizedUInt long kernelWidth, @MachineSizedUInt long kernelHeight, @MachineSizedUInt long inputFeatureChannels, @MachineSizedUInt long outputFeatureChannels);
     /*</methods>*/
 }

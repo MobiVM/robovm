@@ -64,11 +64,11 @@ import org.robovm.apple.metal.*;
     public MPSImageLaplacianPyramid(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "getLaplacianBias ")
+    @Property(selector = "getLaplacianBias")
     public native float getLaplacianBias();
     @Property(selector = "setLaplacianBias:")
     public native void setLaplacianBias(float v);
-    @Property(selector = "getLaplacianScale ")
+    @Property(selector = "getLaplacianScale")
     public native float getLaplacianScale();
     @Property(selector = "setLaplacianScale:")
     public native void setLaplacianScale(float v);

@@ -73,6 +73,14 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
     @Deprecated
     IntBit(536870912L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Int2(536870914L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    Int4(536870916L),
+    /**
      * @since Available in iOS 10.0 and later.
      */
     Int8(536870920L),
@@ -88,6 +96,14 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 14.1 and later.
      */
     Int64(536870976L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    UInt2(2L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    UInt4(4L),
     /**
      * @since Available in iOS 10.0 and later.
      */
