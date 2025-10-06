@@ -38,6 +38,11 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedShortMarshaler.class)/*</annotations>*/
 public enum /*<name>*/TlsCiphersuite/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0.
+     */
+    @Deprecated
     RSA_WITH_3DES_EDE_CBC_SHA(10L),
     RSA_WITH_AES_128_CBC_SHA(47L),
     RSA_WITH_AES_256_CBC_SHA(53L),
@@ -45,9 +50,19 @@ public enum /*<name>*/TlsCiphersuite/*</name>*/ implements ValuedEnum {
     RSA_WITH_AES_256_GCM_SHA384(157L),
     RSA_WITH_AES_128_CBC_SHA256(60L),
     RSA_WITH_AES_256_CBC_SHA256(61L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0.
+     */
+    @Deprecated
     ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA(49160L),
     ECDHE_ECDSA_WITH_AES_128_CBC_SHA(49161L),
     ECDHE_ECDSA_WITH_AES_256_CBC_SHA(49162L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0.
+     */
+    @Deprecated
     ECDHE_RSA_WITH_3DES_EDE_CBC_SHA(49170L),
     ECDHE_RSA_WITH_AES_128_CBC_SHA(49171L),
     ECDHE_RSA_WITH_AES_256_CBC_SHA(49172L),

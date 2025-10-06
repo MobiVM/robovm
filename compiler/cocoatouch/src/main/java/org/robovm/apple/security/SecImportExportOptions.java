@@ -127,6 +127,11 @@ import org.robovm.apple.dispatch.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="kSecImportExportPassphrase", optional=true)
         public static native CFString Passphrase();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kSecImportToMemoryOnly", optional=true)
+        public static native CFString ImportToMemoryOnly();
     }
     /*</keys>*/
 }
