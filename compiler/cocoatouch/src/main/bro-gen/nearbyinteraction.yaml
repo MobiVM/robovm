@@ -16,7 +16,8 @@ enums:
     NINearbyObjectRemovalReason: {}
     NINearbyObjectVerticalDirectionEstimate: {}
     NIAlgorithmConvergenceStatus: {}
-
+    NIDLTDOACoordinatesType: {}
+    NIDLTDOAMeasurementType: {}
 categories:
 
 classes:
@@ -40,6 +41,11 @@ classes:
                 name: init
                 throws: NSErrorException
     NIAlgorithmConvergence: {} #since 16.0
+    NIDLTDOAConfiguration: #since 26.0
+        methods:
+            '-initWithNetworkIdentifier:':
+                name: init
+    NIDLTDOAMeasurement: {} #since 26.0
 protocols:
     NISessionDelegate: #since 14.0
         methods:
@@ -53,6 +59,8 @@ protocols:
                 name: didGenerateShareableConfigurationData
             '-session:didUpdateAlgorithmConvergence:forObject:':
                 name: didUpdateAlgorithmConvergence
+            '-session:didUpdateDLTDOAMeasurements:':
+                name: didUpdateDLTDOAMeasurements
     NIDeviceCapability: {} #since 16.0
 
     # Make sure we don't miss any functions if new ones are introduced in a later version

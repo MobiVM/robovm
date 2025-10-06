@@ -70,6 +70,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "session:didUpdateAlgorithmConvergence:forObject:")
     void didUpdateAlgorithmConvergence(NISession session, NIAlgorithmConvergence convergence, NINearbyObject object);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "session:didUpdateDLTDOAMeasurements:")
+    void didUpdateDLTDOAMeasurements(NISession session, NSArray<NIDLTDOAMeasurement> measurements);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "sessionDidStartRunning:")

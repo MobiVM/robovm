@@ -32,40 +32,31 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 16.0 and later.
- */
-/*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/NIDeviceCapability/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+/*</javadoc>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NIDLTDOACoordinatesType/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Geodetic(0L),
+    Relative(1L);
+    /*</values>*/
+
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    @Property(selector = "supportsPreciseDistanceMeasurement")
-    boolean supportsPreciseDistanceMeasurement();
-    @Property(selector = "supportsDirectionMeasurement")
-    boolean supportsDirectionMeasurement();
-    @Property(selector = "supportsCameraAssistance")
-    boolean supportsCameraAssistance();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "supportsExtendedDistanceMeasurement")
-    boolean supportsExtendedDistanceMeasurement();
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @Property(selector = "supportsDLTDOAMeasurement")
-    boolean supportsDLTDOAMeasurement();
-    /*</properties>*/
-    /*<methods>*/
-    
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/NIDLTDOACoordinatesType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/NIDLTDOACoordinatesType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NIDLTDOACoordinatesType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/NIDLTDOACoordinatesType/*</name>*/.class.getName());
+    }
 }
