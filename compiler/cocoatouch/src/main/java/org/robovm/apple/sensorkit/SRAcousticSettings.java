@@ -36,44 +36,35 @@ import org.robovm.apple.soundanalysis.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("SensorKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRSpeechMetrics/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRAcousticSettings/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SRSpeechMetricsPtr extends Ptr<SRSpeechMetrics, SRSpeechMetricsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SRSpeechMetrics.class); }/*</bind>*/
+    /*<ptr>*/public static class SRAcousticSettingsPtr extends Ptr<SRAcousticSettings, SRAcousticSettingsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SRAcousticSettings.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected SRSpeechMetrics() {}
-    protected SRSpeechMetrics(Handle h, long handle) { super(h, handle); }
-    protected SRSpeechMetrics(SkipInit skipInit) { super(skipInit); }
+    protected SRAcousticSettings() {}
+    protected SRAcousticSettings(Handle h, long handle) { super(h, handle); }
+    protected SRAcousticSettings(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SRSpeechMetrics(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public SRAcousticSettings(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sessionIdentifier")
-    public native String getSessionIdentifier();
-    @Property(selector = "sessionFlags")
-    public native SRSpeechMetricsSessionFlags getSessionFlags();
-    @Property(selector = "timestamp")
-    public native NSDate getTimestamp();
-    /**
-     * @since Available in iOS 17.2 and later.
-     */
-    @Property(selector = "timeSinceAudioStart")
-    public native double getTimeSinceAudioStart();
-    @Property(selector = "audioLevel")
-    public native SRAudioLevel getAudioLevel();
-    @Property(selector = "speechRecognition")
-    public native SFSpeechRecognitionResult getSpeechRecognition();
-    @Property(selector = "soundClassification")
-    public native SNClassificationResult getSoundClassification();
-    @Property(selector = "speechExpression")
-    public native SRSpeechExpression getSpeechExpression();
+    @Property(selector = "isEnvironmentalSoundMeasurementsEnabled")
+    public native boolean isEnvironmentalSoundMeasurementsEnabled();
+    @Property(selector = "audioExposureSampleLifetime")
+    public native SRAcousticSettingsSampleLifetime getAudioExposureSampleLifetime();
+    @Property(selector = "headphoneSafetyAudioLevel")
+    public native NSNumber getHeadphoneSafetyAudioLevel();
+    @Property(selector = "musicEQSettings")
+    public native SRAcousticSettingsMusicEQ getMusicEQSettings();
+    @Property(selector = "accessibilitySettings")
+    public native SRAcousticSettingsAccessibility getAccessibilitySettings();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

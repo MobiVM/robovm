@@ -163,9 +163,25 @@ import org.robovm.apple.soundanalysis.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final SRSensor Odometer = new SRSensor("Odometer");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final SRSensor Electrocardiogram = new SRSensor("Electrocardiogram");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final SRSensor Photoplethysmogram = new SRSensor("Photoplethysmogram");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final SRSensor AcousticSettings = new SRSensor("AcousticSettings");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final SRSensor SleepSessions = new SRSensor("SleepSessions");
     /*</constants>*/
     
-    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure, MediaEvents, WristTemperature, HeartRate, FaceMetrics, Odometer/*</value_list>*/};
+    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure, MediaEvents, WristTemperature, HeartRate, FaceMetrics, Odometer, Electrocardiogram, Photoplethysmogram, AcousticSettings, SleepSessions/*</value_list>*/};
     
     /*<name>*/SRSensor/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -278,6 +294,26 @@ import org.robovm.apple.soundanalysis.*;
          */
         @GlobalValue(symbol="SRSensorOdometer", optional=true)
         public static native NSString Odometer();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="SRSensorElectrocardiogram", optional=true)
+        public static native NSString Electrocardiogram();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="SRSensorPhotoplethysmogram", optional=true)
+        public static native NSString Photoplethysmogram();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorAcousticSettings", optional=true)
+        public static native NSString AcousticSettings();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorSleepSessions", optional=true)
+        public static native NSString SleepSessions();
         /*</values>*/
     }
 }

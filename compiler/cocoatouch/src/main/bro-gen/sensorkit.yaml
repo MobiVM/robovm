@@ -23,6 +23,15 @@ enums:
     SRMediaEventType: {prefix: SRMediaEvent} #since 16.4
     SRSpeechMetricsSessionFlags: {} #since 17.0
     SRFaceMetricsContext: {} #since 17.0
+    SRElectrocardiogramSessionState: {} #since 17.4
+    SRElectrocardiogramSessionGuidance: {} #since 17.4
+    SRElectrocardiogramDataFlags: {} #since 17.4
+    SRElectrocardiogramLead: {} #since 17.4
+    SRAcousticSettingsSampleLifetime: {} #since 26.0
+    SRAcousticSettingsAccessibilityBackgroundSoundsName: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication: {} #since 26.0
 categories:
     SensorKit@NSDate:
         methods:
@@ -70,6 +79,18 @@ classes:
     SRSpeechMetrics: {} #since 17.0
     SRWristTemperature: {} #since 17.0
     SRWristTemperatureSession: {} #since 17.0
+    SRAcousticSettings: { } #since 26.0
+    SRAcousticSettingsAccessibility: { } #since 26.0
+    SRAcousticSettingsAccessibilityBackgroundSounds: { } #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodations: { } #since 26.0
+    SRAcousticSettingsMusicEQ: { } #since 26.0
+    SRElectrocardiogramData: { } #since 17.4
+    SRElectrocardiogramSample: { } #since 17.4
+    SRElectrocardiogramSession: { } #since 17.4
+    SRPhotoplethysmogramAccelerometerSample: { } #since 17.4
+    SRPhotoplethysmogramOpticalSample: { } #since 17.4
+    SRPhotoplethysmogramSample: { } #since 17.4
+    SRSleepSession: { } #since 26.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:
@@ -109,6 +130,14 @@ typed_enums:
     SRDeviceUsageCategoryKey:
         enum: SRDeviceUsageCategory
         prefix: SRDeviceUsageCategory
+        type: NSString
+    SRPhotoplethysmogramOpticalSampleCondition:
+        enum: SRPhotoplethysmogramOpticalSampleCondition
+        prefix: SRPhotoplethysmogramOpticalSampleCondition
+        type: NSString
+    SRPhotoplethysmogramSampleUsage:
+        enum: SRPhotoplethysmogramSampleUsage
+        prefix: SRPhotoplethysmogramSampleUsage
         type: NSString
 
 values:

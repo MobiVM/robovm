@@ -36,44 +36,35 @@ import org.robovm.apple.soundanalysis.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 17.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("SensorKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRSpeechMetrics/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SRElectrocardiogramSample/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class SRSpeechMetricsPtr extends Ptr<SRSpeechMetrics, SRSpeechMetricsPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SRSpeechMetrics.class); }/*</bind>*/
+    /*<ptr>*/public static class SRElectrocardiogramSamplePtr extends Ptr<SRElectrocardiogramSample, SRElectrocardiogramSamplePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SRElectrocardiogramSample.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected SRSpeechMetrics() {}
-    protected SRSpeechMetrics(Handle h, long handle) { super(h, handle); }
-    protected SRSpeechMetrics(SkipInit skipInit) { super(skipInit); }
+    protected SRElectrocardiogramSample() {}
+    protected SRElectrocardiogramSample(Handle h, long handle) { super(h, handle); }
+    protected SRElectrocardiogramSample(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public SRSpeechMetrics(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public SRElectrocardiogramSample(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "sessionIdentifier")
-    public native String getSessionIdentifier();
-    @Property(selector = "sessionFlags")
-    public native SRSpeechMetricsSessionFlags getSessionFlags();
-    @Property(selector = "timestamp")
-    public native NSDate getTimestamp();
-    /**
-     * @since Available in iOS 17.2 and later.
-     */
-    @Property(selector = "timeSinceAudioStart")
-    public native double getTimeSinceAudioStart();
-    @Property(selector = "audioLevel")
-    public native SRAudioLevel getAudioLevel();
-    @Property(selector = "speechRecognition")
-    public native SFSpeechRecognitionResult getSpeechRecognition();
-    @Property(selector = "soundClassification")
-    public native SNClassificationResult getSoundClassification();
-    @Property(selector = "speechExpression")
-    public native SRSpeechExpression getSpeechExpression();
+    @Property(selector = "date")
+    public native NSDate getDate();
+    @Property(selector = "frequency")
+    public native NSMeasurement<NSUnitFrequency> getFrequency();
+    @Property(selector = "session")
+    public native SRElectrocardiogramSession getSession();
+    @Property(selector = "lead")
+    public native SRElectrocardiogramLead getLead();
+    @Property(selector = "data")
+    public native NSArray<SRElectrocardiogramData> getData();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
