@@ -36,16 +36,12 @@ import org.robovm.apple.security.*;
 
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-public enum /*<name>*/NWErrorDomain/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/NWLinkQuality/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    invalid(0L),
-    posix(1L),
-    dns(2L),
-    tls(3L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    wifi_aware(4L);
+    unknown(0L),
+    minimal(10L),
+    moderate(20L),
+    good(30L);
     /*</values>*/
 
     /*<bind>*/
@@ -55,15 +51,15 @@ public enum /*<name>*/NWErrorDomain/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWErrorDomain/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NWLinkQuality/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWErrorDomain/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWErrorDomain/*</name>*/ v : values()) {
+    public static /*<name>*/NWLinkQuality/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NWLinkQuality/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWErrorDomain/*</name>*/.class.getName());
+            + /*<name>*/NWLinkQuality/*</name>*/.class.getName());
     }
 }
