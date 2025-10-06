@@ -79,6 +79,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "pid")
     public native int getPid();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "bundleIdentifier")
+    public native String getBundleIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -94,7 +99,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "DictionaryRepresentation")
     public native NSDictionary<?, ?> DictionaryRepresentation();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<?, ?> dictionaryRepresentation();

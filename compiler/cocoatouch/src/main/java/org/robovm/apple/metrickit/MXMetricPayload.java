@@ -91,6 +91,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "applicationExitMetrics")
     public native MXAppExitMetric getApplicationExitMetrics();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "diskSpaceUsageMetrics")
+    public native MXDiskSpaceUsageMetric getDiskSpaceUsageMetrics();
     @Property(selector = "signpostMetrics")
     public native NSArray<MXSignpostMetric> getSignpostMetrics();
     @Property(selector = "metaData")
@@ -110,7 +115,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "DictionaryRepresentation")
     public native NSDictionary<?, ?> DictionaryRepresentation();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<?, ?> dictionaryRepresentation();

@@ -66,7 +66,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "DictionaryRepresentation")
     public native NSDictionary<?, ?> DictionaryRepresentation();
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<?, ?> dictionaryRepresentation();

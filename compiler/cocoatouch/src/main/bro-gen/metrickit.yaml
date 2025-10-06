@@ -12,7 +12,6 @@ typedefs:
 
 enums:
     MXErrorCode: {prefix: MXErrorLaunchTask, nserror: true} #since 16.0
-
 typed_enums:
 
 classes:
@@ -63,6 +62,7 @@ classes:
     MXAppLaunchDiagnostic: {} #since 16.0
     MXCrashDiagnosticObjectiveCExceptionReason: {} #since 17.0
     MXSignpostRecord: {} #since 17.0
+    MXDiskSpaceUsageMetric: {} #since 26.0
 protocols:
     MXMetricManagerSubscriber: {} #since 13.0
 

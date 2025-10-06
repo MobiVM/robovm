@@ -51,6 +51,11 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "scrollHitchTimeRatio")
     public native NSMeasurement<NSUnit> getScrollHitchTimeRatio();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "hitchTimeRatio")
+    public native NSMeasurement<NSUnit> getHitchTimeRatio();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
