@@ -35,21 +35,21 @@ import org.robovm.apple.modelio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PHASE") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHASEPushStreamNode/*</name>*/ 
-    extends /*<extends>*/PHASEStreamNode/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHASEStreamNode/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PHASEPushStreamNodePtr extends Ptr<PHASEPushStreamNode, PHASEPushStreamNodePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PHASEPushStreamNode.class); }/*</bind>*/
+    /*<ptr>*/public static class PHASEStreamNodePtr extends Ptr<PHASEStreamNode, PHASEStreamNodePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PHASEStreamNode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected PHASEPushStreamNode() {}
-    protected PHASEPushStreamNode(Handle h, long handle) { super(h, handle); }
-    protected PHASEPushStreamNode(SkipInit skipInit) { super(skipInit); }
+    protected PHASEStreamNode() {}
+    protected PHASEStreamNode(Handle h, long handle) { super(h, handle); }
+    protected PHASEStreamNode(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "gainMetaParameter")
@@ -63,13 +63,6 @@ import org.robovm.apple.modelio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "scheduleBuffer:")
-    public native void scheduleBuffer(AVAudioPCMBuffer buffer);
-    @Method(selector = "scheduleBuffer:completionCallbackType:completionHandler:")
-    public native void scheduleBuffer(AVAudioPCMBuffer buffer, PHASEPushStreamCompletionCallbackCondition completionCallbackType, @Block VoidBlock1<PHASEPushStreamCompletionCallbackCondition> completionHandler);
-    @Method(selector = "scheduleBuffer:atTime:options:")
-    public native void scheduleBuffer(AVAudioPCMBuffer buffer, AVAudioTime when, PHASEPushStreamBufferOptions options);
-    @Method(selector = "scheduleBuffer:atTime:options:completionCallbackType:completionHandler:")
-    public native void scheduleBuffer(AVAudioPCMBuffer buffer, AVAudioTime when, PHASEPushStreamBufferOptions options, PHASEPushStreamCompletionCallbackCondition completionCallbackType, @Block VoidBlock1<PHASEPushStreamCompletionCallbackCondition> completionHandler);
+    
     /*</methods>*/
 }

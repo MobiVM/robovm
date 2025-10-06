@@ -88,6 +88,11 @@ import org.robovm.apple.modelio.*;
     public native NSArray<PHASEDucker> getDuckers();
     @Property(selector = "activeGroupPreset")
     public native PHASEGroupPreset getActiveGroupPreset();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "lastRenderTime")
+    public native AVAudioTime getLastRenderTime();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
