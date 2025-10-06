@@ -41,17 +41,22 @@ classes:
             '-optionsWithNonRepeating':
                 name: withNonRepeating
             '-optionsWithRepeatCount:':
-                name: withRepeatCount$
+                name: withRepeatCount
             '-optionsWithSpeed:':
-                name: withSpeed$
+                name: withSpeed
             '+optionsWithRepeating':
                 name: optionsWithRepeating
             '+optionsWithNonRepeating':
                 name: optionsWithNonRepeating
             '+optionsWithRepeatCount:':
-                name: optionsWithRepeatCount$
+                name: optionsWithRepeatCount
             '+optionsWithSpeed:':
-                name: optionsWithSpeed$
+                name: optionsWithSpeed
+            '-optionsWithRepeatBehavior:':
+                name: withRepeatBehavior
+            '+optionsWithRepeatBehavior:':
+                name: optionsWithRepeatBehavior
+
     NSSymbolPulseEffect: #since 17.0
         methods:
             '-effectWithByLayer':
@@ -64,6 +69,8 @@ classes:
                 name: withByLayer
             '-transitionWithWholeSymbol':
                 name: withWholeSymbol
+            '+magicTransitionWithFallback:':
+                name: magicTransition
     NSSymbolScaleEffect: #since 17.0
         methods:
             '-effectWithByLayer':
@@ -84,6 +91,56 @@ classes:
                 name: withHideInactiveLayers
             '-effectWithDimInactiveLayers':
                 name: withDimInactiveLayers
+    NSSymbolBreatheEffect: #since 18.0
+        methods:
+            '-effectWithByLayer':
+                name: effectByLayer
+            '-effectWithWholeSymbol':
+                name: effectWholeSymbol
+    NSSymbolDrawOffEffect: #since 26.0
+        methods:
+            '-effectWithByLayer':
+                name: effectByLayer
+            '-effectWithWholeSymbol':
+                name: effectWholeSymbol
+            '-effectWithIndividually':
+                name: effectWithIndividually
+            '-effectWithReversed':
+                name: effectReversed
+            '-effectWithNonReversed':
+                name: effectNonReversed
+    NSSymbolDrawOnEffect: #since 26.0
+        methods:
+            '-effectWithByLayer':
+                name: effectByLayer
+            '-effectWithWholeSymbol':
+                name: effectWholeSymbol
+            '-effectWithIndividually':
+                name: effectWithIndividually
+    NSSymbolEffectOptionsRepeatBehavior: #since 18.0
+        methods:
+            '+behaviorPeriodicWithCount:':
+                name: create
+                constructor: true
+            '+behaviorPeriodicWithDelay:':
+                name: create
+                constructor: true
+            '+behaviorPeriodicWithCount:delay:':
+                name: create
+                constructor: true
+    NSSymbolMagicReplaceContentTransition: {} #since 18.0
+    NSSymbolRotateEffect: #since 18.0
+        methods:
+            '-effectWithByLayer':
+                name: effectByLayer
+            '-effectWithWholeSymbol':
+                name: effectWholeSymbol
+    NSSymbolWiggleEffect: #since 18.0
+        methods:
+            '-effectWithByLayer':
+                name: effectByLayer
+            '-effectWithWholeSymbol':
+                name: effectWholeSymbol
 protocols:
 
 functions:
