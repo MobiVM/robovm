@@ -58,6 +58,7 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 9.0 and later.
      */
     public PHAssetCreationRequest() { super((Handle) null, create()); retain(getHandle()); }
+    public PHAssetCreationRequest(PHAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -93,5 +94,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static native PHAssetCreationRequest createVideoAssetCreationRequest(NSURL fileURL);
     @Method(selector = "deleteAssets:")
     public static native void deleteAssets(NSFastEnumeration assets);
+    @Method(selector = "changeRequestForAsset:")
+    protected static native @Pointer long create(PHAsset asset);
     /*</methods>*/
 }
