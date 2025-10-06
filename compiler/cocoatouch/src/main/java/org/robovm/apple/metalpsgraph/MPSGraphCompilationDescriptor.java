@@ -105,6 +105,26 @@ import org.robovm.apple.metalps.*;
     @Deprecated
     @Property(selector = "setOptimizationProfile:")
     public native void setOptimizationProfile(MPSGraphOptimizationProfile v);
+    /**
+     * @since Available in iOS 17.1 and later.
+     */
+    @Property(selector = "callables")
+    public native NSDictionary<NSString, MPSGraphExecutable> getCallables();
+    /**
+     * @since Available in iOS 17.1 and later.
+     */
+    @Property(selector = "setCallables:")
+    public native void setCallables(NSDictionary<NSString, MPSGraphExecutable> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "reducedPrecisionFastMath")
+    public native MPSGraphReducedPrecisionFastMath getReducedPrecisionFastMath();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setReducedPrecisionFastMath:")
+    public native void setReducedPrecisionFastMath(MPSGraphReducedPrecisionFastMath v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
