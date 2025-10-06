@@ -50,7 +50,11 @@ public enum /*<name>*/PKIdentityError/*</name>*/ implements NSErrorCode {
     NoElementsRequested(4L),
     RequestAlreadyInProgress(5L),
     InvalidNonce(6L),
-    InvalidElement(7L);
+    InvalidElement(7L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    RegionNotSupported(8L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PKIdentityError.class); }/*</bind>*/

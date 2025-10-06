@@ -37,38 +37,33 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKInstantFundsOutFeeSummaryItem/*</name>*/ 
-    extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKAddPassMetadataPreview/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKInstantFundsOutFeeSummaryItemPtr extends Ptr<PKInstantFundsOutFeeSummaryItem, PKInstantFundsOutFeeSummaryItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKInstantFundsOutFeeSummaryItem.class); }/*</bind>*/
+    /*<ptr>*/public static class PKAddPassMetadataPreviewPtr extends Ptr<PKAddPassMetadataPreview, PKAddPassMetadataPreviewPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKAddPassMetadataPreview.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKInstantFundsOutFeeSummaryItem() {}
-    protected PKInstantFundsOutFeeSummaryItem(Handle h, long handle) { super(h, handle); }
-    protected PKInstantFundsOutFeeSummaryItem(SkipInit skipInit) { super(skipInit); }
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
+    protected PKAddPassMetadataPreview() {}
+    protected PKAddPassMetadataPreview(Handle h, long handle) { super(h, handle); }
+    protected PKAddPassMetadataPreview(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPassThumbnail:localizedDescription:")
+    public PKAddPassMetadataPreview(CGImage passThumbnail, String description) { super((SkipInit) null); initObject(init(passThumbnail, description)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "passThumbnailImage")
+    public native CGImage getPassThumbnailImage();
+    @Property(selector = "localizedDescription")
+    public native String getLocalizedDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "summaryItemWithLabel:amount:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "summaryItemWithLabel:amount:type:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
+    @Method(selector = "initWithPassThumbnail:localizedDescription:")
+    protected native @Pointer long init(CGImage passThumbnail, String description);
     /*</methods>*/
 }

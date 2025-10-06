@@ -37,38 +37,29 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKInstantFundsOutFeeSummaryItem/*</name>*/ 
-    extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKAddIdentityDocumentConfiguration/*</name>*/ 
+    extends /*<extends>*/PKAddSecureElementPassConfiguration/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKInstantFundsOutFeeSummaryItemPtr extends Ptr<PKInstantFundsOutFeeSummaryItem, PKInstantFundsOutFeeSummaryItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKInstantFundsOutFeeSummaryItem.class); }/*</bind>*/
+    /*<ptr>*/public static class PKAddIdentityDocumentConfigurationPtr extends Ptr<PKAddIdentityDocumentConfiguration, PKAddIdentityDocumentConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKAddIdentityDocumentConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKInstantFundsOutFeeSummaryItem() {}
-    protected PKInstantFundsOutFeeSummaryItem(Handle h, long handle) { super(h, handle); }
-    protected PKInstantFundsOutFeeSummaryItem(SkipInit skipInit) { super(skipInit); }
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
+    protected PKAddIdentityDocumentConfiguration() {}
+    protected PKAddIdentityDocumentConfiguration(Handle h, long handle) { super(h, handle); }
+    protected PKAddIdentityDocumentConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "metadata")
+    public native PKIdentityDocumentMetadata getMetadata();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "summaryItemWithLabel:amount:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "summaryItemWithLabel:amount:type:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
+    @Method(selector = "configurationForMetadata:completion:")
+    public static native void configurationForMetadata(PKIdentityDocumentMetadata metadata, @Block VoidBlock2<PKAddIdentityDocumentConfiguration, NSError> completion);
     /*</methods>*/
 }

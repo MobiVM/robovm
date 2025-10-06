@@ -70,7 +70,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:preview:")
-    public static  PKShareablePassMetadata createUsingCardTemplateIdentifier(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
+    public static PKShareablePassMetadata createUsingCardTemplateIdentifier(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
        PKShareablePassMetadata res = new PKShareablePassMetadata((SkipInit) null);
        res.initObject(res.createUsingCardTemplateIdentifier0(credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview));
        return res;
@@ -79,7 +79,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:preview:")
-    public static  PKShareablePassMetadata createUsingCardConfigurationIdentifier0(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
+    public static PKShareablePassMetadata createUsingCardConfigurationIdentifier0(String credentialIdentifier, String sharingInstanceIdentifier, String templateIdentifier, PKShareablePassMetadataPreview preview) {
        PKShareablePassMetadata res = new PKShareablePassMetadata((SkipInit) null);
        res.initObject(res.createUsingcardConfigurationIdentifier0(credentialIdentifier, sharingInstanceIdentifier, templateIdentifier, preview));
        return res;

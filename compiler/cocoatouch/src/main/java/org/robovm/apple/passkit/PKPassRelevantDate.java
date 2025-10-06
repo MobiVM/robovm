@@ -36,39 +36,29 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 17.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKInstantFundsOutFeeSummaryItem/*</name>*/ 
-    extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPassRelevantDate/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PKInstantFundsOutFeeSummaryItemPtr extends Ptr<PKInstantFundsOutFeeSummaryItem, PKInstantFundsOutFeeSummaryItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKInstantFundsOutFeeSummaryItem.class); }/*</bind>*/
+    /*<ptr>*/public static class PKPassRelevantDatePtr extends Ptr<PKPassRelevantDate, PKPassRelevantDatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKPassRelevantDate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKInstantFundsOutFeeSummaryItem() {}
-    protected PKInstantFundsOutFeeSummaryItem(Handle h, long handle) { super(h, handle); }
-    protected PKInstantFundsOutFeeSummaryItem(SkipInit skipInit) { super(skipInit); }
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public PKInstantFundsOutFeeSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
+    public PKPassRelevantDate() {}
+    protected PKPassRelevantDate(Handle h, long handle) { super(h, handle); }
+    protected PKPassRelevantDate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "interval")
+    public native NSDateInterval getInterval();
+    @Property(selector = "date")
+    public native NSDate getDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "summaryItemWithLabel:amount:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "summaryItemWithLabel:amount:type:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
+    
     /*</methods>*/
 }

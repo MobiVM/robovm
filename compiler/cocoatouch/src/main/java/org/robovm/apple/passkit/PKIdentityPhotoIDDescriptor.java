@@ -37,38 +37,31 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKDisbursementSummaryItem/*</name>*/ 
-    extends /*<extends>*/PKPaymentSummaryItem/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKIdentityPhotoIDDescriptor/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements PKIdentityDocumentDescriptor/*</implements>*/ {
 
-    /*<ptr>*/public static class PKDisbursementSummaryItemPtr extends Ptr<PKDisbursementSummaryItem, PKDisbursementSummaryItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PKDisbursementSummaryItem.class); }/*</bind>*/
+    /*<ptr>*/public static class PKIdentityPhotoIDDescriptorPtr extends Ptr<PKIdentityPhotoIDDescriptor, PKIdentityPhotoIDDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKIdentityPhotoIDDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PKDisbursementSummaryItem() {}
-    protected PKDisbursementSummaryItem(Handle h, long handle) { super(h, handle); }
-    protected PKDisbursementSummaryItem(SkipInit skipInit) { super(skipInit); }
-    public PKDisbursementSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    public PKDisbursementSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
+    public PKIdentityPhotoIDDescriptor() {}
+    protected PKIdentityPhotoIDDescriptor(Handle h, long handle) { super(h, handle); }
+    protected PKIdentityPhotoIDDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "elements")
+    public native NSArray<PKIdentityElement> getElements();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "summaryItemWithLabel:amount:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "summaryItemWithLabel:amount:type:")
-    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
+    @Method(selector = "intentToStoreForElement:")
+    public native PKIdentityIntentToStore intentToStoreForElement(PKIdentityElement element);
+    @Method(selector = "addElements:withIntentToStore:")
+    public native void addElements(NSArray<PKIdentityElement> elements, PKIdentityIntentToStore intentToStore);
     /*</methods>*/
 }

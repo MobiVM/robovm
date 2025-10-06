@@ -99,6 +99,9 @@ import org.robovm.apple.coreanimation.*;
      */
     @Deprecated
     public static final PKPaymentNetwork Bancomat = new PKPaymentNetwork("Bancomat");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     public static final PKPaymentNetwork PagoBancomat = new PKPaymentNetwork("PagoBancomat");
     /**
      * @since Available in iOS 16.0 and later.
@@ -204,9 +207,33 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final PKPaymentNetwork Tmoney = new PKPaymentNetwork("Tmoney");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final PKPaymentNetwork Meeza = new PKPaymentNetwork("Meeza");
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    public static final PKPaymentNetwork NAPAS = new PKPaymentNetwork("NAPAS");
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    public static final PKPaymentNetwork BankAxept = new PKPaymentNetwork("BankAxept");
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final PKPaymentNetwork Himyan = new PKPaymentNetwork("Himyan");
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final PKPaymentNetwork Jaywan = new PKPaymentNetwork("Jaywan");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final PKPaymentNetwork MyDebit = new PKPaymentNetwork("MyDebit");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Bancomat, PagoBancomat, Bancontact, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco, PostFinance, Tmoney/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Bancomat, PagoBancomat, Bancontact, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco, PostFinance, Tmoney, Meeza, NAPAS, BankAxept, Himyan, Jaywan, MyDebit/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -238,6 +265,9 @@ import org.robovm.apple.coreanimation.*;
         @Deprecated
         @GlobalValue(symbol="PKPaymentNetworkBancomat", optional=true)
         public static native NSString Bancomat();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
         @GlobalValue(symbol="PKPaymentNetworkPagoBancomat", optional=true)
         public static native NSString PagoBancomat();
         /**
@@ -372,6 +402,36 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkTmoney", optional=true)
         public static native NSString Tmoney();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkMeeza", optional=true)
+        public static native NSString Meeza();
+        /**
+         * @since Available in iOS 17.5 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkNAPAS", optional=true)
+        public static native NSString NAPAS();
+        /**
+         * @since Available in iOS 17.5 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkBankAxept", optional=true)
+        public static native NSString BankAxept();
+        /**
+         * @since Available in iOS 18.4 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkHimyan", optional=true)
+        public static native NSString Himyan();
+        /**
+         * @since Available in iOS 18.4 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkJaywan", optional=true)
+        public static native NSString Jaywan();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkMyDebit", optional=true)
+        public static native NSString MyDebit();
         /*</values>*/
     }
 }
