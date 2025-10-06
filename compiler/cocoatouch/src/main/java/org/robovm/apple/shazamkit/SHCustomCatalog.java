@@ -48,9 +48,24 @@ import org.robovm.apple.avfoundation.*;
     public SHCustomCatalog() {}
     protected SHCustomCatalog(Handle h, long handle) { super(h, handle); }
     protected SHCustomCatalog(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithDataRepresentation:error:")
+    public SHCustomCatalog(NSData dataRepresentation) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(dataRepresentation, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "dataRepresentation")
+    public native NSData getDataRepresentation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,13 +85,28 @@ import org.robovm.apple.avfoundation.*;
     }
     @Method(selector = "addCustomCatalogFromURL:error:")
     private native boolean addCustomCatalogFromURL(NSURL customCatalogURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use dataRepresentation
+     */
+    @Deprecated
     public boolean writeToURL(NSURL destinationURL) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = writeToURL(destinationURL, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use dataRepresentation
+     */
+    @Deprecated
     @Method(selector = "writeToURL:error:")
     private native boolean writeToURL(NSURL destinationURL, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithDataRepresentation:error:")
+    private native @Pointer long init(NSData dataRepresentation, NSError.NSErrorPtr error);
     /*</methods>*/
 }
