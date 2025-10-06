@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,17 +54,23 @@ import org.robovm.apple.network.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_get_status` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>
      */
+    @Deprecated
     @Property(selector = "status")
     public native NWPathStatus getStatus();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_is_expensive` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>
      */
+    @Deprecated
     @Property(selector = "isExpensive")
     public native boolean isExpensive();
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_is_constrained` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>
      */
+    @Deprecated
     @Property(selector = "isConstrained")
     public native boolean isConstrained();
     /*</properties>*/
@@ -71,7 +78,9 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_is_equal` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>
      */
+    @Deprecated
     @Method(selector = "isEqualToPath:")
     public native boolean isEqualToPath(NWPath path);
     /*</methods>*/

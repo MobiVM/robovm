@@ -34,43 +34,37 @@ import org.robovm.apple.network.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEHotspotHelperResponse/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEVPNIKEv2PPKConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class NEHotspotHelperResponsePtr extends Ptr<NEHotspotHelperResponse, NEHotspotHelperResponsePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(NEHotspotHelperResponse.class); }/*</bind>*/
+    /*<ptr>*/public static class NEVPNIKEv2PPKConfigurationPtr extends Ptr<NEVPNIKEv2PPKConfiguration, NEVPNIKEv2PPKConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEVPNIKEv2PPKConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public NEHotspotHelperResponse() {}
-    protected NEHotspotHelperResponse(Handle h, long handle) { super(h, handle); }
-    protected NEHotspotHelperResponse(SkipInit skipInit) { super(skipInit); }
+    public NEVPNIKEv2PPKConfiguration() {}
+    protected NEVPNIKEv2PPKConfiguration(Handle h, long handle) { super(h, handle); }
+    protected NEVPNIKEv2PPKConfiguration(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithIdentifier:keychainReference:")
+    public NEVPNIKEv2PPKConfiguration(String identifier, NSData keychainReference) { super((SkipInit) null); initObject(init(identifier, keychainReference)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    @Property(selector = "keychainReference")
+    public native NSData getKeychainReference();
+    @Property(selector = "isMandatory")
+    public native boolean isMandatory();
+    @Property(selector = "setIsMandatory:")
+    public native void setIsMandatory(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "setNetwork:")
-    public native void setNetwork(NEHotspotNetwork network);
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Method(selector = "setNetworkList:")
-    public native void setNetworkList(NSArray<NEHotspotNetwork> networkList);
-    /**
-     * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 26.0. Use handleCommand in NEHotspotEvaluationProvider or NEHotspotAuthenticationProvider API
-     */
-    @Deprecated
-    @Method(selector = "deliver")
-    public native void deliver();
+    @Method(selector = "initWithIdentifier:keychainReference:")
+    protected native @Pointer long init(String identifier, NSData keychainReference);
     /*</methods>*/
 }

@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWHostEndpoint/*</name>*/ 
     extends /*<extends>*/NWEndpoint/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,12 +54,16 @@ import org.robovm.apple.network.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_get_hostname` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>
      */
+    @Deprecated
     @Property(selector = "hostname")
     public native String getHostname();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_get_port` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>
      */
+    @Deprecated
     @Property(selector = "port")
     public native String getPort();
     @Property(selector = "supportsSecureCoding")
@@ -68,7 +73,9 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_create_host` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>
      */
+    @Deprecated
     @Method(selector = "endpointWithHostname:port:")
     public static native NWHostEndpoint create(String hostname, String port);
     /*</methods>*/

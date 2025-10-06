@@ -34,19 +34,15 @@ import org.robovm.apple.network.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 18.0. Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/NWTCPConnectionState/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/NEVPNIKEv2PostQuantumKeyExchangeMethod/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Invalid(0L),
-    Connecting(1L),
-    Waiting(2L),
-    Connected(3L),
-    Disconnected(4L),
-    Cancelled(5L);
+    None(0L),
+    _36(36L),
+    _37(37L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +52,15 @@ public enum /*<name>*/NWTCPConnectionState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/NWTCPConnectionState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NEVPNIKEv2PostQuantumKeyExchangeMethod/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NWTCPConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWTCPConnectionState/*</name>*/ v : values()) {
+    public static /*<name>*/NEVPNIKEv2PostQuantumKeyExchangeMethod/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NEVPNIKEv2PostQuantumKeyExchangeMethod/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWTCPConnectionState/*</name>*/.class.getName());
+            + /*<name>*/NEVPNIKEv2PostQuantumKeyExchangeMethod/*</name>*/.class.getName());
     }
 }

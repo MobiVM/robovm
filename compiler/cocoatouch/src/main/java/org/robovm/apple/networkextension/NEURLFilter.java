@@ -33,38 +33,30 @@ import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 18.0. Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/NWTCPConnectionState/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Invalid(0L),
-    Connecting(1L),
-    Waiting(2L),
-    Connected(3L),
-    Disconnected(4L),
-    Cancelled(5L);
-    /*</values>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NEURLFilter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NEURLFilterPtr extends Ptr<NEURLFilter, NEURLFilterPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NEURLFilter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/NWTCPConnectionState/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/NWTCPConnectionState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NWTCPConnectionState/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/NWTCPConnectionState/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    protected NEURLFilter() {}
+    protected NEURLFilter(Handle h, long handle) { super(h, handle); }
+    protected NEURLFilter(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "verdictForURL:completionHandler:")
+    public static native void verdict(NSURL url, @Block VoidBlock1<NEURLFilterVerdict> completionHandler);
+    /*</methods>*/
 }

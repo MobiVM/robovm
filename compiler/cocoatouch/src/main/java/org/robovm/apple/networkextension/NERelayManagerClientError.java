@@ -34,55 +34,47 @@ import org.robovm.apple.network.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 11.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("NetworkExtension")/*</annotations>*/
-public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements NSErrorCode {
+public enum /*<name>*/NERelayManagerClientError/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    Invalid(0L),
-    InvalidSSID(1L),
-    InvalidWPAPassphrase(2L),
-    InvalidWEPPassphrase(3L),
-    InvalidEAPSettings(4L),
-    InvalidHS20Settings(5L),
-    InvalidHS20DomainName(6L),
-    UserDenied(7L),
-    Internal(8L),
-    Pending(9L),
-    SystemConfiguration(10L),
-    Unknown(11L),
-    JoinOnceNotSupported(12L),
-    AlreadyAssociated(13L),
-    ApplicationIsNotInForeground(14L),
-    InvalidSSIDPrefix(15L),
-    UserUnauthorized(16L),
-    SystemDenied(17L);
+    None(1L),
+    DNSFailed(2L),
+    ServerUnreachable(3L),
+    ServerDisconnected(4L),
+    CertificateMissing(5L),
+    CertificateInvalid(6L),
+    CertificateExpired(7L),
+    ServerCertificateInvalid(8L),
+    ServerCertificateExpired(9L),
+    Other(10L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(NEHotspotConfigurationError.class); }/*</bind>*/
+    /*<bind>*/static { Bro.bind(NERelayManagerClientError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    @GlobalValue(symbol="NEHotspotConfigurationErrorDomain", optional=true)
+    @GlobalValue(symbol="NERelayClientErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/NEHotspotConfigurationError/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/NERelayManagerClientError/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/NEHotspotConfigurationError/*</name>*/ valueOf(long n) {
-        for (/*<name>*/NEHotspotConfigurationError/*</name>*/ v : values()) {
+    public static /*<name>*/NERelayManagerClientError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/NERelayManagerClientError/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in "
-            + /*<name>*/NEHotspotConfigurationError/*</name>*/.class.getName());
+            + /*<name>*/NERelayManagerClientError/*</name>*/.class.getName());
     }
 
     // bind wrap to include it in compilation as long as nserror enum is used 
@@ -93,15 +85,15 @@ public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements NSErrorC
 
         @Override public NSErrorCode getErrorCode() {
              try {
-                 return  /*<name>*/NEHotspotConfigurationError/*</name>*/.valueOf(getCode());
+                 return  /*<name>*/NERelayManagerClientError/*</name>*/.valueOf(getCode());
              } catch (IllegalArgumentException e) {
                  return null;
              }
          }
 
         public static String getClassDomain() {
-            /** must be incerted in value section */
-            return /*<name>*/NEHotspotConfigurationError/*</name>*/.getClassDomain();
+            /** must be inserted in value section */
+            return /*<name>*/NERelayManagerClientError/*</name>*/.getClassDomain();
         }
     }
 }

@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 26.0. Use NEHotspotManager API
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NEHotspotHelper/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -63,17 +64,23 @@ import org.robovm.apple.network.*;
     
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use NEHotspotManager API
      */
+    @Deprecated
     @Method(selector = "registerWithOptions:queue:handler:")
     public static native boolean register(NSDictionary<NSString, ?> options, org.robovm.apple.dispatch.DispatchQueue queue, @Block VoidBlock1<NEHotspotHelperCommand> handler);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use NEHotspotManager API
      */
+    @Deprecated
     @Method(selector = "logoff:")
     public static native boolean logoff(NEHotspotNetwork network);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use NEHotspotManager API
      */
+    @Deprecated
     @Method(selector = "supportedNetworkInterfaces")
     public static native NSArray<?> supportedNetworkInterfaces();
     /*</methods>*/

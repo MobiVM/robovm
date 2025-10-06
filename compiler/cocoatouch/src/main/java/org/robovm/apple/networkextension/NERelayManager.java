@@ -59,6 +59,20 @@ import org.robovm.apple.network.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
+    @Property(selector = "isUIToggleEnabled")
+    public native boolean isUIToggleEnabled();
+    @Property(selector = "setUIToggleEnabled:")
+    public native void setUIToggleEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isDNSFailoverAllowed")
+    public native boolean isAllowDNSFailover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowDNSFailover:")
+    public native void setAllowDNSFailover(boolean v);
     @Property(selector = "relays")
     public native NSArray<NERelay> getRelays();
     @Property(selector = "setRelays:")
@@ -67,10 +81,18 @@ import org.robovm.apple.network.*;
     public native NSArray<NSString> getMatchDomains();
     @Property(selector = "setMatchDomains:")
     public native void setMatchDomains(NSArray<NSString> v);
+    @Property(selector = "matchFQDNs")
+    public native NSArray<NSString> getMatchFQDNs();
+    @Property(selector = "setMatchFQDNs:")
+    public native void setMatchFQDNs(NSArray<NSString> v);
     @Property(selector = "excludedDomains")
     public native NSArray<NSString> getExcludedDomains();
     @Property(selector = "setExcludedDomains:")
     public native void setExcludedDomains(NSArray<NSString> v);
+    @Property(selector = "excludedFQDNs")
+    public native NSArray<NSString> getExcludedFQDNs();
+    @Property(selector = "setExcludedFQDNs:")
+    public native void setExcludedFQDNs(NSArray<NSString> v);
     @Property(selector = "onDemandRules")
     public native NSArray<NEOnDemandRule> getOnDemandRules();
     @Property(selector = "setOnDemandRules:")
@@ -84,6 +106,11 @@ import org.robovm.apple.network.*;
     public native void removeFromPreferences(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "saveToPreferencesWithCompletionHandler:")
     public native void saveToPreferences(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "getLastClientErrors:completionHandler:")
+    public native void getLastClientErrors(double seconds, @Block VoidBlock1<NSArray<NSError>> completionHandler);
     @Method(selector = "sharedManager")
     public static native NERelayManager sharedManager();
     @Method(selector = "loadAllManagersFromPreferencesWithCompletionHandler:")

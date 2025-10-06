@@ -52,22 +52,43 @@ import org.robovm.apple.network.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Property(selector = "localFlowEndpoint")
+    public native NWEndpoint getLocalFlowEndpoint();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use localFlowEndpoint
+     */
+    @Deprecated
     @Property(selector = "localEndpoint")
     public native NWEndpoint getLocalEndpoint();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Method(selector = "readDatagramsAndFlowEndpointsWithCompletionHandler:")
+    public native void readDatagramsAndFlowEndpoints(@Block VoidBlock3<NSArray<NSData>, NSArray<NWEndpoint>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use readDatagramsAndFlowEndpointsWithCompletionHandler:
+     */
+    @Deprecated
     @Method(selector = "readDatagramsWithCompletionHandler:")
     public native void readDatagrams(@Block VoidBlock3<NSArray<NSData>, NSArray<NWEndpoint>, NSError> completionHandler);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Method(selector = "writeDatagrams:sentByFlowEndpoints:completionHandler:")
+    public native void writeDatagramsSentByFlowEndpoints(NSArray<NSData> datagrams, NSArray<NWEndpoint> remoteEndpoints, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use writeDatagrams:sentByFlowEndpoints:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "writeDatagrams:sentByEndpoints:completionHandler:")
-    public native void writeDatagrams(NSArray<NSData> datagrams, NSArray<NWEndpoint> remoteEndpoints, @Block VoidBlock1<NSError> completionHandler);
+    public native void writeDatagramsSentByEndpoints(NSArray<NSData> datagrams, NSArray<NWEndpoint> remoteEndpoints, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

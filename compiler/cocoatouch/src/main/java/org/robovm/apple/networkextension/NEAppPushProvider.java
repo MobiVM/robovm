@@ -91,5 +91,10 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "handleTimerEvent")
     public native void handleTimerEvent();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "unmatchEthernet")
+    public native void unmatchEthernet();
     /*</methods>*/
 }

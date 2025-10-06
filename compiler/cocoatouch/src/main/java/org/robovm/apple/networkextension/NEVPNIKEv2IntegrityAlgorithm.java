@@ -39,12 +39,12 @@ import org.robovm.apple.network.*;
 public enum /*<name>*/NEVPNIKEv2IntegrityAlgorithm/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @deprecated Deprecated in iOS 17.0. Use SHA-2 for integrity protection instead
+     * @deprecated Deprecated in iOS 17.0. SHA-1 is not supported
      */
     @Deprecated
     SHA96(1L),
     /**
-     * @deprecated Deprecated in iOS 17.0. Use SHA-2 for integrity protection instead
+     * @deprecated Deprecated in iOS 17.0. SHA-1 is not supported
      */
     @Deprecated
     SHA160(2L),
