@@ -584,6 +584,10 @@ classes:
             '-getDoubleQuaternionArray:maxCount:':
                 name: getDoubleQuaternionArray
     MDLTransformOrientOp: {} #since 12.0
+    MDLUtility: #since 18.0
+        methods:
+            '+convertToUSDZ:writeToURL:':
+                name: convertToUSDZ
 protocols:
     MDLLightProbeIrradianceDataSource:
         skip_adapter: true
