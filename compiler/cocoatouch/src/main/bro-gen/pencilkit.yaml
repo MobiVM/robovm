@@ -14,6 +14,8 @@ enums:
     PKEraserType: {}
     PKCanvasViewDrawingPolicy: {}
     PKContentVersion: {}
+    PKToolPickerCustomItemControlOptions: { prefix: PKToolPickerCustomItemControl }
+    PKToolPickerVisibility: { }
 typed_enums:
     PKInkType:
         enum: PKInkType
@@ -48,12 +50,16 @@ classes:
                 name: init
             '+convertColor:fromUserInterfaceStyle:to:':
                 name: convertColor
+            '-initWithInkType:color:width:azimuth:':
+                name: init
     PKLassoTool: {} #since 13.0
     PKTool: {} #since 13.0
     PKToolPicker: #since 13.0
         methods:
             '-setVisible:forFirstResponder:':
                 name: setVisible
+            '-initWithToolItems:':
+                name: init
     PKFloatRange: #since 14.0
         methods:
             '-initWithLowerBound:upperBound:':
@@ -88,9 +94,45 @@ classes:
                 name: init
             '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:':
                 name: init
+            '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:':
+                name: init
+    PKResponderState: {} #since 26.0
+    PKToolPickerCustomItem: #since 18.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    PKToolPickerCustomItemConfiguration: #since 18.0
+        methods:
+            '-initWithIdentifier:name:':
+                name: init
+    PKToolPickerEraserItem: #since 18.0
+        methods:
+            '-initWithEraserType:':
+                name: init
+            '-initWithEraserType:width:':
+                name: init
+    PKToolPickerInkingItem: #since 18.0
+        methods:
+            '-initWithInkType:':
+                name: init
+            '-initWithInkType:color:':
+                name: init
+            '-initWithInkType:width:':
+                name: init
+            '-initWithInkType:color:width:':
+                name: init
+            '-initWithInkType:color:width:identifier:':
+                name: init
+            '-initWithInkType:color:width:azimuth:identifier:':
+                name: init
+    PKToolPickerItem: {} #since 18.0
+    PKToolPickerLassoItem: {} #since 18.0
+    PKToolPickerRulerItem: {} #since 18.0
+    PKToolPickerScribbleItem: {} #since 18.0
 protocols:
     PKCanvasViewDelegate: {} #since 13.0
     PKToolPickerObserver: {} #since 13.0
+    PKToolPickerDelegate: {} #since 18.0
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

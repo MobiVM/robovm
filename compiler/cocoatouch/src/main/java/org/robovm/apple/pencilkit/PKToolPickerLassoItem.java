@@ -34,40 +34,29 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 18.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    _1(1L),
-    _2(2L),
-    /**
-     * @since Available in iOS 17.5 and later.
-     */
-    _3(3L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    _4(4L),
-    Latest(4L);
-    /*</values>*/
+/*<annotations>*/@Library("PencilKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKToolPickerLassoItem/*</name>*/ 
+    extends /*<extends>*/PKToolPickerItem/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class PKToolPickerLassoItemPtr extends Ptr<PKToolPickerLassoItem, PKToolPickerLassoItemPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKToolPickerLassoItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/PKContentVersion/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/PKContentVersion/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKContentVersion/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKContentVersion/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public PKToolPickerLassoItem() {}
+    protected PKToolPickerLassoItem(Handle h, long handle) { super(h, handle); }
+    protected PKToolPickerLassoItem(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "lassoTool")
+    public native PKLassoTool getLassoTool();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

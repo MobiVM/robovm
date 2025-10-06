@@ -37,19 +37,12 @@ import org.robovm.apple.coreanimation.*;
 
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PKToolPickerVisibility/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    _1(1L),
-    _2(2L),
-    /**
-     * @since Available in iOS 17.5 and later.
-     */
-    _3(3L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    _4(4L),
-    Latest(4L);
+    Inherited(0L),
+    Inactive(1L),
+    Hidden(2L),
+    Visible(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -59,15 +52,15 @@ public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PKContentVersion/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PKToolPickerVisibility/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PKContentVersion/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKContentVersion/*</name>*/ v : values()) {
+    public static /*<name>*/PKToolPickerVisibility/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PKToolPickerVisibility/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKContentVersion/*</name>*/.class.getName());
+            + /*<name>*/PKToolPickerVisibility/*</name>*/.class.getName());
     }
 }

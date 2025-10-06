@@ -34,40 +34,35 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 26.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKToolPickerObserverAdapter/*</name>*/ 
+/*<annotations>*/@Library("PencilKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKResponderState/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements PKToolPickerObserver/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class PKResponderStatePtr extends Ptr<PKResponderState, PKResponderStatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKResponderState.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    public PKResponderState() {}
+    protected PKResponderState(Handle h, long handle) { super(h, handle); }
+    protected PKResponderState(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "toolPickerVisibility")
+    public native PKToolPickerVisibility getToolPickerVisibility();
+    @Property(selector = "setToolPickerVisibility:")
+    public native void setToolPickerVisibility(PKToolPickerVisibility v);
+    @Property(selector = "activeToolPicker")
+    public native PKToolPicker getActiveToolPicker();
+    @Property(selector = "setActiveToolPicker:")
+    public native void setActiveToolPicker(PKToolPicker v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use toolPickerSelectedToolItemDidChange instead.
-     */
-    @Deprecated
-    @NotImplemented("toolPickerSelectedToolDidChange:")
-    public void toolPickerSelectedToolDidChange(PKToolPicker toolPicker) {}
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @NotImplemented("toolPickerSelectedToolItemDidChange:")
-    public void toolPickerSelectedToolItemDidChange(PKToolPicker toolPicker) {}
-    @NotImplemented("toolPickerIsRulerActiveDidChange:")
-    public void toolPickerIsRulerActiveDidChange(PKToolPicker toolPicker) {}
-    @NotImplemented("toolPickerVisibilityDidChange:")
-    public void toolPickerVisibilityDidChange(PKToolPicker toolPicker) {}
-    @NotImplemented("toolPickerFramesObscuredDidChange:")
-    public void toolPickerFramesObscuredDidChange(PKToolPicker toolPicker) {}
+    
     /*</methods>*/
 }

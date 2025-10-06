@@ -34,40 +34,25 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 18.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    _1(1L),
-    _2(2L),
-    /**
-     * @since Available in iOS 17.5 and later.
-     */
-    _3(3L),
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    _4(4L),
-    Latest(4L);
-    /*</values>*/
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/PKToolPickerDelegate/*</name>*/ 
+    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
+    /*<ptr>*/
+    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/PKContentVersion/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/PKContentVersion/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PKContentVersion/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PKContentVersion/*</name>*/.class.getName());
-    }
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<methods>*/
+    
+    /*</methods>*/
+    /*<adapter>*/
+    /*</adapter>*/
 }
