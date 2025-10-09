@@ -37,34 +37,32 @@ import org.robovm.apple.videotoolbox.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("SensitiveContentAnalysis") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/SCSensitivityAnalysis/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/SCVideoStreamAnalyzerStreamDirection/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Outgoing(1L),
+    Incoming(2L);
+    /*</values>*/
 
-    /*<ptr>*/public static class SCSensitivityAnalysisPtr extends Ptr<SCSensitivityAnalysis, SCSensitivityAnalysisPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(SCSensitivityAnalysis.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public SCSensitivityAnalysis() {}
-    protected SCSensitivityAnalysis(Handle h, long handle) { super(h, handle); }
-    protected SCSensitivityAnalysis(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /*<properties>*/
-    @Property(selector = "isSensitive")
-    public native boolean isSensitive();
-    @Property(selector = "shouldInterruptVideo")
-    public native boolean shouldInterruptVideo();
-    @Property(selector = "shouldIndicateSensitivity")
-    public native boolean shouldIndicateSensitivity();
-    @Property(selector = "shouldMuteAudio")
-    public native boolean shouldMuteAudio();
-    /*</properties>*/
-    /*<members>*//*</members>*/
-    /*<methods>*/
-    
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/SCVideoStreamAnalyzerStreamDirection/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/SCVideoStreamAnalyzerStreamDirection/*</name>*/ valueOf(long n) {
+        for (/*<name>*/SCVideoStreamAnalyzerStreamDirection/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/SCVideoStreamAnalyzerStreamDirection/*</name>*/.class.getName());
+    }
 }
