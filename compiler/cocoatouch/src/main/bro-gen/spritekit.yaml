@@ -255,6 +255,8 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '+nodeWithFileNamed:':
+                exclude: true # clashes with init
     SKCameraNode: # DONE
         methods:
             '-containsNode:':
@@ -372,6 +374,8 @@ classes:
             '+labelNodeWithAttributedText:':
                 name: create
                 constructor: true
+            '+nodeWithFileNamed:':
+                exclude: true # clashes with init
     SKLightNode: {} # DONE
     SKMutableTexture: # DONE
         methods:
@@ -583,6 +587,8 @@ classes:
                 exclude: true
             '+referenceNodeWithURL:':
                 exclude: true
+            '+nodeWithFileNamed:':
+                exclude: true # clashes with init
     SKRegion: # DONE
         methods:
             '-init.*':
@@ -680,6 +686,8 @@ classes:
                 name: valueForAttribute
             '-setValue:forAttributeNamed:':
                 name: setValueForAttribute
+            '+nodeWithFileNamed:':
+                exclude: true # clashes with init
     SKTexture: # DONE
         methods:
             '-textureByApplyingCIFilter:':
@@ -783,6 +791,8 @@ classes:
                 name: init
             '+videoNodeWith.*':
                 exclude: true
+            '+nodeWithFileNamed:':
+                exclude: true # clashes with init
     SKView: # DONE
         methods:
             '-presentScene:.*':

@@ -59,6 +59,18 @@ import org.robovm.apple.coreanimation.*;
     public SK3DNode(@ByVal CGSize viewportSize) { super((SkipInit) null); initObject(init(viewportSize)); }
     @Method(selector = "initWithCoder:")
     public SK3DNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    public SK3DNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SK3DNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SK3DNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "viewportSize")
@@ -109,5 +121,12 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal VectorFloat3 projectPoint(@ByVal VectorFloat3 point);
     @Method(selector = "unprojectPoint:")
     public native @ByVal VectorFloat3 unprojectPoint(@ByVal VectorFloat3 point);
+    @Method(selector = "nodeWithFileNamed:")
+    protected static native @Pointer long create(String filename);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

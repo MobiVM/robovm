@@ -57,6 +57,18 @@ import org.robovm.apple.coreanimation.*;
     protected SKEffectNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
     public SKEffectNode(NSCoder coder) { super(coder); }
+    public SKEffectNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKEffectNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKEffectNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @WeaklyLinked
@@ -118,5 +130,12 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "setValue:forAttributeNamed:")
     public native void setValueForAttribute(SKAttributeValue value, String key);
+    @Method(selector = "nodeWithFileNamed:")
+    protected static native @Pointer long create(String filename);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }
