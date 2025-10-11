@@ -70,7 +70,7 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForOpeningContentTypes:")
-    public static  UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+    public static UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
        UIDocumentBrowserViewController res = new UIDocumentBrowserViewController((SkipInit) null);
        res.initObject(res.initForOpeningContentTypes(contentTypes));
        return res;

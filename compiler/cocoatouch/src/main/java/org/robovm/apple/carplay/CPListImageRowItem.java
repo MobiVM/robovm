@@ -74,7 +74,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "initWithText:cardElements:allowsMultipleLines:")
-    public static  CPListImageRowItem createWithCardElements(String text, NSArray<CPListImageRowItemCardElement> elements, boolean allowsMultipleLines) {
+    public static CPListImageRowItem createWithCardElements(String text, NSArray<CPListImageRowItemCardElement> elements, boolean allowsMultipleLines) {
        CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
        res.initObject(res.initWithCardElements(text, elements, allowsMultipleLines));
        return res;
@@ -83,7 +83,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "initWithText:condensedElements:allowsMultipleLines:")
-    public static  CPListImageRowItem createWithCondensedElements(String text, NSArray<CPListImageRowItemCondensedElement> elements, boolean allowsMultipleLines) {
+    public static CPListImageRowItem createWithCondensedElements(String text, NSArray<CPListImageRowItemCondensedElement> elements, boolean allowsMultipleLines) {
        CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
        res.initObject(res.initWithCondensedElements(text, elements, allowsMultipleLines));
        return res;
@@ -92,7 +92,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "initWithText:gridElements:allowsMultipleLines:")
-    public static  CPListImageRowItem createWithGridElements(String text, NSArray<CPListImageRowItemGridElement> elements, boolean allowsMultipleLines) {
+    public static CPListImageRowItem createWithGridElements(String text, NSArray<CPListImageRowItemGridElement> elements, boolean allowsMultipleLines) {
        CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
        res.initObject(res.initWithGridElements(text, elements, allowsMultipleLines));
        return res;
@@ -101,7 +101,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "initWithText:imageGridElements:allowsMultipleLines:")
-    public static  CPListImageRowItem createWithImageGridElements(String text, NSArray<CPListImageRowItemImageGridElement> elements, boolean allowsMultipleLines) {
+    public static CPListImageRowItem createWithImageGridElements(String text, NSArray<CPListImageRowItemImageGridElement> elements, boolean allowsMultipleLines) {
        CPListImageRowItem res = new CPListImageRowItem((SkipInit) null);
        res.initObject(res.initWithImageGridElements(text, elements, allowsMultipleLines));
        return res;

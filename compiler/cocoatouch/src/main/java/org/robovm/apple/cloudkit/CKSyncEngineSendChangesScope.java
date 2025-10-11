@@ -53,13 +53,13 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithZoneIDs:")
     public CKSyncEngineSendChangesScope(NSSet<CKRecordZoneID> zoneIDs) { super((SkipInit) null); initObject(init(zoneIDs)); }
     @Method(selector = "initWithExcludedZoneIDs:")
-    public static  CKSyncEngineSendChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> excludedZoneIDs) {
+    public static CKSyncEngineSendChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> excludedZoneIDs) {
        CKSyncEngineSendChangesScope res = new CKSyncEngineSendChangesScope((SkipInit) null);
        res.initObject(res.initWithExcludedZoneIDs(excludedZoneIDs));
        return res;
     }
     @Method(selector = "initWithRecordIDs:")
-    public static  CKSyncEngineSendChangesScope createWithRecordIDs(NSSet<CKRecordID> recordIDs) {
+    public static CKSyncEngineSendChangesScope createWithRecordIDs(NSSet<CKRecordID> recordIDs) {
        CKSyncEngineSendChangesScope res = new CKSyncEngineSendChangesScope((SkipInit) null);
        res.initObject(res.initWithRecordIDs(recordIDs));
        return res;

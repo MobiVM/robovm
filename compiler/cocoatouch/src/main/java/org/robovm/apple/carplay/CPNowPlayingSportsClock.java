@@ -54,7 +54,7 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithElapsedTime:paused:")
     public CPNowPlayingSportsClock(double elapsedTime, boolean paused) { super((SkipInit) null); initObject(init(elapsedTime, paused)); }
     @Method(selector = "initWithTimeRemaining:paused:")
-    public static  CPNowPlayingSportsClock createWithTimeRemaining(double timeRemaining, boolean paused) {
+    public static CPNowPlayingSportsClock createWithTimeRemaining(double timeRemaining, boolean paused) {
        CPNowPlayingSportsClock res = new CPNowPlayingSportsClock((SkipInit) null);
        res.initObject(res.initWithTimeRemaining(timeRemaining, paused));
        return res;

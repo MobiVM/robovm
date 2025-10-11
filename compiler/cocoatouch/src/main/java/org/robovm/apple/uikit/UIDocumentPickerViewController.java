@@ -67,7 +67,7 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForOpeningContentTypes:asCopy:")
-    public static  UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes, boolean asCopy) {
+    public static UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes, boolean asCopy) {
        UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
        res.initObject(res.initForOpeningContentTypesAsCopy(contentTypes, asCopy));
        return res;
@@ -76,7 +76,7 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForOpeningContentTypes:")
-    public static  UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+    public static UIDocumentPickerViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
        UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
        res.initObject(res.initForOpeningContentTypes(contentTypes));
        return res;
@@ -100,7 +100,7 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForExportingURLs:asCopy:")
-    public static  UIDocumentPickerViewController createForExportingURLs(NSArray<NSURL> urls, boolean asCopy) {
+    public static UIDocumentPickerViewController createForExportingURLs(NSArray<NSURL> urls, boolean asCopy) {
        UIDocumentPickerViewController res = new UIDocumentPickerViewController((SkipInit) null);
        res.initObject(res.initForExportingURLsAsCopy(urls, asCopy));
        return res;

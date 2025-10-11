@@ -53,7 +53,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithZoneIDs:")
     public CKSyncEngineFetchChangesScope(NSSet<CKRecordZoneID> zoneIDs) { super((SkipInit) null); initObject(init(zoneIDs)); }
     @Method(selector = "initWithExcludedZoneIDs:")
-    public static  CKSyncEngineFetchChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs) {
+    public static CKSyncEngineFetchChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs) {
        CKSyncEngineFetchChangesScope res = new CKSyncEngineFetchChangesScope((SkipInit) null);
        res.initObject(res.initWithExcludedZoneIDs(zoneIDs));
        return res;
