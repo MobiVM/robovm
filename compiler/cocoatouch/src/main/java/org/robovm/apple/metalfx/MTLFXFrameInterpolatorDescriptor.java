@@ -33,21 +33,21 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalFX") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXSpatialScalerDescriptor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXFrameInterpolatorDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLFXSpatialScalerDescriptorPtr extends Ptr<MTLFXSpatialScalerDescriptor, MTLFXSpatialScalerDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLFXSpatialScalerDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLFXFrameInterpolatorDescriptorPtr extends Ptr<MTLFXFrameInterpolatorDescriptor, MTLFXFrameInterpolatorDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLFXFrameInterpolatorDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLFXSpatialScalerDescriptor() {}
-    protected MTLFXSpatialScalerDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MTLFXSpatialScalerDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MTLFXFrameInterpolatorDescriptor() {}
+    protected MTLFXFrameInterpolatorDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MTLFXFrameInterpolatorDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "colorTextureFormat")
@@ -58,6 +58,22 @@ import org.robovm.apple.metal.*;
     public native MTLPixelFormat getOutputTextureFormat();
     @Property(selector = "setOutputTextureFormat:")
     public native void setOutputTextureFormat(MTLPixelFormat v);
+    @Property(selector = "depthTextureFormat")
+    public native MTLPixelFormat getDepthTextureFormat();
+    @Property(selector = "setDepthTextureFormat:")
+    public native void setDepthTextureFormat(MTLPixelFormat v);
+    @Property(selector = "motionTextureFormat")
+    public native MTLPixelFormat getMotionTextureFormat();
+    @Property(selector = "setMotionTextureFormat:")
+    public native void setMotionTextureFormat(MTLPixelFormat v);
+    @Property(selector = "uiTextureFormat")
+    public native MTLPixelFormat getUiTextureFormat();
+    @Property(selector = "setUITextureFormat:")
+    public native void setUiTextureFormat(MTLPixelFormat v);
+    @Property(selector = "scaler")
+    public native MTLFXFrameInterpolatableScaler getScaler();
+    @Property(selector = "setScaler:")
+    public native void setScaler(MTLFXFrameInterpolatableScaler v);
     @Property(selector = "inputWidth")
     public native @MachineSizedUInt long getInputWidth();
     @Property(selector = "setInputWidth:")
@@ -74,23 +90,13 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getOutputHeight();
     @Property(selector = "setOutputHeight:")
     public native void setOutputHeight(@MachineSizedUInt long v);
-    @Property(selector = "colorProcessingMode")
-    public native MTLFXSpatialScalerColorProcessingMode getColorProcessingMode();
-    @Property(selector = "setColorProcessingMode:")
-    public native void setColorProcessingMode(MTLFXSpatialScalerColorProcessingMode v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "newSpatialScalerWithDevice:")
-    public native MTLFXSpatialScaler newSpatialScaler(MTLDevice device);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @Method(selector = "newSpatialScalerWithDevice:compiler:")
-    public native MTL4FXSpatialScaler newSpatialScaler(MTLDevice device, MTL4Compiler compiler);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
+    @Method(selector = "newFrameInterpolatorWithDevice:")
+    public native MTLFXFrameInterpolator newFrameInterpolatorWithDevice$(MTLDevice device);
+    @Method(selector = "newFrameInterpolatorWithDevice:compiler:")
+    public native MTL4FXFrameInterpolator newFrameInterpolatorWithDevice$compiler$(MTLDevice device, MTL4Compiler compiler);
     @Method(selector = "supportsMetal4FX:")
     public static native boolean supportsMetal4FX(MTLDevice device);
     @Method(selector = "supportsDevice:")

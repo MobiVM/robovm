@@ -33,21 +33,21 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalFX") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXTemporalScalerDescriptor/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXTemporalDenoisedScalerDescriptor/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MTLFXTemporalScalerDescriptorPtr extends Ptr<MTLFXTemporalScalerDescriptor, MTLFXTemporalScalerDescriptorPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MTLFXTemporalScalerDescriptor.class); }/*</bind>*/
+    /*<ptr>*/public static class MTLFXTemporalDenoisedScalerDescriptorPtr extends Ptr<MTLFXTemporalDenoisedScalerDescriptor, MTLFXTemporalDenoisedScalerDescriptorPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLFXTemporalDenoisedScalerDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MTLFXTemporalScalerDescriptor() {}
-    protected MTLFXTemporalScalerDescriptor(Handle h, long handle) { super(h, handle); }
-    protected MTLFXTemporalScalerDescriptor(SkipInit skipInit) { super(skipInit); }
+    public MTLFXTemporalDenoisedScalerDescriptor() {}
+    protected MTLFXTemporalDenoisedScalerDescriptor(Handle h, long handle) { super(h, handle); }
+    protected MTLFXTemporalDenoisedScalerDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "colorTextureFormat")
@@ -62,6 +62,34 @@ import org.robovm.apple.metal.*;
     public native MTLPixelFormat getMotionTextureFormat();
     @Property(selector = "setMotionTextureFormat:")
     public native void setMotionTextureFormat(MTLPixelFormat v);
+    @Property(selector = "diffuseAlbedoTextureFormat")
+    public native MTLPixelFormat getDiffuseAlbedoTextureFormat();
+    @Property(selector = "setDiffuseAlbedoTextureFormat:")
+    public native void setDiffuseAlbedoTextureFormat(MTLPixelFormat v);
+    @Property(selector = "specularAlbedoTextureFormat")
+    public native MTLPixelFormat getSpecularAlbedoTextureFormat();
+    @Property(selector = "setSpecularAlbedoTextureFormat:")
+    public native void setSpecularAlbedoTextureFormat(MTLPixelFormat v);
+    @Property(selector = "normalTextureFormat")
+    public native MTLPixelFormat getNormalTextureFormat();
+    @Property(selector = "setNormalTextureFormat:")
+    public native void setNormalTextureFormat(MTLPixelFormat v);
+    @Property(selector = "roughnessTextureFormat")
+    public native MTLPixelFormat getRoughnessTextureFormat();
+    @Property(selector = "setRoughnessTextureFormat:")
+    public native void setRoughnessTextureFormat(MTLPixelFormat v);
+    @Property(selector = "specularHitDistanceTextureFormat")
+    public native MTLPixelFormat getSpecularHitDistanceTextureFormat();
+    @Property(selector = "setSpecularHitDistanceTextureFormat:")
+    public native void setSpecularHitDistanceTextureFormat(MTLPixelFormat v);
+    @Property(selector = "denoiseStrengthMaskTextureFormat")
+    public native MTLPixelFormat getDenoiseStrengthMaskTextureFormat();
+    @Property(selector = "setDenoiseStrengthMaskTextureFormat:")
+    public native void setDenoiseStrengthMaskTextureFormat(MTLPixelFormat v);
+    @Property(selector = "transparencyOverlayTextureFormat")
+    public native MTLPixelFormat getTransparencyOverlayTextureFormat();
+    @Property(selector = "setTransparencyOverlayTextureFormat:")
+    public native void setTransparencyOverlayTextureFormat(MTLPixelFormat v);
     @Property(selector = "outputTextureFormat")
     public native MTLPixelFormat getOutputTextureFormat();
     @Property(selector = "setOutputTextureFormat:")
@@ -82,72 +110,48 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getOutputHeight();
     @Property(selector = "setOutputHeight:")
     public native void setOutputHeight(@MachineSizedUInt long v);
-    @Property(selector = "isAutoExposureEnabled")
-    public native boolean isAutoExposureEnabled();
-    @Property(selector = "setAutoExposureEnabled:")
-    public native void setAutoExposureEnabled(boolean v);
     @Property(selector = "requiresSynchronousInitialization")
     public native boolean requiresSynchronousInitialization();
     @Property(selector = "setRequiresSynchronousInitialization:")
     public native void setRequiresSynchronousInitialization(boolean v);
-    @Property(selector = "isInputContentPropertiesEnabled")
-    public native boolean isInputContentPropertiesEnabled();
-    @Property(selector = "setInputContentPropertiesEnabled:")
-    public native void setInputContentPropertiesEnabled(boolean v);
-    @Property(selector = "inputContentMinScale")
-    public native float getInputContentMinScale();
-    @Property(selector = "setInputContentMinScale:")
-    public native void setInputContentMinScale(float v);
-    @Property(selector = "inputContentMaxScale")
-    public native float getInputContentMaxScale();
-    @Property(selector = "setInputContentMaxScale:")
-    public native void setInputContentMaxScale(float v);
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
+    @Property(selector = "isAutoExposureEnabled")
+    public native boolean isAutoExposureEnabled();
+    @Property(selector = "setAutoExposureEnabled:")
+    public native void setAutoExposureEnabled(boolean v);
     @Property(selector = "isReactiveMaskTextureEnabled")
     public native boolean isReactiveMaskTextureEnabled();
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
     @Property(selector = "setReactiveMaskTextureEnabled:")
     public native void setReactiveMaskTextureEnabled(boolean v);
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
     @Property(selector = "reactiveMaskTextureFormat")
     public native MTLPixelFormat getReactiveMaskTextureFormat();
-    /**
-     * @since Available in iOS 17.4 and later.
-     */
     @Property(selector = "setReactiveMaskTextureFormat:")
     public native void setReactiveMaskTextureFormat(MTLPixelFormat v);
+    @Property(selector = "isSpecularHitDistanceTextureEnabled")
+    public native boolean isSpecularHitDistanceTextureEnabled();
+    @Property(selector = "setSpecularHitDistanceTextureEnabled:")
+    public native void setSpecularHitDistanceTextureEnabled(boolean v);
+    @Property(selector = "isDenoiseStrengthMaskTextureEnabled")
+    public native boolean isDenoiseStrengthMaskTextureEnabled();
+    @Property(selector = "setDenoiseStrengthMaskTextureEnabled:")
+    public native void setDenoiseStrengthMaskTextureEnabled(boolean v);
+    @Property(selector = "isTransparencyOverlayTextureEnabled")
+    public native boolean isTransparencyOverlayTextureEnabled();
+    @Property(selector = "setTransparencyOverlayTextureEnabled:")
+    public native void setTransparencyOverlayTextureEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "newTemporalScalerWithDevice:")
-    public native MTLFXTemporalScaler newTemporalScaler(MTLDevice device);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @Method(selector = "newTemporalScalerWithDevice:compiler:")
-    public native MTL4FXTemporalScaler newTemporalScaler(MTLDevice device, MTL4Compiler compiler);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
+    @Method(selector = "newTemporalDenoisedScalerWithDevice:")
+    public native MTLFXTemporalDenoisedScaler newTemporalDenoisedScalerWithDevice$(MTLDevice device);
+    @Method(selector = "newTemporalDenoisedScalerWithDevice:compiler:")
+    public native MTL4FXTemporalDenoisedScaler newTemporalDenoisedScalerWithDevice$compiler$(MTLDevice device, MTL4Compiler compiler);
     @Method(selector = "supportedInputContentMinScaleForDevice:")
     public static native float supportedInputContentMinScaleForDevice(MTLDevice device);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
     @Method(selector = "supportedInputContentMaxScaleForDevice:")
     public static native float supportedInputContentMaxScaleForDevice(MTLDevice device);
-    @Method(selector = "supportsDevice:")
-    public static native boolean supportsDevice(MTLDevice device);
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
     @Method(selector = "supportsMetal4FX:")
     public static native boolean supportsMetal4FX(MTLDevice device);
+    @Method(selector = "supportsDevice:")
+    public static native boolean supportsDevice(MTLDevice device);
     /*</methods>*/
 }

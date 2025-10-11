@@ -33,12 +33,12 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLFXSpatialScaler/*</name>*/ 
-    /*<implements>*/extends MTLFXSpatialScalerBase/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLFXTemporalDenoisedScaler/*</name>*/ 
+    /*<implements>*/extends MTLFXTemporalDenoisedScalerBase/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/

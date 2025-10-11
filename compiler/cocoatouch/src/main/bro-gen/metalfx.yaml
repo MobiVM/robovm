@@ -15,15 +15,42 @@ classes:
         methods:
             '-newSpatialScalerWithDevice:':
                 name: newSpatialScaler
+            '-newSpatialScalerWithDevice:compiler:':
+                name: newSpatialScaler
     MTLFXTemporalScalerDescriptor: #since 16.0
         methods:
             '-newTemporalScalerWithDevice:':
                 name: newTemporalScaler
-
+            '-newTemporalScalerWithDevice:compiler:':
+                name: newTemporalScaler
+    MTLFXFrameInterpolatorDescriptor: #since 26.0
+        methods:
+            '-newFrameInterpolatorWithDevice:':
+                name: newFrameInterpolatorWithDevice$
+            '-newFrameInterpolatorWithDevice:compiler:':
+                #trim_after_first_colon: true
+                name: newFrameInterpolatorWithDevice$compiler$
+    MTLFXTemporalDenoisedScalerDescriptor: #since 18.0
+        methods:
+            '-newTemporalDenoisedScalerWithDevice:':
+                name: newTemporalDenoisedScalerWithDevice$
+            '-newTemporalDenoisedScalerWithDevice:compiler:':
+                #trim_after_first_colon: true
+                name: newTemporalDenoisedScalerWithDevice$compiler$
 protocols:
     MTLFXSpatialScaler: {} #since 16.0
     MTLFXTemporalScaler: {} #since 16.0
-
+    MTL4FXFrameInterpolator: {} #since 26.0
+    MTL4FXSpatialScaler: {} #since 26.0
+    MTL4FXTemporalDenoisedScaler: {} #since 26.0
+    MTL4FXTemporalScaler: {} #since 26.0
+    MTLFXFrameInterpolatableScaler: {}
+    MTLFXFrameInterpolator: {} #since 26.0
+    MTLFXFrameInterpolatorBase: {} #since 26.0
+    MTLFXSpatialScalerBase: {}
+    MTLFXTemporalDenoisedScaler: {} #since 18.0
+    MTLFXTemporalDenoisedScalerBase: {} #since 26.0
+    MTLFXTemporalScalerBase: {}
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (.*):

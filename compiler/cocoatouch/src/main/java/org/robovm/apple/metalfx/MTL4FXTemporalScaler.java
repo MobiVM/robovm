@@ -33,12 +33,12 @@ import org.robovm.apple.metal.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 26.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLFXSpatialScaler/*</name>*/ 
-    /*<implements>*/extends MTLFXSpatialScalerBase/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTL4FXTemporalScaler/*</name>*/ 
+    /*<implements>*/extends MTLFXTemporalScalerBase/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -50,7 +50,7 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "encodeToCommandBuffer:")
-    void encodeToCommandBuffer(MTLCommandBuffer commandBuffer);
+    void encodeToCommandBuffer(MTL4CommandBuffer commandBuffer);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
