@@ -1,0 +1,113 @@
+package: org.robovm.apple.videosubscriberaccount
+include: [foundation, uikit, ]
+library: VideoSubscriberAccount
+framework: VideoSubscriberAccount
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/VideoSubscriberAccount.framework/Headers/VideoSubscriberAccount.h
+
+typedefs:
+    
+enums:
+    VSAccountAccessStatus: {} #since 10.0
+    VSAutoSignInAuthorization: {} #since 26.0
+    VSSubscriptionAccessLevel: {} #since 11.0
+    VSUserAccountType: {} #since 16.4
+    VSOriginatingDeviceCategory: {} #since 16.4
+    VSUserAccountQueryOptions: {prefix: VSUserAccountQuery} #since 16.4
+    VSErrorCode: { nserror: true } #since 10.0
+
+categories:
+
+classes:
+    VSAccountApplicationProvider: #since 14.2
+        methods:
+            '-initWithLocalizedDisplayName:identifier:':
+                name: init
+    VSAccountManager: #since 10.0
+        methods:
+            '-checkAccessStatusWithOptions:completionHandler:':
+                name: checkAccessStatus
+            '-enqueueAccountMetadataRequest:completionHandler:':
+                name: enqueueAccountMetadataRequest
+    VSAccountManagerResult: {} #since 10.0
+    VSAccountMetadata: {} #since 10.0
+    VSAccountMetadataRequest: {} #since 10.0
+    VSAccountProviderResponse: {} #since 10.2
+    VSAppleSubscription: #since 17.4
+        methods:
+            '-initWithCustomerID:productCodes:':
+                name: init
+    VSAutoSignInToken: {} #since 26.0
+    VSAutoSignInTokenUpdateContext: {} #since 26.0
+    VSSubscription: {} #since 11.0
+    VSSubscriptionRegistrationCenter: {} #since 11.0
+    VSUserAccount: #since 16.4
+        methods:
+            '-initWithAccountType:updateURL:':
+                name: init
+    VSUserAccountManager: #since 16.4
+        methods:
+            '-updateUserAccount:completion:':
+                name: updateUserAccount
+            '-queryUserAccountsWithOptions:completion:':
+                name: queryUserAccounts
+            '-queryAutoSignInTokenWithCompletionHandler:':
+                name: queryAutoSignInToken
+            '-requestAutoSignInAuthorizationWithCompletionHandler:':
+                name: requestAutoSignInAuthorization
+            '-updateAutoSignInToken:updateContext:completionHandler:':
+                name: updateAutoSignInToken
+            '-deleteAutoSignInTokenWithCompletionHandler:':
+                name: deleteAutoSignInToken
+protocols:
+    VSAccountManagerDelegate: #since 10.0
+        methods:
+            '-accountManager:presentViewController:':
+                name: presentViewController
+            '-accountManager:dismissViewController:':
+                name: dismissViewController
+            '-accountManager:shouldAuthenticateAccountProviderWithIdentifier:':
+                name: shouldAuthenticateAccountProvider
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    VSErrorDomain:
+        class: VSErrorCode
+        name: getClassDomain
+    VSErrorInfoKey(.*):
+        class: VSErrorCode
+        static_class: InfoKeys
+        name: '#{g[0]}'
+        type: NSString
+
+    VSOpenTVProviderSettingsURLString:
+        class: VSAccountManager
+        name: OpenTVProviderSettingsURL
+        type: NSString
+    VSCheckAccessOptionPrompt:
+        class: VSAccountManager
+        name: CheckAccessOptionPrompt
+        type: NSString
+
+    VSAccountProviderAuthenticationScheme(SAML|API):
+        class: VSAccountProviderResponse
+        static_class: AuthenticationScheme
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'
