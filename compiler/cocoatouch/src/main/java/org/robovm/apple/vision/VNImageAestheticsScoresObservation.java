@@ -39,44 +39,32 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNHumanObservation/*</name>*/ 
-    extends /*<extends>*/VNDetectedObjectObservation/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNImageAestheticsScoresObservation/*</name>*/ 
+    extends /*<extends>*/VNObservation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNHumanObservationPtr extends Ptr<VNHumanObservation, VNHumanObservationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNHumanObservation.class); }/*</bind>*/
+    /*<ptr>*/public static class VNImageAestheticsScoresObservationPtr extends Ptr<VNImageAestheticsScoresObservation, VNImageAestheticsScoresObservationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNImageAestheticsScoresObservation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public VNHumanObservation() {}
-    protected VNHumanObservation(Handle h, long handle) { super(h, handle); }
-    protected VNHumanObservation(SkipInit skipInit) { super(skipInit); }
-    public VNHumanObservation(@ByVal CGRect boundingBox) { super((Handle) null, create(boundingBox)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    public VNHumanObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox) { super((Handle) null, create(requestRevision, boundingBox)); retain(getHandle()); }
+    protected VNImageAestheticsScoresObservation() {}
+    protected VNImageAestheticsScoresObservation(Handle h, long handle) { super(h, handle); }
+    protected VNImageAestheticsScoresObservation(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
-    @Property(selector = "upperBodyOnly")
-    public native boolean isUpperBodyOnly();
+    @Property(selector = "isUtility")
+    public native boolean isUtility();
+    @Property(selector = "overallScore")
+    public native float getOverallScore();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "observationWithBoundingBox:")
-    protected static native @Pointer long create(@ByVal CGRect boundingBox);
-    /**
-     * @since Available in iOS 12.0 and later.
-     */
-    @Method(selector = "observationWithRequestRevision:boundingBox:")
-    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox);
+    
     /*</methods>*/
 }

@@ -60,6 +60,11 @@ import org.robovm.apple.imageio.*;
      */
     @Deprecated
     public VNRectangleObservation(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight) { super((Handle) null, createDeprecated(requestRevision, topLeft, bottomLeft, bottomRight, topRight)); retain(getHandle()); }
+    public VNRectangleObservation(@ByVal CGRect boundingBox) { super((Handle) null, create(boundingBox)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public VNRectangleObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox) { super((Handle) null, create(requestRevision, boundingBox)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "topLeft")
@@ -87,5 +92,12 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
     public static native VNRectangleObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
+    @Method(selector = "observationWithBoundingBox:")
+    protected static native @Pointer long create(@ByVal CGRect boundingBox);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "observationWithRequestRevision:boundingBox:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox);
     /*</methods>*/
 }

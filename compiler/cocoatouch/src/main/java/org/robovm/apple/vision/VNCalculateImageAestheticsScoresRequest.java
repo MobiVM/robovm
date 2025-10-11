@@ -39,37 +39,29 @@ import org.robovm.apple.imageio.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("Vision") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNGeneratePersonSegmentationRequest/*</name>*/ 
-    extends /*<extends>*/VNStatefulRequest/*</extends>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/VNCalculateImageAestheticsScoresRequest/*</name>*/ 
+    extends /*<extends>*/VNImageBasedRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class VNGeneratePersonSegmentationRequestPtr extends Ptr<VNGeneratePersonSegmentationRequest, VNGeneratePersonSegmentationRequestPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(VNGeneratePersonSegmentationRequest.class); }/*</bind>*/
+    /*<ptr>*/public static class VNCalculateImageAestheticsScoresRequestPtr extends Ptr<VNCalculateImageAestheticsScoresRequest, VNCalculateImageAestheticsScoresRequestPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(VNCalculateImageAestheticsScoresRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
     /*</constants>*/
     /*<constructors>*/
-    public VNGeneratePersonSegmentationRequest() {}
-    protected VNGeneratePersonSegmentationRequest(Handle h, long handle) { super(h, handle); }
-    protected VNGeneratePersonSegmentationRequest(SkipInit skipInit) { super(skipInit); }
+    public VNCalculateImageAestheticsScoresRequest() {}
+    protected VNCalculateImageAestheticsScoresRequest(Handle h, long handle) { super(h, handle); }
+    protected VNCalculateImageAestheticsScoresRequest(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCompletionHandler:")
-    public VNGeneratePersonSegmentationRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super((SkipInit) null); initObject(init(completionHandler)); }
+    public VNCalculateImageAestheticsScoresRequest(@Block VoidBlock2<VNRequest, NSError> completionHandler) { super(completionHandler); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "qualityLevel")
-    public native VNGeneratePersonSegmentationRequestQualityLevel getQualityLevel();
-    @Property(selector = "setQualityLevel:")
-    public native void setQualityLevel(VNGeneratePersonSegmentationRequestQualityLevel v);
-    @Property(selector = "outputPixelFormat")
-    public native int getOutputPixelFormat();
-    @Property(selector = "setOutputPixelFormat:")
-    public native void setOutputPixelFormat(int v);
     @Property(selector = "results")
-    public native NSArray<VNPixelBufferObservation> getResults();
+    public native NSArray<VNImageAestheticsScoresObservation> getResults();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -88,12 +80,6 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithCompletionHandler:")
-    protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
-    /**
-     * @since Available in iOS 18.0 and later.
-     */
-    @Method(selector = "supportedOutputPixelFormatsAndReturnError:")
-    public native NSArray<NSNumber> supportedOutputPixelFormatsAndReturnError(NSError.NSErrorPtr error);
+    
     /*</methods>*/
 }
