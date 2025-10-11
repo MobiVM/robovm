@@ -81,6 +81,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "postNoticeForHighlightEvent:")
     public native void postNoticeForHighlightEvent(SWHighlightEvent event);
     /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "clearNoticesForHighlight:")
+    public native void clearNoticesForHighlight(SWCollaborationHighlight highlight);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "getSignedIdentityProofForCollaborationHighlight:usingData:completionHandler:")
