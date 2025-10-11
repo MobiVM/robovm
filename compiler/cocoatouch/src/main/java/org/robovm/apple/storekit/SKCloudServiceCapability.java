@@ -35,16 +35,19 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.3 and later.
+ * @deprecated Deprecated in iOS 18.0. Use MusicSubscription from MusicKit
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/SKCloudServiceCapability/*</name>*/ extends Bits</*<name>*/SKCloudServiceCapability/*</name>*/> {
     /*<values>*/
     public static final SKCloudServiceCapability None = new SKCloudServiceCapability(0L);
     public static final SKCloudServiceCapability MusicCatalogPlayback = new SKCloudServiceCapability(1L);
     /**
      * @since Available in iOS 10.1 and later.
+     * @deprecated Deprecated in iOS 18.0. Use the canBecomeSubscriber property of MusicSubscription from MusicKit
      */
+    @Deprecated
     public static final SKCloudServiceCapability MusicCatalogSubscriptionEligible = new SKCloudServiceCapability(2L);
     public static final SKCloudServiceCapability AddToCloudMusicLibrary = new SKCloudServiceCapability(256L);
     /*</values>*/

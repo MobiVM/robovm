@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.1 and later.
+ * @deprecated Deprecated in iOS 18.0. Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKCloudServiceSetupViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -55,22 +56,13 @@ import org.robovm.apple.coregraphics.*;
     public SKCloudServiceSetupViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
     @Property(selector = "delegate")
     public native SKCloudServiceSetupViewControllerDelegate getDelegate();
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKCloudServiceSetupViewControllerDelegate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
     @Method(selector = "loadWithOptions:completionHandler:")
     public native void load(SKCloudServiceSetupOptions options, @Block VoidBlock2<Boolean, NSError> completionHandler);
     /*</methods>*/

@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.2 and later.
+ * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.PaymentMode
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/SKProductDiscountPaymentMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     PayAsYouGo(0L),
