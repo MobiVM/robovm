@@ -117,7 +117,7 @@ import org.robovm.apple.coreanimation.*;
     @NotImplemented("webView:contextMenuDidEndForElement:")
     public void contextMenuDidEnd(WKWebView webView, WKContextMenuElementInfo elementInfo) {}
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
     @NotImplemented("webView:showLockdownModeFirstUseMessage:completionHandler:")
     public void showLockdownModeFirstUseMessage(WKWebView webView, String message, @Block VoidBlock1<WKDialogResult> completionHandler) {}
@@ -131,5 +131,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("webView:willDismissEditMenuWithAnimator:")
     public void willDismissEditMenu(WKWebView webView, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:")
+    public void runOpenPanel(WKWebView webView, WKOpenPanelParameters parameters, WKFrameInfo frame, @Block VoidBlock1<NSArray<NSURL>> completionHandler) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("webView:insertInputSuggestion:")
+    public void insertInputSuggestion(WKWebView webView, UIInputSuggestion inputSuggestion) {}
     /*</methods>*/
 }

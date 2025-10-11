@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,33 +36,40 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 15.0. Creating and using multiple instances of WKProcessPool no longer has any effect.
+ * @since Available in iOS 18.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("WebKit") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKProcessPool/*</name>*/ 
+/*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKWebExtensionWindowConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class WKProcessPoolPtr extends Ptr<WKProcessPool, WKProcessPoolPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKProcessPool.class); }/*</bind>*/
+    /*<ptr>*/public static class WKWebExtensionWindowConfigurationPtr extends Ptr<WKWebExtensionWindowConfiguration, WKWebExtensionWindowConfigurationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(WKWebExtensionWindowConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKProcessPool() {}
-    protected WKProcessPool(Handle h, long handle) { super(h, handle); }
-    protected WKProcessPool(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public WKProcessPool(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    protected WKWebExtensionWindowConfiguration() {}
+    protected WKWebExtensionWindowConfiguration(Handle h, long handle) { super(h, handle); }
+    protected WKWebExtensionWindowConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "windowType")
+    public native WKWebExtensionWindowType getWindowType();
+    @Property(selector = "windowState")
+    public native WKWebExtensionWindowState getWindowState();
+    @Property(selector = "frame")
+    public native @ByVal CGRect getFrame();
+    @Property(selector = "tabURLs")
+    public native NSArray<NSURL> getTabURLs();
+    @Property(selector = "tabs")
+    public native NSArray<?> getTabs();
+    @Property(selector = "shouldBeFocused")
+    public native boolean shouldBeFocused();
+    @Property(selector = "shouldBePrivate")
+    public native boolean shouldBePrivate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }

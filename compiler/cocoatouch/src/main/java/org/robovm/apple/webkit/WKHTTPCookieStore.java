@@ -61,6 +61,11 @@ import org.robovm.apple.coreanimation.*;
     public native void getAllCookies(@Block VoidBlock1<NSArray<NSHTTPCookie>> completionHandler);
     @Method(selector = "setCookie:completionHandler:")
     public native void setCookie(NSHTTPCookie cookie, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCookies:completionHandler:")
+    public native void setCookies(NSArray<NSHTTPCookie> cookies, @Block Runnable completionHandler);
     @Method(selector = "deleteCookie:completionHandler:")
     public native void deleteCookie(NSHTTPCookie cookie, @Block Runnable completionHandler);
     @Method(selector = "addObserver:")

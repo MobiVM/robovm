@@ -94,6 +94,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "webView:navigationResponse:didBecomeDownload:")
     void didBecomeDownload(WKWebView webView, WKNavigationResponse navigationResponse, WKDownload download);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "webView:shouldGoToBackForwardListItem:willUseInstantBack:completionHandler:")
+    void shouldGoToBackForwardListItem(WKWebView webView, WKBackForwardListItem backForwardListItem, boolean willUseInstantBack, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

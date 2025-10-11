@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,32 +36,39 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 11.0. This property is ignored; selection granularity is always `character`.
+ * @since Available in iOS 18.4 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
-public enum /*<name>*/WKSelectionGranularity/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("WebKit")/*</annotations>*/
+public enum /*<name>*/WKWebExtensionDataRecordError/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Dynamic(0L),
-    Character(1L);
+    Unknown(1L),
+    LocalStorageFailed(2L),
+    SessionStorageFailed(3L),
+    SynchronizedStorageFailed(4L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(WKWebExtensionDataRecordError.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @GlobalValue(symbol="WKWebExtensionDataRecordErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /*</methods>*/
 
     private final long n;
 
-    private /*<name>*/WKSelectionGranularity/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/WKWebExtensionDataRecordError/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/WKSelectionGranularity/*</name>*/ valueOf(long n) {
-        for (/*<name>*/WKSelectionGranularity/*</name>*/ v : values()) {
+    public static /*<name>*/WKWebExtensionDataRecordError/*</name>*/ valueOf(long n) {
+        for (/*<name>*/WKWebExtensionDataRecordError/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/WKSelectionGranularity/*</name>*/.class.getName());
+            + /*<name>*/WKWebExtensionDataRecordError/*</name>*/.class.getName());
     }
 }

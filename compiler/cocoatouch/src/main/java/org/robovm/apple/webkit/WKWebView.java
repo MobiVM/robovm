@@ -155,6 +155,11 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setInteractionState:")
     public native void setInteractionState(NSObject v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isBlockedByScreenTime")
+    public native boolean isBlockedByScreenTime();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "themeColor")
@@ -200,6 +205,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "findInteraction")
     public native UIFindInteraction getFindInteraction();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "conversationContext")
+    public native UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    public native void setConversationContext(UIConversationContext v);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Property(selector = "isInspectable")
@@ -209,6 +224,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setInspectable:")
     public native void setInspectable(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isWritingToolsActive")
+    public native boolean isWritingToolsActive();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "obscuredContentInsets")
+    public native @ByVal UIEdgeInsets getObscuredContentInsets();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setObscuredContentInsets:")
+    public native void setObscuredContentInsets(@ByVal UIEdgeInsets v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -372,6 +402,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "setMinimumViewportInset:maximumViewportInset:")
     public native void setMinimumViewportInset(@ByVal UIEdgeInsets minimumViewportInset, @ByVal UIEdgeInsets maximumViewportInset);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fetchDataOfTypes:completionHandler:")
+    public native void fetchData(WKWebViewDataType dataTypes, @Block VoidBlock2<NSData, NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "restoreData:completionHandler:")
+    public native void restoreData(NSData data, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */
