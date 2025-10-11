@@ -33,37 +33,29 @@ import org.robovm.apple.intents.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 15.0 and later.
+ * @since Available in iOS 18.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("UserNotifications") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationActionIcon/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/UNNotificationAttributedMessageContext/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements UNNotificationContentProviding/*</implements>*/ {
 
-    /*<ptr>*/public static class UNNotificationActionIconPtr extends Ptr<UNNotificationActionIcon, UNNotificationActionIconPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(UNNotificationActionIcon.class); }/*</bind>*/
+    /*<ptr>*/public static class UNNotificationAttributedMessageContextPtr extends Ptr<UNNotificationAttributedMessageContext, UNNotificationAttributedMessageContextPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(UNNotificationAttributedMessageContext.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected UNNotificationActionIcon() {}
-    protected UNNotificationActionIcon(Handle h, long handle) { super(h, handle); }
-    protected UNNotificationActionIcon(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithCoder:")
-    public UNNotificationActionIcon(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    protected UNNotificationAttributedMessageContext() {}
+    protected UNNotificationAttributedMessageContext(Handle h, long handle) { super(h, handle); }
+    protected UNNotificationAttributedMessageContext(SkipInit skipInit) { super(skipInit); }
+    public UNNotificationAttributedMessageContext(INSendMessageIntent sendMessageIntent, NSAttributedString attributedContent) { super((Handle) null, create(sendMessageIntent, attributedContent)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "iconWithTemplateImageName:")
-    public static native UNNotificationActionIcon createWithTemplateImageName(String templateImageName);
-    @Method(selector = "iconWithSystemImageName:")
-    public static native UNNotificationActionIcon createWithSystemImageName(String systemImageName);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "contextWithSendMessageIntent:attributedContent:")
+    protected static native @Pointer long create(INSendMessageIntent sendMessageIntent, NSAttributedString attributedContent);
     /*</methods>*/
 }
