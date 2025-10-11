@@ -35,39 +35,29 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("DeviceDiscoveryExtension")/*</annotations>*/
-public enum /*<name>*/DDDeviceCategory/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/DDDeviceWiFiAwareServiceRole/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    HiFiSpeaker(0L),
-    HiFiSpeakerMultiple(1L),
-    TVWithMediaBox(2L),
-    TV(3L),
-    LaptopComputer(4L),
-    DesktopComputer(5L),
-    AccessorySetup(6L);
+    Subscriber(10L),
+    Publisher(20L);
     /*</values>*/
 
-    /*<bind>*/static { Bro.bind(DDDeviceCategory.class); }/*</bind>*/
+    /*<bind>*/
+    /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
-    @Bridge(symbol="DDDeviceCategoryToString", optional=true)
-    public native String toString();
-    /*</methods>*/
+    /*<methods>*//*</methods>*/
 
     private final long n;
 
-    private /*<name>*/DDDeviceCategory/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/DDDeviceWiFiAwareServiceRole/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/DDDeviceCategory/*</name>*/ valueOf(long n) {
-        for (/*<name>*/DDDeviceCategory/*</name>*/ v : values()) {
+    public static /*<name>*/DDDeviceWiFiAwareServiceRole/*</name>*/ valueOf(long n) {
+        for (/*<name>*/DDDeviceWiFiAwareServiceRole/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/DDDeviceCategory/*</name>*/.class.getName());
+            + /*<name>*/DDDeviceWiFiAwareServiceRole/*</name>*/.class.getName());
     }
 }
