@@ -59,6 +59,14 @@ import org.robovm.apple.symbols.*;
     protected UIImageSymbolConfiguration() {}
     protected UIImageSymbolConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIImageSymbolConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageSymbolConfiguration(UITraitCollection traitCollection) { super((Handle) null, create(traitCollection)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageSymbolConfiguration(NSLocale locale) { super((Handle) null, create(locale)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unspecifiedConfiguration")
@@ -126,5 +134,15 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "configurationWithColorRenderingMode:")
     public static native UIImageSymbolConfiguration getConfigurationWithColorRenderingMode(UIImageSymbolColorRenderingMode mode);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithTraitCollection:")
+    protected static native @Pointer long create(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithLocale:")
+    protected static native @Pointer long create(NSLocale locale);
     /*</methods>*/
 }

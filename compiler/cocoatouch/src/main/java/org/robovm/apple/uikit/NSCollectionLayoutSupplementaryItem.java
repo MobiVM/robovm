@@ -61,6 +61,8 @@ import org.robovm.apple.symbols.*;
     protected NSCollectionLayoutSupplementaryItem(SkipInit skipInit) { super(skipInit); }
     public NSCollectionLayoutSupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor) { super((Handle) null, create(layoutSize, elementKind, containerAnchor)); retain(getHandle()); }
     public NSCollectionLayoutSupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor, NSCollectionLayoutAnchor itemAnchor) { super((Handle) null, create(layoutSize, elementKind, containerAnchor, itemAnchor)); retain(getHandle()); }
+    public NSCollectionLayoutSupplementaryItem(NSCollectionLayoutSize layoutSize) { super((Handle) null, create(layoutSize)); retain(getHandle()); }
+    public NSCollectionLayoutSupplementaryItem(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems) { super((Handle) null, create(layoutSize, supplementaryItems)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zIndex")
@@ -80,5 +82,9 @@ import org.robovm.apple.symbols.*;
     protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor);
     @Method(selector = "supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:")
     protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor, NSCollectionLayoutAnchor itemAnchor);
+    @Method(selector = "itemWithLayoutSize:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize);
+    @Method(selector = "itemWithLayoutSize:supplementaryItems:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems);
     /*</methods>*/
 }

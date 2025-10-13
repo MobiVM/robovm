@@ -117,7 +117,5 @@ import org.robovm.apple.symbols.*;
     public native void extendStateRestoration();
     @Method(selector = "completeStateRestoration")
     public native void completeStateRestoration();
-    @Method(selector = "getDefaultAudioSessionWithCompletionHandler:")
-    public native void getDefaultAudioSession(@Block VoidBlock1<org.robovm.apple.avfoundation.AVAudioSession> handler);
     /*</methods>*/
 }

@@ -50,7 +50,7 @@ import org.robovm.apple.symbols.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSAdaptiveImageGlyph/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, CTAdaptiveImageProviding/*</implements>*/ {
 
     /*<ptr>*/public static class NSAdaptiveImageGlyphPtr extends Ptr<NSAdaptiveImageGlyph, NSAdaptiveImageGlyphPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSAdaptiveImageGlyph.class); }/*</bind>*/
@@ -84,5 +84,7 @@ import org.robovm.apple.symbols.*;
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    @Method(selector = "imageForProposedSize:scaleFactor:imageOffset:imageSize:")
+    public native CGImage imageForProposedSize(@ByVal CGSize proposedSize, @MachineSizedFloat double scaleFactor, CGPoint outImageOffset, CGSize outImageSize);
     /*</methods>*/
 }

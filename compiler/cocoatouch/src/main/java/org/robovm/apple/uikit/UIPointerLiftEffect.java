@@ -59,12 +59,14 @@ import org.robovm.apple.symbols.*;
     protected UIPointerLiftEffect() {}
     protected UIPointerLiftEffect(Handle h, long handle) { super(h, handle); }
     protected UIPointerLiftEffect(SkipInit skipInit) { super(skipInit); }
+    public UIPointerLiftEffect(UITargetedPreview preview) { super((Handle) null, create(preview)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "effectWithPreview:")
+    protected static native @Pointer long create(UITargetedPreview preview);
     /*</methods>*/
 }

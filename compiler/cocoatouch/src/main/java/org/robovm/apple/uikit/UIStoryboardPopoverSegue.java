@@ -61,6 +61,7 @@ import org.robovm.apple.symbols.*;
     protected UIStoryboardPopoverSegue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:source:destination:")
     public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination) { super(identifier, source, destination); }
+    public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler) { super((Handle) null, create(identifier, source, destination, performHandler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "popoverController")
@@ -68,6 +69,7 @@ import org.robovm.apple.symbols.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "segueWithIdentifier:source:destination:performHandler:")
+    protected static native @Pointer long create(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler);
     /*</methods>*/
 }

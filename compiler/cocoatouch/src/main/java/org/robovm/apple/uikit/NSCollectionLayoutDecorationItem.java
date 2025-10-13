@@ -60,6 +60,8 @@ import org.robovm.apple.symbols.*;
     protected NSCollectionLayoutDecorationItem(Handle h, long handle) { super(h, handle); }
     protected NSCollectionLayoutDecorationItem(SkipInit skipInit) { super(skipInit); }
     public NSCollectionLayoutDecorationItem(String elementKind) { super((Handle) null, create(elementKind)); retain(getHandle()); }
+    public NSCollectionLayoutDecorationItem(NSCollectionLayoutSize layoutSize) { super((Handle) null, create(layoutSize)); retain(getHandle()); }
+    public NSCollectionLayoutDecorationItem(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems) { super((Handle) null, create(layoutSize, supplementaryItems)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "zIndex")
@@ -73,5 +75,9 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "backgroundDecorationItemWithElementKind:")
     protected static native @Pointer long create(String elementKind);
+    @Method(selector = "itemWithLayoutSize:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize);
+    @Method(selector = "itemWithLayoutSize:supplementaryItems:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems);
     /*</methods>*/
 }
