@@ -27,12 +27,6 @@ import libcore.api.IntraCoreApi;
  */
 @IntraCoreApi
 public final class AsynchronousCloseMonitor {
-    // RoboVM note: invoking registerNatives to initialize missing native elements
-    private static native void registerNatives();
-    static {
-        registerNatives();
-    }
-
     private AsynchronousCloseMonitor() {
     }
 
