@@ -60,6 +60,7 @@ struct ClassLoader {
 
 // registration point for libraries that can't be lazily initialized
 extern void register_libcore_icu_ICU(JNIEnv* env);
+extern void register_libcore_io_AsynchronousCloseMonitor(JNIEnv* env);
 extern jint net_JNI_OnLoad(JavaVM *vm, void* ignored);
 
 LAZY_CLASS(class_java_lang_String, "java/lang/String");
@@ -147,6 +148,7 @@ const char* rvmRTGetName(void) {
 
 jboolean rvmRTInit(Env* env) {
     register_libcore_icu_ICU((JNIEnv*)env);
+    register_libcore_io_AsynchronousCloseMonitor((JNIEnv*)env);
     return TRUE;
 }
 

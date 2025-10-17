@@ -30,7 +30,6 @@ extern "C" JNIEXPORT void Java_libcore_io_AsynchronousCloseMonitor_signalBlocked
 //static JNINativeMethod gMethods[] = {
 //    NATIVE_METHOD(AsynchronousCloseMonitor, signalBlockedThreads, "(Ljava/io/FileDescriptor;)V"),
 //};
-// RoboVM note: registerNatives will be called from class initializer
-extern "C" JNIEXPORT void JNICALL Java_libcore_io_AsynchronousCloseMonitor_registerNatives(JNIEnv *env, jclass ) {
+extern "C" void register_libcore_io_AsynchronousCloseMonitor(JNIEnv *env) {
     AsynchronousCloseMonitor::init();
 }
