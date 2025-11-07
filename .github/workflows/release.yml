@@ -54,7 +54,7 @@ jobs:
 
       - name: change version to release (and commit)
         run:  |
-          DEVELOPMENT_VERSION=$RELEASE_VERSION setversion.sh
+          DEVELOPMENT_VERSION=$RELEASE_VERSION ./setversion.sh
           git -am "Set release version, $RELEASE_VERSION"
 
       - name: build natives
@@ -68,7 +68,7 @@ jobs:
 
       - name: change version to next dev  (and commit)
         run: |
-          DEVELOPMENT_VERSION=NEXT_DEVELOPMENT_VERSION setversion.sh
+          DEVELOPMENT_VERSION=NEXT_DEVELOPMENT_VERSION ./setversion.sh
           git commit -am "Set next development version, $NEXT_DEVELOPMENT_VERSION"
 
       - name: Configure AWS Credentials
