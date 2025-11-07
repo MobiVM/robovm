@@ -55,7 +55,7 @@ jobs:
       - name: change version to release (and commit)
         run:  |
           DEVELOPMENT_VERSION=$RELEASE_VERSION ./setversion.sh
-          git -am "Set release version, $RELEASE_VERSION"
+          git commit -am "Set release version, $RELEASE_VERSION"
 
       - name: build natives
         run: ./build.sh
