@@ -16,6 +16,7 @@
     <robovm.version>${project.version}</robovm.version>
   </properties>
 
+  <name>RoboVM Maven Resolver</name>
   <artifactId>robovm-maven-resolver</artifactId>
   <packaging>jar</packaging>
 

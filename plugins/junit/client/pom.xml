@@ -8,6 +8,7 @@
         <version>2.3.24-SNAPSHOT</version>
     </parent>
 
+    <name>RoboVM JUnit Client</name>
     <artifactId>robovm-junit-client</artifactId>
     <packaging>jar</packaging>
 

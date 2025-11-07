@@ -9,6 +9,7 @@
         <version>2.3.24-SNAPSHOT</version>
     </parent>
 
+    <name>RoboVM Surfire Provider</name>
     <artifactId>robovm-surefire-provider</artifactId>
     <packaging>jar</packaging>
 
