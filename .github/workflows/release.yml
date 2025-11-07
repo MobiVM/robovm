@@ -62,11 +62,11 @@ jobs:
       - name: build natives
         run: ./build.sh
 
-      - name: Maven deploy (staging)
-        run: mvn -Probovm-release clean deploy
+#      - name: Maven deploy (staging)
+#        run: mvn -Probovm-release clean deploy
 
       - name: Gradle plugin deploy (staging)
-        run: cd plugins/gradle && ./gradlew clean build publish && ./gradlew jreleaserDeploy
+        run: cd plugins/gradle && ./gradlew --info clean build publish && ./gradlew --info jreleaserDeploy
 
       - name: change version to next dev  (and commit)
         run: |
@@ -96,5 +96,5 @@ jobs:
           artifacts: "plugins/idea/build/distributions/*"
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pushes changes as last step
-        run: git push
+#      - name: Pushes changes as last step
+#        run: git push
