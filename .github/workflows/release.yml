@@ -1,0 +1,98 @@
+name: Build and release version
+on:
+  workflow_dispatch:
+    inputs:
+      tagName:
+        required: true
+        description: 'TAG name for release'
+      targetBranch:
+        description: 'Branch to build'
+        required: true
+      releaseVersion:
+        description: 'Release version'
+        required: true
+      nextDevVersion:
+        description: 'Next development version'
+        required: true
+      releaseMessage:
+        required: true
+        description: 'Release message'
+jobs:
+  build:
+    runs-on: macos-15
+    env:
+      MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      MAVEN_ARGS: -Dmaven.resolver.transport=wagon
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
+      NEXT_DEVELOPMENT_VERSION: ${{ github.event.inputs.nextDevVersion }}
+      JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
+      JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.targetBranch }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+          server-id: sonatype-nexus-snapshots
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: GPG_PASSPHRASE
+
+      - name: Install dependencies
+        run: |
+          brew install openssl
+          brew install autoconf
+          brew install automake
+          brew install libtool
+
+      - name: change version to release (and commit)
+        run:  |
+          DEVELOPMENT_VERSION=$RELEASE_VERSION setversion.sh
+          git -am "Set release version, $RELEASE_VERSION"
+
+      - name: build natives
+        run: ./build.sh
+
+      - name: Maven deploy (staging)
+        run: mvn -Probovm-release clean deploy
+
+      - name: Gradle plugin deploy (staging)
+        run: cd plugins/gradle && ./gradlew clean build publish && ./gradlew jreleaserDeploy
+
+      - name: change version to next dev  (and commit)
+        run: |
+          DEVELOPMENT_VERSION=NEXT_DEVELOPMENT_VERSION setversion.sh
+          git commit -am "Set next development version, $NEXT_DEVELOPMENT_VERSION"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: eu-west-3
+
+      - name: Deploy idea plugin
+        run: aws s3 sync ./plugins/idea/build/distributions/ s3://${{ secrets.AWS_BUCKET }}/tmp_snapshots/idea --acl public-read --follow-symlinks --delete
+
+      - name: Deploy eclipse plugin
+        run: aws s3 sync ./plugins/eclipse/update-site/target/repository/ s3://${{ secrets.AWS_BUCKET }}/tmp_snapshots/eclipse --acl public-read --follow-symlinks --delete
+
+      - name: Create a draft release
+        uses: ncipollo/release-action@v1
+        with:
+          name: "${{ github.event.inputs.tagName }}"
+          body: "${{ github.event.inputs.releaseMessage }}"
+          tag: "${{ github.event.inputs.tagName }}"
+          draft: true
+          artifacts: "plugins/idea/build/distributions/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pushes changes as last step
+        run: git push
