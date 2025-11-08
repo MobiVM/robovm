@@ -33,6 +33,8 @@ mvn versions:set -DnewVersion=$DEVELOPMENT_VERSION
 mvn versions:commit
 mv pom.xml pom.xml.bak && sed "s/<robovm.version>.*<\/robovm.version>/<robovm.version>$DEVELOPMENT_VERSION<\/robovm.version>/" pom.xml.bak > pom.xml
 rm pom.xml.bak
+sed "s/roboVMVersion *=.*/roboVMVersion = '$DEVELOPMENT_VERSION'/" build.gradle > build.gradle.tmp
+mv build.gradle.tmp build.gradle
 popd
 
 #

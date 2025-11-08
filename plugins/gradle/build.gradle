@@ -9,22 +9,22 @@ plugins {
     id 'eclipse'
 }
 
+ext {
+    roboVMVersion = '2.3.24-SNAPSHOT'
+    nexusUsername = System.getenv('MAVEN_USERNAME')
+    nexusPassword = System.getenv('MAVEN_PASSWORD')
+}
 
 group = 'com.mobidevelop.robovm'
 archivesBaseName = 'robovm-gradle-plugin'
-version = '2.3.24-SNAPSHOT'
+version "${roboVMVersion}"
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 compileJava {
     options.encoding = 'UTF-8'
     options.compilerArgs.addAll(['--release', '8'])
-}
-
-ext {
-    roboVMVersion = '2.3.24-SNAPSHOT'
-    nexusUsername = System.getenv('MAVEN_USERNAME')
-    nexusPassword = System.getenv('MAVEN_PASSWORD')
 }
 
 repositories {

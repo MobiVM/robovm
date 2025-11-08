@@ -81,10 +81,10 @@ jobs:
           aws-region: eu-west-3
 
       - name: Deploy idea plugin
-        run: aws s3 sync ./plugins/idea/build/distributions/ s3://${{ secrets.AWS_BUCKET }}/tmp_snapshots/idea --acl public-read --follow-symlinks --delete
+        run: aws s3 sync ./plugins/idea/build/distributions/ s3://${{ secrets.AWS_BUCKET }}/releases/idea --acl public-read --follow-symlinks --delete
 
       - name: Deploy eclipse plugin
-        run: aws s3 sync ./plugins/eclipse/update-site/target/repository/ s3://${{ secrets.AWS_BUCKET }}/tmp_snapshots/eclipse --acl public-read --follow-symlinks --delete
+        run: aws s3 sync ./plugins/eclipse/update-site/target/repository/ s3://${{ secrets.AWS_BUCKET }}/releases/eclipse --acl public-read --follow-symlinks --delete
 
       - name: Create a draft release
         uses: ncipollo/release-action@v1
