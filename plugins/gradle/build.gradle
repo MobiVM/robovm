@@ -56,44 +56,46 @@ gradlePlugin {
             implementationClass = "org.robovm.gradle.RoboVMPlugin"
             displayName = "RoboVM Gradle Plugin"
             description = "The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle."
-            url = 'https://github.com/mobidevelop/robovm/'
         }
     }
 }
 
 publishing {
-    publications {
-        pluginMaven(MavenPublication) {
-            pom {
-                name = 'RoboVM Gradle Plugin'
-                packaging = 'jar'
-                description = 'The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle.'
-                url = 'https://github.com/mobidevelop/robovm/'
-                inceptionYear = '2013'
+    // TODO: while not pushing to Gradle Plugin Portal but to Maven Central we need
+    //       to have complete POM with all fields to pass Cental validation
+    //       there is no way to configure URLs etc in gradlePlugin {} blocks,
+    //       so override both plugin marker's and plugin's POM in configureEach
+    //       instead of single `pluginMaven(MavenPublication)`
+    publications.withType(MavenPublication).configureEach {
+        pom {
+            name = 'RoboVM Gradle Plugin'
+            packaging = 'jar'
+            description = 'The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle.'
+            url = 'https://github.com/mobidevelop/robovm/'
+            inceptionYear = '2013'
 
-                scm {
-                    url = 'https://github.com/mobidevelop/robovm.git'
-                    connection = 'scm:git:git://github.com/mobidevelop/robovm.git'
-                    developerConnection = 'scm:git:git@github.com:mobidevelop/robovm.git'
+            scm {
+                url = 'https://github.com/mobidevelop/robovm.git'
+                connection = 'scm:git:git://github.com/mobidevelop/robovm.git'
+                developerConnection = 'scm:git:git@github.com:mobidevelop/robovm.git'
+            }
+
+            licenses {
+                license {
+                    name = 'The Apache Software License, Version 2.0'
+                    url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution = 'repo'
                 }
+            }
 
-                licenses {
-                    license {
-                        name = 'The Apache Software License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution = 'repo'
-                    }
+            developers {
+                developer {
+                    id = 'jtakakura'
+                    name = 'Junji Takakura'
                 }
-
-                developers {
-                    developer {
-                        id = 'jtakakura'
-                        name = 'Junji Takakura'
-                    }
-                    developer {
-                        id = 'ntherning'
-                        name = 'Niklas Therning'
-                    }
+                developer {
+                    id = 'ntherning'
+                    name = 'Niklas Therning'
                 }
             }
         }
@@ -165,7 +167,7 @@ tasks.withType(Javadoc) {
 
 signing {
     required { !version.endsWith('SNAPSHOT') && gradle.taskGraph.hasTask("publish") }
-    sign publishing.publications.pluginMaven
+    sign publishing.publications.matching { it instanceof MavenPublication }
 }
 
 assemble.dependsOn('shadowJar')
