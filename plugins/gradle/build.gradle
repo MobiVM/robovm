@@ -69,7 +69,6 @@ publishing {
     publications.withType(MavenPublication).configureEach {
         pom {
             name = 'RoboVM Gradle Plugin'
-            packaging = 'jar'
             description = 'The RoboVM Gradle Plugin provides a way to build RoboVM apps using Gradle.'
             url = 'https://github.com/mobidevelop/robovm/'
             inceptionYear = '2013'
