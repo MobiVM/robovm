@@ -322,7 +322,7 @@ public class RoboVmCompileTask {
         // specified in a Maven/Gradle build file, in which case they'll
         // turn up as order entries. We filter them out here.
         // FIXME junit needs to include test classes
-        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().recursively().withoutSdk().compileOnly().productionOnly();
+        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().recursively().withoutSdk().productionOnly();
         Set<File> classPaths = new HashSet<>();
         for (String path : classes.getPathsList().getPathList()) {
             if (!RoboVmPlugin.isSdkLibrary(path)) {
