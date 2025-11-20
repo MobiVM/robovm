@@ -1084,7 +1084,13 @@ public class Runtime {
         // Initialize it here to make sure apps see a non-null value.
         getLibPaths();
         String filename = System.mapLibraryName(libraryName);
-        String error = nativeLoad(filename, loader, callerClass);
+        String error;
+        try {
+            // RoboVM note: See note on nativeLoad() method.
+            error = nativeLoad(filename, loader, callerClass);
+        } catch (UnsatisfiedLinkError e) {
+            error = e.getMessage();
+        }
         if (error != null) {
             throw new UnsatisfiedLinkError(error);
         }
@@ -1119,9 +1125,17 @@ public class Runtime {
     }
 
     private static String nativeLoad(String filename, ClassLoader loader) {
-        return nativeLoad(filename, loader, null);
+        try {
+            // RoboVM note: See note on nativeLoad() method.
+            return nativeLoad(filename, loader, null);
+        } catch (UnsatisfiedLinkError e) {
+            return e.getMessage();
+        }
     }
 
+    // RoboVM note: On Android nativeLoad() returns an error message String
+    // on errors which is then wrapped in an UnsatisfiedLinkError. Our
+    // nativeLoad() throws UnsatisfiedLinkError directly or return NULL.
     private static native String nativeLoad(String filename, ClassLoader loader, Class<?> caller);
     // END Android-changed: Different implementation of loadLibrary0(Class, String).
 

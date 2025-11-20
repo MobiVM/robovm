@@ -20,10 +20,11 @@ void Java_java_lang_Runtime_nativeExit(Env* env, Class* clazz, jint code) {
     rvmShutdown(env, code);
 }
 
-void Java_java_lang_Runtime_nativeLoad(Env* env, Class* clazz, Object* filename, Object* classLoader) {
+Object* Java_java_lang_Runtime_nativeLoad(Env* env, Class* clazz, Object* filename, Object* classLoader, Object* callerClass) {
     char* path = rvmGetStringUTFChars(env, filename);
-    if (!path) return;
+    if (!path) return rvmNewStringUTF(env, "Failed: unpack filename string", -1);
     rvmLoadNativeLibrary(env, path, classLoader);
+    return NULL;
 }
 
 void Java_java_lang_Runtime_nativeGc(Env* env, Object* thiz) {
