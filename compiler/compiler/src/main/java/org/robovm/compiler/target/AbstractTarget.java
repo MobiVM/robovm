@@ -239,8 +239,13 @@ public abstract class AbstractTarget implements Target {
                 } else if (p.endsWith(".dylib") || p.endsWith(".so")) {
                     // dkimitsa: add absolute path only if Config.Lib relative file converter was able to resolve it
                     //           e.g. lib exists, otherwise use it as it is
-                    File f = new File(p);
-                    libs.add(f.isAbsolute() ? f.getAbsolutePath() : p);
+                    if (lib.isForce()) {
+                        // dkimitsa: link with dynamic library only if it is marked as "force" which is
+                        //           by default. if "force" is false -- library has to be loaded with
+                        //           Runtime.getRuntime().loadLibrary(name)
+                        File f = new File(p);
+                        libs.add(f.isAbsolute() ? f.getAbsolutePath() : p);
+                    }
                 } else {
                     // link via -l if suffix is omitted
                     libs.add("-l" + p);
@@ -324,6 +329,26 @@ public abstract class AbstractTarget implements Target {
 
         for (Resource res : config.getResources()) {
             res.walk(walker, destDir);
+        }
+    }
+
+    /**
+     * copies dynamic libraries (.so/.dylibs) to Frameworks folder which is registered as rpath
+     */
+    protected void copyDynamicLibs(File destDir) throws IOException {
+        if (!config.getLibs().isEmpty()) {
+            File frameworksDir = new File(destDir, "Frameworks");
+            for (Config.Lib lib : config.getLibs()) {
+                String p = lib.getValue();
+                if (p != null && (p.endsWith(".dylib") || p.endsWith(".so"))) {
+                    // dkimitsa: copy only if Config.Lib relative file converter was able to resolve it
+                    //           e.g. lib exists
+                    File f = new File(p);
+                    if(f.isAbsolute() && f.isFile() && isDynamicLibrary(f)) {
+                        FileUtils.copyFileToDirectory(f, frameworksDir, true);
+                    }
+                }
+            }
         }
     }
 
@@ -789,6 +814,7 @@ public abstract class AbstractTarget implements Target {
         stripArchives(installDir);
         copyResources(resourcesDir);
         copyDynamicFrameworks(installDir, executable);
+        copyDynamicLibs(installDir);
         copyAppExtensions(installDir);
         copyWatchApp(installDir);
     }
