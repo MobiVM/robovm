@@ -92,7 +92,7 @@ public interface Target {
     /**
      * Builds a fat binary out of the specified slices.
      */
-    public void buildFat(Map<Arch, File> slices) throws IOException;
+    void buildFat(Map<Arch, File> slices) throws IOException;
 
     /**
      * Installs the built binary and any supporting files into the
