@@ -180,7 +180,11 @@ public class FrameworkTarget extends AbstractTarget {
 		ccArgs.add("-install_name");
 		ccArgs.add(String.format("@rpath/%s.framework/%s", config.getImageName(), config.getImageName()));
 
-		return ccArgs;
+        // specify dynamic library loading path (for embedded dylibs/frameworks)
+        ccArgs.add("-Wl,-rpath,@loader_path/Frameworks");
+        ccArgs.add("-Wl,-rpath,@rpath");
+
+        return ccArgs;
 	}
 
 	@Override
