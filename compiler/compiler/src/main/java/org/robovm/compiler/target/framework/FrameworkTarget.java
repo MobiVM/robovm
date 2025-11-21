@@ -311,7 +311,13 @@ public class FrameworkTarget extends AbstractTarget {
 					executable = new File(new File(config.getTmpDir(), identifier), getExecutable());
 				}
 				config.getLogger().info("Installing " + identifier + "framework slice: %s", frameworkDir);
-				installFramework(frameworkDir, dsymDir, executable, image);
+
+                // create slice config and slice target for install operation as
+                // there should be different variant filtering while copying dependencies
+                Config sliceConfig = config.builder().archs(archesInBinary).build();
+                FrameworkTarget sliceTarget = new FrameworkTarget(XC_TYPE);
+                sliceTarget.init(sliceConfig);
+				sliceTarget.installFramework(frameworkDir, dsymDir, executable, image);
 
 				XCFrameworkPlist.Library library = new XCFrameworkPlist.Library(identifier,
 						image + ".framework", config.getOs(),
