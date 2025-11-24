@@ -21,8 +21,8 @@ import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.gradle.RoboVMGradleException;
 
 import java.util.Arrays;

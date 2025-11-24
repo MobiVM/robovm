@@ -16,19 +16,26 @@
  */
 package org.robovm.compiler.target;
 
+import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.IHooksConnectionUtils.DelegatingFuture;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Base class for parameters used to launch the app on different targets
  */
-public class LaunchParameters {
-    private List<String> arguments = new ArrayList<>();
+public abstract class LaunchParameters {
+    private final List<String> arguments = new ArrayList<>();
     private Map<String, String> environment = null;
     private File workingDirectory = new File(".");
     private File stdoutFifo = null;
     private File stderrFifo = null;
+
+    ///  debugger support
+    private DelegatingFuture<IHooksConnection> requestForDebuggerConnection = null;
     
     public List<String> getArguments() {
         return arguments;
@@ -89,5 +96,26 @@ public class LaunchParameters {
     
     public void setStderrFifo(File stderrFifo) {
         this.stderrFifo = stderrFifo;
+    }
+
+
+    public DelegatingFuture<IHooksConnection> getRequestForDebuggerConnection() {
+        return requestForDebuggerConnection;
+    }
+
+    /**
+     * Sets Future debugger will wait to retrieve debug connection to target.
+     * Launchers expected to take additional steps to capture information about
+     * connection (e.g. capture port from std output or from file)
+     * <p>
+     * If launcher is not able to provide such information or debug mode is not supported
+     * it should complete feature with exception
+     * <p>
+     * if `requestForDebugConnection` wasn't set -- Launcher should launch without preparing
+     * for debug
+     */
+    public LaunchParameters setRequestForDebuggerConnection(DelegatingFuture<IHooksConnection> request) {
+        this.requestForDebuggerConnection = request;
+        return this;
     }
 }

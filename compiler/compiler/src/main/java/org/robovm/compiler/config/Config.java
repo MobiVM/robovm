@@ -35,7 +35,7 @@ import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
 import org.robovm.compiler.plugin.invokedynamic.InvokeDynamicCompilerPlugin;
 import org.robovm.compiler.plugin.objc.*;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.framework.FrameworkTarget;
 import org.robovm.compiler.target.ios.IOSTarget;

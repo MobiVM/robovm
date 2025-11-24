@@ -21,8 +21,8 @@ import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.target.ios.devicelib.IOSDeviceLaunchParameters;
 import org.robovm.gradle.RoboVMGradleException;
 
 import java.util.Arrays;

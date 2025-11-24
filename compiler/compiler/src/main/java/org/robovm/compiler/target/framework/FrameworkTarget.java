@@ -10,6 +10,7 @@ import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.AbstractTarget;
+import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.SDK;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.ToolchainUtil;
@@ -373,4 +374,9 @@ public class FrameworkTarget extends AbstractTarget {
 		config.getLogger().info("Installing Info.plist to: %s", infoPlistBin);
 		PropertyListParser.saveAsBinary(infoPlist, infoPlistBin);
 	}
+
+    @Override
+    public LaunchParameters createLaunchParameters() {
+        throw new UnsupportedOperationException();
+    }
 }

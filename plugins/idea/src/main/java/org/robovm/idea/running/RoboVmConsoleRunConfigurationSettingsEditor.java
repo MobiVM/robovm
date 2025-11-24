@@ -25,8 +25,8 @@ import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.target.ConsoleTarget;
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.console.ConsoleTarget;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.idea.RoboVmPlugin;
 
 import javax.swing.*;

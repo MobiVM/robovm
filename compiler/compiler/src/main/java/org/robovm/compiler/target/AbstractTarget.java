@@ -62,11 +62,6 @@ public abstract class AbstractTarget implements Target {
     public void prepareLaunch() throws IOException {
     }
 
-    @Override
-    public LaunchParameters createLaunchParameters() {
-        return new LaunchParameters();
-    }
-
     public String getInstallRelativeArchivePath(Path path) {
         String name = config.getArchiveName(path);
         if (path.isInBootClasspath()) {
