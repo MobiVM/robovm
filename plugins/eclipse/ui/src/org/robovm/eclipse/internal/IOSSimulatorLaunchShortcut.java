@@ -22,8 +22,8 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  * @author niklas
