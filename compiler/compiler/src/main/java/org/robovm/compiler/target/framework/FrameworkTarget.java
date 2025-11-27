@@ -315,6 +315,8 @@ public class FrameworkTarget extends AbstractTarget {
                 // create slice config and slice target for install operation as
                 // there should be different variant filtering while copying dependencies
                 Config sliceConfig = config.builder().archs(archesInBinary).build();
+                // copy resource path otherwise resource jars such as cacert will not be copied
+                sliceConfig.getResourcesPaths().addAll(config.getResourcesPaths());
                 FrameworkTarget sliceTarget = new FrameworkTarget(XC_TYPE);
                 sliceTarget.init(sliceConfig);
 				sliceTarget.installFramework(frameworkDir, dsymDir, executable, image);

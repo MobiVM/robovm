@@ -248,7 +248,6 @@ public class RoboVmPlugin {
             libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getCompilerVersion() + "-sources.jar"));
             libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getCompilerVersion() + ".jar"));
             libs.add(new File(rootDir, "rt/target/robovm-rt-" + Version.getCompilerVersion() + "-sources.jar"));
-            libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
         } else {
             // normal run
             File libsDir = new File(RoboVmLocations.roboVmSdkDir, "lib");
