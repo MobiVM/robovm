@@ -14,27 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target.ios;
+package org.robovm.compiler.target.ios.simulator;
 
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.output.NullOutputStream;
+import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.Launcher;
-import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
+import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.IHooksConnectionUtils;
+import org.robovm.debugger.utils.IHooksConnectionUtils.DelegatingFuture;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InterruptedIOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.apache.commons.exec.Executor.INVALID_EXITVALUE;
@@ -47,113 +45,82 @@ public class SimLauncherProcess extends Process implements Launcher {
     private final CountDownLatch countDownLatch = new CountDownLatch(1);
     private final AtomicInteger threadCounter = new AtomicInteger();
     private final Logger log;
-    private final DeviceType deviceType;
-    private final String watchAppName;
-    private final File wd;
     private final String bundleId;
     private final File appDir;
-    private final List<String> arguments;
-    private HashMap<String, String> env;
+    private final IOSSimulatorLaunchParameters launchParameters;
     private Thread launcherThread;
     private volatile boolean finished = false;
     private volatile int exitCode = -1;
-    private OutputStream errStream;
-    private OutputStream outStream;
+
 
     public SimLauncherProcess(Logger log, File appDir, String bundleId, IOSSimulatorLaunchParameters launchParameters) {
         this.log = log;
-        deviceType = launchParameters.getDeviceType();
-        watchAppName = launchParameters.getPairedWatchAppName();
-        wd = launchParameters.getWorkingDirectory();
         this.appDir = appDir;
         this.bundleId = bundleId;
-        this.arguments = new ArrayList<>(launchParameters.getArguments(true));
-        if (launchParameters.getEnvironment() != null) {
-            this.env = new HashMap<>();
-            for (Map.Entry<String, String> entry : launchParameters.getEnvironment().entrySet()) {
-                env.put("SIMCTL_CHILD_" + entry.getKey(), entry.getValue());
-            }
-        }
+        this.launchParameters = launchParameters;
+    }
 
-        outStream = System.out;
-        errStream = System.err;
+    @Override
+    public Process execAsync() throws IOException {
+        // provide debugger connection information if it was requested
+        // has to be done before argument list is built
+        setupDebuggerConnection();
+
+        DeviceType deviceType = launchParameters.getDeviceType();
+        String watchAppName = launchParameters.getPairedWatchAppName();
+        List<String> arguments = new ArrayList<>(launchParameters.getArguments(true));
+        Map<String, String> env = launchParameters.getEnvironment();
+
+        OutputStream outStream = System.out;
+        OutputStream errStream = System.err;
         if (launchParameters.getStdoutFifo() != null) {
             outStream = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
         }
         if (launchParameters.getStderrFifo() != null) {
             errStream = new OpenOnWriteFileOutputStream(launchParameters.getStderrFifo());
         }
-    }
+        OutputStream outStreamFinal = outStream;
+        OutputStream errStreamFinal = errStream;
 
-    @Override
-    public Process execAsync() throws IOException {
         this.launcherThread = new Thread("SimLauncherThread-" + threadCounter.getAndIncrement()) {
             @Override
             public void run() {
                 try {
-                    Executor executor;
-                    DeviceType freshState = deviceType.refresh();
-                    if (freshState != null && "shutdown".equals(freshState.getState().toLowerCase())) {
+                    DeviceType freshState = SimCtl.refresh(deviceType);
+                    if (freshState != null && "shutdown".equalsIgnoreCase(freshState.getState())) {
                         log.info("Booting simulator %s", deviceType.getUdid());
-                        executor = new Executor(log, "xcrun");
-                        executor.args("simctl", "boot", deviceType.getUdid());
-                        executor.exec();
+                        SimCtl.boot(log, deviceType.getUdid());
                     }
 
                     // bringing simulator to front (and showing it if it was just booted)
                     log.info("Showing simulator %s", deviceType.getUdid());
-                    executor = new Executor(log, "open");
-                    executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", deviceType.getUdid());
-                    executor.exec();
+                    SimCtl.show(log, deviceType.getUdid());
 
                     log.info("Deploying app %s to simulator %s", appDir.getAbsolutePath(),
                             deviceType.getUdid());
-                    executor = new Executor(log, "xcrun");
-                    executor.args("simctl", "install", deviceType.getUdid(), appDir.getAbsolutePath());
-                    executor.exec();
+                    SimCtl.install(log, deviceType.getUdid(), appDir.getAbsolutePath());
 
                     // launch and deploy to paired watch simulator
                     if (watchAppName != null && freshState != null  && freshState.getPair() != null) {
                         DeviceType watchDeviceType = freshState.getPair();
-                        if ("shutdown".equals(watchDeviceType.getState().toLowerCase())) {
+                        if ("shutdown".equalsIgnoreCase(watchDeviceType.getState())) {
                             log.info("Booting watch simulator %s", watchDeviceType.getUdid());
-                            executor = new Executor(log, "xcrun");
-                            executor.args("simctl", "boot", watchDeviceType.getUdid());
-                            executor.exec();
+                            SimCtl.boot(log, watchDeviceType.getUdid());
                         }
 
                         // bringing simulator to front (and showing it if it was just booted)
                         log.info("Showing watch simulator %s", watchDeviceType.getUdid());
-                        executor = new Executor(log, "open");
-                        executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", watchDeviceType.getUdid());
-                        executor.exec();
+                        SimCtl.show(log,  watchDeviceType.getUdid());
 
                         File watchAppDir = new File(appDir, "Watch/" + watchAppName);
                         log.info("Deploying app %s to watch simulator %s", watchAppDir.getAbsolutePath(),
                                 watchDeviceType.getUdid());
-                        executor = new Executor(log, "xcrun");
-                        executor.args("simctl", "install", watchDeviceType.getUdid(), watchAppDir.getAbsolutePath());
-                        executor.exec();
+                        SimCtl.install(log, watchDeviceType.getUdid(), watchAppDir.getAbsolutePath());
                     }
 
                     log.info("Launching app %s on simulator %s", appDir.getAbsolutePath(),
                             deviceType.getUdid());
-                    executor = new Executor(log, "xcrun");
-                    List<Object> args = new ArrayList<>();
-                    args.add("simctl");
-                    args.add("launch");
-                    args.add("--console-pty");
-                    args.add(deviceType.getUdid());
-                    args.add(bundleId);
-                    args.addAll(arguments);
-                    executor.args(args);
-
-                    if (env != null) {
-                        executor.env(env);
-                    }
-
-                    executor.wd(wd).out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
-                    executor.exec();
+                    SimCtl.launchAndWait(log, deviceType.getUdid(), bundleId, arguments, env, outStreamFinal, errStreamFinal);
                     exitCode = 0;
                 } catch (ExecuteException e) {
                     exitCode = e.getExitValue();
@@ -223,4 +190,26 @@ public class SimLauncherProcess extends Process implements Launcher {
             return -1;
         }
     };
+
+    /**
+     * setups additional debug parameters, shall be called BEFORE arguments are extracted from launch params
+     */
+    private void setupDebuggerConnection() {
+        DelegatingFuture<IHooksConnection> requestFuture = launchParameters.getRequestForDebuggerConnection();
+        if (requestFuture == null) return;
+
+        // launching on simulator, it can write down port number to file on local system
+        File hooksPortFile;
+        try {
+            hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
+        } catch (IOException e) {
+            throw new CompilerException("Failed to create simulator debugger port file", e);
+        }
+        launchParameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
+
+        // provide future to debugger
+        Future<IHooksConnection> connectionFuture = IHooksConnectionUtils.waitForPortFromFile(hooksPortFile)
+                .thenApply(IHooksConnectionUtils.SocketHooksConnection::new);
+        requestFuture.setDelegate(connectionFuture);
+    }
 }

@@ -25,10 +25,11 @@ import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.compiler.target.ios.simulator.SimCtl;
 import org.robovm.compiler.util.InfoPList;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.running.RoboVmRunConfiguration.EntryType;
@@ -280,7 +281,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     }
 
     private void populateSimulators() {
-        this.simDeviceTypes = DeviceType.listDeviceTypes().stream()
+        this.simDeviceTypes = SimCtl.list().stream()
                 .map(SimTypeDecorator::new)
                 .collect(Collectors.toList());
 

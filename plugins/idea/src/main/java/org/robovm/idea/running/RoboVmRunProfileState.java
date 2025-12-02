@@ -28,11 +28,12 @@ import com.intellij.execution.runners.ExecutionEnvironment;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
-import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
+import org.robovm.compiler.target.console.ConsoleLaunchParameters;
+import org.robovm.compiler.target.ios.devicectl.IOSDeviceCtlLaunchParameters;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.devicelib.IOSDeviceLaunchParameters;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.util.io.Fifos;
 import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.idea.RoboVmPlugin;
@@ -92,24 +93,25 @@ public class RoboVmRunProfileState extends CommandLineState {
         launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
         launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
 
-        if (config.getOs() != OS.ios) {
+        if (launchParameters instanceof ConsoleLaunchParameters) {
             if (runConfig.getWorkingDir() != null && !runConfig.getWorkingDir().isEmpty()) {
                 launchParameters.setWorkingDirectory(new File(runConfig.getWorkingDir()));
             }
-        } else {
-            if (launchParameters instanceof IOSSimulatorLaunchParameters) {
-                IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters) launchParameters;
-                // finding exact simulator to run at
-                DeviceType exactType = RoboVmRunConfigurationUtils.getSimulator(runConfig);
-                if (exactType == null)
-                    throw new ExecutionException("Simulator type is not set or is not available anymore!");
-                simParams.setDeviceType(exactType);
-                simParams.setPairedWatchAppName(config.getWatchKitApp() != null && runConfig.simulatorLaunchWatch()
-                        ? config.getWatchKitApp().getWatchAppName() : null);
-            } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
-                IOSDeviceLaunchParameters deviceParams = (IOSDeviceLaunchParameters) launchParameters;
-                deviceParams.setDeviceId(runConfig.getTargetDeviceUDID());
-            }
+        } else if (launchParameters instanceof IOSSimulatorLaunchParameters) {
+            IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters) launchParameters;
+            // finding exact simulator to run at
+            DeviceType exactType = RoboVmRunConfigurationUtils.getSimulator(runConfig);
+            if (exactType == null)
+                throw new ExecutionException("Simulator type is not set or is not available anymore!");
+            simParams.setDeviceType(exactType);
+            simParams.setPairedWatchAppName(config.getWatchKitApp() != null && runConfig.simulatorLaunchWatch()
+                    ? config.getWatchKitApp().getWatchAppName() : null);
+        } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
+            IOSDeviceLaunchParameters deviceParams = (IOSDeviceLaunchParameters) launchParameters;
+            deviceParams.setDeviceId(runConfig.getTargetDeviceUDID());
+        } else if (launchParameters instanceof IOSDeviceCtlLaunchParameters) {
+            IOSDeviceCtlLaunchParameters deviceParams = (IOSDeviceCtlLaunchParameters) launchParameters;
+            deviceParams.setDeviceId(runConfig.getTargetDeviceUDID());
         }
     }
 

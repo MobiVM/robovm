@@ -44,7 +44,7 @@ import org.robovm.compiler.util.io.NeverCloseOutputStream;
  * Builder style wrapper around <code>commons-exec</code> which also adds support for asynchronous 
  * execution.
  */
-public class Executor implements Launcher {
+public class Executor {
     private final String cmd;
     private final Logger logger;
     private List<String> args = new ArrayList<String>();
@@ -132,7 +132,8 @@ public class Executor implements Launcher {
     /**
      * Adds a single environment variable.
      * 
-     * @param env the environment variables.
+     * @param name the name of environment variable
+     * @param value the value of environment variable
      * @return this {@link Executor}.
      */
     public Executor addEnv(String name, String value) {

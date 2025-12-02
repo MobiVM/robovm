@@ -29,9 +29,12 @@ import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.*;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.ios.*;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
+import org.robovm.compiler.target.ios.simulator.SimCtl;
 import org.robovm.compiler.util.AntPathMatcher;
 import org.simpleframework.xml.Serializer;
 
@@ -1034,7 +1037,7 @@ public class AppCompiler {
     }
 
     private static void printDeviceTypesAndExit() throws IOException {
-        List<DeviceType> types = DeviceType.listDeviceTypes();
+        List<DeviceType> types = SimCtl.list();
         for (DeviceType type : types) {
             System.out.println(type.getSimpleDeviceTypeId());
         }

@@ -20,23 +20,16 @@ import org.robovm.compiler.config.Config;
 import org.robovm.compiler.plugin.LaunchPlugin;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
-import org.robovm.compiler.target.ConsoleTarget;
 import org.robovm.compiler.target.LaunchParameters;
 import org.robovm.compiler.target.Target;
-import org.robovm.compiler.target.ios.IOSDeviceLaunchParameters;
-import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.target.console.ConsoleLaunchParameters;
+import org.robovm.compiler.target.ios.IIOSLaunchParameters;
 import org.robovm.debugger.Debugger;
 import org.robovm.debugger.DebuggerConfig;
-import org.robovm.debugger.DebuggerException;
 import org.robovm.debugger.hooks.IHooksConnection;
-import org.robovm.libimobiledevice.IDeviceConnection;
-import org.robovm.libimobiledevice.util.AppLauncherCallback;
+import org.robovm.debugger.utils.IHooksConnectionUtils.DelegatingFuture;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -103,49 +96,22 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setLogDir(new File(logDir));
         builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().getCpuArch().name()));
 
-        // make list of arguments for target
-        if (ConsoleTarget.TYPE.equals(target.getType())) {
+        // specific settings depending on launch type
+        if (parameters instanceof ConsoleLaunchParameters) {
             File appDir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
             builder.setAppfile(new File(appDir, config.getExecutableName()));
-
-            File hooksPortFile;
-            try {
-                hooksPortFile = File.createTempFile("robovm-dbg-console", ".port");
-                builder.setHooksPortFile(hooksPortFile);
-            } catch (IOException e) {
-                throw new CompilerException("Failed to create debugger port file", e);
-            }
-
-            parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
-        } else if (IOSTarget.TYPE.equals(target.getType())) {
+        } else if (parameters instanceof IIOSLaunchParameters) {
+            // all ios
             File appDir = new File(config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir(), config.getExecutableName() + ".app");
             builder.setAppfile(new File(appDir, config.getExecutableName()));
-
-            if (IOSTarget.isSimulatorArch(config.getArch())) {
-                // launching on simulator, it can write down port number to file on local system
-                File hooksPortFile;
-                try {
-                    hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
-                    builder.setHooksPortFile(hooksPortFile);
-                } catch (IOException e) {
-                    throw new CompilerException("Failed to create simulator debuuger port file", e);
-                }
-
-                parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
-            } else {
-                // launching on device
-                IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) parameters;
-                DebuggerLauncherCallback callback = new DebuggerLauncherCallback();
-                deviceLaunchParameters.setAppLauncherCallback(callback);
-                deviceLaunchParameters.getArguments().add("-rvm:PrintDebugPort");
-
-                // wait for hooks channel from launch callback
-                builder.setHooksConnection(callback);
-            }
         } else {
             throw new IllegalArgumentException("Unsupported target " + target.getType());
         }
 
+        // tell launcher that debugger/hooks connection is expected
+        DelegatingFuture<IHooksConnection> connectionPromise = new DelegatingFuture<>();
+        builder.setHooksConnectionPromise(connectionPromise);
+        parameters.setRequestForDebuggerConnection(connectionPromise);
         debuggerConfig = builder.build();
     }
 
@@ -191,103 +157,5 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             throw new CompilerException("Missing required debugger argument " + key);
 
         return Boolean.parseBoolean(v);
-    }
-
-    /**
-     * callback to receive hook port from device to connect debugger to.
-     * device will print out [DEBUG] hooks: debugPort=
-     * check hooks.c/_rvmHookSetupTCPChannel for details
-     * implements hooks connection interface to provide in and out streams
-     */
-    private static class DebuggerLauncherCallback implements AppLauncherCallback, IHooksConnection {
-        private final static String tag = "[DEBUG] hooks: debugPort=";
-        private volatile Integer hooksPort;
-        private IDeviceConnection deviceConnection;
-        private String incompleteLine;
-        private AppLauncherInfo launchInfo;
-
-
-        @Override
-        public void setAppLaunchInfo(AppLauncherInfo info) {
-            launchInfo = info;
-        }
-
-        @Override
-        public byte[] filterOutput(byte[] data) {
-            if (hooksPort == null) {
-                // port is not received yet, keep working
-                String str = new String(data, StandardCharsets.UTF_8);
-                if (incompleteLine != null) {
-                    str = incompleteLine + str;
-                    incompleteLine = null;
-                }
-
-                int lookingPos = 0;
-                int newLineIdx = str.indexOf('\n');
-                while (newLineIdx >= 0 ) {
-                    // get next new line
-                    if (str.startsWith(tag, lookingPos)) {
-                        // got it
-                        hooksPort = Integer.parseInt(str.substring(lookingPos + tag.length(), newLineIdx).trim());
-                        break;
-                    } else {
-                        // move to next line
-                        lookingPos = newLineIdx + 1;
-                        newLineIdx = str.indexOf('\n', newLineIdx + 1);
-                    }
-                }
-
-                // keep trailing line (without eol)
-                if (hooksPort == null && lookingPos < str.length()) {
-                    incompleteLine = lookingPos != 0 ? str.substring(lookingPos) : str;
-                }
-            }
-
-            return data;
-        }
-
-        /**
-         * waits till port hooks port is available and establish connection
-         */
-        @Override
-        public void connect() {
-            try {
-                // FIXME: waiting for app to be deployed and prepared, its should not use TARGET_WAIT_TIMEOUT time
-                //        and it has to be moved to pre-launch sequence
-                long ts = System.currentTimeMillis();
-                while (launchInfo == null) {
-                    if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_DEPLOY_TIMEOUT)
-                        throw new DebuggerException("Timeout while waiting app is deployed");
-                    Thread.sleep(200);
-                }
-
-                // waiting for target to start and hooks are available
-                ts = System.currentTimeMillis();
-                while (hooksPort == null) {
-                    if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
-                        throw new DebuggerException("Timeout while waiting app is responding on device");
-                    Thread.sleep(200);
-                }
-
-                deviceConnection = launchInfo.getDevice().connect(hooksPort);
-            } catch (InterruptedException e) {
-                throw new DebuggerException(e);
-            }
-        }
-
-        @Override
-        public void disconnect() {
-            deviceConnection.close();
-        }
-
-        @Override
-        public InputStream getInputStream() {
-            return deviceConnection.getInputStream();
-        }
-
-        @Override
-        public OutputStream getOutputStream() {
-            return deviceConnection.getOutputStream();
-        }
     }
 }

@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.eclipse.RoboVMPlugin;
 
 /**

@@ -15,7 +15,7 @@
  */
 package org.robovm.gradle.tasks;
 
-import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  *

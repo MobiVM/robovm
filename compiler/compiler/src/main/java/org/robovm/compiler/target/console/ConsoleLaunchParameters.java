@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 RoboVM AB
+ * Copyright (C) 2025 The MobiVM Contributors
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -14,17 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.eclipse.internal;
+package org.robovm.compiler.target.console;
 
-import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.LaunchParameters;
 
 /**
- * @author niklas
- *
+ * Launch parameters dedicated for console tartget
  */
-public class IPadSimulatorLaunchShortcut extends IOSSimulatorLaunchShortcut {
-    @Override
-    protected DeviceFamily getFamily() {
-        return DeviceFamily.iPad;
-    }
+public class ConsoleLaunchParameters extends LaunchParameters {
 }

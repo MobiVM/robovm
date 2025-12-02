@@ -16,7 +16,7 @@
  */
 package org.robovm.idea.running;
 
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.idea.running.RoboVmRunConfiguration.EntryType;

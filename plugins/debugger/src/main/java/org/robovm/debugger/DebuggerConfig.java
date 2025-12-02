@@ -15,19 +15,18 @@
  */
 package org.robovm.debugger;
 
-import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.IHooksConnectionUtils;
+import org.robovm.debugger.utils.IHooksConnectionUtils.SocketHooksConnection;
 import org.robovm.debugger.utils.macho.MachOConsts;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntSupplier;
+import java.util.concurrent.Future;
 
 /**
  * @author Demyan Kimitsas
@@ -75,7 +74,7 @@ public class DebuggerConfig {
     private boolean jdwpClienMode;
     private int jdwpPort = -1;
     private boolean standalone;
-    private IHooksConnection hooksConnection;
+    private Future<IHooksConnection> hooksConnectionPromise;
 
     private DebuggerConfig() {
     }
@@ -108,8 +107,8 @@ public class DebuggerConfig {
         return jdwpPort;
     }
 
-    public IHooksConnection hooksConnection() {
-        return hooksConnection;
+    public Future<IHooksConnection> getHooksConnectionPromise() {
+        return hooksConnectionPromise;
     }
 
     public boolean isStandalone() {
@@ -120,7 +119,7 @@ public class DebuggerConfig {
         private final DebuggerConfig config = new DebuggerConfig();
 
         public DebuggerConfig build() {
-            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.hooksConnection == null)
+            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.hooksConnectionPromise == null)
                 throw new DebuggerException("Missing required parameters in config");
             return config;
         }
@@ -153,30 +152,8 @@ public class DebuggerConfig {
             config.jdwpPort = jdwpPort;
         }
 
-        public void setHooksPortFile(File portFile) {
-            IntSupplier portSupplier = () -> {
-                try {
-                    long ts = System.currentTimeMillis();
-                    while (!portFile.exists() || portFile.length() == 0) {
-                        if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
-                            throw new DebuggerException("Timeout while waiting simulator port file");
-                        Thread.sleep(200);
-                    }
-                    return Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
-                } catch (InterruptedException | IOException e) {
-                    throw new DebuggerException(e);
-                }
-            };
-
-            config.hooksConnection = new HooksChannel.SocketHooksConnection(portSupplier);
-        }
-
-        public void setHooksPort(int hooksPort) {
-            config.hooksConnection = new HooksChannel.SocketHooksConnection(() -> hooksPort);
-        }
-
-        public void setHooksConnection(IHooksConnection conn) {
-            config.hooksConnection = conn;
+        public void setHooksConnectionPromise(Future<IHooksConnection> hooksConnectionPromise) {
+            config.hooksConnectionPromise = hooksConnectionPromise;
         }
 
         private void setStandalone(boolean b) {
@@ -248,10 +225,13 @@ public class DebuggerConfig {
         builder.setLogToConsole(logToConsole);
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
-        if (hooksPortFile != null)
-            builder.setHooksPortFile(hooksPortFile);
-        else if (hooksPort != -1)
-            builder.setHooksPort(hooksPort);
+        if (hooksPortFile != null) {
+            builder.setHooksConnectionPromise(
+                IHooksConnectionUtils.waitForPortFromFile(hooksPortFile).thenApply(SocketHooksConnection::new)
+            );
+        } else if (hooksPort != -1) {
+            builder.setHooksConnectionPromise(IHooksConnectionUtils.constantFuture(new SocketHooksConnection(hooksPort)));
+        }
         builder.setStandalone(true);
 
         return builder.build();

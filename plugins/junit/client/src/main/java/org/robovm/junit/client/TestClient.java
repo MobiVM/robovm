@@ -237,13 +237,14 @@ public class TestClient extends LaunchPlugin {
                     if (config.getTarget() instanceof IOSTarget && IOSTarget.isDeviceArch(config.getArch())) {
                         // iOS device launch. Use libimobiledevice to set up the
                         // connection.
-                        IDevice device = ((IOSTarget) config.getTarget()).getDevice();
-                        config.getLogger().debug("Connecting to test server running on port %d "
-                                + "on device with id %s", port, device.getUdid());
-                        try (IDeviceConnection conn = device.connect(port)) {
-                            config.getLogger().debug("Connected to test server on device %s", device.getUdid());
-                            runTests(config, subscriber, conn.getInputStream(), conn.getOutputStream());
-                        }
+// FIXME: temporaly commented out in sake of ios17+ deployment testing
+//                        IDevice device = ((IOSTarget) config.getTarget()).getDevice();
+//                        config.getLogger().debug("Connecting to test server running on port %d "
+//                                + "on device with id %s", port, device.getUdid());
+//                        try (IDeviceConnection conn = device.connect(port)) {
+//                            config.getLogger().debug("Connected to test server on device %s", device.getUdid());
+//                            runTests(config, subscriber, conn.getInputStream(), conn.getOutputStream());
+//                        }
                     } else {
                         // Local launch. Use sockets.
                         config.getLogger().debug("Connecting to test server running on localhost:%d", port);

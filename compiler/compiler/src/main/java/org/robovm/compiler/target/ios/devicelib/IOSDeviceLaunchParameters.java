@@ -14,33 +14,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target.ios;
+package org.robovm.compiler.target.ios.devicelib;
 
 import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.target.ios.IIOSLaunchParameters;
+import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.libimobiledevice.util.AppLauncherCallback;
 
 /**
  * {@link LaunchParameters} implementation used by {@link IOSTarget} when
- * launching on the simulator.
+ * launching on device. Also used to receive the remote app path from a device.
  */
-public class IOSSimulatorLaunchParameters extends LaunchParameters {
-    private DeviceType deviceType;
+public class IOSDeviceLaunchParameters extends LaunchParameters implements IIOSLaunchParameters {
+    private AppLauncherCallback appPathCallback;
+    private String deviceId;
+    private int forwardPort = -1;
 
-    /// if specified will deploy and launch watch kit app as well
-    private String pairedWatchAppName;
-
-    public DeviceType getDeviceType() {
-        return deviceType;
+    public String getDeviceId() {
+        return deviceId;
     }
 
-    public void setDeviceType(DeviceType type) {
-        this.deviceType = type;
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId != null && !deviceId.isEmpty() ? deviceId : null;
     }
 
-    public String getPairedWatchAppName() {
-        return pairedWatchAppName;
+    public int getForwardPort() {
+        return forwardPort;
     }
 
-    public void setPairedWatchAppName(String pairedWatchAppName) {
-        this.pairedWatchAppName = pairedWatchAppName;
+    public void setForwardPort(int forwardPort) {
+        this.forwardPort = forwardPort;
     }
 }
