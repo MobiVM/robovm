@@ -10,7 +10,7 @@ import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.AbstractTarget;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.ios.SDK;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.ToolchainUtil;

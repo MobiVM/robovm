@@ -20,30 +20,20 @@ import com.intellij.execution.ExecutionException;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.CommandLineState;
 import com.intellij.execution.process.ColoredProcessHandler;
-import com.intellij.execution.process.OSProcessHandler;
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.process.ProcessTerminatedListener;
-import com.intellij.execution.process.SelfKiller;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.console.ConsoleLaunchParameters;
-import org.robovm.compiler.target.ios.devicectl.IOSDeviceCtlLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.simulator.DeviceType;
-import org.robovm.compiler.target.ios.devicelib.IOSDeviceLaunchParameters;
 import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
-import org.robovm.compiler.util.io.Fifos;
-import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.idea.RoboVmPlugin;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 
 public class RoboVmRunProfileState extends CommandLineState {
     public RoboVmRunProfileState(ExecutionEnvironment environment) {
@@ -65,40 +55,19 @@ public class RoboVmRunProfileState extends CommandLineState {
         customizeLaunchParameters(runConfig, config, launchParameters);
         launchParameters.setArguments(runConfig.getProgramArguments());
 
-        // launch plugin may proxy stdout/stderr fifo, which
-        // it then writes to. Need to save the original fifos
-        File stdOutFifo = launchParameters.getStdoutFifo();
-        File stdErrFifo = launchParameters.getStderrFifo();
-        PipedInputStream pipedIn = new PipedInputStream();
-        PipedOutputStream pipedOut = new PipedOutputStream(pipedIn);
-        Process process = compiler.launchAsync(launchParameters, pipedIn);
-        if (stdOutFifo != null || stdErrFifo != null) {
-            InputStream stdoutStream = null;
-            InputStream stderrStream = null;
-            if (launchParameters.getStdoutFifo() != null) {
-                stdoutStream = new OpenOnReadFileInputStream(stdOutFifo);
-            }
-            if (launchParameters.getStderrFifo() != null) {
-                stderrStream = new OpenOnReadFileInputStream(stdErrFifo);
-            }
-            process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
-        }
+        Process process = compiler.launchAsync(launchParameters);
 
         final OSProcessHandler processHandler = new ColoredProcessHandler(process, null);
         ProcessTerminatedListener.attach(processHandler);
         return processHandler;
     }
 
-    protected void customizeLaunchParameters(RoboVmRunConfiguration runConfig, Config config, LaunchParameters launchParameters) throws IOException, ExecutionException {
-        launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
-        launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
-
+    protected void customizeLaunchParameters(RoboVmRunConfiguration runConfig, Config config, LaunchParameters launchParameters) throws ExecutionException {
         if (launchParameters instanceof ConsoleLaunchParameters) {
             if (runConfig.getWorkingDir() != null && !runConfig.getWorkingDir().isEmpty()) {
                 launchParameters.setWorkingDirectory(new File(runConfig.getWorkingDir()));
             }
-        } else if (launchParameters instanceof IOSSimulatorLaunchParameters) {
-            IOSSimulatorLaunchParameters simParams = (IOSSimulatorLaunchParameters) launchParameters;
+        } else if (launchParameters instanceof IOSSimulatorLaunchParameters simParams) {
             // finding exact simulator to run at
             DeviceType exactType = RoboVmRunConfigurationUtils.getSimulator(runConfig);
             if (exactType == null)
@@ -106,11 +75,7 @@ public class RoboVmRunProfileState extends CommandLineState {
             simParams.setDeviceType(exactType);
             simParams.setPairedWatchAppName(config.getWatchKitApp() != null && runConfig.simulatorLaunchWatch()
                     ? config.getWatchKitApp().getWatchAppName() : null);
-        } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
-            IOSDeviceLaunchParameters deviceParams = (IOSDeviceLaunchParameters) launchParameters;
-            deviceParams.setDeviceId(runConfig.getTargetDeviceUDID());
-        } else if (launchParameters instanceof IOSDeviceCtlLaunchParameters) {
-            IOSDeviceCtlLaunchParameters deviceParams = (IOSDeviceCtlLaunchParameters) launchParameters;
+        } else if (launchParameters instanceof IOSDeviceLaunchParameters deviceParams) {
             deviceParams.setDeviceId(runConfig.getTargetDeviceUDID());
         }
     }
@@ -132,97 +97,4 @@ public class RoboVmRunProfileState extends CommandLineState {
         }
     }
 
-    private static class ProcessProxy extends Process implements SelfKiller {
-        private final Process target;
-        private final OutputStream outputStream;
-        private final InputStream inputStream;
-        private final InputStream errorStream;
-        private AppCompiler appCompiler;
-        private volatile boolean cleanedUp = false;
-
-        ProcessProxy(Process target, OutputStream outputStream, InputStream inputStream, InputStream errorStream,
-                     AppCompiler appCompiler) {
-            this.target = target;
-            this.outputStream = outputStream;
-            this.inputStream = inputStream;
-            this.errorStream = errorStream;
-            this.appCompiler = appCompiler;
-        }
-
-        public void destroy() {
-            synchronized (this) {
-                if (!cleanedUp) {
-                    if (appCompiler != null) {
-                        appCompiler.launchAsyncCleanup();
-                        appCompiler = null;
-                    }
-                    cleanedUp = true;
-                }
-            }
-            target.destroy();
-        }
-
-        @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
-        public boolean equals(Object obj) {
-            return target.equals(obj);
-        }
-
-        public int exitValue() {
-            int exitValue = target.exitValue();
-            synchronized (this) {
-                if (appCompiler != null && !cleanedUp) {
-                    appCompiler.launchAsyncCleanup();
-                    appCompiler = null;
-                    cleanedUp = true;
-                }
-            }
-            return exitValue;
-        }
-
-        public InputStream getErrorStream() {
-            if (errorStream != null) {
-                return errorStream;
-            }
-            return target.getErrorStream();
-        }
-
-        public InputStream getInputStream() {
-            if (inputStream != null) {
-                return inputStream;
-            }
-            return target.getInputStream();
-        }
-
-        public OutputStream getOutputStream() {
-            if (outputStream != null) {
-                return outputStream;
-            }
-            return target.getOutputStream();
-        }
-
-        public int hashCode() {
-            return target.hashCode();
-        }
-
-        public String toString() {
-            return target.toString();
-        }
-
-        public int waitFor() {
-            try {
-                return target.waitFor();
-            } catch (Throwable t) {
-                synchronized (this) {
-                    if (!cleanedUp) {
-                        if (appCompiler != null) {
-                            appCompiler.launchAsyncCleanup();
-                        }
-                        cleanedUp = true;
-                    }
-                    appCompiler = null;
-                }
-                throw new RuntimeException(t);
-            }
-        }
-    }
 }

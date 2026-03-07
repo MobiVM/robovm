@@ -17,7 +17,6 @@
  */
 package org.robovm.compiler.util;
 
-import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.robovm.compiler.config.Config;
@@ -27,6 +26,7 @@ import org.robovm.compiler.config.tools.TextureAtlas;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.util.Executor.ExecuteException;
 
 import java.io.File;
 import java.io.IOException;
@@ -161,12 +161,12 @@ public class ToolchainUtil {
     }
 
     private static void handleExecuteException(ExecuteException e) {
-        if (e.getExitValue() == 2) {
+        if (e.getExitCode() == 2) {
             throw new IllegalArgumentException("No Xcode is selected. Is Xcode installed? "
                     + "If yes, use 'sudo xcode-select -switch <path-to-xcode>' from a Terminal "
                     + "to switch to the correct Xcode path.");
         }
-        if (e.getExitValue() == 69) {
+        if (e.getExitCode() == 69) {
             throw new IllegalArgumentException("You must agree to the Xcode/iOS license. "
                     + "Please open Xcode once or run 'sudo xcrun clang' from a Terminal to agree to the terms.");
         }

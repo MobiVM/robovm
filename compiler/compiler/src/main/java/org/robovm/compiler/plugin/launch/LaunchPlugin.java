@@ -14,32 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.plugin;
+package org.robovm.compiler.plugin.launch;
 
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.plugin.Plugin;
 
 /**
  * Plugin interface which makes it possible to hook into launch process
+ * dkimitsa: process launched/exited methods were removed to optimize Launcher implementation.
+ *           in case a plugin needs to be notified of process exit, it can set up a callback in beforeLaunch method
+ *           by setting up LaunchParameters.
  */
 public abstract class LaunchPlugin extends Plugin {
     /**
-     * Called before the launch of a RoboVM application
+     * Called before the launch of a RoboVM application, allows the plugin to modify the launch parameters
+     * and set up any necessary callbacks or launch parameters, such as:
+     * - process start/exit callbacks
+     * - stdout/err interceptors (to capture debugger port for ex)
      */
-    public abstract void beforeLaunch(Config config, LaunchParameters parameters);
-    
-    /**
-     * Called after the launch of a RoboVM application
-     */
-    public abstract void afterLaunch(Config config, LaunchParameters parameters, Process process);
-    
-    /**
-     * Called when the launch failed
-     */
-    public abstract void launchFailed(Config config, LaunchParameters parameters);
-    
-    /**
-     * Called when the plugin should terminate
-     */
-    public abstract void cleanup();
+    public abstract void setupLaunch(Config config, LaunchParameters parameters);
 }

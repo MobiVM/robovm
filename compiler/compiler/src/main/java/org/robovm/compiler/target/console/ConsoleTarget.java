@@ -20,8 +20,8 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.AbstractTarget;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.Launcher;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.target.Target;
 
 import java.io.File;
@@ -63,7 +63,7 @@ public class ConsoleTarget extends AbstractTarget {
     protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
         File dir = config.isSkipInstall() ? config.getTmpDir() : config.getInstallDir();
         File executable = new File(dir, config.getExecutableName());
-        return new ConsoleLauncherProcess(config.getLogger(), executable, (ConsoleLaunchParameters) launchParameters);
+        return new ConsoleAppLauncher(config.getLogger(), executable, (ConsoleLaunchParameters) launchParameters);
     }
     
     public void init(Config config) {

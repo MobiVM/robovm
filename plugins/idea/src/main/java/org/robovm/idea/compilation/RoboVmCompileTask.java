@@ -30,7 +30,6 @@ import com.intellij.openapi.roots.OrderEnumerator;
 import com.intellij.openapi.roots.OrderRootsEnumerator;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Computable;
-import org.apache.commons.exec.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.AppCompiler;
@@ -38,6 +37,7 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.launcher.LauncherUtils;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -217,7 +217,7 @@ public class RoboVmCompileTask {
             builder.arch(arch);
 
             // set the plugin args
-            List<String> args = splitArgs(runConfig.getArguments());
+            List<String> args = LauncherUtils.splitCommandLine(runConfig.getArguments());
             applyPluginArguments(args, builder);
 
             // set build dir and install dir, pattern
@@ -437,28 +437,6 @@ public class RoboVmCompileTask {
         } catch (IOException ignored) {
         }
         return -1;
-    }
-
-    private static String unquoteArg(String arg) {
-        if (arg.startsWith("\"") && arg.endsWith("\"")) {
-            return arg.substring(1, arg.length() - 1);
-        }
-        return arg;
-    }
-
-    public static List<String> splitArgs(String args) {
-        if (args == null || args.trim().length() == 0) {
-            return new ArrayList<>();
-        }
-        String[] parts = CommandLine.parse("foo " + args).toStrings();
-        if (parts.length <= 1) {
-            return Collections.emptyList();
-        }
-        List<String> result = new ArrayList<>(parts.length - 1);
-        for (int i = 1; i < parts.length; i++) {
-            result.add(unquoteArg(parts[i]));
-        }
-        return result;
     }
 
     /**

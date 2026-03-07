@@ -32,7 +32,6 @@ import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Future;
 
 /**
  * @author Demyan Kimitsa
@@ -43,15 +42,13 @@ public class HooksChannel implements IHooksApi {
     private final static int DEFAULT_TIMEOUT = 5000;
     private final Thread socketThread;
     private final boolean is64bit;
-    private final Future<IHooksConnection> hooksConnectionPromise;
     private IHooksConnection hooksConnection;
     private long reqIdCounter = 100;
     private final Map<Long, HookReqHolder> requestsInProgress = new HashMap<>();
     private final DataBufferReaderWriter headerBuffer;
     private final IHooksEventsHandler eventsHandler;
 
-    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, Future<IHooksConnection> hooksConnectionPromise, IHooksEventsHandler eventsHandler) {
-        this.hooksConnectionPromise = hooksConnectionPromise;
+    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IHooksEventsHandler eventsHandler) {
         this.is64bit = is64bit;
         this.eventsHandler = eventsHandler;
         this.socketThread = toolbox.createThread(this::doSocketWork, "HooksChannel socket thread");
@@ -60,7 +57,8 @@ public class HooksChannel implements IHooksApi {
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
-    public void start() {
+    public void start(IHooksConnection connection) {
+        this.hooksConnection = connection;
         this.socketThread.start();
     }
 
@@ -78,7 +76,7 @@ public class HooksChannel implements IHooksApi {
     private void doSocketWork() {
         // establish connection
         try {
-            hooksConnection = hooksConnectionPromise.get();
+            // connection has to be provided via start()
             hooksConnection.connect();
             InputStream inputStream = hooksConnection.getInputStream();
             OutputStream outputStream = hooksConnection.getOutputStream();
@@ -528,8 +526,7 @@ public class HooksChannel implements IHooksApi {
         }
 
         IDebuggerToolbox toolbox = Thread::new;
-        final Future<IHooksConnection> promise = SocketHooksConnection.constantFuture(port);
-        final HooksChannel hooksChannel = new HooksChannel(toolbox, true, promise,
+        final HooksChannel hooksChannel = new HooksChannel(toolbox, true,
                 new IHooksEventsHandler() {
                     @Override
                     public void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol) {
@@ -541,6 +538,6 @@ public class HooksChannel implements IHooksApi {
                 });
 
         DbgLogger.setup(null, true);
-        hooksChannel.start();
+        hooksChannel.start(new SocketHooksConnection(port));
     }
 }

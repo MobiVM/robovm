@@ -339,7 +339,7 @@ jboolean _rvmHookSetupTCPChannel(Options* options) {
             fprintf(f, "%d", debugPort);
             fclose(f);
         } else {
-            fprintf(stderr, "[DEBUG] %s: debugPort=%d\n", LOG_TAG, debugPort);
+            fprintf(stdout, "[DEBUG] %s: debugPort=%d\n", LOG_TAG, debugPort);
         }
     }
     return TRUE;

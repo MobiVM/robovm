@@ -16,7 +16,7 @@
  */
 package org.robovm.compiler.target.ios.simulator;
 
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.ios.IIOSLaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
 

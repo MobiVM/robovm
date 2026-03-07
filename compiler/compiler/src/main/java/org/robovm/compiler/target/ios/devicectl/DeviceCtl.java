@@ -16,7 +16,6 @@
  */
 package org.robovm.compiler.target.ios.devicectl;
 
-import org.apache.commons.exec.ExecuteException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -38,7 +37,7 @@ public class DeviceCtl {
     /**
      * gets list of devices by invoking `xcrun devicectl list devices -j @dest-file`
      */
-    public static List<AppleDevice> listDevices(Logger log) throws IOException, ExecuteException, ParseException {
+    public static List<AppleDevice> listDevices(Logger log) throws IOException, ParseException {
         File f = File.createTempFile("robovm-devicectl-", ".list");
         f.delete();
 
@@ -69,7 +68,7 @@ public class DeviceCtl {
     }
 
 
-    public static AppleDevice getDeviceInfo(Logger log, String udid) throws IOException, ExecuteException, ParseException {
+    public static AppleDevice getDeviceInfo(Logger log, String udid) throws IOException, ParseException {
         File f = File.createTempFile("robovm-devicectl-", ".deviceinfo");
         f.delete();
 
@@ -84,27 +83,22 @@ public class DeviceCtl {
         }
     }
 
-    public static void install(Logger log, String udid, String localAppPath) throws ExecuteException, IOException, ParseException {
+    public static void install(Logger log, String udid, String localAppPath) throws Executor.ExecuteException, IOException, ParseException {
         File f = File.createTempFile("robovm-devicectl-", ".install");
         f.delete();
 
         new Executor(log, "xcrun")
                 .args("devicectl", "device", "install", "app", "-d", udid, "-j", f.getAbsolutePath(), localAppPath)
                 .exec();
-        JSONParser parser = new JSONParser();
-        try (FileReader reader = new FileReader(f)) {
-            JSONObject root = (JSONObject) parser.parse(reader);
-            // TODO: parse response if required
-        }
     }
 
-    public static void launchAndWait(
+    public static Process launchAsync(
             Logger log, String udid, String bundleId,
             List<String> arguments,
             Map<String, String> env,
-            OutputStream errStream,
-            OutputStream outStream
-    ) throws IOException, ExecuteException {
+            OutputStream outStream,
+            OutputStream errStream
+    ) throws IOException {
         Executor executor = new Executor(log, "xcrun");
         List<Object> args = new ArrayList<>();
         args.add("devicectl");
@@ -129,11 +123,11 @@ public class DeviceCtl {
             executor.env(devEnv);
         }
         executor.out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
-        executor.exec();
+        return executor.execAsync();
     }
 
 
-    public static void pairDevice(Logger log, String udid) throws IOException, ExecuteException, ParseException {
+    public static void pairDevice(Logger log, String udid) throws IOException {
         new Executor(log, "xcrun")
             .args("devicectl", "manage", "pair", "-d", udid)
             .exec();

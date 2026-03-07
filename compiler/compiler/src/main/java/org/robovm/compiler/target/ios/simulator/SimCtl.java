@@ -16,7 +16,6 @@
  */
 package org.robovm.compiler.target.ios.simulator;
 
-import org.apache.commons.exec.ExecuteException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.robovm.compiler.log.Logger;
@@ -59,36 +58,36 @@ public final class SimCtl {
         }
     }
 
-    public static void boot(Logger log, String udid) throws IOException, ExecuteException {
+    public static void boot(Logger log, String udid) throws IOException {
         Executor executor = new Executor(log, "xcrun");
         executor.args("simctl", "boot", udid);
         executor.exec();
     }
 
-    public static void show(Logger log, String udid) throws IOException, ExecuteException {
+    public static void show(Logger log, String udid) throws IOException {
         Executor executor = new Executor(log, "open");
         executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", udid);
         executor.exec();
     }
 
-    public static void install(Logger log, String udid, String localPath) throws IOException, ExecuteException {
+    public static void install(Logger log, String udid, String localPath) throws IOException {
         Executor executor = new Executor(log, "xcrun");
         executor.args("simctl", "install", udid, localPath);
         executor.exec();
     }
 
-    public static void launchAndWait(
+    public static Process launchAsync(
             Logger log, String udid, String bundleId,
             List<String> arguments,
             Map<String, String> env,
-            OutputStream errStream,
-            OutputStream outStream
-    ) throws IOException, ExecuteException {
+            OutputStream outStream,
+            OutputStream errStream
+    ) throws IOException {
         Executor executor = new Executor(log, "xcrun");
         List<Object> args = new ArrayList<>();
         args.add("simctl");
         args.add("launch");
-        args.add("--console-pty");
+        args.add("--console");
         args.add(udid);
         args.add(bundleId);
         args.addAll(arguments);
@@ -101,6 +100,6 @@ public final class SimCtl {
             executor.env(simEnv);
         }
         executor.out(outStream).err(errStream).closeOutputStreams(true).inheritEnv(false);
-        executor.exec();
+        return executor.execAsync();
     }
 }

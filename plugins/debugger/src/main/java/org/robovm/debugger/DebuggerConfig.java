@@ -15,18 +15,18 @@
  */
 package org.robovm.debugger;
 
-import org.robovm.debugger.hooks.IHooksConnection;
 import org.robovm.debugger.utils.IHooksConnectionUtils;
-import org.robovm.debugger.utils.IHooksConnectionUtils.SocketHooksConnection;
 import org.robovm.debugger.utils.macho.MachOConsts;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * @author Demyan Kimitsas
@@ -73,8 +73,7 @@ public class DebuggerConfig {
     private boolean logToConsole;
     private boolean jdwpClienMode;
     private int jdwpPort = -1;
-    private boolean standalone;
-    private Future<IHooksConnection> hooksConnectionPromise;
+    private Future<Integer> portNumberPromise;
 
     private DebuggerConfig() {
     }
@@ -107,19 +106,15 @@ public class DebuggerConfig {
         return jdwpPort;
     }
 
-    public Future<IHooksConnection> getHooksConnectionPromise() {
-        return hooksConnectionPromise;
-    }
-
-    public boolean isStandalone() {
-        return standalone;
+    public Future<Integer> getPortNumberPromise() {
+        return portNumberPromise;
     }
 
     public static class Builder {
         private final DebuggerConfig config = new DebuggerConfig();
 
         public DebuggerConfig build() {
-            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.hooksConnectionPromise == null)
+            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.portNumberPromise == null)
                 throw new DebuggerException("Missing required parameters in config");
             return config;
         }
@@ -152,12 +147,8 @@ public class DebuggerConfig {
             config.jdwpPort = jdwpPort;
         }
 
-        public void setHooksConnectionPromise(Future<IHooksConnection> hooksConnectionPromise) {
-            config.hooksConnectionPromise = hooksConnectionPromise;
-        }
-
-        private void setStandalone(boolean b) {
-            config.standalone = b;
+        public void setPortNumberPromise(Future<Integer> portNumberPromise) {
+            config.portNumberPromise = portNumberPromise;
         }
     }
 
@@ -226,15 +217,35 @@ public class DebuggerConfig {
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
         if (hooksPortFile != null) {
-            builder.setHooksConnectionPromise(
-                IHooksConnectionUtils.waitForPortFromFile(hooksPortFile).thenApply(SocketHooksConnection::new)
-            );
+            builder.setPortNumberPromise(createPortPromiseFromFile(hooksPortFile));
         } else if (hooksPort != -1) {
-            builder.setHooksConnectionPromise(IHooksConnectionUtils.constantFuture(new SocketHooksConnection(hooksPort)));
+            builder.setPortNumberPromise(IHooksConnectionUtils.constantFuture(hooksPort));
         }
-        builder.setStandalone(true);
 
         return builder.build();
+    }
+
+    private static Future<Integer> createPortPromiseFromFile(File portFile) {
+        // will do polling for file to appear and contain port number, then complete with that port number
+        return new CompletableFuture<>() {
+            @Override
+            public Integer get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+                long start = System.currentTimeMillis();
+                while (System.currentTimeMillis() - start < unit.toMillis(timeout)) {
+                    try {
+                        if (portFile.exists() && portFile.length() != 0) {
+                            int port = Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
+                            complete(port);
+                            return port;
+                        }
+                        Thread.sleep(100);
+                    } catch (IOException e) {
+                        throw new DebuggerException(e);
+                    }
+                }
+                throw new TimeoutException();
+            }
+        };
     }
 
     private static String getCommandLineUsageText(String errorMessage) {
