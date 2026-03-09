@@ -19,8 +19,9 @@ package org.robovm.idea.running;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.RunnerAndConfigurationSettings;
 import com.intellij.execution.configurations.CommandLineState;
+import com.intellij.execution.executors.DefaultDebugExecutor;
+import com.intellij.execution.executors.DefaultRunExecutor;
 import com.intellij.execution.process.ColoredProcessHandler;
-import com.intellij.execution.process.OSProcessHandler;
 import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.process.ProcessTerminatedListener;
 import com.intellij.execution.process.SelfKiller;
@@ -84,7 +85,14 @@ public class RoboVmRunProfileState extends CommandLineState {
             process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
         }
 
-        final OSProcessHandler processHandler = new ColoredProcessHandler(process, null);
+        // subclass to handle destroyProcessImpl to bypass the OS-level SIGKILL/PID reflection as process is synthetic ProcessProxy
+        final ColoredProcessHandler processHandler = new ColoredProcessHandler(process, "launching RoboVm application...") {
+                @Override
+                protected void destroyProcessImpl() {
+                    getProcess().destroy();
+                    notifyProcessTerminated(0);
+                }
+        };
         ProcessTerminatedListener.attach(processHandler);
         return processHandler;
     }
@@ -119,9 +127,9 @@ public class RoboVmRunProfileState extends CommandLineState {
     @Override
     protected ProcessHandler startProcess() throws ExecutionException {
         try {
-            if (getEnvironment().getExecutor().getId().equals(RoboVmRunner.RUN_EXECUTOR)) {
+            if (getEnvironment().getExecutor().getId().equals(DefaultRunExecutor.EXECUTOR_ID)) {
                 return executeRun();
-            } else if (getEnvironment().getExecutor().getId().equals(RoboVmRunner.DEBUG_EXECUTOR)) {
+            } else if (getEnvironment().getExecutor().getId().equals(DefaultDebugExecutor.EXECUTOR_ID)) {
                 return executeRun();
             } else {
                 throw new ExecutionException("Unsupported executor " + getEnvironment().getExecutor().getId());
