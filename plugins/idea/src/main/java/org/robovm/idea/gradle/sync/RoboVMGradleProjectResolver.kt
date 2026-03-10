@@ -15,6 +15,9 @@
 package org.robovm.idea.gradle.sync
 
 import com.intellij.openapi.externalSystem.model.DataNode
+import com.intellij.openapi.externalSystem.model.ProjectKeys
+import com.intellij.openapi.externalSystem.model.project.ContentRootData
+import com.intellij.openapi.externalSystem.model.project.ExternalSystemSourceType
 import com.intellij.openapi.externalSystem.model.project.ModuleData
 import com.intellij.openapi.externalSystem.model.project.ProjectData
 import com.intellij.openapi.externalSystem.util.ExternalSystemApiUtil
@@ -23,8 +26,10 @@ import com.intellij.openapi.externalSystem.util.Order
 import org.gradle.tooling.model.idea.IdeaModule
 import org.jetbrains.plugins.gradle.model.data.GradleSourceSetData
 import org.jetbrains.plugins.gradle.service.project.AbstractProjectResolverExtension
+import org.jetbrains.plugins.gradle.util.GradleConstants
 import org.robovm.compiler.model.RoboVMGradleModel
 import org.robovm.idea.facet.RoboVmFacetConfiguration
+import java.io.File
 
 /**
  * gradle project resolver to detect RoboVM gradle module and attach RoboVmGradleModelKey so
@@ -50,6 +55,14 @@ class RoboVMGradleProjectResolver : AbstractProjectResolverExtension() {
         val nodeForFacet = sourceSetNodes.find { it.data.id.endsWith(":main") }
             ?: moduleNode
         nodeForFacet.createChild(RoboVmGradleModelKey, externalSettings)
+
+        // configure build folder as ignored so it doesn't appear in project view and doesn't cause indexing
+        externalSettings.contentRoot?.let { contentRoot ->
+            val excludedFolderPath = contentRoot + File.separator + "robovm-build"
+            val contentRoot = ContentRootData(GradleConstants.SYSTEM_ID, contentRoot)
+            contentRoot.storePath(ExternalSystemSourceType.EXCLUDED, excludedFolderPath)
+            moduleNode.createChild(ProjectKeys.CONTENT_ROOT, contentRoot)
+        }
 
         return moduleNode
     }
