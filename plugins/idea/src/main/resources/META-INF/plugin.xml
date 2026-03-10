@@ -42,7 +42,6 @@
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
         <postStartupActivity implementation="org.robovm.idea.components.RoboVmProjectStartupActivity"/>
-        <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
         <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->
