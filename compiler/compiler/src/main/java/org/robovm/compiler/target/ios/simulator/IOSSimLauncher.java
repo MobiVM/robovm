@@ -25,6 +25,7 @@ import org.robovm.compiler.util.Executor.ExecuteException;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,13 @@ public class IOSSimLauncher implements Launcher {
         String watchAppName = launchParameters.getPairedWatchAppName();
         List<String> arguments = new ArrayList<>(launchParameters.getArguments(true));
         Map<String, String> env = launchParameters.getEnvironment();
+        if (env == null) {
+            env = new HashMap<>();
+        }
+        // from LLVM project:
+        //    We want to make sure that OS_ACTIVITY_DT_MODE is set so that we get
+        //    os_log and NSLog messages mirrored to the target process stderr.
+        env.put("OS_ACTIVITY_DT_MODE", "enabled");
 
         // preparation: booting simulator if required, deploying app to it and to paired watch if required
         try {

@@ -50,8 +50,10 @@ public class AppLauncherDelegate {
         if (env == null) {
             env = new HashMap<>();
         }
-        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
-        env.put("OS_ACTIVITY_DT_MODE", "");
+        // from LLVM project:
+        //    We want to make sure that OS_ACTIVITY_DT_MODE is set so that we get
+        //    os_log and NSLog messages mirrored to the target process stderr.
+        env.put("OS_ACTIVITY_DT_MODE", "enabled");
 
         OutputStream outStream = launchParameters.getStdoutChain().getInbound();
         AppLauncher launcher = new AppLauncher(deviceUdid, appDir) {
