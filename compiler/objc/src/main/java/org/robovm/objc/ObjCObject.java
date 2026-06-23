@@ -182,6 +182,12 @@ public abstract class ObjCObject extends NativeObject {
         synchronized (objcBridgeLock) {
             ObjCObjectRef ref = peers.get(handle);
             T o = ref != null ? (T) ref.get() : null;
+            if (o == null) {
+                // week reference might be empty due GC but there might be Custom object for the peer in
+                // strong ObjectOwnershipHelper registry
+                o = ObjectOwnershipHelper.getPeerObject(handle);
+                if (o != null) peers.put(handle, new ObjCObjectRef(o));
+            }
             return o;
         }
     }
@@ -416,7 +422,7 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     static class ObjectOwnershipHelper {
-        private static final LongMap<Object> CUSTOM_OBJECTS = new LongMap<>();
+        private static final LongMap<ObjCObject> CUSTOM_OBJECTS = new LongMap<>();
 
         private static final long retainCount = Selector.register("retainCount").getHandle();
         private static final long retain = Selector.register("retain").getHandle();
@@ -495,7 +501,7 @@ public abstract class ObjCObject extends NativeObject {
          * @param self pointer from native part
          */
         public static void retainObject(long self) {
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
                 ObjCObject obj = ObjCObject.getPeerObject(self);
                 CUSTOM_OBJECTS.put(self, obj);
             }
@@ -522,7 +528,7 @@ public abstract class ObjCObject extends NativeObject {
             // as there is direct retain in afterMarshaled for custom objects
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
             if (count <= 2) {
-                synchronized (CUSTOM_OBJECTS) {
+                synchronized (objcBridgeLock) {
                     // at this moment there is no reference kept for java object
                     // and it is subject for GC if not being referenced anywhere
                     // once GC comes it will cause release() to be called in dispose
@@ -545,18 +551,32 @@ public abstract class ObjCObject extends NativeObject {
             // mechanism. So let it to deallow with extra retains
             long cls = ObjCRuntime.object_getClass(self);
             Super sup = new Super(self, getNativeSuper(cls));
-            ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
-
-            // and after this remove this peer (as it could be added again due unexpected retain calls)
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
+                // calling [super dealloc] while locked as it + CUSTOM_OBJECTS.remove(self) should be atomic due
+                // following
+                // 1. custom dealloc code might trigger self to be retained and added back to CUSTOM_OBJECTS
+                //    CUSTOM_OBJECTS has to be done after dealloc
+                // 2. after dealloc and between CUSTOM_OBJECTS.remove another thread might allocate same
+                //    memory and already put into CUSTOM_OBJECTS. As result CUSTOM_OBJECTS.remove(self)
+                //    will drop completely different object. synchronized (getPeerObject) is supposed to
+                //    protect against it (but it might slow things down)
+                ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
+                // and after this remove this peer (as it could be added again due unexpected retain calls)
                 CUSTOM_OBJECTS.remove(self);
             }
         }
 
         public static boolean isObjectRetained(ObjCObject object) {
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
                 return CUSTOM_OBJECTS.containsKey(object.getHandle());
             }
+        }
+
+        /**
+         * shall be called with objcBridgeLock locked
+         */
+        static <T extends ObjCObject> T getPeerObject(long handle) {
+            return (T)CUSTOM_OBJECTS.get(handle);
         }
 
         private static long getNativeSuper(final long cls) {
