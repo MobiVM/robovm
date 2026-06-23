@@ -56,6 +56,16 @@ import org.robovm.apple.coreanimation.*;
     public native String getMerchantIdentifier();
     @Property(selector = "setMerchantIdentifier:")
     public native void setMerchantIdentifier(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributionIdentifier")
+    public native String getAttributionIdentifier();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributionIdentifier:")
+    public native void setAttributionIdentifier(String v);
     @Property(selector = "countryCode")
     public native String getCountryCode();
     @Property(selector = "setCountryCode:")
@@ -88,6 +98,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setCouponCode:")
     public native void setCouponCode(String v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "merchantCategoryCode")
+    public native short getMerchantCategoryCode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMerchantCategoryCode:")
+    public native void setMerchantCategoryCode(short v);
     @Property(selector = "paymentSummaryItems")
     public native NSArray<PKPaymentSummaryItem> getPaymentSummaryItems();
     @Property(selector = "setPaymentSummaryItems:")
@@ -275,6 +295,17 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("PassKit")
+    public static class MerchantCategoryCodes {
+        static { Bro.bind(MerchantCategoryCodes.class); }
+
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="PKMerchantCategoryCodeNone", optional=true)
+        public static native short None();
+    }
+    
     /**
      * @since Available in iOS 10.0 and later.
      */

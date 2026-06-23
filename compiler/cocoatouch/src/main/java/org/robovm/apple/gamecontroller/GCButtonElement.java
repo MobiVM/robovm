@@ -52,6 +52,11 @@ import org.robovm.apple.corehaptic.*;
     <T0 extends Object & GCPressedStateInput & GCLinearInput> T0 getPressedInput();
     @Property(selector = "touchedInput")
     GCTouchedStateInput getTouchedInput();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "forceInput")
+    GCLinearInput getForceInput();
     /*</properties>*/
     /*<methods>*/
     

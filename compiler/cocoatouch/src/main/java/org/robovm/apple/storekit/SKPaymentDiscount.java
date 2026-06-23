@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.2 and later.
+ * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPaymentDiscount/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,44 +50,23 @@ import org.robovm.apple.coregraphics.*;
     public SKPaymentDiscount() {}
     protected SKPaymentDiscount(Handle h, long handle) { super(h, handle); }
     protected SKPaymentDiscount(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Method(selector = "initWithIdentifier:keyIdentifier:nonce:signature:timestamp:")
     public SKPaymentDiscount(String identifier, String keyIdentifier, NSUUID nonce, String signature, NSNumber timestamp) { super((SkipInit) null); initObject(init(identifier, keyIdentifier, nonce, signature, timestamp)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Property(selector = "identifier")
     public native String getIdentifier();
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Property(selector = "keyIdentifier")
     public native String getKeyIdentifier();
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Property(selector = "nonce")
     public native NSUUID getNonce();
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Property(selector = "signature")
     public native String getSignature();
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Property(selector = "timestamp")
     public native NSNumber getTimestamp();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 12.2 and later.
-     */
     @Method(selector = "initWithIdentifier:keyIdentifier:nonce:signature:timestamp:")
     protected native @Pointer long init(String identifier, String keyIdentifier, NSUUID nonce, String signature, NSNumber timestamp);
     /*</methods>*/

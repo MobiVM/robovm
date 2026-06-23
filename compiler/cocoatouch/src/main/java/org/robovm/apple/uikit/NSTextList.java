@@ -81,6 +81,11 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "isOrdered")
     public native boolean isOrdered();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "includesTextListMarkers")
+    public static native boolean includesTextListMarkers();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -229,6 +229,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "startWatchAppWithWorkoutConfiguration:completion:")
     public native void startWatchApp(HKWorkoutConfiguration workoutConfiguration, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "recoverActiveWorkoutSessionWithCompletion:")
+    public native void recoverActiveWorkoutSession(@Block VoidBlock2<HKWorkoutSession, NSError> completion);
     @Method(selector = "enableBackgroundDeliveryForType:frequency:withCompletion:")
     public native void enableBackgroundDeliveryForType(HKObjectType type, HKUpdateFrequency frequency, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "disableBackgroundDeliveryForType:withCompletion:")
@@ -245,5 +250,15 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "recalibrateEstimatesForSampleType:atDate:completion:")
     public native void recalibrateEstimates(HKSampleType sampleType, NSDate date, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "relateWorkoutEffortSample:withWorkout:activity:completion:")
+    public native void relateWorkoutEffortSample(HKSample sample, HKWorkout workout, HKWorkoutActivity activity, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "unrelateWorkoutEffortSample:fromWorkout:activity:completion:")
+    public native void unrelateWorkoutEffortSample(HKSample sample, HKWorkout workout, HKWorkoutActivity activity, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

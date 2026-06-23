@@ -78,7 +78,11 @@ public enum /*<name>*/HKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    ErrorBackgroundWorkoutSessionNotAllowed(14L);
+    ErrorBackgroundWorkoutSessionNotAllowed(14L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    ErrorNotPermissibleForGuestUserMode(15L);
     /*</values>*/
 
     /*<bind>*/

@@ -42,8 +42,14 @@ public final class /*<name>*/MTRSoftwareDiagnosticsFeature/*</name>*/ extends Bi
     /*<values>*/
     public static final MTRSoftwareDiagnosticsFeature None = new MTRSoftwareDiagnosticsFeature(0L);
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.4 and later.
      */
+    public static final MTRSoftwareDiagnosticsFeature Watermarks = new MTRSoftwareDiagnosticsFeature(1L);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRSoftwareDiagnosticsFeatureWatermarks
+     */
+    @Deprecated
     public static final MTRSoftwareDiagnosticsFeature WaterMarks = new MTRSoftwareDiagnosticsFeature(1L);
     /*</values>*/
 

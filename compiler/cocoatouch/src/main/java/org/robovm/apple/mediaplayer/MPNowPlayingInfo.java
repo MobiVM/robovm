@@ -419,6 +419,26 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoPropertyCreditsStartTime", optional=true)
         public static native NSString CreditsStartTime();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyInternationalStandardRecordingCode", optional=true)
+        public static native NSString InternationalStandardRecordingCode();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyExcludeFromSuggestions", optional=true)
+        public static native NSString ExcludeFromSuggestions();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoProperty1x1AnimatedArtwork", optional=true)
+        public static native NSString _1x1AnimatedArtwork();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoProperty3x4AnimatedArtwork", optional=true)
+        public static native NSString _3x4AnimatedArtwork();
     }
     /*</keys>*/
 }

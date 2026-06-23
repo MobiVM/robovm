@@ -107,9 +107,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 16.0 and later.
      */
     public static final AVAssetPlaybackConfigurationOption StereoMultiviewVideo = new AVAssetPlaybackConfigurationOption("StereoMultiviewVideo");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVAssetPlaybackConfigurationOption SpatialVideo = new AVAssetPlaybackConfigurationOption("SpatialVideo");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetPlaybackConfigurationOption NonRectilinearProjection = new AVAssetPlaybackConfigurationOption("NonRectilinearProjection");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetPlaybackConfigurationOption/*</name>*/[] values = new /*<name>*/AVAssetPlaybackConfigurationOption/*</name>*/[] {/*<value_list>*/StereoVideo, StereoMultiviewVideo/*</value_list>*/};
+    private static /*<name>*/AVAssetPlaybackConfigurationOption/*</name>*/[] values = new /*<name>*/AVAssetPlaybackConfigurationOption/*</name>*/[] {/*<value_list>*/StereoVideo, StereoMultiviewVideo, SpatialVideo, NonRectilinearProjection/*</value_list>*/};
     
     /*<name>*/AVAssetPlaybackConfigurationOption/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +150,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVAssetPlaybackConfigurationOptionStereoMultiviewVideo", optional=true)
         public static native NSString StereoMultiviewVideo();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetPlaybackConfigurationOptionSpatialVideo", optional=true)
+        public static native NSString SpatialVideo();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetPlaybackConfigurationOptionNonRectilinearProjection", optional=true)
+        public static native NSString NonRectilinearProjection();
         /*</values>*/
     }
 }

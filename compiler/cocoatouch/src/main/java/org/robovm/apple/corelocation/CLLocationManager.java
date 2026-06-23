@@ -245,12 +245,6 @@ import org.robovm.apple.contacts.*;
     public static native boolean isSignificantLocationChangeMonitoringAvailable();
     @Method(selector = "isMonitoringAvailableForClass:")
     public static native boolean isMonitoringAvailable(Class<? extends CLRegion> regionClass);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use +isMonitoringAvailableForClass:
-     */
-    @Deprecated
-    @Method(selector = "regionMonitoringAvailable")
-    public static native boolean isRegionMonitoringAvailable();
     @Method(selector = "isRangingAvailable")
     public static native boolean isRangingAvailable();
     /**

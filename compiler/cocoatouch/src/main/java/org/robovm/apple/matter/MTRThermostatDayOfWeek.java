@@ -35,43 +35,60 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTRThermostatDayOfWeek/*</name>*/ extends Bits</*<name>*/MTRThermostatDayOfWeek/*</name>*/> {
     /*<values>*/
     public static final MTRThermostatDayOfWeek None = new MTRThermostatDayOfWeek(0L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapSunday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Sunday = new MTRThermostatDayOfWeek(1L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapMonday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Monday = new MTRThermostatDayOfWeek(2L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapTuesday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Tuesday = new MTRThermostatDayOfWeek(4L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapWednesday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Wednesday = new MTRThermostatDayOfWeek(8L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapThursday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Thursday = new MTRThermostatDayOfWeek(16L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapFriday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Friday = new MTRThermostatDayOfWeek(32L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapSaturday
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Saturday = new MTRThermostatDayOfWeek(64L);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleDayOfWeekBitmapAway
      */
+    @Deprecated
     public static final MTRThermostatDayOfWeek Away = new MTRThermostatDayOfWeek(128L);
     /*</values>*/
 

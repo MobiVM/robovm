@@ -30,7 +30,7 @@ enums:
     PHASEMediumPreset: { }
     PHASEMaterialPreset: { }
     PHASESpatialPipelineFlags: { prefix: PHASESpatialPipelineFlag }
-
+    PHASEAutomaticHeadTrackingFlags: {prefix: PHASEAutomaticHeadTrackingFlag} #since 18.0
 classes:
     PHASEAmbientMixerDefinition: #since 15.0
         methods:
@@ -255,6 +255,10 @@ classes:
                 name: start
             '-seekToTime:completion:':
                 name: seekToTime
+            '-startAtTime:completion:':
+                name: startAtTime
+            '-seekToTime:resumeAtEngineTime:completion:':
+                name: seekToTime
     PHASESoundEventNodeAsset: {} #since 15.0
     PHASESoundEventNodeDefinition: {} #since 15.0
     PHASESource: #since 15.0
@@ -287,6 +291,14 @@ classes:
                 name: init
             '-addSubtree:switchValue:':
                 name: addSubtree
+    PHASEPullStreamNode: {} #since 18.0
+    PHASEPullStreamNodeDefinition: #since 18.0
+        methods:
+            '-initWithMixerDefinition:format:identifier:':
+                name: init
+            '-initWithMixerDefinition:format:':
+                name: init
+    PHASEStreamNode: {} #since 18.0
 protocols:
 
 

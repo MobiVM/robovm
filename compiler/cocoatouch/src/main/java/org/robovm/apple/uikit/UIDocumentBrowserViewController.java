@@ -70,7 +70,7 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForOpeningContentTypes:")
-    public static  UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+    public static UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
        UIDocumentBrowserViewController res = new UIDocumentBrowserViewController((SkipInit) null);
        res.initObject(res.initForOpeningContentTypes(contentTypes));
        return res;
@@ -87,6 +87,11 @@ import org.robovm.apple.symbols.*;
     public native boolean allowsDocumentCreation();
     @Property(selector = "setAllowsDocumentCreation:")
     public native void setAllowsDocumentCreation(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "activeDocumentCreationIntent")
+    public native UIDocumentCreationIntent getActiveDocumentCreationIntent();
     @Property(selector = "allowsPickingMultipleItems")
     public native boolean allowsPickingMultipleItems();
     @Property(selector = "setAllowsPickingMultipleItems:")

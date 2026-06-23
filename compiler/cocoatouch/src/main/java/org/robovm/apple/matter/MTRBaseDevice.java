@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseDevice/*</name>*/ 
@@ -61,40 +63,94 @@ import org.robovm.apple.security.*;
     public static class Values {
         static { Bro.bind(Values.class); }
 
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRAttributePathKey", optional=true)
         public static native NSString MTRAttributePathKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRCommandPathKey", optional=true)
         public static native NSString MTRCommandPathKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTREventPathKey", optional=true)
         public static native NSString MTREventPathKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRDataKey", optional=true)
         public static native NSString MTRDataKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRErrorKey", optional=true)
         public static native NSString MTRErrorKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRTypeKey", optional=true)
         public static native NSString MTRTypeKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRValueKey", optional=true)
         public static native NSString MTRValueKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRContextTagKey", optional=true)
         public static native NSString MTRContextTagKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRSignedIntegerValueType", optional=true)
         public static native NSString MTRSignedIntegerValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRUnsignedIntegerValueType", optional=true)
         public static native NSString MTRUnsignedIntegerValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRBooleanValueType", optional=true)
         public static native NSString MTRBooleanValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRUTF8StringValueType", optional=true)
         public static native NSString MTRUTF8StringValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTROctetStringValueType", optional=true)
         public static native NSString MTROctetStringValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRFloatValueType", optional=true)
         public static native NSString MTRFloatValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRDoubleValueType", optional=true)
         public static native NSString MTRDoubleValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRNullValueType", optional=true)
         public static native NSString MTRNullValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRStructureValueType", optional=true)
         public static native NSString MTRStructureValueType();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRArrayValueType", optional=true)
         public static native NSString MTRArrayValueType();
         /**
@@ -122,6 +178,11 @@ import org.robovm.apple.security.*;
          */
         @GlobalValue(symbol="MTREventTimestampDateKey", optional=true)
         public static native NSString MTREventTimestampDateKey();
+        /**
+         * @since Available in iOS 17.3 and later.
+         */
+        @GlobalValue(symbol="MTREventIsHistoricalKey", optional=true)
+        public static native NSString MTREventIsHistoricalKey();
     }
     
     /**
@@ -184,6 +245,11 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "subscribeToEventsWithEndpointID:clusterID:eventID:params:queue:reportHandler:subscriptionEstablished:")
     public native void subscribeToEvents(NSNumber endpointID, NSNumber clusterID, NSNumber eventID, MTRSubscribeParams params, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> reportHandler, @Block Runnable subscriptionEstablished);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "downloadLogOfType:timeout:queue:completion:")
+    public native void downloadLogOfType(MTRDiagnosticLogType type, double timeout, DispatchQueue queue, @Block VoidBlock2<NSURL, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */

@@ -15,7 +15,6 @@
  */
 package org.robovm.maven.surefire;
 
-import org.apache.commons.exec.CommandLine;
 import org.apache.maven.plugin.surefire.log.api.ConsoleLogger;
 import org.apache.maven.plugin.surefire.log.api.PrintStreamLogger;
 import org.apache.maven.surefire.common.junit4.JUnit4RunListener;
@@ -41,14 +40,14 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.LauncherUtils;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
 import org.robovm.junit.client.TestClient;
 import org.robovm.maven.resolver.RoboVMResolver;
 
@@ -56,7 +55,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
 
@@ -153,10 +151,7 @@ public class RoboVMSurefireProvider extends AbstractProvider {
 
         String runArgs = System.getProperty(PROP_RUN_ARGS, "");
         if (!runArgs.isEmpty()) {
-            testClient.setRunArgs(
-                    new ArrayList<>(
-                            Arrays.asList(
-                                    CommandLine.parse("cmd " + runArgs).getArguments())));
+            testClient.setRunArgs(LauncherUtils.splitCommandLine(runArgs));
         }
         
         Process process = null;

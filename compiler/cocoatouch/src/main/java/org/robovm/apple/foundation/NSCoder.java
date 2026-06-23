@@ -345,6 +345,16 @@ import org.robovm.apple.dispatch.*;
     protected native double decodeDouble0(String key);
     @Method(selector = "decodeBytesForKey:returnedLength:")
     protected native BytePtr decodeBytes0(String key, MachineSizedUIntPtr lengthp);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "decodeBytesWithMinimumLength:")
+    public native VoidPtr decodeBytes(@MachineSizedUInt long length);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "decodeBytesForKey:minimumLength:")
+    public native BytePtr decodeBytes(String key, @MachineSizedUInt long length);
     @Method(selector = "encodeInteger:forKey:")
     protected native void encodeInteger0(@MachineSizedSInt long value, String key);
     @Method(selector = "decodeIntegerForKey:")

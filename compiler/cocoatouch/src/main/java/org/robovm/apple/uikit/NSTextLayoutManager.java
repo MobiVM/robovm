@@ -79,6 +79,16 @@ import org.robovm.apple.symbols.*;
     public native boolean usesHyphenation();
     @Property(selector = "setUsesHyphenation:")
     public native void setUsesHyphenation(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "resolvesNaturalAlignmentWithBaseWritingDirection")
+    public native boolean isResolvesNaturalAlignmentWithBaseWritingDirection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setResolvesNaturalAlignmentWithBaseWritingDirection:")
+    public native void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v);
     @Property(selector = "textContentManager")
     public native NSTextContentManager getTextContentManager();
     @Property(selector = "textContainer")

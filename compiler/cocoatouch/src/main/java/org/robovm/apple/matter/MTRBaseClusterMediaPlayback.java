@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterMediaPlayback/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterMediaPlaybackPtr extends Ptr<MTRBaseClusterMediaPlayback, MTRBaseClusterMediaPlaybackPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -160,6 +155,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "seekWithParams:completion:")
     public native void seek(MTRMediaPlaybackClusterSeekParams params, @Block VoidBlock2<MTRMediaPlaybackClusterPlaybackResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "activateAudioTrackWithParams:completion:")
+    public native void activateAudioTrack(MTRMediaPlaybackClusterActivateAudioTrackParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "activateTextTrackWithParams:completion:")
+    public native void activateTextTrack(MTRMediaPlaybackClusterActivateTextTrackParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "deactivateTextTrackWithParams:completion:")
+    public native void deactivateTextTrack(MTRMediaPlaybackClusterDeactivateTextTrackParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "deactivateTextTrackWithCompletion:")
+    public native void deactivateTextTrack(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -340,5 +355,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

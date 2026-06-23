@@ -53,8 +53,16 @@ import org.robovm.apple.coreanimation.*;
     public WKWebViewConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 15.0. Creating and using multiple instances of WKProcessPool no longer has any effect.
+     */
+    @Deprecated
     @Property(selector = "processPool")
     public native WKProcessPool getProcessPool();
+    /**
+     * @deprecated Deprecated in iOS 15.0. Creating and using multiple instances of WKProcessPool no longer has any effect.
+     */
+    @Deprecated
     @Property(selector = "setProcessPool:")
     public native void setProcessPool(WKProcessPool v);
     @Property(selector = "preferences")
@@ -65,6 +73,16 @@ import org.robovm.apple.coreanimation.*;
     public native WKUserContentController getUserContentController();
     @Property(selector = "setUserContentController:")
     public native void setUserContentController(WKUserContentController v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "webExtensionController")
+    public native WKWebExtensionController getWebExtensionController();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setWebExtensionController:")
+    public native void setWebExtensionController(WKWebExtensionController v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -99,6 +117,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAllowsAirPlayForMediaPlayback:")
     public native void setAllowsAirPlayForMediaPlayback(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "showsSystemScreenTimeBlockingView")
+    public native boolean showsSystemScreenTimeBlockingView();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setShowsSystemScreenTimeBlockingView:")
+    public native void setShowsSystemScreenTimeBlockingView(boolean v);
     /**
      * @since Available in iOS 14.5 and later.
      */
@@ -153,8 +181,16 @@ import org.robovm.apple.coreanimation.*;
     public native boolean allowsInlineMediaPlayback();
     @Property(selector = "setAllowsInlineMediaPlayback:")
     public native void setAllowsInlineMediaPlayback(boolean v);
+    /**
+     * @deprecated Deprecated in iOS 11.0. This property is ignored; selection granularity is always `character`.
+     */
+    @Deprecated
     @Property(selector = "selectionGranularity")
     public native WKSelectionGranularity getSelectionGranularity();
+    /**
+     * @deprecated Deprecated in iOS 11.0. This property is ignored; selection granularity is always `character`.
+     */
+    @Deprecated
     @Property(selector = "setSelectionGranularity:")
     public native void setSelectionGranularity(WKSelectionGranularity v);
     /**
@@ -187,6 +223,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setIgnoresViewportScaleLimits:")
     public native void setIgnoresViewportScaleLimits(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsAdaptiveImageGlyph")
+    public native boolean supportsAdaptiveImageGlyph();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupportsAdaptiveImageGlyph:")
+    public native void setSupportsAdaptiveImageGlyph(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    public native UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    public native void setWritingToolsBehavior(UIWritingToolsBehavior v);
     /**
      * @deprecated Deprecated in iOS 9.0. Use mediaTypesRequiringUserActionForPlayback
      */

@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterChannel/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterChannelPtr extends Ptr<MTRClusterChannel, MTRClusterChannelPtr> {}/*</ptr>*/
@@ -63,11 +63,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "changeChannelWithParams:expectedValues:expectedValueInterval:completion:")
     public native void changeChannel(MTRChannelClusterChangeChannelParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRChannelClusterChangeChannelResponseParams, NSError> completion);
     /**
@@ -80,6 +75,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "skipChannelWithParams:expectedValues:expectedValueInterval:completion:")
     public native void skipChannel(MTRChannelClusterSkipChannelParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "getProgramGuideWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void getProgramGuide(MTRChannelClusterGetProgramGuideParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRChannelClusterProgramGuideResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "getProgramGuideWithExpectedValues:expectedValueInterval:completion:")
+    public native void getProgramGuide(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRChannelClusterProgramGuideResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "recordProgramWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void recordProgram(MTRChannelClusterRecordProgramParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelRecordProgramWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void cancelRecordProgram(MTRChannelClusterCancelRecordProgramParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -120,5 +135,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

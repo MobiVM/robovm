@@ -6,7 +6,7 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h
 typedefs:
-  NSFileProviderItemIdentifier: NSString
+    NSFileProviderItemIdentifier: NSString
 
 enums:
     NSFileProviderItemCapabilities: {}
@@ -226,6 +226,10 @@ values:
     NSFileProvider(PendingSetDidChange|MaterializedSetDidChange|DomainDidChange|TrashContainerItemIdentifier):
         class: NSFileProviderManager
         name: 'get#{g[0]}'
+        type: NSString
+    NSFileProviderUserInfoExperimentIDKey:
+        class: NSFileProviderDomain
+        name: UserInfoExperimentIDKey
         type: NSString
 
     # Make sure we don't miss any values if new ones are introduced in a later version

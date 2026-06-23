@@ -24,8 +24,8 @@ import java.util.Map;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.launcher.LaunchParameters;
 
 /**
  * Builds and launches (if supported) a particular type of binary (e.g. iOS

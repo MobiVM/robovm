@@ -31,6 +31,10 @@ enums:
     MKMapElevationStyle: {}
     MKStandardMapEmphasisStyle: {}
     MKLookAroundBadgePosition: {} #since 16.0
+    MKAddressRepresentationsContextStyle: {} #since 26.0
+    MKAddressFilterOption: {} #since 18.0
+    MKLocalSearchRegionPriority: {} #since 18.0
+    MKMapItemDetailSelectionAccessoryCalloutStyle: {} #since 18.0
 typed_enums:
     MKPointOfInterestCategory:
         enum: MKPointOfInterestCategory
@@ -185,6 +189,8 @@ classes:
                 name: openInMaps
             '+openMapsWithItems:launchOptions:fromScene:completionHandler:':
                 name: openMaps
+            '-initWithLocation:address:':
+                name: init
     MKMapSnapshot: # DONE
         methods:
             '-pointForCoordinate:':
@@ -631,6 +637,8 @@ classes:
                 name: init
             '-getMapItemWithCompletionHandler:':
                 name: getMapItem
+            '-initWithMapItemIdentifier:':
+                name: init
     MKStandardMapConfiguration: #since 16.0
         methods:
             '-initWithElevationStyle:':
@@ -639,6 +647,60 @@ classes:
                 name: init
             '-initWithEmphasisStyle:':
                 name: init
+    MKAddress: #since 26.0
+        methods:
+            '-initWithFullAddress:shortAddress:':
+                name: init
+    MKAddressFilter: #since 18.0
+        methods:
+            '-initIncludingOptions:':
+                static_constructor_name: createIncludingOptions
+                name: initIncludingOptions
+            '-initExcludingOptions:':
+                static_constructor_name: createExcludingOptions
+                name: initExcludingOptions
+    MKAddressRepresentations: #since 26.0
+        methods:
+            '-fullAddressIncludingRegion:singleLine:':
+                name: fullAddressIncludingRegion
+            '-cityWithContextUsingStyle:':
+                name: cityWithContext
+    MKGeocodingRequest: #since 26.0
+        methods:
+            '-initWithAddressString:':
+                name: init
+            '-getMapItemsWithCompletionHandler:':
+                name: getMapItems
+    MKMapItemAnnotation: #since 18.0
+        methods:
+            '-initWithMapItem:':
+                name: init
+    MKMapItemDetailSelectionAccessoryPresentationStyle: #since 18.0
+        methods:
+            '+automaticWithPresentationViewController:':
+                name: automatic
+            '+calloutWithCalloutStyle:':
+                name: callout
+    MKMapItemDetailViewController: #since 18.0
+        methods:
+            '-initWithMapItem:displaysMap:':
+                name: init
+            '-initWithMapItem:':
+                name: init
+    MKMapItemIdentifier: #since 18.0
+        methods:
+            '-initWithIdentifierString:':
+                name: init
+    MKReverseGeocodingRequest: #since 26.0
+        methods:
+            '-initWithLocation:':
+                name: init
+            '-getMapItemsWithCompletionHandler:':
+                name: getMapItems
+    MKSelectionAccessory: #since 18.0
+        methods:
+            '+mapItemDetailWithPresentationStyle:':
+                name: getMapItemDetail
 protocols:
     MKAnnotation: {} # DONE
     MKMapViewDelegate: # DONE
@@ -702,6 +764,8 @@ protocols:
                 name: didSelectAnnotation
             '-mapView:didDeselectAnnotation:':
                 name: didDeselectAnnotation
+            '-mapView:selectionAccessoryForAnnotation:':
+                name: getSelectionAccessoryForAnnotation
     MKOverlay: # DONE
         methods:
             '-intersectsMapRect:':
@@ -715,6 +779,7 @@ protocols:
     MKGeoJSONObject: #since 13.0
         skip_adapter: true
     MKLookAroundViewControllerDelegate: {} #since 16.0
+    MKMapItemDetailViewControllerDelegate: {} #since 18.0
 functions:
     # MKCoordinateRegion
     MKCoordinateRegionMake:

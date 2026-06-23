@@ -64,6 +64,11 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 15.0 and later.
      */
     public VNFaceObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw, NSNumber pitch) { super((Handle) null, create(requestRevision, boundingBox, roll, yaw, pitch)); retain(getHandle()); }
+    public VNFaceObservation(@ByVal CGRect boundingBox) { super((Handle) null, create(boundingBox)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public VNFaceObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox) { super((Handle) null, create(requestRevision, boundingBox)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "landmarks")
@@ -105,5 +110,12 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:")
     protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox, NSNumber roll, NSNumber yaw, NSNumber pitch);
+    @Method(selector = "observationWithBoundingBox:")
+    protected static native @Pointer long create(@ByVal CGRect boundingBox);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "observationWithRequestRevision:boundingBox:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox);
     /*</methods>*/
 }

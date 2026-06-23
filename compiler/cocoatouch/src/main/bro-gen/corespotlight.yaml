@@ -15,6 +15,8 @@ enums:
     CSSearchQueryErrorCode: { nserror: true } #since 10.0
     CSSuggestionKind: {}
     CSSearchQuerySourceOptions: {}
+    CSSearchableItemUpdateListenerOptions: {prefix: CSSearchableItemUpdateListenerOption} #since 18.4
+    CSUserInteraction: {}
 classes:
     CSCustomAttributeKey: #since 9.0
         methods:
@@ -59,6 +61,8 @@ classes:
                 name: fetchLastClientState
             '-fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:':
                 name: fetchDataForBundleIdentifier
+            '-endIndexBatchWithExpectedClientState:newClientState:completionHandler:':
+                name: endIndexBatch
     CSSearchableItem: #since 9.0
         methods:
             '-initWithUniqueIdentifier:domainIdentifier:attributeSet:':
@@ -81,7 +85,11 @@ classes:
     CSUserQuery: #since 16.0
         methods:
             '-initWithUserQueryString:userQueryContext:':
-                name: ini
+                name: init
+            '-userEngagedWithItem:visibleItems:userInteractionType:':
+                name: userEngaged
+            '-userEngagedWithSuggestion:visibleSuggestions:userInteractionType:':
+                name: userEngaged
     CSUserQueryContext: #since 16.0
         methods:
             '+userQueryContextWithCurrentSuggestion:':
@@ -98,6 +106,8 @@ protocols:
                 name: getDataForSearchableIndex
             '-fileURLForSearchableIndex:itemIdentifier:typeIdentifier:inPlace:error:':
                 name: getFileURLForSearchableIndex
+            '-searchableItemsForIdentifiers:searchableItemsHandler:':
+                name: searchableItemsForIdentifiers
 
 
 functions:

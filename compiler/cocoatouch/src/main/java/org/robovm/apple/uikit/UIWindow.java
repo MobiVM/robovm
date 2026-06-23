@@ -150,8 +150,12 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "initWithWindowScene:")
     public UIWindow(UIWindowScene windowScene) { super((SkipInit) null); initObject(init(windowScene)); }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(windowScene:) instead.
+     */
+    @Deprecated
     @Method(selector = "initWithFrame:")
-    public UIWindow(@ByVal CGRect frame) { super(frame); }
+    public UIWindow(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
     public UIWindow(NSCoder coder) { super(coder); }
     /*</constructors>*/
@@ -226,6 +230,12 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "initWithWindowScene:")
     protected native @Pointer long init(UIWindowScene windowScene);
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(windowScene:) instead.
+     */
+    @Deprecated
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "becomeKeyWindow")
     public native void becomeKeyWindow();
     @Method(selector = "resignKeyWindow")

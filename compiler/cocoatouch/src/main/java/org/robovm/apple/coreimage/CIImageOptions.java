@@ -148,6 +148,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIImageColorSpace", optional=true)
         public static native CFString ColorSpace();
         /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageApplyCleanAperture", optional=true)
+        public static native CFString ApplyCleanAperture();
+        /**
          * @since Available in iOS 14.1 and later.
          */
         @GlobalValue(symbol="kCIImageToneMapHDRtoSDR", optional=true)
@@ -157,6 +162,16 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageExpandToHDR", optional=true)
         public static native CFString ExpandToHDR();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageContentHeadroom", optional=true)
+        public static native CFString ContentHeadroom();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageContentAverageLightLevel", optional=true)
+        public static native CFString ContentAverageLightLevel();
         /**
          * @since Available in iOS 11.0 and later.
          */

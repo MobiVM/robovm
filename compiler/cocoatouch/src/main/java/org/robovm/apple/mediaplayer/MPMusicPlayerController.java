@@ -109,18 +109,6 @@ import org.robovm.apple.avfoundation.*;
     public native MPMusicShuffleMode getShuffleMode();
     @Property(selector = "setShuffleMode:")
     public native void setShuffleMode(MPMusicShuffleMode v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
-     */
-    @Deprecated
-    @Property(selector = "volume")
-    public native float getVolume();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
-     */
-    @Deprecated
-    @Property(selector = "setVolume:")
-    public native void setVolume(float v);
     @Property(selector = "nowPlayingItem")
     public native MPMediaItem getNowPlayingItem();
     @Property(selector = "setNowPlayingItem:")

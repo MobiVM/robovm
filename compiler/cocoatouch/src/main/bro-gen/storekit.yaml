@@ -258,6 +258,7 @@ protocols:
                 name: willStartDismissal
             '-storeOverlay:didFinishDismissal:':
                 name: didFinishDismissal
+    SKDownloaderExtension: {} #since 26.0
 functions:
     SK(TerminateForInvalidReceipt):
         class: SKReceiptRefreshRequest

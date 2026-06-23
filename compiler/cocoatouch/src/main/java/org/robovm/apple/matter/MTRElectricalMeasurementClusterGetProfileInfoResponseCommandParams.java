@@ -35,9 +35,10 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. This command has been removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.2. This command has been removed
      */
+    @Deprecated
     @Method(selector = "initWithResponseValue:error:")
     public MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams(NSDictionary<NSString, ?> responseValue) throws NSErrorException {
        super((SkipInit) null);
@@ -64,42 +67,58 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileCount field will be removed
      */
+    @Deprecated
     @Property(selector = "profileCount")
     public native NSNumber getProfileCount();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileCount field will be removed
      */
+    @Deprecated
     @Property(selector = "setProfileCount:")
     public native void setProfileCount(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileIntervalPeriod field will be removed
      */
+    @Deprecated
     @Property(selector = "profileIntervalPeriod")
     public native NSNumber getProfileIntervalPeriod();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileIntervalPeriod field will be removed
      */
+    @Deprecated
     @Property(selector = "setProfileIntervalPeriod:")
     public native void setProfileIntervalPeriod(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The maxNumberOfIntervals field will be removed
      */
+    @Deprecated
     @Property(selector = "maxNumberOfIntervals")
     public native NSNumber getMaxNumberOfIntervals();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The maxNumberOfIntervals field will be removed
      */
+    @Deprecated
     @Property(selector = "setMaxNumberOfIntervals:")
     public native void setMaxNumberOfIntervals(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The listOfAttributes field will be removed
      */
+    @Deprecated
     @Property(selector = "listOfAttributes")
     public native NSArray<?> getListOfAttributes();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The listOfAttributes field will be removed
      */
+    @Deprecated
     @Property(selector = "setListOfAttributes:")
     public native void setListOfAttributes(NSArray<?> v);
     /*</properties>*/
@@ -107,7 +126,9 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.2. This command has been removed
      */
+    @Deprecated
     @Method(selector = "initWithResponseValue:error:")
     private native @Pointer long init(NSDictionary<NSString, ?> responseValue, NSError.NSErrorPtr error);
     /*</methods>*/

@@ -53,6 +53,12 @@ import org.robovm.apple.coreanimation.*;
     protected SWCollaborationMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocalIdentifier:")
     public SWCollaborationMetadata(String localIdentifier) { super((SkipInit) null); initObject(init(localIdentifier)); }
+    @Method(selector = "initWithCollaborationIdentifier:")
+    public static SWCollaborationMetadata createWithCollaborationIdentifier(String collaborationIdentifier) {
+       SWCollaborationMetadata res = new SWCollaborationMetadata((SkipInit) null);
+       res.initObject(res.initWithCollaborationIdentifier(collaborationIdentifier));
+       return res;
+    }
     @Method(selector = "initWithCoder:")
     public SWCollaborationMetadata(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -100,6 +106,8 @@ import org.robovm.apple.coreanimation.*;
     
     @Method(selector = "initWithLocalIdentifier:")
     protected native @Pointer long init(String localIdentifier);
+    @Method(selector = "initWithCollaborationIdentifier:")
+    protected native @Pointer long initWithCollaborationIdentifier(String collaborationIdentifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -75,5 +75,10 @@ import org.robovm.apple.coreanimation.*;
     public static native ARSCNPlaneGeometry createGeometry();
     @Method(selector = "geometryWithSources:elements:")
     public static native ARSCNPlaneGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "geometryWithSources:elements:sourceChannels:")
+    public static native ARSCNPlaneGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements, NSArray<NSNumber> sourceChannels);
     /*</methods>*/
 }

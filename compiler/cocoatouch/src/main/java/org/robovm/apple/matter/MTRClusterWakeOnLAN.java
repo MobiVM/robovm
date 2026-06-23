@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterWakeOnLAN/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterWakeOnLANPtr extends Ptr<MTRClusterWakeOnLAN, MTRClusterWakeOnLANPtr> {}/*</ptr>*/
@@ -63,13 +63,13 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "readAttributeMACAddressWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMACAddress(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeLinkLocalAddressWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeLinkLocalAddress(MTRReadParams params);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -95,5 +95,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

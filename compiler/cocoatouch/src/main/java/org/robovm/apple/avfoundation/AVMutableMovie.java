@@ -78,6 +78,7 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "initWithData:options:")
     public AVMutableMovie(NSData data, NSDictionary<NSString, ?> options) { super(data, options); }
+    public AVMutableMovie(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredRate")
@@ -97,7 +98,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setTimescale:")
     public native void setTimescale(int v);
     @Property(selector = "tracks")
-    public native NSArray<AVMutableMovieTrack> getTracks();
+    public native NSArray<? extends AVMovieTrack> getTracks();
     @Property(selector = "isModified")
     public native boolean isModified();
     @Property(selector = "setModified:")
@@ -125,6 +126,8 @@ import org.robovm.apple.uikit.*;
     private native @Pointer long init(AVMovie movie, NSDictionary<NSString, ?> options, NSError.NSErrorPtr outError);
     @Method(selector = "movieTypes")
     public static native NSArray<NSString> movieTypes();
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     @Method(selector = "insertTimeRange:ofAsset:atTime:copySampleData:error:")
     public native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, boolean copySampleData, NSError.NSErrorPtr outError);
     @Method(selector = "insertEmptyTimeRange:")

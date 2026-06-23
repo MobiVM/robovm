@@ -52,12 +52,23 @@ import org.robovm.apple.coreanimation.*;
     public PKDisbursementSummaryItem() {}
     protected PKDisbursementSummaryItem(Handle h, long handle) { super(h, handle); }
     protected PKDisbursementSummaryItem(SkipInit skipInit) { super(skipInit); }
+    public PKDisbursementSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public PKDisbursementSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "summaryItemWithLabel:amount:")
+    protected static native @Pointer long create(String label, NSDecimalNumber amount);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "summaryItemWithLabel:amount:type:")
+    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
     /*</methods>*/
 }

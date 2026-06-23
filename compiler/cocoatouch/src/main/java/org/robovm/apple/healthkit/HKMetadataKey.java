@@ -142,6 +142,10 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKMetadataKey WorkoutBrandName = new HKMetadataKey("WorkoutBrandName");
     public static final HKMetadataKey GroupFitness = new HKMetadataKey("GroupFitness");
     /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public static final HKMetadataKey AppleFitnessPlusCatalogIdentifier = new HKMetadataKey("AppleFitnessPlusCatalogIdentifier");
+    /**
      * @since Available in iOS 17.0 and later.
      */
     public static final HKMetadataKey AppleFitnessPlusSession = new HKMetadataKey("AppleFitnessPlusSession");
@@ -313,7 +317,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKMetadataKey MaximumLightIntensity = new HKMetadataKey("MaximumLightIntensity");
     /*</constants>*/
     
-    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, UserMotionContext, SessionEstimate, HeartRateRecoveryTestType, HeartRateRecoveryActivityType, HeartRateRecoveryActivityDuration, HeartRateRecoveryMaxObservedRecoveryHeartRate, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, AppleFitnessPlusSession, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold, DateOfEarliestDataUsedForEstimate, AlgorithmVersion, SWOLFScore, QuantityClampedToLowerBound, QuantityClampedToUpperBound, GlassesPrescriptionDescription, WaterSalinity, HeadphoneGain, CyclingFunctionalThresholdPowerTestType, ActivityType, PhysicalEffortEstimationType, MaximumLightIntensity/*</value_list>*/};
+    private static /*<name>*/HKMetadataKey/*</name>*/[] values = new /*<name>*/HKMetadataKey/*</name>*/[] {/*<value_list>*/DeviceSerialNumber, BodyTemperatureSensorLocation, HeartRateSensorLocation, HeartRateMotionContext, UserMotionContext, SessionEstimate, HeartRateRecoveryTestType, HeartRateRecoveryActivityType, HeartRateRecoveryActivityDuration, HeartRateRecoveryMaxObservedRecoveryHeartRate, FoodType, UDIDeviceIdentifier, UDIProductionIdentifier, DigitalSignature, ExternalUUID, SyncIdentifier, SyncVersion, TimeZone, DeviceName, DeviceManufacturerName, WasTakenInLab, ReferenceRangeLowerLimit, ReferenceRangeUpperLimit, WasUserEntered, WorkoutBrandName, GroupFitness, AppleFitnessPlusCatalogIdentifier, AppleFitnessPlusSession, IndoorWorkout, CoachedWorkout, WeatherCondition, WeatherTemperature, WeatherHumidity, SexualActivityProtectionUsed, MenstrualCycleStart, LapLength, SwimmingLocationType, SwimmingStrokeStyle, InsulinDeliveryReason, BloodGlucoseMealTime, VO2MaxTestType, AverageSpeed, MaximumSpeed, AlpineSlopeGrade, ElevationAscended, ElevationDescended, FitnessMachineDuration, IndoorBikeDistance, CrossTrainerDistance, HeartRateEventThreshold, AverageMETs, AudioExposureLevel, AudioExposureDuration, AppleECGAlgorithmVersion, DevicePlacementSide, BarometricPressure, AppleDeviceCalibrated, VO2MaxValue, LowCardioFitnessEventThreshold, DateOfEarliestDataUsedForEstimate, AlgorithmVersion, SWOLFScore, QuantityClampedToLowerBound, QuantityClampedToUpperBound, GlassesPrescriptionDescription, WaterSalinity, HeadphoneGain, CyclingFunctionalThresholdPowerTestType, ActivityType, PhysicalEffortEstimationType, MaximumLightIntensity/*</value_list>*/};
     
     /*<name>*/HKMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -415,6 +419,11 @@ import org.robovm.apple.uniformtypeid.*;
         public static native NSString WorkoutBrandName();
         @GlobalValue(symbol="HKMetadataKeyGroupFitness", optional=true)
         public static native NSString GroupFitness();
+        /**
+         * @since Available in iOS 18.2 and later.
+         */
+        @GlobalValue(symbol="HKMetadataKeyAppleFitnessPlusCatalogIdentifier", optional=true)
+        public static native NSString AppleFitnessPlusCatalogIdentifier();
         /**
          * @since Available in iOS 17.0 and later.
          */

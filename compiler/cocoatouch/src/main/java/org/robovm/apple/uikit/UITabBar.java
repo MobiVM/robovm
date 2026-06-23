@@ -162,14 +162,8 @@ import org.robovm.apple.symbols.*;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/

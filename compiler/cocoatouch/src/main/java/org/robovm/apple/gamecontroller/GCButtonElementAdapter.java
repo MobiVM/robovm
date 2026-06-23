@@ -51,6 +51,11 @@ import org.robovm.apple.corehaptic.*;
     public <T0 extends Object & GCPressedStateInput & GCLinearInput> T0 getPressedInput() { return null; }
     @NotImplemented("touchedInput")
     public GCTouchedStateInput getTouchedInput() { return null; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("forceInput")
+    public GCLinearInput getForceInput() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

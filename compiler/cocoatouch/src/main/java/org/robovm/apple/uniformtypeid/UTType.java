@@ -252,6 +252,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="UTTypeYAML", optional=true)
         public static native UTType YAML();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeCSS", optional=true)
+        public static native UTType CSS();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="UTTypeSourceCode", optional=true)
@@ -457,10 +462,30 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="UTTypeHEIC", optional=true)
         public static native UTType HEIC();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeHEICS", optional=true)
+        public static native UTType HEICS();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="UTTypeWebP", optional=true)
         public static native UTType WebP();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeEXR", optional=true)
+        public static native UTType EXR();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeDNG", optional=true)
+        public static native UTType DNG();
+        /**
+         * @since Available in iOS 18.2 and later.
+         */
+        @GlobalValue(symbol="UTTypeJPEGXL", optional=true)
+        public static native UTType JPEGXL();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -687,6 +712,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="UTTypeAppleArchive", optional=true)
         public static native UTType AppleArchive();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeTarArchive", optional=true)
+        public static native UTType TarArchive();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="UTTypeSpreadsheet", optional=true)
@@ -776,6 +806,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="UTTypeAHAP", optional=true)
         public static native UTType AHAP();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeGeoJSON", optional=true)
+        public static native UTType GeoJSON();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeLinkPresentationMetadata", optional=true)
+        public static native UTType LinkPresentationMetadata();
     }
 
     @Library("UniformTypeIdentifiers")

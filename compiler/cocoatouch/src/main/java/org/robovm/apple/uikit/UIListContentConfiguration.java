@@ -113,6 +113,16 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getTextToSecondaryTextVerticalPadding();
     @Property(selector = "setTextToSecondaryTextVerticalPadding:")
     public native void setTextToSecondaryTextVerticalPadding(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "alpha")
+    public native @MachineSizedFloat double getAlpha();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAlpha:")
+    public native void setAlpha(@MachineSizedFloat double v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -124,14 +134,16 @@ import org.robovm.apple.symbols.*;
     public static native UIListContentConfiguration subtitleCellConfiguration();
     @Method(selector = "valueCellConfiguration")
     public static native UIListContentConfiguration valueCellConfiguration();
-    @Method(selector = "plainHeaderConfiguration")
-    public static native UIListContentConfiguration plainHeaderConfiguration();
-    @Method(selector = "plainFooterConfiguration")
-    public static native UIListContentConfiguration plainFooterConfiguration();
-    @Method(selector = "groupedHeaderConfiguration")
-    public static native UIListContentConfiguration groupedHeaderConfiguration();
-    @Method(selector = "groupedFooterConfiguration")
-    public static native UIListContentConfiguration groupedFooterConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "headerConfiguration")
+    public static native UIListContentConfiguration headerConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "footerConfiguration")
+    public static native UIListContentConfiguration footerConfiguration();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -142,14 +154,57 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "extraProminentInsetGroupedHeaderConfiguration")
     public static native UIListContentConfiguration extraProminentInsetGroupedHeaderConfiguration();
-    @Method(selector = "sidebarCellConfiguration")
-    public static native UIListContentConfiguration sidebarCellConfiguration();
-    @Method(selector = "sidebarSubtitleCellConfiguration")
-    public static native UIListContentConfiguration sidebarSubtitleCellConfiguration();
     @Method(selector = "accompaniedSidebarCellConfiguration")
     public static native UIListContentConfiguration accompaniedSidebarCellConfiguration();
     @Method(selector = "accompaniedSidebarSubtitleCellConfiguration")
     public static native UIListContentConfiguration accompaniedSidebarSubtitleCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use cellConfiguration
+     */
+    @Deprecated
+    @Method(selector = "sidebarCellConfiguration")
+    public static native UIListContentConfiguration sidebarCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use subtitleCellConfiguration
+     */
+    @Deprecated
+    @Method(selector = "sidebarSubtitleCellConfiguration")
+    public static native UIListContentConfiguration sidebarSubtitleCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use headerConfiguration
+     */
+    @Deprecated
+    @Method(selector = "plainHeaderConfiguration")
+    public static native UIListContentConfiguration plainHeaderConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use footerConfiguration
+     */
+    @Deprecated
+    @Method(selector = "plainFooterConfiguration")
+    public static native UIListContentConfiguration plainFooterConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use headerConfiguration
+     */
+    @Deprecated
+    @Method(selector = "groupedHeaderConfiguration")
+    public static native UIListContentConfiguration groupedHeaderConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use footerConfiguration
+     */
+    @Deprecated
+    @Method(selector = "groupedFooterConfiguration")
+    public static native UIListContentConfiguration groupedFooterConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use headerConfiguration
+     */
+    @Deprecated
     @Method(selector = "sidebarHeaderConfiguration")
     public static native UIListContentConfiguration sidebarHeaderConfiguration();
     @Method(selector = "makeContentView")

@@ -57,41 +57,81 @@ public enum /*<name>*/MTRTimeSynchronizationTimeSource/*</name>*/ implements Val
      */
     NodeTimeCluster(3L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    NonMatterSNTP(4L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     NonFabricSntp(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    NonMatterNTP(5L),
     /**
      * @since Available in iOS 16.1 and later.
      */
     NonFabricNtp(5L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MatterSNTP(6L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     FabricSntp(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MatterNTP(7L),
     /**
      * @since Available in iOS 16.1 and later.
      */
     FabricNtp(7L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MixedNTP(8L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     MixedNtp(8L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    NonMatterSNTPNTS(9L),
     /**
      * @since Available in iOS 16.1 and later.
      */
     NonFabricSntpNts(9L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    NonMatterNTPNTS(10L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     NonFabricNtpNts(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MatterSNTPNTS(11L),
     /**
      * @since Available in iOS 16.1 and later.
      */
     FabricSntpNts(11L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MatterNTPNTS(12L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     FabricNtpNts(12L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    MixedNTPNTS(13L),
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -101,9 +141,17 @@ public enum /*<name>*/MTRTimeSynchronizationTimeSource/*</name>*/ implements Val
      */
     CloudSource(14L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    PTP(15L),
+    /**
      * @since Available in iOS 16.1 and later.
      */
     Ptp(15L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    GNSS(16L),
     /**
      * @since Available in iOS 16.1 and later.
      */

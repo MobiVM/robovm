@@ -73,7 +73,7 @@ import org.robovm.apple.network.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithSSIDPrefix:")
-    public static  NEHotspotConfiguration createUsingSSID(String SSIDPrefix) {
+    public static NEHotspotConfiguration createUsingSSID(String SSIDPrefix) {
        NEHotspotConfiguration res = new NEHotspotConfiguration((SkipInit) null);
        res.initObject(res.initUsingSSID(SSIDPrefix));
        return res;
@@ -82,7 +82,7 @@ import org.robovm.apple.network.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithSSIDPrefix:passphrase:isWEP:")
-    public static  NEHotspotConfiguration createUsingSSID(String SSIDPrefix, String passphrase, boolean isWEP) {
+    public static NEHotspotConfiguration createUsingSSID(String SSIDPrefix, String passphrase, boolean isWEP) {
        NEHotspotConfiguration res = new NEHotspotConfiguration((SkipInit) null);
        res.initObject(res.initUsingSSID(SSIDPrefix, passphrase, isWEP));
        return res;

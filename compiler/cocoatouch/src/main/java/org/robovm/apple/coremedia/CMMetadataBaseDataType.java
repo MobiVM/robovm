@@ -129,11 +129,27 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final CMMetadataBaseDataType PerspectiveTransformF64 = new CMMetadataBaseDataType("PerspectiveTransformF64");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataBaseDataType RasterRectangleValue = new CMMetadataBaseDataType("RasterRectangleValue");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataBaseDataType ExtendedRasterRectangleValue = new CMMetadataBaseDataType("ExtendedRasterRectangleValue");
     public static final CMMetadataBaseDataType QuickTimeMetadataLocation_ISO6709 = new CMMetadataBaseDataType("QuickTimeMetadataLocation_ISO6709");
     public static final CMMetadataBaseDataType QuickTimeMetadataDirection = new CMMetadataBaseDataType("QuickTimeMetadataDirection");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CMMetadataBaseDataType QuickTimeMetadataUUID = new CMMetadataBaseDataType("QuickTimeMetadataUUID");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CMMetadataBaseDataType QuickTimeMetadataMilliLux = new CMMetadataBaseDataType("QuickTimeMetadataMilliLux");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection/*</value_list>*/};
+    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, RasterRectangleValue, ExtendedRasterRectangleValue, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection, QuickTimeMetadataUUID, QuickTimeMetadataMilliLux/*</value_list>*/};
     
     /*<name>*/CMMetadataBaseDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -218,10 +234,30 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataBaseDataType_PerspectiveTransformF64", optional=true)
         public static native CFString PerspectiveTransformF64();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_RasterRectangleValue", optional=true)
+        public static native CFString RasterRectangleValue();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_ExtendedRasterRectangleValue", optional=true)
+        public static native CFString ExtendedRasterRectangleValue();
         @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709", optional=true)
         public static native CFString QuickTimeMetadataLocation_ISO6709();
         @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataDirection", optional=true)
         public static native CFString QuickTimeMetadataDirection();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataUUID", optional=true)
+        public static native CFString QuickTimeMetadataUUID();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataMilliLux", optional=true)
+        public static native CFString QuickTimeMetadataMilliLux();
         /*</values>*/
     }
 }

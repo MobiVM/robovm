@@ -66,6 +66,7 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _32AlphaGray(1647522401L),
     _16Gray(1647392359L),
     _30RGB(1378955371L),
+    _30RGB_r210(1915892016L),
     _422YpCbCr8(846624121L),
     _4444YpCbCrA8(1983131704L),
     _4444YpCbCrA8R(1916022840L),
@@ -119,15 +120,21 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     _444YpCbCr10BiPlanarFullRange(2019963956L),
     _420YpCbCr8VideoRange_8A_TriPlanar(1982882104L),
     _16VersatileBayer(1651519798L),
+    _96VersatileBayerPacked12(1651798066L),
     _64RGBA_DownscaledProResRAW(1651521076L),
     _422YpCbCr16BiPlanarVideoRange(1937125938L),
     _444YpCbCr16BiPlanarVideoRange(1937126452L),
     _444YpCbCr16VideoRange_16A_TriPlanar(1932812659L),
+    _30RGBLE_8A_BiPlanar(1647534392L),
     Lossless_32BGRA(641877825L),
+    Lossless_64RGBAHalf(642934849L),
     Lossless_420YpCbCr8BiPlanarVideoRange(641234480L),
     Lossless_420YpCbCr8BiPlanarFullRange(641230384L),
     Lossless_420YpCbCr10PackedBiPlanarVideoRange(645428784L),
     Lossless_422YpCbCr10PackedBiPlanarVideoRange(645428786L),
+    Lossless_420YpCbCr10PackedBiPlanarFullRange(645424688L),
+    Lossless_30RGBLE_8A_BiPlanar(643969848L),
+    Lossless_30RGBLEPackedWideGamut(645346162L),
     Lossy_32BGRA(759318337L),
     Lossy_420YpCbCr8BiPlanarVideoRange(758674992L),
     Lossy_420YpCbCr8BiPlanarFullRange(758670896L),
@@ -165,6 +172,11 @@ public enum /*<name>*/CVPixelFormatType/*</name>*/ implements ValuedEnum {
     /*<bind>*/static { Bro.bind(CVPixelFormatType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CVPixelFormatTypeCopyFourCharCodeString", optional=true)
+    public static native CFString copyFourCharCodeString(int pixelFormat);
     /**
      * @since Available in iOS 15.0 and later.
      */

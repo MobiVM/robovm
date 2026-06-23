@@ -66,6 +66,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setPlaybackState:")
     public native void setPlaybackState(MPNowPlayingPlaybackState v);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "supportedAnimatedArtworkKeys")
+    public static native NSArray<NSString> getSupportedAnimatedArtworkKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

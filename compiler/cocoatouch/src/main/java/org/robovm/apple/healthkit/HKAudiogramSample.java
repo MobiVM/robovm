@@ -48,7 +48,16 @@ import org.robovm.apple.uniformtypeid.*;
     protected HKAudiogramSample() {}
     protected HKAudiogramSample(Handle h, long handle) { super(h, handle); }
     protected HKAudiogramSample(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use +[HKAudiogramSample audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:]
+     */
+    @Deprecated
     public HKAudiogramSample(NSArray<HKAudiogramSensitivityPoint> sensitivityPoints, NSDate startDate, NSDate endDate, NSDictionary<NSString, ?> metadata) { super((Handle) null, create(sensitivityPoints, startDate, endDate, metadata)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 18.1 and later.
+     */
+    public HKAudiogramSample(NSArray<HKAudiogramSensitivityPoint> sensitivityPoints, NSDate startDate, NSDate endDate, HKDevice device, NSDictionary<NSString, ?> metadata) { super((Handle) null, create(sensitivityPoints, startDate, endDate, device, metadata)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "sensitivityPoints")
@@ -58,7 +67,17 @@ import org.robovm.apple.uniformtypeid.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use +[HKAudiogramSample audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:]
+     */
+    @Deprecated
     @Method(selector = "audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:")
     protected static native @Pointer long create(NSArray<HKAudiogramSensitivityPoint> sensitivityPoints, NSDate startDate, NSDate endDate, NSDictionary<NSString, ?> metadata);
+    /**
+     * @since Available in iOS 18.1 and later.
+     */
+    @Method(selector = "audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:")
+    protected static native @Pointer long create(NSArray<HKAudiogramSensitivityPoint> sensitivityPoints, NSDate startDate, NSDate endDate, HKDevice device, NSDictionary<NSString, ?> metadata);
     /*</methods>*/
 }

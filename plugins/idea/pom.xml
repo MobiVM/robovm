@@ -4,14 +4,14 @@
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>org.robovm.idea</artifactId>
     <name>RoboVM plugin for Intellij IDEA</name>
-    <version>2.3.24-SNAPSHOT</version>
+    <version>2.3.26-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <ij.plugin>true</ij.plugin>
         <ij.pluginDescriptor>src/main/resources/META-INF/plugin.xml</ij.pluginDescriptor>
-        <robovm.version>2.3.24-SNAPSHOT</robovm.version>
-        <kotlin.version>2.1.20</kotlin.version>
+        <robovm.version>2.3.26-SNAPSHOT</robovm.version>
+        <kotlin.version>2.3.10</kotlin.version>
     </properties>
 
     <scm>

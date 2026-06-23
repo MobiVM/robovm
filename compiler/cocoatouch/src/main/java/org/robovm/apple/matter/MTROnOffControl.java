@@ -35,15 +35,18 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.2. Please use MTROnOffControlBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTROnOffControl/*</name>*/ extends Bits</*<name>*/MTROnOffControl/*</name>*/> {
     /*<values>*/
     public static final MTROnOffControl None = new MTROnOffControl(0L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffControlBitmapAcceptOnlyWhenOn
      */
+    @Deprecated
     public static final MTROnOffControl AcceptOnlyWhenOn = new MTROnOffControl(1L);
     /*</values>*/
 

@@ -101,6 +101,26 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setAffiliateCallSign:")
     public native void setAffiliateCallSign(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setIdentifier:")
+    public native void setIdentifier(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "type")
+    public native NSNumber getType();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setType:")
+    public native void setType(NSNumber v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

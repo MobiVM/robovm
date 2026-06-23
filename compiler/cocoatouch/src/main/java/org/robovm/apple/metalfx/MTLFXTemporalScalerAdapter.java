@@ -35,7 +35,7 @@ import org.robovm.apple.metal.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXTemporalScalerAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLFXTemporalScalerBaseAdapter/*</extends>*/ 
     /*<implements>*/implements MTLFXTemporalScaler/*</implements>*/ {
 
     /*<ptr>*/
@@ -45,94 +45,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("colorTextureUsage")
-    public MTLTextureUsage getColorTextureUsage() { return null; }
-    @NotImplemented("depthTextureUsage")
-    public MTLTextureUsage getDepthTextureUsage() { return null; }
-    @NotImplemented("motionTextureUsage")
-    public MTLTextureUsage getMotionTextureUsage() { return null; }
-    @NotImplemented("outputTextureUsage")
-    public MTLTextureUsage getOutputTextureUsage() { return null; }
-    @NotImplemented("inputContentWidth")
-    public @MachineSizedUInt long getInputContentWidth() { return 0; }
-    @NotImplemented("setInputContentWidth:")
-    public void setInputContentWidth(@MachineSizedUInt long v) {}
-    @NotImplemented("inputContentHeight")
-    public @MachineSizedUInt long getInputContentHeight() { return 0; }
-    @NotImplemented("setInputContentHeight:")
-    public void setInputContentHeight(@MachineSizedUInt long v) {}
-    @NotImplemented("colorTexture")
-    public MTLTexture getColorTexture() { return null; }
-    @NotImplemented("setColorTexture:")
-    public void setColorTexture(MTLTexture v) {}
-    @NotImplemented("depthTexture")
-    public MTLTexture getDepthTexture() { return null; }
-    @NotImplemented("setDepthTexture:")
-    public void setDepthTexture(MTLTexture v) {}
-    @NotImplemented("motionTexture")
-    public MTLTexture getMotionTexture() { return null; }
-    @NotImplemented("setMotionTexture:")
-    public void setMotionTexture(MTLTexture v) {}
-    @NotImplemented("outputTexture")
-    public MTLTexture getOutputTexture() { return null; }
-    @NotImplemented("setOutputTexture:")
-    public void setOutputTexture(MTLTexture v) {}
-    @NotImplemented("exposureTexture")
-    public MTLTexture getExposureTexture() { return null; }
-    @NotImplemented("setExposureTexture:")
-    public void setExposureTexture(MTLTexture v) {}
-    @NotImplemented("preExposure")
-    public float getPreExposure() { return 0; }
-    @NotImplemented("setPreExposure:")
-    public void setPreExposure(float v) {}
-    @NotImplemented("jitterOffsetX")
-    public float getJitterOffsetX() { return 0; }
-    @NotImplemented("setJitterOffsetX:")
-    public void setJitterOffsetX(float v) {}
-    @NotImplemented("jitterOffsetY")
-    public float getJitterOffsetY() { return 0; }
-    @NotImplemented("setJitterOffsetY:")
-    public void setJitterOffsetY(float v) {}
-    @NotImplemented("motionVectorScaleX")
-    public float getMotionVectorScaleX() { return 0; }
-    @NotImplemented("setMotionVectorScaleX:")
-    public void setMotionVectorScaleX(float v) {}
-    @NotImplemented("motionVectorScaleY")
-    public float getMotionVectorScaleY() { return 0; }
-    @NotImplemented("setMotionVectorScaleY:")
-    public void setMotionVectorScaleY(float v) {}
-    @NotImplemented("reset")
-    public boolean isReset() { return false; }
-    @NotImplemented("setReset:")
-    public void setReset(boolean v) {}
-    @NotImplemented("isDepthReversed")
-    public boolean isDepthReversed() { return false; }
-    @NotImplemented("setDepthReversed:")
-    public void setDepthReversed(boolean v) {}
-    @NotImplemented("colorTextureFormat")
-    public MTLPixelFormat getColorTextureFormat() { return null; }
-    @NotImplemented("depthTextureFormat")
-    public MTLPixelFormat getDepthTextureFormat() { return null; }
-    @NotImplemented("motionTextureFormat")
-    public MTLPixelFormat getMotionTextureFormat() { return null; }
-    @NotImplemented("outputTextureFormat")
-    public MTLPixelFormat getOutputTextureFormat() { return null; }
-    @NotImplemented("inputWidth")
-    public @MachineSizedUInt long getInputWidth() { return 0; }
-    @NotImplemented("inputHeight")
-    public @MachineSizedUInt long getInputHeight() { return 0; }
-    @NotImplemented("outputWidth")
-    public @MachineSizedUInt long getOutputWidth() { return 0; }
-    @NotImplemented("outputHeight")
-    public @MachineSizedUInt long getOutputHeight() { return 0; }
-    @NotImplemented("inputContentMinScale")
-    public float getInputContentMinScale() { return 0; }
-    @NotImplemented("inputContentMaxScale")
-    public float getInputContentMaxScale() { return 0; }
-    @NotImplemented("fence")
-    public MTLFence getFence() { return null; }
-    @NotImplemented("setFence:")
-    public void setFence(MTLFence v) {}
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

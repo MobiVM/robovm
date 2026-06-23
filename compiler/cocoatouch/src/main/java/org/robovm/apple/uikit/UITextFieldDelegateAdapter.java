@@ -73,8 +73,17 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("textFieldDidEndEditing:reason:")
     public void didEndEditing(UITextField textField, UITextFieldDidEndEditingReason reason) {}
+    /**
+     * @deprecated Use -textField:shouldChangeCharactersInRanges:replacementString:
+     */
+    @Deprecated
     @NotImplemented("textField:shouldChangeCharactersInRange:replacementString:")
     public boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string) { return true; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("textField:shouldChangeCharactersInRanges:replacementString:")
+    public boolean shouldChangeCharacters(UITextField textField, NSArray<NSValue> ranges, String string) { return false; }
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -86,9 +95,16 @@ import org.robovm.apple.symbols.*;
     public boolean shouldReturn(UITextField textField) { return true; }
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use -textField:editMenuForCharactersInRanges:suggestedActions
      */
+    @Deprecated
     @NotImplemented("textField:editMenuForCharactersInRange:suggestedActions:")
     public UIMenu getEditMenu(UITextField textField, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions) { return null; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("textField:editMenuForCharactersInRanges:suggestedActions:")
+    public UIMenu editMenuForCharacters(UITextField textField, NSArray<NSValue> ranges, NSArray<UIMenuElement> suggestedActions) { return null; }
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -99,5 +115,10 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("textField:willDismissEditMenuWithAnimator:")
     public void willDismissEditMenu(UITextField textField, UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("textField:insertInputSuggestion:")
+    public void insertInputSuggestion(UITextField textField, UIInputSuggestion inputSuggestion) {}
     /*</methods>*/
 }

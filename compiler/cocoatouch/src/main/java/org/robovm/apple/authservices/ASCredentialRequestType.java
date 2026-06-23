@@ -42,7 +42,15 @@ import org.robovm.apple.coreanimation.*;
 public enum /*<name>*/ASCredentialRequestType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Password(0L),
-    PasskeyAssertion(1L);
+    PasskeyAssertion(1L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    PasskeyRegistration(2L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    OneTimeCode(3L);
     /*</values>*/
 
     /*<bind>*/

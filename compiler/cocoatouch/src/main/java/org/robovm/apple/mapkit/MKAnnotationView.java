@@ -72,6 +72,16 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGPoint getCenterOffset();
     @Property(selector = "setCenterOffset:")
     public native void setCenterOffset(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accessoryOffset")
+    public native @ByVal CGPoint getAccessoryOffset();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAccessoryOffset:")
+    public native void setAccessoryOffset(@ByVal CGPoint v);
     @Property(selector = "calloutOffset")
     public native @ByVal CGPoint getCalloutOffset();
     @Property(selector = "setCalloutOffset:")

@@ -112,6 +112,10 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKResultsQuantityTypeIdentifier NumberOfAlcoholicBeverages = new HKResultsQuantityTypeIdentifier("NumberOfAlcoholicBeverages");
     public static final HKResultsQuantityTypeIdentifier NumberOfTimesFallen = new HKResultsQuantityTypeIdentifier("NumberOfTimesFallen");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKResultsQuantityTypeIdentifier AppleSleepingBreathingDisturbances = new HKResultsQuantityTypeIdentifier("AppleSleepingBreathingDisturbances");
     public static final HKResultsQuantityTypeIdentifier ForcedExpiratoryVolume1 = new HKResultsQuantityTypeIdentifier("ForcedExpiratoryVolume1");
     public static final HKResultsQuantityTypeIdentifier ForcedVitalCapacity = new HKResultsQuantityTypeIdentifier("ForcedVitalCapacity");
     public static final HKResultsQuantityTypeIdentifier InhalerUsage = new HKResultsQuantityTypeIdentifier("InhalerUsage");
@@ -120,7 +124,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKResultsQuantityTypeIdentifier BloodGlucose = new HKResultsQuantityTypeIdentifier("BloodGlucose");
     /*</constants>*/
     
-    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/ElectrodermalActivity, EnvironmentalAudioExposure, EnvironmentalSoundReduction, HeadphoneAudioExposure, PeripheralPerfusionIndex, BloodAlcoholContent, InsulinDelivery, NumberOfAlcoholicBeverages, NumberOfTimesFallen, ForcedExpiratoryVolume1, ForcedVitalCapacity, InhalerUsage, OxygenSaturation, PeakExpiratoryFlowRate, BloodGlucose/*</value_list>*/};
+    private static /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/ElectrodermalActivity, EnvironmentalAudioExposure, EnvironmentalSoundReduction, HeadphoneAudioExposure, PeripheralPerfusionIndex, BloodAlcoholContent, InsulinDelivery, NumberOfAlcoholicBeverages, NumberOfTimesFallen, AppleSleepingBreathingDisturbances, ForcedExpiratoryVolume1, ForcedVitalCapacity, InhalerUsage, OxygenSaturation, PeakExpiratoryFlowRate, BloodGlucose/*</value_list>*/};
     
     /*<name>*/HKResultsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -176,6 +180,11 @@ import org.robovm.apple.uniformtypeid.*;
         public static native NSString NumberOfAlcoholicBeverages();
         @GlobalValue(symbol="HKQuantityTypeIdentifierNumberOfTimesFallen", optional=true)
         public static native NSString NumberOfTimesFallen();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances", optional=true)
+        public static native NSString AppleSleepingBreathingDisturbances();
         @GlobalValue(symbol="HKQuantityTypeIdentifierForcedExpiratoryVolume1", optional=true)
         public static native NSString ForcedExpiratoryVolume1();
         @GlobalValue(symbol="HKQuantityTypeIdentifierForcedVitalCapacity", optional=true)

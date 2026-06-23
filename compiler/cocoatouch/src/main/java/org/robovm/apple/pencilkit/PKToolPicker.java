@@ -50,12 +50,67 @@ import org.robovm.apple.coreanimation.*;
     public PKToolPicker() {}
     protected PKToolPicker(Handle h, long handle) { super(h, handle); }
     protected PKToolPicker(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithToolItems:")
+    public PKToolPicker(NSArray<PKToolPickerItem> items) { super((SkipInit) null); initObject(init(items)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "delegate")
+    public native PKToolPickerDelegate getDelegate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDelegate:", strongRef = true)
+    public native void setDelegate(PKToolPickerDelegate v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use selectedToolItem instead.
+     */
+    @Deprecated
     @Property(selector = "selectedTool")
     public native PKTool getSelectedTool();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use selectedToolItem instead.
+     */
+    @Deprecated
     @Property(selector = "setSelectedTool:")
     public native void setSelectedTool(PKTool v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "selectedToolItem")
+    public native PKToolPickerItem getSelectedToolItem();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSelectedToolItem:")
+    public native void setSelectedToolItem(PKToolPickerItem v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "selectedToolItemIdentifier")
+    public native String getSelectedToolItemIdentifier();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSelectedToolItemIdentifier:")
+    public native void setSelectedToolItemIdentifier(String v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "toolItems")
+    public native NSArray<PKToolPickerItem> getToolItems();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultToolItems")
+    public static native NSArray<PKToolPickerItem> getDefaultToolItems();
     @Property(selector = "isRulerActive")
     public native boolean isRulerActive();
     @Property(selector = "setRulerActive:")
@@ -100,6 +155,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setShowsDrawingPolicyControls:")
     public native void setShowsDrawingPolicyControls(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accessoryItem")
+    public native UIBarButtonItem getAccessoryItem();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAccessoryItem:")
+    public native void setAccessoryItem(UIBarButtonItem v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "colorMaximumLinearExposure")
+    public native @MachineSizedFloat double getColorMaximumLinearExposure();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setColorMaximumLinearExposure:")
+    public native void setColorMaximumLinearExposure(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -111,6 +186,11 @@ import org.robovm.apple.coreanimation.*;
     public native void setVisible(boolean visible, UIResponder responder);
     @Method(selector = "frameObscuredInView:")
     public native @ByVal CGRect frameObscuredInView(UIView view);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithToolItems:")
+    protected native @Pointer long init(NSArray<PKToolPickerItem> items);
     /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 14.0. Create individual instances instead.

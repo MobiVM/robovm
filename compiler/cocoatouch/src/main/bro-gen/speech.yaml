@@ -50,11 +50,18 @@ classes:
                 name: prepareCustomLanguageModel
             '+prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:':
                 name: prepareCustomLanguageModel
+            '+prepareCustomLanguageModelForUrl:configuration:completion:':
+                name: prepareCustomLanguageModel
+            '+prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:':
+                name: prepareCustomLanguageModel
+
     SFSpeechLanguageModelConfiguration: #since 17.0
         methods:
             '-initWithLanguageModel:':
                 name: init
             '-initWithLanguageModel:vocabulary:':
+                name: init
+            '-initWithLanguageModel:vocabulary:weight:':
                 name: init
 
     _SF.*:
@@ -70,6 +77,8 @@ protocols:
                 name: didFinishRecognition
             '-speechRecognitionTask:didFinishSuccessfully:':
                 name: didFinishSuccessfully
+            '-speechRecognitionTask:didProcessAudioDuration:':
+                name: didProcessAudio
     SFSpeechRecognizerDelegate: #since 10.0
         methods:
             '-speechRecognizer:availabilityDidChange:':

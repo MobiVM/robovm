@@ -73,6 +73,11 @@ import org.robovm.apple.uikit.*;
     public native String getErrorDomain();
     @Property(selector = "errorComment")
     public native String getErrorComment();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "allHTTPResponseHeaderFields")
+    public native NSDictionary<NSString, NSString> getAllHTTPResponseHeaderFields();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

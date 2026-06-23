@@ -111,9 +111,17 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final UIActivityItemsConfigurationMetadataKey LinkPresentationMetadata = new UIActivityItemsConfigurationMetadataKey("LinkPresentationMetadata");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final UIActivityItemsConfigurationMetadataKey CollaborationModeRestrictions = new UIActivityItemsConfigurationMetadataKey("CollaborationModeRestrictions");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final UIActivityItemsConfigurationMetadataKey ShareRecipients = new UIActivityItemsConfigurationMetadataKey("ShareRecipients");
     /*</constants>*/
     
-    private static /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] {/*<value_list>*/Title, MessageBody, LinkPresentationMetadata/*</value_list>*/};
+    private static /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/[] {/*<value_list>*/Title, MessageBody, LinkPresentationMetadata, CollaborationModeRestrictions, ShareRecipients/*</value_list>*/};
     
     /*<name>*/UIActivityItemsConfigurationMetadataKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -151,6 +159,16 @@ import org.robovm.apple.symbols.*;
          */
         @GlobalValue(symbol="UIActivityItemsConfigurationMetadataKeyLinkPresentationMetadata", optional=true)
         public static native NSString LinkPresentationMetadata();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions", optional=true)
+        public static native NSString CollaborationModeRestrictions();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="UIActivityItemsConfigurationMetadataKeyShareRecipients", optional=true)
+        public static native NSString ShareRecipients();
         /*</values>*/
     }
 }

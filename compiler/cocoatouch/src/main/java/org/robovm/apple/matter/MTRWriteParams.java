@@ -33,12 +33,14 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRWriteParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRWriteParamsPtr extends Ptr<MTRWriteParams, MTRWriteParamsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRWriteParams.class); }/*</bind>*/
@@ -47,6 +49,8 @@ import org.robovm.apple.security.*;
     public MTRWriteParams() {}
     protected MTRWriteParams(Handle h, long handle) { super(h, handle); }
     protected MTRWriteParams(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public MTRWriteParams(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timedWriteTimeout")
@@ -57,9 +61,14 @@ import org.robovm.apple.security.*;
     public native NSNumber getDataVersion();
     @Property(selector = "setDataVersion:")
     public native void setDataVersion(NSNumber v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

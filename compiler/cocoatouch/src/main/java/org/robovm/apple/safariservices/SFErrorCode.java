@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.browserenginekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -41,7 +42,9 @@ public enum /*<name>*/SFErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NoExtensionFound(1L),
     NoAttachmentFound(2L),
-    LoadingInterrupted(3L);
+    LoadingInterrupted(3L),
+    InternalError(4L),
+    MissingEntitlement(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SFErrorCode.class); }/*</bind>*/

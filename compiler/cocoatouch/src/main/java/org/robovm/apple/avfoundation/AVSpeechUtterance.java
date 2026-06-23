@@ -68,7 +68,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithSSMLRepresentation:")
-    public static  AVSpeechUtterance createWithSSMLRepresentation(String string) {
+    public static AVSpeechUtterance createWithSSMLRepresentation(String string) {
        AVSpeechUtterance res = new AVSpeechUtterance((SkipInit) null);
        res.initObject(res.initWithSSMLRepresentation(string));
        return res;

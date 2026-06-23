@@ -106,7 +106,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "endMatchInTurnWithMatchData:completionHandler:")
     public native void endMatch(NSData matchData, @Block VoidBlock1<NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use -endMatchInTurnWithMatchData:scores:completionHandler
+     * @deprecated Deprecated in iOS 14.0. Use the ``GKTurnBasedMatch/endMatchInTurn(withMatch:scores:achievements:completionHandler:)`` method instead.
      */
     @Deprecated
     @Method(selector = "endMatchInTurnWithMatchData:scores:achievements:completionHandler:")

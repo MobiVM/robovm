@@ -83,6 +83,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "linkedServices")
     public native NSArray<HMService> getLinkedServices();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "matterEndpointID")
+    public native NSNumber getMatterEndpointID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

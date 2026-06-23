@@ -33,9 +33,12 @@ import org.robovm.apple.network.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_t` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWTLSParameters/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,42 +54,58 @@ import org.robovm.apple.network.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "TLSSessionID")
     public native NSData getTLSSessionID();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_tls_resumption_enabled` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "setTLSSessionID:")
     public native void setTLSSessionID(NSData v);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "SSLCipherSuites")
     public native NSSet<NSNumber> getSSLCipherSuites();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_append_tls_ciphersuite` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "setSSLCipherSuites:")
     public native void setSSLCipherSuites(NSSet<NSNumber> v);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "minimumSSLProtocolVersion")
     public native @MachineSizedUInt long getMinimumSSLProtocolVersion();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_min_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "setMinimumSSLProtocolVersion:")
     public native void setMinimumSSLProtocolVersion(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "maximumSSLProtocolVersion")
     public native @MachineSizedUInt long getMaximumSSLProtocolVersion();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_max_tls_protocol_version` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>
      */
+    @Deprecated
     @Property(selector = "setMaximumSSLProtocolVersion:")
     public native void setMaximumSSLProtocolVersion(@MachineSizedUInt long v);
     /*</properties>*/

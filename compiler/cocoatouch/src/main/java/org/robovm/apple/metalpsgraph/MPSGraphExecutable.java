@@ -53,7 +53,20 @@ import org.robovm.apple.metalps.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithMPSGraphPackageAtURL:compilationDescriptor:")
-    public MPSGraphExecutable(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor) { super((SkipInit) null); initObject(init(mpsgraphPackageURL, compilationDescriptor)); }
+    public static MPSGraphExecutable createUsingMPSGraphPackage(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor) {
+       MPSGraphExecutable res = new MPSGraphExecutable((SkipInit) null);
+       res.initObject(res.initWithMPSGraphPackageAtURL(mpsgraphPackageURL, compilationDescriptor));
+       return res;
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCoreMLPackageAtURL:compilationDescriptor:")
+    public static MPSGraphExecutable createUsingCoreMLPackage(NSURL coreMLPackageURL, MPSGraphCompilationDescriptor compilationDescriptor) {
+       MPSGraphExecutable res = new MPSGraphExecutable((SkipInit) null);
+       res.initObject(res.initWithCoreMLPackageAtURL(coreMLPackageURL, compilationDescriptor));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "options")
@@ -89,6 +102,11 @@ import org.robovm.apple.metalps.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithMPSGraphPackageAtURL:compilationDescriptor:")
-    protected native @Pointer long init(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor);
+    protected native @Pointer long initWithMPSGraphPackageAtURL(NSURL mpsgraphPackageURL, MPSGraphCompilationDescriptor compilationDescriptor);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithCoreMLPackageAtURL:compilationDescriptor:")
+    protected native @Pointer long initWithCoreMLPackageAtURL(NSURL coreMLPackageURL, MPSGraphCompilationDescriptor compilationDescriptor);
     /*</methods>*/
 }

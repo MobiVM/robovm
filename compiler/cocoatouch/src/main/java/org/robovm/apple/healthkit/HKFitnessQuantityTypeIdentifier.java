@@ -103,6 +103,10 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKFitnessQuantityTypeIdentifier AppleStandTime = new HKFitnessQuantityTypeIdentifier("AppleStandTime");
     public static final HKFitnessQuantityTypeIdentifier BasalEnergyBurned = new HKFitnessQuantityTypeIdentifier("BasalEnergyBurned");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier CrossCountrySkiingSpeed = new HKFitnessQuantityTypeIdentifier("CrossCountrySkiingSpeed");
+    /**
      * @since Available in iOS 17.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier CyclingCadence = new HKFitnessQuantityTypeIdentifier("CyclingCadence");
@@ -118,11 +122,27 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier CyclingSpeed = new HKFitnessQuantityTypeIdentifier("CyclingSpeed");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceCrossCountrySkiing = new HKFitnessQuantityTypeIdentifier("DistanceCrossCountrySkiing");
     public static final HKFitnessQuantityTypeIdentifier DistanceCycling = new HKFitnessQuantityTypeIdentifier("DistanceCycling");
     /**
      * @since Available in iOS 11.2 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier DistanceDownhillSnowSports = new HKFitnessQuantityTypeIdentifier("DistanceDownhillSnowSports");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistancePaddleSports = new HKFitnessQuantityTypeIdentifier("DistancePaddleSports");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceRowing = new HKFitnessQuantityTypeIdentifier("DistanceRowing");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier DistanceSkatingSports = new HKFitnessQuantityTypeIdentifier("DistanceSkatingSports");
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -132,8 +152,16 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier DistanceWheelchair = new HKFitnessQuantityTypeIdentifier("DistanceWheelchair");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier EstimatedWorkoutEffortScore = new HKFitnessQuantityTypeIdentifier("EstimatedWorkoutEffortScore");
     public static final HKFitnessQuantityTypeIdentifier FlightsClimbed = new HKFitnessQuantityTypeIdentifier("FlightsClimbed");
     public static final HKFitnessQuantityTypeIdentifier NikeFuel = new HKFitnessQuantityTypeIdentifier("NikeFuel");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier PaddleSportsSpeed = new HKFitnessQuantityTypeIdentifier("PaddleSportsSpeed");
     /**
      * @since Available in iOS 17.0 and later.
      */
@@ -142,6 +170,10 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier PushCount = new HKFitnessQuantityTypeIdentifier("PushCount");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier RowingSpeed = new HKFitnessQuantityTypeIdentifier("RowingSpeed");
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -155,6 +187,10 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKFitnessQuantityTypeIdentifier SwimmingStrokeCount = new HKFitnessQuantityTypeIdentifier("SwimmingStrokeCount");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HKFitnessQuantityTypeIdentifier WorkoutEffortScore = new HKFitnessQuantityTypeIdentifier("WorkoutEffortScore");
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -205,7 +241,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKFitnessQuantityTypeIdentifier WalkingStepLength = new HKFitnessQuantityTypeIdentifier("WalkingStepLength");
     /*</constants>*/
     
-    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/ActiveEnergyBurned, AppleExerciseTime, AppleMoveTime, AppleStandTime, BasalEnergyBurned, CyclingCadence, CyclingFunctionalThresholdPower, CyclingPower, CyclingSpeed, DistanceCycling, DistanceDownhillSnowSports, DistanceSwimming, DistanceWalkingRunning, DistanceWheelchair, FlightsClimbed, NikeFuel, PhysicalEffort, PushCount, RunningPower, RunningSpeed, StepCount, SwimmingStrokeCount, VO2Max, AppleWalkingSteadiness, RunningGroundContactTime, RunningStrideLength, RunningVerticalOscillation, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, WalkingAsymmetryPercentage, WalkingDoubleSupportPercentage, WalkingSpeed, WalkingStepLength/*</value_list>*/};
+    private static /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/ActiveEnergyBurned, AppleExerciseTime, AppleMoveTime, AppleStandTime, BasalEnergyBurned, CrossCountrySkiingSpeed, CyclingCadence, CyclingFunctionalThresholdPower, CyclingPower, CyclingSpeed, DistanceCrossCountrySkiing, DistanceCycling, DistanceDownhillSnowSports, DistancePaddleSports, DistanceRowing, DistanceSkatingSports, DistanceSwimming, DistanceWalkingRunning, DistanceWheelchair, EstimatedWorkoutEffortScore, FlightsClimbed, NikeFuel, PaddleSportsSpeed, PhysicalEffort, PushCount, RowingSpeed, RunningPower, RunningSpeed, StepCount, SwimmingStrokeCount, WorkoutEffortScore, VO2Max, AppleWalkingSteadiness, RunningGroundContactTime, RunningStrideLength, RunningVerticalOscillation, SixMinuteWalkTestDistance, StairAscentSpeed, StairDescentSpeed, WalkingAsymmetryPercentage, WalkingDoubleSupportPercentage, WalkingSpeed, WalkingStepLength/*</value_list>*/};
     
     /*<name>*/HKFitnessQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -248,6 +284,11 @@ import org.robovm.apple.uniformtypeid.*;
         @GlobalValue(symbol="HKQuantityTypeIdentifierBasalEnergyBurned", optional=true)
         public static native NSString BasalEnergyBurned();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierCrossCountrySkiingSpeed", optional=true)
+        public static native NSString CrossCountrySkiingSpeed();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierCyclingCadence", optional=true)
@@ -267,6 +308,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierCyclingSpeed", optional=true)
         public static native NSString CyclingSpeed();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceCrossCountrySkiing", optional=true)
+        public static native NSString DistanceCrossCountrySkiing();
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceCycling", optional=true)
         public static native NSString DistanceCycling();
         /**
@@ -274,6 +320,21 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceDownhillSnowSports", optional=true)
         public static native NSString DistanceDownhillSnowSports();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistancePaddleSports", optional=true)
+        public static native NSString DistancePaddleSports();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceRowing", optional=true)
+        public static native NSString DistanceRowing();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceSkatingSports", optional=true)
+        public static native NSString DistanceSkatingSports();
         /**
          * @since Available in iOS 10.0 and later.
          */
@@ -286,10 +347,20 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierDistanceWheelchair", optional=true)
         public static native NSString DistanceWheelchair();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierEstimatedWorkoutEffortScore", optional=true)
+        public static native NSString EstimatedWorkoutEffortScore();
         @GlobalValue(symbol="HKQuantityTypeIdentifierFlightsClimbed", optional=true)
         public static native NSString FlightsClimbed();
         @GlobalValue(symbol="HKQuantityTypeIdentifierNikeFuel", optional=true)
         public static native NSString NikeFuel();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierPaddleSportsSpeed", optional=true)
+        public static native NSString PaddleSportsSpeed();
         /**
          * @since Available in iOS 17.0 and later.
          */
@@ -300,6 +371,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierPushCount", optional=true)
         public static native NSString PushCount();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRowingSpeed", optional=true)
+        public static native NSString RowingSpeed();
         /**
          * @since Available in iOS 16.0 and later.
          */
@@ -317,6 +393,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierSwimmingStrokeCount", optional=true)
         public static native NSString SwimmingStrokeCount();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierWorkoutEffortScore", optional=true)
+        public static native NSString WorkoutEffortScore();
         /**
          * @since Available in iOS 11.0 and later.
          */

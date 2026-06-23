@@ -1,5 +1,5 @@
 package: org.robovm.apple.sensitivecontentanalysis
-include: [foundation, coregraphics, imageio]
+include: [foundation, coregraphics, imageio, avfoundation, corevideo, videotoolbox]
 library: SensitiveContentAnalysis
 framework: SensitiveContentAnalysis
 clang_args: ['-x', 'objective-c']
@@ -9,7 +9,7 @@ typedefs: {}
 
 enums:
     SCSensitivityAnalysisPolicy: {} #since 17.0
-
+    SCVideoStreamAnalyzerStreamDirection: {} #since 26.0
 classes:
     SCSensitivityAnalysis: {} #since 17.0
     SCSensitivityAnalyzer: #since 17.0
@@ -20,7 +20,17 @@ classes:
                 name: analyzeCGImage
             '-analyzeVideoFile:completionHandler:':
                 name: analyzeVideoFile
-
+    SCVideoStreamAnalyzer: #since 26.0
+        methods:
+            '-initWithParticipantUUID:streamDirection:error:':
+                name: init
+                throws: NSErrorException
+            '-beginAnalysisOfDecompressionSession:error:':
+                name: beginAnalysisOfDecompressionSession
+                throws: NSErrorException
+            '-beginAnalysisOfCaptureDeviceInput:error:':
+                name: beginAnalysisOfCaptureDeviceInput
+                throws: NSErrorException
 protocols:
 
 functions:

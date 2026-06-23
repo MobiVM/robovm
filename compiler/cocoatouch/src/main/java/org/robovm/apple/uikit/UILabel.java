@@ -165,18 +165,6 @@ import org.robovm.apple.symbols.*;
     public native boolean showsExpansionTextWhenTruncated();
     @Property(selector = "setShowsExpansionTextWhenTruncated:")
     public native void setShowsExpansionTextWhenTruncated(boolean v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "adjustsLetterSpacingToFitWidth")
-    public native boolean adjustsLetterSpacingToFitWidth();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setAdjustsLetterSpacingToFitWidth:")
-    public native void setAdjustsLetterSpacingToFitWidth(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

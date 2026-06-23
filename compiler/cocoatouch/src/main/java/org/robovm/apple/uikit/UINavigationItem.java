@@ -67,10 +67,90 @@ import org.robovm.apple.symbols.*;
     public native String getTitle();
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributedTitle")
+    public native NSAttributedString getAttributedTitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributedTitle:")
+    public native void setAttributedTitle(NSAttributedString v);
     @Property(selector = "titleView")
     public native UIView getTitleView();
     @Property(selector = "setTitleView:")
     public native void setTitleView(UIView v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributedSubtitle")
+    public native NSAttributedString getAttributedSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributedSubtitle:")
+    public native void setAttributedSubtitle(NSAttributedString v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "subtitleView")
+    public native UIView getSubtitleView();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSubtitleView:")
+    public native void setSubtitleView(UIView v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeTitle")
+    public native String getLargeTitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeTitle:")
+    public native void setLargeTitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeSubtitle")
+    public native String getLargeSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeSubtitle:")
+    public native void setLargeSubtitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeAttributedSubtitle")
+    public native NSAttributedString getLargeAttributedSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeAttributedSubtitle:")
+    public native void setLargeAttributedSubtitle(NSAttributedString v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeSubtitleView")
+    public native UIView getLargeSubtitleView();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeSubtitleView:")
+    public native void setLargeSubtitleView(UIView v);
     @Property(selector = "prompt")
     public native String getPrompt();
     @Property(selector = "setPrompt:")
@@ -283,6 +363,31 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "searchBarPlacement")
     public native UINavigationItemSearchBarPlacement getSearchBarPlacement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementBarButtonItem")
+    public native UIBarButtonItem getSearchBarPlacementBarButtonItem();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementAllowsToolbarIntegration")
+    public native boolean isSearchBarPlacementAllowsToolbarIntegration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSearchBarPlacementAllowsToolbarIntegration:")
+    public native void setSearchBarPlacementAllowsToolbarIntegration(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementAllowsExternalIntegration")
+    public native boolean isSearchBarPlacementAllowsExternalIntegration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSearchBarPlacementAllowsExternalIntegration:")
+    public native void setSearchBarPlacementAllowsExternalIntegration(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
      */

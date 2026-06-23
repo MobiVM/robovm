@@ -44,7 +44,11 @@ public enum /*<name>*/CKShareParticipantRole/*</name>*/ implements ValuedEnum {
     Unknown(0L),
     Owner(1L),
     PrivateUser(3L),
-    PublicUser(4L);
+    PublicUser(4L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Administrator(2L);
     /*</values>*/
 
     /*<bind>*/

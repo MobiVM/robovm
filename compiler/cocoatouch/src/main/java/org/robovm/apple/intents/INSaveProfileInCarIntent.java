@@ -55,7 +55,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 10.2 and later.
      */
     @Method(selector = "initWithProfileNumber:profileName:")
-    public static  INSaveProfileInCarIntent createWithProfileName(NSNumber profileNumber, String profileName) {
+    public static INSaveProfileInCarIntent createWithProfileName(NSNumber profileNumber, String profileName) {
        INSaveProfileInCarIntent res = new INSaveProfileInCarIntent((SkipInit) null);
        res.initObject(res.initWithProfileName(profileNumber, profileName));
        return res;
@@ -66,7 +66,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:")
-    public static  INSaveProfileInCarIntent createWithProfileLabel(NSNumber profileNumber, String profileLabel) {
+    public static INSaveProfileInCarIntent createWithProfileLabel(NSNumber profileNumber, String profileLabel) {
        INSaveProfileInCarIntent res = new INSaveProfileInCarIntent((SkipInit) null);
        res.initObject(res.initWithProfileLabel(profileNumber, profileLabel));
        return res;

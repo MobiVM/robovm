@@ -49,9 +49,21 @@ public enum /*<name>*/MTRIdentifyType/*</name>*/ implements ValuedEnum {
      */
     LightOutput(1L),
     /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use MTRIdentifyTypeLightOutput
+     */
+    @Deprecated
+    VisibleLight(1L),
+    /**
      * @since Available in iOS 17.0 and later.
      */
     VisibleIndicator(2L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use MTRIdentifyTypeVisibleIndicator
+     */
+    @Deprecated
+    VisibleLED(2L),
     /**
      * @since Available in iOS 16.1 and later.
      */

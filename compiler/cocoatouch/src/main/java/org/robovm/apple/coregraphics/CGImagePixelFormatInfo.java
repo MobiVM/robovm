@@ -40,6 +40,10 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CGImagePixelFormatInfo/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Use kCGBitmapPixelFormatInfoMask
+     */
+    @Deprecated
     Mask(983040L),
     Packed(0L),
     RGB555(65536L),

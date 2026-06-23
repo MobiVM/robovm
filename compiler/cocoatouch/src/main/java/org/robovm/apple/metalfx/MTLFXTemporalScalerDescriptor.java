@@ -86,6 +86,10 @@ import org.robovm.apple.metal.*;
     public native boolean isAutoExposureEnabled();
     @Property(selector = "setAutoExposureEnabled:")
     public native void setAutoExposureEnabled(boolean v);
+    @Property(selector = "requiresSynchronousInitialization")
+    public native boolean requiresSynchronousInitialization();
+    @Property(selector = "setRequiresSynchronousInitialization:")
+    public native void setRequiresSynchronousInitialization(boolean v);
     @Property(selector = "isInputContentPropertiesEnabled")
     public native boolean isInputContentPropertiesEnabled();
     @Property(selector = "setInputContentPropertiesEnabled:")
@@ -98,12 +102,52 @@ import org.robovm.apple.metal.*;
     public native float getInputContentMaxScale();
     @Property(selector = "setInputContentMaxScale:")
     public native void setInputContentMaxScale(float v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "isReactiveMaskTextureEnabled")
+    public native boolean isReactiveMaskTextureEnabled();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setReactiveMaskTextureEnabled:")
+    public native void setReactiveMaskTextureEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "reactiveMaskTextureFormat")
+    public native MTLPixelFormat getReactiveMaskTextureFormat();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setReactiveMaskTextureFormat:")
+    public native void setReactiveMaskTextureFormat(MTLPixelFormat v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "newTemporalScalerWithDevice:")
     public native MTLFXTemporalScaler newTemporalScaler(MTLDevice device);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newTemporalScalerWithDevice:compiler:")
+    public native MTL4FXTemporalScaler newTemporalScaler(MTLDevice device, MTL4Compiler compiler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportedInputContentMinScaleForDevice:")
+    public static native float supportedInputContentMinScaleForDevice(MTLDevice device);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportedInputContentMaxScaleForDevice:")
+    public static native float supportedInputContentMaxScaleForDevice(MTLDevice device);
     @Method(selector = "supportsDevice:")
     public static native boolean supportsDevice(MTLDevice device);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "supportsMetal4FX:")
+    public static native boolean supportsMetal4FX(MTLDevice device);
     /*</methods>*/
 }

@@ -89,8 +89,17 @@ import org.robovm.apple.coreanimation.*;
     public native String getLocalizedDescription();
     @Property(selector = "organizationName")
     public native String getOrganizationName();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use relevantDates
+     */
+    @Deprecated
     @Property(selector = "relevantDate")
     public native NSDate getRelevantDate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "relevantDates")
+    public native NSArray<PKPassRelevantDate> getRelevantDates();
     @Property(selector = "userInfo")
     public native NSDictionary<?, ?> getUserInfo();
     @Property(selector = "passURL")

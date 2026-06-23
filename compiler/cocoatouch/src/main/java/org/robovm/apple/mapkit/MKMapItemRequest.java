@@ -52,10 +52,33 @@ import org.robovm.apple.coreanimation.*;
     protected MKMapItemRequest() {}
     protected MKMapItemRequest(Handle h, long handle) { super(h, handle); }
     protected MKMapItemRequest(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithMapItemIdentifier:")
+    public MKMapItemRequest(MKMapItemIdentifier identifier) { super((SkipInit) null); initObject(init(identifier)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
     @Method(selector = "initWithMapFeatureAnnotation:")
     public MKMapItemRequest(MKMapFeatureAnnotation mapFeatureAnnotation) { super((SkipInit) null); initObject(init(mapFeatureAnnotation)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mapItemIdentifier")
+    public native MKMapItemIdentifier getMapItemIdentifier();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mapFeatureAnnotation")
+    public native MKMapFeatureAnnotation getMapFeatureAnnotation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use mapFeatureAnnotation
+     */
+    @Deprecated
     @Property(selector = "featureAnnotation")
     public native MKMapFeatureAnnotation getFeatureAnnotation();
     @Property(selector = "isCancelled")
@@ -65,6 +88,14 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithMapItemIdentifier:")
+    protected native @Pointer long init(MKMapItemIdentifier identifier);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
     @Method(selector = "initWithMapFeatureAnnotation:")
     protected native @Pointer long init(MKMapFeatureAnnotation mapFeatureAnnotation);
     @Method(selector = "getMapItemWithCompletionHandler:")

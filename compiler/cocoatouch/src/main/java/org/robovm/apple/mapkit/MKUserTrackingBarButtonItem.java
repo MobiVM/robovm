@@ -125,5 +125,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "flexibleSpaceItem")
     public static native MKUserTrackingBarButtonItem flexibleSpaceItem();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fixedSpaceItem")
+    public static native MKUserTrackingBarButtonItem fixedSpaceItem();
     /*</methods>*/
 }

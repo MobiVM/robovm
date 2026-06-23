@@ -43,7 +43,9 @@ import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIPrintRenderingQuality/*</name>*/ implements ValuedEnum {

@@ -85,6 +85,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 9.0. Notification is never posted
+     */
+    @Deprecated
     @GlobalValue(symbol="NSHTTPCookieManagerAcceptPolicyChangedNotification", optional=true)
     public static native NSString AcceptPolicyChangedNotification();
     @GlobalValue(symbol="NSHTTPCookieManagerCookiesChangedNotification", optional=true)

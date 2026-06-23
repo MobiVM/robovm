@@ -127,6 +127,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:")
     public static native UIBarButtonItemGroup createOptionalGroup(String customizationIdentifier, boolean inDefaultCustomization, UIBarButtonItem representativeItem, NSArray<UIBarButtonItem> items);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "groupWithFixedSpace")
+    public static native UIBarButtonItemGroup groupWithFixedSpace();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     /*</methods>*/

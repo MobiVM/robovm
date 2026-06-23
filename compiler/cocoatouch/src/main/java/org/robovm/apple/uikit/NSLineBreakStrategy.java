@@ -43,7 +43,9 @@ import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/NSLineBreakStrategy/*</name>*/ extends Bits</*<name>*/NSLineBreakStrategy/*</name>*/> {

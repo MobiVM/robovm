@@ -118,6 +118,10 @@ import org.robovm.apple.symbols.*;
     }
     
 
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.URLContexts instead.
+     */
+    @Deprecated
     public NSURL getURL() {
         if (has(Keys.URL())) {
             NSURL val = (NSURL) get(Keys.URL());
@@ -125,10 +129,18 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.URLContexts instead.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setURL(NSURL uRL) {
         set(Keys.URL(), uRL);
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.sourceApplication instead.
+     */
+    @Deprecated
     public String getSourceApplication() {
         if (has(Keys.SourceApplication())) {
             NSString val = (NSString) get(Keys.SourceApplication());
@@ -136,6 +148,10 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.sourceApplication instead.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setSourceApplication(String sourceApplication) {
         set(Keys.SourceApplication(), new NSString(sourceApplication));
         return this;
@@ -178,6 +194,10 @@ import org.robovm.apple.symbols.*;
         set(Keys.Annotation(), annotation);
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Adopt CLLocationUpdate or CLMonitor, or use CLLocationManagerDelegate from CoreLocation to handle expected location events after scene connection.
+     */
+    @Deprecated
     public boolean isLocationStart() {
         if (has(Keys.Location())) {
             NSNumber val = (NSNumber) get(Keys.Location());
@@ -185,10 +205,18 @@ import org.robovm.apple.symbols.*;
         }
         return false;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Adopt CLLocationUpdate or CLMonitor, or use CLLocationManagerDelegate from CoreLocation to handle expected location events after scene connection.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setLocationStart(boolean locationStart) {
         set(Keys.Location(), NSNumber.valueOf(locationStart));
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. This dictionary key is no longer used.
+     */
+    @Deprecated
     public List<String> getNewsstandDownloadIdentifiers() {
         if (has(Keys.NewsstandDownloads())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.NewsstandDownloads());
@@ -196,10 +224,18 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. This dictionary key is no longer used.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setNewsstandDownloadIdentifiers(List<String> newsstandDownloadIdentifiers) {
         set(Keys.NewsstandDownloads(), NSArray.fromStrings(newsstandDownloadIdentifiers));
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate central managers with those identifiers on app launch to resume previous functionality.
+     */
+    @Deprecated
     public List<String> getBluetoothCentralIdentifiers() {
         if (has(Keys.BluetoothCentrals())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.BluetoothCentrals());
@@ -207,10 +243,18 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate central managers with those identifiers on app launch to resume previous functionality.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setBluetoothCentralIdentifiers(List<String> bluetoothCentralIdentifiers) {
         set(Keys.BluetoothCentrals(), NSArray.fromStrings(bluetoothCentralIdentifiers));
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate peripheral managers with those identifiers on app launch to resume previous functionality.
+     */
+    @Deprecated
     public List<String> getBluetoothPeripheralIdentifiers() {
         if (has(Keys.BluetoothPeripherals())) {
             NSArray<NSString> val = (NSArray<NSString>) get(Keys.BluetoothPeripherals());
@@ -218,13 +262,18 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate peripheral managers with those identifiers on app launch to resume previous functionality.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setBluetoothPeripheralIdentifiers(List<String> bluetoothPeripheralIdentifiers) {
         set(Keys.BluetoothPeripherals(), NSArray.fromStrings(bluetoothPeripheralIdentifiers));
         return this;
     }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.shortcutItem instead.
      */
+    @Deprecated
     public UIApplicationShortcutItem getShortcutItem() {
         if (has(Keys.ShortcutItem())) {
             UIApplicationShortcutItem val = (UIApplicationShortcutItem) get(Keys.ShortcutItem());
@@ -233,12 +282,17 @@ import org.robovm.apple.symbols.*;
         return null;
     }
     /**
-     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.shortcutItem instead.
      */
+    @Deprecated
     public UIApplicationLaunchOptions setShortcutItem(UIApplicationShortcutItem shortcutItem) {
         set(Keys.ShortcutItem(), shortcutItem);
         return this;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.userActivities instead.
+     */
+    @Deprecated
     public UIApplicationLaunchOptionsUserActivityInfo getUserActivityInfo() {
         if (has(Keys.UserActivityDictionary())) {
             NSDictionary val = (NSDictionary) get(Keys.UserActivityDictionary());
@@ -246,6 +300,10 @@ import org.robovm.apple.symbols.*;
         }
         return null;
     }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.userActivities instead.
+     */
+    @Deprecated
     public UIApplicationLaunchOptions setUserActivityInfo(UIApplicationLaunchOptionsUserActivityInfo userActivityInfo) {
         set(Keys.UserActivityDictionary(), userActivityInfo.getDictionary());
         return this;
@@ -266,10 +324,22 @@ import org.robovm.apple.symbols.*;
     @Library("UIKit")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.URLContexts instead.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsURLKey", optional=true)
         public static native NSString URL();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.sourceApplication instead.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsSourceApplicationKey", optional=true)
         public static native NSString SourceApplication();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Continue using UIApplicationDelegate's application(_:didReceiveRemoteNotification:fetchCompletionHandler:) to process silent remote notifications after scene connection.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsRemoteNotificationKey", optional=true)
         public static native NSString RemoteNotification();
         /**
@@ -284,29 +354,54 @@ import org.robovm.apple.symbols.*;
         @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsAnnotationKey", optional=true)
         public static native NSString Annotation();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Adopt CLLocationUpdate or CLMonitor, or use CLLocationManagerDelegate from CoreLocation to handle expected location events after scene connection.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsLocationKey", optional=true)
         public static native NSString Location();
+        /**
+         * @deprecated Deprecated in iOS 26.0. This dictionary key is no longer used.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsNewsstandDownloadsKey", optional=true)
         public static native NSString NewsstandDownloads();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate central managers with those identifiers on app launch to resume previous functionality.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsBluetoothCentralsKey", optional=true)
         public static native NSString BluetoothCentrals();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Store restoration identifiers and reinstantiate peripheral managers with those identifiers on app launch to resume previous functionality.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsBluetoothPeripheralsKey", optional=true)
         public static native NSString BluetoothPeripherals();
         /**
-         * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.shortcutItem instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsShortcutItemKey", optional=true)
         public static native NSString ShortcutItem();
         /**
          * @since Available in iOS 14.5 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.eventAttribution instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsEventAttributionKey", optional=true)
         public static native NSString EventAttribution();
+        /**
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.userActivities instead.
+         */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsUserActivityDictionaryKey", optional=true)
         public static native NSString UserActivityDictionary();
         /**
          * @since Available in iOS 10.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UIScene.ConnectionOptions.cloudKitShareMetadata instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationLaunchOptionsCloudKitShareMetadataKey", optional=true)
         public static native NSString CloudKitShareMetadata();
     }

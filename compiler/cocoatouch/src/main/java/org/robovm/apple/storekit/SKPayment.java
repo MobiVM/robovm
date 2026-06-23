@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use Product.purchase(confirmIn:options:)
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPayment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,20 +55,36 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     @Property(selector = "productIdentifier")
     public native String getProductIdentifier();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "requestData")
     public native NSData getRequestData();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "quantity")
     public native @MachineSizedSInt long getQuantity();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "applicationUsername")
     public native String getApplicationUsername();
     /**
      * @since Available in iOS 8.3 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "simulatesAskToBuyInSandbox")
     public native boolean simulatesAskToBuyInSandbox();
     /**
      * @since Available in iOS 12.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "paymentDiscount")
     public native SKPaymentDiscount getPaymentDiscount();
     /*</properties>*/

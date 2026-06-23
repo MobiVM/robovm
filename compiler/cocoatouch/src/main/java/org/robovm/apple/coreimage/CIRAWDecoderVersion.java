@@ -97,6 +97,8 @@ import org.robovm.apple.avfoundation.*;
 
     /*<constants>*/
     public static final CIRAWDecoderVersion VersionNone = new CIRAWDecoderVersion("VersionNone");
+    public static final CIRAWDecoderVersion Version9 = new CIRAWDecoderVersion("Version9");
+    public static final CIRAWDecoderVersion Version9DNG = new CIRAWDecoderVersion("Version9DNG");
     public static final CIRAWDecoderVersion Version8 = new CIRAWDecoderVersion("Version8");
     public static final CIRAWDecoderVersion Version8DNG = new CIRAWDecoderVersion("Version8DNG");
     public static final CIRAWDecoderVersion Version7 = new CIRAWDecoderVersion("Version7");
@@ -105,7 +107,7 @@ import org.robovm.apple.avfoundation.*;
     public static final CIRAWDecoderVersion Version6DNG = new CIRAWDecoderVersion("Version6DNG");
     /*</constants>*/
     
-    private static /*<name>*/CIRAWDecoderVersion/*</name>*/[] values = new /*<name>*/CIRAWDecoderVersion/*</name>*/[] {/*<value_list>*/VersionNone, Version8, Version8DNG, Version7, Version7DNG, Version6, Version6DNG/*</value_list>*/};
+    private static /*<name>*/CIRAWDecoderVersion/*</name>*/[] values = new /*<name>*/CIRAWDecoderVersion/*</name>*/[] {/*<value_list>*/VersionNone, Version9, Version9DNG, Version8, Version8DNG, Version7, Version7DNG, Version6, Version6DNG/*</value_list>*/};
     
     /*<name>*/CIRAWDecoderVersion/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -130,6 +132,10 @@ import org.robovm.apple.avfoundation.*;
         /*<values>*/
         @GlobalValue(symbol="CIRAWDecoderVersionNone", optional=true)
         public static native NSString VersionNone();
+        @GlobalValue(symbol="CIRAWDecoderVersion9", optional=true)
+        public static native NSString Version9();
+        @GlobalValue(symbol="CIRAWDecoderVersion9DNG", optional=true)
+        public static native NSString Version9DNG();
         @GlobalValue(symbol="CIRAWDecoderVersion8", optional=true)
         public static native NSString Version8();
         @GlobalValue(symbol="CIRAWDecoderVersion8DNG", optional=true)

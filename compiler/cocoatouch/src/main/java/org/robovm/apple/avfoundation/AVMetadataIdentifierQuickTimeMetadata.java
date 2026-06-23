@@ -177,6 +177,50 @@ import org.robovm.apple.uikit.*;
      */
     public static final AVMetadataIdentifierQuickTimeMetadata IsMontage = new AVMetadataIdentifierQuickTimeMetadata("IsMontage");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata FullFrameRatePlaybackIntent = new AVMetadataIdentifierQuickTimeMetadata("FullFrameRatePlaybackIntent");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CinematicVideoIntent = new AVMetadataIdentifierQuickTimeMetadata("CinematicVideoIntent");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraISOSensitivity = new AVMetadataIdentifierQuickTimeMetadata("CameraISOSensitivity");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraWhiteBalance = new AVMetadataIdentifierQuickTimeMetadata("CameraWhiteBalance");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata WhiteBalanceByCCTWhiteBalanceFactors = new AVMetadataIdentifierQuickTimeMetadata("WhiteBalanceByCCTWhiteBalanceFactors");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata WhiteBalanceByCCTColorMatrices = new AVMetadataIdentifierQuickTimeMetadata("WhiteBalanceByCCTColorMatrices");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraShutterSpeedAngle = new AVMetadataIdentifierQuickTimeMetadata("CameraShutterSpeedAngle");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraShutterSpeedTime = new AVMetadataIdentifierQuickTimeMetadata("CameraShutterSpeedTime");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraLensIrisFNumber = new AVMetadataIdentifierQuickTimeMetadata("CameraLensIrisFNumber");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraLensModel = new AVMetadataIdentifierQuickTimeMetadata("CameraLensModel");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata CameraFocalLength35mmEquivalent = new AVMetadataIdentifierQuickTimeMetadata("CameraFocalLength35mmEquivalent");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final AVMetadataIdentifierQuickTimeMetadata AutoLivePhoto = new AVMetadataIdentifierQuickTimeMetadata("AutoLivePhoto");
@@ -202,7 +246,7 @@ import org.robovm.apple.uikit.*;
     public static final AVMetadataIdentifierQuickTimeMetadata LocationHorizontalAccuracyInMeters = new AVMetadataIdentifierQuickTimeMetadata("LocationHorizontalAccuracyInMeters");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, IsMontage, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, IsMontage, FullFrameRatePlaybackIntent, CinematicVideoIntent, CameraISOSensitivity, CameraWhiteBalance, WhiteBalanceByCCTWhiteBalanceFactors, WhiteBalanceByCCTColorMatrices, CameraShutterSpeedAngle, CameraShutterSpeedTime, CameraLensIrisFNumber, CameraLensModel, CameraFocalLength35mmEquivalent, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -352,6 +396,61 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataIsMontage", optional=true)
         public static native NSString IsMontage();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent", optional=true)
+        public static native NSString FullFrameRatePlaybackIntent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent", optional=true)
+        public static native NSString CinematicVideoIntent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity", optional=true)
+        public static native NSString CameraISOSensitivity();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance", optional=true)
+        public static native NSString CameraWhiteBalance();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors", optional=true)
+        public static native NSString WhiteBalanceByCCTWhiteBalanceFactors();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices", optional=true)
+        public static native NSString WhiteBalanceByCCTColorMatrices();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle", optional=true)
+        public static native NSString CameraShutterSpeedAngle();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime", optional=true)
+        public static native NSString CameraShutterSpeedTime();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber", optional=true)
+        public static native NSString CameraLensIrisFNumber();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraLensModel", optional=true)
+        public static native NSString CameraLensModel();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent", optional=true)
+        public static native NSString CameraFocalLength35mmEquivalent();
         /**
          * @since Available in iOS 13.0 and later.
          */

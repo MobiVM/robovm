@@ -2,6 +2,7 @@ package: org.robovm.apple.corelocation
 include: [foundation.yaml, addressbook.yaml, corebluetooth.yaml, contacts]
 library: CoreLocation
 framework: CoreLocation
+internal_frameworks: [_LocationEssentials]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.h
@@ -19,6 +20,7 @@ enums:
     CLLocationPushServiceError: { nserror: true } #since 15.0
     CLLiveUpdateConfiguration: { }
     CLMonitoringState: { }
+    CLServiceSessionAuthorizationRequirement: {}
 classes:
     CLError:
         extends: NSError
@@ -194,7 +196,10 @@ classes:
         methods:
             '-initWithSoftwareSimulationState:andExternalAccessoryState:':
                 name: init
-    CLBackgroundActivitySession: {} #since 17.0
+    CLBackgroundActivitySession: #since 17.0
+        methods:
+            '+backgroundActivitySessionWithQueue:handler:':
+                name: backgroundActivitySession
     CLBeaconIdentityCondition: #since 17.0
         methods:
             '-initWithUUID:':
@@ -233,7 +238,21 @@ classes:
                 name: create
     CLMonitoringEvent: {} #since 17.0
     CLMonitoringRecord: {} #since 17.0
-    CLUpdate: {} #since 17.0
+    CLUpdate: #since 17.0
+        properties:
+            isStationary:
+                exclude: true # deprecated on arrival
+
+    CLBackgroundActivitySessionDiagnostic: { } #since 18.0
+    CLServiceSession: #since 18.0
+        methods:
+            '+sessionRequiringAuthorization:queue:handler:':
+                name: createSessionRequiringAuthorization
+            '+sessionRequiringAuthorization:fullAccuracyPurposeKey:':
+                name: createSessionRequiringAuthorization
+            '+sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:':
+                name: createSessionRequiringAuthorization
+    CLServiceSessionDiagnostic: { } #since 18.0
 protocols:
     CLLocationManagerDelegate: # DONE
         methods:

@@ -37,7 +37,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLRenderPipelineState/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
+    /*<implements>*/implements MTLAllocation, NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/public static class MTLRenderPipelineStatePtr extends Ptr<MTLRenderPipelineState, MTLRenderPipelineStatePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTLRenderPipelineState.class); }/*</bind>*/
@@ -50,6 +50,11 @@ import org.robovm.apple.dispatch.*;
     public native String getLabel();
     @Property(selector = "device")
     public native MTLDevice getDevice();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "reflection")
+    public native MTLRenderPipelineReflection getReflection();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -100,9 +105,62 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "gpuResourceID")
     public native @ByVal MTLResourceID getGpuResourceID();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shaderValidation")
+    public native MTLShaderValidation getShaderValidation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerTileThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerTileThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerObjectThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerObjectThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerMeshThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerMeshThreadgroup();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allocatedSize")
+    public native @MachineSizedUInt long getAllocatedSize();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "functionHandleWithName:stage:")
+    public native MTLFunctionHandle functionHandle(String name, MTLRenderStages stage);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "functionHandleWithBinaryFunction:stage:")
+    public native MTLFunctionHandle functionHandle(MTL4BinaryFunction function, MTLRenderStages stage);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newRenderPipelineStateWithBinaryFunctions:error:")
+    public native MTLRenderPipelineState newRenderPipelineState(MTL4RenderPipelineBinaryFunctionsDescriptor binaryFunctionsDescriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newRenderPipelineDescriptorForSpecialization")
+    public native MTL4PipelineDescriptor newRenderPipelineDescriptorForSpecialization();
     /**
      * @since Available in iOS 11.0 and later.
      */

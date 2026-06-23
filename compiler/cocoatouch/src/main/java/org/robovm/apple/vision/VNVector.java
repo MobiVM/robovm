@@ -57,7 +57,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithXComponent:yComponent:")
     public VNVector(double x, double y) { super((SkipInit) null); initObject(init(x, y)); }
     @Method(selector = "initWithR:theta:")
-    public static  VNVector createUsingRTheta(double r, double theta) {
+    public static VNVector createUsingRTheta(double r, double theta) {
        VNVector res = new VNVector((SkipInit) null);
        res.initObject(res.initUsingRTheta(r, theta));
        return res;

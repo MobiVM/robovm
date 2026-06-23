@@ -71,6 +71,16 @@ import org.robovm.apple.uikit.*;
     public native NSArray<AVPlayerInterstitialEvent> getEvents();
     @Property(selector = "currentEvent")
     public native AVPlayerInterstitialEvent getCurrentEvent();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "currentEventSkippableState")
+    public native AVPlayerInterstitialEventSkippableEventState getCurrentEventSkippableState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "currentEventSkipControlLabel")
+    public native String getCurrentEventSkipControlLabel();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

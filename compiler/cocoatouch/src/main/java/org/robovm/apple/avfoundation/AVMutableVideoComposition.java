@@ -58,7 +58,7 @@ import org.robovm.apple.uikit.*;
     protected AVMutableVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVMutableVideoComposition(SkipInit skipInit) { super(skipInit); }
     /**
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:completionHandler: instead
      */
     @Deprecated
     public AVMutableVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
@@ -68,7 +68,7 @@ import org.robovm.apple.uikit.*;
     public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler) { super((Handle) null, create0(asset, completionHandler)); retain(getHandle()); }
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler: instead
      */
     @Deprecated
     public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction) { super((Handle) null, create(asset, prototypeInstruction)); retain(getHandle()); }
@@ -78,7 +78,7 @@ import org.robovm.apple.uikit.*;
     public AVMutableVideoComposition(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler) { super((Handle) null, create(asset, prototypeInstruction, completionHandler)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead
      */
     @Deprecated
     public AVMutableVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
@@ -133,6 +133,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setSourceSampleDataTrackIDs:")
     public native void setSourceSampleDataTrackIDs(NSArray<NSNumber> v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "outputBufferDescription")
+    public native NSArray<?> getOutputBufferDescription();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setOutputBufferDescription:")
+    public native void setOutputBufferDescription(NSArray<?> v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "colorPrimaries")
@@ -176,7 +186,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
@@ -188,7 +198,7 @@ import org.robovm.apple.uikit.*;
     protected static native @Pointer long create0(AVAsset asset, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler);
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:prototypeInstruction:")
@@ -200,7 +210,7 @@ import org.robovm.apple.uikit.*;
     protected static native @Pointer long create(AVAsset asset, AVVideoCompositionInstruction prototypeInstruction, @Block VoidBlock2<AVMutableVideoComposition, NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:")

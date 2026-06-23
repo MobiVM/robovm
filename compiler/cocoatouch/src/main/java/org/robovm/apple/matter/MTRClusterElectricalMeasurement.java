@@ -35,11 +35,12 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. ElectricalMeasurement is deprecated and will be removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterElectricalMeasurement/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterElectricalMeasurementPtr extends Ptr<MTRClusterElectricalMeasurement, MTRClusterElectricalMeasurementPtr> {}/*</ptr>*/
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRClusterElectricalMeasurement(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. ElectricalMeasurement is deprecated and will be removed
      */
+    @Deprecated
     @Method(selector = "initWithDevice:endpointID:queue:")
     public MTRClusterElectricalMeasurement(MTRDevice device, NSNumber endpointID, DispatchQueue queue) { super((SkipInit) null); initObject(init(device, endpointID, queue)); }
     /*</constructors>*/
@@ -62,768 +65,1074 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
+    @Deprecated
     @Method(selector = "getProfileInfoCommandWithParams:expectedValues:expectedValueInterval:completion:")
     public native void getProfileInfoCommand(MTRElectricalMeasurementClusterGetProfileInfoCommandParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
+    @Deprecated
     @Method(selector = "getProfileInfoCommandWithExpectedValues:expectedValueInterval:completion:")
     public native void getProfileInfoCommand(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
+    @Deprecated
     @Method(selector = "getMeasurementProfileCommandWithParams:expectedValues:expectedValueInterval:completion:")
     public native void getMeasurementProfileCommand(MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasurementTypeWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasurementType(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcVoltageMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcVoltageMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcVoltageMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcVoltageMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcCurrentMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcCurrentMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcCurrentMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcCurrentMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcPowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcPower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcPowerMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcPowerMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcPowerMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcPowerMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcVoltageMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcVoltageMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcVoltageDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcVoltageDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcCurrentMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcCurrentMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcCurrentDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcCurrentDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcPowerMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcPowerMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDcPowerDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeDcPowerDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcFrequencyWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcFrequency(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcFrequencyMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcFrequencyMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcFrequencyMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcFrequencyMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeNeutralCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeNeutralCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeTotalActivePowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeTotalActivePower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeTotalReactivePowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeTotalReactivePower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeTotalApparentPowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeTotalApparentPower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured1stHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured1stHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured3rdHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured3rdHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured5thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured5thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured7thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured7thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured9thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured9thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasured11thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasured11thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase1stHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase1stHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase3rdHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase3rdHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase5thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase5thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase7thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase7thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase9thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase9thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeMeasuredPhase11thHarmonicCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeMeasuredPhase11thHarmonicCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcFrequencyMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcFrequencyMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcFrequencyDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcFrequencyDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePowerMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributePowerMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePowerDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributePowerDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeHarmonicCurrentMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeHarmonicCurrentMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePhaseHarmonicCurrentMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributePhaseHarmonicCurrentMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInstantaneousVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeInstantaneousVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInstantaneousLineCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeInstantaneousLineCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInstantaneousActiveCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeInstantaneousActiveCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInstantaneousReactiveCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeInstantaneousReactiveCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInstantaneousPowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeInstantaneousPower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrent(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMinWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMin(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMaxWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMax(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReactivePowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeReactivePower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeApparentPowerWithParams:")
     public native NSDictionary<NSString, ?> readAttributeApparentPower(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePowerFactorWithParams:")
     public native NSDictionary<NSString, ?> readAttributePowerFactor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsVoltageMeasurementPeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsVoltageMeasurementPeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAverageRmsVoltageMeasurementPeriodWithValue:expectedValueInterval:")
     public native void writeAttributeAverageRmsVoltageMeasurementPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAverageRmsVoltageMeasurementPeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeAverageRmsVoltageMeasurementPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsUnderVoltageCounterWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsUnderVoltageCounter(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAverageRmsUnderVoltageCounterWithValue:expectedValueInterval:")
     public native void writeAttributeAverageRmsUnderVoltageCounter(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAverageRmsUnderVoltageCounterWithValue:expectedValueInterval:params:")
     public native void writeAttributeAverageRmsUnderVoltageCounter(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeOverVoltagePeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeOverVoltagePeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsExtremeOverVoltagePeriodWithValue:expectedValueInterval:")
     public native void writeAttributeRmsExtremeOverVoltagePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsExtremeOverVoltagePeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeRmsExtremeOverVoltagePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeUnderVoltagePeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeUnderVoltagePeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsExtremeUnderVoltagePeriodWithValue:expectedValueInterval:")
     public native void writeAttributeRmsExtremeUnderVoltagePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsExtremeUnderVoltagePeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeRmsExtremeUnderVoltagePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSagPeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSagPeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsVoltageSagPeriodWithValue:expectedValueInterval:")
     public native void writeAttributeRmsVoltageSagPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsVoltageSagPeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeRmsVoltageSagPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSwellPeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSwellPeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsVoltageSwellPeriodWithValue:expectedValueInterval:")
     public native void writeAttributeRmsVoltageSwellPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeRmsVoltageSwellPeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeRmsVoltageSwellPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcVoltageMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcVoltageMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcVoltageDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcVoltageDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcCurrentMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcCurrentMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcCurrentDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcCurrentDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcPowerMultiplierWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcPowerMultiplier(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcPowerDivisorWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcPowerDivisor(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeOverloadAlarmsMaskWithParams:")
     public native NSDictionary<NSString, ?> readAttributeOverloadAlarmsMask(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeOverloadAlarmsMaskWithValue:expectedValueInterval:")
     public native void writeAttributeOverloadAlarmsMask(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeOverloadAlarmsMaskWithValue:expectedValueInterval:params:")
     public native void writeAttributeOverloadAlarmsMask(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeVoltageOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeVoltageOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeCurrentOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeCurrentOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcOverloadAlarmsMaskWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcOverloadAlarmsMask(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAcOverloadAlarmsMaskWithValue:expectedValueInterval:")
     public native void writeAttributeAcOverloadAlarmsMask(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeAcOverloadAlarmsMaskWithValue:expectedValueInterval:params:")
     public native void writeAttributeAcOverloadAlarmsMask(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcVoltageOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcVoltageOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcCurrentOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcCurrentOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcActivePowerOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcActivePowerOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcReactivePowerOverloadWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcReactivePowerOverload(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsOverVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsOverVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsUnderVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsUnderVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeOverVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeOverVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeUnderVoltageWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeUnderVoltage(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSagWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSag(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSwellWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSwell(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeLineCurrentPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeLineCurrentPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActiveCurrentPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActiveCurrentPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReactiveCurrentPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeReactiveCurrentPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltagePhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltagePhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMinPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMinPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMaxPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMaxPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMinPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMinPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMaxPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMaxPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMinPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMinPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMaxPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMaxPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReactivePowerPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeReactivePowerPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeApparentPowerPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeApparentPowerPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePowerFactorPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributePowerFactorPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsVoltageMeasurementPeriodPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsVoltageMeasurementPeriodPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsOverVoltageCounterPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsOverVoltageCounterPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsUnderVoltageCounterPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsUnderVoltageCounterPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeOverVoltagePeriodPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeOverVoltagePeriodPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeUnderVoltagePeriodPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeUnderVoltagePeriodPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSagPeriodPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSagPeriodPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSwellPeriodPhaseBWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSwellPeriodPhaseB(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeLineCurrentPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeLineCurrentPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActiveCurrentPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActiveCurrentPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReactiveCurrentPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeReactiveCurrentPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltagePhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltagePhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMinPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMinPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageMaxPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageMaxPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMinPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMinPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsCurrentMaxPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsCurrentMaxPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMinPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMinPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActivePowerMaxPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActivePowerMaxPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReactivePowerPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeReactivePowerPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeApparentPowerPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeApparentPowerPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePowerFactorPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributePowerFactorPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsVoltageMeasurementPeriodPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsVoltageMeasurementPeriodPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsOverVoltageCounterPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsOverVoltageCounterPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAverageRmsUnderVoltageCounterPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAverageRmsUnderVoltageCounterPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeOverVoltagePeriodPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeOverVoltagePeriodPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsExtremeUnderVoltagePeriodPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsExtremeUnderVoltagePeriodPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSagPeriodPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSagPeriodPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeRmsVoltageSwellPeriodPhaseCWithParams:")
     public native NSDictionary<NSString, ?> readAttributeRmsVoltageSwellPeriodPhaseC(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeGeneratedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcceptedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcceptedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAttributeListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAttributeList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeFeatureMapWithParams:")
     public native NSDictionary<NSString, ?> readAttributeFeatureMap(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. ElectricalMeasurement is deprecated and will be removed
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

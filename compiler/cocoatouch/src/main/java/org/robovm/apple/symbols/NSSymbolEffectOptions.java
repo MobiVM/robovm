@@ -56,24 +56,54 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Use [NSSymbolEffectOptionsRepeatBehavior behaviorPeriodic]
+     */
+    @Deprecated
     @Method(selector = "optionsWithRepeating")
     public native NSSymbolEffectOptions withRepeating();
     @Method(selector = "optionsWithNonRepeating")
     public native NSSymbolEffectOptions withNonRepeating();
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Use [NSSymbolEffectOptionsRepeatBehavior behaviorPeriodicWithCount:]
+     */
+    @Deprecated
     @Method(selector = "optionsWithRepeatCount:")
-    public native NSSymbolEffectOptions withRepeatCount$(@MachineSizedSInt long count);
+    public native NSSymbolEffectOptions withRepeatCount(@MachineSizedSInt long count);
     @Method(selector = "optionsWithSpeed:")
-    public native NSSymbolEffectOptions withSpeed$(double speed);
+    public native NSSymbolEffectOptions withSpeed(double speed);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "optionsWithRepeatBehavior:")
+    public native NSSymbolEffectOptions withRepeatBehavior(NSSymbolEffectOptionsRepeatBehavior behavior);
     @Method(selector = "options")
     public static native NSSymbolEffectOptions options();
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Use [NSSymbolEffectOptionsRepeatBehavior behaviorPeriodic]
+     */
+    @Deprecated
     @Method(selector = "optionsWithRepeating")
     public static native NSSymbolEffectOptions optionsWithRepeating();
     @Method(selector = "optionsWithNonRepeating")
     public static native NSSymbolEffectOptions optionsWithNonRepeating();
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Use [NSSymbolEffectOptionsRepeatBehavior behaviorPeriodicWithCount:]
+     */
+    @Deprecated
     @Method(selector = "optionsWithRepeatCount:")
-    public static native NSSymbolEffectOptions optionsWithRepeatCount$(@MachineSizedSInt long count);
+    public static native NSSymbolEffectOptions optionsWithRepeatCount(@MachineSizedSInt long count);
     @Method(selector = "optionsWithSpeed:")
-    public static native NSSymbolEffectOptions optionsWithSpeed$(double speed);
+    public static native NSSymbolEffectOptions optionsWithSpeed(double speed);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "optionsWithRepeatBehavior:")
+    public static native NSSymbolEffectOptions optionsWithRepeatBehavior(NSSymbolEffectOptionsRepeatBehavior behavior);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

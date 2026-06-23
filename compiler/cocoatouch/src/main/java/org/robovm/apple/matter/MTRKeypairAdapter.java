@@ -50,6 +50,16 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("copyPublicKey")
+    public SecKey copyPublicKey() { return null; }
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.4. Please implement copyPublicKey, this will leak otherwise
+     */
+    @Deprecated
     @NotImplemented("publicKey")
     public SecKey publicKey() { return null; }
     @NotImplemented("signMessageECDSA_RAW:")

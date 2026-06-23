@@ -52,6 +52,11 @@ import org.robovm.apple.metal.*;
     public MPSTemporaryNDArray(MTLCommandBuffer commandBuffer, MPSNDArrayDescriptor descriptor) { super((Handle) null, create(commandBuffer, descriptor)); retain(getHandle()); }
     @Method(selector = "initWithDevice:scalar:")
     public MPSTemporaryNDArray(MTLDevice device, double value) { super(device, value); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSTemporaryNDArray(MTLBuffer buffer, @MachineSizedUInt long offset, MPSNDArrayDescriptor descriptor) { super(buffer, offset, descriptor); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "readCount")

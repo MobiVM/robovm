@@ -34,9 +34,10 @@ import org.robovm.apple.uniformtypeid.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use HKCategoryValueVaginalBleeding
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unspecified(1L),
@@ -45,7 +46,9 @@ public enum /*<name>*/HKCategoryValueMenstrualFlow/*</name>*/ implements ValuedE
     Heavy(4L),
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use HKCategoryValueVaginalBleeding
      */
+    @Deprecated
     None(5L);
     /*</values>*/
 

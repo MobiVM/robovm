@@ -18,15 +18,17 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.23</b>
+            <b>2.3.25</b>
 
             <h2>New Features</h2>
             <ul>
-                <li>XCode 16 support</li>
+                <li>Support 2026.1 EAP</li>
+                <li>iOS17+ device support</li>
+                <li>Exclude build from indexing</li>
             </ul>
             <h2>Bug Fixes</h2>
             <ul>
-                <li>Fixes for XCode 16 provisioning profiles</li>
+                <li>Fix gradle launch</li>
             </ul>
         ]]>
     </change-notes>
@@ -42,7 +44,6 @@
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
         <postStartupActivity implementation="org.robovm.idea.components.RoboVmProjectStartupActivity"/>
-        <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
         <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->

@@ -1,0 +1,311 @@
+package: org.robovm.apple.browserenginekit
+include: [foundation, uikit, coregraphics, uniformtypeid, coreanimation, avfoundation]
+library: BrowserEngineKit
+framework: BrowserEngineKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/BrowserEngineKit.framework/Headers/BrowserEngineKit.h
+
+typedefs:
+
+private_typedefs:
+    OS_xpc_object: ObjCObject
+    
+enums:
+    BEScrollViewScrollUpdatePhase: {} #since 17.4
+    BEKeyPressState: {} #since 17.4
+    BEGestureType: {} #since 17.4
+    BESelectionTouchPhase: {} #since 17.4
+    BESelectionFlags: {prefix: BE} #since 17.4
+    BETextReplacementOptions: {} #since 17.4
+    BEKeyModifierFlags: {prefix: BEKeyModifierFlag} #since 17.4
+    BETextDocumentRequestOptions: {prefix: BETextDocumentOption} #since 17.4
+    BEAccessibilityPressedState: {} #since 18.0
+    BEAccessibilityContainerType: {} #since 18.0
+
+categories:
+
+classes:
+    # structs
+    BEDirectionalTextRange: {}
+
+    # classes
+    BEAccessibilityRemoteElement: #since 26.0
+        methods:
+            '-initWithIdentifier:hostPid:':
+                name: init
+    BEAccessibilityRemoteHostElement: #since 26.0
+        methods:
+            '-initWithIdentifier:remotePid:':
+                name: init
+    BEAccessibilityTextMarker: {} #since 18.2
+    BEAccessibilityTextMarkerRange: {} #since 18.2
+    BEAutoFillTextSuggestion: {} #since 17.4
+    BEContextMenuConfiguration: {} #since 17.4
+    BEDownloadMonitor: #since 18.2
+        methods:
+            '-initWithSourceURL:destinationURL:observedProgress:liveActivityAccessToken:':
+                name: init
+            '-useDownloadsFolderWithPlaceholderType:finalFileCreatedHandler:':
+                name: useDownloadsFolder
+            '-resumeMonitoring:completionHandler:':
+                name: resumeMonitoring
+    BEDownloadMonitorLocation: {} #since 18.2
+    BEDragInteraction: {}  #since 17.4
+    BEKeyEntry: {} #since 17.4
+    BEKeyEntryContext: #since 17.4
+        methods:
+            '-initWithKeyEntry:':
+                name: init
+    BELayerHierarchy: #since 17.4
+        properties:
+            'handle':
+                name: layerHierarchyHandle
+        methods:
+            '+layerHierarchyWithError:':
+                name: layerHierarchy
+                throws: NSErrorException
+    BELayerHierarchyHandle: #since 17.4
+        methods:
+            '-encodeWithBlock:':
+                name: encode
+            '+handleWithXPCRepresentation:error:':
+                name: handleWithXPCRepresentation
+                throws: NSErrorException
+            '+handleWithPort:data:error:':
+                name: handleWithPort
+                throws: NSErrorException
+    BELayerHierarchyHostingTransactionCoordinator: #since 17.4
+        methods:
+            '-encodeWithBlock:':
+                name: encode
+            '+coordinatorWithError:':
+                name: coordinator
+                throws: NSErrorException
+            '+coordinatorWithXPCRepresentation:error:':
+                name: coordinatorWithXPCRepresentation
+                throws: NSErrorException
+            '+coordinatorWithPort:data:error:':
+                name: coordinatorWithPort
+                throws: NSErrorException
+    BELayerHierarchyHostingView: #since 17.4
+        properties:
+            'handle':
+                name: layerHierarchyHandle
+    BEMediaEnvironment: #since 17.4
+        methods:
+            '-initWithWebPageURL:':
+                name: init
+            '-initWithXPCRepresentation:error:':
+                name: init
+                throws: NSErrorException
+            '-activateWithError:':
+                name: activate
+                throws: NSErrorException
+            '-suspendWithError:':
+                name: suspend
+                throws: NSErrorException
+            '-makeCaptureSessionWithError:':
+                name: makeCaptureSession
+                throws: NSErrorException
+    BENetworkingProcess: #since 17.4
+        methods:
+            '+networkProcessWithInterruptionHandler:completion:':
+                name: networkProcess
+            '+networkProcessWithBundleID:interruptionHandler:completion:':
+                name: networkProcess
+            '-grantCapability:error:':
+                name: grantCapability
+                throws: NSErrorException
+            '-grantCapability:error:invalidationHandler:':
+                name: grantCapability
+    BEProcessCapability: #since 17.4
+        methods:
+            '-requestWithError:':
+                name: request
+                throws: NSErrorException
+            '+mediaPlaybackAndCaptureWithEnvironment:':
+                name: mediaPlaybackAndCapture
+            '-grantCapability:error:':
+                name: grantCapability
+                throws: NSErrorException
+            '-grantCapability:error:invalidationHandler:':
+                name: grantCapability
+    BERenderingProcess: #since 17.4
+        methods:
+            '+renderingProcessWithInterruptionHandler:completion:':
+                name: renderingProcess
+            '+renderingProcessWithBundleID:interruptionHandler:completion:':
+                name: renderingProcess
+            '-grantCapability:error:':
+                name: grantCapability
+                throws: NSErrorException
+            '-grantCapability:error:invalidationHandler:':
+                name: grantCapability
+    BEScrollView: {} #since 17.4
+    BEScrollViewScrollUpdate: {} #since 17.4
+    BETextAlternatives: {} #since 17.4
+    BETextDocumentContext: #since 17.4
+        methods:
+            '-initWithSelectedText:contextBefore:contextAfter:markedText:selectedRangeInMarkedText:':
+                name: init
+            '-initWithAttributedSelectedText:contextBefore:contextAfter:markedText:selectedRangeInMarkedText:':
+                name: init
+            '-addTextRect:forCharacterRange:':
+                name: addText
+    BETextDocumentRequest: {} #since 17.4
+    BETextInteraction: #since 17.4
+        methods:
+            '-addShortcutForText:fromRect:':
+                name: addShortcut
+            '-shareText:fromRect:':
+                name: shareText
+            '-showDictionaryForTextInContext:definingTextInRange:fromRect:':
+                name: showDictionaryForTextInContext
+            '-translateText:fromRect:':
+                name: translateText
+            '-selectionChangedWithGestureAtPoint:gesture:state:flags:':
+                name: selectionChanged
+            '-selectionBoundaryAdjustedToPoint:touchPhase:flags:':
+                name: selectionBoundaryAdjusted
+    BETextSuggestion: #since 17.4
+        methods:
+            '-initWithInputText:':
+                name: init
+    BEWebAppManifest: #since 17.5
+        methods:
+            '-initWithJSONData:manifestURL:':
+                name: init
+    BEWebContentProcess: #since 17.4
+        methods:
+            '+webContentProcessWithInterruptionHandler:completion:':
+                name: webContentProcess
+            '+webContentProcessWithBundleID:interruptionHandler:completion:':
+                name: webContentProcess
+            '-grantCapability:error:':
+                name: grantCapability
+                throws: NSErrorException
+            '-grantCapability:error:invalidationHandler:':
+                name: grantCapability
+protocols:
+    BEAccessibilityTextMarkerSupport: {} #since 18.2
+    BEDragInteractionDelegate: #since 17.4
+        methods:
+            '-dragInteraction:prepareDragSession:completion:':
+                name: prepareDragSession
+            '-dragInteraction:itemsForAddingToSession:forTouchAtPoint:completion:':
+                name: itemsForAddingToSession
+    BEExtendedTextInputTraits: {} #since 17.4
+    BEExtensionProcess: {} #since 26.0
+    BEProcessCapabilityGrant: {} #since 17.4
+    BEResponderEditActions: {} #since 17.4
+    BEScrollViewDelegate: #since 17.4
+        methods:
+            '-scrollView:handleScrollUpdate:completion:':
+                name: handleScrollUpdate
+    BETextInput: #since 17.4
+        methods:
+            '-canPerformAction:withSender:':
+                name: canPerformAction
+            '-handleKeyEntry:withCompletionHandler:':
+                name: handleKeyEntry
+            '-shiftKeyStateChangedFromState:toState:':
+                name: shiftKeyStateChanged
+            '-offsetFromPosition:toPosition:':
+                name: offsetFromPosition
+            '-setBaseWritingDirection:forRange:':
+                name: setBaseWritingDirection
+            '-deleteInDirection:toGranularity:':
+                name: deleteInDirection
+            '-replaceText:withText:options:completionHandler:':
+                name: replaceText
+            '-requestTextContextForAutocorrectionWithCompletionHandler:':
+                name: requestTextContextForAutocorrection
+            '-requestTextRectsForString:withCompletionHandler:':
+                name: requestTextRectsForString
+            '-requestPreferredArrowDirectionForEditMenuWithCompletionHandler:':
+                name: requestPreferredArrowDirectionForEditMenu
+            '-systemWillPresentEditMenuWithAnimator:':
+                name: systemWillPresentEditMenu
+            '-systemWillDismissEditMenuWithAnimator:':
+                name: systemWillDismissEditMenu
+            '-textStylingAtPosition:inDirection:':
+                name: textStylingAtPosition
+            '-replaceSelectedText:withText:':
+                name: replaceSelectedText
+            '-updateCurrentSelectionTo:fromGesture:inState:':
+                name: updateCurrentSelection
+            '-setSelectionFromPoint:toPoint:gesture:state:':
+                name: setSelection
+            '-adjustSelectionBoundaryToPoint:touchPhase:baseIsStart:flags:':
+                name: adjustSelectionBoundary
+            '-textInteractionGesture:shouldBeginAtPoint:':
+                name: textInteractionGesture
+            '-updateSelectionWithExtentPoint:boundary:completionHandler:':
+                name: updateSelection
+            '-selectTextInGranularity:atPoint:completionHandler:':
+                name: selectTextInGranularity
+            '-selectPositionAtPoint:completionHandler:':
+                name: selectPosition
+            '-selectPositionAtPoint:withContextRequest:completionHandler:':
+                name: selectPosition
+            '-adjustSelectionByRange:completionHandler:':
+                name: adjustSelection
+            '-moveSelectionAtBoundary:inStorageDirection:completionHandler:':
+                name: moveSelectionAtBoundary
+            '-selectTextForEditMenuWithLocationInView:completionHandler:':
+                name: selectTextForEditMenu
+            '-setMarkedText:selectedRange:':
+                name: setMarkedText
+            '-setAttributedMarkedText:selectedRange:':
+                name: setAttributedMarkedText
+            '-requestDocumentContext:completionHandler:':
+                name: requestDocumentContext
+            '-replaceDictatedText:withText:':
+                name: replaceDictatedText
+            '-insertTextPlaceholderWithSize:completionHandler:':
+                name: insertTextPlaceholder
+            '-removeTextPlaceholder:willInsertText:completionHandler:':
+                name: removeTextPlaceholder
+    BETextInputDelegate: #since 17.4
+        methods:
+            '-shouldDeferEventHandlingToSystemForTextInput:context:':
+                name: shouldDeferEventHandlingToSystemForTextInput
+            '-textInput:setCandidateSuggestions:':
+                name: setCandidateSuggestions
+            '-textInput:deferReplaceTextActionToSystem:':
+                name: deferReplaceTextActionToSystem
+    BETextInteractionDelegate: {} #since 17.4
+    BETextSelectionDirectionNavigation: #since 17.4
+        methods:
+            '-moveInStorageDirection:byGranularity:':
+                name: moveInStorageDirection
+            '-extendInStorageDirection:byGranularity:':
+                name: extendInStorageDirection
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?BE.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    BEAccessibilityTrait(.*):
+        class: BEAccessibility
+        name: '#{g[0].downcase_first}'
+        readonly: true
+    BEAccessibility(SelectionChangedNotification|ValueChangedNotification):
+        class: BEAccessibility
+        name: '#{g[0].downcase_first}'
+        readonly: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?BE.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?BE.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

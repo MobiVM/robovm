@@ -88,6 +88,16 @@ import org.robovm.apple.coreanimation.*;
     public native void removeData(@org.robovm.rt.bro.annotation.Marshaler(WKWebsiteDataType.AsSetMarshaler.class) Set<WKWebsiteDataType> dataTypes, NSArray<WKWebsiteDataRecord> dataRecords, @Block Runnable completionHandler);
     @Method(selector = "removeDataOfTypes:modifiedSince:completionHandler:")
     public native void removeData(@org.robovm.rt.bro.annotation.Marshaler(WKWebsiteDataType.AsSetMarshaler.class) Set<WKWebsiteDataType> dataTypes, NSDate date, @Block Runnable completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fetchDataOfTypes:completionHandler:")
+    public native void fetchData(NSSet<NSString> dataTypes, @Block VoidBlock2<NSData, NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "restoreData:completionHandler:")
+    public native void restoreData(NSData data, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "defaultDataStore")
     public static native WKWebsiteDataStore getDefaultDataStore();
     @Method(selector = "nonPersistentDataStore")

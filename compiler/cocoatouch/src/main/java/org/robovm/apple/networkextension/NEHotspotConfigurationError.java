@@ -55,7 +55,9 @@ public enum /*<name>*/NEHotspotConfigurationError/*</name>*/ implements NSErrorC
     JoinOnceNotSupported(12L),
     AlreadyAssociated(13L),
     ApplicationIsNotInForeground(14L),
-    InvalidSSIDPrefix(15L);
+    InvalidSSIDPrefix(15L),
+    UserUnauthorized(16L),
+    SystemDenied(17L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NEHotspotConfigurationError.class); }/*</bind>*/

@@ -34,8 +34,9 @@ import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
 import org.robovm.compiler.plugin.invokedynamic.InvokeDynamicCompilerPlugin;
+import org.robovm.compiler.plugin.launch.LaunchPlugin;
 import org.robovm.compiler.plugin.objc.*;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.framework.FrameworkTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -43,7 +44,6 @@ import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.DigestUtil;
 import org.robovm.compiler.util.InfoPList;
-import org.robovm.compiler.util.io.RamDiskTools;
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.convert.Registry;
@@ -1021,11 +1021,6 @@ public class Config {
 
         osArchDepLibDir = new File(new File(home.libVmDir, os.toString()), sliceArch.toString());
         dependencyGraph = new DependencyGraph(getTreeShakerMode());
-
-        RamDiskTools ramDiskTools = new RamDiskTools();
-        ramDiskTools.setupRamDisk(this, this.cacheDir, this.tmpDir);
-        this.cacheDir = ramDiskTools.getCacheDir();
-        this.tmpDir = ramDiskTools.getTmpDir();
 
         File osDir = new File(cacheDir, os.toString());
         String archName = sliceArch.toString();

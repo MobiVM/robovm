@@ -47,7 +47,11 @@ public enum /*<name>*/MTRTimeFormatLocalizationHourFormat/*</name>*/ implements 
     /**
      * @since Available in iOS 16.1 and later.
      */
-    _24hr(1L);
+    _24hr(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    UseActiveLocale(255L);
     /*</values>*/
 
     /*<bind>*/

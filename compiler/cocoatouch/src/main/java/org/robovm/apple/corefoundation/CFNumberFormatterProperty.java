@@ -129,9 +129,13 @@ import org.robovm.apple.coretext.*;
     public static final CFNumberFormatterProperty UseSignificantDigits = new CFNumberFormatterProperty("UseSignificantDigits");
     public static final CFNumberFormatterProperty MinSignificantDigits = new CFNumberFormatterProperty("MinSignificantDigits");
     public static final CFNumberFormatterProperty MaxSignificantDigits = new CFNumberFormatterProperty("MaxSignificantDigits");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CFNumberFormatterProperty MinGroupingDigits = new CFNumberFormatterProperty("MinGroupingDigits");
     /*</constants>*/
     
-    private static /*<name>*/CFNumberFormatterProperty/*</name>*/[] values = new /*<name>*/CFNumberFormatterProperty/*</name>*/[] {/*<value_list>*/CurrencyCode, DecimalSeparator, CurrencyDecimalSeparator, AlwaysShowDecimalSeparator, GroupingSeparator, UseGroupingSeparator, PercentSymbol, ZeroSymbol, NaNSymbol, InfinitySymbol, MinusSign, PlusSign, CurrencySymbol, ExponentSymbol, MinIntegerDigits, MaxIntegerDigits, MinFractionDigits, MaxFractionDigits, GroupingSize, SecondaryGroupingSize, RoundingMode, RoundingIncrement, FormatWidth, PaddingPosition, PaddingCharacter, DefaultFormat, Multiplier, PositivePrefix, PositiveSuffix, NegativePrefix, NegativeSuffix, PerMillSymbol, InternationalCurrencySymbol, CurrencyGroupingSeparator, IsLenient, UseSignificantDigits, MinSignificantDigits, MaxSignificantDigits/*</value_list>*/};
+    private static /*<name>*/CFNumberFormatterProperty/*</name>*/[] values = new /*<name>*/CFNumberFormatterProperty/*</name>*/[] {/*<value_list>*/CurrencyCode, DecimalSeparator, CurrencyDecimalSeparator, AlwaysShowDecimalSeparator, GroupingSeparator, UseGroupingSeparator, PercentSymbol, ZeroSymbol, NaNSymbol, InfinitySymbol, MinusSign, PlusSign, CurrencySymbol, ExponentSymbol, MinIntegerDigits, MaxIntegerDigits, MinFractionDigits, MaxFractionDigits, GroupingSize, SecondaryGroupingSize, RoundingMode, RoundingIncrement, FormatWidth, PaddingPosition, PaddingCharacter, DefaultFormat, Multiplier, PositivePrefix, PositiveSuffix, NegativePrefix, NegativeSuffix, PerMillSymbol, InternationalCurrencySymbol, CurrencyGroupingSeparator, IsLenient, UseSignificantDigits, MinSignificantDigits, MaxSignificantDigits, MinGroupingDigits/*</value_list>*/};
     
     /*<name>*/CFNumberFormatterProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -230,6 +234,11 @@ import org.robovm.apple.coretext.*;
         public static native CFString MinSignificantDigits();
         @GlobalValue(symbol="kCFNumberFormatterMaxSignificantDigits", optional=true)
         public static native CFString MaxSignificantDigits();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCFNumberFormatterMinGroupingDigits", optional=true)
+        public static native CFString MinGroupingDigits();
         /*</values>*/
     }
 }

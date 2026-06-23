@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.config.Config.Lib;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.zeroturnaround.zip.ZipUtil;
 

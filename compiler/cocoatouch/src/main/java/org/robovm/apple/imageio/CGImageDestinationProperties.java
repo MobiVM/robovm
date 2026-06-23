@@ -86,7 +86,7 @@ import org.robovm.apple.coregraphics.*;
     /*</marshalers>*/
 
     /*<constructors>*/
-    CGImageDestinationProperties(CFDictionary data) {
+    public CGImageDestinationProperties(CFDictionary data) {
         super(data);
     }
     public CGImageDestinationProperties() {}
@@ -176,6 +176,76 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageDestinationPreserveGainMap", optional=true)
         public static native CFString PreserveGainMap();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeRequest", optional=true)
+        public static native CFString EncodeRequest();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeToSDR", optional=true)
+        public static native CFString EncodeToSDR();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeToISOHDR", optional=true)
+        public static native CFString EncodeToISOHDR();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeToISOGainmap", optional=true)
+        public static native CFString EncodeToISOGainmap();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeRequestOptions", optional=true)
+        public static native CFString EncodeRequestOptions();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeBaseIsSDR", optional=true)
+        public static native CFString EncodeBaseIsSDR();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeTonemapMode", optional=true)
+        public static native CFString EncodeTonemapMode();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeIsBaseImage", optional=true)
+        public static native CFString EncodeIsBaseImage();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeBaseColorSpace", optional=true)
+        public static native CFString EncodeBaseColorSpace();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeBasePixelFormatRequest", optional=true)
+        public static native CFString EncodeBasePixelFormatRequest();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeGenerateGainMapWithBaseImage", optional=true)
+        public static native CFString EncodeGenerateGainMapWithBaseImage();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeGainMapPixelFormatRequest", optional=true)
+        public static native CFString EncodeGainMapPixelFormatRequest();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeGainMapSubsampleFactor", optional=true)
+        public static native CFString EncodeGainMapSubsampleFactor();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageDestinationEncodeAlternateColorSpace", optional=true)
+        public static native CFString EncodeAlternateColorSpace();
     }
     /*</keys>*/
 }

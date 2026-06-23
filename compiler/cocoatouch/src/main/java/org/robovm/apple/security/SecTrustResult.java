@@ -175,6 +175,16 @@ import org.robovm.apple.dispatch.*;
         @Deprecated
         @GlobalValue(symbol="kSecTrustCertificateTransparencyWhiteList", optional=true)
         public static native CFType CertificateTransparencyWhiteList();
+        /**
+         * @since Available in iOS 18.4 and later.
+         */
+        @GlobalValue(symbol="kSecTrustQCStatements", optional=true)
+        public static native CFType QCStatements();
+        /**
+         * @since Available in iOS 18.4 and later.
+         */
+        @GlobalValue(symbol="kSecTrustQWACValidation", optional=true)
+        public static native CFType QWACValidation();
     }
     /*</keys>*/
 }

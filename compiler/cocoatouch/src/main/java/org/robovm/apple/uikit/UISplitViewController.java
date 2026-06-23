@@ -200,6 +200,76 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "supplementaryColumnWidth")
     public native @MachineSizedFloat double getSupplementaryColumnWidth();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredSecondaryColumnWidthFraction")
+    public native @MachineSizedFloat double getPreferredSecondaryColumnWidthFraction();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredSecondaryColumnWidthFraction:")
+    public native void setPreferredSecondaryColumnWidthFraction(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredSecondaryColumnWidth")
+    public native @MachineSizedFloat double getPreferredSecondaryColumnWidth();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredSecondaryColumnWidth:")
+    public native void setPreferredSecondaryColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minimumSecondaryColumnWidth")
+    public native @MachineSizedFloat double getMinimumSecondaryColumnWidth();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMinimumSecondaryColumnWidth:")
+    public native void setMinimumSecondaryColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredInspectorColumnWidthFraction")
+    public native @MachineSizedFloat double getPreferredInspectorColumnWidthFraction();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredInspectorColumnWidthFraction:")
+    public native void setPreferredInspectorColumnWidthFraction(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredInspectorColumnWidth")
+    public native @MachineSizedFloat double getPreferredInspectorColumnWidth();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredInspectorColumnWidth:")
+    public native void setPreferredInspectorColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minimumInspectorColumnWidth")
+    public native @MachineSizedFloat double getMinimumInspectorColumnWidth();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMinimumInspectorColumnWidth:")
+    public native void setMinimumInspectorColumnWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumInspectorColumnWidth")
+    public native @MachineSizedFloat double getMaximumInspectorColumnWidth();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMaximumInspectorColumnWidth:")
+    public native void setMaximumInspectorColumnWidth(@MachineSizedFloat double v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "primaryEdge")
@@ -254,6 +324,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "showColumn:")
     public native void showColumn(UISplitViewControllerColumn column);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "isShowingColumn:")
+    public native boolean isShowingColumn(UISplitViewControllerColumn column);
     @Method(selector = "showViewController:sender:")
     public native void showViewController(UIViewController vc, NSObject sender);
     @Method(selector = "showDetailViewController:sender:")

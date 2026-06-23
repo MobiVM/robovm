@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.browserenginekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,22 +76,30 @@ import org.robovm.apple.uikit.*;
     public native SFSafariViewControllerConfiguration getConfiguration();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the bars interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "preferredBarTintColor")
     public native UIColor getPreferredBarTintColor();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the bars interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "setPreferredBarTintColor:")
     public native void setPreferredBarTintColor(UIColor v);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the controls interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "preferredControlTintColor")
     public native UIColor getPreferredControlTintColor();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the controls interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "setPreferredControlTintColor:")
     public native void setPreferredControlTintColor(UIColor v);
     /**

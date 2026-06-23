@@ -54,6 +54,17 @@ import org.robovm.apple.imageio.*;
     public VNTextObservation() {}
     protected VNTextObservation(Handle h, long handle) { super(h, handle); }
     protected VNTextObservation(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:
+     */
+    @Deprecated
+    public VNTextObservation(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight) { super((Handle) null, createDeprecated(requestRevision, topLeft, bottomLeft, bottomRight, topRight)); retain(getHandle()); }
+    public VNTextObservation(@ByVal CGRect boundingBox) { super((Handle) null, create(boundingBox)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public VNTextObservation(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox) { super((Handle) null, create(requestRevision, boundingBox)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "characterBoxes")
@@ -64,9 +75,23 @@ import org.robovm.apple.imageio.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:
+     */
+    @Deprecated
+    @Method(selector = "rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:")
+    protected static native @Pointer long createDeprecated(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint bottomLeft, @ByVal CGPoint bottomRight, @ByVal CGPoint topRight);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:")
     public static native VNTextObservation create(@MachineSizedUInt long requestRevision, @ByVal CGPoint topLeft, @ByVal CGPoint topRight, @ByVal CGPoint bottomRight, @ByVal CGPoint bottomLeft);
+    @Method(selector = "observationWithBoundingBox:")
+    protected static native @Pointer long create(@ByVal CGRect boundingBox);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "observationWithRequestRevision:boundingBox:")
+    protected static native @Pointer long create(@MachineSizedUInt long requestRevision, @ByVal CGRect boundingBox);
     /*</methods>*/
 }

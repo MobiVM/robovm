@@ -35,22 +35,29 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlMoveMode
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTRColorControlHueMoveMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlMoveModeStop
      */
+    @Deprecated
     Stop(0L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlMoveModeUp
      */
+    @Deprecated
     Up(1L),
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlMoveModeDown
      */
+    @Deprecated
     Down(3L);
     /*</values>*/
 

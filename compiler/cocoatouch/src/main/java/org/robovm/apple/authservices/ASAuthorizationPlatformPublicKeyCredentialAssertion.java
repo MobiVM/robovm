@@ -64,6 +64,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "largeBlob")
     public native ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput getLargeBlob();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFAssertionOutput getPrf();
     @Property(selector = "rawAuthenticatorData")
     public native NSData getRawAuthenticatorData();
     @Property(selector = "userID")

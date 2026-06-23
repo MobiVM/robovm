@@ -117,6 +117,16 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @GlobalValue(symbol="UIDocumentStateChangedNotification", optional=true)
     public static native NSString StateChangedNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="UIDocumentDidMoveToWritableLocationNotification", optional=true)
+    public static native NSString DidMoveToWritableLocationNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="UIDocumentDidMoveToWritableLocationOldURLKey", optional=true)
+    public static native NSString DidMoveToWritableLocationOldURLKey();
     @GlobalValue(symbol="NSUserActivityDocumentURLKey", optional=true)
     public static native String UserActivityDocumentURLKey();
     
@@ -212,6 +222,11 @@ import org.robovm.apple.symbols.*;
     public native void savePresentedItemChanges(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "accommodatePresentedItemDeletionWithCompletionHandler:")
     public native void accommodatePresentedItemDeletion(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "accommodatePresentedItemEvictionWithCompletionHandler:")
+    public native void accommodatePresentedItemEviction(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "presentedItemDidMoveToURL:")
     public native void presentedItemDidMoveToURL(NSURL newURL);
     @Method(selector = "presentedItemDidChange")

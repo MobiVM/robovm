@@ -55,14 +55,48 @@ import org.robovm.apple.security.*;
     @NotImplemented("controller:commissioningSessionEstablishmentDone:")
     public void commissioningSessionEstablishmentDone(MTRDeviceController controller, NSError error) {}
     /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use controller:commissioningComplete:nodeID:
+     */
+    @Deprecated
+    @NotImplemented("controller:commissioningComplete:")
+    public void commissioningComplete(MTRDeviceController controller, NSError error) {}
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @NotImplemented("controller:commissioningComplete:nodeID:")
     public void commissioningComplete(MTRDeviceController controller, NSError error, NSNumber nodeID) {}
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 17.6 and later.
      */
+    @NotImplemented("controller:commissioningComplete:nodeID:metrics:")
+    public void commissioningComplete(MTRDeviceController controller, NSError error, NSNumber nodeID, MTRMetrics metrics) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("controller:readCommissioneeInfo:")
+    public void readCommissioneeInfo(MTRDeviceController controller, MTRCommissioneeInfo info) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.4. Use controller:readCommissioneeInfo:
+     */
+    @Deprecated
     @NotImplemented("controller:readCommissioningInfo:")
     public void readCommissioningInfo(MTRDeviceController controller, MTRProductIdentity info) {}
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @NotImplemented("controller:suspendedChangedTo:")
+    public void suspendedChanged(MTRDeviceController controller, boolean suspended) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("devicesChangedForController:")
+    public void devicesChangedForController(MTRDeviceController controller) {}
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @NotImplemented("controller:commissioneeHasReceivedNetworkCredentials:")
+    public void commissioneeHasReceivedNetworkCredentials(MTRDeviceController controller, NSNumber nodeID) {}
     /*</methods>*/
 }

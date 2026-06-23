@@ -130,6 +130,8 @@ classes:
                 name: getGeoLocation
             '-captureHighResolutionFrameWithCompletion:':
                 name: captureHighResolutionFrame
+            '-captureHighResolutionFrameUsingPhotoSettings:completion:':
+                name: captureHighResolutionFrame
     ARWorldTrackingConfiguration:  #since 11.0
         skip_def_constructor: true
         methods:

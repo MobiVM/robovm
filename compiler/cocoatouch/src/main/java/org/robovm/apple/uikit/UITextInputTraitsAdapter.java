@@ -108,6 +108,16 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("setInlinePredictionType:")
     public void setInlinePredictionType(UITextInlinePredictionType v) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("mathExpressionCompletionType")
+    public UITextMathExpressionCompletionType getMathExpressionCompletionType() { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("setMathExpressionCompletionType:")
+    public void setMathExpressionCompletionType(UITextMathExpressionCompletionType v) {}
     @NotImplemented("keyboardType")
     public UIKeyboardType getKeyboardType() { return null; }
     @NotImplemented("setKeyboardType:")
@@ -148,6 +158,40 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("setPasswordRules:")
     public void setPasswordRules(UITextInputPasswordRules v) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("writingToolsBehavior")
+    public UIWritingToolsBehavior getWritingToolsBehavior() { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("setWritingToolsBehavior:")
+    public void setWritingToolsBehavior(UIWritingToolsBehavior v) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("allowedWritingToolsResultOptions")
+    public UIWritingToolsResultOptions getAllowedWritingToolsResultOptions() { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("setAllowedWritingToolsResultOptions:")
+    public void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("conversationContext")
+    public UIConversationContext getConversationContext() { return null; }
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("setConversationContext:")
+    public void setConversationContext(UIConversationContext v) {}
+    @NotImplemented("allowsNumberPadPopover")
+    public boolean allowsNumberPadPopover() { return false; }
+    @NotImplemented("setAllowsNumberPadPopover:")
+    public void setAllowsNumberPadPopover(boolean v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

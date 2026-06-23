@@ -16,7 +16,14 @@ enums:
     INUIInteractiveBehavior: {} #since 11.0
 
 categories:
-    INImage: {}
+    INImage:
+        methods:
+            '-fetchUIImageWithCompletion:':
+                name: fetchUIImageWithCompletion
+            '+imageWithCGImage:':
+                name: imageWithCGImage
+            '+imageWithUIImage:':
+                name: imageWithUIImage
     NSExtensionContext: {}
 
 classes:

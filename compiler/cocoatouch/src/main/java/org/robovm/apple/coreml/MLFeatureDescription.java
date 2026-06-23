@@ -73,6 +73,11 @@ import org.robovm.apple.metal.*;
      */
     @Property(selector = "sequenceConstraint")
     public native MLSequenceConstraint getSequenceConstraint();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "stateConstraint")
+    public native MLStateConstraint getStateConstraint();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

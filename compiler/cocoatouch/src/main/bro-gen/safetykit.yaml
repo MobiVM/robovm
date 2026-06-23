@@ -1,0 +1,60 @@
+package: org.robovm.apple.safetykit
+include: [foundation, corelocation]
+library: SafetyKit
+framework: SafetyKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SafetyKit.framework/Headers/SafetyKit.h
+
+typedefs:
+    
+enums:
+    SAAuthorizationStatus: {}
+    SACrashDetectionEventResponse: {} #since 16.0
+    SAEmergencyResponseManagerVoiceCallStatus: {} #since 16.0
+    SAErrorCode: {nserror: true, prefix: SAError} #since 16.0
+
+categories:
+
+classes:
+    SACrashDetectionEvent: {} #since 16.0
+    SACrashDetectionManager: #since 16.0
+        methods:
+            '-requestAuthorizationWithCompletionHandler:':
+                name: requestAuthorization
+    SAEmergencyResponseManager: #since 16.0
+        methods:
+            '-dialVoiceCallToPhoneNumber:completionHandler:':
+                name: dialVoiceCall
+protocols:
+    SACrashDetectionDelegate: #since 16.0
+        methods:
+            '-crashDetectionManager:didDetectEvent:':
+                name: didDetectEvent
+    SAEmergencyResponseDelegate: #since 16.0
+        methods:
+            '-emergencyResponseManager:didUpdateVoiceCallStatus:':
+                name: didUpdateVoiceCallStatus
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SA.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    SAErrorDomain:
+        class: SAErrorCode
+        name: getClassDomain
+        readonly: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SA.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SA.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

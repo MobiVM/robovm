@@ -52,7 +52,7 @@ import org.robovm.apple.coreanimation.*;
     protected CPMessageListItem(Handle h, long handle) { super(h, handle); }
     protected CPMessageListItem(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithConversationIdentifier:text:leadingConfiguration:trailingConfiguration:detailText:trailingText:")
-    public static  CPMessageListItem createUsingConversationIdentifier(String conversationIdentifier, String text, CPMessageListItemLeadingConfiguration leadingConfiguration, CPMessageListItemTrailingConfiguration trailingConfiguration, String detailText, String trailingText) {
+    public static CPMessageListItem createUsingConversationIdentifier(String conversationIdentifier, String text, CPMessageListItemLeadingConfiguration leadingConfiguration, CPMessageListItemTrailingConfiguration trailingConfiguration, String detailText, String trailingText) {
        CPMessageListItem res = new CPMessageListItem((SkipInit) null);
        res.initObject(res.initUsingConversationIdentifier(conversationIdentifier, text, leadingConfiguration, trailingConfiguration, detailText, trailingText));
        return res;
@@ -103,11 +103,23 @@ import org.robovm.apple.coreanimation.*;
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "leadingDetailTextImage")
+    public native UIImage getLeadingDetailTextImage();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLeadingDetailTextImage:")
+    public native void setLeadingDetailTextImage(UIImage v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @GlobalValue(symbol="CPMaximumMessageItemImageSize", optional=true)
     public static native @ByVal CGSize getMaximumImageSize();
+    @GlobalValue(symbol="CPMaximumMessageItemLeadingDetailTextImageSize", optional=true)
+    public static native @ByVal CGSize getMaximumMessageItemLeadingDetailTextImageSize();
     
     @Method(selector = "initWithConversationIdentifier:text:leadingConfiguration:trailingConfiguration:detailText:trailingText:")
     protected native @Pointer long initUsingConversationIdentifier(String conversationIdentifier, String text, CPMessageListItemLeadingConfiguration leadingConfiguration, CPMessageListItemTrailingConfiguration trailingConfiguration, String detailText, String trailingText);

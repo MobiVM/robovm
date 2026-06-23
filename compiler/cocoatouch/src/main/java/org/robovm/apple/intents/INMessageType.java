@@ -47,11 +47,41 @@ public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
     DigitalTouch(3L),
     Handwriting(4L),
     Sticker(5L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackLiked(6L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackDisliked(7L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackEmphasized(8L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackLoved(9L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackQuestioned(10L),
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.1. Use INMessageReaction
+     */
+    @Deprecated
     TapbackLaughed(11L),
     MediaCalendar(12L),
     MediaLocation(13L),
@@ -91,7 +121,15 @@ public enum /*<name>*/INMessageType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    Reaction(26L);
+    Reaction(26L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    MediaAnimatedImage(27L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    ThirdPartyAttachment(28L);
     /*</values>*/
 
     /*<bind>*/

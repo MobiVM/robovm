@@ -171,6 +171,8 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "exifModificationDate")
     public native NSDate getExifModificationDate();
+    @Property(selector = "fingerprint")
+    public native String getFingerprint();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -199,5 +201,12 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestSecurityScopedURLWithCompletion:")
     public native void requestSecurityScopedURL(@Block VoidBlock2<NSURL, NSError> completion);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "requestFingerprintWithCompletion:")
+    public native void requestFingerprint(@Block VoidBlock2<NSString, NSError> completion);
+    @Method(selector = "fingerprintForFileAtURL:")
+    public static native String fingerprintForFileAtURL(NSURL url);
     /*</methods>*/
 }

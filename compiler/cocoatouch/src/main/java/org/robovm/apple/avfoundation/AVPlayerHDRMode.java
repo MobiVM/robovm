@@ -45,9 +45,10 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.2 and later.
+ * @deprecated Deprecated in iOS 26.0. The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/AVPlayerHDRMode/*</name>*/ extends Bits</*<name>*/AVPlayerHDRMode/*</name>*/> {
     /*<values>*/
     public static final AVPlayerHDRMode None = new AVPlayerHDRMode(0L);

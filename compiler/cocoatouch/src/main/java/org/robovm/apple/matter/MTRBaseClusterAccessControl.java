@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterAccessControl/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterAccessControlPtr extends Ptr<MTRBaseClusterAccessControl, MTRBaseClusterAccessControlPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "reviewFabricRestrictionsWithParams:completion:")
+    public native void reviewFabricRestrictions(MTRAccessControlClusterReviewFabricRestrictionsParams params, @Block VoidBlock2<MTRAccessControlClusterReviewFabricRestrictionsResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -135,6 +135,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "subscribeAttributeAccessControlEntriesPerFabricWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeAccessControlEntriesPerFabric(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeCommissioningARLWithCompletion:")
+    public native void readAttributeCommissioningARL(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeCommissioningARLWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeCommissioningARL(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeARLWithParams:completion:")
+    public native void readAttributeARL(MTRReadParams params, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeARLWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeARL(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -211,6 +231,16 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeAccessControlEntriesPerFabricWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeAccessControlEntriesPerFabric(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeCommissioningARLWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeCommissioningARL(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeARLWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeARL(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -235,5 +265,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

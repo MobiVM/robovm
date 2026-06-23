@@ -38,7 +38,7 @@ import org.robovm.apple.metal.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLFXSpatialScaler/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+    /*<implements>*/extends MTLFXSpatialScalerBase/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -46,44 +46,7 @@ import org.robovm.apple.metal.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    @Property(selector = "colorTextureUsage")
-    MTLTextureUsage getColorTextureUsage();
-    @Property(selector = "outputTextureUsage")
-    MTLTextureUsage getOutputTextureUsage();
-    @Property(selector = "inputContentWidth")
-    @MachineSizedUInt long getInputContentWidth();
-    @Property(selector = "setInputContentWidth:")
-    void setInputContentWidth(@MachineSizedUInt long v);
-    @Property(selector = "inputContentHeight")
-    @MachineSizedUInt long getInputContentHeight();
-    @Property(selector = "setInputContentHeight:")
-    void setInputContentHeight(@MachineSizedUInt long v);
-    @Property(selector = "colorTexture")
-    MTLTexture getColorTexture();
-    @Property(selector = "setColorTexture:")
-    void setColorTexture(MTLTexture v);
-    @Property(selector = "outputTexture")
-    MTLTexture getOutputTexture();
-    @Property(selector = "setOutputTexture:")
-    void setOutputTexture(MTLTexture v);
-    @Property(selector = "colorTextureFormat")
-    MTLPixelFormat getColorTextureFormat();
-    @Property(selector = "outputTextureFormat")
-    MTLPixelFormat getOutputTextureFormat();
-    @Property(selector = "inputWidth")
-    @MachineSizedUInt long getInputWidth();
-    @Property(selector = "inputHeight")
-    @MachineSizedUInt long getInputHeight();
-    @Property(selector = "outputWidth")
-    @MachineSizedUInt long getOutputWidth();
-    @Property(selector = "outputHeight")
-    @MachineSizedUInt long getOutputHeight();
-    @Property(selector = "colorProcessingMode")
-    MTLFXSpatialScalerColorProcessingMode getColorProcessingMode();
-    @Property(selector = "fence")
-    MTLFence getFence();
-    @Property(selector = "setFence:")
-    void setFence(MTLFence v);
+    
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "encodeToCommandBuffer:")

@@ -59,12 +59,14 @@ import org.robovm.apple.symbols.*;
     protected UIPointerHighlightEffect() {}
     protected UIPointerHighlightEffect(Handle h, long handle) { super(h, handle); }
     protected UIPointerHighlightEffect(SkipInit skipInit) { super(skipInit); }
+    public UIPointerHighlightEffect(UITargetedPreview preview) { super((Handle) null, create(preview)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "effectWithPreview:")
+    protected static native @Pointer long create(UITargetedPreview preview);
     /*</methods>*/
 }

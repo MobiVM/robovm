@@ -73,13 +73,28 @@ import org.robovm.apple.symbols.*;
     public native UIFontDescriptorSymbolicTraits getFilteredTraits();
     @Property(selector = "setFilteredTraits:")
     public native void setFilteredTraits(UIFontDescriptorSymbolicTraits v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use languageFilter
+     */
+    @Deprecated
     @Property(selector = "filteredLanguagesPredicate")
     public native NSPredicate getFilteredLanguagesPredicate();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use languageFilter
+     */
+    @Deprecated
     @Property(selector = "setFilteredLanguagesPredicate:")
     public native void setFilteredLanguagesPredicate(NSPredicate v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use languageFilter
+     */
+    @Deprecated
     @Method(selector = "filterPredicateForFilteredLanguages:")
     public static native NSPredicate filterPredicateForFilteredLanguages(NSArray<NSString> filteredLanguages);
     /*</methods>*/

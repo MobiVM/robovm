@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
     public native CMHeadphoneMotionManagerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CMHeadphoneMotionManagerDelegate v);
+    @Property(selector = "isConnectionStatusActive")
+    public native boolean isConnectionStatusActive();
     @Property(selector = "isDeviceMotionAvailable")
     public native boolean isDeviceMotionAvailable();
     @Property(selector = "isDeviceMotionActive")
@@ -68,6 +70,10 @@ import org.robovm.apple.foundation.*;
     public native void startDeviceMotionUpdates(NSOperationQueue queue, @Block VoidBlock2<CMDeviceMotion, NSError> handler);
     @Method(selector = "stopDeviceMotionUpdates")
     public native void stopDeviceMotionUpdates();
+    @Method(selector = "startConnectionStatusUpdates")
+    public native void startConnectionStatusUpdates();
+    @Method(selector = "stopConnectionStatusUpdates")
+    public native void stopConnectionStatusUpdates();
     @Method(selector = "authorizationStatus")
     public static native CMAuthorizationStatus authorizationStatus();
     /*</methods>*/

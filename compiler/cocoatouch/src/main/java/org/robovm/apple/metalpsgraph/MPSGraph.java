@@ -128,6 +128,16 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor square(MPSGraphTensor tensor, String name);
     @Method(selector = "squareRootWithTensor:name:")
     public native MPSGraphTensor squareRoot(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "reciprocalSquareRootWithTensor:name:")
+    public native MPSGraphTensor reciprocalSquareRoot(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use reciprocalSquareRootWithTensor
+     */
+    @Deprecated
     @Method(selector = "reverseSquareRootWithTensor:name:")
     public native MPSGraphTensor reverseSquareRoot(MPSGraphTensor tensor, String name);
     @Method(selector = "reciprocalWithTensor:name:")
@@ -307,6 +317,11 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "complexTensorWithRealTensor:imaginaryTensor:name:")
     public native MPSGraphTensor complexTensorWithRealTensor(MPSGraphTensor realTensor, MPSGraphTensor imaginaryTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "callSymbolName:inputTensors:outputTypes:name:")
+    public native NSArray<MPSGraphTensor> callSymbol(String symbolName, NSArray<MPSGraphTensor> inputTensors, NSArray<MPSGraphType> outputTypes, String name);
     @Method(selector = "convolution2DWithSourceTensor:weightsTensor:descriptor:name:")
     public native MPSGraphTensor convolution2D(MPSGraphTensor source, MPSGraphTensor weights, MPSGraphConvolution2DOpDescriptor descriptor, String name);
     @Method(selector = "convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:")
@@ -545,6 +560,16 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:")
     public native MPSGraphTensor HammingDistance(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, MPSDataType resultDataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:")
+    public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, MPSGraphTensor maskTensor, float scale, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:")
+    public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, float scale, String name);
     @Method(selector = "placeholderWithShape:dataType:name:")
     public native MPSGraphTensor placeholder(NSArray<NSNumber> shape, MPSDataType dataType, String name);
     @Method(selector = "placeholderWithShape:name:")
@@ -572,6 +597,11 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor constant(double realPart, double imaginaryPart, NSArray<NSNumber> shape, MPSDataType dataType);
     @Method(selector = "variableWithData:shape:dataType:name:")
     public native MPSGraphTensor variable(NSData data, NSArray<NSNumber> shape, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "variableFromTensorWithTensor:name:")
+    public native MPSGraphTensor variableFromTensor(MPSGraphTensor tensor, String name);
     @Method(selector = "readVariable:name:")
     public native MPSGraphTensor readVariable(MPSGraphTensor variable, String name);
     @Method(selector = "assignVariable:withValueOfTensor:name:")
@@ -717,6 +747,26 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:")
     public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSGraphTensor zeroPointTensor, MPSDataType dataType, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSGraphTensor zeroPointTensor, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:dataType:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:LUTTensor:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor LUTTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:LUTTensor:axis:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor LUTTensor, @MachineSizedSInt long axis, String name);
     @Method(selector = "randomPhiloxStateTensorWithSeed:name:")
     public native MPSGraphTensor randomPhiloxStateTensor(@MachineSizedUInt long seed, String name);
     @Method(selector = "randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:")
@@ -1128,10 +1178,50 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
     @Method(selector = "sliceTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
     public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, MPSGraphTensor startTensor, MPSGraphTensor endTensor, MPSGraphTensor strideTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceTensor:startTensor:sizeTensor:squeezeMask:name:")
+    public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, MPSGraphTensor startTensor, MPSGraphTensor sizeTensor, int squeezeMask, String name);
     @Method(selector = "sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:")
     public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, MPSGraphTensor startTensor, MPSGraphTensor endTensor, MPSGraphTensor strideTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:")
+    public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, MPSGraphTensor startTensor, MPSGraphTensor sizeTensor, int squeezeMask, String name);
     @Method(selector = "sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
     public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, MPSGraphTensor startsTensor, MPSGraphTensor endsTensor, MPSGraphTensor stridesTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, MPSGraphTensor startsTensor, MPSGraphTensor endsTensor, MPSGraphTensor stridesTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
     @Method(selector = "concatTensor:withTensor:dimension:name:")
     public native MPSGraphTensor concatTensor(MPSGraphTensor tensor, MPSGraphTensor tensor2, @MachineSizedSInt long dimensionIndex, String name);
     @Method(selector = "concatTensors:dimension:name:")

@@ -36,7 +36,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLResource/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+    /*<implements>*/extends MTLAllocation/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -96,6 +96,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "isAliasable")
     boolean isAliasable();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "setOwnerWithIdentity:")
+    int setOwner(int task_id_token);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

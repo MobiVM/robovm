@@ -129,6 +129,48 @@ import org.robovm.apple.avfoundation.*;
     /*<methods>*/
     @Method(selector = "materialPropertyWithContents:")
     public static native SCNMaterialProperty create(NSObject contents);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static NSObject getPrecomputedLightingEnvironmentContents(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSObject result = getPrecomputedLightingEnvironmentContents(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "precomputedLightingEnvironmentContentsWithURL:error:")
+    private static native NSObject getPrecomputedLightingEnvironmentContents(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static NSObject getPrecomputedLightingEnvironmentContents(NSData data) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSObject result = getPrecomputedLightingEnvironmentContents(data, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "precomputedLightingEnvironmentContentsWithData:error:")
+    private static native NSObject getPrecomputedLightingEnvironmentContents(NSData data, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static NSData getPrecomputedLightingEnvironmentData(NSObject contents, MTLDevice device) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = getPrecomputedLightingEnvironmentData(contents, device, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "precomputedLightingEnvironmentDataForContents:device:error:")
+    private static native NSData getPrecomputedLightingEnvironmentData(NSObject contents, MTLDevice device, NSError.NSErrorPtr error);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimationProtocol animation, String key);
     /**

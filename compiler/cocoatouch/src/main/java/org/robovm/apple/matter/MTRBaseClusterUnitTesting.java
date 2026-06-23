@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterUnitTesting/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterUnitTestingPtr extends Ptr<MTRBaseClusterUnitTesting, MTRBaseClusterUnitTestingPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -166,6 +161,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "testNullableOptionalRequestWithParams:completion:")
     public native void testNullableOptionalRequest(MTRUnitTestingClusterTestNullableOptionalRequestParams params, @Block VoidBlock2<MTRUnitTestingClusterTestNullableOptionalResponseParams, NSError> completion);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "testNullableOptionalRequestWithCompletion:")
+    public native void testNullableOptionalRequest(@Block VoidBlock2<MTRUnitTestingClusterTestNullableOptionalResponseParams, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "testComplexNullableOptionalRequestWithParams:completion:")
@@ -190,6 +190,11 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "testSimpleOptionalArgumentRequestWithParams:completion:")
     public native void testSimpleOptionalArgumentRequest(MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "testSimpleOptionalArgumentRequestWithCompletion:")
+    public native void testSimpleOptionalArgumentRequest(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -2325,5 +2330,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

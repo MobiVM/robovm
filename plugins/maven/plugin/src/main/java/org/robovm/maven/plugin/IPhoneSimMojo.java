@@ -18,7 +18,7 @@ package org.robovm.maven.plugin;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  * Compiles your application and deploys it to the iPhone simulator.

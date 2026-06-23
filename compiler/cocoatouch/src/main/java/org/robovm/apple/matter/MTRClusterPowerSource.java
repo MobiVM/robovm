@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterPowerSource/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterPowerSourcePtr extends Ptr<MTRClusterPowerSource, MTRClusterPowerSourcePtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -221,6 +216,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeActiveBatChargeFaultsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeActiveBatChargeFaults(MTRReadParams params);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "readAttributeEndpointListWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeEndpointList(MTRReadParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -245,5 +245,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

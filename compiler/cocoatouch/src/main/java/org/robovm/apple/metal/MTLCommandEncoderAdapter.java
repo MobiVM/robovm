@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @NotImplemented("endEncoding")
     public void endEncoding() {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("barrierAfterQueueStages:beforeStages:")
+    public void barrierAfterQueueStages(MTLStages afterQueueStages, MTLStages beforeStages) {}
     @NotImplemented("insertDebugSignpost:")
     public void insertDebugSignpost(String string) {}
     @NotImplemented("pushDebugGroup:")

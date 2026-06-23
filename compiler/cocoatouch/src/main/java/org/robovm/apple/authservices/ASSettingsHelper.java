@@ -60,5 +60,10 @@ import org.robovm.apple.coreanimation.*;
     public static native void openCredentialProviderAppSettings(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "openVerificationCodeAppSettingsWithCompletionHandler:")
     public static native void openVerificationCodeAppSettings(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "requestToTurnOnCredentialProviderExtensionWithCompletionHandler:")
+    public static native void requestToTurnOnCredentialProviderExtension(@Block VoidBooleanBlock completionHandler);
     /*</methods>*/
 }

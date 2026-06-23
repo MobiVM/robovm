@@ -69,6 +69,14 @@ public final class /*<name>*/MTRThermostatFeature/*</name>*/ extends Bits</*<nam
      * @since Available in iOS 17.0 and later.
      */
     public static final MTRThermostatFeature LocalTemperatureNotExposed = new MTRThermostatFeature(64L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRThermostatFeature MatterScheduleConfiguration = new MTRThermostatFeature(128L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRThermostatFeature Presets = new MTRThermostatFeature(256L);
     /*</values>*/
 
     /*<bind>*/

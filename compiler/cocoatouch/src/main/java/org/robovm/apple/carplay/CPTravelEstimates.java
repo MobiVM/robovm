@@ -53,10 +53,20 @@ import org.robovm.apple.coreanimation.*;
     protected CPTravelEstimates(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithDistanceRemaining:timeRemaining:")
     public CPTravelEstimates(NSMeasurement<NSUnitLength> distance, double time) { super((SkipInit) null); initObject(init(distance, time)); }
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:")
+    public CPTravelEstimates(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time) { super((SkipInit) null); initObject(init(distanceRemaining, distanceRemainingToDisplay, time)); }
     @Method(selector = "initWithCoder:")
     public CPTravelEstimates(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "distanceRemainingToDisplay")
+    public native NSMeasurement<NSUnitLength> getDistanceRemainingToDisplay();
     @Property(selector = "distanceRemaining")
     public native NSMeasurement<NSUnitLength> getDistanceRemaining();
     @Property(selector = "timeRemaining")
@@ -68,6 +78,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithDistanceRemaining:timeRemaining:")
     protected native @Pointer long init(NSMeasurement<NSUnitLength> distance, double time);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:")
+    protected native @Pointer long init(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -90,7 +90,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "finishLoadingWithError:")
     public native void finishLoading(NSError error);
     /**
-     * @deprecated Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:] instead
      */
     @Deprecated
     public NSData getStreamingContentKeyRequestData(NSData appIdentifier, NSData contentIdentifier, AVAssetResourceLoadingRequestOptions options) throws NSErrorException {
@@ -100,14 +100,14 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @deprecated Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVContentKeyRequest makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:] instead
      */
     @Deprecated
     @Method(selector = "streamingContentKeyRequestDataForApp:contentIdentifier:options:error:")
     private native NSData getStreamingContentKeyRequestData(NSData appIdentifier, NSData contentIdentifier, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead
      */
     @Deprecated
     public NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options) throws NSErrorException {
@@ -118,16 +118,10 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead
      */
     @Deprecated
     @Method(selector = "persistentContentKeyFromKeyVendorResponse:options:error:")
     private native NSData getPersistentContentKey(NSData keyVendorResponse, AVAssetResourceLoadingRequestOptions options, NSError.NSErrorPtr outError);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use -[AVAssetResourceLoadingRequest setResponse:], -[AVAssetResourceLoadingRequest setRedirect:], -[AVAssetResourceLoadingDataRequest respondWithData:], -[AVAssetResourceLoadingRequest finishLoading]
-     */
-    @Deprecated
-    @Method(selector = "finishLoadingWithResponse:data:redirect:")
-    public native void finishLoading(NSURLResponse response, NSData data, NSURLRequest redirect);
     /*</methods>*/
 }

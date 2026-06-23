@@ -18,6 +18,7 @@ package org.robovm.debugger;
 import org.robovm.debugger.delegates.AllDelegates;
 import org.robovm.debugger.hooks.HooksChannel;
 import org.robovm.debugger.hooks.IHooksApi;
+import org.robovm.debugger.hooks.IHooksConnection;
 import org.robovm.debugger.hooks.IHooksEventsHandler;
 import org.robovm.debugger.hooks.payloads.HooksEventPayload;
 import org.robovm.debugger.jdwp.IJdwpServerApi;
@@ -26,8 +27,10 @@ import org.robovm.debugger.jdwp.JdwpDebugServer;
 import org.robovm.debugger.state.VmDebuggerState;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.DebuggerThread;
+import org.robovm.debugger.utils.IHooksConnectionUtils;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author  Demyan Kimitsa
@@ -38,9 +41,9 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
     private final DbgLogger log;
 
     /**
-     * reference to process this debug session is working on. in case of debugger crash will terminate process as well
-     */
-    private final Process process;
+     * callback to be called when process termination detected on debugger side, used to notify other parties
+     * */
+    private Runnable onTerminated = null;
 
     /**
      * config debugger was started with
@@ -68,7 +71,7 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
     private final HooksChannel hooksChannel;
 
 
-    public Debugger(Process process, DebuggerConfig config) {
+    public Debugger(DebuggerConfig config) {
         // setup logger
         File logFile = config.logDir() != null ? new File(config.logDir(), "debugger"+System.currentTimeMillis() + ".log") : null;
         DbgLogger.setup(logFile, config.logToConsole());
@@ -77,23 +80,23 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         this.log = DbgLogger.get(this.getClass().getSimpleName());
 
         // save references
-        this.process = process;
         this.config = config;
         this.state = new VmDebuggerState(config.appfile(), config.arch());
         this.delegates = new AllDelegates(this, state);
 
         this.jdwpServer = new JdwpDebugServer(delegates, this, config.jdwpClienMode(), config.jdwpPort()) ;
-        this.hooksChannel = new HooksChannel(delegates, !config.arch().is32Bit(), config.hooksConnection(), this);
-
+        this.hooksChannel = new HooksChannel(delegates, !config.arch().is32Bit(), this);
     }
 
 
-    public void start() {
+    public void start(Runnable onTerminated, IHooksConnection connection) {
+        this.onTerminated = onTerminated;
+
         // start JDWP server
         this.jdwpServer.start();
 
         // start hooks channel
-        this.hooksChannel.start();
+        this.hooksChannel.start(connection);
     }
 
     private volatile boolean shuttingDown;
@@ -111,13 +114,9 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         jdwpServer.shutdown();
         hooksChannel.shutdown();
 
-        // if it is standalone run -- terminate app
-        if (config.isStandalone())
-            System.exit(-1);
-
         // destroy process, otherwise it will stuck as running in Idea
-        if (process != null && process.isAlive())
-            process.destroy();
+        if (onTerminated != null)
+            onTerminated.run();
     }
 
     @Override
@@ -149,10 +148,11 @@ public class Debugger implements DebuggerThread.Catcher, IHooksEventsHandler, IJ
         shutdown();
     }
 
-    public static void main(String[] argv) throws InterruptedException {
+    public static void main(String[] argv) throws InterruptedException, ExecutionException {
         DebuggerConfig config = DebuggerConfig.fromCommandLine(argv);
-        Debugger debugger = new Debugger(null, config);
-        debugger.start();
+        Debugger debugger = new Debugger(config);
+        int hookPort = config.getPortNumberPromise().get();
+        debugger.start(() -> System.exit(-1), new IHooksConnectionUtils.SocketHooksConnection(hookPort));
 
         // as all threads are daemon now
         Thread.sleep(Long.MAX_VALUE);

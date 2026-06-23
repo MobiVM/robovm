@@ -35,11 +35,12 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. BinaryInputBasic is deprecated and will be removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterBinaryInputBasic/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterBinaryInputBasicPtr extends Ptr<MTRBaseClusterBinaryInputBasic, MTRBaseClusterBinaryInputBasicPtr> {}/*</ptr>*/
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRBaseClusterBinaryInputBasic(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. BinaryInputBasic is deprecated and will be removed
      */
+    @Deprecated
     @Method(selector = "initWithDevice:endpointID:queue:")
     public MTRBaseClusterBinaryInputBasic(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue) { super((SkipInit) null); initObject(init(device, endpointID, queue)); }
     /*</constructors>*/
@@ -62,278 +65,388 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
+    @Deprecated
     @Method(selector = "readAttributeActiveTextWithCompletion:")
     public native void readAttributeActiveText(@Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeActiveTextWithValue:completion:")
     public native void writeAttributeActiveText(String value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeActiveTextWithValue:params:completion:")
     public native void writeAttributeActiveText(String value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeActiveTextWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeActiveText(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSString, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDescriptionWithCompletion:")
     public native void readAttributeDescription(@Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeDescriptionWithValue:completion:")
     public native void writeAttributeDescription(String value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeDescriptionWithValue:params:completion:")
     public native void writeAttributeDescription(String value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeDescriptionWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeDescription(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSString, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInactiveTextWithCompletion:")
     public native void readAttributeInactiveText(@Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeInactiveTextWithValue:completion:")
     public native void writeAttributeInactiveText(String value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeInactiveTextWithValue:params:completion:")
     public native void writeAttributeInactiveText(String value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeInactiveTextWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeInactiveText(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSString, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeOutOfServiceWithCompletion:")
     public native void readAttributeOutOfService(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeOutOfServiceWithValue:completion:")
     public native void writeAttributeOutOfService(NSNumber value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeOutOfServiceWithValue:params:completion:")
     public native void writeAttributeOutOfService(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeOutOfServiceWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeOutOfService(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePolarityWithCompletion:")
     public native void readAttributePolarity(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributePolarityWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributePolarity(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePresentValueWithCompletion:")
     public native void readAttributePresentValue(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributePresentValueWithValue:completion:")
     public native void writeAttributePresentValue(NSNumber value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributePresentValueWithValue:params:completion:")
     public native void writeAttributePresentValue(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributePresentValueWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributePresentValue(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReliabilityWithCompletion:")
     public native void readAttributeReliability(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeReliabilityWithValue:completion:")
     public native void writeAttributeReliability(NSNumber value, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeReliabilityWithValue:params:completion:")
     public native void writeAttributeReliability(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeReliabilityWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeReliability(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeStatusFlagsWithCompletion:")
     public native void readAttributeStatusFlags(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeStatusFlagsWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeStatusFlags(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeApplicationTypeWithCompletion:")
     public native void readAttributeApplicationType(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeApplicationTypeWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeApplicationType(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
     public native void readAttributeGeneratedCommandList(@Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeGeneratedCommandList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcceptedCommandListWithCompletion:")
     public native void readAttributeAcceptedCommandList(@Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeAcceptedCommandList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAttributeListWithCompletion:")
     public native void readAttributeAttributeList(@Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeAttributeList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeFeatureMapWithCompletion:")
     public native void readAttributeFeatureMap(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeFeatureMap(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeClusterRevisionWithCompletion:")
     public native void readAttributeClusterRevision(@Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeClusterRevision(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeActiveTextWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeActiveText(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeDescriptionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeDescription(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeInactiveTextWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeInactiveText(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSString, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeOutOfServiceWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeOutOfService(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePolarityWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributePolarity(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributePresentValueWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributePresentValue(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeReliabilityWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeReliability(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeStatusFlagsWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeStatusFlags(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeApplicationTypeWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeApplicationType(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeGeneratedCommandList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeAcceptedCommandList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeAttributeList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeFeatureMap(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. BinaryInputBasic is deprecated and will be removed
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

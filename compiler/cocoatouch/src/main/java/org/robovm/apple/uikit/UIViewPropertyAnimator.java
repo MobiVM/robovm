@@ -107,6 +107,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setPausesOnCompletion:")
     public native void setPausesOnCompletion(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "flushUpdates")
+    public native boolean isFlushUpdates();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setFlushUpdates:")
+    public native void setFlushUpdates(boolean v);
     @Property(selector = "state")
     public native UIViewAnimatingState getState();
     @Property(selector = "isRunning")

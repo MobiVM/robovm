@@ -109,6 +109,10 @@ import org.robovm.apple.dispatch.*;
     public static final NSHTTPCookieAttribute MaximumAge = new NSHTTPCookieAttribute("MaximumAge");
     public static final NSHTTPCookieAttribute Port = new NSHTTPCookieAttribute("Port");
     /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public static final NSHTTPCookieAttribute SetByJavaScript = new NSHTTPCookieAttribute("SetByJavaScript");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final NSHTTPCookieAttribute SameSitePolicy = new NSHTTPCookieAttribute("SameSitePolicy");
@@ -122,7 +126,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSHTTPCookieAttribute SameSiteStrict = new NSHTTPCookieAttribute("SameSiteStrict");
     /*</constants>*/
     
-    private static /*<name>*/NSHTTPCookieAttribute/*</name>*/[] values = new /*<name>*/NSHTTPCookieAttribute/*</name>*/[] {/*<value_list>*/Name, Value, OriginURL, Version, Domain, Path, Secure, Expires, Comment, CommentURL, Discard, MaximumAge, Port, SameSitePolicy, SameSiteLax, SameSiteStrict/*</value_list>*/};
+    private static /*<name>*/NSHTTPCookieAttribute/*</name>*/[] values = new /*<name>*/NSHTTPCookieAttribute/*</name>*/[] {/*<value_list>*/Name, Value, OriginURL, Version, Domain, Path, Secure, Expires, Comment, CommentURL, Discard, MaximumAge, Port, SetByJavaScript, SameSitePolicy, SameSiteLax, SameSiteStrict/*</value_list>*/};
     
     /*<name>*/NSHTTPCookieAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -171,6 +175,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString MaximumAge();
         @GlobalValue(symbol="NSHTTPCookiePort", optional=true)
         public static native NSString Port();
+        /**
+         * @since Available in iOS 18.2 and later.
+         */
+        @GlobalValue(symbol="NSHTTPCookieSetByJavaScript", optional=true)
+        public static native NSString SetByJavaScript();
         /**
          * @since Available in iOS 13.0 and later.
          */

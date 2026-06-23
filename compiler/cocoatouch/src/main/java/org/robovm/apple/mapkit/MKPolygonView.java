@@ -52,42 +52,18 @@ import org.robovm.apple.coreanimation.*;
     public MKPolygonView() {}
     protected MKPolygonView(Handle h, long handle) { super(h, handle); }
     protected MKPolygonView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithPolygon:")
-    public MKPolygonView(MKPolygon polygon) { super((SkipInit) null); initObject(init(polygon)); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    public MKPolygonView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
     public MKPolygonView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public MKPolygonView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "polygon")
-    public native MKPolygon getPolygon();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithPolygon:")
-    protected native @Pointer long init(MKPolygon polygon);
     /**
      * @since Available in iOS 9.0 and later.
      */

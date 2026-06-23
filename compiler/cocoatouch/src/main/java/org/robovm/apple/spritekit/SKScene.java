@@ -59,6 +59,18 @@ import org.robovm.apple.coreanimation.*;
     public SKScene(@ByVal CGSize size) { super((SkipInit) null); initObject(init(size)); }
     @Method(selector = "initWithCoder:")
     public SKScene(NSCoder coder) { super(coder); }
+    public SKScene(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKScene(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKScene(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "size")
@@ -142,5 +154,12 @@ import org.robovm.apple.coreanimation.*;
     public native void willMoveFromView(SKView view);
     @Method(selector = "didChangeSize:")
     public native void didChangeSize(@ByVal CGSize oldSize);
+    @Method(selector = "nodeWithFileNamed:")
+    protected static native @Pointer long create(String filename);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

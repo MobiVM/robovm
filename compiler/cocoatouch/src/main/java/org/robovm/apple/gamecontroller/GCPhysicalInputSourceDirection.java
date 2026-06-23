@@ -34,7 +34,9 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 17.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/GCPhysicalInputSourceDirection/*</name>*/ extends Bits</*<name>*/GCPhysicalInputSourceDirection/*</name>*/> {

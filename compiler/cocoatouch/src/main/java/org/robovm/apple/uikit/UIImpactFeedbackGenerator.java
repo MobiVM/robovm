@@ -59,6 +59,11 @@ import org.robovm.apple.symbols.*;
     public UIImpactFeedbackGenerator() {}
     protected UIImpactFeedbackGenerator(Handle h, long handle) { super(h, handle); }
     protected UIImpactFeedbackGenerator(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use +feedbackGeneratorWithStyle:forView:
+     */
+    @Deprecated
     @Method(selector = "initWithStyle:")
     public UIImpactFeedbackGenerator(UIImpactFeedbackStyle style) { super((SkipInit) null); initObject(init(style)); }
     /*</constructors>*/
@@ -67,14 +72,39 @@ import org.robovm.apple.symbols.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithStyle:")
-    protected native @Pointer long init(UIImpactFeedbackStyle style);
     @Method(selector = "impactOccurred")
     public native void impactOccurred();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "impactOccurredAtLocation:")
+    public native void impactOccurredAtLocation(@ByVal CGPoint location);
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "impactOccurredWithIntensity:")
     public native void impactOccurred(@MachineSizedFloat double intensity);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "impactOccurredWithIntensity:atLocation:")
+    public native void impactOccurred(@MachineSizedFloat double intensity, @ByVal CGPoint location);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use +feedbackGeneratorWithStyle:forView:
+     */
+    @Deprecated
+    @Method(selector = "initWithStyle:")
+    protected native @Pointer long init(UIImpactFeedbackStyle style);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorWithStyle:forView:")
+    public static native UIImpactFeedbackGenerator feedbackGeneratorForView(UIImpactFeedbackStyle style, UIView view);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UIImpactFeedbackGenerator feedbackGeneratorForView(UIView view);
     /*</methods>*/
 }

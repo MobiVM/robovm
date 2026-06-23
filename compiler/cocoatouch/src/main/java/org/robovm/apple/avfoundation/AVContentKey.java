@@ -63,6 +63,11 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "contentKeySpecifier")
     public native AVContentKeySpecifier getContentKeySpecifier();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "externalContentProtectionStatus")
+    public native AVExternalContentProtectionStatus getExternalContentProtectionStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -116,6 +121,16 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="AVContentKeyRequestProtocolVersionsKey", optional=true)
     public static native String RequestProtocolVersionsKey();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="AVContentKeyRequestShouldRandomizeDeviceIdentifierKey", optional=true)
+    public static native String RequestShouldRandomizeDeviceIdentifierKey();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="AVContentKeyRequestRandomDeviceIdentifierSeedKey", optional=true)
+    public static native String RequestRandomDeviceIdentifierSeedKey();
     
     /**
      * @since Available in iOS 14.5 and later.
@@ -132,7 +147,11 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="AVSampleBufferAttachContentKey", optional=true)
     private static native boolean attachToSampleBuffer(CMSampleBuffer sbuf, AVContentKey contentKey, NSError.NSErrorPtr error);
     
-    
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "revoke")
+    public native void revoke();
     /*</methods>*/
     /**
      * @since Available in iOS 14.5 and later.

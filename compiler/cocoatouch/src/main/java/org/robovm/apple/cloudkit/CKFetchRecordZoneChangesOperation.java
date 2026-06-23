@@ -54,7 +54,7 @@ import org.robovm.apple.fileprovider.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initWithRecordZoneIDs:configurationsByRecordZoneID:")
-    public static  CKFetchRecordZoneChangesOperation create(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID) {
+    public static CKFetchRecordZoneChangesOperation create(NSArray<CKRecordZoneID> recordZoneIDs, NSDictionary<CKRecordZoneID, CKFetchRecordZoneChangesConfiguration> configurationsByRecordZoneID) {
        CKFetchRecordZoneChangesOperation res = new CKFetchRecordZoneChangesOperation((SkipInit) null);
        res.initObject(res.init0(recordZoneIDs, configurationsByRecordZoneID));
        return res;

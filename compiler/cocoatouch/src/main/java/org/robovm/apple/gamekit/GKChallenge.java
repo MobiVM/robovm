@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 26.0. Use Replaced by developer defined challenges, see ``GKChallengeDefinition``
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKChallenge/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSCoding, NSSecureCoding/*</implements>*/ {
@@ -64,13 +66,13 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "message")
     public native String getMessage();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -issuingPlayer:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKChallenge/issuingPlayer`` instead.
      */
     @Deprecated
     @Property(selector = "issuingPlayerID")
     public native String getIssuingPlayerID();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -receivingPlayer:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKChallenge/receivingPlayer`` instead
      */
     @Deprecated
     @Property(selector = "receivingPlayerID")

@@ -76,5 +76,15 @@ import org.robovm.apple.network.*;
      */
     @Method(selector = "getConfiguredSSIDsWithCompletionHandler:")
     public native void getConfiguredSSIDs(@Block VoidBlock1<NSArray<NSString>> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "joinAccessoryHotspot:passphrase:completionHandler:")
+    public native void joinAccessoryHotspot(org.robovm.apple.accessorysetupkit.ASAccessory accessory, String passphrase, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "joinAccessoryHotspotWithoutSecurity:completionHandler:")
+    public native void joinAccessoryHotspotWithoutSecurity(org.robovm.apple.accessorysetupkit.ASAccessory accessory, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

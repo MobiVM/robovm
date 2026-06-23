@@ -97,6 +97,10 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*/
     public static final NSURLProtectionSpaceProxyType HTTP = new NSURLProtectionSpaceProxyType("HTTP");
     public static final NSURLProtectionSpaceProxyType HTTPS = new NSURLProtectionSpaceProxyType("HTTPS");
+    /**
+     * @deprecated Deprecated in iOS 18.4. FTP is deprecated and only supported in the classic loading mode
+     */
+    @Deprecated
     public static final NSURLProtectionSpaceProxyType FTP = new NSURLProtectionSpaceProxyType("FTP");
     public static final NSURLProtectionSpaceProxyType SOCKS = new NSURLProtectionSpaceProxyType("SOCKS");
     /*</constants>*/
@@ -128,6 +132,10 @@ import org.robovm.apple.dispatch.*;
         public static native NSString HTTP();
         @GlobalValue(symbol="NSURLProtectionSpaceHTTPSProxy", optional=true)
         public static native NSString HTTPS();
+        /**
+         * @deprecated Deprecated in iOS 18.4. FTP is deprecated and only supported in the classic loading mode
+         */
+        @Deprecated
         @GlobalValue(symbol="NSURLProtectionSpaceFTPProxy", optional=true)
         public static native NSString FTP();
         @GlobalValue(symbol="NSURLProtectionSpaceSOCKSProxy", optional=true)

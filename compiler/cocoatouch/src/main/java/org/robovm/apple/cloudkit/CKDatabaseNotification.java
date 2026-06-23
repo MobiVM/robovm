@@ -50,6 +50,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKDatabaseNotification() {}
     protected CKDatabaseNotification(Handle h, long handle) { super(h, handle); }
     protected CKDatabaseNotification(SkipInit skipInit) { super(skipInit); }
+    public CKDatabaseNotification(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary) { super((Handle) null, create(notificationDictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "databaseScope")
@@ -57,6 +58,7 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "notificationFromRemoteNotificationDictionary:")
+    protected static native @Pointer long create(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary);
     /*</methods>*/
 }

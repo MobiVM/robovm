@@ -66,5 +66,10 @@ import org.robovm.apple.foundation.*;
     public static native NSSymbolReplaceContentTransition replaceUpUpTransition();
     @Method(selector = "replaceOffUpTransition")
     public static native NSSymbolReplaceContentTransition replaceOffUpTransition();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "magicTransitionWithFallback:")
+    public static native NSSymbolMagicReplaceContentTransition magicTransition(NSSymbolReplaceContentTransition fallback);
     /*</methods>*/
 }

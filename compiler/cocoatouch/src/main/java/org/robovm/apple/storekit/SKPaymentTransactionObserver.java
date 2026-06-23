@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use StoreKit 2 Transaction APIs
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/SKPaymentTransactionObserver/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -52,8 +54,16 @@ import org.robovm.apple.coregraphics.*;
     void updatedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions);
     @Method(selector = "paymentQueue:removedTransactions:")
     void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     */
+    @Deprecated
     @Method(selector = "paymentQueue:restoreCompletedTransactionsFailedWithError:")
     void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     */
+    @Deprecated
     @Method(selector = "paymentQueueRestoreCompletedTransactionsFinished:")
     void restoreCompletedTransactionsFinished(SKPaymentQueue queue);
     /**
@@ -64,17 +74,23 @@ import org.robovm.apple.coregraphics.*;
     void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use PurchaseIntent.intents
      */
+    @Deprecated
     @Method(selector = "paymentQueue:shouldAddStorePayment:forProduct:")
     boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates
      */
+    @Deprecated
     @Method(selector = "paymentQueueDidChangeStorefront:")
     void paymentQueueDidChangeStorefront(SKPaymentQueue queue);
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.updates
      */
+    @Deprecated
     @Method(selector = "paymentQueue:didRevokeEntitlementsForProductIdentifiers:")
     void didRevokeEntitlements(SKPaymentQueue queue, NSArray<NSString> productIdentifiers);
     /*</methods>*/

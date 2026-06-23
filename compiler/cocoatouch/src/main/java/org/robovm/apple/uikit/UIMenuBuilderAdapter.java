@@ -71,15 +71,80 @@ import org.robovm.apple.symbols.*;
     public void replaceMenu(UIMenuIdentifier replacedIdentifier, UIMenu replacementMenu) {}
     @NotImplemented("replaceChildrenOfMenuForIdentifier:fromChildrenBlock:")
     public void replaceChildren(UIMenuIdentifier parentIdentifier, @Block Block1<NSArray<UIMenuElement>, NSArray<UIMenuElement>> childrenBlock) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("replaceMenuForIdentifier:withElements:")
+    public void replaceMenu(UIMenuIdentifier replacedIdentifier, NSArray<UIMenuElement> replacementElements) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("replaceActionForIdentifier:withElements:")
+    public void replaceAction(UIActionIdentifier replacedIdentifier, NSArray<UIMenuElement> replacementElements) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("replaceCommandForAction:propertyList:withElements:")
+    public void replaceCommand(Selector replacedAction, NSObject replacedPropertyList, NSArray<UIMenuElement> replacementElements) {}
     @NotImplemented("insertSiblingMenu:beforeMenuForIdentifier:")
     public void insertSiblingMenuBefore(UIMenu siblingMenu, UIMenuIdentifier siblingIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:beforeMenuForIdentifier:")
+    public void insertElementsBeforeMenu(NSArray<UIMenuElement> insertedElements, UIMenuIdentifier siblingIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:afterMenuForIdentifier:")
+    public void insertElementsAfterMenu(NSArray<UIMenuElement> insertedElements, UIMenuIdentifier siblingIdentifier) {}
     @NotImplemented("insertSiblingMenu:afterMenuForIdentifier:")
     public void insertSiblingMenuAfter(UIMenu siblingMenu, UIMenuIdentifier siblingIdentifier) {}
     @NotImplemented("insertChildMenu:atStartOfMenuForIdentifier:")
     public void insertChildMenuAtStart(UIMenu childMenu, UIMenuIdentifier parentIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:beforeActionForIdentifier:")
+    public void insertElementsBeforeAction(NSArray<UIMenuElement> insertedElements, UIActionIdentifier siblingIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:afterActionForIdentifier:")
+    public void insertElementsAfterAction(NSArray<UIMenuElement> insertedElements, UIActionIdentifier siblingIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:beforeCommandForAction:propertyList:")
+    public void insertElementsBeforeCommand(NSArray<UIMenuElement> insertedElements, Selector siblingAction, NSObject siblingPropertyList) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:afterCommandForAction:propertyList:")
+    public void insertElementsAfterCommand(NSArray<UIMenuElement> insertedElements, Selector siblingAction, NSObject siblingPropertyList) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:atStartOfMenuForIdentifier:")
+    public void insertElementsAtStartOfMenu(NSArray<UIMenuElement> childElements, UIMenuIdentifier parentIdentifier) {}
     @NotImplemented("insertChildMenu:atEndOfMenuForIdentifier:")
     public void insertChildMenuAtEnd(UIMenu childMenu, UIMenuIdentifier parentIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("insertElements:atEndOfMenuForIdentifier:")
+    public void insertElementsAtEndOfMenu(NSArray<UIMenuElement> childElements, UIMenuIdentifier parentIdentifier) {}
     @NotImplemented("removeMenuForIdentifier:")
     public void removeMenuForIdentifier(UIMenuIdentifier removedIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("removeActionForIdentifier:")
+    public void removeActionForIdentifier(UIActionIdentifier removedIdentifier) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("removeCommandForAction:propertyList:")
+    public void removeCommandForAction(Selector removedAction, NSObject removedPropertyList) {}
     /*</methods>*/
 }

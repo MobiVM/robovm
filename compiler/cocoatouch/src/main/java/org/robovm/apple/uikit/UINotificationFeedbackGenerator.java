@@ -67,5 +67,15 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "notificationOccurred:")
     public native void notificationOccurred(UINotificationFeedbackType notificationType);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "notificationOccurred:atLocation:")
+    public native void notificationOccurred(UINotificationFeedbackType notificationType, @ByVal CGPoint location);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UINotificationFeedbackGenerator feedbackGeneratorForView(UIView view);
     /*</methods>*/
 }

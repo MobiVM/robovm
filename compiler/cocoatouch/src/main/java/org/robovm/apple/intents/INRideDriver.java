@@ -71,7 +71,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isMe:suggestionType:")
-    public static  INRideDriver createForMe(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe, INPersonSuggestionType suggestionType) {
+    public static INRideDriver createForMe(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isMe, INPersonSuggestionType suggestionType) {
        INRideDriver res = new INRideDriver((SkipInit) null);
        res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isMe, suggestionType));
        return res;
@@ -80,7 +80,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:isContactSuggestion:suggestionType:")
-    public static  INRideDriver createForContactSuggestion(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isContactSuggestion, INPersonSuggestionType suggestionType) {
+    public static INRideDriver createForContactSuggestion(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String contactIdentifier, String customIdentifier, boolean isContactSuggestion, INPersonSuggestionType suggestionType) {
        INRideDriver res = new INRideDriver((SkipInit) null);
        res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle, nameComponents, displayName, image, contactIdentifier, customIdentifier, isContactSuggestion, suggestionType));
        return res;
@@ -91,7 +91,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithPersonHandle:nameComponents:displayName:image:rating:phoneNumber:")
-    public static  INRideDriver create(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber) {
+    public static INRideDriver create(INPersonHandle personHandle, NSPersonNameComponents nameComponents, String displayName, INImage image, String rating, String phoneNumber) {
        INRideDriver res = new INRideDriver((SkipInit) null);
        res.initObject(res.initWithPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber(personHandle, nameComponents, displayName, image, rating, phoneNumber));
        return res;

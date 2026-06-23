@@ -48,6 +48,11 @@ import org.robovm.apple.uniformtypeid.*;
     protected HKWorkoutSession() {}
     protected HKWorkoutSession(Handle h, long handle) { super(h, handle); }
     protected HKWorkoutSession(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithHealthStore:configuration:error:")
+    public HKWorkoutSession(HKHealthStore healthStore, HKWorkoutConfiguration workoutConfiguration, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(healthStore, workoutConfiguration, error)); }
     @Method(selector = "initWithCoder:")
     public HKWorkoutSession(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -87,6 +92,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithHealthStore:configuration:error:")
+    protected native @Pointer long init(HKHealthStore healthStore, HKWorkoutConfiguration workoutConfiguration, NSError.NSErrorPtr error);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "prepare")
@@ -116,6 +126,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "resume")
     public native void resume();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "associatedWorkoutBuilder")
+    public native HKLiveWorkoutBuilder associatedWorkoutBuilder();
     /**
      * @since Available in iOS 17.0 and later.
      */

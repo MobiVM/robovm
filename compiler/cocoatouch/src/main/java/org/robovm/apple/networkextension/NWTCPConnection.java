@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWTCPConnection/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,54 +52,74 @@ import org.robovm.apple.network.*;
     protected NWTCPConnection(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "initWithUpgradeForConnection:")
     public NWTCPConnection(NWTCPConnection connection) { super((SkipInit) null); initObject(init(connection)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "state")
     public native NWTCPConnectionState getState();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "isViable")
     public native boolean isViable();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "hasBetterPath")
     public native boolean hasBetterPath();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "endpoint")
     public native NWEndpoint getEndpoint();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "connectedPath")
     public native NWPath getConnectedPath();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_copy_effective_local_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "localAddress")
     public native NWEndpoint getLocalAddress();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_path_copy_effective_remote_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "remoteAddress")
     public native NWEndpoint getRemoteAddress();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_copy_txt_record` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "txtRecord")
     public native NSData getTxtRecord();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Property(selector = "error")
     public native NSError getError();
     /*</properties>*/
@@ -106,32 +127,44 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "initWithUpgradeForConnection:")
     protected native @Pointer long init(NWTCPConnection connection);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "cancel")
     public native void cancel();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "readLength:completionHandler:")
     public native void read(@MachineSizedUInt long length, @Block VoidBlock2<NSData, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "readMinimumLength:maximumLength:completionHandler:")
     public native void read(@MachineSizedUInt long minimum, @MachineSizedUInt long maximum, @Block VoidBlock2<NSData, NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "write:completionHandler:")
     public native void write(NSData data, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @Method(selector = "writeClose")
     public native void writeClose();
     /*</methods>*/

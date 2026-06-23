@@ -64,19 +64,19 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("match:shouldReinviteDisconnectedPlayer:")
     public boolean shouldReinviteDisconnectedPlayer(GKMatch match, GKPlayer player) { return false; }
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -match:didReceiveData:fromRemotePlayer:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKMatchDelegate/match(_:didReceive:fromRemotePlayer:)`` instead.
      */
     @Deprecated
     @NotImplemented("match:didReceiveData:fromPlayer:")
     public void didReceiveData(GKMatch match, NSData data, String playerID) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -match:player:didChangeConnectionState:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKMatchDelegate/match(_:player:didChange:)-8ohgr`` instead.
      */
     @Deprecated
     @NotImplemented("match:player:didChangeState:")
     public void didChangeState(GKMatch match, String playerID, GKPlayerConnectionState state) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -shouldReinviteDisconnectedPlayer:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKMatchDelegate/match(_:shouldReinviteDisconnectedPlayer:)`` instead.
      */
     @Deprecated
     @NotImplemented("match:shouldReinvitePlayer:")

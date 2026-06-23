@@ -395,14 +395,6 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     protected native @Pointer long initAbsoluteURL(NSData data, NSURL baseURL);
     @Method(selector = "getFileSystemRepresentation:maxLength:")
     public native boolean getFileSystemRepresentation(BytePtr buffer, @MachineSizedUInt long maxBufferLength);
-    public boolean checkResourceIsReachable() throws NSErrorException {
-       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = checkResourceIsReachable(ptr);
-       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
-       return result;
-    }
-    @Method(selector = "checkResourceIsReachableAndReturnError:")
-    private native boolean checkResourceIsReachable(NSError.NSErrorPtr error);
     @Method(selector = "isFileReferenceURL")
     public native boolean isFileReferenceURL();
     @Method(selector = "fileReferenceURL")
@@ -501,6 +493,14 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     public native NSURL newURLByAppendingPathComponent(String pathComponent, boolean isDirectory);
     @Method(selector = "URLByAppendingPathExtension:")
     public native NSURL newURLByAppendingPathExtension(String pathExtension);
+    public boolean checkResourceIsReachable() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = checkResourceIsReachable(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "checkResourceIsReachableAndReturnError:")
+    private native boolean checkResourceIsReachable(NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

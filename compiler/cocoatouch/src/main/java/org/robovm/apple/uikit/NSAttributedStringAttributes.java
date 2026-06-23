@@ -341,7 +341,7 @@ import org.robovm.apple.symbols.*;
         return this;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public double getObliqueness() {
@@ -352,7 +352,7 @@ import org.robovm.apple.symbols.*;
         return 0;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public NSAttributedStringAttributes setObliqueness(double obliqueness) {
@@ -360,7 +360,7 @@ import org.robovm.apple.symbols.*;
         return this;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public double getExpansion() {
@@ -371,7 +371,7 @@ import org.robovm.apple.symbols.*;
         return 0;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public NSAttributedStringAttributes setExpansion(double expansion) {
@@ -379,7 +379,7 @@ import org.robovm.apple.symbols.*;
         return this;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public boolean isVerticalText() {
@@ -390,7 +390,7 @@ import org.robovm.apple.symbols.*;
         return false;
     }
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public NSAttributedStringAttributes setVerticalText(boolean verticalText) {

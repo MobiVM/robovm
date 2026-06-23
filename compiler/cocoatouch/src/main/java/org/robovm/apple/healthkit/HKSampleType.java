@@ -92,6 +92,11 @@ import org.robovm.apple.uniformtypeid.*;
     @Method(selector = "documentTypeForIdentifier:")
     public static native HKDocumentType documentTypeForIdentifier(String identifier);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "scoredAssessmentTypeForIdentifier:")
+    public static native HKScoredAssessmentType scoredAssessmentTypeForIdentifier(HKScoredAssessmentTypeIdentifier identifier);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "seriesTypeForIdentifier:")
@@ -114,9 +119,24 @@ import org.robovm.apple.uniformtypeid.*;
     @Method(selector = "electrocardiogramType")
     public static native HKElectrocardiogramType electrocardiogramType();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "medicationDoseEventType")
+    public static native HKMedicationDoseEventType medicationDoseEventType();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "visionPrescriptionType")
     public static native HKPrescriptionType visionPrescriptionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "stateOfMindType")
+    public static native HKStateOfMindType stateOfMindType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "userAnnotatedMedicationType")
+    public static native HKUserAnnotatedMedicationType userAnnotatedMedicationType();
     /*</methods>*/
 }

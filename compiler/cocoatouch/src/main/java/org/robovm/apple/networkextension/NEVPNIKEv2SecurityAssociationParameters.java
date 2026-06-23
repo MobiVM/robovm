@@ -63,6 +63,16 @@ import org.robovm.apple.network.*;
     public native NEVPNIKEv2DiffieHellmanGroup getDiffieHellmanGroup();
     @Property(selector = "setDiffieHellmanGroup:")
     public native void setDiffieHellmanGroup(NEVPNIKEv2DiffieHellmanGroup v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "postQuantumKeyExchangeMethods")
+    public native NSArray<NSNumber> getPostQuantumKeyExchangeMethods();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPostQuantumKeyExchangeMethods:")
+    public native void setPostQuantumKeyExchangeMethods(NSArray<NSNumber> v);
     @Property(selector = "lifetimeMinutes")
     public native int getLifetimeMinutes();
     @Property(selector = "setLifetimeMinutes:")

@@ -56,14 +56,8 @@ import org.robovm.apple.symbols.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @NotImplemented("isSpringLoaded")
     public boolean isSpringLoaded() { return false; }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @NotImplemented("setSpringLoaded:")
     public void setSpringLoaded(boolean v) {}
     /*</properties>*/

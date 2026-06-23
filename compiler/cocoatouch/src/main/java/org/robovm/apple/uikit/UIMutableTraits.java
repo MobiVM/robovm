@@ -113,8 +113,14 @@ import org.robovm.apple.symbols.*;
     UINSToolbarItemPresentationSize getToolbarItemPresentationSize();
     @Property(selector = "setToolbarItemPresentationSize:")
     void setToolbarItemPresentationSize(UINSToolbarItemPresentationSize v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "imageDynamicRange")
     UIImageDynamicRange getImageDynamicRange();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "setImageDynamicRange:")
     void setImageDynamicRange(UIImageDynamicRange v);
     /**
@@ -131,6 +137,46 @@ import org.robovm.apple.symbols.*;
     String getTypesettingLanguage();
     @Property(selector = "setTypesettingLanguage:")
     void setTypesettingLanguage(String v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "listEnvironment")
+    UIListEnvironment getListEnvironment();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setListEnvironment:")
+    void setListEnvironment(UIListEnvironment v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "tabAccessoryEnvironment")
+    UITabAccessoryEnvironment getTabAccessoryEnvironment();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setTabAccessoryEnvironment:")
+    void setTabAccessoryEnvironment(UITabAccessoryEnvironment v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "splitViewControllerLayoutEnvironment")
+    UISplitViewControllerLayoutEnvironment getSplitViewControllerLayoutEnvironment();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSplitViewControllerLayoutEnvironment:")
+    void setSplitViewControllerLayoutEnvironment(UISplitViewControllerLayoutEnvironment v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "resolvesNaturalAlignmentWithBaseWritingDirection")
+    boolean isResolvesNaturalAlignmentWithBaseWritingDirection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setResolvesNaturalAlignmentWithBaseWritingDirection:")
+    void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v);
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setCGFloatValue:forTrait:")

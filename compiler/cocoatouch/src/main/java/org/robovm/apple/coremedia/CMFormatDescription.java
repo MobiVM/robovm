@@ -81,6 +81,189 @@ import org.robovm.apple.audiotoolbox.*;
         return equalsTo0(desc2, CFArray.fromStrings(formatDescriptionExtensionKeysToIgnore), CFArray.fromStrings(sampleDescriptionExtensionAtomKeysToIgnore));
     }
     /*<methods>*/
+    @Library("CoreMedia")
+    public static class CameraCalibration {
+        static { Bro.bind(CameraCalibration.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensAlgorithmKind", optional=true)
+        public static native CFString LensAlgorithmKind();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensDomain", optional=true)
+        public static native CFString LensDomain();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensIdentifier", optional=true)
+        public static native CFString LensIdentifier();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensRole", optional=true)
+        public static native CFString LensRole();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensDistortions", optional=true)
+        public static native CFString LensDistortions();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX", optional=true)
+        public static native CFString LensFrameAdjustmentsPolynomialX();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY", optional=true)
+        public static native CFString LensFrameAdjustmentsPolynomialY();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_RadialAngleLimit", optional=true)
+        public static native CFString RadialAngleLimit();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_IntrinsicMatrix", optional=true)
+        public static native CFString IntrinsicMatrix();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset", optional=true)
+        public static native CFString IntrinsicMatrixProjectionOffset();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions", optional=true)
+        public static native CFString IntrinsicMatrixReferenceDimensions();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource", optional=true)
+        public static native CFString ExtrinsicOriginSource();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion", optional=true)
+        public static native CFString ExtrinsicOrientationQuaternion();
+    }
+
+    @Library("CoreMedia")
+    public static class CameraCalibrationExtrinsicOriginSource {
+        static { Bro.bind(CameraCalibrationExtrinsicOriginSource.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline", optional=true)
+        public static native CFString StereoCameraSystemBaseline();
+    }
+
+    @Library("CoreMedia")
+    public static class CameraCalibrationLensAlgorithmKind {
+        static { Bro.bind(CameraCalibrationLensAlgorithmKind.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens", optional=true)
+        public static native CFString ParametricLens();
+    }
+
+    @Library("CoreMedia")
+    public static class CameraCalibrationLensDomain {
+        static { Bro.bind(CameraCalibrationLensDomain.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationLensDomain_Color", optional=true)
+        public static native CFString Color();
+    }
+
+    @Library("CoreMedia")
+    public static class CameraCalibrationLensRole {
+        static { Bro.bind(CameraCalibrationLensRole.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationLensRole_Mono", optional=true)
+        public static native CFString Mono();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationLensRole_Left", optional=true)
+        public static native CFString Left();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionCameraCalibrationLensRole_Right", optional=true)
+        public static native CFString Right();
+    }
+
+    @Library("CoreMedia")
+    public static class LogTransferFunction {
+        static { Bro.bind(LogTransferFunction.class); }
+
+        /**
+         * @since Available in iOS 17.2 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionLogTransferFunction_AppleLog", optional=true)
+        public static native CFString AppleLog();
+    }
+
+    @Library("CoreMedia")
+    public static class ProjectionKind {
+        static { Bro.bind(ProjectionKind.class); }
+
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionProjectionKind_Rectilinear", optional=true)
+        public static native CFString Rectilinear();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionProjectionKind_Equirectangular", optional=true)
+        public static native CFString Equirectangular();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionProjectionKind_HalfEquirectangular", optional=true)
+        public static native CFString HalfEquirectangular();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionProjectionKind_ParametricImmersive", optional=true)
+        public static native CFString ParametricImmersive();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionProjectionKind_AppleImmersiveVideo", optional=true)
+        public static native CFString AppleImmersiveVideo();
+    }
+
+    @Library("CoreMedia")
+    public static class ViewPackingKind {
+        static { Bro.bind(ViewPackingKind.class); }
+
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionViewPackingKind_SideBySide", optional=true)
+        public static native CFString SideBySide();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionViewPackingKind_OverUnder", optional=true)
+        public static native CFString OverUnder();
+    }
+    
     @Bridge(symbol="CMFormatDescriptionCreate", optional=true)
     protected static native OSStatus create0(CFAllocator allocator, CMMediaType mediaType, int mediaSubType, CFDictionary extensions, CMFormatDescription.CMFormatDescriptionPtr formatDescriptionOut);
     @Bridge(symbol="CMFormatDescriptionGetTypeID", optional=true)

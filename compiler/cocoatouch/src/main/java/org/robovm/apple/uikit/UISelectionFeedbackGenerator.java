@@ -67,5 +67,15 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "selectionChanged")
     public native void selectionChanged();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "selectionChangedAtLocation:")
+    public native void selectionChangedAtLocation(@ByVal CGPoint location);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UISelectionFeedbackGenerator feedbackGeneratorForView(UIView view);
     /*</methods>*/
 }

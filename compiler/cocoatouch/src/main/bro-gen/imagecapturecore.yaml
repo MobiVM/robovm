@@ -94,6 +94,8 @@ classes:
                 name: requestReadData
             '-requestSecurityScopedURLWithCompletion:':
                 name: requestSecurityScopedURL
+            '-requestFingerprintWithCompletion:':
+                name: requestFingerprint
     ICCameraFolder: {} #since 13.0
     ICCameraItem: {} #since 13.0
     ICDevice: #since 13.0
@@ -114,7 +116,6 @@ classes:
                 name: resetContentsAuthorization
             '-resetControlAuthorizationWithCompletion:':
                 name: resetControlAuthorization
-
 protocols:
     ICCameraDeviceDelegate:
         methods:

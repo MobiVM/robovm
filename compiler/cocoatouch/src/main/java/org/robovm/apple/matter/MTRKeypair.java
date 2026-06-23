@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTRKeypair/*</name>*/ 
@@ -48,6 +50,16 @@ import org.robovm.apple.security.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "copyPublicKey")
+    SecKey copyPublicKey();
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.4. Please implement copyPublicKey, this will leak otherwise
+     */
+    @Deprecated
     @Method(selector = "publicKey")
     SecKey publicKey();
     @Method(selector = "signMessageECDSA_RAW:")

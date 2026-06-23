@@ -63,9 +63,6 @@ import org.robovm.apple.symbols.*;
     public UIDragPreview(UIView view, UIDragPreviewParameters parameters) { super((SkipInit) null); initObject(init(view, parameters)); }
     @Method(selector = "initWithView:")
     public UIDragPreview(UIView view) { super((SkipInit) null); initObject(init(view)); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     public UIDragPreview(NSURL url, String title) { super((Handle) null, create(url, title)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -80,14 +77,8 @@ import org.robovm.apple.symbols.*;
     protected native @Pointer long init(UIView view, UIDragPreviewParameters parameters);
     @Method(selector = "initWithView:")
     protected native @Pointer long init(UIView view);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "previewForURL:")
     public static native UIDragPreview previewForURL(NSURL url);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "previewForURL:title:")
     protected static native @Pointer long create(NSURL url, String title);
     /*</methods>*/

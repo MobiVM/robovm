@@ -45,11 +45,6 @@ import org.robovm.apple.dispatch.*;
 public final class /*<name>*/NSURLBookmarkCreationOptions/*</name>*/ extends Bits</*<name>*/NSURLBookmarkCreationOptions/*</name>*/> {
     /*<values>*/
     public static final NSURLBookmarkCreationOptions None = new NSURLBookmarkCreationOptions(0L);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Not supported
-     */
-    @Deprecated
-    public static final NSURLBookmarkCreationOptions PreferFileIDResolution = new NSURLBookmarkCreationOptions(256L);
     public static final NSURLBookmarkCreationOptions MinimalBookmark = new NSURLBookmarkCreationOptions(512L);
     public static final NSURLBookmarkCreationOptions SuitableForBookmarkFile = new NSURLBookmarkCreationOptions(1024L);
     public static final NSURLBookmarkCreationOptions WithoutImplicitSecurityScope = new NSURLBookmarkCreationOptions(536870912L);

@@ -14,7 +14,8 @@ enums:
     DDDeviceMediaPlaybackState: {}
     DDErrorCode: {nserror: true} #since 16.0
     DDEventType: {}
-
+    DDDeviceSupports: {}
+    DDDeviceWiFiAwareServiceRole: {}
 typed_enums:
     DDDeviceProtocolString:
         enum: DDDeviceProtocolString

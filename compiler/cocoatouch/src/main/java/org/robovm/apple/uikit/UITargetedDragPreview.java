@@ -65,13 +65,7 @@ import org.robovm.apple.symbols.*;
     public UITargetedDragPreview(UIView view, UIPreviewParameters parameters) { super(view, parameters); }
     @Method(selector = "initWithView:")
     public UITargetedDragPreview(UIView view) { super(view); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     public UITargetedDragPreview(NSURL url, UIDragPreviewTarget target) { super((Handle) null, create(url, target)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     public UITargetedDragPreview(NSURL url, String title, UIDragPreviewTarget target) { super((Handle) null, create(url, title, target)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -81,14 +75,8 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "retargetedPreviewWithTarget:")
     public native UITargetedDragPreview retargetedPreview(UIDragPreviewTarget newTarget);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "previewForURL:target:")
     protected static native @Pointer long create(NSURL url, UIDragPreviewTarget target);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "previewForURL:title:target:")
     protected static native @Pointer long create(NSURL url, String title, UIDragPreviewTarget target);
     /*</methods>*/

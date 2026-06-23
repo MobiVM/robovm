@@ -69,6 +69,16 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "prepareCredentialListForServiceIdentifiers:requestParameters:")
     public native void prepareCredentialList(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers, ASPasskeyCredentialRequestParameters requestParameters);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepareOneTimeCodeCredentialListForServiceIdentifiers:")
+    public native void prepareOneTimeCodeCredentialListForServiceIdentifiers(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepareInterfaceForUserChoosingTextToInsert")
+    public native void prepareInterfaceForUserChoosingTextToInsert();
+    /**
      * @since Available in iOS 12.0 and later.
      * @deprecated Deprecated in iOS 17.0. Use provideCredentialWithoutUserInteractionForRequest:
      */
@@ -99,5 +109,18 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "prepareInterfaceForPasskeyRegistration:")
     public native void prepareInterfaceForPasskeyRegistration(ASCredentialRequest registrationRequest);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "performPasskeyRegistrationWithoutUserInteractionIfPossible:")
+    public native void performPasskeyRegistrationWithoutUserInteractionIfPossible(ASPasskeyCredentialRequest registrationRequest);
+    @Method(selector = "reportPublicKeyCredentialUpdateForRelyingParty:userHandle:newName:")
+    public native void reportPublicKeyCredentialUpdate(String relyingParty, NSData userHandle, String newName);
+    @Method(selector = "reportUnknownPublicKeyCredentialForRelyingParty:credentialID:")
+    public native void reportUnknownPublicKeyCredential(String relyingParty, NSData credentialID);
+    @Method(selector = "reportAllAcceptedPublicKeyCredentialsForRelyingParty:userHandle:acceptedCredentialIDs:")
+    public native void reportAllAcceptedPublicKeyCredentials(String relyingParty, NSData userHandle, NSArray<NSData> acceptedCredentialIDs);
+    @Method(selector = "reportUnusedPasswordCredentialForDomain:userName:")
+    public native void reportUnusedPasswordCredential(String domain, String userName);
     /*</methods>*/
 }

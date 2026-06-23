@@ -67,6 +67,26 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGRect getBounds();
     @Property(selector = "type")
     public native AVMetadataObjectType getType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "groupID")
+    public native @MachineSizedSInt long getGroupID();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "objectID")
+    public native @MachineSizedSInt long getObjectID();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "cinematicVideoFocusMode")
+    public native AVCaptureCinematicVideoFocusMode getCinematicVideoFocusMode();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isFixedFocus")
+    public native boolean isFixedFocus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

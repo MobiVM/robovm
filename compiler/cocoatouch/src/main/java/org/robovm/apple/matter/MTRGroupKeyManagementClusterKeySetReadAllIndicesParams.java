@@ -59,6 +59,20 @@ import org.robovm.apple.security.*;
     public native NSNumber getServerSideProcessingTimeout();
     @Property(selector = "setServerSideProcessingTimeout:")
     public native void setServerSideProcessingTimeout(NSNumber v);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.0. This field has been removed
+     */
+    @Deprecated
+    @Property(selector = "groupKeySetIDs")
+    public native NSArray<?> getGroupKeySetIDs();
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.0. This field has been removed
+     */
+    @Deprecated
+    @Property(selector = "setGroupKeySetIDs:")
+    public native void setGroupKeySetIDs(NSArray<?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterNetworkCommissioning/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterNetworkCommissioningPtr extends Ptr<MTRBaseClusterNetworkCommissioning, MTRBaseClusterNetworkCommissioningPtr> {}/*</ptr>*/
@@ -63,13 +63,13 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "scanNetworksWithParams:completion:")
     public native void scanNetworks(MTRNetworkCommissioningClusterScanNetworksParams params, @Block VoidBlock2<MTRNetworkCommissioningClusterScanNetworksResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "scanNetworksWithCompletion:")
+    public native void scanNetworks(@Block VoidBlock2<MTRNetworkCommissioningClusterScanNetworksResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -186,6 +186,36 @@ import org.robovm.apple.security.*;
     @Method(selector = "subscribeAttributeLastConnectErrorValueWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeLastConnectErrorValue(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedWiFiBandsWithCompletion:")
+    public native void readAttributeSupportedWiFiBands(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeSupportedWiFiBandsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeSupportedWiFiBands(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedThreadFeaturesWithCompletion:")
+    public native void readAttributeSupportedThreadFeatures(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeSupportedThreadFeaturesWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeSupportedThreadFeatures(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeThreadVersionWithCompletion:")
+    public native void readAttributeThreadVersion(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeThreadVersionWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeThreadVersion(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
@@ -276,6 +306,21 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeLastConnectErrorValueWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeLastConnectErrorValue(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedWiFiBandsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeSupportedWiFiBands(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSupportedThreadFeaturesWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeSupportedThreadFeatures(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeThreadVersionWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeThreadVersion(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -300,5 +345,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

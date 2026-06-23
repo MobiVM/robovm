@@ -353,17 +353,21 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "hasActiveDrop")
     public native boolean hasActiveDrop();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "contentHuggingElements")
+    public native UITableViewContentHuggingElements getContentHuggingElements();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setContentHuggingElements:")
+    public native void setContentHuggingElements(UITableViewContentHuggingElements v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/

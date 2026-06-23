@@ -74,6 +74,11 @@ import org.robovm.apple.avfoundation.*;
     void failedToBeginTransmittingInChannelWithUUID(PTChannelManager channelManager, NSUUID channelUUID, NSError error);
     @Method(selector = "channelManager:failedToStopTransmittingInChannelWithUUID:error:")
     void failedToStopTransmittingInChannelWithUUID(PTChannelManager channelManager, NSUUID channelUUID, NSError error);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Method(selector = "incomingServiceUpdatePushForChannelManager:channelUUID:pushPayload:isHighPriority:remainingHighPriorityBudget:withCompletionHandler:")
+    void incomingServiceUpdatePush(PTChannelManager channelManager, NSUUID channelUUID, NSDictionary<NSString, ?> pushPayload, boolean isHighPriority, @MachineSizedSInt long remainingHighPriorityBudget, @Block Runnable completion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

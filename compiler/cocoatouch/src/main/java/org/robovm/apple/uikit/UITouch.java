@@ -112,6 +112,11 @@ import org.robovm.apple.spritekit.SKNode;
      */
     @Property(selector = "estimatedPropertiesExpectingUpdates")
     public native UITouchProperties getEstimatedPropertiesExpectingUpdates();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "rollAngle")
+    public native @MachineSizedFloat double getRollAngle();
     /*</properties>*/
     /*<members>*//*</members>*/
     

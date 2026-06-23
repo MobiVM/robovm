@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRCluster/*</name>*/ 
@@ -49,7 +51,11 @@ import org.robovm.apple.security.*;
     protected MTRCluster(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "endpointID")
+    public native NSNumber getEndpointID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

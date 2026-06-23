@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     public ASAuthorizationSecurityKeyPublicKeyCredentialRegistration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "transports")
+    public native NSArray<NSString> getTransports();
     @Property(selector = "rawAttestationObject")
     public native NSData getRawAttestationObject();
     @Property(selector = "rawClientDataJSON")

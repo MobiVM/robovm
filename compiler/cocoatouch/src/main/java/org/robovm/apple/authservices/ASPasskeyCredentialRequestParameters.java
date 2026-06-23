@@ -62,6 +62,11 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "allowedCredentials")
     public native NSArray<NSData> getAllowedCredentials();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "extensionInput")
+    public native ASPasskeyAssertionCredentialExtensionInput getExtensionInput();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

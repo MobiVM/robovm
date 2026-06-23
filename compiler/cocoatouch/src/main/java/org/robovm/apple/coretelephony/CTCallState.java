@@ -89,22 +89,22 @@ import org.robovm.apple.corefoundation.*;
 
     /*<constants>*/
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     public static final CTCallState Dialing = new CTCallState("Dialing");
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     public static final CTCallState Incoming = new CTCallState("Incoming");
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     public static final CTCallState Connected = new CTCallState("Connected");
     /**
-     * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+     * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
      */
     @Deprecated
     public static final CTCallState Disconnected = new CTCallState("Disconnected");
@@ -134,25 +134,25 @@ import org.robovm.apple.corefoundation.*;
 
         /*<values>*/
         /**
-         * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+         * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
          */
         @Deprecated
         @GlobalValue(symbol="CTCallStateDialing", optional=true)
         public static native NSString Dialing();
         /**
-         * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+         * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
          */
         @Deprecated
         @GlobalValue(symbol="CTCallStateIncoming", optional=true)
         public static native NSString Incoming();
         /**
-         * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+         * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
          */
         @Deprecated
         @GlobalValue(symbol="CTCallStateConnected", optional=true)
         public static native NSString Connected();
         /**
-         * @deprecated Deprecated in iOS 10.0. Replaced by <CallKit/CXCall.h> properties
+         * @deprecated Deprecated in iOS 10.0. Obsolete and will be a useless stub before final removal. Replaced by <CallKit/CXCall.h> properties
          */
         @Deprecated
         @GlobalValue(symbol="CTCallStateDisconnected", optional=true)

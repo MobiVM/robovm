@@ -83,6 +83,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setLockdownModeEnabled:")
     public native void setLockdownModeEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "preferredHTTPSNavigationPolicy")
+    public native WKWebpagePreferencesUpgradeToHTTPSPolicy getPreferredHTTPSNavigationPolicy();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "setPreferredHTTPSNavigationPolicy:")
+    public native void setPreferredHTTPSNavigationPolicy(WKWebpagePreferencesUpgradeToHTTPSPolicy v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

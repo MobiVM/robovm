@@ -56,6 +56,11 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "packetFlow")
     public native NEPacketTunnelFlow getPacketFlow();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "virtualInterface")
+    public native NWInterface getVirtualInterface();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,12 +81,16 @@ import org.robovm.apple.network.*;
     public native void cancelTunnel(NSError error);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use the `virtualInterface` property with `nw_parameters_require_interface`
      */
+    @Deprecated
     @Method(selector = "createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:")
     public native NWTCPConnection createTCPConnection(NWEndpoint remoteEndpoint, boolean enableTLS, NWTLSParameters TLSParameters, NSObject delegate);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use the `virtualInterface` property with `nw_parameters_require_interface`
      */
+    @Deprecated
     @Method(selector = "createUDPSessionThroughTunnelToEndpoint:fromEndpoint:")
     public native NWUDPSession createUDPSession(NWEndpoint remoteEndpoint, NWHostEndpoint localEndpoint);
     /*</methods>*/

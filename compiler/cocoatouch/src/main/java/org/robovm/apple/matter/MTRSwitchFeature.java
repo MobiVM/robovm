@@ -61,6 +61,10 @@ public final class /*<name>*/MTRSwitchFeature/*</name>*/ extends Bits</*<name>*/
      * @since Available in iOS 16.2 and later.
      */
     public static final MTRSwitchFeature MomentarySwitchMultiPress = new MTRSwitchFeature(16L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRSwitchFeature ActionSwitch = new MTRSwitchFeature(32L);
     /*</values>*/
 
     /*<bind>*/

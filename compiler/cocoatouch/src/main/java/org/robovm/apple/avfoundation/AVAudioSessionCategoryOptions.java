@@ -51,7 +51,12 @@ public final class /*<name>*/AVAudioSessionCategoryOptions/*</name>*/ extends Bi
     public static final AVAudioSessionCategoryOptions None = new AVAudioSessionCategoryOptions(0L);
     public static final AVAudioSessionCategoryOptions MixWithOthers = new AVAudioSessionCategoryOptions(1L);
     public static final AVAudioSessionCategoryOptions DuckOthers = new AVAudioSessionCategoryOptions(2L);
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use AVAudioSessionCategoryOptionAllowBluetoothHFP
+     */
+    @Deprecated
     public static final AVAudioSessionCategoryOptions AllowBluetooth = new AVAudioSessionCategoryOptions(4L);
+    public static final AVAudioSessionCategoryOptions AllowBluetoothHFP = new AVAudioSessionCategoryOptions(4L);
     public static final AVAudioSessionCategoryOptions DefaultToSpeaker = new AVAudioSessionCategoryOptions(8L);
     /**
      * @since Available in iOS 9.0 and later.
@@ -69,6 +74,10 @@ public final class /*<name>*/AVAudioSessionCategoryOptions/*</name>*/ extends Bi
      * @since Available in iOS 14.5 and later.
      */
     public static final AVAudioSessionCategoryOptions OverrideMutedMicrophoneInterruption = new AVAudioSessionCategoryOptions(128L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAudioSessionCategoryOptions BluetoothHighQualityRecording = new AVAudioSessionCategoryOptions(524288L);
     /*</values>*/
 
     /*<bind>*/

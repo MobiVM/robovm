@@ -108,6 +108,16 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setMatchDomainsNoSearch:")
     public native void setMatchDomainsNoSearch(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowFailover")
+    public native boolean isAllowFailover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowFailover:")
+    public native void setAllowFailover(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

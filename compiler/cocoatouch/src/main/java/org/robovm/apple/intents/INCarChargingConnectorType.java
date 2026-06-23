@@ -116,15 +116,25 @@ import org.robovm.apple.coregraphics.*;
     public static final INCarChargingConnectorType GBTDC = new INCarChargingConnectorType("GBTDC");
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 17.4. INCarChargingConnectorTypeTesla is deprecated. Please adopt INCarChargingConnectorTypeNACSDC instead
      */
+    @Deprecated
     public static final INCarChargingConnectorType Tesla = new INCarChargingConnectorType("Tesla");
     /**
      * @since Available in iOS 14.0 and later.
      */
     public static final INCarChargingConnectorType Mennekes = new INCarChargingConnectorType("Mennekes");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final INCarChargingConnectorType NACSDC = new INCarChargingConnectorType("NACSDC");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final INCarChargingConnectorType NACSAC = new INCarChargingConnectorType("NACSAC");
     /*</constants>*/
     
-    private static /*<name>*/INCarChargingConnectorType/*</name>*/[] values = new /*<name>*/INCarChargingConnectorType/*</name>*/[] {/*<value_list>*/J1772, CCS1, CCS2, CHAdeMO, GBTAC, GBTDC, Tesla, Mennekes/*</value_list>*/};
+    private static /*<name>*/INCarChargingConnectorType/*</name>*/[] values = new /*<name>*/INCarChargingConnectorType/*</name>*/[] {/*<value_list>*/J1772, CCS1, CCS2, CHAdeMO, GBTAC, GBTDC, Tesla, Mennekes, NACSDC, NACSAC/*</value_list>*/};
     
     /*<name>*/INCarChargingConnectorType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -179,7 +189,9 @@ import org.robovm.apple.coregraphics.*;
         public static native NSString GBTDC();
         /**
          * @since Available in iOS 14.0 and later.
+         * @deprecated Deprecated in iOS 17.4. INCarChargingConnectorTypeTesla is deprecated. Please adopt INCarChargingConnectorTypeNACSDC instead
          */
+        @Deprecated
         @GlobalValue(symbol="INCarChargingConnectorTypeTesla", optional=true)
         public static native NSString Tesla();
         /**
@@ -187,6 +199,16 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="INCarChargingConnectorTypeMennekes", optional=true)
         public static native NSString Mennekes();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="INCarChargingConnectorTypeNACSDC", optional=true)
+        public static native NSString NACSDC();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="INCarChargingConnectorTypeNACSAC", optional=true)
+        public static native NSString NACSAC();
         /*</values>*/
     }
 }

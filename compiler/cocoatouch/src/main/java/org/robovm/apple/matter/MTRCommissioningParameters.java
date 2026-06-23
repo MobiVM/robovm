@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRCommissioningParameters/*</name>*/ 
@@ -109,6 +111,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setCountryCode:")
     public native void setCountryCode(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "readEndpointInformation")
+    public native boolean isReadEndpointInformation();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setReadEndpointInformation:")
+    public native void setReadEndpointInformation(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

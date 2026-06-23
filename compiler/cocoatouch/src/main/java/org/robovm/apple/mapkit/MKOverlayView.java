@@ -52,84 +52,18 @@ import org.robovm.apple.coreanimation.*;
     public MKOverlayView() {}
     protected MKOverlayView(Handle h, long handle) { super(h, handle); }
     protected MKOverlayView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    public MKOverlayView(MKOverlay overlay) { super((SkipInit) null); initObject(init(overlay)); }
     @Method(selector = "initWithFrame:")
     public MKOverlayView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public MKOverlayView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "overlay")
-    public native MKOverlay getOverlay();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    protected native @Pointer long init(MKOverlay overlay);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "pointForMapPoint:")
-    public native @ByVal CGPoint getPoint(@ByVal MKMapPoint mapPoint);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "mapPointForPoint:")
-    public native @ByVal MKMapPoint getMapPoint(@ByVal CGPoint point);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "rectForMapRect:")
-    public native @ByVal CGRect getRect(@ByVal MKMapRect mapRect);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "mapRectForRect:")
-    public native @ByVal MKMapRect getMapRect(@ByVal CGRect rect);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "canDrawMapRect:zoomScale:")
-    public native boolean canDraw(@ByVal MKMapRect mapRect, @MachineSizedFloat double zoomScale);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "drawMapRect:zoomScale:inContext:")
-    public native void draw(@ByVal MKMapRect mapRect, @MachineSizedFloat double zoomScale, CGContext context);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "setNeedsDisplayInMapRect:")
-    public native void setNeedsDisplay(@ByVal MKMapRect mapRect);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "setNeedsDisplayInMapRect:zoomScale:")
-    public native void setNeedsDisplay(@ByVal MKMapRect mapRect, @MachineSizedFloat double zoomScale);
     /**
      * @since Available in iOS 9.0 and later.
      */

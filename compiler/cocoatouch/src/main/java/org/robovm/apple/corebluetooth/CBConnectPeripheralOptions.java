@@ -141,6 +141,23 @@ import org.robovm.apple.dispatch.*;
         set(Keys.NotifyOnNotification(), NSNumber.valueOf(notifiesOnNotification));
         return this;
     }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean requiresANCS() {
+        if (has(Keys.RequiresANCS())) {
+            NSNumber val = (NSNumber) get(Keys.RequiresANCS());
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public CBConnectPeripheralOptions setRequiresANCS(boolean requiresANCS) {
+        set(Keys.RequiresANCS(), NSNumber.valueOf(requiresANCS));
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/

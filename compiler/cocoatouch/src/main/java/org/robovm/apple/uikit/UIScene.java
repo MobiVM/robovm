@@ -90,10 +90,22 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setActivationConditions:")
     public native void setActivationConditions(UISceneActivationConditions v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "destructionConditions")
+    public native NSSet<UISceneDestructionCondition> getDestructionConditions();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setDestructionConditions:")
+    public native void setDestructionConditions(NSSet<UISceneDestructionCondition> v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "pointerLockState")
     public native UIPointerLockState getPointerLockState();
+    @Property(selector = "systemProtectionManager")
+    public native UISceneSystemProtectionManager getSystemProtectionManager();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -105,7 +117,5 @@ import org.robovm.apple.symbols.*;
     public native void extendStateRestoration();
     @Method(selector = "completeStateRestoration")
     public native void completeStateRestoration();
-    @Method(selector = "getDefaultAudioSessionWithCompletionHandler:")
-    public native void getDefaultAudioSession(@Block VoidBlock1<org.robovm.apple.avfoundation.AVAudioSession> handler);
     /*</methods>*/
 }

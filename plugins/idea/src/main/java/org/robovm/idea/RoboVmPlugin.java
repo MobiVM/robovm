@@ -290,13 +290,14 @@ public class RoboVmPlugin {
     public static List<Module> getRoboVmModules(Project project, Predicate<String> predicate) {
         List<Module> validModules = new ArrayList<>();
         for (Module module : ModuleManager.getInstance(project).getModules()) {
-            if (!isRoboVmModule(module))
+            RoboVmFacet facet = getRoboVmFacet(module);
+            if (facet == null)
                 continue;
 
             // dkimitsa: if target type is specified return only matching modules. E.g. don't allow to run Framework
             // target in Console runner
             if (predicate != null) {
-                Config config = loadRawModuleConfig(module);
+                Config config = loadRawModuleConfig(facet);
                 if (config == null)
                     continue;
                 if (!predicate.test(config.getTargetType()))
@@ -308,22 +309,28 @@ public class RoboVmPlugin {
     }
 
 
+    public static RoboVmFacet getRoboVmFacet(Module module) {
+        return FacetManager.getInstance(module).getFacetByType(RoboVmFacetType.TYPE_ID);
+    }
+
     /**
      * Only if RoboVM facet is attached
      */
     public static boolean isRoboVmModule(Module module) {
-        return FacetManager.getInstance(module).getFacetByType(RoboVmFacetType.TYPE_ID) != null;
+        return getRoboVmFacet(module) != null;
     }
 
     public static Config loadRawModuleConfig(Module module) {
-        for (VirtualFile file : ModuleRootManager.getInstance(module).getContentRoots()) {
-            if (file.findChild("robovm.xml") != null) {
-                try {
-                    File contentRoot = new File(file.getPath());
-                    return Config.loadRawConfig(contentRoot);
-                } catch (IOException ignored) {
-                }
-            }
+        RoboVmFacet facet = getRoboVmFacet(module);
+        return facet != null ? loadRawModuleConfig(facet) : null;
+    }
+
+    public static Config loadRawModuleConfig(RoboVmFacet facet) {
+        String contentRoot = facet.getConfiguration().getSettings().getContentRoot();
+        try {
+            if (contentRoot != null)
+                return Config.loadRawConfig(new File(contentRoot));
+        } catch (IOException ignored) {
         }
 
         return null;

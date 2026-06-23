@@ -61,6 +61,21 @@ import org.robovm.apple.uikit.*;
     /*<properties>*/
     @Property(selector = "connections")
     public native NSArray<AVCaptureConnection> getConnections();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isDeferredStartSupported")
+    public native boolean isDeferredStartSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isDeferredStartEnabled")
+    public native boolean isDeferredStartEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setDeferredStartEnabled:")
+    public native void setDeferredStartEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

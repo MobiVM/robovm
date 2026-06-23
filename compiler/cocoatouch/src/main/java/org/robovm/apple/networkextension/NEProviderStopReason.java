@@ -62,7 +62,11 @@ public enum /*<name>*/NEProviderStopReason/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    AppUpdate(16L);
+    AppUpdate(16L),
+    /**
+     * @since Available in iOS 18.1 and later.
+     */
+    InternalError(17L);
     /*</values>*/
 
     /*<bind>*/

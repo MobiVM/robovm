@@ -48,6 +48,11 @@ public enum /*<name>*/NSURLSessionTaskMetricsResourceFetchType/*</name>*/ implem
     /*<values>*/
     Unknown(0L),
     NetworkLoad(1L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 18.4. Server push is no longer supported as of iOS 17 and aligned releases
+     */
+    @Deprecated
     ServerPush(2L),
     LocalCache(3L);
     /*</values>*/

@@ -275,6 +275,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "luxUnit")
     public static native HKUnit lux();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "appleEffortScoreUnit")
+    public static native HKUnit appleEffortScore();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

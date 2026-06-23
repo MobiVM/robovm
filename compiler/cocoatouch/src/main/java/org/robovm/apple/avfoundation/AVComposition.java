@@ -58,6 +58,7 @@ import org.robovm.apple.uikit.*;
     @Deprecated protected AVComposition(long handle) { super(handle); }
     protected AVComposition(Handle h, long handle) { super(h, handle); }
     protected AVComposition(SkipInit skipInit) { super(skipInit); }
+    public AVComposition(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
@@ -72,6 +73,8 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     @Method(selector = "trackWithTrackID:")
     public native AVCompositionTrack getTrack(int trackID);
     /**

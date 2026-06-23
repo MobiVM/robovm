@@ -94,12 +94,12 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "originDevice")
     public native CMOdometerOriginDevice getOriginDevice();
     /**
-     * @since Available in iOS 15.4 and later.
+     * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "slope")
     public native NSNumber getSlope();
     /**
-     * @since Available in iOS 15.4 and later.
+     * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "maxAbsSlope")
     public native NSNumber getMaxAbsSlope();

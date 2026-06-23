@@ -52,168 +52,18 @@ import org.robovm.apple.coreanimation.*;
     public MKOverlayPathView() {}
     protected MKOverlayPathView(Handle h, long handle) { super(h, handle); }
     protected MKOverlayPathView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    public MKOverlayPathView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
     public MKOverlayPathView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public MKOverlayPathView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "fillColor")
-    public native UIColor getFillColor();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setFillColor:")
-    public native void setFillColor(UIColor v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "strokeColor")
-    public native UIColor getStrokeColor();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setStrokeColor:")
-    public native void setStrokeColor(UIColor v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "lineWidth")
-    public native @MachineSizedFloat double getLineWidth();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setLineWidth:")
-    public native void setLineWidth(@MachineSizedFloat double v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "lineJoin")
-    public native CGLineJoin getLineJoin();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setLineJoin:")
-    public native void setLineJoin(CGLineJoin v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "lineCap")
-    public native CGLineCap getLineCap();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setLineCap:")
-    public native void setLineCap(CGLineCap v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "miterLimit")
-    public native @MachineSizedFloat double getMiterLimit();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setMiterLimit:")
-    public native void setMiterLimit(@MachineSizedFloat double v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "lineDashPhase")
-    public native @MachineSizedFloat double getLineDashPhase();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setLineDashPhase:")
-    public native void setLineDashPhase(@MachineSizedFloat double v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "lineDashPattern")
-    public native NSArray<NSNumber> getLineDashPattern();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setLineDashPattern:")
-    public native void setLineDashPattern(NSArray<NSNumber> v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "path")
-    public native CGPath getPath();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setPath:")
-    public native void setPath(CGPath v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "createPath")
-    public native void createPath();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "invalidatePath")
-    public native void invalidatePath();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "applyStrokePropertiesToContext:atZoomScale:")
-    public native void applyStrokeProperties(CGContext context, @MachineSizedFloat double zoomScale);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "applyFillPropertiesToContext:atZoomScale:")
-    public native void applyFillProperties(CGContext context, @MachineSizedFloat double zoomScale);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "strokePath:inContext:")
-    public native void strokePath(CGPath path, CGContext context);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "fillPath:inContext:")
-    public native void fillPath(CGPath path, CGContext context);
     /**
      * @since Available in iOS 9.0 and later.
      */

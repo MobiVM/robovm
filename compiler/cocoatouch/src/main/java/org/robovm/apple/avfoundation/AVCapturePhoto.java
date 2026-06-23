@@ -89,6 +89,21 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "sourceDeviceType")
     public native String getSourceDeviceType();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "constantColorConfidenceMap")
+    public native CVPixelBuffer getConstantColorConfidenceMap();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "constantColorCenterWeightedMeanConfidenceLevel")
+    public native float getConstantColorCenterWeightedMeanConfidenceLevel();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorFallbackPhoto")
+    public native boolean isConstantColorFallbackPhoto();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "bracketSettings")

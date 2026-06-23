@@ -78,7 +78,7 @@ import org.robovm.apple.fileprovider.*;
     public native CKRecord getRootRecord();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use participantRole
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "participantType")

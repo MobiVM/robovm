@@ -47,15 +47,29 @@ import org.robovm.apple.dispatch.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 18.5. Use sec_protocol_metadata_copy_negotiated_protocol
      */
+    @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_negotiated_protocol", optional=true)
     public native BytePtr getNegotiatedProtocol();
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Bridge(symbol="sec_protocol_metadata_copy_negotiated_protocol", optional=true)
+    public native BytePtr copyNegotiatedProtocol();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -117,9 +131,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean accessPreSharedKeys(@Block VoidBlock2<DispatchData, DispatchData> handler);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 18.5. Use sec_protocol_metadata_copy_server_name
      */
+    @Deprecated
     @Bridge(symbol="sec_protocol_metadata_get_server_name", optional=true)
     public native BytePtr getServerName();
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Bridge(symbol="sec_protocol_metadata_copy_server_name", optional=true)
+    public native BytePtr copyServerName();
     /**
      * @since Available in iOS 12.0 and later.
      */

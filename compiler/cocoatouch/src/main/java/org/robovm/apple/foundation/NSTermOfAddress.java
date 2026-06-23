@@ -75,6 +75,11 @@ import org.robovm.apple.dispatch.*;
     public static native NSTermOfAddress feminine();
     @Method(selector = "masculine")
     public static native NSTermOfAddress masculine();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "currentUser")
+    public static native NSTermOfAddress currentUser();
     @Method(selector = "localizedForLanguageIdentifier:withPronouns:")
     protected static native @Pointer long create(String language, NSArray<NSMorphologyPronoun> pronouns);
     @Method(selector = "encodeWithCoder:")

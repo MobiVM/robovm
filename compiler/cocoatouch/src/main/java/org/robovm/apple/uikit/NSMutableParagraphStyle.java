@@ -67,10 +67,6 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getParagraphSpacing();
     @Property(selector = "setParagraphSpacing:")
     public native void setParagraphSpacing(@MachineSizedFloat double v);
-    @Property(selector = "alignment")
-    public native NSTextAlignment getAlignment();
-    @Property(selector = "setAlignment:")
-    public native void setAlignment(NSTextAlignment v);
     @Property(selector = "firstLineHeadIndent")
     public native @MachineSizedFloat double getFirstLineHeadIndent();
     @Property(selector = "setFirstLineHeadIndent:")
@@ -155,6 +151,10 @@ import org.robovm.apple.symbols.*;
     public native void setTextLists(NSArray<NSTextList> v);
     @Property(selector = "defaultParagraphStyle")
     public static native NSParagraphStyle getDefaultParagraphStyle();
+    @Property(selector = "alignment")
+    public native NSTextAlignment getAlignment();
+    @Property(selector = "setAlignment:")
+    public native void setAlignment(NSTextAlignment v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

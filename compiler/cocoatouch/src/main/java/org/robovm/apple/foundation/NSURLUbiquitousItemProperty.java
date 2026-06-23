@@ -97,11 +97,6 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*/
     public static final NSURLUbiquitousItemProperty IsUbiquitousItem = new NSURLUbiquitousItemProperty("IsUbiquitousItem");
     public static final NSURLUbiquitousItemProperty HasUnresolvedConflicts = new NSURLUbiquitousItemProperty("HasUnresolvedConflicts");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
-     */
-    @Deprecated
-    public static final NSURLUbiquitousItemProperty IsDownloaded = new NSURLUbiquitousItemProperty("IsDownloaded");
     public static final NSURLUbiquitousItemProperty IsDownloading = new NSURLUbiquitousItemProperty("IsDownloading");
     public static final NSURLUbiquitousItemProperty IsUploaded = new NSURLUbiquitousItemProperty("IsUploaded");
     public static final NSURLUbiquitousItemProperty IsUploading = new NSURLUbiquitousItemProperty("IsUploading");
@@ -118,9 +113,17 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final NSURLUbiquitousItemProperty IsShared = new NSURLUbiquitousItemProperty("IsShared");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSURLUbiquitousItemProperty SupportedSyncControls = new NSURLUbiquitousItemProperty("SupportedSyncControls");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSURLUbiquitousItemProperty IsSyncPaused = new NSURLUbiquitousItemProperty("IsSyncPaused");
     /*</constants>*/
     
-    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName, IsExcludedFromSync, IsShared/*</value_list>*/};
+    private static /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/NSURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, DownloadRequested, ContainerDisplayName, IsExcludedFromSync, IsShared, SupportedSyncControls, IsSyncPaused/*</value_list>*/};
     
     /*<name>*/NSURLUbiquitousItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -147,12 +150,6 @@ import org.robovm.apple.dispatch.*;
         public static native NSString IsUbiquitousItem();
         @GlobalValue(symbol="NSURLUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native NSString HasUnresolvedConflicts();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSURLUbiquitousItemDownloadingStatusKey instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="NSURLUbiquitousItemIsDownloadedKey", optional=true)
-        public static native NSString IsDownloaded();
         @GlobalValue(symbol="NSURLUbiquitousItemIsDownloadingKey", optional=true)
         public static native NSString IsDownloading();
         @GlobalValue(symbol="NSURLUbiquitousItemIsUploadedKey", optional=true)
@@ -179,6 +176,16 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLUbiquitousItemIsSharedKey", optional=true)
         public static native NSString IsShared();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSURLUbiquitousItemSupportedSyncControlsKey", optional=true)
+        public static native NSString SupportedSyncControls();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSURLUbiquitousItemIsSyncPausedKey", optional=true)
+        public static native NSString IsSyncPaused();
         /*</values>*/
     }
 }

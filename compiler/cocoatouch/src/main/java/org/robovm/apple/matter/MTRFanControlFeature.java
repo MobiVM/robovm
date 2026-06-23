@@ -57,6 +57,14 @@ public final class /*<name>*/MTRFanControlFeature/*</name>*/ extends Bits</*<nam
      * @since Available in iOS 16.1 and later.
      */
     public static final MTRFanControlFeature Wind = new MTRFanControlFeature(8L);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    public static final MTRFanControlFeature Step = new MTRFanControlFeature(16L);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    public static final MTRFanControlFeature AirflowDirection = new MTRFanControlFeature(32L);
     /*</values>*/
 
     /*<bind>*/

@@ -71,6 +71,16 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setSetupPIN:")
     public native void setSetupPIN(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "node")
+    public native NSNumber getNode();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setNode:")
+    public native void setNode(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")
     public native NSNumber getTimedInvokeTimeoutMs();
     @Property(selector = "setTimedInvokeTimeoutMs:")

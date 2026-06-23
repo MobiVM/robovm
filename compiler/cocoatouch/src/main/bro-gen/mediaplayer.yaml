@@ -357,6 +357,10 @@ classes:
                 name: init
             '-becomeActiveIfPossibleWithCompletion:':
                 name: becomeActiveIfPossible
+    MPMediaItemAnimatedArtwork: #since 19.0
+        methods:
+            '-initWithArtworkID:previewImageRequestHandler:videoAssetFileURLRequestHandler:':
+                name: init
 protocols:
     MPMediaPickerControllerDelegate: # DONE
         methods:

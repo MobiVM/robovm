@@ -162,7 +162,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "hasMediaCharacteristic:")
     public native boolean hasMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**
-     * @deprecated Use loadSegmentForTrackTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadSegmentForTrackTime:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "segmentForTrackTime:")
@@ -173,7 +173,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadSegmentForTrackTime:completionHandler:")
     public native void loadSegmentForTrackTime(@ByVal CMTime trackTime, @Block VoidBlock2<AVAssetTrackSegment, NSError> completionHandler);
     /**
-     * @deprecated Use loadSamplePresentationTimeForTrackTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadSamplePresentationTimeForTrackTime:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "samplePresentationTimeForTrackTime:")
@@ -184,7 +184,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadSamplePresentationTimeForTrackTime:completionHandler:")
     public native void loadSamplePresentationTimeForTrackTime(@ByVal CMTime trackTime, @Block("(@ByVal,)") VoidBlock2<CMTime, NSError> completionHandler);
     /**
-     * @deprecated Use loadMetadataForFormat:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadMetadataForFormat:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "metadataForFormat:")
@@ -195,7 +195,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadMetadataForFormat:completionHandler:")
     public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
     /**
-     * @deprecated Use loadAssociatedTracksOfType:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadAssociatedTracksOfType:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "associatedTracksOfType:")

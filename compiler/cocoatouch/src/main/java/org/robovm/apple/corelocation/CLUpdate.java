@@ -53,10 +53,50 @@ import org.robovm.apple.contacts.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    @Property(selector = "isStationary")
+    @Property(selector = "authorizationDenied")
+    public native boolean isAuthorizationDenied();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationDeniedGlobally")
+    public native boolean isAuthorizationDeniedGlobally();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationRestricted")
+    public native boolean isAuthorizationRestricted();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "stationary")
     public native boolean isStationary();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "insufficientlyInUse")
+    public native boolean isInsufficientlyInUse();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "locationUnavailable")
+    public native boolean isLocationUnavailable();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accuracyLimited")
+    public native boolean isAccuracyLimited();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "serviceSessionRequired")
+    public native boolean isServiceSessionRequired();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationRequestInProgress")
+    public native boolean isAuthorizationRequestInProgress();
     /**
      * @since Available in iOS 17.0 and later.
      */

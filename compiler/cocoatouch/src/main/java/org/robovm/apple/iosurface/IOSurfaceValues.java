@@ -208,5 +208,10 @@ import org.robovm.apple.corefoundation.*;
      */
     @GlobalValue(symbol="kIOSurfaceICCProfile", optional=true)
     public static native CFString ICCProfile();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="kIOSurfaceContentHeadroom", optional=true)
+    public static native CFString ContentHeadroom();
     /*</methods>*/
 }

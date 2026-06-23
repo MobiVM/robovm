@@ -37,6 +37,7 @@ import org.robovm.apple.corefoundation.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/AudioErrorCode/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    No(0L),
     Unimplemented(-4L),
     FileNotFound(-43L),
     FilePermission(-54L),

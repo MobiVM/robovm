@@ -52,10 +52,38 @@ import org.robovm.apple.dispatch.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> getPreprocessorMacros();
     @Property(selector = "setPreprocessorMacros:")
     public native void setPreprocessorMacros(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> v);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use mathMode instead
+     */
+    @Deprecated
     @Property(selector = "fastMathEnabled")
     public native boolean isFastMathEnabled();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use mathMode instead
+     */
+    @Deprecated
     @Property(selector = "setFastMathEnabled:")
     public native void setFastMathEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathMode")
+    public native MTLMathMode getMathMode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathMode:")
+    public native void setMathMode(MTLMathMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathFloatingPointFunctions")
+    public native MTLMathFloatingPointFunctions getMathFloatingPointFunctions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathFloatingPointFunctions:")
+    public native void setMathFloatingPointFunctions(MTLMathFloatingPointFunctions v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -90,12 +118,12 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "libraries")
-    public native NSArray<?> getLibraries();
+    public native NSArray<MTLDynamicLibrary> getLibraries();
     /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "setLibraries:")
-    public native void setLibraries(NSArray<?> v);
+    public native void setLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -146,6 +174,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxTotalThreadsPerThreadgroup:")
     public native void setMaxTotalThreadsPerThreadgroup(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequiredThreadsPerThreadgroup:")
+    public native void setRequiredThreadsPerThreadgroup(@ByVal MTLSize v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "enableLogging")
+    public native boolean isEnableLogging();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setEnableLogging:")
+    public native void setEnableLogging(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -78,6 +78,11 @@ import org.robovm.apple.modelio.*;
     public native NSDictionary<NSString, PHASEMixer> getMixers();
     @Property(selector = "pushStreamNodes")
     public native NSDictionary<NSString, PHASEPushStreamNode> getPushStreamNodes();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "pullStreamNodes")
+    public native NSDictionary<NSString, PHASEPullStreamNode> getPullStreamNodes();
     @Property(selector = "isIndefinite")
     public native boolean isIndefinite();
     /*</properties>*/
@@ -91,12 +96,27 @@ import org.robovm.apple.modelio.*;
     public native void prepare(@Block VoidBlock1<PHASESoundEventPrepareHandlerReason> handler);
     @Method(selector = "startWithCompletion:")
     public native void start(@Block VoidBlock1<PHASESoundEventStartHandlerReason> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "startAtTime:completion:")
+    public native void startAtTime(AVAudioTime when, @Block VoidBlock1<PHASESoundEventStartHandlerReason> handler);
     @Method(selector = "seekToTime:completion:")
     public native void seekToTime(double time, @Block VoidBlock1<PHASESoundEventSeekHandlerReason> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "seekToTime:resumeAtEngineTime:completion:")
+    public native void seekToTime(double time, AVAudioTime engineTime, @Block VoidBlock1<PHASESoundEventSeekHandlerReason> handler);
     @Method(selector = "pause")
     public native void pause();
     @Method(selector = "resume")
     public native void resume();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "resumeAtTime:")
+    public native void resumeAtTime(AVAudioTime time);
     @Method(selector = "stopAndInvalidate")
     public native void stopAndInvalidate();
     /*</methods>*/

@@ -103,6 +103,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "matterControllerXPCConnectBlock")
     public native @Block Block0<NSXPCConnection> getMatterControllerXPCConnectBlock();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "matterStartupParametersXPCConnectBlock")
+    public native @Block Block0<NSXPCConnection> getMatterStartupParametersXPCConnectBlock();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

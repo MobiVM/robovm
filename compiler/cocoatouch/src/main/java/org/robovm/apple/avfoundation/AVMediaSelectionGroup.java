@@ -65,6 +65,11 @@ import org.robovm.apple.uikit.*;
     public native AVMediaSelectionOption getDefaultOption();
     @Property(selector = "allowsEmptySelection")
     public native boolean allowsEmptySelection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "customMediaSelectionScheme")
+    public native AVCustomMediaSelectionScheme getCustomMediaSelectionScheme();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

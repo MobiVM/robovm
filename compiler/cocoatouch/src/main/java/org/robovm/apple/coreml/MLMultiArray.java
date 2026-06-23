@@ -60,6 +60,11 @@ import org.robovm.apple.metal.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithShape:dataType:strides:")
+    public MLMultiArray(NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides) { super((SkipInit) null); initObject(init(shape, dataType, strides)); }
     @Method(selector = "initWithDataPointer:shape:dataType:strides:deallocator:error:")
     public MLMultiArray(VoidPtr dataPointer, NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides, @Block VoidBlock1<VoidPtr> deallocator) throws NSErrorException {
        super((SkipInit) null);
@@ -108,6 +113,11 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "initWithShape:dataType:error:")
     private native @Pointer long init(NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithShape:dataType:strides:")
+    protected native @Pointer long init(NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides);
     @Method(selector = "initWithDataPointer:shape:dataType:strides:deallocator:error:")
     private native @Pointer long init(VoidPtr dataPointer, NSArray<NSNumber> shape, MLMultiArrayDataType dataType, NSArray<NSNumber> strides, @Block VoidBlock1<VoidPtr> deallocator, NSError.NSErrorPtr error);
     /**
@@ -138,6 +148,11 @@ import org.robovm.apple.metal.*;
     public native void setObject(NSNumber obj, @MachineSizedSInt long idx);
     @Method(selector = "setObject:forKeyedSubscript:")
     public native void setObject(NSNumber obj, NSArray<NSNumber> key);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "transferToMultiArray:")
+    public native void transferToMultiArray(MLMultiArray destinationMultiArray);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

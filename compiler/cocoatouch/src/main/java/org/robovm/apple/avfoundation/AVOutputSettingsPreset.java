@@ -124,6 +124,14 @@ import org.robovm.apple.uikit.*;
      */
     public static final AVOutputSettingsPreset SizeHEVC3840x2160WithAlpha = new AVOutputSettingsPreset("SizeHEVC3840x2160WithAlpha");
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC4320x2160 = new AVOutputSettingsPreset("SizeHEVC4320x2160");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeHEVC7680x4320 = new AVOutputSettingsPreset("SizeHEVC7680x4320");
+    /**
      * @since Available in iOS 17.0 and later.
      */
     public static final AVOutputSettingsPreset SizeMVHEVC960x960 = new AVOutputSettingsPreset("SizeMVHEVC960x960");
@@ -131,9 +139,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final AVOutputSettingsPreset SizeMVHEVC1440x1440 = new AVOutputSettingsPreset("SizeMVHEVC1440x1440");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeMVHEVC4320x4320 = new AVOutputSettingsPreset("SizeMVHEVC4320x4320");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVOutputSettingsPreset SizeMVHEVC7680x7680 = new AVOutputSettingsPreset("SizeMVHEVC7680x7680");
     /*</constants>*/
     
-    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC1920x1080WithAlpha, SizeHEVC3840x2160, SizeHEVC3840x2160WithAlpha, SizeMVHEVC960x960, SizeMVHEVC1440x1440/*</value_list>*/};
+    private static /*<name>*/AVOutputSettingsPreset/*</name>*/[] values = new /*<name>*/AVOutputSettingsPreset/*</name>*/[] {/*<value_list>*/Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, SizeHEVC1920x1080, SizeHEVC1920x1080WithAlpha, SizeHEVC3840x2160, SizeHEVC3840x2160WithAlpha, SizeHEVC4320x2160, SizeHEVC7680x4320, SizeMVHEVC960x960, SizeMVHEVC1440x1440, SizeMVHEVC4320x4320, SizeMVHEVC7680x7680/*</value_list>*/};
     
     /*<name>*/AVOutputSettingsPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -190,6 +206,16 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="AVOutputSettingsPresetHEVC3840x2160WithAlpha", optional=true)
         public static native NSString SizeHEVC3840x2160WithAlpha();
         /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC4320x2160", optional=true)
+        public static native NSString SizeHEVC4320x2160();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetHEVC7680x4320", optional=true)
+        public static native NSString SizeHEVC7680x4320();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC960x960", optional=true)
@@ -199,6 +225,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC1440x1440", optional=true)
         public static native NSString SizeMVHEVC1440x1440();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC4320x4320", optional=true)
+        public static native NSString SizeMVHEVC4320x4320();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVOutputSettingsPresetMVHEVC7680x7680", optional=true)
+        public static native NSString SizeMVHEVC7680x7680();
         /*</values>*/
     }
 }

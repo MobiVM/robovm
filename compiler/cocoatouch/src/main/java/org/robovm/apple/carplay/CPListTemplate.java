@@ -58,6 +58,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
     public CPListTemplate(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration) { super((SkipInit) null); initObject(init(title, sections, assistantCellConfiguration)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:headerGridButtons:")
+    public CPListTemplate(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration, NSArray<CPGridButton> headerGridButtons) { super((SkipInit) null); initObject(init(title, sections, assistantCellConfiguration, headerGridButtons)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -119,6 +124,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setEmptyViewSubtitleVariants:")
     public native void setEmptyViewSubtitleVariants(NSArray<NSString> v);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "showsSpinnerWhileEmpty")
+    public native boolean showsSpinnerWhileEmpty();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setShowsSpinnerWhileEmpty:")
+    public native void setShowsSpinnerWhileEmpty(boolean v);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "assistantCellConfiguration")
@@ -128,6 +143,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAssistantCellConfiguration:")
     public native void setAssistantCellConfiguration(CPAssistantCellConfiguration v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumHeaderGridButtonCount")
+    public static native @MachineSizedUInt long getMaximumHeaderGridButtonCount();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumGridButtonImageSize")
+    public static native @ByVal CGSize getMaximumGridButtonImageSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "headerGridButtons")
+    public native NSArray<CPGridButton> getHeaderGridButtons();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setHeaderGridButtons:")
+    public native void setHeaderGridButtons(NSArray<CPGridButton> v);
     @Property(selector = "leadingNavigationBarButtons")
     public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
     @Property(selector = "setLeadingNavigationBarButtons:")
@@ -152,6 +187,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithTitle:sections:assistantCellConfiguration:")
     protected native @Pointer long init(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithTitle:sections:assistantCellConfiguration:headerGridButtons:")
+    protected native @Pointer long init(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration, NSArray<CPGridButton> headerGridButtons);
     @Method(selector = "updateSections:")
     public native void updateSections(NSArray<CPListSection> sections);
     /**

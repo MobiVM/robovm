@@ -47,6 +47,7 @@ public enum /*<name>*/CMVideoCodecType/*</name>*/ implements ValuedEnum {
     Cinepak(1668704612L),
     JPEG(1785750887L),
     JPEG_OpenDML(1684890161L),
+    JPEG_XL(1786276963L),
     SorensonVideo(1398165809L),
     SorensonVideo3(1398165811L),
     H263(1748121139L),

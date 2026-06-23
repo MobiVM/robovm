@@ -74,6 +74,11 @@ import org.robovm.apple.corehaptic.*;
     @GlobalValue(symbol="GCProductCategoryHID", optional=true)
     public static native NSString HID();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="GCProductCategorySpatialController", optional=true)
+    public static native NSString SpatialController();
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @GlobalValue(symbol="GCProductCategoryArcadeStick", optional=true)

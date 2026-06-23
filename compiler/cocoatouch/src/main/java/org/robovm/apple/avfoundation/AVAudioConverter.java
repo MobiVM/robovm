@@ -99,6 +99,36 @@ import org.robovm.apple.uikit.*;
     public native @ByVal AVAudioConverterPrimeInfo getPrimeInfo();
     @Property(selector = "setPrimeInfo:")
     public native void setPrimeInfo(@ByVal AVAudioConverterPrimeInfo v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "audioSyncPacketFrequency")
+    public native @MachineSizedSInt long getAudioSyncPacketFrequency();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAudioSyncPacketFrequency:")
+    public native void setAudioSyncPacketFrequency(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentSource")
+    public native AVAudioContentSource getContentSource();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setContentSource:")
+    public native void setContentSource(AVAudioContentSource v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "dynamicRangeControlConfiguration")
+    public native AVAudioDynamicRangeControlConfiguration getDynamicRangeControlConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setDynamicRangeControlConfiguration:")
+    public native void setDynamicRangeControlConfiguration(AVAudioDynamicRangeControlConfiguration v);
     @Property(selector = "bitRate")
     public native @MachineSizedSInt long getBitRate();
     @Property(selector = "setBitRate:")

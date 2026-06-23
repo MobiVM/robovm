@@ -52,7 +52,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -182,6 +189,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_parameters_get_prohibit_constrained", optional=true)
     public native boolean getProhibitConstrained();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_set_allow_ultra_constrained", optional=true)
+    public native void setAllowUltraConstrained(boolean allow_ultra_constrained);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="nw_parameters_get_allow_ultra_constrained", optional=true)
+    public native boolean getAllowUltraConstrained();
     /**
      * @since Available in iOS 12.0 and later.
      */

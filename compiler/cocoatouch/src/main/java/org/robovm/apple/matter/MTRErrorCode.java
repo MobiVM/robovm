@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Matter")/*</annotations>*/
 public enum /*<name>*/MTRErrorCode/*</name>*/ implements NSErrorCode {
@@ -60,13 +62,36 @@ public enum /*<name>*/MTRErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    TLVDecodeFailed(14L);
+    TLVDecodeFailed(14L),
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    DNSSDUnauthorized(15L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    Cancelled(16L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AccessDenied(17L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Busy(18L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    NotFound(19L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MTRErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
     @GlobalValue(symbol="MTRErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

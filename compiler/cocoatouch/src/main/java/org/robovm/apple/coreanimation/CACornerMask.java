@@ -37,7 +37,9 @@ import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/CACornerMask/*</name>*/ extends Bits</*<name>*/CACornerMask/*</name>*/> {

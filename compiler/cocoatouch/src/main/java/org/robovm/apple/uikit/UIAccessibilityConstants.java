@@ -122,5 +122,10 @@ import org.robovm.apple.symbols.*;
      */
     @GlobalValue(symbol="UIAccessibilityTextAttributeContext", optional=true)
     public static native NSString TextAttributeContext();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityCustomActionCategoryEdit", optional=true)
+    public static native String CustomActionCategoryEdit();
     /*</methods>*/
 }

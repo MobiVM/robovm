@@ -414,6 +414,26 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSNumber getLikelyJunk();
     @Property(selector = "setLikelyJunk:")
     public native void setLikelyJunk(NSNumber v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "isPriority")
+    public native NSNumber getIsPriority();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "textContentSummary")
+    public native String getTextContentSummary();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "transcribedTextContent")
+    public native String getTranscribedTextContent();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setTranscribedTextContent:")
+    public native void setTranscribedTextContent(String v);
     @Property(selector = "editors")
     public native NSArray<NSString> getEditors();
     @Property(selector = "setEditors:")
@@ -930,6 +950,8 @@ import org.robovm.apple.uniformtypeid.*;
     public native void setValue(NSSecureCoding value, CSCustomAttributeKey key);
     @Method(selector = "valueForCustomKey:")
     public native NSSecureCoding valueForCustomKey(CSCustomAttributeKey key);
+    @Method(selector = "moveFrom:")
+    public native void moveFrom(CSSearchableItemAttributeSet sourceAttributeSet);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -247,6 +247,7 @@ values:
         name: '#{g[0]}'
         type: CFString
         extends: CGImageProperties
+        constructor_visibility: public
         methods:
             LossyCompressionQuality:
                 type: double
@@ -305,12 +306,20 @@ values:
                 type: boolean
             SubsampleFactor:
                 type: int
+    kCGComputeHDRStats:
+        dictionary: CGImageSourceOptions
+        name: ComputeHDRStats
+        type: CFString
+        methods:
+            ComputeHDRStats:
+                type: boolean
 
     # CGImageProperty
     kCGImageProperty(8BIMDictionary):
         dictionary: CGImageProperties
         name: '_#{g[0]}'
         type: CFString
+        constructor_visibility: public
     kCGImageProperty(.*Dictionary):
         dictionary: CGImageProperties
         name: '#{g[0]}'
@@ -493,6 +502,12 @@ values:
         dictionary: CGImageProperties
         name: '#{g[0]}'
         type: CFString
+        constructor_visibility: public
+    kCGImageProvider(PreferredTileWidth|PreferredTileHeight):
+        class: CGImageProperties
+        type: CFString
+        constructor_visibility: public
+        name: 'getImageProvider#{g[0]}'
 
     # GImageAuxiliaryDataType
     kCGImageAuxiliaryDataType(.*):

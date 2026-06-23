@@ -79,14 +79,14 @@ import org.robovm.apple.coregraphics.*;
     public native void setDefaultNumberOfPlayers(@MachineSizedUInt long v);
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[GKMatchmakerViewController matchmakingMode:]
+     * @deprecated Deprecated in iOS 14.0. Use the ``GKMatchmakerViewController/matchmakingMode`` property instead.
      */
     @Deprecated
     @Property(selector = "restrictToAutomatch")
     public native boolean isRestrictToAutomatch();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[GKMatchmakerViewController matchmakingMode:]
+     * @deprecated Deprecated in iOS 14.0. Use the ``GKMatchmakerViewController/matchmakingMode`` property instead.
      */
     @Deprecated
     @Property(selector = "setRestrictToAutomatch:")
@@ -96,29 +96,59 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "setRecipientResponseHandler:")
     public native void setRecipientResponseHandler(@Block VoidBlock2<GKPlayer, GKInviteRecipientResponse> v);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use recipientResponseHandler
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchRequest/recipientResponseHandler`` property instead.
      */
     @Deprecated
     @Property(selector = "inviteeResponseHandler")
     public native @Block VoidBlock2<NSString, GKInviteRecipientResponse> getInviteeResponseHandler();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use recipientResponseHandler
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchRequest/recipientResponseHandler`` property instead.
      */
     @Deprecated
     @Property(selector = "setInviteeResponseHandler:")
     public native void setInviteeResponseHandler(@Block VoidBlock2<NSString, GKInviteRecipientResponse> v);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -recipients:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchRequest/recipients`` property instead.
      */
     @Deprecated
     @Property(selector = "playersToInvite")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPlayersToInvite();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -recipients:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchRequest/recipients`` property instead.
      */
     @Deprecated
     @Property(selector = "setPlayersToInvite:")
     public native void setPlayersToInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "queueName")
+    public native String getQueueName();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "setQueueName:")
+    public native void setQueueName(String v);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "properties")
+    public native NSDictionary<NSString, ?> getProperties();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "setProperties:")
+    public native void setProperties(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "recipientProperties")
+    public native NSDictionary<GKPlayer, NSDictionary<NSString, ?>> getRecipientProperties();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "setRecipientProperties:")
+    public native void setRecipientProperties(NSDictionary<GKPlayer, NSDictionary<NSString, ?>> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

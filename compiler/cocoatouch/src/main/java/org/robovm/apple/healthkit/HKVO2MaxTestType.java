@@ -41,7 +41,11 @@ public enum /*<name>*/HKVO2MaxTestType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     MaxExercise(1L),
     PredictionSubMaxExercise(2L),
-    PredictionNonExercise(3L);
+    PredictionNonExercise(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    PredictionStepTest(4L);
     /*</values>*/
 
     /*<bind>*/

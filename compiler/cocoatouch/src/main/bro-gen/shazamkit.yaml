@@ -34,6 +34,9 @@ classes:
                 throws: NSErrorException
             '+new':
                 exclude: true
+            '-initWithDataRepresentation:error:':
+                name: init
+                throws: NSErrorException
     SHMatch: {} #since 15.0
     SHMatchedMediaItem: {} #since 15.0
     SHMediaItem: #since 15.0

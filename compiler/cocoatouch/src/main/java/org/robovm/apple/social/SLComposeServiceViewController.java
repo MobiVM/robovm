@@ -103,17 +103,33 @@ import org.robovm.apple.accounts.*;
     public native void didBeginEditing(UITextView textView);
     @Method(selector = "textViewDidEndEditing:")
     public native void didEndEditing(UITextView textView);
+    /**
+     * @deprecated Use -textView:shouldChangeTextInRanges:replacementText:
+     */
+    @Deprecated
     @Method(selector = "textView:shouldChangeTextInRange:replacementText:")
     public native boolean shouldChangeCharacters(UITextView textView, @ByVal NSRange range, String text);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "textView:shouldChangeTextInRanges:replacementText:")
+    public native boolean shouldChangeTextInRanges(UITextView textView, NSArray<NSValue> ranges, String text);
     @Method(selector = "textViewDidChange:")
     public native void didChange(UITextView textView);
     @Method(selector = "textViewDidChangeSelection:")
     public native void didChangeSelection(UITextView textView);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use -textView:editMenuForTextInRanges:suggestedActions:
      */
+    @Deprecated
     @Method(selector = "textView:editMenuForTextInRange:suggestedActions:")
     public native UIMenu getEditMenu(UITextView textView, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "textView:editMenuForTextInRanges:suggestedActions:")
+    public native UIMenu editMenuForTextInRanges(UITextView textView, NSArray<NSValue> ranges, NSArray<UIMenuElement> suggestedActions);
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -145,6 +161,21 @@ import org.robovm.apple.accounts.*;
     @Method(selector = "textView:textItemMenuWillEndForTextItem:animator:")
     public native void textItemMenuWillEndForTextItem(UITextView textView, UITextItem textItem, UIContextMenuInteractionAnimating animator);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textViewWritingToolsWillBegin:")
+    public native void textViewWritingToolsWillBegin(UITextView textView);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textViewWritingToolsDidEnd:")
+    public native void textViewWritingToolsDidEnd(UITextView textView);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textView:writingToolsIgnoredRangesInEnclosingRange:")
+    public native NSArray<NSValue> getWritingToolsIgnoredRanges(UITextView textView, @ByVal NSRange enclosingRange);
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 17.0. Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.
      */
@@ -170,6 +201,31 @@ import org.robovm.apple.accounts.*;
     @Deprecated
     @Method(selector = "textView:shouldInteractWithTextAttachment:inRange:")
     public native boolean shouldInteractWithTextAttachment(UITextView textView, NSTextAttachment textAttachment, @ByVal NSRange characterRange);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textView:willBeginFormattingWithViewController:")
+    public native void willBeginFormatting(UITextView textView, UITextFormattingViewController viewController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textView:didBeginFormattingWithViewController:")
+    public native void didBeginFormatting(UITextView textView, UITextFormattingViewController viewController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textView:willEndFormattingWithViewController:")
+    public native void willEndFormatting(UITextView textView, UITextFormattingViewController viewController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "textView:didEndFormattingWithViewController:")
+    public native void didEndFormatting(UITextView textView, UITextFormattingViewController viewController);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "textView:insertInputSuggestion:")
+    public native void insertInputSuggestion(UITextView textView, UIInputSuggestion inputSuggestion);
     @Method(selector = "scrollViewDidScroll:")
     public native void didScroll(UIScrollView scrollView);
     @Method(selector = "scrollViewDidZoom:")

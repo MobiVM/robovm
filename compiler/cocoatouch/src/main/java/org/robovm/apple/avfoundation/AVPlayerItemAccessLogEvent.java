@@ -59,12 +59,6 @@ import org.robovm.apple.uikit.*;
     protected AVPlayerItemAccessLogEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use numberOfMediaRequests
-     */
-    @Deprecated
-    @Property(selector = "numberOfSegmentsDownloaded")
-    public native @MachineSizedSInt long getNumberOfSegmentsDownloaded();
     @Property(selector = "numberOfMediaRequests")
     public native @MachineSizedSInt long getNumberOfMediaRequests();
     @Property(selector = "playbackStartDate")

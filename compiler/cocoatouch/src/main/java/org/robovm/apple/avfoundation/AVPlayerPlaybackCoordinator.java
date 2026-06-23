@@ -67,9 +67,27 @@ import org.robovm.apple.uikit.*;
     public native AVPlayerPlaybackCoordinatorDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(AVPlayerPlaybackCoordinatorDelegate v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "playbackCoordinationMedium")
+    public native AVPlaybackCoordinationMedium getPlaybackCoordinationMedium();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public boolean coordinateUsingCoordinationMedium(AVPlaybackCoordinationMedium coordinationMedium) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = coordinateUsingCoordinationMedium(coordinationMedium, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "coordinateUsingCoordinationMedium:error:")
+    private native boolean coordinateUsingCoordinationMedium(AVPlaybackCoordinationMedium coordinationMedium, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

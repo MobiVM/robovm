@@ -35,9 +35,10 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. This command has been removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.2. This command has been removed
      */
+    @Deprecated
     @Method(selector = "initWithResponseValue:error:")
     public MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams(NSDictionary<NSString, ?> responseValue) throws NSErrorException {
        super((SkipInit) null);
@@ -64,62 +67,86 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The startTime field will be removed
      */
+    @Deprecated
     @Property(selector = "startTime")
     public native NSNumber getStartTime();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The startTime field will be removed
      */
+    @Deprecated
     @Property(selector = "setStartTime:")
     public native void setStartTime(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The status field will be removed
      */
+    @Deprecated
     @Property(selector = "status")
     public native NSNumber getStatus();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The status field will be removed
      */
+    @Deprecated
     @Property(selector = "setStatus:")
     public native void setStatus(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileIntervalPeriod field will be removed
      */
+    @Deprecated
     @Property(selector = "profileIntervalPeriod")
     public native NSNumber getProfileIntervalPeriod();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The profileIntervalPeriod field will be removed
      */
+    @Deprecated
     @Property(selector = "setProfileIntervalPeriod:")
     public native void setProfileIntervalPeriod(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The numberOfIntervalsDelivered field will be removed
      */
+    @Deprecated
     @Property(selector = "numberOfIntervalsDelivered")
     public native NSNumber getNumberOfIntervalsDelivered();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The numberOfIntervalsDelivered field will be removed
      */
+    @Deprecated
     @Property(selector = "setNumberOfIntervalsDelivered:")
     public native void setNumberOfIntervalsDelivered(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The attributeId field will be removed
      */
+    @Deprecated
     @Property(selector = "attributeId")
     public native NSNumber getAttributeId();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The attributeId field will be removed
      */
+    @Deprecated
     @Property(selector = "setAttributeId:")
     public native void setAttributeId(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The intervals field will be removed
      */
+    @Deprecated
     @Property(selector = "intervals")
     public native NSArray<?> getIntervals();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The intervals field will be removed
      */
+    @Deprecated
     @Property(selector = "setIntervals:")
     public native void setIntervals(NSArray<?> v);
     /*</properties>*/
@@ -127,7 +154,9 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.2. This command has been removed
      */
+    @Deprecated
     @Method(selector = "initWithResponseValue:error:")
     private native @Pointer long init(NSDictionary<NSString, ?> responseValue, NSError.NSErrorPtr error);
     /*</methods>*/

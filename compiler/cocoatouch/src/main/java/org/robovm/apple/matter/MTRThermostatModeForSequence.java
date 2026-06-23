@@ -35,19 +35,24 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleModeBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsByteMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTRThermostatModeForSequence/*</name>*/ extends Bits</*<name>*/MTRThermostatModeForSequence/*</name>*/> {
     /*<values>*/
     public static final MTRThermostatModeForSequence None = new MTRThermostatModeForSequence(0L);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleModeBitmapHeatSetpointPresent
      */
+    @Deprecated
     public static final MTRThermostatModeForSequence HeatSetpointPresent = new MTRThermostatModeForSequence(1L);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatScheduleModeBitmapCoolSetpointPresent
      */
+    @Deprecated
     public static final MTRThermostatModeForSequence CoolSetpointPresent = new MTRThermostatModeForSequence(2L);
     /*</values>*/
 

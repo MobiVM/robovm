@@ -220,6 +220,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setContextName:")
     public native void setContextName(String v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "migrateFromPlugin")
+    public native NSArray<?> getMigrateFromPlugin();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "supportsMPE")

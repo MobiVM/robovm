@@ -65,6 +65,12 @@ import org.robovm.apple.symbols.*;
     protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment);
     public static @Pointer long create(NSTextAttachment attachment) { return create(ObjCClass.getByType(NSAttributedString.class), attachment); }
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "attributedStringWithAttachment:attributes:")
+    protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment, NSDictionary<NSString, ?> attributes);
+    public static @Pointer long create(NSTextAttachment attachment, NSDictionary<NSString, ?> attributes) { return create(ObjCClass.getByType(NSAttributedString.class), attachment, attributes); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static @Pointer long init(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
@@ -108,6 +114,11 @@ import org.robovm.apple.symbols.*;
     @Method(selector = "containsAttachmentsInRange:")
     public static native boolean containsAttachments(NSAttributedString thiz, @ByVal NSRange range);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prefersRTFDInRange:")
+    public static native boolean prefersRTFDInRange(NSAttributedString thiz, @ByVal NSRange range);
+    /**
      * @deprecated Deprecated in iOS 9.0. Use initWithURL:options:documentAttributes:error:
      */
     @Deprecated
@@ -133,5 +144,11 @@ import org.robovm.apple.symbols.*;
     public static native void draw(NSAttributedString thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSStringDrawingContext context);
     @Method(selector = "boundingRectWithSize:options:context:")
     public static native @ByVal CGRect getBoundingRect(NSAttributedString thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSStringDrawingContext context);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "attributedStringWithAdaptiveImageGlyph:attributes:")
+    protected static native @Pointer long create(ObjCClass clazz, NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes);
+    public static @Pointer long create(NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes) { return create(ObjCClass.getByType(NSAttributedString.class), adaptiveImageGlyph, attributes); }
     /*</methods>*/
 }

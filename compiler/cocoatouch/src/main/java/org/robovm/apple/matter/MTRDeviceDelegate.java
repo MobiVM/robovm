@@ -48,6 +48,22 @@ import org.robovm.apple.security.*;
     
     /*</properties>*/
     /*<methods>*/
+    @Library("Matter")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 17.6 and later.
+         */
+        @GlobalValue(symbol="MTRPreviousDataKey", optional=true)
+        public static native String PreviousData();
+        /**
+         * @since Available in iOS 17.6 and later.
+         */
+        @GlobalValue(symbol="MTRDataVersionKey", optional=true)
+        public static native String DataVersion();
+    }
+    
     @Method(selector = "device:stateChanged:")
     void stateChanged(MTRDevice device, MTRDeviceState state);
     @Method(selector = "device:receivedAttributeReport:")
@@ -59,6 +75,16 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "deviceBecameActive:")
     void deviceBecameActive(MTRDevice device);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "deviceCachePrimed:")
+    void deviceCachePrimed(MTRDevice device);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "deviceConfigurationChanged:")
+    void deviceConfigurationChanged(MTRDevice device);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

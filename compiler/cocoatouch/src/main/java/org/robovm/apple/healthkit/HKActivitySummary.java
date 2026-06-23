@@ -62,6 +62,16 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "setActivityMoveMode:")
     public native void setActivityMoveMode(HKActivityMoveMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isPaused")
+    public native boolean isPaused();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPaused:")
+    public native void setPaused(boolean v);
     @Property(selector = "activeEnergyBurned")
     public native HKQuantity getActiveEnergyBurned();
     @Property(selector = "setActiveEnergyBurned:")

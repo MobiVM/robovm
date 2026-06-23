@@ -35,10 +35,9 @@ import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.robovm.compiler.AppCompiler;
-import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.idea.RoboVmPlugin;
 
 import java.util.Collection;

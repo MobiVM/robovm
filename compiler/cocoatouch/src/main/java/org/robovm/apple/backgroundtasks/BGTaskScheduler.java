@@ -52,6 +52,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "sharedScheduler")
     public static native BGTaskScheduler getSharedScheduler();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportedResources")
+    public static native BGContinuedProcessingTaskRequestResources getSupportedResources();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

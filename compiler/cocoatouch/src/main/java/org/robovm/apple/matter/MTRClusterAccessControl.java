@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterAccessControl/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterAccessControlPtr extends Ptr<MTRClusterAccessControl, MTRClusterAccessControlPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "reviewFabricRestrictionsWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void reviewFabricRestrictions(MTRAccessControlClusterReviewFabricRestrictionsParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRAccessControlClusterReviewFabricRestrictionsResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -111,6 +111,16 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeAccessControlEntriesPerFabricWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAccessControlEntriesPerFabric(MTRReadParams params);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeCommissioningARLWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeCommissioningARL(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeARLWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeARL(MTRReadParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -135,5 +145,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

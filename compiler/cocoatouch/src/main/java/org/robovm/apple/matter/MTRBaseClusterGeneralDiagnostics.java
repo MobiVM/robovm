@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterGeneralDiagnostics/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterGeneralDiagnosticsPtr extends Ptr<MTRBaseClusterGeneralDiagnostics, MTRBaseClusterGeneralDiagnosticsPtr> {}/*</ptr>*/
@@ -63,13 +63,23 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "testEventTriggerWithParams:completion:")
     public native void testEventTrigger(MTRGeneralDiagnosticsClusterTestEventTriggerParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "timeSnapshotWithParams:completion:")
+    public native void timeSnapshot(MTRGeneralDiagnosticsClusterTimeSnapshotParams params, @Block VoidBlock2<MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "timeSnapshotWithCompletion:")
+    public native void timeSnapshot(@Block VoidBlock2<MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "payloadTestRequestWithParams:completion:")
+    public native void payloadTestRequest(MTRGeneralDiagnosticsClusterPayloadTestRequestParams params, @Block VoidBlock2<MTRGeneralDiagnosticsClusterPayloadTestResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -280,5 +290,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

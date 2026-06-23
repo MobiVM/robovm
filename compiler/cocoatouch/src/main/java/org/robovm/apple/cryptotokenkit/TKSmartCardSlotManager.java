@@ -59,5 +59,15 @@ import org.robovm.apple.security.*;
     public native void getSlot(String name, @Block VoidBlock1<TKSmartCardSlot> reply);
     @Method(selector = "slotNamed:")
     public native TKSmartCardSlot slotNamed(String name);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "createNFCSlotWithMessage:completion:")
+    public native void createNFCSlot(String message, @Block VoidBlock2<TKSmartCardSlotNFCSession, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "isNFCSupported")
+    public native boolean isNFCSupported();
     /*</methods>*/
 }

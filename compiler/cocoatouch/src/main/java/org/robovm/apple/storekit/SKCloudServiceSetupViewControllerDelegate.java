@@ -33,9 +33,12 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 10.1 and later.
+ * @deprecated Deprecated in iOS 18.0. Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/SKCloudServiceSetupViewControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -48,9 +51,6 @@ import org.robovm.apple.coregraphics.*;
     
     /*</properties>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
     @Method(selector = "cloudServiceSetupViewControllerDidDismiss:")
     void didDismiss(SKCloudServiceSetupViewController cloudServiceSetupViewController);
     /*</methods>*/

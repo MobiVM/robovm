@@ -67,9 +67,6 @@ import org.robovm.apple.contacts.*;
     public native void removeCondition(String identifier);
     @Method(selector = "monitoringRecordForIdentifier:")
     public native CLMonitoringRecord monitoringRecordForIdentifier(String identifier);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
     @Method(selector = "requestMonitorWithConfiguration:completion:")
     public static native void requestMonitor(CLMonitorConfiguration config, @Block VoidBlock1<CLMonitor> completionHandler);
     /*</methods>*/

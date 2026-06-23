@@ -209,6 +209,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIContextName", optional=true)
         public static native NSString Name();
         /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCIContextCVMetalTextureCache", optional=true)
+        public static native NSString CVMetalTextureCache();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="kCIContextMemoryLimit", optional=true)

@@ -65,8 +65,18 @@ import org.robovm.apple.symbols.*;
     /*<properties>*/
     @Property(selector = "screen")
     public native UIScreen getScreen();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use effectiveGeometry.interfaceOrientation instead.
+     */
+    @Deprecated
     @Property(selector = "interfaceOrientation")
     public native UIInterfaceOrientation getInterfaceOrientation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use effectiveGeometry.coordinateSpace instead.
+     */
+    @Deprecated
     @Property(selector = "coordinateSpace")
     public native UICoordinateSpace getCoordinateSpace();
     @Property(selector = "traitCollection")
@@ -105,6 +115,9 @@ import org.robovm.apple.symbols.*;
     public native UISceneWindowingBehaviors getWindowingBehaviors();
     @Property(selector = "isFullScreen")
     public native boolean isFullScreen();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "traitOverrides")
     public native UITraitOverrides getTraitOverrides();
     /**

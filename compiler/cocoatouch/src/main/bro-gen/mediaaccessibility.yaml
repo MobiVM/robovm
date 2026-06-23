@@ -13,6 +13,7 @@ private_typedefs:
     '__CFDictionary': NSDictionary
     '__CFArray': NSArray
     '__CFError': NSError
+    NSCopying: NSObject
 enums:
     MACaptionAppearanceDomain: {prefix: kMACaptionAppearanceDomain} #since 7.0
     MACaptionAppearanceDisplayType: {prefix: kMACaptionAppearanceDisplayType} #since 7.0
@@ -27,7 +28,10 @@ classes:
                 #trim_after_first_colon: true
                 name: processSurface$outSurface$timestamp$options$
     MAFlashingLightsProcessorResult: {} #since 17.0
-
+    MAMusicHapticsManager: #since 18.0
+        methods:
+            '-checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:':
+                name: checkHapticTrackAvailability
 protocols:
 
 functions:
@@ -70,6 +74,10 @@ values:
     MAMediaCharacteristic(DescribesMusicAndSoundForAccessibility|TranscribesSpokenDialogForAccessibility):
         class: MACaptionAppearance
         static_class: MediaCharacteristic
+        name: '#{g[0]}'
+    MAMusicHapticsManager(ActiveStatusDidChange)Notification:
+        class: MAMusicHapticsManager
+        static_class: Notifications
         name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version

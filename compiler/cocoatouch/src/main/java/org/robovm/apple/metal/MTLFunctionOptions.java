@@ -45,9 +45,23 @@ public final class /*<name>*/MTLFunctionOptions/*</name>*/ extends Bits</*<name>
      */
     public static final MTLFunctionOptions CompileToBinary = new MTLFunctionOptions(1L);
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    public static final MTLFunctionOptions StoreFunctionInMetalPipelinesScript = new MTLFunctionOptions(2L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use MTLFunctionOptionStoreFunctionInMetalPipelinesScript
+     */
+    @Deprecated
     public static final MTLFunctionOptions StoreFunctionInMetalScript = new MTLFunctionOptions(2L);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final MTLFunctionOptions FailOnBinaryArchiveMiss = new MTLFunctionOptions(4L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLFunctionOptions PipelineIndependent = new MTLFunctionOptions(8L);
     /*</values>*/
 
     /*<bind>*/

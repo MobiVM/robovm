@@ -70,6 +70,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSPersonNameComponents getFullName();
     @Property(selector = "realUserStatus")
     public native ASUserDetectionStatus getRealUserStatus();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "userAgeRange")
+    public native ASUserAgeRange getUserAgeRange();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

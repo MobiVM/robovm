@@ -35,9 +35,10 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. This command has been removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBarrierControlClusterBarrierControlGoToPercentParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,12 +54,16 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The percentOpen field will be removed
      */
+    @Deprecated
     @Property(selector = "percentOpen")
     public native NSNumber getPercentOpen();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The percentOpen field will be removed
      */
+    @Deprecated
     @Property(selector = "setPercentOpen:")
     public native void setPercentOpen(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")

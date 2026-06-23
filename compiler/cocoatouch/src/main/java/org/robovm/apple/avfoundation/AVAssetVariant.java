@@ -69,6 +69,11 @@ import org.robovm.apple.uikit.*;
     public native AVAssetVariantVideoAttributes getVideoAttributes();
     @Property(selector = "audioAttributes")
     public native AVAssetVariantAudioAttributes getAudioAttributes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "URL")
+    public native NSURL getURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

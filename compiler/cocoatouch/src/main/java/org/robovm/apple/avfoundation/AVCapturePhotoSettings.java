@@ -74,6 +74,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "format")
     public native NSDictionary<NSString, ?> getFormat();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "rawFileFormat")
+    public native NSDictionary<NSString, ?> getRawFileFormat();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setRawFileFormat:")
+    public native void setRawFileFormat(NSDictionary<NSString, ?> v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "processedFileType")
@@ -349,6 +359,36 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setAutoContentAwareDistortionCorrectionEnabled:")
     public native void setAutoContentAwareDistortionCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorEnabled")
+    public native boolean isConstantColorEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConstantColorEnabled:")
+    public native void setConstantColorEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorFallbackPhotoDeliveryEnabled")
+    public native boolean isConstantColorFallbackPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConstantColorFallbackPhotoDeliveryEnabled:")
+    public native void setConstantColorFallbackPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isShutterSoundSuppressionEnabled")
+    public native boolean isShutterSoundSuppressionEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShutterSoundSuppressionEnabled:")
+    public native void setShutterSoundSuppressionEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

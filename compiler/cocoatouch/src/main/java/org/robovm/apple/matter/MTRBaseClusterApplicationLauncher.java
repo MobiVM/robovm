@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterApplicationLauncher/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterApplicationLauncherPtr extends Ptr<MTRBaseClusterApplicationLauncher, MTRBaseClusterApplicationLauncherPtr> {}/*</ptr>*/
@@ -63,23 +63,33 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "launchAppWithParams:completion:")
     public native void launchApp(MTRApplicationLauncherClusterLaunchAppParams params, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "launchAppWithCompletion:")
+    public native void launchApp(@Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "stopAppWithParams:completion:")
     public native void stopApp(MTRApplicationLauncherClusterStopAppParams params, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "stopAppWithCompletion:")
+    public native void stopApp(@Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "hideAppWithParams:completion:")
     public native void hideApp(MTRApplicationLauncherClusterHideAppParams params, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "hideAppWithCompletion:")
+    public native void hideApp(@Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -195,5 +205,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

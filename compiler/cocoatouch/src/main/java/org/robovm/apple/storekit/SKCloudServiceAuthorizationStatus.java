@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.3 and later.
+ * @deprecated Deprecated in iOS 18.0. Use MusicAuthorization.Status from MusicKit
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/SKCloudServiceAuthorizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     NotDetermined(0L),

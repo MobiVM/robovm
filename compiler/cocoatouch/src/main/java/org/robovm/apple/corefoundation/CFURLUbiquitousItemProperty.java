@@ -93,11 +93,6 @@ import org.robovm.apple.coretext.*;
     /*<constants>*/
     public static final CFURLUbiquitousItemProperty IsUbiquitousItem = new CFURLUbiquitousItemProperty("IsUbiquitousItem");
     public static final CFURLUbiquitousItemProperty HasUnresolvedConflicts = new CFURLUbiquitousItemProperty("HasUnresolvedConflicts");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
-     */
-    @Deprecated
-    public static final CFURLUbiquitousItemProperty IsDownloaded = new CFURLUbiquitousItemProperty("IsDownloaded");
     public static final CFURLUbiquitousItemProperty IsDownloading = new CFURLUbiquitousItemProperty("IsDownloading");
     public static final CFURLUbiquitousItemProperty IsUploaded = new CFURLUbiquitousItemProperty("IsUploaded");
     public static final CFURLUbiquitousItemProperty IsUploading = new CFURLUbiquitousItemProperty("IsUploading");
@@ -108,9 +103,17 @@ import org.robovm.apple.coretext.*;
      * @since Available in iOS 14.5 and later.
      */
     public static final CFURLUbiquitousItemProperty IsExcludedFromSync = new CFURLUbiquitousItemProperty("IsExcludedFromSync");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFURLUbiquitousItemProperty SupportedSyncControls = new CFURLUbiquitousItemProperty("SupportedSyncControls");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CFURLUbiquitousItemProperty IsSyncPaused = new CFURLUbiquitousItemProperty("IsSyncPaused");
     /*</constants>*/
     
-    private static /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloaded, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, IsExcludedFromSync/*</value_list>*/};
+    private static /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] values = new /*<name>*/CFURLUbiquitousItemProperty/*</name>*/[] {/*<value_list>*/IsUbiquitousItem, HasUnresolvedConflicts, IsDownloading, IsUploaded, IsUploading, DownloadingStatus, DownloadingError, UploadingError, IsExcludedFromSync, SupportedSyncControls, IsSyncPaused/*</value_list>*/};
     
     /*<name>*/CFURLUbiquitousItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -137,12 +140,6 @@ import org.robovm.apple.coretext.*;
         public static native CFString IsUbiquitousItem();
         @GlobalValue(symbol="kCFURLUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native CFString HasUnresolvedConflicts();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use kCFURLUbiquitousItemDownloadingStatusKey instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="kCFURLUbiquitousItemIsDownloadedKey", optional=true)
-        public static native CFString IsDownloaded();
         @GlobalValue(symbol="kCFURLUbiquitousItemIsDownloadingKey", optional=true)
         public static native CFString IsDownloading();
         @GlobalValue(symbol="kCFURLUbiquitousItemIsUploadedKey", optional=true)
@@ -160,6 +157,16 @@ import org.robovm.apple.coretext.*;
          */
         @GlobalValue(symbol="kCFURLUbiquitousItemIsExcludedFromSyncKey", optional=true)
         public static native CFString IsExcludedFromSync();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLUbiquitousItemSupportedSyncControlsKey", optional=true)
+        public static native CFString SupportedSyncControls();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCFURLUbiquitousItemIsSyncPausedKey", optional=true)
+        public static native CFString IsSyncPaused();
         /*</values>*/
     }
 }

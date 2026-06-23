@@ -52,13 +52,27 @@ import org.robovm.apple.security.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.4 and later.
      */
+    @Property(selector = "associationFailureCause")
+    public native NSNumber getAssociationFailureCause();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setAssociationFailureCause:")
+    public native void setAssociationFailureCause(NSNumber v);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use associationFailureCause
+     */
+    @Deprecated
     @Property(selector = "associationFailure")
     public native NSNumber getAssociationFailure();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use associationFailureCause
      */
+    @Deprecated
     @Property(selector = "setAssociationFailure:")
     public native void setAssociationFailure(NSNumber v);
     /**

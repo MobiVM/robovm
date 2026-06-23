@@ -202,6 +202,23 @@ import org.robovm.apple.coregraphics.*;
         set(Keys.SubsampleFactor(), CFNumber.valueOf(subsampleFactor));
         return this;
     }
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    public boolean isComputeHDRStats() {
+        if (has(Keys.ComputeHDRStats())) {
+            CFBoolean val = get(Keys.ComputeHDRStats(), CFBoolean.class);
+            return val.booleanValue();
+        }
+        return false;
+    }
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    public CGImageSourceOptions setComputeHDRStats(boolean computeHDRStats) {
+        set(Keys.ComputeHDRStats(), CFBoolean.valueOf(computeHDRStats));
+        return this;
+    }
     /*</methods>*/
     
     /*<keys>*/
@@ -245,10 +262,20 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImageSourceDecodeToSDR", optional=true)
         public static native CFString DecodeToSDR();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceGenerateImageSpecificLumaScaling", optional=true)
+        public static native CFString GenerateImageSpecificLumaScaling();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="kCGImageSourceDecodeRequestOptions", optional=true)
         public static native CFString DecodeRequestOptions();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGComputeHDRStats", optional=true)
+        public static native CFString ComputeHDRStats();
     }
     /*</keys>*/
 }

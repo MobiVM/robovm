@@ -57,6 +57,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsExtendedDistanceMeasurement")
     boolean supportsExtendedDistanceMeasurement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportsDLTDOAMeasurement")
+    boolean supportsDLTDOAMeasurement();
     /*</properties>*/
     /*<methods>*/
     

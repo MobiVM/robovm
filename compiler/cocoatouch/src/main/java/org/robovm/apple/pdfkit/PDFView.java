@@ -225,12 +225,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<PDFPage> getVisiblePages();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.0.
      */
+    @Deprecated
     @Property(selector = "enableDataDetectors")
     public native boolean isEnableDataDetectors();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.0.
      */
+    @Deprecated
     @Property(selector = "setEnableDataDetectors:")
     public native void setEnableDataDetectors(boolean v);
     /**

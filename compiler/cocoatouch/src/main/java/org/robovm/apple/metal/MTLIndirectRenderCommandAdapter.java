@@ -106,6 +106,36 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("clearBarrier")
     public void clearBarrier() {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setDepthStencilState:")
+    public void setDepthStencilState(MTLDepthStencilState depthStencilState) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setDepthBias:slopeScale:clamp:")
+    public void setDepthBias(float depthBias, float slopeScale, float clamp) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setDepthClipMode:")
+    public void setDepthClipMode(MTLDepthClipMode depthClipMode) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setCullMode:")
+    public void setCullMode(MTLCullMode cullMode) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setFrontFacingWinding:")
+    public void setFrontFacingWinding(MTLWinding frontFacingWindning) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setTriangleFillMode:")
+    public void setTriangleFillMode(MTLTriangleFillMode fillMode) {}
     @NotImplemented("reset")
     public void reset() {}
     /*</methods>*/

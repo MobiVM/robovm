@@ -115,12 +115,16 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final PKInkType Watercolor = new PKInkType("Watercolor");
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final PKInkType Reed = new PKInkType("Reed");
+    /**
      * @since Available in iOS 17.0 and later.
      */
     public static final PKInkType Crayon = new PKInkType("Crayon");
     /*</constants>*/
     
-    private static /*<name>*/PKInkType/*</name>*/[] values = new /*<name>*/PKInkType/*</name>*/[] {/*<value_list>*/Pen, Pencil, Marker, Monoline, FountainPen, Watercolor, Crayon/*</value_list>*/};
+    private static /*<name>*/PKInkType/*</name>*/[] values = new /*<name>*/PKInkType/*</name>*/[] {/*<value_list>*/Pen, Pencil, Marker, Monoline, FountainPen, Watercolor, Reed, Crayon/*</value_list>*/};
     
     /*<name>*/PKInkType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -173,6 +177,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="PKInkTypeWatercolor", optional=true)
         public static native NSString Watercolor();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="PKInkTypeReed", optional=true)
+        public static native NSString Reed();
         /**
          * @since Available in iOS 17.0 and later.
          */

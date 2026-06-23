@@ -68,5 +68,15 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "mediaSelectionOptionsInMediaSelectionGroup:")
     public native NSArray<AVMediaSelectionOption> mediaSelectionOptionsInMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mediaPresentationSettingsForMediaSelectionGroup:")
+    public native NSDictionary<?, ?> mediaPresentationSettingsForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mediaPresentationLanguagesForMediaSelectionGroup:")
+    public native NSArray<NSString> mediaPresentationLanguagesForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
     /*</methods>*/
 }

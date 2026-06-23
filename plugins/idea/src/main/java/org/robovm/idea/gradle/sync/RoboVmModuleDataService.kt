@@ -18,7 +18,7 @@ package org.robovm.idea.gradle.sync
 import com.intellij.facet.ModifiableFacetModel
 import com.intellij.openapi.externalSystem.model.DataNode
 import com.intellij.openapi.externalSystem.model.Key
-import com.intellij.openapi.externalSystem.model.ProjectKeys
+import com.intellij.openapi.externalSystem.model.project.ModuleData
 import com.intellij.openapi.externalSystem.model.project.ProjectData
 import com.intellij.openapi.externalSystem.service.project.IdeModifiableModelsProvider
 import com.intellij.openapi.externalSystem.service.project.manage.AbstractProjectDataService
@@ -54,22 +54,22 @@ class RoboVmModuleDataService : AbstractProjectDataService<RoboVmFacetConfigurat
 
         // for each module with RoboVMGradleModel attached just add RoboVM facet
         toImport.forEach { nodeToImport ->
-            ExternalSystemApiUtil.findParent(nodeToImport, ProjectKeys.MODULE)?.let { moduleNode ->
-                val module = modelsProvider.findIdeModule(moduleNode.data) ?: return@let
-                val externalModel = nodeToImport.data
-                val facetModel = modelsProvider.getModifiableFacetModel(module)
-                facetModel.getFacetByType(RoboVmFacetType.TYPE_ID)?.let {
-                    // facet already attached, replace its settings
-                    it.configuration.replaceSettings(externalModel)
-                } ?: run {
-                    // create new facet
-                    module.attachRoboVmFacet(facetModel, externalModel)
-                }
-
-                // setup sdk
-                val moduleModel = modelsProvider.getModifiableRootModel(module)
-                moduleModel.sdk = RoboVmSdkType.setUpSdkIfNeeded(project)
+            val parentNode = nodeToImport.parent ?: return@forEach
+            val moduleData = parentNode.data as? ModuleData ?: return@forEach
+            val module = modelsProvider.findIdeModule(moduleData) ?: return@forEach
+            val externalModel = nodeToImport.data
+            val facetModel = modelsProvider.getModifiableFacetModel(module)
+            facetModel.getFacetByType(RoboVmFacetType.TYPE_ID)?.let {
+                // facet already attached, replace its settings
+                it.configuration.replaceSettings(externalModel)
+            } ?: run {
+                // create new facet
+                module.attachRoboVmFacet(facetModel, externalModel)
             }
+
+            // setup sdk
+            val moduleModel = modelsProvider.getModifiableRootModel(module)
+            moduleModel.sdk = RoboVmSdkType.setUpSdkIfNeeded(project)
         }
     }
 

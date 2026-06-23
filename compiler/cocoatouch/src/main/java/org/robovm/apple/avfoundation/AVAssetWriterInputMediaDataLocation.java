@@ -107,9 +107,13 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final AVAssetWriterInputMediaDataLocation BeforeMainMediaDataNotInterleaved = new AVAssetWriterInputMediaDataLocation("BeforeMainMediaDataNotInterleaved");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetWriterInputMediaDataLocation SparselyInterleavedWithMainMediaData = new AVAssetWriterInputMediaDataLocation("SparselyInterleavedWithMainMediaData");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetWriterInputMediaDataLocation/*</name>*/[] values = new /*<name>*/AVAssetWriterInputMediaDataLocation/*</name>*/[] {/*<value_list>*/InterleavedWithMainMediaData, BeforeMainMediaDataNotInterleaved/*</value_list>*/};
+    private static /*<name>*/AVAssetWriterInputMediaDataLocation/*</name>*/[] values = new /*<name>*/AVAssetWriterInputMediaDataLocation/*</name>*/[] {/*<value_list>*/InterleavedWithMainMediaData, BeforeMainMediaDataNotInterleaved, SparselyInterleavedWithMainMediaData/*</value_list>*/};
     
     /*<name>*/AVAssetWriterInputMediaDataLocation/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +146,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved", optional=true)
         public static native NSString BeforeMainMediaDataNotInterleaved();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData", optional=true)
+        public static native NSString SparselyInterleavedWithMainMediaData();
         /*</values>*/
     }
 }

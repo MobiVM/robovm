@@ -40,7 +40,7 @@ import org.robovm.apple.modelio.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("PHASE") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHASEPushStreamNode/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PHASEStreamNode/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PHASEPushStreamNodePtr extends Ptr<PHASEPushStreamNode, PHASEPushStreamNodePtr> {}/*</ptr>*/

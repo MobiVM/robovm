@@ -73,6 +73,11 @@ import org.robovm.apple.iosurface.*;
     public static native void setDisplayType(MACaptionAppearanceDomain domain, MACaptionAppearanceDisplayType displayType);
     @Bridge(symbol="MACaptionAppearanceCopyPreferredCaptioningMediaCharacteristics", optional=true)
     public static native NSArray copyPreferredCaptioningMediaCharacteristics(MACaptionAppearanceDomain domain);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceIsCustomized", optional=true)
+    public static native boolean isCustomized(MACaptionAppearanceDomain domain);
     @Bridge(symbol="MACaptionAppearanceCopyForegroundColor", optional=true)
     public static native CGColor copyForegroundColor(MACaptionAppearanceDomain domain, MachineSizedSIntPtr behavior);
     @Bridge(symbol="MACaptionAppearanceCopyBackgroundColor", optional=true)
@@ -93,5 +98,30 @@ import org.robovm.apple.iosurface.*;
     public static native @MachineSizedFloat double getRelativeCharacterSize(MACaptionAppearanceDomain domain, MachineSizedSIntPtr behavior);
     @Bridge(symbol="MACaptionAppearanceGetTextEdgeStyle", optional=true)
     public static native MACaptionAppearanceTextEdgeStyle getTextEdgeStyle(MACaptionAppearanceDomain domain, MachineSizedSIntPtr behavior);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceCopyProfileIDs", optional=true)
+    public static native NSArray copyProfileIDs();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceSetActiveProfileID", optional=true)
+    public static native void setActiveProfileID(String profileID);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceCopyActiveProfileID", optional=true)
+    public static native String copyActiveProfileID();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceCopyProfileName", optional=true)
+    public static native String copyProfileName(String profileID);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Bridge(symbol="MACaptionAppearanceExecuteBlockForProfileID", optional=true)
+    public static native void executeBlockForProfileID(String profileID, @Block Runnable aBlock);
     /*</methods>*/
 }

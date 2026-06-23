@@ -59,7 +59,7 @@ import org.robovm.apple.uikit.*;
     protected AVVideoComposition(Handle h, long handle) { super(h, handle); }
     protected AVVideoComposition(SkipInit skipInit) { super(skipInit); }
     /**
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:completionHandler: instead
      */
     @Deprecated
     public AVVideoComposition(AVAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
@@ -69,7 +69,7 @@ import org.robovm.apple.uikit.*;
     public AVVideoComposition(AVAsset asset, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler) { super((Handle) null, create(asset, completionHandler)); retain(getHandle()); }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead
      */
     @Deprecated
     public AVVideoComposition(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> ciFiltersApplier) { super((Handle) null, create(asset, ciFiltersApplier)); retain(getHandle()); }
@@ -102,6 +102,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "sourceSampleDataTrackIDs")
     public native NSArray<NSNumber> getSourceSampleDataTrackIDs();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "outputBufferDescription")
+    public native NSArray<?> getOutputBufferDescription();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "spatialVideoConfigurations")
+    public native NSArray<AVSpatialVideoConfiguration> getSpatialVideoConfigurations();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "colorPrimaries")
@@ -125,7 +135,7 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Use videoCompositionWithPropertiesOfAsset:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithPropertiesOfAsset:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "videoCompositionWithPropertiesOfAsset:")
@@ -137,7 +147,7 @@ import org.robovm.apple.uikit.*;
     protected static native @Pointer long create(AVAsset asset, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:")
@@ -148,15 +158,22 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:")
     protected static native @Pointer long create(AVAsset asset, @Block VoidBlock1<AVAsynchronousCIImageFilteringRequest> applier, @Block VoidBlock2<AVVideoComposition, NSError> completionHandler);
     /**
-     * @deprecated Use determineValidityForAsset:timeRange:validationDelegate:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use isValidForTracks:assetDuration:timeRange:validationDelegate: instead
      */
     @Deprecated
     @Method(selector = "isValidForAsset:timeRange:validationDelegate:")
     public native boolean isValid(AVAsset asset, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use isValidForTracks:assetDuration:timeRange:validationDelegate:
      */
+    @Deprecated
     @Method(selector = "determineValidityForAsset:timeRange:validationDelegate:completionHandler:")
     public native void determineValidityForAsset(AVAsset asset, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "isValidForTracks:assetDuration:timeRange:validationDelegate:")
+    public native boolean isValidForTracks(NSArray<AVAssetTrack> tracks, @ByVal CMTime duration, @ByVal CMTimeRange timeRange, AVVideoCompositionValidationHandling validationDelegate);
     /*</methods>*/
 }

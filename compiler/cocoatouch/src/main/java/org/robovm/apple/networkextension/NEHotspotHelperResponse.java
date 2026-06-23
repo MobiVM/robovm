@@ -67,7 +67,9 @@ import org.robovm.apple.network.*;
     public native void setNetworkList(NSArray<NEHotspotNetwork> networkList);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use handleCommand in NEHotspotEvaluationProvider or NEHotspotAuthenticationProvider API
      */
+    @Deprecated
     @Method(selector = "deliver")
     public native void deliver();
     /*</methods>*/

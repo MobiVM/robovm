@@ -89,6 +89,86 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setVideoMinFrameDurationOverride:")
     public native void setVideoMinFrameDurationOverride(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isLockedVideoFrameDurationSupported")
+    public native boolean isLockedVideoFrameDurationSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activeLockedVideoFrameDuration")
+    public native @ByVal CMTime getActiveLockedVideoFrameDuration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setActiveLockedVideoFrameDuration:")
+    public native void setActiveLockedVideoFrameDuration(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isExternalSyncSupported")
+    public native boolean isExternalSyncSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activeExternalSyncVideoFrameDuration")
+    public native @ByVal CMTime getActiveExternalSyncVideoFrameDuration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "externalSyncDevice")
+    public native AVExternalSyncDevice getExternalSyncDevice();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "multichannelAudioMode")
+    public native AVCaptureMultichannelAudioMode getMultichannelAudioMode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMultichannelAudioMode:")
+    public native void setMultichannelAudioMode(AVCaptureMultichannelAudioMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isWindNoiseRemovalSupported")
+    public native boolean isWindNoiseRemovalSupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isWindNoiseRemovalEnabled")
+    public native boolean isWindNoiseRemovalEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWindNoiseRemovalEnabled:")
+    public native void setWindNoiseRemovalEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCinematicVideoCaptureSupported")
+    public native boolean isCinematicVideoCaptureSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCinematicVideoCaptureEnabled")
+    public native boolean isCinematicVideoCaptureEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setCinematicVideoCaptureEnabled:")
+    public native void setCinematicVideoCaptureEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "simulatedAperture")
+    public native float getSimulatedAperture();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSimulatedAperture:")
+    public native void setSimulatedAperture(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -99,5 +179,20 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "portsWithMediaType:sourceDeviceType:sourceDevicePosition:")
     public native NSArray<AVCaptureInputPort> getPorts(String mediaType, String sourceDeviceType, AVCaptureDevicePosition sourceDevicePosition);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "followExternalSyncDevice:videoFrameDuration:delegate:")
+    public native void followExternalSyncDevice(AVExternalSyncDevice externalSyncDevice, @ByVal CMTime frameDuration, AVExternalSyncDeviceDelegate delegate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "unfollowExternalSyncDevice")
+    public native void unfollowExternalSyncDevice();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "isMultichannelAudioModeSupported:")
+    public native boolean isMultichannelAudioModeSupported(AVCaptureMultichannelAudioMode multichannelAudioMode);
     /*</methods>*/
 }

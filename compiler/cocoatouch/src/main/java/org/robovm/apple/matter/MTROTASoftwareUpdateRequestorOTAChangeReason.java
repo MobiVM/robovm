@@ -35,30 +35,41 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.4 and later.
+ * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReason
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTROTASoftwareUpdateRequestorOTAChangeReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReasonUnknown
      */
+    @Deprecated
     Unknown(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReasonSuccess
      */
+    @Deprecated
     Success(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReasonFailure
      */
+    @Deprecated
     Failure(2L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReasonTimeOut
      */
+    @Deprecated
     TimeOut(3L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorChangeReasonDelayByProvider
      */
+    @Deprecated
     DelayByProvider(4L);
     /*</values>*/
 

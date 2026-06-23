@@ -115,42 +115,6 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "setVideoOrientation:")
     public native void setVideoOrientation(AVCaptureVideoOrientation v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
-     */
-    @Deprecated
-    @Property(selector = "isVideoMinFrameDurationSupported")
-    public native boolean supportsVideoMinFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "videoMinFrameDuration")
-    public native @ByVal CMTime getVideoMinFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "setVideoMinFrameDuration:")
-    public native void setVideoMinFrameDuration(@ByVal CMTime v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
-     */
-    @Deprecated
-    @Property(selector = "isVideoMaxFrameDurationSupported")
-    public native boolean supportsVideoMaxFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "videoMaxFrameDuration")
-    public native @ByVal CMTime getVideoMaxFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "setVideoMaxFrameDuration:")
-    public native void setVideoMaxFrameDuration(@ByVal CMTime v);
     @Property(selector = "videoMaxScaleAndCropFactor")
     public native @MachineSizedFloat double getVideoMaxScaleAndCropFactor();
     @Property(selector = "videoScaleAndCropFactor")

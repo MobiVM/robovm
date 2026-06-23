@@ -61,8 +61,18 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isVisible();
     @Property(selector = "isPresentingGameCenter")
     public native boolean isPresentingGameCenter();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "showHighlights")
     public native boolean isShowHighlights();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
+     */
+    @Deprecated
     @Property(selector = "setShowHighlights:")
     public native void setShowHighlights(boolean v);
     @Property(selector = "location")
@@ -82,5 +92,55 @@ import org.robovm.apple.coregraphics.*;
     public native void triggerAccessPoint(@Block Runnable handler);
     @Method(selector = "triggerAccessPointWithState:handler:")
     public native void triggerAccessPoint(GKGameCenterViewControllerState state, @Block Runnable handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithAchievementID:handler:")
+    public native void triggerAccessPointWithAchievementID(String achievementID, @Block Runnable handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithLeaderboardSetID:handler:")
+    public native void triggerAccessPointWithLeaderboardSetID(String leaderboardSetID, @Block Runnable handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:")
+    public native void triggerAccessPointWithLeaderboardID(String leaderboardID, GKLeaderboardPlayerScope playerScope, GKLeaderboardTimeScope timeScope, @Block Runnable handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithPlayer:handler:")
+    public native void triggerAccessPointWithPlayer(GKPlayer player, @Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointForPlayTogetherWithHandler:")
+    public native void triggerAccessPointForPlayTogether(@Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointForChallengesWithHandler:")
+    public native void triggerAccessPointForChallenges(@Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithChallengeDefinitionID:handler:")
+    public native void triggerAccessPointWithChallengeDefinitionID(String challengeDefinitionID, @Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithGameActivityDefinitionID:handler:")
+    public native void triggerAccessPointWithGameActivityDefinitionID(String gameActivityDefinitionID, @Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointWithGameActivity:handler:")
+    public native void triggerAccessPointWithGameActivity(GKGameActivity gameActivity, @Block Runnable handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "triggerAccessPointForFriendingWithHandler:")
+    public native void triggerAccessPointForFriending(@Block Runnable handler);
     /*</methods>*/
 }

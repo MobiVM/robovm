@@ -58,24 +58,24 @@ import org.robovm.apple.fileprovider.*;
     public native CKSyncEngineStateUpdateEvent getStateUpdateEvent();
     @Property(selector = "accountChangeEvent")
     public native CKSyncEngineAccountChangeEvent getAccountChangeEvent();
+    @Property(selector = "willFetchChangesEvent")
+    public native CKSyncEngineWillFetchChangesEvent getWillFetchChangesEvent();
     @Property(selector = "fetchedDatabaseChangesEvent")
     public native CKSyncEngineFetchedDatabaseChangesEvent getFetchedDatabaseChangesEvent();
+    @Property(selector = "didFetchChangesEvent")
+    public native CKSyncEngineDidFetchChangesEvent getDidFetchChangesEvent();
+    @Property(selector = "willFetchRecordZoneChangesEvent")
+    public native CKSyncEngineWillFetchRecordZoneChangesEvent getWillFetchRecordZoneChangesEvent();
     @Property(selector = "fetchedRecordZoneChangesEvent")
     public native CKSyncEngineFetchedRecordZoneChangesEvent getFetchedRecordZoneChangesEvent();
+    @Property(selector = "didFetchRecordZoneChangesEvent")
+    public native CKSyncEngineDidFetchRecordZoneChangesEvent getDidFetchRecordZoneChangesEvent();
+    @Property(selector = "willSendChangesEvent")
+    public native CKSyncEngineWillSendChangesEvent getWillSendChangesEvent();
     @Property(selector = "sentDatabaseChangesEvent")
     public native CKSyncEngineSentDatabaseChangesEvent getSentDatabaseChangesEvent();
     @Property(selector = "sentRecordZoneChangesEvent")
     public native CKSyncEngineSentRecordZoneChangesEvent getSentRecordZoneChangesEvent();
-    @Property(selector = "willFetchChangesEvent")
-    public native CKSyncEngineWillFetchChangesEvent getWillFetchChangesEvent();
-    @Property(selector = "willFetchRecordZoneChangesEvent")
-    public native CKSyncEngineWillFetchRecordZoneChangesEvent getWillFetchRecordZoneChangesEvent();
-    @Property(selector = "didFetchRecordZoneChangesEvent")
-    public native CKSyncEngineDidFetchRecordZoneChangesEvent getDidFetchRecordZoneChangesEvent();
-    @Property(selector = "didFetchChangesEvent")
-    public native CKSyncEngineDidFetchChangesEvent getDidFetchChangesEvent();
-    @Property(selector = "willSendChangesEvent")
-    public native CKSyncEngineWillSendChangesEvent getWillSendChangesEvent();
     @Property(selector = "didSendChangesEvent")
     public native CKSyncEngineDidSendChangesEvent getDidSendChangesEvent();
     /*</properties>*/

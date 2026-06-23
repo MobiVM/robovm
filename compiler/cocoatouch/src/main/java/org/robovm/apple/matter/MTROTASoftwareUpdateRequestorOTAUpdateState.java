@@ -35,46 +35,65 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.4 and later.
+ * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateState
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTROTASoftwareUpdateRequestorOTAUpdateState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateUnknown
      */
+    @Deprecated
     Unknown(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateIdle
      */
+    @Deprecated
     Idle(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateQuerying
      */
+    @Deprecated
     Querying(2L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateDelayedOnQuery
      */
+    @Deprecated
     DelayedOnQuery(3L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateDownloading
      */
+    @Deprecated
     Downloading(4L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateApplying
      */
+    @Deprecated
     Applying(5L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateDelayedOnApply
      */
+    @Deprecated
     DelayedOnApply(6L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateRollingBack
      */
+    @Deprecated
     RollingBack(7L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateRequestorUpdateStateDelayedOnUserConsent
      */
+    @Deprecated
     DelayedOnUserConsent(8L);
     /*</values>*/
 

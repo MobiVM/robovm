@@ -238,6 +238,10 @@ public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<na
     public static final AudioChannelLayoutTag Ogg_5_1 = new AudioChannelLayoutTag(13959174L);
     public static final AudioChannelLayoutTag Ogg_6_1 = new AudioChannelLayoutTag(14024711L);
     public static final AudioChannelLayoutTag Ogg_7_1 = new AudioChannelLayoutTag(14090248L);
+    public static final AudioChannelLayoutTag MPEG_5_0_E = new AudioChannelLayoutTag(14155781L);
+    public static final AudioChannelLayoutTag MPEG_5_1_E = new AudioChannelLayoutTag(14221318L);
+    public static final AudioChannelLayoutTag MPEG_6_1_B = new AudioChannelLayoutTag(14286855L);
+    public static final AudioChannelLayoutTag MPEG_7_1_D = new AudioChannelLayoutTag(14352392L);
     public static final AudioChannelLayoutTag BeginReserved = new AudioChannelLayoutTag(4026531840L);
     public static final AudioChannelLayoutTag EndReserved = new AudioChannelLayoutTag(4294901759L);
     public static final AudioChannelLayoutTag Unknown = new AudioChannelLayoutTag(4294901760L);

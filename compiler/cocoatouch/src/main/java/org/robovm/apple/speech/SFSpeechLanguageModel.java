@@ -55,9 +55,23 @@ import org.robovm.apple.coremedia.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use +prepareCustomLanguageModelForUrl:configuration:completion:
+     */
+    @Deprecated
     @Method(selector = "prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:")
     public static native void prepareCustomLanguageModel(NSURL asset, String clientIdentifier, SFSpeechLanguageModelConfiguration configuration, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use +prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:
+     */
+    @Deprecated
     @Method(selector = "prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:")
     public static native void prepareCustomLanguageModel(NSURL asset, String clientIdentifier, SFSpeechLanguageModelConfiguration configuration, boolean ignoresCache, @Block VoidBlock1<NSError> completion);
+    @Method(selector = "prepareCustomLanguageModelForUrl:configuration:completion:")
+    public static native void prepareCustomLanguageModel(NSURL asset, SFSpeechLanguageModelConfiguration configuration, @Block VoidBlock1<NSError> completion);
+    @Method(selector = "prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:")
+    public static native void prepareCustomLanguageModel(NSURL asset, SFSpeechLanguageModelConfiguration configuration, boolean ignoresCache, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

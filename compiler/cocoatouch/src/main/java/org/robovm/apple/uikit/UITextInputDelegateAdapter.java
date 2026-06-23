@@ -68,5 +68,10 @@ import org.robovm.apple.symbols.*;
     public void textWillChange(UITextInput textInput) {}
     @NotImplemented("textDidChange:")
     public void textDidChange(UITextInput textInput) {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("conversationContext:didChange:")
+    public void didChange(UIConversationContext context, UITextInput textInput) {}
     /*</methods>*/
 }

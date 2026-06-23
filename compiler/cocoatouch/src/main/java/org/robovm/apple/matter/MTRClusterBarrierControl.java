@@ -35,11 +35,12 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. BarrierControl is deprecated and will be removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterBarrierControl/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterBarrierControlPtr extends Ptr<MTRClusterBarrierControl, MTRClusterBarrierControlPtr> {}/*</ptr>*/
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRClusterBarrierControl(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. BarrierControl is deprecated and will be removed
      */
+    @Deprecated
     @Method(selector = "initWithDevice:endpointID:queue:")
     public MTRClusterBarrierControl(MTRDevice device, NSNumber endpointID, DispatchQueue queue) { super((SkipInit) null); initObject(init(device, endpointID, queue)); }
     /*</constructors>*/
@@ -62,158 +65,220 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
+    @Deprecated
     @Method(selector = "barrierControlGoToPercentWithParams:expectedValues:expectedValueInterval:completion:")
     public native void barrierControlGoToPercent(MTRBarrierControlClusterBarrierControlGoToPercentParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
+    @Deprecated
     @Method(selector = "barrierControlStopWithParams:expectedValues:expectedValueInterval:completion:")
     public native void barrierControlStop(MTRBarrierControlClusterBarrierControlStopParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. This command is deprecated
      */
+    @Deprecated
     @Method(selector = "barrierControlStopWithExpectedValues:expectedValueInterval:completion:")
     public native void barrierControlStop(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierMovingStateWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierMovingState(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierSafetyStatusWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierSafetyStatus(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierCapabilitiesWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierCapabilities(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierOpenEventsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierOpenEvents(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierOpenEventsWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierOpenEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierOpenEventsWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierOpenEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierCloseEventsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierCloseEvents(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCloseEventsWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierCloseEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCloseEventsWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierCloseEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierCommandOpenEventsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierCommandOpenEvents(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCommandOpenEventsWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierCommandOpenEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCommandOpenEventsWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierCommandOpenEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierCommandCloseEventsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierCommandCloseEvents(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCommandCloseEventsWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierCommandCloseEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierCommandCloseEventsWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierCommandCloseEvents(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierOpenPeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierOpenPeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierOpenPeriodWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierOpenPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierOpenPeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierOpenPeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierClosePeriodWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierClosePeriod(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierClosePeriodWithValue:expectedValueInterval:")
     public native void writeAttributeBarrierClosePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeBarrierClosePeriodWithValue:expectedValueInterval:params:")
     public native void writeAttributeBarrierClosePeriod(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeBarrierPositionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeBarrierPosition(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeGeneratedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcceptedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcceptedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAttributeListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAttributeList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeFeatureMapWithParams:")
     public native NSDictionary<NSString, ?> readAttributeFeatureMap(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. BarrierControl is deprecated and will be removed
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

@@ -71,6 +71,10 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSCNNGroupNormalizationGradientState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

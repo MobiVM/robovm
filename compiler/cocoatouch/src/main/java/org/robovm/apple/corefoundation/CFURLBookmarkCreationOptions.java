@@ -45,11 +45,6 @@ public final class /*<name>*/CFURLBookmarkCreationOptions/*</name>*/ extends Bit
     public static final CFURLBookmarkCreationOptions MinimalBookmarkMask = new CFURLBookmarkCreationOptions(512L);
     public static final CFURLBookmarkCreationOptions SuitableForBookmarkFile = new CFURLBookmarkCreationOptions(1024L);
     public static final CFURLBookmarkCreationOptions WithoutImplicitSecurityScope = new CFURLBookmarkCreationOptions(536870912L);
-    /**
-     * @deprecated Deprecated in iOS 7.0. kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution
-     */
-    @Deprecated
-    public static final CFURLBookmarkCreationOptions PreferFileIDResolutionMask = new CFURLBookmarkCreationOptions(256L);
     /*</values>*/
 
     private static final /*<name>*/CFURLBookmarkCreationOptions/*</name>*/[] values = _values(/*<name>*/CFURLBookmarkCreationOptions/*</name>*/.class);

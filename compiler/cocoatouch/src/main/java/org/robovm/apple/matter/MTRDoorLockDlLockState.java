@@ -51,7 +51,11 @@ public enum /*<name>*/MTRDoorLockDlLockState/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.1 and later.
      */
-    Unlocked(2L);
+    Unlocked(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Unlatched(3L);
     /*</values>*/
 
     /*<bind>*/

@@ -60,6 +60,10 @@ public final class /*<name>*/CFCalendarUnit/*</name>*/ extends Bits</*<name>*/CF
     public static final CFCalendarUnit WeekOfMonth = new CFCalendarUnit(4096L);
     public static final CFCalendarUnit WeekOfYear = new CFCalendarUnit(8192L);
     public static final CFCalendarUnit YearForWeekOfYear = new CFCalendarUnit(16384L);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CFCalendarUnit DayOfYear = new CFCalendarUnit(65536L);
     /*</values>*/
 
     private static final /*<name>*/CFCalendarUnit/*</name>*/[] values = _values(/*<name>*/CFCalendarUnit/*</name>*/.class);

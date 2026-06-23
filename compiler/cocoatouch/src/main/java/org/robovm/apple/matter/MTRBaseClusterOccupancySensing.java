@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterOccupancySensing/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterOccupancySensingPtr extends Ptr<MTRBaseClusterOccupancySensing, MTRBaseClusterOccupancySensingPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -95,6 +90,36 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "subscribeAttributeOccupancySensorTypeBitmapWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeOccupancySensorTypeBitmap(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeWithCompletion:")
+    public native void readAttributeHoldTime(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeHoldTimeWithValue:completion:")
+    public native void writeAttributeHoldTime(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeHoldTimeWithValue:params:completion:")
+    public native void writeAttributeHoldTime(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeHoldTimeWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeHoldTime(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeLimitsWithCompletion:")
+    public native void readAttributeHoldTimeLimits(@Block VoidBlock2<MTROccupancySensingClusterHoldTimeLimitsStruct, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeHoldTimeLimitsWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeHoldTimeLimits(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<MTROccupancySensingClusterHoldTimeLimitsStruct, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -341,6 +366,16 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeOccupancySensorTypeBitmapWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeOccupancySensorTypeBitmap(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeHoldTime(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeLimitsWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeHoldTimeLimits(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<MTROccupancySensingClusterHoldTimeLimitsStruct, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributePIROccupiedToUnoccupiedDelayWithClusterStateCache:endpoint:queue:completion:")
@@ -410,5 +445,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

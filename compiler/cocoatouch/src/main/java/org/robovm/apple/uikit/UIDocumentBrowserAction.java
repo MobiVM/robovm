@@ -73,6 +73,10 @@ import org.robovm.apple.symbols.*;
     public native UIImage getImage();
     @Property(selector = "setImage:")
     public native void setImage(UIImage v);
+    @Property(selector = "imageOnlyForContextMenu")
+    public native UIImage getImageOnlyForContextMenu();
+    @Property(selector = "setImageOnlyForContextMenu:")
+    public native void setImageOnlyForContextMenu(UIImage v);
     @Property(selector = "supportedContentTypes")
     public native NSArray<NSString> getSupportedContentTypes();
     @Property(selector = "setSupportedContentTypes:")

@@ -112,8 +112,14 @@ import org.robovm.apple.symbols.*;
     public UINSToolbarItemPresentationSize getToolbarItemPresentationSize() { return null; }
     @NotImplemented("setToolbarItemPresentationSize:")
     public void setToolbarItemPresentationSize(UINSToolbarItemPresentationSize v) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @NotImplemented("imageDynamicRange")
     public UIImageDynamicRange getImageDynamicRange() { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @NotImplemented("setImageDynamicRange:")
     public void setImageDynamicRange(UIImageDynamicRange v) {}
     /**
@@ -130,6 +136,46 @@ import org.robovm.apple.symbols.*;
     public String getTypesettingLanguage() { return null; }
     @NotImplemented("setTypesettingLanguage:")
     public void setTypesettingLanguage(String v) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("listEnvironment")
+    public UIListEnvironment getListEnvironment() { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("setListEnvironment:")
+    public void setListEnvironment(UIListEnvironment v) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("tabAccessoryEnvironment")
+    public UITabAccessoryEnvironment getTabAccessoryEnvironment() { return null; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setTabAccessoryEnvironment:")
+    public void setTabAccessoryEnvironment(UITabAccessoryEnvironment v) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("splitViewControllerLayoutEnvironment")
+    public UISplitViewControllerLayoutEnvironment getSplitViewControllerLayoutEnvironment() { return null; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setSplitViewControllerLayoutEnvironment:")
+    public void setSplitViewControllerLayoutEnvironment(UISplitViewControllerLayoutEnvironment v) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("resolvesNaturalAlignmentWithBaseWritingDirection")
+    public boolean isResolvesNaturalAlignmentWithBaseWritingDirection() { return false; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setResolvesNaturalAlignmentWithBaseWritingDirection:")
+    public void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

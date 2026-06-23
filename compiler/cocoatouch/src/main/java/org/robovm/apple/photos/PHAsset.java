@@ -64,6 +64,11 @@ import org.robovm.apple.uniformtypeid.*;
     public native PHAssetMediaType getMediaType();
     @Property(selector = "mediaSubtypes")
     public native PHAssetMediaSubtype getMediaSubtypes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentType")
+    public native UTType getContentType();
     @Property(selector = "pixelWidth")
     public native @MachineSizedUInt long getPixelWidth();
     @Property(selector = "pixelHeight")
@@ -72,6 +77,11 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSDate getCreationDate();
     @Property(selector = "modificationDate")
     public native NSDate getModificationDate();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "addedDate")
+    public native NSDate getAddedDate();
     @WeaklyLinked
     @Property(selector = "location")
     public native CLLocation getLocation();

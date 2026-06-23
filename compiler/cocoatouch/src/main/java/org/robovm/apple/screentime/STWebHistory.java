@@ -49,6 +49,26 @@ import org.robovm.apple.dispatch.*;
     public STWebHistory() {}
     protected STWebHistory(Handle h, long handle) { super(h, handle); }
     protected STWebHistory(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:profileIdentifier:error:")
+    public STWebHistory(String bundleIdentifier, String profileIdentifier) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(bundleIdentifier, profileIdentifier, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithProfileIdentifier:")
+    public static STWebHistory createWithProfileIdentifier(String profileIdentifier) {
+       STWebHistory res = new STWebHistory((SkipInit) null);
+       res.initObject(res.initWithProfileIdentifier(profileIdentifier));
+       return res;
+    }
     @Method(selector = "initWithBundleIdentifier:error:")
     public STWebHistory(String bundleIdentifier) throws NSErrorException {
        super((SkipInit) null);
@@ -63,8 +83,28 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:profileIdentifier:error:")
+    private native @Pointer long init(String bundleIdentifier, String profileIdentifier, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithProfileIdentifier:")
+    protected native @Pointer long initWithProfileIdentifier(String profileIdentifier);
     @Method(selector = "initWithBundleIdentifier:error:")
     private native @Pointer long init(String bundleIdentifier, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "fetchHistoryDuringInterval:completionHandler:")
+    public native void fetchHistoryDuringInterval(NSDateInterval interval, @Block VoidBlock2<NSSet<NSURL>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "fetchAllHistoryWithCompletionHandler:")
+    public native void fetchAllHistory(@Block VoidBlock2<NSSet<NSURL>, NSError> completionHandler);
     @Method(selector = "deleteHistoryForURL:")
     public native void deleteHistoryForURL(NSURL url);
     @Method(selector = "deleteHistoryDuringInterval:")

@@ -67,8 +67,6 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getLineSpacing();
     @Property(selector = "paragraphSpacing")
     public native @MachineSizedFloat double getParagraphSpacing();
-    @Property(selector = "alignment")
-    public native NSTextAlignment getAlignment();
     @Property(selector = "headIndent")
     public native @MachineSizedFloat double getHeadIndent();
     @Property(selector = "tailIndent")
@@ -110,6 +108,8 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "lineBreakStrategy")
     public native NSLineBreakStrategy getLineBreakStrategy();
+    @Property(selector = "alignment")
+    public native NSTextAlignment getAlignment();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

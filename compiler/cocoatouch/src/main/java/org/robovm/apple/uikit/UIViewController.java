@@ -157,6 +157,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIModalTransitionStyle getModalTransitionStyle();
     @Property(selector = "setModalTransitionStyle:")
     public native void setModalTransitionStyle(UIModalTransitionStyle v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "preferredTransition")
+    public native UIViewControllerTransition getPreferredTransition();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPreferredTransition:")
+    public native void setPreferredTransition(UIViewControllerTransition v);
     @Property(selector = "modalPresentationStyle")
     public native UIModalPresentationStyle getModalPresentationStyle();
     @Property(selector = "setModalPresentationStyle:")
@@ -167,18 +177,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setModalPresentationCapturesStatusBarAppearance(boolean v);
     @Property(selector = "disablesAutomaticKeyboardDismissal")
     public native boolean disablesAutomaticKeyboardDismissal();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "wantsFullScreenLayout")
-    public native boolean wantsFullScreenLayout();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setWantsFullScreenLayout:")
-    public native void setWantsFullScreenLayout(boolean v);
     @Property(selector = "edgesForExtendedLayout")
     public native UIRectEdge getEdgesForExtendedLayout();
     @Property(selector = "setEdgesForExtendedLayout:")
@@ -381,12 +379,25 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "contentUnavailableConfigurationState")
     public native UIContentUnavailableConfigurationState getContentUnavailableConfigurationState();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "childViewControllerForInterfaceOrientationLock")
+    public native UIViewController getChildViewControllerForInterfaceOrientationLock();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "prefersInterfaceOrientationLocked")
+    public native boolean prefersInterfaceOrientationLocked();
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "previewActionItems")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIPreviewActionItem> getPreviewActionItems();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "traitOverrides")
     public native UITraitOverrides getTraitOverrides();
     @Property(selector = "navigationItem")
@@ -413,18 +424,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
-     */
-    @Deprecated
-    @Property(selector = "contentSizeForViewInPopover")
-    public native @ByVal CGSize getContentSizeForViewInPopover();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
-     */
-    @Deprecated
-    @Property(selector = "setContentSizeForViewInPopover:")
-    public native void setContentSizeForViewInPopover(@ByVal CGSize v);
     @Property(selector = "transitionCoordinator")
     public native UIViewControllerTransitionCoordinator getTransitionCoordinator();
     @Property(selector = "splitViewController")
@@ -435,6 +434,8 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setTabBarItem(UITabBarItem v);
     @Property(selector = "tabBarController")
     public native UITabBarController getTabBarController();
+    @Property(selector = "tab")
+    public native UITab getTab();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
     @Property(selector = "preferredFocusEnvironments")
@@ -619,6 +620,21 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void viewWillDisappear(boolean animated);
     @Method(selector = "viewDidDisappear:")
     public native void viewDidDisappear(boolean animated);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateProperties")
+    public native void setNeedsUpdateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateProperties")
+    public native void updateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updatePropertiesIfNeeded")
+    public native void updatePropertiesIfNeeded();
     @Method(selector = "viewWillLayoutSubviews")
     public native void viewWillLayoutSubviews();
     @Method(selector = "viewDidLayoutSubviews")
@@ -789,6 +805,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "updateContentUnavailableConfigurationUsingState:")
     public native void updateContentUnavailableConfigurationUsingState(UIContentUnavailableConfigurationState state);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfPrefersInterfaceOrientationLocked")
+    public native void setNeedsUpdateOfPrefersInterfaceOrientationLocked();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "updateTraitsIfNeeded")
     public native void updateTraitsIfNeeded();
     @Method(selector = "setToolbarItems:animated:")
