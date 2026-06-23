@@ -330,15 +330,15 @@ Env* rvmStartup(Options* options) {
         }
     }
 
+    TRACE("Initializing GC");
+    if (!initGC(options)) return NULL;
+
     // setup the TCP channel socket and wait
     // for the debugger to connect
     if(options->enableHooks) {
         if(!rvmHookSetupTCPChannel(options)) return NULL;
         if(!rvmHookHandshake(options)) return NULL;
     }
-
-    TRACE("Initializing GC");
-    if (!initGC(options)) return NULL;
 
     // Ignore SIGPIPE signals. SIGPIPE interrupts write() calls which we don't
     // want. Dalvik does this too in dalvikvm/Main.cpp.

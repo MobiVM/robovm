@@ -873,12 +873,20 @@ static void addGcRoot(DebugEnv* debugEnv, Object* obj) {
     root->root = obj;
     root->next = NULL;
     if(debugEnv->gcRoot == NULL) {
-        debugEnv->gcRoot = root;
-    } else {
-        root->next = debugEnv->gcRoot;
-        debugEnv->gcRoot = root;
+        // special case for the first root, we need to allocate a dummy root and register only it as GC root,
+        // then chain the real roots to it. This is because we want to avoid registering and unregistering GC roots
+        // on every method invocation as it can be expensive and can cause crash with "Too many root sets" message.
+        // it will also "leak" one root per thread but there is 2000 root limit
+        DebugGcRoot* gcRoot = (DebugGcRoot*) gcAllocate(sizeof(DebugGcRoot));
+        gcRoot->root = NULL;
+        gcAddRoot(gcRoot);
+        debugEnv->gcRoot = gcRoot;
     }
-    gcAddRoot(obj);
+
+    // chain the new root to the existing roots so it gets scanned by the GC
+    root->next = debugEnv->gcRoot->next;
+    debugEnv->gcRoot->next = root;
+
     DEBUGF("Added %p, class %s, as GC root", obj, obj->clazz->name);
 }
 
@@ -887,7 +895,9 @@ static void removeGcRoots(DebugEnv* debugEnv) {
     // the roots should be scanned if DebugEnv
     // is scanned. By nulling out the roots
     // the GC should free the root nodes.
-    debugEnv->gcRoot = NULL;
+    if (debugEnv->gcRoot != NULL) {
+        debugEnv->gcRoot->next = NULL;
+    }
 }
 
 static jlong invokeClassMethod(DebugEnv* debugEnv, Method* method) {
