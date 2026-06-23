@@ -14,22 +14,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target;
+package org.robovm.compiler.launcher;
 
-import java.io.File;
+import org.robovm.compiler.util.io.OutputStreamChain;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Base class for parameters used to launch the app on different targets
  */
-public class LaunchParameters {
-    private List<String> arguments = new ArrayList<>();
+public abstract class LaunchParameters {
+    private final List<String> arguments = new ArrayList<>();
     private Map<String, String> environment = null;
     private File workingDirectory = new File(".");
-    private File stdoutFifo = null;
-    private File stderrFifo = null;
-    
+
+    /// chains for stdout and stderr
+    private final OutputStreamChain stdoutChain = new OutputStreamChain();
+    private final OutputStreamChain stderrChain = new OutputStreamChain();
+
+    /// listener for launcher callbacks(launched/terminated)
+    private Launcher.Listener launcherListener;
+
     public List<String> getArguments() {
         return arguments;
     }
@@ -74,20 +82,21 @@ public class LaunchParameters {
     public void setWorkingDirectory(File workingDirectory) {
         this.workingDirectory = workingDirectory;
     }
-    
-    public File getStdoutFifo() {
-        return stdoutFifo;
+
+
+    public OutputStreamChain getStdoutChain() {
+        return stdoutChain;
     }
-    
-    public void setStdoutFifo(File stdoutFifo) {
-        this.stdoutFifo = stdoutFifo;
+
+    public OutputStreamChain getStderrChain() {
+        return stderrChain;
     }
-    
-    public File getStderrFifo() {
-        return stderrFifo;
+
+    public void setLauncherListener(Launcher.Listener listener) {
+        this.launcherListener = listener;
     }
-    
-    public void setStderrFifo(File stderrFifo) {
-        this.stderrFifo = stderrFifo;
+
+    public Launcher.Listener getLauncherListener() {
+        return launcherListener;
     }
 }

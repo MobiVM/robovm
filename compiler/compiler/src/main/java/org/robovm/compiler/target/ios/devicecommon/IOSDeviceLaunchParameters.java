@@ -14,41 +14,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target.ios;
+package org.robovm.compiler.target.ios.devicecommon;
 
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.target.ios.IIOSLaunchParameters;
+import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.libimobiledevice.util.AppLauncherCallback;
 
 /**
  * {@link LaunchParameters} implementation used by {@link IOSTarget} when
- * launching on device. Also used to receive the remote app path from a device.
+ * launching on device.
  */
-public class IOSDeviceLaunchParameters extends LaunchParameters {
-    private AppLauncherCallback appPathCallback;
+public class IOSDeviceLaunchParameters extends LaunchParameters implements IIOSLaunchParameters {
     private String deviceId;
-    private int forwardPort = -1;
-
     public String getDeviceId() {
         return deviceId;
     }
-
     public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public int getForwardPort() {
-        return forwardPort;
-    }
-
-    public void setForwardPort(int forwardPort) {
-        this.forwardPort = forwardPort;
-    }
-
-    public AppLauncherCallback getAppPathCallback() {
-        return appPathCallback;
-    }
-
-    public void setAppLauncherCallback(AppLauncherCallback appPathCallback) {
-        this.appPathCallback = appPathCallback;
+        this.deviceId = deviceId != null && !deviceId.isEmpty() ? deviceId : null;
     }
 }

@@ -25,6 +25,8 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.clazz.Path;
 import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Resource.Walker;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.util.ToolchainUtil;
 import org.simpleframework.xml.Transient;
@@ -60,11 +62,6 @@ public abstract class AbstractTarget implements Target {
 
     @Override
     public void prepareLaunch() throws IOException {
-    }
-
-    @Override
-    public LaunchParameters createLaunchParameters() {
-        return new LaunchParameters();
     }
 
     public String getInstallRelativeArchivePath(Path path) {
@@ -821,7 +818,7 @@ public abstract class AbstractTarget implements Target {
     }
 
     protected Process doLaunch(LaunchParameters launchParameters) throws IOException {
-        return createLauncher(launchParameters).execAsync();
+        return createLauncher(launchParameters).launchAsync();
     }
 
     protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {

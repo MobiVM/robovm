@@ -25,7 +25,7 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.log.ConsoleLogger;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.maven.resolver.RoboVMResolver;
 
 import java.io.File;
@@ -54,7 +54,6 @@ public class TestClientTest {
         Process process = appCompiler.launchAsync(launchParameters);
         client.runTests(RunnerClass.class.getName()).terminate();
         process.waitFor();
-        appCompiler.launchAsyncCleanup();
 
         assertEquals("2 successful tests expected", 2, listener.successful.size());
         assertTrue(listener.successful.contains("testSuccessfulTest1(" + RunnerClass.class.getName() + ")"));
@@ -76,7 +75,6 @@ public class TestClientTest {
         Process process = appCompiler.launchAsync(launchParameters);
         client.runTests(RunnerClass.class.getName() + "#testSuccessfulTest1").terminate();
         process.waitFor();
-        appCompiler.launchAsyncCleanup();
 
         assertEquals("1 successful tests expected", 1, listener.successful.size());
         assertTrue(listener.successful.contains("testSuccessfulTest1(" + RunnerClass.class.getName() + ")"));

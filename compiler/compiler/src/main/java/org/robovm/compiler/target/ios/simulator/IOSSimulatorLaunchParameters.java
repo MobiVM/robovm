@@ -14,15 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target.ios;
+package org.robovm.compiler.target.ios.simulator;
 
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.target.ios.IIOSLaunchParameters;
+import org.robovm.compiler.target.ios.IOSTarget;
 
 /**
  * {@link LaunchParameters} implementation used by {@link IOSTarget} when
  * launching on the simulator.
  */
-public class IOSSimulatorLaunchParameters extends LaunchParameters {
+public class IOSSimulatorLaunchParameters extends LaunchParameters implements IIOSLaunchParameters {
     private DeviceType deviceType;
 
     /// if specified will deploy and launch watch kit app as well

@@ -15,8 +15,7 @@
  */
 package org.robovm.debugger;
 
-import org.robovm.debugger.hooks.HooksChannel;
-import org.robovm.debugger.hooks.IHooksConnection;
+import org.robovm.debugger.utils.IHooksConnectionUtils;
 import org.robovm.debugger.utils.macho.MachOConsts;
 
 import java.io.ByteArrayOutputStream;
@@ -27,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntSupplier;
+import java.util.concurrent.*;
 
 /**
  * @author Demyan Kimitsas
@@ -74,8 +73,7 @@ public class DebuggerConfig {
     private boolean logToConsole;
     private boolean jdwpClienMode;
     private int jdwpPort = -1;
-    private boolean standalone;
-    private IHooksConnection hooksConnection;
+    private Future<Integer> portNumberPromise;
 
     private DebuggerConfig() {
     }
@@ -108,19 +106,15 @@ public class DebuggerConfig {
         return jdwpPort;
     }
 
-    public IHooksConnection hooksConnection() {
-        return hooksConnection;
-    }
-
-    public boolean isStandalone() {
-        return standalone;
+    public Future<Integer> getPortNumberPromise() {
+        return portNumberPromise;
     }
 
     public static class Builder {
         private final DebuggerConfig config = new DebuggerConfig();
 
         public DebuggerConfig build() {
-            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.hooksConnection == null)
+            if (config.arch == null || config.appfile == null || config.jdwpPort < 0 || config.portNumberPromise == null)
                 throw new DebuggerException("Missing required parameters in config");
             return config;
         }
@@ -153,34 +147,8 @@ public class DebuggerConfig {
             config.jdwpPort = jdwpPort;
         }
 
-        public void setHooksPortFile(File portFile) {
-            IntSupplier portSupplier = () -> {
-                try {
-                    long ts = System.currentTimeMillis();
-                    while (!portFile.exists() || portFile.length() == 0) {
-                        if (System.currentTimeMillis() - ts > DebuggerConfig.TARGET_WAIT_TIMEOUT)
-                            throw new DebuggerException("Timeout while waiting simulator port file");
-                        Thread.sleep(200);
-                    }
-                    return Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
-                } catch (InterruptedException | IOException e) {
-                    throw new DebuggerException(e);
-                }
-            };
-
-            config.hooksConnection = new HooksChannel.SocketHooksConnection(portSupplier);
-        }
-
-        public void setHooksPort(int hooksPort) {
-            config.hooksConnection = new HooksChannel.SocketHooksConnection(() -> hooksPort);
-        }
-
-        public void setHooksConnection(IHooksConnection conn) {
-            config.hooksConnection = conn;
-        }
-
-        private void setStandalone(boolean b) {
-            config.standalone = b;
+        public void setPortNumberPromise(Future<Integer> portNumberPromise) {
+            config.portNumberPromise = portNumberPromise;
         }
     }
 
@@ -248,13 +216,36 @@ public class DebuggerConfig {
         builder.setLogToConsole(logToConsole);
         builder.setJdwpClienMode(jdwpClienMode);
         builder.setJdwpPort(jdwpPort);
-        if (hooksPortFile != null)
-            builder.setHooksPortFile(hooksPortFile);
-        else if (hooksPort != -1)
-            builder.setHooksPort(hooksPort);
-        builder.setStandalone(true);
+        if (hooksPortFile != null) {
+            builder.setPortNumberPromise(createPortPromiseFromFile(hooksPortFile));
+        } else if (hooksPort != -1) {
+            builder.setPortNumberPromise(IHooksConnectionUtils.constantFuture(hooksPort));
+        }
 
         return builder.build();
+    }
+
+    private static Future<Integer> createPortPromiseFromFile(File portFile) {
+        // will do polling for file to appear and contain port number, then complete with that port number
+        return new CompletableFuture<>() {
+            @Override
+            public Integer get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+                long start = System.currentTimeMillis();
+                while (System.currentTimeMillis() - start < unit.toMillis(timeout)) {
+                    try {
+                        if (portFile.exists() && portFile.length() != 0) {
+                            int port = Integer.parseInt(new String(Files.readAllBytes(portFile.toPath())));
+                            complete(port);
+                            return port;
+                        }
+                        Thread.sleep(100);
+                    } catch (IOException e) {
+                        throw new DebuggerException(e);
+                    }
+                }
+                throw new TimeoutException();
+            }
+        };
     }
 
     private static String getCommandLineUsageText(String errorMessage) {

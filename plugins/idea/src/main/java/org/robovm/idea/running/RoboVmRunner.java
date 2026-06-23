@@ -23,13 +23,14 @@ import com.intellij.debugger.engine.DebugProcessImpl;
 import com.intellij.debugger.engine.JavaDebugProcess;
 import com.intellij.debugger.impl.DebuggerSession;
 import com.intellij.debugger.ui.tree.render.BatchEvaluator;
-import com.intellij.execution.DefaultExecutionResult;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.ExecutionResult;
 import com.intellij.execution.configurations.RemoteConnection;
 import com.intellij.execution.configurations.RunProfile;
 import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.configurations.RunnerSettings;
+import com.intellij.execution.executors.DefaultDebugExecutor;
+import com.intellij.execution.executors.DefaultRunExecutor;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.execution.runners.GenericProgramRunner;
 import com.intellij.execution.runners.RunContentBuilder;
@@ -38,14 +39,10 @@ import com.intellij.xdebugger.XDebugProcess;
 import com.intellij.xdebugger.XDebugProcessStarter;
 import com.intellij.xdebugger.XDebugSession;
 import com.intellij.xdebugger.XDebuggerManager;
-import com.intellij.xdebugger.impl.XDebugSessionImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class RoboVmRunner extends GenericProgramRunner<RunnerSettings> {
-
-    public static final String DEBUG_EXECUTOR = "Debug";
-    public static final String RUN_EXECUTOR = "Run";
 
     @NotNull
     @Override
@@ -55,7 +52,7 @@ public class RoboVmRunner extends GenericProgramRunner<RunnerSettings> {
 
     @Override
     public boolean canRun(@NotNull String executorId, @NotNull RunProfile profile) {
-        return (executorId.equals(DEBUG_EXECUTOR) || executorId.equals(RUN_EXECUTOR)) && profile instanceof RoboVmRunConfiguration;
+        return (executorId.equals(DefaultDebugExecutor.EXECUTOR_ID) || executorId.equals(DefaultRunExecutor.EXECUTOR_ID)) && profile instanceof RoboVmRunConfiguration;
     }
 
     @Override
@@ -63,14 +60,14 @@ public class RoboVmRunner extends GenericProgramRunner<RunnerSettings> {
         // we need to pass the run profile info to the compiler so
         // we can decide if this is a debug or release build
         RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration)environment.getRunProfile();
-        runConfig.setDebug(DEBUG_EXECUTOR.equals(environment.getExecutor().getId()));
+        runConfig.setDebug(DefaultDebugExecutor.EXECUTOR_ID.equals(environment.getExecutor().getId()));
         super.execute(environment, callback, state);
     }
 
     @Nullable
     @Override
     protected RunContentDescriptor doExecute(@NotNull RunProfileState state, @NotNull ExecutionEnvironment environment) throws ExecutionException {
-        if(DEBUG_EXECUTOR.equals(environment.getExecutor().getId())) {
+        if(DefaultDebugExecutor.EXECUTOR_ID.equals(environment.getExecutor().getId())) {
             RoboVmRunConfiguration runConfig = (RoboVmRunConfiguration)environment.getRunProfile();
             RemoteConnection connection = new RemoteConnection(true, "127.0.0.1", "" + runConfig.getDebugPort(), false);
             connection.setServerMode(true);
@@ -104,18 +101,16 @@ public class RoboVmRunner extends GenericProgramRunner<RunnerSettings> {
         // which is an expensive operation when executed first time
         debugProcess.putUserData(BatchEvaluator.REMOTE_SESSION_KEY, Boolean.TRUE);
 
-        return XDebuggerManager.getInstance(env.getProject()).startSession(env, new XDebugProcessStarter() {
+        XDebugProcessStarter starter = new XDebugProcessStarter() {
             @Override
-            @NotNull
-            public XDebugProcess start(@NotNull XDebugSession session) {
-                XDebugSessionImpl sessionImpl = (XDebugSessionImpl)session;
-                ExecutionResult executionResult = debugProcess.getExecutionResult();
-                sessionImpl.addExtraActions(executionResult.getActions());
-                if (executionResult instanceof DefaultExecutionResult) {
-                    sessionImpl.addRestartActions(((DefaultExecutionResult)executionResult).getRestartActions());
-                }
+            public @NotNull XDebugProcess start(final @NotNull XDebugSession session) {
                 return JavaDebugProcess.create(session, debuggerSession);
             }
-        }).getRunContentDescriptor();
+        };
+        // TODO: startSession is deprecated and causes exception
+        // java.lang.Throwable: [Split debugger] RunContentDescriptor should not be used in split mode from XDebugSession.
+        // but replacement is marked as not stabled and can't be used yet
+        return XDebuggerManager.getInstance(env.getProject()).startSession(env, starter)
+            .getRunContentDescriptor();
     }
 }

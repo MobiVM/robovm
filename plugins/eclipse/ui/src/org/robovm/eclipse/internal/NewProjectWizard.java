@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.osgi.service.prefs.BackingStoreException;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.eclipse.RoboVMPlugin;
 import org.robovm.templater.Templater;
 

@@ -247,8 +247,12 @@ jboolean rvmInitOptions(int argc, char* argv[], Options* options, jboolean ignor
 
     if (argc > 0) {
         jint firstJavaArg = 1;
+        jint skippedDash = 0;
         for (jint i = 1; i < argc; i++) {
-            if (startsWith(argv[i], "-rvm:")) {
+            if (i == 1 && strcmp("--", argv[i]) == 0) {
+                // dkimitsa: workaround for devicectl bug, passing -- as first param
+                skippedDash = 1;
+            } else if (startsWith(argv[i], "-rvm:")) {
                 if (!ignoreRvmArgs) {
                     char* arg = &argv[i][5];
                     rvmParseOption(arg, options);
@@ -257,6 +261,10 @@ jboolean rvmInitOptions(int argc, char* argv[], Options* options, jboolean ignor
             } else {
                 break;
             }
+        }
+        if (firstJavaArg > 1) {
+            // consider skippedDash workaround only in case there was any "-rvm:"
+            firstJavaArg += skippedDash;
         }
 
         options->commandLineArgs = NULL;
@@ -322,15 +330,15 @@ Env* rvmStartup(Options* options) {
         }
     }
 
+    TRACE("Initializing GC");
+    if (!initGC(options)) return NULL;
+
     // setup the TCP channel socket and wait
     // for the debugger to connect
     if(options->enableHooks) {
         if(!rvmHookSetupTCPChannel(options)) return NULL;
         if(!rvmHookHandshake(options)) return NULL;
     }
-
-    TRACE("Initializing GC");
-    if (!initGC(options)) return NULL;
 
     // Ignore SIGPIPE signals. SIGPIPE interrupts write() calls which we don't
     // want. Dalvik does this too in dalvikvm/Main.cpp.

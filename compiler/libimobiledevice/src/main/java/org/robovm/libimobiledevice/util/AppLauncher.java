@@ -80,16 +80,16 @@ public class AppLauncher {
     private static final int RECEIVE_TIMEOUT = 5000;
     private static final byte[] BREAK = new byte[] { 0x03 };
 
-    private byte[] buffer = new byte[4096];
-    private StringBuilder bufferedResponses = new StringBuilder(4096);
+    private final byte[] buffer = new byte[4096];
+    private final StringBuilder bufferedResponses = new StringBuilder(4096);
 
     private final String deviceUdid;
     private IDevice resolvedDevice;
     private final String appId;
     private final File localAppPath;
     private boolean installed = false;
-    private List<String> args = new ArrayList<>();
-    private Map<String, String> env = new HashMap<String, String>();
+    private final List<String> args = new ArrayList<>();
+    private final Map<String, String> env = new HashMap<>();
     private OutputStream stdout = System.out;
     private boolean closeOutOnExit = false;
     private boolean debug = false;
@@ -101,7 +101,14 @@ public class AppLauncher {
     private String xcodePath;
     private int launchOnLockedRetries = 20;
     private int secondsBetweenLaunchOnLockedRetries = 1;
-    
+
+    @FunctionalInterface
+    public interface Logger {
+        void log(String s);
+    }
+    private Logger logger = System.out::println;
+
+
     /**
      * Creates a new {@link AppLauncher} which will launch an already installed
      * app with the specified id.
@@ -134,7 +141,16 @@ public class AppLauncher {
         this.localAppPath = localAppPath;
     }
 
-    private IDevice waitForDevice(String deviceUdid) throws Exception{
+    /**
+     * waits for specific device to be connected, if preferedUDID is null then waits for single device to be connected,
+     * if multiple devices are connected and no preferedUDID specified then throws exception
+     */
+    public static IDevice waitForDevice(
+        String deviceUdid,
+        int launchOnLockedRetries,
+        int secondsBetweenLaunchOnLockedRetries,
+        Logger logger
+    ) throws Exception{
         final int retries = launchOnLockedRetries;
         int retriesLeft = retries;
         int secondsBetweenRetries = secondsBetweenLaunchOnLockedRetries;
@@ -160,7 +176,7 @@ public class AppLauncher {
 
             if (retriesLeft > 0) {
                 retriesLeft -= 1;
-                log("Waiting for device: %s. (retry %d of %d)...", message, (retries - retriesLeft), retries);
+                logger.log(String.format("Waiting for device: %s. (retry %d of %d)...", message, (retries - retriesLeft), retries));
                 Thread.sleep(secondsBetweenRetries * 1000L);
             } else throw new LibIMobileDeviceException(message);
         }
@@ -171,8 +187,12 @@ public class AppLauncher {
      */
     private IDevice findDevice() throws Exception{
         if (resolvedDevice == null)
-            resolvedDevice = waitForDevice(deviceUdid);
-
+            resolvedDevice = waitForDevice(
+                deviceUdid,
+                launchOnLockedRetries,
+                secondsBetweenLaunchOnLockedRetries,
+                logger
+            );
         return resolvedDevice;
     }
 
@@ -443,7 +463,7 @@ public class AppLauncher {
 
     private void debugGdb(String s) {
         if (debug) {
-            System.out.println(s);
+            logger.log(s);
         }
     }
 
@@ -451,9 +471,9 @@ public class AppLauncher {
      * Logs a message to {@link System#out}. Override this method to use a
      * custom logger.
      */
-    protected void log(String s, Object ... args) {
-        System.out.format(s, args);
-        System.out.println();
+    protected void log(String fmt, Object ... args) {
+        String s = String.format(fmt, args);
+        logger.log(s);
     }
 
     private void sendGdbPacket(DebugServerClient client, String packet) throws IOException {
@@ -720,11 +740,6 @@ public class AppLauncher {
                 debugServerServiceDescriptor = lockdowndClient.startService(serviceName);
             }
 
-            // app is ready to launch
-            if(appLauncherCallback != null) {
-                appLauncherCallback.setAppLaunchInfo(new AppLauncherInfo(lockdowndClient.getDevice(), appPath, productVersion, buildVersion));
-            }
-
             // start debug service
             try (DebugServerClient client = new DebugServerClient(lockdowndClient.getDevice(), debugServerServiceDescriptor)) {
                 log("Debug server port: " + debugServerServiceDescriptor.getPort());
@@ -744,6 +759,11 @@ public class AppLauncher {
 
                 log("Remote app path: " + appPath);
                 log("Launching app...");
+
+                // app is ready to launch
+                if(appLauncherCallback != null) {
+                    appLauncherCallback.setAppLaunchInfo(new AppLauncherInfo(lockdowndClient.getDevice(), appPath, productVersion, buildVersion));
+                }
 
                 // just pipe stdout if no port forwarding should be done
                 // otherwise perform port forwarding and stdout piping
@@ -799,9 +819,6 @@ public class AppLauncher {
                     } else if (payload.charAt(0) == 'O') {
                         // Console output encoded as hex.
                         byte[] data = fromHex(payload.substring(1));
-                        if (appLauncherCallback != null) {
-                            data = appLauncherCallback.filterOutput(data);
-                        }
                         stdout.write(data);
                     } else if (payload.charAt(0) == 'T') {
                         // Signal received. Just continue.
@@ -919,9 +936,6 @@ public class AppLauncher {
                                     // Console output encoded as hex.
                                     if (!nextPacketIsData) {
                                         byte[] data = fromHex(message, 2, message.length - 2 - 3);
-                                        if (appLauncherCallback != null) {
-                                            data = appLauncherCallback.filterOutput(data);
-                                        }
                                         stdout.write(data);
                                     } else {
                                         nextPacketIsData = false;

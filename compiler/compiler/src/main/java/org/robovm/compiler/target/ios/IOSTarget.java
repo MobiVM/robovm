@@ -17,13 +17,7 @@
  */
 package org.robovm.compiler.target.ios;
 
-import com.dd.plist.NSArray;
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.NSString;
-import com.dd.plist.PropertyListFormatException;
-import com.dd.plist.PropertyListParser;
+import com.dd.plist.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.AndFileFilter;
@@ -33,20 +27,18 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.*;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.AbstractTarget;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.target.ios.ProvisioningProfile.Type;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLauncher;
+import org.robovm.compiler.target.ios.simulator.IOSSimLauncher;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.PList;
 import org.robovm.compiler.util.ToolchainUtil;
-import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
-import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
-import org.robovm.libimobiledevice.IDevice;
-import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
-import org.robovm.libimobiledevice.util.AppLauncher;
-import org.robovm.libimobiledevice.util.AppLauncherCallback;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -54,7 +46,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -94,8 +85,6 @@ public class IOSTarget extends AbstractTarget {
     private File entitlementsPList;
     private SigningIdentity signIdentity;
     private ProvisioningProfile provisioningProfile;
-    @Deprecated
-    private IDevice device;
     private File partialPListDir;
 
     public IOSTarget() {}
@@ -150,113 +139,13 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    /**
-     * Returns the {@link IDevice} when an app has been launched on a device.
-     * Returns {@code null} before {@link #launch(LaunchParameters)} has been
-     * called or if the app was launched in the simulator.
-     */
-    public IDevice getDevice() {
-        return device;
-    }
-
     @Override
     protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
-        if (isSimulatorArch(arch)) {
-            return createIOSSimLauncher(launchParameters);
-        } else {
-            return createIOSDevLauncher(launchParameters);
-        }
-    }
-
-    private Launcher createIOSSimLauncher(LaunchParameters launchParameters) throws IOException {
-        return new SimLauncherProcess(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
-    }
-
-    private Launcher createIOSDevLauncher(LaunchParameters launchParameters)
-            throws IOException {
-
-        IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) launchParameters;
-        String deviceUdid = deviceLaunchParameters.getDeviceId();
-        int forwardPort = deviceLaunchParameters.getForwardPort();
-
-        // TODO: FIXME: proxy AppLauncherCallback here: device to be captured as it is being used in junit client
-        //              its a subject for future rework
-        AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback() != null ? new AppLauncherCallback() {
-            final AppLauncherCallback delegate = deviceLaunchParameters.getAppPathCallback();
-            @Override
-            public void setAppLaunchInfo(AppLauncherInfo info) {
-                device = info.getDevice();
-                delegate.setAppLaunchInfo(info);
-            }
-
-            @Override
-            public byte[] filterOutput(byte[] data) {
-                return delegate.filterOutput(data);
-            }
-        } : null;
-
-        OutputStream out = null;
-        if (launchParameters.getStdoutFifo() != null) {
-            out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
-        } else {
-            out = System.out;
-        }
-
-        Map<String, String> env = launchParameters.getEnvironment();
-        if (env == null) {
-            env = new HashMap<>();
-        }
-        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
-        env.put("OS_ACTIVITY_DT_MODE", "");
-
-        AppLauncher launcher = new AppLauncher(deviceUdid, getAppDir()) {
-            protected void log(String s, Object... args) {
-                config.getLogger().info(s, args);
-            }
-        }
-                .stdout(out)
-                .closeOutOnExit(true)
-                .args(launchParameters.getArguments(true).toArray(new String[0]))
-                .env(env)
-                .forward(forwardPort)
-                .appLauncherCallback(callback)
-                .xcodePath(ToolchainUtil.findXcodePath())
-                .uploadProgressCallback(new UploadProgressCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Upload complete");
-                    }
-
-                    public void progress(File path, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning upload...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] Uploading %s...", percentComplete, path);
-                    }
-
-                    public void error(String message) {}
-                })
-                .installStatusCallback(new StatusCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Install complete");
-                    }
-
-                    public void progress(String status, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning installation...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] %s", percentComplete, status);
-                    }
-
-                    public void error(String message) {}
-                });
-
-        return new AppLauncherProcess(config.getLogger(), launcher, launchParameters);
+        if (launchParameters instanceof IOSSimulatorLaunchParameters) {
+            return new IOSSimLauncher(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
+        } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
+            return new IOSDeviceLauncher(config.getLogger(), getAppDir(),  getBundleId(), (IOSDeviceLaunchParameters) launchParameters);
+        } else throw new IllegalArgumentException("Unexpected launchParametersType: " + launchParameters.getClass().getSimpleName());
     }
 
     @Override

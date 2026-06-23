@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 RoboVM AB
+ * Copyright (C) 2025 The MobiVM Contributors
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -14,15 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target;
+package org.robovm.compiler.target.ios;
 
-import java.io.IOException;
 
 /**
- * 
+ * Empty interface to group IOS launch parameters:
+ * - simulator
+ * - device (using ilibmobiledevice)
+ * - device (using devicectl)
  */
-public interface Launcher {
-
-    Process execAsync() throws IOException;
-    
+public interface IIOSLaunchParameters {
 }

@@ -23,10 +23,9 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.ConsoleTarget;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.target.console.ConsoleTarget;
 
 /**
  * Compiles your application and runs it as a console application on the current
