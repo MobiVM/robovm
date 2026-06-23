@@ -74,7 +74,7 @@ public class Clazzes {
     private void addPaths(List<File> files, List<Path> cp, Set<File> seen, boolean inBootclasspath) throws IOException {
         for (File file : files) {
             if (SourceLocator.DUMMY_CLASSPATH_JDK9_FS.equals(file.getPath()) && !seen.contains(file)) {
-                // java9 runtime: add special mark to allow recognize it latter when providing soot CP
+                // java9 runtime: add special mark to allow to recognize it later when providing soot CP
                 Path p = new Java9RuntimePath(file, this, cp.size(), inBootclasspath);
                 cp.add(p);
                 seen.add(file);
