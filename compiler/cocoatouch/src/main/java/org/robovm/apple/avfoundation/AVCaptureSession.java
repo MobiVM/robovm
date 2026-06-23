@@ -143,6 +143,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "connections")
     public native NSArray<AVCaptureConnection> getConnections();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsControls")
+    public native boolean supportsControls();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "maxControlsCount")
+    public native @MachineSizedSInt long getMaxControlsCount();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controlsDelegate")
+    public native AVCaptureSessionControlsDelegate getControlsDelegate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controlsDelegateCallbackQueue")
+    public native DispatchQueue getControlsDelegateCallbackQueue();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controls")
+    public native NSArray<AVCaptureControl> getControls();
     @Property(selector = "isRunning")
     public native boolean isRunning();
     @Property(selector = "isInterrupted")
@@ -171,6 +196,26 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setAutomaticallyConfiguresApplicationAudioSession:")
     public native void setAutomaticallyConfiguresApplicationAudioSession(boolean v);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "configuresApplicationAudioSessionToMixWithOthers")
+    public native boolean isConfiguresApplicationAudioSessionToMixWithOthers();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConfiguresApplicationAudioSessionToMixWithOthers:")
+    public native void setConfiguresApplicationAudioSessionToMixWithOthers(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "configuresApplicationAudioSessionForBluetoothHighQualityRecording")
+    public native boolean isConfiguresApplicationAudioSessionForBluetoothHighQualityRecording();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:")
+    public native void setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(boolean v);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "automaticallyConfiguresCaptureDeviceForWideColor")
@@ -196,6 +241,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "hardwareCost")
     public native float getHardwareCost();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isManualDeferredStartSupported")
+    public native boolean isManualDeferredStartSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "automaticallyRunsDeferredStart")
+    public native boolean automaticallyRunsDeferredStart();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAutomaticallyRunsDeferredStart:")
+    public native void setAutomaticallyRunsDeferredStart(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "deferredStartDelegate")
+    public native AVCaptureSessionDeferredStartDelegate getDeferredStartDelegate();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "deferredStartDelegateCallbackQueue")
+    public native DispatchQueue getDeferredStartDelegateCallbackQueue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -246,6 +316,26 @@ import org.robovm.apple.uikit.*;
     public native void addConnection(AVCaptureConnection connection);
     @Method(selector = "removeConnection:")
     public native void removeConnection(AVCaptureConnection connection);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "setControlsDelegate:queue:")
+    public native void setControlsDelegate(AVCaptureSessionControlsDelegate controlsDelegate, DispatchQueue controlsDelegateCallbackQueue);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "canAddControl:")
+    public native boolean canAddControl(AVCaptureControl control);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addControl:")
+    public native void addControl(AVCaptureControl control);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "removeControl:")
+    public native void removeControl(AVCaptureControl control);
     @Method(selector = "beginConfiguration")
     public native void beginConfiguration();
     @Method(selector = "commitConfiguration")
@@ -254,5 +344,15 @@ import org.robovm.apple.uikit.*;
     public native void startRunning();
     @Method(selector = "stopRunning")
     public native void stopRunning();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "runDeferredStartWhenNeeded")
+    public native void runDeferredStartWhenNeeded();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setDeferredStartDelegate:deferredStartDelegateCallbackQueue:")
+    public native void setDeferredStartDelegate(AVCaptureSessionDeferredStartDelegate deferredStartDelegate, DispatchQueue deferredStartDelegateCallbackQueue);
     /*</methods>*/
 }

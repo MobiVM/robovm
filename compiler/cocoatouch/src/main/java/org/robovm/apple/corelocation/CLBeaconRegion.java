@@ -54,7 +54,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, identifier));
        return res;
@@ -69,7 +69,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:major:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, short major, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, major, identifier));
        return res;
@@ -84,7 +84,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:major:minor:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, short minor, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, short major, short minor, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, major, minor, identifier));
        return res;

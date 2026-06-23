@@ -213,7 +213,23 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    SandboxExtensionDenied(-11884L);
+    SandboxExtensionDenied(-11884L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    ToneMappingFailed(-11885L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    NoSmartFramingsEnabled(-11890L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    AutoWhiteBalanceNotLocked(-11891L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    FollowExternalSyncDeviceTimedOut(-11892L);
     /*</values>*/
 
     /*<bind>*/

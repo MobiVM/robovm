@@ -40,7 +40,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTREventRequestPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTREventRequestPathPtr extends Ptr<MTREventRequestPath, MTREventRequestPathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTREventRequestPath.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 17.0 and later.
      */
     public MTREventRequestPath(NSNumber endpointID, NSNumber clusterID, NSNumber eventID) { super((Handle) null, create(endpointID, clusterID, eventID)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MTREventRequestPath(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -70,6 +72,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "event")
     public native NSNumber getEvent();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +82,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "requestPathWithEndpointID:clusterID:eventID:")
     protected static native @Pointer long create(NSNumber endpointID, NSNumber clusterID, NSNumber eventID);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

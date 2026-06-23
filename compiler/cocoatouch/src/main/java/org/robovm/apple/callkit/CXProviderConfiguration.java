@@ -95,6 +95,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean supportsVideo();
     @Property(selector = "setSupportsVideo:")
     public native void setSupportsVideo(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportsAudioTranslation")
+    public native boolean supportsAudioTranslation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSupportsAudioTranslation:")
+    public native void setSupportsAudioTranslation(boolean v);
     @Property(selector = "supportedHandleTypes")
     public native NSSet<NSNumber> getSupportedHandleTypes();
     @Property(selector = "setSupportedHandleTypes:")

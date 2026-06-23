@@ -45,6 +45,9 @@ enums:
     PKApplePayLaterAvailability: { prefix: PKApplePayLater } #since 17.0
     PKPayLaterDisplayStyle: { } #since 17.0
     PKPayLaterAction: { } #since 17.0
+    PKPassLibraryCapability: {} #since 26.0
+    PKPassLibraryAuthorizationStatus: {} #since 26.0
+    PKAddIdentityDocumentType: {}
 typed_enums:
     PKStoredValuePassBalanceType:
         enum: PKStoredValuePassBalanceType
@@ -142,6 +145,10 @@ classes:
                 name: serviceProviderDataForSecureElementPass
             '-encryptedServiceProviderDataForSecureElementPass:completion:':
                 name: encryptedServiceProviderDataForSecureElementPass
+            '-passesWithReaderIdentifier:':
+                name: passesWithReaderIdentifier
+            '-requestAuthorizationForCapability:completion:':
+                name: requestAuthorizationForCapability
     PKPayment: # DONE
         properties:
             'billingAddress':
@@ -169,6 +176,10 @@ classes:
             '-initWithPaymentButtonType:paymentButtonStyle:':
                 name: init
             '+buttonWithType:style:':
+                exclude: true
+            '-initWithPaymentButtonType:paymentButtonStyle:disableCardArt:':
+                name: init
+            '+buttonWithType:style:disableCardArt:':
                 exclude: true
     PKPaymentMethod: {} # DONE
     PKPaymentPass: {} # DONE
@@ -402,6 +413,36 @@ classes:
                 name: init
             '+disbursementContactInvalidErrorWithContactField:localizedDescription:':
                 name: createDisbursementContactInvalidError
+    PKAddIdentityDocumentConfiguration: #since 18.0
+        methods:
+            '+configurationForMetadata:completion:':
+                name: configurationForMetadata
+    PKAddIdentityDocumentMetadata: #since 26.0
+        methods:
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:issuingCountryCode:documentType:preview:':
+                name: init
+    PKAddPassMetadataPreview: #since 18.0
+        methods:
+            '-initWithPassThumbnail:localizedDescription:':
+                name: init
+            '+previewWithPassThumbnail:localizedDescription:':
+                exclude: true
+    PKIdentityAnyOfDescriptor: #since 26.0
+        methods:
+            '-initWithDescriptors:':
+                name: init
+    PKIdentityDocumentMetadata: {} #since 18.0
+    PKIdentityNationalIDCardDescriptor: {} #since 18.0
+    PKIdentityPhotoIDDescriptor: {} #since 26.0
+    PKJapanIndividualNumberCardMetadata: #since 18.0
+        methods:
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardTemplateIdentifier:preview:':
+                name: initWithProvisioningCredentialIdentifierCardTemplateIdentifier
+                static_constructor_name: createUsingCardTemplateIdentifier
+            '-initWithProvisioningCredentialIdentifier:sharingInstanceIdentifier:cardConfigurationIdentifier:preview:':
+                name: initWithProvisioningCredentialIdentifierCardConfigurationIdentifier
+                static_constructor_name: createUsingCardConfigurationIdentifier
+    PKPassRelevantDate: {}
 protocols:
     PKPaymentAuthorizationControllerDelegate:
         methods:
@@ -605,6 +646,11 @@ values:
         enum: PKEncryptionScheme
         name: '#{g[0]}'
         type: NSString
+
+    PKMerchantCategoryCode(None):
+        class: PKPaymentRequest
+        static_class: MerchantCategoryCodes
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (PK.*):

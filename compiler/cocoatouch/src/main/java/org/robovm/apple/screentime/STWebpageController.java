@@ -69,6 +69,16 @@ import org.robovm.apple.dispatch.*;
     public native void setURLIsPictureInPicture(boolean v);
     @Property(selector = "URLIsBlocked")
     public native boolean isURLIsBlocked();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "profileIdentifier")
+    public native String getProfileIdentifier();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setProfileIdentifier:")
+    public native void setProfileIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

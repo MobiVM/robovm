@@ -87,5 +87,10 @@ import org.robovm.apple.symbols.*;
      */
     @GlobalValue(symbol="UISceneDidEnterBackgroundNotification", optional=true)
     public static native NSString DidEnterBackground();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="UISceneSystemProtectionDidChangeNotification", optional=true)
+    public static native NSString SystemProtectionDidChange();
     /*</methods>*/
 }

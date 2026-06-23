@@ -92,6 +92,21 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording")
     public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isSpatialVideoCaptureSupported")
+    public native boolean isSpatialVideoCaptureSupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isSpatialVideoCaptureEnabled")
+    public native boolean isSpatialVideoCaptureEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSpatialVideoCaptureEnabled:")
+    public native void setSpatialVideoCaptureEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

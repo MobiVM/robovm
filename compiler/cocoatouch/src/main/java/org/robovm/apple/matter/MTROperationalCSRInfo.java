@@ -50,6 +50,13 @@ import org.robovm.apple.security.*;
     protected MTROperationalCSRInfo(Handle h, long handle) { super(h, handle); }
     protected MTROperationalCSRInfo(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use one of the initializers that validates the input
+     */
+    @Deprecated
+    @Method(selector = "initWithCSR:csrNonce:csrElementsTLV:attestationSignature:")
+    public MTROperationalCSRInfo(NSData csr, NSData csrNonce, NSData csrElementsTLV, NSData attestationSignature) { super((SkipInit) null); initObject(init(csr, csrNonce, csrElementsTLV, attestationSignature)); }
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithCSRNonce:csrElementsTLV:attestationSignature:")
@@ -77,6 +84,13 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use one of the initializers that validates the input
+     */
+    @Deprecated
+    @Method(selector = "initWithCSR:csrNonce:csrElementsTLV:attestationSignature:")
+    protected native @Pointer long init(NSData csr, NSData csrNonce, NSData csrElementsTLV, NSData attestationSignature);
     /**
      * @since Available in iOS 17.0 and later.
      */

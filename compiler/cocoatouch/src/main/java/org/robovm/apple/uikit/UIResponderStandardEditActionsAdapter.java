@@ -81,6 +81,11 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("pasteAndSearch:")
     public void pasteAndSearch(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("newFromPasteboard:")
+    public void newFromPasteboard(NSObject sender) {}
     @NotImplemented("select:")
     public void select(NSObject sender) {}
     @NotImplemented("selectAll:")
@@ -101,6 +106,26 @@ import org.robovm.apple.symbols.*;
     public void increaseSize(NSObject sender) {}
     @NotImplemented("decreaseSize:")
     public void decreaseSize(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("alignLeft:")
+    public void alignLeft(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("alignCenter:")
+    public void alignCenter(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("alignJustified:")
+    public void alignJustified(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("alignRight:")
+    public void alignRight(NSObject sender) {}
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -156,5 +181,25 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("export:")
     public void export(NSObject sender) {}
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @NotImplemented("toggleSidebar:")
+    public void toggleSidebar(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("toggleInspector:")
+    public void toggleInspector(NSObject sender) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("performClose:")
+    public void performClose(NSObject sender) {}
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @NotImplemented("showWritingTools:")
+    public void showWritingTools(NSObject sender) {}
     /*</methods>*/
 }

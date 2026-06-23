@@ -18,7 +18,11 @@ classes:
             '-setActive:forRoute:':
                 name: setActive
     AVCustomRoutingEvent: {} #since 16.0
-
+    AVCustomRoutingPartialIP: #since 16.1
+        methods:
+            '-initWithAddress:mask:':
+                name: init
+    AVRoutingPlaybackArbiter: { } #since 26.0
 protocols:
     AVCustomRoutingControllerDelegate: #since 16.0
         methods:
@@ -28,7 +32,7 @@ protocols:
                 name: eventDidTimeOut
             '-customRoutingController:didSelectItem:':
                 name: didSelectItem
-
+    AVRoutingPlaybackParticipant: {} #since 26.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (.*):

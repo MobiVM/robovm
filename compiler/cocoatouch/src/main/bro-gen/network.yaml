@@ -44,6 +44,7 @@ enums:
     nw_parameters_attribution_t: {prefix: nw_parameters_attribution_, name: NWParametersAttribution}
     nw_quic_stream_type_t: {prefix: nw_quic_stream_type_, name: NWQuicStreamType}
     nw_multipath_version_t: {prefix: nw_multipath_version_, name: NWMultipathVersion}
+    nw_link_quality_t: {prefix: nw_link_quality_, name: NWLinkQuality }
 classes:
     NWFramerMessage:
         extends: NWProtocolMetadata

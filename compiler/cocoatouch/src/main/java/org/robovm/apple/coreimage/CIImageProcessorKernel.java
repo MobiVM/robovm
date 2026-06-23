@@ -73,15 +73,48 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "processWithInputs:arguments:output:error:")
     public static native boolean process(NSArray<?> inputs, NSDictionary<NSString, ?> arguments, CIImageProcessorOutput output, NSError.NSErrorPtr error);
     @Method(selector = "roiForInput:arguments:outputRect:")
-    public static native @ByVal CGRect roiForInput(int input, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
+    public static native @ByVal CGRect roiForInput(int inputIndex, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
     /**
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "roiTileArrayForInput:arguments:outputRect:")
-    public static native NSArray<CIVector> roiTileArrayForInput(int input, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
+    public static native NSArray<CIVector> roiTileArrayForInput(int inputIndex, NSDictionary<NSString, ?> arguments, @ByVal CGRect outputRect);
     @Method(selector = "formatForInputAtIndex:")
-    public static native int formatForInputAtIndex(int input);
+    public static native int formatForInputAtIndex(int inputIndex);
     @Method(selector = "applyWithExtent:inputs:arguments:error:")
-    public static native CIImage apply(@ByVal CGRect extent, NSArray<CIImage> inputs, NSDictionary<NSString, ?> args, NSError.NSErrorPtr error);
+    public static native CIImage apply(@ByVal CGRect extent, NSArray<CIImage> inputs, NSDictionary<NSString, ?> arguments, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    public static boolean process(NSArray<?> inputs, NSDictionary<NSString, ?> arguments, NSArray<?> outputs) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = process(inputs, arguments, outputs, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "processWithInputs:arguments:outputs:error:")
+    private static native boolean process(NSArray<?> inputs, NSDictionary<NSString, ?> arguments, NSArray<?> outputs, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "outputFormatAtIndex:arguments:")
+    public static native int getOutputFormat(int outputIndex, NSDictionary<NSString, ?> arguments);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    public static NSArray<CIImage> apply(NSArray<CIVector> extents, NSArray<CIImage> inputs, NSDictionary<NSString, ?> arguments) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSArray<CIImage> result = apply(extents, inputs, arguments, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "applyWithExtents:inputs:arguments:error:")
+    private static native NSArray<CIImage> apply(NSArray<CIVector> extents, NSArray<CIImage> inputs, NSDictionary<NSString, ?> arguments, NSError.NSErrorPtr error);
     /*</methods>*/
 }

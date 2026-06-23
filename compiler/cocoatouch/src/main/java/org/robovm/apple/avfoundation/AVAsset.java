@@ -222,7 +222,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "cancelLoading")
     public native void cancelLoading();
     /**
-     * @deprecated Use loadTrackWithTrackID:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "trackWithTrackID:")
@@ -233,7 +233,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /**
-     * @deprecated Use loadTracksWithMediaType:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "tracksWithMediaType:")
@@ -244,7 +244,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /**
-     * @deprecated Use loadTracksWithMediaCharacteristic:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaCharacteristic:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
@@ -255,7 +255,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
     public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /**
-     * @deprecated Use loadMetadataForFormat:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadMetadataForFormat:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "metadataForFormat:")
@@ -266,7 +266,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadMetadataForFormat:completionHandler:")
     public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
     /**
-     * @deprecated Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
@@ -277,7 +277,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:")
     public native void loadChapterMetadataGroups(NSLocale locale, NSArray<NSString> commonKeys, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
     /**
-     * @deprecated Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler
+     * @deprecated Deprecated in iOS 18.0. Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
@@ -288,7 +288,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:")
     public native void loadChapterMetadataGroupsBestMatchingPreferredLanguages(NSArray<NSString> preferredLanguages, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
     /**
-     * @deprecated Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
@@ -299,7 +299,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadMediaSelectionGroupForMediaCharacteristic:completionHandler:")
     public native void loadMediaSelectionGroupForMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<AVMediaSelectionGroup, NSError> completionHandler);
     /**
-     * @deprecated Use findUnusedTrackIDWithCompletionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use findUnusedTrackIDWithCompletionHandler: instead
      */
     @Deprecated
     @Method(selector = "unusedTrackID")

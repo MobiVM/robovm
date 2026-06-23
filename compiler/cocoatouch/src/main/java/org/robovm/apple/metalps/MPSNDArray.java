@@ -53,6 +53,11 @@ import org.robovm.apple.metal.*;
     public MPSNDArray(MTLDevice device, MPSNDArrayDescriptor descriptor) { super((SkipInit) null); initObject(init(device, descriptor)); }
     @Method(selector = "initWithDevice:scalar:")
     public MPSNDArray(MTLDevice device, double value) { super((SkipInit) null); initObject(init(device, value)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    public MPSNDArray(MTLBuffer buffer, @MachineSizedUInt long offset, MPSNDArrayDescriptor descriptor) { super((SkipInit) null); initObject(init(buffer, offset, descriptor)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "label")
@@ -80,10 +85,35 @@ import org.robovm.apple.metal.*;
     protected native @Pointer long init(MTLDevice device, MPSNDArrayDescriptor descriptor);
     @Method(selector = "initWithDevice:scalar:")
     protected native @Pointer long init(MTLDevice device, double value);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithBuffer:offset:descriptor:")
+    protected native @Pointer long init(MTLBuffer buffer, @MachineSizedUInt long offset, MPSNDArrayDescriptor descriptor);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "userBuffer")
+    public native MTLBuffer userBuffer();
     @Method(selector = "resourceSize")
     public native @MachineSizedUInt long resourceSize();
     @Method(selector = "arrayViewWithCommandBuffer:descriptor:aliasing:")
     public native MPSNDArray createArrayView(MTLCommandBuffer cmdBuf, MPSNDArrayDescriptor descriptor, MPSAliasingStrategy aliasing);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "arrayViewWithDescriptor:")
+    public native MPSNDArray createArrayView(MPSNDArrayDescriptor descriptor);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "arrayViewWithShape:strides:")
+    public native MPSNDArray createArrayView(NSArray<NSNumber> shape, NSArray<NSNumber> strides);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "arrayViewWithDimensionCount:dimensionSizes:strides:")
+    public native MPSNDArray createArrayView(@MachineSizedUInt long numberOfDimensions, MachineSizedUIntPtr dimensionSizes, MachineSizedUIntPtr dimStrides);
     @Method(selector = "exportDataWithCommandBuffer:toBuffer:destinationDataType:offset:rowStrides:")
     public native void exportData(MTLCommandBuffer cmdBuf, MTLBuffer buffer, MPSDataType destinationDataType, @MachineSizedUInt long offset, MachineSizedSIntPtr rowStrides);
     @Method(selector = "importDataWithCommandBuffer:fromBuffer:sourceDataType:offset:rowStrides:")

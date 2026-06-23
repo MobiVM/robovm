@@ -1,0 +1,201 @@
+package: org.robovm.apple.javascriptcore
+include: [foundation, corefoundation, coregraphics]
+library: JavaScriptCore
+framework: JavaScriptCore
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/JavaScriptCore.framework/Headers/JavaScriptCore.h
+
+typedefs:
+    
+enums:
+    JSType: {prefix: kJSType}
+    JSTypedArrayType: {prefix: kJSTypedArrayType} #since 10.0
+    JSRelationCondition: {prefix: kJSRelationCondition} #since 18.0
+    JSPropertyAttributes: {prefix: kJSPropertyAttribute, first: kJSPropertyAttributeNone}
+    SClassAttributes: {prefix: kJSClassAttribute, first: kJSClassAttributeNone}
+
+categories:
+
+classes:
+    # structs
+    JSClassDefinition: {}
+    JSStaticFunction: {}
+    JSStaticValue: {}
+    JSClassRef: {}
+    JSContextRef: {}
+    JSContextGroupRef: {}
+    JSPropertyNameAccumulatorRef: {}
+    JSPropertyNameArrayRef: {}
+    JSStringRef: {}
+    JSValueRef: {}
+    JSObjectRef: {}
+    JSGlobalContextRef: {}
+
+    # classes
+    JSContext: #since 7.0
+        methods:
+            '-initWithVirtualMachine:':
+                name: init
+            '-evaluateScript:withSourceURL:':
+                name: evaluateScript
+            '-setObject:forKeyedSubscript:':
+                name: setObject
+                parameters:
+                    1:
+                        type: NSObject
+            '+contextWithJSGlobalContextRef:':
+                name: create
+                constructor: true
+    JSManagedValue: #since 7.0
+        methods:
+            '-initWithValue:':
+                name: init
+            '+managedValueWithValue:':
+                name: managedValue
+            '+managedValueWithValue:andOwner:':
+                name: managedValue
+    JSValue: #since 7.0
+        methods:
+            '-isEqualWithTypeCoercionToObject:':
+                name: isEqual
+            '-callWithArguments:':
+                name: call
+            '-constructWithArguments:':
+                name: construct
+            '-invokeMethod:withArguments:':
+                name: invokeMethod
+            '+valueWithObject:inContext:':
+                name: valueWithObject
+            '+valueWithBool:inContext:':
+                name: valueWithBool
+            '+valueWithDouble:inContext:':
+                name: valueWithDouble
+            '+valueWithInt32:inContext:':
+                name: valueWithInt32
+            '+valueWithUInt32:inContext:':
+                name: valueWithUInt32
+            '+valueWithNewObjectInContext:':
+                name: valueWithNewObject
+            '+valueWithNewArrayInContext:':
+                name: valueWithNewArray
+            '+valueWithNewRegularExpressionFromPattern:flags:inContext:':
+                name: valueWithNewRegularExpression
+            '+valueWithNewErrorFromMessage:inContext:':
+                name: valueWithNewErrorFromMessage
+            '+valueWithNewPromiseInContext:fromExecutor:':
+                name: valueWithNewPromise
+            '+valueWithNewPromiseResolvedWithResult:inContext:':
+                name: valueWithNewPromiseResolvedWithResult
+            '+valueWithNewPromiseRejectedWithReason:inContext:':
+                name: valueWithNewPromiseRejectedWithReason
+            '+valueWithNewSymbolFromDescription:inContext:':
+                name: valueWithNewSymbolFromDescription
+            '+valueWithNewBigIntFromString:inContext:':
+                name: valueWithNewBigIntFromString
+            '+valueWithNewBigIntFromInt64:inContext:':
+                name: valueWithNewBigIntFromInt64
+            '+valueWithNewBigIntFromUInt64:inContext:':
+                name: valueWithNewBigIntFromUInt64
+            '+valueWithNewBigIntFromDouble:inContext:':
+                name: valueWithNewBigIntFromDouble
+            '+valueWithNullInContext:':
+                name: valueWithNull
+            '+valueWithUndefinedInContext:':
+                name: valueWithUndefined
+            '+valueWithPoint:inContext:':
+                name: valueWithPoint
+            '+valueWithRange:inContext:':
+                name: valueWithRange
+            '+valueWithRect:inContext:':
+                name: valueWithRect
+            '+valueWithSize:inContext:':
+                name: valueWithSize
+            '-setValue:forProperty:':
+                name: setValueForProperty
+            '-defineProperty:descriptor:':
+                name: defineProperty
+            '-setValue:atIndex:':
+                name: setValueAtIndex
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
+            '-setObject:atIndexedSubscript:':
+                name: setObjectAtIndexedSubscript
+            '+valueWithJSValueRef:inContext:':
+                name: valueWithJSValueRef
+
+    JSVirtualMachine: #since 7.0
+        methods:
+            '-addManagedReference:withOwner:':
+                name: addManagedReference
+            '-removeManagedReference:withOwner:':
+                name: removeManagedReference
+protocols:
+    JSExport: {}
+
+functions:
+    JSString(.*):
+        class: JSStringRef
+        name: '#{g[0]}'
+    JSObject(.*):
+        class: JSObjectRef
+        name: '#{g[0]}'
+    JSContext(.*):
+        class: JSContextRef
+        name: '#{g[0]}'
+    JSGlobalContext(.*):
+        class: JSGlobalContextRef
+        name: '#{g[0]}'
+    JSPropertyNameArray(.*):
+        class: JSPropertyNameArrayRef
+        name: '#{g[0]}'
+    JSValue(.*):
+        class: JSValueRef
+        name: '#{g[0]}'
+        parameters:
+            boolean:
+                name: b
+    JSClass(.*):
+        class: JSClassRef
+        name: '#{g[0]}'
+
+    JS(EvaluateScript|CheckScriptSyntax|GarbageCollect):
+        class: JSContextRef
+        name: '#{g[0]}'
+
+    JSBigIntCreateWith(Double|Int64|UInt64|String):
+        class: JSContextRef
+        name: 'createBigIntWith#{g[0]}'
+
+    JSPropertyNameAccumulator(.*):
+        class: JSPropertyNameAccumulatorRef
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?JS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    kJSClassDefinitionEmpty:
+        class: JSClassDefinition
+        name: Empty
+
+    JSPropertyDescriptor(.*)Key:
+        class: JSValue
+        static_class: PropertyDescriptorKeys
+        name: '#{g[0]}'
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?JS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    JSC_OBJC_API_ENABLED:
+        exclude: true
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?JS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

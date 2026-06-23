@@ -41,8 +41,14 @@ import org.robovm.apple.security.*;
 public enum /*<name>*/MTROnOffDyingLightEffectVariant/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 17.2 and later.
      */
+    DyingLightFadeOff(0L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROnOffDyingLightEffectVariantDyingLightFadeOff
+     */
+    @Deprecated
     _20PercenterDimUpIn0p5SecondsThenFadeToOffIn1Second(0L);
     /*</values>*/
 

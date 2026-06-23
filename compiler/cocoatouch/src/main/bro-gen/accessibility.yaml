@@ -13,7 +13,9 @@ enums:
     AXNumericDataAxisDescriptorScale: { prefix: AXScaleType }
     AXChartDescriptorContentDirection: { prefix: AXChartContentDirection }
     AXHearingDeviceEar: { } #since 15.0
-
+    AXSettingsFeature: {} #since 18.0
+    AXFeatureOverrideSessionOptions: {}
+    AXFeatureOverrideSessionError: { nserror: true}
 classes:
     AXCustomContent: #since 14.0
         methods:
@@ -72,11 +74,90 @@ classes:
                 name: init
             '-initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:':
                 name: init
+    AXBrailleTable: #since 26.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+    AXBrailleTranslationResult: {} #since 26.0
+    AXBrailleTranslator: #since 26.0
+        methods:
+            '-initWithBrailleTable:':
+                name: init
+    AXFeatureOverrideSession: {} #since 18.2
+    AXFeatureOverrideSessionManager: #since 18.2
+        methods:
+            '-beginOverrideSessionEnablingOptions:disablingOptions:error:':
+                name: beginOverrideSession
+                throws: NSErrorException
+            '-endOverrideSession:error:':
+                name: endOverrideSession
+                throws: NSErrorException
+    AXMathExpression: {} #since 18.2
+    AXMathExpressionFenced: #since 18.2
+        methods:
+            '-initWithExpressions:openString:closeString:':
+                name: init
+    AXMathExpressionFraction: #since 18.2
+        methods:
+            '-initWithNumeratorExpression:denimonatorExpression:':
+                name: init
+    AXMathExpressionIdentifier: #since 18.2
+        methods:
+            '-initWithContent:':
+                name: init
+    AXMathExpressionMultiscript: #since 18.2
+        methods:
+            '-initWithBaseExpression:prescriptExpressions:postscriptExpressions:':
+                name: init
+    AXMathExpressionNumber: #since 18.2
+        methods:
+            '-initWithContent:':
+                name: init
+    AXMathExpressionOperator: #since 18.2
+        methods:
+            '-initWithContent:':
+                name: init
+    AXMathExpressionRoot: #since 18.2
+        methods:
+            '-initWithRadicandExpressions:rootIndexExpression:':
+                name: init
+    AXMathExpressionRow: #since 18.2
+        methods:
+            '-initWithExpressions:':
+                name: init
+    AXMathExpressionSubSuperscript: #since 18.2
+        methods:
+            '-initWithBaseExpression:subscriptExpressions:superscriptExpressions:':
+                name: init
+    AXMathExpressionTable: #since 18.2
+        methods:
+            '-initWithExpressions:':
+                name: init
+    AXMathExpressionTableCell: #since 18.2
+        methods:
+            '-initWithExpressions:':
+                name: init
+    AXMathExpressionTableRow: #since 18.2
+        methods:
+            '-initWithExpressions:':
+                name: init
+    AXMathExpressionText: #since 18.2
+        methods:
+            '-initWithContent:':
+                name: init
+    AXMathExpressionUnderOver: #since 18.2
+        methods:
+            '-initWithBaseExpression:underExpression:overExpression:':
+                name: init
+    AXRequest: {} #since 18.0
+
+
 protocols:
     AXCustomContentProvider: {} #since 14.0
     AXBrailleMapRenderer: {}
     AXChart: {} #since 15.0
     AXDataAxisDescriptor: {} #since 15.0
+    AXMathExpressionProvider: {}
 functions:
     AXNameFromColor:
         class: AXUtils
@@ -96,6 +177,15 @@ functions:
     AXAnimatedImagesEnabled:
         class: AXSettings
         name: isAnimatedImagesEnabled
+    AXPrefersNonBlinkingTextInsertionIndicator:
+        class: AXSettings
+        name: prefersNonBlinkingTextInsertionIndicator
+    AXAssistiveAccessEnabled:
+        class: AXSettings
+        name: isAssistiveAccessEnabled
+    AXOpenSettingsFeature:
+        class: AXSettings
+        name: openSettingsFeature
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AX.*):
@@ -107,15 +197,25 @@ values:
         class: AXHearingUtilities
         static_class: Notifications
         name: '#{g[0]}'
-    AX(PrefersHorizontalTextLayoutDidChange|AnimatedImagesEnabledDidChange)Notification:
+    AX(PrefersHorizontalTextLayoutDidChange|AnimatedImagesEnabledDidChange|PrefersNonBlinkingTextInsertionIndicatorDidChange)Notification:
         class: AXSettings
         static_class: Notifications
         name: '#{g[0]}'
+    AXFeatureOverrideSessionErrorDomain:
+        class: AXFeatureOverrideSessionError
+        name: getClassDomain
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AX.*):
         class: FIXME
         name: 'Value__#{g[0]}'
+
+typed_enums:
+    AXTechnology:
+        enum: AXTechnology
+        type: NSString
+        prefix: AXTechnology
 
 constants:
     # Make sure we don't miss any constants if new ones are introduced in a later version

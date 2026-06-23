@@ -113,6 +113,8 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<PKPass> getPasses();
     @Method(selector = "passWithPassTypeIdentifier:serialNumber:")
     public native PKPass getPass(String identifier, String serialNumber);
+    @Method(selector = "passesWithReaderIdentifier:")
+    public native NSSet<PKSecureElementPass> passesWithReaderIdentifier(String readerIdentifier);
     @Method(selector = "passesOfType:")
     public native NSArray<PKPass> getPassesOfType(PKPassType passType);
     /**
@@ -196,6 +198,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "serviceProviderDataForSecureElementPass:completion:")
     public native void serviceProviderDataForSecureElementPass(PKSecureElementPass secureElementPass, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "authorizationStatusForCapability:")
+    public native PKPassLibraryAuthorizationStatus authorizationStatusForCapability(PKPassLibraryCapability capability);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "requestAuthorizationForCapability:completion:")
+    public native void requestAuthorizationForCapability(PKPassLibraryCapability capability, @Block VoidBlock1<PKPassLibraryAuthorizationStatus> completion);
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**

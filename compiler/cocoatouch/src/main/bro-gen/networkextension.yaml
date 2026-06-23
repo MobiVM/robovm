@@ -6,6 +6,8 @@ clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/NetworkExtension.framework/Headers/NetworkExtension.h
 typedefs: {}
+private_typedefs:
+    'ASAccessory *' : org.robovm.apple.accessorysetupkit.ASAccessory
     
 enums:
     NEVPNError: { name: NEVPNErrorCode, prefix: NEVPNError }
@@ -50,6 +52,10 @@ enums:
 
     NEVPNConnectionError: {nserror: true} #since 16.0
     NERelayManagerError: {nserror: true} #since 17.0
+
+    NERelayManagerClientError: {nserror: true } #since 18.0
+    NEVPNIKEv2PostQuantumKeyExchangeMethod: { } #since 26.0
+    NEURLFilterVerdict: { } #since 26.0
 classes:
     NEProvider:
         methods:
@@ -237,11 +243,13 @@ classes:
     NEAppProxyFlow:
         methods:
             '-openWithLocalEndpoint:completionHandler:':
-                name: open
+                name: openWithLocalEndpoint
             '-closeReadWithError:':
                 name: closeRead
             '-closeWriteWithError:':
                 name: closeWrite
+            '-openWithLocalFlowEndpoint:completionHandler:':
+                name: openWithLocalFlowEndpoint
     NEAppProxyProvider:
         methods:
             '-startProxyWithOptions:completionHandler:':
@@ -251,7 +259,9 @@ classes:
             '-cancelProxyWithError:':
                 name: cancelProxy
             '-handleNewUDPFlow:initialRemoteEndpoint:':
-                name: handleNewUDPFlow
+                name: handleNewUDPFlowWithInitialRemoteEndpoint
+            '-handleNewUDPFlow:initialRemoteFlowEndpoint:':
+                name: handleNewUDPFlowWithInitialRemoteFlowEndpoint
     NEAppProxyProviderManager:
         methods:
             '+loadAllFromPreferencesWithCompletionHandler:':
@@ -266,8 +276,12 @@ classes:
         methods:
             '-readDatagramsWithCompletionHandler:':
                 name: readDatagrams
+            '-readDatagramsAndFlowEndpointsWithCompletionHandler:':
+                name: readDatagramsAndFlowEndpoints
             '-writeDatagrams:sentByEndpoints:completionHandler:':
-                name: writeDatagrams
+                name: writeDatagramsSentByEndpoints
+            '-writeDatagrams:sentByFlowEndpoints:completionHandler:':
+                name: writeDatagramsSentByFlowEndpoints
     NEFilterControlProvider:
         methods:
             '-handleRemediationForFlow:completionHandler:':
@@ -349,7 +363,9 @@ classes:
             '-cancelProxyWithError:':
                 name: cancelProxy
             '-handleNewUDPFlow:initialRemoteEndpoint:':
-                name: handleNewUDPFlow
+                name: handleNewUDPFlowWithInitialRemoteEndpoint
+            '-handleNewUDPFlow:initialRemoteFlowEndpoint:':
+                name: handleNewUDPFlowWithInitialRemoteFlowEndpoint
     NEDNSProxyProviderProtocol: {} #since 11.0
     NEFilterReport: {} #since 11.0
     NEHotspotConfiguration: #since 11.0
@@ -374,6 +390,10 @@ classes:
                 trim_after_first_colon: true
             '-getConfiguredSSIDsWithCompletionHandler:':
                 name: getConfiguredSSIDs
+            '-joinAccessoryHotspot:passphrase:completionHandler:':
+                name: joinAccessoryHotspot
+            '-joinAccessoryHotspotWithoutSecurity:completionHandler:':
+                name: joinAccessoryHotspotWithoutSecurity
     NEHotspotEAPSettings: {} #since 11.0
     NEHotspotHS20Settings: #since 11.0
         methods:
@@ -425,6 +445,16 @@ classes:
                 name: saveToPreferences
             '+loadAllManagersFromPreferencesWithCompletionHandler:':
                 name: loadAllManagersFromPreferences
+            '-getLastClientErrors:completionHandler:':
+                name: getLastClientErrors
+    NEURLFilter:
+        methods:
+            '+verdictForURL:completionHandler:':
+                name: verdict
+    NEVPNIKEv2PPKConfiguration: #since 18.0
+        methods:
+            '-initWithIdentifier:keychainReference:':
+                name: init
 protocols:
     NWTCPConnectionAuthenticationDelegate:
         methods:
@@ -474,6 +504,9 @@ values:
         name: getClassDomain
     NERelayErrorDomain:
         class: NERelayManagerError
+        name: getClassDomain
+    NERelayClientErrorDomain:
+        class: NERelayManagerClientError
         name: getClassDomain
 
     NERelay(ConfigurationDidChange)Notification:

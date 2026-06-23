@@ -158,6 +158,8 @@ enums:
     INHangUpCallIntentResponseCode: { } #since 16.2
     INEditMessageIntentResponseCode: {} #since 17.0
     INUnsendMessagesIntentResponseCode: {} #since 17.0
+    INMessageReactionType: { } #since 18.0
+    INStickerType: { } #since 18.0
 typed_enums:
     INCarChargingConnectorType:
         enum: INCarChargingConnectorType
@@ -1764,6 +1766,14 @@ classes:
     INUnsendMessagesIntentResponse: #since 17.0
         methods:
             '-initWithCode:userActivity:':
+                name: init
+    INMessageReaction: #since 18.0
+        methods:
+            '-initWithReactionType:reactionDescription:emoji:':
+                name: init
+    INSticker: #since 18.0
+        methods:
+            '-initWithType:emoji:':
                 name: init
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3

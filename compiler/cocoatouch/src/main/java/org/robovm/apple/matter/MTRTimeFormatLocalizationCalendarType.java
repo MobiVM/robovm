@@ -87,7 +87,11 @@ public enum /*<name>*/MTRTimeFormatLocalizationCalendarType/*</name>*/ implement
     /**
      * @since Available in iOS 16.1 and later.
      */
-    Taiwanese(11L);
+    Taiwanese(11L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    UseActiveLocale(255L);
     /*</values>*/
 
     /*<bind>*/

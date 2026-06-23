@@ -38,12 +38,18 @@ import org.robovm.apple.uikit.*;
 /*<annotations>*//*</annotations>*/
 public enum /*<name>*/CGImageByteOrderInfo/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Use kCGBitmapByteOrderInfoMask
+     */
+    @Deprecated
     ByteOrderMask(28672L),
     ByteOrderDefault(0L),
     ByteOrder16Little(4096L),
     ByteOrder32Little(8192L),
     ByteOrder16Big(12288L),
-    ByteOrder32Big(16384L);
+    ByteOrder32Big(16384L),
+    ByteOrder16Host(4096L),
+    ByteOrder32Host(8192L);
     /*</values>*/
 
     /*<bind>*/

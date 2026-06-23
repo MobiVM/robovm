@@ -62,6 +62,56 @@ import org.robovm.apple.contacts.*;
     public native CLMonitoringState getState();
     @Property(selector = "date")
     public native NSDate getDate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationDenied")
+    public native boolean isAuthorizationDenied();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationDeniedGlobally")
+    public native boolean isAuthorizationDeniedGlobally();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationRestricted")
+    public native boolean isAuthorizationRestricted();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "insufficientlyInUse")
+    public native boolean isInsufficientlyInUse();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "accuracyLimited")
+    public native boolean isAccuracyLimited();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "conditionUnsupported")
+    public native boolean isConditionUnsupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "conditionLimitExceeded")
+    public native boolean isConditionLimitExceeded();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "persistenceUnavailable")
+    public native boolean isPersistenceUnavailable();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "serviceSessionRequired")
+    public native boolean isServiceSessionRequired();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "authorizationRequestInProgress")
+    public native boolean isAuthorizationRequestInProgress();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

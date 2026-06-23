@@ -67,6 +67,16 @@ import org.robovm.apple.uniformtypeid.*;
     @Property(selector = "authorizedRoutes")
     public native NSArray<AVCustomDeviceRoute> getAuthorizedRoutes();
     /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "knownRouteIPs")
+    public native NSArray<AVCustomRoutingPartialIP> getKnownRouteIPs();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "setKnownRouteIPs:")
+    public native void setKnownRouteIPs(NSArray<AVCustomRoutingPartialIP> v);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "customActionItems")

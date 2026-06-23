@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use Transaction.all and AppTransaction.shared
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKReceiptRefreshRequest/*</name>*/ 
     extends /*<extends>*/SKRequest/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

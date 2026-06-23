@@ -141,43 +141,39 @@ import org.robovm.apple.symbols.*;
     public static final NSAttributedStringAttribute StrikethroughColor = new NSAttributedStringAttribute("StrikethroughColor");
     public static final NSAttributedStringAttribute WritingDirection = new NSAttributedStringAttribute("WritingDirection");
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final NSAttributedStringAttribute TextHighlightStyle = new NSAttributedStringAttribute("TextHighlightStyle");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final NSAttributedStringAttribute TextHighlightColorScheme = new NSAttributedStringAttribute("TextHighlightColorScheme");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final NSAttributedStringAttribute AdaptiveImageGlyph = new NSAttributedStringAttribute("AdaptiveImageGlyph");
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public static final NSAttributedStringAttribute WritingToolsExclusion = new NSAttributedStringAttribute("WritingToolsExclusion");
+    /**
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public static final NSAttributedStringAttribute Obliqueness = new NSAttributedStringAttribute("Obliqueness");
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public static final NSAttributedStringAttribute Expansion = new NSAttributedStringAttribute("Expansion");
     /**
-     * @deprecated This attribute is no longer supported with TextKit 2
+     * @deprecated This attribute is not supported with TextKit 2
      */
     @Deprecated
     public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
-     */
-    @Deprecated
-    public static final NSAttributedStringAttribute TextFont = new NSAttributedStringAttribute("TextFont");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
-     */
-    @Deprecated
-    public static final NSAttributedStringAttribute TextColor = new NSAttributedStringAttribute("TextColor");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-     */
-    @Deprecated
-    public static final NSAttributedStringAttribute TextShadowColor = new NSAttributedStringAttribute("TextShadowColor");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-     */
-    @Deprecated
-    public static final NSAttributedStringAttribute TextShadowOffset = new NSAttributedStringAttribute("TextShadowOffset");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechAnnouncementPriority, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, WritingDirection, Obliqueness, Expansion, VerticalGlyphForm, TextFont, TextColor, TextShadowColor, TextShadowOffset/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechAnnouncementPriority, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, WritingDirection, TextHighlightStyle, TextHighlightColorScheme, AdaptiveImageGlyph, WritingToolsExclusion, Obliqueness, Expansion, VerticalGlyphForm/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -268,47 +264,43 @@ import org.robovm.apple.symbols.*;
         @GlobalValue(symbol="NSWritingDirectionAttributeName", optional=true)
         public static native NSString WritingDirection();
         /**
-         * @deprecated This attribute is no longer supported with TextKit 2
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSTextHighlightStyleAttributeName", optional=true)
+        public static native NSString TextHighlightStyle();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSTextHighlightColorSchemeAttributeName", optional=true)
+        public static native NSString TextHighlightColorScheme();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSAdaptiveImageGlyphAttributeName", optional=true)
+        public static native NSString AdaptiveImageGlyph();
+        /**
+         * @since Available in iOS 18.2 and later.
+         */
+        @GlobalValue(symbol="NSWritingToolsExclusionAttributeName", optional=true)
+        public static native NSString WritingToolsExclusion();
+        /**
+         * @deprecated This attribute is not supported with TextKit 2
          */
         @Deprecated
         @GlobalValue(symbol="NSObliquenessAttributeName", optional=true)
         public static native NSString Obliqueness();
         /**
-         * @deprecated This attribute is no longer supported with TextKit 2
+         * @deprecated This attribute is not supported with TextKit 2
          */
         @Deprecated
         @GlobalValue(symbol="NSExpansionAttributeName", optional=true)
         public static native NSString Expansion();
         /**
-         * @deprecated This attribute is no longer supported with TextKit 2
+         * @deprecated This attribute is not supported with TextKit 2
          */
         @Deprecated
         @GlobalValue(symbol="NSVerticalGlyphFormAttributeName", optional=true)
         public static native NSString VerticalGlyphForm();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSFontAttributeName
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeFont", optional=true)
-        public static native NSString TextFont();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSForegroundColorAttributeName
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextColor", optional=true)
-        public static native NSString TextColor();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextShadowColor", optional=true)
-        public static native NSString TextShadowColor();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSShadowAttributeName with an NSShadow instance as the value
-         */
-        @Deprecated
-        @GlobalValue(symbol="UITextAttributeTextShadowOffset", optional=true)
-        public static native NSString TextShadowOffset();
         /*</values>*/
     }
 }

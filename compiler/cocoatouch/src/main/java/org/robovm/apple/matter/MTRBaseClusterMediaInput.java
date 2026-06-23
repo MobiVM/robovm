@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterMediaInput/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterMediaInputPtr extends Ptr<MTRBaseClusterMediaInput, MTRBaseClusterMediaInputPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -200,5 +195,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

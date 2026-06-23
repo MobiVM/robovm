@@ -40,7 +40,7 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRAttributeRequestPath/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRAttributeRequestPathPtr extends Ptr<MTRAttributeRequestPath, MTRAttributeRequestPathPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRAttributeRequestPath.class); }/*</bind>*/
@@ -53,6 +53,8 @@ import org.robovm.apple.security.*;
      * @since Available in iOS 17.0 and later.
      */
     public MTRAttributeRequestPath(NSNumber endpointID, NSNumber clusterID, NSNumber attributeID) { super((Handle) null, create(endpointID, clusterID, attributeID)); retain(getHandle()); }
+    @Method(selector = "initWithCoder:")
+    public MTRAttributeRequestPath(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -70,6 +72,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "attribute")
     public native NSNumber getAttribute();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -78,5 +82,9 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "requestPathWithEndpointID:clusterID:attributeID:")
     protected static native @Pointer long create(NSNumber endpointID, NSNumber clusterID, NSNumber attributeID);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

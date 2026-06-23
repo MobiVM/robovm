@@ -156,9 +156,13 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final SHMediaItemProperty FrequencySkew = new SHMediaItemProperty("FrequencySkew");
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final SHMediaItemProperty Confidence = new SHMediaItemProperty("Confidence");
     /*</constants>*/
     
-    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, TimeRanges, FrequencySkewRanges, CreationDate, MatchOffset, FrequencySkew/*</value_list>*/};
+    private static /*<name>*/SHMediaItemProperty/*</name>*/[] values = new /*<name>*/SHMediaItemProperty/*</name>*/[] {/*<value_list>*/ShazamID, Title, Subtitle, Artist, WebURL, AppleMusicID, AppleMusicURL, ArtworkURL, VideoURL, ExplicitContent, Genres, ISRC, TimeRanges, FrequencySkewRanges, CreationDate, MatchOffset, FrequencySkew, Confidence/*</value_list>*/};
     
     /*<name>*/SHMediaItemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -266,6 +270,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="SHMediaItemFrequencySkew", optional=true)
         public static native NSString FrequencySkew();
+        /**
+         * @since Available in iOS 18.4 and later.
+         */
+        @GlobalValue(symbol="SHMediaItemConfidence", optional=true)
+        public static native NSString Confidence();
         /*</values>*/
     }
 }

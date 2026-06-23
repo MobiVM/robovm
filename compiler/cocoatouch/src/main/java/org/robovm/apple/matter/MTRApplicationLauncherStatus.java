@@ -51,7 +51,19 @@ public enum /*<name>*/MTRApplicationLauncherStatus/*</name>*/ implements ValuedE
     /**
      * @since Available in iOS 16.1 and later.
      */
-    SystemBusy(2L);
+    SystemBusy(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    PendingUserApproval(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Downloading(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Installing(5L);
     /*</values>*/
 
     /*<bind>*/

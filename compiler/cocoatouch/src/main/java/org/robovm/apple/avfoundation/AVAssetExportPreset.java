@@ -135,6 +135,14 @@ import org.robovm.apple.uikit.*;
      */
     public static final AVAssetExportPreset HEVC3840x2160WithAlpha = new AVAssetExportPreset("HEVC3840x2160WithAlpha");
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetExportPreset HEVC4320x2160 = new AVAssetExportPreset("HEVC4320x2160");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetExportPreset HEVC7680x4320 = new AVAssetExportPreset("HEVC7680x4320");
+    /**
      * @since Available in iOS 17.0 and later.
      */
     public static final AVAssetExportPreset MVHEVC960x960 = new AVAssetExportPreset("MVHEVC960x960");
@@ -142,6 +150,14 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final AVAssetExportPreset MVHEVC1440x1440 = new AVAssetExportPreset("MVHEVC1440x1440");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetExportPreset MVHEVC4320x4320 = new AVAssetExportPreset("MVHEVC4320x4320");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVAssetExportPreset MVHEVC7680x7680 = new AVAssetExportPreset("MVHEVC7680x7680");
     public static final AVAssetExportPreset AppleM4A = new AVAssetExportPreset("AppleM4A");
     public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("Passthrough");
     /**
@@ -154,7 +170,7 @@ import org.robovm.apple.uikit.*;
     public static final AVAssetExportPreset AppleProRes4444LPCM = new AVAssetExportPreset("AppleProRes4444LPCM");
     /*</constants>*/
     
-    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, HEVCHighestQualityWithAlpha, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC1920x1080WithAlpha, HEVC3840x2160, HEVC3840x2160WithAlpha, MVHEVC960x960, MVHEVC1440x1440, AppleM4A, Passthrough, AppleProRes422LPCM, AppleProRes4444LPCM/*</value_list>*/};
+    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, HEVCHighestQuality, HEVCHighestQualityWithAlpha, Size640x480, Size960x540, Size1280x720, Size1920x1080, Size3840x2160, HEVC1920x1080, HEVC1920x1080WithAlpha, HEVC3840x2160, HEVC3840x2160WithAlpha, HEVC4320x2160, HEVC7680x4320, MVHEVC960x960, MVHEVC1440x1440, MVHEVC4320x4320, MVHEVC7680x7680, AppleM4A, Passthrough, AppleProRes422LPCM, AppleProRes4444LPCM/*</value_list>*/};
     
     /*<name>*/AVAssetExportPreset/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -227,6 +243,16 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="AVAssetExportPresetHEVC3840x2160WithAlpha", optional=true)
         public static native NSString HEVC3840x2160WithAlpha();
         /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHEVC4320x2160", optional=true)
+        public static native NSString HEVC4320x2160();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHEVC7680x4320", optional=true)
+        public static native NSString HEVC7680x4320();
+        /**
          * @since Available in iOS 17.0 and later.
          */
         @GlobalValue(symbol="AVAssetExportPresetMVHEVC960x960", optional=true)
@@ -236,6 +262,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVAssetExportPresetMVHEVC1440x1440", optional=true)
         public static native NSString MVHEVC1440x1440();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetMVHEVC4320x4320", optional=true)
+        public static native NSString MVHEVC4320x4320();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetMVHEVC7680x7680", optional=true)
+        public static native NSString MVHEVC7680x7680();
         @GlobalValue(symbol="AVAssetExportPresetAppleM4A", optional=true)
         public static native NSString AppleM4A();
         @GlobalValue(symbol="AVAssetExportPresetPassthrough", optional=true)

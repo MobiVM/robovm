@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest/*</name>*/ 
     extends /*<extends>*/ASAuthorizationRequest/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationPublicKeyCredentialRegistrationRequest/*</implements>*/ {
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialRegistrationRequest, ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestPtr extends Ptr<ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest, ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest.class); }/*</bind>*/
@@ -62,6 +62,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setLargeBlob:")
     public native void setLargeBlob(ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFRegistrationInput getPrf();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPrf:")
+    public native void setPrf(ASAuthorizationPublicKeyCredentialPRFRegistrationInput v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "requestStyle")
+    public native ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle getRequestStyle();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setRequestStyle:")
+    public native void setRequestStyle(ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle v);
     @Property(selector = "relyingPartyIdentifier")
     public native String getRelyingPartyIdentifier();
     @Property(selector = "userID")
@@ -88,6 +108,12 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialAttestationKind getAttestationPreference();
     @Property(selector = "setAttestationPreference:")
     public native void setAttestationPreference(ASAuthorizationPublicKeyCredentialAttestationKind v);
+    @Property(selector = "clientData")
+    public native ASPublicKeyCredentialClientData getClientData();
+    @Property(selector = "excludedCredentials")
+    public native NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> getExcludedCredentials();
+    @Property(selector = "setExcludedCredentials:")
+    public native void setExcludedCredentials(NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

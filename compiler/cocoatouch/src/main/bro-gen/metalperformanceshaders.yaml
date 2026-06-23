@@ -79,6 +79,7 @@ enums:
     MPSDeviceCapsValues: {prefix: MPS}
     MPSFloatDataTypeBit: { prefix: MPSFloatDataType }
     MPSFloatDataTypeShift: { prefix: MPSFloatDataType }
+    MPSNDArrayQuantizationScheme: {prefix: MPSNDArrayQuantizationType}
 classes:
     # structs
     MPSOrigin: {}
@@ -763,8 +764,7 @@ classes:
             '-initWithGamma:beta:':
                 name: init
             '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
-                constructor: true
-                name: createTemporaryState
+                name: createTemporaryStateForNumberOfFeatureChannels
     MPSCNNNormalizationNode: #since 11.0
         methods:
             '-initWithSource:':
@@ -1422,17 +1422,13 @@ classes:
             '-destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:':
                 name: getDestinationImageDescriptor
             '+temporaryStateWithCommandBuffer:bufferSize:':
-                constructor: true
-                name: create
+                name: createTemporaryState
             '+temporaryStateWithCommandBuffer:textureDescriptor:':
-                constructor: true
-                name: create
+                name: createTemporaryState
             '+temporaryStateWithCommandBuffer:resourceList:':
-                constructor: true
-                name: create
+                name: createTemporaryState
             '+temporaryStateWithCommandBuffer:':
-                constructor: true
-                name: create
+                name: createTemporaryState
     MPSStateResourceList: {} #since 11.3
     MPSTemporaryImage: #since 10.0
         methods:
@@ -1488,8 +1484,7 @@ classes:
             '-initWithMean:variance:':
                 name: init
             '+temporaryStateWithCommandBuffer:numberOfFeatureChannels:':
-                name: create
-                constructor: true
+                name: createTemporaryStateForNumberOfFeatureChannels
     MPSCNNYOLOLoss: #since 12.0
         methods:
             '-initWithDevice:lossDescriptor:':
@@ -1867,6 +1862,15 @@ classes:
                 name: readBytes
             '-writeBytes:strideBytes:':
                 name: writeBytes
+            '-initWithBuffer:offset:descriptor:':
+                name: init
+            '-arrayViewWithDescriptor:':
+                name: createArrayView
+            '-arrayViewWithShape:strides:':
+                name: createArrayView
+            '-arrayViewWithDimensionCount:dimensionSizes:strides:':
+                name: createArrayView
+
     MPSNDArrayDescriptor: #since 13.0
         methods:
             '-sliceDimension:withSubrange:':
@@ -1886,6 +1890,8 @@ classes:
             '+descriptorWithDataType:dimensionSizes:':
                 name: create
                 constructor: true
+            '-permuteWithDimensionOrder:':
+                name: permute
     MPSNNForwardLoss: #since 13.0
         methods:
             '-initWithDevice:lossDescriptor:':
@@ -2062,6 +2068,8 @@ classes:
                 name: encode
             '-encodeToCommandBuffer:sourceArrays:resultState:destinationArray:':
                 name: encode
+            '-encodeToCommandEncoder:commandBuffer:sourceArrays:destinationArray:':
+                name: encode
     MPSNDArrayStridedSlice: {} #since 13.0
     MPSNDArrayStridedSliceGradient: {} #since 13.0
     MPSNDArrayUnaryGradientKernel: #since 13.0
@@ -2151,6 +2159,40 @@ classes:
                 name: init
             '-encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:':
                 name: encodeToCommandBuffer
+    MPSNDArrayAffineInt4Dequantize: #since 18.0
+        methods:
+            '-initWithDevice:quantizationDescriptor:':
+                name: init
+    MPSNDArrayAffineQuantizationDescriptor: #since 18.0
+        methods:
+            '-initWithDataType:hasZeroPoint:hasMinValue:':
+                name: init
+    MPSNDArrayIdentity: #since 18.0
+        methods:
+            '-reshapeWithCommandBuffer:sourceArray:shape:destinationArray:':
+                name: reshape
+            '-reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:':
+                name: reshape
+            '-reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:':
+                name: reshape
+            '-reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:':
+                name: reshape
+    MPSNDArrayLUTDequantize: {} #since 18.0
+    MPSNDArrayLUTQuantizationDescriptor: #since 18.0
+        methods:
+            '-initWithDataType:':
+                name: init
+            '-initWithDataType:vectorAxis:':
+                name: init
+    MPSNDArrayQuantizationDescriptor: {} #since 18.0
+    MPSNDArrayQuantizedMatrixMultiplication: #since 18.0
+        methods:
+            '-initWithDevice:leftQuantizationDescriptor:rightQuantizationDescriptor:':
+                name: init
+    MPSNDArrayVectorLUTDequantize: #since 18.0
+        methods:
+            '-initWithDevice:axis:':
+                name: init
 protocols:
     MPSCNNBatchNormalizationDataSource: #since 11.3
         methods:

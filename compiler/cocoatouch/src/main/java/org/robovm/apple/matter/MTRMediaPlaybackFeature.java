@@ -49,6 +49,18 @@ public final class /*<name>*/MTRMediaPlaybackFeature/*</name>*/ extends Bits</*<
      * @since Available in iOS 16.2 and later.
      */
     public static final MTRMediaPlaybackFeature VariableSpeed = new MTRMediaPlaybackFeature(2L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRMediaPlaybackFeature TextTracks = new MTRMediaPlaybackFeature(4L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRMediaPlaybackFeature AudioTracks = new MTRMediaPlaybackFeature(8L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRMediaPlaybackFeature AudioAdvance = new MTRMediaPlaybackFeature(16L);
     /*</values>*/
 
     /*<bind>*/

@@ -92,5 +92,35 @@ import org.robovm.apple.uikit.*;
     public static native NSPredicate predicateForPresentationWidth(@MachineSizedFloat double width, NSPredicateOperatorType operatorType);
     @Method(selector = "predicateForPresentationHeight:operatorType:")
     public static native NSPredicate predicateForPresentationHeight(@MachineSizedFloat double height, NSPredicateOperatorType operatorType);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "predicateForAudioSampleRate:mediaSelectionOption:operatorType:")
+    public static native NSPredicate predicateForAudioSampleRate(double sampleRate, AVMediaSelectionOption mediaSelectionOption, NSPredicateOperatorType operatorType);
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Method(selector = "predicateForChannelCount:operatorType:")
+    public static native NSPredicate predicateForChannelCount(@MachineSizedSInt long channelCount, NSPredicateOperatorType operatorType);
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Method(selector = "predicateForBinauralAudio:")
+    public static native NSPredicate predicateForBinauralAudio(boolean isBinauralAudio);
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Method(selector = "predicateForImmersiveAudio:")
+    public static native NSPredicate predicateForImmersiveAudio(boolean isImmersiveAudio);
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Method(selector = "predicateForDownmixAudio:")
+    public static native NSPredicate predicateForDownmixAudio(boolean isDownmixAudio);
+    /**
+     * @since Available in iOS 18.5 and later.
+     */
+    @Method(selector = "predicateForAudioSampleRate:operatorType:")
+    public static native NSPredicate predicateForAudioSampleRate(double sampleRate, NSPredicateOperatorType operatorType);
     /*</methods>*/
 }

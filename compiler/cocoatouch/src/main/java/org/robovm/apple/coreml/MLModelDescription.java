@@ -60,6 +60,11 @@ import org.robovm.apple.metal.*;
     public native NSDictionary<NSString, MLFeatureDescription> getInputDescriptionsByName();
     @Property(selector = "outputDescriptionsByName")
     public native NSDictionary<NSString, MLFeatureDescription> getOutputDescriptionsByName();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "stateDescriptionsByName")
+    public native NSDictionary<NSString, MLFeatureDescription> getStateDescriptionsByName();
     @Property(selector = "predictedFeatureName")
     public native String getPredictedFeatureName();
     @Property(selector = "predictedProbabilitiesName")

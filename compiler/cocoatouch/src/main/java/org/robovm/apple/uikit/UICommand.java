@@ -101,6 +101,10 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setSelectedImage:")
     public native void setSelectedImage(UIImage v);
+    @Property(selector = "repeatBehavior")
+    public native UIMenuElementRepeatBehavior getRepeatBehavior();
+    @Property(selector = "setRepeatBehavior:")
+    public native void setRepeatBehavior(UIMenuElementRepeatBehavior v);
     @Property(selector = "sender")
     public native NSObject getSender();
     /**

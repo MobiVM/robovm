@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class) @Library("Matter")/*</annotations>*/
 public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
@@ -49,23 +49,11 @@ public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.4 and later.
      */
-    IDTypeScenesID(5L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     IDTypeOnOffID(6L),
     /**
      * @since Available in iOS 16.4 and later.
      */
-    IDTypeOnOffSwitchConfigurationID(7L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     IDTypeLevelControlID(8L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    IDTypeBinaryInputBasicID(15L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -185,23 +173,143 @@ public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.4 and later.
      */
-    IDTypeProxyConfigurationID(66L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    IDTypeProxyDiscoveryID(67L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    IDTypeProxyValidID(68L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     IDTypeBooleanStateID(69L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeICDManagementID(70L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeOvenCavityOperationalStateID(72L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeOvenModeID(73L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeLaundryDryerControlsID(74L),
     /**
      * @since Available in iOS 16.4 and later.
      */
     IDTypeModeSelectID(80L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeLaundryWasherModeID(81L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeRefrigeratorAndTemperatureControlledCabinetModeID(82L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeLaundryWasherControlsID(83L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    IDTypeRVCRunModeID(84L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    IDTypeRVCCleanModeID(85L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeTemperatureControlID(86L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeRefrigeratorAlarmID(87L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeDishwasherModeID(89L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeAirQualityID(91L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeSmokeCOAlarmID(92L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeDishwasherAlarmID(93L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeMicrowaveOvenModeID(94L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeMicrowaveOvenControlID(95L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    IDTypeOperationalStateID(96L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    IDTypeRVCOperationalStateID(97L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeHEPAFilterMonitoringID(113L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeActivatedCarbonFilterMonitoringID(114L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeBooleanStateConfigurationID(128L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeValveConfigurationAndControlID(129L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeElectricalPowerMeasurementID(144L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeElectricalEnergyMeasurementID(145L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeWaterHeaterManagementID(148L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeMessagesID(151L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeDeviceEnergyManagementID(152L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeEnergyEVSEID(153L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypePowerTopologyID(156L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeEnergyEVSEModeID(157L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeWaterHeaterModeID(158L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeDeviceEnergyManagementModeID(159L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -211,9 +319,9 @@ public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
      */
     IDTypeWindowCoveringID(258L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    IDTypeBarrierControlID(259L),
+    IDTypeServiceAreaID(336L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -263,6 +371,58 @@ public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
      */
     IDTypeOccupancySensingID(1030L),
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeCarbonMonoxideConcentrationMeasurementID(1036L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeCarbonDioxideConcentrationMeasurementID(1037L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeNitrogenDioxideConcentrationMeasurementID(1043L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeOzoneConcentrationMeasurementID(1045L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypePM25ConcentrationMeasurementID(1066L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeFormaldehydeConcentrationMeasurementID(1067L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypePM1ConcentrationMeasurementID(1068L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypePM10ConcentrationMeasurementID(1069L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeTotalVolatileOrganicCompoundsConcentrationMeasurementID(1070L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    IDTypeRadonConcentrationMeasurementID(1071L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeWiFiNetworkManagementID(1105L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeThreadBorderRouterManagementID(1106L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeThreadNetworkDirectoryID(1107L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     IDTypeWakeOnLANID(1283L),
@@ -311,23 +471,72 @@ public enum /*<name>*/MTRClusterIDType/*</name>*/ implements ValuedEnum {
      */
     IDTypeAccountLoginID(1294L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    IDTypeElectricalMeasurementID(2820L),
+    IDTypeContentAppObserverID(1296L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    IDTypeCommissionerControlID(1873L),
     /**
      * @since Available in iOS 16.4 and later.
      */
     IDTypeUnitTestingID(4294048773L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierControl cluster will be removed
      */
-    IDTypeFaultInjectionID(4294048774L);
+    @Deprecated
+    IDTypeBarrierControlID(259L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BinaryInputBasic cluster will be removed
+     */
+    @Deprecated
+    IDTypeBinaryInputBasicID(15L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ElectricalMeasurement cluster will be removed
+     */
+    @Deprecated
+    IDTypeElectricalMeasurementID(2820L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The OnOffSwitchConfiguration cluster will be removed
+     */
+    @Deprecated
+    IDTypeOnOffSwitchConfigurationID(7L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(MTRClusterIDType.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Bridge(symbol="MTRClusterNameForID", optional=true)
+    public native String getClusterName();
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Bridge(symbol="MTRAttributeNameForID", optional=true)
+    public native String getAttributeName(MTRAttributeIDType attributeID);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Bridge(symbol="MTRRequestCommandNameForID", optional=true)
+    public native String getRequestCommandName(MTRCommandIDType commandID);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Bridge(symbol="MTRResponseCommandNameForID", optional=true)
+    public native String getResponseCommandName(MTRCommandIDType commandID);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Bridge(symbol="MTREventNameForID", optional=true)
+    public native String getEventName(MTREventIDType eventID);
+    /*</methods>*/
 
     private final long n;
 

@@ -107,6 +107,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "timelapseVideosFilter")
     public static native PHPickerFilter getTimelapseVideosFilter();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "spatialMediaFilter")
+    public static native PHPickerFilter getSpatialMediaFilter();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

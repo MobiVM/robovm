@@ -60,13 +60,13 @@ import org.robovm.apple.symbols.*;
     protected UIActivityItemsConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIActivityItemsConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithObjects:")
-    public static  UIActivityItemsConfiguration createUsingObjects(NSArray<?> objects) {
+    public static UIActivityItemsConfiguration createUsingObjects(NSArray<?> objects) {
        UIActivityItemsConfiguration res = new UIActivityItemsConfiguration((SkipInit) null);
        res.initObject(res.initWithObjects(objects));
        return res;
     }
     @Method(selector = "initWithItemProviders:")
-    public static  UIActivityItemsConfiguration createUsingItemProviders(NSArray<NSItemProvider> itemProviders) {
+    public static UIActivityItemsConfiguration createUsingItemProviders(NSArray<NSItemProvider> itemProviders) {
        UIActivityItemsConfiguration res = new UIActivityItemsConfiguration((SkipInit) null);
        res.initObject(res.initWithItemProviders(itemProviders));
        return res;

@@ -60,6 +60,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="AXAnimatedImagesEnabledDidChangeNotification", optional=true)
         public static native String AnimatedImagesEnabledDidChange();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification", optional=true)
+        public static native String PrefersNonBlinkingTextInsertionIndicatorDidChange();
     }
     
     /**
@@ -72,5 +77,20 @@ import org.robovm.apple.coregraphics.*;
      */
     @Bridge(symbol="AXAnimatedImagesEnabled", optional=true)
     public static native boolean isAnimatedImagesEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AXAssistiveAccessEnabled", optional=true)
+    public static native boolean isAssistiveAccessEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AXPrefersNonBlinkingTextInsertionIndicator", optional=true)
+    public static native boolean prefersNonBlinkingTextInsertionIndicator();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AXOpenSettingsFeature", optional=true)
+    public static native void openSettingsFeature(AXSettingsFeature feature, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

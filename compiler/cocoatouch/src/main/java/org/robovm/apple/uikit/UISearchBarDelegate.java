@@ -68,8 +68,17 @@ import org.robovm.apple.symbols.*;
     void didEndEditing(UISearchBar searchBar);
     @Method(selector = "searchBar:textDidChange:")
     void didChange(UISearchBar searchBar, String searchText);
+    /**
+     * @deprecated Use -searchBar:shouldChangeTextInRanges:replacementText:
+     */
+    @Deprecated
     @Method(selector = "searchBar:shouldChangeTextInRange:replacementText:")
     boolean shouldChange(UISearchBar searchBar, @ByVal NSRange range, String text);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "searchBar:shouldChangeTextInRanges:replacementText:")
+    boolean shouldChangeText(UISearchBar searchBar, NSArray<NSValue> ranges, String replacementText);
     @Method(selector = "searchBarSearchButtonClicked:")
     void searchButtonClicked(UISearchBar searchBar);
     @Method(selector = "searchBarBookmarkButtonClicked:")

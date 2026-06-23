@@ -82,9 +82,9 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithTitle:identifier:")
     protected native @Pointer long init(String title, String identifier);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

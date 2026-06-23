@@ -69,22 +69,22 @@ import org.robovm.apple.corehaptic.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "current")
+    public static native GCController getCurrent();
+    /**
+     * @deprecated Deprecated in iOS 13.0. Use the Menu button found on the controller's input profile, if it exists.
      */
     @Deprecated
     @Property(selector = "controllerPausedHandler")
     public native @Block VoidBlock1<GCController> getControllerPausedHandler();
     /**
-     * @deprecated Deprecated in iOS 13.0. controllerPausedHandler has been deprecated. Use the Menu button found on the controller's profile, if it exists.
+     * @deprecated Deprecated in iOS 13.0. Use the Menu button found on the controller's input profile, if it exists.
      */
     @Deprecated
     @Property(selector = "setControllerPausedHandler:")
     public native void setControllerPausedHandler(@Block VoidBlock1<GCController> v);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "current")
-    public static native GCController getCurrent();
     /**
      * @since Available in iOS 14.5 and later.
      */
@@ -97,11 +97,6 @@ import org.robovm.apple.corehaptic.*;
     public static native void setShouldMonitorBackgroundEvents(boolean v);
     @Property(selector = "isAttachedToDevice")
     public native boolean isAttachedToDevice();
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    @Property(selector = "isSnapshot")
-    public native boolean isSnapshot();
     @Property(selector = "playerIndex")
     public native GCControllerPlayerIndex getPlayerIndex();
     @Property(selector = "setPlayerIndex:")
@@ -127,6 +122,9 @@ import org.robovm.apple.corehaptic.*;
     @Deprecated
     @Property(selector = "gamepad")
     public native GCGamepad getGamepad();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "microGamepad")
     public native GCMicroGamepad getMicroGamepad();
     @Property(selector = "extendedGamepad")
@@ -143,8 +141,19 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "haptics")
     public native GCDeviceHaptics getHaptics();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "isSnapshot")
+    public native boolean isSnapshot();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "handlerQueue")
     public native DispatchQueue getHandlerQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setHandlerQueue:")
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
@@ -177,17 +186,13 @@ import org.robovm.apple.corehaptic.*;
     @GlobalValue(symbol="GCControllerUserCustomizationsDidChangeNotification", optional=true)
     public static native NSString UserCustomizationsDidChangeNotification();
     
+    @Method(selector = "controllers")
+    public static native NSArray<GCController> getControllers();
     /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "capture")
     public native GCController capture();
-    @Method(selector = "controllers")
-    public static native NSArray<GCController> getControllers();
-    @Method(selector = "startWirelessControllerDiscoveryWithCompletionHandler:")
-    public static native void startWirelessControllerDiscovery(@Block Runnable completionHandler);
-    @Method(selector = "stopWirelessControllerDiscovery")
-    public static native void stopWirelessControllerDiscovery();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -198,5 +203,9 @@ import org.robovm.apple.corehaptic.*;
      */
     @Method(selector = "controllerWithExtendedGamepad")
     public static native GCController controllerWithExtendedGamepad();
+    @Method(selector = "startWirelessControllerDiscoveryWithCompletionHandler:")
+    public static native void startWirelessControllerDiscovery(@Block Runnable completionHandler);
+    @Method(selector = "stopWirelessControllerDiscovery")
+    public static native void stopWirelessControllerDiscovery();
     /*</methods>*/
 }

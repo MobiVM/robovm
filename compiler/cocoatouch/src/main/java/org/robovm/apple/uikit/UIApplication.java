@@ -541,6 +541,11 @@ import org.robovm.apple.symbols.*;
     @GlobalValue(symbol="UIApplicationOpenSettingsURLString", optional=true)
     public static native String getOpenSettingsURLString();
     /**
+     * @since Available in iOS 18.3 and later.
+     */
+    @GlobalValue(symbol="UIApplicationOpenDefaultApplicationsSettingsURLString", optional=true)
+    public static native String getOpenDefaultApplicationsSettingsURLString();
+    /**
      * @since Available in iOS 15.4 and later.
      */
     @GlobalValue(symbol="UIApplicationOpenNotificationSettingsURLString", optional=true)
@@ -685,6 +690,20 @@ import org.robovm.apple.symbols.*;
     public native void ignoreSnapshotOnNextApplicationLaunch();
     @Method(selector = "registerObjectForStateRestoration:restorationIdentifier:")
     public static native void registerObjectForStateRestoration(UIStateRestoring object, String restorationIdentifier);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    public UIApplicationCategoryDefaultStatus getDefaultStatus(UIApplicationCategory category) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       UIApplicationCategoryDefaultStatus result = getDefaultStatus(category, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "defaultStatusForCategory:error:")
+    private native UIApplicationCategoryDefaultStatus getDefaultStatus(UIApplicationCategory category, NSError.NSErrorPtr error);
     /**
      * @deprecated Deprecated in iOS 9.0. Explicit setting of the status bar orientation is more limited in iOS 6.0 and later
      */

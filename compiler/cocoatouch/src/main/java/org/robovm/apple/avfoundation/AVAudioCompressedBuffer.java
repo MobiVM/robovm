@@ -92,6 +92,11 @@ import org.robovm.apple.uikit.*;
     public native void setByteLength(int v);
     @Property(selector = "packetDescriptions")
     public native AudioStreamPacketDescription getPacketDescriptions();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "packetDependencies")
+    public native AudioStreamPacketDependencyDescription getPacketDependencies();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

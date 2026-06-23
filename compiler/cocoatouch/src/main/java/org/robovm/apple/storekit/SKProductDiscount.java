@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.2 and later.
+ * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductDiscount/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,37 +54,51 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.displayPrice
      */
+    @Deprecated
     @Property(selector = "price")
     public native NSDecimalNumber getPrice();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.displayPrice
      */
+    @Deprecated
     @Property(selector = "priceLocale")
     public native NSLocale getPriceLocale();
     /**
      * @since Available in iOS 12.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.id
      */
+    @Deprecated
     @Property(selector = "identifier")
     public native String getIdentifier();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.period
      */
+    @Deprecated
     @Property(selector = "subscriptionPeriod")
     public native SKProductSubscriptionPeriod getSubscriptionPeriod();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.periodCount
      */
+    @Deprecated
     @Property(selector = "numberOfPeriods")
     public native @MachineSizedUInt long getNumberOfPeriods();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.paymentMode
      */
+    @Deprecated
     @Property(selector = "paymentMode")
     public native SKProductDiscountPaymentMode getPaymentMode();
     /**
      * @since Available in iOS 12.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.type
      */
+    @Deprecated
     @Property(selector = "type")
     public native SKProductDiscountType getType();
     /*</properties>*/

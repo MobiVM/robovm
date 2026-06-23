@@ -5,7 +5,7 @@ framework: AuthenticationServices
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/AuthenticationServices.framework/Headers/AuthenticationServices.h
-typedefs: {}
+typedefs:
     
 enums:
     ASCredentialIdentityStoreErrorCode: {nserror: true} #since 12.0
@@ -24,6 +24,9 @@ enums:
     ASAuthorizationPublicKeyCredentialLargeBlobSupportRequirement: {} #since 17.0
     ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState: {}
     ASPublicKeyCredentialClientDataCrossOriginValue: {}
+    ASCredentialIdentityTypes: { } #since 17.4
+    ASUserAgeRange: { } #since 17.0
+    ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle: { } #since 18.0
 typed_enums:
     ASAuthorizationOpenIDOperation:
         enum: ASAuthorizationOpenIDOperation
@@ -79,6 +82,8 @@ classes:
                 name: removeCredentialIdentityEntries
             '-replaceCredentialIdentityEntries:completion:':
                 name: replaceCredentialIdentityEntries
+            '-getCredentialIdentitiesForService:credentialIdentityTypes:completionHandler:':
+                name: getCredentialIdentitiesForService
     ASCredentialIdentityStoreState: {} #since 12.0
     ASCredentialProviderExtensionContext: #since 12.0
         methods:
@@ -88,6 +93,10 @@ classes:
                 name: completeAssertionRequest
             '-completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:':
                 name: completeRegistrationRequest
+            '-completeOneTimeCodeRequestWithSelectedCredential:completionHandler:':
+                name: completeOneTimeCodeRequest
+            '-completeRequestWithTextToInsert:completionHandler:':
+                name: completeRequestWith
     ASCredentialProviderViewController:  #since 12.0
         methods:
             '-provideCredentialWithoutUserInteractionForIdentity:':
@@ -96,6 +105,16 @@ classes:
                 name: prepareCredentialList
             '-provideCredentialWithoutUserInteractionForRequest:':
                 name: provideCredentialWithoutUserInteraction
+            '-performPasskeyRegistrationWithoutUserInteractionIfPossible:':
+                name: performPasskeyRegistrationWithoutUserInteractionIfPossible
+            '-reportPublicKeyCredentialUpdateForRelyingParty:userHandle:newName:':
+                name: reportPublicKeyCredentialUpdate
+            '-reportUnknownPublicKeyCredentialForRelyingParty:credentialID:':
+                name: reportUnknownPublicKeyCredential
+            '-reportAllAcceptedPublicKeyCredentialsForRelyingParty:userHandle:acceptedCredentialIDs:':
+                name: reportAllAcceptedPublicKeyCredentials
+            '-reportUnusedPasswordCredentialForDomain:userName:':
+                name: reportUnusedPasswordCredential
     ASCredentialServiceIdentifier: #since 12.0
         methods:
             '-initWithIdentifier:type:':
@@ -115,6 +134,8 @@ classes:
     ASWebAuthenticationSession: #since 12.0
         methods:
             '-initWithURL:callbackURLScheme:completionHandler:':
+                name: init
+            '-initWithURL:callback:completionHandler:':
                 name: init
     #ios13
     ASAuthorization: {} #since 13.0
@@ -201,6 +222,8 @@ classes:
                 name: createCredentialRegistrationRequest
             '-createCredentialAssertionRequestWithChallenge:':
                 name: createCredentialAssertionRequest
+            '-createCredentialRegistrationRequestWithChallenge:name:userID:requestStyle:':
+                name: createCredentialRegistrationRequest
     ASAuthorizationPlatformPublicKeyCredentialRegistration: {} #since 15.0
     ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest: {} #since 15.0
     ASAuthorizationProviderExtensionAuthorizationResult: #since 15.0
@@ -214,7 +237,10 @@ classes:
             '-initWithAlgorithm:':
                 name: init
     ASAuthorizationSecurityKeyPublicKeyCredentialAssertion: {} #since 15.0
-    ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest: {} #since 15.0
+    ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest: #since 15.0
+        properties:
+            allowedCredentials:
+                type: 'NSArray<?>' # protocols in NS containers are not supported
     ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor: #since 15.0
         methods:
             '-initWithCredentialID:transports:':
@@ -243,6 +269,8 @@ classes:
         methods:
             '-initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:':
                 name: init
+            '-initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:':
+                name: init
             '+credentialWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:':
                 exclude: true # same as init
     ASPasskeyCredentialIdentity: #since 17.0
@@ -257,6 +285,10 @@ classes:
                 name: init
             '+requestWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:':
                 exclude: true # same as init
+            '-initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:assertionExtensionInput:':
+                name: init
+            '-initWithCredentialIdentity:clientDataHash:userVerificationPreference:supportedAlgorithms:registrationExtensionInput:':
+                name: init
     ASPasskeyCredentialRequestParameters: {} #since 17.0
     ASPasskeyRegistrationCredential: #since 17.0
         methods:
@@ -264,6 +296,8 @@ classes:
                 name: init
             '+credentialWithRelyingParty:clientDataHash:credentialID:attestationObject:':
                 exclude: true # same as init
+            '-initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:':
+                name: init
     ASPasswordCredentialRequest: #since 17.0
         methods:
             '-initWithCredentialIdentity:':
@@ -276,6 +310,63 @@ classes:
                 name: openCredentialProviderAppSettings
             '+openVerificationCodeAppSettingsWithCompletionHandler:':
                 name: openVerificationCodeAppSettings
+            '+requestToTurnOnCredentialProviderExtensionWithCompletionHandler:':
+                name: requestToTurnOnCredentialProviderExtension
+    ASAuthorizationPublicKeyCredentialPRFAssertionInput: #since 18.0
+        methods:
+            '-initWithInputValues:perCredentialInputValues:':
+                name: init
+    ASAuthorizationPublicKeyCredentialPRFAssertionInputValues: #since 18.0
+        methods:
+            '-initWithSaltInput1:saltInput2:':
+                name: init
+    ASAuthorizationPublicKeyCredentialPRFAssertionOutput: { } #since 18.0
+    ASAuthorizationPublicKeyCredentialPRFRegistrationInput: #since 18.0
+        methods:
+            '-initWithInputValues:':
+                name: init
+    ASAuthorizationPublicKeyCredentialPRFRegistrationOutput: { } #since 18.0
+    ASAuthorizationWebBrowserPlatformPublicKeyCredential: { } #since 17.4
+    ASAuthorizationWebBrowserPublicKeyCredentialManager: #since 17.4
+        methods:
+            '-platformCredentialsForRelyingParty:completionHandler:':
+                name: platformCredentialsForRelyingParty
+    ASOneTimeCodeCredential: #since 18.0
+        methods:
+            '-initWithCode:':
+                name: init
+            '+credentialWithCode:':
+                exclude: true # constructor available
+    ASOneTimeCodeCredentialIdentity: #since 18.0
+        methods:
+            '-initWithServiceIdentifier:label:recordIdentifier:':
+                name: init
+    ASOneTimeCodeCredentialRequest: #since 18.0
+        methods:
+            '-initWithCredentialIdentity:':
+                name: init
+    ASPasskeyAssertionCredentialExtensionInput: { } #since 18.0
+    ASPasskeyAssertionCredentialExtensionOutput: #since 18.0
+        methods:
+            '-initWithLargeBlobOutput:':
+                name: init
+    ASPasskeyRegistrationCredentialExtensionInput: { } #since 18.0
+    ASPasskeyRegistrationCredentialExtensionOutput: #since 18.0
+        methods:
+            '-initWithLargeBlobOutput:':
+                name: init
+    ASPublicKeyCredentialClientData: #since 17.4
+        methods:
+            '-initWithChallenge:origin:':
+                name: init
+    ASWebAuthenticationSessionCallback: #since 17.4
+        methods:
+            '+callbackWithCustomScheme:':
+                name: create
+                constructor: true
+            '+callbackWithHTTPSHost:path:':
+                name: create
+                constructor: true
 protocols:
     ASAuthorizationControllerDelegate: #since 13.0
         methods:
@@ -308,13 +399,31 @@ protocols:
         skip_adapter: true
         properties:
             allowedCredentials:
-                type: NSArray<T>
+                type: NSArray<?>
     ASAuthorizationPublicKeyCredentialDescriptor: {} #since 15.0
     ASAuthorizationPublicKeyCredentialRegistration: {} #since 15.0
     ASAuthorizationPublicKeyCredentialRegistrationRequest: {} #since 15.0
     ASPublicKeyCredential: {} #since 15.0
     ASCredentialIdentity: {} #since 17.0
     ASCredentialRequest: {} #since 17.0
+    ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest: { } #since 17.4
+    ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider: #since 17.4
+        methods:
+            '-createCredentialRegistrationRequestWithClientData:name:userID:':
+                name: createCredentialRegistrationRequest
+            '-createCredentialRegistrationRequestWithClientData:name:userID:requestStyle:':
+                name: createCredentialRegistrationRequest
+            '-createCredentialAssertionRequestWithClientData:':
+                name: createCredentialAssertionRequest
+    ASAuthorizationWebBrowserPlatformPublicKeyCredentialRegistrationRequest: { } #since 17.4
+    ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialAssertionRequest: { } #since 17.4
+    ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialProvider: #since 17.4
+        methods:
+            '-createCredentialRegistrationRequestWithClientData:displayName:name:userID:':
+                name: createCredentialRegistrationRequest
+            '-createCredentialAssertionRequestWithClientData:':
+                name: createCredentialAssertionRequest
+    ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest: { } #since 17.4
 functions:
     ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports:
         class: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport

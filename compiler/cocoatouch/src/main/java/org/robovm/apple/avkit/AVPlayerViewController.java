@@ -206,6 +206,21 @@ import org.robovm.apple.avrouting.*;
      */
     @Property(selector = "selectedSpeed")
     public native AVPlaybackSpeed getSelectedSpeed();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredDisplayDynamicRange")
+    public native AVDisplayDynamicRange getPreferredDisplayDynamicRange();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredDisplayDynamicRange:")
+    public native void setPreferredDisplayDynamicRange(AVDisplayDynamicRange v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "mediaCharacteristicsForSupportedCustomMediaSelectionSchemes")
+    public static native NSArray<NSString> getMediaCharacteristicsForSupportedCustomMediaSelectionSchemes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**

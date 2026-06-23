@@ -61,6 +61,11 @@ import org.robovm.apple.soundanalysis.*;
     public native SRSpeechMetricsSessionFlags getSessionFlags();
     @Property(selector = "timestamp")
     public native NSDate getTimestamp();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "timeSinceAudioStart")
+    public native double getTimeSinceAudioStart();
     @Property(selector = "audioLevel")
     public native SRAudioLevel getAudioLevel();
     @Property(selector = "speechRecognition")

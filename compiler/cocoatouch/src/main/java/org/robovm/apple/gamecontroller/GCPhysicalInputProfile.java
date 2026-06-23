@@ -160,6 +160,11 @@ import org.robovm.apple.corehaptic.*;
         @GlobalValue(symbol="GCInputDirectionPad", optional=true)
         public static native NSString DirectionPad();
         /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="GCInputThumbstick", optional=true)
+        public static native NSString Thumbstick();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftThumbstick", optional=true)
@@ -169,6 +174,26 @@ import org.robovm.apple.corehaptic.*;
          */
         @GlobalValue(symbol="GCInputRightThumbstick", optional=true)
         public static native NSString RightThumbstick();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="GCInputThumbstickButton", optional=true)
+        public static native NSString ThumbstickButton();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="GCInputLeftThumbstickButton", optional=true)
+        public static native NSString LeftThumbstickButton();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="GCInputRightThumbstickButton", optional=true)
+        public static native NSString RightThumbstickButton();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="GCInputGripButton", optional=true)
+        public static native NSString GripButton();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -180,6 +205,21 @@ import org.robovm.apple.corehaptic.*;
         @GlobalValue(symbol="GCInputRightShoulder", optional=true)
         public static native NSString RightShoulder();
         /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="GCInputLeftBumper", optional=true)
+        public static native NSString LeftBumper();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="GCInputRightBumper", optional=true)
+        public static native NSString RightBumper();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="GCInputTrigger", optional=true)
+        public static native NSString Trigger();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputLeftTrigger", optional=true)
@@ -189,16 +229,6 @@ import org.robovm.apple.corehaptic.*;
          */
         @GlobalValue(symbol="GCInputRightTrigger", optional=true)
         public static native NSString RightTrigger();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCInputLeftThumbstickButton", optional=true)
-        public static native NSString LeftThumbstickButton();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="GCInputRightThumbstickButton", optional=true)
-        public static native NSString RightThumbstickButton();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -308,6 +338,16 @@ import org.robovm.apple.corehaptic.*;
         public static native NSString PaddleFour();
     }
     
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Bridge(symbol="GCInputBackLeftButton", optional=true)
+    public static native NSString getBackLeftButton(@MachineSizedSInt long position);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Bridge(symbol="GCInputBackRightButton", optional=true)
+    public static native NSString getBackRightButton(@MachineSizedSInt long position);
     /**
      * @since Available in iOS 16.0 and later.
      */

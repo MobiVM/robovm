@@ -68,5 +68,36 @@ import org.robovm.apple.uikit.*;
     @StructMember(1) public native float getTint();
     @StructMember(1) public native AVCaptureWhiteBalanceTemperatureAndTintValues setTint(float tint);
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    @Library("AVFoundation")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten", optional=true)
+        public static native NSString Tungsten();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent", optional=true)
+        public static native NSString Fluorescent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight", optional=true)
+        public static native NSString Daylight();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy", optional=true)
+        public static native NSString Cloudy();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVCaptureWhiteBalanceTemperatureAndTintValuesShadow", optional=true)
+        public static native NSString Shadow();
+    }
+    /*</methods>*/
 }

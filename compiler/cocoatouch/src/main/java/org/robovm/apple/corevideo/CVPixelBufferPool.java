@@ -60,7 +60,9 @@ import org.robovm.apple.iosurface.*;
     /*<ptr>*/public static class CVPixelBufferPoolPtr extends Ptr<CVPixelBufferPool, CVPixelBufferPoolPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVPixelBufferPool.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVPixelBufferPool() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     public static CVPixelBufferPool create(CVPixelBufferPoolAttributes poolAttributes, CVPixelBufferAttributes pixelBufferAttributes) {

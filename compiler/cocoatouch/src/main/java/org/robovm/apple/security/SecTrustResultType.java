@@ -40,11 +40,6 @@ public enum /*<name>*/SecTrustResultType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Invalid(0L),
     Proceed(1L),
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    Confirm(2L),
     Deny(3L),
     Unspecified(4L),
     RecoverableTrustFailure(5L),

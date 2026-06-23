@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterWakeOnLAN/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterWakeOnLANPtr extends Ptr<MTRBaseClusterWakeOnLAN, MTRBaseClusterWakeOnLANPtr> {}/*</ptr>*/
@@ -63,11 +63,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "readAttributeMACAddressWithCompletion:")
     public native void readAttributeMACAddress(@Block VoidBlock2<NSString, NSError> completion);
     /**
@@ -75,6 +70,16 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "subscribeAttributeMACAddressWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeMACAddress(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSString, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeLinkLocalAddressWithCompletion:")
+    public native void readAttributeLinkLocalAddress(@Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeLinkLocalAddressWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeLinkLocalAddress(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSData, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -131,6 +136,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeMACAddressWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeMACAddress(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSString, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeLinkLocalAddressWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeLinkLocalAddress(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSData, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
@@ -155,5 +165,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

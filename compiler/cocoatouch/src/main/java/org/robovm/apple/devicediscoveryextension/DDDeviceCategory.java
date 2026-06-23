@@ -43,7 +43,8 @@ public enum /*<name>*/DDDeviceCategory/*</name>*/ implements ValuedEnum {
     TVWithMediaBox(2L),
     TV(3L),
     LaptopComputer(4L),
-    DesktopComputer(5L);
+    DesktopComputer(5L),
+    AccessorySetup(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(DDDeviceCategory.class); }/*</bind>*/

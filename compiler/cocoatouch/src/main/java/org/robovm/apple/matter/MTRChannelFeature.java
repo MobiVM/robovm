@@ -49,6 +49,14 @@ public final class /*<name>*/MTRChannelFeature/*</name>*/ extends Bits</*<name>*
      * @since Available in iOS 16.1 and later.
      */
     public static final MTRChannelFeature LineupInfo = new MTRChannelFeature(2L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRChannelFeature ElectronicGuide = new MTRChannelFeature(4L);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    public static final MTRChannelFeature RecordProgram = new MTRChannelFeature(8L);
     /*</values>*/
 
     /*<bind>*/

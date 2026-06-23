@@ -75,18 +75,38 @@ import org.robovm.apple.symbols.*;
     public native @ByVal UIOffset getTitlePositionAdjustment();
     @Property(selector = "setTitlePositionAdjustment:")
     public native void setTitlePositionAdjustment(@ByVal UIOffset v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "subtitleTextAttributes")
+    public native NSDictionary<NSString, ?> getSubtitleTextAttributes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSubtitleTextAttributes:")
+    public native void setSubtitleTextAttributes(NSDictionary<NSString, ?> v);
     @Property(selector = "largeTitleTextAttributes")
     public native NSDictionary<NSString, ?> getLargeTitleTextAttributes();
     @Property(selector = "setLargeTitleTextAttributes:")
     public native void setLargeTitleTextAttributes(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeSubtitleTextAttributes")
+    public native NSDictionary<NSString, ?> getLargeSubtitleTextAttributes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeSubtitleTextAttributes:")
+    public native void setLargeSubtitleTextAttributes(NSDictionary<NSString, ?> v);
     @Property(selector = "buttonAppearance")
     public native UIBarButtonItemAppearance getButtonAppearance();
     @Property(selector = "setButtonAppearance:")
     public native void setButtonAppearance(UIBarButtonItemAppearance v);
-    @Property(selector = "doneButtonAppearance")
-    public native UIBarButtonItemAppearance getDoneButtonAppearance();
-    @Property(selector = "setDoneButtonAppearance:")
-    public native void setDoneButtonAppearance(UIBarButtonItemAppearance v);
+    @Property(selector = "prominentButtonAppearance")
+    public native UIBarButtonItemAppearance getProminentButtonAppearance();
+    @Property(selector = "setProminentButtonAppearance:")
+    public native void setProminentButtonAppearance(UIBarButtonItemAppearance v);
     @Property(selector = "backButtonAppearance")
     public native UIBarButtonItemAppearance getBackButtonAppearance();
     @Property(selector = "setBackButtonAppearance:")
@@ -95,6 +115,20 @@ import org.robovm.apple.symbols.*;
     public native UIImage getBackIndicatorImage();
     @Property(selector = "backIndicatorTransitionMaskImage")
     public native UIImage getBackIndicatorTransitionMaskImage();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use prominentButtonAppearance
+     */
+    @Deprecated
+    @Property(selector = "doneButtonAppearance")
+    public native UIBarButtonItemAppearance getDoneButtonAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use prominentButtonAppearance
+     */
+    @Deprecated
+    @Property(selector = "setDoneButtonAppearance:")
+    public native void setDoneButtonAppearance(UIBarButtonItemAppearance v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

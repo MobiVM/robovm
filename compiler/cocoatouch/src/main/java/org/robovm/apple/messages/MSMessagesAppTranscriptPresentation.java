@@ -48,7 +48,16 @@ import org.robovm.apple.coreanimation.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "messageTintColor")
+    UIColor getMessageTintColor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "messageCornerRadius")
+    @MachineSizedFloat double getMessageCornerRadius();
     /*</properties>*/
     /*<methods>*/
     /**
@@ -56,6 +65,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "contentSizeThatFits:")
     @ByVal CGSize contentSizeThatFits(@ByVal CGSize size);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "invalidateMessageTintColor")
+    void invalidateMessageTintColor();
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -61,13 +61,13 @@ import org.robovm.apple.uikit.*;
     protected AVPlayerInterstitialEvent(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 15.0 and later.
-     * @deprecated Use interstitialEventWithPrimaryItem:time:
+     * @deprecated Deprecated in iOS 18.0. Use interstitialEventWithPrimaryItem:time: instead
      */
     @Deprecated
     public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, String identifier, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes) { super((Handle) null, create(primaryItem, identifier, time, templateItems, restrictions, resumptionOffset, playoutLimit, userDefinedAttributes)); retain(getHandle()); }
     /**
      * @since Available in iOS 15.0 and later.
-     * @deprecated Use interstitialEventWithPrimaryItem:date:
+     * @deprecated Deprecated in iOS 18.0. Use interstitialEventWithPrimaryItem:date: instead
      */
     @Deprecated
     public AVPlayerInterstitialEvent(AVPlayerItem primaryItem, String identifier, NSDate date, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes) { super((Handle) null, create(primaryItem, identifier, date, templateItems, restrictions, resumptionOffset, playoutLimit, userDefinedAttributes)); retain(getHandle()); }
@@ -124,6 +124,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "assetListResponse")
     public native NSDictionary<?, ?> getAssetListResponse();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "timelineOccupancy")
+    public native AVPlayerInterstitialEventTimelineOccupancy getTimelineOccupancy();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supplementsPrimaryContent")
+    public native boolean isSupplementsPrimaryContent();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "contentMayVary")
+    public native boolean isContentMayVary();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "skipControlTimeRange")
+    public native @ByVal CMTimeRange getSkipControlTimeRange();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "skipControlLocalizedLabelBundleKey")
+    public native String getSkipControlLocalizedLabelBundleKey();
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -189,19 +214,54 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setUserDefinedAttributes:")
     public native void setUserDefinedAttributes(NSDictionary<?, ?> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTimelineOccupancy:")
+    public native void setTimelineOccupancy(AVPlayerInterstitialEventTimelineOccupancy v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupplementsPrimaryContent:")
+    public native void setSupplementsPrimaryContent(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setContentMayVary:")
+    public native void setContentMayVary(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "plannedDuration")
+    public native @ByVal CMTime getPlannedDuration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPlannedDuration:")
+    public native void setPlannedDuration(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSkipControlTimeRange:")
+    public native void setSkipControlTimeRange(@ByVal CMTimeRange v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSkipControlLocalizedLabelBundleKey:")
+    public native void setSkipControlLocalizedLabelBundleKey(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
      * @since Available in iOS 15.0 and later.
-     * @deprecated Use interstitialEventWithPrimaryItem:time:
+     * @deprecated Deprecated in iOS 18.0. Use interstitialEventWithPrimaryItem:time: instead
      */
     @Deprecated
     @Method(selector = "interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:")
     protected static native @Pointer long create(AVPlayerItem primaryItem, String identifier, @ByVal CMTime time, NSArray<AVPlayerItem> templateItems, AVPlayerInterstitialEventRestrictions restrictions, @ByVal CMTime resumptionOffset, @ByVal CMTime playoutLimit, NSDictionary<?, ?> userDefinedAttributes);
     /**
      * @since Available in iOS 15.0 and later.
-     * @deprecated Use interstitialEventWithPrimaryItem:date:
+     * @deprecated Deprecated in iOS 18.0. Use interstitialEventWithPrimaryItem:date: instead
      */
     @Deprecated
     @Method(selector = "interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:")

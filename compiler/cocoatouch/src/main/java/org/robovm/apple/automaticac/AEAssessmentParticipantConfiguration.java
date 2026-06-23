@@ -44,12 +44,41 @@ import org.robovm.apple.foundation.*;
     /*<bind>*/static { ObjCRuntime.bind(AEAssessmentParticipantConfiguration.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected AEAssessmentParticipantConfiguration() {}
+    public AEAssessmentParticipantConfiguration() {}
     protected AEAssessmentParticipantConfiguration(Handle h, long handle) { super(h, handle); }
     protected AEAssessmentParticipantConfiguration(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "allowsNetworkAccess")
+    public native boolean allowsNetworkAccess();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "setAllowsNetworkAccess:")
+    public native void setAllowsNetworkAccess(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isRequired")
+    public native boolean isRequired();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequired:")
+    public native void setRequired(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "configurationInfo")
+    public native NSDictionary<NSString, ?> getConfigurationInfo();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConfigurationInfo:")
+    public native void setConfigurationInfo(NSDictionary<NSString, ?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

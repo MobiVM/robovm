@@ -115,14 +115,21 @@ import org.robovm.apple.symbols.*;
     public native void setTintColor(UIColor v);
     @Property(selector = "isAnimating")
     public native boolean isAnimating();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "preferredImageDynamicRange")
     public native UIImageDynamicRange getPreferredImageDynamicRange();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "setPreferredImageDynamicRange:")
     public native void setPreferredImageDynamicRange(UIImageDynamicRange v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "imageDynamicRange")
     public native UIImageDynamicRange getImageDynamicRange();
-    @Property(selector = "setImageDynamicRange:")
-    public native void setImageDynamicRange(UIImageDynamicRange v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

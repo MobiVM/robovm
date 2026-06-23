@@ -35,31 +35,42 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmap
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsShortMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsShortMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTRColorControlColorCapabilities/*</name>*/ extends Bits</*<name>*/MTRColorControlColorCapabilities/*</name>*/> {
     /*<values>*/
     public static final MTRColorControlColorCapabilities None = new MTRColorControlColorCapabilities(0L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmapHueSaturation
      */
+    @Deprecated
     public static final MTRColorControlColorCapabilities HueSaturationSupported = new MTRColorControlColorCapabilities(1L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmapEnhancedHue
      */
+    @Deprecated
     public static final MTRColorControlColorCapabilities EnhancedHueSupported = new MTRColorControlColorCapabilities(2L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmapColorLoop
      */
+    @Deprecated
     public static final MTRColorControlColorCapabilities ColorLoopSupported = new MTRColorControlColorCapabilities(4L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmapXY
      */
+    @Deprecated
     public static final MTRColorControlColorCapabilities XYAttributesSupported = new MTRColorControlColorCapabilities(8L);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorCapabilitiesBitmapColorTemperature
      */
+    @Deprecated
     public static final MTRColorControlColorCapabilities ColorTemperatureSupported = new MTRColorControlColorCapabilities(16L);
     /*</values>*/
 

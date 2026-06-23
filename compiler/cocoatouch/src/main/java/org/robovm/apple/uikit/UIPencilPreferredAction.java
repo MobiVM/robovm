@@ -57,7 +57,15 @@ public enum /*<name>*/UIPencilPreferredAction/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.0 and later.
      */
-    ShowInkAttributes(4L);
+    ShowInkAttributes(4L),
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    ShowContextualPalette(5L),
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    RunSystemShortcut(6L);
     /*</values>*/
 
     /*<bind>*/

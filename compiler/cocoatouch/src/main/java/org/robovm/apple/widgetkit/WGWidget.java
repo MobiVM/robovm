@@ -32,7 +32,7 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("WidgetKit")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WGWidget/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

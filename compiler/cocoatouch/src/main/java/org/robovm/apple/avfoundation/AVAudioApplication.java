@@ -73,6 +73,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "recordPermission")
     public native AVAudioApplicationRecordPermission getRecordPermission();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "microphoneInjectionPermission")
+    public native AVAudioApplicationMicrophoneInjectionPermission getMicrophoneInjectionPermission();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -117,5 +122,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestRecordPermissionWithCompletionHandler:")
     public static native void requestRecordPermission(@Block VoidBooleanBlock response);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "requestMicrophoneInjectionPermissionWithCompletionHandler:")
+    public static native void requestMicrophoneInjectionPermission(@Block VoidBlock1<AVAudioApplicationMicrophoneInjectionPermission> response);
     /*</methods>*/
 }

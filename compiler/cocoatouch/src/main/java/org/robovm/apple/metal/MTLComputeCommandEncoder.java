@@ -57,6 +57,14 @@ import org.robovm.apple.dispatch.*;
     public native String getLabel();
     @Property(selector = "setLabel:")
     public native void setLabel(String v);
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -252,6 +260,11 @@ import org.robovm.apple.dispatch.*;
     public native void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
     @Method(selector = "endEncoding")
     public native void endEncoding();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "barrierAfterQueueStages:beforeStages:")
+    public native void barrierAfterQueueStages(MTLStages afterQueueStages, MTLStages beforeStages);
     @Method(selector = "insertDebugSignpost:")
     public native void insertDebugSignpost(String string);
     @Method(selector = "pushDebugGroup:")

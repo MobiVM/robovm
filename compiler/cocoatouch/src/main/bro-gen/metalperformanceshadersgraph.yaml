@@ -33,7 +33,7 @@ enums:
     MPSGraphDeploymentPlatform: { }
     MPSGraphFFTScalingMode: { }
     MPSGraphNonMaximumSuppressionCoordinateMode: { }
-
+    MPSGraphReducedPrecisionFastMath: {} #since 26.0
 categories:
 
 classes:
@@ -780,6 +780,41 @@ classes:
                 name: bottomKWithGradient
             '-bottomKWithGradientTensor:source:axisTensor:kTensor:name:':
                 name: bottomKWithGradient
+            '-reciprocalSquareRootWithTensor:name:':
+                name: reciprocalSquareRoot
+            '-callSymbolName:inputTensors:outputTypes:name:':
+                name: callSymbol
+            '-scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:':
+                name: scaledDotProductAttention
+            '-scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:':
+                name: scaledDotProductAttention
+            '-variableFromTensorWithTensor:name:':
+                name: variableFromTensor
+            '-dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:scaleTensor:dataType:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:LUTTensor:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:LUTTensor:axis:name:':
+                name: dequantizeTensor
+            '-sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceTensor
+            '-sliceTensor:startTensor:sizeTensor:squeezeMask:name:':
+                name: sliceTensor
+            '-sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceGradientTensor
+            '-sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:':
+                name: sliceGradientTensor
+            '-sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:':
+                name: sliceUpdateDataTensor
+
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
@@ -847,6 +882,8 @@ classes:
                 name: init
             '-initWithMTLBuffer:shape:dataType:rowBytes:':
                 name: init
+            '-initWithMTLTensor:':
+                name: init
     MPSGraphVariableOp: {}
     MPSGraphCompilationDescriptor: {} #since 15.0
     MPSGraphCreateSparseOpDescriptor: #since 15.0
@@ -877,7 +914,11 @@ classes:
             '-serializeToMPSGraphPackageAtURL:descriptor:':
                 name: serializeToMPSGraphPackage
             '-initWithMPSGraphPackageAtURL:compilationDescriptor:':
-                name: init
+                static_constructor_name: createUsingMPSGraphPackage
+                name: initWithMPSGraphPackageAtURL
+            '-initWithCoreMLPackageAtURL:compilationDescriptor:':
+                static_constructor_name: createUsingCoreMLPackage
+                name: initWithCoreMLPackageAtURL
     MPSGraphExecutableExecutionDescriptor:  #since 15.0
         methods:
             '-waitForEvent:value:':

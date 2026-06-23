@@ -60,6 +60,16 @@ import org.robovm.apple.dispatch.*;
     boolean addRenderPipelineFunctions(MTLRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
     @Method(selector = "addTileRenderPipelineFunctionsWithDescriptor:error:")
     boolean addTileRenderPipelineFunctions(MTLTileRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addMeshRenderPipelineFunctionsWithDescriptor:error:")
+    boolean addMeshRenderPipelineFunctions(MTLMeshRenderPipelineDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addLibraryWithDescriptor:error:")
+    boolean addLibrary(MTLStitchedLibraryDescriptor descriptor, NSError.NSErrorPtr error);
     @Method(selector = "serializeToURL:error:")
     boolean serializeToURL(NSURL url, NSError.NSErrorPtr error);
     /**

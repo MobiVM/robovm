@@ -108,9 +108,17 @@ import org.robovm.apple.uikit.*;
      */
     public static final AVMetadataObjectType HumanFullBody = new AVMetadataObjectType("HumanFullBody");
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataObjectType CatHead = new AVMetadataObjectType("CatHead");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final AVMetadataObjectType CatBody = new AVMetadataObjectType("CatBody");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataObjectType DogHead = new AVMetadataObjectType("DogHead");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -159,7 +167,7 @@ import org.robovm.apple.uikit.*;
     public static final AVMetadataObjectType MicroPDF417Code = new AVMetadataObjectType("MicroPDF417Code");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, HumanFullBody, CatBody, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode, CodabarCode, GS1DataBarCode, GS1DataBarExpandedCode, GS1DataBarLimitedCode, MicroQRCode, MicroPDF417Code/*</value_list>*/};
+    private static /*<name>*/AVMetadataObjectType/*</name>*/[] values = new /*<name>*/AVMetadataObjectType/*</name>*/[] {/*<value_list>*/HumanBody, HumanFullBody, CatHead, CatBody, DogHead, DogBody, SalientObject, Face, UPCECode, Code39Code, Code39Mod43Code, EAN13Code, EAN8Code, Code93Code, Code128Code, PDF417Code, QRCode, AztecCode, Interleaved2of5Code, ITF14Code, DataMatrixCode, CodabarCode, GS1DataBarCode, GS1DataBarExpandedCode, GS1DataBarLimitedCode, MicroQRCode, MicroPDF417Code/*</value_list>*/};
 
     /*<name>*/AVMetadataObjectType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -202,10 +210,20 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="AVMetadataObjectTypeHumanFullBody", optional=true)
         public static native NSString HumanFullBody();
         /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeCatHead", optional=true)
+        public static native NSString CatHead();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="AVMetadataObjectTypeCatBody", optional=true)
         public static native NSString CatBody();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataObjectTypeDogHead", optional=true)
+        public static native NSString DogHead();
         /**
          * @since Available in iOS 13.0 and later.
          */

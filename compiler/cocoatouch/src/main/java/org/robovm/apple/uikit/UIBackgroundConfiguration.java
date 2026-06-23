@@ -127,6 +127,11 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getStrokeOutset();
     @Property(selector = "setStrokeOutset:")
     public native void setStrokeOutset(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shadowProperties")
+    public native UIShadowProperties getShadowProperties();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -140,20 +145,65 @@ import org.robovm.apple.symbols.*;
     public native UIColor resolvedStrokeColorForTintColor(UIColor tintColor);
     @Method(selector = "clearConfiguration")
     public static native UIBackgroundConfiguration clearConfiguration();
-    @Method(selector = "listPlainCellConfiguration")
-    public static native UIBackgroundConfiguration listPlainCellConfiguration();
-    @Method(selector = "listPlainHeaderFooterConfiguration")
-    public static native UIBackgroundConfiguration listPlainHeaderFooterConfiguration();
-    @Method(selector = "listGroupedCellConfiguration")
-    public static native UIBackgroundConfiguration listGroupedCellConfiguration();
-    @Method(selector = "listGroupedHeaderFooterConfiguration")
-    public static native UIBackgroundConfiguration listGroupedHeaderFooterConfiguration();
-    @Method(selector = "listSidebarHeaderConfiguration")
-    public static native UIBackgroundConfiguration listSidebarHeaderConfiguration();
-    @Method(selector = "listSidebarCellConfiguration")
-    public static native UIBackgroundConfiguration listSidebarCellConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "listCellConfiguration")
+    public static native UIBackgroundConfiguration listCellConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "listHeaderConfiguration")
+    public static native UIBackgroundConfiguration listHeaderConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "listFooterConfiguration")
+    public static native UIBackgroundConfiguration listFooterConfiguration();
     @Method(selector = "listAccompaniedSidebarCellConfiguration")
     public static native UIBackgroundConfiguration listAccompaniedSidebarCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use listCellConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listPlainCellConfiguration")
+    public static native UIBackgroundConfiguration listPlainCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use listCellConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listGroupedCellConfiguration")
+    public static native UIBackgroundConfiguration listGroupedCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use listCellConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listSidebarCellConfiguration")
+    public static native UIBackgroundConfiguration listSidebarCellConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use +listHeaderConfiguration or +listFooterConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listPlainHeaderFooterConfiguration")
+    public static native UIBackgroundConfiguration listPlainHeaderFooterConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use +listHeaderConfiguration or +listFooterConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listGroupedHeaderFooterConfiguration")
+    public static native UIBackgroundConfiguration listGroupedHeaderFooterConfiguration();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use +listHeaderConfiguration or +listFooterConfiguration
+     */
+    @Deprecated
+    @Method(selector = "listSidebarHeaderConfiguration")
+    public static native UIBackgroundConfiguration listSidebarHeaderConfiguration();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

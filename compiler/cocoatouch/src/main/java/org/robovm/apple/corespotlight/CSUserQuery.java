@@ -49,12 +49,17 @@ import org.robovm.apple.uniformtypeid.*;
     protected CSUserQuery(Handle h, long handle) { super(h, handle); }
     protected CSUserQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUserQueryString:userQueryContext:")
-    public CSUserQuery(String userQueryString, CSUserQueryContext userQueryContext) { super((SkipInit) null); initObject(ini(userQueryString, userQueryContext)); }
+    public CSUserQuery(String userQueryString, CSUserQueryContext userQueryContext) { super((SkipInit) null); initObject(init(userQueryString, userQueryContext)); }
     /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "initWithQueryString:queryContext:")
     public CSUserQuery(String queryString, CSSearchQueryContext queryContext) { super(queryString, queryContext); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use initWithQueryString:queryContext instead
+     */
+    @Deprecated
     @Method(selector = "initWithQueryString:attributes:")
     public CSUserQuery(String queryString, NSArray<NSString> attributes) { super(queryString, attributes); }
     /*</constructors>*/
@@ -69,10 +74,30 @@ import org.robovm.apple.uniformtypeid.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithUserQueryString:userQueryContext:")
-    protected native @Pointer long ini(String userQueryString, CSUserQueryContext userQueryContext);
+    protected native @Pointer long init(String userQueryString, CSUserQueryContext userQueryContext);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "userEngagedWithItem:visibleItems:userInteractionType:")
+    public native void userEngaged(CSSearchableItem item, NSArray<CSSearchableItem> visibleItems, CSUserInteraction userInteractionType);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "userEngagedWithSuggestion:visibleSuggestions:userInteractionType:")
+    public native void userEngaged(CSSuggestion suggestion, NSArray<CSSuggestion> visibleSuggestions, CSUserInteraction userInteractionType);
     @Method(selector = "start")
     public native void start();
     @Method(selector = "cancel")
     public native void cancel();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepare")
+    public static native void prepare();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepareProtectionClasses:")
+    public static native void prepareProtectionClasses(NSArray<NSString> protectionClasses);
     /*</methods>*/
 }

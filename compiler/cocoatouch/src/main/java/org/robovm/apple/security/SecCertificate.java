@@ -103,6 +103,16 @@ import org.robovm.apple.dispatch.*;
     @Bridge(symbol="SecCertificateCopySerialNumberData", optional=true)
     private native NSData copySerialNumberData(NSError.NSErrorPtr error);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyNotValidBeforeDate", optional=true)
+    public native NSDate copyNotValidBeforeDate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="SecCertificateCopyNotValidAfterDate", optional=true)
+    public native NSDate copyNotValidAfterDate();
+    /**
      * @since Available in iOS 10.3 and later.
      * @deprecated Deprecated in iOS 11.0. Use SecCertificateCopySerialNumberData
      */

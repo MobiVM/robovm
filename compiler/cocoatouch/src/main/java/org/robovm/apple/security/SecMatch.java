@@ -214,6 +214,11 @@ import org.robovm.apple.dispatch.*;
         public static native CFType EmailAddressIfPresent();
         @GlobalValue(symbol="kSecMatchSubjectContains", optional=true)
         public static native CFType SubjectContains();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kSecMatchHostOrSubdomainOfHost", optional=true)
+        public static native CFType HostOrSubdomainOfHost();
         @GlobalValue(symbol="kSecMatchCaseInsensitive", optional=true)
         public static native CFType CaseInsensitive();
         @GlobalValue(symbol="kSecMatchTrustedOnly", optional=true)

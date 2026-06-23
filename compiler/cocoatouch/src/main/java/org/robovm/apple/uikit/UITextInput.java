@@ -82,6 +82,21 @@ import org.robovm.apple.symbols.*;
     void setSelectionAffinity(UITextStorageDirection v);
     @Property(selector = "insertDictationResultPlaceholder")
     NSObject getInsertDictationResultPlaceholder();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsAdaptiveImageGlyph")
+    boolean supportsAdaptiveImageGlyph();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupportsAdaptiveImageGlyph:")
+    void setSupportsAdaptiveImageGlyph(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isEditable")
+    boolean isEditable();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "textInRange:")
@@ -164,6 +179,11 @@ import org.robovm.apple.symbols.*;
     @Method(selector = "endFloatingCursor")
     void endFloatingCursor();
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "caretTransformForPosition:")
+    @ByVal CGAffineTransform caretTransformForPosition(UITextPosition position);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "editMenuForTextRange:suggestedActions:")
@@ -178,6 +198,41 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "willDismissEditMenuWithAnimator:")
     void willDismissEditMenu(UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "insertAdaptiveImageGlyph:replacementRange:")
+    void insertAdaptiveImageGlyph(NSAdaptiveImageGlyph adaptiveImageGlyph, UITextRange replacementRange);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "insertAttributedText:")
+    void insertAttributedText(NSAttributedString string);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "attributedTextInRange:")
+    NSAttributedString attributedTextInRange(UITextRange range);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "replaceRange:withAttributedText:")
+    void replaceRange(UITextRange range, NSAttributedString attributedText);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "willPresentWritingTools")
+    void willPresentWritingTools();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "didDismissWritingTools")
+    void didDismissWritingTools();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "insertInputSuggestion:")
+    void insertInputSuggestion(UIInputSuggestion inputSuggestion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

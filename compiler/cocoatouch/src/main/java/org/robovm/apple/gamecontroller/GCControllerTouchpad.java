@@ -35,7 +35,7 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 13.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass/*</annotations>*/

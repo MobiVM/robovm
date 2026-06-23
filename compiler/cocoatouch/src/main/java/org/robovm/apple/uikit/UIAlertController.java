@@ -98,14 +98,8 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setSeverity:")
     public native void setSeverity(UIAlertControllerSeverity v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/

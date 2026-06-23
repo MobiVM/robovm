@@ -83,6 +83,16 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "newSpatialScalerWithDevice:")
     public native MTLFXSpatialScaler newSpatialScaler(MTLDevice device);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newSpatialScalerWithDevice:compiler:")
+    public native MTL4FXSpatialScaler newSpatialScaler(MTLDevice device, MTL4Compiler compiler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "supportsMetal4FX:")
+    public static native boolean supportsMetal4FX(MTLDevice device);
     @Method(selector = "supportsDevice:")
     public static native boolean supportsDevice(MTLDevice device);
     /*</methods>*/

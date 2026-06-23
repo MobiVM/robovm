@@ -73,6 +73,11 @@ import org.robovm.apple.avfoundation.*;
     public native void setServiceStatus(PTServiceStatus status, NSUUID channelUUID, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "setTransmissionMode:forChannelUUID:completionHandler:")
     public native void setTransmissionMode(PTTransmissionMode transmissionMode, NSUUID channelUUID, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:")
+    public native void setAccessoryButtonEventsEnabled(boolean enabled, NSUUID channelUUID, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "channelManagerWithDelegate:restorationDelegate:completionHandler:")
     protected static native @Pointer long create(PTChannelManagerDelegate delegate, PTChannelRestorationDelegate restorationDelegate, @Block VoidBlock2<PTChannelManager, NSError> completionHandler);
     /*</methods>*/

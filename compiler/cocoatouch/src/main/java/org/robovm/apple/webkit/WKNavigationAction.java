@@ -64,6 +64,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "shouldPerformDownload")
     public native boolean shouldPerformDownload();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isContentRuleListRedirect")
+    public native boolean isContentRuleListRedirect();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "modifierFlags")
+    public native UIKeyModifierFlags getModifierFlags();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "buttonNumber")
+    public native UIEventButtonMask getButtonNumber();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

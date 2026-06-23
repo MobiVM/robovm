@@ -70,6 +70,11 @@ import org.robovm.apple.metalps.*;
     public MPSGraphTensorData(MPSNDArray ndarray) { super((SkipInit) null); initObject(init(ndarray)); }
     @Method(selector = "initWithMPSImageBatch:")
     public MPSGraphTensorData(NSArray<MPSImage> imageBatch) { super((SkipInit) null); initObject(init(imageBatch)); }
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "initWithMTLTensor:")
+    public MPSGraphTensorData(MTLTensor tensor) { super((SkipInit) null); initObject(init(tensor)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "shape")
@@ -102,6 +107,11 @@ import org.robovm.apple.metalps.*;
     protected native @Pointer long init(MPSNDArray ndarray);
     @Method(selector = "initWithMPSImageBatch:")
     protected native @Pointer long init(NSArray<MPSImage> imageBatch);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "initWithMTLTensor:")
+    protected native @Pointer long init(MTLTensor tensor);
     @Method(selector = "mpsndarray")
     public native MPSNDArray mpsndarray();
     /*</methods>*/

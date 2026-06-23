@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. No longer supported
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPaymentQueue/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,35 +53,63 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. No longer supported
      */
+    @Deprecated
     @Property(selector = "delegate")
     public native SKPaymentQueueDelegate getDelegate();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. No longer supported
      */
+    @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(SKPaymentQueueDelegate v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.current
      */
+    @Deprecated
     @Property(selector = "storefront")
     public native SKStorefront getStorefront();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "transactionObservers")
     public native NSArray<?> getTransactionObservers();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.unfinished
+     */
+    @Deprecated
     @Property(selector = "transactions")
     public native NSArray<SKPaymentTransaction> getTransactions();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Method(selector = "addPayment:")
     public native void addPayment(SKPayment payment);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     */
+    @Deprecated
     @Method(selector = "restoreCompletedTransactions")
     public native void restoreCompletedTransactions();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     */
+    @Deprecated
     @Method(selector = "restoreCompletedTransactionsWithApplicationUsername:")
     public native void restoreCompletedTransactions(String username);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.finish()
+     */
+    @Deprecated
     @Method(selector = "finishTransaction:")
     public native void finishTransaction(SKPaymentTransaction transaction);
     /**
@@ -106,22 +136,38 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "cancelDownloads:")
     public native void cancelDownloads(NSArray<SKDownload> downloads);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.updates or PurchaseResult from Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Method(selector = "addTransactionObserver:")
     public native void addTransactionObserver(SKPaymentTransactionObserver observer);
+    /**
+     * @deprecated Deprecated in iOS 18.0. No longer supported
+     */
+    @Deprecated
     @Method(selector = "removeTransactionObserver:")
     public native void removeTransactionObserver(SKPaymentTransactionObserver observer);
     /**
      * @since Available in iOS 13.4 and later.
+     * @deprecated Deprecated in iOS 18.0. Use Message.messages and Message.display(in:)
      */
+    @Deprecated
     @Method(selector = "showPriceConsentIfNeeded")
     public native void showPriceConsentIfNeeded();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.presentOfferCodeRedeemSheet(in:)
      */
+    @Deprecated
     @Method(selector = "presentCodeRedemptionSheet")
     public native void presentCodeRedemptionSheet();
     @Method(selector = "defaultQueue")
     public static native SKPaymentQueue getDefaultQueue();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.canMakePayments
+     */
+    @Deprecated
     @Method(selector = "canMakePayments")
     public static native boolean canMakePayments();
     /*</methods>*/

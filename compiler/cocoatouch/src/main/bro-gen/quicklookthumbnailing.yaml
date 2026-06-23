@@ -32,6 +32,8 @@ classes:
                 name: generateRepresentations
             '-saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:':
                 name: saveBestRepresentation
+            '-saveBestRepresentationForRequest:toFileAtURL:asContentType:completionHandler:':
+                name: saveBestRepresentationAsContentType
     QLThumbnailProvider: #since 11.0
         methods:
             '-provideThumbnailForFileRequest:completionHandler:':

@@ -86,6 +86,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "contentKey")
     public native AVContentKey getContentKey();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "originatingRecipient")
+    public native AVContentKeyRecipient getOriginatingRecipient();
     @Property(selector = "renewsExpiringResponseData")
     public native boolean isRenewsExpiringResponseData();
     /*</properties>*/

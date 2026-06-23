@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterFanControl/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterFanControlPtr extends Ptr<MTRClusterFanControl, MTRClusterFanControlPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 17.6 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "stepWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void step(MTRFanControlClusterStepParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -181,6 +181,21 @@ import org.robovm.apple.security.*;
     @Method(selector = "writeAttributeWindSettingWithValue:expectedValueInterval:params:")
     public native void writeAttributeWindSetting(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "readAttributeAirflowDirectionWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAirflowDirection(MTRReadParams params);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "writeAttributeAirflowDirectionWithValue:expectedValueInterval:")
+    public native void writeAttributeAirflowDirection(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "writeAttributeAirflowDirectionWithValue:expectedValueInterval:params:")
+    public native void writeAttributeAirflowDirection(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -205,5 +220,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

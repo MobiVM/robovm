@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "mapTemplateShouldProvideNavigationMetadata:")
+    boolean mapTemplateShouldProvideNavigationMetadata(CPMapTemplate mapTemplate);
     @Method(selector = "mapTemplate:shouldShowNotificationForManeuver:")
     boolean shouldShowNotificationForManeuver(CPMapTemplate mapTemplate, CPManeuver maneuver);
     @Method(selector = "mapTemplate:shouldUpdateNotificationForManeuver:withTravelEstimates:")
@@ -76,6 +81,51 @@ import org.robovm.apple.coreanimation.*;
     void didUpdatePanGesture(CPMapTemplate mapTemplate, @ByVal CGPoint translation, @ByVal CGPoint velocity);
     @Method(selector = "mapTemplate:didEndPanGestureWithVelocity:")
     void didEndPanGesture(CPMapTemplate mapTemplate, @ByVal CGPoint velocity);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplateDidBeginZoomGesture:")
+    void mapTemplateDidBeginZoomGesture(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:didUpdateZoomGestureWithCenter:scale:velocity:")
+    void didUpdateZoomGesture(CPMapTemplate mapTemplate, @ByVal CGPoint center, @MachineSizedFloat double scale, @MachineSizedFloat double velocity);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:didEndZoomGestureWithVelocity:")
+    void didEndZoomGesture(CPMapTemplate mapTemplate, @MachineSizedFloat double velocity);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplateDidBeginRotationGesture:")
+    void mapTemplateDidBeginRotationGesture(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:didRotateWithCenter:rotation:velocity:")
+    void didRotate(CPMapTemplate mapTemplate, @ByVal CGPoint center, @MachineSizedFloat double rotation, @MachineSizedFloat double velocity);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:rotationDidEndWithVelocity:")
+    void rotationDidEnd(CPMapTemplate mapTemplate, @MachineSizedFloat double velocity);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplateDidBeginPitchGesture:")
+    void mapTemplateDidBeginPitchGesture(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:pitchWithCenter:")
+    void pitch(CPMapTemplate mapTemplate, @ByVal CGPoint center);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mapTemplate:pitchEndedWithCenter:")
+    void pitchEndedWith(CPMapTemplate mapTemplate, @ByVal CGPoint center);
     @Method(selector = "mapTemplate:willShowNavigationAlert:")
     void willShowNavigationAlert(CPMapTemplate mapTemplate, CPNavigationAlert navigationAlert);
     @Method(selector = "mapTemplate:didShowNavigationAlert:")

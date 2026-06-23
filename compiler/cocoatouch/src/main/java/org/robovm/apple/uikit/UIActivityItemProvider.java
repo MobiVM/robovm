@@ -87,5 +87,10 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "activityViewControllerLinkMetadata:")
     public native LPLinkMetadata activityViewControllerLinkMetadata(UIActivityViewController activityViewController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "activityViewControllerShareRecipients:")
+    public native NSArray<INPerson> activityViewControllerShareRecipients(UIActivityViewController activityViewController);
     /*</methods>*/
 }

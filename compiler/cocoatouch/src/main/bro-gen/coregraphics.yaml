@@ -46,6 +46,11 @@ enums:
     CGImageByteOrderInfo: {prefix: kCGImage} #since 2.0
     CGPDFTagType: {} #since 13.0
     CGGlyphDeprecatedEnum: {exclude: true}
+    CGImageComponentInfo: { prefix: kCGImageComponent } #since 2.0
+    CGToneMapping: { prefix: kCGToneMapping } #since 18.0
+    CGColorModel: { prefix: kCGColorModel }
+    CGComponent: { prefix: kCGComponent }
+    CGBitmapLayout: { prefix: kCGBitmapLayout }
 
 classes:
     CoreGraphics:
@@ -62,6 +67,10 @@ classes:
     CGSize: {}
     CGVector: {}
     CGColorDataFormat: {}
+    CGBitmapParameters: { }
+    CGColorBufferFormat: { }
+    CGContentInfo: { }
+    CGContentToneMappingInfo: { }
 
     # Opaque types
     CGBitmapContext:
@@ -93,6 +102,11 @@ classes:
         extends: CFType
     CGPattern:
         extends: CFType
+    CGRenderingBufferProvider:
+        extends: CFType
+    CGColorConversionInfo:
+        extends: CFType
+
     CGPDFArray: {}
     CGPDFContentStream: {}
     CGPDFContext:
@@ -511,6 +525,11 @@ functions:
     # CGImage
     CGImage(Retain|Release):
         exclude: true
+    CGImageCreateCopyWithCalculatedHDRStats:
+        class: CGImage
+        name: CreateCopyWithCalculatedHDRStats
+        static: true
+        return_marshaler: CFType.NoRetainMarshaler
     CGImage(CreateCopy).*:
         class: CGImage
         name: '#{g[0]}'
@@ -968,8 +987,23 @@ functions:
         class: CGErrorCode
         name: setCallback
 
+    CGEXRToneMappingGammaGetDefaultOptions:
+        class: CGEXRToneMappingGamma
+        name: getDefaultOptions
+
+    CGRenderingBufferProviderCreate(.*):
+        class: CGRenderingBufferProvider
+        name: create
+    CGRenderingBufferProvider(.*):
+        class: CGRenderingBufferProvider
+        name: '#{g[0].downcase_first}'
+    CGRenderingBuffer(Lock|Unlock)BytePtr:
+        class: CGRenderingBufferProvider
+        name: '#{g[0].downcase_first}BytePtr'
+
+
     (k?CG.*):
-        class: CoreGraphics
+        class: FIXME
         name: '#{g[0]}'
 
 values:
@@ -1100,10 +1134,29 @@ values:
         class: CGColor
         static_class: ConstantColors
         name: '#{g[0]}'
+    kCGDefaultHDRImageContentHeadroom:
+        class: CGImage
+        name: GDefaultHDRImageContentHeadroom
+
+    kCGEXRToneMappingGamma(.*):
+        class: CGEXRToneMappingGamma
+        name: '#{g[0]}'
+    kCG(Use100nitsHLGOOTF|UseBT1886ForCoreVideoGamma|SkipBoostToHDR|UseLegacyHDREcosystem):
+        class: CGITUToneMapping
+        name: '#{g[0]}'
+
+    kCG(PreferredDynamicRange|DynamicRangeHigh|DynamicRangeConstrained|DynamicRangeStandard|ContentAverageLightLevel|ContentAverageLightLevelNits):
+        class: CGToneMapping
+        static_class: Consts
+        name: '#{g[0]}'
+
+    kCG(AdaptiveMaximumBitDepth):
+        class: CGBitmapContext
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later CoreGraphics
     (k?CG.*):
-        class: CoreGraphics
+        class: FIXME
         name: '#{g[0]}'
 
 typed_enums:
@@ -1133,5 +1186,5 @@ constants:
 
     # Make sure we don't miss any constants if new ones are introduced in a later CoreGraphics
     (k?CG.*):
-        class: CoreGraphics
+        class: FIXME
         name: '#{g[0]}'

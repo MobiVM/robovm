@@ -95,7 +95,19 @@ public enum /*<name>*/MTRContentLauncherParameter/*</name>*/ implements ValuedEn
     /**
      * @since Available in iOS 16.4 and later.
      */
-    Video(13L);
+    Video(13L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Season(14L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Episode(15L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Any(16L);
     /*</values>*/
 
     /*<bind>*/

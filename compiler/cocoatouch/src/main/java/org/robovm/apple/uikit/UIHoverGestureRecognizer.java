@@ -75,6 +75,11 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "altitudeAngle")
     public native @MachineSizedFloat double getAltitudeAngle();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "rollAngle")
+    public native @MachineSizedFloat double getRollAngle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

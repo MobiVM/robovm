@@ -53,7 +53,9 @@ import org.robovm.apple.network.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use nw_path_monitor_t in Network framework instead
      */
+    @Deprecated
     @Property(selector = "defaultPath")
     public native NWPath getDefaultPath();
     /*</properties>*/
@@ -71,12 +73,16 @@ import org.robovm.apple.network.*;
     public native void wake();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use nw_connection_t in Network framework instead
      */
+    @Deprecated
     @Method(selector = "createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:")
     public native NWTCPConnection createTCPConnection(NWEndpoint remoteEndpoint, boolean enableTLS, NWTLSParameters TLSParameters, NSObject delegate);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use nw_connection_t in Network framework instead
      */
+    @Deprecated
     @Method(selector = "createUDPSessionToEndpoint:fromEndpoint:")
     public native NWUDPSession createUDPSession(NWEndpoint remoteEndpoint, NWHostEndpoint localEndpoint);
     /**

@@ -105,6 +105,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setExcludedActivityTypes:")
     public native void setExcludedActivityTypes(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> v);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "excludedActivitySectionTypes")
+    public native UIActivitySectionTypes getExcludedActivitySectionTypes();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setExcludedActivitySectionTypes:")
+    public native void setExcludedActivitySectionTypes(UIActivitySectionTypes v);
+    /**
      * @since Available in iOS 15.4 and later.
      */
     @Property(selector = "allowsProminentActivity")

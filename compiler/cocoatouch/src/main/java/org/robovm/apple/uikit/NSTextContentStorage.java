@@ -67,6 +67,16 @@ import org.robovm.apple.symbols.*;
     public native NSTextContentStorageDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(NSTextContentStorageDelegate v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "includesTextListMarkers")
+    public native boolean includesTextListMarkers();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setIncludesTextListMarkers:")
+    public native void setIncludesTextListMarkers(boolean v);
     @Property(selector = "attributedString")
     public native NSAttributedString getAttributedString();
     @Property(selector = "setAttributedString:")

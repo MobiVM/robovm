@@ -35,11 +35,12 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. OnOffSwitchConfiguration is deprecated and will be removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterOnOffSwitchConfiguration/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterOnOffSwitchConfigurationPtr extends Ptr<MTRClusterOnOffSwitchConfiguration, MTRClusterOnOffSwitchConfigurationPtr> {}/*</ptr>*/
@@ -51,7 +52,9 @@ import org.robovm.apple.security.*;
     protected MTRClusterOnOffSwitchConfiguration(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. OnOffSwitchConfiguration is deprecated and will be removed
      */
+    @Deprecated
     @Method(selector = "initWithDevice:endpointID:queue:")
     public MTRClusterOnOffSwitchConfiguration(MTRDevice device, NSNumber endpointID, DispatchQueue queue) { super((SkipInit) null); initObject(init(device, endpointID, queue)); }
     /*</constructors>*/
@@ -61,54 +64,74 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeSwitchTypeWithParams:")
     public native NSDictionary<NSString, ?> readAttributeSwitchType(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeSwitchActionsWithParams:")
     public native NSDictionary<NSString, ?> readAttributeSwitchActions(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeSwitchActionsWithValue:expectedValueInterval:")
     public native void writeAttributeSwitchActions(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "writeAttributeSwitchActionsWithValue:expectedValueInterval:params:")
     public native void writeAttributeSwitchActions(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeGeneratedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAcceptedCommandListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAcceptedCommandList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeAttributeListWithParams:")
     public native NSDictionary<NSString, ?> readAttributeAttributeList(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeFeatureMapWithParams:")
     public native NSDictionary<NSString, ?> readAttributeFeatureMap(MTRReadParams params);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. This attribute is deprecated
      */
+    @Deprecated
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. OnOffSwitchConfiguration is deprecated and will be removed
+     */
+    @Deprecated
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

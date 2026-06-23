@@ -271,9 +271,17 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final UITextContentType CreditCardType = new UITextContentType("CreditCardType");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final UITextContentType CellularEID = new UITextContentType("CellularEID");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final UITextContentType CellularIMEI = new UITextContentType("CellularIMEI");
     /*</constants>*/
     
-    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode, ShipmentTrackingNumber, FlightNumber, DateTime, Birthdate, BirthdateDay, BirthdateMonth, BirthdateYear, CreditCardSecurityCode, CreditCardName, CreditCardGivenName, CreditCardMiddleName, CreditCardFamilyName, CreditCardExpiration, CreditCardExpirationMonth, CreditCardExpirationYear, CreditCardType/*</value_list>*/};
+    private static /*<name>*/UITextContentType/*</name>*/[] values = new /*<name>*/UITextContentType/*</name>*/[] {/*<value_list>*/Name, NamePrefix, GivenName, MiddleName, FamilyName, NameSuffix, Nickname, JobTitle, OrganizationName, Location, FullStreetAddress, StreetAddressLine1, StreetAddressLine2, AddressCity, AddressState, AddressCityAndState, Sublocality, CountryName, PostalCode, TelephoneNumber, EmailAddress, URL, CreditCardNumber, Username, Password, NewPassword, OneTimeCode, ShipmentTrackingNumber, FlightNumber, DateTime, Birthdate, BirthdateDay, BirthdateMonth, BirthdateYear, CreditCardSecurityCode, CreditCardName, CreditCardGivenName, CreditCardMiddleName, CreditCardFamilyName, CreditCardExpiration, CreditCardExpirationMonth, CreditCardExpirationYear, CreditCardType, CellularEID, CellularIMEI/*</value_list>*/};
     
     /*<name>*/UITextContentType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -511,6 +519,16 @@ import org.robovm.apple.symbols.*;
          */
         @GlobalValue(symbol="UITextContentTypeCreditCardType", optional=true)
         public static native NSString CreditCardType();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCellularEID", optional=true)
+        public static native NSString CellularEID();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="UITextContentTypeCellularIMEI", optional=true)
+        public static native NSString CellularIMEI();
         /*</values>*/
     }
 }

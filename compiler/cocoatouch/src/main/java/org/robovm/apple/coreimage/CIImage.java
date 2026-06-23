@@ -140,7 +140,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    public CIImage(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options) { super((SkipInit) null); initObject(init(p, width, height, f, cs, options)); }
+    public CIImage(NSObject provider, @MachineSizedUInt long width, @MachineSizedUInt long height, int format, CGColorSpace colorSpace, CIImageOptions options) { super((SkipInit) null); initObject(init(provider, width, height, format, colorSpace, options)); }
     @Method(selector = "initWithCoder:")
     public CIImage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -197,6 +197,8 @@ import org.robovm.apple.avfoundation.*;
     public static native CIImage getClearImage();
     @Property(selector = "extent")
     public native @ByVal CGRect getExtent();
+    @Property(selector = "isOpaque")
+    public native boolean isOpaque();
     @Property(selector = "properties")
     public native NSDictionary<NSString, ?> getProperties();
     /**
@@ -210,6 +212,16 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "colorSpace")
     public native CGColorSpace getColorSpace();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "contentHeadroom")
+    public native float getContentHeadroom();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "contentAverageLightLevel")
+    public native float getContentAverageLightLevel();
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Property(selector = "pixelBuffer")
@@ -219,6 +231,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "CGImage")
     public native CGImage getCGImage();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "metalTexture")
+    public native MTLTexture getMetalTexture();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -403,6 +420,31 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "imageByInsertingIntermediate:")
     public native CIImage newImageByInsertingIntermediate(boolean cache);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "imageByInsertingTiledIntermediate")
+    public native CIImage newImageByInsertingTiledIntermediate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "imageByApplyingGainMap:")
+    public native CIImage newImageByApplyingGainMap(CIImage gainmap);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "imageByApplyingGainMap:headroom:")
+    public native CIImage newImageByApplyingGainMap(CIImage gainmap, float headroom);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "imageBySettingContentHeadroom:")
+    public native CIImage newImageBySettingContentHeadroom(float headroom);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "imageBySettingContentAverageLightLevel:")
+    public native CIImage newImageBySettingContentAverageLightLevel(float average);
     @Method(selector = "regionOfInterestForImage:inRect:")
     public native @ByVal CGRect getRegionOfInterest(CIImage image, @ByVal CGRect rect);
     @Method(selector = "emptyImage")
@@ -455,7 +497,7 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithImageProvider:size::format:colorSpace:options:")
-    protected native @Pointer long init(NSObject p, @MachineSizedUInt long width, @MachineSizedUInt long height, int f, CGColorSpace cs, CIImageOptions options);
+    protected native @Pointer long init(NSObject provider, @MachineSizedUInt long width, @MachineSizedUInt long height, int format, CGColorSpace colorSpace, CIImageOptions options);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -61,6 +61,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 9.0 and later.
      */
     public AVMutableComposition(AVURLAssetOptions urlAssetInitializationOptions) { super((Handle) null, create(urlAssetInitializationOptions)); retain(getHandle()); }
+    public AVMutableComposition(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
@@ -77,8 +78,10 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "compositionWithURLAssetInitializationOptions:")
     protected static native @Pointer long create(AVURLAssetOptions urlAssetInitializationOptions);
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     /**
-     * @deprecated Use insertTimeRange:ofAsset:atTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use insertTimeRange:ofAsset:atTime:completionHandler:
      */
     @Deprecated
     public boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime) throws NSErrorException {
@@ -88,14 +91,11 @@ import org.robovm.apple.uikit.*;
        return result;
     }
     /**
-     * @deprecated Use insertTimeRange:ofAsset:atTime:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use insertTimeRange:ofAsset:atTime:completionHandler:
      */
     @Deprecated
     @Method(selector = "insertTimeRange:ofAsset:atTime:error:")
     private native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
-    /**
-     * @since Available in iOS 16.0 and later.
-     */
     @Method(selector = "insertTimeRange:ofAsset:atTime:completionHandler:")
     public native void insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "insertEmptyTimeRange:")

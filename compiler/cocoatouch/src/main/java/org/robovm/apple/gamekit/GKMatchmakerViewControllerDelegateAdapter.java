@@ -61,13 +61,18 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("matchmakerViewController:hostedPlayerDidAccept:")
     public void hostedPlayerDidAccept(GKMatchmakerViewController viewController, GKPlayer player) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -matchmakerViewController:didFindHostedPlayers:
+     * @since Available in iOS 17.2 and later.
+     */
+    @NotImplemented("matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:")
+    public void getMatchPropertiesForRecipient(GKMatchmakerViewController viewController, GKPlayer recipient, @Block VoidBlock1<NSDictionary<NSString, ?>> completionHandler) {}
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use ``GKMatchmakerViewControllerDelegate/matchmakerViewController(_:didFindHostedPlayers:)`` instead.
      */
     @Deprecated
     @NotImplemented("matchmakerViewController:didFindPlayers:")
     public void didFindPlayers(GKMatchmakerViewController viewController, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playerIDs) {}
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -matchmakerViewController:hostedPlayerDidAccept:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKMatchmakerViewControllerDelegate/matchmakerViewController(_:hostedPlayerDidAccept:)`` instead.
      */
     @Deprecated
     @NotImplemented("matchmakerViewController:didReceiveAcceptFromHostedPlayer:")

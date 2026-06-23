@@ -58,6 +58,12 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Bridge(symbol="MTRSetMessageReliabilityParameters", optional=true)
+    public static native void setMessageReliabilityParameters(NSNumber idleRetransmitMs, NSNumber activeRetransmitMs, NSNumber activeThresholdMs, NSNumber additionalRetransmitDelayMs);
+    
     public boolean startControllerFactory(MTRDeviceControllerFactoryParams startupParams) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = startControllerFactory(startupParams, ptr);
@@ -84,6 +90,11 @@ import org.robovm.apple.security.*;
     }
     @Method(selector = "createControllerOnNewFabric:error:")
     private native MTRDeviceController createControllerOnNewFabric(MTRDeviceControllerStartupParams startupParams, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "preWarmCommissioningSession")
+    public native void preWarmCommissioningSession();
     @Method(selector = "sharedInstance")
     public static native MTRDeviceControllerFactory sharedInstance();
     /*</methods>*/

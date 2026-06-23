@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected ASPasskeyRegistrationCredential(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRelyingParty:clientDataHash:credentialID:attestationObject:")
     public ASPasskeyRegistrationCredential(String relyingParty, NSData clientDataHash, NSData credentialID, NSData attestationObject) { super((SkipInit) null); initObject(init(relyingParty, clientDataHash, credentialID, attestationObject)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:")
+    public ASPasskeyRegistrationCredential(String relyingParty, NSData clientDataHash, NSData credentialID, NSData attestationObject, ASPasskeyRegistrationCredentialExtensionOutput extensionOutput) { super((SkipInit) null); initObject(init(relyingParty, clientDataHash, credentialID, attestationObject, extensionOutput)); }
     @Method(selector = "initWithCoder:")
     public ASPasskeyRegistrationCredential(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -64,6 +69,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSData getCredentialID();
     @Property(selector = "attestationObject")
     public native NSData getAttestationObject();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "extensionOutput")
+    public native ASPasskeyRegistrationCredentialExtensionOutput getExtensionOutput();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setExtensionOutput:")
+    public native void setExtensionOutput(ASPasskeyRegistrationCredentialExtensionOutput v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -71,6 +86,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithRelyingParty:clientDataHash:credentialID:attestationObject:")
     protected native @Pointer long init(String relyingParty, NSData clientDataHash, NSData credentialID, NSData attestationObject);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithRelyingParty:clientDataHash:credentialID:attestationObject:extensionOutput:")
+    protected native @Pointer long init(String relyingParty, NSData clientDataHash, NSData credentialID, NSData attestationObject, ASPasskeyRegistrationCredentialExtensionOutput extensionOutput);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

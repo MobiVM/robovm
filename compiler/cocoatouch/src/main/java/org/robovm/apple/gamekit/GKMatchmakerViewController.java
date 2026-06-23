@@ -71,8 +71,14 @@ import org.robovm.apple.coregraphics.*;
     public native boolean isHosted();
     @Property(selector = "setHosted:")
     public native void setHosted(boolean v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "matchmakingMode")
     public native GKMatchmakingMode getMatchmakingMode();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setMatchmakingMode:")
     public native void setMatchmakingMode(GKMatchmakingMode v);
     /**
@@ -85,18 +91,6 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "setCanStartWithMinimumPlayers:")
     public native void setCanStartWithMinimumPlayers(boolean v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "defaultInvitationMessage")
-    public native String getDefaultInvitationMessage();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setDefaultInvitationMessage:")
-    public native void setDefaultInvitationMessage(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -109,7 +103,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "setHostedPlayer:didConnect:")
     public native void setHostedPlayer(GKPlayer player, boolean connected);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -setHostedPlayer:didConnect:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchmakerViewController/setHostedPlayer(_:didConnect:)`` method instead.
      */
     @Deprecated
     @Method(selector = "setHostedPlayer:connected:")

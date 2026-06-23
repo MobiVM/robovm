@@ -1,0 +1,82 @@
+package: org.robovm.apple.accessorysetupkit
+include: [foundation, corebluetooth, dispatch, uikit]
+library: AccessorySetupKit
+framework: AccessorySetupKit
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AccessorySetupKit.framework/Headers/AccessorySetupKit.h
+
+typedefs:
+    
+enums:
+    ASErrorCode: {nserror: true} #since 18.0
+    ASAccessoryState: {}
+    ASAccessoryRenameOptions: {prefix: ASAccessoryRename}
+    ASAccessorySupportOptions: {prefix: ASAccessorySupportBluetooth}
+    ASAccessoryEventType: {}
+    ASDiscoveryDescriptorRange: {}
+    ASDiscoveryDescriptorWiFiAwareServiceRole: {}
+    ASPickerDisplayItemSetupOptions: {prefix: ASPickerDisplayItemSetup}
+categories:
+
+classes:
+    ASAccessory: {} #since 18.0
+    ASAccessoryEvent: {} #since 18.0
+    ASAccessorySession: #since 18.0
+        methods:
+            '-activateWithQueue:eventHandler:':
+                name: activate
+            '-showPickerWithCompletionHandler:':
+                name: showPickerWithCompletionHandler$
+            '-showPickerForDisplayItems:completionHandler:':
+                name: showPicker
+            '-finishAuthorization:settings:completionHandler:':
+                name: finishAuthorization
+            '-failAuthorization:completionHandler:':
+                name: failAuthorization
+            '-removeAccessory:completionHandler:':
+                name: removeAccessory
+            '-renameAccessory:options:completionHandler:':
+                name: renameAccessory
+            '-updateAuthorization:descriptor:completionHandler:':
+                name: updateAuthorization
+    ASAccessorySettings: {} #since 18.0
+    ASDiscoveryDescriptor: {} #since 18.0
+    ASMigrationDisplayItem: {} #since 18.0
+    ASPickerDisplayItem: #since 18.0
+        methods:
+            '-initWithName:productImage:descriptor:':
+                name: init
+    ASPickerDisplaySettings: {} #since 26.0
+    ASPropertyCompareString: #since 26.0
+        methods:
+            '-initWithString:compareOptions:':
+                name: init
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?AS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    ASErrorDomain:
+        class: ASErrorCode
+        name: getClassDomain
+    ASPickerDisplaySettingsDiscoveryTimeout(.*):
+        class: ASPickerDisplaySettings
+        static_class: DiscoveryTimeout
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?AS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?AS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

@@ -44,7 +44,7 @@ import org.robovm.apple.symbols.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("UIKit")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UILargeContentViewer/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

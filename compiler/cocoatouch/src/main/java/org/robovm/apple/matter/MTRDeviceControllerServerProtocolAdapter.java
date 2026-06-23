@@ -66,5 +66,10 @@ import org.robovm.apple.security.*;
     public void subscribe(NSObject controller, long nodeId, NSNumber minInterval, NSNumber maxInterval, NSDictionary<NSString, ?> params, boolean shouldCache, @Block VoidBlock1<NSError> completion) {}
     @NotImplemented("readAttributeCacheWithController:nodeId:endpointId:clusterId:attributeId:completion:")
     public void readAttributeCache(NSObject controller, long nodeId, NSNumber endpointId, NSNumber clusterId, NSNumber attributeId, @Block VoidBlock2<NSObject, NSError> completion) {}
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @NotImplemented("downloadLogWithController:nodeId:type:timeout:completion:")
+    public void downloadLog(NSObject controller, NSNumber nodeId, MTRDiagnosticLogType type, double timeout, @Block VoidBlock2<NSString, NSError> completion) {}
     /*</methods>*/
 }

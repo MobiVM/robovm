@@ -42,12 +42,13 @@ classes:
             '+channelManagerWithDelegate:restorationDelegate:completionHandler:':
                 name: create
                 constructor: true
+            '-setAccessoryButtonEventsEnabled:forChannelUUID:completionHandler:':
+                name: setAccessoryButtonEventsEnabled
     PTParticipant: #since 16.0
         methods:
             '-initWithName:image:':
                 name: init
     PTPushResult: {} #since 16.0
-
 protocols:
     PTChannelManagerDelegate: #since 16.0
         methods:
@@ -75,6 +76,8 @@ protocols:
                 name: failedToBeginTransmittingInChannelWithUUID
             '-channelManager:failedToStopTransmittingInChannelWithUUID:error:':
                 name: failedToStopTransmittingInChannelWithUUID
+            '-incomingServiceUpdatePushForChannelManager:channelUUID:pushPayload:isHighPriority:remainingHighPriorityBudget:withCompletionHandler:':
+                name: incomingServiceUpdatePush
     PTChannelRestorationDelegate: {} #since 16.0
 
 

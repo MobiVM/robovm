@@ -59,6 +59,12 @@ import org.robovm.apple.uikit.*;
     public native void endPage();
     @Bridge(symbol="CGPDFContextAddDocumentMetadata", optional=true)
     public native void addDocumentMetadata(NSData metadata);
+    @Bridge(symbol="CGPDFContextSetParentTree", optional=true)
+    public native void setParentTree(CGPDFDictionary parentTreeDictionary);
+    @Bridge(symbol="CGPDFContextSetIDTree", optional=true)
+    public native void setIDTree(CGPDFDictionary IDTreeDictionary);
+    @Bridge(symbol="CGPDFContextSetPageTagStructureTree", optional=true)
+    public native void setPageTagStructureTree(NSDictionary pageTagStructureTreeDictionary);
     @Bridge(symbol="CGPDFContextSetURLForRect", optional=true)
     public native void setURLForRect(NSURL url, @ByVal CGRect rect);
     @Bridge(symbol="CGPDFContextAddDestinationAtPoint", optional=true)

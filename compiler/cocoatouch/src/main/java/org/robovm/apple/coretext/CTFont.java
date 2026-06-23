@@ -165,6 +165,8 @@ import org.robovm.apple.uikit.*;
     public native CTFontSymbolicTraits getSymbolicTraits();
     @Bridge(symbol="CTFontCopyTraits", optional=true)
     public native CTFontTraits getTraits();
+    @Bridge(symbol="CTFontCopyDefaultCascadeListForLanguages", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(CTFontDescriptor.AsListMarshaler.class) List<CTFontDescriptor> getDefaultCascadeList(@org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> languagePrefList);
     @Bridge(symbol="CTFontCopyPostScriptName", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getPostScriptName();
     @Bridge(symbol="CTFontCopyFamilyName", optional=true)
@@ -235,13 +237,26 @@ import org.robovm.apple.uikit.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont create(CGFont graphicsFont, @MachineSizedFloat double size, CGAffineTransform matrix, CTFontDescriptor attributes);
     @Bridge(symbol="CTFontCopyAvailableTables", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CTFontTableTag.AsListMarshaler.class) List<CTFontTableTag> getAvailableTables(CTFontTableOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontHasTable", optional=true)
+    public native boolean hasTable(CTFontTableTag tag);
     @Bridge(symbol="CTFontCopyTable", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) NSData getTable(CTFontTableTag table, CTFontTableOptions options);
     @Bridge(symbol="CTFontDrawGlyphs", optional=true)
     protected native void drawGlyphs(ShortPtr glyphs, CGPoint positions, @MachineSizedUInt long count, CGContext context);
     @Bridge(symbol="CTFontGetLigatureCaretPositions", optional=true)
     protected native @MachineSizedSInt long getLigatureCaretPositions(short glyph, MachineSizedFloatPtr positions, @MachineSizedSInt long maxPositions);
-    @Bridge(symbol="CTFontCopyDefaultCascadeListForLanguages", optional=true)
-    public native @org.robovm.rt.bro.annotation.Marshaler(CTFontDescriptor.AsListMarshaler.class) List<CTFontDescriptor> getDefaultCascadeList(@org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> languagePrefList);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CTFontGetTypographicBoundsForAdaptiveImageProvider", optional=true)
+    public native @ByVal CGRect getTypographicBoundsForAdaptiveImageProvider(CTAdaptiveImageProviding provider);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CTFontDrawImageFromAdaptiveImageProviderAtPoint", optional=true)
+    public native void drawImageFromAdaptiveImageProviderAtPoint(CTAdaptiveImageProviding provider, @ByVal CGPoint point, CGContext context);
     /*</methods>*/
 }

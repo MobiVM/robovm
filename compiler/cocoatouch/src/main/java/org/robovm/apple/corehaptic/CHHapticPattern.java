@@ -49,7 +49,7 @@ import org.robovm.apple.avfoundation.*;
     protected CHHapticPattern(Handle h, long handle) { super(h, handle); }
     protected CHHapticPattern(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithEvents:parameters:error:")
-    public static  CHHapticPattern createUsingParameters(NSArray<CHHapticEvent> events, NSArray<CHHapticDynamicParameter> parameters) throws NSErrorException  {
+    public static CHHapticPattern createUsingParameters(NSArray<CHHapticEvent> events, NSArray<CHHapticDynamicParameter> parameters) throws NSErrorException  {
        CHHapticPattern res = new CHHapticPattern((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        res.initObject(res.initUsingParameters(events, parameters, ptr));

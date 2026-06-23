@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASAuthorizationPlatformPublicKeyCredentialAssertionRequest/*</name>*/ 
     extends /*<extends>*/ASAuthorizationRequest/*</extends>*/ 
-    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertionRequest/*</implements>*/ <ASAuthorizationPlatformPublicKeyCredentialDescriptor>{
+    /*<implements>*/implements ASAuthorizationPublicKeyCredentialAssertionRequest, ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest/*</implements>*/ {
 
     /*<ptr>*/public static class ASAuthorizationPlatformPublicKeyCredentialAssertionRequestPtr extends Ptr<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest, ASAuthorizationPlatformPublicKeyCredentialAssertionRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASAuthorizationPlatformPublicKeyCredentialAssertionRequest.class); }/*</bind>*/
@@ -53,9 +53,9 @@ import org.robovm.apple.coreanimation.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "allowedCredentials")
-    public native NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> getAllowedCredentials();
+    public native NSArray<?> getAllowedCredentials();
     @Property(selector = "setAllowedCredentials:")
-    public native void setAllowedCredentials(NSArray<ASAuthorizationPlatformPublicKeyCredentialDescriptor> v);
+    public native void setAllowedCredentials(NSArray<?> v);
     /**
      * @since Available in iOS 17.0 and later.
      */
@@ -66,6 +66,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setLargeBlob:")
     public native void setLargeBlob(ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFAssertionInput getPrf();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPrf:")
+    public native void setPrf(ASAuthorizationPublicKeyCredentialPRFAssertionInput v);
     @Property(selector = "challenge")
     public native NSData getChallenge();
     @Property(selector = "setChallenge:")
@@ -78,6 +88,12 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")
     public native void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
+    @Property(selector = "clientData")
+    public native ASPublicKeyCredentialClientData getClientData();
+    @Property(selector = "shouldShowHybridTransport")
+    public native boolean shouldShowHybridTransport();
+    @Property(selector = "setShouldShowHybridTransport:")
+    public native void setShouldShowHybridTransport(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

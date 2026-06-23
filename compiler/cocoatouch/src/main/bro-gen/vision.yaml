@@ -102,7 +102,7 @@ classes:
             '+rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:':
                 name: create # conflicts with one above
     VNRequest: #since 11.0
-        properties:
+        properties_private: # do not extend to subclasses
             'results':
                 type: 'NSArray<? extends VNObservation>'
         methods:
@@ -432,7 +432,8 @@ classes:
     VNTrackHomographicImageRegistrationRequest: {} #since 17.0
     VNTrackOpticalFlowRequest: {} #since 17.0
     VNTrackTranslationalImageRegistrationRequest: {} #since 17.0
-
+    VNCalculateImageAestheticsScoresRequest: {} #since 18.0
+    VNImageAestheticsScoresObservation: {} #since 18.0
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
     VNRequestRevisionProviding: {} #since 12.0

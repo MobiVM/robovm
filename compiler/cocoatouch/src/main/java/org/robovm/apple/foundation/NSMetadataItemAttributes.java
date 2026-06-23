@@ -186,17 +186,6 @@ import org.robovm.apple.dispatch.*;
         }
         return false;
     }
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
-     */
-    @Deprecated
-    public boolean isDownloaded() {
-        if (has(NSMetadataItemAttribute.IsDownloaded)) {
-            NSNumber val = (NSNumber) get(NSMetadataItemAttribute.IsDownloaded);
-            return val.booleanValue();
-        }
-        return false;
-    }
     public NSMetadataItemDownloadingStatus getDownloadingStatus() {
         if (has(NSMetadataItemAttribute.DownloadingStatus)) {
             NSString val = (NSString) get(NSMetadataItemAttribute.DownloadingStatus);

@@ -43,6 +43,7 @@ enums:
     MTRActionsCommandBits: { } #since 16.1
     MTRBasicInformationColor: { } #since 17.0
     MTRBasicInformationProductFinish: { } #since 17.0
+    MTROtaSoftwareUpdateProviderOTAApplyUpdateAction: { exclude: true }
     MTROTASoftwareUpdateProviderOTAApplyUpdateAction: { } #since 16.4
     MTROTASoftwareUpdateProviderOTADownloadProtocol: { } #since 16.4
     MTROTASoftwareUpdateProviderOTAQueryStatus: { } #since 16.4
@@ -179,7 +180,6 @@ enums:
     MTRMediaPlaybackFeature: { } #since 16.2
     MTRMediaInputInputType: { } #since 16.1
     MTRMediaInputFeature: { } #since 16.1
-    MTRKeypadInputCecKeyCode: { } #since 16.1
     MTRKeypadInputStatus: { } #since 16.1
     MTRKeypadInputFeature: { } #since 16.1
     MTRContentLauncherContentLaunchStatus: { } #since 16.1
@@ -212,6 +212,215 @@ enums:
     MTRDiscoveryCapabilities: { }
     MTRCommissioningFlow: { }
     MTROptionalQRCodeInfoType: { }
+    MTRDiagnosticLogType: {} #since 17.6
+    MTRDataTypeAtomicRequestTypeEnum: {} #since 18.4
+    MTRDataTypeLandmarkTag: {} #since 18.4
+    MTRDataTypePositionTag: {} #since 18.4
+    MTRDataTypeRelativePositionTag: {} #since 18.4
+    MTRGroupsGroupClusterFeature: {} #since 16.1
+    MTROnOffControlBitmap: {} #since 17.2
+    MTRLevelControlOptionsBitmap: {} #since 17.4
+    MTRAccessControlAccessRestrictionType: {} #since 18.4
+    MTRAccessControlFeature: {} #since 18.4
+    MTROTASoftwareUpdateProviderApplyUpdateAction: {} #since 17.2
+    MTROTASoftwareUpdateProviderDownloadProtocol: {} #since 17.2
+    MTROTASoftwareUpdateProviderStatus: {} #since 17.2
+    MTROTASoftwareUpdateRequestorAnnouncementReason: {} #since 17.2
+    MTROTASoftwareUpdateRequestorChangeReason: {} #since 17.2
+    MTROTASoftwareUpdateRequestorUpdateState: {} #since 17.2
+    MTRTimeFormatLocalizationFeature: {} #since 17.1
+    MTRNetworkCommissioningThreadCapabilitiesBitmap: {} #since 18.4
+    MTRNetworkCommissioningWiFiSecurity: {} #since 16.1
+    MTRGeneralDiagnosticsFeature: {} #since 18.4
+    MTRTimeSynchronizationStatusCode: {} #since 18.4
+    MTRTimeSynchronizationTimeZoneDatabase: {} #since 18.4
+    MTRTimeSynchronizationFeature: {} #since 18.4
+    MTRBridgedDeviceBasicInformationFeature: {} #since 18.4
+    MTRAdministratorCommissioningFeature: {} #since 17.4
+    MTRICDManagementClientType: {} #since 18.4
+    MTRICDManagementOperatingMode: {} #since 18.4
+    MTRICDManagementFeature: {} #since 18.4
+    MTRICDManagementUserActiveModeTriggerBitmap: {} #since 18.4
+    MTROvenCavityOperationalStateErrorState: {} #since 18.4
+    MTROvenCavityOperationalStateOperationalState: {} #since 18.4
+    MTROvenModeModeTag: {} #since 18.4
+    MTRLaundryDryerControlsDrynessLevel: {} #since 18.4
+    MTRLaundryWasherModeModeTag: {} #since 18.4
+    MTRRefrigeratorAndTemperatureControlledCabinetModeModeTag: {} #since 18.4
+    MTRLaundryWasherControlsNumberOfRinses: {} #since 18.4
+    MTRLaundryWasherControlsFeature: {} #since 18.4
+    MTRRVCRunModeModeTag: {} #since 17.4
+    MTRRVCRunModeStatusCode: {} #since 17.4
+    MTRRVCRunModeFeature: {} #since 17.4
+    MTRRVCCleanModeModeTag: {} #since 17.4
+    MTRRVCCleanModeStatusCode: {} #since 17.4
+    MTRRVCCleanModeFeature: {} #since 17.4
+    MTRTemperatureControlFeature: {} #since 18.4
+    MTRRefrigeratorAlarmAlarmBitmap: {} #since 18.4
+    MTRDishwasherModeModeTag: {} #since 18.4
+    MTRAirQuality: {} #since 17.6
+    MTRAirQualityFeature: {} #since 17.6
+    MTRSmokeCOAlarmAlarmState: {} #since 17.6
+    MTRSmokeCOAlarmContaminationState: {} #since 17.6
+    MTRSmokeCOAlarmEndOfService: {} #since 17.6
+    MTRSmokeCOAlarmExpressedState: {} #since 17.6
+    MTRSmokeCOAlarmMuteState: {} #since 17.6
+    MTRSmokeCOAlarmSensitivity: {} #since 17.6
+    MTRSmokeCOAlarmFeature: {} #since 17.6
+    MTRDishwasherAlarmAlarmBitmap: {} #since 18.4
+    MTRDishwasherAlarmFeature: {} #since 18.4
+    MTRMicrowaveOvenModeModeTag: {} #since 18.4
+    MTRMicrowaveOvenControlFeature: {} #since 18.4
+    MTROperationalStateErrorState: {} #since 17.4
+    MTROperationalState: {} #since 17.4
+    MTRRVCOperationalStateErrorState: {} #since 17.4
+    MTRRVCOperationalStateOperationalState: {} #since 17.4
+    MTRHEPAFilterMonitoringChangeIndication: {} #since 17.6
+    MTRHEPAFilterMonitoringDegradationDirection: {} #since 17.6
+    MTRHEPAFilterMonitoringProductIdentifierType: {} #since 17.6
+    MTRHEPAFilterMonitoringFeature: {} #since 17.6
+    MTRActivatedCarbonFilterMonitoringChangeIndication: {} #since 17.6
+    MTRActivatedCarbonFilterMonitoringDegradationDirection: {} #since 17.6
+    MTRActivatedCarbonFilterMonitoringProductIdentifierType: {} #since 17.6
+    MTRActivatedCarbonFilterMonitoringFeature: {} #since 17.6
+    MTRBooleanStateConfigurationAlarmModeBitmap: {} #since 17.6
+    MTRBooleanStateConfigurationFeature: {} #since 17.6
+    MTRBooleanStateConfigurationSensorFaultBitmap: {} #since 17.6
+    MTRValveConfigurationAndControlStatusCode: {} #since 17.6
+    MTRValveConfigurationAndControlValveState: {} #since 17.6
+    MTRValveConfigurationAndControlFeature: {} #since 17.6
+    MTRValveConfigurationAndControlValveFaultBitmap: {} #since 17.6
+    MTRElectricalPowerMeasurementMeasurementType: {} #since 17.6
+    MTRElectricalPowerMeasurementPowerMode: {} #since 17.6
+    MTRElectricalPowerMeasurementFeature: {} #since 17.6
+    MTRElectricalEnergyMeasurementMeasurementType: {} #since 18.4
+    MTRElectricalEnergyMeasurementFeature: {} #since 17.6
+    MTRWaterHeaterManagementBoostState: {} #since 18.4
+    MTRWaterHeaterManagementFeature: {} #since 18.4
+    MTRWaterHeaterManagementWaterHeaterHeatSourceBitmap: {} #since 18.4
+    MTRMessagesFutureMessagePreference: {} #since 18.4
+    MTRMessagesMessagePriority: {} #since 18.4
+    MTRMessagesFeature: {} #since 18.4
+    MTRMessagesMessageControlBitmap: {} #since 18.4
+    MTRDeviceEnergyManagementAdjustmentCause: {} #since 18.4
+    MTRDeviceEnergyManagementCause: {} #since 18.4
+    MTRDeviceEnergyManagementCostType: {} #since 18.4
+    MTRDeviceEnergyManagementESAState: {} #since 18.4
+    MTRDeviceEnergyManagementESAType: {} #since 18.4
+    MTRDeviceEnergyManagementForecastUpdateReason: {} #since 18.4
+    MTRDeviceEnergyManagementOptOutState: {} #since 18.4
+    MTRDeviceEnergyManagementPowerAdjustReason: {} #since 18.4
+    MTRDeviceEnergyManagementFeature: {} #since 18.4
+    MTREnergyEVSEEnergyTransferStoppedReason: {} #since 18.4
+    MTREnergyEVSEFaultState: {} #since 18.4
+    MTREnergyEVSEState: {} #since 18.4
+    MTREnergyEVSESupplyState: {} #since 18.4
+    MTREnergyEVSEFeature: {} #since 18.4
+    MTREnergyEVSETargetDayOfWeekBitmap: {} #since 18.4
+    MTRPowerTopologyFeature: {} #since 18.4
+    MTREnergyEVSEModeModeTag: {} #since 18.4
+    MTRWaterHeaterModeModeTag: {} #since 18.4
+    MTRDeviceEnergyManagementModeModeTag: {} #since 18.4
+    MTRServiceAreaOperationalStatus: {} #since 18.4
+    MTRServiceAreaSelectAreasStatus: {} #since 18.4
+    MTRServiceAreaSkipAreaStatus: {} #since 18.4
+    MTRServiceAreaFeature: {} #since 18.4
+    MTRPumpConfigurationAndControlPumpFeature: {} #since 16.4
+    MTRThermostatACCapacityFormat: {} #since 18.4
+    MTRThermostatACCompressorType: {} #since 18.4
+    MTRThermostatACLouverPosition: {} #since 18.4
+    MTRThermostatACRefrigerantType: {} #since 18.4
+    MTRThermostatACType: {} #since 18.4
+    MTRThermostatControlSequenceOfOperation: {} #since 17.4
+    MTRThermostatPresetScenario: {} #since 18.4
+    MTRThermostatSetpointChangeSource: {} #since 18.4
+    MTRThermostatSetpointRaiseLowerMode: {} #since 17.4
+    MTRThermostatStartOfWeek: {} #since 18.4
+    MTRThermostatTemperatureSetpointHold: {} #since 18.4
+    MTRThermostatACErrorCodeBitmap: {} #since 18.4
+    MTRThermostatHVACSystemTypeBitmap: {} #since 18.4
+    MTRThermostatOccupancyBitmap: {} #since 18.4
+    MTRThermostatPresetTypeFeaturesBitmap: {} #since 18.4
+    MTRThermostatProgrammingOperationModeBitmap: {} #since 18.4
+    MTRThermostatRelayStateBitmap: {} #since 18.4
+    MTRThermostatRemoteSensingBitmap: {} #since 18.4
+    MTRThermostatScheduleDayOfWeekBitmap: {} #since 17.4
+    MTRThermostatScheduleModeBitmap: {} #since 17.4
+    MTRThermostatScheduleTypeFeaturesBitmap: {} #since 18.4
+    MTRFanControlAirflowDirection: {} #since 17.6
+    MTRFanControlFanModeType: {} #since 16.1
+    MTRFanControlFanModeSequenceType: {} #since 16.1
+    MTRFanControlStepDirection: {} #since 17.6
+    MTRFanControlRockSupportMask: {} #since 16.1
+    MTRFanControlWindSupportMask: {} #since 16.1
+    MTRThermostatUserInterfaceConfigurationKeypadLockout: {} #since 17.4
+    MTRThermostatUserInterfaceConfigurationScheduleProgrammingVisibility: {} #since 17.4
+    MTRThermostatUserInterfaceConfigurationTemperatureDisplayMode: {} #since 17.4
+    MTRColorControlDirection: {} #since 18.2
+    MTRColorControlDriftCompensation: {} #since 18.2
+    MTRColorControlEnhancedColorMode: {} #since 18.2
+    MTRColorControlMoveMode: {} #since 18.2
+    MTRColorControlStepMode: {} #since 18.2
+    MTRColorControlColorCapabilitiesBitmap: {} #since 18.2
+    MTRColorControlOptionsBitmap: {} #since 18.2
+    MTRColorControlUpdateFlagsBitmap: {} #since 18.2
+    MTRPressureMeasurementPressureFeature: {} #since 16.1
+    MTROccupancySensingFeature: {} #since 18.4
+    MTRCarbonMonoxideConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRCarbonMonoxideConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRCarbonMonoxideConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRCarbonMonoxideConcentrationMeasurementFeature: {} #since 17.6
+    MTRCarbonDioxideConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRCarbonDioxideConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRCarbonDioxideConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRCarbonDioxideConcentrationMeasurementFeature: {} #since 17.6
+    MTRNitrogenDioxideConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRNitrogenDioxideConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRNitrogenDioxideConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRNitrogenDioxideConcentrationMeasurementFeature: {} #since 17.6
+    MTROzoneConcentrationMeasurementLevelValue: {} #since 17.6
+    MTROzoneConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTROzoneConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTROzoneConcentrationMeasurementFeature: {} #since 17.6
+    MTRPM25ConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRPM25ConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRPM25ConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRPM25ConcentrationMeasurementFeature: {} #since 17.6
+    MTRFormaldehydeConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRFormaldehydeConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRFormaldehydeConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRFormaldehydeConcentrationMeasurementFeature: {} #since 17.6
+    MTRPM1ConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRPM1ConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRPM1ConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRPM1ConcentrationMeasurementFeature: {} #since 17.6
+    MTRPM10ConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRPM10ConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRPM10ConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRPM10ConcentrationMeasurementFeature: {} #since 17.6
+    MTRTotalVolatileOrganicCompoundsConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRTotalVolatileOrganicCompoundsConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRTotalVolatileOrganicCompoundsConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRTotalVolatileOrganicCompoundsConcentrationMeasurementFeature: {} #since 17.6
+    MTRRadonConcentrationMeasurementLevelValue: {} #since 17.6
+    MTRRadonConcentrationMeasurementMeasurementMedium: {} #since 17.6
+    MTRRadonConcentrationMeasurementMeasurementUnit: {} #since 17.6
+    MTRRadonConcentrationMeasurementFeature: {} #since 17.6
+    MTRThreadBorderRouterManagementFeature: {} #since 18.4
+    MTRChannelType: {} #since 18.4
+    MTRChannelRecordingFlagBitmap: {} #since 18.4
+    MTRMediaPlaybackCharacteristic: {} #since 18.4
+    MTRKeypadInputCecKeyCode: { exclude: true } # replaced with MTRKeypadInputCECKeyCode
+    MTRKeypadInputCECKeyCode: {} #since 17.4
+    MTRContentLauncherStatus: {} #since 17.4
+    MTRContentLauncherSupportedProtocolsBitmap: {} #since 17.4
+    MTRContentAppObserverStatus: {} #since 18.4
+    MTRCommissionerControlSupportedDeviceCategoryBitmap: {} #since 18.4
+    MTRFanControlWindSettingMask: {} #since 16.1
+    MTRDeviceTypeIDType: {} #since 18.2
+    MTRStorageSecurityLevel: {} #since 17.6
+    MTRStorageSharingType: {} #since 17.6
+    MTROnboardingPayloadType: {} #since 16.1
 
 # common configuration for all classes. if method config is not found in particular
 # class it will be looked in here
@@ -245,6 +454,10 @@ default_methods_config:
         throws: NSErrorException
     '-initWithDevice:endpointID:queue:':
         name: init
+    '[+-](.+?)With.*':
+        name: '#{g[0]}'
+    '[+-](.+?)\:.*':
+        name: '#{g[0]}'
 
 classes:
     MTRAccessControlClusterAccessControlEntryChangedEvent: { } #since 16.1
@@ -418,9 +631,7 @@ classes:
             '-initWithSetupPasscode:discriminator:':
                 name: init
             '+setupPayloadWithOnboardingPayload:error:':
-                name: setupPayload
-                constructor: true
-                throws: NSErrorException
+                exclude: true # deprecated and clashes
     MTRSoftwareDiagnosticsClusterResetWatermarksParams: { } #since 16.1
     MTRSoftwareDiagnosticsClusterSoftwareFaultEvent: { } #since 16.1
     MTRSoftwareDiagnosticsClusterThreadMetricsStruct: { } #since 16.4
@@ -458,7 +669,6 @@ classes:
             '-initWithData:':
                 name: init
     MTRTimeSynchronizationClusterDSTOffsetStruct: { } #since 16.5
-    MTRTimeSynchronizationClusterSetUtcTimeParams: { } #since 16.1
     MTRTimeSynchronizationClusterTimeZoneStruct: { } #since 16.5
     MTRUnitTestingClusterBooleanResponseParams: { } #since 16.4
     MTRUnitTestingClusterDoubleNestedStructList: { } #since 16.4
@@ -990,7 +1200,392 @@ classes:
     MTRClusterThermostatUserInterfaceConfiguration: { } #since 16.1
     MTRClusterThreadNetworkDiagnostics: { } #since 16.1
     MTRClusterTimeFormatLocalization: { } #since 16.1
-
+    MTRAccessControlClusterAccessRestrictionEntryStruct: {} #since 18.4
+    MTRAccessControlClusterAccessRestrictionStruct: {} #since 18.4
+    MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct: {} #since 18.4
+    MTRAccessControlClusterFabricRestrictionReviewUpdateEvent: {} #since 18.4
+    MTRAccessControlClusterReviewFabricRestrictionsParams: {} #since 18.4
+    MTRAccessControlClusterReviewFabricRestrictionsResponseParams: {} #since 18.4
+    MTRAccessControlClusterTarget: {} #since 16.1
+    MTRAccessGrant: {} #since 17.6
+    MTRAccountLoginClusterLoggedOutEvent: {} #since 18.4
+    MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct: {} #since 17.6
+    MTRActivatedCarbonFilterMonitoringClusterResetConditionParams: {} #since 17.6
+    MTRAttributeValueWaiter: {} #since 18.3
+    MTRBaseClusterActivatedCarbonFilterMonitoring: {} #since 17.6
+    MTRBaseClusterAirQuality: {} #since 17.6
+    MTRBaseClusterBooleanStateConfiguration: {} #since 17.6
+    MTRBaseClusterBridgedDeviceBasic: {} #since 16.1
+    MTRBaseClusterCarbonDioxideConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterCarbonMonoxideConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterCommissionerControl: {} #since 18.4
+    MTRBaseClusterContentAppObserver: {} #since 18.4
+    MTRBaseClusterDeviceEnergyManagement: {} #since 18.4
+    MTRBaseClusterDeviceEnergyManagementMode: {} #since 18.4
+    MTRBaseClusterDishwasherAlarm: {} #since 18.4
+    MTRBaseClusterDishwasherMode: {} #since 18.4
+    MTRBaseClusterElectricalEnergyMeasurement: {} #since 17.6
+    MTRBaseClusterElectricalPowerMeasurement: {} #since 17.6
+    MTRBaseClusterEnergyEVSE: {} #since 18.4
+    MTRBaseClusterEnergyEVSEMode: {} #since 18.4
+    MTRBaseClusterFormaldehydeConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterHEPAFilterMonitoring: {} #since 17.6
+    MTRBaseClusterICDManagement: {} #since 18.4
+    MTRBaseClusterLaundryDryerControls: {} #since 18.4
+    MTRBaseClusterLaundryWasherControls: {} #since 18.4
+    MTRBaseClusterLaundryWasherMode: {} #since 18.4
+    MTRBaseClusterMessages: {} #since 18.4
+    MTRBaseClusterMicrowaveOvenControl: {} #since 18.4
+    MTRBaseClusterMicrowaveOvenMode: {} #since 18.4
+    MTRBaseClusterNitrogenDioxideConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterOperationalState: {} #since 17.4
+    MTRBaseClusterOvenCavityOperationalState: {} #since 18.4
+    MTRBaseClusterOvenMode: {} #since 18.4
+    MTRBaseClusterOzoneConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterPM10ConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterPM1ConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterPM25ConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterPowerTopology: {} #since 18.4
+    MTRBaseClusterRVCCleanMode: {} #since 17.4
+    MTRBaseClusterRVCOperationalState: {} #since 17.4
+    MTRBaseClusterRVCRunMode: {} #since 17.4
+    MTRBaseClusterRadonConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterRefrigeratorAlarm: {} #since 18.4
+    MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode: {} #since 18.4
+    MTRBaseClusterServiceArea: {} #since 18.4
+    MTRBaseClusterSmokeCOAlarm: {} #since 17.6
+    MTRBaseClusterTemperatureControl: {} #since 18.4
+    MTRBaseClusterThreadBorderRouterManagement: {} #since 18.4
+    MTRBaseClusterThreadNetworkDirectory: {} #since 18.4
+    MTRBaseClusterTimeSynchronization: {} #since 18.4
+    MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement: {} #since 17.6
+    MTRBaseClusterValveConfigurationAndControl: {} #since 17.6
+    MTRBaseClusterWaterHeaterManagement: {} #since 18.4
+    MTRBaseClusterWaterHeaterMode: {} #since 18.4
+    MTRBaseClusterWiFiNetworkManagement: {} #since 18.4
+    MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent: {} #since 17.6
+    MTRBooleanStateConfigurationClusterEnableDisableAlarmParams: {} #since 17.6
+    MTRBooleanStateConfigurationClusterSensorFaultEvent: {} #since 17.6
+    MTRBooleanStateConfigurationClusterSuppressAlarmParams: {} #since 17.6
+    MTRBridgedDeviceBasicClusterLeaveEvent: {} #since 16.1
+    MTRBridgedDeviceBasicClusterReachableChangedEvent: {} #since 16.1
+    MTRBridgedDeviceBasicClusterShutDownEvent: {} #since 16.1
+    MTRBridgedDeviceBasicClusterStartUpEvent: {} #since 16.1
+    MTRBridgedDeviceBasicInformationClusterActiveChangedEvent: {} #since 18.4
+    MTRBridgedDeviceBasicInformationClusterKeepActiveParams: {} #since 18.4
+    MTRChannelClusterCancelRecordProgramParams: {} #since 18.4
+    MTRChannelClusterChannelPagingStruct: {} #since 18.4
+    MTRChannelClusterGetProgramGuideParams: {} #since 18.4
+    MTRChannelClusterPageTokenStruct: {} #since 18.4
+    MTRChannelClusterProgramCastStruct: {} #since 18.4
+    MTRChannelClusterProgramCategoryStruct: {} #since 18.4
+    MTRChannelClusterProgramGuideResponseParams: {} #since 18.4
+    MTRChannelClusterProgramStruct: {} #since 18.4
+    MTRChannelClusterRecordProgramParams: {} #since 18.4
+    MTRChannelClusterSeriesInfoStruct: {} #since 18.4
+    MTRClusterActivatedCarbonFilterMonitoring: {} #since 17.6
+    MTRClusterAirQuality: {} #since 17.6
+    MTRClusterBooleanStateConfiguration: {} #since 17.6
+    MTRClusterBridgedDeviceBasic: {} #since 16.1
+    MTRClusterCarbonDioxideConcentrationMeasurement: {} #since 17.6
+    MTRClusterCarbonMonoxideConcentrationMeasurement: {} #since 17.6
+    MTRClusterCommissionerControl: {} #since 18.4
+    MTRClusterContentAppObserver: {} #since 18.4
+    MTRClusterDeviceEnergyManagement: {} #since 18.4
+    MTRClusterDeviceEnergyManagementMode: {} #since 18.4
+    MTRClusterDishwasherAlarm: {} #since 18.4
+    MTRClusterDishwasherMode: {} #since 18.4
+    MTRClusterElectricalEnergyMeasurement: {} #since 17.6
+    MTRClusterElectricalPowerMeasurement: {} #since 17.6
+    MTRClusterEnergyEVSE: {} #since 18.4
+    MTRClusterEnergyEVSEMode: {} #since 18.4
+    MTRClusterFormaldehydeConcentrationMeasurement: {} #since 17.6
+    MTRClusterHEPAFilterMonitoring: {} #since 17.6
+    MTRClusterICDManagement: {} #since 18.4
+    MTRClusterLaundryDryerControls: {} #since 18.4
+    MTRClusterLaundryWasherControls: {} #since 18.4
+    MTRClusterLaundryWasherMode: {} #since 18.4
+    MTRClusterMessages: {} #since 18.4
+    MTRClusterMicrowaveOvenControl: {} #since 18.4
+    MTRClusterMicrowaveOvenMode: {} #since 18.4
+    MTRClusterNitrogenDioxideConcentrationMeasurement: {} #since 17.6
+    MTRClusterOperationalState: {} #since 17.4
+    MTRClusterOvenCavityOperationalState: {} #since 18.4
+    MTRClusterOvenMode: {} #since 18.4
+    MTRClusterOzoneConcentrationMeasurement: {} #since 17.6
+    MTRClusterPM10ConcentrationMeasurement: {} #since 17.6
+    MTRClusterPM1ConcentrationMeasurement: {} #since 17.6
+    MTRClusterPM25ConcentrationMeasurement: {} #since 17.6
+    MTRClusterPowerTopology: {} #since 18.4
+    MTRClusterRVCCleanMode: {} #since 17.4
+    MTRClusterRVCOperationalState: {} #since 17.4
+    MTRClusterRVCRunMode: {} #since 17.4
+    MTRClusterRadonConcentrationMeasurement: {} #since 17.6
+    MTRClusterRefrigeratorAlarm: {} #since 18.4
+    MTRClusterRefrigeratorAndTemperatureControlledCabinetMode: {} #since 18.4
+    MTRClusterServiceArea: {} #since 18.4
+    MTRClusterSmokeCOAlarm: {} #since 17.6
+    MTRClusterTemperatureControl: {} #since 18.4
+    MTRClusterThreadBorderRouterManagement: {} #since 18.4
+    MTRClusterThreadNetworkDirectory: {} #since 18.4
+    MTRClusterTimeSynchronization: {} #since 18.4
+    MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement: {} #since 17.6
+    MTRClusterValveConfigurationAndControl: {} #since 17.6
+    MTRClusterWaterHeaterManagement: {} #since 18.4
+    MTRClusterWaterHeaterMode: {} #since 18.4
+    MTRClusterWiFiNetworkManagement: {} #since 18.4
+    MTRCommandWithRequiredResponse: {} #since 18.4
+    MTRCommissioneeInfo: {} #since 18.4
+    MTRCommissionerControlClusterCommissionNodeParams: {} #since 18.4
+    MTRCommissionerControlClusterCommissioningRequestResultEvent: {} #since 18.4
+    MTRCommissionerControlClusterRequestCommissioningApprovalParams: {} #since 18.4
+    MTRCommissionerControlClusterReverseOpenCommissioningWindowParams: {} #since 18.4
+    MTRContentAppObserverClusterContentAppMessageParams: {} #since 18.4
+    MTRContentAppObserverClusterContentAppMessageResponseParams: {} #since 18.4
+    MTRDataTypeAtomicAttributeStatusStruct: {} #since 18.4
+    MTRDataTypeLocationDescriptorStruct: {} #since 18.4
+    MTRDeviceControllerAbstractParameters: {} #since 17.6
+    MTRDeviceControllerExternalCertificateParameters: {} #since 17.6
+    MTRDeviceControllerParameters: {} #since 17.6
+    MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterCancelRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterConstraintsStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterCostStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterForecastStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterModifyForecastRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPauseRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPausedEvent: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPowerAdjustEndEvent: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPowerAdjustRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPowerAdjustStartEvent: {} #since 18.4
+    MTRDeviceEnergyManagementClusterPowerAdjustStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterResumeRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementClusterResumedEvent: {} #since 18.4
+    MTRDeviceEnergyManagementClusterSlotAdjustmentStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterSlotStruct: {} #since 18.4
+    MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams: {} #since 18.4
+    MTRDeviceEnergyManagementModeClusterChangeToModeParams: {} #since 18.4
+    MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTRDeviceEnergyManagementModeClusterModeOptionStruct: {} #since 18.4
+    MTRDeviceEnergyManagementModeClusterModeTagStruct: {} #since 18.4
+    MTRDeviceStorageBehaviorConfiguration: #since 17.6
+        methods:
+            '+configurationWithDefaultStorageBehavior':
+                name: configurationWithDefaultStorageBehavior
+            '+configurationWithStorageBehaviorOptimizationDisabled':
+                name: configurationWithStorageBehaviorOptimizationDisabled
+            '+configurationWithReportToPersistenceDelayTime:reportToPersistenceDelayTimeMax:recentReportTimesMaxCount:timeBetweenReportsTooShortThreshold:timeBetweenReportsTooShortMinThreshold:reportToPersistenceDelayMaxMultiplier:deviceReportingExcessivelyIntervalThreshold:':
+                name: configurationWithReport
+    MTRDeviceType: {} #since 18.2
+    MTRDeviceTypeRevision: {} #since 17.6
+    MTRDishwasherAlarmClusterModifyEnabledAlarmsParams: {} #since 18.4
+    MTRDishwasherAlarmClusterNotifyEvent: {} #since 18.4
+    MTRDishwasherAlarmClusterResetParams: {} #since 18.4
+    MTRDishwasherModeClusterChangeToModeParams: {} #since 18.4
+    MTRDishwasherModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTRDishwasherModeClusterModeOptionStruct: {} #since 18.4
+    MTRDishwasherModeClusterModeTagStruct: {} #since 18.4
+    MTRDoorLockClusterClearAliroReaderConfigParams: {} #since 18.4
+    MTRDoorLockClusterSetAliroReaderConfigParams: {} #since 18.4
+    MTRDoorLockClusterUnboltDoorParams: {} #since 18.4
+    MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent: {} #since 17.6
+    MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct: {} #since 17.6
+    MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct: {} #since 17.6
+    MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct: {} #since 18.4
+    MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct: {} #since 17.6
+    MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent: {} #since 17.6
+    MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct: {} #since 17.6
+    MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct: {} #since 17.6
+    MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct: {} #since 17.6
+    MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent: {} #since 17.6
+    MTRElectricalPowerMeasurementClusterMeasurementRangeStruct: {} #since 17.6
+    MTREndpointInfo: {} #since 18.4
+    MTREnergyEVSEClusterChargingTargetScheduleStruct: {} #since 18.4
+    MTREnergyEVSEClusterChargingTargetStruct: {} #since 18.4
+    MTREnergyEVSEClusterClearTargetsParams: {} #since 18.4
+    MTREnergyEVSEClusterDisableParams: {} #since 18.4
+    MTREnergyEVSEClusterEVConnectedEvent: {} #since 18.4
+    MTREnergyEVSEClusterEVNotDetectedEvent: {} #since 18.4
+    MTREnergyEVSEClusterEnableChargingParams: {} #since 18.4
+    MTREnergyEVSEClusterEnergyTransferStartedEvent: {} #since 18.4
+    MTREnergyEVSEClusterEnergyTransferStoppedEvent: {} #since 18.4
+    MTREnergyEVSEClusterFaultEvent: {} #since 18.4
+    MTREnergyEVSEClusterGetTargetsParams: {} #since 18.4
+    MTREnergyEVSEClusterGetTargetsResponseParams: {} #since 18.4
+    MTREnergyEVSEClusterRFIDEvent: {} #since 18.4
+    MTREnergyEVSEClusterSetTargetsParams: {} #since 18.4
+    MTREnergyEVSEClusterStartDiagnosticsParams: {} #since 18.4
+    MTREnergyEVSEModeClusterChangeToModeParams: {} #since 18.4
+    MTREnergyEVSEModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTREnergyEVSEModeClusterModeOptionStruct: {} #since 18.4
+    MTREnergyEVSEModeClusterModeTagStruct: {} #since 18.4
+    MTRFanControlClusterStepParams: {} #since 17.6
+    MTRGeneralDiagnosticsClusterPayloadTestRequestParams: {} #since 18.4
+    MTRGeneralDiagnosticsClusterPayloadTestResponseParams: {} #since 18.4
+    MTRGeneralDiagnosticsClusterTimeSnapshotParams: {} #since 18.4
+    MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams: {} #since 18.4
+    MTRGenericBaseCluster: {} #since 17.4
+    MTRGenericCluster: {} #since 17.4
+    MTRHEPAFilterMonitoringClusterReplacementProductStruct: {} #since 17.6
+    MTRHEPAFilterMonitoringClusterResetConditionParams: {} #since 17.6
+    MTRICDManagementClusterMonitoringRegistrationStruct: {} #since 18.4
+    MTRICDManagementClusterRegisterClientParams: {} #since 18.4
+    MTRICDManagementClusterRegisterClientResponseParams: {} #since 18.4
+    MTRICDManagementClusterStayActiveRequestParams: {} #since 18.4
+    MTRICDManagementClusterStayActiveResponseParams: {} #since 18.4
+    MTRICDManagementClusterUnregisterClientParams: {} #since 18.4
+    MTRLaundryWasherModeClusterChangeToModeParams: {} #since 18.4
+    MTRLaundryWasherModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTRLaundryWasherModeClusterModeOptionStruct: {} #since 18.4
+    MTRLaundryWasherModeClusterModeTagStruct: {} #since 18.4
+    MTRMediaPlaybackClusterActivateAudioTrackParams: {} #since 18.4
+    MTRMediaPlaybackClusterActivateTextTrackParams: {} #since 18.4
+    MTRMediaPlaybackClusterDeactivateTextTrackParams: {} #since 18.4
+    MTRMediaPlaybackClusterStateChangedEvent: {} #since 18.4
+    MTRMessagesClusterCancelMessagesRequestParams: {} #since 18.4
+    MTRMessagesClusterMessageCompleteEvent: {} #since 18.4
+    MTRMessagesClusterMessagePresentedEvent: {} #since 18.4
+    MTRMessagesClusterMessageQueuedEvent: {} #since 18.4
+    MTRMessagesClusterMessageResponseOptionStruct: {} #since 18.4
+    MTRMessagesClusterMessageStruct: {} #since 18.4
+    MTRMessagesClusterPresentMessagesRequestParams: {} #since 18.4
+    MTRMetricData: {} #since 17.6
+    MTRMetrics: {} #since 17.6
+    MTRMicrowaveOvenControlClusterAddMoreTimeParams: {} #since 18.4
+    MTRMicrowaveOvenControlClusterSetCookingParametersParams: {} #since 18.4
+    MTRMicrowaveOvenModeClusterModeOptionStruct: {} #since 18.4
+    MTRMicrowaveOvenModeClusterModeTagStruct: {} #since 18.4
+    MTRNetworkCommissioningClusterNetworkInfo: {} #since 16.1
+    MTRNetworkCommissioningClusterThreadInterfaceScanResult: {} #since 16.1
+    MTRNetworkCommissioningClusterWiFiInterfaceScanResult: {} #since 16.1
+    MTROccupancySensingClusterHoldTimeLimitsStruct: {} #since 18.4
+    MTROccupancySensingClusterOccupancyChangedEvent: {} #since 18.4
+    MTROnboardingPayloadParser: {} #since 16.1
+    MTROperationalStateClusterErrorStateStruct: {} #since 17.4
+    MTROperationalStateClusterOperationCompletionEvent: {} #since 17.4
+    MTROperationalStateClusterOperationalCommandResponseParams: {} #since 17.4
+    MTROperationalStateClusterOperationalErrorEvent: {} #since 17.4
+    MTROperationalStateClusterOperationalStateStruct: {} #since 17.4
+    MTROperationalStateClusterPauseParams: {} #since 17.4
+    MTROperationalStateClusterResumeParams: {} #since 17.4
+    MTROperationalStateClusterStartParams: {} #since 17.4
+    MTROperationalStateClusterStopParams: {} #since 17.4
+    MTROvenCavityOperationalStateClusterErrorStateStruct: {} #since 18.4
+    MTROvenCavityOperationalStateClusterOperationCompletionEvent: {} #since 18.4
+    MTROvenCavityOperationalStateClusterOperationalCommandResponseParams: {} #since 18.4
+    MTROvenCavityOperationalStateClusterOperationalErrorEvent: {} #since 18.4
+    MTROvenCavityOperationalStateClusterOperationalStateStruct: {} #since 18.4
+    MTROvenCavityOperationalStateClusterStartParams: {} #since 18.4
+    MTROvenCavityOperationalStateClusterStopParams: {} #since 18.4
+    MTROvenModeClusterChangeToModeParams: {} #since 18.4
+    MTROvenModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTROvenModeClusterModeOptionStruct: {} #since 18.4
+    MTROvenModeClusterModeTagStruct: {} #since 18.4
+    MTRRVCCleanModeClusterChangeToModeParams: {} #since 17.4
+    MTRRVCCleanModeClusterChangeToModeResponseParams: {} #since 17.4
+    MTRRVCCleanModeClusterModeOptionStruct: {} #since 17.4
+    MTRRVCCleanModeClusterModeTagStruct: {} #since 17.4
+    MTRRVCOperationalStateClusterErrorStateStruct: {} #since 17.4
+    MTRRVCOperationalStateClusterGoHomeParams: {} #since 18.4
+    MTRRVCOperationalStateClusterOperationCompletionEvent: {} #since 17.4
+    MTRRVCOperationalStateClusterOperationalCommandResponseParams: {} #since 17.4
+    MTRRVCOperationalStateClusterOperationalErrorEvent: {} #since 17.4
+    MTRRVCOperationalStateClusterOperationalStateStruct: {} #since 17.4
+    MTRRVCOperationalStateClusterPauseParams: {} #since 17.4
+    MTRRVCOperationalStateClusterResumeParams: {} #since 17.4
+    MTRRVCRunModeClusterChangeToModeParams: {} #since 17.4
+    MTRRVCRunModeClusterChangeToModeResponseParams: {} #since 17.4
+    MTRRVCRunModeClusterModeOptionStruct: {} #since 17.4
+    MTRRVCRunModeClusterModeTagStruct: {} #since 17.4
+    MTRRefrigeratorAlarmClusterNotifyEvent: {} #since 18.4
+    MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams: {} #since 18.4
+    MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct: {} #since 18.4
+    MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct: {} #since 18.4
+    MTRServerAttribute: {} #since 17.6
+    MTRServerCluster: {} #since 17.6
+    MTRServerEndpoint: {} #since 17.6
+    MTRServiceAreaClusterAreaInfoStruct: {} #since 18.4
+    MTRServiceAreaClusterAreaStruct: {} #since 18.4
+    MTRServiceAreaClusterLandmarkInfoStruct: {} #since 18.4
+    MTRServiceAreaClusterMapStruct: {} #since 18.4
+    MTRServiceAreaClusterProgressStruct: {} #since 18.4
+    MTRServiceAreaClusterSelectAreasParams: {} #since 18.4
+    MTRServiceAreaClusterSelectAreasResponseParams: {} #since 18.4
+    MTRServiceAreaClusterSkipAreaParams: {} #since 18.4
+    MTRServiceAreaClusterSkipAreaResponseParams: {} #since 18.4
+    MTRSmokeCOAlarmClusterAlarmMutedEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterAllClearEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterCOAlarmEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterEndOfServiceEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterHardwareFaultEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterInterconnectCOAlarmEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterLowBatteryEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterMuteEndedEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterSelfTestCompleteEvent: {} #since 17.6
+    MTRSmokeCOAlarmClusterSelfTestRequestParams: {} #since 17.6
+    MTRSmokeCOAlarmClusterSmokeAlarmEvent: {} #since 17.6
+    MTRTargetNavigatorClusterTargetUpdatedEvent: {} #since 18.4
+    MTRTemperatureControlClusterSetTemperatureParams: {} #since 18.4
+    MTRThermostatClusterAtomicRequestParams: {} #since 18.4
+    MTRThermostatClusterAtomicResponseParams: {} #since 18.4
+    MTRThermostatClusterPresetStruct: {} #since 18.4
+    MTRThermostatClusterPresetTypeStruct: {} #since 18.4
+    MTRThermostatClusterScheduleStruct: {} #since 18.4
+    MTRThermostatClusterScheduleTransitionStruct: {} #since 18.4
+    MTRThermostatClusterScheduleTypeStruct: {} #since 18.4
+    MTRThermostatClusterSetActivePresetRequestParams: {} #since 18.4
+    MTRThermostatClusterSetActiveScheduleRequestParams: {} #since 18.4
+    MTRThermostatClusterWeeklyScheduleTransitionStruct: {} #since 17.4
+    MTRThreadBorderRouterManagementClusterDatasetResponseParams: {} #since 18.4
+    MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams: {} #since 18.4
+    MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams: {} #since 18.4
+    MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams: {} #since 18.4
+    MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams: {} #since 18.4
+    MTRThreadNetworkDiagnosticsClusterNeighborTable: {} #since 16.1
+    MTRThreadNetworkDiagnosticsClusterRouteTable: {} #since 16.1
+    MTRThreadNetworkDirectoryClusterAddNetworkParams: {} #since 18.4
+    MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams: {} #since 18.4
+    MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams: {} #since 18.4
+    MTRThreadNetworkDirectoryClusterRemoveNetworkParams: {} #since 18.4
+    MTRThreadNetworkDirectoryClusterThreadNetworkStruct: {} #since 18.4
+    MTRTimeSynchronizationClusterDSTStatusEvent: {} #since 18.4
+    MTRTimeSynchronizationClusterDSTTableEmptyEvent: {} #since 18.4
+    MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct: {} #since 18.4
+    MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent: {} #since 18.4
+    MTRTimeSynchronizationClusterSetDSTOffsetParams: {} #since 18.4
+    MTRTimeSynchronizationClusterSetDefaultNTPParams: {} #since 18.4
+    MTRTimeSynchronizationClusterSetTimeZoneParams: {} #since 18.4
+    MTRTimeSynchronizationClusterSetTimeZoneResponseParams: {} #since 18.4
+    MTRTimeSynchronizationClusterSetTrustedTimeSourceParams: {} #since 18.4
+    MTRTimeSynchronizationClusterSetUTCTimeParams: {} #since 17.2
+    MTRTimeSynchronizationClusterSetUtcTimeParams: { exclude: true } #since 16.1
+    MTRTimeSynchronizationClusterTimeFailureEvent: {} #since 18.4
+    MTRTimeSynchronizationClusterTimeZoneStatusEvent: {} #since 18.4
+    MTRTimeSynchronizationClusterTrustedTimeSourceStruct: {} #since 18.4
+    MTRValveConfigurationAndControlClusterCloseParams: {} #since 17.6
+    MTRValveConfigurationAndControlClusterOpenParams: {} #since 17.6
+    MTRValveConfigurationAndControlClusterValveFaultEvent: {} #since 17.6
+    MTRValveConfigurationAndControlClusterValveStateChangedEvent: {} #since 17.6
+    MTRWaterHeaterManagementClusterBoostEndedEvent: {} #since 18.4
+    MTRWaterHeaterManagementClusterBoostParams: {} #since 18.4
+    MTRWaterHeaterManagementClusterBoostStartedEvent: {} #since 18.4
+    MTRWaterHeaterManagementClusterCancelBoostParams: {} #since 18.4
+    MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct: {} #since 18.4
+    MTRWaterHeaterModeClusterChangeToModeParams: {} #since 18.4
+    MTRWaterHeaterModeClusterChangeToModeResponseParams: {} #since 18.4
+    MTRWaterHeaterModeClusterModeOptionStruct: {} #since 18.4
+    MTRWaterHeaterModeClusterModeTagStruct: {} #since 18.4
+    MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams: {} #since 18.4
+    MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams: {} #since 18.4
+    MTRXPCDeviceControllerParameters: #since 18.2
+        methods:
+            '-initWithXPConnectionBlock:uniqueIdentifier:':
+                static_constructor_name: createWithXPConnectionBlock
+                name: initWithXPConnectionBlock
 
 protocols:
     MTRCommissionableBrowserDelegate: #since 17.0
@@ -1025,6 +1620,14 @@ protocols:
                 name: commissioningComplete
             '-controller:readCommissioningInfo:':
                 name: readCommissioningInfo
+            '-controller:commissioningComplete:nodeID:metrics:':
+                name: commissioningComplete
+            '-controller:readCommissioneeInfo:':
+                name: readCommissioneeInfo
+            '-controller:suspendedChangedTo:':
+                name: suspendedChanged
+            '-controller:commissioneeHasReceivedNetworkCredentials:':
+                name: commissioneeHasReceivedNetworkCredentials
     MTRDeviceControllerServerProtocol:
         methods:
             '-getDeviceControllerWithFabricId:completion:':
@@ -1045,6 +1648,8 @@ protocols:
                 name: subscribe
             '-readAttributeCacheWithController:nodeId:endpointId:clusterId:attributeId:completion:':
                 name: readAttributeCache
+            '-downloadLogWithController:nodeId:type:timeout:completion:':
+                name: downloadLog
     MTRDeviceDelegate:
         methods:
             '-device:stateChanged:':
@@ -1086,10 +1691,89 @@ protocols:
         methods:
             '-setStorageData:forKey:':
                 name: setStorageData
+    MTRDeviceControllerStorageDelegate: #since 17.6
+        methods:
+            '-controller:valueForKey:securityLevel:sharingType:':
+                name: getValue
+            '-controller:storeValue:forKey:securityLevel:sharingType:':
+                name: storeValue
+            '-controller:removeValueForKey:securityLevel:sharingType:':
+                name: removeValue
+            '-valuesForController:securityLevel:sharingType:':
+                name: getValues
+            '-controller:storeValues:securityLevel:sharingType:':
+                name: storeValues
+    MTRXPCClientProtocol: {} #since 18.2
+    MTRXPCClientProtocol_MTRDevice: #since 18.2
+        methods:
+            '-device:stateChanged:':
+                name: stateChanged
+            '-device:receivedAttributeReport:':
+                name: receivedAttributeReport
+            '-device:receivedEventReport:':
+                name: receivedEventReport
+            '-device:internalStateUpdated:':
+                name: internalStateUpdated
+    MTRXPCClientProtocol_MTRDeviceController: #since 18.2
+        methods:
+            '-controller:controllerConfigurationUpdated:':
+                name: controllerConfigurationUpdated
+    MTRXPCServerProtocol: #since 18.3
+        methods:
+            '-deviceController:checkInWithContext:':
+                name: checkIn
+    MTRXPCServerProtocol_MTRDevice: #since 18.2
+        methods:
+            '-deviceController:nodeID:getStateWithReply:':
+                name: getState
+            '-deviceController:nodeID:getDeviceCachePrimedWithReply:':
+                name: getDeviceCachePrimed
+            '-deviceController:nodeID:getEstimatedStartTimeWithReply:':
+                name: getEstimatedStartTime
+            '-deviceController:nodeID:getEstimatedSubscriptionLatencyWithReply:':
+                name: getEstimatedSubscriptionLatency
+            '-deviceController:nodeID:readAttributeWithEndpointID:clusterID:attributeID:params:withReply:':
+                name: readAttribute
+            '-deviceController:nodeID:writeAttributeWithEndpointID:clusterID:attributeID:value:expectedValueInterval:timedWriteTimeout:':
+                name: writeAttribute
+            '-deviceController:nodeID:readAttributePaths:withReply:':
+                name: readAttributePaths
+            '-deviceController:nodeID:invokeCommandWithEndpointID:clusterID:commandID:commandFields:expectedValues:expectedValueInterval:timedInvokeTimeout:serverSideProcessingTimeout:completion:':
+                name: invokeCommand
+            '-deviceController:nodeID:openCommissioningWindowWithSetupPasscode:discriminator:duration:completion:':
+                name: openCommissioningWindow
+            '-downloadLogOfType:nodeID:timeout:completion:':
+                name: downloadLog
+            '-deviceController:nodeID:downloadLogOfType:timeout:completion:':
+                name: downloadLog
+            '-deviceController:nodeID:invokeCommands:completion:':
+                name: invokeCommands
+    MTRXPCServerProtocol_MTRDeviceController: #since 18.3
+        methods:
+            '-deviceController:deleteNodeID:':
+                name: deleteNodeID
+            '-deviceController:registerNodeID:':
+                name: registerNodeID
+            '-deviceController:unregisterNodeID:':
+                name: unregisterNodeID
+            '-deviceController:updateControllerConfiguration:':
+                name: updateControllerConfiguration
+            '-deviceController:getNodesWithStoredDataWithReply:':
+                name: getNodes
 functions:
     MTRSetLogCallback:
         class: MTRLogging
         name: setLogCallback
+    MTR(ClusterName|AttributeName|RequestCommandName|ResponseCommandName|EventName)ForID:
+        class: MTRClusterIDType
+        name: 'get#{g[0]}'
+
+    MTRSetMessageReliabilityParameters:
+        class: MTRDeviceControllerFactory
+        name: setMessageReliabilityParameters
+    MTRDeviceControllerStorageClasses:
+        class: MTRDeviceController
+        name: getStorageClasses
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (.*):
@@ -1116,7 +1800,7 @@ values:
         class: MTRBaseDevice
         type: NSString
         static_class: Values
-    MTR(ArrayValueType|EventNumberKey|EventPriorityKey|EventTimeTypeKey|EventSystemUpTimeKey|EventTimestampDateKey):
+    MTR(ArrayValueType|EventNumberKey|EventPriorityKey|EventTimeTypeKey|EventSystemUpTimeKey|EventTimestampDateKey|EventIsHistoricalKey):
         class: MTRBaseDevice
         type: NSString
         static_class: Values
@@ -1125,6 +1809,16 @@ values:
         class: MTRThreadOperationalDataset
         static_class: SizeOf
 
+    MTR(PreviousData|DataVersion)Key:
+        class: MTRDeviceDelegate
+        static_class: Keys
+        name: '#{g[0]}'
+
+    MTRDeviceControllerRegistration(.*)Key:
+        class: MTRXPCServerProtocol
+        static_class: Keys
+        name: 'Registration#{g[0]}'
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (.*):
@@ -1132,8 +1826,14 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    MTR_NO_AVAILABILITY:
+        exclude: true
+    MTR_ENABLE_PROVISIONAL:
+        exclude: true
+    MTR_ENABLE_UNSTABLE_API:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
-    (k?LA.*):
+    (MTR.*):
         class: FIXME
         name: 'Constant__#{g[0]}'

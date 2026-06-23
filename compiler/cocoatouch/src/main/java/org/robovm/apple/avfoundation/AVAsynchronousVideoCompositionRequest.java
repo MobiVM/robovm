@@ -78,9 +78,6 @@ import org.robovm.apple.uikit.*;
     @WeaklyLinked
     @Method(selector = "sourceFrameByTrackID:")
     public native CVPixelBuffer getSourceFrame(int trackID);
-    /**
-     * @since Available in iOS 15.0 and later.
-     */
     @Method(selector = "sourceSampleBufferByTrackID:")
     public native CMSampleBuffer sourceSampleBufferByTrackID(int trackID);
     /**
@@ -95,5 +92,20 @@ import org.robovm.apple.uikit.*;
     public native void finish(NSError error);
     @Method(selector = "finishCancelledRequest")
     public native void finishCancelledRequest();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "sourceTaggedBufferGroupByTrackID:")
+    public native CMTaggedBufferGroup sourceTaggedBufferGroupByTrackID(int trackID);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "finishWithComposedTaggedBufferGroup:")
+    public native void finish(CMTaggedBufferGroup taggedBufferGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "attachSpatialVideoConfiguration:toPixelBuffer:")
+    public native void attachSpatialVideoConfiguration(AVSpatialVideoConfiguration spatialVideoConfiguration, CVPixelBuffer pixelBuffer);
     /*</methods>*/
 }

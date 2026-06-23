@@ -73,6 +73,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 12.0. Notification is never posted
+     */
+    @Deprecated
     @GlobalValue(symbol="NSURLCredentialStorageChangedNotification", optional=true)
     public static native NSString ChangedNotification();
     

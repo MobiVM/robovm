@@ -139,5 +139,12 @@ import org.robovm.apple.coretext.*;
     public native CFDictionary getAttributesDictionary(@MachineSizedSInt long loc, CFRange effectiveRange);
     @Bridge(symbol="CFAttributedStringGetAttribute", optional=true)
     public native CFType getAttribute(@MachineSizedSInt long loc, CFString attrName, CFRange effectiveRange);
+    @Bridge(symbol="CFAttributedStringGetBidiLevelsAndResolvedDirections", optional=true)
+    public native boolean getBidiLevelsAndResolvedDirections(@ByVal CFRange range, byte baseDirection, BytePtr bidiLevels, BytePtr baseDirections);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CFAttributedStringGetStatisticalWritingDirections", optional=true)
+    public native boolean getStatisticalWritingDirections(@ByVal CFRange range, byte baseDirection, BytePtr bidiLevels, BytePtr baseDirections);
     /*</methods>*/
 }

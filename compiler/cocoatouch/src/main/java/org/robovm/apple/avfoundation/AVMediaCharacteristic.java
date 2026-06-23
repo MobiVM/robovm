@@ -158,9 +158,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     public static final AVMediaCharacteristic IndicatesHorizontalFieldOfView = new AVMediaCharacteristic("IndicatesHorizontalFieldOfView");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMediaCharacteristic IndicatesNonRectilinearProjection = new AVMediaCharacteristic("IndicatesNonRectilinearProjection");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMediaCharacteristic MachineGenerated = new AVMediaCharacteristic("MachineGenerated");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsHDRVideo, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EnhancesSpeechIntelligibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation, TactileMinimal, ContainsStereoMultiviewVideo, CarriesVideoStereoMetadata, IndicatesHorizontalFieldOfView/*</value_list>*/};
+    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsHDRVideo, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EnhancesSpeechIntelligibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation, TactileMinimal, ContainsStereoMultiviewVideo, CarriesVideoStereoMetadata, IndicatesHorizontalFieldOfView, IndicatesNonRectilinearProjection, MachineGenerated/*</value_list>*/};
     
     /*<name>*/AVMediaCharacteristic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -265,6 +273,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicIndicatesHorizontalFieldOfView", optional=true)
         public static native NSString IndicatesHorizontalFieldOfView();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicIndicatesNonRectilinearProjection", optional=true)
+        public static native NSString IndicatesNonRectilinearProjection();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicMachineGenerated", optional=true)
+        public static native NSString MachineGenerated();
         /*</values>*/
     }
 }

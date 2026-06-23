@@ -1,5 +1,5 @@
 package: org.robovm.apple.safariservices
-include: [foundation.yaml, uikit.yaml]
+include: [foundation, uikit, browserenginekit]
 library: SafariServices
 framework: SafariServices
 clang_args: ['-x', 'objective-c']
@@ -61,6 +61,14 @@ classes:
         methods:
             '-clearWebsiteDataWithCompletionHandler:':
                 name: clearWebsiteData
+    SFAddToHomeScreenInfo: #since 18.2
+        methods:
+            '-initWithManifest:':
+                name: init
+    SFSafariSettings: #since 26.0
+        methods:
+            '+openExportBrowsingDataSettingsWithCompletionHandler:':
+                name: openExportBrowsingDataSettings
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:
@@ -75,6 +83,12 @@ protocols:
                 name: excludedActivityTypesForURL
             '-safariViewController:initialLoadDidRedirectToURL:':
                 name: initialLoadDidRedirectToURL
+    SFAddToHomeScreenActivityItem: #since 17.4
+        methods:
+            '-getWebAppManifestWithCompletionHandler:':
+                name: getWebAppManifest
+            '-getHomeScreenWebAppInfoWithCompletionHandler:':
+                name: getHomeScreenWebAppInfo
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?SS.*):

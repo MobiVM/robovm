@@ -53,7 +53,11 @@ public enum /*<name>*/MLFeatureType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Sequence(7L);
+    Sequence(7L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    State(8L);
     /*</values>*/
 
     /*<bind>*/

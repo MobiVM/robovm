@@ -61,10 +61,6 @@ import org.robovm.apple.corefoundation.*;
     protected CTSubscriber(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 11.0. Deprecated; returns nil starting in iOS 11.3.
-     */
-    @Deprecated
     @Property(selector = "carrierToken")
     public native NSData getCarrierToken();
     /**
@@ -72,6 +68,11 @@ import org.robovm.apple.corefoundation.*;
      */
     @Property(selector = "identifier")
     public native String getIdentifier();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isSIMInserted")
+    public native boolean isSIMInserted();
     /**
      * @since Available in iOS 12.1 and later.
      */
@@ -92,6 +93,7 @@ import org.robovm.apple.corefoundation.*;
     @GlobalValue(symbol="CTSubscriberTokenRefreshed", optional=true)
     public static native NSString TokenRefreshedNotification();
     
-    
+    @Method(selector = "refreshCarrierToken")
+    public native boolean refreshCarrierToken();
     /*</methods>*/
 }

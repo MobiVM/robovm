@@ -120,7 +120,9 @@ import org.robovm.apple.uikit.*;
 
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
      */
+    @Deprecated
     public long getMinimumRequiredMediaBitrate() {
         if (has(Keys.MinimumRequiredMediaBitrate())) {
             NSNumber val = (NSNumber) get(Keys.MinimumRequiredMediaBitrate());
@@ -130,14 +132,18 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
      */
+    @Deprecated
     public AVAssetDownloadTaskOptions setMinimumRequiredMediaBitrate(long minimumRequiredMediaBitrate) {
         set(Keys.MinimumRequiredMediaBitrate(), NSNumber.valueOf(minimumRequiredMediaBitrate));
         return this;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
      */
+    @Deprecated
     public AVMediaSelection getMediaSelection() {
         if (has(Keys.MediaSelection())) {
             AVMediaSelection val = (AVMediaSelection) get(Keys.MediaSelection());
@@ -147,7 +153,9 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
      */
+    @Deprecated
     public AVAssetDownloadTaskOptions setMediaSelection(AVMediaSelection mediaSelection) {
         set(Keys.MediaSelection(), mediaSelection);
         return this;
@@ -160,32 +168,44 @@ import org.robovm.apple.uikit.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredMediaBitrateKey", optional=true)
         public static native NSString MinimumRequiredMediaBitrate();
         /**
          * @since Available in iOS 14.0 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with predicateForPresentationWidth and predicateForPresentationHeight instead
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredPresentationSizeKey", optional=true)
         public static native NSString MinimumRequiredPresentationSize();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionKey", optional=true)
         public static native NSString MediaSelection();
         /**
          * @since Available in iOS 13.0 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with predicateForChannelCount instead
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey", optional=true)
         public static native NSString MediaSelectionPrefersMultichannel();
         /**
          * @since Available in iOS 14.5 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'%d in audioAttributes.formatIDs', kAudioFormatAppleLossless]
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskPrefersLosslessAudioKey", optional=true)
         public static native NSString PrefersLosslessAudio();
         /**
          * @since Available in iOS 14.0 and later.
+         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'videoAttributes.videoRange == %@', AVVideoRangePQ]
          */
+        @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskPrefersHDRKey", optional=true)
         public static native NSString PrefersHDR();
     }

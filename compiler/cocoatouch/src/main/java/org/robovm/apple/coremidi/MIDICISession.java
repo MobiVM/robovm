@@ -34,9 +34,10 @@ import org.robovm.apple.corefoundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 18.0. No longer supported for CoreMIDI
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreMIDI") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreMIDI") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MIDICISession/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

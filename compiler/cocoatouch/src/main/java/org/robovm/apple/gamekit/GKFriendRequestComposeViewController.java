@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. No longer supported.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
@@ -60,13 +60,13 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "composeViewDelegate")
     public native GKFriendRequestComposeViewControllerDelegate getComposeViewDelegate();
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. No longer supported.
      */
     @Deprecated
     @Property(selector = "setComposeViewDelegate:", strongRef = true)
@@ -79,7 +79,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "addRecipientPlayers:")
     public native void addRecipientPlayers(NSArray<GKPlayer> players);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -addRecipientPlayers:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKFriendRequestComposeViewController/addRecipientPlayers(_:)`` instead.
      */
     @Deprecated
     @Method(selector = "addRecipientsWithPlayerIDs:")

@@ -127,6 +127,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageAuxiliaryDataInfoMetadata", optional=true)
         public static native CFString Metadata();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataInfoColorSpace", optional=true)
+        public static native CFString ColorSpace();
     }
     /*</keys>*/
 }

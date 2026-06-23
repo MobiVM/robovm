@@ -105,9 +105,13 @@ import org.robovm.apple.uikit.*;
     public static final AVTrackAssociationType SelectionFollower = new AVTrackAssociationType("SelectionFollower");
     public static final AVTrackAssociationType Timecode = new AVTrackAssociationType("Timecode");
     public static final AVTrackAssociationType MetadataReferent = new AVTrackAssociationType("MetadataReferent");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVTrackAssociationType RenderMetadataSource = new AVTrackAssociationType("RenderMetadataSource");
     /*</constants>*/
     
-    private static /*<name>*/AVTrackAssociationType/*</name>*/[] values = new /*<name>*/AVTrackAssociationType/*</name>*/[] {/*<value_list>*/AudioFallback, ChapterList, ForcedSubtitlesOnly, SelectionFollower, Timecode, MetadataReferent/*</value_list>*/};
+    private static /*<name>*/AVTrackAssociationType/*</name>*/[] values = new /*<name>*/AVTrackAssociationType/*</name>*/[] {/*<value_list>*/AudioFallback, ChapterList, ForcedSubtitlesOnly, SelectionFollower, Timecode, MetadataReferent, RenderMetadataSource/*</value_list>*/};
     
     /*<name>*/AVTrackAssociationType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -142,6 +146,11 @@ import org.robovm.apple.uikit.*;
         public static native NSString Timecode();
         @GlobalValue(symbol="AVTrackAssociationTypeMetadataReferent", optional=true)
         public static native NSString MetadataReferent();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVTrackAssociationTypeRenderMetadataSource", optional=true)
+        public static native NSString RenderMetadataSource();
         /*</values>*/
     }
 }

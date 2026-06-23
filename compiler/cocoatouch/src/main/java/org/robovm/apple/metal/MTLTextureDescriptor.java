@@ -154,6 +154,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setSwizzle:")
     public native void setSwizzle(@ByVal MTLTextureSwizzleChannels v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "placementSparsePageSize")
+    public native MTLSparsePageSize getPlacementSparsePageSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPlacementSparsePageSize:")
+    public native void setPlacementSparsePageSize(MTLSparsePageSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

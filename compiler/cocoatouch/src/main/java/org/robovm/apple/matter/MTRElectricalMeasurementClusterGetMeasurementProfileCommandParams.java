@@ -35,9 +35,10 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 18.2. This command has been removed
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Matter") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,32 +54,44 @@ import org.robovm.apple.security.*;
     /*<properties>*/
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The attributeId field will be removed
      */
+    @Deprecated
     @Property(selector = "attributeId")
     public native NSNumber getAttributeId();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The attributeId field will be removed
      */
+    @Deprecated
     @Property(selector = "setAttributeId:")
     public native void setAttributeId(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The startTime field will be removed
      */
+    @Deprecated
     @Property(selector = "startTime")
     public native NSNumber getStartTime();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The startTime field will be removed
      */
+    @Deprecated
     @Property(selector = "setStartTime:")
     public native void setStartTime(NSNumber v);
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The numberOfIntervals field will be removed
      */
+    @Deprecated
     @Property(selector = "numberOfIntervals")
     public native NSNumber getNumberOfIntervals();
     /**
      * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. The numberOfIntervals field will be removed
      */
+    @Deprecated
     @Property(selector = "setNumberOfIntervals:")
     public native void setNumberOfIntervals(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")

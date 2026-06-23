@@ -62,8 +62,14 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "coalescedKeyboard")
     public static native GCKeyboard getCoalescedKeyboard();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "handlerQueue")
     public native DispatchQueue getHandlerQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setHandlerQueue:")
     public native void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")

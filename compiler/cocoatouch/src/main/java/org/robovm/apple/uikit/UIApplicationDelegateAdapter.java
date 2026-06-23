@@ -96,10 +96,26 @@ import org.robovm.apple.symbols.*;
     public boolean willFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions) { return false; }
     @NotImplemented("application:didFinishLaunchingWithOptions:")
     public boolean didFinishLaunching(UIApplication application, UIApplicationLaunchOptions launchOptions) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and sceneDidBecomeActive(_:) from UISceneDelegate or the UIApplication.didBecomeActiveNotification instead.
+     */
+    @Deprecated
     @NotImplemented("applicationDidBecomeActive:")
     public void didBecomeActive(UIApplication application) {}
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and sceneWillResignActive(_:) from UISceneDelegate or the UIApplication.willResignActiveNotification instead.
+     */
+    @Deprecated
     @NotImplemented("applicationWillResignActive:")
     public void willResignActive(UIApplication application) {}
+    @NotImplemented("applicationDidEnterBackground:")
+    public void didEnterBackground(UIApplication application) {}
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and sceneWillEnterForeground(_:) from UISceneDelegate or the UIApplication.willEnterForegroundNotification instead.
+     */
+    @Deprecated
+    @NotImplemented("applicationWillEnterForeground:")
+    public void willEnterForeground(UIApplication application) {}
     /**
      * @deprecated Deprecated in iOS 9.0. Use application:openURL:options:
      */
@@ -114,7 +130,9 @@ import org.robovm.apple.symbols.*;
     public boolean openURL(UIApplication application, NSURL url, String sourceApplication, NSPropertyList annotation) { return false; }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and scene(_:openURLContexts:) from UISceneDelegate instead.
      */
+    @Deprecated
     @NotImplemented("application:openURL:options:")
     public boolean openURL(UIApplication app, NSURL url, UIApplicationOpenURLOptions options) { return false; }
     @NotImplemented("applicationWillTerminate:")
@@ -203,7 +221,9 @@ import org.robovm.apple.symbols.*;
     public void performFetch(UIApplication application, @Block VoidBlock1<UIBackgroundFetchResult> completionHandler) {}
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and windowScene(_:performActionFor:completionHandler:) from UIWindowSceneDelegate instead.
      */
+    @Deprecated
     @NotImplemented("application:performActionForShortcutItem:completionHandler:")
     public void performAction(UIApplication application, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler) {}
     @NotImplemented("application:handleEventsForBackgroundURLSession:completionHandler:")
@@ -230,10 +250,6 @@ import org.robovm.apple.symbols.*;
     @Deprecated
     @NotImplemented("application:handleIntent:completionHandler:")
     public void handleIntent(UIApplication application, INIntent intent, @Block VoidBlock1<INIntentResponse> completionHandler) {}
-    @NotImplemented("applicationDidEnterBackground:")
-    public void didEnterBackground(UIApplication application) {}
-    @NotImplemented("applicationWillEnterForeground:")
-    public void willEnterForeground(UIApplication application) {}
     @NotImplemented("applicationProtectedDataWillBecomeUnavailable:")
     public void protectedDataWillBecomeUnavailable(UIApplication application) {}
     @NotImplemented("applicationProtectedDataDidBecomeAvailable:")
@@ -270,17 +286,35 @@ import org.robovm.apple.symbols.*;
     @Deprecated
     @NotImplemented("application:shouldRestoreApplicationState:")
     public boolean shouldRestoreApplicationState(UIApplication application, NSCoder coder) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and scene(_:willContinueUserActivityWithType:) from UISceneDelegate instead.
+     */
+    @Deprecated
     @NotImplemented("application:willContinueUserActivityWithType:")
     public boolean willContinueUserActivity(UIApplication application, String userActivityType) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and scene(_:continue:) from UISceneDelegate instead.
+     */
+    @Deprecated
     @NotImplemented("application:continueUserActivity:restorationHandler:")
     public boolean continueUserActivity(UIApplication application, NSUserActivity userActivity, @Block VoidBlock1<NSArray<UIResponder>> restorationHandler) { return false; }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and scene(_:didFailToContinueUserActivityWithType:error:) from UISceneDelegate instead.
+     */
+    @Deprecated
     @NotImplemented("application:didFailToContinueUserActivityWithType:error:")
     public void didFailToContinueUserActivity(UIApplication application, String userActivityType, NSError error) {}
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and scene(_:didUpdate) from UISceneDelegate instead.
+     */
+    @Deprecated
     @NotImplemented("application:didUpdateUserActivity:")
     public void didUpdateUserActivity(UIApplication application, NSUserActivity userActivity) {}
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and windowScene(_:userDidAcceptCloudKitShareWith:) from UIWindowSceneDelegate instead.
      */
+    @Deprecated
     @NotImplemented("application:userDidAcceptCloudKitShareWithMetadata:")
     public void didAcceptCloudKitShare(UIApplication application, CKShareMetadata cloudKitShareMetadata) {}
     /**

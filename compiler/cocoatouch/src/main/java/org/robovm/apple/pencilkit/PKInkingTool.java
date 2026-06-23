@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected PKInkingTool(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithInkType:color:width:")
     public PKInkingTool(PKInkType type, UIColor color, @MachineSizedFloat double width) { super((SkipInit) null); initObject(init(type, color, width)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithInkType:color:width:azimuth:")
+    public PKInkingTool(PKInkType type, UIColor color, @MachineSizedFloat double width, @MachineSizedFloat double angle) { super((SkipInit) null); initObject(init(type, color, width, angle)); }
     @Method(selector = "initWithInkType:color:")
     public PKInkingTool(PKInkType type, UIColor color) { super((SkipInit) null); initObject(init(type, color)); }
     /**
@@ -68,6 +73,11 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "width")
     public native @MachineSizedFloat double getWidth();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "azimuth")
+    public native @MachineSizedFloat double getAzimuth();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "ink")
@@ -82,6 +92,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithInkType:color:width:")
     protected native @Pointer long init(PKInkType type, UIColor color, @MachineSizedFloat double width);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithInkType:color:width:azimuth:")
+    protected native @Pointer long init(PKInkType type, UIColor color, @MachineSizedFloat double width, @MachineSizedFloat double angle);
     @Method(selector = "initWithInkType:color:")
     protected native @Pointer long init(PKInkType type, UIColor color);
     /**

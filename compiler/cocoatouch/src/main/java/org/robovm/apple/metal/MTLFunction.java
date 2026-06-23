@@ -89,6 +89,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "options")
     public native MTLFunctionOptions getOptions();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -11,7 +11,8 @@ enums:
     BAContentRequest: {}
     BADownloadState: {}
     BAErrorCode: { nserror: true } #since 17.0
-
+    BAAssetPackStatus: {} #since 26.0
+    BAManagedErrorCode: { nserror: true} #since 26.0
 classes:
     BAAppExtensionInfo: {} #since 16.1
     BADownload: {} #since 16.1
@@ -42,7 +43,36 @@ classes:
                 name: init
             '-initWithIdentifier:request:applicationGroupIdentifier:priority:':
                 name: init
-
+    BAAssetPack: {} #since 26.0
+    BAAssetPackManager: #since 26.0
+        methods:
+            '-getAllAssetPacksWithCompletionHandler:':
+                name: getAllAssetPacks
+            '-getAssetPackWithIdentifier:completionHandler:':
+                name: getAssetPack
+            '-getStatusOfAssetPackWithIdentifier:completionHandler:':
+                name: getStatusOfAssetPack
+            '-ensureLocalAvailabilityOfAssetPack:completionHandler:':
+                name: ensureLocalAvailabilityOfAssetPack
+            '-checkForUpdatesWithCompletionHandler:':
+                name: checkForUpdates
+            '-contentsAtPath:searchingInAssetPackWithIdentifier:options:error:':
+                name: getContents
+                throws: NSErrorException
+            '-fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:':
+                name: getFileDescriptor
+                throws: NSErrorException
+            '-URLForPath:error:':
+                name: getURL
+                throws: NSErrorException
+            '-removeAssetPackWithIdentifier:completionHandler:':
+                name: removeAssetPack
+    BAAssetPackManifest: #since 26.0
+        methods:
+            '-initWithContentsOfURL:applicationGroupIdentifier:error:':
+                name: init
+            '-initFromData:applicationGroupIdentifier:error:':
+                name: init
 protocols:
     BADownloadManagerDelegate: #since 16.1
         methods:
@@ -64,7 +94,13 @@ protocols:
                 name: backgroundDownloadFailed
             '-backgroundDownload:finishedWithFileURL:':
                 name: backgroundDownloadFinished
-
+    BAManagedAssetPackDownloadDelegate: #since 26.0
+        methods:
+            '-downloadOfAssetPack:hasProgress:':
+                name: hasProgress
+            '-downloadOfAssetPack:failedWithError:':
+                name: failed
+    BAManagedDownloaderExtension: {} #since 26.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (.*):
@@ -79,6 +115,13 @@ values:
         class: BADownload
         static_class: Priority
         name: '#{g[0]}'
+    BAManagedErrorDomain:
+        class: BAManagedErrorCode
+        name: getClassDomain
+    BAAssetPackIdentifierErrorKey:
+        class: BAManagedErrorCode
+        name: getPackIdentifierErrorKey
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (.*):

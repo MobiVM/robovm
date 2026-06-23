@@ -59,6 +59,7 @@ import org.robovm.apple.symbols.*;
     protected UIPointerHoverEffect() {}
     protected UIPointerHoverEffect(Handle h, long handle) { super(h, handle); }
     protected UIPointerHoverEffect(SkipInit skipInit) { super(skipInit); }
+    public UIPointerHoverEffect(UITargetedPreview preview) { super((Handle) null, create(preview)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredTintMode")
@@ -76,6 +77,7 @@ import org.robovm.apple.symbols.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "effectWithPreview:")
+    protected static native @Pointer long create(UITargetedPreview preview);
     /*</methods>*/
 }

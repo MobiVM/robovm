@@ -53,6 +53,16 @@ import org.robovm.apple.network.*;
     public DDDevice(String displayName, DDDeviceCategory category, UTType protocolType, String identifier) { super((SkipInit) null); initObject(init(displayName, category, protocolType, identifier)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "deviceSupports")
+    public native DDDeviceSupports getDeviceSupports();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDeviceSupports:")
+    public native void setDeviceSupports(DDDeviceSupports v);
     @Property(selector = "bluetoothIdentifier")
     public native NSUUID getBluetoothIdentifier();
     @Property(selector = "setBluetoothIdentifier:")
@@ -61,6 +71,16 @@ import org.robovm.apple.network.*;
     public native DDDeviceCategory getCategory();
     @Property(selector = "setCategory:")
     public native void setCategory(DDDeviceCategory v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "displayImageName")
+    public native String getDisplayImageName();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDisplayImageName:")
+    public native void setDisplayImageName(String v);
     @Property(selector = "displayName")
     public native String getDisplayName();
     @Property(selector = "setDisplayName:")
@@ -69,6 +89,18 @@ import org.robovm.apple.network.*;
     public native String getIdentifier();
     @Property(selector = "setIdentifier:")
     public native void setIdentifier(String v);
+    @Property(selector = "mediaPlaybackState")
+    public native DDDeviceMediaPlaybackState getMediaPlaybackState();
+    @Property(selector = "setMediaPlaybackState:")
+    public native void setMediaPlaybackState(DDDeviceMediaPlaybackState v);
+    @Property(selector = "mediaContentTitle")
+    public native String getMediaContentTitle();
+    @Property(selector = "setMediaContentTitle:")
+    public native void setMediaContentTitle(String v);
+    @Property(selector = "mediaContentSubtitle")
+    public native String getMediaContentSubtitle();
+    @Property(selector = "setMediaContentSubtitle:")
+    public native void setMediaContentSubtitle(String v);
     @Property(selector = "networkEndpoint")
     public native NWEndpoint getNetworkEndpoint();
     @Property(selector = "setNetworkEndpoint:")
@@ -85,6 +117,26 @@ import org.robovm.apple.network.*;
     public native DDDeviceState getState();
     @Property(selector = "setState:")
     public native void setState(DDDeviceState v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "SSID")
+    public native String getSSID();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSSID:")
+    public native void setSSID(String v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportsGrouping")
+    public native boolean supportsGrouping();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setSupportsGrouping:")
+    public native void setSupportsGrouping(boolean v);
     @Property(selector = "txtRecordData")
     public native NSData getTxtRecordData();
     @Property(selector = "setTxtRecordData:")
@@ -93,18 +145,46 @@ import org.robovm.apple.network.*;
     public native NSURL getUrl();
     @Property(selector = "setUrl:")
     public native void setUrl(NSURL v);
-    @Property(selector = "mediaPlaybackState")
-    public native DDDeviceMediaPlaybackState getMediaPlaybackState();
-    @Property(selector = "setMediaPlaybackState:")
-    public native void setMediaPlaybackState(DDDeviceMediaPlaybackState v);
-    @Property(selector = "mediaContentTitle")
-    public native String getMediaContentTitle();
-    @Property(selector = "setMediaContentTitle:")
-    public native void setMediaContentTitle(String v);
-    @Property(selector = "mediaContentSubtitle")
-    public native String getMediaContentSubtitle();
-    @Property(selector = "setMediaContentSubtitle:")
-    public native void setMediaContentSubtitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "wifiAwareServiceName")
+    public native String getWifiAwareServiceName();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setWifiAwareServiceName:")
+    public native void setWifiAwareServiceName(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "wifiAwareServiceRole")
+    public native DDDeviceWiFiAwareServiceRole getWifiAwareServiceRole();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setWifiAwareServiceRole:")
+    public native void setWifiAwareServiceRole(DDDeviceWiFiAwareServiceRole v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "wifiAwareModelName")
+    public native String getWifiAwareModelName();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setWifiAwareModelName:")
+    public native void setWifiAwareModelName(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "wifiAwareVendorName")
+    public native String getWifiAwareVendorName();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setWifiAwareVendorName:")
+    public native void setWifiAwareVendorName(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -14,7 +14,8 @@ enums:
     CNCinematicErrorCode: { nserror: true } #since 17.0
     CNRenderingQuality: {} #since 17.0
     CNDetectionType: {} #since 17.0
-
+    CNSpatialAudioRenderingStyle: {} #since 26.0
+    CNSpatialAudioContentType: {} #since 26.0
 typed_enums:
 
 classes:
@@ -98,7 +99,14 @@ classes:
             '-initWithDataRepresentation:':
                 name: init
     CNScriptFrame: {} #since 17.0
-
+    CNAssetSpatialAudioInfo: #since 26.0
+        methods:
+            '+checkIfContainsSpatialAudio:completionHandler:':
+                name: checkIfContainsSpatialAudio
+            '+loadFromAsset:completionHandler:':
+                name: loadFromAsset
+            '-audioMixWithEffectIntensity:renderingStyle:':
+                name: audioMix
 protocols:
 
 functions:

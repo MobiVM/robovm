@@ -38,6 +38,9 @@ enums:
     GKAccessPointLocation: {}
     GKMatchmakingMode: {}
     GKFriendsAuthorizationStatus: {} #since 14.5
+    GKReleaseState: {} #since 18.4
+    GKGameActivityState: {} #since 26.0
+    GKGameActivityPlayStyle: {} #since 26.0
 classes:
     GKAchievement: # DONE
         methods:
@@ -166,6 +169,12 @@ classes:
             '-initWithLeaderboard:playerScope:':
                 name: init
             '-initWithAchievementID:':
+                name: initWithAchievementID
+                static_constructor_name: createUsingAchievementID
+            '-initWithLeaderboardSetID:':
+                name: initWithLeaderboardSetID
+                static_constructor_name: createUsingLeaderboardSetID
+            '-initWithPlayer:':
                 name: init
     GKGameSession:
         methods:
@@ -393,6 +402,11 @@ classes:
                 property: true
             '-startGroupActivityWithPlayerHandler:':
                 name: startGroupActivity
+            '-findMatchedPlayers:withCompletionHandler:':
+                name: findMatchedPlayers
+            '-queryQueueActivity:withCompletionHandler:':
+                name: queryQueueActivity
+
     GKMatchmakerViewController: # DONE
         methods:
             '-addPlayersToMatch:':
@@ -674,6 +688,26 @@ classes:
                 name: triggerAccessPoint
             '-triggerAccessPointWithState:handler:':
                 name: triggerAccessPoint
+            '-triggerAccessPointWithAchievementID:handler:':
+                name: triggerAccessPointWithAchievementID
+            '-triggerAccessPointWithLeaderboardSetID:handler:':
+                name: triggerAccessPointWithLeaderboardSetID
+            '-triggerAccessPointWithLeaderboardID:playerScope:timeScope:handler:':
+                name: triggerAccessPointWithLeaderboardID
+            '-triggerAccessPointWithPlayer:handler:':
+                name: triggerAccessPointWithPlayer
+            '-triggerAccessPointForPlayTogetherWithHandler:':
+                name: triggerAccessPointForPlayTogether
+            '-triggerAccessPointForChallengesWithHandler:':
+                name: triggerAccessPointForChallenges
+            '-triggerAccessPointWithChallengeDefinitionID:handler:':
+                name: triggerAccessPointWithChallengeDefinitionID
+            '-triggerAccessPointWithGameActivityDefinitionID:handler:':
+                name: triggerAccessPointWithGameActivityDefinitionID
+            '-triggerAccessPointWithGameActivity:handler:':
+                name: triggerAccessPointWithGameActivity
+            '-triggerAccessPointForFriendingWithHandler:':
+                name: triggerAccessPointForFriending
     GKLeaderboardScore: {} #since 14.0
     GKLeaderboardEntry: #since 14.0
         methods:
@@ -681,6 +715,49 @@ classes:
                 name: challengeComposeController # deprecated now
             '-challengeComposeControllerWithMessage:players:completion:':
                 name: getChallengeComposeController
+    GKChallengeDefinition: #since 26.0
+        methods:
+            '-loadImageWithCompletionHandler:':
+                name: loadImage
+            '-hasActiveChallengesWithCompletionHandler:':
+                name: hasActiveChallenges
+            '+loadChallengeDefinitionsWithCompletionHandler:':
+                name: loadChallengeDefinitions
+    GKGameActivity: #since 26.0
+        methods:
+            '-initWithDefinition:':
+                name: init
+            '-setScoreOnLeaderboard:toScore:context:':
+                name: setScoreOnLeaderboard
+            '-setScoreOnLeaderboard:toScore:':
+                name: setScoreOnLeaderboard
+            '-setProgressOnAchievement:toPercentComplete:':
+                name: setProgressOnAchievement
+            '+startWithDefinition:partyCode:error:':
+                name: start
+                throws: NSErrorException
+            '+startWithDefinition:error:':
+                name: start
+                throws: NSErrorException
+            '-findMatchWithCompletionHandler:':
+                name: findMatch
+            '-findPlayersForHostedMatchWithCompletionHandler:':
+                name: findPlayersForHostedMatch
+            '+checkPendingGameActivityExistenceWithCompletionHandler:':
+                name: checkPendingGameActivityExistence
+    GKGameActivityDefinition: #since 26.0
+        methods:
+            '-loadAchievementDescriptionsWithCompletionHandler:':
+                name: loadAchievementDescriptions
+            '-loadLeaderboardsWithCompletionHandler:':
+                name: loadLeaderboards
+            '-loadImageWithCompletionHandler:':
+                name: loadImage
+            '+loadGameActivityDefinitionsWithCompletionHandler:':
+                name: loadGameActivityDefinitions
+            '+loadGameActivityDefinitionsWithIDs:completionHandler:':
+                name: loadGameActivityDefinitions
+    GKMatchedPlayers: {} #since 17.2
 categories:
     GKGameSession :
         methods:
@@ -792,6 +869,8 @@ protocols:
                 name: didReceiveAccept
             '-matchmakerViewController:hostedPlayerDidAccept:':
                 name: hostedPlayerDidAccept
+            '-matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:':
+                name: getMatchPropertiesForRecipient
     GKPeerPickerControllerDelegate: # DONE
         methods:
             '-peerPickerController:didSelectConnectionType:':
@@ -904,6 +983,10 @@ protocols:
                 name: didStop
             '-voiceChatService:didReceiveInvitationFromParticipantID:callID:':
                 name: didReceiveInvitation
+    GKGameActivityListener: #since 26.0
+        methods:
+            '-player:wantsToPlayGameActivity:completionHandler:':
+                name: wantsToPlayGameActivity
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

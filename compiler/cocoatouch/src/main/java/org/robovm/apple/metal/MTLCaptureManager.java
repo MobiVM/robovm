@@ -63,6 +63,8 @@ import org.robovm.apple.dispatch.*;
     public native MTLCaptureScope newCaptureScope(MTLDevice device);
     @Method(selector = "newCaptureScopeWithCommandQueue:")
     public native MTLCaptureScope newCaptureScope(MTLCommandQueue commandQueue);
+    @Method(selector = "newCaptureScopeWithMTL4CommandQueue:")
+    public native MTLCaptureScope newCaptureScope(MTL4CommandQueue commandQueue);
     /**
      * @since Available in iOS 13.0 and later.
      */

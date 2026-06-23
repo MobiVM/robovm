@@ -41,7 +41,11 @@ public enum /*<name>*/CLMonitoringState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
     Satisfied(1L),
-    Unsatisfied(2L);
+    Unsatisfied(2L),
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    Unmonitored(3L);
     /*</values>*/
 
     /*<bind>*/

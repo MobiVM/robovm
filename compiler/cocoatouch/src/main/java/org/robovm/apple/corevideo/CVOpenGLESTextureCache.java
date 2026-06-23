@@ -45,7 +45,9 @@ import org.robovm.apple.iosurface.*;
     /*<ptr>*/public static class CVOpenGLESTextureCachePtr extends Ptr<CVOpenGLESTextureCache, CVOpenGLESTextureCachePtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVOpenGLESTextureCache.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVOpenGLESTextureCache() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**

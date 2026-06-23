@@ -1,0 +1,69 @@
+package: org.robovm.apple.colorsync
+include: [foundation, corefoundation]
+library: ColorSync
+framework: ColorSync
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/ColorSync.framework/Headers/ColorSync.h
+
+typedefs:
+    
+enums:
+    ColorSyncDataDepth: {prefix: kColorSync}
+    ColorSyncAlphaInfo: {prefix: kColorSyncAlpha}
+    ColorSyncMasks: {prefix: kColorSync, first: kColorSyncAlphaInfoMask}
+categories:
+
+classes:
+    # structs
+    ColorSyncMD5: {}
+    ColorSyncProfile: {}
+    ColorSyncTransform: {}
+
+    # opaque types
+    ColorSyncProfileRef:
+        name: ColorSyncProfile
+        extends: CFType
+    ColorSyncMutableProfileRef:
+        name: ColorSyncMutableProfile
+        extends: CFType
+protocols:
+
+functions:
+    ColorSyncProfileGetTypeID:
+        class: ColorSyncProfile
+        name: TypeId
+    ColorSyncProfile(.*):
+        class: ColorSyncProfile
+        name: '#{g[0]}'
+    ColorSyncTransform(.*):
+        class: ColorSyncTransform
+        name: '#{g[0]}'
+    ColorSyncAPIVersion:
+        class: ColorSync
+        name: getAPIVersion
+    ColorSync(IterateInstalledProfiles|CreateCodeFragment):
+        class: ColorSync
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?ColorSync.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    # not sorting now, just combine in one file
+    kColorSync(.*):
+        class: ColorSync
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?ColorSync.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?ColorSync.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

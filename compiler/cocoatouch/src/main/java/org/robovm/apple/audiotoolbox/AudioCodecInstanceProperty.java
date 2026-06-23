@@ -72,9 +72,15 @@ public enum /*<name>*/AudioCodecInstanceProperty/*</name>*/ implements ValuedEnu
     BitRateForVBR(1986163298L),
     DelayMode(1684893540L),
     AdjustLocalQuality(1584488812L),
-    ProgramTargetLevel(1886418028L),
     DynamicRangeControlMode(1835299427L),
-    ProgramTargetLevelConstant(1886678115L);
+    AdjustCompressionProfile(1584427631L),
+    ProgramTargetLevelConstant(1886678115L),
+    AdjustTargetLevelConstant(1584688227L),
+    ProgramTargetLevel(1886418028L),
+    AdjustTargetLevel(1584428140L),
+    DynamicRangeControlConfiguration(1667527267L),
+    ContentSource(1668510307L),
+    ASPFrequency(1634955366L);
     /*</values>*/
 
     /*<bind>*/

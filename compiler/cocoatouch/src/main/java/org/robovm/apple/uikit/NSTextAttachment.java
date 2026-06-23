@@ -48,7 +48,7 @@ import org.robovm.apple.symbols.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextAttachment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSTextAttachmentLayout, NSTextAttachmentContainer, NSSecureCoding, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
+    /*<implements>*/implements NSTextAttachmentLayout, NSSecureCoding, NSTextAttachmentContainer, UIAccessibilityContentSizeCategoryImageAdjusting/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextAttachmentPtr extends Ptr<NSTextAttachment, NSTextAttachmentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextAttachment.class); }/*</bind>*/
@@ -155,13 +155,13 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "viewProviderForParentView:location:textContainer:")
     public native NSTextAttachmentViewProvider viewProviderForParentView(UIView parentView, NSTextLocation location, NSTextContainer textContainer);
-    @Method(selector = "imageForBounds:textContainer:characterIndex:")
-    public native UIImage getImageForBounds(@ByVal CGRect imageBounds, NSTextContainer textContainer, @MachineSizedUInt long charIndex);
-    @Method(selector = "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:")
-    public native @ByVal CGRect getAttachmentBounds(NSTextContainer textContainer, @ByVal CGRect lineFrag, @ByVal CGPoint position, @MachineSizedUInt long charIndex);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "imageForBounds:textContainer:characterIndex:")
+    public native UIImage getImageForBounds(@ByVal CGRect imageBounds, NSTextContainer textContainer, @MachineSizedUInt long charIndex);
+    @Method(selector = "attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:")
+    public native @ByVal CGRect getAttachmentBounds(NSTextContainer textContainer, @ByVal CGRect lineFrag, @ByVal CGPoint position, @MachineSizedUInt long charIndex);
     /*</methods>*/
 }

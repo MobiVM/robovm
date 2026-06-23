@@ -90,5 +90,10 @@ import org.robovm.apple.imageio.*;
     /*<methods>*/
     @Method(selector = "initWithCompletionHandler:")
     protected native @Pointer long init(@Block VoidBlock2<VNRequest, NSError> completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "supportedOutputPixelFormatsAndReturnError:")
+    public native NSArray<NSNumber> supportedOutputPixelFormatsAndReturnError(NSError.NSErrorPtr error);
     /*</methods>*/
 }

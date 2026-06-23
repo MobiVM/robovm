@@ -95,9 +95,13 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 9.3 and later.
      */
     public static final HMCharacteristicProperty Hidden = new HMCharacteristicProperty("Hidden");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMCharacteristicProperty RequiresAuthorizationData = new HMCharacteristicProperty("RequiresAuthorizationData");
     /*</constants>*/
     
-    private static /*<name>*/HMCharacteristicProperty/*</name>*/[] values = new /*<name>*/HMCharacteristicProperty/*</name>*/[] {/*<value_list>*/SupportsEventNotification, Readable, Writable, Hidden/*</value_list>*/};
+    private static /*<name>*/HMCharacteristicProperty/*</name>*/[] values = new /*<name>*/HMCharacteristicProperty/*</name>*/[] {/*<value_list>*/SupportsEventNotification, Readable, Writable, Hidden, RequiresAuthorizationData/*</value_list>*/};
     
     /*<name>*/HMCharacteristicProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -131,6 +135,11 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMCharacteristicPropertyHidden", optional=true)
         public static native NSString Hidden();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMCharacteristicPropertyRequiresAuthorizationData", optional=true)
+        public static native NSString RequiresAuthorizationData();
         /*</values>*/
     }
 }

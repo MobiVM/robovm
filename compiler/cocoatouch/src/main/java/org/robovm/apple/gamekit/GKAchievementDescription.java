@@ -73,11 +73,20 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "rarityPercent")
     public native NSNumber getRarityPercent();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use -loadImageWithCompletionHandler:
+     * @since Available in iOS 18.4 and later.
      */
-    @Deprecated
-    @Property(selector = "image")
-    public native UIImage getImage();
+    @Property(selector = "releaseState")
+    public native GKReleaseState getReleaseState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activityIdentifier")
+    public native String getActivityIdentifier();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activityProperties")
+    public native NSDictionary<NSString, NSString> getActivityProperties();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

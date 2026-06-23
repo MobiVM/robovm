@@ -51,6 +51,16 @@ import org.robovm.apple.security.*;
     protected MTRMediaPlaybackClusterFastForwardParams(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "audioAdvanceUnmuted")
+    public native NSNumber getAudioAdvanceUnmuted();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setAudioAdvanceUnmuted:")
+    public native void setAudioAdvanceUnmuted(NSNumber v);
     @Property(selector = "timedInvokeTimeoutMs")
     public native NSNumber getTimedInvokeTimeoutMs();
     @Property(selector = "setTimedInvokeTimeoutMs:")

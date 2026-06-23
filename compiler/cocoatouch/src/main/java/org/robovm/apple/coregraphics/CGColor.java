@@ -165,6 +165,16 @@ import org.robovm.apple.uikit.*;
     @Bridge(symbol="CGColorCreateSRGB", optional=true)
     public static native CGColor createSRGB(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGColorCreateWithContentHeadroom", optional=true)
+    public static native CGColor createWithContentHeadroom(float headroom, CGColorSpace space, @MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGColorGetContentHeadroom", optional=true)
+    public native float getContentHeadroom();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Bridge(symbol="CGColorGetConstantColor", optional=true)
@@ -194,5 +204,10 @@ import org.robovm.apple.uikit.*;
     public native CGPattern getPattern();
     @Bridge(symbol="CGColorGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGColorConversionInfoConvertData", optional=true)
+    public static native boolean conversionInfoConvertData(CGColorConversionInfo info, @MachineSizedUInt long width, @MachineSizedUInt long height, VoidPtr dst_data, @ByVal CGColorBufferFormat dst_format, VoidPtr src_data, @ByVal CGColorBufferFormat src_format, NSDictionary options);
     /*</methods>*/
 }

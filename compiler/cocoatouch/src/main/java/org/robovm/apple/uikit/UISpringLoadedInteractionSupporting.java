@@ -57,14 +57,8 @@ import org.robovm.apple.symbols.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     void setSpringLoaded(boolean v);
     /*</properties>*/

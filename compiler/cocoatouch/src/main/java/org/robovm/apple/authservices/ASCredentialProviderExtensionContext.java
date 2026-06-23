@@ -68,6 +68,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:")
     public native void completeRegistrationRequest(ASPasskeyRegistrationCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "completeOneTimeCodeRequestWithSelectedCredential:completionHandler:")
+    public native void completeOneTimeCodeRequest(ASOneTimeCodeCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "completeRequestWithTextToInsert:completionHandler:")
+    public native void completeRequestWith(String text, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "completeExtensionConfigurationRequest")
     public native void completeExtensionConfigurationRequest();
     @Method(selector = "cancelRequestWithError:")

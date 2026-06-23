@@ -45,7 +45,9 @@ import org.robovm.apple.iosurface.*;
     /*<ptr>*/public static class CVOpenGLESTexturePtr extends Ptr<CVOpenGLESTexture, CVOpenGLESTexturePtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVOpenGLESTexture.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVOpenGLESTexture() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**

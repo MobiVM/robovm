@@ -41,8 +41,11 @@ import org.robovm.apple.coremedia.*;
 public enum /*<name>*/SFSpeechErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     InternalServiceError(1L),
+    AudioReadFailed(2L),
     UndefinedTemplateClassName(7L),
-    MalformedSupplementalModel(8L);
+    MalformedSupplementalModel(8L),
+    Timeout(12L),
+    MissingParameter(13L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SFSpeechErrorCode.class); }/*</bind>*/

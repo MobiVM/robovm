@@ -71,7 +71,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "isPersonalizedCommunicationRestricted")
     public native boolean isPersonalizedCommunicationRestricted();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -loadFriendPlayersWithCompletionHandler:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKLocalPlayer/loadFriendPlayers(completionHandler:)`` instead.
      */
     @Deprecated
     @Property(selector = "friends")
@@ -119,31 +119,19 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "unregisterAllListeners")
     public native void unregisterAllListeners();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use -setDefaultLeaderboardIdentifier:completionHandler:
-     */
-    @Deprecated
-    @Method(selector = "setDefaultLeaderboardCategoryID:completionHandler:")
-    public native void setDefaultLeaderboardCategoryID(String categoryID, @Block VoidBlock1<NSError> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use -loadDefaultLeaderboardIdentifierWithCompletionHandler:
-     */
-    @Deprecated
-    @Method(selector = "loadDefaultLeaderboardCategoryIDWithCompletionHandler:")
-    public native void loadDefaultLeaderboardCategoryID(@Block VoidBlock2<NSString, NSError> completionHandler);
-    /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. Use ``GKLocalPlayer/loadFriends(_:)`` instead.
      */
     @Deprecated
     @Method(selector = "loadFriendPlayersWithCompletionHandler:")
     public native void loadFriendPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 13.5. Use -fetchItemsForIdentityVerificationSignature:completionHandler:
+     * @deprecated Deprecated in iOS 13.5. Use ``GKLocalPlayer/fetchItems(forIdentityVerificationSignature:)`` instead.
      */
     @Deprecated
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -loadRecentPlayersWithCompletionHandler:
+     * @deprecated Deprecated in iOS 8.0. Use ``GKLocalPlayer/loadFriends(_:)`` instead.
      */
     @Deprecated
     @Method(selector = "loadFriendsWithCompletionHandler:")

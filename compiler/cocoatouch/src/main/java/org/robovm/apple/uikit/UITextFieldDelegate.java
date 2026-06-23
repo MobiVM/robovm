@@ -71,8 +71,17 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "textFieldDidEndEditing:reason:")
     void didEndEditing(UITextField textField, UITextFieldDidEndEditingReason reason);
+    /**
+     * @deprecated Use -textField:shouldChangeCharactersInRanges:replacementString:
+     */
+    @Deprecated
     @Method(selector = "textField:shouldChangeCharactersInRange:replacementString:")
     boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "textField:shouldChangeCharactersInRanges:replacementString:")
+    boolean shouldChangeCharacters(UITextField textField, NSArray<NSValue> ranges, String string);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -84,9 +93,16 @@ import org.robovm.apple.symbols.*;
     boolean shouldReturn(UITextField textField);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use -textField:editMenuForCharactersInRanges:suggestedActions
      */
+    @Deprecated
     @Method(selector = "textField:editMenuForCharactersInRange:suggestedActions:")
     UIMenu getEditMenu(UITextField textField, @ByVal NSRange range, NSArray<UIMenuElement> suggestedActions);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "textField:editMenuForCharactersInRanges:suggestedActions:")
+    UIMenu editMenuForCharacters(UITextField textField, NSArray<NSValue> ranges, NSArray<UIMenuElement> suggestedActions);
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -97,6 +113,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "textField:willDismissEditMenuWithAnimator:")
     void willDismissEditMenu(UITextField textField, UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "textField:insertInputSuggestion:")
+    void insertInputSuggestion(UITextField textField, UIInputSuggestion inputSuggestion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

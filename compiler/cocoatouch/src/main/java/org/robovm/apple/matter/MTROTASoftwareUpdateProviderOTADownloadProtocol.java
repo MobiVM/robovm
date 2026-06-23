@@ -35,26 +35,35 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.4 and later.
+ * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderDownloadProtocol
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTROTASoftwareUpdateProviderOTADownloadProtocol/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderDownloadProtocolBDXSynchronous
      */
+    @Deprecated
     BDXSynchronous(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderDownloadProtocolBDXAsynchronous
      */
+    @Deprecated
     BDXAsynchronous(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderDownloadProtocolHTTPS
      */
+    @Deprecated
     HTTPS(2L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.2. Please use MTROTASoftwareUpdateProviderDownloadProtocolVendorSpecific
      */
+    @Deprecated
     VendorSpecific(3L);
     /*</values>*/
 

@@ -184,6 +184,32 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
     /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred, boolean calculateHDRStats);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForIOSurface:")
+    public native void calculateHDRStatsForIOSurface(IOSurface surface);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForCVPixelBuffer:")
+    public native void calculateHDRStatsForCVPixelBuffer(CVPixelBuffer buffer);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForCGImage:")
+    public native CGImage calculateHDRStatsForCGImage(CGImage cgimage);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForImage:")
+    public native CIImage calculateHDRStatsForImage(CIImage image);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "TIFFRepresentationOfImage:format:colorSpace:options:")

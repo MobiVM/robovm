@@ -70,13 +70,20 @@ import org.robovm.apple.uniformtypeid.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "uniformTypeIdentifier")
-    public native String getUniformTypeIdentifier();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     @Property(selector = "originalFilename")
     public native String getOriginalFilename();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentType")
+    public native UTType getContentType();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use contentType instead
+     */
+    @Deprecated
+    @Property(selector = "uniformTypeIdentifier")
+    public native String getUniformTypeIdentifier();
     /**
      * @since Available in iOS 16.0 and later.
      */

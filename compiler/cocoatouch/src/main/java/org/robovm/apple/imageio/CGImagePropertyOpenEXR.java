@@ -89,12 +89,16 @@ import org.robovm.apple.coregraphics.*;
 
     /*<constants>*/
     /**
+     * @since Available in iOS 16.1 and later.
+     */
+    public static final CGImagePropertyOpenEXR Compression = new CGImagePropertyOpenEXR("Compression");
+    /**
      * @since Available in iOS 11.3 and later.
      */
     public static final CGImagePropertyOpenEXR AspectRatio = new CGImagePropertyOpenEXR("AspectRatio");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] values = new /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] {/*<value_list>*/AspectRatio/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] values = new /*<name>*/CGImagePropertyOpenEXR/*</name>*/[] {/*<value_list>*/Compression, AspectRatio/*</value_list>*/};
     
     /*<name>*/CGImagePropertyOpenEXR/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -117,6 +121,11 @@ import org.robovm.apple.coregraphics.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyOpenEXRCompression", optional=true)
+        public static native CFString Compression();
         /**
          * @since Available in iOS 11.3 and later.
          */

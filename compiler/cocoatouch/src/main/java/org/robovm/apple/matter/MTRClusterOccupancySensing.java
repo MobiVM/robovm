@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterOccupancySensing/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterOccupancySensingPtr extends Ptr<MTRClusterOccupancySensing, MTRClusterOccupancySensingPtr> {}/*</ptr>*/
@@ -61,11 +61,6 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeOccupancyWithParams:")
@@ -80,6 +75,26 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeOccupancySensorTypeBitmapWithParams:")
     public native NSDictionary<NSString, ?> readAttributeOccupancySensorTypeBitmap(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeHoldTime(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeHoldTimeWithValue:expectedValueInterval:")
+    public native void writeAttributeHoldTime(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeHoldTimeWithValue:expectedValueInterval:params:")
+    public native void writeAttributeHoldTime(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeHoldTimeLimitsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeHoldTimeLimits(MTRReadParams params);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -240,5 +255,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

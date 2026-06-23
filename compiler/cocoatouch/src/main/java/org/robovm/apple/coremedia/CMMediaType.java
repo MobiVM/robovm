@@ -50,7 +50,8 @@ public enum /*<name>*/CMMediaType/*</name>*/ implements ValuedEnum {
     Subtitle(1935832172L),
     TimeCode(1953325924L),
     Metadata(1835365473L),
-    TaggedBufferGroup(1952606066L);
+    TaggedBufferGroup(1952606066L),
+    AuxiliaryPicture(1635088502L);
     /*</values>*/
 
     /*<bind>*/

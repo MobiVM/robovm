@@ -24,6 +24,7 @@ enums:
     PDFDisplayDirection: {prefix: kPDFDisplayDirection}
     PDFAreaOfInterest: {prefix: kPDF}
     PDFInterpolationQuality: {prefix: kPDFInterpolationQuality}
+    PDFSelectionGranularity: {}
 categories:
 
 classes:
@@ -92,6 +93,8 @@ classes:
             '-selectionFromPage:atPoint:toPage:atPoint:':
                 name: selection
             '-selectionFromPage:atCharacterIndex:toPage:atCharacterIndex:':
+                name: selection
+            '-selectionFromPage:atPoint:toPage:atPoint:withGranularity:':
                 name: selection
     PDFOutline: #since 11.0
         methods:

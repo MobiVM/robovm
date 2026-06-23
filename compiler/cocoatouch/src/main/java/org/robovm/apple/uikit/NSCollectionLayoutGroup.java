@@ -59,6 +59,8 @@ import org.robovm.apple.symbols.*;
     protected NSCollectionLayoutGroup() {}
     protected NSCollectionLayoutGroup(Handle h, long handle) { super(h, handle); }
     protected NSCollectionLayoutGroup(SkipInit skipInit) { super(skipInit); }
+    public NSCollectionLayoutGroup(NSCollectionLayoutSize layoutSize) { super((Handle) null, create(layoutSize)); retain(getHandle()); }
+    public NSCollectionLayoutGroup(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems) { super((Handle) null, create(layoutSize, supplementaryItems)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supplementaryItems")
@@ -92,6 +94,10 @@ import org.robovm.apple.symbols.*;
     public static native NSCollectionLayoutGroup createVerticalGroup(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutItem> subitems);
     @Method(selector = "customGroupWithLayoutSize:itemProvider:")
     public static native NSCollectionLayoutGroup createCustomGroup(NSCollectionLayoutSize layoutSize, @Block Block1<NSCollectionLayoutEnvironment, NSArray<NSCollectionLayoutGroupCustomItem>> itemProvider);
+    @Method(selector = "itemWithLayoutSize:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize);
+    @Method(selector = "itemWithLayoutSize:supplementaryItems:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems);
     /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 16.0. Use +horizontalGroupWithLayoutSize:repeatingSubitem:count:

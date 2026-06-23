@@ -76,9 +76,16 @@ import org.robovm.apple.network.*;
     @Method(selector = "handleNewFlow:")
     public native boolean handleNewFlow(NEAppProxyFlow flow);
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Method(selector = "handleNewUDPFlow:initialRemoteFlowEndpoint:")
+    public native boolean handleNewUDPFlowWithInitialRemoteFlowEndpoint(NEAppProxyUDPFlow flow, NWEndpoint remoteEndpoint);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use handleNewUDPFlow:initialRemoteFlowEndpoint:
+     */
+    @Deprecated
     @Method(selector = "handleNewUDPFlow:initialRemoteEndpoint:")
-    public native boolean handleNewUDPFlow(NEAppProxyUDPFlow flow, NWEndpoint remoteEndpoint);
+    public native boolean handleNewUDPFlowWithInitialRemoteEndpoint(NEAppProxyUDPFlow flow, NWEndpoint remoteEndpoint);
     /*</methods>*/
 }

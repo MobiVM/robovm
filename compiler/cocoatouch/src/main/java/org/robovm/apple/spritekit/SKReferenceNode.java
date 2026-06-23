@@ -63,6 +63,17 @@ import org.robovm.apple.coreanimation.*;
     public SKReferenceNode(String fileName) { super((SkipInit) null); initObject(init(fileName)); }
     @Method(selector = "initWithCoder:")
     public SKReferenceNode(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKReferenceNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKReferenceNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -80,5 +91,10 @@ import org.robovm.apple.coreanimation.*;
     public native void didLoadReferenceNode(SKNode node);
     @Method(selector = "resolveReferenceNode")
     public native void resolveReferenceNode();
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

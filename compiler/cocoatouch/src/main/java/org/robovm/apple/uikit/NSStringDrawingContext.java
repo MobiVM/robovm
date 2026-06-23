@@ -67,24 +67,6 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getActualScaleFactor();
     @Property(selector = "totalBounds")
     public native @ByVal CGRect getTotalBounds();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "minimumTrackingAdjustment")
-    public native @MachineSizedFloat double getMinimumTrackingAdjustment();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setMinimumTrackingAdjustment:")
-    public native void setMinimumTrackingAdjustment(@MachineSizedFloat double v);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "actualTrackingAdjustment")
-    public native @MachineSizedFloat double getActualTrackingAdjustment();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

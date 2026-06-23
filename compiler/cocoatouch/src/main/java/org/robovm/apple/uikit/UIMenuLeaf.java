@@ -87,6 +87,10 @@ import org.robovm.apple.symbols.*;
     UIMenuElementState getState();
     @Property(selector = "setState:")
     void setState(UIMenuElementState v);
+    @Property(selector = "repeatBehavior")
+    UIMenuElementRepeatBehavior getRepeatBehavior();
+    @Property(selector = "setRepeatBehavior:")
+    void setRepeatBehavior(UIMenuElementRepeatBehavior v);
     @Property(selector = "sender")
     NSObject getSender();
     /**

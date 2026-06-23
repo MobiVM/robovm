@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.2 and later.
+ * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.OfferType
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/SKProductDiscountType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Introductory(0L),

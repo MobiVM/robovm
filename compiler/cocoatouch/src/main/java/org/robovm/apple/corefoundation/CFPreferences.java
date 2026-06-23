@@ -160,12 +160,6 @@ import org.robovm.apple.coretext.*;
     protected static native void setMultiple(@org.robovm.rt.bro.annotation.Marshaler(CFDictionary.AsStringMapMarshaler.class) Map<String, ?> keysToSet, @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> keysToRemove, String applicationID, String userName, String hostName);
     @Bridge(symbol="CFPreferencesSynchronize", optional=true)
     protected static native boolean synchronize(String applicationID, String userName, String hostName);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Unsupported API
-     */
-    @Deprecated
-    @Bridge(symbol="CFPreferencesCopyApplicationList", optional=true)
-    protected static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getApplicationList(String userName, String hostName);
     @Bridge(symbol="CFPreferencesCopyKeyList", optional=true)
     protected static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getKeyList(String applicationID, String userName, String hostName);
     @Bridge(symbol="CFPreferencesAppValueIsForced", optional=true)

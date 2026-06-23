@@ -39,12 +39,12 @@ import org.robovm.apple.network.*;
 public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
-     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
+     * @deprecated Deprecated in iOS 17.0. DES is not supported
      */
     @Deprecated
     DES(1L),
     /**
-     * @deprecated Deprecated in iOS 17.0. Use an encryption algorithm with 256-bit keys instead
+     * @deprecated Deprecated in iOS 17.0. 3DES is not supported
      */
     @Deprecated
     _3DES(2L),

@@ -102,6 +102,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isBlendsInDestinationColorSpace();
     @Property(selector = "setBlendsInDestinationColorSpace:")
     public native void setBlendsInDestinationColorSpace(boolean v);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "captureTraceURL")
+    public native NSURL getCaptureTraceURL();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "setCaptureTraceURL:")
+    public native void setCaptureTraceURL(NSURL v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

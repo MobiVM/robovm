@@ -55,7 +55,7 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithTime:detectionID:strong:")
     public CNDecision(@ByVal CMTime time, long detectionID, boolean isStrong) { super((SkipInit) null); initObject(init(time, detectionID, isStrong)); }
     @Method(selector = "initWithTime:detectionGroupID:strong:")
-    public static  CNDecision createUsingGroupID(@ByVal CMTime time, long detectionGroupID, boolean isStrong) {
+    public static CNDecision createUsingGroupID(@ByVal CMTime time, long detectionGroupID, boolean isStrong) {
        CNDecision res = new CNDecision((SkipInit) null);
        res.initObject(res.initWithTimeDetectionGroupID(time, detectionGroupID, isStrong));
        return res;

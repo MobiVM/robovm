@@ -74,5 +74,15 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "fileURLForSearchableIndex:itemIdentifier:typeIdentifier:inPlace:error:")
     public native NSURL getFileURLForSearchableIndex(CSSearchableIndex searchableIndex, String itemIdentifier, String typeIdentifier, boolean inPlace, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "searchableItemsForIdentifiers:searchableItemsHandler:")
+    public native void searchableItemsForIdentifiers(NSArray<NSString> identifiers, @Block VoidBlock1<NSArray<CSSearchableItem>> searchableItemsHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "searchableItemsDidUpdate:")
+    public native void searchableItemsDidUpdate(NSArray<CSSearchableItem> items);
     /*</methods>*/
 }

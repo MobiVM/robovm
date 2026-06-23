@@ -127,6 +127,36 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CMTime getActiveVideoMaxFrameDuration();
     @Property(selector = "setActiveVideoMaxFrameDuration:")
     public native void setActiveVideoMaxFrameDuration(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isVideoFrameDurationLocked")
+    public native boolean isVideoFrameDurationLocked();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minSupportedLockedVideoFrameDuration")
+    public native @ByVal CMTime getMinSupportedLockedVideoFrameDuration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isFollowingExternalSyncDevice")
+    public native boolean isFollowingExternalSyncDevice();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minSupportedExternalSyncFrameDuration")
+    public native @ByVal CMTime getMinSupportedExternalSyncFrameDuration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isAutoVideoFrameRateEnabled")
+    public native boolean isAutoVideoFrameRateEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAutoVideoFrameRateEnabled:")
+    public native void setAutoVideoFrameRateEnabled(boolean v);
     @Property(selector = "position")
     public native AVCaptureDevicePosition getPosition();
     /**
@@ -258,6 +288,26 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGPoint getFocusPointOfInterest();
     @Property(selector = "setFocusPointOfInterest:")
     public native void setFocusPointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isFocusRectOfInterestSupported")
+    public native boolean isFocusRectOfInterestSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minFocusRectOfInterestSize")
+    public native @ByVal CGSize getMinFocusRectOfInterestSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "focusRectOfInterest")
+    public native @ByVal CGRect getFocusRectOfInterest();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setFocusRectOfInterest:")
+    public native void setFocusRectOfInterest(@ByVal CGRect v);
     @Property(selector = "isAdjustingFocus")
     public native boolean isAdjustingFocus();
     @Property(selector = "isAutoFocusRangeRestrictionSupported")
@@ -309,6 +359,26 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGPoint getExposurePointOfInterest();
     @Property(selector = "setExposurePointOfInterest:")
     public native void setExposurePointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isExposureRectOfInterestSupported")
+    public native boolean isExposureRectOfInterestSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minExposureRectOfInterestSize")
+    public native @ByVal CGSize getMinExposureRectOfInterestSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "exposureRectOfInterest")
+    public native @ByVal CGRect getExposureRectOfInterest();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setExposureRectOfInterest:")
+    public native void setExposureRectOfInterest(@ByVal CGRect v);
     /**
      * @since Available in iOS 15.4 and later.
      */
@@ -407,6 +477,11 @@ import org.robovm.apple.uikit.*;
     @Deprecated
     @Property(selector = "dualCameraSwitchOverVideoZoomFactor")
     public native @MachineSizedFloat double getDualCameraSwitchOverVideoZoomFactor();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "displayVideoZoomFactorMultiplier")
+    public native @MachineSizedFloat double getDisplayVideoZoomFactorMultiplier();
     @Property(selector = "automaticallyAdjustsVideoHDREnabled")
     public native boolean automaticallyAdjustsVideoHDREnabled();
     @Property(selector = "setAutomaticallyAdjustsVideoHDREnabled:")
@@ -541,6 +616,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "reactionEffectsInProgress")
     public native NSArray<AVCaptureReactionEffectState> getReactionEffectsInProgress();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isBackgroundReplacementEnabled")
+    public static native boolean isBackgroundReplacementEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isBackgroundReplacementActive")
+    public native boolean isBackgroundReplacementActive();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "isContinuityCamera")
@@ -561,6 +646,24 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "activeMicrophoneMode")
     public static native AVCaptureMicrophoneMode getActiveMicrophoneMode();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "spatialCaptureDiscomfortReasons")
+    public native NSSet<NSString> getSpatialCaptureDiscomfortReasons();
+    @Property(selector = "cinematicVideoCaptureSceneMonitoringStatuses")
+    public native NSSet<NSString> getCinematicVideoCaptureSceneMonitoringStatuses();
+    @Property(selector = "dynamicAspectRatio")
+    public native AVCaptureAspectRatio getDynamicAspectRatio();
+    @Property(selector = "dynamicDimensions")
+    public native @ByVal CMVideoDimensions getDynamicDimensions();
+    @Property(selector = "smartFramingMonitor")
+    public native AVCaptureSmartFramingMonitor getSmartFramingMonitor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "nominalFocalLengthIn35mmFilm")
+    public native float getNominalFocalLengthIn35mmFilm();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "isStudioLightEnabled")
@@ -570,6 +673,21 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "isStudioLightActive")
     public native boolean isStudioLightActive();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraLensSmudgeDetectionEnabled")
+    public native boolean isCameraLensSmudgeDetectionEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "cameraLensSmudgeDetectionInterval")
+    public native @ByVal CMTime getCameraLensSmudgeDetectionInterval();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "cameraLensSmudgeDetectionStatus")
+    public native AVCaptureCameraLensSmudgeDetectionStatus getCameraLensSmudgeDetectionStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -650,16 +768,46 @@ import org.robovm.apple.uikit.*;
     private native boolean setTorchModeOn(float torchLevel, NSError.NSErrorPtr outError);
     @Method(selector = "isFocusModeSupported:")
     public native boolean isFocusModeSupported(AVCaptureFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "defaultRectForFocusPointOfInterest:")
+    public native @ByVal CGRect defaultRectForFocusPointOfInterest(@ByVal CGPoint pointOfInterest);
     @Method(selector = "setFocusModeLockedWithLensPosition:completionHandler:")
     public native void setFocusModeLocked(float lensPosition, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:")
+    public native void setCinematicVideoTrackingFocus(@MachineSizedSInt long detectedObjectID, AVCaptureCinematicVideoFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoTrackingFocusAtPoint:focusMode:")
+    public native void setCinematicVideoTrackingFocusAtPoint(@ByVal CGPoint point, AVCaptureCinematicVideoFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoFixedFocusAtPoint:focusMode:")
+    public native void setCinematicVideoFixedFocusAtPoint(@ByVal CGPoint point, AVCaptureCinematicVideoFocusMode focusMode);
     @Method(selector = "isExposureModeSupported:")
     public native boolean isExposureModeSupported(AVCaptureExposureMode exposureMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "defaultRectForExposurePointOfInterest:")
+    public native @ByVal CGRect defaultRectForExposurePointOfInterest(@ByVal CGPoint pointOfInterest);
     @Method(selector = "setExposureModeCustomWithDuration:ISO:completionHandler:")
     public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setExposureTargetBias:completionHandler:")
     public native void setExposureTargetBias(float bias, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isWhiteBalanceModeSupported:")
     public native boolean isWhiteBalanceModeSupported(AVCaptureWhiteBalanceMode whiteBalanceMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:")
+    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTintValues, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:")
     public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "chromaticityValuesForDeviceWhiteBalanceGains:")
@@ -693,5 +841,12 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "showSystemUserInterface:")
     public static native void showSystemUserInterface(AVCaptureSystemUserInterface systemUserInterface);
+    @Method(selector = "setDynamicAspectRatio:completionHandler:")
+    public native void setDynamicAspectRatio(AVCaptureAspectRatio dynamicAspectRatio, @Block("(@ByVal,)") VoidBlock2<CMTime, NSError> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCameraLensSmudgeDetectionEnabled:detectionInterval:")
+    public native void setCameraLensSmudgeDetectionEnabled(boolean cameraLensSmudgeDetectionEnabled, @ByVal CMTime detectionInterval);
     /*</methods>*/
 }

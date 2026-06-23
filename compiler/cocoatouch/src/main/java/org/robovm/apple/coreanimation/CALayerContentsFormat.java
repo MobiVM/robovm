@@ -105,9 +105,13 @@ import org.robovm.apple.corevideo.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final CALayerContentsFormat Gray8Uint = new CALayerContentsFormat("Gray8Uint");
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public static final CALayerContentsFormat Automatic = new CALayerContentsFormat("Automatic");
     /*</constants>*/
     
-    private static /*<name>*/CALayerContentsFormat/*</name>*/[] values = new /*<name>*/CALayerContentsFormat/*</name>*/[] {/*<value_list>*/RGBA8Uint, RGBA16Float, Gray8Uint/*</value_list>*/};
+    private static /*<name>*/CALayerContentsFormat/*</name>*/[] values = new /*<name>*/CALayerContentsFormat/*</name>*/[] {/*<value_list>*/RGBA8Uint, RGBA16Float, Gray8Uint, Automatic/*</value_list>*/};
     
     /*<name>*/CALayerContentsFormat/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -145,6 +149,11 @@ import org.robovm.apple.corevideo.*;
          */
         @GlobalValue(symbol="kCAContentsFormatGray8Uint", optional=true)
         public static native NSString Gray8Uint();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCAContentsFormatAutomatic", optional=true)
+        public static native NSString Automatic();
         /*</values>*/
     }
 }

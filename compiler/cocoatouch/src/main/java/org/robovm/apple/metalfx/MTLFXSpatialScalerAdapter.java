@@ -35,7 +35,7 @@ import org.robovm.apple.metal.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLFXSpatialScalerAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLFXSpatialScalerBaseAdapter/*</extends>*/ 
     /*<implements>*/implements MTLFXSpatialScaler/*</implements>*/ {
 
     /*<ptr>*/
@@ -45,44 +45,7 @@ import org.robovm.apple.metal.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @NotImplemented("colorTextureUsage")
-    public MTLTextureUsage getColorTextureUsage() { return null; }
-    @NotImplemented("outputTextureUsage")
-    public MTLTextureUsage getOutputTextureUsage() { return null; }
-    @NotImplemented("inputContentWidth")
-    public @MachineSizedUInt long getInputContentWidth() { return 0; }
-    @NotImplemented("setInputContentWidth:")
-    public void setInputContentWidth(@MachineSizedUInt long v) {}
-    @NotImplemented("inputContentHeight")
-    public @MachineSizedUInt long getInputContentHeight() { return 0; }
-    @NotImplemented("setInputContentHeight:")
-    public void setInputContentHeight(@MachineSizedUInt long v) {}
-    @NotImplemented("colorTexture")
-    public MTLTexture getColorTexture() { return null; }
-    @NotImplemented("setColorTexture:")
-    public void setColorTexture(MTLTexture v) {}
-    @NotImplemented("outputTexture")
-    public MTLTexture getOutputTexture() { return null; }
-    @NotImplemented("setOutputTexture:")
-    public void setOutputTexture(MTLTexture v) {}
-    @NotImplemented("colorTextureFormat")
-    public MTLPixelFormat getColorTextureFormat() { return null; }
-    @NotImplemented("outputTextureFormat")
-    public MTLPixelFormat getOutputTextureFormat() { return null; }
-    @NotImplemented("inputWidth")
-    public @MachineSizedUInt long getInputWidth() { return 0; }
-    @NotImplemented("inputHeight")
-    public @MachineSizedUInt long getInputHeight() { return 0; }
-    @NotImplemented("outputWidth")
-    public @MachineSizedUInt long getOutputWidth() { return 0; }
-    @NotImplemented("outputHeight")
-    public @MachineSizedUInt long getOutputHeight() { return 0; }
-    @NotImplemented("colorProcessingMode")
-    public MTLFXSpatialScalerColorProcessingMode getColorProcessingMode() { return null; }
-    @NotImplemented("fence")
-    public MTLFence getFence() { return null; }
-    @NotImplemented("setFence:")
-    public void setFence(MTLFence v) {}
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

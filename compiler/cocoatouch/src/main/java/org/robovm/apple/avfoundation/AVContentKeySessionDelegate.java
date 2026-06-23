@@ -87,6 +87,16 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "contentKeySessionDidGenerateExpiredSessionReport:")
     void contentKeySessionDidGenerateExpiredSessionReport(AVContentKeySession session);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "contentKeySession:externalProtectionStatusDidChangeForContentKey:")
+    void externalProtectionStatusDidChange(AVContentKeySession session, AVContentKey contentKey);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "contentKeySession:didProvideContentKeyRequests:forInitializationData:")
+    void didProvideContentKeyRequests(AVContentKeySession session, NSArray<AVContentKeyRequest> keyRequests, NSData initializationData);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

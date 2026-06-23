@@ -309,6 +309,11 @@ import org.robovm.apple.uikit.*;
         public static native NSString ExpectedSourceFrameRate();
         @GlobalValue(symbol="AVVideoAverageNonDroppableFrameRateKey", optional=true)
         public static native NSString AverageNonDroppableFrameRate();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoDecompressionPropertiesKey", optional=true)
+        public static native NSString DecompressionProperties();
     }
     /*</keys>*/
 }

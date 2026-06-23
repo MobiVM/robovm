@@ -33,12 +33,14 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRSubscribeParams/*</name>*/ 
     extends /*<extends>*/MTRReadParams/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class MTRSubscribeParamsPtr extends Ptr<MTRSubscribeParams, MTRSubscribeParamsPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(MTRSubscribeParams.class); }/*</bind>*/
@@ -101,6 +103,8 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "setReportEventsUrgently:")
     public native void setReportEventsUrgently(boolean v);
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

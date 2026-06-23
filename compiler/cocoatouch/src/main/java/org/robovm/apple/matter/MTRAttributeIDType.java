@@ -35,7 +35,7 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
@@ -113,50 +113,6 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.4 and later.
      */
-    AttributeIDTypeClusterScenesAttributeSceneCountID(0L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeCurrentSceneID(1L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeCurrentGroupID(2L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeSceneValidID(3L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeNameSupportID(4L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeLastConfiguredByID(5L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterScenesAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     AttributeIDTypeClusterOnOffAttributeOnOffID(0L),
     /**
      * @since Available in iOS 16.4 and later.
@@ -194,34 +150,6 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterOnOffAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeSwitchTypeID(0L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeSwitchActionsID(16L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -298,62 +226,6 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterLevelControlAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeActiveTextID(4L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeDescriptionID(28L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeInactiveTextID(46L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeOutOfServiceID(81L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributePolarityID(84L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributePresentValueID(85L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeReliabilityID(103L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeStatusFlagsID(111L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeApplicationTypeID(256L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBinaryInputBasicAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -454,6 +326,14 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterAccessControlAttributeAccessControlEntriesPerFabricID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterAccessControlAttributeCommissioningARLID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterAccessControlAttributeARLID(6L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -590,6 +470,14 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 17.0 and later.
      */
     AttributeIDTypeClusterBasicInformationAttributeProductAppearanceID(20L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterBasicInformationAttributeSpecificationVersionID(21L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterBasicInformationAttributeMaxPathsPerInvokeID(22L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -899,6 +787,10 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterPowerSourceAttributeActiveBatChargeFaultsID(30L),
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterPowerSourceAttributeEndpointListID(31L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterPowerSourceAttributeGeneratedCommandListID(65528L),
@@ -990,6 +882,18 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterNetworkCommissioningAttributeLastConnectErrorValueID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterNetworkCommissioningAttributeSupportedWiFiBandsID(8L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterNetworkCommissioningAttributeSupportedThreadFeaturesID(9L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterNetworkCommissioningAttributeThreadVersionID(10L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1575,6 +1479,18 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterTimeSynchronizationAttributeNtpServerPortID(9L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTimeSynchronizationAttributeTimeZoneListMaxSizeID(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTimeSynchronizationAttributeDSTOffsetListMaxSizeID(11L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTimeSynchronizationAttributeSupportsDNSResolveID(12L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterTimeSynchronizationAttributeGeneratedCommandListID(65528L),
@@ -1606,6 +1522,10 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterBridgedDeviceBasicInformationAttributeProductNameID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterBridgedDeviceBasicInformationAttributeProductIDID(4L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1873,66 +1793,6 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 16.4 and later.
      */
-    AttributeIDTypeClusterProxyConfigurationAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyConfigurationAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyConfigurationAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyConfigurationAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyConfigurationAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyDiscoveryAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyDiscoveryAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyDiscoveryAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyDiscoveryAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyDiscoveryAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyValidAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyValidAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyValidAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyValidAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterProxyValidAttributeClusterRevisionID(65533L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     AttributeIDTypeClusterBooleanStateAttributeStateValueID(0L),
     /**
      * @since Available in iOS 16.4 and later.
@@ -1954,6 +1814,166 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterBooleanStateAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeIdleModeDurationID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeActiveModeDurationID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeActiveModeThresholdID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeRegisteredClientsID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeICDCounterID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeClientsSupportedPerFabricID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeUserActiveModeTriggerHintID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeUserActiveModeTriggerInstructionID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeOperatingModeID(8L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeMaximumCheckInBackOffID(9L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterICDManagementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributePhaseListID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeCurrentPhaseID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeCountdownTimeID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeOperationalStateListID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeOperationalStateID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeOperationalErrorID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenCavityOperationalStateAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOvenModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeSupportedDrynessLevelsID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeSelectedDrynessLevelID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryDryerControlsAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1998,6 +2018,1222 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterModeSelectAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAndTemperatureControlledCabinetModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeSpinSpeedsID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeSpinSpeedCurrentID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeNumberOfRinsesID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeSupportedRinsesID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterLaundryWasherControlsAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCRunModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCCleanModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeTemperatureSetpointID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeMinTemperatureID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeMaxTemperatureID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeStepID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeSelectedTemperatureLevelID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeSupportedTemperatureLevelsID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterTemperatureControlAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeMaskID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeStateID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeSupportedID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterRefrigeratorAlarmAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeAirQualityID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterAirQualityAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeExpressedStateID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeSmokeStateID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeCOStateID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeBatteryAlertID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeDeviceMutedID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeTestInProgressID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeHardwareFaultAlertID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeEndOfServiceAlertID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeInterconnectSmokeAlarmID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeInterconnectCOAlarmID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeContaminationStateID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeSmokeSensitivityLevelID(11L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeExpiryDateID(12L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterSmokeCOAlarmAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeMaskID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeLatchID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeStateID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeSupportedID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDishwasherAlarmAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeCookTimeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeMaxCookTimeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributePowerSettingID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeMinPowerID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeMaxPowerID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributePowerStepID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeWattRatingID(8L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMicrowaveOvenControlAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributePhaseListID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeCurrentPhaseID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeCountdownTimeID(2L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeOperationalStateListID(3L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeOperationalStateID(4L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeOperationalErrorID(5L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterOperationalStateAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributePhaseListID(0L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeCurrentPhaseID(1L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeCountdownTimeID(2L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeOperationalStateListID(3L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeOperationalStateID(4L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeOperationalErrorID(5L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AttributeIDTypeClusterRVCOperationalStateAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeConditionID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeDegradationDirectionID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeChangeIndicationID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeInPlaceIndicatorID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeLastChangedTimeID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeReplacementProductListID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterHEPAFilterMonitoringAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeConditionID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeDegradationDirectionID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeChangeIndicationID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeInPlaceIndicatorID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeLastChangedTimeID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeReplacementProductListID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterActivatedCarbonFilterMonitoringAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeCurrentSensitivityLevelID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeSupportedSensitivityLevelsID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeDefaultSensitivityLevelID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAlarmsActiveID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAlarmsSuppressedID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAlarmsEnabledID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAlarmsSupportedID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeSensorFaultID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterBooleanStateConfigurationAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeOpenDurationID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeDefaultOpenDurationID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeAutoCloseTimeID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeRemainingDurationID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeCurrentStateID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeTargetStateID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeCurrentLevelID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeTargetLevelID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeDefaultOpenLevelID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeValveFaultID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeLevelStepID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterValveConfigurationAndControlAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributePowerModeID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeNumberOfMeasurementTypesID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeAccuracyID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeRangesID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeVoltageID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeActiveCurrentID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeReactiveCurrentID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeApparentCurrentID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeActivePowerID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeReactivePowerID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeApparentPowerID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeRMSVoltageID(11L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeRMSCurrentID(12L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeRMSPowerID(13L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeFrequencyID(14L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeHarmonicCurrentsID(15L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeHarmonicPhasesID(16L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributePowerFactorID(17L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeNeutralCurrentID(18L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalPowerMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeAccuracyID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeCumulativeEnergyImportedID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeCumulativeEnergyExportedID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributePeriodicEnergyImportedID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributePeriodicEnergyExportedID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeCumulativeEnergyResetID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterElectricalEnergyMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeHeaterTypesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeHeatDemandID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeTankVolumeID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeEstimatedHeatRequiredID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeTankPercentageID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeBoostStateID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterManagementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeMessagesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeActiveMessageIDsID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterMessagesAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeESATypeID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeESACanGenerateID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeESAStateID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeAbsMinPowerID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeAbsMaxPowerID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributePowerAdjustmentCapabilityID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeForecastID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeOptOutStateID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeStateID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeSupplyStateID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeFaultStateID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeChargingEnabledUntilID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeCircuitCapacityID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeMinimumChargeCurrentID(6L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeMaximumChargeCurrentID(7L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeUserMaximumChargeCurrentID(9L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeRandomizationDelayWindowID(10L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeNextChargeStartTimeID(35L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeNextChargeTargetTimeID(36L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeNextChargeRequiredEnergyID(37L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeNextChargeTargetSoCID(38L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeApproximateEVEfficiencyID(39L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeSessionIDID(64L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeSessionDurationID(65L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeSessionEnergyChargedID(66L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeAvailableEndpointsID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeActiveEndpointsID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterPowerTopologyAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterEnergyEVSEModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWaterHeaterModeAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeSupportedModesID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeCurrentModeID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDeviceEnergyManagementModeAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -2143,6 +3379,42 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterDoorLockAttributeExpiringUserTimeoutID(53L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroReaderVerificationKeyID(128L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroReaderGroupIdentifierID(129L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroReaderGroupSubIdentifierID(130L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroExpeditedTransactionSupportedProtocolVersionsID(131L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroGroupResolvingKeyID(132L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroSupportedBLEUWBProtocolVersionsID(133L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeAliroBLEAdvertisingVersionID(134L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeNumberOfAliroCredentialIssuerKeysSupportedID(135L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterDoorLockAttributeNumberOfAliroEndpointKeysSupportedID(136L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterDoorLockAttributeGeneratedCommandListID(65528L),
@@ -2271,65 +3543,49 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterWindowCoveringAttributeClusterRevisionID(65533L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierMovingStateID(1L),
+    AttributeIDTypeClusterServiceAreaAttributeSupportedAreasID(0L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierSafetyStatusID(2L),
+    AttributeIDTypeClusterServiceAreaAttributeSupportedMapsID(1L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierCapabilitiesID(3L),
+    AttributeIDTypeClusterServiceAreaAttributeSelectedAreasID(2L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierOpenEventsID(4L),
+    AttributeIDTypeClusterServiceAreaAttributeCurrentAreaID(3L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierCloseEventsID(5L),
+    AttributeIDTypeClusterServiceAreaAttributeEstimatedEndTimeID(4L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierCommandOpenEventsID(6L),
+    AttributeIDTypeClusterServiceAreaAttributeProgressID(5L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierCommandCloseEventsID(7L),
+    AttributeIDTypeClusterServiceAreaAttributeGeneratedCommandListID(65528L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierOpenPeriodID(8L),
+    AttributeIDTypeClusterServiceAreaAttributeAcceptedCommandListID(65529L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierClosePeriodID(9L),
+    AttributeIDTypeClusterServiceAreaAttributeAttributeListID(65531L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeBarrierPositionID(10L),
+    AttributeIDTypeClusterServiceAreaAttributeFeatureMapID(65532L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterBarrierControlAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBarrierControlAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBarrierControlAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBarrierControlAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterBarrierControlAttributeClusterRevisionID(65533L),
+    AttributeIDTypeClusterServiceAreaAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -2639,6 +3895,50 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterThermostatAttributeACCapacityformatID(71L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributePresetTypesID(72L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeScheduleTypesID(73L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeNumberOfPresetsID(74L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeNumberOfSchedulesID(75L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeNumberOfScheduleTransitionsID(76L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeNumberOfScheduleTransitionPerDayID(77L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeActivePresetHandleID(78L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeActiveScheduleHandleID(79L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributePresetsID(80L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeSchedulesID(81L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThermostatAttributeSetpointHoldExpiryTimestampID(82L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterThermostatAttributeGeneratedCommandListID(65528L),
@@ -2702,6 +4002,10 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterFanControlAttributeWindSettingID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFanControlAttributeAirflowDirectionID(11L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -3275,6 +4579,14 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterOccupancySensingAttributeOccupancySensorTypeBitmapID(2L),
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOccupancySensingAttributeHoldTimeID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterOccupancySensingAttributeHoldTimeLimitsID(4L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterOccupancySensingAttributePIROccupiedToUnoccupiedDelayID(16L),
@@ -3331,9 +4643,757 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterOccupancySensingAttributeClusterRevisionID(65533L),
     /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonMonoxideConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterCarbonDioxideConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterNitrogenDioxideConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterOzoneConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM25ConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterFormaldehydeConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM1ConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterPM10ConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterTotalVolatileOrganicCompoundsConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeMeasuredValueID(0L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeMinMeasuredValueID(1L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeMaxMeasuredValueID(2L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributePeakMeasuredValueID(3L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributePeakMeasuredValueWindowID(4L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeAverageMeasuredValueID(5L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeAverageMeasuredValueWindowID(6L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeUncertaintyID(7L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeMeasurementUnitID(8L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeMeasurementMediumID(9L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeLevelValueID(10L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    AttributeIDTypeClusterRadonConcentrationMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeSSIDID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributePassphraseSurrogateID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWiFiNetworkManagementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeBorderRouterNameID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeBorderAgentIDID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeThreadVersionID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeInterfaceEnabledID(3L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeActiveDatasetTimestampID(4L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributePendingDatasetTimestampID(5L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadBorderRouterManagementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributePreferredExtendedPanIDID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeThreadNetworksID(1L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeThreadNetworkTableSizeID(2L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterThreadNetworkDirectoryAttributeClusterRevisionID(65533L),
+    /**
      * @since Available in iOS 16.4 and later.
      */
     AttributeIDTypeClusterWakeOnLANAttributeMACAddressID(0L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    AttributeIDTypeClusterWakeOnLANAttributeLinkLocalAddressID(1L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -3687,537 +5747,49 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
      */
     AttributeIDTypeClusterAccountLoginAttributeClusterRevisionID(65533L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasurementTypeID(0L),
+    AttributeIDTypeClusterContentAppObserverAttributeGeneratedCommandListID(65528L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageID(256L),
+    AttributeIDTypeClusterContentAppObserverAttributeAcceptedCommandListID(65529L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMinID(257L),
+    AttributeIDTypeClusterContentAppObserverAttributeAttributeListID(65531L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMaxID(258L),
+    AttributeIDTypeClusterContentAppObserverAttributeFeatureMapID(65532L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentID(259L),
+    AttributeIDTypeClusterContentAppObserverAttributeClusterRevisionID(65533L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMinID(260L),
+    AttributeIDTypeClusterCommissionerControlAttributeSupportedDeviceCategoriesID(0L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMaxID(261L),
+    AttributeIDTypeClusterCommissionerControlAttributeGeneratedCommandListID(65528L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerID(262L),
+    AttributeIDTypeClusterCommissionerControlAttributeAcceptedCommandListID(65529L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMinID(263L),
+    AttributeIDTypeClusterCommissionerControlAttributeAttributeListID(65531L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMaxID(264L),
+    AttributeIDTypeClusterCommissionerControlAttributeFeatureMapID(65532L),
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMultiplierID(512L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageDivisorID(513L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMultiplierID(514L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentDivisorID(515L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMultiplierID(516L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerDivisorID(517L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyID(768L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMinID(769L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMaxID(770L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeNeutralCurrentID(771L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeTotalActivePowerID(772L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeTotalReactivePowerID(773L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeTotalApparentPowerID(774L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured1stHarmonicCurrentID(775L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured3rdHarmonicCurrentID(776L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured5thHarmonicCurrentID(777L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured7thHarmonicCurrentID(778L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured9thHarmonicCurrentID(779L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured11thHarmonicCurrentID(780L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase1stHarmonicCurrentID(781L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase3rdHarmonicCurrentID(782L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase5thHarmonicCurrentID(783L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase7thHarmonicCurrentID(784L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase9thHarmonicCurrentID(785L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase11thHarmonicCurrentID(786L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMultiplierID(1024L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyDivisorID(1025L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePowerMultiplierID(1026L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePowerDivisorID(1027L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeHarmonicCurrentMultiplierID(1028L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePhaseHarmonicCurrentMultiplierID(1029L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousVoltageID(1280L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousLineCurrentID(1281L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousActiveCurrentID(1282L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousReactiveCurrentID(1283L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousPowerID(1284L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageID(1285L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinID(1286L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxID(1287L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentID(1288L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinID(1289L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxID(1290L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerID(1291L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinID(1292L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxID(1293L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerID(1294L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerID(1295L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorID(1296L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodID(1297L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterID(1299L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodID(1300L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodID(1301L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodID(1302L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodID(1303L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageMultiplierID(1536L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageDivisorID(1537L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentMultiplierID(1538L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentDivisorID(1539L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcPowerMultiplierID(1540L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcPowerDivisorID(1541L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeOverloadAlarmsMaskID(1792L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeVoltageOverloadID(1793L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeCurrentOverloadID(1794L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcOverloadAlarmsMaskID(2048L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageOverloadID(2049L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentOverloadID(2050L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcActivePowerOverloadID(2051L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcReactivePowerOverloadID(2052L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageID(2053L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageID(2054L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltageID(2055L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltageID(2056L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagID(2057L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellID(2058L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeLineCurrentPhaseBID(2305L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActiveCurrentPhaseBID(2306L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeReactiveCurrentPhaseBID(2307L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltagePhaseBID(2309L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinPhaseBID(2310L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseBID(2311L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentPhaseBID(2312L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinPhaseBID(2313L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseBID(2314L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerPhaseBID(2315L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinPhaseBID(2316L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxPhaseBID(2317L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerPhaseBID(2318L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerPhaseBID(2319L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorPhaseBID(2320L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseBID(2321L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseBID(2322L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseBID(2323L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseBID(2324L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseBID(2325L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseBID(2326L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseBID(2327L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeLineCurrentPhaseCID(2561L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActiveCurrentPhaseCID(2562L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeReactiveCurrentPhaseCID(2563L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltagePhaseCID(2565L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinPhaseCID(2566L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseCID(2567L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentPhaseCID(2568L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinPhaseCID(2569L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseCID(2570L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerPhaseCID(2571L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinPhaseCID(2572L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxPhaseCID(2573L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerPhaseCID(2574L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerPhaseCID(2575L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorPhaseCID(2576L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseCID(2577L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseCID(2578L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseCID(2579L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseCID(2580L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseCID(2581L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseCID(2582L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseCID(2583L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeGeneratedCommandListID(65528L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAcceptedCommandListID(65529L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeAttributeListID(65531L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeFeatureMapID(65532L),
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    AttributeIDTypeClusterElectricalMeasurementAttributeClusterRevisionID(65533L),
+    AttributeIDTypeClusterCommissionerControlAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -4568,24 +6140,1018 @@ public enum /*<name>*/MTRAttributeIDType/*</name>*/ implements ValuedEnum {
     AttributeIDTypeClusterUnitTestingAttributeClusterRevisionID(65533L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierMovingState attribute will be removed
      */
-    AttributeIDTypeClusterFaultInjectionAttributeGeneratedCommandListID(65528L),
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierMovingStateID(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierSafetyStatus attribute will be removed
      */
-    AttributeIDTypeClusterFaultInjectionAttributeAcceptedCommandListID(65529L),
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierSafetyStatusID(2L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierCapabilities attribute will be removed
      */
-    AttributeIDTypeClusterFaultInjectionAttributeAttributeListID(65531L),
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierCapabilitiesID(3L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierOpenEvents attribute will be removed
      */
-    AttributeIDTypeClusterFaultInjectionAttributeFeatureMapID(65532L),
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierOpenEventsID(4L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierCloseEvents attribute will be removed
      */
-    AttributeIDTypeClusterFaultInjectionAttributeClusterRevisionID(65533L);
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierCloseEventsID(5L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierCommandOpenEvents attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierCommandOpenEventsID(6L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierCommandCloseEvents attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierCommandCloseEventsID(7L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierOpenPeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierOpenPeriodID(8L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierClosePeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierClosePeriodID(9L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The BarrierPosition attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeBarrierPositionID(10L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GeneratedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcceptedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AttributeList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The FeatureMap attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ClusterRevision attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBarrierControlAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActiveText attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeActiveTextID(4L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Description attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeDescriptionID(28L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InactiveText attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeInactiveTextID(46L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The OutOfService attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeOutOfServiceID(81L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Polarity attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributePolarityID(84L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PresentValue attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributePresentValueID(85L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Reliability attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeReliabilityID(103L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The StatusFlags attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeStatusFlagsID(111L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ApplicationType attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeApplicationTypeID(256L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GeneratedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcceptedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AttributeList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The FeatureMap attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ClusterRevision attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterBinaryInputBasicAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasurementType attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasurementTypeID(0L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageID(256L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcVoltageMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMinID(257L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcVoltageMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMaxID(258L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentID(259L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcCurrentMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMinID(260L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcCurrentMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMaxID(261L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcPower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerID(262L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcPowerMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMinID(263L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcPowerMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMaxID(264L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcVoltageMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageMultiplierID(512L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcVoltageDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcVoltageDivisorID(513L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcCurrentMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentMultiplierID(514L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcCurrentDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcCurrentDivisorID(515L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcPowerMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerMultiplierID(516L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The DcPowerDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeDcPowerDivisorID(517L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcFrequency attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyID(768L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcFrequencyMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMinID(769L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcFrequencyMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMaxID(770L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The NeutralCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeNeutralCurrentID(771L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The TotalActivePower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeTotalActivePowerID(772L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The TotalReactivePower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeTotalReactivePowerID(773L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The TotalApparentPower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeTotalApparentPowerID(774L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured1stHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured1stHarmonicCurrentID(775L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured3rdHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured3rdHarmonicCurrentID(776L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured5thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured5thHarmonicCurrentID(777L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured7thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured7thHarmonicCurrentID(778L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured9thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured9thHarmonicCurrentID(779L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The Measured11thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasured11thHarmonicCurrentID(780L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase1stHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase1stHarmonicCurrentID(781L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase3rdHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase3rdHarmonicCurrentID(782L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase5thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase5thHarmonicCurrentID(783L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase7thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase7thHarmonicCurrentID(784L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase9thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase9thHarmonicCurrentID(785L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The MeasuredPhase11thHarmonicCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeMeasuredPhase11thHarmonicCurrentID(786L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcFrequencyMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyMultiplierID(1024L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcFrequencyDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcFrequencyDivisorID(1025L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PowerMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePowerMultiplierID(1026L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PowerDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePowerDivisorID(1027L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The HarmonicCurrentMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeHarmonicCurrentMultiplierID(1028L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PhaseHarmonicCurrentMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePhaseHarmonicCurrentMultiplierID(1029L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InstantaneousVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousVoltageID(1280L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InstantaneousLineCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousLineCurrentID(1281L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InstantaneousActiveCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousActiveCurrentID(1282L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InstantaneousReactiveCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousReactiveCurrentID(1283L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The InstantaneousPower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeInstantaneousPowerID(1284L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageID(1285L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinID(1286L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxID(1287L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrent attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentID(1288L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinID(1289L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxID(1290L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerID(1291L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMin attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinID(1292L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMax attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxID(1293L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ReactivePower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerID(1294L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ApparentPower attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerID(1295L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PowerFactor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorID(1296L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsVoltageMeasurementPeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodID(1297L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsUnderVoltageCounter attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterID(1299L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeOverVoltagePeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodID(1300L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeUnderVoltagePeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodID(1301L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSagPeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodID(1302L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSwellPeriod attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodID(1303L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcVoltageMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageMultiplierID(1536L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcVoltageDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageDivisorID(1537L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcCurrentMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentMultiplierID(1538L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcCurrentDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentDivisorID(1539L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcPowerMultiplier attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcPowerMultiplierID(1540L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcPowerDivisor attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcPowerDivisorID(1541L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The OverloadAlarmsMask attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeOverloadAlarmsMaskID(1792L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The VoltageOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeVoltageOverloadID(1793L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The CurrentOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeCurrentOverloadID(1794L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcOverloadAlarmsMask attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcOverloadAlarmsMaskID(2048L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcVoltageOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcVoltageOverloadID(2049L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcCurrentOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcCurrentOverloadID(2050L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcActivePowerOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcActivePowerOverloadID(2051L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcReactivePowerOverload attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcReactivePowerOverloadID(2052L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsOverVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageID(2053L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsUnderVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageID(2054L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeOverVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltageID(2055L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeUnderVoltage attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltageID(2056L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSag attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagID(2057L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSwell attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellID(2058L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The LineCurrentPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeLineCurrentPhaseBID(2305L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActiveCurrentPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActiveCurrentPhaseBID(2306L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ReactiveCurrentPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeReactiveCurrentPhaseBID(2307L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltagePhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltagePhaseBID(2309L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMinPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinPhaseBID(2310L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMaxPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseBID(2311L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentPhaseBID(2312L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMinPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinPhaseBID(2313L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMaxPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseBID(2314L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerPhaseBID(2315L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMinPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinPhaseBID(2316L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMaxPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxPhaseBID(2317L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ReactivePowerPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerPhaseBID(2318L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ApparentPowerPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerPhaseBID(2319L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PowerFactorPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorPhaseBID(2320L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsVoltageMeasurementPeriodPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseBID(2321L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsOverVoltageCounterPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseBID(2322L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsUnderVoltageCounterPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseBID(2323L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeOverVoltagePeriodPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseBID(2324L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeUnderVoltagePeriodPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseBID(2325L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSagPeriodPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseBID(2326L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSwellPeriodPhaseB attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseBID(2327L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The LineCurrentPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeLineCurrentPhaseCID(2561L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActiveCurrentPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActiveCurrentPhaseCID(2562L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ReactiveCurrentPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeReactiveCurrentPhaseCID(2563L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltagePhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltagePhaseCID(2565L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMinPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMinPhaseCID(2566L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageMaxPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseCID(2567L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentPhaseCID(2568L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMinPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMinPhaseCID(2569L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsCurrentMaxPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseCID(2570L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerPhaseCID(2571L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMinPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMinPhaseCID(2572L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ActivePowerMaxPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeActivePowerMaxPhaseCID(2573L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ReactivePowerPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeReactivePowerPhaseCID(2574L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ApparentPowerPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeApparentPowerPhaseCID(2575L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The PowerFactorPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributePowerFactorPhaseCID(2576L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsVoltageMeasurementPeriodPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseCID(2577L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsOverVoltageCounterPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseCID(2578L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AverageRmsUnderVoltageCounterPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseCID(2579L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeOverVoltagePeriodPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseCID(2580L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsExtremeUnderVoltagePeriodPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseCID(2581L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSagPeriodPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseCID(2582L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The RmsVoltageSwellPeriodPhaseC attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseCID(2583L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GeneratedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcceptedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AttributeList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The FeatureMap attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ClusterRevision attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterElectricalMeasurementAttributeClusterRevisionID(65533L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The SwitchType attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeSwitchTypeID(0L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The SwitchActions attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeSwitchActionsID(16L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The GeneratedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeGeneratedCommandListID(65528L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AcceptedCommandList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeAcceptedCommandListID(65529L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The AttributeList attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeAttributeListID(65531L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The FeatureMap attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeFeatureMapID(65532L),
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 18.2. The ClusterRevision attribute will be removed
+     */
+    @Deprecated
+    AttributeIDTypeClusterOnOffSwitchConfigurationAttributeClusterRevisionID(65533L);
     /*</values>*/
 
     /*<bind>*/

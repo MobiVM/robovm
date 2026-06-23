@@ -86,6 +86,17 @@ import org.robovm.apple.uikit.*;
                 shouldInterpolate);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="kCGDefaultHDRImageContentHeadroom", optional=true)
+    public static native float GDefaultHDRImageContentHeadroom();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="kCGDefaultHDRImageContentHeadroom", optional=true)
+    public static native void GDefaultHDRImageContentHeadroom(float v);
+    
     @Bridge(symbol="CGImageGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
     @Bridge(symbol="CGImageCreate", optional=true)
@@ -106,6 +117,46 @@ import org.robovm.apple.uikit.*;
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createWithMaskingColors(CGImage image, @Pointer long components);
     @Bridge(symbol="CGImageCreateCopyWithColorSpace", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCopy(CGImage image, CGColorSpace space);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGImageCreateWithContentHeadroom", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createWithContentHeadroom(float headroom, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bitsPerPixel, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, CGDataProvider provider, MachineSizedFloatPtr decode, boolean shouldInterpolate, CGColorRenderingIntent intent);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGImageCreateCopyWithContentHeadroom", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCopy(float headroom, CGImage image);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGImageGetContentHeadroom", optional=true)
+    public native float getContentHeadroom();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGImageCalculateContentHeadroom", optional=true)
+    public native float calculateContentHeadroom();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGImageGetContentAverageLightLevel", optional=true)
+    public native float getContentAverageLightLevel();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGImageCalculateContentAverageLightLevel", optional=true)
+    public native float calculateContentAverageLightLevel();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGImageCreateCopyWithContentAverageLightLevel", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCopy(CGImage image, float avll);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGImageCreateCopyWithCalculatedHDRStats", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCopyWithCalculatedHDRStats(CGImage image);
     @Bridge(symbol="CGImageIsMask", optional=true)
     public native boolean isMask();
     @Bridge(symbol="CGImageGetWidth", optional=true)
@@ -142,6 +193,16 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGImageGetPixelFormatInfo", optional=true)
     public native CGImagePixelFormatInfo getPixelFormatInfo();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGImageShouldToneMap", optional=true)
+    public native boolean shouldToneMap();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGImageContainsImageSpecificToneMappingMetadata", optional=true)
+    public native boolean containsImageSpecificToneMappingMetadata();
     /**
      * @since Available in iOS 9.0 and later.
      */

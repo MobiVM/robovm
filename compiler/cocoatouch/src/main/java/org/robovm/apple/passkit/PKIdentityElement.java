@@ -63,12 +63,47 @@ import org.robovm.apple.coreanimation.*;
     public static native PKIdentityElement getPortraitElement();
     @Property(selector = "addressElement")
     public static native PKIdentityElement getAddressElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "heightElement")
+    public static native PKIdentityElement getHeightElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "weightElement")
+    public static native PKIdentityElement getWeightElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "eyeColorElement")
+    public static native PKIdentityElement getEyeColorElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "hairColorElement")
+    public static native PKIdentityElement getHairColorElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "organDonorStatusElement")
+    public static native PKIdentityElement getOrganDonorStatusElement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "veteranStatusElement")
+    public static native PKIdentityElement getVeteranStatusElement();
     @Property(selector = "issuingAuthorityElement")
     public static native PKIdentityElement getIssuingAuthorityElement();
     @Property(selector = "documentIssueDateElement")
     public static native PKIdentityElement getDocumentIssueDateElement();
     @Property(selector = "documentExpirationDateElement")
     public static native PKIdentityElement getDocumentExpirationDateElement();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "documentDHSComplianceStatusElement")
+    public static native PKIdentityElement getDocumentDHSComplianceStatusElement();
     @Property(selector = "documentNumberElement")
     public static native PKIdentityElement getDocumentNumberElement();
     @Property(selector = "drivingPrivilegesElement")
@@ -77,6 +112,11 @@ import org.robovm.apple.coreanimation.*;
     public static native PKIdentityElement getAgeElement();
     @Property(selector = "dateOfBirthElement")
     public static native PKIdentityElement getDateOfBirthElement();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "sexElement")
+    public static native PKIdentityElement getSexElement();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

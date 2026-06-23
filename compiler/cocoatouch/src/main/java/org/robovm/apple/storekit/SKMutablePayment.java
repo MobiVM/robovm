@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use Product.purchase(confirmIn:options:)
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKMutablePayment/*</name>*/ 
     extends /*<extends>*/SKPayment/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -47,56 +49,81 @@ import org.robovm.apple.coregraphics.*;
     public SKMutablePayment() {}
     protected SKMutablePayment(Handle h, long handle) { super(h, handle); }
     protected SKMutablePayment(SkipInit skipInit) { super(skipInit); }
+    public SKMutablePayment(SKProduct product) { super((Handle) null, create(product)); retain(getHandle()); }
     /*</constructors>*/
-    /**
-     * @since Available in iOS 3.0 and later.
-     */
-    public SKMutablePayment(SKProduct product) {
-        super(create(product));
-        retain(getHandle());
-    }
-    @Method(selector = "paymentWithProduct:")
-    protected static native @Pointer long create(SKProduct product);
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "applicationUsername")
     public native String getApplicationUsername();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.appAccountToken to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "setApplicationUsername:")
     public native void setApplicationUsername(String v);
     /**
      * @since Available in iOS 12.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "paymentDiscount")
     public native SKPaymentDiscount getPaymentDiscount();
     /**
      * @since Available in iOS 12.2 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "setPaymentDiscount:")
     public native void setPaymentDiscount(SKPaymentDiscount v);
     @Property(selector = "productIdentifier")
     public native String getProductIdentifier();
     @Property(selector = "setProductIdentifier:")
     public native void setProductIdentifier(String v);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "quantity")
     public native @MachineSizedSInt long getQuantity();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.quantity to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "setQuantity:")
     public native void setQuantity(@MachineSizedSInt long v);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "requestData")
     public native NSData getRequestData();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Create Product.PurchaseOption.custom values to use in Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     @Property(selector = "setRequestData:")
     public native void setRequestData(NSData v);
     /**
      * @since Available in iOS 8.3 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "simulatesAskToBuyInSandbox")
     public native boolean simulatesAskToBuyInSandbox();
     /**
      * @since Available in iOS 8.3 and later.
+     * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.simulatesAskToBuyInSandbox to use in Product.purchase(confirmIn:options:)
      */
+    @Deprecated
     @Property(selector = "setSimulatesAskToBuyInSandbox:")
     public native void setSimulatesAskToBuyInSandbox(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "paymentWithProduct:")
+    protected static native @Pointer long create(SKProduct product);
     /*</methods>*/
 }

@@ -61,5 +61,15 @@ import org.robovm.apple.security.*;
      */
     @NotImplemented("deviceBecameActive:")
     public void deviceBecameActive(MTRDevice device) {}
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @NotImplemented("deviceCachePrimed:")
+    public void deviceCachePrimed(MTRDevice device) {}
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @NotImplemented("deviceConfigurationChanged:")
+    public void deviceConfigurationChanged(MTRDevice device) {}
     /*</methods>*/
 }

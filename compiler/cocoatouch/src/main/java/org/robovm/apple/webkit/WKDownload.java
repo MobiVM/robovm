@@ -61,6 +61,16 @@ import org.robovm.apple.coreanimation.*;
     public native WKDownloadDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(WKDownloadDelegate v);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "isUserInitiated")
+    public native boolean isUserInitiated();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "originatingFrame")
+    public native WKFrameInfo getOriginatingFrame();
     @Property(selector = "progress")
     public native NSProgress getProgress();
     /*</properties>*/

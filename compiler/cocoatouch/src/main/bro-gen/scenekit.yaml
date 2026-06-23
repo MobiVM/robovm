@@ -214,11 +214,8 @@ classes:
                 name: createGeometry
             '+geometryWithSources:elements:':
                 name: createGeometry
-                parameters:
-                    sources:
-                        type: NSArray<SCNGeometrySource>
-                    elements:
-                        type: NSArray<SCNGeometryElement>
+            '+geometryWithSources:elements:sourceChannels:':
+                name: createGeometry
     SCNBox: # DONE
         methods:
             '+boxWithWidth:height:length:chamferRadius:':
@@ -283,6 +280,10 @@ classes:
                 name: create
             '+geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:':
                 name: create
+            '+geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:':
+                name: create
+            '+geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:':
+                name: create
     SCNGeometrySource: # DONE
         properties:
             'semantic':
@@ -330,6 +331,15 @@ classes:
         methods:
             '+materialPropertyWithContents:':
                 name: create
+            '+precomputedLightingEnvironmentContentsWithURL:error:':
+                name: getPrecomputedLightingEnvironmentContents
+                throws: NSErrorException
+            '+precomputedLightingEnvironmentContentsWithData:error:':
+                name: getPrecomputedLightingEnvironmentContents
+                throws: NSErrorException
+            '+precomputedLightingEnvironmentDataForContents:device:error:':
+                name: getPrecomputedLightingEnvironmentData
+                throws: NSErrorException
     SCNMorpher: # DONE
         properties:
             'targets':

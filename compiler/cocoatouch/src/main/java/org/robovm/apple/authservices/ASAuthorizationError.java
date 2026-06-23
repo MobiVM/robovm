@@ -49,7 +49,27 @@ public enum /*<name>*/ASAuthorizationError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    NotInteractive(1005L);
+    NotInteractive(1005L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    MatchedExcludedCredential(1006L),
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    CredentialImport(1007L),
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    CredentialExport(1008L),
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    PreferSignInWithApple(1009L),
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    DeviceNotConfiguredForPasskeyCreation(1010L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ASAuthorizationError.class); }/*</bind>*/

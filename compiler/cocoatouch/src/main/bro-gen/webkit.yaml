@@ -30,6 +30,19 @@ enums:
     WKDialogResult: {} #since 16.0
     WKCookiePolicy: {} #since 17.0
     WKInactiveSchedulingPolicy: {} #since 17.0
+    WKDownloadPlaceholderPolicy: {} #since 18.2
+    WKWebViewDataType: {} #since 26.0
+    WKWebpagePreferencesUpgradeToHTTPSPolicy: {} #since 18.2
+    WKWebExtensionMatchPatternError: { nserror: true } #since 18.4
+    WKWebExtensionMatchPatternOptions: {} #since 18.4
+    WKWebExtensionError: {} #since 18.4
+    WKWebExtensionTabChangedProperties: {} #since 18.4
+    WKWebExtensionContextError: { nserror: true } #since 18.4
+    WKWebExtensionContextPermissionStatus: {} #since 18.4
+    WKWebExtensionWindowType: {} #since 18.4
+    WKWebExtensionWindowState: {} #since 18.4
+    WKWebExtensionDataRecordError: {} #since 18.4
+    WKWebExtensionMessagePortError: { nserror: true } #since 18.4
 categories:
     NSAttributedString:
         methods:
@@ -143,6 +156,10 @@ classes:
                 return_marshaler: WKWebsiteDataType.AsSetMarshaler
             '+removeDataStoreForIdentifier:completionHandler:':
                 name: removeDataStore
+            '-fetchDataOfTypes:completionHandler:':
+                name: fetchData
+            '-restoreData:completionHandler:':
+                name: restoreData
     WKWebView: # DONE
         annotations: ['@WeaklyLinked']
         properties:
@@ -217,6 +234,10 @@ classes:
                 name: loadSimulatedReques
             '-setMinimumViewportInset:maximumViewportInset:':
                 name: setMinimumViewportInset
+            '-fetchDataOfTypes:completionHandler:':
+                name: fetchData
+            '-restoreData:completionHandler:':
+                name: restoreData
     WKPreviewElementInfo: {}
     WKContentRuleList: {} #since 11.0
     WKContentRuleListStore: #since 11.0
@@ -238,6 +259,8 @@ classes:
                 trim_after_first_colon: true
             '-setCookiePolicy:completionHandler:':
                 name: setCookiePolicy
+            '-setCookies:completionHandler:':
+                name: setCookies
     WKSnapshotConfiguration: {} #since 11.0
     WKContextMenuElementInfo: {} #since 13.0
     WKWebpagePreferences: {} #since 13.0
@@ -250,6 +273,109 @@ classes:
                 name: create
                 constructor: true
     WKDownload: {} #since 14.5
+    WKOpenPanelParameters: {} #since 18.4
+    WKWebExtension: #since 18.4
+        methods:
+            '+extensionWithAppExtensionBundle:completionHandler:':
+                name: create
+                constructor: true
+            '+extensionWithResourceBaseURL:completionHandler:':
+                name: create
+                constructor: true
+    WKWebExtensionAction: {} #since 18.4
+    WKWebExtensionCommand: {} #since 18.4
+    WKWebExtensionContext: #since 18.4
+        methods:
+            '-hasPermission:inTab:':
+                name: hasPermission
+            '-hasAccessToURL:inTab:':
+                name: hasAccessToURL
+            '-permissionStatusForPermission:inTab:':
+                name: getPermissionStatus
+            '-setPermissionStatus:forPermission:':
+                name: setPermissionStatus
+            '-setPermissionStatus:forPermission:expirationDate:':
+                name: setPermissionStatus$
+            '-permissionStatusForURL:inTab:':
+                name: getPermissionStatus
+            '-setPermissionStatus:forURL:':
+                name: setPermissionStatus
+            '-setPermissionStatus:forURL:expirationDate:':
+                name: setPermissionStatus
+            '-permissionStatusForMatchPattern:inTab:':
+                name: getPermissionStatus
+            '-setPermissionStatus:forMatchPattern:':
+                name: setPermissionStatus
+            '-setPermissionStatus:forMatchPattern:expirationDate:':
+                name: setPermissionStatus
+            '-loadBackgroundContentWithCompletionHandler:':
+                name: loadBackgroundContent
+            '-didCloseTab:windowIsClosing:':
+                name: didCloseTab
+            '-didActivateTab:previousActiveTab:':
+                name: didActivateTab
+            '-didMoveTab:fromIndex:inWindow:':
+                name: didMoveTab
+            '-didReplaceTab:withTab:':
+                name: didReplaceTab
+            '-didChangeTabProperties:forTab:':
+                name: didChangeTabProperties
+    WKWebExtensionController: #since 18.4
+        methods:
+            '-initWithConfiguration:':
+                name: init
+            '-loadExtensionContext:error:':
+                name: loadExtensionContext
+                throws: NSErrorException
+            '-unloadExtensionContext:error:':
+                name: unloadExtensionContext
+                throws: NSErrorException
+            '-fetchDataRecordsOfTypes:completionHandler:':
+                name: fetchDataRecords
+            '-fetchDataRecordOfTypes:forExtensionContext:completionHandler:':
+                name: fetchDataRecord
+            '-removeDataOfTypes:fromDataRecords:completionHandler:':
+                name: removeData
+            '-didCloseTab:windowIsClosing:':
+                name: didCloseTab
+            '-didActivateTab:previousActiveTab:':
+                name: didActivateTab
+            '-didMoveTab:fromIndex:inWindow:':
+                name: didMoveTab
+            '-didReplaceTab:withTab:':
+                name: didReplaceTab
+            '-didChangeTabProperties:forTab:':
+                name: didChangeTabProperties
+    WKWebExtensionControllerConfiguration: #since 18.4
+        methods:
+            '+configurationWithIdentifier:':
+                name: create
+                constructor: true
+    WKWebExtensionDataRecord: {} #since 18.4
+    WKWebExtensionMatchPattern: #since 18.4
+        methods:
+            '-initWithString:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithScheme:host:path:error:':
+                name: init
+                throws: NSErrorException
+            '-matchesURL:options:':
+                name: matchesURL
+            '-matchesPattern:options:':
+                name: matchesPattern
+            '+matchPatternWithString:':
+                name: matchPattern
+            '+matchPatternWithScheme:host:path:':
+                name: matchPattern
+    WKWebExtensionMessagePort: #since 18.4
+        methods:
+            '-sendMessage:completionHandler:':
+                name: sendMessage
+            '-disconnectWithError:':
+                name: disconnect
+    WKWebExtensionTabConfiguration: {} #since 18.4
+    WKWebExtensionWindowConfiguration: {} #since 18.4
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -281,6 +407,8 @@ protocols:
                 name: didBecomeDownload
             '-webView:navigationResponse:didBecomeDownload:':
                 name: didBecomeDownload
+            '-webView:shouldGoToBackForwardListItem:willUseInstantBack:completionHandler:':
+                name: shouldGoToBackForwardListItem
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -321,6 +449,10 @@ protocols:
                 name: willPresentEditMenu
             '-webView:willDismissEditMenuWithAnimator:':
                 name: willDismissEditMenu
+            '-webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:':
+                name: runOpenPanel
+            '-webView:insertInputSuggestion:':
+                name: insertInputSuggestion
     WKHTTPCookieStoreObserver: {} #since 11.0
     WKPreviewActionItem: {} #since 10.0
     WKURLSchemeHandler: #since 11.0
@@ -349,6 +481,80 @@ protocols:
                 name: didFailWithError
             '-downloadDidFinish:':
                 name: didFinish
+            '-download:decidePlaceholderPolicy:':
+                name: decidePlaceholderPolicy
+            '-download:didReceivePlaceholderURL:completionHandler:':
+                name: didReceivePlaceholderURL
+            '-download:didReceiveFinalURL:':
+                name: didReceiveFinalURL
+    WKWebExtensionControllerDelegate: #since 18.4
+        methods:
+            '-webExtensionController:openWindowsForExtensionContext:':
+                name: openWindows
+            '-webExtensionController:focusedWindowForExtensionContext:':
+                name: focusedWindow
+            '-webExtensionController:openNewWindowUsingConfiguration:forExtensionContext:completionHandler:':
+                name: openNewWindow
+            '-webExtensionController:openNewTabUsingConfiguration:forExtensionContext:completionHandler:':
+                name: openNewTab
+            '-webExtensionController:openOptionsPageForExtensionContext:completionHandler:':
+                name: openOptionsPage
+            '-webExtensionController:promptForPermissions:inTab:forExtensionContext:completionHandler:':
+                name: promptForPermissions
+            '-webExtensionController:promptForPermissionToAccessURLs:inTab:forExtensionContext:completionHandler:':
+                name: promptForPermission
+            '-webExtensionController:promptForPermissionMatchPatterns:inTab:forExtensionContext:completionHandler:':
+                name: promptForPermissionMatchPatterns
+            '-webExtensionController:didUpdateAction:forExtensionContext:':
+                name: didUpdateAction
+            '-webExtensionController:presentPopupForAction:forExtensionContext:completionHandler:':
+                name: presentPopup
+            '-webExtensionController:sendMessage:toApplicationWithIdentifier:forExtensionContext:replyHandler:':
+                name: sendMessage
+            '-webExtensionController:connectUsingMessagePort:forExtensionContext:completionHandler:':
+                name: connectUsingMessagePort
+    WKWebExtensionTab: #since 18.4
+        methods:
+            '-setParentTab:forWebExtensionContext:completionHandler:':
+                name: setParentTab
+            '-setPinned:forWebExtensionContext:completionHandler:':
+                name: setPinned
+            '-setReaderModeActive:forWebExtensionContext:completionHandler:':
+                name: setReaderModeActive
+            '-setMuted:forWebExtensionContext:completionHandler:':
+                name: setMuted
+            '-setZoomFactor:forWebExtensionContext:completionHandler:':
+                name: setZoomFactor
+            '-detectWebpageLocaleForWebExtensionContext:completionHandler:':
+                name: detectWebpageLocale
+            '-takeSnapshotUsingConfiguration:forWebExtensionContext:completionHandler:':
+                name: takeSnapshot
+            '-loadURL:forWebExtensionContext:completionHandler:':
+                name: loadURL
+            '-reloadFromOrigin:forWebExtensionContext:completionHandler:':
+                name: reloadFromOrigin
+            '-goBackForWebExtensionContext:completionHandler:':
+                name: goBack
+            '-goForwardForWebExtensionContext:completionHandler:':
+                name: goForward
+            '-activateForWebExtensionContext:completionHandler:':
+                name: activate
+            '-setSelected:forWebExtensionContext:completionHandler:':
+                name: setSelected
+            '-duplicateUsingConfiguration:forWebExtensionContext:completionHandler:':
+                name: duplicateUsingConfiguration
+            '-closeForWebExtensionContext:completionHandler:':
+                name: close
+    WKWebExtensionWindow: #since 18.4
+        methods:
+            '-setWindowState:forWebExtensionContext:completionHandler:':
+                name: setWindowState
+            '-setFrame:forWebExtensionContext:completionHandler:':
+                name: setFrame
+            '-focusForWebExtensionContext:completionHandler:':
+                name: focus
+            '-closeForWebExtensionContext:completionHandler:':
+                name: close
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?WK.*):
@@ -372,10 +578,45 @@ values:
     NSReadAccessURLDocumentOption:
         exclude: true # FIXME: it extends NSAttributedStringDocumentReadingOptionKey that is defined in different framework
 
+    WKWebExtensionMatchPatternErrorDomain:
+        class: WKWebExtensionMatchPatternError
+        name: getClassDomain
+    WKWebExtensionErrorDomain:
+        class: WKWebExtensionError
+        name: getClassDomain
+    WKWebExtensionContextErrorDomain:
+        class: WKWebExtensionContextError
+        name: getClassDomain
+    WKWebExtensionMessagePortErrorDomain:
+        class: WKWebExtensionMessagePortError
+        name: getClassDomain
+    WKWebExtensionDataRecordErrorDomain:
+        class: WKWebExtensionDataRecordError
+        name: getClassDomain
+
+    WKWebExtensionContext(.*)Notification:
+        class: WKWebExtensionContext
+        static_class: Notifications
+        type: NSString
+        name: '#{g[0]}'
+
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?WK.*):
         class: WebKit
         name: 'Value__#{g[0]}'
+typed_enums:
+    WKWebExtensionPermission:
+        enum: WKWebExtensionPermission
+        type: NSString
+        prefix: WKWebExtensionPermission
+    WKWebExtensionContextNotificationUserInfoKey:
+        enum: WKWebExtensionContextNotificationUserInfoKey
+        type: NSString
+        prefix: WKWebExtensionContextNotificationUserInfoKey
+    WKWebExtensionDataType:
+        enum: WKWebExtensionDataType
+        type: NSString
+        prefix: WKWebExtensionDataType
 
 constants:
     WK_API_ENABLED:

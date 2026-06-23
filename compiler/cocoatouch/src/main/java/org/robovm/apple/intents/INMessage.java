@@ -62,14 +62,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:")
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType, serviceName)); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:")
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, messageType)); }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:messageType:")
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INMessageType messageType) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, messageType)); }
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
@@ -84,6 +78,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:numberOfAttachments:")
     public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, NSNumber numberOfAttachments) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, messageType, numberOfAttachments)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, INMessage referencedMessage, INMessageReaction reaction) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, messageType, referencedMessage, reaction)); }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:sticker:reaction:")
+    public INMessage(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, INMessage referencedMessage, INSticker sticker, INMessageReaction reaction) { super((SkipInit) null); initObject(init(identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, messageType, referencedMessage, sticker, reaction)); }
     @Method(selector = "initWithCoder:")
     public INMessage(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -140,6 +144,26 @@ import org.robovm.apple.coregraphics.*;
      */
     @Property(selector = "linkMetadata")
     public native INMessageLinkMetadata getLinkMetadata();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "sticker")
+    public native INSticker getSticker();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSticker:")
+    public native void setSticker(INSticker v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "reaction")
+    public native INMessageReaction getReaction();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setReaction:")
+    public native void setReaction(INMessageReaction v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -157,14 +181,8 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:serviceName:")
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType, String serviceName);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:messageType:")
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, INMessageType messageType);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:messageType:")
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INMessageType messageType);
     @Method(selector = "initWithIdentifier:content:dateSent:sender:recipients:")
@@ -179,6 +197,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:numberOfAttachments:")
     protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, NSNumber numberOfAttachments);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, INMessage referencedMessage, INMessageReaction reaction);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:sticker:reaction:")
+    protected native @Pointer long init(String identifier, String conversationIdentifier, String content, NSDate dateSent, INPerson sender, NSArray<INPerson> recipients, INSpeakableString groupName, String serviceName, INMessageType messageType, INMessage referencedMessage, INSticker sticker, INMessageReaction reaction);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

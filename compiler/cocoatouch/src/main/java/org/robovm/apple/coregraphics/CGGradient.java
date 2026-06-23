@@ -91,7 +91,17 @@ import org.robovm.apple.uikit.*;
     public static native @MachineSizedUInt long getClassTypeID();
     @Bridge(symbol="CGGradientCreateWithColorComponents", optional=true)
     private static native CGGradient create(CGColorSpace space, @Pointer long components, @Pointer long locations, @MachineSizedUInt long count);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGGradientCreateWithContentHeadroom", optional=true)
+    private static native CGGradient create(float headroom, CGColorSpace space, @Pointer long components, @Pointer long locations, @MachineSizedUInt long count);
     @Bridge(symbol="CGGradientCreateWithColors", optional=true)
     private static native CGGradient create(CGColorSpace space, CFArray colors, @Pointer long locations);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGGradientGetContentHeadroom", optional=true)
+    public native float getContentHeadroom();
     /*</methods>*/
 }

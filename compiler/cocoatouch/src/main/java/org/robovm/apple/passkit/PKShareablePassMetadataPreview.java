@@ -42,7 +42,7 @@ import org.robovm.apple.coreanimation.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("PassKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKShareablePassMetadataPreview/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/PKAddPassMetadataPreview/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class PKShareablePassMetadataPreviewPtr extends Ptr<PKShareablePassMetadataPreview, PKShareablePassMetadataPreviewPtr> {}/*</ptr>*/
@@ -52,16 +52,12 @@ import org.robovm.apple.coreanimation.*;
     protected PKShareablePassMetadataPreview() {}
     protected PKShareablePassMetadataPreview(Handle h, long handle) { super(h, handle); }
     protected PKShareablePassMetadataPreview(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithPassThumbnail:localizedDescription:")
-    public PKShareablePassMetadataPreview(CGImage passThumbnail, String description) { super((SkipInit) null); initObject(init(passThumbnail, description)); }
     @Method(selector = "initWithTemplateIdentifier:")
     public PKShareablePassMetadataPreview(String templateIdentifier) { super((SkipInit) null); initObject(init(templateIdentifier)); }
+    @Method(selector = "initWithPassThumbnail:localizedDescription:")
+    public PKShareablePassMetadataPreview(CGImage passThumbnail, String description) { super(passThumbnail, description); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "passThumbnailImage")
-    public native CGImage getPassThumbnailImage();
-    @Property(selector = "localizedDescription")
-    public native String getLocalizedDescription();
     @Property(selector = "ownerDisplayName")
     public native String getOwnerDisplayName();
     @Property(selector = "setOwnerDisplayName:")
@@ -71,8 +67,6 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithPassThumbnail:localizedDescription:")
-    protected native @Pointer long init(CGImage passThumbnail, String description);
     @Method(selector = "initWithTemplateIdentifier:")
     protected native @Pointer long init(String templateIdentifier);
     /*</methods>*/

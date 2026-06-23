@@ -47,7 +47,11 @@ public enum /*<name>*/CMProjectionType/*</name>*/ implements ValuedEnum {
     Rectangular(1919247220L),
     Equirectangular(1701934441L),
     HalfEquirectangular(1751478645L),
-    Fisheye(1718186856L);
+    Fisheye(1718186856L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    ParametricImmersive(1886546285L);
     /*</values>*/
 
     /*<bind>*/

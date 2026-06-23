@@ -38,7 +38,7 @@ import org.robovm.apple.corevideo.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 12.0. OpenGLES is deprecated
+ * @deprecated Deprecated in iOS 12.0. OpenGLES is deprecated. (Define GLES_SILENCE_DEPRECATION to silence these warnings)
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("QuartzCore") @NativeClass @Deprecated @WeaklyLinked/*</annotations>*/

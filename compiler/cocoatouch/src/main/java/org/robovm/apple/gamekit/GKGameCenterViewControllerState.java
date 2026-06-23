@@ -41,9 +41,22 @@ public enum /*<name>*/GKGameCenterViewControllerState/*</name>*/ implements Valu
     Default(-1L),
     Leaderboards(0L),
     Achievements(1L),
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use Replaced by developer defined challenges, see ``GKChallengeDefinition``
+     */
+    @Deprecated
     Challenges(2L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     LocalPlayerProfile(3L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     Dashboard(4L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     LocalPlayerFriendsList(5L);
     /*</values>*/
 

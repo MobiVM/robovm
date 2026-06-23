@@ -65,7 +65,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithWordRange:atByteSampleOffset:")
-    public static  AVSpeechSynthesisMarker createWithWordRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+    public static AVSpeechSynthesisMarker createWithWordRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
        AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
        res.initObject(res.initWithWordRange(range, byteSampleOffset));
        return res;
@@ -74,7 +74,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithSentenceRange:atByteSampleOffset:")
-    public static  AVSpeechSynthesisMarker createWithSentenceRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+    public static AVSpeechSynthesisMarker createWithSentenceRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
        AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
        res.initObject(res.initWithSentenceRange(range, byteSampleOffset));
        return res;
@@ -83,7 +83,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithParagraphRange:atByteSampleOffset:")
-    public static  AVSpeechSynthesisMarker createWithParagraphRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
+    public static AVSpeechSynthesisMarker createWithParagraphRange(@ByVal NSRange range, @MachineSizedSInt long byteSampleOffset) {
        AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
        res.initObject(res.initWithParagraphRange(range, byteSampleOffset));
        return res;
@@ -92,7 +92,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithPhonemeString:atByteSampleOffset:")
-    public static  AVSpeechSynthesisMarker createWithPhonemeString(String phoneme, @MachineSizedSInt long byteSampleOffset) {
+    public static AVSpeechSynthesisMarker createWithPhonemeString(String phoneme, @MachineSizedSInt long byteSampleOffset) {
        AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
        res.initObject(res.initWithPhonemeString(phoneme, byteSampleOffset));
        return res;
@@ -101,7 +101,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 17.0 and later.
      */
     @Method(selector = "initWithBookmarkName:atByteSampleOffset:")
-    public static  AVSpeechSynthesisMarker createWithBookmarkName(String mark, @MachineSizedSInt long byteSampleOffset) {
+    public static AVSpeechSynthesisMarker createWithBookmarkName(String mark, @MachineSizedSInt long byteSampleOffset) {
        AVSpeechSynthesisMarker res = new AVSpeechSynthesisMarker((SkipInit) null);
        res.initObject(res.initWithBookmarkName(mark, byteSampleOffset));
        return res;

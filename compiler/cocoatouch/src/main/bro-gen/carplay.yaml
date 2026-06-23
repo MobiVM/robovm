@@ -29,6 +29,13 @@ enums:
     CPAssistantCellVisibility: {} #since 15.0
     CPAssistantCellPosition: {} #since 15.0
     CPInstrumentClusterSetting: {} #since 15.4
+    CPListImageRowItemCondensedElementShape: { }
+    CPListImageRowItemImageGridElementShape: { }
+    CPLaneStatus: { } #since 17.4
+    CPManeuverType: { } #since 17.4
+    CPJunctionType: { } #since 17.4
+    CPTrafficSide: { } #since 17.4
+    CPManeuverState: { } #since 17.4
 classes:
     CPActionSheetTemplate: #since 12.0
         methods:
@@ -55,6 +62,8 @@ classes:
     CPGridButton: #since 12.0
         methods:
             '-initWithTitleVariants:image:handler:':
+                name: init
+            '-initWithTitleVariants:image:messageConfiguration:handler:':
                 name: init
     CPGridTemplate: #since 12.0
         methods:
@@ -112,6 +121,8 @@ classes:
                 name: init
             '-initWithTitle:sections:assistantCellConfiguration:':
                 name: init
+            '-initWithTitle:sections:assistantCellConfiguration:headerGridButtons:':
+                name: init
     CPManeuver: {} #since 12.0
     CPMapButton: #since 12.0
         methods:
@@ -149,6 +160,8 @@ classes:
                 trim_after_first_colon: true
             '-pauseTripForReason:description:turnCardColor:':
                 name: pauseTripForReason
+            '-resumeTripWithUpdatedRouteInformation:':
+                name: resumeTrip
     CPRouteChoice: #since 12.0
         methods:
             '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:':
@@ -162,6 +175,8 @@ classes:
     CPTravelEstimates: #since 12.0
         methods:
             '-initWithDistanceRemaining:timeRemaining:':
+                name: init
+            '-initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:':
                 name: init
     CPTrip: #since 12.0
         methods:
@@ -231,6 +246,22 @@ classes:
         methods:
             '-initWithText:images:':
                 name: init
+            '-initWithText:images:imageTitles:':
+                name: init
+            '-initWithText:elements:allowsMultipleLines:':
+                name: init
+            '-initWithText:cardElements:allowsMultipleLines:':
+                static_constructor_name: createWithCardElements # clash with initWithText:elements:allowsMultipleLines:
+                name: initWithCardElements
+            '-initWithText:condensedElements:allowsMultipleLines:':
+                static_constructor_name: createWithCondensedElements # clash with initWithText:elements:allowsMultipleLines:
+                name: initWithCondensedElements
+            '-initWithText:gridElements:allowsMultipleLines:':
+                static_constructor_name: createWithGridElements # clash with initWithText:elements:allowsMultipleLines:
+                name: initWithGridElements
+            '-initWithText:imageGridElements:allowsMultipleLines:':
+                static_constructor_name: createWithImageGridElements # clash with initWithText:elements:allowsMultipleLines:
+                name: initWithImageGridElements
     CPMessageComposeBarButton: #since 14.0
         methods:
             '-initWithImage:':
@@ -292,6 +323,68 @@ classes:
                 name: init
     CPInstrumentClusterController: {} #since 15.4
     CPTemplateApplicationInstrumentClusterScene: {} #since 15.4
+    CPLane: #since 17.4
+        methods:
+            '-initWithAngles:':
+                name: init
+            '-initWithAngles:highlightedAngle:isPreferred:':
+                name: init
+    CPLaneGuidance: {} #since 17.4
+    CPListImageRowItemCardElement: #since 26.0
+        methods:
+            '-initWithImage:showsImageFullHeight:title:subtitle:tintColor:':
+                name: init
+    CPListImageRowItemCondensedElement: #since 26.0
+        methods:
+            '-initWithImage:imageShape:title:subtitle:accessorySymbolName:':
+                name: init
+    CPListImageRowItemElement: {} #since 26.0
+    CPListImageRowItemGridElement: #since 26.0
+        methods:
+            '-initWithImage:':
+                name: init
+    CPListImageRowItemImageGridElement: #since 26.0
+        methods:
+            '-initWithImage:imageShape:title:accessorySymbolName:':
+                name: init
+    CPListImageRowItemRowElement: #since 26.0
+        methods:
+            '-initWithImage:title:subtitle:':
+                name: init
+    CPMessageGridItemConfiguration: #since 26.0
+        methods:
+            '-initWithConversationIdentifier:unread:':
+                name: init
+    CPNowPlayingMode: {} #since 18.4
+    CPNowPlayingModeSports: #since 18.4
+        methods:
+            '-initWithLeftTeam:rightTeam:eventStatus:backgroundArtwork:':
+                name: init
+    CPNowPlayingSportsClock: #since 18.4
+        methods:
+            '-initWithElapsedTime:paused:':
+                name: init
+            '-initWithTimeRemaining:paused:':
+                static_constructor_name: createWithTimeRemaining # clashes with initWithElapsedTime:paused:
+                name: initWithTimeRemaining
+    CPNowPlayingSportsEventStatus: #since 18.4
+        methods:
+            '-initWithEventStatusText:eventStatusImage:eventClock:':
+                name: init
+    CPNowPlayingSportsTeam: #since 18.4
+        methods:
+            '-initWithName:logo:teamStandings:eventScore:possessionIndicator:favorite:':
+                name: init
+    CPNowPlayingSportsTeamLogo: #since 18.4
+        methods:
+            '-initWithTeamLogo:':
+                name: init
+            '-initWithTeamInitials:':
+                name: init
+    CPRouteInformation: #since 17.4
+        methods:
+            '-initWithManeuvers:laneGuidances:currentManeuvers:currentLaneGuidance:tripTravelEstimates:maneuverTravelEstimates:':
+                name: init
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -350,6 +443,18 @@ protocols:
                 name: startedTrip
             '-mapTemplate:displayStyleForManeuver:':
                 name: displayStyle
+            '-mapTemplate:didUpdateZoomGestureWithCenter:scale:velocity:':
+                name: didUpdateZoomGesture
+            '-mapTemplate:didEndZoomGestureWithVelocity:':
+                name: didEndZoomGesture
+            '-mapTemplate:didRotateWithCenter:rotation:velocity:':
+                name: didRotate
+            '-mapTemplate:rotationDidEndWithVelocity:':
+                name: rotationDidEnd
+            '-mapTemplate:pitchWithCenter:':
+                name: pitch
+            '-mapTemplate:pitchEndedWithCenter:':
+                name: pitchEndedWith
     CPSearchTemplateDelegate: #since 12.0
         methods:
             '-searchTemplate:updatedSearchText:completionHandler:':
@@ -437,6 +542,9 @@ values:
     CPMaximumMessageItemImageSize:
         class: CPMessageListItem
         name: getMaximumImageSize
+    CPMaximumMessageItemLeadingDetailTextImageSize:
+        class: CPMessageListItem
+        name: getMaximumMessageItemLeadingDetailTextImageSize
     CPNowPlayingButtonMaximumImageSize:
         class: CPNowPlayingButton
         name: getMaximumImageSize

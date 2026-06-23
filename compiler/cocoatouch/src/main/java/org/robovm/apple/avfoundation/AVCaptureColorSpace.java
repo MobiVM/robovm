@@ -59,7 +59,11 @@ public enum /*<name>*/AVCaptureColorSpace/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    AppleLog(3L);
+    AppleLog(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    AppleLog2(4L);
     /*</values>*/
 
     /*<bind>*/

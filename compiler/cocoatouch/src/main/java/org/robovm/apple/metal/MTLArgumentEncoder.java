@@ -136,6 +136,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "setIntersectionFunctionTables:withRange:")
     void setIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setDepthStencilState:atIndex:")
+    void setDepthStencilState(MTLDepthStencilState depthStencilState, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setDepthStencilStates:withRange:")
+    void setDepthStencilStates(MTLDepthStencilState depthStencilStates, @ByVal NSRange range);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

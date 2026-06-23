@@ -49,18 +49,7 @@ import org.robovm.apple.coregraphics.*;
     protected GKMatchmaker(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead.
-     */
-    @Deprecated
-    @Property(selector = "inviteHandler")
-    public native @Block VoidBlock2<GKInvite, NSArray<?>> getInviteHandler();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use registerListener on GKLocalPlayer to register an object that implements the GKInviteEventListenerProtocol instead.
-     */
-    @Deprecated
-    @Property(selector = "setInviteHandler:")
-    public native void setInviteHandler(@Block VoidBlock2<GKInvite, NSArray<?>> v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,6 +59,11 @@ import org.robovm.apple.coregraphics.*;
     public native void findMatch(GKMatchRequest request, @Block VoidBlock2<GKMatch, NSError> completionHandler);
     @Method(selector = "findPlayersForHostedRequest:withCompletionHandler:")
     public native void findPlayersForHostedRequest(GKMatchRequest request, @Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Method(selector = "findMatchedPlayers:withCompletionHandler:")
+    public native void findMatchedPlayers(GKMatchRequest request, @Block VoidBlock2<GKMatchedPlayers, NSError> completionHandler);
     @Method(selector = "addPlayersToMatch:matchRequest:completionHandler:")
     public native void addPlayersToMatch(GKMatch match, GKMatchRequest matchRequest, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "cancel")
@@ -82,6 +76,11 @@ import org.robovm.apple.coregraphics.*;
     public native void queryPlayerGroupActivity(@MachineSizedUInt long playerGroup, @Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError> completionHandler);
     @Method(selector = "queryActivityWithCompletionHandler:")
     public native void queryActivity(@Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Method(selector = "queryQueueActivity:withCompletionHandler:")
+    public native void queryQueueActivity(String queueName, @Block("(@MachineSizedSInt,)") VoidBlock2<Long, NSError> completionHandler);
     @Method(selector = "startBrowsingForNearbyPlayersWithHandler:")
     public native void startNearbyPlayersBrowsing(@Block VoidBlock2<GKPlayer, Boolean> reachableHandler);
     @Method(selector = "stopBrowsingForNearbyPlayers")
@@ -99,19 +98,19 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "sharedMatchmaker")
     public static native GKMatchmaker getSharedMatchmaker();
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -startBrowsingForNearbyPlayersWithHandler:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchmaker/startBrowsingForNearbyPlayers(handler:)`` method instead.
      */
     @Deprecated
     @Method(selector = "startBrowsingForNearbyPlayersWithReachableHandler:")
     public native void startBrowsingForNearbyPlayers(@Block VoidBlock2<NSString, Boolean> reachableHandler);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -cancelPendingInviteToPlayer:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchmaker/cancelPendingInvite(to:)`` method instead.
      */
     @Deprecated
     @Method(selector = "cancelInviteToPlayer:")
     public native void cancelInvite(String playerID);
     /**
-     * @deprecated Deprecated in iOS 8.0. Use -findPlayersForHostedRequest:
+     * @deprecated Deprecated in iOS 8.0. Use the ``GKMatchmaker/findPlayers(forHostedRequest:withCompletionHandler:)`` method instead.
      */
     @Deprecated
     @Method(selector = "findPlayersForHostedMatchRequest:withCompletionHandler:")

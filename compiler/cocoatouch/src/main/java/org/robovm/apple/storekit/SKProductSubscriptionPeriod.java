@@ -35,9 +35,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.2 and later.
+ * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionPeriod
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKProductSubscriptionPeriod/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,14 +52,8 @@ import org.robovm.apple.coregraphics.*;
     protected SKProductSubscriptionPeriod(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.2 and later.
-     */
     @Property(selector = "numberOfUnits")
     public native @MachineSizedUInt long getNumberOfUnits();
-    /**
-     * @since Available in iOS 11.2 and later.
-     */
     @Property(selector = "unit")
     public native SKProductPeriodUnit getUnit();
     /*</properties>*/

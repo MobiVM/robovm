@@ -65,6 +65,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "presentationContext")
     public native MSMessagesAppPresentationContext getPresentationContext();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "messageTintColor")
+    public native UIColor getMessageTintColor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "messageCornerRadius")
+    public native @MachineSizedFloat double getMessageCornerRadius();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -123,5 +133,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "contentSizeThatFits:")
     public native @ByVal CGSize contentSizeThatFits(@ByVal CGSize size);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "invalidateMessageTintColor")
+    public native void invalidateMessageTintColor();
     /*</methods>*/
 }

@@ -43,7 +43,9 @@ import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/UIPressType/*</name>*/ implements ValuedEnum {

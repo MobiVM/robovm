@@ -33,15 +33,21 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use PurchaseResult from Product.purchase(confirmIn:options:)
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/SKPaymentTransactionState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Purchasing(0L),
     Purchased(1L),
     Failed(2L),
     Restored(3L),
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use PurchaseResult.pending from Product.purchase(confirmIn:options:)
+     */
+    @Deprecated
     Deferred(4L);
     /*</values>*/
 

@@ -69,6 +69,11 @@ import org.robovm.apple.symbols.*;
     public native boolean containsEnd();
     @Property(selector = "isVertical")
     public native boolean isVertical();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "transform")
+    public native @ByVal CGAffineTransform getTransform();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

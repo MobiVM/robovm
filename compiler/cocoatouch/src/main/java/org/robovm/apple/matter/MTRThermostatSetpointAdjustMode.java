@@ -35,22 +35,29 @@ import org.robovm.apple.security.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.1 and later.
+ * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatSetpointRaiseLowerMode
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MTRThermostatSetpointAdjustMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatSetpointRaiseLowerModeHeat
      */
+    @Deprecated
     Heat(0L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatSetpointRaiseLowerModeCool
      */
+    @Deprecated
     Cool(1L),
     /**
      * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRThermostatSetpointRaiseLowerModeBoth
      */
+    @Deprecated
     Both(2L);
     /*</values>*/
 

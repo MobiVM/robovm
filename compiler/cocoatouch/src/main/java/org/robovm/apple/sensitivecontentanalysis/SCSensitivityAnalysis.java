@@ -30,6 +30,9 @@ import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.corevideo.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +56,12 @@ import org.robovm.apple.imageio.*;
     /*<properties>*/
     @Property(selector = "isSensitive")
     public native boolean isSensitive();
+    @Property(selector = "shouldInterruptVideo")
+    public native boolean shouldInterruptVideo();
+    @Property(selector = "shouldIndicateSensitivity")
+    public native boolean shouldIndicateSensitivity();
+    @Property(selector = "shouldMuteAudio")
+    public native boolean shouldMuteAudio();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

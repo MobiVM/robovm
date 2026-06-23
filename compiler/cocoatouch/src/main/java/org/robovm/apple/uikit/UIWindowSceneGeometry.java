@@ -61,8 +61,23 @@ import org.robovm.apple.symbols.*;
     protected UIWindowSceneGeometry(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "coordinateSpace")
+    public native UICoordinateSpace getCoordinateSpace();
     @Property(selector = "interfaceOrientation")
     public native UIInterfaceOrientation getInterfaceOrientation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isInterfaceOrientationLocked")
+    public native boolean isInterfaceOrientationLocked();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isInteractivelyResizing")
+    public native boolean isInteractivelyResizing();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

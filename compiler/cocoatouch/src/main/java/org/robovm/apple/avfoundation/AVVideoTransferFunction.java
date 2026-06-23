@@ -77,5 +77,10 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="AVVideoTransferFunction_Linear", optional=true)
     public static native String Linear();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoTransferFunction_IEC_sRGB", optional=true)
+    public static native String IEC_sRGB();
     /*</methods>*/
 }

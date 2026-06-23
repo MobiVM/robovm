@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTROptionalQRCodeInfo/*</name>*/ 
@@ -47,6 +49,16 @@ import org.robovm.apple.security.*;
     public MTROptionalQRCodeInfo() {}
     protected MTROptionalQRCodeInfo(Handle h, long handle) { super(h, handle); }
     protected MTROptionalQRCodeInfo(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithTag:stringValue:")
+    public MTROptionalQRCodeInfo(NSNumber tag, String value) { super((SkipInit) null); initObject(init(tag, value)); }
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithTag:int32Value:")
+    public MTROptionalQRCodeInfo(NSNumber tag, int value) { super((SkipInit) null); initObject(init(tag, value)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -54,26 +66,52 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "type")
     public native MTROptionalQRCodeInfoType getType();
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Property(selector = "setType:")
-    public native void setType(MTROptionalQRCodeInfoType v);
     @Property(selector = "tag")
     public native NSNumber getTag();
-    @Property(selector = "setTag:")
-    public native void setTag(NSNumber v);
     @Property(selector = "integerValue")
     public native NSNumber getIntegerValue();
-    @Property(selector = "setIntegerValue:")
-    public native void setIntegerValue(NSNumber v);
     @Property(selector = "stringValue")
     public native String getStringValue();
-    @Property(selector = "setStringValue:")
-    public native void setStringValue(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithTag:stringValue:")
+    protected native @Pointer long init(NSNumber tag, String value);
+    /**
+     * @since Available in iOS 17.6 and later.
+     */
+    @Method(selector = "initWithTag:int32Value:")
+    protected native @Pointer long init(NSNumber tag, int value);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. MTROptionalQRCodeInfo is immutable
+     */
+    @Deprecated
+    @Method(selector = "setType:")
+    public native void setType(MTROptionalQRCodeInfoType type);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. MTROptionalQRCodeInfo is immutable
+     */
+    @Deprecated
+    @Method(selector = "setTag:")
+    public native void setTag(NSNumber tag);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. MTROptionalQRCodeInfo is immutable
+     */
+    @Deprecated
+    @Method(selector = "setIntegerValue:")
+    public native void setIntegerValue(NSNumber integerValue);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. MTROptionalQRCodeInfo is immutable
+     */
+    @Deprecated
+    @Method(selector = "setStringValue:")
+    public native void setStringValue(String stringValue);
     /*</methods>*/
 }

@@ -45,6 +45,12 @@ public final class /*<name>*/MTRModeSelectFeature/*</name>*/ extends Bits</*<nam
      * @since Available in iOS 17.0 and later.
      */
     public static final MTRModeSelectFeature OnOff = new MTRModeSelectFeature(1L);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.0. Please use MTRModeSelectFeatureOnOff
+     */
+    @Deprecated
+    public static final MTRModeSelectFeature DEPONOFF = new MTRModeSelectFeature(1L);
     /*</values>*/
 
     /*<bind>*/

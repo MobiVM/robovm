@@ -131,5 +131,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "captureHighResolutionFrameWithCompletion:")
     public native void captureHighResolutionFrame(@Block VoidBlock2<ARFrame, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "captureHighResolutionFrameUsingPhotoSettings:completion:")
+    public native void captureHighResolutionFrame(AVCapturePhotoSettings photoSettings, @Block VoidBlock2<ARFrame, NSError> completion);
     /*</methods>*/
 }

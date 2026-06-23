@@ -148,14 +148,48 @@ import org.robovm.apple.corevideo.*;
     public native void setContentsFormat(CALayerContentsFormat v);
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use preferredDynamicRange instead
      */
+    @Deprecated
     @Property(selector = "wantsExtendedDynamicRangeContent")
     public native boolean wantsExtendedDynamicRangeContent();
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use preferredDynamicRange instead
      */
+    @Deprecated
     @Property(selector = "setWantsExtendedDynamicRangeContent:")
     public native void setWantsExtendedDynamicRangeContent(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "toneMapMode")
+    public native CAToneMapMode getToneMapMode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setToneMapMode:")
+    public native void setToneMapMode(CAToneMapMode v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredDynamicRange")
+    public native CADynamicRange getPreferredDynamicRange();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredDynamicRange:")
+    public native void setPreferredDynamicRange(CADynamicRange v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentsHeadroom")
+    public native @MachineSizedFloat double getContentsHeadroom();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setContentsHeadroom:")
+    public native void setContentsHeadroom(@MachineSizedFloat double v);
     @Property(selector = "minificationFilter")
     public native CAFilter getMinificationFilter();
     @Property(selector = "setMinificationFilter:")
@@ -422,6 +456,8 @@ import org.robovm.apple.corevideo.*;
     public static native @MachineSizedFloat double cornerCurveExpansionFactor(CALayerCornerCurve curve);
     @Method(selector = "defaultActionForKey:")
     public static native CAAction getDefaultAction(String event);
+    @Method(selector = "layerWithRemoteClientId:")
+    public static native CALayer layerWithRemoteClientId(int client_id);
     @Method(selector = "scrollPoint:")
     public native void scrollTo(@ByVal CGPoint p);
     @Method(selector = "scrollRectToVisible:")

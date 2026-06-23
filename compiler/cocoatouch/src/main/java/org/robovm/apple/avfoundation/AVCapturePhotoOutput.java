@@ -68,6 +68,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "availablePhotoCodecTypes")
     public native NSArray<NSString> getAvailablePhotoCodecTypes();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "availableRawPhotoCodecTypes")
+    public native NSArray<NSString> getAvailableRawPhotoCodecTypes();
+    /**
      * @since Available in iOS 14.3 and later.
      */
     @Property(selector = "isAppleProRAWSupported")
@@ -327,6 +332,41 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "captureReadiness")
     public native AVCapturePhotoOutputCaptureReadiness getCaptureReadiness();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorSupported")
+    public native boolean isConstantColorSupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorEnabled")
+    public native boolean isConstantColorEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConstantColorEnabled:")
+    public native void setConstantColorEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isShutterSoundSuppressionSupported")
+    public native boolean isShutterSoundSuppressionSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraSensorOrientationCompensationSupported")
+    public native boolean isCameraSensorOrientationCompensationSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraSensorOrientationCompensationEnabled")
+    public native boolean isCameraSensorOrientationCompensationEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setCameraSensorOrientationCompensationEnabled:")
+    public native void setCameraSensorOrientationCompensationEnabled(boolean v);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "isDepthDataDeliverySupported")
@@ -388,6 +428,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "supportedPhotoCodecTypesForFileType:")
     public native NSArray<NSString> supportedPhotoCodecTypesForFileType(String fileType);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:")
+    public native NSArray<NSString> getSupportedRawPhotoCodecTypes(int pixelFormatType, String fileType);
     /**
      * @since Available in iOS 11.0 and later.
      */

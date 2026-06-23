@@ -51,8 +51,25 @@ import org.robovm.apple.symbols.*;
 public enum /*<name>*/UINavigationItemSearchBarPlacement/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Automatic(0L),
-    Inline(1L),
-    Stacked(2L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Integrated(1L),
+    Stacked(2L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    IntegratedCentered(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    IntegratedButton(4L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UINavigationItemSearchBarPlacementIntegrated
+     */
+    @Deprecated
+    Inline(1L);
     /*</values>*/
 
     /*<bind>*/

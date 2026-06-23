@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterApplicationLauncher/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterApplicationLauncherPtr extends Ptr<MTRClusterApplicationLauncher, MTRClusterApplicationLauncherPtr> {}/*</ptr>*/
@@ -63,23 +63,33 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "launchAppWithParams:expectedValues:expectedValueInterval:completion:")
     public native void launchApp(MTRApplicationLauncherClusterLaunchAppParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "launchAppWithExpectedValues:expectedValueInterval:completion:")
+    public native void launchApp(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "stopAppWithParams:expectedValues:expectedValueInterval:completion:")
     public native void stopApp(MTRApplicationLauncherClusterStopAppParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "stopAppWithExpectedValues:expectedValueInterval:completion:")
+    public native void stopApp(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "hideAppWithParams:expectedValues:expectedValueInterval:completion:")
     public native void hideApp(MTRApplicationLauncherClusterHideAppParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "hideAppWithExpectedValues:expectedValueInterval:completion:")
+    public native void hideApp(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRApplicationLauncherClusterLauncherResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -125,5 +135,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

@@ -66,10 +66,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "initWithData:options:")
     public AVFragmentedMovie(NSData data, NSDictionary<NSString, ?> options) { super(data, options); }
+    public AVFragmentedMovie(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
-    public native NSArray<AVFragmentedMovieTrack> getTracks();
+    public native NSArray<? extends AVMovieTrack> getTracks();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -101,8 +102,10 @@ import org.robovm.apple.uikit.*;
     
     @Method(selector = "movieTypes")
     public static native NSArray<NSString> movieTypes();
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     /**
-     * @deprecated Use loadTrackWithTrackID:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "trackWithTrackID:")
@@ -113,7 +116,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /**
-     * @deprecated Use loadTracksWithMediaType:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
      */
     @Deprecated
     @Method(selector = "tracksWithMediaType:")
@@ -124,7 +127,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
     /**
-     * @deprecated loadTracksWithMediaCharacteristic:completionHandler:
+     * @deprecated Deprecated in iOS 18.0. loadTracksWithMediaCharacteristic:completionHandler:
      */
     @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")

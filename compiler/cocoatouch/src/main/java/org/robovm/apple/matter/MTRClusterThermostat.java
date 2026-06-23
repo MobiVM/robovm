@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterThermostat/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterThermostatPtr extends Ptr<MTRClusterThermostat, MTRClusterThermostatPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -90,6 +85,21 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "clearWeeklyScheduleWithExpectedValues:expectedValueInterval:completion:")
     public native void clearWeeklySchedule(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setActiveScheduleRequestWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void setActiveScheduleRequest(MTRThermostatClusterSetActiveScheduleRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setActivePresetRequestWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void setActivePresetRequest(MTRThermostatClusterSetActivePresetRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "atomicRequestWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void atomicRequest(MTRThermostatClusterAtomicRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRThermostatClusterAtomicResponseParams, NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -606,6 +616,81 @@ import org.robovm.apple.security.*;
     @Method(selector = "writeAttributeACCapacityformatWithValue:expectedValueInterval:params:")
     public native void writeAttributeACCapacityformat(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetTypesWithParams:")
+    public native NSDictionary<NSString, ?> readAttributePresetTypes(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeScheduleTypesWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeScheduleTypes(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfPresetsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfPresets(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfSchedulesWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfSchedules(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfScheduleTransitions(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfScheduleTransitionPerDayWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfScheduleTransitionPerDay(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActivePresetHandleWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeActivePresetHandle(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeActiveScheduleHandleWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeActiveScheduleHandle(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePresetsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributePresets(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributePresetsWithValue:expectedValueInterval:")
+    public native void writeAttributePresets(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributePresetsWithValue:expectedValueInterval:params:")
+    public native void writeAttributePresets(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSchedulesWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeSchedules(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeSchedulesWithValue:expectedValueInterval:")
+    public native void writeAttributeSchedules(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "writeAttributeSchedulesWithValue:expectedValueInterval:params:")
+    public native void writeAttributeSchedules(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeSetpointHoldExpiryTimestampWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeSetpointHoldExpiryTimestamp(MTRReadParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -630,5 +715,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

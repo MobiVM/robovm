@@ -41,7 +41,15 @@ public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
     /*<values>*/
     _1(1L),
     _2(2L),
-    Latest(2L);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    _3(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    _4(4L),
+    Latest(4L);
     /*</values>*/
 
     /*<bind>*/

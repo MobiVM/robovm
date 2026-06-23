@@ -53,7 +53,11 @@ public enum /*<name>*/UISplitViewControllerColumn/*</name>*/ implements ValuedEn
     Primary(0L),
     Supplementary(1L),
     Secondary(2L),
-    Compact(3L);
+    Compact(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Inspector(4L);
     /*</values>*/
 
     /*<bind>*/

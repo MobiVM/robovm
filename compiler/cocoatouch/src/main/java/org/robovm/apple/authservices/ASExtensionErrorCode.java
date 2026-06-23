@@ -44,7 +44,11 @@ public enum /*<name>*/ASExtensionErrorCode/*</name>*/ implements NSErrorCode {
     Failed(0L),
     UserCanceled(1L),
     UserInteractionRequired(100L),
-    CredentialIdentityNotFound(101L);
+    CredentialIdentityNotFound(101L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    MatchedExcludedCredential(102L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(ASExtensionErrorCode.class); }/*</bind>*/

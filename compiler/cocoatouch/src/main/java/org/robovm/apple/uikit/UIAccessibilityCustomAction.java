@@ -132,6 +132,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setActionHandler:")
     public native void setActionHandler(@Block Block1<UIAccessibilityCustomAction, Boolean> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "category")
+    public native String getCategory();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setCategory:")
+    public native void setCategory(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

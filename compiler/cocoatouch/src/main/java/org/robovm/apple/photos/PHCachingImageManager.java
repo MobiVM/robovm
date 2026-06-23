@@ -55,8 +55,16 @@ import org.robovm.apple.uniformtypeid.*;
     protected PHCachingImageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 26.0. This property is unused and will be removed in a future release
+     */
+    @Deprecated
     @Property(selector = "allowsCachingHighQualityImages")
     public native boolean allowsCachingHighQualityImages();
+    /**
+     * @deprecated Deprecated in iOS 26.0. This property is unused and will be removed in a future release
+     */
+    @Deprecated
     @Property(selector = "setAllowsCachingHighQualityImages:")
     public native void setAllowsCachingHighQualityImages(boolean v);
     /*</properties>*/

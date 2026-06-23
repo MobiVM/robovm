@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterBridgedDeviceBasicInformation/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRBaseClusterBridgedDeviceBasicInformationPtr extends Ptr<MTRBaseClusterBridgedDeviceBasicInformation, MTRBaseClusterBridgedDeviceBasicInformationPtr> {}/*</ptr>*/
@@ -61,10 +61,10 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 16.4 and later.
+     * @since Available in iOS 18.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
+    @Method(selector = "keepActiveWithParams:completion:")
+    public native void keepActive(MTRBridgedDeviceBasicInformationClusterKeepActiveParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -95,6 +95,16 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "subscribeAttributeProductNameWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeProductName(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSString, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeProductIDWithCompletion:")
+    public native void readAttributeProductID(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeProductIDWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeProductID(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -301,6 +311,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "readAttributeProductNameWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeProductName(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSString, NSError> completion);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeProductIDWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeProductID(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "readAttributeNodeLabelWithClusterStateCache:endpoint:queue:completion:")
@@ -390,5 +405,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
     public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

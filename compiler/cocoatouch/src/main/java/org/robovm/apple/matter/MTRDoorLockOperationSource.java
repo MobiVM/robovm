@@ -79,7 +79,11 @@ public enum /*<name>*/MTRDoorLockOperationSource/*</name>*/ implements ValuedEnu
     /**
      * @since Available in iOS 16.4 and later.
      */
-    Biometric(9L);
+    Biometric(9L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    Aliro(10L);
     /*</values>*/
 
     /*<bind>*/

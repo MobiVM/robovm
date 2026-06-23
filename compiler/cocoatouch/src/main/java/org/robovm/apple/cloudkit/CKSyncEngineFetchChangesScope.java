@@ -53,7 +53,7 @@ import org.robovm.apple.fileprovider.*;
     @Method(selector = "initWithZoneIDs:")
     public CKSyncEngineFetchChangesScope(NSSet<CKRecordZoneID> zoneIDs) { super((SkipInit) null); initObject(init(zoneIDs)); }
     @Method(selector = "initWithExcludedZoneIDs:")
-    public static  CKSyncEngineFetchChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs) {
+    public static CKSyncEngineFetchChangesScope createWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs) {
        CKSyncEngineFetchChangesScope res = new CKSyncEngineFetchChangesScope((SkipInit) null);
        res.initObject(res.initWithExcludedZoneIDs(zoneIDs));
        return res;
@@ -71,5 +71,10 @@ import org.robovm.apple.fileprovider.*;
     protected native @Pointer long init(NSSet<CKRecordZoneID> zoneIDs);
     @Method(selector = "initWithExcludedZoneIDs:")
     protected native @Pointer long initWithExcludedZoneIDs(NSSet<CKRecordZoneID> zoneIDs);
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Method(selector = "containsZoneID:")
+    public native boolean containsZoneID(CKRecordZoneID zoneID);
     /*</methods>*/
 }

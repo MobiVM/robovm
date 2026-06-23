@@ -75,6 +75,26 @@ import org.robovm.apple.symbols.*;
     public native boolean supportsAlpha();
     @Property(selector = "setSupportsAlpha:")
     public native void setSupportsAlpha(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportsEyedropper")
+    public native boolean supportsEyedropper();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSupportsEyedropper:")
+    public native void setSupportsEyedropper(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumLinearExposure")
+    public native @MachineSizedFloat double getMaximumLinearExposure();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMaximumLinearExposure:")
+    public native void setMaximumLinearExposure(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

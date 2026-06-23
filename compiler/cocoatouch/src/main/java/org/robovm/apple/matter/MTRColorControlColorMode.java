@@ -49,8 +49,14 @@ public enum /*<name>*/MTRColorControlColorMode/*</name>*/ implements ValuedEnum 
      */
     CurrentXAndCurrentY(1L),
     /**
-     * @since Available in iOS 16.1 and later.
+     * @since Available in iOS 18.2 and later.
      */
+    ColorTemperatureMireds(2L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 18.2. Please use MTRColorControlColorModeColorTemperatureMireds
+     */
+    @Deprecated
     ColorTemperature(2L);
     /*</values>*/
 

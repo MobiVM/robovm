@@ -57,12 +57,24 @@ public enum /*<name>*/MTRFanControlFanModeSequence/*</name>*/ implements ValuedE
      */
     OffLowHighAuto(3L),
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 17.4 and later.
      */
-    OffOnAuto(4L),
+    OffHighAuto(4L),
     /**
      * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRFanControlFanModeSequenceOffHighAuto
      */
+    @Deprecated
+    OffOnAuto(4L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    OffHigh(5L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 17.4. Please use MTRFanControlFanModeSequenceOffHigh
+     */
+    @Deprecated
     OffOn(5L);
     /*</values>*/
 

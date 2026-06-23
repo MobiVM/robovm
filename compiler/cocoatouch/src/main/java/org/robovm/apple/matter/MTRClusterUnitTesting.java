@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterUnitTesting/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterUnitTestingPtr extends Ptr<MTRClusterUnitTesting, MTRClusterUnitTestingPtr> {}/*</ptr>*/
@@ -60,11 +60,6 @@ import org.robovm.apple.security.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -166,6 +161,11 @@ import org.robovm.apple.security.*;
     @Method(selector = "testNullableOptionalRequestWithParams:expectedValues:expectedValueInterval:completion:")
     public native void testNullableOptionalRequest(MTRUnitTestingClusterTestNullableOptionalRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRUnitTestingClusterTestNullableOptionalResponseParams, NSError> completion);
     /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "testNullableOptionalRequestWithExpectedValues:expectedValueInterval:completion:")
+    public native void testNullableOptionalRequest(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock2<MTRUnitTestingClusterTestNullableOptionalResponseParams, NSError> completion);
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "testComplexNullableOptionalRequestWithParams:expectedValues:expectedValueInterval:completion:")
@@ -190,6 +190,11 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "testSimpleOptionalArgumentRequestWithParams:expectedValues:expectedValueInterval:completion:")
     public native void testSimpleOptionalArgumentRequest(MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "testSimpleOptionalArgumentRequestWithExpectedValues:expectedValueInterval:completion:")
+    public native void testSimpleOptionalArgumentRequest(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1455,5 +1460,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

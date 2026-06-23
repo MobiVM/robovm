@@ -85,6 +85,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "isVideoHDRSupported")
     public native boolean isVideoHDRSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultColorSpace")
+    public native AVCaptureColorSpace getDefaultColorSpace();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultPhotoSettings")
+    public native AVCapturePhotoSettings getDefaultPhotoSettings();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

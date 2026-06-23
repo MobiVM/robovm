@@ -431,8 +431,15 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "appliedContentSizeCategoryLimitsDescription")
     public native String getAppliedContentSizeCategoryLimitsDescription();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "traitOverrides")
     public native UITraitOverrides getTraitOverrides();
+    @Property(selector = "cornerConfiguration")
+    public native UICornerConfiguration getCornerConfiguration();
+    @Property(selector = "setCornerConfiguration:")
+    public native void setCornerConfiguration(UICornerConfiguration v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -519,6 +526,8 @@ import org.robovm.apple.symbols.*;
     public native UIBezierPath getCollisionBoundingPath();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    @Property(selector = "focusItemDeferralMode")
+    public native UIFocusItemDeferralMode getFocusItemDeferralMode();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -617,6 +626,21 @@ import org.robovm.apple.symbols.*;
     public native boolean isDescendantOf(UIView view);
     @Method(selector = "viewWithTag:")
     public native UIView getViewWithTag(@MachineSizedSInt long tag);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateProperties")
+    public native void setNeedsUpdateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateProperties")
+    public native void updateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updatePropertiesIfNeeded")
+    public native void updatePropertiesIfNeeded();
     @Method(selector = "setNeedsLayout")
     public native void setNeedsLayout();
     @Method(selector = "layoutIfNeeded")
@@ -822,8 +846,19 @@ import org.robovm.apple.symbols.*;
     @Deprecated
     @Method(selector = "setAnimationTransition:forView:cache:")
     public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "updateTraitsIfNeeded")
     public native void updateTraitsIfNeeded();
+    @Method(selector = "layoutGuideForLayoutRegion:")
+    public native UILayoutGuide layoutGuideForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "edgeInsetsForLayoutRegion:")
+    public native @ByVal UIEdgeInsets edgeInsetsForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "directionalEdgeInsetsForLayoutRegion:")
+    public native @ByVal NSDirectionalEdgeInsets directionalEdgeInsetsForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "effectiveRadiusForCorner:")
+    public native @MachineSizedFloat double effectiveRadiusForCorner(UIRectCorner corner);
     /**
      * @since Available in iOS 11.0 and later.
      */

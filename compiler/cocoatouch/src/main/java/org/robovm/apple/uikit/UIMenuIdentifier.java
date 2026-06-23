@@ -144,9 +144,19 @@ import org.robovm.apple.symbols.*;
      */
     public static final UIMenuIdentifier Quit = new UIMenuIdentifier("Quit");
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
+    public static final UIMenuIdentifier NewItem = new UIMenuIdentifier("NewItem");
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIMenuNewItem
+     */
+    @Deprecated
     public static final UIMenuIdentifier NewScene = new UIMenuIdentifier("NewScene");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UIMenuIdentifier Open = new UIMenuIdentifier("Open");
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -175,6 +185,10 @@ import org.robovm.apple.symbols.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier Find = new UIMenuIdentifier("Find");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final UIMenuIdentifier FindPanel = new UIMenuIdentifier("FindPanel");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -289,7 +303,7 @@ import org.robovm.apple.symbols.*;
     public static final UIMenuIdentifier Root = new UIMenuIdentifier("Root");
     /*</constants>*/
     
-    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, AutoFill, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
+    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewItem, NewScene, Open, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, FindPanel, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, AutoFill, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
     
     /*<name>*/UIMenuIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -368,10 +382,22 @@ import org.robovm.apple.symbols.*;
         @GlobalValue(symbol="UIMenuQuit", optional=true)
         public static native NSString Quit();
         /**
-         * @since Available in iOS 13.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
+        @GlobalValue(symbol="UIMenuNewItem", optional=true)
+        public static native NSString NewItem();
+        /**
+         * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIMenuNewItem
+         */
+        @Deprecated
         @GlobalValue(symbol="UIMenuNewScene", optional=true)
         public static native NSString NewScene();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuOpen", optional=true)
+        public static native NSString Open();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -407,6 +433,11 @@ import org.robovm.apple.symbols.*;
          */
         @GlobalValue(symbol="UIMenuFind", optional=true)
         public static native NSString Find();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuFindPanel", optional=true)
+        public static native NSString FindPanel();
         /**
          * @since Available in iOS 13.0 and later.
          */

@@ -121,10 +121,30 @@ import org.robovm.apple.dispatch.*;
     public native @MachineSizedSInt long getYearForWeekOfYear();
     @Property(selector = "setYearForWeekOfYear:")
     public native void setYearForWeekOfYear(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "dayOfYear")
+    public native @MachineSizedSInt long getDayOfYear();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDayOfYear:")
+    public native void setDayOfYear(@MachineSizedSInt long v);
     @Property(selector = "isLeapMonth")
     public native boolean isLeapMonth();
     @Property(selector = "setLeapMonth:")
     public native void setLeapMonth(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isRepeatedDay")
+    public native boolean isRepeatedDay();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRepeatedDay:")
+    public native void setRepeatedDay(boolean v);
     @Property(selector = "date")
     public native NSDate getDate();
     @Property(selector = "isValidDate")
@@ -140,18 +160,6 @@ import org.robovm.apple.dispatch.*;
         setValue(value, unit);
     }
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use -weekOfMonth or -weekOfYear, depending on which you mean
-     */
-    @Deprecated
-    @Method(selector = "week")
-    public native @MachineSizedSInt long getWeek();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use -setWeekOfMonth: or -setWeekOfYear:, depending on which you mean
-     */
-    @Deprecated
-    @Method(selector = "setWeek:")
-    public native void setWeek(@MachineSizedSInt long v);
     @Method(selector = "setValue:forComponent:")
     protected native void setValue(@MachineSizedSInt long value, NSCalendarUnit unit);
     @Method(selector = "valueForComponent:")

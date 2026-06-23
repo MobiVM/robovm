@@ -90,13 +90,13 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setTimeRange:")
     public native void setTimeRange(@ByVal CMTimeRange v);
     /**
-     * @deprecated Use estimateMaximumDurationWithCompletionHandler
+     * @deprecated Deprecated in iOS 18.0. Use estimateMaximumDurationWithCompletionHandler: instead
      */
     @Deprecated
     @Property(selector = "maxDuration")
     public native @ByVal CMTime getMaxDuration();
     /**
-     * @deprecated Use estimateOutputFileLengthWithCompletionHandler
+     * @deprecated Deprecated in iOS 18.0. Use estimateOutputFileLengthWithCompletionHandler: instead
      */
     @Deprecated
     @Property(selector = "estimatedOutputFileLength")

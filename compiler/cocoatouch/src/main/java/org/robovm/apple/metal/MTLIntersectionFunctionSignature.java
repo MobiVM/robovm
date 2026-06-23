@@ -63,6 +63,14 @@ public final class /*<name>*/MTLIntersectionFunctionSignature/*</name>*/ extends
      * @since Available in iOS 17.0 and later.
      */
     public static final MTLIntersectionFunctionSignature CurveData = new MTLIntersectionFunctionSignature(128L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature IntersectionFunctionBuffer = new MTLIntersectionFunctionSignature(256L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLIntersectionFunctionSignature UserData = new MTLIntersectionFunctionSignature(512L);
     /*</values>*/
 
     /*<bind>*/

@@ -68,7 +68,9 @@ import org.robovm.apple.iosurface.*;
     }
     /*<bind>*/static { Bro.bind(CVPixelBuffer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVPixelBuffer() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     @Callback
@@ -186,6 +188,8 @@ import org.robovm.apple.iosurface.*;
      */
     @Bridge(symbol="CVPixelBufferCopyCreationAttributes", optional=true)
     public native CFDictionary copyCreationAttributes();
+    @Bridge(symbol="CVPixelBufferIsCompatibleWithAttributes", optional=true)
+    public native boolean isCompatibleWithAttributes(CFDictionary attributes);
     @Bridge(symbol="CVPixelBufferGetIOSurface", optional=true)
     public native IOSurface getIOSurface();
     @Bridge(symbol="CVPixelBufferCreateWithIOSurface", optional=true)

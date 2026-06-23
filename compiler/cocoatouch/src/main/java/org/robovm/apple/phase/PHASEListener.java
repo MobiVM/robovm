@@ -58,6 +58,16 @@ import org.robovm.apple.modelio.*;
     public native double getGain();
     @Property(selector = "setGain:")
     public native void setGain(double v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "automaticHeadTrackingFlags")
+    public native PHASEAutomaticHeadTrackingFlags getAutomaticHeadTrackingFlags();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAutomaticHeadTrackingFlags:")
+    public native void setAutomaticHeadTrackingFlags(PHASEAutomaticHeadTrackingFlags v);
     @Property(selector = "right")
     public static native @ByVal VectorFloat3 getRight();
     @Property(selector = "up")

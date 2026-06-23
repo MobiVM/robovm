@@ -71,6 +71,16 @@ import org.robovm.apple.symbols.*;
     public native UIDocument getDocument();
     @Property(selector = "setDocument:")
     public native void setDocument(UIDocument v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "launchOptions")
+    public native UIDocumentViewControllerLaunchOptions getLaunchOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setLaunchOptions:")
+    public native void setLaunchOptions(UIDocumentViewControllerLaunchOptions v);
     @Property(selector = "undoRedoItemGroup")
     public native UIBarButtonItemGroup getUndoRedoItemGroup();
     /*</properties>*/

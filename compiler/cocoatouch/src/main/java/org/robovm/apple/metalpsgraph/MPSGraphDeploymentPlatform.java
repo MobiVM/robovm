@@ -49,7 +49,11 @@ public enum /*<name>*/MPSGraphDeploymentPlatform/*</name>*/ implements ValuedEnu
     /**
      * @since Available in iOS 17.0 and later.
      */
-    TvOS(2L);
+    TvOS(2L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    VisionOS(3L);
     /*</values>*/
 
     /*<bind>*/

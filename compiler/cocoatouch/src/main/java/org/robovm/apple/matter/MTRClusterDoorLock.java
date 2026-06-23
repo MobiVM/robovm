@@ -39,7 +39,7 @@ import org.robovm.apple.security.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRClusterDoorLock/*</name>*/ 
-    extends /*<extends>*/MTRCluster/*</extends>*/ 
+    extends /*<extends>*/MTRGenericCluster/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MTRClusterDoorLockPtr extends Ptr<MTRClusterDoorLock, MTRClusterDoorLockPtr> {}/*</ptr>*/
@@ -63,18 +63,23 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "initWithDevice:endpointID:queue:")
-    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "lockDoorWithParams:expectedValues:expectedValueInterval:completion:")
     public native void lockDoor(MTRDoorLockClusterLockDoorParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "lockDoorWithExpectedValues:expectedValueInterval:completion:")
+    public native void lockDoor(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "unlockDoorWithParams:expectedValues:expectedValueInterval:completion:")
     public native void unlockDoor(MTRDoorLockClusterUnlockDoorParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "unlockDoorWithExpectedValues:expectedValueInterval:completion:")
+    public native void unlockDoor(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -155,6 +160,31 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "clearCredentialWithParams:expectedValues:expectedValueInterval:completion:")
     public native void clearCredential(MTRDoorLockClusterClearCredentialParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "unboltDoorWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void unboltDoor(MTRDoorLockClusterUnboltDoorParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "unboltDoorWithExpectedValues:expectedValueInterval:completion:")
+    public native void unboltDoor(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setAliroReaderConfigWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void setAliroReaderConfig(MTRDoorLockClusterSetAliroReaderConfigParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "clearAliroReaderConfigWithParams:expectedValues:expectedValueInterval:completion:")
+    public native void clearAliroReaderConfig(MTRDoorLockClusterClearAliroReaderConfigParams params, NSArray<?> expectedDataValueDictionaries, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "clearAliroReaderConfigWithExpectedValues:expectedValueInterval:completion:")
+    public native void clearAliroReaderConfig(NSArray<?> expectedValues, NSNumber expectedValueIntervalMs, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.1 and later.
      */
@@ -516,6 +546,51 @@ import org.robovm.apple.security.*;
     @Method(selector = "writeAttributeExpiringUserTimeoutWithValue:expectedValueInterval:params:")
     public native void writeAttributeExpiringUserTimeout(NSDictionary<NSString, ?> dataValueDictionary, NSNumber expectedValueIntervalMs, MTRWriteParams params);
     /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderVerificationKeyWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroReaderVerificationKey(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupIdentifierWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroReaderGroupIdentifier(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroReaderGroupSubIdentifierWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroReaderGroupSubIdentifier(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroExpeditedTransactionSupportedProtocolVersionsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroExpeditedTransactionSupportedProtocolVersions(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroGroupResolvingKeyWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroGroupResolvingKey(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroSupportedBLEUWBProtocolVersionsWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroSupportedBLEUWBProtocolVersions(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAliroBLEAdvertisingVersionWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeAliroBLEAdvertisingVersion(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroCredentialIssuerKeysSupportedWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfAliroCredentialIssuerKeysSupported(MTRReadParams params);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeNumberOfAliroEndpointKeysSupportedWithParams:")
+    public native NSDictionary<NSString, ?> readAttributeNumberOfAliroEndpointKeysSupported(MTRReadParams params);
+    /**
      * @since Available in iOS 16.1 and later.
      */
     @Method(selector = "readAttributeGeneratedCommandListWithParams:")
@@ -540,5 +615,10 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeClusterRevisionWithParams:")
     public native NSDictionary<NSString, ?> readAttributeClusterRevision(MTRReadParams params);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRDevice device, NSNumber endpointID, DispatchQueue queue);
     /*</methods>*/
 }

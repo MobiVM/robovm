@@ -58,7 +58,11 @@ public enum /*<name>*/AVCaptureSessionInterruptionReason/*</name>*/ implements V
     /**
      * @since Available in iOS 11.1 and later.
      */
-    VideoDeviceNotAvailableDueToSystemPressure(5L);
+    VideoDeviceNotAvailableDueToSystemPressure(5L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    SensitiveContentMitigationActivated(6L);
     /*</values>*/
 
     /*<bind>*/

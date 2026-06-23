@@ -120,6 +120,16 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setAllowsAccessibilitySpeech:")
     public native void setAllowsAccessibilitySpeech(boolean v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsAccessibilityTypingFeedback")
+    public native boolean allowsAccessibilityTypingFeedback();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsAccessibilityTypingFeedback:")
+    public native void setAllowsAccessibilityTypingFeedback(boolean v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "allowsPasswordAutoFill")
@@ -139,9 +149,28 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setAllowsContinuousPathKeyboard:")
     public native void setAllowsContinuousPathKeyboard(boolean v);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "mainParticipantConfiguration")
+    public native AEAssessmentParticipantConfiguration getMainParticipantConfiguration();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "configurationsByApplication")
+    public native NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration> getConfigurationsByApplication();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "setConfiguration:forApplication:")
+    public native void setConfiguration(AEAssessmentParticipantConfiguration configuration, AEAssessmentApplication application);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "removeApplication:")
+    public native void removeApplication(AEAssessmentApplication application);
     /*</methods>*/
 }

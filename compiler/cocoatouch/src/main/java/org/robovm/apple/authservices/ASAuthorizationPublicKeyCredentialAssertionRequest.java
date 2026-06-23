@@ -39,7 +39,7 @@ import org.robovm.apple.coreanimation.*;
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/  interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/<T extends NSObject>
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/ASAuthorizationPublicKeyCredentialAssertionRequest/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol, NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/
@@ -57,9 +57,9 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setRelyingPartyIdentifier:")
     void setRelyingPartyIdentifier(String v);
     @Property(selector = "allowedCredentials")
-    NSArray<T> getAllowedCredentials();
+    NSArray<?> getAllowedCredentials();
     @Property(selector = "setAllowedCredentials:")
-    void setAllowedCredentials(NSArray<T> v);
+    void setAllowedCredentials(NSArray<?> v);
     @Property(selector = "userVerificationPreference")
     ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")

@@ -198,6 +198,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVURLAssetPrimarySessionIdentifierKey", optional=true)
         public static native NSString PrimarySessionIdentifier();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetShouldParseExternalSphericalTagsKey", optional=true)
+        public static native NSString ShouldParseExternalSphericalTags();
     }
     /*</keys>*/
 }

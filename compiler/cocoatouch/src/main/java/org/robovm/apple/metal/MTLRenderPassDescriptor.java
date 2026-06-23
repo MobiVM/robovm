@@ -157,6 +157,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "sampleBufferAttachments")
     public native MTLRenderPassSampleBufferAttachmentDescriptorArray getSampleBufferAttachments();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "visibilityResultType")
+    public native MTLVisibilityResultType getVisibilityResultType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setVisibilityResultType:")
+    public native void setVisibilityResultType(MTLVisibilityResultType v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportColorAttachmentMapping")
+    public native boolean isSupportColorAttachmentMapping();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSupportColorAttachmentMapping:")
+    public native void setSupportColorAttachmentMapping(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -88,7 +88,8 @@ public enum /*<name>*/CGPDFTagType/*</name>*/ implements ValuedEnum {
     WarichuPunctiation(606L),
     Figure(700L),
     Formula(701L),
-    Form(702L);
+    Form(702L),
+    Object(800L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CGPDFTagType.class); }/*</bind>*/

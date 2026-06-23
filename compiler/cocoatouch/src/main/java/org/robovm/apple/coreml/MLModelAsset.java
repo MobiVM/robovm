@@ -63,6 +63,28 @@ import org.robovm.apple.metal.*;
        retain(getHandle());
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
     }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public MLModelAsset(NSData specificationData, NSDictionary<NSURL, NSData> blobMapping) throws NSErrorException {
+       this(specificationData, blobMapping, new NSError.NSErrorPtr());
+    }
+    private MLModelAsset(NSData specificationData, NSDictionary<NSURL, NSData> blobMapping, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(specificationData, blobMapping, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public MLModelAsset(NSURL compiledModelURL) throws NSErrorException {
+       this(compiledModelURL, new NSError.NSErrorPtr());
+    }
+    private MLModelAsset(NSURL compiledModelURL, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(compiledModelURL, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     
@@ -70,9 +92,34 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "modelDescriptionWithCompletionHandler:")
+    public native void modelDescription(@Block VoidBlock2<MLModelDescription, NSError> handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "modelDescriptionOfFunctionNamed:completionHandler:")
+    public native void modelDescriptionOfFunction(String functionName, @Block VoidBlock2<MLModelDescription, NSError> handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "functionNamesWithCompletionHandler:")
+    public native void functionNames(@Block VoidBlock2<NSArray<NSString>, NSError> handler);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "modelAssetWithSpecificationData:error:")
     protected static native @Pointer long create(NSData specificationData, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "modelAssetWithSpecificationData:blobMapping:error:")
+    protected static native @Pointer long create(NSData specificationData, NSDictionary<NSURL, NSData> blobMapping, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "modelAssetWithURL:error:")
+    protected static native @Pointer long create(NSURL compiledModelURL, NSError.NSErrorPtr error);
     /*</methods>*/
 }

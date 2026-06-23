@@ -42,6 +42,14 @@ public final class /*<name>*/NSFileProviderModifyItemOptions/*</name>*/ extends 
     /*<values>*/
     public static final NSFileProviderModifyItemOptions None = new NSFileProviderModifyItemOptions(0L);
     public static final NSFileProviderModifyItemOptions MayAlreadyExist = new NSFileProviderModifyItemOptions(1L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSFileProviderModifyItemOptions FailOnConflict = new NSFileProviderModifyItemOptions(2L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSFileProviderModifyItemOptions IsImmediateUploadRequestByPresentingApplication = new NSFileProviderModifyItemOptions(4L);
     /*</values>*/
 
     /*<bind>*/

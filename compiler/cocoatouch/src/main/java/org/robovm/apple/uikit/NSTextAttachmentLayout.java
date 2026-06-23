@@ -43,7 +43,9 @@ import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 15.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/NSTextAttachmentLayout/*</name>*/ 

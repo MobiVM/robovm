@@ -190,5 +190,25 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "compileModelAtURL:completionHandler:")
     public static native void compileModelAtURL(NSURL modelURL, @Block VoidBlock2<NSURL, NSError> handler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "newState")
+    public native MLState newState();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "predictionFromFeatures:usingState:error:")
+    public native MLFeatureProvider predictionFromFeatures(MLFeatureProvider inputFeatures, MLState state, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "predictionFromFeatures:usingState:options:error:")
+    public native MLFeatureProvider predictionFromFeatures(MLFeatureProvider inputFeatures, MLState state, MLPredictionOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "predictionFromFeatures:usingState:options:completionHandler:")
+    public native void predictionFromFeatures(MLFeatureProvider inputFeatures, MLState state, MLPredictionOptions options, @Block VoidBlock2<MLFeatureProvider, NSError> completionHandler);
     /*</methods>*/
 }

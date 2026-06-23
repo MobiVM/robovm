@@ -138,6 +138,11 @@ import org.robovm.apple.corevideo.*;
      */
     @Property(selector = "setDeveloperHUDProperties:")
     public native void setDeveloperHUDProperties(NSDictionary<?, ?> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "residencySet")
+    public native MTLResidencySet getResidencySet();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -72,6 +72,11 @@ import org.robovm.apple.dispatch.*;
     public void savePresentedItemChanges(@Block VoidBlock1<NSError> completionHandler) {}
     @NotImplemented("accommodatePresentedItemDeletionWithCompletionHandler:")
     public void accommodatePresentedItemDeletion(@Block VoidBlock1<NSError> completionHandler) {}
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @NotImplemented("accommodatePresentedItemEvictionWithCompletionHandler:")
+    public void accommodatePresentedItemEviction(@Block VoidBlock1<NSError> completionHandler) {}
     @NotImplemented("presentedItemDidMoveToURL:")
     public void presentedItemDidMoveToURL(NSURL newURL) {}
     @NotImplemented("presentedItemDidChange")

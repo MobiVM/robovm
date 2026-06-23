@@ -34,7 +34,9 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/GCDeviceBatteryState/*</name>*/ implements ValuedEnum {

@@ -9,7 +9,8 @@ typedefs: {}
     
 enums:
     BGTaskSchedulerErrorCode: {nserror: true} #since 13.0
-
+    BGContinuedProcessingTaskRequestSubmissionStrategy: {} #since 26.0
+    BGContinuedProcessingTaskRequestResources: {} #since 26.0
 classes:
     BGAppRefreshTask: {} #since 13.0
     BGAppRefreshTaskRequest: #since 13.0
@@ -38,6 +39,14 @@ classes:
                 name: getPendingTaskRequests
     BGHealthResearchTask: {} #since 17.0
     BGHealthResearchTaskRequest: {} #since 17.0
+    BGContinuedProcessingTask: #since 26.0
+        methods:
+            '-updateTitle:subtitle:':
+                name: update
+    BGContinuedProcessingTaskRequest: #since 26.0
+        methods:
+            '-initWithIdentifier:title:subtitle:':
+                name: init
 protocols: {}
 
 functions:

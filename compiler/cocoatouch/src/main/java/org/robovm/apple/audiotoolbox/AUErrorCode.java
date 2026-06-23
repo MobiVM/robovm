@@ -68,7 +68,8 @@ public enum /*<name>*/AUErrorCode/*</name>*/ implements NSErrorCode {
     InvalidParameterValue(-66743L),
     InvalidFilePath(-66742L),
     MissingKey(-66741L),
-    ComponentManagerNotSupported(-66740L);
+    ComponentManagerNotSupported(-66740L),
+    MultipleVoiceProcessors(-66635L);
     /*</values>*/
 
     /*<bind>*/

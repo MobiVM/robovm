@@ -60,8 +60,23 @@ import org.robovm.apple.symbols.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.1 and later.
+     * @deprecated Deprecated in iOS 17.5. Use pencilInteraction(_:didReceiveTap:) instead
+     */
+    @Deprecated
     @Method(selector = "pencilInteractionDidTap:")
     void pencilInteractionDidTap(UIPencilInteraction interaction);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "pencilInteraction:didReceiveTap:")
+    void didReceiveTap(UIPencilInteraction interaction, UIPencilInteractionTap tap);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "pencilInteraction:didReceiveSqueeze:")
+    void didReceiveSqueeze(UIPencilInteraction interaction, UIPencilInteractionSqueeze squeeze);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

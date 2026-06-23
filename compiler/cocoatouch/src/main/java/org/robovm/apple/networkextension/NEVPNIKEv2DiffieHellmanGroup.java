@@ -40,17 +40,17 @@ public enum /*<name>*/NEVPNIKEv2DiffieHellmanGroup/*</name>*/ implements ValuedE
     /*<values>*/
     GroupInvalid(0L),
     /**
-     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     * @deprecated Deprecated in iOS 17.0. Diffie Hellman groups less than 14 are not supported
      */
     @Deprecated
     Group1(1L),
     /**
-     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     * @deprecated Deprecated in iOS 17.0. Diffie Hellman groups less than 14 are not supported
      */
     @Deprecated
     Group2(2L),
     /**
-     * @deprecated Deprecated in iOS 17.0. Use Diffie Hellman group 14 or greater instead
+     * @deprecated Deprecated in iOS 17.0. Diffie Hellman groups less than 14 are not supported
      */
     @Deprecated
     Group5(5L),

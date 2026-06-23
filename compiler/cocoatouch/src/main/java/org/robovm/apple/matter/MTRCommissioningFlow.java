@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MTRCommissioningFlow/*</name>*/ implements ValuedEnum {
@@ -41,6 +43,11 @@ public enum /*<name>*/MTRCommissioningFlow/*</name>*/ implements ValuedEnum {
     Standard(0L),
     UserActionRequired(1L),
     Custom(2L),
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 17.6. Not a valid MTRCommissioningFlow value
+     */
+    @Deprecated
     Invalid(3L);
     /*</values>*/
 

@@ -33,7 +33,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRThreadOperationalDataset/*</name>*/ 
@@ -78,6 +80,9 @@ import org.robovm.apple.security.*;
     public static class SizeOf {
         static { Bro.bind(SizeOf.class); }
 
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRSizeThreadNetworkName", optional=true)
         public static native @MachineSizedUInt long MTRSizeThreadNetworkName();
         /**
@@ -85,8 +90,14 @@ import org.robovm.apple.security.*;
          */
         @GlobalValue(symbol="MTRSizeThreadExtendedPANID", optional=true)
         public static native @MachineSizedUInt long MTRSizeThreadExtendedPANID();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRSizeThreadMasterKey", optional=true)
         public static native @MachineSizedUInt long MTRSizeThreadMasterKey();
+        /**
+         * @since Available in iOS 16.1 and later.
+         */
         @GlobalValue(symbol="MTRSizeThreadPSKc", optional=true)
         public static native @MachineSizedUInt long MTRSizeThreadPSKc();
         /**

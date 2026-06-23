@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     protected INObjectCollection(Handle h, long handle) { super(h, handle); }
     protected INObjectCollection(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSections:")
-    public static  INObjectCollection createFromSections(NSArray<?> sections) {
+    public static INObjectCollection createFromSections(NSArray<?> sections) {
        INObjectCollection res = new INObjectCollection((SkipInit) null);
        res.initObject(res.initFromSection(sections));
        return res;

@@ -80,10 +80,17 @@ import org.robovm.apple.network.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Method(selector = "openWithLocalFlowEndpoint:completionHandler:")
+    public native void openWithLocalFlowEndpoint(NWEndpoint localEndpoint, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use openWithLocalFlowEndpoint:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "openWithLocalEndpoint:completionHandler:")
-    public native void open(NWHostEndpoint localEndpoint, @Block VoidBlock1<NSError> completionHandler);
+    public native void openWithLocalEndpoint(NWHostEndpoint localEndpoint, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
      */

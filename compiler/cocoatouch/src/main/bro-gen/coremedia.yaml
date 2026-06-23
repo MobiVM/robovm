@@ -32,6 +32,7 @@ enums:
     CMBufferQueueTriggerCondition: { first: kCMBufferQueueTrigger_WhenDurationBecomesLessThan, prefix: kCMBufferQueueTrigger_ }
     CMFormatDescriptionErrorCode: { first: kCMFormatDescriptionError_InvalidParameter}
     CMMediaType: { first: kCMMediaType_Video }
+    CMMediaType2: { first: kCMMediaType_AuxiliaryPicture, prefix: kCMMediaType_,  merge_with: CMMediaType }
     CMAudioCodecType: { first: kCMAudioCodecType_AAC_LCProtected, prefix: kCMAudioCodecType_ }
     CMAudioFormatDescriptionMask: { first: kCMAudioFormatDescriptionMask_StreamBasicDescription, prefix: kCMAudioFormatDescriptionMask_, bits: true }
     CMPixelFormatType: { first: kCMPixelFormat_32ARGB }
@@ -1376,6 +1377,46 @@ values:
     kCMFormatDescriptionHeroEye_(.*):
         class: CMVideoFormatDescription
         name: 'HeroEye#{g[0]}'
+        type: CFString
+    kCMFormatDescription(LogTransferFunction)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(ProjectionKind)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(ViewPackingKind)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(CameraCalibration)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(CameraCalibrationExtrinsicOriginSource)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(CameraCalibrationLensAlgorithmKind)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(CameraCalibrationLensDomain)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kCMFormatDescription(CameraCalibrationLensRole)_(.*):
+        class: CMFormatDescription
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
         type: CFString
 
     kCMTag(.*):

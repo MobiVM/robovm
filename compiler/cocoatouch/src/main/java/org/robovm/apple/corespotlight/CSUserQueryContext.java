@@ -55,6 +55,16 @@ import org.robovm.apple.uniformtypeid.*;
     public native boolean isEnableRankedResults();
     @Property(selector = "setEnableRankedResults:")
     public native void setEnableRankedResults(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "disableSemanticSearch")
+    public native boolean isDisableSemanticSearch();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDisableSemanticSearch:")
+    public native void setDisableSemanticSearch(boolean v);
     @Property(selector = "maxResultCount")
     public native @MachineSizedSInt long getMaxResultCount();
     @Property(selector = "setMaxResultCount:")
@@ -63,6 +73,16 @@ import org.robovm.apple.uniformtypeid.*;
     public native @MachineSizedSInt long getMaxSuggestionCount();
     @Property(selector = "setMaxSuggestionCount:")
     public native void setMaxSuggestionCount(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "maxRankedResultCount")
+    public native @MachineSizedSInt long getMaxRankedResultCount();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMaxRankedResultCount:")
+    public native void setMaxRankedResultCount(@MachineSizedSInt long v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

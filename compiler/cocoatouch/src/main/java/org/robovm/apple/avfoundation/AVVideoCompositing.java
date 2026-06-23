@@ -72,6 +72,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "supportsHDRSourceFrames")
     boolean supportsHDRSourceFrames();
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "supportsSourceTaggedBuffers")
+    boolean supportsSourceTaggedBuffers();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "canConformColorOfSourceFrames")

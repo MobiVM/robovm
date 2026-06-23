@@ -1,0 +1,319 @@
+/*
+ * Copyright (C) 2013-2015 RoboVM AB
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.robovm.apple.matter;
+
+/*<imports>*/
+import java.io.*;
+import java.nio.*;
+import java.util.*;
+import org.robovm.objc.*;
+import org.robovm.objc.annotation.*;
+import org.robovm.objc.block.*;
+import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
+import org.robovm.rt.bro.*;
+import org.robovm.rt.bro.annotation.*;
+import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.security.*;
+/*</imports>*/
+
+/*<javadoc>*/
+/**
+ * @since Available in iOS 18.4 and later.
+ */
+/*</javadoc>*/
+/*<annotations>*/@Library("Matter") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MTRBaseClusterDeviceEnergyManagement/*</name>*/ 
+    extends /*<extends>*/MTRGenericBaseCluster/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/public static class MTRBaseClusterDeviceEnergyManagementPtr extends Ptr<MTRBaseClusterDeviceEnergyManagement, MTRBaseClusterDeviceEnergyManagementPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTRBaseClusterDeviceEnergyManagement.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected MTRBaseClusterDeviceEnergyManagement() {}
+    protected MTRBaseClusterDeviceEnergyManagement(Handle h, long handle) { super(h, handle); }
+    protected MTRBaseClusterDeviceEnergyManagement(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    public MTRBaseClusterDeviceEnergyManagement(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue) { super((SkipInit) null); initObject(init(device, endpointID, queue)); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "powerAdjustRequestWithParams:completion:")
+    public native void powerAdjustRequest(MTRDeviceEnergyManagementClusterPowerAdjustRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelPowerAdjustRequestWithParams:completion:")
+    public native void cancelPowerAdjustRequest(MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelPowerAdjustRequestWithCompletion:")
+    public native void cancelPowerAdjustRequest(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "startTimeAdjustRequestWithParams:completion:")
+    public native void startTimeAdjustRequest(MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "pauseRequestWithParams:completion:")
+    public native void pauseRequest(MTRDeviceEnergyManagementClusterPauseRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "resumeRequestWithParams:completion:")
+    public native void resumeRequest(MTRDeviceEnergyManagementClusterResumeRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "resumeRequestWithCompletion:")
+    public native void resumeRequest(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "modifyForecastRequestWithParams:completion:")
+    public native void modifyForecastRequest(MTRDeviceEnergyManagementClusterModifyForecastRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "requestConstraintBasedForecastWithParams:completion:")
+    public native void requestConstraintBasedForecast(MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelRequestWithParams:completion:")
+    public native void cancelRequest(MTRDeviceEnergyManagementClusterCancelRequestParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "cancelRequestWithCompletion:")
+    public native void cancelRequest(@Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESATypeWithCompletion:")
+    public native void readAttributeESAType(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeESATypeWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeESAType(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESACanGenerateWithCompletion:")
+    public native void readAttributeESACanGenerate(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeESACanGenerateWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeESACanGenerate(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESAStateWithCompletion:")
+    public native void readAttributeESAState(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeESAStateWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeESAState(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAbsMinPowerWithCompletion:")
+    public native void readAttributeAbsMinPower(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAbsMinPowerWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAbsMinPower(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAbsMaxPowerWithCompletion:")
+    public native void readAttributeAbsMaxPower(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAbsMaxPowerWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAbsMaxPower(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePowerAdjustmentCapabilityWithCompletion:")
+    public native void readAttributePowerAdjustmentCapability(@Block VoidBlock2<MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributePowerAdjustmentCapabilityWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributePowerAdjustmentCapability(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeForecastWithCompletion:")
+    public native void readAttributeForecast(@Block VoidBlock2<MTRDeviceEnergyManagementClusterForecastStruct, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeForecastWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeForecast(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<MTRDeviceEnergyManagementClusterForecastStruct, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeOptOutStateWithCompletion:")
+    public native void readAttributeOptOutState(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeOptOutStateWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeOptOutState(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeGeneratedCommandListWithCompletion:")
+    public native void readAttributeGeneratedCommandList(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeGeneratedCommandList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAcceptedCommandListWithCompletion:")
+    public native void readAttributeAcceptedCommandList(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAcceptedCommandList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAttributeListWithCompletion:")
+    public native void readAttributeAttributeList(@Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeAttributeList(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSArray<?>, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeFeatureMapWithCompletion:")
+    public native void readAttributeFeatureMap(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeFeatureMap(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeClusterRevisionWithCompletion:")
+    public native void readAttributeClusterRevision(@Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:")
+    public native void subscribeAttributeClusterRevision(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESATypeWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeESAType(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESACanGenerateWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeESACanGenerate(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeESAStateWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeESAState(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAbsMinPowerWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAbsMinPower(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAbsMaxPowerWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAbsMaxPower(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributePowerAdjustmentCapabilityWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributePowerAdjustmentCapability(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeForecastWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeForecast(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<MTRDeviceEnergyManagementClusterForecastStruct, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeOptOutStateWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeOptOutState(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeGeneratedCommandList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAcceptedCommandList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeAttributeList(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSArray<?>, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeFeatureMap(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:")
+    public static native void readAttributeClusterRevision(MTRClusterStateCacheContainer clusterStateCacheContainer, NSNumber endpoint, DispatchQueue queue, @Block VoidBlock2<NSNumber, NSError> completion);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "initWithDevice:endpointID:queue:")
+    protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
+    /*</methods>*/
+}
