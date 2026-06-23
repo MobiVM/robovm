@@ -16,46 +16,55 @@
  */
 package org.robovm.compiler.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.ExecuteException;
-import org.apache.commons.exec.ExecuteStreamHandler;
-import org.apache.commons.exec.PumpStreamHandler;
-import org.apache.commons.exec.environment.EnvironmentUtils;
-import org.apache.commons.exec.util.StringUtils;
 import org.robovm.compiler.log.ErrorOutputStream;
 import org.robovm.compiler.log.InfoOutputStream;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.target.Launcher;
-import org.robovm.compiler.util.io.NeverCloseOutputStream;
+
+import java.io.*;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
- * Builder style wrapper around <code>commons-exec</code> which also adds support for asynchronous 
+ * Builder style wrapper around <code>commons-exec</code> which also adds support for asynchronous
  * execution.
  */
 public class Executor {
     private final String cmd;
     private final Logger logger;
-    private List<String> args = new ArrayList<String>();
-    private Map<String, String> env = new HashMap<String, String>();
+    private final List<String> args = new ArrayList<>();
+    private Map<String, String> env = new HashMap<>();
     private boolean inheritEnv = true;
     private File wd;
     private OutputStream out;
     private OutputStream err;
     private InputStream in;
     private boolean closeOutputStreams = false;
-    private ExecuteStreamHandler streamHandler = null; 
+
+    ///
+    /// Special case markers for stdout/stderr and stdin handling, to be used in out()/err()/in() methods to
+    /// specify that the stream should be inherited from parent process or discarded,
+    /// instead of being piped to a custom stream
+    ///
+    public static OutputStream DISCARD_OUTPUT = new TagOutputStream("discarded (/dev/null)");
+    public static OutputStream INHERIT_OUTPUT = new TagOutputStream("inherited (to parent's stdout/stderr)");
+    public static OutputStream PIPE_OUTPUT = new TagOutputStream("output to process pipe");
+    public static InputStream INHERIT_INPUT = new TagInputStream("inherited (from parent's stdin)");
+    public static InputStream PIPE_INPUT = new TagInputStream("input from process pipe");
+
+    /**
+     * Exception thrown when a command executed by this {@link Executor} fails.
+     */
+    public static class ExecuteException extends IOException{
+        public final int exitCode;
+        public static final int INTERRUPTED_EXIT_CODE = -200;
+        public ExecuteException(int exitCode, String message) {
+            super(message);
+            this.exitCode = exitCode;
+        }
+        public int getExitCode() {
+            return exitCode;
+        }
+    }
 
     /**
      * Creates a new instance which will execute the specified command.
@@ -66,8 +75,8 @@ public class Executor {
      *            <code>PATH</code> environment variable. 
      */
     public Executor(Logger logger, String cmd) {
-        this.logger = logger;
         this.cmd = cmd;
+        this.logger = logger;
     }
     
     /**
@@ -77,8 +86,7 @@ public class Executor {
      * @param cmd the command to be executed. 
      */
     public Executor(Logger logger, File cmd) {
-        this.logger = logger;
-        this.cmd = cmd.getAbsolutePath();
+        this(logger, cmd.getAbsolutePath());
     }
     
     /**
@@ -91,7 +99,7 @@ public class Executor {
      */
     public Executor args(Collection<Object> args) {
         if (!args.isEmpty()) {
-            return args(args.toArray(new Object[args.size()]));
+            return args(args.toArray(new Object[0]));
         }
         return this;
     }
@@ -164,7 +172,7 @@ public class Executor {
         this.wd = wd;
         return this;
     }
-    
+
     /**
      * Redirects the stdout and stderr streams of the child process to the specified 
      * {@link OutputStream}. If not specified stdout and stderr will be inherited from the
@@ -174,16 +182,28 @@ public class Executor {
      * @return this {@link Executor}.
      */
     public Executor errOut(OutputStream out) {
-        this.out = out;
-        this.err = out;
+        Objects.requireNonNull(out);
+        out(out);
+        err(out);
         return this;
     }
-    
+
     /**
-     * Redirects the stdout stream of the child process to the specified 
+     * Redirects the stdout and stderr streams of the child process to the specified
+     * {@link Logger}
+     */
+    public Executor errOut(Logger logger) {
+        Objects.requireNonNull(logger);
+        out(new InfoOutputStream(logger));
+        err(new ErrorOutputStream(logger));
+        return this;
+    }
+
+    /**
+     * Redirects the stdout stream of the child process to the specified
      * {@link OutputStream}. If not specified stdout will be inherited from the
      * parent process.
-     * 
+     *
      * @param out the {@link OutputStream}.
      * @return this {@link Executor}.
      */
@@ -191,12 +211,12 @@ public class Executor {
         this.out = out;
         return this;
     }
-    
+
     /**
-     * Redirects the stderr stream of the child process to the specified 
+     * Redirects the stderr stream of the child process to the specified
      * {@link OutputStream}. If not specified stderr will be inherited from the
      * parent process.
-     * 
+     *
      * @param err the {@link OutputStream}.
      * @return this {@link Executor}.
      */
@@ -204,10 +224,10 @@ public class Executor {
         this.err = err;
         return this;
     }
-    
+
     /**
      * Uses the specified {@link InputStream} as the stdin stream for the child process.
-     * 
+     *
      * @param in the {@link InputStream}.
      * @return this {@link Executor}.
      */
@@ -215,169 +235,263 @@ public class Executor {
         this.in = in;
         return this;
     }
-    
-    /**
-     * Sets the {@link ExecuteStreamHandler} to be used by the underlying 
-     * {@link org.apache.commons.exec.Executor}. If set any streams set by {@link #out(OutputStream)},
-     * {@link #err(OutputStream)}, {@link #errOut(OutputStream)} or {@link #in(InputStream)} will be
-     * ignored.
-     * 
-     * @param streamHandler the {@link ExecuteStreamHandler} to be used.
-     * @return this {@link Executor}.
-     */
-    public Executor streamHandler(ExecuteStreamHandler streamHandler) {
-        this.streamHandler = streamHandler;
-        return this;
-    }
-    
+
     /**
      * Sets whether the stdout and stderr {@link OutputStream}s should be closed after the command
      * has finished.
-     * 
+     *
      * @param b <code>true</code> or <code>false</code>.
      */
     public Executor closeOutputStreams(boolean b) {
         this.closeOutputStreams = b;
         return this;
     }
-    
-    private CommandLine generateCommandLine() {
-        CommandLine commandLine = new CommandLine(cmd);
-        for (String arg : args) {
-            commandLine.addArgument(arg, false);
-        }
+
+    private List<String> generateCommandLine() {
+        List<String> commandLine = new ArrayList<>();
+        commandLine.add(cmd);
+        commandLine.addAll(args);
         return commandLine;
     }
 
-    @SuppressWarnings("unchecked")
-    private Map<String, String> generateEnv() throws IOException {
-        Map<String, String> mergedEnv = new HashMap<String, String>();
-        if (inheritEnv) {
-            mergedEnv.putAll(EnvironmentUtils.getProcEnvironment());
-        }
-        mergedEnv.putAll(env);
-        return mergedEnv;
+    private ProcessBuilder initProcessBuilder(List<String> commandLine) {
+        ProcessBuilder pb = new ProcessBuilder(commandLine);
+
+        // working directory
+        if (wd != null) pb.directory(wd);
+
+        // environment variables
+        Map<String, String> pbEnv = pb.environment();
+        if (!inheritEnv) pbEnv.clear();
+        pbEnv.putAll(this.env);
+
+        return pb;
     }
-    
-    private <T extends org.apache.commons.exec.Executor> T initExecutor(T executor) {
-        if (streamHandler == null) {
-            OutputStream pumpOut = null;
-            OutputStream pumpErr = null;
-            InputStream pumpIn = null;
-            if (out != null) {
-                pumpOut = out;
-            } else {
-                pumpOut = new InfoOutputStream(logger);
-            }
-            if (err != null) {
-                pumpErr = err;
-            } else {
-                pumpErr = new ErrorOutputStream(logger);
-            }
-            if (in != null) {
-                pumpIn = in;
-            }
-            if (pumpOut == System.out) {
-                pumpOut = new NeverCloseOutputStream(pumpOut);
-            }
-            if (pumpErr == System.err) {
-                pumpErr = new NeverCloseOutputStream(pumpErr);
-            }
-            executor.setStreamHandler(new PumpStreamHandler(pumpOut, pumpErr, pumpIn) {
-                @Override
-                protected Thread createPump(InputStream is, OutputStream os,
-                        boolean closeWhenExhausted) {
-                    return super.createPump(is, os, closeOutputStreams ? true : closeWhenExhausted);
-                }
-            });
-        } else {
-            executor.setStreamHandler(streamHandler);
+
+    private String quoteArgument(String arg) {
+        if (arg == null) return "";
+        if (arg.contains(" ") && !arg.startsWith("\"") && !arg.startsWith("'")) {
+            return "\"" + arg + "\"";
         }
-        
-        if (wd != null) {
-            executor.setWorkingDirectory(wd);
-        }
-        executor.setExitValue(0);
-        return executor;
+        return arg;
     }
-    
-    private void logCommandLine(CommandLine commandLine) {
-        if (logger == null) {
+
+    private void logCommandLine(List<String> commandLine) {
+        if (logger == null) return;
+        if (commandLine.size() == 1) {
+            logger.info(quoteArgument(commandLine.get(0)));
             return;
         }
-        
-        String[] args = commandLine.getArguments();
-        if (args.length == 0) {
-            logger.info(commandLine.toString());
-            return;
-        }
-        
+
         StringBuilder result = new StringBuilder();
-
-        result.append(StringUtils.quoteArgument(commandLine.getExecutable()));
-        result.append(' ');
-
-        boolean first = true;
-        for (int i = 0; i < args.length; i++) {
-            String currArgument = args[i];
-            if( StringUtils.isQuoted(currArgument)) {
-                result.append(currArgument);
-            }
-            else {
-                result.append(StringUtils.quoteArgument(currArgument));
-            }
-            if (i<args.length-1) {
-                result.append(' ');
-            }
-            
-            if (i == args.length - 1 || result.length() > 2048) {
-                logger.info((first ? "" : "    ") + result.toString());
+        boolean firstLine = true;
+        for (String currArgument: commandLine) {
+            result.append(quoteArgument(currArgument));
+            if (result.length() != 0) result.append(' ');
+            if (result.length() > 2048) {
+                logger.info((firstLine ? "" : "    ") + result);
                 result.delete(0, result.length());
-                first = false;
+                firstLine = false;
             }
         }
+        if (result.length() > 0) logger.info((firstLine ? "" : "    ") + result);
     }
-    
-    public int exec() throws ExecuteException, IOException {
-        CommandLine commandLine = generateCommandLine();
+
+    /**
+     * setups process builder redirection for stdout, stderr and stdin according to the provided streams
+     * and returns list of pump tasks to be started after process is started to pump data between process streams
+     * in case custom streams are provided.
+     */
+    private List<Consumer<Process>> setupRedirection(ProcessBuilder pb, OutputStream out, OutputStream err, InputStream in) {
+        List<Consumer<Process>> threads = new ArrayList<>();
+
+        // combine stderr with stdout if they are redirected to the same stream
+        if (out == err) pb.redirectErrorStream(true);
+
+        if (out == null || out == DISCARD_OUTPUT) {
+            pb.redirectOutput(ProcessBuilder.Redirect.DISCARD);
+        } else if (out == INHERIT_OUTPUT) {
+            pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+        } else {
+            pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
+            // custom stream provided, pump process output to it in a separate thread
+            if (out != PIPE_OUTPUT)
+                threads.add(p -> pumpStreams(p.getInputStream(), out, closeOutputStreams));
+        }
+
+        if (err == null || err == DISCARD_OUTPUT) {
+            pb.redirectError(ProcessBuilder.Redirect.DISCARD);
+        } else if (err == INHERIT_OUTPUT) {
+            pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+        } else {
+            pb.redirectError(ProcessBuilder.Redirect.PIPE);
+            // custom stream provided, pump process err to it in a separate thread
+            if (err != PIPE_OUTPUT)
+                threads.add(p -> pumpStreams(p.getErrorStream(), err, closeOutputStreams));
+        }
+
+        if (in == null) {
+            // there is no input is expected to process, close the stream to let process know
+            threads.add( p -> closeSilently(p.getOutputStream()) );
+        } else if (in == INHERIT_INPUT) {
+            pb.redirectInput(ProcessBuilder.Redirect.INHERIT);
+        } else {
+            pb.redirectInput(ProcessBuilder.Redirect.PIPE);
+            // custom stream provided, pump it to process input in a separate thread
+            if (in != PIPE_INPUT)
+                threads.add( p -> pumpStreams(in, p.getOutputStream(),false));
+        }
+
+        return threads;
+    }
+
+    /**
+     * Executes the command and waits for it to finish.
+     * It uses the provided streams for stdout, stderr and stdin redirection according, but if not specified:
+     * - stdin will be configured as discarded
+     * - stdout and stderr will be directed to logger if provided or discarded otherwise.
+     *
+     * @throws ExecuteException if the process exits with non-zero exit code or if the waiting for process is
+     *         interrupted.
+     */
+    public int exec() throws IOException {
+        List<String> commandLine = generateCommandLine();
         logCommandLine(commandLine);
+        ProcessBuilder pb = initProcessBuilder(commandLine);
+
+        // setup IO redirection
+        List<Consumer<Process>> pumpTasks = setupRedirection(pb,
+            out != null ? out : (logger != null ? new InfoOutputStream(logger) : null),
+            err != null ? err : (logger != null ? new ErrorOutputStream(logger) : null),
+            in
+        );
+
+        Process process = pb.start();
         try {
-            return initExecutor(new DefaultExecutor()).execute(commandLine, generateEnv());
-        } catch (ExecuteException e) {
-            ExecuteException ex = new ExecuteException("Command '" + commandLine + "' failed ", 
-                    e.getExitValue());
-            ex.setStackTrace(e.getStackTrace());
-            throw ex;
+            // start pump threads for custom streams if there are any
+            // no need to bother for their completion:
+            // these will terminate as soon as stream ends, also these are daemon threads so they
+            // won't prevent JVM from exiting if something goes wrong
+            for (Consumer<Process> task : pumpTasks) {
+                Thread t = new Thread(() -> task.accept(process));
+                t.setDaemon(true);
+                t.start();
+            }
+
+            int code = process.waitFor();
+            if (code != 0) throw new ExecuteException(code, "Command '" +  String.join(" ",  commandLine) + "' failed ");
+            return code;
+        } catch (InterruptedException e) {
+            // wait interrupted, terminate process
+            process.destroy();
+            throw new ExecuteException(ExecuteException.INTERRUPTED_EXIT_CODE, "Command '" +  String.join(" ",  commandLine) + "' interrupted ");
         }
     }
-    
+
+    /**
+     * Executes the command and returns process.
+     * It uses the provided streams for stdout, stderr and stdin redirection according, but if not specified:
+     * - stdin will set to PIPE mode
+     * - stdout and stderr will be set to PIPE mode
+     * If redirection to logger is needed, it has to be set as a custom stream using out()/err() methods
+     */
     public Process execAsync() throws IOException {
-        CommandLine commandLine = generateCommandLine();
+        List<String> commandLine = generateCommandLine();
         logCommandLine(commandLine);
-        return initExecutor(new AsyncExecutor()).executeAsync(commandLine, generateEnv());
+
+        ProcessBuilder pb = initProcessBuilder(commandLine);
+
+        // setup IO redirection
+        List<Consumer<Process>> pumpTasks = setupRedirection(pb,
+            out != null ? out : PIPE_OUTPUT,
+            err != null ? err :PIPE_OUTPUT,
+            in != null ? in : PIPE_INPUT
+        );
+
+        Process process = pb.start();
+        // start pump threads for custom streams if there are any
+        // no need to bother for their completion:
+        // these will terminate as soon as stream ends, also these are daemon threads so they
+        // won't prevent JVM from exiting if something goes wrong
+        for (Consumer<Process> task : pumpTasks) {
+            Thread t = new Thread(() -> task.accept(process));
+            t.setDaemon(true);
+            t.start();
+        }
+
+        return process;
     }
-    
+
     public String execCapture() throws IOException {
-        ExecuteStreamHandler oldStreamHandler = streamHandler;
+        List<String> commandLine = generateCommandLine();
+        logCommandLine(commandLine);
+
+        // override output stream from logger to capture output
+        // meanwhile, error stream will be logged as usual to this.logger
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        CommandLine commandLine = generateCommandLine();
+        out(baos);
+        exec();
+
+        return baos.toString().trim();
+    }
+
+    private static void pumpStreams(InputStream in, OutputStream out, boolean closeOutput) {
         try {
-            streamHandler(new PumpStreamHandler(baos, new ErrorOutputStream(logger)));
-            logCommandLine(commandLine);
-            DefaultExecutor executor = initExecutor(new DefaultExecutor());
-            executor.execute(commandLine, generateEnv());
-            return new String(baos.toByteArray()).trim();
-        } catch (ExecuteException e) {
-            String output = new String(baos.toByteArray()).trim();
-            if (output.length() > 0 && e.getMessage().startsWith("Process exited with an error")) {
-                StackTraceElement[] origStackTrace = e.getStackTrace();
-                e = new ExecuteException("Command '" + commandLine + "' failed with output: " 
-                        + output + " ", e.getExitValue());
-                e.setStackTrace(origStackTrace);
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+                out.flush(); // critical for stdin pumping
             }
-            throw e;
+        } catch (IOException ignored) {
         } finally {
-            streamHandler = oldStreamHandler;
+            if (closeOutput) closeSilently(out);
+        }
+    }
+
+    private static void closeSilently(OutputStream out) {
+        try { out.close(); } catch (IOException ignored) { }
+    }
+
+    /**
+     * Utility class to be used as constant to tag specific cases of using stdout/stderr redirects
+     */
+    private static class TagOutputStream extends OutputStream{
+        private final String description;
+
+        public TagOutputStream(String name) {
+            this.description = name;
+        }
+
+        @Override
+        public void write(int b) {
+            throw new UnsupportedOperationException("this class is to be used as a tag only");
+        }
+
+        @Override
+        public String toString() {
+            return description;
+        }
+    }
+
+    /**
+     * Utility class to be used as constant to tag specific cases of using stdin redirects
+     */
+    private static class TagInputStream extends InputStream {
+        private final String description;
+
+        public TagInputStream(String name) {
+            this.description = name;
+        }
+
+        @Override
+        public String toString() {
+            return description;
+        }
+
+        @Override
+        public int read() {
+            throw new UnsupportedOperationException("this class is to be used as a tag only");
         }
     }
 }

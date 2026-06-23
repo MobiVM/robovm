@@ -16,23 +16,30 @@
 package org.robovm.compiler.plugin.debug;
 
 import org.robovm.compiler.CompilerException;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.plugin.LaunchPlugin;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
+import org.robovm.compiler.launcher.LauncherUtils;
+import org.robovm.compiler.launcher.LauncherUtils.OutputPortObserverFuture;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.plugin.PluginArguments;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.plugin.launch.LaunchPlugin;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.console.ConsoleLaunchParameters;
 import org.robovm.compiler.target.ios.IIOSLaunchParameters;
+import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.debugger.Debugger;
 import org.robovm.debugger.DebuggerConfig;
 import org.robovm.debugger.hooks.IHooksConnection;
-import org.robovm.debugger.utils.IHooksConnectionUtils.DelegatingFuture;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * @author Demyan Kimitsa
@@ -45,13 +52,14 @@ import java.util.Map;
  * Also corresponding entry has to be done in META-INF/services
  */
 @SuppressWarnings({"unused", "JavadocReference"})
-public class DebuggerLaunchPlugin extends LaunchPlugin {
+public class DebuggerLaunchPlugin extends LaunchPlugin implements Launcher.Listener {
     private final static String ARG_KEY_LOG_CONSOLE = "logconsole";
     private final static String ARG_KEY_SOURCE_PATH = "sourcepath";
     private final static String ARG_KEY_JDWP_PORT = "jdwpport";
     private final static String ARG_KEY_CLIENT_MODE = "clientmode";
     private final static String ARG_KEY_LOG_DIR = "logdir";
 
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private DebuggerConfig debuggerConfig;
     private Debugger debugger;
 
@@ -68,7 +76,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
     }
 
     @Override
-    public void beforeLaunch(Config config, LaunchParameters parameters) {
+    public void setupLaunch(Config config, LaunchParameters parameters) {
         cleanup();
 
         if (!config.isDebug())
@@ -86,6 +94,9 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         parameters.getArguments().add("-rvm:EnableHooks");
         parameters.getArguments().add("-rvm:WaitForResume");
 
+        // register as launch listener to be able to start debugger once target is launched
+        parameters.setLauncherListener(this);
+
         Target target = config.getTarget();
 
         // now create debugger config
@@ -94,7 +105,7 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
         builder.setJdwpClienMode(jdwpClientMode);
         builder.setLogToConsole(logConsole);
         builder.setLogDir(new File(logDir));
-        builder.setArch(DebuggerConfig.Arch.valueOf(target.getArch().getCpuArch().name()));
+        builder.setArch(DebuggerConfig.Arch.valueOf(config.getArch().getCpuArch().name()));
 
         // specific settings depending on launch type
         if (parameters instanceof ConsoleLaunchParameters) {
@@ -108,30 +119,41 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             throw new IllegalArgumentException("Unsupported target " + target.getType());
         }
 
-        // tell launcher that debugger/hooks connection is expected
-        DelegatingFuture<IHooksConnection> connectionPromise = new DelegatingFuture<>();
-        builder.setHooksConnectionPromise(connectionPromise);
-        parameters.setRequestForDebuggerConnection(connectionPromise);
+        // setup way to receive hooks port number from target
+        Future<Integer> portNumberPromise = getPortNumberPromise(parameters, config.getTarget(), config.getArch());
+        builder.setPortNumberPromise(portNumberPromise);
+
         debuggerConfig = builder.build();
     }
 
     @Override
-    public void afterLaunch(Config config, LaunchParameters parameters, Process process) {
-        if (!config.isDebug())
-            return;
-
-        // create and start the debugger
-        debugger = new Debugger(process, debuggerConfig);
-        debugger.start();
+    public void onLaunching() {
+        // launcher callback: launch is initiated, while deployment is starting can start parsing
+        // hash maps of binary
+        executor.submit(() -> { debugger = new Debugger(debuggerConfig); });
     }
 
     @Override
-    public void launchFailed(Config config, LaunchParameters parameters) {
+    public void onLaunched(Launcher.Target target) {
+        executor.submit(() -> {
+            try {
+                int portNumber = debuggerConfig.getPortNumberPromise().get();
+                IHooksConnection connection = hookConnectionFromTarget(target, portNumber);
+                debugger.start(target::terminate, connection);
+            } catch (Exception e) {
+                // failed to connect to target, shutdown debugger
+                debugger.onException(Thread.currentThread(), e);
+                debugger.shutdown();
+            }
+        });
+    }
+
+    @Override
+    public void onExited(int code) {
         cleanup();
     }
 
-    @Override
-    public void cleanup() {
+    private void cleanup() {
         // shutdown previous instance of debugger
         synchronized (this) {
             if (debugger != null) {
@@ -157,5 +179,64 @@ public class DebuggerLaunchPlugin extends LaunchPlugin {
             throw new CompilerException("Missing required debugger argument " + key);
 
         return Boolean.parseBoolean(v);
+    }
+
+    /**
+     * Converts target connection to IHooksConnection
+     */
+    private IHooksConnection hookConnectionFromTarget(Launcher.Target target, int port) throws IOException {
+        return new IHooksConnection() {
+            final Launcher.Connection connection = target.createConnection();
+
+            @Override
+            public void connect() throws IOException {
+                connection.connect(port);
+            }
+
+            @Override
+            public void disconnect() throws IOException {
+                connection.disconnect();
+            }
+
+            @Override
+            public InputStream getInputStream() throws IOException {
+                return connection.in();
+            }
+
+            @Override
+            public OutputStream getOutputStream() throws IOException {
+                return connection.out();
+            }
+        };
+    }
+
+    /**
+     * Depending on target type and arch, setup way to receive hooks port number from target
+     */
+    private Future<Integer> getPortNumberPromise(LaunchParameters parameters, Target target, Arch arch) {
+        try {
+            if (parameters instanceof ConsoleLaunchParameters) {
+                File hooksPortFile = File.createTempFile("robovm-dbg-console", ".port");
+                parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
+                return LauncherUtils.waitForPortFromFile(hooksPortFile);
+            } else if (parameters instanceof IIOSLaunchParameters) {
+                if (IOSTarget.isSimulatorArch(arch)) {
+                    // launching on simulator, it can write down port number to file on local system
+                    File hooksPortFile = File.createTempFile("robovm-dbg-sim", ".port");
+                    parameters.getArguments().add("-rvm:PrintDebugPort=" + hooksPortFile.getAbsolutePath());
+                    return LauncherUtils.waitForPortFromFile(hooksPortFile);
+                } else {
+                    // launching on device, port number will be sent via stdout, setup stdout reader to catch it
+                    parameters.getArguments().add("-rvm:PrintDebugPort");
+                    OutputPortObserverFuture observeOutputFeature = new OutputPortObserverFuture();
+                    LauncherUtils.attachOutputPortObserver(parameters.getStdoutChain(), observeOutputFeature);
+                    return observeOutputFeature;
+                }
+            }
+        } catch (IOException e) {
+            throw new CompilerException("Failed to create debugger port file", e);
+        }
+
+        throw new IllegalArgumentException("Unsupported target " + target.getType());
     }
 }

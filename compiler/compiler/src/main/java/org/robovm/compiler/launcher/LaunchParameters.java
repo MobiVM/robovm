@@ -14,12 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/gpl-2.0.html>.
  */
-package org.robovm.compiler.target;
+package org.robovm.compiler.launcher;
 
-import org.robovm.debugger.hooks.IHooksConnection;
-import org.robovm.debugger.utils.IHooksConnectionUtils.DelegatingFuture;
+import org.robovm.compiler.util.io.OutputStreamChain;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +30,14 @@ public abstract class LaunchParameters {
     private final List<String> arguments = new ArrayList<>();
     private Map<String, String> environment = null;
     private File workingDirectory = new File(".");
-    private File stdoutFifo = null;
-    private File stderrFifo = null;
 
-    ///  debugger support
-    private DelegatingFuture<IHooksConnection> requestForDebuggerConnection = null;
-    
+    /// chains for stdout and stderr
+    private final OutputStreamChain stdoutChain = new OutputStreamChain();
+    private final OutputStreamChain stderrChain = new OutputStreamChain();
+
+    /// listener for launcher callbacks(launched/terminated)
+    private Launcher.Listener launcherListener;
+
     public List<String> getArguments() {
         return arguments;
     }
@@ -81,41 +82,21 @@ public abstract class LaunchParameters {
     public void setWorkingDirectory(File workingDirectory) {
         this.workingDirectory = workingDirectory;
     }
-    
-    public File getStdoutFifo() {
-        return stdoutFifo;
-    }
-    
-    public void setStdoutFifo(File stdoutFifo) {
-        this.stdoutFifo = stdoutFifo;
-    }
-    
-    public File getStderrFifo() {
-        return stderrFifo;
-    }
-    
-    public void setStderrFifo(File stderrFifo) {
-        this.stderrFifo = stderrFifo;
-    }
 
 
-    public DelegatingFuture<IHooksConnection> getRequestForDebuggerConnection() {
-        return requestForDebuggerConnection;
+    public OutputStreamChain getStdoutChain() {
+        return stdoutChain;
     }
 
-    /**
-     * Sets Future debugger will wait to retrieve debug connection to target.
-     * Launchers expected to take additional steps to capture information about
-     * connection (e.g. capture port from std output or from file)
-     * <p>
-     * If launcher is not able to provide such information or debug mode is not supported
-     * it should complete feature with exception
-     * <p>
-     * if `requestForDebugConnection` wasn't set -- Launcher should launch without preparing
-     * for debug
-     */
-    public LaunchParameters setRequestForDebuggerConnection(DelegatingFuture<IHooksConnection> request) {
-        this.requestForDebuggerConnection = request;
-        return this;
+    public OutputStreamChain getStderrChain() {
+        return stderrChain;
+    }
+
+    public void setLauncherListener(Launcher.Listener listener) {
+        this.launcherListener = listener;
+    }
+
+    public Launcher.Listener getLauncherListener() {
+        return launcherListener;
     }
 }

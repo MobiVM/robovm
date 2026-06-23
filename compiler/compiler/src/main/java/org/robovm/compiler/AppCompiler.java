@@ -17,7 +17,6 @@
  */
 package org.robovm.compiler;
 
-import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,13 +28,15 @@ import org.robovm.compiler.config.Config.TreeShakerMode;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.plugin.*;
+import org.robovm.compiler.plugin.launch.LaunchPlugin;
 import org.robovm.compiler.target.console.ConsoleTarget;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.ios.*;
 import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.target.ios.simulator.SimCtl;
 import org.robovm.compiler.util.AntPathMatcher;
+import org.robovm.compiler.util.Executor.ExecuteException;
 import org.simpleframework.xml.Serializer;
 
 import java.io.*;
@@ -281,12 +282,11 @@ public class AppCompiler {
      * which classes need to be recompiled and linked in through the root
      * classes' dependencies.
      * 
-     * The classes matching {@link #ROOT_CLASS_PATTERNS} and
-     * {@link #ROOT_CLASSES} will always be included. If a main class has been
+     * The classes matching {@link #ROOT_CLASSES} will always be included. If a main class has been
      * specified it will also become a root. Any root class pattern specified on
-     * the command line (as returned by {@link Config#getRoots()} will also be
+     * the command line (as returned by {@link Config#getForceLinkClasses()} will also be
      * used to find root classes. If no main class has been specified and
-     * {@link Config#getRoots()} returns an empty set all classes available on
+     * {@link Config#getForceLinkClasses()} returns an empty set all classes available on
      * the bootclasspath and the classpath will become roots.
      */
     private TreeSet<Clazz> getRootClasses() {
@@ -534,7 +534,6 @@ public class AppCompiler {
     /**
      * Write the classpaths file that contains a list of class and jar files that were input for the Main binary
      *
-     * @param classPathsFile
      * @param linkClasses
      * @throws IOException
      */
@@ -575,7 +574,6 @@ public class AppCompiler {
     /**
      * Checks, whether recompilation of the Main binary is necessary by looking at the classPathsFile
      *
-     * @param classPathsFile
      * @return
      * @throws IOException
      */
@@ -997,43 +995,16 @@ public class AppCompiler {
     }
 
     public int launch(LaunchParameters launchParameters) throws Throwable {
-        return launch(launchParameters, null);
-    }
-
-    public int launch(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
-        try {
-            return launchAsync(launchParameters, inputStream).waitFor();
-        } finally {
-            launchAsyncCleanup();
-        }
+        return launchAsync(launchParameters).waitFor();
     }
 
     public Process launchAsync(LaunchParameters launchParameters) throws Throwable {
-        return launchAsync(launchParameters, null);
-    }
-
-    public Process launchAsync(LaunchParameters launchParameters, InputStream inputStream) throws Throwable {
+        // allow launch plugins to mutate the launch parameters before launching
+        // e.g. setup stdio handling and setup process listener callbacks
         for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-            plugin.beforeLaunch(config, launchParameters);
+            plugin.setupLaunch(config, launchParameters);
         }
-        try {
-            Process process = config.getTarget().launch(launchParameters);
-            for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-                plugin.afterLaunch(config, launchParameters, process);
-            }
-            return process;
-        } catch (Throwable e) {
-            for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-                plugin.launchFailed(config, launchParameters);
-            }
-            throw e;
-        }
-    }
-
-    public void launchAsyncCleanup() {
-        for (LaunchPlugin plugin : config.getLaunchPlugins()) {
-            plugin.cleanup();
-        }
+        return config.getTarget().launch(launchParameters);
     }
 
     private static void printDeviceTypesAndExit() throws IOException {

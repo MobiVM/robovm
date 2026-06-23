@@ -16,7 +16,6 @@
  */
 package org.robovm.compiler.target.ios.simulator;
 
-import org.apache.commons.exec.util.StringUtils;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.CpuArch;
 
@@ -244,7 +243,7 @@ public class DeviceType implements Comparable<DeviceType> {
         }
 
         static Version parse(String v) {
-            String[] parts = StringUtils.split(v, ".");
+            String[] parts = v.split("\\.");
             int major = Integer.parseInt(parts[0]);
             int minor = parts.length >= 2 ? Integer.parseInt(parts[1]) : 0;
             int revision = parts.length >= 3 ? Integer.parseInt(parts[2]) : 0;

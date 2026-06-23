@@ -16,7 +16,7 @@
  */
 package org.robovm.compiler.target.console;
 
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 
 /**
  * Launch parameters dedicated for console tartget

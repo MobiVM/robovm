@@ -27,21 +27,18 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.*;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.AbstractTarget;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.target.ios.ProvisioningProfile.Type;
-import org.robovm.compiler.target.ios.devicectl.DeviceCtlLauncherProcess;
-import org.robovm.compiler.target.ios.devicectl.IOSDeviceCtlLaunchParameters;
-import org.robovm.compiler.target.ios.devicelib.AppLauncherProcess;
-import org.robovm.compiler.target.ios.devicelib.IOSDeviceLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLauncher;
+import org.robovm.compiler.target.ios.simulator.IOSSimLauncher;
 import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
-import org.robovm.compiler.target.ios.simulator.SimLauncherProcess;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.PList;
 import org.robovm.compiler.util.ToolchainUtil;
-import org.robovm.libimobiledevice.IDevice;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -106,9 +103,7 @@ public class IOSTarget extends AbstractTarget {
         if (isSimulatorArch(arch)) {
             return new IOSSimulatorLaunchParameters();
         }
-        // TODO: FIXME: do a smart switch here
-        // return new IOSDeviceLaunchParameters();
-        return new IOSDeviceCtlLaunchParameters();
+        return new IOSDeviceLaunchParameters();
     }
 
     public static boolean isSimulatorArch(Arch arch) {
@@ -147,11 +142,9 @@ public class IOSTarget extends AbstractTarget {
     @Override
     protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
         if (launchParameters instanceof IOSSimulatorLaunchParameters) {
-            return new SimLauncherProcess(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
+            return new IOSSimLauncher(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
         } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
-            return new AppLauncherProcess(config.getLogger(), getAppDir(), (IOSDeviceLaunchParameters) launchParameters);
-        } else if (launchParameters instanceof IOSDeviceCtlLaunchParameters) {
-            return new DeviceCtlLauncherProcess(config.getLogger(), getAppDir(), getBundleId(), (IOSDeviceCtlLaunchParameters) launchParameters);
+            return new IOSDeviceLauncher(config.getLogger(), getAppDir(),  getBundleId(), (IOSDeviceLaunchParameters) launchParameters);
         } else throw new IllegalArgumentException("Unexpected launchParametersType: " + launchParameters.getClass().getSimpleName());
     }
 

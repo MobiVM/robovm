@@ -19,7 +19,6 @@ package org.robovm.compiler.target.ios;
 import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
 import com.dd.plist.PropertyListParser;
-import org.apache.commons.exec.util.StringUtils;
 import org.robovm.compiler.util.ToolchainUtil;
 
 import java.io.File;
@@ -85,7 +84,7 @@ public class SDK implements Comparable<SDK> {
             sdk.platformVersion = toString(additionalInfo.objectForKey("DTPlatformVersion"));
             sdk.platformName = toString(additionalInfo.objectForKey("DTPlatformName"));
 
-            String[] parts = StringUtils.split(sdk.version, ".");
+            String[] parts = sdk.version.split("\\.");
             sdk.major = Integer.parseInt(parts[0]);
             sdk.minor = parts.length >= 2 ? Integer.parseInt(parts[1]) : 0;
             sdk.revision = parts.length >= 3 ? Integer.parseInt(parts[2]) : 0;

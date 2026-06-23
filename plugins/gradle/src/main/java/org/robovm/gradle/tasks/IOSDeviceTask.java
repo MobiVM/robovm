@@ -22,7 +22,7 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.ios.IOSTarget;
-import org.robovm.compiler.target.ios.devicectl.IOSDeviceCtlLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLaunchParameters;
 import org.robovm.gradle.RoboVMGradleException;
 
 import java.util.Arrays;
@@ -48,7 +48,7 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
                 return;
             }
             Config config = compiler.getConfig();
-            IOSDeviceCtlLaunchParameters launchParameters = (IOSDeviceCtlLaunchParameters) config.getTarget().createLaunchParameters();
+            IOSDeviceLaunchParameters launchParameters = (IOSDeviceLaunchParameters) config.getTarget().createLaunchParameters();
 			String udid = (String) project.getProperties().get("robovm.device.udid");	
 			if(udid != null && !udid.isEmpty()){
 				launchParameters.setDeviceId(udid);
@@ -56,6 +56,12 @@ public class IOSDeviceTask extends AbstractRoboVMTask {
             if (args != null) {
                 launchParameters.setArguments(Arrays.asList(args));
             }
+
+            // redirect stdout and stderr to gradle console, ignoring parent in chain
+            // as not returning the process but just running it synchronously
+            launchParameters.getStdoutChain().registerLink((p) -> System.out );
+            launchParameters.getStderrChain().registerLink((p) -> System.err );
+
             compiler.launch(launchParameters);
         } catch (Throwable t) {
             throw new RoboVMGradleException("Failed to launch IOS Device", t);
