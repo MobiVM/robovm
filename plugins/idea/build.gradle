@@ -49,7 +49,10 @@ kotlin {
 intellij {
     version = '2025.2'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
-    updateSinceUntilBuild = false
+    updateSinceUntilBuild = true
+}
+patchPluginXml {
+    untilBuild = "" // do not set untilBuild, so that the plugin is compatible with all future versions of IntelliJ
 }
 
 def copyRoboVmDist = tasks.register("copyRoboVmDist", Copy) {
