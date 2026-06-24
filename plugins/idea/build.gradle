@@ -47,7 +47,7 @@ kotlin {
 }
 
 intellij {
-    version = '2024.2'   // we are compiles against this API version
+    version = '2025.2'   // we are compiles against this API version
     plugins = ['java', 'maven', 'gradle']
     updateSinceUntilBuild = false
 }

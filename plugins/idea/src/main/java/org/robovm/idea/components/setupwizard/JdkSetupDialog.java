@@ -6,6 +6,7 @@ import com.intellij.execution.process.ProcessOutput;
 import com.intellij.execution.util.ExecUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
 import com.intellij.openapi.projectRoots.JavaSdk;
@@ -51,18 +52,8 @@ public class JdkSetupDialog extends JDialog {
         }
 
         browseButton.addActionListener(e -> {
-            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                    .createFileChooser(new FileChooserDescriptor(false, true, false, false, false, false) {
-                        @Override
-                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                            return file.isDirectory();
-                        }
-
-                        @Override
-                        public boolean isFileSelectable(VirtualFile file) {
-                            return file.isDirectory();
-                        }
-                    }, null, panel);
+            FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance().createFileChooser(descriptor, null, panel);
             File jdkDir = new File(System.getProperty("user.home"));
             if (jdkHome.getText() != null && !jdkHome.getText().isEmpty()) {
                 jdkDir = new File(jdkHome.getText());
