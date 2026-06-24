@@ -30,4 +30,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface CustomClass {
     String value() default "";
+    boolean preload() default false;
 }
