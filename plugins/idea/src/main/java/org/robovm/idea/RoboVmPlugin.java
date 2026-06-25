@@ -23,9 +23,7 @@ import com.intellij.facet.FacetManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.ui.MessageType;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener;
@@ -254,7 +252,8 @@ public class RoboVmPlugin {
             try {
                 libs.addAll(Arrays.asList(RoboFileUtils.listFiles(libsDir, (dir, name) -> name.endsWith(".jar") && !name.contains("cacerts"))));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                logError(null, "RoboVM SDK is not installed, re-sync project to install.");
+                throw new RuntimeException("RoboVM SDK is not installed", e);
             }
         }
         return libs;
