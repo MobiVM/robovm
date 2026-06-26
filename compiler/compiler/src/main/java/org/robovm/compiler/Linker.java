@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -138,8 +139,18 @@ public class Linker {
         }
     }
 
+
+    /**
+     * Interface storing runtime data for a linker.
+     * Compiler plugins can fetch and store runtime data.
+     * Used for ObjC and InterfaceBuilderClasses plugins to store list of CustomClasses to be preloaded
+     */
+    public interface RuntimeData {
+        byte[] toBytes();
+    }
+
     private final Config config;
-    private final Map<String, byte[]> runtimeData = new HashMap<>();
+    private final Map<String, RuntimeData> runtimeData = new HashMap<>();
     private final Map<String, byte[]> bcGlobalData = new HashMap<>();
 
     public Linker(Config config) {
@@ -150,10 +161,14 @@ public class Linker {
      * Adds arbitrary data which will be compiled into the executable and will
      * be available at runtime using {@code VM.getRuntimeData(id)}.
      */
-    public void addRuntimeData(String id, byte[] data) {
+    public void addRuntimeData(String id, RuntimeData data) {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(data, "data");
         runtimeData.put(id, data);
+    }
+
+    public RuntimeData getRuntimeData(String id) {
+        return runtimeData.get(id);
     }
 
     /**
@@ -175,10 +190,10 @@ public class Linker {
 
         LinkedList<byte[]> dataList = new LinkedList<>();
         int length = 4;
-        for (Entry<String, byte[]> entry : runtimeData.entrySet()) {
-            dataList.add(entry.getKey().getBytes("UTF8"));
+        for (Entry<String, RuntimeData> entry : runtimeData.entrySet()) {
+            dataList.add(entry.getKey().getBytes(StandardCharsets.UTF_8));
             length += 4 + dataList.getLast().length;
-            dataList.add(entry.getValue());
+            dataList.add(entry.getValue().toBytes());
             length += 4 + dataList.getLast().length;
         }
 

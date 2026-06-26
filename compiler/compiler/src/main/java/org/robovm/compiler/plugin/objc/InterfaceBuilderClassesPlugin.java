@@ -77,7 +77,6 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
      * classes in {@link #buildClassToUrlMap(List)}.
      */
     private static final Pattern EXCLUDED_PACKAGES = Pattern.compile("org\\.robovm\\.apple\\..*");
-    private static final String RUNTIME_DATA_ID = "org.robovm.apple.uikit.UIApplication.preloadClasses";
 
     private Logger logger;
     private List<String> preloadClasses;
@@ -209,7 +208,12 @@ public class InterfaceBuilderClassesPlugin extends AbstractCompilerPlugin {
     @Override
     public void beforeLinker(Config config, Linker linker, Set<Clazz> classes) throws IOException {
         if (!preloadClasses.isEmpty()) {
-            linker.addRuntimeData(RUNTIME_DATA_ID, StringUtils.join(preloadClasses, ",").getBytes("UTF8"));
+            CustomClassRuntimeData runtimeData = (CustomClassRuntimeData)linker.getRuntimeData(CustomClassRuntimeData.ID);
+            if (runtimeData == null) {
+                runtimeData = new CustomClassRuntimeData();
+                linker.addRuntimeData(CustomClassRuntimeData.ID, runtimeData);
+            }
+            runtimeData.addClasses(preloadClasses);
         }
     }
 
