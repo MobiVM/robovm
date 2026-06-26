@@ -18,6 +18,7 @@ package org.robovm.idea.actions;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
 import com.intellij.openapi.module.Module;
@@ -100,18 +101,8 @@ public class CreateIpaDialog extends DialogWrapper {
         }
 
         browseButton.addActionListener(e -> {
-            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                    .createFileChooser(new FileChooserDescriptor(false, true, false, false, false, false) {
-                        @Override
-                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                            return file.isDirectory();
-                        }
-
-                        @Override
-                        public boolean isFileSelectable(VirtualFile file) {
-                            return file.isDirectory();
-                        }
-                    }, null, panel);
+            FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance().createFileChooser(descriptor, null, panel);
             VirtualFile[] dir = fileChooser.choose(project);
             if (dir.length > 0) {
                 destinationDir.setText(dir[0].getCanonicalPath());

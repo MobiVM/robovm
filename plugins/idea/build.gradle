@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id "org.jetbrains.kotlin.jvm" version "2.3.10"
-    id "org.jetbrains.intellij" version "1.13.2"
+    id "org.jetbrains.kotlin.jvm" version "2.1.20"
+    id "org.jetbrains.intellij.platform" version "2.16.0"
 }
 
 ext {
@@ -16,6 +16,9 @@ repositories {
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'https://central.sonatype.com/repository/maven-snapshots'}
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 configurations {
@@ -40,16 +43,31 @@ dependencies {
     robovm_dist "com.mobidevelop.robovm:robovm-dist:${roboVMVersion}:nocompiler@tar.gz"
 
     implementation 'org.apache.commons:commons-compress:1.25.0'
+
+    intellijPlatform {
+        intellijIdeaCommunity('2025.2')
+        bundledPlugins('com.intellij.java', 'org.jetbrains.idea.maven', 'com.intellij.gradle')
+
+        pluginVerifier()
+    }
 }
 
 kotlin {
-  jvmToolchain(17)
+    jvmToolchain(21)
 }
 
-intellij {
-    version = '2024.2'   // we are compiles against this API version
-    plugins = ['java', 'maven', 'gradle']
-    updateSinceUntilBuild = false
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            // allow to run on any recent version of IntelliJ IDEA since version specified in intellijIdeaCommunity
+            untilBuild = provider { null }
+        }
+    }
 }
 
 def copyRoboVmDist = tasks.register("copyRoboVmDist", Copy) {
@@ -58,9 +76,6 @@ def copyRoboVmDist = tasks.register("copyRoboVmDist", Copy) {
     rename "robovm-dist-${roboVMVersion}-nocompiler.tar.gz", "robovm-dist"
 }
 
-
-sourceCompatibility = 17
-targetCompatibility = 17
 tasks.named("patchPluginXml").configure {
     dependsOn copyRoboVmDist
 }

@@ -42,55 +42,56 @@ import java.util.zip.GZIPInputStream
  */
 @Service(Service.Level.APP)
 class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
-    private val sdkUnpackDeferred: Deferred<Home> by lazy {
-        scope.async(Dispatchers.IO) {
-            val sdkHome = RoboVmLocations.roboVmHome
-            if (!sdkHome.isDev) {
-                // in case of Dev environment no need to unpack SDK
-                // using parent here as:
-                // - sdkHome.homeDir points to final destination (e.g. .robovm-sdks/robovm-2.3.23)
-                // - but `robovm-dist` contains `robovm-2.3.23` directory inside
-                val homeDir = sdkHome.homeDir.parentFile
-                if (!homeDir.exists() && !homeDir.mkdirs()) {
-                    throw RuntimeException("Couldn't create sdk dir in " + homeDir.absolutePath)
-                }
-
-                // drop cache if files were changed
-                val filesWereUpdated = extractSdk(homeDir)
-                if (filesWereUpdated) {
-                    RoboVmPlugin.logInfo(null, "Clearing ~/.robovm/cache folder due SDK files changed.")
-                    try {
-                        FileUtils.deleteDirectory(RoboVmLocations.cacheDir)
-                    } catch (ignored: IOException) {
-                    }
-                }
-            }
-            sdkHome
+    private var activeJob: Deferred<Home>? = null
+    private fun startUnpackJob(sdkHome: Home): Deferred<Home> = scope.async(Dispatchers.IO) {
+        // using parent here as:
+        // - sdkHome.homeDir points to final destination (e.g. .robovm-sdks/robovm-2.3.23)
+        // - but `robovm-dist` contains `robovm-2.3.23` directory inside
+        val homeDir = sdkHome.homeDir.parentFile
+        if (!homeDir.exists() && !homeDir.mkdirs()) {
+            throw RuntimeException("Couldn't create sdk dir in " + homeDir.absolutePath)
         }
+
+        // drop cache if files were changed
+        val filesWereUpdated = extractSdk(homeDir)
+        if (filesWereUpdated) {
+            RoboVmPlugin.logInfo(null, "Clearing ~/.robovm/cache folder due SDK files changed.")
+            try {
+                FileUtils.deleteDirectory(RoboVmLocations.cacheDir)
+            } catch (_: IOException) {
+            }
+        }
+        sdkHome
     }
 
     fun extractSdkIfNeeded(project: Project): Home {
         // wait till unpack task is complete
+        val sdkHome = RoboVmLocations.roboVmHome
+        if (sdkHome.isDev) return sdkHome
+        runCatching { sdkHome.validate() }.onSuccess { return sdkHome }
+
         return runBlocking {
-            if (sdkUnpackDeferred.isActive) {
+            val (job, started) = synchronized(this@RoboVmSdkUnpackService) {
+                activeJob?.takeIf { it.isActive }?.let { return@let it to false }
+                startUnpackJob(sdkHome).also { activeJob = it } to true
+            }
+            if (started) {
                 withBackgroundProgress(project, "Unpacking RoboVm SDK...", cancellable = false) {
                     try {
-                        val roboVmHome = sdkUnpackDeferred.await()
-                        if (!roboVmHome.isDev) {
-                            RoboVmPlugin.logInfo(
-                                project,
-                                "Installed RoboVM SDK %s to %s",
-                                Version.getCompilerVersion(),
-                                roboVmHome.homeDir.absolutePath
-                            )
-                        }
-                        roboVmHome
+                        val roboVmHome = job.await()
+                        RoboVmPlugin.logInfo(
+                            project,
+                            "Installed RoboVM SDK %s to %s",
+                            Version.getCompilerVersion(),
+                            roboVmHome.homeDir.absolutePath
+                        )
                     } catch (e: Exception) {
                         RoboVmPlugin.logError(project, e.message)
                         throw e
                     }
                 }
-            } else sdkUnpackDeferred.await()
+            } else job.await()
+            sdkHome
         }
     }
 
