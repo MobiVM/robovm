@@ -79,12 +79,15 @@ class RoboVmSdkType : SdkType(SDK_NAME) {
             }
 
             // return SDK if valid was found
-            candidate?.let { return it }
+            candidate?.let {
+                // make sure SDK files are present
+                service<RoboVmSdkUnpackService>().extractSdkIfNeeded(project)
+                return it
+            }
 
             // adding new sdk
             val sdkToAdd: Sdk
-            val unpacker = service<RoboVmSdkUnpackService>()
-            val roboVmHome = unpacker.extractSdkIfNeeded(project)
+            val roboVmHome = service<RoboVmSdkUnpackService>().extractSdkIfNeeded(project)
             // configure
             val newSdkName = SdkConfigurationUtil.createUniqueSdkName(INSTANCE, roboVmHome.homeDir.absolutePath,
                 ProjectJdkTable.getInstance().allJdks.toList())
