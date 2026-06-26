@@ -15,12 +15,14 @@
  */
 package org.robovm.gradle.tasks;
 
+import org.gradle.api.tasks.UntrackedTask;
 import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  *
  * @author Junji Takakura
  */
+@UntrackedTask(because = "caching not implemented")
 public class IPadSimulatorTask extends AbstractIOSSimulatorTask {
 
     @Override
