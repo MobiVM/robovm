@@ -118,12 +118,19 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration combine.self="override">
+                    <quiet>true</quiet>
                     <maxmemory>2g</maxmemory>
                     <!-- docs for RT: no lint, no bootclass and api 8 -->
                     <doclint>none</doclint>
                     <source>8</source>
                     <bootclasspath>""</bootclasspath>
                     <detectJavaApiLink>false</detectJavaApiLink>
+                    <additionalOptions>
+                        <additionalOption>--no-fonts</additionalOption>
+                        <additionalOption>-notree</additionalOption>
+                        <additionalOption>-noindex</additionalOption>
+                        <additionalOption>-nodeprecatedlist</additionalOption>
+                    </additionalOptions>
                 </configuration>
             </plugin>
 
