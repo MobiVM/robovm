@@ -35,12 +35,13 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <!-- provide empty bootclass as one from robovm.rt to be used -->
                 <configuration combine.self="override">
-                    <compilerArguments>
-                        <target>1.8</target>
-                        <source>1.8</source>
-                        <bootclasspath>""</bootclasspath>
-                    </compilerArguments>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-bootclasspath</arg>
+                        <arg>""</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
