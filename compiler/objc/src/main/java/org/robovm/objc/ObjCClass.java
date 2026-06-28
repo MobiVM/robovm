@@ -371,12 +371,17 @@ public final class ObjCClass extends ObjCObject {
     private static String getCustomClassName(Class<? extends ObjCObject> type) {
         CustomClass customClassAnno = type.getAnnotation(CustomClass.class);
         String name = type.getName();
-        if (customClassAnno != null && customClassAnno.value().length() > 0) {
-            name = customClassAnno.value();
+        if (customClassAnno != null) {
+            // if there is name provided in annotation (e.g. @CustomClass("TestClass")) -- use it directly
+            // otherwise use fully qualified name with package (e.g. com.test.TestClass) and replace `$`
+            // for inner classes with `.`
+            if (customClassAnno.value().length() > 0)
+                name = customClassAnno.value();
+            else
+                name = name.replace('$', '.');
         } else {
-            name = CUSTOM_CLASS_NAME_PREFIX + name;
+            name = CUSTOM_CLASS_NAME_PREFIX + name.replace('.', '_');
         }
-        name = name.replace('.', '_');
         return name;
     }
 
