@@ -61,7 +61,7 @@ public class RoboVmTemplatesFactory extends ProjectTemplatesFactory {
     @Override
     public ProjectTemplate[] createTemplates(String group, WizardContext context) {
         return new ProjectTemplate[] {
-                new RoboVmProjectTemplate("RoboVM iOS App without storyboards", "A basic single view app without storyboards", new RoboVmModuleBuilder("ios-single-view-no-ib")),
+                new RoboVmProjectTemplate("RoboVM iOS App with UIScene life-cycle", "A basic single view app with scene-based life cycle (required in iOS 27)", new RoboVmModuleBuilder("ios-single-view-no-ib")),
                 new RoboVmProjectTemplate("RoboVM iOS Framework", "A basic iOS framework template ", new RoboVmModuleBuilder("ios-framework",
                         new HashMap<String, String>(){{
                             put("appNameLabel", "Framework Name");
