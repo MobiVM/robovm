@@ -516,12 +516,9 @@
                     <doclint>none</doclint>
                     <release>9</release>
                     <detectJavaApiLink>false</detectJavaApiLink>
-                    <additionalOptions>
-                        <additionalOption>--no-fonts</additionalOption>
-                        <additionalOption>-notree</additionalOption>
-                        <additionalOption>-noindex</additionalOption>
-                        <additionalOption>-nodeprecatedlist</additionalOption>
-                    </additionalOptions>
+                    <notree>true</notree>
+                    <noindex>true</noindex>
+                    <nodeprecated>true</nodeprecated>
                 </configuration>
             </plugin>
         </plugins>
