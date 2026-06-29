@@ -16,20 +16,6 @@
         <robovmdir>${basedir}/../../compiler</robovmdir>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>robovm-release</id>
-            <dependencies>
-                <!-- RT sources are build during release only -->
-                <dependency>
-                    <groupId>com.mobidevelop.robovm</groupId>
-                    <artifactId>robovm-rt</artifactId>
-                    <classifier>sources</classifier>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-
     <dependencies>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
@@ -41,7 +27,17 @@
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-rt</artifactId>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-objc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-objc</artifactId>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>

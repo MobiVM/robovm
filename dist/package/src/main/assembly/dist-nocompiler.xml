@@ -32,7 +32,7 @@
     <dependencySet>
       <includes>
         <include>*:*:*:sources</include>
-        <include>*:*:*:javadoc</include>
+        <!-- there is no javadoc meanwhile, commented out to remove warning       <include>*:*:*:javadoc</include>-->
       </includes>
       <outputDirectory>lib</outputDirectory>
       <unpack>false</unpack>
