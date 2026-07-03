@@ -342,7 +342,6 @@
                     <configuration>
                         <release>9</release>
                         <debug>true</debug>
-                        <optimize>true</optimize>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>

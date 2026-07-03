@@ -31,6 +31,7 @@
         <robovm.version>2.3.26-SNAPSHOT</robovm.version>
         <tycho.version>4.0.7</tycho.version>
         <eclipse-site>https://download.eclipse.org/releases/2024-06/</eclipse-site>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <repositories>
@@ -63,7 +64,6 @@
                 <configuration>
                     <release>8</release>
                     <debug>true</debug>
-                    <optimize>true</optimize>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
