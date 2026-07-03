@@ -693,7 +693,12 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
 
     @Override
     public void beforeLinker(Config config, Linker linker, Set<Clazz> classes) {
-        preloadClassesForFramework(config, linker, classes);
+        if (FrameworkTarget.matches(config.getTargetType())) {
+            // for framework target all custom classes are marked for preload
+            preloadClassesForFramework(config, linker, classes);
+        } else {
+            preloadCustomClasses(config, linker, classes);
+        }
     }
 
     private static <E> List<E> l(E head, List<E> tail) {
@@ -2003,29 +2008,50 @@ public class ObjCMemberPlugin extends AbstractCompilerPlugin {
     }
 
     private void preloadClassesForFramework(Config config, Linker linker, Set<Clazz> classes) {
-        if (FrameworkTarget.matches(config.getTargetType())) {
-            // for framework target it is required to make list of @CustomClasses to be preloaded
-            // once framework is loaded
-            // generate byte array of zero terminated string for frameworksupport.m class
-            StringBuilder sb = new StringBuilder();
-            for (Clazz clazz : classes) {
-                if (!hasAnnotation(clazz.getSootClass(), CUSTOM_CLASS))
-                    continue;
-                sb.append(clazz.getInternalName()).append('\0');
-            }
-            if (sb.length() != 0) {
-                byte[] data = sb.append('\0').toString().getBytes();
-                linker.addBcGlobalData("_bcFrameworkPreloadClasses", data);
-            }
+        // for framework target it is required to make list of @CustomClasses to be preloaded
+        // once framework is loaded
+        // generate byte array of zero terminated string for frameworksupport.m class
+        StringBuilder sb = new StringBuilder();
+        for (Clazz clazz : classes) {
+            if (!hasAnnotation(clazz.getSootClass(), CUSTOM_CLASS))
+                continue;
+            sb.append(clazz.getInternalName()).append('\0');
+        }
+        if (sb.length() != 0) {
+            byte[] data = sb.append('\0').toString().getBytes();
+            linker.addBcGlobalData("_bcFrameworkPreloadClasses", data);
+        }
 
-            // TODO: probably ObjMemberPlugin is not best place for this logic
-            // but Targets are not integrated into build process and introducing
-            // this infrastructure will require significant changes
-            // disable JVM start up if JNI_CreateJavaVM is listed in exported symbols
-            if (config.getExportedSymbols().contains("JNI_CreateJavaVM")) {
-                byte[] data = new byte[1];
-                linker.addBcGlobalData("_bcFrameworkSkipJavaVMStartup", data);
+        // TODO: probably ObjMemberPlugin is not best place for this logic
+        // but Targets are not integrated into build process and introducing
+        // this infrastructure will require significant changes
+        // disable JVM start up if JNI_CreateJavaVM is listed in exported symbols
+        if (config.getExportedSymbols().contains("JNI_CreateJavaVM")) {
+            byte[] data = new byte[1];
+            linker.addBcGlobalData("_bcFrameworkSkipJavaVMStartup", data);
+        }
+    }
+
+    /**
+     * adds classes with @CustomClass(preload = true) to runtimeData.
+     */
+    private void preloadCustomClasses(Config config, Linker linker, Set<Clazz> classes) {
+        List<String> preloadClasses = new ArrayList<>();
+        for (Clazz clazz : classes) {
+            SootClass cls = clazz.getSootClass();
+            AnnotationTag anno = getAnnotation(cls, CUSTOM_CLASS);
+            if (anno == null) continue;
+            if (!readBooleanElem(anno, "preload", false)) continue;
+
+            preloadClasses.add(clazz.getClassName());
+        }
+        if (!preloadClasses.isEmpty()) {
+            CustomClassRuntimeData runtimeData = (CustomClassRuntimeData) linker.getRuntimeData(CustomClassRuntimeData.ID);
+            if (runtimeData == null) {
+                runtimeData = new CustomClassRuntimeData();
+                linker.addRuntimeData(CustomClassRuntimeData.ID, runtimeData);
             }
+            runtimeData.addClasses(preloadClasses);
         }
     }
 

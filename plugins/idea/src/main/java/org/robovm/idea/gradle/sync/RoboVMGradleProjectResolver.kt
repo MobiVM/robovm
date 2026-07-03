@@ -54,7 +54,12 @@ class RoboVMGradleProjectResolver : AbstractProjectResolverExtension() {
         val sourceSetNodes = ExternalSystemApiUtil.findAll(moduleNode, GradleSourceSetData.KEY)
         val nodeForFacet = sourceSetNodes.find { it.data.id.endsWith(":main") }
             ?: moduleNode
-        nodeForFacet.createChild(RoboVmGradleModelKey, externalSettings)
+        nodeForFacet.createChild(RoboVmGradleModelKey, RoboVmModuleDataService.ServiceData.FacetSettings(externalSettings))
+        if (moduleNode !== nodeForFacet) {
+            // attaching facet to "ios-main" module. while "ios" module might
+            // still contain RoboVM facet, inspect it in service and remove if present
+            moduleNode.createChild(RoboVmGradleModelKey, RoboVmModuleDataService.ServiceData.InspectionRequest)
+        }
 
         // configure build folder as ignored so it doesn't appear in project view and doesn't cause indexing
         externalSettings.contentRoot?.let { contentRoot ->
