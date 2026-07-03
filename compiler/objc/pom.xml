@@ -35,12 +35,13 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <!-- provide empty bootclass as one from robovm.rt to be used -->
                 <configuration combine.self="override">
-                    <compilerArguments>
-                        <target>1.8</target>
-                        <source>1.8</source>
-                        <bootclasspath>""</bootclasspath>
-                    </compilerArguments>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-bootclasspath</arg>
+                        <arg>""</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -48,12 +49,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration combine.self="override">
+                    <quiet>true</quiet>
                     <maxmemory>2g</maxmemory>
                     <!-- docs for RT: no lint, no bootclass and api 8 -->
                     <doclint>none</doclint>
                     <source>8</source>
                     <bootclasspath>""</bootclasspath>
                     <detectJavaApiLink>false</detectJavaApiLink>
+                    <notree>true</notree>
+                    <noindex>true</noindex>
+                    <nodeprecated>true</nodeprecated>
                 </configuration>
             </plugin>
         </plugins>

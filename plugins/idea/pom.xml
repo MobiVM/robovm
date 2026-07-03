@@ -84,7 +84,6 @@
                 <configuration>
                     <release>17</release>
                     <debug>true</debug>
-                    <optimize>true</optimize>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

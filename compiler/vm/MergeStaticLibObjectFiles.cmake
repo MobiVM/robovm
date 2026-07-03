@@ -36,7 +36,7 @@ function(merge_static_lib_object_files lib)
 
       string(REPLACE ";" ", " exported_symbols_joined "${exported_symbols}")
       string(REPLACE ";" " " exported_symbols_args_joined "${exported_symbols_args}")
-      add_custom_command(TARGET ${lib}
+      add_custom_command(TARGET ${lib} POST_BUILD
         COMMAND echo Merging object files in $<TARGET_FILE:${lib}> with exported symbols: ${exported_symbols_joined}
         COMMAND echo ld -arch ${CARCH} -platform_version ${CPLATFORM} ${CPLATFORM_MIN_VERSION} ${CPLATFORM_MIN_VERSION} -r ${exported_symbols_args} -all_load $<TARGET_FILE:${lib}> -o ${CMAKE_CURRENT_BINARY_DIR}/merged.o
         COMMAND ld -arch ${CARCH} -platform_version ${CPLATFORM} ${CPLATFORM_MIN_VERSION} ${CPLATFORM_MIN_VERSION} -r ${exported_symbols_args} -all_load $<TARGET_FILE:${lib}> -o ${CMAKE_CURRENT_BINARY_DIR}/merged.o
@@ -59,7 +59,7 @@ function(merge_static_lib_object_files lib)
 
       string(REPLACE ";" ", " exported_symbols_joined "${exported_symbols}")
       string(REPLACE ";" " " exported_symbols_args_joined "${exported_symbols_args}")
-      add_custom_command(TARGET ${lib}
+      add_custom_command(TARGET ${lib} POST_BUILD
         COMMAND echo Merging object files in $<TARGET_FILE:${lib}> with exported symbols: ${exported_symbols_joined}
         COMMAND echo ld -m ${EMULATION_MODE} -r --whole-archive $<TARGET_FILE:${lib}> -o ${CMAKE_CURRENT_BINARY_DIR}/tmp.o
         COMMAND ld -m ${EMULATION_MODE} -r --whole-archive $<TARGET_FILE:${lib}> -o ${CMAKE_CURRENT_BINARY_DIR}/tmp.o

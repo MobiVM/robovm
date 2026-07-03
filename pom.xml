@@ -342,7 +342,6 @@
                     <configuration>
                         <release>9</release>
                         <debug>true</debug>
-                        <optimize>true</optimize>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
@@ -377,7 +376,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.12.0</version>
                 </plugin>
 
                 <plugin>
@@ -512,9 +511,13 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <quiet>true</quiet>
                     <doclint>none</doclint>
                     <release>9</release>
                     <detectJavaApiLink>false</detectJavaApiLink>
+                    <notree>true</notree>
+                    <noindex>true</noindex>
+                    <nodeprecated>true</nodeprecated>
                 </configuration>
             </plugin>
         </plugins>
