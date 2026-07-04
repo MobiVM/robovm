@@ -16,6 +16,7 @@
 package org.robovm.gradle.tasks;
 
 import org.apache.tools.ant.types.Commandline;
+import org.gradle.api.tasks.UntrackedTask;
 import org.gradle.api.tasks.options.Option;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
@@ -30,6 +31,7 @@ import java.util.Arrays;
 /**
  *
  */
+@UntrackedTask(because = "caching not implemented")
 public class ConsoleTask extends AbstractRoboVMTask {
     private String[] args;
 

@@ -30,6 +30,7 @@ import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.Internal;
+import org.gradle.api.tasks.UntrackedTask;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -66,6 +67,7 @@ import java.util.zip.GZIPInputStream;
  *
  * @author Junji Takakura
  */
+@UntrackedTask(because = "caching not implemented")
 abstract public class AbstractRoboVMTask extends DefaultTask {
 
     protected final Project project;

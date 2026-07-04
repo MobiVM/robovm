@@ -16,9 +16,12 @@
 package org.robovm.gradle.tasks;
 
 
+import org.gradle.api.tasks.UntrackedTask;
+
 /**
  * 
  */
+@UntrackedTask(because = "caching not implemented")
 public class ArchiveTask extends AbstractRoboVMBuildTask {
     @Override
     protected boolean shouldArchive() {

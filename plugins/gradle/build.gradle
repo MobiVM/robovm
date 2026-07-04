@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id "com.gradleup.shadow" version "9.4.3"
     id "com.gradle.plugin-publish" version "1.2.1"
     id 'java-gradle-plugin'
     id 'groovy'
@@ -16,15 +16,17 @@ ext {
 }
 
 group = 'com.mobidevelop.robovm'
-archivesBaseName = 'robovm-gradle-plugin'
+base {
+    archivesName = 'robovm-gradle-plugin'
+}
 version "${roboVMVersion}"
 
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-compileJava {
-    options.encoding = 'UTF-8'
-    options.compilerArgs.addAll(['--release', '8'])
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
 }
 
 repositories {
@@ -147,13 +149,9 @@ jreleaser {
     }
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
 
 shadowJar {
-    archiveClassifier.set('')
+    archiveClassifier.set((String) null)
     relocate 'org.apache.http', 'com.mobidevelop.robovm.org.apache.http'
     relocate 'org.apache.commons.io', 'com.mobidevelop.robovm.org.apache.commons.io'
     relocate 'org.objectweb.asm', 'com.mobidevelop.robovm.asm'
