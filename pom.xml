@@ -242,7 +242,7 @@
                 <artifactId>robovm-rt</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- FIXME: -->
+            <!-- robovm-rt sources used in dist -->
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-rt</artifactId>
@@ -253,6 +253,13 @@
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-objc</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <!-- robovm-objc sources used in dist -->
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-objc</artifactId>
+                <version>${project.version}</version>
+                <classifier>sources</classifier>
             </dependency>
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
@@ -452,7 +459,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.8.0</version>
                     <configuration>
                         <!-- FIXME: this one is to fix "single failed: group id 'SOME BIG ID' is too big" when mac is in NT domain -->
                         <!-- FIXME: this adds PaxHeaders.X in this case, check if it will be adding it for normal user -->
