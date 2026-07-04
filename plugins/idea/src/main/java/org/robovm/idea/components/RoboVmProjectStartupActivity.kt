@@ -20,6 +20,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.ProjectActivity
 import org.robovm.idea.RoboVmPlugin
 import org.robovm.idea.facet.RoboVmFacetType
+import org.robovm.idea.sdk.RoboVmSdkType
 
 /**
  * Replacement for ProjectComponent/ApplicationComponent.
@@ -33,6 +34,9 @@ class RoboVmProjectStartupActivity: ProjectActivity {
         val modulesWithFacet = ProjectFacetManager.getInstance(project).getModulesWithFacet(RoboVmFacetType.TYPE_ID)
         if (modulesWithFacet.isNotEmpty()) {
             RoboVmPlugin.initializeProject(project)
+
+            // setup Sdk, plugin might be updated and SDK files might be changed, so we need to check if SDK is still valid
+            RoboVmSdkType.setUpSdkIfNeeded(project)
 
             // show xcode dialog if applicable
             val setupService = service<RoboVmAppSetupService>()

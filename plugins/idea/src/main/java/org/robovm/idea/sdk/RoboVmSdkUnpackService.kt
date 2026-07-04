@@ -42,6 +42,9 @@ import java.util.zip.GZIPInputStream
  */
 @Service(Service.Level.APP)
 class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
+    /// flag, specifies that SDK was extracted
+    private var sdkExtracted = false
+
     private var activeJob: Deferred<Home>? = null
     private fun startUnpackJob(sdkHome: Home): Deferred<Home> = scope.async(Dispatchers.IO) {
         // using parent here as:
@@ -64,11 +67,32 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
         sdkHome
     }
 
+    /**
+     *
+     */
+    @Synchronized
+    private fun validateExistingSdk(sdkHome: Home): Boolean {
+
+        try {
+            // in case of snapshot version of RoboVM, SDK shall be unconditionally
+            // extracted once per opened project
+            if (!sdkExtracted && Version.getCompilerVersion().endsWith("-SNAPSHOT"))
+                return false
+
+            sdkHome.validate()
+        } catch (_: Exception) {
+            return false
+        }
+
+        // sdk valid and can be reused
+        return true
+    }
+
     fun extractSdkIfNeeded(project: Project): Home {
         // wait till unpack task is complete
         val sdkHome = RoboVmLocations.roboVmHome
         if (sdkHome.isDev) return sdkHome
-        runCatching { sdkHome.validate() }.onSuccess { return sdkHome }
+        if (validateExistingSdk(sdkHome)) return sdkHome
 
         return runBlocking {
             val (job, started) = synchronized(this@RoboVmSdkUnpackService) {
@@ -131,6 +155,7 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
                     }
                 }
 
+                sdkExtracted = true
                 return filesWereUpdated
             }
         } catch (t: Throwable) {
