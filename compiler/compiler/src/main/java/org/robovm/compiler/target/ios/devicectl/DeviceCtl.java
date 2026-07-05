@@ -16,9 +16,9 @@
  */
 package org.robovm.compiler.target.ios.devicectl;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.github.cliftonlabs.json_simple.JsonException;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsoner;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
@@ -37,7 +37,7 @@ public class DeviceCtl {
     /**
      * gets list of devices by invoking `xcrun devicectl list devices -j @dest-file`
      */
-    public static List<AppleDevice> listDevices(Logger log) throws IOException, ParseException {
+    public static List<AppleDevice> listDevices(Logger log) throws IOException, JsonException {
         File f = File.createTempFile("robovm-devicectl-", ".list");
         f.delete();
 
@@ -45,9 +45,8 @@ public class DeviceCtl {
             .args("devicectl", "list", "devices", "-j", f.getAbsolutePath())
             .exec();
 
-        JSONParser parser = new JSONParser();
         try (FileReader reader = new FileReader(f)) {
-            JSONObject root = (JSONObject) parser.parse(reader);
+            JsonObject root = (JsonObject) Jsoner.deserialize(reader);
             return DeviceCtlParsers.parseListResponse(root);
         }
     }
@@ -68,7 +67,7 @@ public class DeviceCtl {
     }
 
 
-    public static AppleDevice getDeviceInfo(Logger log, String udid) throws IOException, ParseException {
+    public static AppleDevice getDeviceInfo(Logger log, String udid) throws IOException, JsonException {
         File f = File.createTempFile("robovm-devicectl-", ".deviceinfo");
         f.delete();
 
@@ -76,14 +75,13 @@ public class DeviceCtl {
             .args("devicectl", "device", "info", "details", "-q", "-d", udid, "-j", f.getAbsolutePath())
             .exec();
 
-        JSONParser parser = new JSONParser();
         try (FileReader reader = new FileReader(f)) {
-            JSONObject root = (JSONObject) parser.parse(reader);
+            JsonObject root = (JsonObject) Jsoner.deserialize(reader);
             return DeviceCtlParsers.parseDeviceInfoResponse(root);
         }
     }
 
-    public static void install(Logger log, String udid, String localAppPath) throws Executor.ExecuteException, IOException, ParseException {
+    public static void install(Logger log, String udid, String localAppPath) throws IOException {
         File f = File.createTempFile("robovm-devicectl-", ".install");
         f.delete();
 
@@ -135,7 +133,7 @@ public class DeviceCtl {
 
     public static void main(String[] args) {
         listDevices().forEach(
-                d -> System.out.println(d)
+            System.out::println
         );
     }
 }

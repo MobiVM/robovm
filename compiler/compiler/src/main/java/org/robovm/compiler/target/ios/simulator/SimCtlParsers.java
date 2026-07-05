@@ -17,8 +17,8 @@
  */
 package org.robovm.compiler.target.ios.simulator;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.Environment;
@@ -30,18 +30,18 @@ public class SimCtlParsers {
     public static final String[] ONLY_32BIT_DEVICES = {"iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5c", "iPad 2"};
     public static final DeviceType.Version ARM64_IOS_VERSION = new DeviceType.Version(14, 0, 0);
 
-    public static List<DeviceType> parseListResponse(JSONObject root) {
+    public static List<DeviceType> parseListResponse(JsonObject root) {
         List<DeviceType> types = new ArrayList<>();
         // parse watch pairs to
         Map<String, DeviceType> pairs = new HashMap<>();
-        JSONObject pairList = (JSONObject) root.get("pairs");
+        JsonObject pairList = (JsonObject) root.get("pairs");
         if (pairList != null) {
             for (Object e : pairList.values()) {
-                JSONObject entry = (JSONObject) e;
+                JsonObject entry = (JsonObject) e;
                 if (entry.containsKey("state") && entry.get("state").toString().contains("unavailable"))
                     continue;
-                JSONObject watchEntry = (JSONObject) entry.get("watch");
-                JSONObject phoneEntry = (JSONObject) entry.get("phone");
+                JsonObject watchEntry = (JsonObject) entry.get("watch");
+                JsonObject phoneEntry = (JsonObject) entry.get("phone");
                 if (watchEntry != null && phoneEntry != null) {
                     String phoneUdid = phoneEntry.get("udid").toString();
                     String watchUdid = watchEntry.get("udid").toString();
@@ -56,7 +56,7 @@ public class SimCtlParsers {
             }
         }
 
-        JSONObject deviceList = (JSONObject) root.get("devices");
+        JsonObject deviceList = (JsonObject) root.get("devices");
         for (Object value : deviceList.entrySet()) {
             //noinspection rawtypes
             Map.Entry entry = (Map.Entry) value;
@@ -70,9 +70,9 @@ public class SimCtlParsers {
                 // not iOS
                 continue;
             }
-            JSONArray devices = (JSONArray) entry.getValue();
+            JsonArray devices = (JsonArray) entry.getValue();
             for (Object obj : devices) {
-                JSONObject device = (JSONObject) obj;
+                JsonObject device = (JsonObject) obj;
                 boolean isAvailable = false;
                 if (device.containsKey("isAvailable")) {
                     Object o = device.get("isAvailable");
