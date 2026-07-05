@@ -17,11 +17,11 @@
  */
 package org.robovm.compiler;
 
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsoner;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.robovm.compiler.clazz.*;
 import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Config.TreeShakerMode;
@@ -1221,7 +1221,7 @@ public class AppCompiler {
 
     private class UpdateChecker extends Thread {
         private final String address;
-        private volatile JSONObject result;
+        private volatile JsonObject result;
 
         public UpdateChecker(String address) {
             this.address = address;
@@ -1262,7 +1262,7 @@ public class AppCompiler {
                     + "osVersion=" + URLEncoder.encode(osVersion, "UTF-8"));
             t.start();
             t.join(5 * 1000); // Wait for a maximum of 5 seconds
-            JSONObject result = t.result;
+            JsonObject result = t.result;
             if (result != null) {
                 String version = (String) result.get("version");
                 if (version != null && Version.isOlderThan(Version.getCompilerVersion(), version)) {
@@ -1308,14 +1308,14 @@ public class AppCompiler {
         FileUtils.writeStringToFile(timeFile, String.valueOf(System.currentTimeMillis()), "UTF-8");
     }
 
-    private JSONObject fetchJson(String address) {
+    private JsonObject fetchJson(String address) {
         try {
             URL url = new URL(address);
             URLConnection conn = url.openConnection();
             conn.setConnectTimeout(5 * 1000);
             conn.setReadTimeout(5 * 1000);
             try (InputStream in = new BufferedInputStream(conn.getInputStream())) {
-                return (JSONObject) JSONValue.parseWithException(IOUtils.toString(in, "UTF-8"));
+                return (JsonObject) Jsoner.deserialize(IOUtils.toString(in, "UTF-8"));
             }
         } catch (Exception e) {
             if (config.getHome().isDev()) {

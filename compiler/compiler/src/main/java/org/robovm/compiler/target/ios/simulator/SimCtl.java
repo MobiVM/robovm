@@ -16,8 +16,8 @@
  */
 package org.robovm.compiler.target.ios.simulator;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.github.cliftonlabs.json_simple.JsonObject;
+import com.github.cliftonlabs.json_simple.Jsoner;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
 
@@ -49,8 +49,7 @@ public final class SimCtl {
             String capture = new Executor(Logger.NULL_LOGGER, "xcrun").args(
                     "simctl", "list", "devices", "pairs", "-j").execCapture();
 
-            JSONParser parser = new JSONParser();
-            JSONObject root = (JSONObject) parser.parse(capture);
+            JsonObject root = (JsonObject) Jsoner.deserialize(capture);
             return SimCtlParsers.parseListResponse(root);
 
         } catch (Exception e) {

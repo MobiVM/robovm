@@ -16,8 +16,8 @@
  */
 package org.robovm.compiler.target.ios.devicectl;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.github.cliftonlabs.json_simple.JsonArray;
+import com.github.cliftonlabs.json_simple.JsonObject;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.Capability;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.ConnectionProperties;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.ConnectionProperties.AuthenticationType;
@@ -48,7 +48,7 @@ public final class DeviceCtlParsers {
      *   }
      * ]
      */
-    public static Set<Capability> parseCapabilities(@Required Stream<JSONObject> stream) {
+    public static Set<Capability> parseCapabilities(@Required Stream<JsonObject> stream) {
         return stream.map(js -> js.get("featureIdentifier"))
                 .filter(s -> s instanceof String)
                 .map(s -> Capability.of((String)s)).collect(Collectors.toSet());
@@ -64,7 +64,7 @@ public final class DeviceCtlParsers {
      *   "tunnelIPAddress" : "fdeb:b11:406e::1",
      * }
      */
-    public static ConnectionProperties parseConnectionProperties(@Optional JSONObject json) {
+    public static ConnectionProperties parseConnectionProperties(@Optional JsonObject json) {
         AuthenticationType authenticationType = AuthenticationType.of(asString(json, "authenticationType"));
         PairingState pairingState = PairingState.of(asString(json, "pairingState"));
         TransportType transportType = TransportType.of(asString(json, "transportType"));
@@ -84,7 +84,7 @@ public final class DeviceCtlParsers {
      *   "osVersionNumber" : "18.5",
      * }
      */
-    public static DeviceProperties parseDeviceProperties(@Optional JSONObject json) {
+    public static DeviceProperties parseDeviceProperties(@Optional JsonObject json) {
         return new DeviceProperties(
             "booted".equals(asString(json, "bootState")),
             "enabled".equals(asString(json, "developerModeStatus")),
@@ -115,7 +115,7 @@ public final class DeviceCtlParsers {
      *   "udid" : "00008020-000123123123123"
      *  }
      */
-    public static HardwareProperties parseHardwareProperties(@Optional JSONObject json) {
+    public static HardwareProperties parseHardwareProperties(@Optional JsonObject json) {
         HardwareProperties.CPUType cpuType = HardwareProperties.CPUType.of(
             asString(asJson(json, "cpuType"), "name")
         );
@@ -153,7 +153,7 @@ public final class DeviceCtlParsers {
      *     "identifier" : "AF319CBD-DC10-5AC0-815E-3774F8270D13",
      *  }
      */
-    public static AppleDevice parseAppleDevice(@Required JSONObject json) {
+    public static AppleDevice parseAppleDevice(@Required JsonObject json) {
         return new AppleDevice(
             asString(json, "identifier"),
             parseCapabilities(asObjectStream(json, "capabilities", Stream.empty())),
@@ -171,8 +171,8 @@ public final class DeviceCtlParsers {
      *   }
      * }
      */
-    public static List<AppleDevice> parseListResponse(@Required JSONObject json) {
-        JSONObject result = asJson(json, "result");
+    public static List<AppleDevice> parseListResponse(@Required JsonObject json) {
+        JsonObject result = asJson(json, "result");
         return asObjectStream(result, "devices", Stream.empty())
             .map(DeviceCtlParsers::parseAppleDevice)
             .filter(d -> d.deviceProperties.bootState)
@@ -186,8 +186,8 @@ public final class DeviceCtlParsers {
      *   }
      * }
      */
-    public static AppleDevice parseDeviceInfoResponse(@Required JSONObject json) {
-        JSONObject result = asJson(json, "result");
+    public static AppleDevice parseDeviceInfoResponse(@Required JsonObject json) {
+        JsonObject result = asJson(json, "result");
         if (result == null) throw new IllegalStateException("Unexpected JSON response: result is missing!");
         return parseAppleDevice(result);
     }
@@ -207,38 +207,38 @@ public final class DeviceCtlParsers {
     // JSON utilities bellow
     //
 
-    public static Stream<JSONObject> toObjectStream(@Required  JSONArray arr) {
+    public static Stream<JsonObject> toObjectStream(@Required JsonArray arr) {
         return ((List<?>) arr).stream()
-            .filter(o -> o instanceof JSONObject)
-            .map(o -> (JSONObject)o);
+            .filter(o -> o instanceof JsonObject)
+            .map(o -> (JsonObject)o);
     }
 
-    public static Stream<JSONObject> asObjectStream(@Optional JSONObject json, String key, Stream<JSONObject> defaultValue) {
+    public static Stream<JsonObject> asObjectStream(@Optional JsonObject json, String key, Stream<JsonObject> defaultValue) {
         if (json == null) return defaultValue;
         Object o = json.get(key);
-        if (o instanceof JSONArray) return toObjectStream((JSONArray) o);
+        if (o instanceof JsonArray) return toObjectStream((JsonArray) o);
         return defaultValue;
     }
 
-    public static String asString(@Optional JSONObject json, String key, String defaultValue) {
+    public static String asString(@Optional JsonObject json, String key, String defaultValue) {
         if (json == null) return defaultValue;
         Object o = json.get(key);
         if (o instanceof String) return (String) o;
         return defaultValue;
     }
 
-    public static String asString(@Optional JSONObject json, String key) {
+    public static String asString(@Optional JsonObject json, String key) {
         return asString(json, key, null);
     }
 
-    public static JSONObject asJson(@Optional JSONObject json, String key) {
+    public static JsonObject asJson(@Optional JsonObject json, String key) {
         if (json == null) return null;
         Object o = json.get(key);
-        if (o instanceof JSONObject) return (JSONObject) o;
+        if (o instanceof JsonObject) return (JsonObject) o;
         return null;
     }
 
-    public static long asLong(@Optional JSONObject json, String key, long defaultValue) {
+    public static long asLong(@Optional JsonObject json, String key, long defaultValue) {
         if (json == null) return defaultValue;
         Object o = json.get(key);
         if (o instanceof Number) return ((Number) o).longValue();
