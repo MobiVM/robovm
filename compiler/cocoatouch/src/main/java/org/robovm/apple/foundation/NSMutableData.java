@@ -142,5 +142,35 @@ import org.robovm.apple.dispatch.*;
     protected native void replaceBytes(@ByVal NSRange range, @Pointer long replacementBytes, @MachineSizedUInt long replacementLength);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long capacity);
+    @Method(selector = "dataWithLength:")
+    public static native NSMutableData createUsingLength(@MachineSizedUInt long length);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean decompress(NSDataCompressionAlgorithm algorithm) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = decompress(algorithm, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "decompressUsingAlgorithm:error:")
+    private native boolean decompress(NSDataCompressionAlgorithm algorithm, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public boolean compress(NSDataCompressionAlgorithm algorithm) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = compress(algorithm, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "compressUsingAlgorithm:error:")
+    private native boolean compress(NSDataCompressionAlgorithm algorithm, NSError.NSErrorPtr error);
     /*</methods>*/
 }

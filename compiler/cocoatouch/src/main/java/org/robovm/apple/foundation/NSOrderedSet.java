@@ -126,6 +126,22 @@ import org.robovm.apple.dispatch.*;
     public NSOrderedSet() {}
     protected NSOrderedSet(Handle h, long handle) { super(h, handle); }
     protected NSOrderedSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSOrderedSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithObject:")
+    public NSOrderedSet(T object) { super((SkipInit) null); initObject(init(object)); }
+    @Method(selector = "initWithOrderedSet:copyItems:")
+    public NSOrderedSet(NSOrderedSet<T> set, boolean flag) { super((SkipInit) null); initObject(init(set, flag)); }
+    @Method(selector = "initWithOrderedSet:range:copyItems:")
+    public NSOrderedSet(NSOrderedSet<T> set, @ByVal NSRange range, boolean flag) { super((SkipInit) null); initObject(init(set, range, flag)); }
+    @Method(selector = "initWithArray:copyItems:")
+    public NSOrderedSet(NSArray<T> set, boolean flag) { super((SkipInit) null); initObject(init(set, flag)); }
+    @Method(selector = "initWithArray:range:copyItems:")
+    public NSOrderedSet(NSArray<T> set, @ByVal NSRange range, boolean flag) { super((SkipInit) null); initObject(init(set, range, flag)); }
+    @Method(selector = "initWithSet:")
+    public NSOrderedSet(NSSet<T> set) { super((SkipInit) null); initObject(init(set)); }
+    @Method(selector = "initWithSet:copyItems:")
+    public NSOrderedSet(NSSet<T> set, boolean flag) { super((SkipInit) null); initObject(init(set, flag)); }
     /*</constructors>*/
     
     public NSOrderedSet(Collection<T> c) {
@@ -280,15 +296,95 @@ import org.robovm.apple.dispatch.*;
     protected native @MachineSizedUInt long indexOfObject(T object);
     @Method(selector = "initWithObjects:count:")
     protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "objectsAtIndexes:")
     protected native NSArray<T> getObjectsAt(NSIndexSet indexes);
+    @Method(selector = "isEqualToOrderedSet:")
+    public native boolean isEqualToOrderedSet(NSOrderedSet<T> other);
     @Method(selector = "containsObject:")
     protected native boolean containsObject(T object);
+    @Method(selector = "intersectsOrderedSet:")
+    public native boolean intersectsOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "intersectsSet:")
+    public native boolean intersectsSet(NSSet<T> set);
+    @Method(selector = "isSubsetOfOrderedSet:")
+    public native boolean isSubsetOfOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "isSubsetOfSet:")
+    public native boolean isSubsetOfSet(NSSet<T> set);
+    @Method(selector = "objectAtIndexedSubscript:")
+    public native T objectAtIndexedSubscript(@MachineSizedUInt long idx);
     @Method(selector = "objectEnumerator")
     protected native NSEnumerator<T> objectEnumerator();
+    @Method(selector = "reverseObjectEnumerator")
+    public native NSEnumerator<T> reverseObjectEnumerator();
+    @Method(selector = "enumerateObjectsUsingBlock:")
+    public native void enumerateObjectsUsingBlock(@Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "enumerateObjectsWithOptions:usingBlock:")
+    public native void enumerateObjects(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "enumerateObjectsAtIndexes:options:usingBlock:")
+    public native void enumerateObjectsAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "indexOfObjectPassingTest:")
+    public native @MachineSizedUInt long indexOfObjectPassingTest(@Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexOfObjectWithOptions:passingTest:")
+    public native @MachineSizedUInt long indexOfObject(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexOfObjectAtIndexes:options:passingTest:")
+    public native @MachineSizedUInt long indexOfObjectAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsPassingTest:")
+    public native NSIndexSet indexesOfObjectsPassingTest(@Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsWithOptions:passingTest:")
+    public native NSIndexSet indexesOfObjects(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsAtIndexes:options:passingTest:")
+    public native NSIndexSet indexesOfObjectsAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexOfObject:inSortedRange:options:usingComparator:")
+    public native @MachineSizedUInt long indexOfObjectInSortedRange(T object, @ByVal NSRange range, NSBinarySearchingOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmp);
+    @Method(selector = "sortedArrayUsingComparator:")
+    public native NSArray<T> sortedArrayUsingComparator(@Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "sortedArrayWithOptions:usingComparator:")
+    public native NSArray<T> sortedArray(NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "descriptionWithLocale:")
+    public native String description(NSObject locale);
+    @Method(selector = "descriptionWithLocale:indent:")
+    public native String description(NSObject locale, @MachineSizedUInt long level);
+    @Method(selector = "initWithObject:")
+    protected native @Pointer long init(T object);
     @Method(selector = "initWithOrderedSet:")
     protected native @Pointer long init(NSOrderedSet<T> set);
+    @Method(selector = "initWithOrderedSet:copyItems:")
+    protected native @Pointer long init(NSOrderedSet<T> set, boolean flag);
+    @Method(selector = "initWithOrderedSet:range:copyItems:")
+    protected native @Pointer long init(NSOrderedSet<T> set, @ByVal NSRange range, boolean flag);
     @Method(selector = "initWithArray:")
     protected native @Pointer long init(NSArray<T> array);
+    @Method(selector = "initWithArray:copyItems:")
+    protected native @Pointer long init(NSArray<T> set, boolean flag);
+    @Method(selector = "initWithArray:range:copyItems:")
+    protected native @Pointer long init(NSArray<T> set, @ByVal NSRange range, boolean flag);
+    @Method(selector = "initWithSet:")
+    protected native @Pointer long init(NSSet<T> set);
+    @Method(selector = "initWithSet:copyItems:")
+    protected native @Pointer long init(NSSet<T> set, boolean flag);
+    @Method(selector = "differenceFromOrderedSet:withOptions:usingEquivalenceTest:")
+    public native NSOrderedCollectionDifference<T> differenceFromOrderedSet(NSOrderedSet<T> other, NSOrderedCollectionDifferenceCalculationOptions options, @Block Block2<T, T, Boolean> block);
+    @Method(selector = "differenceFromOrderedSet:withOptions:")
+    public native NSOrderedCollectionDifference<T> differenceFromOrderedSet(NSOrderedSet<T> other, NSOrderedCollectionDifferenceCalculationOptions options);
+    @Method(selector = "differenceFromOrderedSet:")
+    public native NSOrderedCollectionDifference<T> differenceFromOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "orderedSetByApplyingDifference:")
+    public native NSOrderedSet<T> orderedSetByApplyingDifference(NSOrderedCollectionDifference<T> difference);
+    @Method(selector = "valueForKey:")
+    public native NSObject valueForKey(String key);
+    @Method(selector = "setValue:forKey:")
+    public native void setValueForKey(NSObject value, String key);
+    @Method(selector = "addObserver:forKeyPath:options:context:")
+    private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:context:")
+    private native void removeObserver(NSObject observer, String keyPath, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:")
+    public native void removeObserver(NSObject observer, String keyPath);
+    @Method(selector = "sortedArrayUsingDescriptors:")
+    public native NSArray<T> sortedArrayUsingDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
+    @Method(selector = "filteredOrderedSetUsingPredicate:")
+    public native NSOrderedSet<T> filteredOrderedSetUsingPredicate(NSPredicate p);
     /*</methods>*/
 }

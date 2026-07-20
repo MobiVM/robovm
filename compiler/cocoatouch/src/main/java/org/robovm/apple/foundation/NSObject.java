@@ -423,18 +423,82 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "awakeFromNib")
     public native void awakeFromNib();
     /*<methods>*/
+    @Method(selector = "dealloc")
+    public native void dealloc();
     @Method(selector = "copy")
     public native NSObject copy();
     @Method(selector = "mutableCopy")
     public native NSObject mutableCopy();
+    @Method(selector = "methodForSelector:")
+    public native FunctionPtr methodForSelector(Selector aSelector);
+    @Method(selector = "doesNotRecognizeSelector:")
+    public native void doesNotRecognizeSelector(Selector aSelector);
+    @Method(selector = "forwardingTargetForSelector:")
+    public native NSObject forwardingTargetForSelector(Selector aSelector);
+    @Method(selector = "forwardInvocation:")
+    public native void forwardInvocation(NSInvocation anInvocation);
+    @Method(selector = "methodSignatureForSelector:")
+    public native NSMethodSignature methodSignatureForSelector(Selector aSelector);
+    @Method(selector = "replacementObjectForCoder:")
+    public native NSObject replacementObjectForCoder(NSCoder coder);
+    @Method(selector = "awakeAfterUsingCoder:")
+    public native NSObject awakeAfterUsingCoder(NSCoder coder);
     @Method(selector = "performSelector:withObject:afterDelay:inModes:")
     public final native void performSelector(Selector aSelector, NSObject anArgument, double delay, NSArray<NSString> modes);
     @Method(selector = "performSelector:withObject:afterDelay:")
     public final native void performSelector(Selector aSelector, NSObject anArgument, double delay);
+    @Method(selector = "valueForKey:")
+    public native NSObject valueForKey(String key);
+    @Method(selector = "setValue:forKey:")
+    public native void setValueForKey(NSObject value, String key);
+    public boolean validateValueForKey(NSObject ioValue, String inKey) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = validateValueForKey(ioValue, inKey, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "validateValue:forKey:error:")
+    private native boolean validateValueForKey(NSObject ioValue, String inKey, NSError.NSErrorPtr outError);
+    @Method(selector = "mutableArrayValueForKey:")
+    public native NSMutableArray<?> mutableArrayValueForKey(String key);
+    @Method(selector = "mutableOrderedSetValueForKey:")
+    public native NSMutableOrderedSet<?> mutableOrderedSetValueForKey(String key);
+    @Method(selector = "mutableSetValueForKey:")
+    public native NSMutableSet<?> mutableSetValueForKey(String key);
+    @Method(selector = "valueForKeyPath:")
+    public native NSObject valueForKeyPath(String keyPath);
+    @Method(selector = "setValue:forKeyPath:")
+    public native void setValueForKeyPath(NSObject value, String keyPath);
+    public boolean validateValueForKeyPath(NSObject ioValue, String inKeyPath) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = validateValueForKeyPath(ioValue, inKeyPath, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    @Method(selector = "validateValue:forKeyPath:error:")
+    private native boolean validateValueForKeyPath(NSObject ioValue, String inKeyPath, NSError.NSErrorPtr outError);
+    @Method(selector = "mutableArrayValueForKeyPath:")
+    public native NSMutableArray<?> mutableArrayValueForKeyPath(String keyPath);
+    @Method(selector = "mutableOrderedSetValueForKeyPath:")
+    public native NSMutableOrderedSet<?> mutableOrderedSetValueForKeyPath(String keyPath);
+    @Method(selector = "mutableSetValueForKeyPath:")
+    public native NSMutableSet<?> mutableSetValueForKeyPath(String keyPath);
+    @Method(selector = "valueForUndefinedKey:")
+    public native NSObject valueForUndefinedKey(String key);
+    @Method(selector = "setValue:forUndefinedKey:")
+    public native void setValueForUndefinedKey(NSObject value, String key);
+    @Method(selector = "setNilValueForKey:")
+    public native void setNilValueForKey(String key);
+    @Method(selector = "dictionaryWithValuesForKeys:")
+    public native NSDictionary<NSString, ?> dictionaryWithValuesForKeys(NSArray<NSString> keys);
+    @Method(selector = "setValuesForKeysWithDictionary:")
+    public native void setValuesForKeys(NSDictionary<NSString, ?> keyedValues);
     @Method(selector = "addObserver:forKeyPath:options:context:")
     private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
     @Method(selector = "removeObserver:forKeyPath:context:")
     private native void removeObserver(NSObject observer, String keyPath, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:")
+    public native void removeObserver(NSObject observer, String keyPath);
     @Method(selector = "willChangeValueForKey:")
     public native void willChangeValue(String key);
     @Method(selector = "didChangeValueForKey:")
@@ -447,6 +511,21 @@ import org.robovm.apple.dispatch.*;
     public native void willChangeValue(String key, NSKeyValueSetMutationKind mutationKind, NSSet<?> objects);
     @Method(selector = "didChangeValueForKey:withSetMutation:usingObjects:")
     public native void didChangeValue(String key, NSKeyValueSetMutationKind mutationKind, NSSet<?> objects);
+    @Method(selector = "keyPathsForValuesAffectingValueForKey:")
+    public static native NSSet<NSString> keyPathsForValuesAffectingValueForKey(String key);
+    @Method(selector = "automaticallyNotifiesObserversForKey:")
+    public static native boolean automaticallyNotifiesObserversForKey(String key);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "setSharedObservers:")
+    public native void setSharedObservers(NSKeyValueSharedObserversSnapshot sharedObservers);
+    @Method(selector = "replacementObjectForKeyedArchiver:")
+    public native NSObject replacementObjectForKeyedArchiver(NSKeyedArchiver archiver);
+    @Method(selector = "classFallbacksForKeyedArchiver")
+    public static native NSArray<NSString> classFallbacksForKeyedArchiver();
+    @Method(selector = "classForKeyedUnarchiver")
+    public static native Class<?> classForKeyedUnarchiver();
     @Method(selector = "performSelectorOnMainThread:withObject:waitUntilDone:modes:")
     public final native void performSelectorOnMainThread(Selector aSelector, NSObject arg, boolean wait, NSArray<NSString> array);
     @Method(selector = "performSelectorOnMainThread:withObject:waitUntilDone:")

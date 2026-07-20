@@ -54,6 +54,8 @@ import org.robovm.apple.dispatch.*;
     protected NSMutableDictionary(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCapacity:")
     public NSMutableDictionary(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
+    @Method(selector = "initWithCoder:")
+    public NSMutableDictionary(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     
     public NSMutableDictionary() {
@@ -143,15 +145,7 @@ import org.robovm.apple.dispatch.*;
     public static NSMutableDictionary<?, ?> read(java.io.File file) {
         return read(file.getAbsolutePath());
     }
-    /**
-     * @deprecated Use dictionaryWithContentsOfURL:error:
-     */
-    @Deprecated
-    @Method(selector = "dictionaryWithContentsOfFile:")
-    protected static native NSMutableDictionary<?, ?> read(String path);
-    @Method(selector = "dictionaryWithContentsOfURL:")
-    public static native NSMutableDictionary<?, ?> read(NSURL url);
-    
+
     public void put(Object key, boolean value) {
         putObject(key, NSNumber.pointerValueOf(value));
     }
@@ -210,7 +204,29 @@ import org.robovm.apple.dispatch.*;
     protected native void setObject(V anObject, NSObject aKey);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "addEntriesFromDictionary:")
+    public native void addEntriesFromDictionary(NSDictionary<K, V> otherDictionary);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
+    @Method(selector = "removeObjectsForKeys:")
+    public native void removeObjectsForKeys(NSArray<K> keyArray);
+    @Method(selector = "setDictionary:")
+    public native void setDictionary(NSDictionary<K, V> otherDictionary);
+    @Method(selector = "setObject:forKeyedSubscript:")
+    public native void setObjectForKeyedSubscript(V obj, NSObject key);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "dictionaryWithContentsOfFile:")
+    public static native NSMutableDictionary<?, ?> read(String path);
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "dictionaryWithContentsOfURL:")
+    public static native NSMutableDictionary<?, ?> read(NSURL url);
     /*</methods>*/
 }

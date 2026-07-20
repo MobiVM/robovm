@@ -134,6 +134,10 @@ import org.robovm.apple.dispatch.*;
     public NSSet() {}
     protected NSSet(Handle h, long handle) { super(h, handle); }
     protected NSSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithSet:copyItems:")
+    public NSSet(NSSet<T> set, boolean flag) { super((SkipInit) null); initObject(init(set, flag)); }
     /*</constructors>*/
     
     public NSSet(Collection<T> c) {
@@ -290,11 +294,57 @@ import org.robovm.apple.dispatch.*;
     protected native NSEnumerator<T> objectEnumerator();
     @Method(selector = "initWithObjects:count:")
     protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "anyObject")
     public native T any();
+    @Method(selector = "containsObject:")
+    public native boolean containsObject(T anObject);
+    @Method(selector = "descriptionWithLocale:")
+    public native String description(NSObject locale);
+    @Method(selector = "intersectsSet:")
+    public native boolean intersectsSet(NSSet<T> otherSet);
+    @Method(selector = "isEqualToSet:")
+    public native boolean isEqualToSet(NSSet<T> otherSet);
+    @Method(selector = "isSubsetOfSet:")
+    public native boolean isSubsetOfSet(NSSet<T> otherSet);
+    @Method(selector = "makeObjectsPerformSelector:")
+    public native void makeObjectsPerformSelector(Selector aSelector);
+    @Method(selector = "makeObjectsPerformSelector:withObject:")
+    public native void makeObjectsPerformSelector(Selector aSelector, NSObject argument);
+    @Method(selector = "setByAddingObject:")
+    public native NSSet<T> setByAddingObject(T anObject);
+    @Method(selector = "setByAddingObjectsFromSet:")
+    public native NSSet<T> setByAddingObjectsFromSet(NSSet<T> other);
+    @Method(selector = "setByAddingObjectsFromArray:")
+    public native NSSet<T> setByAddingObjectsFromArray(NSArray<T> other);
+    @Method(selector = "enumerateObjectsUsingBlock:")
+    public native void enumerateObjectsUsingBlock(@Block VoidBlock2<T, BooleanPtr> block);
+    @Method(selector = "enumerateObjectsWithOptions:usingBlock:")
+    public native void enumerateObjects(NSEnumerationOptions opts, @Block VoidBlock2<T, BooleanPtr> block);
+    @Method(selector = "objectsPassingTest:")
+    public native NSSet<T> objectsPassingTest(@Block Block2<T, BooleanPtr, Boolean> predicate);
+    @Method(selector = "objectsWithOptions:passingTest:")
+    public native NSSet<T> getObjects(NSEnumerationOptions opts, @Block Block2<T, BooleanPtr, Boolean> predicate);
     @Method(selector = "initWithSet:")
     protected native @Pointer long init(NSSet<T> set);
+    @Method(selector = "initWithSet:copyItems:")
+    protected native @Pointer long init(NSSet<T> set, boolean flag);
     @Method(selector = "initWithArray:")
     protected native @Pointer long init(NSArray<T> array);
+    @Method(selector = "valueForKey:")
+    public native NSObject valueForKey(String key);
+    @Method(selector = "setValue:forKey:")
+    public native void setValueForKey(NSObject value, String key);
+    @Method(selector = "addObserver:forKeyPath:options:context:")
+    private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:context:")
+    private native void removeObserver(NSObject observer, String keyPath, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:")
+    public native void removeObserver(NSObject observer, String keyPath);
+    @Method(selector = "sortedArrayUsingDescriptors:")
+    public native NSArray<T> sortedArrayUsingDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
+    @Method(selector = "filteredSetUsingPredicate:")
+    public native NSSet<T> filteredSetUsingPredicate(NSPredicate predicate);
     /*</methods>*/
 }

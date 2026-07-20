@@ -92,6 +92,8 @@ import org.robovm.apple.dispatch.*;
     public NSMutableSet() {}
     protected NSMutableSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSMutableSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithCapacity:")
     public NSMutableSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
@@ -118,9 +120,23 @@ import org.robovm.apple.dispatch.*;
     protected native void addObject(T object);
     @Method(selector = "removeObject:")
     protected native void removeObject(T object);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
+    @Method(selector = "addObjectsFromArray:")
+    public native void addObjectsFromArray(NSArray<T> array);
+    @Method(selector = "intersectSet:")
+    public native void intersectSet(NSSet<T> otherSet);
+    @Method(selector = "minusSet:")
+    public native void minusSet(NSSet<T> otherSet);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
+    @Method(selector = "unionSet:")
+    public native void unionSet(NSSet<T> otherSet);
+    @Method(selector = "setSet:")
+    public native void setSet(NSSet<T> otherSet);
+    @Method(selector = "filterUsingPredicate:")
+    public native void filterUsingPredicate(NSPredicate predicate);
     /*</methods>*/
 }

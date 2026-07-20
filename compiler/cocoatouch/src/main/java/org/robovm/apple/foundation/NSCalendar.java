@@ -183,6 +183,58 @@ import org.robovm.apple.dispatch.*;
     public native NSDate newDateByAddingComponents(NSDateComponents comps, NSDate date, NSCalendarOptions opts);
     @Method(selector = "components:fromDate:toDate:options:")
     public native NSDateComponents getComponents(NSCalendarUnit unitFlags, NSDate startingDate, NSDate resultDate, NSCalendarOptions opts);
+    @Method(selector = "getEra:year:month:day:fromDate:")
+    public native void getDateComponents(MachineSizedSIntPtr eraValuePointer, MachineSizedSIntPtr yearValuePointer, MachineSizedSIntPtr monthValuePointer, MachineSizedSIntPtr dayValuePointer, NSDate date);
+    @Method(selector = "getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:")
+    public native void getWeekOfYearDateComponents(MachineSizedSIntPtr eraValuePointer, MachineSizedSIntPtr yearValuePointer, MachineSizedSIntPtr weekValuePointer, MachineSizedSIntPtr weekdayValuePointer, NSDate date);
+    @Method(selector = "getHour:minute:second:nanosecond:fromDate:")
+    public native void getTimeComponents(MachineSizedSIntPtr hourValuePointer, MachineSizedSIntPtr minuteValuePointer, MachineSizedSIntPtr secondValuePointer, MachineSizedSIntPtr nanosecondValuePointer, NSDate date);
+    @Method(selector = "component:fromDate:")
+    public native @MachineSizedSInt long getComponentFromDate(NSCalendarUnit unit, NSDate date);
+    @Method(selector = "dateWithEra:year:month:day:hour:minute:second:nanosecond:")
+    public native NSDate dateWithComponents(@MachineSizedSInt long eraValue, @MachineSizedSInt long yearValue, @MachineSizedSInt long monthValue, @MachineSizedSInt long dayValue, @MachineSizedSInt long hourValue, @MachineSizedSInt long minuteValue, @MachineSizedSInt long secondValue, @MachineSizedSInt long nanosecondValue);
+    @Method(selector = "dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:")
+    public native NSDate dateWithWeekOfYearComponents(@MachineSizedSInt long eraValue, @MachineSizedSInt long yearValue, @MachineSizedSInt long weekValue, @MachineSizedSInt long weekdayValue, @MachineSizedSInt long hourValue, @MachineSizedSInt long minuteValue, @MachineSizedSInt long secondValue, @MachineSizedSInt long nanosecondValue);
+    @Method(selector = "startOfDayForDate:")
+    public native NSDate startOfDayForDate(NSDate date);
+    @Method(selector = "componentsInTimeZone:fromDate:")
+    public native NSDateComponents componentsInTimeZone(NSTimeZone timezone, NSDate date);
+    @Method(selector = "compareDate:toDate:toUnitGranularity:")
+    public native NSComparisonResult compareDate(NSDate date1, NSDate date2, NSCalendarUnit unit);
+    @Method(selector = "isDate:equalToDate:toUnitGranularity:")
+    public native boolean isDateEqualToDate(NSDate date1, NSDate date2, NSCalendarUnit unit);
+    @Method(selector = "isDate:inSameDayAsDate:")
+    public native boolean isDateInSameDay(NSDate date1, NSDate date2);
+    @Method(selector = "isDateInToday:")
+    public native boolean isDateInToday(NSDate date);
+    @Method(selector = "isDateInYesterday:")
+    public native boolean isDateInYesterday(NSDate date);
+    @Method(selector = "isDateInTomorrow:")
+    public native boolean isDateInTomorrow(NSDate date);
+    @Method(selector = "isDateInWeekend:")
+    public native boolean isDateInWeekend(NSDate date);
+    @Method(selector = "rangeOfWeekendStartDate:interval:containingDate:")
+    public native boolean rangeOfWeekend(NSDate.NSDatePtr datep, DoublePtr tip, NSDate date);
+    @Method(selector = "nextWeekendStartDate:interval:options:afterDate:")
+    public native boolean nextWeekend(NSDate.NSDatePtr datep, DoublePtr tip, NSCalendarOptions options, NSDate date);
+    @Method(selector = "components:fromDateComponents:toDateComponents:options:")
+    public native NSDateComponents getComponentsDifference(NSCalendarUnit unitFlags, NSDateComponents startingDateComp, NSDateComponents resultDateComp, NSCalendarOptions options);
+    @Method(selector = "dateByAddingUnit:value:toDate:options:")
+    public native NSDate dateByAdding(NSCalendarUnit unit, @MachineSizedSInt long value, NSDate date, NSCalendarOptions options);
+    @Method(selector = "enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:")
+    public native void enumerateDatesStartingAfterDate(NSDate start, NSDateComponents comps, NSCalendarOptions opts, @Block VoidBlock3<NSDate, Boolean, BooleanPtr> block);
+    @Method(selector = "nextDateAfterDate:matchingComponents:options:")
+    public native NSDate nextDateAfterDate(NSDate date, NSDateComponents comps, NSCalendarOptions options);
+    @Method(selector = "nextDateAfterDate:matchingUnit:value:options:")
+    public native NSDate nextDateAfterDate(NSDate date, NSCalendarUnit unit, @MachineSizedSInt long value, NSCalendarOptions options);
+    @Method(selector = "nextDateAfterDate:matchingHour:minute:second:options:")
+    public native NSDate nextDateAfterDate(NSDate date, @MachineSizedSInt long hourValue, @MachineSizedSInt long minuteValue, @MachineSizedSInt long secondValue, NSCalendarOptions options);
+    @Method(selector = "dateBySettingUnit:value:ofDate:options:")
+    public native NSDate dateBySettingUnit(NSCalendarUnit unit, @MachineSizedSInt long v, NSDate date, NSCalendarOptions opts);
+    @Method(selector = "dateBySettingHour:minute:second:ofDate:options:")
+    public native NSDate dateBySettingTime(@MachineSizedSInt long h, @MachineSizedSInt long m, @MachineSizedSInt long s, NSDate date, NSCalendarOptions opts);
+    @Method(selector = "date:matchesComponents:")
+    public native boolean dateMatchesComponents(NSDate date, NSDateComponents components);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

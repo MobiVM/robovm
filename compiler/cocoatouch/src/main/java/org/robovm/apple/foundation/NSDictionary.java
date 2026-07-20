@@ -647,12 +647,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "keysOfEntriesWithOptions:passingTest:")
     public native NSSet<K> keysOfEntries(NSEnumerationOptions opts, @Block Block3<K, V, BooleanPtr, Boolean> predicate);
     /**
-     * @deprecated Use initWithContentsOfURL:error:
-     */
-    @Deprecated
-    @Method(selector = "initWithContentsOfFile:")
-    public native NSDictionary<K, V> init(String path);
-    /**
      * @deprecated Use writeToURL:error:
      */
     @Deprecated
@@ -669,7 +663,7 @@ import org.robovm.apple.dispatch.*;
      */
     @Deprecated
     @Method(selector = "dictionaryWithContentsOfFile:")
-    protected static native NSDictionary<?, ?> read(String path);
+    public static native NSDictionary<?, ?> read(String path);
     /**
      * @deprecated Use dictionaryWithContentsOfURL:error:
      */

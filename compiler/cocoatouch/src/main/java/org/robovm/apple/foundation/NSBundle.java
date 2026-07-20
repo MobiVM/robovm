@@ -155,6 +155,8 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(String path);
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL url);
+    @Method(selector = "unload")
+    public native boolean unload();
     public boolean preflight() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = preflight(ptr);
@@ -197,6 +199,16 @@ import org.robovm.apple.dispatch.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> findResourcesPaths(String ext, String subpath, String localizationName);
     @Method(selector = "localizedStringForKey:value:table:")
     public native String getLocalizedString(String key, String value, String tableName);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "localizedAttributedStringForKey:value:table:")
+    public native NSAttributedString getLocalizedAttributedString(String key, String value, String tableName);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "localizedStringForKey:value:table:localizations:")
+    public native String getLocalizedString(String key, String value, String tableName, NSArray<NSString> localizations);
     @Method(selector = "objectForInfoDictionaryKey:")
     public native NSObject getInfoDictionaryObject(String key);
     @Method(selector = "classNamed:")
@@ -217,5 +229,15 @@ import org.robovm.apple.dispatch.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPreferredLocalizations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> localizationsArray);
     @Method(selector = "preferredLocalizationsFromArray:forPreferences:")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPreferredLocalizations(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> localizationsArray, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferencesArray);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "setPreservationPriority:forTags:")
+    public native void setPreservationPriority(double priority, NSSet<NSString> tags);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "preservationPriorityForTag:")
+    public native double preservationPriorityForTag(String tag);
     /*</methods>*/
 }

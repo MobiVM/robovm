@@ -86,6 +86,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "allowsConstrainedNetworkAccess")
     public native boolean allowsConstrainedNetworkAccess();
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "allowsUltraConstrainedNetworkAccess")
+    public native boolean allowsUltraConstrainedNetworkAccess();
+    /**
      * @since Available in iOS 14.5 and later.
      */
     @Property(selector = "assumesHTTP3Capable")

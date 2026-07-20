@@ -135,6 +135,85 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "length")
     protected native @MachineSizedUInt long length();
+    @Property(selector = "doubleValue")
+    public native double getDoubleValue();
+    @Property(selector = "floatValue")
+    public native float getFloatValue();
+    @Property(selector = "intValue")
+    public native int getIntValue();
+    @Property(selector = "integerValue")
+    public native @MachineSizedSInt long getIntegerValue();
+    @Property(selector = "longLongValue")
+    public native long getLongLongValue();
+    @Property(selector = "boolValue")
+    public native boolean isBoolValue();
+    @Property(selector = "uppercaseString")
+    public native String getUppercaseString();
+    @Property(selector = "lowercaseString")
+    public native String getLowercaseString();
+    @Property(selector = "capitalizedString")
+    public native String getCapitalizedString();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "localizedUppercaseString")
+    public native String getLocalizedUppercaseString();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "localizedLowercaseString")
+    public native String getLocalizedLowercaseString();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "localizedCapitalizedString")
+    public native String getLocalizedCapitalizedString();
+    @Property(selector = "UTF8String")
+    public native BytePtr getUTF8String();
+    @Property(selector = "fastestEncoding")
+    public native NSStringEncoding getFastestEncoding();
+    @Property(selector = "smallestEncoding")
+    public native NSStringEncoding getSmallestEncoding();
+    @Property(selector = "availableStringEncodings")
+    public static native MachineSizedUIntPtr getAvailableStringEncodings();
+    @Property(selector = "defaultCStringEncoding")
+    public static native NSStringEncoding getDefaultCStringEncoding();
+    @Property(selector = "decomposedStringWithCanonicalMapping")
+    public native String getDecomposedStringWithCanonicalMapping();
+    @Property(selector = "precomposedStringWithCanonicalMapping")
+    public native String getPrecomposedStringWithCanonicalMapping();
+    @Property(selector = "decomposedStringWithCompatibilityMapping")
+    public native String getDecomposedStringWithCompatibilityMapping();
+    @Property(selector = "precomposedStringWithCompatibilityMapping")
+    public native String getPrecomposedStringWithCompatibilityMapping();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "pathComponents")
+    public native NSArray<NSString> getPathComponents();
+    @Property(selector = "isAbsolutePath")
+    public native boolean isAbsolutePath();
+    @Property(selector = "lastPathComponent")
+    public native String getLastPathComponent();
+    @Property(selector = "stringByDeletingLastPathComponent")
+    public native String getStringByDeletingLastPathComponent();
+    @Property(selector = "pathExtension")
+    public native String getPathExtension();
+    @Property(selector = "stringByDeletingPathExtension")
+    public native String getStringByDeletingPathExtension();
+    @Property(selector = "stringByAbbreviatingWithTildeInPath")
+    public native String getStringByAbbreviatingWithTildeInPath();
+    @Property(selector = "stringByExpandingTildeInPath")
+    public native String getStringByExpandingTildeInPath();
+    @Property(selector = "stringByStandardizingPath")
+    public native String getStringByStandardizingPath();
+    @Property(selector = "stringByResolvingSymlinksInPath")
+    public native String getStringByResolvingSymlinksInPath();
+    @Property(selector = "fileSystemRepresentation")
+    public native BytePtr getFileSystemRepresentation();
+    @Property(selector = "stringByRemovingPercentEncoding")
+    public native String getStringByRemovingPercentEncoding();
     /*</properties>*/
     /*<members>*//*</members>*/
 
@@ -686,16 +765,127 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "characterAtIndex:")
     protected native short getCharactersAt(@MachineSizedUInt long index);
+    @Method(selector = "substringFromIndex:")
+    public native String substringFromIndex(@MachineSizedUInt long from);
+    @Method(selector = "substringToIndex:")
+    public native String substringToIndex(@MachineSizedUInt long to);
+    @Method(selector = "substringWithRange:")
+    public native String substring(@ByVal NSRange range);
     @Method(selector = "getCharacters:range:")
     protected native void getCharacters(@Pointer long buffer, @ByVal NSRange range);
+    @Method(selector = "compare:")
+    public native NSComparisonResult compare(String string);
+    @Method(selector = "compare:options:")
+    public native NSComparisonResult compare(String string, NSStringCompareOptions mask);
+    @Method(selector = "compare:options:range:")
+    public native NSComparisonResult compare(String string, NSStringCompareOptions mask, @ByVal NSRange rangeOfReceiverToCompare);
+    @Method(selector = "compare:options:range:locale:")
+    public native NSComparisonResult compare(String string, NSStringCompareOptions mask, @ByVal NSRange rangeOfReceiverToCompare, NSObject locale);
+    @Method(selector = "caseInsensitiveCompare:")
+    public native NSComparisonResult caseInsensitiveCompare(String string);
+    @Method(selector = "localizedCompare:")
+    public native NSComparisonResult localizedCompare(String string);
+    @Method(selector = "localizedCaseInsensitiveCompare:")
+    public native NSComparisonResult localizedCaseInsensitiveCompare(String string);
+    @Method(selector = "localizedStandardCompare:")
+    public native NSComparisonResult localizedStandardCompare(String string);
+    @Method(selector = "isEqualToString:")
+    public native boolean isEqualToString(String aString);
     @Method(selector = "hasPrefix:")
     public native boolean hasPrefix(String str);
     @Method(selector = "hasSuffix:")
     public native boolean hasSuffix(String str);
+    @Method(selector = "commonPrefixWithString:options:")
+    public native String commonPrefix(String str, NSStringCompareOptions mask);
+    @Method(selector = "containsString:")
+    public native boolean containsString(String str);
+    @Method(selector = "localizedCaseInsensitiveContainsString:")
+    public native boolean localizedCaseInsensitiveContainsString(String str);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedStandardContainsString:")
+    public native boolean localizedStandardContainsString(String str);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "localizedStandardRangeOfString:")
+    public native @ByVal NSRange localizedStandardRangeOfString(String str);
+    @Method(selector = "rangeOfString:")
+    public native @ByVal NSRange rangeOfString(String searchString);
+    @Method(selector = "rangeOfString:options:")
+    public native @ByVal NSRange rangeOfString(String searchString, NSStringCompareOptions mask);
+    @Method(selector = "rangeOfString:options:range:")
+    public native @ByVal NSRange rangeOfString(String searchString, NSStringCompareOptions mask, @ByVal NSRange rangeOfReceiverToSearch);
+    @Method(selector = "rangeOfString:options:range:locale:")
+    public native @ByVal NSRange rangeOfString(String searchString, NSStringCompareOptions mask, @ByVal NSRange rangeOfReceiverToSearch, NSLocale locale);
+    @Method(selector = "rangeOfCharacterFromSet:")
+    public native @ByVal NSRange rangeOfCharacterFromSet(NSCharacterSet searchSet);
+    @Method(selector = "rangeOfCharacterFromSet:options:")
+    public native @ByVal NSRange rangeOfCharacterFromSet(NSCharacterSet searchSet, NSStringCompareOptions mask);
+    @Method(selector = "rangeOfCharacterFromSet:options:range:")
+    public native @ByVal NSRange rangeOfCharacterFromSet(NSCharacterSet searchSet, NSStringCompareOptions mask, @ByVal NSRange rangeOfReceiverToSearch);
+    @Method(selector = "rangeOfComposedCharacterSequenceAtIndex:")
+    public native @ByVal NSRange rangeOfComposedCharacterSequenceAtIndex(@MachineSizedUInt long index);
+    @Method(selector = "rangeOfComposedCharacterSequencesForRange:")
+    public native @ByVal NSRange rangeOfComposedCharacterSequencesForRange(@ByVal NSRange range);
+    @Method(selector = "stringByAppendingString:")
+    public native String stringByAppendingString(String aString);
+    @Method(selector = "uppercaseStringWithLocale:")
+    public native String uppercaseString(NSLocale locale);
+    @Method(selector = "lowercaseStringWithLocale:")
+    public native String lowercaseString(NSLocale locale);
+    @Method(selector = "capitalizedStringWithLocale:")
+    public native String capitalizedString(NSLocale locale);
+    @Method(selector = "getLineStart:end:contentsEnd:forRange:")
+    public native void getLine(MachineSizedUIntPtr startPtr, MachineSizedUIntPtr lineEndPtr, MachineSizedUIntPtr contentsEndPtr, @ByVal NSRange range);
+    @Method(selector = "lineRangeForRange:")
+    public native @ByVal NSRange lineRangeForRange(@ByVal NSRange range);
+    @Method(selector = "getParagraphStart:end:contentsEnd:forRange:")
+    public native void getParagraph(MachineSizedUIntPtr startPtr, MachineSizedUIntPtr parEndPtr, MachineSizedUIntPtr contentsEndPtr, @ByVal NSRange range);
+    @Method(selector = "paragraphRangeForRange:")
+    public native @ByVal NSRange paragraphRangeForRange(@ByVal NSRange range);
+    @Method(selector = "enumerateSubstringsInRange:options:usingBlock:")
+    public native void enumerateSubstrings(@ByVal NSRange range, NSStringEnumerationOptions opts, @Block("(,@ByVal,@ByVal,)") VoidBlock4<NSString, NSRange, NSRange, BooleanPtr> block);
+    @Method(selector = "enumerateLinesUsingBlock:")
+    public native void enumerateLinesUsingBlock(@Block VoidBlock2<NSString, BooleanPtr> block);
     @Method(selector = "dataUsingEncoding:allowLossyConversion:")
     public native NSData toData(NSStringEncoding encoding, boolean lossy);
     @Method(selector = "dataUsingEncoding:")
     public native NSData toData(NSStringEncoding encoding);
+    @Method(selector = "canBeConvertedToEncoding:")
+    public native boolean canBeConvertedToEncoding(NSStringEncoding encoding);
+    @Method(selector = "cStringUsingEncoding:")
+    public native BytePtr cStringUsingEncoding(NSStringEncoding encoding);
+    @Method(selector = "getCString:maxLength:encoding:")
+    public native boolean getCString(BytePtr buffer, @MachineSizedUInt long maxBufferCount, NSStringEncoding encoding);
+    @Method(selector = "getBytes:maxLength:usedLength:encoding:options:range:remainingRange:")
+    public native boolean getBytes(VoidPtr buffer, @MachineSizedUInt long maxBufferCount, MachineSizedUIntPtr usedBufferCount, NSStringEncoding encoding, NSStringEncodingConversionOptions options, @ByVal NSRange range, NSRange leftover);
+    @Method(selector = "maximumLengthOfBytesUsingEncoding:")
+    public native @MachineSizedUInt long maximumLengthOfBytesUsingEncoding(NSStringEncoding enc);
+    @Method(selector = "lengthOfBytesUsingEncoding:")
+    public native @MachineSizedUInt long lengthOfBytesUsingEncoding(NSStringEncoding enc);
+    @Method(selector = "componentsSeparatedByString:")
+    public native NSArray<NSString> componentsSeparatedByString(String separator);
+    @Method(selector = "componentsSeparatedByCharactersInSet:")
+    public native NSArray<NSString> componentsSeparatedByCharactersInSet(NSCharacterSet separator);
+    @Method(selector = "stringByTrimmingCharactersInSet:")
+    public native String stringByTrimmingCharactersInSet(NSCharacterSet set);
+    @Method(selector = "stringByPaddingToLength:withString:startingAtIndex:")
+    public native String stringByPaddingToLength(@MachineSizedUInt long newLength, String padString, @MachineSizedUInt long padIndex);
+    @Method(selector = "stringByFoldingWithOptions:locale:")
+    public native String stringByFolding(NSStringCompareOptions options, NSLocale locale);
+    @Method(selector = "stringByReplacingOccurrencesOfString:withString:options:range:")
+    public native String stringByReplacingOccurrencesOfString(String target, String replacement, NSStringCompareOptions options, @ByVal NSRange searchRange);
+    @Method(selector = "stringByReplacingOccurrencesOfString:withString:")
+    public native String stringByReplacingOccurrencesOfString(String target, String replacement);
+    @Method(selector = "stringByReplacingCharactersInRange:withString:")
+    public native String stringByReplacingCharacters(@ByVal NSRange range, String replacement);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "stringByApplyingTransform:reverse:")
+    public native String stringByApplyingTransform(String transform, boolean reverse);
     public boolean writeURL(NSURL url, boolean atomically, NSStringEncoding enc) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = writeURL(url, atomically, enc, ptr);
@@ -720,6 +910,10 @@ import org.robovm.apple.dispatch.*;
     private native @Pointer long init(NSURL url, NSStringEncoding enc, NSError.NSErrorPtr error);
     @Method(selector = "initWithContentsOfFile:encoding:error:")
     private native @Pointer long init(String path, NSStringEncoding enc, NSError.NSErrorPtr error);
+    @Method(selector = "localizedNameOfStringEncoding:")
+    public static native String localizedNameOfStringEncoding(NSStringEncoding encoding);
+    @Method(selector = "string")
+    public static native NSString string();
     @Method(selector = "stringWithCharacters:length:")
     protected static native @Pointer long create(@Pointer long characters, @MachineSizedUInt long length);
     public static String readURL(NSURL url, NSStringEncoding enc) throws NSErrorException {
@@ -738,10 +932,29 @@ import org.robovm.apple.dispatch.*;
     }
     @Method(selector = "stringWithContentsOfFile:encoding:error:")
     private static native String readFile(String path, NSStringEncoding enc, NSError.NSErrorPtr error);
+    @Method(selector = "propertyList")
+    public native NSObject propertyList();
+    @Method(selector = "propertyListFromStringsFileFormat")
+    public native NSDictionary<?, ?> propertyListFromStringsFileFormat();
+    @Method(selector = "getCharacters:")
+    public native void getCharacters(ShortPtr buffer);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "variantFittingPresentationWidth:")
+    public native String variantFittingPresentationWidth(@MachineSizedSInt long width);
     @Method(selector = "stringByAppendingPathComponent:")
     public native String appendPathComponent(String str);
     @Method(selector = "stringByAppendingPathExtension:")
     public native String appendPathExtension(String str);
+    @Method(selector = "stringsByAppendingPaths:")
+    public native NSArray<NSString> stringsByAppendingPaths(NSArray<NSString> paths);
+    @Method(selector = "completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:")
+    public native @MachineSizedUInt long completePathIntoString(NSString.NSStringPtr outputName, boolean flag, NSArray.NSArrayPtr<?> outputArray, NSArray<NSString> filterTypes);
+    @Method(selector = "getFileSystemRepresentation:maxLength:")
+    public native boolean getFileSystemRepresentation(BytePtr cname, @MachineSizedUInt long max);
+    @Method(selector = "pathWithComponents:")
+    public static native String pathWithComponents(NSArray<NSString> components);
     @Method(selector = "stringByAddingPercentEncodingWithAllowedCharacters:")
     public native String addPercentEncoding(NSCharacterSet allowedCharacters);
     /**
@@ -756,5 +969,17 @@ import org.robovm.apple.dispatch.*;
     @Deprecated
     @Method(selector = "stringByReplacingPercentEscapesUsingEncoding:")
     public native String replacePercentEscapes(NSStringEncoding enc);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
+    @Method(selector = "linguisticTagsInRange:scheme:options:orthography:tokenRanges:")
+    public native NSArray<NSString> linguisticTags(@ByVal NSRange range, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, NSArray.NSArrayPtr<?> tokenRanges);
+    /**
+     * @deprecated All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API
+     */
+    @Deprecated
+    @Method(selector = "enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:")
+    public native void enumerateLinguisticTags(@ByVal NSRange range, String scheme, NSLinguisticTaggerOptions options, NSOrthography orthography, @Block("(,@ByVal,@ByVal,)") VoidBlock4<String, NSRange, NSRange, BooleanPtr> block);
     /*</methods>*/
 }
