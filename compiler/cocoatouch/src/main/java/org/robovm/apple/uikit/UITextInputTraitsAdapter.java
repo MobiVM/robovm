@@ -188,8 +188,14 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("setConversationContext:")
     public void setConversationContext(UIConversationContext v) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @NotImplemented("allowsNumberPadPopover")
     public boolean allowsNumberPadPopover() { return false; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @NotImplemented("setAllowsNumberPadPopover:")
     public void setAllowsNumberPadPopover(boolean v) {}
     /*</properties>*/

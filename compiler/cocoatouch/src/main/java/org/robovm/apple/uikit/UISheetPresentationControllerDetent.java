@@ -66,6 +66,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "identifier")
     public native UISheetPresentationControllerDetentIdentifier getIdentifier();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "backgroundEffect")
+    public native UIVisualEffect getBackgroundEffect();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setBackgroundEffect:")
+    public native void setBackgroundEffect(UIVisualEffect v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

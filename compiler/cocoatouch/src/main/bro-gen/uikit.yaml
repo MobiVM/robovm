@@ -5433,7 +5433,11 @@ classes:
     UIZoomTransitionInteractionContext: {} #since 18.0
     UIZoomTransitionOptions: {} #since 18.0
     UIZoomTransitionSourceViewProviderContext: {} #since 18.0
-
+    UIColorEffect: #since 11.0
+        methods:
+            '+effectWithColor:':
+                name: create
+                constructor: true
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:

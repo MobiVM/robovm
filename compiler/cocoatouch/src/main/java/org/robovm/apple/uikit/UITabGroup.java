@@ -99,6 +99,16 @@ import org.robovm.apple.symbols.*;
     public native UITabGroupSidebarAppearance getSidebarAppearance();
     @Property(selector = "setSidebarAppearance:")
     public native void setSidebarAppearance(UITabGroupSidebarAppearance v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isSidebarDestination")
+    public native boolean isSidebarDestination();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setIsSidebarDestination:")
+    public native void setIsSidebarDestination(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
