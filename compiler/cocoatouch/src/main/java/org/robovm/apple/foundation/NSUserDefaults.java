@@ -65,7 +65,7 @@ import org.robovm.apple.dispatch.*;
     protected NSUserDefaults(Handle h, long handle) { super(h, handle); }
     protected NSUserDefaults(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSuiteName:")
-    public NSUserDefaults(String suitename) { super((SkipInit) null); initObject(initWithSuiteName(suitename)); }
+    public NSUserDefaults(String suitename) { super((SkipInit) null); initObject(init(suitename)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "standardUserDefaults")
@@ -168,7 +168,7 @@ import org.robovm.apple.dispatch.*;
     public static native NSString DidChangeNotification();
     
     @Method(selector = "initWithSuiteName:")
-    protected native @Pointer long initWithSuiteName(String suitename);
+    protected native @Pointer long init(String suitename);
     @Method(selector = "objectForKey:")
     public native NSObject get(String defaultName);
     @Method(selector = "setObject:forKey:")
