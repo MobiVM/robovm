@@ -4320,8 +4320,8 @@ classes:
             '+standardUserDefaults':
                 property: true
             '-init': {}
-            '-init.*':
-                exclude: true
+            '-initWithSuiteName:':
+                name: init
     NSUUID: # DONE
         properties:
             'UUIDString':
