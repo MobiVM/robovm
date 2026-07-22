@@ -110,6 +110,26 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "setAllowsDictation:")
     public native void setAllowsDictation(boolean v);
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "allowsAccessibilityLiveCaptions")
+    public native boolean allowsAccessibilityLiveCaptions();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setAllowsAccessibilityLiveCaptions:")
+    public native void setAllowsAccessibilityLiveCaptions(boolean v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "allowsAccessibilityReader")
+    public native boolean allowsAccessibilityReader();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setAllowsAccessibilityReader:")
+    public native void setAllowsAccessibilityReader(boolean v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "allowsAccessibilitySpeech")
