@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+ * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -53,7 +53,7 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     /**
      * @since Available in iOS 12.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "state")
@@ -72,49 +72,49 @@ import org.robovm.apple.coregraphics.*;
     public native long getContentLength();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "expectedContentLength")
     public native long getExpectedContentLength();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "contentIdentifier")
     public native String getContentIdentifier();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "contentURL")
     public native NSURL getContentURL();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "contentVersion")
     public native String getContentVersion();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "error")
     public native NSError getError();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "progress")
     public native float getProgress();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "timeRemaining")
     public native double getTimeRemaining();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "transaction")
@@ -123,7 +123,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @GlobalValue(symbol="SKDownloadTimeRemainingUnknown", optional=true)

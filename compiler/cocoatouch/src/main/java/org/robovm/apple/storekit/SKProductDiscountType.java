@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.2 and later.
- * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.OfferType
+ * @deprecated Deprecated in iOS 18.0. Use Product.SubscriptionOffer.OfferType.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/

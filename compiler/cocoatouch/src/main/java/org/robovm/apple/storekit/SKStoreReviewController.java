@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.3 and later.
- * @deprecated Deprecated in iOS 18.0. Use AppStore.requestReview(in:)
+ * @deprecated Deprecated in iOS 18.0. Use AppStore.requestReview(in:).
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -58,14 +58,14 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[SKStoreReviewController requestReviewInScene:]
+     * @deprecated Deprecated in iOS 14.0. Use -[SKStoreReviewController requestReviewInScene:].
      */
     @Deprecated
     @Method(selector = "requestReview")
     public static native void requestReview();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use AppStore.requestReview(in:)
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.requestReview(in:).
      */
     @Deprecated
     @Method(selector = "requestReviewInScene:")

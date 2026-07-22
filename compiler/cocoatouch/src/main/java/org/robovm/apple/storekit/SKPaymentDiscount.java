@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.2 and later.
- * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)
+ * @deprecated Deprecated in iOS 18.0. Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:).
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/

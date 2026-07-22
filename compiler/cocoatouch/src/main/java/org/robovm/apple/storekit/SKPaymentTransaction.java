@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 18.0. Use PurchaseResult from Product.purchase(confirmIn:options:)
+ * @deprecated Deprecated in iOS 18.0. Use PurchaseResult from Product.purchase(confirmIn:options:).
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "payment")
     public native SKPayment getPayment();
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @Property(selector = "downloads")

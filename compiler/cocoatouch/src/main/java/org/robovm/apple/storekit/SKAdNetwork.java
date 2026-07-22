@@ -67,14 +67,14 @@ import org.robovm.apple.coregraphics.*;
     public static native void endImpression(SKAdImpression impression, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 11.3 and later.
-     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead
+     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead.
      */
     @Deprecated
     @Method(selector = "registerAppForAdNetworkAttribution")
     public static native void registerAppForAdNetworkAttribution();
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead
+     * @deprecated Deprecated in iOS 15.4. Use updatePostbackConversionValue:completionHandler: instead.
      */
     @Deprecated
     @Method(selector = "updateConversionValue:")

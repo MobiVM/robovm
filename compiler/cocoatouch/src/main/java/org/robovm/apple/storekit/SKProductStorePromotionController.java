@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
- * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo
+ * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -58,28 +58,28 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Get visibility from Product.PromotionInfo.currentOrder
+     * @deprecated Deprecated in iOS 18.0. Get visibility from Product.PromotionInfo.currentOrder.
      */
     @Deprecated
     @Method(selector = "fetchStorePromotionVisibilityForProduct:completionHandler:")
     public native void fetchStorePromotionVisibility(SKProduct product, @Block VoidBlock2<SKProductStorePromotionVisibility, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.updateProductVisibility(_:for:)
+     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.updateProductVisibility(_:for:).
      */
     @Deprecated
     @Method(selector = "updateStorePromotionVisibility:forProduct:completionHandler:")
     public native void updateStorePromotionVisibility(SKProductStorePromotionVisibility promotionVisibility, SKProduct product, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.currentOrder
+     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.currentOrder.
      */
     @Deprecated
     @Method(selector = "fetchStorePromotionOrderWithCompletionHandler:")
     public native void fetchStorePromotionOrder(@Block VoidBlock2<NSArray<SKProduct>, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.updateProductOrder(byID:)
+     * @deprecated Deprecated in iOS 18.0. Use Product.PromotionInfo.updateProductOrder(byID:).
      */
     @Deprecated
     @Method(selector = "updateStorePromotionOrder:completionHandler:")
