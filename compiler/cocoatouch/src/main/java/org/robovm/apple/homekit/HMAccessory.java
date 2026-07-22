@@ -48,6 +48,11 @@ import org.robovm.apple.corelocation.*;
     protected HMAccessory(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "home")
+    public native HMHome getHome();
     @Property(selector = "name")
     public native String getName();
     /**
@@ -80,6 +85,11 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "uniqueIdentifiersForBridgedAccessories")
     public native NSArray<NSUUID> getUniqueIdentifiersForBridgedAccessories();
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Property(selector = "bridgedAccessories")
+    public native NSArray<HMAccessory> getBridgedAccessories();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -126,6 +136,16 @@ import org.robovm.apple.corelocation.*;
      */
     @Property(selector = "cameraProfiles")
     public native NSArray<HMCameraProfile> getCameraProfiles();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "isVendorAccessory")
+    public native boolean isVendorAccessory();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "HAPInstanceID")
+    public native NSNumber getHAPInstanceID();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
