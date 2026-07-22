@@ -35,18 +35,15 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 12.0 and later.
+ * @since Available in iOS 26.2 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/ASSavePasswordRequestEvent/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Domain(0L),
-    URL(1L),
-    /**
-     * @since Available in iOS 26.2 and later.
-     */
-    App(2L);
+    UserInitiated(0L),
+    FormDidDisappear(1L),
+    GeneratedPasswordFilled(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -56,15 +53,15 @@ public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements Va
 
     private final long n;
 
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/ASSavePasswordRequestEvent/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
+    public static /*<name>*/ASSavePasswordRequestEvent/*</name>*/ valueOf(long n) {
+        for (/*<name>*/ASSavePasswordRequestEvent/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
+            + /*<name>*/ASSavePasswordRequestEvent/*</name>*/.class.getName());
     }
 }

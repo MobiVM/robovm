@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected ASAuthorizationWebBrowserPublicKeyCredentialManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isDeviceConfiguredForPasskeys")
+    public static native boolean isDeviceConfiguredForPasskeys();
     @Property(selector = "authorizationStateForPlatformCredentials")
     public native ASAuthorizationWebBrowserPublicKeyCredentialManagerAuthorizationState getAuthorizationStateForPlatformCredentials();
     /*</properties>*/

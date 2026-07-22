@@ -34,37 +34,34 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 12.0 and later.
- */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Domain(0L),
-    URL(1L),
+/*<annotations>*/@Library("AuthenticationServices")/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AuthenticationServices/*</name>*/ 
+    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
+
+    /*<ptr>*/
+    /*</ptr>*/
+    /*<bind>*/static { Bro.bind(AuthenticationServices.class); }/*</bind>*/
+    /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
     /**
      * @since Available in iOS 26.2 and later.
      */
-    App(2L);
-    /*</values>*/
-
-    /*<bind>*/
-    /*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ASCredentialServiceIdentifierType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASCredentialServiceIdentifierType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASCredentialServiceIdentifierType/*</name>*/.class.getName());
-    }
+    @GlobalValue(symbol="ASGeneratedPasswordKindStrong", optional=true)
+    public static native String Value__ASGeneratedPasswordKindStrong();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @GlobalValue(symbol="ASGeneratedPasswordKindAlphanumeric", optional=true)
+    public static native String Value__ASGeneratedPasswordKindAlphanumeric();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @GlobalValue(symbol="ASGeneratedPasswordKindPassphrase", optional=true)
+    public static native String Value__ASGeneratedPasswordKindPassphrase();
+    /*</methods>*/
 }

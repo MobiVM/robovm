@@ -122,5 +122,25 @@ import org.robovm.apple.coreanimation.*;
     public native void reportAllAcceptedPublicKeyCredentials(String relyingParty, NSData userHandle, NSArray<NSData> acceptedCredentialIDs);
     @Method(selector = "reportUnusedPasswordCredentialForDomain:userName:")
     public native void reportUnusedPasswordCredential(String domain, String userName);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "performSavePasswordRequestWithoutUserInteractionIfPossible:")
+    public native void performSavePasswordRequest(ASSavePasswordRequest savePasswordRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "prepareInterfaceForSavePasswordRequest:")
+    public native void prepareInterfaceForSavePasswordRequest(ASSavePasswordRequest savePasswordRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "performGeneratePasswordsRequestWithoutUserInteraction:")
+    public native void performGeneratePasswordsRequest(ASGeneratePasswordsRequest generatePasswordsRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "prepareInterfaceForGeneratePasswordsRequest:")
+    public native void prepareInterfaceForGeneratePasswordsRequest(ASGeneratePasswordsRequest generatePasswordsRequest);
     /*</methods>*/
 }
