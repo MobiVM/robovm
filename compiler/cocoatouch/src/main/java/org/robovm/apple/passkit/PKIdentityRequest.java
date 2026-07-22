@@ -66,6 +66,16 @@ import org.robovm.apple.coreanimation.*;
     public native String getMerchantIdentifier();
     @Property(selector = "setMerchantIdentifier:")
     public native void setMerchantIdentifier(String v);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "usageDescriptionKey")
+    public native String getUsageDescriptionKey();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "setUsageDescriptionKey:")
+    public native void setUsageDescriptionKey(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
