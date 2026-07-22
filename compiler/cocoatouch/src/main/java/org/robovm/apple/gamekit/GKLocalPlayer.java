@@ -98,10 +98,6 @@ import org.robovm.apple.coregraphics.*;
     public native void loadRecentPlayers(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
     @Method(selector = "loadChallengableFriendsWithCompletionHandler:")
     public native void loadChallengableFriends(@Block VoidBlock2<NSArray<GKPlayer>, NSError> completionHandler);
-    @Method(selector = "setDefaultLeaderboardIdentifier:completionHandler:")
-    public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
-    @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
-    public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 13.5 and later.
      */
@@ -130,6 +126,18 @@ import org.robovm.apple.coregraphics.*;
     @Deprecated
     @Method(selector = "generateIdentityVerificationSignatureWithCompletionHandler:")
     public native void generateIdentityVerificationSignature(@Block VoidBlock5<NSURL, NSData, NSData, Long, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 26.2. No longer supported
+     */
+    @Deprecated
+    @Method(selector = "loadDefaultLeaderboardIdentifierWithCompletionHandler:")
+    public native void loadDefaultLeaderboardIdentifier(@Block VoidBlock2<NSString, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 26.2. No longer supported
+     */
+    @Deprecated
+    @Method(selector = "setDefaultLeaderboardIdentifier:completionHandler:")
+    public native void setDefaultLeaderboardIdentifier(String leaderboardIdentifier, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @deprecated Deprecated in iOS 8.0. Use ``GKLocalPlayer/loadFriends(_:)`` instead.
      */
