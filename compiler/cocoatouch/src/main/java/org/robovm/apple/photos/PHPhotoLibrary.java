@@ -56,6 +56,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "isUploadJobExtensionEnabled")
+    public native boolean isUploadJobExtensionEnabled();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "unavailabilityReason")
@@ -68,6 +73,20 @@ import org.robovm.apple.uniformtypeid.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    public boolean setUploadJobExtensionEnabled(boolean enable) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setUploadJobExtensionEnabled(enable, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "setUploadJobExtensionEnabled:error:")
+    private native boolean setUploadJobExtensionEnabled(boolean enable, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
