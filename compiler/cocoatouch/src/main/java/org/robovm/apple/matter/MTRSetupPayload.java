@@ -63,6 +63,21 @@ import org.robovm.apple.security.*;
     public MTRSetupPayload(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isConcatenated")
+    public native boolean isConcatenated();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "subPayloads")
+    public native NSArray<MTRSetupPayload> getSubPayloads();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "setSubPayloads:")
+    public native void setSubPayloads(NSArray<MTRSetupPayload> v);
     @Property(selector = "version")
     public native NSNumber getVersion();
     @Property(selector = "setVersion:")

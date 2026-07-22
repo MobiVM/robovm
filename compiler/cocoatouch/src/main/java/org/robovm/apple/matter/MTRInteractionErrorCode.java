@@ -40,43 +40,43 @@ import org.robovm.apple.security.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Matter")/*</annotations>*/
 public enum /*<name>*/MTRInteractionErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
-    InteractionErrorCodeFailure(1L),
-    InteractionErrorCodeInvalidSubscription(125L),
-    InteractionErrorCodeUnsupportedAccess(126L),
-    InteractionErrorCodeUnsupportedEndpoint(127L),
-    InteractionErrorCodeInvalidAction(128L),
-    InteractionErrorCodeUnsupportedCommand(129L),
-    InteractionErrorCodeInvalidCommand(133L),
-    InteractionErrorCodeUnsupportedAttribute(134L),
-    InteractionErrorCodeConstraintError(135L),
-    InteractionErrorCodeUnsupportedWrite(136L),
-    InteractionErrorCodeResourceExhausted(137L),
-    InteractionErrorCodeNotFound(139L),
-    InteractionErrorCodeUnreportableAttribute(140L),
-    InteractionErrorCodeInvalidDataType(141L),
-    InteractionErrorCodeUnsupportedRead(143L),
-    InteractionErrorCodeDataVersionMismatch(146L),
-    InteractionErrorCodeTimeout(148L),
-    InteractionErrorCodeBusy(156L),
+    Failure(1L),
+    InvalidSubscription(125L),
+    UnsupportedAccess(126L),
+    UnsupportedEndpoint(127L),
+    InvalidAction(128L),
+    UnsupportedCommand(129L),
+    InvalidCommand(133L),
+    UnsupportedAttribute(134L),
+    ConstraintError(135L),
+    UnsupportedWrite(136L),
+    ResourceExhausted(137L),
+    NotFound(139L),
+    UnreportableAttribute(140L),
+    InvalidDataType(141L),
+    UnsupportedRead(143L),
+    DataVersionMismatch(146L),
+    Timeout(148L),
+    Busy(156L),
     /**
      * @since Available in iOS 26.0 and later.
      */
-    InteractionErrorCodeAccessRestricted(157L),
-    InteractionErrorCodeUnsupportedCluster(195L),
-    InteractionErrorCodeNoUpstreamSubscription(197L),
-    InteractionErrorCodeNeedsTimedInteraction(198L),
-    InteractionErrorCodeUnsupportedEvent(199L),
-    InteractionErrorCodePathsExhausted(200L),
-    InteractionErrorCodeTimedRequestMismatch(201L),
-    InteractionErrorCodeFailsafeRequired(202L),
+    AccessRestricted(157L),
+    UnsupportedCluster(195L),
+    NoUpstreamSubscription(197L),
+    NeedsTimedInteraction(198L),
+    UnsupportedEvent(199L),
+    PathsExhausted(200L),
+    TimedRequestMismatch(201L),
+    FailsafeRequired(202L),
     /**
      * @since Available in iOS 17.6 and later.
      */
-    InteractionErrorCodeInvalidInState(203L),
+    InvalidInState(203L),
     /**
      * @since Available in iOS 17.6 and later.
      */
-    InteractionErrorCodeNoCommandResponse(204L);
+    NoCommandResponse(204L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(MTRInteractionErrorCode.class); }/*</bind>*/

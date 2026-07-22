@@ -68,6 +68,16 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "handleBDXTransferSessionBeginForNodeID:controller:fileDesignator:offset:completion:")
     void handleBDXTransferSessionBegin(NSNumber nodeID, MTRDeviceController controller, String fileDesignator, NSNumber offset, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "handleBDXTransferSessionEndForNodeID:controller:metrics:error:")
+    void handleBDXTransferSessionEnd(NSNumber nodeID, MTRDeviceController controller, MTRMetrics metrics, NSError error);
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 26.1. Use handleBDXTransferSessionEndForNodeID:controller:metrics:error:
+     */
+    @Deprecated
     @Method(selector = "handleBDXTransferSessionEndForNodeID:controller:error:")
     void handleBDXTransferSessionEnd(NSNumber nodeID, MTRDeviceController controller, NSError error);
     /**
