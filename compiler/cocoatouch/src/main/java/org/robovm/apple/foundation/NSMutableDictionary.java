@@ -135,10 +135,18 @@ import org.robovm.apple.dispatch.*;
         }
         return dictionary;
     }
-    
+
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     public static NSMutableDictionary<?, ?> read(java.io.File file) {
         return read(file.getAbsolutePath());
     }
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     @Method(selector = "dictionaryWithContentsOfFile:")
     protected static native NSMutableDictionary<?, ?> read(String path);
     @Method(selector = "dictionaryWithContentsOfURL:")

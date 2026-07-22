@@ -419,7 +419,11 @@ import org.robovm.apple.dispatch.*;
     public boolean equals(Object obj) {
         return obj instanceof NSDictionary && equalsTo((NSDictionary<K, V>) obj);
     }
-    
+
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     public static NSDictionary<?, ?> read(java.io.File file) {
         return read(file.getAbsolutePath());
     }
