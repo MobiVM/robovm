@@ -34,41 +34,28 @@ import org.robovm.apple.browserenginekit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 26.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("SafariServices")/*</annotations>*/
-public enum /*<name>*/SFErrorCode/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    NoExtensionFound(1L),
-    NoAttachmentFound(2L),
-    LoadingInterrupted(3L),
-    InternalError(4L),
-    MissingEntitlement(5L),
-    MaximumAttemptsExceeded(6L);
-    /*</values>*/
+/*<annotations>*/@Library("SafariServices") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/SFSafariExtensionManager/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/static { Bro.bind(SFErrorCode.class); }/*</bind>*/
+    /*<ptr>*/public static class SFSafariExtensionManagerPtr extends Ptr<SFSafariExtensionManager, SFSafariExtensionManagerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(SFSafariExtensionManager.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected SFSafariExtensionManager() {}
+    protected SFSafariExtensionManager(Handle h, long handle) { super(h, handle); }
+    protected SFSafariExtensionManager(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    
+    /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
-    @GlobalValue(symbol="SFErrorDomain", optional=true)
-    public static native String getClassDomain();
+    @Method(selector = "getStateOfExtensionWithIdentifier:completionHandler:")
+    public static native void getStateOfExtension(String identifier, @Block VoidBlock2<SFSafariExtensionState, NSError> completionHandler);
     /*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/SFErrorCode/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/SFErrorCode/*</name>*/ valueOf(long n) {
-        for (/*<name>*/SFErrorCode/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/SFErrorCode/*</name>*/.class.getName());
-    }
 }

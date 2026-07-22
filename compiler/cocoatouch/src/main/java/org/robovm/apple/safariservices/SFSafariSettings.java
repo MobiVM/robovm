@@ -57,5 +57,10 @@ import org.robovm.apple.browserenginekit.*;
     /*<methods>*/
     @Method(selector = "openExportBrowsingDataSettingsWithCompletionHandler:")
     public static native void openExportBrowsingDataSettings(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "openExtensionsSettingsForIdentifiers:completionHandler:")
+    public static native void openExtensionsSettings(NSArray<NSString> extensionIdentifiers, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

@@ -69,6 +69,13 @@ classes:
         methods:
             '+openExportBrowsingDataSettingsWithCompletionHandler:':
                 name: openExportBrowsingDataSettings
+            '+openExtensionsSettingsForIdentifiers:completionHandler:':
+                name: openExtensionsSettings
+    SFSafariExtensionManager: #since 26.2
+        methods:
+            '+getStateOfExtensionWithIdentifier:completionHandler:':
+                name: getStateOfExtension
+    SFSafariExtensionState: {} #since 26.2
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:
