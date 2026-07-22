@@ -75,6 +75,10 @@ public final class /*<name>*/AVAudioSessionCategoryOptions/*</name>*/ extends Bi
      */
     public static final AVAudioSessionCategoryOptions OverrideMutedMicrophoneInterruption = new AVAudioSessionCategoryOptions(128L);
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    public static final AVAudioSessionCategoryOptions FarFieldInput = new AVAudioSessionCategoryOptions(262144L);
+    /**
      * @since Available in iOS 26.0 and later.
      */
     public static final AVAudioSessionCategoryOptions BluetoothHighQualityRecording = new AVAudioSessionCategoryOptions(524288L);

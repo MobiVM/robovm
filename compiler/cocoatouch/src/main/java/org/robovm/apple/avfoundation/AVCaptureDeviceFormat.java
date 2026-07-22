@@ -261,6 +261,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "videoFrameRateRangeForBackgroundReplacement")
     public native AVFrameRateRange getVideoFrameRateRangeForBackgroundReplacement();
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightSupported")
+    public native boolean isEdgeLightSupported();
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "isCinematicVideoCaptureSupported")
