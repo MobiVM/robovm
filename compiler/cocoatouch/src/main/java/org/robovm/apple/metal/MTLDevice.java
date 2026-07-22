@@ -195,6 +195,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsPrimitiveMotionBlur")
     public native boolean supportsPrimitiveMotionBlur();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumConcurrentCompilationTaskCount")
+    public native @MachineSizedUInt long getMaximumConcurrentCompilationTaskCount();
     @Property(selector = "hash")
     public native @MachineSizedUInt long getHash();
     @Property(selector = "superclass")
