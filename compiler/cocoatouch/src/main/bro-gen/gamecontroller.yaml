@@ -240,6 +240,7 @@ protocols:
         methods:
             '-scene:didActivateGameControllerWithContext:':
                 name: didActivateGameController
+    GCPhysicalInputExtents: {} #since 26.2
     GCSwitchElementName:
         exclude: true # used to simulate typed enum
     GCPhysicalInputElementName:

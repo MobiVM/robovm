@@ -34,48 +34,28 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 16.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/GCLinearInput/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/GCPhysicalInputExtentsAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements GCPhysicalInputExtents/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    @Property(selector = "valueDidChangeHandler")
-    @Block VoidBlock3<GCPhysicalInputElement, GCLinearInput, Float> getValueDidChangeHandler();
-    @Property(selector = "setValueDidChangeHandler:")
-    void setValueDidChangeHandler(@Block VoidBlock3<GCPhysicalInputElement, GCLinearInput, Float> v);
-    @Property(selector = "value")
-    float getValue();
-    @Property(selector = "isAnalog")
-    boolean isAnalog();
-    @Property(selector = "canWrap")
-    boolean canWrap();
-    @Property(selector = "lastValueTimestamp")
-    double getLastValueTimestamp();
-    @Property(selector = "lastValueLatency")
-    double getLastValueLatency();
-    /**
-     * @since Available in iOS 26.2 and later.
-     */
-    @Property(selector = "physicalExtents")
-    GCPhysicalInputExtents getPhysicalExtents();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "sources")
-    NSSet<?> getSources();
+    @NotImplemented("scaledValue")
+    public double getScaledValue() { return 0; }
+    @NotImplemented("minimumValue")
+    public double getMinimumValue() { return 0; }
+    @NotImplemented("maximumValue")
+    public double getMaximumValue() { return 0; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
     
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }
