@@ -131,7 +131,9 @@ import org.robovm.apple.coreanimation.*;
     public static final WKWebsiteDataType MemoryCache = new WKWebsiteDataType("MemoryCache");
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.2. WebApplicationCache is no longer supported
      */
+    @Deprecated
     public static final WKWebsiteDataType OfflineWebApplicationCache = new WKWebsiteDataType("OfflineWebApplicationCache");
     /**
      * @since Available in iOS 9.0 and later.
@@ -219,7 +221,9 @@ import org.robovm.apple.coreanimation.*;
         public static native NSString MemoryCache();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 26.2. WebApplicationCache is no longer supported
          */
+        @Deprecated
         @GlobalValue(symbol="WKWebsiteDataTypeOfflineWebApplicationCache", optional=true)
         public static native NSString OfflineWebApplicationCache();
         /**
