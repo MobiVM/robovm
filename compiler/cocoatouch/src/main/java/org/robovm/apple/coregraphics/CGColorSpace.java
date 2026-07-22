@@ -582,7 +582,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 16.0 and later.
      */
     @Bridge(symbol="CGColorSpaceCreateCopyWithStandardRange", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCopyWithStandardRange(CGColorSpace s);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCopyWithStandardRange(CGColorSpace space);
     /**
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */
