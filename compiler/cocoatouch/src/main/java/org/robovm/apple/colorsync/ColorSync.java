@@ -361,6 +361,11 @@ import org.robovm.apple.corefoundation.*;
      */
     @GlobalValue(symbol="kColorSyncSigMediaWhitePointTag", optional=true)
     public static native CFString SigMediaWhitePointTag();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @GlobalValue(symbol="kColorSyncDoNotSubstituteProfiles", optional=true)
+    public static native CFString DoNotSubstituteProfiles();
     @GlobalValue(symbol="kColorSyncProfileCacheSeed", optional=true)
     public static native CFString ProfileCacheSeed();
     /**
