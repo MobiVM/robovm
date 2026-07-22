@@ -34,43 +34,31 @@ import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 26.1 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASAccessoryEventType/*</name>*/ implements ValuedEnum {
-    /*<values>*/
-    Unknown(0L),
-    Activated(10L),
-    Invalidated(11L),
-    MigrationComplete(20L),
-    AccessoryAdded(30L),
-    AccessoryRemoved(31L),
-    AccessoryChanged(32L),
-    AccessoryDiscovered(33L),
-    PickerDidPresent(40L),
-    PickerDidDismiss(50L),
-    PickerSetupBridging(60L),
-    PickerSetupFailed(70L),
-    PickerSetupPairing(80L),
-    PickerSetupRename(90L);
-    /*</values>*/
+/*<annotations>*/@Library("AccessorySetupKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASDiscoveredAccessory/*</name>*/ 
+    extends /*<extends>*/ASAccessory/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class ASDiscoveredAccessoryPtr extends Ptr<ASDiscoveredAccessory, ASDiscoveredAccessoryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASDiscoveredAccessory.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
-
-    private final long n;
-
-    private /*<name>*/ASAccessoryEventType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASAccessoryEventType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASAccessoryEventType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASAccessoryEventType/*</name>*/.class.getName());
-    }
+    /*<constructors>*/
+    public ASDiscoveredAccessory() {}
+    protected ASDiscoveredAccessory(Handle h, long handle) { super(h, handle); }
+    protected ASDiscoveredAccessory(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "bluetoothAdvertisementData")
+    public native NSDictionary<?, ?> getBluetoothAdvertisementData();
+    @Property(selector = "bluetoothRSSI")
+    public native NSNumber getBluetoothRSSI();
+    /*</properties>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    
+    /*</methods>*/
 }

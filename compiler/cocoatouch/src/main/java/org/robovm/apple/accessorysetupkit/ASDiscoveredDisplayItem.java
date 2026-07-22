@@ -35,46 +35,30 @@ import org.robovm.apple.uikit.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 18.0 and later.
+ * @since Available in iOS 26.1 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AccessorySetupKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASMigrationDisplayItem/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/ASDiscoveredDisplayItem/*</name>*/ 
     extends /*<extends>*/ASPickerDisplayItem/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class ASMigrationDisplayItemPtr extends Ptr<ASMigrationDisplayItem, ASMigrationDisplayItemPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(ASMigrationDisplayItem.class); }/*</bind>*/
+    /*<ptr>*/public static class ASDiscoveredDisplayItemPtr extends Ptr<ASDiscoveredDisplayItem, ASDiscoveredDisplayItemPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(ASDiscoveredDisplayItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected ASMigrationDisplayItem() {}
-    protected ASMigrationDisplayItem(Handle h, long handle) { super(h, handle); }
-    protected ASMigrationDisplayItem(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithName:productImage:descriptor:")
-    public ASMigrationDisplayItem(String name, UIImage productImage, ASDiscoveryDescriptor descriptor) { super(name, productImage, descriptor); }
+    protected ASDiscoveredDisplayItem() {}
+    protected ASDiscoveredDisplayItem(Handle h, long handle) { super(h, handle); }
+    protected ASDiscoveredDisplayItem(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithName:productImage:accessory:")
+    public ASDiscoveredDisplayItem(String name, UIImage productImage, ASDiscoveredAccessory accessory) { super((SkipInit) null); initObject(init(name, productImage, accessory)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "peripheralIdentifier")
-    public native NSUUID getPeripheralIdentifier();
-    @Property(selector = "setPeripheralIdentifier:")
-    public native void setPeripheralIdentifier(NSUUID v);
-    @Property(selector = "hotspotSSID")
-    public native String getHotspotSSID();
-    @Property(selector = "setHotspotSSID:")
-    public native void setHotspotSSID(String v);
-    /**
-     * @since Available in iOS 26.1 and later.
-     */
-    @Property(selector = "wifiAwarePairedDeviceID")
-    public native long getWifiAwarePairedDeviceID();
-    /**
-     * @since Available in iOS 26.1 and later.
-     */
-    @Property(selector = "setWifiAwarePairedDeviceID:")
-    public native void setWifiAwarePairedDeviceID(long v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithName:productImage:accessory:")
+    protected native @Pointer long init(String name, UIImage productImage, ASDiscoveredAccessory accessory);
     /*</methods>*/
 }

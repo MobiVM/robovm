@@ -36,23 +36,11 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASAccessoryEventType/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+public final class /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/ extends Bits</*<name>*/ASPickerDisplaySettingsOptions/*</name>*/> {
     /*<values>*/
-    Unknown(0L),
-    Activated(10L),
-    Invalidated(11L),
-    MigrationComplete(20L),
-    AccessoryAdded(30L),
-    AccessoryRemoved(31L),
-    AccessoryChanged(32L),
-    AccessoryDiscovered(33L),
-    PickerDidPresent(40L),
-    PickerDidDismiss(50L),
-    PickerSetupBridging(60L),
-    PickerSetupFailed(70L),
-    PickerSetupPairing(80L),
-    PickerSetupRename(90L);
+    public static final ASPickerDisplaySettingsOptions None = new ASPickerDisplaySettingsOptions(0L);
+    public static final ASPickerDisplaySettingsOptions FilterDiscoveryResults = new ASPickerDisplaySettingsOptions(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -60,17 +48,17 @@ public enum /*<name>*/ASAccessoryEventType/*</name>*/ implements ValuedEnum {
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private final long n;
+    private static final /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/[] values = _values(/*<name>*/ASPickerDisplaySettingsOptions/*</name>*/.class);
 
-    private /*<name>*/ASAccessoryEventType/*</name>*/(long n) { this.n = n; }
-    public long value() { return n; }
-    public static /*<name>*/ASAccessoryEventType/*</name>*/ valueOf(long n) {
-        for (/*<name>*/ASAccessoryEventType/*</name>*/ v : values()) {
-            if (v.n == n) {
-                return v;
-            }
-        }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/ASAccessoryEventType/*</name>*/.class.getName());
+    public /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/(long value) { super(value); }
+    private /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/(value, mask);
+    }
+    protected /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/[] _values() {
+        return values;
+    }
+    public static /*<name>*/ASPickerDisplaySettingsOptions/*</name>*/[] values() {
+        return values.clone();
     }
 }

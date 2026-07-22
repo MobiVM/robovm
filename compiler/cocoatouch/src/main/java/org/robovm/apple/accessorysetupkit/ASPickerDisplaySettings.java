@@ -58,6 +58,16 @@ import org.robovm.apple.uikit.*;
     public native double getDiscoveryTimeout();
     @Property(selector = "setDiscoveryTimeout:")
     public native void setDiscoveryTimeout(double v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "options")
+    public native ASPickerDisplaySettingsOptions getOptions();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setOptions:")
+    public native void setOptions(ASPickerDisplaySettingsOptions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,6 +90,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="ASPickerDisplaySettingsDiscoveryTimeoutLong", optional=true)
         public static native double Long();
+        /**
+         * @since Available in iOS 26.1 and later.
+         */
+        @GlobalValue(symbol="ASPickerDisplaySettingsDiscoveryTimeoutUnbounded", optional=true)
+        public static native double Unbounded();
     }
     
     
