@@ -186,6 +186,12 @@ functions:
     AXOpenSettingsFeature:
         class: AXSettings
         name: openSettingsFeature
+    AXPrefersActionSliderAlternative:
+        class: AXSettings
+        name: prefersActionSliderAlternative
+    AXShowBordersEnabled:
+        class: AXSettings
+        name: isShowBordersEnabled
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AX.*):
@@ -198,6 +204,10 @@ values:
         static_class: Notifications
         name: '#{g[0]}'
     AX(PrefersHorizontalTextLayoutDidChange|AnimatedImagesEnabledDidChange|PrefersNonBlinkingTextInsertionIndicatorDidChange)Notification:
+        class: AXSettings
+        static_class: Notifications
+        name: '#{g[0]}'
+    AX(PrefersActionSliderAlternativeDidChange|ShowBordersEnabledStatusDidChange)Notification:
         class: AXSettings
         static_class: Notifications
         name: '#{g[0]}'
