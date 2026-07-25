@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'org.robovm.idea'
+rootProject.name = 'com.mobidevelop.robovm.intellij'
