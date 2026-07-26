@@ -3,7 +3,7 @@ ${package}
 import org.robovm.apple.foundation.NSAutoreleasePool;
 import org.robovm.apple.uikit.*;
 import org.robovm.objc.annotation.CustomClass;
-import org.robovm.rt.bro.annotation.ForceLinkClass;
+import org.robovm.rt.annotation.ForceLinkClass;
 
 /// note: @ForceLinkClass(Main.SceneDelegate.class) is important here in this setup
 ///       as there is no reference in Java code to SceneDelegate class and it will be
