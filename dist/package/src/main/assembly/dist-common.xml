@@ -18,6 +18,14 @@
       <outputDirectory>lib/vm</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>${robovmdir}/bin</directory>
+      <includes>
+        <include>*</include>
+      </includes>
+      <fileMode>755</fileMode>
+      <outputDirectory>bin</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>${robovmdir}/compiler</directory>
       <outputDirectory>modules/licenses/dist-compiler/compiler</outputDirectory>
       <includes>
