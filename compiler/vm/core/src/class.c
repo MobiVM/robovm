@@ -1144,6 +1144,30 @@ jboolean rvmRegisterClass(Env* env, Class* clazz) {
     return TRUE;
 }
 
+// recursively initialize all superinterfaces that declare default methods (JVMS 5.5)
+static void initializeDefaultInterfaces(Env* env, Class* clazz) {
+    Interface* interfaceNode = rvmGetInterfaces(env, clazz);
+    while (interfaceNode != NULL) {
+        Class* iface = interfaceNode->interfaze;
+        if (!CLASS_IS_STATE_INITIALIZED(iface) && !CLASS_HAS_DEF_METHOD_SCANNED(iface)) {
+            // process the superinterfaces of this interface first
+            initializeDefaultInterfaces(env, iface);
+            if (rvmExceptionOccurred(env)) return;
+
+            if (CLASS_HAS_DEFAULT_METHODS(iface)) {
+                rvmInitialize(env, iface);
+                if (rvmExceptionOccurred(env)) return;
+            } else {
+                // mark the interface as scanned for default methods so we don't scan it again
+                obtainClassLock();
+                iface->flags |= CLASS_STATE_DEF_METHODS_SCANNED;
+                releaseClassLock();
+            }
+        }
+        interfaceNode = interfaceNode->next;
+    }
+}
+
 void rvmInitialize(Env* env, Class* clazz) {
     assert(env->currentThread != NULL);
 
@@ -1194,6 +1218,20 @@ void rvmInitialize(Env* env, Class* clazz) {
     if (clazz->superclass) {
         // Initialize the superclass
         rvmInitialize(env, clazz->superclass);
+        if (rvmExceptionOccurred(env)) {
+            rvmLockObject(env, (Object*) clazz);
+            clazz->flags = (clazz->flags & (~CLASS_STATE_MASK)) | CLASS_STATE_ERROR;
+            rvmObjectNotifyAll(env, (Object*) clazz);
+            rvmUnlockObject(env, (Object*) clazz);
+            return;
+        }
+    }
+
+    // Initialize superinterfaces that declare default methods (JVMS 5.5)
+    // > If C is an interface that declares a non-abstract, non-static method,
+    // > the initialization of a class that implements C directly or indirectly.
+    if (!CLASS_IS_INTERFACE(clazz)) {
+        initializeDefaultInterfaces(env, clazz);
         if (rvmExceptionOccurred(env)) {
             rvmLockObject(env, (Object*) clazz);
             clazz->flags = (clazz->flags & (~CLASS_STATE_MASK)) | CLASS_STATE_ERROR;

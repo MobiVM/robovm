@@ -208,6 +208,7 @@ void readClassInfo(void** p, ClassInfo* result) {
     if (flags & CI_ANNOTATION) access |= ACC_ANNOTATION;
     if (flags & CI_ENUM) access |= ACC_ENUM;
     if (flags & CI_FINALIZABLE) access |= CLASS_FLAG_FINALIZABLE;
+    if (flags & CI_HAS_DEFAULT_METHODS) access |= CLASS_FLAG_HAS_DEF_METHODS;
 
     *p = ((void*) header) + sizeof(ClassInfoHeader);
 

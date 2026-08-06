@@ -153,6 +153,7 @@ public class ClassCompiler {
     public static final int CI_ERROR = 0x100;
     public static final int CI_INITIALIZED = 0x200;
     public static final int CI_FINALIZABLE = 0x400;
+    public static final int CI_HAS_DEFAULT_METHODS = 0x800;
 
     public static final int CI_ERROR_TYPE_NONE = 0x0;
     public static final int CI_ERROR_TYPE_NO_CLASS_DEF_FOUND = 0x1;
@@ -974,7 +975,7 @@ public class ClassCompiler {
             if (!sootClass.isInterface()) {
                 config.getVTableCache().get(sootClass);
             }
-            classInfoStruct = new Global(Symbols.infoStructSymbol(clazz.getInternalName()), Linkage.weak, createClassInfoStruct());
+            classInfoStruct = new Global(Symbols.infoStructSymbol(clazz.getInternalName()), Linkage.weak, createClassInfoStruct(ci));
         } catch (IllegalArgumentException e) {
             // VTable throws this if any of the superclasses of the class is actually an interface.
             // Shouldn't happen frequently but the DRLVM test suite has some tests for this.
@@ -1252,7 +1253,7 @@ public class ClassCompiler {
         }
     }
     
-    private StructureConstant createClassInfoStruct() {
+    private StructureConstant createClassInfoStruct(ClazzInfo ci) {
         int flags = 0;
         
         if (Modifier.isPublic(sootClass.getModifiers())) {
@@ -1281,6 +1282,10 @@ public class ClassCompiler {
         }
         if (hasFinalizer(sootClass)) {
             flags |= CI_FINALIZABLE;
+        }
+
+        if (ci.hasDefaultMethods()) {
+            flags |= CI_HAS_DEFAULT_METHODS;
         }
         
         // Create the ClassInfoHeader structure.

@@ -37,7 +37,7 @@ import soot.SootMethod;
  *
  */
 public class ClazzInfo implements Serializable {
-    private static final long serialVersionUID = 99L;
+    private static final long serialVersionUID = 100L;
     
     private int modifiers;
     private String name;
@@ -52,6 +52,10 @@ public class ClazzInfo implements Serializable {
     private final Set<String> invokes = new HashSet<>();
     private boolean isStruct;
     private boolean isEnum;
+
+    // for interface: it means either interface directly declares default methods or inherit another one
+    //                that has default methods in its hierarchy
+    private boolean hasDefaultMethods;
     
     private transient Clazz clazz;
     
@@ -86,9 +90,12 @@ public class ClazzInfo implements Serializable {
         methods.clear();
         boolean classWeaklyLinked = Annotations.hasWeaklyLinkedAnnotation(sootClass);
         boolean classStronglyLinked = Annotations.hasStronglyLinkedAnnotation(sootClass);
+        hasDefaultMethods = false;
+        boolean isInterface = isInterface();
         for (SootMethod method : sootClass.getMethods()) {
             boolean methodWeaklyLinked = Annotations.hasWeaklyLinkedAnnotation(method);
             boolean methodStronglyLinked = Annotations.hasStronglyLinkedAnnotation(method);
+            hasDefaultMethods |= isInterface && !method.isAbstract() && !method.isStatic() && !method.getName().equals("<clinit>");
             methods.add(new MethodInfo(this, method.getModifiers(), method.getName(), 
                     Types.getDescriptor(method), Annotations.hasCallbackAnnotation(method),
                     methodWeaklyLinked || (classWeaklyLinked && !methodStronglyLinked), 
@@ -117,6 +124,10 @@ public class ClazzInfo implements Serializable {
     
     public boolean isEnum() {
         return isEnum;
+    }
+    
+    public boolean hasDefaultMethods() {
+        return hasDefaultMethods;
     }
     
     public int getModifiers() {
