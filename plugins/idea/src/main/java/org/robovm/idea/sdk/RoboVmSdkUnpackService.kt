@@ -45,8 +45,8 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
     /// flag, specifies that SDK was extracted
     private var sdkExtracted = false
 
-    private var activeJob: Deferred<Home>? = null
-    private fun startUnpackJob(sdkHome: Home): Deferred<Home> = scope.async(Dispatchers.IO) {
+    private var activeJob: Deferred<Boolean>? = null
+    private fun startUnpackJob(sdkHome: Home): Deferred<Boolean> = scope.async(Dispatchers.IO) {
         // using parent here as:
         // - sdkHome.homeDir points to final destination (e.g. .robovm-sdks/robovm-2.3.23)
         // - but `robovm-dist` contains `robovm-2.3.23` directory inside
@@ -64,7 +64,7 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
             } catch (_: IOException) {
             }
         }
-        sdkHome
+        filesWereUpdated
     }
 
     /**
@@ -102,13 +102,15 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
             if (started) {
                 withBackgroundProgress(project, "Unpacking RoboVm SDK...", cancellable = false) {
                     try {
-                        val roboVmHome = job.await()
-                        RoboVmPlugin.logInfo(
-                            project,
-                            "Installed RoboVM SDK %s to %s",
-                            Version.getCompilerVersion(),
-                            roboVmHome.homeDir.absolutePath
-                        )
+                        val filesWereUpdated = job.await()
+                        if (filesWereUpdated) {
+                            RoboVmPlugin.logInfo(
+                                project,
+                                "Installed RoboVM SDK %s to %s",
+                                Version.getCompilerVersion(),
+                                sdkHome.homeDir.absolutePath
+                            )
+                        }
                     } catch (e: Exception) {
                         RoboVmPlugin.logError(project, e.message)
                         throw e
