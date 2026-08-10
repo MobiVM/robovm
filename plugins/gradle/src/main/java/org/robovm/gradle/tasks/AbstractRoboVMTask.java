@@ -79,6 +79,16 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     protected Logger roboVMLogger;
 
     public AbstractRoboVMTask() {
+        try {
+            // TODO: support configuration cache, disabling as will crash with message
+            // Task `:launchIPhoneSimulator` of type `org.robovm.gradle.tasks.IPhoneSimulatorTask`:
+            // cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject',
+            // a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.
+            notCompatibleWithConfigurationCache("Not compatible due internal implementation");
+        } catch (NoSuchMethodError e) {
+            // not available before Gradle 7.4
+        }
+
         project = getProject();
         extension = (RoboVMPluginExtension) project.getExtensions().getByName(RoboVMPluginExtension.NAME);
         repositorySystem = createRepositorySystem();
