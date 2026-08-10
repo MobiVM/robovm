@@ -103,6 +103,16 @@ import org.robovm.apple.coreservices.CFProxy;
     @Property(selector = "setAllowsConstrainedNetworkAccess:")
     public native void setAllowsConstrainedNetworkAccess(boolean v);
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "allowsUltraConstrainedNetworkAccess")
+    public native boolean allowsUltraConstrainedNetworkAccess();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setAllowsUltraConstrainedNetworkAccess:")
+    public native void setAllowsUltraConstrainedNetworkAccess(boolean v);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "requiresDNSSECValidation")

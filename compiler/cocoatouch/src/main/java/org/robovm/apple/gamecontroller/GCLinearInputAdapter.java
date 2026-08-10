@@ -62,6 +62,11 @@ import org.robovm.apple.corehaptic.*;
     @NotImplemented("lastValueLatency")
     public double getLastValueLatency() { return 0; }
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @NotImplemented("physicalExtents")
+    public GCPhysicalInputExtents getPhysicalExtents() { return null; }
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @NotImplemented("sources")

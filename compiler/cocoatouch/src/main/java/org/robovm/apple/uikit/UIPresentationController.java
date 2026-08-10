@@ -96,6 +96,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setOverrideTraitCollection:")
     public native void setOverrideTraitCollection(UITraitCollection v);
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "backgroundEffect")
+    public native UIVisualEffect getBackgroundEffect();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setBackgroundEffect:")
+    public native void setBackgroundEffect(UIVisualEffect v);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "traitOverrides")

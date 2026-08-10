@@ -75,8 +75,38 @@ import org.robovm.apple.security.*;
     public native NSData getDacCertificate();
     @Property(selector = "dacPAICertificate")
     public native NSData getDacPAICertificate();
+    /**
+     * @since Available in iOS 16.1 and later.
+     * @deprecated Deprecated in iOS 26.1. Use certificationDeclaration
+     */
+    @Deprecated
     @Property(selector = "certificateDeclaration")
     public native NSData getCertificateDeclaration();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "attestationChallenge")
+    public native NSData getAttestationChallenge();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "attestationNonce")
+    public native NSData getAttestationNonce();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "elementsTLV")
+    public native NSData getElementsTLV();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "certificationDeclaration")
+    public native NSData getCertificationDeclaration();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "elementsSignature")
+    public native NSData getElementsSignature();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

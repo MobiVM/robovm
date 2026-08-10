@@ -290,6 +290,14 @@ import org.robovm.apple.foundation.NSObject.SkipInit;
     protected native void removeAllObjects();
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<K, V> asDictionary();
+    @Method(selector = "strongToStrongObjectsMapTable")
+    public static native <K extends NSObject, V extends NSObject> NSMapTable<K, V> strongToStrongObjectsMapTable();
+    @Method(selector = "weakToStrongObjectsMapTable")
+    public static native <K extends NSObject, V extends NSObject> NSMapTable<K, V> weakToStrongObjectsMapTable();
+    @Method(selector = "strongToWeakObjectsMapTable")
+    public static native <K extends NSObject, V extends NSObject> NSMapTable<K, V> strongToWeakObjectsMapTable();
+    @Method(selector = "weakToWeakObjectsMapTable")
+    public static native <K extends NSObject, V extends NSObject> NSMapTable<K, V> weakToWeakObjectsMapTable();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

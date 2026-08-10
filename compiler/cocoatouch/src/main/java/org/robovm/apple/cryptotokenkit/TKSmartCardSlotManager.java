@@ -32,7 +32,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/TKSmartCardSlotManager/*</name>*/ 
@@ -57,6 +59,9 @@ import org.robovm.apple.security.*;
     /*<methods>*/
     @Method(selector = "getSlotWithName:reply:")
     public native void getSlot(String name, @Block VoidBlock1<TKSmartCardSlot> reply);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "slotNamed:")
     public native TKSmartCardSlot slotNamed(String name);
     /**

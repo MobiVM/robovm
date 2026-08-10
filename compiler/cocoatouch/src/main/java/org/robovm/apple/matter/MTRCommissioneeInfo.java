@@ -59,6 +59,11 @@ import org.robovm.apple.security.*;
     public native NSDictionary<NSNumber, MTREndpointInfo> getEndpointsById();
     @Property(selector = "rootEndpoint")
     public native MTREndpointInfo getRootEndpoint();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "attributes")
+    public native NSDictionary<?, ?> getAttributes();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

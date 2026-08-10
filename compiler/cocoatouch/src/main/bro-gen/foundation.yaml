@@ -354,8 +354,7 @@ classes:
                 visibility: protected
                 return_type: NSArray<T>
             '+arrayWithContentsOfFile:':
-                name: readFile
-                visibility: protected
+                name: read
                 return_type: NSArray<?>
             '+arrayWithContentsOfURL:':
                 name: read
@@ -372,9 +371,72 @@ classes:
                 name: addObserver
             '-removeObserver:fromObjectsAtIndexes:forKeyPath:context:':
                 name: removeObserver
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
-    NSAssertionHandler: {exclude: true}
+            '-initWithCoder:':
+                name: init
+            '-descriptionWithLocale:':
+                name: description
+            '-descriptionWithLocale:indent:':
+                name: description
+            '-firstObjectCommonWithArray:':
+                name: firstObjectCommonWithArray
+            '-getObjects:range:':
+                exclude: true # raw C array expected
+            '-getObjects:':
+                exclude: true # raw C array expected
+            '-indexOfObject:inRange:':
+                name: indexOfObject
+            '-indexOfObjectIdenticalTo:inRange:':
+                name: indexOfObjectIdenticalTo
+            '-sortedArrayUsingFunction:context:':
+                exclude: true # raw C callback
+            '-sortedArrayUsingFunction:context:hint:':
+                exclude: true # raw C callback
+            '-writeToURL:error:':
+                name: writeToURL
+                throws: NSErrorException
+            '-makeObjectsPerformSelector:withObject:':
+                name: makeObjectsPerformSelector
+            '-enumerateObjectsWithOptions:usingBlock:':
+                name: enumerateObjects
+            '-enumerateObjectsAtIndexes:options:usingBlock:':
+                name: enumerateObjectsAtIndexes
+            '-indexOfObjectWithOptions:passingTest:':
+                name: indexOfObject
+            '-indexOfObjectAtIndexes:options:passingTest:':
+                name: indexOfObjectAtIndexes
+            '-indexesOfObjectsWithOptions:passingTest:':
+                name: indexesOfObjects
+            '-indexesOfObjectsAtIndexes:options:passingTest:':
+                name: indexesOfObjectsAtIndexes
+            '-sortedArrayWithOptions:usingComparator:':
+                name: sortedArray
+            '-indexOfObject:inSortedRange:options:usingComparator:':
+                name: indexOfObjectInSortedRange
+            '-initWithArray:copyItems:':
+                name: init
+            '-initWithContentsOfURL:error:':
+                name: init
+            '+arrayWithObject:':
+                exclude: true
+            '+arrayWithObjects:count:':
+                exclude: true
+            '+arrayWithArray:':
+                exclude: true
+            '+arrayWithContentsOfURL:error:':
+                exclude: true
+            '-differenceFromArray:withOptions:usingEquivalenceTest:':
+                name: differenceFromArray
+            '-differenceFromArray:withOptions:':
+                name: differenceFromArray
+            '-initWithContentsOfFile:':
+                name: init
+            '-initWithContentsOfURL:':
+                name: init
+            '-removeObserver:fromObjectsAtIndexes:forKeyPath:':
+                name: removeObserver
+            '+array':
+                exclude: true
+    NSAssertionHandler: { exclude: true }
     NSAttributedString: # DONE
         annotations: ['@WeaklyLinked']
         properties:
@@ -429,8 +491,8 @@ classes:
     NSAutoreleasePool: # DONE
         methods:
             '-drain': {}
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '+addObject:':
+                name: addObjectToActivePool
     NSBlockOperation: # DONE
         skip_def_constructor: true
         properties:
@@ -524,8 +586,18 @@ classes:
                 constructor: false
             '-initWithURL:':
                 name: init
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-localizedAttributedStringForKey:value:table:':
+                name: getLocalizedAttributedString
+            '-localizedStringForKey:value:table:localizations:':
+                name: getLocalizedString
+            '+bundleWithPath:':
+                exclude: true
+            '+bundleWithURL:':
+                exclude: true
+            '-setPreservationPriority:forTags:':
+                name: setPreservationPriority
+            '-load':
+                exclude: true # conflicts with overload that was there for long time
     NSBundleResourceRequest: # DONE
         properties:
             'tags':
@@ -617,8 +689,50 @@ classes:
                 name: newDateByAddingComponents
             '-dateFromComponents:':
                 name: newDateFromComponents
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-getEra:year:month:day:fromDate:':
+                name: getDateComponents
+            '-getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:':
+                name: getWeekOfYearDateComponents
+            '-getHour:minute:second:nanosecond:fromDate:':
+                name: getTimeComponents
+            '-component:fromDate:':
+                name: getComponentFromDate
+            '-dateWithEra:year:month:day:hour:minute:second:nanosecond:':
+                name: dateWithComponents
+            '-dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:':
+                name: dateWithWeekOfYearComponents
+            '-componentsInTimeZone:fromDate:':
+                name: componentsInTimeZone
+            '-compareDate:toDate:toUnitGranularity:':
+                name: compareDate
+            '-isDate:equalToDate:toUnitGranularity:':
+                name: isDateEqualToDate
+            '-isDate:inSameDayAsDate:':
+                name: isDateInSameDay
+            '-rangeOfWeekendStartDate:interval:containingDate:':
+                name: rangeOfWeekend
+            '-nextWeekendStartDate:interval:options:afterDate:':
+                name: nextWeekend
+            '-components:fromDateComponents:toDateComponents:options:':
+                name: getComponentsDifference
+            '-dateByAddingUnit:value:toDate:options:':
+                name: dateByAdding
+            '-enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:':
+                name: enumerateDatesStartingAfterDate
+            '-nextDateAfterDate:matchingComponents:options:':
+                name: nextDateAfterDate
+            '-nextDateAfterDate:matchingUnit:value:options:':
+                name: nextDateAfterDate
+            '-nextDateAfterDate:matchingHour:minute:second:options:':
+                name: nextDateAfterDate
+            '-dateBySettingUnit:value:ofDate:options:':
+                name: dateBySettingUnit
+            '-dateBySettingHour:minute:second:ofDate:options:':
+                name: dateBySettingTime
+            '-date:matchesComponents:':
+                name: dateMatchesComponents
+            '+calendarWithIdentifier:':
+                exclude: true
     NSCharacterSet: # DONE
         skip_handle_constructor: false
         methods:
@@ -863,8 +977,44 @@ classes:
             '+dataWithContentsOfMappedFile:':
                 name: readMappedFile
                 visibility: protected
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-getBytes:range:':
+                name: getBytes
+            '-initWithBytesNoCopy:length:':
+                name: init
+                constructor: false
+                visibility: protected
+            '-initWithBytesNoCopy:length:deallocator:':
+                name: init
+                constructor: false
+                visibility: protected
+            '-initWithContentsOfFile:options:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithContentsOfURL:options:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithContentsOfFile:':
+                name: init
+            '-initWithContentsOfURL:':
+                name: init
+            '+dataWithBytes:length:':
+                exclude: true
+            '+dataWithBytesNoCopy:length:':
+                exclude: true
+            '+dataWithBytesNoCopy:length:freeWhenDone:':
+                exclude: true
+            '+dataWithData:':
+                exclude: true
+            '-decompressedDataUsingAlgorithm:error:':
+                name: decompressedData
+                throws: NSErrorException
+            '-compressedDataUsingAlgorithm:error:':
+                name: compressedData
+                throws: NSErrorException
+            '-initWithContentsOfMappedFile:':
+                name: initWithContentsOfMappedFile
+                constructor: false
+                visibility: protected
     NSDataDetector: # DONE
         skip_def_constructor: true
         properties:
@@ -942,9 +1092,9 @@ classes:
                 name: format
             '-stringFromTimeInterval:':
                 name: format
-            '-.*':
-                exclude: true
-            '+.*':
+            '+localizedStringFromDateComponents:unitsStyle:':
+                name: localizedStringFromDateComponents
+            '-getObjectValue:forString:errorDescription:':
                 exclude: true
     NSDateFormatter: # DONE
         properties:
@@ -1064,7 +1214,6 @@ classes:
         methods:
             '+dictionaryWithContentsOfFile:':
                 name: read
-                visibility: protected
                 return_type: 'NSDictionary<?, ?>'
             '+dictionaryWithContentsOfURL:':
                 name: read
@@ -1125,9 +1274,9 @@ classes:
             '-getObjects:andKeys:':
                 exclude: true # todo: use raw pointer arrays
             '-initWithContentsOfFile:':
-                name: init
+                exclude: true # deprecate, brogen doesn't make it into constructor (BUG)
             '-initWithContentsOfURL:':
-                exclude: true # deprecate and conflicts with '-initWithContentsOfURL:error:'
+                exclude: true # deprecate, conflicts with '-initWithContentsOfURL:error:', brogen doesn't make it into constructor (BUG)
             '-initWithDictionary:copyItems:':
                 name: init
             '-initWithContentsOfURL:error:':
@@ -2236,8 +2385,8 @@ classes:
                         type: NSLocaleComponent
             '-initWithLocaleIdentifier:':
                 name: init
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '+localeWithLocaleIdentifier:':
+                exclude: true
     NSLock: # DONE
         methods:
             '-lockBeforeDate:':
@@ -2303,8 +2452,14 @@ classes:
                 return_type: 'NSDictionary<K, V>'
             '+mapTableWithKeyOptions:valueOptions:':
                 exclude: true
-            '+.*':
-                exclude: true
+            '+strongToStrongObjectsMapTable':
+                return_type: '<K extends NSObject, V extends NSObject> NSMapTable<K, V>'
+            '+weakToStrongObjectsMapTable':
+                return_type: '<K extends NSObject, V extends NSObject> NSMapTable<K, V>'
+            '+strongToWeakObjectsMapTable':
+                return_type: '<K extends NSObject, V extends NSObject> NSMapTable<K, V>'
+            '+weakToWeakObjectsMapTable':
+                return_type: '<K extends NSObject, V extends NSObject> NSMapTable<K, V>'
     NSMassFormatter: # DONE
         methods:
             '-stringFromValue:unit:':
@@ -2446,8 +2601,34 @@ classes:
             '-insertObject:atIndex:':
                 name: insertObject
                 visibility: protected
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-exchangeObjectAtIndex:withObjectAtIndex:':
+                name: exchangeObject
+            '-removeObject:inRange:':
+                name: removeObject
+            '-removeObjectIdenticalTo:inRange:':
+                name: removeObjectIdenticalTo
+            '-replaceObjectsInRange:withObjectsFromArray:range:':
+                name: replaceObjectsInRange
+            '-replaceObjectsInRange:withObjectsFromArray:':
+                name: replaceObjectsInRange
+            '-sortUsingFunction:context:':
+                exclude: true # raw C functino
+            '-insertObjects:atIndexes:':
+                name: insertObjects
+            '-replaceObjectsAtIndexes:withObjects:':
+                name: replaceObjectsAtIndexes
+            '-setObject:atIndexedSubscript:':
+                name: setObjectAtIndexedSubscript
+            '-sortWithOptions:usingComparator:':
+                name: sort
+            '+arrayWithContentsOfFile:':
+                name: read
+                return_type: NSMutableArray<?>
+            '+arrayWithContentsOfURL:':
+                name: read
+                return_type: NSMutableArray<?>
+            '+arrayWithCapacity:':
+                exclude: true
     NSMutableAttributedString: # DONE
         annotations: ['@WeaklyLinked']
         methods:
@@ -2539,8 +2720,18 @@ classes:
                 name: reset
             '-setData:':
                 name: setData
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-initWithLength:':
+                exclude: true # clashes with '-initWithCapacity:'
+            '+dataWithCapacity:':
+                exclude: true
+            '+dataWithLength:':
+                name: createUsingLength
+            '-decompressUsingAlgorithm:error:':
+                name: decompress
+                throws: NSErrorException
+            '-compressUsingAlgorithm:error:':
+                name: compress
+                throws: NSErrorException
     NSMutableDictionary: # DONE
         skip_def_constructor: true
         template_parameters:
@@ -2559,8 +2750,26 @@ classes:
                 visibility: protected
             '-initWithCapacity:':
                 name: init
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-setObject:forKeyedSubscript:':
+                name: setObjectForKeyedSubscript
+            '+dictionaryWithCapacity:':
+                exclude: true
+            '+dictionaryWithSharedKeySet:':
+                exclude: true
+            '-initWithContentsOfFile:':
+                exclude: true # deprecate, brogen doesn't make it into constructor (BUG)
+            '-initWithContentsOfURL:':
+                exclude: true # deprecate, conflicts with '-initWithContentsOfURL:error:', brogen doesn't make it into constructor (BUG)
+            '+dictionaryWithContentsOfFile:':
+                name: read
+                return_type: 'NSMutableDictionary<?, ?>'
+                annotations: [ '@Deprecated' ]
+            '+dictionaryWithContentsOfURL:':
+                name: read
+                return_type: 'NSMutableDictionary<?, ?>'
+                annotations: [ '@Deprecated' ]
+            '-setValue:forKey:':
+                exclude: true # conflicts with NSObject ones
     NSMutableIndexSet: # DONE
         methods:
             '-addIndexes:':
@@ -2596,8 +2805,28 @@ classes:
             '-removeObject:':
                 trim_after_first_colon: true
                 visibility: protected
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-addObjects:count:':
+                exclude: true # raw C array
+            '-exchangeObjectAtIndex:withObjectAtIndex:':
+                name: exchangeObject
+            '-moveObjectsAtIndexes:toIndex:':
+                name: moveObjects
+            '-insertObjects:atIndexes:':
+                name: insertObjects
+            '-setObject:atIndex:':
+                name: setObject
+            '-setObject:atIndexedSubscript:':
+                name: setObjectAtIndexedSubscript
+            '-replaceObjectsInRange:withObjects:count:':
+                exclude: true # raw C array
+            '-replaceObjectsAtIndexes:withObjects:':
+                name: replaceObjectsAtIndexes
+            '-sortWithOptions:usingComparator:':
+                name: sort
+            '-sortRange:options:usingComparator:':
+                name: sort
+            '+orderedSetWithCapacity:':
+                exclude: true
     NSMutableSet: # DONE
         methods:
             '-addObject:':
@@ -2612,8 +2841,8 @@ classes:
             '-init': {}
             '-initWithCapacity:':
                 name: init
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '+setWithCapacity:':
+                exclude: true
     NSMutableString: # DONE
         methods:
             '-initWithCapacity:':
@@ -2916,8 +3145,56 @@ classes:
             '-performSelector:onThread:withObject:waitUntilDone:':
                 trim_after_first_colon: true
                 visibility: 'public final'
-            '\+.*': { exclude: true }
-            '-.*': { exclude: true }
+            '+allocWithZone:':
+                exclude: true
+            '+copyWithZone:':
+                exclude: true
+            '+mutableCopyWithZone:':
+                exclude: true
+            '+cancelPreviousPerformRequestsWithTarget:selector:object:':
+                exclude: true
+            '+cancelPreviousPerformRequestsWithTarget:':
+                exclude: true
+            '-setValue:forKey:':
+                name: setValueForKey
+            '-validateValue:forKey:error:':
+                name: validateValueForKey
+                throws: NSErrorException
+            '-setValue:forKeyPath:':
+                name: setValueForKeyPath
+            '-validateValue:forKeyPath:error:':
+                name: validateValueForKeyPath
+                throws: NSErrorException
+            '-setValue:forUndefinedKey:':
+                name: setValueForUndefinedKey
+            '-dictionaryWithValuesForKeys:':
+                name: dictionaryWithValuesForKeys
+            '-setValuesForKeysWithDictionary:':
+                name: setValuesForKeys
+            '-removeObserver:forKeyPath:':
+                name: removeObserver
+            '-finalize': { exclude: true }
+
+            # exclude all class methods as these will be propagated to every subclass
+            '+new': {exclude: true }
+            '+load': { exclude: true }
+            '+initialize': { exclude: true }
+            '+alloc': { exclude: true }
+            '+class': { exclude: true }
+            '+superclass': { exclude: true }
+            '+instancesRespondToSelector:': { exclude: true }
+            '+conformsToProtocol:': { exclude: true }
+            '+instanceMethodForSelector:': { exclude: true }
+            '+instanceMethodSignatureForSelector:': { exclude: true }
+            '+isSubclassOfClass:': { exclude: true }
+            '+resolveClassMethod:': { exclude: true }
+            '+isSubclasresolveInstanceMethodsOfClass:': { exclude: true }
+            '+hash': { exclude: true }
+            '+resolveInstanceMethod:': { exclude: true }
+            '+description': { exclude: true }
+            '+debugDescription': { exclude: true }
+            '+version': { exclude: true }
+            '+setVersion:': { exclude: true }
     NSOperation: # DONE
         skip_handle_constructor: false
         properties:
@@ -3006,8 +3283,66 @@ classes:
                 name: getSubarray
                 visibility: protected
                 return_type: NSOrderedSet<T>
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-initWithCoder:':
+                name: init
+            '-getObjects:range:':
+                exclude: true # raw C array expected
+            '-enumerateObjectsWithOptions:usingBlock:':
+                name: enumerateObjects
+            '-enumerateObjectsAtIndexes:options:usingBlock:':
+                name: enumerateObjectsAtIndexes
+            '-indexOfObjectWithOptions:passingTest:':
+                name: indexOfObject
+            '-indexOfObjectAtIndexes:options:passingTest:':
+                name: indexOfObjectAtIndexes
+            '-indexesOfObjectsWithOptions:passingTest:':
+                name: indexesOfObjects
+            '-indexesOfObjectsAtIndexes:options:passingTest:':
+                name: indexesOfObjectsAtIndexes
+            '-indexOfObject:inSortedRange:options:usingComparator:':
+                name: indexOfObjectInSortedRange
+            '-sortedArrayWithOptions:usingComparator:':
+                name: sortedArray
+            '-descriptionWithLocale:':
+                name: description
+            '-descriptionWithLocale:indent:':
+                name: description
+            '-initWithObject:':
+                name: init
+            '-initWithOrderedSet:copyItems:':
+                name: init
+            '-initWithOrderedSet:range:copyItems:':
+                name: init
+            '-initWithArray:copyItems:':
+                name: init
+            '-initWithArray:range:copyItems:':
+                name: init
+            '-initWithSet:':
+                name: init
+            '-initWithSet:copyItems:':
+                name: init
+            '+orderedSetWithObject:':
+                exclude: true
+            '+orderedSetWithObjects:count:':
+                exclude: true
+            '+orderedSetWithOrderedSet:':
+                exclude: true
+            '+orderedSetWithOrderedSet:range:copyItems:':
+                exclude: true
+            '+orderedSetWithArray:':
+                exclude: true
+            '+orderedSetWithArray:range:copyItems:':
+                exclude: true
+            '+orderedSet':
+                exclude: true
+            '+orderedSetWithSet:':
+                exclude: true
+            '+orderedSetWithSet:copyItems:':
+                exclude: true
+            '-differenceFromOrderedSet:withOptions:usingEquivalenceTest:':
+                name: differenceFromOrderedSet
+            '-differenceFromOrderedSet:withOptions:':
+                name: differenceFromOrderedSet
     NSOrthography: # DONE
         properties:
             'languageMap':
@@ -3348,8 +3683,28 @@ classes:
             '-anyObject':
                 name: any
                 return_type: T
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-initWithCoder:':
+                name: init
+            '-descriptionWithLocale:':
+                name: description
+            '-makeObjectsPerformSelector:withObject:':
+                name: makeObjectsPerformSelector
+            '-enumerateObjectsWithOptions:usingBlock:':
+                name: enumerateObjects
+            '-objectsWithOptions:passingTest:':
+                name: getObjects
+            '-initWithSet:copyItems:':
+                name: init
+            '+setWithObject:':
+                exclude: true
+            '+setWithObjects:count:':
+                exclude: true
+            '+setWithSet:':
+                exclude: true
+            '+setWithArray:':
+                exclude: true
+            '+set':
+                exclude: true
     NSSortDescriptor: # DONE
         properties:
             'comparator':
@@ -3368,7 +3723,11 @@ classes:
                         type: '@Block Block2<NSObject, NSObject, NSComparisonResult>'
             '-compareObject:toObject:':
                 name: compare
-            '+.*':
+            '+sortDescriptorWithKey:ascending:':
+                exclude: true
+            '+sortDescriptorWithKey:ascending:selector:':
+                exclude: true
+            '+sortDescriptorWithKey:ascending:comparator:':
                 exclude: true
     NSStream: # DONE
         methods:
@@ -3400,8 +3759,6 @@ classes:
             'length':
                 omit_prefix: true
                 visibility: protected
-            '.*':
-                exclude: true
         methods:
             '+stringWithCharacters:length:':
                 name: create
@@ -3470,10 +3827,76 @@ classes:
                 name: addPercentEscapes
             '-stringByReplacingPercentEscapesUsingEncoding:':
                 name: replacePercentEscapes
-            '-.*':
+            '-substringWithRange:':
+                name: substring
+            '-compare:options:':
+                name: compare
+            '-compare:options:range:':
+                name: compare
+            '-compare:options:range:locale:':
+                name: compare
+            '-commonPrefixWithString:options:':
+                name: commonPrefix
+            '-rangeOfString:options:':
+                name: rangeOfString
+            '-rangeOfString:options:range:':
+                name: rangeOfString
+            '-rangeOfString:options:range:locale:':
+                name: rangeOfString
+            '-rangeOfCharacterFromSet:options:':
+                name: rangeOfCharacterFromSet
+            '-rangeOfCharacterFromSet:options:range:':
+                name: rangeOfCharacterFromSet
+            '-uppercaseStringWithLocale:':
+                name: uppercaseString
+            '-lowercaseStringWithLocale:':
+                name: lowercaseString
+            '-capitalizedStringWithLocale:':
+                name: capitalizedString
+            '-getLineStart:end:contentsEnd:forRange:':
+                name: getLine
+            '-getParagraphStart:end:contentsEnd:forRange:':
+                name: getParagraph
+            '-enumerateSubstringsInRange:options:usingBlock:':
+                name: enumerateSubstrings
+            '-getCString:maxLength:encoding:':
+                name: getCString
+            '-getBytes:maxLength:usedLength:encoding:options:range:remainingRange:':
+                name: getBytes
+            '-stringByPaddingToLength:withString:startingAtIndex:':
+                name: stringByPaddingToLength
+            '-stringByFoldingWithOptions:locale:':
+                name: stringByFolding
+            '-stringByReplacingOccurrencesOfString:withString:options:range:':
+                name: stringByReplacingOccurrencesOfString
+            '-stringByReplacingOccurrencesOfString:withString:':
+                name: stringByReplacingOccurrencesOfString
+            '-stringByReplacingCharactersInRange:withString:':
+                name: stringByReplacingCharacters
+            '-stringByApplyingTransform:reverse:':
+                name: stringByApplyingTransform
+            '+stringWithString:':
                 exclude: true
-            '+.*':
+            '+stringWithUTF8String:':
                 exclude: true
+            '+stringWithCString:encoding:':
+                exclude: true
+            '+stringWithContentsOfURL:usedEncoding:error:':
+                exclude: true
+            '+stringWithContentsOfFile:usedEncoding:error:':
+                exclude: true
+            '+stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:':
+                exclude: true
+            '-completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:':
+                name: completePathIntoString
+            '-getFileSystemRepresentation:maxLength:':
+                name: getFileSystemRepresentation
+            '+pathWithComponents:':
+                name: pathWithComponents
+            '-linguisticTagsInRange:scheme:options:orthography:tokenRanges:':
+                name: linguisticTags
+            '-enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:':
+                name: enumerateLinguisticTags
     NSTextCheckingResult: # DONE
         properties:
             'grammarDetails':
@@ -4344,8 +4767,6 @@ classes:
                 parameters:
                     uuid:
                         type: '@Pointer long'
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
     NSValue: # DONE
         annotations: ['@WeaklyLinked']
         skip_def_constructor: true

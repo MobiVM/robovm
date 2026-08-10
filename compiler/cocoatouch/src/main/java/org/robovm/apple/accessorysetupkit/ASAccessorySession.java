@@ -88,5 +88,15 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "updateAuthorization:descriptor:completionHandler:")
     public native void updateAuthorization(ASAccessory accessory, ASDiscoveryDescriptor descriptor, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "updatePickerShowingDiscoveredDisplayItems:completionHandler:")
+    public native void updatePickerShowingDiscoveredDisplayItems(NSArray<ASDiscoveredDisplayItem> displayItems, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "finishPickerDiscovery:")
+    public native void finishPickerDiscovery(@Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

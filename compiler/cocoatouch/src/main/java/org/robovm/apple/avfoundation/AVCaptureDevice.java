@@ -674,6 +674,16 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "isStudioLightActive")
     public native boolean isStudioLightActive();
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightEnabled")
+    public static native boolean isEdgeLightEnabled();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightActive")
+    public static native boolean isEdgeLightActive();
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "isCameraLensSmudgeDetectionEnabled")

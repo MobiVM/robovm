@@ -109,7 +109,7 @@ import org.robovm.apple.coregraphics.*;
     
 
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public boolean isExpired() {
@@ -120,7 +120,7 @@ import org.robovm.apple.coregraphics.*;
         return false;
     }
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public SKReceiptRefreshRequestOptions setExpired(boolean expired) {
@@ -128,7 +128,7 @@ import org.robovm.apple.coregraphics.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public boolean isRevoked() {
@@ -139,7 +139,7 @@ import org.robovm.apple.coregraphics.*;
         return false;
     }
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public SKReceiptRefreshRequestOptions setRevoked(boolean revoked) {
@@ -147,7 +147,7 @@ import org.robovm.apple.coregraphics.*;
         return this;
     }
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public boolean isVolumePurchase() {
@@ -158,7 +158,7 @@ import org.robovm.apple.coregraphics.*;
         return false;
     }
     /**
-     * @deprecated Deprecated in iOS 18.0. No longer supported
+     * @deprecated Deprecated in iOS 18.0. No longer supported.
      */
     @Deprecated
     public SKReceiptRefreshRequestOptions setVolumePurchase(boolean volumePurchase) {
@@ -172,19 +172,19 @@ import org.robovm.apple.coregraphics.*;
     public static class Keys {
         static { Bro.bind(Keys.class); }
         /**
-         * @deprecated Deprecated in iOS 18.0. No longer supported
+         * @deprecated Deprecated in iOS 18.0. No longer supported.
          */
         @Deprecated
         @GlobalValue(symbol="SKReceiptPropertyIsExpired", optional=true)
         public static native NSString IsExpired();
         /**
-         * @deprecated Deprecated in iOS 18.0. No longer supported
+         * @deprecated Deprecated in iOS 18.0. No longer supported.
          */
         @Deprecated
         @GlobalValue(symbol="SKReceiptPropertyIsRevoked", optional=true)
         public static native NSString IsRevoked();
         /**
-         * @deprecated Deprecated in iOS 18.0. No longer supported
+         * @deprecated Deprecated in iOS 18.0. No longer supported.
          */
         @Deprecated
         @GlobalValue(symbol="SKReceiptPropertyIsVolumePurchase", optional=true)

@@ -52,10 +52,20 @@ import org.robovm.apple.coreanimation.*;
     protected ASCredentialServiceIdentifier(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:type:")
     public ASCredentialServiceIdentifier(String identifier, ASCredentialServiceIdentifierType type) { super((SkipInit) null); initObject(init(identifier, type)); }
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "initWithIdentifier:type:displayName:")
+    public ASCredentialServiceIdentifier(String identifier, ASCredentialServiceIdentifierType type, String displayName) { super((SkipInit) null); initObject(init(identifier, type, displayName)); }
     @Method(selector = "initWithCoder:")
     public ASCredentialServiceIdentifier(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "displayName")
+    public native String getDisplayName();
     @Property(selector = "identifier")
     public native String getIdentifier();
     @Property(selector = "type")
@@ -67,6 +77,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithIdentifier:type:")
     protected native @Pointer long init(String identifier, ASCredentialServiceIdentifierType type);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "initWithIdentifier:type:displayName:")
+    protected native @Pointer long init(String identifier, ASCredentialServiceIdentifierType type, String displayName);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

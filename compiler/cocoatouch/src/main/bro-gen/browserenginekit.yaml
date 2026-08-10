@@ -187,6 +187,12 @@ classes:
                 throws: NSErrorException
             '-grantCapability:error:invalidationHandler:':
                 name: grantCapability
+    BEWebContentFilter: #since 26.2
+        methods:
+            '-evaluateURL:completionHandler:':
+                name: evaluateURL
+            '-allowURL:completionHandler:':
+                name: allowURL
 protocols:
     BEAccessibilityTextMarkerSupport: {} #since 18.2
     BEDragInteractionDelegate: #since 17.4

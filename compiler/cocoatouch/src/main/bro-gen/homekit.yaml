@@ -306,6 +306,8 @@ classes:
                 name: addHome
             '-removeHome:completionHandler:':
                 trim_after_first_colon: true
+            '-findVendorAccessoryWithHAPPublicKey:completionHandler:':
+                name: findVendorAccessory
     HMLocationEvent: # DONE
         skip_def_constructor: true
         methods:

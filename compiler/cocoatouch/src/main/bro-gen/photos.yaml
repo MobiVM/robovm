@@ -40,6 +40,8 @@ enums:
     PHPhotosError: {nserror: true, prefix: PHPhotosError, first: PHPhotosErrorInvalid} #since 13.0
     PHAccessLevel: { } #since 14.0
     PHObjectType: {} #since 16.0
+    PHAssetResourceUploadJobState: {} #since 26.1
+    PHAssetResourceUploadJobAction: {} #since 26.1
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -371,6 +373,9 @@ classes:
             '-fetchPersistentChangesSinceToken:error:':
                 name: fetchPersistentChangesSinceToken
                 throws: NSErrorException
+            '-setUploadJobExtensionEnabled:error:':
+                name: setUploadJobExtensionEnabled
+                throws: NSErrorException
     PHVideoRequestOptions: {} # DONE
     PHLivePhotoEditingContext:
         methods:
@@ -397,6 +402,16 @@ classes:
                 name: enumerateChanges
     PHPersistentChangeToken: {} #since 16.0
     PHPersistentObjectChangeDetails: {} #since 16.0
+    PHAssetResourceUploadJob: #since 26.1
+        methods:
+            '+fetchJobsWithAction:options:':
+                name: fetchJobs
+    PHAssetResourceUploadJobChangeRequest: #since 26.1
+        methods:
+            '-retryWithDestination:':
+                name: retry
+            '+createJobWithDestination:resource:':
+                name: createJob
 protocols:
     PHLivePhotoFrame: {}
 

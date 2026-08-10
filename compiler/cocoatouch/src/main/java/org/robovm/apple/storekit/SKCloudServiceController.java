@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.3 and later.
- * @deprecated Deprecated in iOS 18.0. Use MusicKit
+ * @deprecated Deprecated in iOS 18.0. Use MusicKit.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -58,21 +58,21 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicSubscription.subscriptionUpdates from MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicSubscription.subscriptionUpdates from MusicKit.
      */
     @Deprecated
     @GlobalValue(symbol="SKCloudServiceCapabilitiesDidChangeNotification", optional=true)
     public static native String CapabilitiesDidChangeNotification();
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates.
      */
     @Deprecated
     @GlobalValue(symbol="SKStorefrontCountryCodeDidChangeNotification", optional=true)
     public static native String StorefrontCountryCodeDidChangeNotification();
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates.
      */
     @Deprecated
     @GlobalValue(symbol="SKStorefrontIdentifierDidChangeNotification", optional=true)
@@ -80,28 +80,28 @@ import org.robovm.apple.coregraphics.*;
     
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicSubscription.current from MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicSubscription.current from MusicKit.
      */
     @Deprecated
     @Method(selector = "requestCapabilitiesWithCompletionHandler:")
     public native void requestCapabilities(@Block VoidBlock2<SKCloudServiceCapability, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicDataRequest.currentCountryCode from MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicDataRequest.currentCountryCode from MusicKit.
      */
     @Deprecated
     @Method(selector = "requestStorefrontCountryCodeWithCompletionHandler:")
     public native void requestStorefrontCountryCode(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Storefront.current.id
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.current.id.
      */
     @Deprecated
     @Method(selector = "requestStorefrontIdentifierWithCompletionHandler:")
     public native void requestStorefrontIdentifier(@Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicKit.
      */
     @Deprecated
     @Method(selector = "requestUserTokenForDeveloperToken:completionHandler:")
@@ -115,14 +115,14 @@ import org.robovm.apple.coregraphics.*;
     public native void requestPersonalizationToken(String clientToken, @Block VoidBlock2<NSString, NSError> completionHandler);
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicAuthorization.currentStatus from MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicAuthorization.currentStatus from MusicKit.
      */
     @Deprecated
     @Method(selector = "authorizationStatus")
     public static native SKCloudServiceAuthorizationStatus authorizationStatus();
     /**
      * @since Available in iOS 9.3 and later.
-     * @deprecated Deprecated in iOS 18.0. Use MusicAuthorization.request() from MusicKit
+     * @deprecated Deprecated in iOS 18.0. Use MusicAuthorization.request() from MusicKit.
      */
     @Deprecated
     @Method(selector = "requestAuthorization:")

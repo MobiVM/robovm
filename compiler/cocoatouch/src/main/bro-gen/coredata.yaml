@@ -101,9 +101,6 @@ classes:
                 name: init
             '-valueForKey:':
                 name: getValue
-            '-setValue:forKey:':
-                name: setValue
-                visibility: private # arguments switched
     NSAttributeDescription: {} # DONE
     NSBatchDeleteRequest: # DONE
         methods:
@@ -337,9 +334,6 @@ classes:
                 trim_after_first_colon: true
             '-valueForKey:':
                 name: getValue
-            '-setValue:forKey:':
-                trim_after_first_colon: true
-                visibility: private # switched arguments
             '-primitiveValueForKey:':
                 name: getPrimitiveValue
             '-setPrimitiveValue:forKey:':
@@ -357,10 +351,6 @@ classes:
             '-changedValuesForCurrentEvent':
                 property: true
                 return_type: 'NSDictionary<NSString, ?>'
-            '-validateValue:forKey:error:':
-                name: validateValue
-                throws: NSErrorException
-                visibility: private # switched arguments
             '-validateFor.*':
                 trim_after_first_colon: true
                 throws: NSErrorException

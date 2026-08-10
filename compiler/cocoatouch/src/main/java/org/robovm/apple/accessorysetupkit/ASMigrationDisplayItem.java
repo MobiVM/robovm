@@ -62,6 +62,16 @@ import org.robovm.apple.uikit.*;
     public native String getHotspotSSID();
     @Property(selector = "setHotspotSSID:")
     public native void setHotspotSSID(String v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "wifiAwarePairedDeviceID")
+    public native long getWifiAwarePairedDeviceID();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setWifiAwarePairedDeviceID:")
+    public native void setWifiAwarePairedDeviceID(long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

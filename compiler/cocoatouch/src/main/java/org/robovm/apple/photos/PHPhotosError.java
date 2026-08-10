@@ -107,6 +107,10 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      */
     RequestNotSupportedForAsset(3306L),
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    LimitExceeded(3307L),
+    /**
      * @since Available in iOS 15.0 and later.
      */
     AccessRestricted(3310L),

@@ -708,6 +708,8 @@ classes:
                 name: triggerAccessPointWithGameActivity
             '-triggerAccessPointForFriendingWithHandler:':
                 name: triggerAccessPointForFriending
+            '-triggerAccessPointForArcadeWithHandler:':
+                name: triggerAccessPointForArcade
     GKLeaderboardScore: {} #since 14.0
     GKLeaderboardEntry: #since 14.0
         methods:

@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
- * @deprecated Deprecated in iOS 18.0. Use Storefront
+ * @deprecated Deprecated in iOS 18.0. Use Storefront.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
@@ -54,14 +54,14 @@ import org.robovm.apple.coregraphics.*;
     /*<properties>*/
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use 'Storefront.countryCode'
+     * @deprecated Deprecated in iOS 18.0. Use 'Storefront.countryCode'.
      */
     @Deprecated
     @Property(selector = "countryCode")
     public native String getCountryCode();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use 'Storefront.id'
+     * @deprecated Deprecated in iOS 18.0. Use 'Storefront.id'.
      */
     @Deprecated
     @Property(selector = "identifier")

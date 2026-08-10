@@ -463,16 +463,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeWhitePointXWithValue:completion:")
-    public native void writeAttributeWhitePointX(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeWhitePointXWithValue:params:completion:")
-    public native void writeAttributeWhitePointX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeWhitePointXWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeWhitePointX(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -480,16 +470,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeWhitePointYWithCompletion:")
     public native void readAttributeWhitePointY(@Block VoidBlock2<NSNumber, NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeWhitePointYWithValue:completion:")
-    public native void writeAttributeWhitePointY(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeWhitePointYWithValue:params:completion:")
-    public native void writeAttributeWhitePointY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -503,16 +483,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeColorPointRXWithValue:completion:")
-    public native void writeAttributeColorPointRX(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointRXWithValue:params:completion:")
-    public native void writeAttributeColorPointRX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeColorPointRXWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeColorPointRX(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -520,16 +490,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeColorPointRYWithCompletion:")
     public native void readAttributeColorPointRY(@Block VoidBlock2<NSNumber, NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointRYWithValue:completion:")
-    public native void writeAttributeColorPointRY(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointRYWithValue:params:completion:")
-    public native void writeAttributeColorPointRY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -543,16 +503,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeColorPointRIntensityWithValue:completion:")
-    public native void writeAttributeColorPointRIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointRIntensityWithValue:params:completion:")
-    public native void writeAttributeColorPointRIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeColorPointRIntensityWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeColorPointRIntensity(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -560,16 +510,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeColorPointGXWithCompletion:")
     public native void readAttributeColorPointGX(@Block VoidBlock2<NSNumber, NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointGXWithValue:completion:")
-    public native void writeAttributeColorPointGX(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointGXWithValue:params:completion:")
-    public native void writeAttributeColorPointGX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -583,16 +523,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeColorPointGYWithValue:completion:")
-    public native void writeAttributeColorPointGY(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointGYWithValue:params:completion:")
-    public native void writeAttributeColorPointGY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeColorPointGYWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeColorPointGY(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -600,16 +530,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeColorPointGIntensityWithCompletion:")
     public native void readAttributeColorPointGIntensity(@Block VoidBlock2<NSNumber, NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointGIntensityWithValue:completion:")
-    public native void writeAttributeColorPointGIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointGIntensityWithValue:params:completion:")
-    public native void writeAttributeColorPointGIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -623,16 +543,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeColorPointBXWithValue:completion:")
-    public native void writeAttributeColorPointBX(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointBXWithValue:params:completion:")
-    public native void writeAttributeColorPointBX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeColorPointBXWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeColorPointBX(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -643,16 +553,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 16.4 and later.
      */
-    @Method(selector = "writeAttributeColorPointBYWithValue:completion:")
-    public native void writeAttributeColorPointBY(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointBYWithValue:params:completion:")
-    public native void writeAttributeColorPointBY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
     @Method(selector = "subscribeAttributeColorPointBYWithParams:subscriptionEstablished:reportHandler:")
     public native void subscribeAttributeColorPointBY(MTRSubscribeParams params, @Block Runnable subscriptionEstablished, @Block VoidBlock2<NSNumber, NSError> reportHandler);
     /**
@@ -660,16 +560,6 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "readAttributeColorPointBIntensityWithCompletion:")
     public native void readAttributeColorPointBIntensity(@Block VoidBlock2<NSNumber, NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointBIntensityWithValue:completion:")
-    public native void writeAttributeColorPointBIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
-    /**
-     * @since Available in iOS 16.4 and later.
-     */
-    @Method(selector = "writeAttributeColorPointBIntensityWithValue:params:completion:")
-    public native void writeAttributeColorPointBIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 16.4 and later.
      */
@@ -1145,5 +1035,159 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "initWithDevice:endpointID:queue:")
     protected native @Pointer long init(MTRBaseDevice device, NSNumber endpointID, DispatchQueue queue);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeWhitePointXWithValue:completion:")
+    public native void writeAttributeWhitePointX(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeWhitePointXWithValue:params:completion:")
+    public native void writeAttributeWhitePointX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeWhitePointYWithValue:completion:")
+    public native void writeAttributeWhitePointY(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeWhitePointYWithValue:params:completion:")
+    public native void writeAttributeWhitePointY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRXWithValue:completion:")
+    public native void writeAttributeColorPointRX(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRXWithValue:params:completion:")
+    public native void writeAttributeColorPointRX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRYWithValue:completion:")
+    public native void writeAttributeColorPointRY(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRYWithValue:params:completion:")
+    public native void writeAttributeColorPointRY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRIntensityWithValue:completion:")
+    public native void writeAttributeColorPointRIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointRIntensityWithValue:params:completion:")
+    public native void writeAttributeColorPointRIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGXWithValue:completion:")
+    public native void writeAttributeColorPointGX(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGXWithValue:params:completion:")
+    public native void writeAttributeColorPointGX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGYWithValue:completion:")
+    public native void writeAttributeColorPointGY(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGYWithValue:params:completion:")
+    public native void writeAttributeColorPointGY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGIntensityWithValue:completion:")
+    public native void writeAttributeColorPointGIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointGIntensityWithValue:params:completion:")
+    public native void writeAttributeColorPointGIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBXWithValue:completion:")
+    public native void writeAttributeColorPointBX(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBXWithValue:params:completion:")
+    public native void writeAttributeColorPointBX(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBYWithValue:completion:")
+    public native void writeAttributeColorPointBY(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBYWithValue:params:completion:")
+    public native void writeAttributeColorPointBY(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBIntensityWithValue:completion:")
+    public native void writeAttributeColorPointBIntensity(NSNumber value, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     * @deprecated Deprecated in iOS 26.1. This attribute is no longer writable in the Matter standard
+     */
+    @Deprecated
+    @Method(selector = "writeAttributeColorPointBIntensityWithValue:params:completion:")
+    public native void writeAttributeColorPointBIntensity(NSNumber value, MTRWriteParams params, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

@@ -504,8 +504,14 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setConversationContext:")
     public native void setConversationContext(UIConversationContext v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @Property(selector = "allowsNumberPadPopover")
     public native boolean allowsNumberPadPopover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @Property(selector = "setAllowsNumberPadPopover:")
     public native void setAllowsNumberPadPopover(boolean v);
     @Property(selector = "adjustsFontForContentSizeCategory")

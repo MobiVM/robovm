@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 18.0. Get products using Product.products(for:)
+ * @deprecated Deprecated in iOS 18.0. Get products using Product.products(for:).
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

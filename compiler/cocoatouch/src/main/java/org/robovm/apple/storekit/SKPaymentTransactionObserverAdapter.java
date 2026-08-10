@@ -55,40 +55,40 @@ import org.robovm.apple.coregraphics.*;
     @NotImplemented("paymentQueue:removedTransactions:")
     public void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) {}
     /**
-     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync().
      */
     @Deprecated
     @NotImplemented("paymentQueue:restoreCompletedTransactionsFailedWithError:")
     public void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error) {}
     /**
-     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync()
+     * @deprecated Deprecated in iOS 18.0. Use AppStore.sync().
      */
     @Deprecated
     @NotImplemented("paymentQueueRestoreCompletedTransactionsFinished:")
     public void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {}
     /**
-     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
      */
     @Deprecated
     @NotImplemented("paymentQueue:updatedDownloads:")
     public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) {}
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use PurchaseIntent.intents
+     * @deprecated Deprecated in iOS 18.0. Use PurchaseIntent.intents.
      */
     @Deprecated
     @NotImplemented("paymentQueue:shouldAddStorePayment:forProduct:")
     public boolean shouldAddStorePayment(SKPaymentQueue queue, SKPayment payment, SKProduct product) { return false; }
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates
+     * @deprecated Deprecated in iOS 18.0. Use Storefront.updates.
      */
     @Deprecated
     @NotImplemented("paymentQueueDidChangeStorefront:")
     public void paymentQueueDidChangeStorefront(SKPaymentQueue queue) {}
     /**
      * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Transaction.updates
+     * @deprecated Deprecated in iOS 18.0. Use Transaction.updates.
      */
     @Deprecated
     @NotImplemented("paymentQueue:didRevokeEntitlementsForProductIdentifiers:")

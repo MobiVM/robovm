@@ -35,7 +35,7 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
- * @deprecated Deprecated in iOS 18.0. No longer supported
+ * @deprecated Deprecated in iOS 18.0. No longer supported.
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/
@@ -53,14 +53,14 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 18.0. Pass Product.PurchaseOption.onStorefrontChange(shouldContinuePurchase:) to product.purchase(options:)
+     * @deprecated Deprecated in iOS 18.0. Pass Product.PurchaseOption.onStorefrontChange(shouldContinuePurchase:) to product.purchase(options:).
      */
     @Deprecated
     @Method(selector = "paymentQueue:shouldContinueTransaction:inStorefront:")
     boolean shouldContinueTransaction(SKPaymentQueue paymentQueue, SKPaymentTransaction transaction, SKStorefront newStorefront);
     /**
      * @since Available in iOS 13.4 and later.
-     * @deprecated Deprecated in iOS 18.0. Use Message.messages and Message.display(in:)
+     * @deprecated Deprecated in iOS 18.0. Use Message.messages and Message.display(in:).
      */
     @Deprecated
     @Method(selector = "paymentQueueShouldShowPriceConsent:")

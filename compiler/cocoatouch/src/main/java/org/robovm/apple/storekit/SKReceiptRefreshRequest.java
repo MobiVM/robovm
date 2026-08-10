@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 18.0. Use Transaction.all and AppTransaction.shared
+ * @deprecated Deprecated in iOS 18.0. Use Transaction.all and AppTransaction.shared.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/

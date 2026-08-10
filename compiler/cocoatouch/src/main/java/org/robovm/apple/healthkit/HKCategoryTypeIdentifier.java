@@ -105,6 +105,10 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKCategoryTypeIdentifier HighHeartRateEvent = new HKCategoryTypeIdentifier("HighHeartRateEvent");
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    public static final HKCategoryTypeIdentifier HypertensionEvent = new HKCategoryTypeIdentifier("HypertensionEvent");
+    /**
      * @since Available in iOS 12.2 and later.
      */
     public static final HKCategoryTypeIdentifier IrregularHeartRhythmEvent = new HKCategoryTypeIdentifier("IrregularHeartRhythmEvent");
@@ -365,7 +369,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKCategoryTypeIdentifier AudioExposureEvent = new HKCategoryTypeIdentifier("AudioExposureEvent");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleStandHour, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HighHeartRateEvent, IrregularHeartRhythmEvent, LowCardioFitnessEvent, LowHeartRateEvent, MindfulSession, AppleWalkingSteadinessEvent, HandwashingEvent, ToothbrushingEvent, BleedingAfterPregnancy, BleedingDuringPregnancy, CervicalMucusQuality, Contraceptive, InfrequentMenstrualCycles, IntermenstrualBleeding, IrregularMenstrualCycles, Lactation, MenstrualFlow, OvulationTestResult, PersistentIntermenstrualBleeding, Pregnancy, PregnancyTestResult, ProgesteroneTestResult, ProlongedMenstrualPeriods, SexualActivity, SleepApneaEvent, SleepAnalysis, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing, AudioExposureEvent/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleStandHour, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HighHeartRateEvent, HypertensionEvent, IrregularHeartRhythmEvent, LowCardioFitnessEvent, LowHeartRateEvent, MindfulSession, AppleWalkingSteadinessEvent, HandwashingEvent, ToothbrushingEvent, BleedingAfterPregnancy, BleedingDuringPregnancy, CervicalMucusQuality, Contraceptive, InfrequentMenstrualCycles, IntermenstrualBleeding, IrregularMenstrualCycles, Lactation, MenstrualFlow, OvulationTestResult, PersistentIntermenstrualBleeding, Pregnancy, PregnancyTestResult, ProgesteroneTestResult, ProlongedMenstrualPeriods, SexualActivity, SleepApneaEvent, SleepAnalysis, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing, AudioExposureEvent/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -408,6 +412,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierHighHeartRateEvent", optional=true)
         public static native NSString HighHeartRateEvent();
+        /**
+         * @since Available in iOS 26.2 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierHypertensionEvent", optional=true)
+        public static native NSString HypertensionEvent();
         /**
          * @since Available in iOS 12.2 and later.
          */

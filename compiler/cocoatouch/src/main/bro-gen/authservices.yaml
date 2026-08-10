@@ -27,6 +27,7 @@ enums:
     ASCredentialIdentityTypes: { } #since 17.4
     ASUserAgeRange: { } #since 17.0
     ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle: { } #since 18.0
+    ASSavePasswordRequestEvent: {} #since 26.2
 typed_enums:
     ASAuthorizationOpenIDOperation:
         enum: ASAuthorizationOpenIDOperation
@@ -96,7 +97,11 @@ classes:
             '-completeOneTimeCodeRequestWithSelectedCredential:completionHandler:':
                 name: completeOneTimeCodeRequest
             '-completeRequestWithTextToInsert:completionHandler:':
-                name: completeRequestWith
+                name: completeRequest
+            '-completeSavePasswordRequestWithCompletionHandler:':
+                name: completeSavePasswordRequest
+            '-completeGeneratePasswordRequestWithResults:completionHandler:':
+                name: completeGeneratePasswordRequest
     ASCredentialProviderViewController:  #since 12.0
         methods:
             '-provideCredentialWithoutUserInteractionForIdentity:':
@@ -115,9 +120,15 @@ classes:
                 name: reportAllAcceptedPublicKeyCredentials
             '-reportUnusedPasswordCredentialForDomain:userName:':
                 name: reportUnusedPasswordCredential
+            '-performSavePasswordRequestWithoutUserInteractionIfPossible:':
+                name: performSavePasswordRequest
+            '-performGeneratePasswordsRequestWithoutUserInteraction:':
+                name: performGeneratePasswordsRequest
     ASCredentialServiceIdentifier: #since 12.0
         methods:
             '-initWithIdentifier:type:':
+                name: init
+            '-initWithIdentifier:type:displayName:':
                 name: init
     ASPasswordCredential: #since 12.0
         methods:
@@ -367,6 +378,24 @@ classes:
             '+callbackWithHTTPSHost:path:':
                 name: create
                 constructor: true
+    ASGeneratePasswordsRequest: #since 26.2
+        methods:
+            '-initWithServiceIdentifier:passwordFieldPasswordRules:confirmPasswordFieldPasswordRules:passwordRulesFromQuirks:':
+                name: initWithServiceIdentifier$passwordFieldPasswordRules$confirmPasswordFieldPasswordRules$passwordRulesFromQuirks$
+    ASGeneratedPassword: #since 26.2
+        methods:
+            '-initWithKind:value:':
+                name: initWithKind$value$
+    ASSavePasswordRequest: #since 26.2
+        methods:
+            '-initWithServiceIdentifier:credential:sessionID:event:':
+                name: init
+            '-initWithServiceIdentifier:credential:title:sessionID:event:':
+                name: init
+            '-initWithServiceIdentifier:credential:sessionID:event:passwordKind:':
+                name: init
+            '-initWithServiceIdentifier:credential:title:sessionID:event:passwordKind:':
+                name: init
 protocols:
     ASAuthorizationControllerDelegate: #since 13.0
         methods:

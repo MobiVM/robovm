@@ -44,7 +44,8 @@ public enum /*<name>*/SFErrorCode/*</name>*/ implements ValuedEnum {
     NoAttachmentFound(2L),
     LoadingInterrupted(3L),
     InternalError(4L),
-    MissingEntitlement(5L);
+    MissingEntitlement(5L),
+    MaximumAttemptsExceeded(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SFErrorCode.class); }/*</bind>*/

@@ -63,6 +63,11 @@ import org.robovm.apple.corehaptic.*;
     @Property(selector = "lastValueLatency")
     double getLastValueLatency();
     /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "physicalExtents")
+    GCPhysicalInputExtents getPhysicalExtents();
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "sources")

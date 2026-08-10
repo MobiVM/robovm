@@ -65,7 +65,11 @@ import org.robovm.apple.dispatch.*;
     }
 
     /*<methods>*/
+    @Method(selector = "addObject:")
+    public native void addObject(NSObject anObject);
     @Method(selector = "drain")
     public native void drain();
+    @Method(selector = "addObject:")
+    public static native void addObjectToActivePool(NSObject anObject);
     /*</methods>*/
 }

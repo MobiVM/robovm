@@ -42,7 +42,11 @@ import org.robovm.apple.coreanimation.*;
 public enum /*<name>*/ASCredentialServiceIdentifierType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Domain(0L),
-    URL(1L);
+    URL(1L),
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    App(2L);
     /*</values>*/
 
     /*<bind>*/

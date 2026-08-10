@@ -55,6 +55,8 @@ import org.robovm.apple.dispatch.*;
     protected NSCountedSet(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCapacity:")
     public NSCountedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
+    @Method(selector = "initWithCoder:")
+    public NSCountedSet(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
     

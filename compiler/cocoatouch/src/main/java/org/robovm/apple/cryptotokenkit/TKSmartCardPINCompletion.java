@@ -32,7 +32,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 public final class /*<name>*/TKSmartCardPINCompletion/*</name>*/ extends Bits</*<name>*/TKSmartCardPINCompletion/*</name>*/> {

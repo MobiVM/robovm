@@ -114,70 +114,70 @@ import org.robovm.apple.coregraphics.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 10.1 and later.
-         * @deprecated Deprecated in iOS 18.0. Use the action property of MusicSubscriptionOffer.Options from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use the action property of MusicSubscriptionOffer.Options from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupOptionsActionKey", optional=true)
         public static native NSString OptionsActionKey();
         /**
          * @since Available in iOS 10.1 and later.
-         * @deprecated Deprecated in iOS 18.0. Use the itemID property of MusicSubscriptionOffer.Options from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use the itemID property of MusicSubscriptionOffer.Options from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupOptionsITunesItemIdentifierKey", optional=true)
         public static native NSString OptionsITunesItemIdentifierKey();
         /**
          * @since Available in iOS 10.3 and later.
-         * @deprecated Deprecated in iOS 18.0. Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupOptionsAffiliateTokenKey", optional=true)
         public static native NSString OptionsAffiliateTokenKey();
         /**
          * @since Available in iOS 10.3 and later.
-         * @deprecated Deprecated in iOS 18.0. Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupOptionsCampaignTokenKey", optional=true)
         public static native NSString OptionsCampaignTokenKey();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 18.0. Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupOptionsMessageIdentifierKey", optional=true)
         public static native NSString OptionsMessageIdentifierKey();
         /**
          * @since Available in iOS 10.1 and later.
-         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.Action.subscribe from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.Action.subscribe from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupActionSubscribe", optional=true)
         public static native NSString ActionSubscribe();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierJoin", optional=true)
         public static native NSString MessageIdentifierJoin();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 18.0. No longer supported
+         * @deprecated Deprecated in iOS 18.0. No longer supported.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierConnect", optional=true)
         public static native NSString MessageIdentifierConnect();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierAddMusic", optional=true)
         public static native NSString MessageIdentifierAddMusic();
         /**
          * @since Available in iOS 11.0 and later.
-         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit
+         * @deprecated Deprecated in iOS 18.0. Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit.
          */
         @Deprecated
         @GlobalValue(symbol="SKCloudServiceSetupMessageIdentifierPlayMusic", optional=true)

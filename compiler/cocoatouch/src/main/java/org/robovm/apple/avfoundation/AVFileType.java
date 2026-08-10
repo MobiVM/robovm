@@ -100,6 +100,10 @@ import org.robovm.apple.uikit.*;
 
     /*<constants>*/
     public static final AVFileType QuickTimeMovie = new AVFileType("QuickTimeMovie");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVFileType QuickTimeAudio = new AVFileType("QuickTimeAudio");
     public static final AVFileType MPEG4 = new AVFileType("MPEG4");
     public static final AVFileType AppleM4V = new AVFileType("AppleM4V");
     public static final AVFileType AppleM4A = new AVFileType("AppleM4A");
@@ -175,7 +179,7 @@ import org.robovm.apple.uikit.*;
     public static final AVFileType ProfileMPEG4CMAFCompliant = new AVFileType("ProfileMPEG4CMAFCompliant");
     /*</constants>*/
     
-    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, AppleiTT, SCC, AHAP, DICOM, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
+    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, QuickTimeAudio, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, AppleiTT, SCC, AHAP, DICOM, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
     
     /*<name>*/AVFileType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -200,6 +204,11 @@ import org.robovm.apple.uikit.*;
         /*<values>*/
         @GlobalValue(symbol="AVFileTypeQuickTimeMovie", optional=true)
         public static native NSString QuickTimeMovie();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeQuickTimeAudio", optional=true)
+        public static native NSString QuickTimeAudio();
         @GlobalValue(symbol="AVFileTypeMPEG4", optional=true)
         public static native NSString MPEG4();
         @GlobalValue(symbol="AVFileTypeAppleM4V", optional=true)

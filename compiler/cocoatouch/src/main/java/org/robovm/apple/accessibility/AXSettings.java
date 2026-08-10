@@ -65,6 +65,16 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification", optional=true)
         public static native String PrefersNonBlinkingTextInsertionIndicatorDidChange();
+        /**
+         * @since Available in iOS 26.1 and later.
+         */
+        @GlobalValue(symbol="AXPrefersActionSliderAlternativeDidChangeNotification", optional=true)
+        public static native String PrefersActionSliderAlternativeDidChange();
+        /**
+         * @since Available in iOS 26.1 and later.
+         */
+        @GlobalValue(symbol="AXShowBordersEnabledStatusDidChangeNotification", optional=true)
+        public static native String ShowBordersEnabledStatusDidChange();
     }
     
     /**
@@ -87,6 +97,16 @@ import org.robovm.apple.coregraphics.*;
      */
     @Bridge(symbol="AXPrefersNonBlinkingTextInsertionIndicator", optional=true)
     public static native boolean prefersNonBlinkingTextInsertionIndicator();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Bridge(symbol="AXPrefersActionSliderAlternative", optional=true)
+    public static native boolean prefersActionSliderAlternative();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Bridge(symbol="AXShowBordersEnabled", optional=true)
+    public static native boolean isShowBordersEnabled();
     /**
      * @since Available in iOS 18.0 and later.
      */

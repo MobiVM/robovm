@@ -52,6 +52,11 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "bindings")
     public native NSArray<?> getBindings();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "userAnnotation")
+    public native String getUserAnnotation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

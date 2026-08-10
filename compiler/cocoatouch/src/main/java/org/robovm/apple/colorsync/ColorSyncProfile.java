@@ -63,6 +63,11 @@ import org.robovm.apple.corefoundation.*;
     @Bridge(symbol="ColorSyncProfileCreateWithURL", optional=true)
     public static native ColorSyncProfile createWithURL(CFURL url, CFError.CFErrorPtr error);
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileCreateWithURLAndOptions", optional=true)
+    public static native ColorSyncProfile createWithURLAndOptions(CFURL url, CFDictionary options, CFError.CFErrorPtr error);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Bridge(symbol="ColorSyncProfileCreateWithName", optional=true)
@@ -107,6 +112,11 @@ import org.robovm.apple.corefoundation.*;
      */
     @Bridge(symbol="ColorSyncProfileIsHLGBased", optional=true)
     public native boolean isHLGBased();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileEstimateGamma", optional=true)
+    public native float estimateGamma(CFError.CFErrorPtr error);
     /**
      * @since Available in iOS 16.0 and later.
      */

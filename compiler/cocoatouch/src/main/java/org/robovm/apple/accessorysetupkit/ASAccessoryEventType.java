@@ -46,6 +46,7 @@ public enum /*<name>*/ASAccessoryEventType/*</name>*/ implements ValuedEnum {
     AccessoryAdded(30L),
     AccessoryRemoved(31L),
     AccessoryChanged(32L),
+    AccessoryDiscovered(33L),
     PickerDidPresent(40L),
     PickerDidDismiss(50L),
     PickerSetupBridging(60L),

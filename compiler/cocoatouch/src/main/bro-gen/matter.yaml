@@ -1586,7 +1586,12 @@ classes:
             '-initWithXPConnectionBlock:uniqueIdentifier:':
                 static_constructor_name: createWithXPConnectionBlock
                 name: initWithXPConnectionBlock
-
+    MTRCommissioningOperation: #since 26.2
+        methods:
+            '-initWithParameters:setupPayload:delegate:queue:':
+                name: init
+            '-startWithController:':
+                name: start
 protocols:
     MTRCommissionableBrowserDelegate: #since 17.0
         methods:
@@ -1683,6 +1688,8 @@ protocols:
                 name: handleBDXQuery
             '-handleBDXQueryForNodeID:controller:blockSize:blockIndex:bytesToSkip:completionHandler:':
                 name: handleBDXQuery
+            '-handleBDXTransferSessionEndForNodeID:controller:metrics:error:':
+                name: handleBDXTransferSessionEnd
     MTROperationalCertificateIssuer: #since 16.4
         methods:
             '-issueOperationalCertificateForRequest:attestationInfo:controller:completion:':
@@ -1760,6 +1767,20 @@ protocols:
                 name: updateControllerConfiguration
             '-deviceController:getNodesWithStoredDataWithReply:':
                 name: getNodes
+    MTRCommissioningDelegate: #since 26.2
+        methods:
+            '-commissioning:readCommissioneeInfo:':
+                name: readCommissioneeInfo
+            '-commissioning:completedDeviceAttestation:error:completion:':
+                name: completedDeviceAttestation
+            '-commissioning:needsWiFiCredentialsWithScanResults:error:completion:':
+                name: needsWiFiCredentials
+            '-commissioning:needsThreadCredentialsWithScanResults:error:completion:':
+                name: needsThreadCredentials
+            '-commissioning:failedWithError:metrics:':
+                name: failed
+            '-commissioning:succeededForNodeID:metrics:':
+                name: succeededForNodeID
 functions:
     MTRSetLogCallback:
         class: MTRLogging

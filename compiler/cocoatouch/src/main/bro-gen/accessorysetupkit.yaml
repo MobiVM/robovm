@@ -17,6 +17,7 @@ enums:
     ASDiscoveryDescriptorRange: {}
     ASDiscoveryDescriptorWiFiAwareServiceRole: {}
     ASPickerDisplayItemSetupOptions: {prefix: ASPickerDisplayItemSetup}
+    ASPickerDisplaySettingsOptions: {prefix: ASPickerDisplaySettingsOption}
 categories:
 
 classes:
@@ -40,6 +41,8 @@ classes:
                 name: renameAccessory
             '-updateAuthorization:descriptor:completionHandler:':
                 name: updateAuthorization
+            '-updatePickerShowingDiscoveredDisplayItems:completionHandler:':
+                name: updatePickerShowingDiscoveredDisplayItems
     ASAccessorySettings: {} #since 18.0
     ASDiscoveryDescriptor: {} #since 18.0
     ASMigrationDisplayItem: {} #since 18.0
@@ -51,6 +54,11 @@ classes:
     ASPropertyCompareString: #since 26.0
         methods:
             '-initWithString:compareOptions:':
+                name: init
+    ASDiscoveredAccessory: {} #since 26.1
+    ASDiscoveredDisplayItem: #since 26.1
+        methods:
+            '-initWithName:productImage:accessory:':
                 name: init
 protocols:
 

@@ -116,6 +116,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "isiOSAppOnMac")
     public native boolean isIOSAppOnMac();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "isiOSAppOnVision")
+    public native boolean isIOSAppOnVision();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

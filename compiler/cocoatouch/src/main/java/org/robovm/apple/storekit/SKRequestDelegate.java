@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 18.0. No longer supported
+ * @deprecated Deprecated in iOS 18.0. No longer supported.
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/

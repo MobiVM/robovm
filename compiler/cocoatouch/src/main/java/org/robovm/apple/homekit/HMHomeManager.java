@@ -78,5 +78,10 @@ import org.robovm.apple.corelocation.*;
     public native void addHome(String homeName, @Block VoidBlock2<HMHome, NSError> completion);
     @Method(selector = "removeHome:completionHandler:")
     public native void removeHome(HMHome home, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "findVendorAccessoryWithHAPPublicKey:completionHandler:")
+    public native void findVendorAccessory(NSData hapPublicKey, @Block VoidBlock2<HMAccessory, NSError> completion);
     /*</methods>*/
 }
