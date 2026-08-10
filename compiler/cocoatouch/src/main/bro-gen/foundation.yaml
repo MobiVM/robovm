@@ -1045,6 +1045,7 @@ classes:
     NSDictionary: # DONE
         protocols: [NSPropertyList, NSFastEnumeration, 'Map<K, V>']
         template_parameters:
+            KeyType: K
             ObjectType: V
         properties:
             'count':
@@ -1100,8 +1101,52 @@ classes:
                 name: write
             '-descriptionInStringsFileFormat':
                 name: toStringsFileFormat
-            '+.*': {exclude: true}
-            '-.*': {exclude: true}
+            '-initWithObjects:forKeys:count:':
+                exclude: true # todo: use raw pointer arrays
+            '-initWithCoder:':
+                name: init
+            '-descriptionWithLocale:':
+                name: description
+            '-descriptionWithLocale:indent:':
+                name: description
+            '-objectsForKeys:notFoundMarker:':
+                name: objectsForKeys
+            '-writeToURL:error:':
+                name: writeToURL
+                throws: NSErrorException
+            '-getObjects:andKeys:count:':
+                exclude: true # todo: use raw pointer arrays
+            '-enumerateKeysAndObjectsWithOptions:usingBlock:':
+                name: enumerateKeysAndObjects
+            '-keysSortedByValueWithOptions:usingComparator:':
+                name: keysSortedByValue
+            '-keysOfEntriesWithOptions:passingTest:':
+                name: keysOfEntries
+            '-getObjects:andKeys:':
+                exclude: true # todo: use raw pointer arrays
+            '-initWithContentsOfFile:':
+                name: init
+            '-initWithContentsOfURL:':
+                exclude: true # deprecate and conflicts with '-initWithContentsOfURL:error:'
+            '-initWithDictionary:copyItems:':
+                name: init
+            '-initWithContentsOfURL:error:':
+                name: init
+                throws: NSErrorException
+            '+dictionaryWithObject:forKey:':
+                exclude: true
+            '+dictionaryWithObjects:forKeys:count:':
+                exclude: true
+            '+dictionaryWithDictionary:':
+                exclude: true
+            '+dictionaryWithObjects:forKeys:':
+                exclude: true
+            '+dictionaryWithContentsOfURL:error:':
+                exclude: true
+            '+dictionary':
+                exclude: true
+            '-countByEnumeratingWithState:objects:count:':
+                exclude: true # todo: use raw pointer arrays
     NSDimension: # DONE
         methods:
             '-init.*':
@@ -4275,8 +4320,8 @@ classes:
             '+standardUserDefaults':
                 property: true
             '-init': {}
-            '-init.*':
-                exclude: true
+            '-initWithSuiteName:':
+                name: init
     NSUUID: # DONE
         properties:
             'UUIDString':

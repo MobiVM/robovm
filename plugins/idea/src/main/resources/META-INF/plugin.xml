@@ -18,17 +18,17 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.25</b>
+            <b>2.3.26</b>
 
             <h2>New Features</h2>
             <ul>
-                <li>Support 2026.1 EAP</li>
-                <li>iOS17+ device support</li>
-                <li>Exclude build from indexing</li>
+                <li>Maintenance, Migration to plugin platform v2</li>
             </ul>
             <h2>Bug Fixes</h2>
             <ul>
-                <li>Fix gradle launch</li>
+                <li>Modules-per-source fix with gradle facets</li>
+                <li>Fixes for crashes/failures regarding missing SDK</li>
+                <li>Related: Too many root sets - debugger fix</li>
             </ul>
         ]]>
     </change-notes>

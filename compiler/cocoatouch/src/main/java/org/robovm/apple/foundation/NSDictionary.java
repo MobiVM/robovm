@@ -288,6 +288,10 @@ import org.robovm.apple.dispatch.*;
     public NSDictionary() {}
     protected NSDictionary(Handle h, long handle) { super(h, handle); }
     protected NSDictionary(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSDictionary(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithDictionary:copyItems:")
+    public NSDictionary(NSDictionary<K, V> otherDictionary, boolean flag) { super((SkipInit) null); initObject(init(otherDictionary, flag)); }
     /*</constructors>*/
 
     @SuppressWarnings("unchecked")
@@ -415,7 +419,11 @@ import org.robovm.apple.dispatch.*;
     public boolean equals(Object obj) {
         return obj instanceof NSDictionary && equalsTo((NSDictionary<K, V>) obj);
     }
-    
+
+    /**
+     * @deprecated Use dictionaryWithContentsOfURL:error:
+     */
+    @Deprecated
     public static NSDictionary<?, ?> read(java.io.File file) {
         return read(file.getAbsolutePath());
     }
@@ -592,8 +600,58 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "objectForKey:")
     protected native V getObject(K aKey);
+    @Method(selector = "keyEnumerator")
+    public native NSEnumerator<K> keyEnumerator();
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "allKeysForObject:")
+    public native NSArray<K> allKeysForObject(V anObject);
+    @Method(selector = "descriptionWithLocale:")
+    public native String description(NSObject locale);
+    @Method(selector = "descriptionWithLocale:indent:")
+    public native String description(NSObject locale, @MachineSizedUInt long level);
     @Method(selector = "isEqualToDictionary:")
     protected native boolean equalsTo(NSDictionary<K, V> otherDictionary);
+    @Method(selector = "objectEnumerator")
+    public native NSEnumerator<V> objectEnumerator();
+    @Method(selector = "objectsForKeys:notFoundMarker:")
+    public native NSArray<V> objectsForKeys(NSArray<K> keys, V marker);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public boolean writeToURL(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = writeToURL(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writeToURL:error:")
+    private native boolean writeToURL(NSURL url, NSError.NSErrorPtr error);
+    @Method(selector = "keysSortedByValueUsingSelector:")
+    public native NSArray<K> keysSortedByValueUsingSelector(Selector comparator);
+    @Method(selector = "objectForKeyedSubscript:")
+    public native V objectForKeyedSubscript(K key);
+    @Method(selector = "enumerateKeysAndObjectsUsingBlock:")
+    public native void enumerateKeysAndObjectsUsingBlock(@Block VoidBlock3<K, V, BooleanPtr> block);
+    @Method(selector = "enumerateKeysAndObjectsWithOptions:usingBlock:")
+    public native void enumerateKeysAndObjects(NSEnumerationOptions opts, @Block VoidBlock3<K, V, BooleanPtr> block);
+    @Method(selector = "keysSortedByValueUsingComparator:")
+    public native NSArray<K> keysSortedByValueUsingComparator(@Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "keysSortedByValueWithOptions:usingComparator:")
+    public native NSArray<K> keysSortedByValue(NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "keysOfEntriesPassingTest:")
+    public native NSSet<K> keysOfEntriesPassingTest(@Block Block3<K, V, BooleanPtr, Boolean> predicate);
+    @Method(selector = "keysOfEntriesWithOptions:passingTest:")
+    public native NSSet<K> keysOfEntries(NSEnumerationOptions opts, @Block Block3<K, V, BooleanPtr, Boolean> predicate);
+    /**
+     * @deprecated Use initWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfFile:")
+    public native NSDictionary<K, V> init(String path);
     /**
      * @deprecated Use writeToURL:error:
      */
@@ -620,7 +678,59 @@ import org.robovm.apple.dispatch.*;
     public static native NSDictionary<?, ?> read(NSURL url);
     @Method(selector = "initWithDictionary:")
     protected native @Pointer long init(NSDictionary<K, V> otherDictionary);
+    @Method(selector = "initWithDictionary:copyItems:")
+    protected native @Pointer long init(NSDictionary<K, V> otherDictionary, boolean flag);
     @Method(selector = "initWithObjects:forKeys:")
     protected native @Pointer long init(NSArray<V> objects, NSArray<?> keys);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public NSDictionary<NSString, V> init(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSDictionary<NSString, V> result = init(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithContentsOfURL:error:")
+    private native NSDictionary<NSString, V> init(NSURL url, NSError.NSErrorPtr error);
+    @Method(selector = "sharedKeySetForKeys:")
+    public static native NSObject sharedKeySetForKeys(NSArray<?> keys);
+    @Method(selector = "fileSize")
+    public native long fileSize();
+    @Method(selector = "fileModificationDate")
+    public native NSDate fileModificationDate();
+    @Method(selector = "fileType")
+    public native String fileType();
+    @Method(selector = "filePosixPermissions")
+    public native @MachineSizedUInt long filePosixPermissions();
+    @Method(selector = "fileOwnerAccountName")
+    public native String fileOwnerAccountName();
+    @Method(selector = "fileGroupOwnerAccountName")
+    public native String fileGroupOwnerAccountName();
+    @Method(selector = "fileSystemNumber")
+    public native @MachineSizedSInt long fileSystemNumber();
+    @Method(selector = "fileSystemFileNumber")
+    public native @MachineSizedUInt long fileSystemFileNumber();
+    @Method(selector = "fileExtensionHidden")
+    public native boolean fileExtensionHidden();
+    @Method(selector = "fileHFSCreatorCode")
+    public native int fileHFSCreatorCode();
+    @Method(selector = "fileHFSTypeCode")
+    public native int fileHFSTypeCode();
+    @Method(selector = "fileIsImmutable")
+    public native boolean fileIsImmutable();
+    @Method(selector = "fileIsAppendOnly")
+    public native boolean fileIsAppendOnly();
+    @Method(selector = "fileCreationDate")
+    public native NSDate fileCreationDate();
+    @Method(selector = "fileOwnerAccountID")
+    public native NSNumber fileOwnerAccountID();
+    @Method(selector = "fileGroupOwnerAccountID")
+    public native NSNumber fileGroupOwnerAccountID();
+    @Method(selector = "valueForKey:")
+    public native V valueForKey(String key);
     /*</methods>*/
 }

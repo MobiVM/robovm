@@ -14,18 +14,6 @@
     <componentDescriptor>src/main/assembly/dist-common.xml</componentDescriptor>
   </componentDescriptors>
 
-  <!-- binaries only needed for compiler package -->
-  <fileSets>
-    <fileSet>
-      <directory>${robovmdir}/bin</directory>
-      <includes>
-        <include>*</include>
-      </includes>
-      <fileMode>755</fileMode>
-      <outputDirectory>bin</outputDirectory>
-    </fileSet>
-  </fileSets>
-
   <dependencySets>
     <dependencySet>
       <includes>
