@@ -41,6 +41,10 @@
         </dependency>
         <dependency>
             <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-bro-bridge</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
             <artifactId>robovm-cocoatouch</artifactId>
         </dependency>
         <dependency>
