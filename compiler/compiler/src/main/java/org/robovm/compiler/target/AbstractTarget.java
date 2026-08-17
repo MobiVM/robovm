@@ -105,8 +105,11 @@ public abstract class AbstractTarget implements Target {
         if (config.getOs().getFamily() == OS.Family.darwin) {
             libs.add("-force_load");
             libs.add(new File(config.getOsArchDepLibDir(), "librobovm-rt" + libSuffix + ".a").getAbsolutePath());
+            libs.add("-force_load");
+            libs.add(new File(config.getOsArchDepLibDir(), "librobovm-bro" + libSuffix + ".a").getAbsolutePath());
         } else {
             libs.addAll(Arrays.asList("-Wl,--whole-archive", "-lrobovm-rt" + libSuffix, "-Wl,--no-whole-archive"));
+            libs.addAll(Arrays.asList("-Wl,--whole-archive", "-lrobovm-bro" + libSuffix, "-Wl,--no-whole-archive"));
         }
         if (config.isSkipInstall()) {
             libs.add("-lrobovm-debug" + libSuffix);

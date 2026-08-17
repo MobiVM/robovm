@@ -240,6 +240,8 @@ public class RoboVmPlugin {
         if (home.isDev()) {
             // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
             File rootDir = home.getHomeDir();
+            libs.add(new File(rootDir, "bro-bridge/target/robovm-bro-bridge-" + Version.getCompilerVersion() + ".jar"));
+            libs.add(new File(rootDir, "bro-bridge/target/robovm-bro-bridge-" + Version.getCompilerVersion() + "-sources.jar"));
             libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + ".jar"));
             libs.add(new File(rootDir, "objc/target/robovm-objc-" + Version.getCompilerVersion() + "-sources.jar"));
             libs.add(new File(rootDir, "cocoatouch/target/robovm-cocoatouch-" + Version.getCompilerVersion() + ".jar"));
@@ -434,7 +436,8 @@ public class RoboVmPlugin {
 
         return name.startsWith("robovm-rt") ||
                 name.startsWith("robovm-objc") ||
-                name.startsWith("robovm-cocoatouch");
+                name.startsWith("robovm-cocoatouch") ||
+                name.startsWith("robovm-bro-bridge");
     }
 
     public static boolean isBootClasspathLibrary(File path) {

@@ -894,7 +894,18 @@ jboolean rvmInitMemory(Env* env) {
     if (!java_nio_Buffer_capacity) return FALSE;
     java_lang_Throwable_backtrace = rvmGetInstanceField(env, java_lang_Throwable, "backtrace", "J");
     if (!java_lang_Throwable_backtrace) return FALSE;
-    org_robovm_rt_bro_Struct = rvmFindClassUsingLoader(env, "org/robovm/rt/bro/Struct", NULL);
+
+    criticalOutOfMemoryError = rvmAllocateMemoryForObject(env, java_lang_OutOfMemoryError);
+    if (!criticalOutOfMemoryError) return FALSE;
+    criticalOutOfMemoryError->clazz = java_lang_OutOfMemoryError;
+    if (!rvmAddGlobalRef(env, criticalOutOfMemoryError)) return FALSE;
+
+    return TRUE;
+}
+
+jboolean rvmInitOptionalMemory(Env* env) {
+    vm = env->vm;
+   org_robovm_rt_bro_Struct = rvmFindClassUsingLoader(env, "org/robovm/rt/bro/Struct", NULL);
     if (!org_robovm_rt_bro_Struct) {
         // We don't need Struct if it hasn't been compiled in
         rvmExceptionClear(env);
@@ -902,11 +913,6 @@ jboolean rvmInitMemory(Env* env) {
         org_robovm_rt_bro_Struct_handle = rvmGetInstanceField(env, org_robovm_rt_bro_Struct, "handle", "J");
         if (!org_robovm_rt_bro_Struct_handle) return FALSE;
     }
-
-    criticalOutOfMemoryError = rvmAllocateMemoryForObject(env, java_lang_OutOfMemoryError);
-    if (!criticalOutOfMemoryError) return FALSE;
-    criticalOutOfMemoryError->clazz = java_lang_OutOfMemoryError;
-    if (!rvmAddGlobalRef(env, criticalOutOfMemoryError)) return FALSE;
 
     return TRUE;
 }

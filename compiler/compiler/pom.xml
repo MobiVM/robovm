@@ -99,6 +99,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.mobidevelop.robovm</groupId>
+            <artifactId>robovm-bro-bridge</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.zeroturnaround</groupId>
             <artifactId>zt-zip</artifactId>
             <scope>test</scope>

@@ -8,6 +8,7 @@
 /llvm/target.llvm/
 /libhfscompressor/target-libhfscompressor/
 /objc/target/
+/bro-bridge/target/
 /rt/target/
 /vm/target/
 /target/

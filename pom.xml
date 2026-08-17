@@ -251,6 +251,11 @@
             </dependency>
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-bro-bridge</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-objc</artifactId>
                 <version>${project.version}</version>
             </dependency>
