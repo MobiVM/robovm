@@ -89,6 +89,7 @@
       <outputDirectory>modules/licenses/robovm-rt</outputDirectory>
       <includes>
         <include>LICENSE.txt</include>
+        <include>LICENSE_GPL_CE.txt</include>
         <include>NOTICE.txt</include>
       </includes>
     </fileSet>    
