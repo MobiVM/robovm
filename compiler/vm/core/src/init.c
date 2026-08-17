@@ -390,6 +390,10 @@ Env* rvmStartup(Options* options) {
     if (!rvmInitSignals(env)) return NULL;
     TRACE("Initializing JNI");
     if (!rvmInitJNI(env)) return NULL;
+    // Initialize optional (that can be missing) memory structures. Has to be done here as it might produce
+    // class not found exception and for this we need to have thread attached to env
+    TRACE("Initializing optional memory");
+    if (!rvmInitOptionalMemory(env)) return NULL;
 
     // Initialize the rt JNI code
     TRACEF("Initializing the %s runtime library", rvmRTGetName());

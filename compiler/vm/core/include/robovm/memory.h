@@ -17,6 +17,7 @@
 #define ROBOVM_MEMORY_H
 
 extern jboolean rvmInitMemory(Env* env);
+extern jboolean rvmInitOptionalMemory(Env* env);
 extern Class* rvmAllocateMemoryForClass(Env* env, jint classDataSize);
 extern void rvmSetupGcDescriptor(Env* env, Class* clazz);
 extern Object* rvmAllocateMemoryForObject(Env* env, Class* clazz);

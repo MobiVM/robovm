@@ -29,6 +29,7 @@ dependencies {
     implementation ("com.mobidevelop.robovm:robovm-dist-compiler:${roboVMVersion}") {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-rt'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-objc'
+        exclude group: 'com.mobidevelop.robovm', module: 'robovm-bro-bridge'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cocoatouch'
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-cacerts-full'
     }

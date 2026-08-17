@@ -25,7 +25,6 @@ set(SRC
   src/main/native/org_robovm_rt_Signals.c 
   src/main/native/org_robovm_rt_GC.c 
   src/main/native/org_robovm_rt_VM.c 
-  src/main/native/org_robovm_rt_bro_Dl.c
   src/main/native/sun_misc_Unsafe.cpp
 )
 
