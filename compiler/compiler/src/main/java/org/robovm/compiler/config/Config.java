@@ -29,6 +29,7 @@ import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.namespace.RoboVmLocations;
 import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
@@ -183,7 +184,7 @@ public class Config {
 
     private Home home = null;
     private File tmpDir;
-    private File cacheDir = new File(System.getProperty("user.home"), ".robovm/cache");
+    private File cacheDir = RoboVmLocations.roboVmCacheDir;
     private File ccBinPath = null;
 
     private boolean clean = false;

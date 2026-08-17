@@ -23,7 +23,7 @@ import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
 import org.robovm.compiler.Version
 import org.robovm.compiler.config.Config.Home
-import org.robovm.idea.RoboVmLocations
+import org.robovm.compiler.namespace.RoboVmLocations
 import org.robovm.idea.RoboVmPlugin
 import org.robovm.idea.utils.RoboFileUtils
 import java.io.File
@@ -60,7 +60,7 @@ class RoboVmSdkUnpackService(private val scope: CoroutineScope) {
         if (filesWereUpdated) {
             RoboVmPlugin.logInfo(null, "Clearing ~/.robovm/cache folder due SDK files changed.")
             try {
-                FileUtils.deleteDirectory(RoboVmLocations.cacheDir)
+                FileUtils.deleteDirectory(RoboVmLocations.roboVmCacheDir)
             } catch (_: IOException) {
             }
         }

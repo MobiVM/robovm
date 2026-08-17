@@ -15,6 +15,7 @@
  */
 package org.robovm.idea.actions;
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import org.jetbrains.annotations.NotNull;
@@ -27,5 +28,10 @@ public class ASNewGroup extends DefaultActionGroup {
         // show new Project/Module group only in case of Android Studio
         e.getPresentation().setVisible(RoboVmPlugin.isAndroidStudio());
         super.update(e);
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.EDT;
     }
 }

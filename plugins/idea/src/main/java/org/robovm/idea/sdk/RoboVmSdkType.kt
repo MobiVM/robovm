@@ -27,8 +27,8 @@ import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.pom.java.LanguageLevel
 import org.jdom.Element
 import org.robovm.compiler.Version
+import org.robovm.compiler.namespace.RoboVmLocations
 import org.robovm.idea.RoboVmIcons
-import org.robovm.idea.RoboVmLocations
 import org.robovm.idea.RoboVmPlugin
 
 class RoboVmSdkType : SdkType(SDK_NAME) {
