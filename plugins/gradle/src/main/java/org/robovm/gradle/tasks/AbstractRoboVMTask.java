@@ -35,6 +35,7 @@ import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.namespace.RoboVmLocations;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
@@ -179,15 +180,15 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         if (extension.getInstallDir() != null) {
             installDir = new File(extension.getInstallDir());
         } else {
-            installDir = new File(project.getBuildDir(), "robovm");
+            installDir = RoboVmLocations.inBuildDir(project.getBuildDir(), "tmp/");
         }
         File cacheDir = null;
         if(extension.getCacheDir() != null) {
             cacheDir = new File(extension.getCacheDir());
         } else {
-            cacheDir = new File(System.getProperty("user.home"), ".robovm/cache");
+            cacheDir = RoboVmLocations.roboVmCacheDir;
         }
-        File temporaryDirectory = new File(project.getBuildDir(), "robovm.tmp");
+        File temporaryDirectory = RoboVmLocations.inBuildDir(project.getBuildDir(), "tmp/");
         try {
             FileUtils.deleteDirectory(temporaryDirectory);
         } catch (IOException e) {
@@ -437,9 +438,8 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
 
             if (filesWereUpdated) {
                 getLogger().debug("Archive '" + archive + "' unpacked to: " + destDir);
-                getLogger().info("Clearing ~/.robovm/cache folder due SDK files changed.");
-
-                File cacheDir = new File(System.getProperty("user.home"), ".robovm/cache");
+                File cacheDir = RoboVmLocations.roboVmCacheDir;
+                getLogger().info("Clearing " + cacheDir + " folder due SDK files changed.");
                 try {
                     FileUtils.deleteDirectory(cacheDir);
                 } catch (IOException ignored) {

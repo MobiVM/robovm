@@ -22,6 +22,7 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.robovm.compiler.namespace.RoboVmLocations;
 import org.robovm.compiler.clazz.*;
 import org.robovm.compiler.config.*;
 import org.robovm.compiler.config.Config.TreeShakerMode;
@@ -1278,7 +1279,7 @@ public class AppCompiler {
     }
 
     private String getInstallUuid() throws IOException {
-        File uuidFile = new File(new File(System.getProperty("user.home"), ".robovm"), "uuid");
+        File uuidFile = RoboVmLocations.inHomeDir( "uuid");
         uuidFile.getParentFile().mkdirs();
         String uuid = uuidFile.exists() ? FileUtils.readFileToString(uuidFile, "UTF-8") : null;
         if (uuid == null) {
@@ -1294,7 +1295,7 @@ public class AppCompiler {
 
     private long getLastUpdateCheckTime() {
         try {
-            File timeFile = new File(new File(System.getProperty("user.home"), ".robovm"), "last-update-check");
+            File timeFile = RoboVmLocations.inHomeDir( "last-update-check");
             timeFile.getParentFile().mkdirs();
             return timeFile.exists() ? Long.parseLong(FileUtils.readFileToString(timeFile, "UTF-8").trim()) : 0;
         } catch (IOException e) {
@@ -1303,7 +1304,7 @@ public class AppCompiler {
     }
 
     private void updateLastUpdateCheckTime() throws IOException {
-        File timeFile = new File(new File(System.getProperty("user.home"), ".robovm"), "last-update-check");
+        File timeFile = RoboVmLocations.inHomeDir( "last-update-check");
         timeFile.getParentFile().mkdirs();
         FileUtils.writeStringToFile(timeFile, String.valueOf(System.currentTimeMillis()), "UTF-8");
     }

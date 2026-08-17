@@ -32,6 +32,7 @@ import com.intellij.util.PlatformUtils;
 import com.intellij.util.ui.UIUtil;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.Version;
+import org.robovm.compiler.namespace.RoboVmLocations;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Resource;
@@ -235,7 +236,7 @@ public class RoboVmPlugin {
     public static List<File> getSdkLibraries() {
         List<File> libs = new ArrayList<>();
 
-        Config.Home home = RoboVmLocations.getRoboVmHome();
+        Config.Home home = RoboVmLocations.roboVmHome;
         if (home.isDev()) {
             // ROBOVM_DEV_ROOT has been set (rtPath points to $ROBOVM_DEV_ROOT/rt/target/robovm-rt-<version>.jar).
             File rootDir = home.getHomeDir();
@@ -248,7 +249,7 @@ public class RoboVmPlugin {
             libs.add(new File(rootDir, "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
         } else {
             // normal run
-            File libsDir = new File(RoboVmLocations.getSdkHome(), "lib");
+            File libsDir = new File(RoboVmLocations.roboVmSdkDir, "lib");
             try {
                 libs.addAll(Arrays.asList(RoboFileUtils.listFiles(libsDir, (dir, name) -> name.endsWith(".jar") && !name.contains("cacerts"))));
             } catch (IOException e) {
@@ -347,7 +348,7 @@ public class RoboVmPlugin {
     }
 
     public static File getModuleLogDir(Module module) {
-        File logDir = new File(getModuleBaseDir(module), "robovm-build/logs/");
+        File logDir = RoboVmLocations.inBuildDir(getModuleBaseDir(module), "logs/");
         if (!logDir.exists()) {
             if (!logDir.mkdirs()) {
                 throw new RuntimeException("Couldn't create log dir '" + logDir.getAbsolutePath() + "'");
@@ -357,7 +358,7 @@ public class RoboVmPlugin {
     }
 
     public static File getModuleXcodeDir(Module module) {
-        File buildDir = new File(getModuleBaseDir(module), "robovm-build/xcode/");
+        File buildDir = RoboVmLocations.inBuildDir(getModuleBaseDir(module), "xcode/");
         if (!buildDir.exists()) {
             if (!buildDir.mkdirs()) {
                 throw new RuntimeException("Couldn't create build dir '" + buildDir.getAbsolutePath() + "'");
@@ -367,7 +368,7 @@ public class RoboVmPlugin {
     }
 
     public static File getModuleBuildDir(Module module, String runConfigName, org.robovm.compiler.config.OS os, Arch arch) {
-        File buildDir = new File(getModuleBaseDir(module), "robovm-build/tmp/" + runConfigName + "/" + os + "/" + arch);
+        File buildDir = RoboVmLocations.inBuildDir(getModuleBaseDir(module), "tmp/");
         if (!buildDir.exists()) {
             if (!buildDir.mkdirs()) {
                 throw new RuntimeException("Couldn't create build dir '" + buildDir.getAbsolutePath() + "'");
@@ -405,7 +406,7 @@ public class RoboVmPlugin {
         try {
             File moduleBaseDir = getModuleBaseDir(module);
             Config.Builder configBuilder = new Config.Builder();
-            configBuilder.home(RoboVmLocations.getRoboVmHome());
+            configBuilder.home(RoboVmLocations.roboVmHome);
             configBuilder.addClasspathEntry(new File(".")); // Fake a classpath to make Config happy
             configBuilder.skipLinking(true);
             RoboVmCompileTask.loadConfig(module.getProject(), configBuilder, moduleBaseDir, false);

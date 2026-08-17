@@ -37,13 +37,13 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.namespace.RoboVmLocations;
 import org.robovm.compiler.launcher.LauncherUtils;
 import org.robovm.compiler.plugin.PluginArgument;
 import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
-import org.robovm.idea.RoboVmLocations;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
@@ -91,7 +91,7 @@ public class RoboVmCompileTask {
                 builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), ipaConfig.getProvisioningProfile()));
             }
             configureClassAndSourcepaths(project, ipaConfig.getModule(), builder);
-            builder.home(RoboVmLocations.getRoboVmHome());
+            builder.home(RoboVmLocations.roboVmHome);
             Config config = builder.build();
 
             progress.setFraction(0.5);
@@ -141,7 +141,7 @@ public class RoboVmCompileTask {
             configureClassAndSourcepaths(project, frameworkConfig.getModule(), builder);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmLocations.getRoboVmHome();
+            Config.Home home = RoboVmLocations.roboVmHome;
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);
@@ -236,7 +236,7 @@ public class RoboVmCompileTask {
             configureTarget(builder, runConfig);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmLocations.getRoboVmHome();
+            Config.Home home = RoboVmLocations.roboVmHome;
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);
