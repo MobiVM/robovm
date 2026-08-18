@@ -561,7 +561,7 @@ public class ConfigTest {
         assertEquals(Collections.singletonList(frameworkLocation), config.getFrameworkPaths());
         assertEquals(Collections.emptyList(), config.getFrameworks());
         assertEquals(Arrays.asList(
-                new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), false)),
+                new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), true)),
                 config.getLibs());
     }
 
@@ -592,7 +592,7 @@ public class ConfigTest {
         assertEquals(Collections.singletonList(frameworkLocation), config.getFrameworkPaths());
         assertEquals(Collections.emptyList(), config.getFrameworks());
         assertEquals(Arrays.asList(
-                        new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), false)),
+                        new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), true)),
                 config.getLibs());
     }
 

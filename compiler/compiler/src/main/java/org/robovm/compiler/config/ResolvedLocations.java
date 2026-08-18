@@ -224,7 +224,7 @@ final class ResolvedLocations {
                     } else if (libPath.endsWith(".a")) {
                         // static library inside .xcframework, add it to libs
                         File staticLibFile = new File(new File(xcFrameworkLocation, library.getIdentifier()), libPath);
-                        destLibs.add(new Config.Lib(staticLibFile.getAbsolutePath(), false));
+                        destLibs.add(new Config.Lib(staticLibFile.getAbsolutePath(), true));
                     } else {
                         String message = String.format(
                                 "Unsupported library type %s matched %s %s, in '%s'",
