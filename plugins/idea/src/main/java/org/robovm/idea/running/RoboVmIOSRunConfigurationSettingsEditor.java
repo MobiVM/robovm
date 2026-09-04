@@ -85,6 +85,8 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private final SigningIdentityDecorator signingIdentityAuto = new SigningIdentityDecorator(AUTO_SIGNING_IDENTITY, EntryType.AUTO);
 
     private List<IDeviceDecorator> connectedDevices;
+    private final IDeviceDecorator connectedDeviceAuto = new IDeviceDecorator("Auto (single connected device)", EntryType.AUTO);;
+
     private boolean moduleHasWatchApp;
     // true if editor internally updating data and listeners should ignore the events
     private boolean updatingData;
@@ -161,7 +163,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             deviceArch.setSelectedItem(config.getDeviceArch());
             signingIdentity.setSelectedItem(getSigningIdentityFromConfig(config));
             provisioningProfile.setSelectedItem(getProvisioningProfileFromConfig(config));
-            targetDeviceUDID.setSelectedItem(config.getTargetDeviceUDID());
+            targetDeviceUDIDSetItemSelectedFromConfig(config);
             attachedDeviceRadioButton.setSelected(config.getTargetType() == RoboVmRunConfiguration.TargetType.Device || simType.getItemCount() == 0);
             args.setText(config.getArguments());
         } finally {
@@ -276,8 +278,18 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private void populateDevices () {
         this.connectedDevices = Arrays.stream(IDevice.listUdids()).map(IDeviceDecorator::new).collect(Collectors.toList());
 
-        targetDeviceUDID.removeAllItems();
-        this.connectedDevices.forEach(d -> targetDeviceUDID.addItem(d));
+        IDeviceDecorator previousSelection = (IDeviceDecorator) targetDeviceUDID.getSelectedItem();
+        Vector<IDeviceDecorator> items = new Vector<>();
+        items.add(connectedDeviceAuto);
+        items.addAll(connectedDevices);
+        if (previousSelection != null && !items.contains(previousSelection))
+            items.add(previousSelection);
+
+        // replace items pre-serving previous selection if possible
+        DefaultComboBoxModel<IDeviceDecorator> newModel = new DefaultComboBoxModel<>(items);
+        if (previousSelection != null)
+            newModel.setSelectedItem(previousSelection);
+        targetDeviceUDID.setModel(newModel);
     }
 
     private void populateSimulators() {
@@ -322,6 +334,34 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
                 (ProvisioningProfileDecorator) provisioningProfile.getSelectedItem(),
                 AUTO_PROVISIONING_PROFILE, provisioningProfileAuto, null,
                 provisioningProfiles, t -> Decorator.matchesName(t, name));
+    }
+
+    private void targetDeviceUDIDSetItemSelectedFromConfig(RoboVmRunConfiguration config) {
+        String udid = config.getTargetDeviceUDID();
+        if (udid == null || udid.isEmpty()) {
+            targetDeviceUDID.setSelectedItem(connectedDeviceAuto);
+            return;
+        }
+
+        // check if it is in the list
+        IDeviceDecorator candidate = new IDeviceDecorator(udid);
+        ComboBoxModel<IDeviceDecorator> model = targetDeviceUDID.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            IDeviceDecorator item = model.getElementAt(i);
+            if (item.equals(candidate)) {
+                targetDeviceUDID.setSelectedItem(item);
+                return;
+            }
+        }
+
+        // item missing (seems like not connected anymore, still add it)
+        Vector<IDeviceDecorator> items = new Vector<>();
+        items.add(connectedDeviceAuto);
+        items.addAll(connectedDevices);
+        items.add(candidate);
+        DefaultComboBoxModel<IDeviceDecorator> newModel = new DefaultComboBoxModel<>(items);
+        newModel.setSelectedItem(candidate);
+        targetDeviceUDID.setModel(newModel);
     }
 
 
@@ -872,20 +912,46 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
 
         @Override
+        public int hashCode() {
+            if (this.id != null) return this.id.hashCode();
+            if (this.name != null) return this.name.hashCode();
+            return this.entryType.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof IDeviceDecorator) {
+                IDeviceDecorator other = (IDeviceDecorator) obj;
+                if (this.entryType == other.entryType) {
+                    if (this.id != null && other.id != null)
+                        return this.id.equals(other.id);
+                    if (this.id == null && other.id == null) {
+                        return this.name.equals(other.name);
+                    }
+                }
+            }
+            return false;
+        }
+
+        @Override
         public String toString() {
-            boolean offline = !IDevice.isConnected(id);
-            if (currentlyCompatible && !offline) {
+            if (id == null) {
                 return name;
             } else {
-                String nameBuffer = "";
-                nameBuffer += id;
-                if (currentlyCompatible) {
-                    nameBuffer += " [Incompatible]";
+                boolean offline = !IDevice.isConnected(id);
+                if (currentlyCompatible && !offline) {
+                    return name;
+                } else {
+                    String nameBuffer = "";
+                    nameBuffer += id;
+                    if (!currentlyCompatible) {
+                        nameBuffer += " [Incompatible]";
+                    }
+                    if (offline) {
+                        nameBuffer += " [Offline]";
+                    }
+                    return nameBuffer;
                 }
-                if (offline) {
-                    nameBuffer += " [Offline]";
-                }
-                return nameBuffer;
             }
         }
     }
