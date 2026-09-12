@@ -125,6 +125,9 @@ classes:
                 name: getOpenEXRRepresentation
             '-writeOpenEXRRepresentationOfImage:toURL:options:error:':
                 name: writeOpenEXRRepresentation
+            '-estimateRender:fromRect:toDestination:atPoint:error:':
+                name: estimateRender
+                throws: NSErrorException
     CIDetector: # DONE
         methods:
             '+detectorOfType:context:options:':
@@ -348,7 +351,10 @@ classes:
             '+outputFormatAtIndex:arguments:':
                 name: getOutputFormat
             '+applyWithExtents:inputs:arguments:error:':
-                name: apply
+                name: applyWithExtents
+                throws: NSErrorException
+            '+applyWithTiledExtent:inputs:arguments:error:':
+                name: applyWithTiledExtent
                 throws: NSErrorException
     CIPDF417CodeDescriptor: #since 11.0
         methods:
@@ -405,7 +411,15 @@ classes:
             '+filterWithCVPixelBuffer:properties:':
                 name: create
                 constructor: true
+            '-downloadResourcesWithTimeout:completionHandler:':
+                name: downloadResources
+            '+supportedCameraModelsWithVersion:':
+                name: supportedCameraModels
 protocols:
+    # exclude block: to remove suggestions
+    CIFilter: { exclude: true }
+    # exclude block: end
+
     CIFilterConstructor:
         protocols: [NSObjectProtocol]
         skip_adapter: true
@@ -413,7 +427,12 @@ protocols:
             '-filterWithName:':
                 name: createFilter
     CIImageProcessorInput: {} #since 10.0
-    CIImageProcessorOutput: {} #since 10.0
+    CIImageProcessorOutput: #since 10.0
+        methods:
+            '-temporarySurfaceWithIdentifier:format:width:height:':
+                name: temporarySurface
+            '-temporaryPixelBufferWithIdentifier:format:width:height:attributes:':
+                name: temporaryPixelBuffer
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

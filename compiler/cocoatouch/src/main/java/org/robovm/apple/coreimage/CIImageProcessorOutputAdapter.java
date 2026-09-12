@@ -77,6 +77,15 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("temporarySurfaceWithIdentifier:format:width:height:")
+    public IOSurface temporarySurface(String identifier, int format, @MachineSizedUInt long width, @MachineSizedUInt long height) { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("temporaryPixelBufferWithIdentifier:format:width:height:attributes:")
+    public CVPixelBuffer temporaryPixelBuffer(String identifier, int format, @MachineSizedUInt long width, @MachineSizedUInt long height, NSDictionary<?, ?> attributes) { return null; }
     /*</methods>*/
 }

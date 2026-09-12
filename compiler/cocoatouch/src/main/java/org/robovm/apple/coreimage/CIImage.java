@@ -217,7 +217,7 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "contentHeadroom")
     public native float getContentHeadroom();
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "contentAverageLightLevel")
     public native float getContentAverageLightLevel();
@@ -421,7 +421,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "imageByInsertingIntermediate:")
     public native CIImage newImageByInsertingIntermediate(boolean cache);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "imageByInsertingTiledIntermediate")
     public native CIImage newImageByInsertingTiledIntermediate();
@@ -436,12 +436,12 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "imageByApplyingGainMap:headroom:")
     public native CIImage newImageByApplyingGainMap(CIImage gainmap, float headroom);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "imageBySettingContentHeadroom:")
     public native CIImage newImageBySettingContentHeadroom(float headroom);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "imageBySettingContentAverageLightLevel:")
     public native CIImage newImageBySettingContentAverageLightLevel(float average);
