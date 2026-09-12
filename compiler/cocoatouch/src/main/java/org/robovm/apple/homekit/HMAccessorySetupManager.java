@@ -50,7 +50,11 @@ import org.robovm.apple.corelocation.*;
     protected HMAccessorySetupManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isSupported")
+    public static native boolean isSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -88,6 +88,10 @@ import org.robovm.apple.corelocation.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @deprecated Deprecated in iOS 27.0. No longer supported
+     */
+    @Deprecated
     public static final HMErrorUserInfoKey FailedAccessories = new HMErrorUserInfoKey("FailedAccessories");
     /*</constants>*/
     
@@ -114,6 +118,10 @@ import org.robovm.apple.corelocation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @deprecated Deprecated in iOS 27.0. No longer supported
+         */
+        @Deprecated
         @GlobalValue(symbol="HMUserFailedAccessoriesKey", optional=true)
         public static native NSString FailedAccessories();
         /*</values>*/
