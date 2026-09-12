@@ -41,9 +41,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Use Background Assets instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Foundation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSBundleResourceRequest/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSProgressReporting/*</implements>*/ {
@@ -90,12 +91,16 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use Background Assets instead.
      */
+    @Deprecated
     @GlobalValue(symbol="NSBundleResourceRequestLowDiskSpaceNotification", optional=true)
     public static native NSString LowDiskSpaceNotification();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use Background Assets instead.
      */
+    @Deprecated
     @GlobalValue(symbol="NSBundleResourceRequestLoadingPriorityUrgent", optional=true)
     public static native double getUrgentLoadingPriority();
     
