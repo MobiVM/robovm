@@ -175,7 +175,10 @@ public final class DeviceCtlParsers {
         JsonObject result = asJson(json, "result");
         return asObjectStream(result, "devices", Stream.empty())
             .map(DeviceCtlParsers::parseAppleDevice)
-            .filter(d -> d.deviceProperties.bootState)
+            .filter(d ->
+                // DISCONNECTED means device is discoverable but tunnel is not established
+                d.connectionProperties.tunnelState == TunnelState.CONNECTED || d.connectionProperties.tunnelState == TunnelState.DISCONNECTED
+            )
             .collect(Collectors.toList());
     }
 
