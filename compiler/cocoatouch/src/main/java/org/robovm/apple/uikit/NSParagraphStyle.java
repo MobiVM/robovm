@@ -61,6 +61,8 @@ import org.robovm.apple.symbols.*;
     public NSParagraphStyle(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "alignment")
+    public native NSTextAlignment getAlignment();
     @Property(selector = "defaultParagraphStyle")
     public static native NSParagraphStyle getDefaultParagraphStyle();
     @Property(selector = "lineSpacing")
@@ -98,6 +100,8 @@ import org.robovm.apple.symbols.*;
     public native @MachineSizedFloat double getDefaultTabInterval();
     @Property(selector = "textLists")
     public native NSArray<NSTextList> getTextLists();
+    @Property(selector = "textBlocks")
+    public native NSArray<NSTextBlock> getTextBlocks();
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -108,8 +112,6 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "lineBreakStrategy")
     public native NSLineBreakStrategy getLineBreakStrategy();
-    @Property(selector = "alignment")
-    public native NSTextAlignment getAlignment();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

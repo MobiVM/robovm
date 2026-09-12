@@ -61,6 +61,10 @@ import org.robovm.apple.symbols.*;
     String getTitle();
     @Property(selector = "setTitle:")
     void setTitle(String v);
+    @Property(selector = "subtitle")
+    String getSubtitle();
+    @Property(selector = "setSubtitle:")
+    void setSubtitle(String v);
     @Property(selector = "image")
     UIImage getImage();
     @Property(selector = "setImage:")
@@ -75,6 +79,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setSelectedImage:")
     void setSelectedImage(UIImage v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredImageVisibility")
+    UIMenuElementImageVisibility getPreferredImageVisibility();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredImageVisibility:")
+    void setPreferredImageVisibility(UIMenuElementImageVisibility v);
     @Property(selector = "discoverabilityTitle")
     String getDiscoverabilityTitle();
     @Property(selector = "setDiscoverabilityTitle:")

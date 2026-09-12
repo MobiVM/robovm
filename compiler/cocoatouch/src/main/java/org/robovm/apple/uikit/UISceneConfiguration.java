@@ -61,6 +61,11 @@ import org.robovm.apple.symbols.*;
     protected UISceneConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithName:sessionRole:")
     public UISceneConfiguration(String name, UISceneSessionRole sessionRole) { super((SkipInit) null); initObject(init(name, sessionRole)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithName:")
+    public UISceneConfiguration(String name) { super((SkipInit) null); initObject(init(name)); }
     @Method(selector = "initWithCoder:")
     public UISceneConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -88,6 +93,11 @@ import org.robovm.apple.symbols.*;
     /*<methods>*/
     @Method(selector = "initWithName:sessionRole:")
     protected native @Pointer long init(String name, UISceneSessionRole sessionRole);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithName:")
+    protected native @Pointer long init(String name);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

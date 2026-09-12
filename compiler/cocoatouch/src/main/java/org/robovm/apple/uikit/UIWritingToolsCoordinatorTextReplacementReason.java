@@ -51,7 +51,19 @@ import org.robovm.apple.symbols.*;
 public enum /*<name>*/UIWritingToolsCoordinatorTextReplacementReason/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Interactive(0L),
-    Noninteractive(1L);
+    Noninteractive(1L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Accepted(2L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Rejected(3L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Temporary(4L);
     /*</values>*/
 
     /*<bind>*/

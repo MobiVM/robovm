@@ -108,6 +108,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setCompactTabIdentifiers:")
     public native void setCompactTabIdentifiers(NSArray<NSString> v);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "prominentTabIdentifier")
+    public native String getProminentTabIdentifier();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setProminentTabIdentifier:")
+    public native void setProminentTabIdentifier(String v);
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Property(selector = "selectedTab")
@@ -186,6 +196,11 @@ import org.robovm.apple.symbols.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setProminentTabIdentifier:animated:")
+    public native void setProminentTabIdentifier(String identifier, boolean animated);
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Method(selector = "setTabs:animated:")
@@ -195,6 +210,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "tabForIdentifier:")
     public native UITab tabForIdentifier(String identifier);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "performBatchUpdates:")
+    public native void performBatchUpdates(@Block Runnable updates);
     /**
      * @since Available in iOS 18.0 and later.
      */

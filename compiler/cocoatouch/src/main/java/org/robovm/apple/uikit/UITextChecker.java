@@ -76,6 +76,16 @@ import org.robovm.apple.symbols.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getCompletionsForPartialWord(@ByVal NSRange range, String string, String language);
     @Method(selector = "ignoreWord:")
     public native void ignoreWord(String wordToIgnore);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "requestGrammarCheckingOfString:range:waitForAllResults:completionHandler:")
+    public native void requestGrammarCheckingOfString(String stringToCheck, @ByVal NSRange range, boolean waitForAllResults, @Block VoidBlock1<NSArray<NSTextCheckingResult>> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "ignoreGrammarRange:inSentence:")
+    public native void ignoreGrammarRange(@ByVal NSRange grammarRange, String sentence);
     @Method(selector = "learnWord:")
     public static native void learnWord(String word);
     @Method(selector = "hasLearnedWord:")

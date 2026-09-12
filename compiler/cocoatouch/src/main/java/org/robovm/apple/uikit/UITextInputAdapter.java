@@ -99,6 +99,11 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("isEditable")
     public boolean isEditable() { return false; }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("unobscuredContentRect")
+    public @ByVal CGRect getUnobscuredContentRect() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

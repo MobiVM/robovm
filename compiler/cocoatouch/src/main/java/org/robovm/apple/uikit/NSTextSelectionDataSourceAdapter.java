@@ -79,5 +79,10 @@ import org.robovm.apple.symbols.*;
     public void enumerateContainerBoundariesFromLocation(NSTextLocation location, boolean reverse, @Block VoidBlock2<NSTextLocation, BooleanPtr> block) {}
     @NotImplemented("textLayoutOrientationAtLocation:")
     public NSTextSelectionNavigationLayoutOrientation textLayoutOrientationAtLocation(NSTextLocation location) { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("convertInteractionPoint:toContainerAtLocation:")
+    public @ByVal CGPoint convertInteractionPoint(@ByVal CGPoint point, NSTextLocation containerLocation) { return null; }
     /*</methods>*/
 }

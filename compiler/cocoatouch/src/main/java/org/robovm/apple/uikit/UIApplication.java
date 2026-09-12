@@ -327,6 +327,11 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "preferredContentSizeCategory")
     public native String getPreferredContentSizeCategory();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "systemPrefersReducedResourceUsage")
+    public native boolean isSystemPrefersReducedResourceUsage();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "connectedScenes")
@@ -538,6 +543,11 @@ import org.robovm.apple.symbols.*;
     public static native NSString ProtectedDataWillBecomeUnavailableNotification();
     @GlobalValue(symbol="UIApplicationProtectedDataDidBecomeAvailable", optional=true)
     public static native NSString ProtectedDataDidBecomeAvailableNotification();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="UIApplicationSystemPrefersReducedResourceUsageDidChangeNotification", optional=true)
+    public static native NSString SystemPrefersReducedResourceUsageDidChangeNotification();
     @GlobalValue(symbol="UIApplicationOpenSettingsURLString", optional=true)
     public static native String getOpenSettingsURLString();
     /**
@@ -574,6 +584,10 @@ import org.robovm.apple.symbols.*;
     @Deprecated
     @Method(selector = "openURL:")
     public native boolean openURL(NSURL url);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Prefer attempting to open URLs and handling any failures
+     */
+    @Deprecated
     @Method(selector = "canOpenURL:")
     public native boolean canOpenURL(NSURL url);
     /**
@@ -585,6 +599,10 @@ import org.robovm.apple.symbols.*;
     public native void sendEvent(UIEvent event);
     @Method(selector = "sendAction:to:from:forEvent:")
     public native boolean sendAction(Selector action, NSObject target, NSObject sender, UIEvent event);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use UIWindowSceneDelegate.supportedInterfaceOrientations(for:) instead
+     */
+    @Deprecated
     @Method(selector = "supportedInterfaceOrientationsForWindow:")
     public native UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIWindow window);
     @Method(selector = "beginBackgroundTaskWithExpirationHandler:")

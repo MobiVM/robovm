@@ -131,39 +131,6 @@ import org.robovm.apple.symbols.*;
     }
     
 
-    public boolean isSpeechPunctuation() {
-        if (has(NSAttributedStringAttribute.SpeechPunctuation)) {
-            NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPunctuation);
-            return val.booleanValue();
-        }
-        return false;
-    }
-    public NSAttributedStringAttributes setSpeechPunctuation(boolean speechPunctuation) {
-        set(NSAttributedStringAttribute.SpeechPunctuation, NSNumber.valueOf(speechPunctuation));
-        return this;
-    }
-    public String getSpeechLanguage() {
-        if (has(NSAttributedStringAttribute.SpeechLanguage)) {
-            NSString val = (NSString) get(NSAttributedStringAttribute.SpeechLanguage);
-            return val.toString();
-        }
-        return null;
-    }
-    public NSAttributedStringAttributes setSpeechLanguage(String speechLanguage) {
-        set(NSAttributedStringAttribute.SpeechLanguage, new NSString(speechLanguage));
-        return this;
-    }
-    public double getSpeechPitch() {
-        if (has(NSAttributedStringAttribute.SpeechPitch)) {
-            NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPitch);
-            return val.doubleValue();
-        }
-        return 0;
-    }
-    public NSAttributedStringAttributes setSpeechPitch(double speechPitch) {
-        set(NSAttributedStringAttribute.SpeechPitch, NSNumber.valueOf(speechPitch));
-        return this;
-    }
     public UIFont getFont() {
         if (has(NSAttributedStringAttribute.Font)) {
             UIFont val = (UIFont) get(NSAttributedStringAttribute.Font);
@@ -395,6 +362,39 @@ import org.robovm.apple.symbols.*;
     @Deprecated
     public NSAttributedStringAttributes setVerticalText(boolean verticalText) {
         set(NSAttributedStringAttribute.VerticalGlyphForm, NSNumber.valueOf(verticalText));
+        return this;
+    }
+    public boolean isSpeechPunctuation() {
+        if (has(NSAttributedStringAttribute.SpeechPunctuation)) {
+            NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPunctuation);
+            return val.booleanValue();
+        }
+        return false;
+    }
+    public NSAttributedStringAttributes setSpeechPunctuation(boolean speechPunctuation) {
+        set(NSAttributedStringAttribute.SpeechPunctuation, NSNumber.valueOf(speechPunctuation));
+        return this;
+    }
+    public String getSpeechLanguage() {
+        if (has(NSAttributedStringAttribute.SpeechLanguage)) {
+            NSString val = (NSString) get(NSAttributedStringAttribute.SpeechLanguage);
+            return val.toString();
+        }
+        return null;
+    }
+    public NSAttributedStringAttributes setSpeechLanguage(String speechLanguage) {
+        set(NSAttributedStringAttribute.SpeechLanguage, new NSString(speechLanguage));
+        return this;
+    }
+    public double getSpeechPitch() {
+        if (has(NSAttributedStringAttribute.SpeechPitch)) {
+            NSNumber val = (NSNumber) get(NSAttributedStringAttribute.SpeechPitch);
+            return val.doubleValue();
+        }
+        return 0;
+    }
+    public NSAttributedStringAttributes setSpeechPitch(double speechPitch) {
+        set(NSAttributedStringAttribute.SpeechPitch, NSNumber.valueOf(speechPitch));
         return this;
     }
     /*</methods>*/

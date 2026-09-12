@@ -93,6 +93,16 @@ import org.robovm.apple.symbols.*;
     public native UIImage getShadowImage();
     @Property(selector = "setShadowImage:")
     public native void setShadowImage(UIImage v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "overrideUserInterfaceStyle")
+    public native UIUserInterfaceStyle getOverrideUserInterfaceStyle();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOverrideUserInterfaceStyle:")
+    public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

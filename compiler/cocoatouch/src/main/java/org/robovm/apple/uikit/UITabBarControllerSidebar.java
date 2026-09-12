@@ -65,6 +65,21 @@ import org.robovm.apple.symbols.*;
     public native UITabBarControllerSidebarDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(UITabBarControllerSidebarDelegate v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isAvailable")
+    public native boolean isAvailable();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredPlacement")
+    public native UITabBarControllerSidebarPlacement getPreferredPlacement();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredPlacement:")
+    public native void setPreferredPlacement(UITabBarControllerSidebarPlacement v);
     @Property(selector = "isHidden")
     public native boolean isHidden();
     @Property(selector = "setHidden:")
