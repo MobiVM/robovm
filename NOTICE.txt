@@ -1,0 +1,55 @@
+MobiVM (RoboVM)
+Copyright (C) 2012-2014 RoboVM AB
+Copyright (C) 2015-2026 MobiVM contributors
+
+This repository has no single repository-wide licence.
+
+It grew out of the original RoboVM project and was later combined into one
+monolithic repository. Each module therefore carries its own LICENSE.txt and,
+where applicable, NOTICE.txt, and those files apply to the directory they are
+located in.
+
+This file is an index for convenience. It is not itself a licence, and it does
+not modify any of the licences it points at. Where this index and a module's
+own LICENSE.txt disagree, the file inside the module governs.
+
+
+Modules under the Apache License 2.0
+------------------------------------
+
+  compiler/rt                 compiler/rt/LICENSE.txt
+  compiler/objc               compiler/objc/LICENSE.txt
+  compiler/bro-bridge         compiler/bro-bridge/LICENSE.txt
+  compiler/cocoatouch         compiler/cocoatouch/LICENSE.txt
+  compiler/vm                 compiler/vm/LICENSE.txt
+  plugins/templates           plugins/templates/LICENSE.txt
+
+  compiler/rt additionally carries compiler/rt/LICENSE_GPL_CE.txt, the GNU
+  General Public License version 2 with the Classpath Exception, which covers
+  the parts of the runtime derived from OpenJDK.
+
+
+Modules under the GNU General Public License version 2
+------------------------------------------------------
+
+  compiler/compiler           compiler/compiler/LICENSE.txt
+  compiler/llvm               compiler/llvm/LICENSE.txt
+  compiler/libimobiledevice   compiler/libimobiledevice/LICENSE.txt
+  compiler/libhfscompressor   compiler/libhfscompressor/LICENSE.txt
+  plugins/eclipse             plugins/eclipse/LICENSE.txt
+  plugins/idea                plugins/idea/LICENSE.txt
+  dist                        dist/LICENSE.txt
+
+
+Third-party components
+----------------------
+
+Third-party components are listed in the NOTICE.txt of the module that contains
+them, not here.
+
+compiler/rt in particular bundles code from the Android Open Source Project,
+ICU, OpenJDK and others. See compiler/rt/NOTICE.txt and the NOTICE and LICENSE
+files below compiler/rt/android/.
+
+compiler/compiler/NOTICE.txt lists the third-party libraries used by the
+compiler itself.
