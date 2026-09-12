@@ -67,6 +67,11 @@ import org.robovm.apple.dispatch.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBluetoothChannelSoundingIdentifier:previousBluetoothIdentifier:")
+    public NINearbyAccessoryConfiguration(NSUUID bluetoothIdentifier, NSUUID previousBluetoothIdentifier) { super((SkipInit) null); initObject(init(bluetoothIdentifier, previousBluetoothIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "accessoryDiscoveryToken")
@@ -93,5 +98,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithAccessoryData:bluetoothPeerIdentifier:error:")
     private native @Pointer long init(NSData accessoryData, NSUUID identifier, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBluetoothChannelSoundingIdentifier:previousBluetoothIdentifier:")
+    protected native @Pointer long init(NSUUID bluetoothIdentifier, NSUUID previousBluetoothIdentifier);
     /*</methods>*/
 }

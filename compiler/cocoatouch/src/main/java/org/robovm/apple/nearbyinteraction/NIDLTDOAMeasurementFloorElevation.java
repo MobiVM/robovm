@@ -32,40 +32,28 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 27.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/NIDeviceCapabilityAdapter/*</name>*/ 
+/*<annotations>*/@Library("NearbyInteraction") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/NIDLTDOAMeasurementFloorElevation/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NIDeviceCapability/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class NIDLTDOAMeasurementFloorElevationPtr extends Ptr<NIDLTDOAMeasurementFloorElevation, NIDLTDOAMeasurementFloorElevationPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(NIDLTDOAMeasurementFloorElevation.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected NIDLTDOAMeasurementFloorElevation() {}
+    protected NIDLTDOAMeasurementFloorElevation(Handle h, long handle) { super(h, handle); }
+    protected NIDLTDOAMeasurementFloorElevation(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    @NotImplemented("supportsPreciseDistanceMeasurement")
-    public boolean supportsPreciseDistanceMeasurement() { return false; }
-    @NotImplemented("supportsDirectionMeasurement")
-    public boolean supportsDirectionMeasurement() { return false; }
-    @NotImplemented("supportsCameraAssistance")
-    public boolean supportsCameraAssistance() { return false; }
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @NotImplemented("supportsExtendedDistanceMeasurement")
-    public boolean supportsExtendedDistanceMeasurement() { return false; }
-    /**
-     * @since Available in iOS 26.0 and later.
-     */
-    @NotImplemented("supportsDLTDOAMeasurement")
-    public boolean supportsDLTDOAMeasurement() { return false; }
-    /**
-     * @since Available in iOS 27.0 and later.
-     */
-    @NotImplemented("supportsBluetoothChannelSounding")
-    public boolean supportsBluetoothChannelSounding() { return false; }
+    @Property(selector = "floorNumber")
+    public native @MachineSizedSInt long getFloorNumber();
+    @Property(selector = "height")
+    public native double getHeight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
