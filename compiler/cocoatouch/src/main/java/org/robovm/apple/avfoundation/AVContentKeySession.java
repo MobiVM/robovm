@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -74,6 +75,16 @@ import org.robovm.apple.uikit.*;
     public native NSURL getStorageURL();
     @Property(selector = "keySystem")
     public native String getKeySystem();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "supportsAdvisoryKeys")
+    public native boolean supportsAdvisoryKeys();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSupportsAdvisoryKeys:")
+    public native void setSupportsAdvisoryKeys(boolean v);
     @Property(selector = "contentProtectionSessionIdentifier")
     public native NSData getContentProtectionSessionIdentifier();
     @Property(selector = "contentKeyRecipients")

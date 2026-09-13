@@ -40,12 +40,13 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
- * @deprecated Use assetDownloadTaskWithConfiguration: instead
+ * @deprecated Deprecated in iOS 27.0. Use assetDownloadTaskWithConfiguration: instead
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVFoundation") @NativeClass @Deprecated/*</annotations>*/

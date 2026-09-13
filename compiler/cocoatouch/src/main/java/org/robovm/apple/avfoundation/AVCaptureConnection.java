@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -162,6 +163,31 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setCameraIntrinsicMatrixDeliveryEnabled:")
     public native void setCameraIntrinsicMatrixDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isLowLightVideoNoiseReductionSupported")
+    public native boolean isLowLightVideoNoiseReductionSupported();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "automaticallyEnablesLowLightVideoNoiseReduction")
+    public native boolean automaticallyEnablesLowLightVideoNoiseReduction();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAutomaticallyEnablesLowLightVideoNoiseReduction:")
+    public native void setAutomaticallyEnablesLowLightVideoNoiseReduction(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isLowLightVideoNoiseReductionEnabled")
+    public native boolean isLowLightVideoNoiseReductionEnabled();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setLowLightVideoNoiseReductionEnabled:")
+    public native void setLowLightVideoNoiseReductionEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -169,6 +195,9 @@ import org.robovm.apple.uikit.*;
     protected native @Pointer long init(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output);
     @Method(selector = "initWithInputPort:videoPreviewLayer:")
     protected native @Pointer long init(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "isVideoRotationAngleSupported:")
     public native boolean isVideoRotationAngleSupported(@MachineSizedFloat double videoRotationAngle);
     /*</methods>*/

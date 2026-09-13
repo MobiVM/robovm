@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -125,6 +126,11 @@ import org.robovm.apple.uikit.*;
     public native boolean isMuted();
     @Property(selector = "setMuted:")
     public native void setMuted(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "disconnectedFromSystemAudio")
+    public native boolean isDisconnectedFromSystemAudio();
     @Property(selector = "appliesMediaSelectionCriteriaAutomatically")
     public native boolean appliesMediaSelectionCriteriaAutomatically();
     @Property(selector = "setAppliesMediaSelectionCriteriaAutomatically:")
@@ -211,6 +217,16 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "setObservationEnabled:")
     public static native void setObservationEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "allowsCaptureOfClearKeyVideo")
+    public native boolean allowsCaptureOfClearKeyVideo();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setAllowsCaptureOfClearKeyVideo:")
+    public native void setAllowsCaptureOfClearKeyVideo(boolean v);
     /**
      * @deprecated Deprecated in iOS 11.0. Allow AVPlayer to enable closed captions automatically according to user preferences by ensuring that the value of appliesMediaSelectionCriteriaAutomatically is YES.
      */
@@ -350,6 +366,21 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey", optional=true)
         public static native String InterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEvent();
         /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey", optional=true)
+        public static native String InterstitialEventMonitorScheduleRequestIdentifier();
+        /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorScheduleRequestResponseKey", optional=true)
+        public static native String InterstitialEventMonitorScheduleRequestResponse();
+        /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorScheduleRequestErrorKey", optional=true)
+        public static native String InterstitialEventMonitorScheduleRequestError();
+        /**
          * @since Available in iOS 18.0 and later.
          */
         @GlobalValue(symbol="AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey", optional=true)
@@ -406,6 +437,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification", optional=true)
         public static native NSString InterstitialEventMonitorInterstitialEventDidFinish();
         /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification", optional=true)
+        public static native NSString InterstitialEventMonitorScheduleRequestCompleted();
+        /**
          * @since Available in iOS 18.0 and later.
          */
         @GlobalValue(symbol="AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification", optional=true)
@@ -455,6 +491,11 @@ import org.robovm.apple.uikit.*;
     public native NSObject addBoundaryTimeObserver(@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime> times, DispatchQueue queue, @Block Runnable block);
     @Method(selector = "removeTimeObserver:")
     public native void removeTimeObserver(NSObject observer);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setDisconnectedFromSystemAudio:completionHandler:")
+    public native void setDisconnectedFromSystemAudio(boolean disconnected, @Block Runnable completionHandler);
     @Method(selector = "setMediaSelectionCriteria:forMediaCharacteristic:")
     public native void setMediaSelectionCriteria(AVPlayerMediaSelectionCriteria criteria, String mediaCharacteristic);
     @Method(selector = "mediaSelectionCriteriaForMediaCharacteristic:")

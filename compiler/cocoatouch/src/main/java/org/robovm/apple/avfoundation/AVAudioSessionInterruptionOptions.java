@@ -40,12 +40,15 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 27.0. Use AVAudioSessionResumptionRecommendationNotification instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/AVAudioSessionInterruptionOptions/*</name>*/ extends Bits</*<name>*/AVAudioSessionInterruptionOptions/*</name>*/> {
     /*<values>*/
     public static final AVAudioSessionInterruptionOptions None = new AVAudioSessionInterruptionOptions(0L);

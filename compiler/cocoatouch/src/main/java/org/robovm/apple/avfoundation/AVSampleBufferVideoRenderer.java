@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,19 +62,24 @@ import org.robovm.apple.uikit.*;
     protected AVSampleBufferVideoRenderer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "status")
     public native AVQueuedSampleBufferRenderingStatus getStatus();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "error")
     public native NSError getError();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Property(selector = "requiresFlushToResumeDecoding")
     public native boolean requiresFlushToResumeDecoding();
     /**
-     * @since Available in iOS 26.0 and later.
+     * @since Available in iOS 11.0 and later.
      */
-    @Property(selector = "recommendedPixelBufferAttributes")
-    public native NSDictionary<NSString, ?> getRecommendedPixelBufferAttributes();
-    @Property(selector = "timebase")
-    public native CMTimebase getTimebase();
     @Property(selector = "isReadyForMoreMediaData")
     public native boolean isReadyForMoreMediaData();
     /**
@@ -81,6 +87,13 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "hasSufficientMediaDataForReliablePlaybackStart")
     public native boolean hasSufficientMediaDataForReliablePlaybackStart();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "recommendedPixelBufferAttributes")
+    public native NSDictionary<NSString, ?> getRecommendedPixelBufferAttributes();
+    @Property(selector = "timebase")
+    public native CMTimebase getTimebase();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -93,6 +106,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVSampleBufferVideoRendererDidFailToDecodeNotificationErrorKey", optional=true)
         public static native NSString DidFailToDecodeNotificationError();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotificationRequiresFlushKey", optional=true)
+        public static native NSString RequiresFlushToResumeDecodingDidChangeNotificationRequiresFlush();
     }
 
     @Library("AVFoundation")
@@ -111,8 +129,31 @@ import org.robovm.apple.uikit.*;
         public static native NSString RequiresFlushToResumeDecodingDidChange();
     }
     
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "flushWithRemovalOfDisplayedImage:completionHandler:")
     public native void flush(boolean removeDisplayedImage, @Block Runnable handler);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "enqueueSampleBuffer:")
+    public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "flush")
+    public native void flush();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
+    public native void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "stopRequestingMediaData")
+    public native void stopRequestingMediaData();
     /**
      * @since Available in iOS 17.4 and later.
      */
@@ -138,13 +179,5 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "loadVideoPerformanceMetricsWithCompletionHandler:")
     public native void loadVideoPerformanceMetrics(@Block VoidBlock1<AVVideoPerformanceMetrics> completionHandler);
-    @Method(selector = "enqueueSampleBuffer:")
-    public native void enqueueSampleBuffer(CMSampleBuffer sampleBuffer);
-    @Method(selector = "flush")
-    public native void flush();
-    @Method(selector = "requestMediaDataWhenReadyOnQueue:usingBlock:")
-    public native void requestMediaDataWhenReadyOnQueue(DispatchQueue queue, @Block Runnable block);
-    @Method(selector = "stopRequestingMediaData")
-    public native void stopRequestingMediaData();
     /*</methods>*/
 }

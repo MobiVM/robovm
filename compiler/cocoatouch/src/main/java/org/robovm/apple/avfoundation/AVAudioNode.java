@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,8 +96,17 @@ import org.robovm.apple.uikit.*;
     public native String getNameForInputBus(@MachineSizedUInt long bus);
     @Method(selector = "nameForOutputBus:")
     public native String getNameForOutputBus(@MachineSizedUInt long bus);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use installTapOnBus:bufferSize:format:error:block
+     */
+    @Deprecated
     @Method(selector = "installTapOnBus:bufferSize:format:block:")
     public native void installTapOnBus(@MachineSizedUInt long bus, int bufferSize, AVAudioFormat format, @Block VoidBlock2<AVAudioPCMBuffer, AVAudioTime> tapBlock);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "installTapOnBus:bufferSize:format:error:block:")
+    public native boolean installTapOnBus(@MachineSizedUInt long bus, int bufferSize, AVAudioFormat format, NSError.NSErrorPtr outError, @Block VoidBlock2<AVAudioPCMBuffer, AVAudioTime> tapBlock);
     @Method(selector = "removeTapOnBus:")
     public native void removeTapOnBus(@MachineSizedUInt long bus);
     /*</methods>*/

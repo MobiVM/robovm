@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,6 +85,26 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "systemRecommendedVideoZoomRange")
     public native AVZoomRange getSystemRecommendedVideoZoomRange();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "recommendedLensApertureStops")
+    public native NSArray<NSNumber> getRecommendedLensApertureStops();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "minLensAperture")
+    public native float getMinLensAperture();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "maxLensAperture")
+    public native float getMaxLensAperture();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "defaultLensAperture")
+    public native float getDefaultLensAperture();
     @Property(selector = "minExposureDuration")
     public native @ByVal CMTime getMinExposureDuration();
     @Property(selector = "maxExposureDuration")
@@ -300,6 +321,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "videoFrameRateRangeForCinematicVideo")
     public native AVFrameRateRange getVideoFrameRateRangeForCinematicVideo();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isCinematicVideoMetadataCaptureSupported")
+    public native boolean isCinematicVideoMetadataCaptureSupported();
     @Property(selector = "supportedDynamicAspectRatios")
     public native NSArray<NSString> getSupportedDynamicAspectRatios();
     @Property(selector = "isSmartFramingSupported")
@@ -309,11 +335,26 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "isCameraLensSmudgeDetectionSupported")
     public native boolean isCameraLensSmudgeDetectionSupported();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isContinuousAutoFocusTrackingSupported")
+    public native boolean isContinuousAutoFocusTrackingSupported();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isLowLightVideoNoiseReductionSupported")
+    public native boolean isLowLightVideoNoiseReductionSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "isVideoStabilizationModeSupported:")
     public native boolean isVideoStabilizationModeSupported(AVCaptureVideoStabilizationMode videoStabilizationMode);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "supportsExposureModeCustomWithLensAperture:duration:ISO:")
+    public native boolean supportsExposureModeCustom(float lensAperture, @ByVal CMTime duration, float ISO);
     @Method(selector = "videoFieldOfViewForAspectRatio:geometricDistortionCorrected:")
     public native float getVideoFieldOfViewForAspectRatio(AVCaptureAspectRatio aspectRatio, boolean geometricDistortionCorrected);
     /*</methods>*/
