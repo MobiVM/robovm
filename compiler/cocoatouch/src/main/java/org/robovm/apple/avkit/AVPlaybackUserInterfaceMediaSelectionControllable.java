@@ -40,11 +40,11 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVPlaybackUserInterfaceMediaSelectionControllable/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -53,17 +53,27 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "currentAudioOption")
+    AVPlaybackUserInterfaceMediaSelectionOption getCurrentAudioOption();
+    @Property(selector = "setCurrentAudioOption:")
+    void setCurrentAudioOption(AVPlaybackUserInterfaceMediaSelectionOption v);
+    @Property(selector = "currentAudioDescriptionOption")
+    AVPlaybackUserInterfaceMediaSelectionOption getCurrentAudioDescriptionOption();
+    @Property(selector = "setCurrentAudioDescriptionOption:")
+    void setCurrentAudioDescriptionOption(AVPlaybackUserInterfaceMediaSelectionOption v);
+    @Property(selector = "currentLegibleOption")
+    AVPlaybackUserInterfaceMediaSelectionOption getCurrentLegibleOption();
+    @Property(selector = "setCurrentLegibleOption:")
+    void setCurrentLegibleOption(AVPlaybackUserInterfaceMediaSelectionOption v);
+    @Property(selector = "audioOptions")
+    NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getAudioOptions();
+    @Property(selector = "audioDescriptionOptions")
+    NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getAudioDescriptionOptions();
+    @Property(selector = "legibleOptions")
+    NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getLegibleOptions();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

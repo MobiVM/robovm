@@ -40,11 +40,11 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 26.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVLegibleMediaOptionsMenuControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -56,14 +56,12 @@ import org.robovm.apple.uniformtypeid.*;
     
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    @Method(selector = "legibleMenuController:didChangeMenuState:")
+    void didChangeMenuState(AVLegibleMediaOptionsMenuController menuController, @ByVal AVLegibleMediaOptionsMenuState state);
+    @Method(selector = "legibleMenuController:didRequestCaptionPreviewForProfileID:")
+    void didRequestCaptionPreview(AVLegibleMediaOptionsMenuController menuController, String profileID);
+    @Method(selector = "legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview:")
+    void legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview(AVLegibleMediaOptionsMenuController menuController);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

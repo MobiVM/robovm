@@ -40,37 +40,37 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackSpeed/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceContentArtwork/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVPlaybackSpeedPtr extends Ptr<AVPlaybackSpeed, AVPlaybackSpeedPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackSpeed.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceContentArtworkPtr extends Ptr<AVPlaybackUserInterfaceContentArtwork, AVPlaybackUserInterfaceContentArtworkPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceContentArtwork.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected AVPlaybackSpeed() {}
-    protected AVPlaybackSpeed(Handle h, long handle) { super(h, handle); }
-    protected AVPlaybackSpeed(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithRate:localizedName:")
-    public AVPlaybackSpeed(float rate, String localizedName) { super((SkipInit) null); initObject(init(rate, localizedName)); }
+    protected AVPlaybackUserInterfaceContentArtwork() {}
+    protected AVPlaybackUserInterfaceContentArtwork(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceContentArtwork(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public AVPlaybackUserInterfaceContentArtwork(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "systemDefaultSpeeds")
-    public static native NSArray<AVPlaybackSpeed> getSystemDefaultSpeeds();
-    @Property(selector = "rate")
-    public native float getRate();
-    @Property(selector = "localizedName")
-    public native String getLocalizedName();
-    @Property(selector = "localizedNumericName")
-    public native String getLocalizedNumericName();
+    @Property(selector = "size")
+    public native @ByVal CGSize getSize();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithRate:localizedName:")
-    protected native @Pointer long init(float rate, String localizedName);
+    @Method(selector = "artworkWithURL:contentType:size:")
+    public static native AVPlaybackUserInterfaceContentURLArtwork artwork(NSURL url, UTType type, @ByVal CGSize size);
+    @Method(selector = "encodeWithCoder:")
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

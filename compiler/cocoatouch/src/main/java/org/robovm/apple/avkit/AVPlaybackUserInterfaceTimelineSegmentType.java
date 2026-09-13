@@ -40,31 +40,38 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/AVPlaybackUserInterfaceTimelineSegmentType/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Primary(0L),
+    Advertisement(1L),
+    Bonus(2L),
+    Credits(3L),
+    Intro(4L),
+    Recap(5L),
+    Trailer(6L),
+    Other(7L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/AVPlaybackUserInterfaceTimelineSegmentType/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/AVPlaybackUserInterfaceTimelineSegmentType/*</name>*/ valueOf(long n) {
+        for (/*<name>*/AVPlaybackUserInterfaceTimelineSegmentType/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/AVPlaybackUserInterfaceTimelineSegmentType/*</name>*/.class.getName());
+    }
 }

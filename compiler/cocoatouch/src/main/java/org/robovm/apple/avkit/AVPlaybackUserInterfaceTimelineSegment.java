@@ -40,32 +40,44 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceTimelineSegment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceTimelineSegmentPtr extends Ptr<AVPlaybackUserInterfaceTimelineSegment, AVPlaybackUserInterfaceTimelineSegmentPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceTimelineSegment.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInterstitialTimeRange() {}
-    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
-    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    protected AVPlaybackUserInterfaceTimelineSegment() {}
+    protected AVPlaybackUserInterfaceTimelineSegment(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceTimelineSegment(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithTimeRange:segmentType:marked:requiresLinearPlayback:identifier:")
+    public AVPlaybackUserInterfaceTimelineSegment(@ByVal CMTimeRange timeRange, AVPlaybackUserInterfaceTimelineSegmentType segmentType, boolean marked, boolean requiresLinearPlayback, String identifier) { super((SkipInit) null); initObject(init(timeRange, segmentType, marked, requiresLinearPlayback, identifier)); }
     @Method(selector = "initWithCoder:")
-    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public AVPlaybackUserInterfaceTimelineSegment(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "timeRange")
     public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "segmentType")
+    public native AVPlaybackUserInterfaceTimelineSegmentType getSegmentType();
+    @Property(selector = "isMarked")
+    public native boolean isMarked();
+    @Property(selector = "requiresLinearPlayback")
+    public native boolean requiresLinearPlayback();
+    @Property(selector = "identifier")
+    public native String getIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithTimeRange:segmentType:marked:requiresLinearPlayback:identifier:")
+    protected native @Pointer long init(@ByVal CMTimeRange timeRange, AVPlaybackUserInterfaceTimelineSegmentType segmentType, boolean marked, boolean requiresLinearPlayback, String identifier);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

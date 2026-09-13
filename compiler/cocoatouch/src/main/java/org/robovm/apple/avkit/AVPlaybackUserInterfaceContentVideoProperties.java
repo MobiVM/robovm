@@ -40,32 +40,36 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceContentVideoProperties/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceContentVideoPropertiesPtr extends Ptr<AVPlaybackUserInterfaceContentVideoProperties, AVPlaybackUserInterfaceContentVideoPropertiesPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceContentVideoProperties.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInterstitialTimeRange() {}
-    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
-    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    protected AVPlaybackUserInterfaceContentVideoProperties() {}
+    protected AVPlaybackUserInterfaceContentVideoProperties(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceContentVideoProperties(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPresentationSize:")
+    public AVPlaybackUserInterfaceContentVideoProperties(@ByVal CGSize presentationSize) { super((SkipInit) null); initObject(init(presentationSize)); }
     @Method(selector = "initWithCoder:")
-    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public AVPlaybackUserInterfaceContentVideoProperties(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timeRange")
-    public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "presentationSize")
+    public native @ByVal CGSize getPresentationSize();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithPresentationSize:")
+    protected native @Pointer long init(@ByVal CGSize presentationSize);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

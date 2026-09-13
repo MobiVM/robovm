@@ -40,21 +40,16 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/AVVideoFrameAnalysisType/*</name>*/ extends Bits</*<name>*/AVVideoFrameAnalysisType/*</name>*/> {
+public final class /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/ extends Bits</*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/> {
     /*<values>*/
-    public static final AVVideoFrameAnalysisType None = new AVVideoFrameAnalysisType(0L);
-    public static final AVVideoFrameAnalysisType Default = new AVVideoFrameAnalysisType(1L);
-    public static final AVVideoFrameAnalysisType Text = new AVVideoFrameAnalysisType(2L);
-    public static final AVVideoFrameAnalysisType Subject = new AVVideoFrameAnalysisType(4L);
-    public static final AVVideoFrameAnalysisType VisualSearch = new AVVideoFrameAnalysisType(8L);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    public static final AVVideoFrameAnalysisType MachineReadableCode = new AVVideoFrameAnalysisType(16L);
+    public static final AVPlaybackUserInterfaceSeekCapabilities None = new AVPlaybackUserInterfaceSeekCapabilities(0L);
+    public static final AVPlaybackUserInterfaceSeekCapabilities ScanForward = new AVPlaybackUserInterfaceSeekCapabilities(1L);
+    public static final AVPlaybackUserInterfaceSeekCapabilities ScanBackward = new AVPlaybackUserInterfaceSeekCapabilities(2L);
+    public static final AVPlaybackUserInterfaceSeekCapabilities Seek = new AVPlaybackUserInterfaceSeekCapabilities(4L);
     /*</values>*/
 
     /*<bind>*/
@@ -62,17 +57,17 @@ public final class /*<name>*/AVVideoFrameAnalysisType/*</name>*/ extends Bits</*
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] values = _values(/*<name>*/AVVideoFrameAnalysisType/*</name>*/.class);
+    private static final /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/[] values = _values(/*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/.class);
 
-    public /*<name>*/AVVideoFrameAnalysisType/*</name>*/(long value) { super(value); }
-    private /*<name>*/AVVideoFrameAnalysisType/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/AVVideoFrameAnalysisType/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/AVVideoFrameAnalysisType/*</name>*/(value, mask);
+    public /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/(long value) { super(value); }
+    private /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/(value, mask);
     }
-    protected /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] _values() {
+    protected /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] values() {
+    public static /*<name>*/AVPlaybackUserInterfaceSeekCapabilities/*</name>*/[] values() {
         return values.clone();
     }
 }

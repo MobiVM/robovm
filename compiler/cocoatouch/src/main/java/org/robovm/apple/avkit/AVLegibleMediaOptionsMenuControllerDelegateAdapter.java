@@ -39,32 +39,28 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 26.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVLegibleMediaOptionsMenuControllerDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements AVLegibleMediaOptionsMenuControllerDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    @NotImplemented("legibleMenuController:didChangeMenuState:")
+    public void didChangeMenuState(AVLegibleMediaOptionsMenuController menuController, @ByVal AVLegibleMediaOptionsMenuState state) {}
+    @NotImplemented("legibleMenuController:didRequestCaptionPreviewForProfileID:")
+    public void didRequestCaptionPreview(AVLegibleMediaOptionsMenuController menuController, String profileID) {}
+    @NotImplemented("legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview:")
+    public void legibleMenuControllerDidRequestStoppingSubtitleCaptionPreview(AVLegibleMediaOptionsMenuController menuController) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

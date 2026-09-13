@@ -39,32 +39,30 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 26.0 and later.
- */
+
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVLegibleMediaOptionsMenuState/*</name>*/ 
+    extends /*<extends>*/Struct<AVLegibleMediaOptionsMenuState>/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class AVLegibleMediaOptionsMenuStatePtr extends Ptr<AVLegibleMediaOptionsMenuState, AVLegibleMediaOptionsMenuStatePtr> {}/*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<constructors>*/
+    public AVLegibleMediaOptionsMenuState() {}
+    public AVLegibleMediaOptionsMenuState(boolean enabled, AVLegibleMediaOptionsMenuStateChangeReason reason) {
+        this.setEnabled(enabled);
+        this.setReason(reason);
+    }
+    /*</constructors>*/
+    /*<properties>*//*</properties>*/
+    /*<members>*/
+    @StructMember(0) public native boolean isEnabled();
+    @StructMember(0) public native AVLegibleMediaOptionsMenuState setEnabled(boolean enabled);
+    @StructMember(1) public native AVLegibleMediaOptionsMenuStateChangeReason getReason();
+    @StructMember(1) public native AVLegibleMediaOptionsMenuState setReason(AVLegibleMediaOptionsMenuStateChangeReason reason);
+    /*</members>*/
+    /*<methods>*//*</methods>*/
 }

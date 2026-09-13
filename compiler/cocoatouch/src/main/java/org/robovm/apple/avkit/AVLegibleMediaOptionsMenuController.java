@@ -40,49 +40,41 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 26.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInputPickerInteraction/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVLegibleMediaOptionsMenuController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIInteraction/*</implements>*/ {
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class AVInputPickerInteractionPtr extends Ptr<AVInputPickerInteraction, AVInputPickerInteractionPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInputPickerInteraction.class); }/*</bind>*/
+    /*<ptr>*/public static class AVLegibleMediaOptionsMenuControllerPtr extends Ptr<AVLegibleMediaOptionsMenuController, AVLegibleMediaOptionsMenuControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVLegibleMediaOptionsMenuController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInputPickerInteraction() {}
-    protected AVInputPickerInteraction(Handle h, long handle) { super(h, handle); }
-    protected AVInputPickerInteraction(SkipInit skipInit) { super(skipInit); }
-    @Method(selector = "initWithAudioSession:")
-    public AVInputPickerInteraction(AVAudioSession audioSession) { super((SkipInit) null); initObject(init(audioSession)); }
+    protected AVLegibleMediaOptionsMenuController() {}
+    protected AVLegibleMediaOptionsMenuController(Handle h, long handle) { super(h, handle); }
+    protected AVLegibleMediaOptionsMenuController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPlayer:")
+    public AVLegibleMediaOptionsMenuController(AVPlayer player) { super((SkipInit) null); initObject(init(player)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "player")
+    public native AVPlayer getPlayer();
+    @Property(selector = "setPlayer:")
+    public native void setPlayer(AVPlayer v);
     @Property(selector = "delegate")
-    public native AVInputPickerInteractionDelegate getDelegate();
+    public native AVLegibleMediaOptionsMenuControllerDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
-    public native void setDelegate(AVInputPickerInteractionDelegate v);
-    @Property(selector = "isPresented")
-    public native boolean isPresented();
-    @Property(selector = "audioSession")
-    public native AVAudioSession getAudioSession();
-    @Property(selector = "setAudioSession:")
-    public native void setAudioSession(AVAudioSession v);
-    @Property(selector = "view")
-    public native UIView getView();
+    public native void setDelegate(AVLegibleMediaOptionsMenuControllerDelegate v);
+    @Property(selector = "menuState")
+    public native @ByVal AVLegibleMediaOptionsMenuState getMenuState();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "present")
-    public native void present();
-    @Method(selector = "dismiss")
-    public native void dismiss();
-    @Method(selector = "initWithAudioSession:")
-    protected native @Pointer long init(AVAudioSession audioSession);
-    @Method(selector = "willMoveToView:")
-    public native void willMoveToView(UIView view);
-    @Method(selector = "didMoveToView:")
-    public native void didMoveToView(UIView view);
+    @Method(selector = "initWithPlayer:")
+    protected native @Pointer long init(AVPlayer player);
+    @Method(selector = "menuWithContents:")
+    public native UIMenu menu(AVLegibleMediaOptionsMenuContents contents);
     /*</methods>*/
 }

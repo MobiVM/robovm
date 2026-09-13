@@ -39,32 +39,48 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 26.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfacePlaybackControllableAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements AVPlaybackUserInterfacePlaybackControllable/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("isReady")
+    public boolean isReady() { return false; }
+    @NotImplemented("isPlaying")
+    public boolean isPlaying() { return false; }
+    @NotImplemented("setPlaying:")
+    public void setPlaying(boolean v) {}
+    @NotImplemented("isBuffering")
+    public boolean isBuffering() { return false; }
+    @NotImplemented("playbackSpeed")
+    public float getPlaybackSpeed() { return 0; }
+    @NotImplemented("setPlaybackSpeed:")
+    public void setPlaybackSpeed(float v) {}
+    @NotImplemented("scanSpeed")
+    public float getScanSpeed() { return 0; }
+    @NotImplemented("setScanSpeed:")
+    public void setScanSpeed(float v) {}
+    @NotImplemented("state")
+    public AVPlaybackUserInterfacePlaybackState getState() { return null; }
+    @NotImplemented("setState:")
+    public void setState(AVPlaybackUserInterfacePlaybackState v) {}
+    @NotImplemented("supportedSeekCapabilities")
+    public AVPlaybackUserInterfaceSeekCapabilities getSupportedSeekCapabilities() { return null; }
+    @NotImplemented("containsLiveStreamingContent")
+    public boolean containsLiveStreamingContent() { return false; }
+    @NotImplemented("error")
+    public NSError getError() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

@@ -39,32 +39,33 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 26.0 and later.
- */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceTimeControllableAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements AVPlaybackUserInterfaceTimeControllable/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("timeRange")
+    public @ByVal CMTimeRange getTimeRange() { return null; }
+    @NotImplemented("playbackPosition")
+    public AVPlaybackUserInterfacePlaybackPosition getPlaybackPosition() { return null; }
+    @NotImplemented("segments")
+    public NSArray<AVPlaybackUserInterfaceTimelineSegment> getSegments() { return null; }
+    @NotImplemented("currentSegment")
+    public AVPlaybackUserInterfaceTimelineSegment getCurrentSegment() { return null; }
+    @NotImplemented("seekableTimeRanges")
+    public NSArray<NSValue> getSeekableTimeRanges() { return null; }
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    @NotImplemented("seekToPosition:tolerance:")
+    public void seekToPosition(@ByVal CMTime position, @ByVal CMTime tolerance) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

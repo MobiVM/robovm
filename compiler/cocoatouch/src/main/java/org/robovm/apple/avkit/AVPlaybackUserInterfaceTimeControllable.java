@@ -40,11 +40,11 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVPlaybackUserInterfaceTimeControllable/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
     /*<ptr>*/
@@ -53,17 +53,20 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "timeRange")
+    @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "playbackPosition")
+    AVPlaybackUserInterfacePlaybackPosition getPlaybackPosition();
+    @Property(selector = "segments")
+    NSArray<AVPlaybackUserInterfaceTimelineSegment> getSegments();
+    @Property(selector = "currentSegment")
+    AVPlaybackUserInterfaceTimelineSegment getCurrentSegment();
+    @Property(selector = "seekableTimeRanges")
+    NSArray<NSValue> getSeekableTimeRanges();
     /*</properties>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    @Method(selector = "seekToPosition:tolerance:")
+    void seekToPosition(@ByVal CMTime position, @ByVal CMTime tolerance);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

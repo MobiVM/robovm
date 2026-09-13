@@ -40,31 +40,33 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 26.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/AVInputPickerInteractionDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceContentURLArtwork/*</name>*/ 
+    extends /*<extends>*/AVPlaybackUserInterfaceContentArtwork/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceContentURLArtworkPtr extends Ptr<AVPlaybackUserInterfaceContentURLArtwork, AVPlaybackUserInterfaceContentURLArtworkPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceContentURLArtwork.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected AVPlaybackUserInterfaceContentURLArtwork() {}
+    protected AVPlaybackUserInterfaceContentURLArtwork(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceContentURLArtwork(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "url")
+    public native NSURL getUrl();
+    @Property(selector = "contentType")
+    public native UTType getContentType();
+    @Property(selector = "supportsSecureCoding")
+    public static native boolean supportsSecureCoding();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "inputPickerInteractionWillBeginPresenting:")
-    void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndPresenting:")
-    void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionWillBeginDismissing:")
-    void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction);
-    @Method(selector = "inputPickerInteractionDidEndDismissing:")
-    void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction);
+    @Method(selector = "artworkWithURL:contentType:size:")
+    public static native AVPlaybackUserInterfaceContentURLArtwork artwork(NSURL url, UTType type, @ByVal CGSize size);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

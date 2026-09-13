@@ -40,32 +40,42 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceMediaSelectionOption/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceMediaSelectionOptionPtr extends Ptr<AVPlaybackUserInterfaceMediaSelectionOption, AVPlaybackUserInterfaceMediaSelectionOptionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceMediaSelectionOption.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInterstitialTimeRange() {}
-    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
-    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    protected AVPlaybackUserInterfaceMediaSelectionOption() {}
+    protected AVPlaybackUserInterfaceMediaSelectionOption(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceMediaSelectionOption(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDisplayName:identifier:extendedLanguageTag:mediaCharacteristics:")
+    public AVPlaybackUserInterfaceMediaSelectionOption(String displayName, String identifier, String extendedLanguageTag, NSArray<NSString> mediaCharacteristics) { super((SkipInit) null); initObject(init(displayName, identifier, extendedLanguageTag, mediaCharacteristics)); }
     @Method(selector = "initWithCoder:")
-    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public AVPlaybackUserInterfaceMediaSelectionOption(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timeRange")
-    public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "displayName")
+    public native String getDisplayName();
+    @Property(selector = "identifier")
+    public native String getIdentifier();
+    @Property(selector = "extendedLanguageTag")
+    public native String getExtendedLanguageTag();
+    @Property(selector = "mediaCharacteristics")
+    public native NSArray<NSString> getMediaCharacteristics();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithDisplayName:identifier:extendedLanguageTag:mediaCharacteristics:")
+    protected native @Pointer long init(String displayName, String identifier, String extendedLanguageTag, NSArray<NSString> mediaCharacteristics);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

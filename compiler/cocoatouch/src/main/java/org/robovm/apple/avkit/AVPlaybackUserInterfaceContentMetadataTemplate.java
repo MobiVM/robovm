@@ -40,27 +40,41 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceContentMetadataTemplate/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfaceContentMetadataTemplatePtr extends Ptr<AVPlaybackUserInterfaceContentMetadataTemplate, AVPlaybackUserInterfaceContentMetadataTemplatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfaceContentMetadataTemplate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInterstitialTimeRange() {}
-    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
-    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    public AVPlaybackUserInterfaceContentMetadataTemplate() {}
+    protected AVPlaybackUserInterfaceContentMetadataTemplate(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfaceContentMetadataTemplate(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public AVPlaybackUserInterfaceContentMetadataTemplate(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timeRange")
-    public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "videoProperties")
+    public native AVPlaybackUserInterfaceContentVideoProperties getVideoProperties();
+    @Property(selector = "setVideoProperties:")
+    public native void setVideoProperties(AVPlaybackUserInterfaceContentVideoProperties v);
+    @Property(selector = "title")
+    public native String getTitle();
+    @Property(selector = "setTitle:")
+    public native void setTitle(String v);
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
+    @Property(selector = "artworkRepresentations")
+    public native NSArray<AVPlaybackUserInterfaceContentArtwork> getArtworkRepresentations();
+    @Property(selector = "setArtworkRepresentations:")
+    public native void setArtworkRepresentations(NSArray<AVPlaybackUserInterfaceContentArtwork> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

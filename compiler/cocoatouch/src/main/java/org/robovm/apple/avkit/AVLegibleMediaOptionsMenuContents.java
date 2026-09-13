@@ -40,21 +40,16 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 26.4 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
-public final class /*<name>*/AVVideoFrameAnalysisType/*</name>*/ extends Bits</*<name>*/AVVideoFrameAnalysisType/*</name>*/> {
+public final class /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/ extends Bits</*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/> {
     /*<values>*/
-    public static final AVVideoFrameAnalysisType None = new AVVideoFrameAnalysisType(0L);
-    public static final AVVideoFrameAnalysisType Default = new AVVideoFrameAnalysisType(1L);
-    public static final AVVideoFrameAnalysisType Text = new AVVideoFrameAnalysisType(2L);
-    public static final AVVideoFrameAnalysisType Subject = new AVVideoFrameAnalysisType(4L);
-    public static final AVVideoFrameAnalysisType VisualSearch = new AVVideoFrameAnalysisType(8L);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    public static final AVVideoFrameAnalysisType MachineReadableCode = new AVVideoFrameAnalysisType(16L);
+    public static final AVLegibleMediaOptionsMenuContents None = new AVLegibleMediaOptionsMenuContents(0L);
+    public static final AVLegibleMediaOptionsMenuContents Legible = new AVLegibleMediaOptionsMenuContents(1L);
+    public static final AVLegibleMediaOptionsMenuContents CaptionAppearance = new AVLegibleMediaOptionsMenuContents(2L);
+    public static final AVLegibleMediaOptionsMenuContents All = new AVLegibleMediaOptionsMenuContents(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -62,17 +57,17 @@ public final class /*<name>*/AVVideoFrameAnalysisType/*</name>*/ extends Bits</*
     /*<constants>*//*</constants>*/
     /*<methods>*//*</methods>*/
 
-    private static final /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] values = _values(/*<name>*/AVVideoFrameAnalysisType/*</name>*/.class);
+    private static final /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/[] values = _values(/*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/.class);
 
-    public /*<name>*/AVVideoFrameAnalysisType/*</name>*/(long value) { super(value); }
-    private /*<name>*/AVVideoFrameAnalysisType/*</name>*/(long value, long mask) { super(value, mask); }
-    protected /*<name>*/AVVideoFrameAnalysisType/*</name>*/ wrap(long value, long mask) {
-        return new /*<name>*/AVVideoFrameAnalysisType/*</name>*/(value, mask);
+    public /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/(long value) { super(value); }
+    private /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/(long value, long mask) { super(value, mask); }
+    protected /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/ wrap(long value, long mask) {
+        return new /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/(value, mask);
     }
-    protected /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] _values() {
+    protected /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/[] _values() {
         return values;
     }
-    public static /*<name>*/AVVideoFrameAnalysisType/*</name>*/[] values() {
+    public static /*<name>*/AVLegibleMediaOptionsMenuContents/*</name>*/[] values() {
         return values.clone();
     }
 }

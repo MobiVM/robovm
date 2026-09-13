@@ -41,9 +41,9 @@ import org.robovm.apple.uniformtypeid.*;
 /*<javadoc>*/
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInputPickerInteractionDelegateAdapter/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfaceMediaSelectionControllableAdapter/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements AVInputPickerInteractionDelegate/*</implements>*/ {
+    /*<implements>*/implements AVPlaybackUserInterfaceMediaSelectionControllable/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -52,17 +52,27 @@ import org.robovm.apple.uniformtypeid.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    @NotImplemented("currentAudioOption")
+    public AVPlaybackUserInterfaceMediaSelectionOption getCurrentAudioOption() { return null; }
+    @NotImplemented("setCurrentAudioOption:")
+    public void setCurrentAudioOption(AVPlaybackUserInterfaceMediaSelectionOption v) {}
+    @NotImplemented("currentAudioDescriptionOption")
+    public AVPlaybackUserInterfaceMediaSelectionOption getCurrentAudioDescriptionOption() { return null; }
+    @NotImplemented("setCurrentAudioDescriptionOption:")
+    public void setCurrentAudioDescriptionOption(AVPlaybackUserInterfaceMediaSelectionOption v) {}
+    @NotImplemented("currentLegibleOption")
+    public AVPlaybackUserInterfaceMediaSelectionOption getCurrentLegibleOption() { return null; }
+    @NotImplemented("setCurrentLegibleOption:")
+    public void setCurrentLegibleOption(AVPlaybackUserInterfaceMediaSelectionOption v) {}
+    @NotImplemented("audioOptions")
+    public NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getAudioOptions() { return null; }
+    @NotImplemented("audioDescriptionOptions")
+    public NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getAudioDescriptionOptions() { return null; }
+    @NotImplemented("legibleOptions")
+    public NSArray<AVPlaybackUserInterfaceMediaSelectionOption> getLegibleOptions() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @NotImplemented("inputPickerInteractionWillBeginPresenting:")
-    public void inputPickerInteractionWillBeginPresenting(AVInputPickerInteraction inputPickerInteraction) {}
-    @NotImplemented("inputPickerInteractionDidEndPresenting:")
-    public void inputPickerInteractionDidEndPresenting(AVInputPickerInteraction inputPickerInteraction) {}
-    @NotImplemented("inputPickerInteractionWillBeginDismissing:")
-    public void inputPickerInteractionWillBeginDismissing(AVInputPickerInteraction inputPickerInteraction) {}
-    @NotImplemented("inputPickerInteractionDidEndDismissing:")
-    public void inputPickerInteractionDidEndDismissing(AVInputPickerInteraction inputPickerInteraction) {}
+    
     /*</methods>*/
 }

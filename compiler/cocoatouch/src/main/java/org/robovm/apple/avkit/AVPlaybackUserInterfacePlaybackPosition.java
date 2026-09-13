@@ -40,32 +40,40 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("AVKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVInterstitialTimeRange/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlaybackUserInterfacePlaybackPosition/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class AVInterstitialTimeRangePtr extends Ptr<AVInterstitialTimeRange, AVInterstitialTimeRangePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(AVInterstitialTimeRange.class); }/*</bind>*/
+    /*<ptr>*/public static class AVPlaybackUserInterfacePlaybackPositionPtr extends Ptr<AVPlaybackUserInterfacePlaybackPosition, AVPlaybackUserInterfacePlaybackPositionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(AVPlaybackUserInterfacePlaybackPosition.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public AVInterstitialTimeRange() {}
-    protected AVInterstitialTimeRange(Handle h, long handle) { super(h, handle); }
-    protected AVInterstitialTimeRange(SkipInit skipInit) { super(skipInit); }
+    protected AVPlaybackUserInterfacePlaybackPosition() {}
+    protected AVPlaybackUserInterfacePlaybackPosition(Handle h, long handle) { super(h, handle); }
+    protected AVPlaybackUserInterfacePlaybackPosition(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithPosition:hostTime:rate:")
+    public AVPlaybackUserInterfacePlaybackPosition(@ByVal CMTime position, @ByVal CMTime hostTime, float rate) { super((SkipInit) null); initObject(init(position, hostTime, rate)); }
     @Method(selector = "initWithCoder:")
-    public AVInterstitialTimeRange(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public AVPlaybackUserInterfacePlaybackPosition(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "timeRange")
-    public native @ByVal CMTimeRange getTimeRange();
+    @Property(selector = "position")
+    public native @ByVal CMTime getPosition();
+    @Property(selector = "hostTime")
+    public native @ByVal CMTime getHostTime();
+    @Property(selector = "rate")
+    public native float getRate();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "initWithPosition:hostTime:rate:")
+    protected native @Pointer long init(@ByVal CMTime position, @ByVal CMTime hostTime, float rate);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")
