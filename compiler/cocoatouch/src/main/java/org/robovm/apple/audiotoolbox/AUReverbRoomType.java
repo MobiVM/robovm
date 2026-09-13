@@ -53,7 +53,11 @@ public enum /*<name>*/AUReverbRoomType/*</name>*/ implements ValuedEnum {
     LargeRoom2(9L),
     MediumHall2(10L),
     MediumHall3(11L),
-    LargeHall2(12L);
+    LargeHall2(12L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    OutdoorGeneral(24L);
     /*</values>*/
 
     /*<bind>*/
