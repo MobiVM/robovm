@@ -50,6 +50,22 @@ import org.robovm.apple.security.*;
     
     /*</properties>*/
     /*<methods>*/
+    @Library("Matter")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MTRCommissioningSessionTransportType", optional=true)
+        public static native String CommissioningSessionTransportType();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MTRUnpoweredInitialPhase", optional=true)
+        public static native String UnpoweredInitialPhase();
+    }
+    
     @Method(selector = "commissioning:readCommissioneeInfo:")
     void readCommissioneeInfo(MTRCommissioningOperation commissioning, MTRCommissioneeInfo info);
     @Method(selector = "commissioning:completedDeviceAttestation:error:completion:")
@@ -66,6 +82,11 @@ import org.robovm.apple.security.*;
     void failed(MTRCommissioningOperation commissioning, NSError error, MTRMetrics metrics);
     @Method(selector = "commissioning:succeededForNodeID:metrics:")
     void succeededForNodeID(MTRCommissioningOperation commissioning, NSNumber nodeID, MTRMetrics metrics);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "commissioning:succeededForNodeID:metrics:context:")
+    void succeededForNodeID(MTRCommissioningOperation commissioning, NSNumber nodeID, MTRMetrics metrics, NSDictionary<NSString, ?> context);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
