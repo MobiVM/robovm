@@ -35,33 +35,34 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/PKCanvasViewDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol, UIScrollViewDelegate/*</implements>*/ {
+/*<annotations>*/@Library("PencilKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PKConvertedBezierPoint/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class PKConvertedBezierPointPtr extends Ptr<PKConvertedBezierPoint, PKConvertedBezierPointPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PKConvertedBezierPoint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    protected PKConvertedBezierPoint() {}
+    protected PKConvertedBezierPoint(Handle h, long handle) { super(h, handle); }
+    protected PKConvertedBezierPoint(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "index")
+    public native @MachineSizedSInt long getIndex();
+    @Property(selector = "pointCount")
+    public native @MachineSizedSInt long getPointCount();
+    @Property(selector = "location")
+    public native @ByVal CGPoint getLocation();
+    @Property(selector = "bezierSegmentIndex")
+    public native @MachineSizedSInt long getBezierSegmentIndex();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "canvasViewDrawingDidChange:")
-    void canvasViewDrawingDidChange(PKCanvasView canvasView);
-    @Method(selector = "canvasViewDidFinishRendering:")
-    void canvasViewDidFinishRendering(PKCanvasView canvasView);
-    @Method(selector = "canvasViewDidBeginUsingTool:")
-    void canvasViewDidBeginUsingTool(PKCanvasView canvasView);
-    @Method(selector = "canvasViewDidEndUsingTool:")
-    void canvasViewDidEndUsingTool(PKCanvasView canvasView);
-    @Method(selector = "canvasViewSelectionDidChange:")
-    void canvasViewSelectionDidChange(PKCanvasView canvasView);
+    
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

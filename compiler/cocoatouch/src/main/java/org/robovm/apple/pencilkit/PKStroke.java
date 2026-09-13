@@ -57,10 +57,25 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:")
     public PKStroke(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed) { super((SkipInit) null); initObject(init(ink, strokePath, transform, mask, randomSeed)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:strokeID:renderGroupID:renderState:")
+    public PKStroke(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed, NSUUID strokeID, NSUUID renderGroupID, PKStrokeRenderState renderState) { super((SkipInit) null); initObject(init(ink, strokePath, transform, mask, randomSeed, strokeID, renderGroupID, renderState)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "requiredContentVersion")
+    public native PKContentVersion getRequiredContentVersion();
     @Property(selector = "ink")
     public native PKInk getInk();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "strokeID")
+    public native NSUUID getStrokeID();
     @Property(selector = "transform")
     public native @ByVal CGAffineTransform getTransform();
     @Property(selector = "path")
@@ -77,10 +92,15 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "randomSeed")
     public native int getRandomSeed();
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 27.0 and later.
      */
-    @Property(selector = "requiredContentVersion")
-    public native PKContentVersion getRequiredContentVersion();
+    @Property(selector = "renderGroupID")
+    public native NSUUID getRenderGroupID();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "renderState")
+    public native PKStrokeRenderState getRenderState();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -91,5 +111,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:")
     protected native @Pointer long init(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:strokeID:renderGroupID:renderState:")
+    protected native @Pointer long init(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed, NSUUID strokeID, NSUUID renderGroupID, PKStrokeRenderState renderState);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "substrokeWithRange:")
+    public native PKStroke substroke(PKFloatRange range);
     /*</methods>*/
 }
