@@ -60,6 +60,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:")
     void didReceiveIncomingPushWithPayload(PKPushRegistry registry, PKPushPayload payload, String type, @Block Runnable completion);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "pushRegistry:didReceiveIncomingVoIPPushWithPayload:metadata:withCompletionHandler:")
+    void didReceiveIncomingVoIPPush(PKPushRegistry registry, PKPushPayload payload, PKVoIPPushMetadata metadata, @Block Runnable completion);
     @Method(selector = "pushRegistry:didInvalidatePushTokenForType:")
     void didInvalidatePushToken(PKPushRegistry registry, String type);
     /*</methods>*/

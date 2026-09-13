@@ -66,6 +66,7 @@ classes:
             name: errorCode
             type: NSErrorCode
     CTCellularPlanProperties: {} #since 26.0
+    CTCellularPlanLifecycleProperties: {} #since 26.4
 protocols:
     CTSubscriberDelegate: {}
     CTTelephonyNetworkInfoDelegate: {} #since 13.0
