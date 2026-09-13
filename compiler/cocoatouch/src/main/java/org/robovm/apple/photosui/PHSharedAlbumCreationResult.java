@@ -35,53 +35,33 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 17.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("PhotosUI") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHPickerUpdateConfiguration/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/PHSharedAlbumCreationResult/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class PHPickerUpdateConfigurationPtr extends Ptr<PHPickerUpdateConfiguration, PHPickerUpdateConfigurationPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(PHPickerUpdateConfiguration.class); }/*</bind>*/
+    /*<ptr>*/public static class PHSharedAlbumCreationResultPtr extends Ptr<PHSharedAlbumCreationResult, PHSharedAlbumCreationResultPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(PHSharedAlbumCreationResult.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public PHPickerUpdateConfiguration() {}
-    protected PHPickerUpdateConfiguration(Handle h, long handle) { super(h, handle); }
-    protected PHPickerUpdateConfiguration(SkipInit skipInit) { super(skipInit); }
+    protected PHSharedAlbumCreationResult() {}
+    protected PHSharedAlbumCreationResult(Handle h, long handle) { super(h, handle); }
+    protected PHSharedAlbumCreationResult(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 17.0 and later.
+     * @since Available in iOS 27.0 and later.
      */
-    @Property(selector = "selectionLimit")
-    public native @MachineSizedSInt long getSelectionLimit();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "setSelectionLimit:")
-    public native void setSelectionLimit(@MachineSizedSInt long v);
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "edgesWithoutContentMargins")
-    public native NSDirectionalRectEdge getEdgesWithoutContentMargins();
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    @Property(selector = "setEdgesWithoutContentMargins:")
-    public native void setEdgesWithoutContentMargins(NSDirectionalRectEdge v);
+    @Property(selector = "albumIdentifier")
+    public native String getAlbumIdentifier();
     /**
      * @since Available in iOS 27.0 and later.
      */
-    @Property(selector = "searchText")
-    public native PHPickerSearchText getSearchText();
-    /**
-     * @since Available in iOS 27.0 and later.
-     */
-    @Property(selector = "setSearchText:")
-    public native void setSearchText(PHPickerSearchText v);
+    @Property(selector = "albumURL")
+    public native NSURL getAlbumURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
