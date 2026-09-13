@@ -59,6 +59,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "transports")
     public native NSArray<NSString> getTransports();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFRegistrationOutput getPrf();
     @Property(selector = "rawAttestationObject")
     public native NSData getRawAttestationObject();
     @Property(selector = "rawClientDataJSON")
