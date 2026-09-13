@@ -2,6 +2,7 @@ package: org.robovm.apple.arkit
 include: [foundation, avfoundation, coregraphics, corelocation, uikit, scenekit, corevideo, spritekit, coremedia, dispatch, metal, imageio, coreanimation]
 library: ARKit
 framework: ARKit
+internal_frameworks: [ARKitCore, ARKitFoundation, ARKitUI]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/ARKit.framework/Headers/ARKit.h
@@ -57,10 +58,16 @@ classes:
         methods:
             '-projectPoint:orientation:viewportSize:':
                 trim_after_first_colon: true
+            '-projectPoint:viewRotationAngle:viewportSize:':
+                name: projectPoint
             '-projectionMatrixForOrientation:viewportSize:zNear:zFar:':
+                name: getProjectionMatrix
+            '-projectionMatrixForViewRotationAngle:viewportSize:zNear:zFar:':
                 name: getProjectionMatrix
             '-unprojectPoint:ontoPlaneWithTransform:orientation:viewportSize:':
                 trim_after_first_colon: true
+            '-unprojectPoint:ontoPlaneWithTransform:viewRotationAngle:viewportSize:':
+                name: unprojectPoint
     ARConfiguration: {} #since 11.0
     ARDirectionalLightEstimate: {} #since 11.0
     ARFaceAnchor: {} #since 11.0
@@ -79,6 +86,8 @@ classes:
             '-hitTest:types:':
                 trim_after_first_colon: true
             '-displayTransformForOrientation:viewportSize:':
+                name: displayTransform
+            '-displayTransformForViewRotationAngle:viewportSize:':
                 name: displayTransform
             '-raycastQueryFromPoint:allowingTarget:alignment:':
                 name: raycastQueryFromPoint
@@ -294,6 +303,8 @@ protocols:
                 name: didOutputCollaborationData
             '-session:didChangeGeoTrackingStatus:':
                 name: didChangeGeoTrackingStatus
+            '-session:didChangeViewRotationAngle:':
+                name: didChangeViewRotationAngle
     ARTrackable: {} #since 11.0
     ARAnchorCopying:  #since 12.0
         skip_adapter: true

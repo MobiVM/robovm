@@ -127,6 +127,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "smoothedSceneDepth")
     public native ARDepthData getSmoothedSceneDepth();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "metadataObjects")
+    public native NSArray<AVMetadataObject> getMetadataObjects();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -142,7 +147,17 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "raycastQueryFromPoint:allowingTarget:alignment:")
     public native ARRaycastQuery raycastQueryFromPoint(@ByVal CGPoint point, ARRaycastTarget target, ARRaycastTargetAlignment alignment);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use displayTransformForViewRotationAngle:viewportSize:
+     */
+    @Deprecated
     @Method(selector = "displayTransformForOrientation:viewportSize:")
     public native @ByVal CGAffineTransform displayTransform(UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "displayTransformForViewRotationAngle:viewportSize:")
+    public native @ByVal CGAffineTransform displayTransform(@MachineSizedFloat double viewRotationAngle, @ByVal CGSize viewportSize);
     /*</methods>*/
 }
