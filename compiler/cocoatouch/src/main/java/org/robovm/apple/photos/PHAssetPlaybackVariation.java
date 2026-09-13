@@ -39,29 +39,17 @@ import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 11.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/PHCollectionListSubtype/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/PHAssetPlaybackVariation/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
-     */
-    @Deprecated
-    MomentListCluster(1L),
-    /**
-     * @deprecated Deprecated in iOS 13.0. Will be removed in a future release
-     */
-    @Deprecated
-    MomentListYear(2L),
-    RegularFolder(100L),
-    /**
-     * @since Available in iOS 27.0 and later.
-     */
-    RootFolder(101L),
-    SmartFolderEvents(200L),
-    SmartFolderFaces(201L),
-    Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
+    None(0L),
+    Autoloop(1L),
+    Mirror(2L),
+    LongExposure(3L);
     /*</values>*/
 
     /*<bind>*/
@@ -71,15 +59,15 @@ public enum /*<name>*/PHCollectionListSubtype/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/PHCollectionListSubtype/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/PHAssetPlaybackVariation/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/PHCollectionListSubtype/*</name>*/ valueOf(long n) {
-        for (/*<name>*/PHCollectionListSubtype/*</name>*/ v : values()) {
+    public static /*<name>*/PHAssetPlaybackVariation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/PHAssetPlaybackVariation/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/PHCollectionListSubtype/*</name>*/.class.getName());
+            + /*<name>*/PHAssetPlaybackVariation/*</name>*/.class.getName());
     }
 }

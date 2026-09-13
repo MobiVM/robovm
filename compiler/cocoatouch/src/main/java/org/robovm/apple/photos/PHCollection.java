@@ -61,6 +61,11 @@ import org.robovm.apple.uniformtypeid.*;
     public native boolean canContainCollections();
     @Property(selector = "localizedTitle")
     public native String getLocalizedTitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "modificationDate")
+    public native NSDate getModificationDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

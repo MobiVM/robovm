@@ -61,7 +61,16 @@ import org.robovm.apple.uniformtypeid.*;
     public PHAssetCreationRequest(PHAsset asset) { super((Handle) null, create(asset)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "originalResourceChoice")
+    public native PHOriginalResourceChoice getOriginalResourceChoice();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOriginalResourceChoice:")
+    public native void setOriginalResourceChoice(PHOriginalResourceChoice v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
