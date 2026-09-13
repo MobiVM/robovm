@@ -66,6 +66,11 @@ import org.robovm.apple.coreanimation.*;
     public native String getDeviceAccountNumberSuffix();
     @Property(selector = "passActivationState")
     public native PKSecureElementPassActivationState getPassActivationState();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isProvisioningAvailable")
+    public native boolean isProvisioningAvailable();
     @Property(selector = "devicePassIdentifier")
     public native String getDevicePassIdentifier();
     @Property(selector = "pairedTerminalIdentifier")

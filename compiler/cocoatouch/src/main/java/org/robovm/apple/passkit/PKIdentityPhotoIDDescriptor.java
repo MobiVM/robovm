@@ -56,6 +56,16 @@ import org.robovm.apple.coreanimation.*;
     /*<properties>*/
     @Property(selector = "elements")
     public native NSArray<PKIdentityElement> getElements();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "issuerIdentifiers")
+    public native NSArray<NSData> getIssuerIdentifiers();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setIssuerIdentifiers:")
+    public native void setIssuerIdentifiers(NSArray<NSData> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

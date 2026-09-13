@@ -55,6 +55,25 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithPasses:")
     public PKAddPassesViewController(NSArray<PKPass> passes) { super((SkipInit) null); initObject(init(passes)); }
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesData:")
+    public static PKAddPassesViewController createWithPassesData(NSArray<NSData> passesData) {
+       PKAddPassesViewController res = new PKAddPassesViewController((SkipInit) null);
+       res.initObject(res.initWithPassesData(passesData));
+       return res;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesArchiveAtFileURL:")
+    public PKAddPassesViewController(NSURL passesArchiveFileURL) { super((SkipInit) null); initObject(init(passesArchiveFileURL)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesArchiveData:")
+    public PKAddPassesViewController(NSData passesArchiveData) { super((SkipInit) null); initObject(init(passesArchiveData)); }
+    /**
      * @since Available in iOS 16.4 and later.
      */
     @Method(selector = "initWithIssuerData:signature:error:")
@@ -76,6 +95,21 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(PKPass pass);
     @Method(selector = "initWithPasses:")
     protected native @Pointer long init(NSArray<PKPass> passes);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesData:")
+    protected native @Pointer long initWithPassesData(NSArray<NSData> passesData);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesArchiveAtFileURL:")
+    protected native @Pointer long init(NSURL passesArchiveFileURL);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithPassesArchiveData:")
+    protected native @Pointer long init(NSData passesArchiveData);
     /**
      * @since Available in iOS 16.4 and later.
      */

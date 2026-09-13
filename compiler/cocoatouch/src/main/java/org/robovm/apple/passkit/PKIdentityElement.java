@@ -59,6 +59,11 @@ import org.robovm.apple.coreanimation.*;
     public static native PKIdentityElement getGivenNameElement();
     @Property(selector = "familyNameElement")
     public static native PKIdentityElement getFamilyNameElement();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "nameElement")
+    public static native PKIdentityElement getNameElement();
     @Property(selector = "portraitElement")
     public static native PKIdentityElement getPortraitElement();
     @Property(selector = "addressElement")
@@ -117,6 +122,26 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "sexElement")
     public static native PKIdentityElement getSexElement();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "signatureUsualMarkElement")
+    public static native PKIdentityElement getSignatureUsualMarkElement();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "placeOfBirthElement")
+    public static native PKIdentityElement getPlaceOfBirthElement();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "nationalityElement")
+    public static native PKIdentityElement getNationalityElement();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "dhsTemporaryLawfulStatusElement")
+    public static native PKIdentityElement getDhsTemporaryLawfulStatusElement();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
