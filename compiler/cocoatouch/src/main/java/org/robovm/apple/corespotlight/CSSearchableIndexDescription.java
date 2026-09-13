@@ -33,37 +33,27 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 16.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/CSSearchQueryContext/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CSSearchableIndexDescription/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
-    /*<ptr>*/public static class CSSearchQueryContextPtr extends Ptr<CSSearchQueryContext, CSSearchQueryContextPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(CSSearchQueryContext.class); }/*</bind>*/
+    /*<ptr>*/public static class CSSearchableIndexDescriptionPtr extends Ptr<CSSearchableIndexDescription, CSSearchableIndexDescriptionPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CSSearchableIndexDescription.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CSSearchQueryContext() {}
-    protected CSSearchQueryContext(Handle h, long handle) { super(h, handle); }
-    protected CSSearchQueryContext(SkipInit skipInit) { super(skipInit); }
+    public CSSearchableIndexDescription() {}
+    protected CSSearchableIndexDescription(Handle h, long handle) { super(h, handle); }
+    protected CSSearchableIndexDescription(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
-    public CSSearchQueryContext(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CSSearchableIndexDescription(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "fetchAttributes")
-    public native NSArray<NSString> getFetchAttributes();
-    @Property(selector = "setFetchAttributes:")
-    public native void setFetchAttributes(NSArray<NSString> v);
-    @Property(selector = "filterQueries")
-    public native NSArray<NSString> getFilterQueries();
-    @Property(selector = "setFilterQueries:")
-    public native void setFilterQueries(NSArray<NSString> v);
-    @Property(selector = "keyboardLanguage")
-    public native String getKeyboardLanguage();
-    @Property(selector = "setKeyboardLanguage:")
-    public native void setKeyboardLanguage(String v);
+    @Property(selector = "protectionClass")
+    public native NSString getProtectionClass();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
