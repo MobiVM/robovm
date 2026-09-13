@@ -167,6 +167,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData", optional=true)
         public static native CFString SetupData();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataFormatDescriptionMetadataSpecificationKey_HumanReadableString", optional=true)
+        public static native CFString HumanReadableString();
     }
     /*</keys>*/
 }

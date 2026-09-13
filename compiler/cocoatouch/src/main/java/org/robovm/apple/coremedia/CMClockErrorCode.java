@@ -45,7 +45,8 @@ public enum /*<name>*/CMClockErrorCode/*</name>*/ implements ValuedEnum {
     MissingRequiredParameter(-12745L),
     InvalidParameter(-12746L),
     AllocationFailed(-12747L),
-    UnsupportedOperation(-12756L);
+    UnsupportedOperation(-12756L),
+    PreferredStartTimeNotAvailable(-12758L);
     /*</values>*/
 
     /*<bind>*/

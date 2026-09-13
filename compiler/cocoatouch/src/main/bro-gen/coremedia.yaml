@@ -24,6 +24,7 @@ private_typedefs:
 enums:
     CMAttachmentMode: { first: kCMAttachmentMode_ShouldNotPropagate, prefix: kCMAttachmentMode_}
     CMClockErrorCode: { first: kCMClockError_MissingRequiredParameter}
+    CMClockErrorCode2: { first: kCMClockError_PreferredStartTimeNotAvailable, prefix: kCMClockError_, merge_with: CMClockErrorCode }
     CMTimebaseErrorCode: { first: kCMTimebaseError_MissingRequiredParameter}
     CMSyncErrorCode: { first: kCMSyncError_MissingRequiredParameter}
     CMBlockBufferErrorCode: { first: kCMBlockBufferNoErr, suffix: Err }
