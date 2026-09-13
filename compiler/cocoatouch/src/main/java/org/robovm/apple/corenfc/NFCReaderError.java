@@ -132,7 +132,19 @@ public enum /*<name>*/NFCReaderError/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    NdefReaderSessionErrorZeroLengthMessage(403L);
+    NdefReaderSessionErrorZeroLengthMessage(403L),
+    /**
+     * @since Available in iOS 26.6 and later.
+     */
+    PaymentTagReaderSessionErrorLocationAuthorizationDenied(500L),
+    /**
+     * @since Available in iOS 26.6 and later.
+     */
+    PaymentTagReaderSessionErrorLocationServiceRestricted(501L),
+    /**
+     * @since Available in iOS 26.6 and later.
+     */
+    PaymentTagReaderSessionErrorOnDeviceLocationUnavailable(502L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NFCReaderError.class); }/*</bind>*/
