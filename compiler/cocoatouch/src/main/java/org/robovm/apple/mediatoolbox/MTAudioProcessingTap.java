@@ -172,6 +172,11 @@ import org.robovm.apple.audiotoolbox.*;
     public static native @MachineSizedUInt long getClassTypeID();
     @Bridge(symbol="MTAudioProcessingTapCreate", optional=true)
     protected static native OSStatus create(CFAllocator allocator, MTAudioProcessingTapCallbacksStruct callbacks, MTAudioProcessingTapCreationFlags flags, MTAudioProcessingTap.MTAudioProcessingTapPtr tapOut);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="MTAudioProcessingTapCreateWithPreferredFormat", optional=true)
+    public static native OSStatus createWithPreferredFormat(CFAllocator allocator, MTAudioProcessingTapCallbacksStruct callbacks, MTAudioProcessingTapCreationFlags flags, CMAudioFormatDescription preferredFormat, MTAudioProcessingTap.MTAudioProcessingTapPtr tapOut);
     @Bridge(symbol="MTAudioProcessingTapGetStorage", optional=true)
     protected native @Pointer long getStorage();
     @Bridge(symbol="MTAudioProcessingTapGetSourceAudio", optional=true)
