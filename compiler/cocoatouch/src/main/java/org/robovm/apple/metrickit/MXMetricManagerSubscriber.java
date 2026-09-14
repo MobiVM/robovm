@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use MetricManager instead.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MXMetricManagerSubscriber/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -48,11 +49,18 @@ import org.robovm.apple.foundation.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricManager.metricReports instead.
+     */
+    @Deprecated
     @Method(selector = "didReceiveMetricPayloads:")
     void didReceiveMetricPayloads(NSArray<MXMetricPayload> payloads);
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Use MetricManager.diagnosticReports instead.
      */
+    @Deprecated
     @Method(selector = "didReceiveDiagnosticPayloads:")
     void didReceiveDiagnosticPayloads(NSArray<MXDiagnosticPayload> payloads);
     /*</methods>*/

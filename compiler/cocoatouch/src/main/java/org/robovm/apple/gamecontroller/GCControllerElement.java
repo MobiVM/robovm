@@ -57,21 +57,6 @@ import org.robovm.apple.corehaptic.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Property(selector = "isBoundToSystemGesture")
-    public native boolean isBoundToSystemGesture();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "preferredSystemGestureState")
-    public native GCSystemGestureState getPreferredSystemGestureState();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Property(selector = "setPreferredSystemGestureState:")
-    public native void setPreferredSystemGestureState(GCSystemGestureState v);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     @Property(selector = "sfSymbolsName")
     public native String getSfSymbolsName();
     /**
@@ -114,6 +99,21 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "aliases")
     public native NSSet<NSString> getAliases();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "isBoundToSystemGesture")
+    public native boolean isBoundToSystemGesture();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "preferredSystemGestureState")
+    public native GCSystemGestureState getPreferredSystemGestureState();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "setPreferredSystemGestureState:")
+    public native void setPreferredSystemGestureState(GCSystemGestureState v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

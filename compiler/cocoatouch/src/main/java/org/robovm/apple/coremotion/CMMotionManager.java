@@ -83,6 +83,16 @@ import org.robovm.apple.foundation.*;
     public native void setDeviceMotionUpdateInterval(double v);
     @Property(selector = "attitudeReferenceFrame")
     public native CMAttitudeReferenceFrame getAttitudeReferenceFrame();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "deviceMotionBody")
+    public native CMBodyIdentifiable getDeviceMotionBody();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setDeviceMotionBody:")
+    public native void setDeviceMotionBody(CMBodyIdentifiable v);
     @Property(selector = "isDeviceMotionAvailable")
     public native boolean isDeviceMotionAvailable();
     @Property(selector = "isDeviceMotionActive")

@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use Histogram instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXHistogram<UnitType extends NSUnit>/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {

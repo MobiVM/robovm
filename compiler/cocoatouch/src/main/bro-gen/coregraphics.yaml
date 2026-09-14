@@ -114,6 +114,8 @@ classes:
     CGPDFDictionary: {}
     CGPDFDocument:
         extends: CFType
+    CGPDFMarkedContentItem:
+        extends: CFType
     CGPDFObject: {}
     CGPDFOperatorTable: {}
     CGPDFPage:
@@ -121,6 +123,8 @@ classes:
     CGPDFScanner: {}
     CGPDFStream: {}
     CGPDFString: {}
+    CGPDFStructureElement:
+        extends: CFType
     CGShading:
         extends: CFType
     ColorSyncProfile:
@@ -877,6 +881,23 @@ functions:
         return_marshaler: NSObject.NoRetainMarshaler
     CGPDFString(.*):
         class: CGPDFString
+        name: '#{g[0]}'
+
+    # CGPDFMarkedContentItem
+    CGPDFMarkedContentItem(Retain|Release):
+        exclude: true
+
+    # CGPDFStructureElement
+    CGPDFStructureElement(Retain|Release):
+        exclude: true
+    CGPDFStructureElement(Create).*:
+        class: CGPDFStructureElement
+        name: '#{g[0]}'
+        static: true
+        return_type: CGPDFStructureElement
+        return_marshaler: CFType.NoRetainMarshaler
+    CGPDFStructureElement(.*):
+        class: CGPDFStructureElement
         name: '#{g[0]}'
 
     # CGPoint

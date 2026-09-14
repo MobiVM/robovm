@@ -157,6 +157,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "sparseTextureTier")
     public native MTLTextureSparseTier getSparseTextureTier();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "minLOD")
+    public native float getMinLOD();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")

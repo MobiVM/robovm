@@ -36,7 +36,7 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 11.0. No longer supported, use RPBroadcastSampleHandler instead.
+ * @deprecated Deprecated in iOS 11.0. No longer supported
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/

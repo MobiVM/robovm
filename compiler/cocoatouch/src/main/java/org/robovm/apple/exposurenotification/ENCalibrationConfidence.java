@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsUnsignedByteMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ENCalibrationConfidence/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Lowest(0L),

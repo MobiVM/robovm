@@ -66,5 +66,15 @@ import org.robovm.apple.symbols.*;
     public boolean shouldBreakLineBeforeLocation(NSTextLayoutManager textLayoutManager, NSTextLocation location, boolean hyphenating) { return false; }
     @NotImplemented("textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:")
     public NSDictionary<NSString, ?> renderingAttributesForLink(NSTextLayoutManager textLayoutManager, NSObject link, NSTextLocation location, NSDictionary<NSString, ?> renderingAttributes) { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:")
+    public void cacheTextAttachmentViewProvider(NSTextLayoutManager textLayoutManager, NSTextAttachmentViewProvider viewProvider, NSTextAttachment textAttachment) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:")
+    public NSTextAttachmentViewProvider retrieveCachedTextAttachmentViewProvider(NSTextLayoutManager textLayoutManager, NSTextAttachment attachment) { return null; }
     /*</methods>*/
 }

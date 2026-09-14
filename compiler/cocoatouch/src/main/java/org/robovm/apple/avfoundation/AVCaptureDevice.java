@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -148,6 +149,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "minSupportedExternalSyncFrameDuration")
     public native @ByVal CMTime getMinSupportedExternalSyncFrameDuration();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isAdjustingSignalCompensationDelayWhileRunningSupported")
+    public native boolean isAdjustingSignalCompensationDelayWhileRunningSupported();
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Property(selector = "isAutoVideoFrameRateEnabled")
@@ -199,6 +205,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "virtualDeviceSwitchOverVideoZoomFactors")
     public native NSArray<NSNumber> getVirtualDeviceSwitchOverVideoZoomFactors();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported")
+    public native boolean isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -417,6 +428,31 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CMTime getExposureDuration();
     @Property(selector = "ISO")
     public native float getISO();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "autoExposureLensApertureRateLimit")
+    public native float getAutoExposureLensApertureRateLimit();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAutoExposureLensApertureRateLimit:")
+    public native void setAutoExposureLensApertureRateLimit(float v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsLensAperture")
+    public native boolean automaticallyAdjustsLensAperture();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsExposureDuration")
+    public native boolean automaticallyAdjustsExposureDuration();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "automaticallyAdjustsISO")
+    public native boolean automaticallyAdjustsISO();
     @Property(selector = "exposureTargetOffset")
     public native float getExposureTargetOffset();
     @Property(selector = "exposureTargetBias")
@@ -425,6 +461,36 @@ import org.robovm.apple.uikit.*;
     public native float getMinExposureTargetBias();
     @Property(selector = "maxExposureTargetBias")
     public native float getMaxExposureTargetBias();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "activeExposureSignals")
+    public native NSSet<NSString> getActiveExposureSignals();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "enabledExposureSignals")
+    public native NSSet<NSString> getEnabledExposureSignals();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setEnabledExposureSignals:")
+    public native void setEnabledExposureSignals(NSSet<NSString> v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "supportedExposureSignals")
+    public native NSSet<NSString> getSupportedExposureSignals();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "automaticallyEnablesExposureSignals")
+    public native boolean automaticallyEnablesExposureSignals();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAutomaticallyEnablesExposureSignals:")
+    public native void setAutomaticallyEnablesExposureSignals(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -664,6 +730,31 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "nominalFocalLengthIn35mmFilm")
     public native float getNominalFocalLengthIn35mmFilm();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isContinuousAutoFocusTrackingEnabled")
+    public native boolean isContinuousAutoFocusTrackingEnabled();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setContinuousAutoFocusTrackingEnabled:")
+    public native void setContinuousAutoFocusTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "continuousAutoFocusTrackingLensPositionBias")
+    public native float getContinuousAutoFocusTrackingLensPositionBias();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setContinuousAutoFocusTrackingLensPositionBias:")
+    public native void setContinuousAutoFocusTrackingLensPositionBias(float v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isContinuousAutoFocusTrackingSubjectAcquired")
+    public native boolean isContinuousAutoFocusTrackingSubjectAcquired();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "isStudioLightEnabled")
@@ -707,14 +798,34 @@ import org.robovm.apple.uikit.*;
     public static native NSString WasDisconnectedNotification();
     @GlobalValue(symbol="AVCaptureDeviceSubjectAreaDidChangeNotification", optional=true)
     public static native NSString SubjectAreaDidChangeNotification();
-    @GlobalValue(symbol="AVCaptureMaxAvailableTorchLevel", optional=true)
-    public static native float getMaxAvailableTorchLevel();
-    @GlobalValue(symbol="AVCaptureLensPositionCurrent", optional=true)
-    public static native float getLensPositionCurrent();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureLensApertureCurrent", optional=true)
+    public static native float getLensApertureCurrent();
     @GlobalValue(symbol="AVCaptureExposureDurationCurrent", optional=true)
     public static native @ByVal CMTime getExposureDurationCurrent();
     @GlobalValue(symbol="AVCaptureISOCurrent", optional=true)
     public static native float getISOCurrent();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureLensApertureAuto", optional=true)
+    public static native float getLensApertureAuto();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureExposureDurationAuto", optional=true)
+    public static native @ByVal CMTime getExposureDurationAuto();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureISOAuto", optional=true)
+    public static native float getISOAuto();
+    @GlobalValue(symbol="AVCaptureMaxAvailableTorchLevel", optional=true)
+    public static native float getMaxAvailableTorchLevel();
+    @GlobalValue(symbol="AVCaptureLensPositionCurrent", optional=true)
+    public static native float getLensPositionCurrent();
     @GlobalValue(symbol="AVCaptureExposureTargetBiasCurrent", optional=true)
     public static native float getExposureTargetBiasCurrent();
     @GlobalValue(symbol="AVCaptureWhiteBalanceGainsCurrent", optional=true)
@@ -755,6 +866,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "defaultDeviceWithDeviceType:mediaType:position:")
     public static native AVCaptureDevice getDefaultDevice(String deviceType, AVMediaType mediaType, AVCaptureDevicePosition position);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setPrimaryConstituentDeviceSwitchingBehaviorLockedWithDevice:")
+    public native void setPrimaryConstituentDeviceSwitchingBehaviorLocked(AVCaptureDevice device);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -809,6 +925,11 @@ import org.robovm.apple.uikit.*;
     public native @ByVal CGRect defaultRectForExposurePointOfInterest(@ByVal CGPoint pointOfInterest);
     @Method(selector = "setExposureModeCustomWithDuration:ISO:completionHandler:")
     public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setExposureModeCustomWithLensAperture:duration:ISO:completionHandler:")
+    public native void setExposureModeCustom(float lensAperture, @ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setExposureTargetBias:completionHandler:")
     public native void setExposureTargetBias(float bias, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isWhiteBalanceModeSupported:")

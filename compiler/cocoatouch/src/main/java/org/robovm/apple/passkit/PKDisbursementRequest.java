@@ -96,6 +96,26 @@ import org.robovm.apple.coreanimation.*;
     public native NSData getApplicationData();
     @Property(selector = "setApplicationData:")
     public native void setApplicationData(NSData v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "isDelegatedRequest")
+    public native boolean isDelegatedRequest();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setIsDelegatedRequest:")
+    public native void setIsDelegatedRequest(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "unsupportedPrimaryAccountIdentifiers")
+    public native NSArray<NSString> getUnsupportedPrimaryAccountIdentifiers();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setUnsupportedPrimaryAccountIdentifiers:")
+    public native void setUnsupportedPrimaryAccountIdentifiers(NSArray<NSString> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

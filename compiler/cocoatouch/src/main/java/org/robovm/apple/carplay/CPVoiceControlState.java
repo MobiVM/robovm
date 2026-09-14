@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     protected CPVoiceControlState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:titleVariants:image:repeats:")
     public CPVoiceControlState(String identifier, NSArray<NSString> titleVariants, UIImage image, boolean repeats) { super((SkipInit) null); initObject(init(identifier, titleVariants, image, repeats)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:titleVariants:image:backgroundImage:repeats:")
+    public CPVoiceControlState(String identifier, NSArray<NSString> titleVariants, UIImage image, UIImage backgroundImage, boolean repeats) { super((SkipInit) null); initObject(init(identifier, titleVariants, image, backgroundImage, repeats)); }
     @Method(selector = "initWithCoder:")
     public CPVoiceControlState(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -65,6 +71,26 @@ import org.robovm.apple.coreanimation.*;
     public native String getIdentifier();
     @Property(selector = "repeats")
     public native boolean isRepeats();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "actionButtons")
+    public native NSArray<CPButton> getActionButtons();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setActionButtons:")
+    public native void setActionButtons(NSArray<CPButton> v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "maximumActionButtonCount")
+    public static native @MachineSizedSInt long getMaximumActionButtonCount();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "backgroundImage")
+    public native UIImage getBackgroundImage();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -72,6 +98,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithIdentifier:titleVariants:image:repeats:")
     protected native @Pointer long init(String identifier, NSArray<NSString> titleVariants, UIImage image, boolean repeats);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:titleVariants:image:backgroundImage:repeats:")
+    protected native @Pointer long init(String identifier, NSArray<NSString> titleVariants, UIImage image, UIImage backgroundImage, boolean repeats);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

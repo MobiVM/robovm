@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -176,5 +177,7 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "estimateOutputFileLengthWithCompletionHandler:")
     public native void estimateOutputFileLength(@Block VoidBlock2<Long, NSError> handler);
+    @Method(selector = "configureForResumableExportWithCompletionHandler:")
+    public native void configureForResumableExport(@Block VoidBlock1<AVAssetExportSessionResumptionState> handler);
     /*</methods>*/
 }

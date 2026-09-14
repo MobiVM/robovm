@@ -216,15 +216,9 @@ import org.robovm.apple.dispatch.*;
     public native void setDictionary(NSDictionary<K, V> otherDictionary);
     @Method(selector = "setObject:forKeyedSubscript:")
     public native void setObjectForKeyedSubscript(V obj, NSObject key);
-    /**
-     * @deprecated Use dictionaryWithContentsOfURL:error:
-     */
     @Deprecated
     @Method(selector = "dictionaryWithContentsOfFile:")
     public static native NSMutableDictionary<?, ?> read(String path);
-    /**
-     * @deprecated Use dictionaryWithContentsOfURL:error:
-     */
     @Deprecated
     @Method(selector = "dictionaryWithContentsOfURL:")
     public static native NSMutableDictionary<?, ?> read(NSURL url);

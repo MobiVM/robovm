@@ -130,5 +130,17 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "disableTypeInference")
     public native void disableTypeInference();
+    /**
+     * @since Available in iOS 26.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use Layout Conversion to NHWC is enabled by default on M5 and newer
+     */
+    @Deprecated
+    @Method(selector = "convertLayoutToNHWC")
+    public native void convertLayoutToNHWC();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "disableAutoLayoutConversion")
+    public native void disableAutoLayoutConversion();
     /*</methods>*/
 }

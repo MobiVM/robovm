@@ -246,6 +246,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setMathExpressionCompletionType:")
     public native void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "grammarCheckingType")
+    public native UITextGrammarCheckingType getGrammarCheckingType();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setGrammarCheckingType:")
+    public native void setGrammarCheckingType(UITextGrammarCheckingType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")

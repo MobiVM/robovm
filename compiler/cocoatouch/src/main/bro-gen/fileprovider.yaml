@@ -21,6 +21,7 @@ enums:
     NSFileProviderDeleteItemOptions: {prefix: NSFileProviderDeleteItem} #since 16.0
     NSFileProviderTestingOperationType: {} #since 16.0
     NSFileProviderTestingOperationSide: {} #since 16.0
+    NSFileProviderNamespacePolicy: {}
 classes:
     NSFileProviderDomain: #since 11.0
         methods:

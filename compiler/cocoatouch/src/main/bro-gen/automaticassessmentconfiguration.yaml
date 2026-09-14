@@ -24,6 +24,8 @@ classes:
         methods:
             '-initWithBundleIdentifier:':
                 name: init
+            '-initWithBundleIdentifier:teamIdentifier:':
+                name: init
     AEAssessmentParticipantConfiguration:  #since 15.0
         methods:
             '+new':

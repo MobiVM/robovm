@@ -171,6 +171,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "supportsRenderDynamicLibraries")
     public native boolean supportsRenderDynamicLibraries();
     /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "supportsPlacementSparse")
+    public native boolean supportsPlacementSparse();
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "supportsRaytracing")
@@ -680,6 +685,20 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTensorWithDescriptor:error:")
     public native MTLTensor newTensor(MTLTensorDescriptor descriptor, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public MTLTensor newTensor(MTLTensorDescriptor descriptor, MTLTensorBufferAttachments attachments) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       MTLTensor result = newTensor(descriptor, attachments, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "newTensorWithDescriptor:attachments:error:")
+    public native MTLTensor newTensor(MTLTensorDescriptor descriptor, MTLTensorBufferAttachments attachments, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 26.0 and later.
      */

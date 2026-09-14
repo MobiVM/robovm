@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use MetricManager instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXMetricManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -56,18 +57,35 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "pastDiagnosticPayloads")
     public native NSArray<MXDiagnosticPayload> getPastDiagnosticPayloads();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricManager instead.
+     */
+    @Deprecated
     @Property(selector = "sharedManager")
     public static native MXMetricManager getSharedManager();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricManager instead.
+     */
+    @Deprecated
     @Method(selector = "addSubscriber:")
     public native void addSubscriber(MXMetricManagerSubscriber subscriber);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricManager instead.
+     */
+    @Deprecated
     @Method(selector = "removeSubscriber:")
     public native void removeSubscriber(MXMetricManagerSubscriber subscriber);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead.
      */
+    @Deprecated
     public static boolean extendLaunchMeasurementForTaskID(String taskID) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = extendLaunchMeasurementForTaskID(taskID, ptr);
@@ -76,12 +94,16 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead.
      */
+    @Deprecated
     @Method(selector = "extendLaunchMeasurementForTaskID:error:")
     private static native boolean extendLaunchMeasurementForTaskID(String taskID, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead.
      */
+    @Deprecated
     public static boolean finishExtendedLaunchMeasurementForTaskID(String taskID) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = finishExtendedLaunchMeasurementForTaskID(taskID, ptr);
@@ -90,7 +112,9 @@ import org.robovm.apple.foundation.*;
     }
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use MetricManager.trackLaunchTask(id:onTrackingError:_:) instead.
      */
+    @Deprecated
     @Method(selector = "finishExtendedLaunchMeasurementForTaskID:error:")
     private static native boolean finishExtendedLaunchMeasurementForTaskID(String taskID, NSError.NSErrorPtr error);
     /*</methods>*/

@@ -48,11 +48,18 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricManager.metricReports instead.
+     */
+    @Deprecated
     @NotImplemented("didReceiveMetricPayloads:")
     public void didReceiveMetricPayloads(NSArray<MXMetricPayload> payloads) {}
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Use MetricManager.diagnosticReports instead.
      */
+    @Deprecated
     @NotImplemented("didReceiveDiagnosticPayloads:")
     public void didReceiveDiagnosticPayloads(NSArray<MXDiagnosticPayload> payloads) {}
     /*</methods>*/

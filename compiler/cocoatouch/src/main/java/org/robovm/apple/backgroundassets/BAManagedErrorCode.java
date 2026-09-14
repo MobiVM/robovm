@@ -39,7 +39,8 @@ import org.robovm.apple.foundation.*;
 public enum /*<name>*/BAManagedErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     AssetPackNotFound(0L),
-    FileNotFound(1L);
+    FileNotFound(1L),
+    LocalAvailabilityFailure(2L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(BAManagedErrorCode.class); }/*</bind>*/
@@ -56,6 +57,16 @@ public enum /*<name>*/BAManagedErrorCode/*</name>*/ implements NSErrorCode {
      */
     @GlobalValue(symbol="BAAssetPackIdentifierErrorKey", optional=true)
     public static native String getPackIdentifierErrorKey();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="BASuccessesErrorKey", optional=true)
+    public static native String getSuccessesErrorKey();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="BAFailuresErrorKey", optional=true)
+    public static native String getFailuresErrorKey();
     /*</methods>*/
 
     private final long n;

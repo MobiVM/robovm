@@ -33,6 +33,8 @@ classes:
                 name: registerForTask
             '-submitTaskRequest:error:':
                 name: submitTaskRequest
+            '-submitTaskRequest:completionHandler:':
+                name: submitTaskRequest
             '-cancelTaskRequestWithIdentifier:':
                 name: cancelTaskRequest
             '-getPendingTaskRequestsWithCompletionHandler:':

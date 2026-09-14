@@ -58,7 +58,7 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.3 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -[SKStoreReviewController requestReviewInScene:].
+     * @deprecated Deprecated in iOS 14.0. Use +[SKStoreReviewController requestReviewInScene:].
      */
     @Deprecated
     @Method(selector = "requestReview")

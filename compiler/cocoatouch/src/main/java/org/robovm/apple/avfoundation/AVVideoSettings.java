@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -287,6 +288,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVVideoYCbCrMatrixKey", optional=true)
         public static native NSString YCbCrMatrix();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoLogTransferFunctionKey", optional=true)
+        public static native NSString LogTransferFunction();
         /**
          * @since Available in iOS 10.0 and later.
          */

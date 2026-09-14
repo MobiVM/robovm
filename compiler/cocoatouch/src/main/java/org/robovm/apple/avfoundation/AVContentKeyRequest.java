@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,10 +88,15 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "contentKey")
     public native AVContentKey getContentKey();
     /**
-     * @since Available in iOS 18.4 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "originatingRecipient")
     public native AVContentKeyRecipient getOriginatingRecipient();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "canBeFulfilledWithAdvisoryKey")
+    public native boolean canBeFulfilledWithAdvisoryKey();
     @Property(selector = "renewsExpiringResponseData")
     public native boolean isRenewsExpiringResponseData();
     /*</properties>*/
@@ -98,6 +104,11 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:")
     public native void makeStreamingContentKeyRequestDataForApp(NSData appIdentifier, NSData contentIdentifier, NSDictionary<NSString, ?> options, @Block VoidBlock2<NSData, NSError> handler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "makeOptionalStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:")
+    public native void makeOptionalStreamingContentKeyRequestData(NSData appIdentifier, NSData contentIdentifier, NSDictionary<NSString, ?> options, @Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "processContentKeyResponse:")
     public native void processContentKeyResponse(AVContentKeyResponse keyResponse);
     @Method(selector = "processContentKeyResponseError:")

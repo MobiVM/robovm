@@ -57,6 +57,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSURLResponse getResponse();
     @Property(selector = "canShowMIMEType")
     public native boolean canShowMIMEType();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "mainFrameNavigation")
+    public native WKNavigation getMainFrameNavigation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -109,5 +109,10 @@ import org.robovm.apple.metal.*;
     public native MPSNDArray encode(MTLCommandBuffer cmdBuf, MPSNDArray sourceArray, MPSState.MPSStatePtr outGradientState, boolean outputStateIsTemporary);
     @Method(selector = "encodeToCommandBuffer:sourceArray:resultState:destinationArray:")
     public native void encode(MTLCommandBuffer cmdBuf, MPSNDArray sourceArray, MPSState outGradientState, MPSNDArray destination);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "encodeWithMTL4CommandEncoder:sourceArray:destinationArray:")
+    public native void encode(MTL4ComputeCommandEncoder encoder, MPSNDArray sourceArray, MPSNDArray destination);
     /*</methods>*/
 }

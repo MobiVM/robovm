@@ -55,11 +55,6 @@ import org.robovm.apple.coregraphics.*;
     public void handleAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
     @NotImplemented("confirmAddTasks:completion:")
     public void confirmAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion) {}
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead
-     */
-    @Deprecated
     @NotImplemented("resolveTargetTaskListForAddTasks:withCompletion:")
     public void resolveTargetTaskListForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskListResolutionResult> completion) {}
     /**
@@ -71,11 +66,6 @@ import org.robovm.apple.coregraphics.*;
     public void resolveTaskTitlesForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<NSArray<INSpeakableStringResolutionResult>> completion) {}
     @NotImplemented("resolveSpatialEventTriggerForAddTasks:withCompletion:")
     public void resolveSpatialEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion) {}
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead
-     */
-    @Deprecated
     @NotImplemented("resolveTemporalEventTriggerForAddTasks:withCompletion:")
     public void resolveTemporalEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion) {}
     /**

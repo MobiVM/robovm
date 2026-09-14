@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastActivityViewControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -53,7 +54,9 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported
      */
+    @Deprecated
     @Method(selector = "broadcastActivityViewController:didFinishWithBroadcastController:error:")
     void didFinish(RPBroadcastActivityViewController broadcastActivityViewController, RPBroadcastController broadcastController, NSError error);
     /*</methods>*/

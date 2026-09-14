@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 27.0. INAddTasksIntentHandling is deprecated. Please adopt the Notes or Reminders AppSchema domain instead.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/INAddTasksIntentHandling/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -55,11 +56,6 @@ import org.robovm.apple.coregraphics.*;
     void handleAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion);
     @Method(selector = "confirmAddTasks:completion:")
     void confirmAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INAddTasksIntentResponse> completion);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. resolveTargetTaskListForAddTasks:withCompletion: is deprecated. Use resolveTargetTaskListForAddTasks:completion: instead
-     */
-    @Deprecated
     @Method(selector = "resolveTargetTaskListForAddTasks:withCompletion:")
     void resolveTargetTaskListForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTaskListResolutionResult> completion);
     /**
@@ -71,11 +67,6 @@ import org.robovm.apple.coregraphics.*;
     void resolveTaskTitlesForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<NSArray<INSpeakableStringResolutionResult>> completion);
     @Method(selector = "resolveSpatialEventTriggerForAddTasks:withCompletion:")
     void resolveSpatialEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion);
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForAddTasks:withCompletion: is deprecated. Use resolveTemporalEventTriggerForAddTasks:completion: instead
-     */
-    @Deprecated
     @Method(selector = "resolveTemporalEventTriggerForAddTasks:withCompletion:")
     void resolveTemporalEventTriggerForAddTasks(INAddTasksIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion);
     /**

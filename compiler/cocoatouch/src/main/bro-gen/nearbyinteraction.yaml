@@ -18,6 +18,8 @@ enums:
     NIAlgorithmConvergenceStatus: {}
     NIDLTDOACoordinatesType: {}
     NIDLTDOAMeasurementType: {}
+    NIDLTDOADiscoveryMethod: {}
+    NIMotionActivityState: {}
 categories:
 
 classes:
@@ -32,6 +34,8 @@ classes:
         methods:
             '-runWithConfiguration:':
                 name: run
+            '-updateMotionState:forObjectWithToken:':
+                name: updateMotionState
     NINearbyAccessoryConfiguration: #since 15.0
         methods:
             '-initWithData:error:':
@@ -40,12 +44,17 @@ classes:
             '-initWithAccessoryData:bluetoothPeerIdentifier:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithBluetoothChannelSoundingIdentifier:previousBluetoothIdentifier:':
+                name: init
     NIAlgorithmConvergence: {} #since 16.0
     NIDLTDOAConfiguration: #since 26.0
         methods:
             '-initWithNetworkIdentifier:':
                 name: init
+            '-initWithNetworkIdentifier:discoveryMethod:':
+                name: init
     NIDLTDOAMeasurement: {} #since 26.0
+    NIDLTDOAMeasurementFloorElevation: {} #since 27.0
 protocols:
     NISessionDelegate: #since 14.0
         methods:

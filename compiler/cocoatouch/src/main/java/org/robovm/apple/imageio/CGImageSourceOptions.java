@@ -227,12 +227,22 @@ import org.robovm.apple.coregraphics.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="kCGImageSourceTypeIdentifierHint", optional=true)
         public static native CFString TypeIdentifierHint();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourceAllowableTypes", optional=true)
+        public static native CFString AllowableTypes();
         @GlobalValue(symbol="kCGImageSourceShouldCache", optional=true)
         public static native CFString ShouldCache();
         @GlobalValue(symbol="kCGImageSourceShouldCacheImmediately", optional=true)
         public static native CFString ShouldCacheImmediately();
         @GlobalValue(symbol="kCGImageSourceShouldAllowFloat", optional=true)
         public static native CFString ShouldAllowFloat();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageSourcePrioritizeQuality", optional=true)
+        public static native CFString PrioritizeQuality();
         @GlobalValue(symbol="kCGImageSourceCreateThumbnailFromImageIfAbsent", optional=true)
         public static native CFString CreateThumbnailFromImageIfAbsent();
         @GlobalValue(symbol="kCGImageSourceCreateThumbnailFromImageAlways", optional=true)

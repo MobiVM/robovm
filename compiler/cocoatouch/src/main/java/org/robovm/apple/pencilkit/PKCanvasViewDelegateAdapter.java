@@ -59,5 +59,7 @@ import org.robovm.apple.coreanimation.*;
     public void canvasViewDidBeginUsingTool(PKCanvasView canvasView) {}
     @NotImplemented("canvasViewDidEndUsingTool:")
     public void canvasViewDidEndUsingTool(PKCanvasView canvasView) {}
+    @NotImplemented("canvasViewSelectionDidChange:")
+    public void canvasViewSelectionDidChange(PKCanvasView canvasView) {}
     /*</methods>*/
 }

@@ -69,6 +69,26 @@ import org.robovm.apple.symbols.*;
     public native boolean allowsSimultaneousRecognitionDuringLift();
     @Property(selector = "setAllowsSimultaneousRecognitionDuringLift:")
     public native void setAllowsSimultaneousRecognitionDuringLift(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsPointerDragBeforeLiftDelay")
+    public native boolean allowsPointerDragBeforeLiftDelay();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsPointerDragBeforeLiftDelay:")
+    public native void setAllowsPointerDragBeforeLiftDelay(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "liftBehavior")
+    public native UIDragLiftBehavior getLiftBehavior();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setLiftBehavior:")
+    public native void setLiftBehavior(UIDragLiftBehavior v);
     @Property(selector = "isEnabled")
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")

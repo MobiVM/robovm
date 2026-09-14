@@ -56,6 +56,11 @@ import org.robovm.apple.videotoolbox.*;
     /*<properties>*/
     @Property(selector = "isSensitive")
     public native boolean isSensitive();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "detectedTypes")
+    public native NSSet<NSString> getDetectedTypes();
     @Property(selector = "shouldInterruptVideo")
     public native boolean shouldInterruptVideo();
     @Property(selector = "shouldIndicateSensitivity")

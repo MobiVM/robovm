@@ -148,6 +148,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "contentPolicy")
     NSFileProviderContentPolicy getContentPolicy();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "namespacePolicy")
+    NSFileProviderNamespacePolicy getNamespacePolicy();
     /*</properties>*/
     /*<methods>*/
     

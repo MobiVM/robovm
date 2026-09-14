@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -148,10 +149,46 @@ import org.robovm.apple.uikit.*;
     public native void stop();
     @Method(selector = "prepareWithFrameCount:")
     public native void prepare(int frameCount);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use playAndReturnError:
+     */
+    @Deprecated
     @Method(selector = "play")
     public native void play();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean playAudio() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = playAudio(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "playAndReturnError:")
+    private native boolean playAudio(NSError.NSErrorPtr outError);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use playAtTime:error:
+     */
+    @Deprecated
     @Method(selector = "playAtTime:")
     public native void playAtTime(AVAudioTime when);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean playAudio(AVAudioTime when) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = playAudio(when, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "playAtTime:error:")
+    private native boolean playAudio(AVAudioTime when, NSError.NSErrorPtr outError);
     @Method(selector = "pause")
     public native void pause();
     @Method(selector = "nodeTimeForPlayerTime:")

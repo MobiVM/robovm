@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -142,15 +143,67 @@ import org.robovm.apple.uikit.*;
     public native void attachNode(AVAudioNode node);
     @Method(selector = "detachNode:")
     public native void detachNode(AVAudioNode node);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use connect:to:fromBus:toBus:format:error:
+     */
+    @Deprecated
     @Method(selector = "connect:to:fromBus:toBus:format:")
     public native void connect(AVAudioNode node1, AVAudioNode node2, @MachineSizedUInt long bus1, @MachineSizedUInt long bus2, AVAudioFormat format);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean connectNode(AVAudioNode node1, AVAudioNode node2, @MachineSizedUInt long bus1, @MachineSizedUInt long bus2, AVAudioFormat format) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = connectNode(node1, node2, bus1, bus2, format, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "connect:to:fromBus:toBus:format:error:")
+    private native boolean connectNode(AVAudioNode node1, AVAudioNode node2, @MachineSizedUInt long bus1, @MachineSizedUInt long bus2, AVAudioFormat format, NSError.NSErrorPtr error);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use connect:to:format:error:
+     */
+    @Deprecated
     @Method(selector = "connect:to:format:")
     public native void connect(AVAudioNode node1, AVAudioNode node2, AVAudioFormat format);
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 27.0 and later.
      */
+    public boolean connectNode(AVAudioNode node1, AVAudioNode node2, AVAudioFormat format) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = connectNode(node1, node2, format, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "connect:to:format:error:")
+    private native boolean connectNode(AVAudioNode node1, AVAudioNode node2, AVAudioFormat format, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use connect:toConnectionPoints:fromBus:format:error:
+     */
+    @Deprecated
     @Method(selector = "connect:toConnectionPoints:fromBus:format:")
     public native void connect(AVAudioNode sourceNode, NSArray<AVAudioConnectionPoint> destNodes, @MachineSizedUInt long sourceBus, AVAudioFormat format);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean connectNode(AVAudioNode sourceNode, NSArray<AVAudioConnectionPoint> destNodes, @MachineSizedUInt long sourceBus, AVAudioFormat format) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = connectNode(sourceNode, destNodes, sourceBus, format, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "connect:toConnectionPoints:fromBus:format:error:")
+    private native boolean connectNode(AVAudioNode sourceNode, NSArray<AVAudioConnectionPoint> destNodes, @MachineSizedUInt long sourceBus, AVAudioFormat format, NSError.NSErrorPtr error);
     @Method(selector = "disconnectNodeInput:bus:")
     public native void disconnectNodeInput(AVAudioNode node, @MachineSizedUInt long bus);
     @Method(selector = "disconnectNodeInput:")
@@ -227,9 +280,16 @@ import org.robovm.apple.uikit.*;
     public native void connectMIDI(AVAudioNode sourceNode, AVAudioNode destinationNode, AVAudioFormat format, @Block("(,,@MachineSizedSInt,)") Block4<AUEventSampleTime, Byte, Long, BytePtr, OSStatus> tapBlock);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use connectMIDI:to:format:eventListProvider:
      */
+    @Deprecated
     @Method(selector = "connectMIDI:to:format:eventListBlock:")
     public native void connectMIDI(AVAudioNode sourceNode, AVAudioNode destinationNode, AVAudioFormat format, @Block Block3<AUEventSampleTime, Byte, MIDIEventList, OSStatus> tapBlock);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "connectMIDI:to:format:eventListProvider:")
+    public native void connectMIDIWithEventListProvider(AVAudioNode sourceNode, AVAudioNode destinationNode, AVAudioFormat format, @Block Block3<Long, Byte, MIDIEventList, OSStatus> tapBlock);
     /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 16.0. Use connectMIDI:toNodes:format:eventListBlock:
@@ -239,9 +299,16 @@ import org.robovm.apple.uikit.*;
     public native void connectMIDI(AVAudioNode sourceNode, NSArray<AVAudioNode> destinationNodes, AVAudioFormat format, @Block("(,,@MachineSizedSInt,)") Block4<AUEventSampleTime, Byte, Long, BytePtr, OSStatus> tapBlock);
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use connectMIDI:toNodes:format:eventListProvider:
      */
+    @Deprecated
     @Method(selector = "connectMIDI:toNodes:format:eventListBlock:")
     public native void connectMIDI(AVAudioNode sourceNode, NSArray<AVAudioNode> destinationNodes, AVAudioFormat format, @Block Block3<AUEventSampleTime, Byte, MIDIEventList, OSStatus> tapBlock);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "connectMIDI:toNodes:format:eventListProvider:")
+    public native void connectMIDIWithEventListProvider(AVAudioNode sourceNode, NSArray<AVAudioNode> destinationNodes, AVAudioFormat format, @Block Block3<Long, Byte, MIDIEventList, OSStatus> tapBlock);
     /**
      * @since Available in iOS 12.0 and later.
      */

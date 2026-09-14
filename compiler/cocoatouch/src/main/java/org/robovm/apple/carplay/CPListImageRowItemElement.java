@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPListImageRowItemElement/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements CPPlayableItem/*</implements>*/ {
 
     /*<ptr>*/public static class CPListImageRowItemElementPtr extends Ptr<CPListImageRowItemElement, CPListImageRowItemElementPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CPListImageRowItemElement.class); }/*</bind>*/
@@ -63,6 +64,26 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "accessibilityLabel")
+    public native String getAccessibilityLabel();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setAccessibilityLabel:")
+    public native void setAccessibilityLabel(String v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "playbackConfiguration")
+    public native CPPlaybackConfiguration getPlaybackConfiguration();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setPlaybackConfiguration:")
+    public native void setPlaybackConfiguration(CPPlaybackConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

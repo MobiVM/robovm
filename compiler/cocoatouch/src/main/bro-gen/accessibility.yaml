@@ -192,6 +192,15 @@ functions:
     AXShowBordersEnabled:
         class: AXSettings
         name: isShowBordersEnabled
+    AXReduceHighlightingEffectsEnabled:
+        class: AXSettings
+        name: isReduceHighlightingEffectsEnabled
+    AXApplicationAccessibilityEnabled:
+        class: AXSettings
+        name: isApplicationAccessibilityEnabled
+    AXOpenSettingsFeatureIsSupported:
+        class: AXSettings
+        name: openSettingsFeatureIsSupported
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AX.*):
@@ -211,9 +220,17 @@ values:
         class: AXSettings
         static_class: Notifications
         name: '#{g[0]}'
+    AX(ReduceHighlightingEffectsEnabledDidChange|ApplicationAccessibilityEnabledDidChange)Notification:
+        class: AXSettings
+        static_class: Notifications
+        name: '#{g[0]}'
     AXFeatureOverrideSessionErrorDomain:
         class: AXFeatureOverrideSessionError
         name: getClassDomain
+    AXSpeechAttribute(.*):
+        class: AXSpeechAttributes
+        name: '#{g[0]}'
+        type: NSString
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

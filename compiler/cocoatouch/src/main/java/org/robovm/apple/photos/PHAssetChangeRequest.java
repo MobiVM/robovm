@@ -58,6 +58,26 @@ import org.robovm.apple.uniformtypeid.*;
     /*<properties>*/
     @Property(selector = "placeholderForCreatedAsset")
     public native PHObjectPlaceholder getPlaceholderForCreatedAsset();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "rating")
+    public native PHAssetRating getRating();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setRating:")
+    public native void setRating(PHAssetRating v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "caption")
+    public native String getCaption();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setCaption:")
+    public native void setCaption(String v);
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
     @Property(selector = "setCreationDate:")
@@ -83,8 +103,28 @@ import org.robovm.apple.uniformtypeid.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setLivePhotoVideoPlaybackEnabled:")
+    public native void setLivePhotoVideoPlaybackEnabled(boolean enabled);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "addKeyword:")
+    public native void addKeyword(String keyword);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "removeKeyword:")
+    public native void removeKeyword(String keyword);
     @Method(selector = "revertAssetContentToOriginal")
     public native void revertAssetContentToOriginal();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "revertAssetContentToOriginalResourceChoice:")
+    public native void revertAssetContentToOriginalResourceChoice(PHOriginalResourceChoice choice);
     @WeaklyLinked
     @Method(selector = "creationRequestForAssetFromImage:")
     public static native PHAssetChangeRequest createImageAssetCreationRequest(UIImage image);

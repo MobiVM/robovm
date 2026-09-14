@@ -71,6 +71,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "proprietaryApplicationDataCoding")
     boolean isProprietaryApplicationDataCoding();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "supportsPACE")
+    boolean supportsPACE();
     /*</properties>*/
     /*<methods>*/
     /**

@@ -79,7 +79,15 @@ public enum /*<name>*/CBErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    TooManyLEPairedDevices(16L);
+    TooManyLEPairedDevices(16L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    ChannelSoundingConfigurationFailed(19L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    ChannelSoundingProcedureFailed(20L);
     /*</values>*/
 
     /*<bind>*/

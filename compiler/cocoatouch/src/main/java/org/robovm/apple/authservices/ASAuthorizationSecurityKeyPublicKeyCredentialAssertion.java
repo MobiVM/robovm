@@ -59,6 +59,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "appID")
     public native boolean isAppID();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFAssertionOutput getPrf();
     @Property(selector = "rawAuthenticatorData")
     public native NSData getRawAuthenticatorData();
     @Property(selector = "userID")

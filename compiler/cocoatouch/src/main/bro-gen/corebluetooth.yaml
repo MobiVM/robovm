@@ -23,6 +23,7 @@ enums:
     CBManagerAuthorization: {} #since 13.0
     CBConnectionEvent: {}
     CBCentralManagerFeature: {} #since 13.0
+    CBChannelSoundingSessionConfigurationRole: {} #since 27.0
 
 typed_enums:
     # ios13
@@ -233,6 +234,11 @@ classes:
                 name: create
                 constructor: true
     CBL2CAPChannel: {} #since 11.0
+    CBChannelSoundingProcedureResults: {} #since 27.0
+    CBChannelSoundingSessionConfiguration: #since 27.0
+        methods:
+            '-initWithRole:':
+                name: init
 
 protocols:
     CBCentralManagerDelegate: # DONE
@@ -310,6 +316,10 @@ protocols:
                 name: didOpenL2CAPChannel
             '-peripheralIsReadyToSendWriteWithoutResponse:':
                 name: peripheralIsReadyToSendWrite
+            '-peripheral:didReceiveChannelSoundingProcedureResults:error:':
+                name: didReceiveChannelSoundingProcedureResults
+            '-peripheral:didCompleteChannelSoundingSession:':
+                name: didCompleteChannelSoundingSession
     CBPeripheralManagerDelegate: # DONE
         methods:
             '-peripheralManagerDidUpdateState:':

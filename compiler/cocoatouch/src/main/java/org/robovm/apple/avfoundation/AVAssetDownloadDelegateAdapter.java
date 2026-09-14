@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,14 +63,14 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use URLSession:assetDownloadTask:willDownloadToURL: instead
+     * @deprecated Deprecated in iOS 27.0. Use URLSession:assetDownloadTask:willDownloadToURL: instead
      */
     @Deprecated
     @NotImplemented("URLSession:assetDownloadTask:didFinishDownloadingToURL:")
     public void didFinishDownloadingToURL(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSURL location) {}
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use NSURLSessionTask.progress instead
+     * @deprecated Deprecated in iOS 27.0. Use NSURLSessionTask.progress instead
      */
     @Deprecated
     @NotImplemented("URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:")
@@ -86,21 +87,21 @@ import org.robovm.apple.uikit.*;
     public void willDownloadToURL(NSURLSession session, AVAssetDownloadTask assetDownloadTask, NSURL location) {}
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use URLSession:assetDownloadTask:willDownloadToURL: instead
+     * @deprecated Deprecated in iOS 27.0. Use URLSession:assetDownloadTask:willDownloadToURL: instead
      */
     @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:willDownloadToURL:")
     public void willDownloadToURL(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, NSURL location) {}
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use the NSURLSessionDownloadDelegate method instead, URLSession:task:didCompleteWithError:
+     * @deprecated Deprecated in iOS 27.0. Use the NSURLSessionDownloadDelegate method instead, URLSession:task:didCompleteWithError:
      */
     @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:didCompleteForMediaSelection:")
     public void didCompleteForMediaSelection(NSURLSession session, AVAggregateAssetDownloadTask aggregateAssetDownloadTask, AVMediaSelection mediaSelection) {}
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use NSURLSessionTask.progress: instead
+     * @deprecated Deprecated in iOS 27.0. Use NSURLSessionTask.progress: instead
      */
     @Deprecated
     @NotImplemented("URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:")

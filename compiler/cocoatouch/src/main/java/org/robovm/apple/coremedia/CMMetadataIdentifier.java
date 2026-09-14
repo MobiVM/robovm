@@ -135,9 +135,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 26.0 and later.
      */
     public static final CMMetadataIdentifier QuickTimeMetadataPresentationImmersiveMedia = new CMMetadataIdentifier("QuickTimeMetadataPresentationImmersiveMedia");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final CMMetadataIdentifier ITUT_T35MetadataSMPTE2094_50 = new CMMetadataIdentifier("ITUT_T35MetadataSMPTE2094_50");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation, QuickTimeMetadataLivePhotoStillImageTransform, QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions, QuickTimeMetadataSegmentIdentifier, QuickTimeMetadataSceneIlluminance, QuickTimeMetadataSpatialAudioMix, QuickTimeMetadataDisplayMaskRectangleMono, QuickTimeMetadataDisplayMaskRectangleStereoLeft, QuickTimeMetadataDisplayMaskRectangleStereoRight, QuickTimeMetadataPresentationImmersiveMedia/*</value_list>*/};
+    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation, QuickTimeMetadataLivePhotoStillImageTransform, QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions, QuickTimeMetadataSegmentIdentifier, QuickTimeMetadataSceneIlluminance, QuickTimeMetadataSpatialAudioMix, QuickTimeMetadataDisplayMaskRectangleMono, QuickTimeMetadataDisplayMaskRectangleStereoLeft, QuickTimeMetadataDisplayMaskRectangleStereoRight, QuickTimeMetadataPresentationImmersiveMedia, ITUT_T35MetadataSMPTE2094_50/*</value_list>*/};
     
     /*<name>*/CMMetadataIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -303,6 +307,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia", optional=true)
         public static native CFString QuickTimeMetadataPresentationImmersiveMedia();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_ITUT_T35MetadataSMPTE2094_50", optional=true)
+        public static native CFString ITUT_T35MetadataSMPTE2094_50();
         /*</values>*/
     }
 }

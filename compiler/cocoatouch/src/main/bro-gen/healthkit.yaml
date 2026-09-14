@@ -84,6 +84,7 @@ enums:
     HKPHQ9AssessmentRisk: {} #since 18.0
     HKPHQ9AssessmentAnswer: {} #since 18.0
     HKWorkoutEffortRelationshipQueryOptions: {} #since 18.0
+    HKCategoryValueMenopausalState: {} #since 27.0
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -217,6 +218,8 @@ classes:
                 name: relateWorkoutEffortSample
             '-unrelateWorkoutEffortSample:fromWorkout:activity:completion:':
                 name: unrelateWorkoutEffortSample
+            '-getEarliestAuthorizedSampleDateForTypes:completion:':
+                name: getEarliestAuthorizedSampleDate
 
     HKObject: # DONE
         properties:
@@ -920,6 +923,7 @@ classes:
         methods:
             '-initWithPredicate:anchor:options:resultsHandler:':
                 name: init
+    HKLiveWorkoutZoneUpdate: {} #since 27.0
 protocols:
     HKWorkoutSessionDelegate: #since 17.0
         methods:
@@ -1002,7 +1006,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate|RestingHeartRate|WalkingHeartRateAverage|HeartRateVariabilitySDNN|HeartRateRecoveryOneMinute):
+    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate|RestingHeartRate|WalkingHeartRateAverage|HeartRateVariabilitySDNN|HeartRateRecoveryOneMinute|HeartRateVariabilityRMSSD):
         enum: HKVitalSignsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString

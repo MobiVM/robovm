@@ -103,6 +103,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected native OSStatus getAnchorTime0(CMTime.CMTimePtr clockTimeOut, CMTime.CMTimePtr referenceClockTimeOut);
     @Bridge(symbol="CMClockMightDrift", optional=true)
     public native boolean mightDrift(CMClock otherClock);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="CMClockImplementsGetPreferredStartTimePattern", optional=true)
+    public native boolean implementsGetPreferredStartTimePattern();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="CMClockGetPreferredStartTimePattern", optional=true)
+    public native OSStatus getPreferredStartTimePattern(CMTime outClockStartTime, CMTime outHostClockStartTime, CMTime outDeltaBetweenPreferredStartTimes);
     @Bridge(symbol="CMClockInvalidate", optional=true)
     public native void invalidate();
     @Bridge(symbol="CMAudioClockCreate", optional=true)

@@ -34,9 +34,12 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Use SCRecordingEditor instead
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPPreviewViewControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 

@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -397,6 +398,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "templatePlayerItem")
     public native AVPlayerItem getTemplatePlayerItem();
     /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "interstitialEventIdentifier")
+    public native String getInterstitialEventIdentifier();
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Property(selector = "integratedTimeline")
@@ -458,6 +464,11 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "selectMediaOptionAutomaticallyInMediaSelectionGroup:")
     public native void selectMediaOptionAutomatically(AVMediaSelectionGroup mediaSelectionGroup);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "selectableMediaSelectionOptionsInMediaSelectionGroup:")
+    public native NSArray<AVMediaSelectionOption> selectableMediaSelectionOptionsInMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "selectMediaPresentationLanguage:forMediaSelectionGroup:")
@@ -482,10 +493,28 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "effectiveMediaPresentationSettingsForMediaSelectionGroup:")
     public native NSDictionary<AVMediaPresentationSelector, ?> effectiveMediaPresentationSettingsForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use fetchAccessLogWithCompletionHandler:
+     */
+    @Deprecated
     @Method(selector = "accessLog")
     public native AVPlayerItemAccessLog getAccessLog();
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use fetchErrorLogWithCompletionHandler:
+     */
+    @Deprecated
     @Method(selector = "errorLog")
     public native AVPlayerItemErrorLog getErrorLog();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "fetchAccessLogWithCompletionHandler:")
+    public native void fetchAccessLog(@Block VoidBlock1<AVPlayerItemAccessLog> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "fetchErrorLogWithCompletionHandler:")
+    public native void fetchErrorLog(@Block VoidBlock1<AVPlayerItemErrorLog> completionHandler);
     @Method(selector = "addOutput:")
     public native void addOutput(AVPlayerItemOutput output);
     @Method(selector = "removeOutput:")

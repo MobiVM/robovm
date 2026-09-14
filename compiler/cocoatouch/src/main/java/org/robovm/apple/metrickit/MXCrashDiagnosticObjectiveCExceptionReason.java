@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 17.0 and later.
+ * @deprecated Use CrashDiagnostic.ObjectiveCExceptionReason instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXCrashDiagnosticObjectiveCExceptionReason/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {

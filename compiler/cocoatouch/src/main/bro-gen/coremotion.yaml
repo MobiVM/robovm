@@ -170,6 +170,7 @@ classes:
                 name: startActivityUpdates
             '-startStatusUpdatesToQueue:withHandler:':
                 name: startStatusUpdates
+    CMRecordedDeviceMotion: {} #since 27.0
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
     CMWaterSubmersionManagerDelegate:
@@ -182,6 +183,7 @@ protocols:
                 name: didUpdateTemperature
             '-manager:errorOccurred:':
                 name: errorOccurred
+    CMBodyIdentifiable: {} #since 27.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CM.*):

@@ -75,6 +75,13 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="AXShowBordersEnabledStatusDidChangeNotification", optional=true)
         public static native String ShowBordersEnabledStatusDidChange();
+        /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="AXReduceHighlightingEffectsEnabledDidChangeNotification", optional=true)
+        public static native String ReduceHighlightingEffectsEnabledDidChange();
+        @GlobalValue(symbol="AXApplicationAccessibilityEnabledDidChangeNotification", optional=true)
+        public static native String ApplicationAccessibilityEnabledDidChange();
     }
     
     /**
@@ -108,9 +115,21 @@ import org.robovm.apple.coregraphics.*;
     @Bridge(symbol="AXShowBordersEnabled", optional=true)
     public static native boolean isShowBordersEnabled();
     /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Bridge(symbol="AXReduceHighlightingEffectsEnabled", optional=true)
+    public static native boolean isReduceHighlightingEffectsEnabled();
+    @Bridge(symbol="AXApplicationAccessibilityEnabled", optional=true)
+    public static native boolean isApplicationAccessibilityEnabled();
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Bridge(symbol="AXOpenSettingsFeature", optional=true)
     public static native void openSettingsFeature(AXSettingsFeature feature, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Bridge(symbol="AXOpenSettingsFeatureIsSupported", optional=true)
+    public static native boolean openSettingsFeatureIsSupported(AXSettingsFeature feature);
     /*</methods>*/
 }

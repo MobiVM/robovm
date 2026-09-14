@@ -483,6 +483,10 @@ functions:
         class: NWProtocolMetadata
         name: getTcpAvailableSendBuffer
 
+    nw_tcp_set_max_pacing_rate:
+        class: NWProtocolMetadata
+        name: setTcpMaxPacingRate
+
     nw_tls_copy_sec_protocol_options:
         class: NWProtocolOptions
         name: copySecArcProtocolOptions

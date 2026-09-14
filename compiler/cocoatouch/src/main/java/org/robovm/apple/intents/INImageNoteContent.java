@@ -36,9 +36,10 @@ import org.robovm.apple.coregraphics.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 27.0. INImageNoteContent is deprecated. Please adopt the Notes or Reminders AppSchema domain instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Intents") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Intents") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/INImageNoteContent/*</name>*/ 
     extends /*<extends>*/INNoteContent/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {

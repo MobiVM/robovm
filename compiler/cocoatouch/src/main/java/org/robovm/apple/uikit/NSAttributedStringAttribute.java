@@ -99,25 +99,6 @@ import org.robovm.apple.symbols.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final NSAttributedStringAttribute SpeechPunctuation = new NSAttributedStringAttribute("SpeechPunctuation");
-    public static final NSAttributedStringAttribute SpeechLanguage = new NSAttributedStringAttribute("SpeechLanguage");
-    public static final NSAttributedStringAttribute SpeechPitch = new NSAttributedStringAttribute("SpeechPitch");
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechQueueAnnouncement = new NSAttributedStringAttribute("SpeechQueueAnnouncement");
-    /**
-     * @since Available in iOS 17.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechAnnouncementPriority = new NSAttributedStringAttribute("SpeechAnnouncementPriority");
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechIPANotation = new NSAttributedStringAttribute("SpeechIPANotation");
-    /**
-     * @since Available in iOS 13.0 and later.
-     */
-    public static final NSAttributedStringAttribute SpeechSpellOut = new NSAttributedStringAttribute("SpeechSpellOut");
     public static final NSAttributedStringAttribute Font = new NSAttributedStringAttribute("Font");
     public static final NSAttributedStringAttribute ParagraphStyle = new NSAttributedStringAttribute("ParagraphStyle");
     public static final NSAttributedStringAttribute ForegroundColor = new NSAttributedStringAttribute("ForegroundColor");
@@ -171,9 +152,28 @@ import org.robovm.apple.symbols.*;
      */
     @Deprecated
     public static final NSAttributedStringAttribute VerticalGlyphForm = new NSAttributedStringAttribute("VerticalGlyphForm");
+    public static final NSAttributedStringAttribute SpeechPunctuation = new NSAttributedStringAttribute("SpeechPunctuation");
+    public static final NSAttributedStringAttribute SpeechLanguage = new NSAttributedStringAttribute("SpeechLanguage");
+    public static final NSAttributedStringAttribute SpeechPitch = new NSAttributedStringAttribute("SpeechPitch");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechQueueAnnouncement = new NSAttributedStringAttribute("SpeechQueueAnnouncement");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechAnnouncementPriority = new NSAttributedStringAttribute("SpeechAnnouncementPriority");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechIPANotation = new NSAttributedStringAttribute("SpeechIPANotation");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public static final NSAttributedStringAttribute SpeechSpellOut = new NSAttributedStringAttribute("SpeechSpellOut");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechAnnouncementPriority, SpeechIPANotation, SpeechSpellOut, Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, WritingDirection, TextHighlightStyle, TextHighlightColorScheme, AdaptiveImageGlyph, WritingToolsExclusion, Obliqueness, Expansion, VerticalGlyphForm/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringAttribute/*</name>*/[] {/*<value_list>*/Font, ParagraphStyle, ForegroundColor, BackgroundColor, Ligature, Kern, Tracking, StrikethroughStyle, UnderlineStyle, StrokeColor, StrokeWidth, Shadow, TextEffect, Attachment, Link, BaselineOffset, UnderlineColor, StrikethroughColor, WritingDirection, TextHighlightStyle, TextHighlightColorScheme, AdaptiveImageGlyph, WritingToolsExclusion, Obliqueness, Expansion, VerticalGlyphForm, SpeechPunctuation, SpeechLanguage, SpeechPitch, SpeechQueueAnnouncement, SpeechAnnouncementPriority, SpeechIPANotation, SpeechSpellOut/*</value_list>*/};
     
     /*<name>*/NSAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -196,32 +196,6 @@ import org.robovm.apple.symbols.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributePunctuation", optional=true)
-        public static native NSString SpeechPunctuation();
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeLanguage", optional=true)
-        public static native NSString SpeechLanguage();
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributePitch", optional=true)
-        public static native NSString SpeechPitch();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeQueueAnnouncement", optional=true)
-        public static native NSString SpeechQueueAnnouncement();
-        /**
-         * @since Available in iOS 17.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeAnnouncementPriority", optional=true)
-        public static native NSString SpeechAnnouncementPriority();
-        /**
-         * @since Available in iOS 11.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeIPANotation", optional=true)
-        public static native NSString SpeechIPANotation();
-        /**
-         * @since Available in iOS 13.0 and later.
-         */
-        @GlobalValue(symbol="UIAccessibilitySpeechAttributeSpellOut", optional=true)
-        public static native NSString SpeechSpellOut();
         @GlobalValue(symbol="NSFontAttributeName", optional=true)
         public static native NSString Font();
         @GlobalValue(symbol="NSParagraphStyleAttributeName", optional=true)
@@ -301,6 +275,32 @@ import org.robovm.apple.symbols.*;
         @Deprecated
         @GlobalValue(symbol="NSVerticalGlyphFormAttributeName", optional=true)
         public static native NSString VerticalGlyphForm();
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributePunctuation", optional=true)
+        public static native NSString SpeechPunctuation();
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeLanguage", optional=true)
+        public static native NSString SpeechLanguage();
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributePitch", optional=true)
+        public static native NSString SpeechPitch();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeQueueAnnouncement", optional=true)
+        public static native NSString SpeechQueueAnnouncement();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeAnnouncementPriority", optional=true)
+        public static native NSString SpeechAnnouncementPriority();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeIPANotation", optional=true)
+        public static native NSString SpeechIPANotation();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="UIAccessibilitySpeechAttributeSpellOut", optional=true)
+        public static native NSString SpeechSpellOut();
         /*</values>*/
     }
 }

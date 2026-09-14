@@ -133,10 +133,30 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "addPasses:withCompletionHandler:")
     public native void addPasses(NSArray<PKPass> passes, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completion);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "addPassesWithData:completionHandler:")
+    public native void addPassesWithData(NSArray<NSData> passesData, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "addPassesFromArchiveAtFileURL:completionHandler:")
+    public native void addPassesFromArchive(NSURL passesArchiveFileURL, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "addPassesFromArchiveWithData:completionHandler:")
+    public native void addPassesFromArchive(NSData passesArchiveData, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completionHandler);
+    /**
      * @since Available in iOS 8.3 and later.
      */
     @Method(selector = "openPaymentSetup")
     public native void openPaymentSetup();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "openPaymentSetupWithMerchantIdentifier:")
+    public native void openPaymentSetup(String merchantIdentifier);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Use -[PKPassLibrary presentSecureElementPass:] instead
@@ -185,7 +205,9 @@ import org.robovm.apple.coreanimation.*;
     public native void activateSecureElementPass(PKSecureElementPass secureElementPass, NSData activationData, @Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 13.4 and later.
+     * @deprecated Deprecated in iOS 26.0. No longer supported
      */
+    @Deprecated
     @Method(selector = "signData:withSecureElementPass:completion:")
     public native void signData(NSData signData, PKSecureElementPass secureElementPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
     /**

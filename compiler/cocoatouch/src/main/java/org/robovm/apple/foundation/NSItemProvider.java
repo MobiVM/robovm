@@ -58,6 +58,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithObject:")
     public NSItemProvider(NSItemProviderWriting object) { super((SkipInit) null); initObject(init(object)); }
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use initWithObject: instead.
+     */
+    @Deprecated
     @Method(selector = "initWithItem:typeIdentifier:")
     public NSItemProvider(NSObject item, String typeIdentifier) { super((SkipInit) null); initObject(init(item, typeIdentifier)); }
     @Method(selector = "initWithContentsOfURL:")
@@ -150,12 +154,24 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "loadObjectOfClass:completionHandler:")
     public native NSProgress loadObjectOfClass(Class<?> aClass, @Block VoidBlock2<NSItemProviderReading, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use initWithObject: instead.
+     */
+    @Deprecated
     @Method(selector = "initWithItem:typeIdentifier:")
     protected native @Pointer long init(NSObject item, String typeIdentifier);
     @Method(selector = "initWithContentsOfURL:")
     protected native @Pointer long init(NSURL fileURL);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use registerObjectOfClass:visibility:loadHandler: instead.
+     */
+    @Deprecated
     @Method(selector = "registerItemForTypeIdentifier:loadHandler:")
     public native void registerItemForTypeIdentifier(String typeIdentifier, @Block("(@Block,,)") VoidBlock3<VoidBlock2<NSObject, NSError>, ObjCClass, NSDictionary<?, ?>> loadHandler);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use loadObjectOfClass:completionHandler: instead.
+     */
+    @Deprecated
     @Method(selector = "loadItemForTypeIdentifier:options:completionHandler:")
     public native void loadItemForTypeIdentifier(String typeIdentifier, NSItemProviderOptions options, @Block VoidBlock2<NSObject, NSError> completionHandler);
     @Method(selector = "loadPreviewImageWithOptions:completionHandler:")

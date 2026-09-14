@@ -78,6 +78,36 @@ import org.robovm.apple.dispatch.*;
     public native MTL4IndirectCommandBufferSupportState getSupportIndirectCommandBuffers();
     @Property(selector = "setSupportIndirectCommandBuffers:")
     public native void setSupportIndirectCommandBuffers(MTL4IndirectCommandBufferSupportState v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "forwardProgressUsage")
+    public native MTLForwardProgressUsage getForwardProgressUsage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setForwardProgressUsage:")
+    public native void setForwardProgressUsage(MTLForwardProgressUsage v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "contentionRelief")
+    public native MTLContentionRelief getContentionRelief();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setContentionRelief:")
+    public native void setContentionRelief(MTLContentionRelief v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "optimizeForPersistentKernel")
+    public native boolean isOptimizeForPersistentKernel();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOptimizeForPersistentKernel:")
+    public native void setOptimizeForPersistentKernel(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

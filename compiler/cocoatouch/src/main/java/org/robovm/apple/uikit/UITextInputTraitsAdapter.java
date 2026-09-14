@@ -118,6 +118,16 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("setMathExpressionCompletionType:")
     public void setMathExpressionCompletionType(UITextMathExpressionCompletionType v) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("grammarCheckingType")
+    public UITextGrammarCheckingType getGrammarCheckingType() { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("setGrammarCheckingType:")
+    public void setGrammarCheckingType(UITextGrammarCheckingType v) {}
     @NotImplemented("keyboardType")
     public UIKeyboardType getKeyboardType() { return null; }
     @NotImplemented("setKeyboardType:")

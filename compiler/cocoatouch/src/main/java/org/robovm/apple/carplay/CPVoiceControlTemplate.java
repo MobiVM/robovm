@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPVoiceControlTemplate/*</name>*/ 
     extends /*<extends>*/CPTemplate/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements CPBarButtonProviding/*</implements>*/ {
 
     /*<ptr>*/public static class CPVoiceControlTemplatePtr extends Ptr<CPVoiceControlTemplate, CPVoiceControlTemplatePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CPVoiceControlTemplate.class); }/*</bind>*/
@@ -59,6 +60,36 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<CPVoiceControlState> getVoiceControlStates();
     @Property(selector = "activeStateIdentifier")
     public native String getActiveStateIdentifier();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "leadingNavigationBarButtons")
+    public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setLeadingNavigationBarButtons:")
+    public native void setLeadingNavigationBarButtons(NSArray<CPBarButton> v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "trailingNavigationBarButtons")
+    public native NSArray<CPBarButton> getTrailingNavigationBarButtons();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setTrailingNavigationBarButtons:")
+    public native void setTrailingNavigationBarButtons(NSArray<CPBarButton> v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "backButton")
+    public native CPBarButton getBackButton();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setBackButton:")
+    public native void setBackButton(CPBarButton v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

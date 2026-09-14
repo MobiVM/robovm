@@ -56,7 +56,7 @@ import org.robovm.apple.security.*;
     void commissioningSessionEstablishmentDone(MTRDeviceController controller, NSError error);
     /**
      * @since Available in iOS 16.4 and later.
-     * @deprecated Deprecated in iOS 17.0. Please use controller:commissioningComplete:nodeID:
+     * @deprecated Deprecated in iOS 17.0. Use controller:commissioningComplete:nodeID
      */
     @Deprecated
     @Method(selector = "controller:commissioningComplete:")
@@ -68,9 +68,16 @@ import org.robovm.apple.security.*;
     void commissioningComplete(MTRDeviceController controller, NSError error, NSNumber nodeID);
     /**
      * @since Available in iOS 17.6 and later.
+     * @deprecated Deprecated in iOS 27.0. Use controller:commissioningComplete:nodeID:metrics:context
      */
+    @Deprecated
     @Method(selector = "controller:commissioningComplete:nodeID:metrics:")
     void commissioningComplete(MTRDeviceController controller, NSError error, NSNumber nodeID, MTRMetrics metrics);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "controller:commissioningComplete:nodeID:metrics:context:")
+    void commissioningComplete(MTRDeviceController controller, NSError error, NSNumber nodeID, MTRMetrics metrics, NSDictionary<NSString, ?> context);
     /**
      * @since Available in iOS 18.4 and later.
      */

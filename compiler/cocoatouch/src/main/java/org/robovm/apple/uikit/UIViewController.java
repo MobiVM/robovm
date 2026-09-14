@@ -664,6 +664,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "registerSceneAccessory:")
+    public native UISceneAccessoryRegistration registerSceneAccessory(UISceneAccessory accessory);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "unregisterSceneAccessory:")
+    public native void unregisterSceneAccessory(UISceneAccessoryRegistration registration);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "setNeedsUpdateOfSupportedInterfaceOrientations")

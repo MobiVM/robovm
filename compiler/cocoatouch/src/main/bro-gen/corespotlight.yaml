@@ -95,6 +95,7 @@ classes:
             '+userQueryContextWithCurrentSuggestion:':
                 constructor: true
                 name: create
+    CSSearchableIndexDescription: {} #since 27.0
 protocols:
     CSSearchableIndexDelegate: #since 9.0
         methods:
@@ -108,7 +109,8 @@ protocols:
                 name: getFileURLForSearchableIndex
             '-searchableItemsForIdentifiers:searchableItemsHandler:':
                 name: searchableItemsForIdentifiers
-
+            '-searchableItemsForIdentifiers:protectionClass:searchableItemsHandler:':
+                name: searchableItemsForIdentifiers
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

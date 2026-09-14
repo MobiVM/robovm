@@ -33,7 +33,7 @@ import org.robovm.apple.uniformtypeid.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
+ * @since Available in iOS 16.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreSpotlight") @NativeClass/*</annotations>*/
@@ -64,10 +64,6 @@ import org.robovm.apple.uniformtypeid.*;
     public native String getKeyboardLanguage();
     @Property(selector = "setKeyboardLanguage:")
     public native void setKeyboardLanguage(String v);
-    @Property(selector = "sourceOptions")
-    public native CSSearchQuerySourceOptions getSourceOptions();
-    @Property(selector = "setSourceOptions:")
-    public native void setSourceOptions(CSSearchQuerySourceOptions v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

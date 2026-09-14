@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ExposureNotification") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ENExposureDaySummary/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

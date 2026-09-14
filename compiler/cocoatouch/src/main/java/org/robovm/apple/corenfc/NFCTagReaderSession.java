@@ -53,6 +53,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithPollingOption:delegate:queue:")
     public NFCTagReaderSession(NFCPollingOption pollingOption, NFCTagReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(pollingOption, delegate, queue)); }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithConfiguration:delegate:queue:")
+    public NFCTagReaderSession(NFCTagReaderSessionConfiguration configuration, NFCTagReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(configuration, delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -73,6 +78,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithPollingOption:delegate:queue:")
     protected native @Pointer long init(NFCPollingOption pollingOption, NFCTagReaderSessionDelegate delegate, DispatchQueue queue);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithConfiguration:delegate:queue:")
+    protected native @Pointer long init(NFCTagReaderSessionConfiguration configuration, NFCTagReaderSessionDelegate delegate, DispatchQueue queue);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "restartPollingWithConfiguration:")
+    public native void restartPolling(NFCTagReaderSessionConfiguration configuration);
     /**
      * @since Available in iOS 13.0 and later.
      */

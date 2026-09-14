@@ -79,5 +79,10 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "encodeToCommandEncoder:commandBuffer:sourceArrays:destinationArray:")
     public native void encode(MTLComputeCommandEncoder encoder, MTLCommandBuffer commandBuffer, NSArray<MPSNDArray> sourceArrays, MPSNDArray destination);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "encodeWithMTL4CommandEncoder:sourceArrays:destinationArray:")
+    public native void encode(MTL4ComputeCommandEncoder encoder, NSArray<MPSNDArray> sourceArrays, MPSNDArray destination);
     /*</methods>*/
 }

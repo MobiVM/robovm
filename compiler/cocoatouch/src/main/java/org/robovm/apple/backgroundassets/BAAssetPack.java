@@ -55,6 +55,11 @@ import org.robovm.apple.foundation.*;
     public native @MachineSizedSInt long getDownloadSize();
     @Property(selector = "version")
     public native @MachineSizedSInt long getVersion();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "language")
+    public native String getLanguage();
     @Property(selector = "userInfo")
     public native NSData getUserInfo();
     /*</properties>*/

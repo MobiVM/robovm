@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,8 +62,26 @@ import org.robovm.apple.uikit.*;
     protected AVAudioSourceNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRenderBlock:")
     public AVAudioSourceNode(@Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) { super((SkipInit) null); initObject(init(block)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithRealtimeSafeRenderBlock:")
+    public static AVAudioSourceNode createWithRealtimeSafeRenderBlock(@Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) {
+       AVAudioSourceNode res = new AVAudioSourceNode((SkipInit) null);
+       res.initObject(res.initWithRealtimeSafeRenderBlock(block));
+       return res;
+    }
     @Method(selector = "initWithFormat:renderBlock:")
     public AVAudioSourceNode(AVAudioFormat format, @Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) { super((SkipInit) null); initObject(init(format, block)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithFormat:realtimeSafeRenderBlock:")
+    public static AVAudioSourceNode createWithRealtimeSafeRenderBlock(AVAudioFormat format, @Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) {
+       AVAudioSourceNode res = new AVAudioSourceNode((SkipInit) null);
+       res.initObject(res.initWithRealtimeSafeRenderBlock(format, block));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "volume")
@@ -122,8 +141,18 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithRenderBlock:")
     protected native @Pointer long init(@Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithRealtimeSafeRenderBlock:")
+    protected native @Pointer long initWithRealtimeSafeRenderBlock(@Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
     @Method(selector = "initWithFormat:renderBlock:")
     protected native @Pointer long init(AVAudioFormat format, @Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithFormat:realtimeSafeRenderBlock:")
+    protected native @Pointer long initWithRealtimeSafeRenderBlock(AVAudioFormat format, @Block Block4<BooleanPtr, AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -52,6 +52,16 @@ import org.robovm.apple.uniformtypeid.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredParticipantForNonMixableAudioRoutes")
+    public native AVRoutingPlaybackParticipant getPreferredParticipantForNonMixableAudioRoutes();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredParticipantForNonMixableAudioRoutes:", strongRef = true)
+    public native void setPreferredParticipantForNonMixableAudioRoutes(AVRoutingPlaybackParticipant v);
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "preferredParticipantForExternalPlayback")

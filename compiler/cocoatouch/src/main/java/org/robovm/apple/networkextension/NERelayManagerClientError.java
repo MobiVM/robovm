@@ -49,7 +49,8 @@ public enum /*<name>*/NERelayManagerClientError/*</name>*/ implements NSErrorCod
     CertificateExpired(7L),
     ServerCertificateInvalid(8L),
     ServerCertificateExpired(9L),
-    Other(10L);
+    Other(10L),
+    PvDConfigurationTruncated(11L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NERelayManagerClientError.class); }/*</bind>*/

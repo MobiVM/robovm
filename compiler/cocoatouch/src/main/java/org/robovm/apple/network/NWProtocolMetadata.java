@@ -233,6 +233,8 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_tcp_get_available_send_buffer", optional=true)
     public native int getTcpAvailableSendBuffer();
+    @Bridge(symbol="nw_tcp_set_max_pacing_rate", optional=true)
+    public native int setTcpMaxPacingRate(long max_pacing_rate);
     /**
      * @since Available in iOS 12.0 and later.
      */

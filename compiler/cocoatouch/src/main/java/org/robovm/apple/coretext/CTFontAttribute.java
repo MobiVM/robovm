@@ -122,10 +122,14 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 13.0 and later.
      */
+    public static final CTFontAttribute DescriptorLanguage = new CTFontAttribute("DescriptorLanguage");
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     public static final CTFontAttribute RegistrationUserInfo = new CTFontAttribute("RegistrationUserInfo");
     /*</constants>*/
     
-    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, VariationAxes, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, OpticalSize, RegistrationUserInfo/*</value_list>*/};
+    private static /*<name>*/CTFontAttribute/*</name>*/[] values = new /*<name>*/CTFontAttribute/*</name>*/[] {/*<value_list>*/URL, Name, DisplayName, FamilyName, StyleName, Traits, Variation, VariationAxes, Size, Matrix, CascadeList, CharacterSet, Languages, BaselineAdjust, MacintoshEncodings, Features, FeatureSettings, FixedAdvance, Orientation, Format, RegistrationScope, Priority, Enabled, Downloadable, Downloaded, OpticalSize, DescriptorLanguage, RegistrationUserInfo/*</value_list>*/};
     
     /*<name>*/CTFontAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -203,6 +207,11 @@ import org.robovm.apple.uikit.*;
         public static native CFString Downloaded();
         @GlobalValue(symbol="kCTFontOpticalSizeAttribute", optional=true)
         public static native CFString OpticalSize();
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="kCTFontDescriptorLanguageAttribute", optional=true)
+        public static native CFString DescriptorLanguage();
         /**
          * @since Available in iOS 13.0 and later.
          */

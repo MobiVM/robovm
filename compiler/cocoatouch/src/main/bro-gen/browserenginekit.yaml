@@ -22,7 +22,8 @@ enums:
     BETextDocumentRequestOptions: {prefix: BETextDocumentOption} #since 17.4
     BEAccessibilityPressedState: {} #since 18.0
     BEAccessibilityContainerType: {} #since 18.0
-
+    BEWebContentFilterPermissionDecision: {} #since 27.0
+    BEAccessibilityOrientation: {} #since 27.0
 categories:
 
 classes:
@@ -131,6 +132,14 @@ classes:
                 throws: NSErrorException
             '-grantCapability:error:invalidationHandler:':
                 name: grantCapability
+            '-activateWithError:':
+                name: activate
+                throws: NSErrorException
+            '-suspendWithError:':
+                name: suspend
+                throws: NSErrorException
+            '+screenCaptureWithEnvironment:':
+                name: screenCapture
     BERenderingProcess: #since 17.4
         methods:
             '+renderingProcessWithInterruptionHandler:completion:':
@@ -193,6 +202,10 @@ classes:
                 name: evaluateURL
             '-allowURL:completionHandler:':
                 name: allowURL
+            '-evaluateURL:mainFrameURL:isMainFrame:completionHandler:':
+                name: evaluateURL
+            '-requestPermissionForURL:referrerURL:presentingView:completionHandler:':
+                name: requestPermissionForURL
 protocols:
     BEAccessibilityTextMarkerSupport: {} #since 18.2
     BEDragInteractionDelegate: #since 17.4

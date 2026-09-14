@@ -97,6 +97,16 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "preferHDR")
+    public native boolean isPreferHDR();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPreferHDR:")
+    public native void setPreferHDR(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

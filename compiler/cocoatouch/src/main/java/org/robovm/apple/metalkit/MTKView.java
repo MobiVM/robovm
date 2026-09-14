@@ -170,6 +170,11 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isPaused();
     @Property(selector = "setPaused:")
     public native void setPaused(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "residencySet")
+    public native MTLResidencySet getResidencySet();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

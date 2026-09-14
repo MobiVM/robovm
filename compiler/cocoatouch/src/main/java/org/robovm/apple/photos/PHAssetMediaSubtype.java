@@ -60,6 +60,10 @@ public final class /*<name>*/PHAssetMediaSubtype/*</name>*/ extends Bits</*<name
      */
     public static final PHAssetMediaSubtype PhotoDepthEffect = new PHAssetMediaSubtype(16L);
     /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final PHAssetMediaSubtype PhotoAnimation = new PHAssetMediaSubtype(64L);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     public static final PHAssetMediaSubtype SpatialMedia = new PHAssetMediaSubtype(1024L);

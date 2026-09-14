@@ -50,7 +50,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("ARKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ARObjectAnchor/*</name>*/ 
     extends /*<extends>*/ARAnchor/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements ARTrackable/*</implements>*/ {
 
     /*<ptr>*/public static class ARObjectAnchorPtr extends Ptr<ARObjectAnchor, ARObjectAnchorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ARObjectAnchor.class); }/*</bind>*/
@@ -63,6 +63,11 @@ import org.robovm.apple.coreanimation.*;
     /*<properties>*/
     @Property(selector = "referenceObject")
     public native ARReferenceObject getReferenceObject();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isTracked")
+    public native boolean isTracked();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

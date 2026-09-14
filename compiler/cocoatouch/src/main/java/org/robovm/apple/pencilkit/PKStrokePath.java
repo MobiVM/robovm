@@ -52,17 +52,52 @@ import org.robovm.apple.coreanimation.*;
     protected PKStrokePath(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithControlPoints:creationDate:")
     public PKStrokePath(NSArray<PKStrokePoint> controlPoints, NSDate creationDate) { super((SkipInit) null); initObject(init(controlPoints, creationDate)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithControlPoints:creationDate:strokePathID:")
+    public PKStrokePath(NSArray<PKStrokePoint> controlPoints, NSDate creationDate, NSUUID strokePathID) { super((SkipInit) null); initObject(init(controlPoints, creationDate, strokePathID)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBezierPath:creationDate:pointProvider:")
+    public PKStrokePath(CGPath bezierPath, NSDate creationDate, @Block Block1<PKConvertedBezierPoint, PKStrokePoint> pointProvider) { super((SkipInit) null); initObject(init(bezierPath, creationDate, pointProvider)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "strokePathID")
+    public native NSUUID getStrokePathID();
     @Property(selector = "count")
     public native @MachineSizedUInt long getCount();
     @Property(selector = "creationDate")
     public native NSDate getCreationDate();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "bezierRepresentation")
+    public native CGPath getBezierRepresentation();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithControlPoints:creationDate:")
     protected native @Pointer long init(NSArray<PKStrokePoint> controlPoints, NSDate creationDate);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithControlPoints:creationDate:strokePathID:")
+    protected native @Pointer long init(NSArray<PKStrokePoint> controlPoints, NSDate creationDate, NSUUID strokePathID);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBezierPath:creationDate:pointProvider:")
+    protected native @Pointer long init(CGPath bezierPath, NSDate creationDate, @Block Block1<PKConvertedBezierPoint, PKStrokePoint> pointProvider);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "subpathWithRange:")
+    public native PKStrokePath subpath(PKFloatRange range);
     @Method(selector = "pointAtIndex:")
     public native PKStrokePoint pointAtIndex(@MachineSizedUInt long i);
     @Method(selector = "objectAtIndexedSubscript:")

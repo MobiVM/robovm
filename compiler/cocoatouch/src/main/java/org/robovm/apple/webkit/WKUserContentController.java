@@ -108,6 +108,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "removeAllContentRuleLists")
     public native void removeAllContentRuleLists();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "addBuffer:name:contentWorld:")
+    public native void addBuffer(NSData buffer, String name, WKContentWorld world);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "removeBufferWithName:contentWorld:")
+    public native void removeBuffer(String name, WKContentWorld world);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

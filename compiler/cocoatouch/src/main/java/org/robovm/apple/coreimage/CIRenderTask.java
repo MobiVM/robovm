@@ -58,7 +58,26 @@ import org.robovm.apple.avfoundation.*;
     protected CIRenderTask(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "plannedPixelsProcessed")
+    public native @MachineSizedSInt long getPlannedPixelsProcessed();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "plannedPixelsOverdrawn")
+    public native @MachineSizedSInt long getPlannedPixelsOverdrawn();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "plannedPassCount")
+    public native @MachineSizedSInt long getPlannedPassCount();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "plannedPeakMemory")
+    public native @MachineSizedSInt long getPlannedPeakMemory();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

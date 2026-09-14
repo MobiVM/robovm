@@ -73,6 +73,11 @@ import org.robovm.apple.uniformtypeid.*;
     @NotImplemented("searchableItemsForIdentifiers:searchableItemsHandler:")
     public void searchableItemsForIdentifiers(NSArray<NSString> identifiers, @Block VoidBlock1<NSArray<CSSearchableItem>> searchableItemsHandler) {}
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("searchableItemsForIdentifiers:protectionClass:searchableItemsHandler:")
+    public void searchableItemsForIdentifiers(NSArray<NSString> identifiers, NSString protectionClass, @Block VoidBlock1<NSArray<CSSearchableItem>> searchableItemsHandler) {}
+    /**
      * @since Available in iOS 18.4 and later.
      */
     @NotImplemented("searchableItemsDidUpdate:")

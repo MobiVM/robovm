@@ -77,6 +77,12 @@ classes:
         methods:
             '-initWithAlternateLayout:':
                 name: init
+    MSUPIRequest: #since 27.0
+        methods:
+            '-initWithValidationToken:recipients:':
+                name: init
+            '-sendWithCompletionHandler:':
+                name: send
 protocols:
     MSStickerBrowserViewDataSource:
         methods:

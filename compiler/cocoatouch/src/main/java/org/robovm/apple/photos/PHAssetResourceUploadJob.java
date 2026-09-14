@@ -59,12 +59,29 @@ import org.robovm.apple.uniformtypeid.*;
     /*<properties>*/
     @Property(selector = "jobLimit")
     public static native @MachineSizedSInt long getJobLimit();
+    /**
+     * @since Available in iOS 26.1 and later.
+     * @deprecated Use +[PHAssetResource assetResourceForUploadJob:] instead
+     */
+    @Deprecated
     @Property(selector = "resource")
     public native PHAssetResource getResource();
     @Property(selector = "destination")
     public native NSURLRequest getDestination();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "responseHeaderFields")
+    public native NSDictionary<NSString, NSString> getResponseHeaderFields();
     @Property(selector = "state")
     public native PHAssetResourceUploadJobState getState();
+    @Property(selector = "type")
+    public native PHAssetResourceUploadJobType getType();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "error")
+    public native NSError getError();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

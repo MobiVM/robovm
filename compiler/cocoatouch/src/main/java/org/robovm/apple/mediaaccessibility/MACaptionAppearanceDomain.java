@@ -41,7 +41,11 @@ import org.robovm.apple.iosurface.*;
 public enum /*<name>*/MACaptionAppearanceDomain/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
-    User(1L);
+    User(1L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    VideoConferencing(2L);
     /*</values>*/
 
     /*<bind>*/

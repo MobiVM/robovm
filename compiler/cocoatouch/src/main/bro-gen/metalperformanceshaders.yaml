@@ -2070,6 +2070,8 @@ classes:
                 name: encode
             '-encodeToCommandEncoder:commandBuffer:sourceArrays:destinationArray:':
                 name: encode
+            '-encodeWithMTL4CommandEncoder:sourceArrays:destinationArray:':
+                name: encode
     MPSNDArrayStridedSlice: {} #since 13.0
     MPSNDArrayStridedSliceGradient: {} #since 13.0
     MPSNDArrayUnaryGradientKernel: #since 13.0
@@ -2087,6 +2089,8 @@ classes:
             '-encodeToCommandBuffer:sourceArray:resultState:outputStateIsTemporary:':
                 name: encode
             '-encodeToCommandBuffer:sourceArray:resultState:destinationArray:':
+                name: encode
+            '-encodeWithMTL4CommandEncoder:sourceArray:destinationArray:':
                 name: encode
     MPSPolygonAccelerationStructure: {} #since 13.0
     MPSPolygonBuffer: #since 13.0
@@ -2176,6 +2180,12 @@ classes:
             '-reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:':
                 name: reshape
             '-reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:':
+                name: reshape
+            '-reshapeWithSourceArray:shape:':
+                name: reshape
+            '-reshapeWithMTL4CommandEncoder:sourceArray:shape:destinationArray:':
+                name: reshape
+            '-reshapeWithMTL4CommandEncoder:sourceArray:dimensionCount:dimensionSizes:destinationArray:':
                 name: reshape
     MPSNDArrayLUTDequantize: {} #since 18.0
     MPSNDArrayLUTQuantizationDescriptor: #since 18.0

@@ -95,6 +95,10 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "sender")
     public native NSObject getSender();
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
     /**
      * @since Available in iOS 17.0 and later.
      */
@@ -105,6 +109,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setSelectedImage:")
     public native void setSelectedImage(UIImage v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredImageVisibility")
+    public native UIMenuElementImageVisibility getPreferredImageVisibility();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredImageVisibility:")
+    public native void setPreferredImageVisibility(UIMenuElementImageVisibility v);
     @Property(selector = "repeatBehavior")
     public native UIMenuElementRepeatBehavior getRepeatBehavior();
     @Property(selector = "setRepeatBehavior:")

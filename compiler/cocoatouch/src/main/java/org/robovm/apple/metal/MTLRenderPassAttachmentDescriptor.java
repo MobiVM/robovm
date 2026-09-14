@@ -90,12 +90,16 @@ import org.robovm.apple.dispatch.*;
     public native void setStoreAction(MTLStoreAction v);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
      */
+    @Deprecated
     @Property(selector = "storeActionOptions")
     public native MTLStoreActionOptions getStoreActionOptions();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
      */
+    @Deprecated
     @Property(selector = "setStoreActionOptions:")
     public native void setStoreActionOptions(MTLStoreActionOptions v);
     /*</properties>*/

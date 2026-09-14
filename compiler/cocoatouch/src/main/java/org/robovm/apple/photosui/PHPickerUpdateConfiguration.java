@@ -72,6 +72,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setEdgesWithoutContentMargins:")
     public native void setEdgesWithoutContentMargins(NSDirectionalRectEdge v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "searchText")
+    public native PHPickerSearchText getSearchText();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSearchText:")
+    public native void setSearchText(PHPickerSearchText v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

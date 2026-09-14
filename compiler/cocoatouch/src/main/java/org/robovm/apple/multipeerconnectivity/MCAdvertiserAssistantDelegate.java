@@ -33,9 +33,11 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 27.0. Use Network Framework instead
+ */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MCAdvertiserAssistantDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
