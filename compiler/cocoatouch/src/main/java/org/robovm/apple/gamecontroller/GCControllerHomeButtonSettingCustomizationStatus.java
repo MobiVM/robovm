@@ -35,20 +35,14 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCSystemGestureState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/GCControllerHomeButtonSettingCustomizationStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Enabled(0L),
-    Disabled(2L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 27.0. Use GCSystemGestureStateDisabled
-     */
-    @Deprecated
-    AlwaysReceive(1L);
+    Default(0L),
+    User(1L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,15 +52,15 @@ public enum /*<name>*/GCSystemGestureState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/GCSystemGestureState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/GCControllerHomeButtonSettingCustomizationStatus/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/GCSystemGestureState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCSystemGestureState/*</name>*/ v : values()) {
+    public static /*<name>*/GCControllerHomeButtonSettingCustomizationStatus/*</name>*/ valueOf(long n) {
+        for (/*<name>*/GCControllerHomeButtonSettingCustomizationStatus/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCSystemGestureState/*</name>*/.class.getName());
+            + /*<name>*/GCControllerHomeButtonSettingCustomizationStatus/*</name>*/.class.getName());
     }
 }

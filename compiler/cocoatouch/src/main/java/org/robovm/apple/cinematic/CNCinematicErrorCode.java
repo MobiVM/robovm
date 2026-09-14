@@ -49,7 +49,11 @@ public enum /*<name>*/CNCinematicErrorCode/*</name>*/ implements NSErrorCode {
     Malformed(4L),
     Unsupported(5L),
     Incompatible(6L),
-    Cancelled(7L);
+    Cancelled(7L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    DownloadFailed(8L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CNCinematicErrorCode.class); }/*</bind>*/

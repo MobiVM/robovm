@@ -29,6 +29,10 @@ enums:
     GCDevicePhysicalInputElementChange: {prefix: GCDevicePhysicalInputElement}
     GCPhysicalInputSourceDirection: {}
     GCUIEventTypes: {prefix: GCUIEventType} #since 18.0
+    GCControllerHomeButtonSettingSystemAction: {} #since 27.0
+    GCControllerHomeButtonSettingInAppAction: {} #since 27.0
+    GCControllerHomeButtonSettingCustomizationStatus: {prefix: GCControllerHomeButtonSettingCustomization} #since 27.0
+    GCControllerHomeButtonSettingsCustomizationActivity: {prefix: GCControllerHomeButtonSettings} #since 27.0
 classes:
     # Structs
     GCAcceleration: {}
@@ -178,6 +182,25 @@ classes:
     GCControllerLiveInput: {} #since 17.0
     GCEventInteraction: { } #since 18.0
     GCGameControllerActivationContext: { } #since 18.0
+    GCControllerHomeButtonSettingsManager: #since 27.0
+        methods:
+            '-initWithQueue:':
+                name: init
+            '-openControllerHomeButtonSettingsForActivity:error:':
+                name: openControllerHomeButtonSettings
+                throws: NSErrorException
+            '-readControllerHomeButtonSystemAction:withError:':
+                name: readControllerHomeButtonSystemAction
+                throws: NSErrorException
+            '-readControllerHomeButtonSystemActionWithError:':
+                name: readControllerHomeButtonSystemAction
+                throws: NSErrorException
+            '-readControllerHomeButtonInAppAction:withError:':
+                name: readControllerHomeButtonInAppAction
+                throws: NSErrorException
+            '-readControllerHomeButtonInAppActionWithError:':
+                name: readControllerHomeButtonInAppAction
+                throws: NSErrorException
 protocols:
     GCDevice: {} #since 14.0
     GCAxisElement: {} #since 16.0

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.gamecontroller;
+package org.robovm.apple.cinematic;
 
 /*<imports>*/
 import java.io.*;
@@ -28,27 +28,24 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.dispatch.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.corehaptic.*;
+import org.robovm.apple.avfoundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.corevideo.*;
+import org.robovm.apple.metal.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 14.0 and later.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/GCSystemGestureState/*</name>*/ implements ValuedEnum {
+public enum /*<name>*/CNCinematicCapability/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Enabled(0L),
-    Disabled(2L),
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 27.0. Use GCSystemGestureStateDisabled
-     */
-    @Deprecated
-    AlwaysReceive(1L);
+    None(0L),
+    Renderable(1L),
+    NeedsPreprocessing(2L);
     /*</values>*/
 
     /*<bind>*/
@@ -58,15 +55,15 @@ public enum /*<name>*/GCSystemGestureState/*</name>*/ implements ValuedEnum {
 
     private final long n;
 
-    private /*<name>*/GCSystemGestureState/*</name>*/(long n) { this.n = n; }
+    private /*<name>*/CNCinematicCapability/*</name>*/(long n) { this.n = n; }
     public long value() { return n; }
-    public static /*<name>*/GCSystemGestureState/*</name>*/ valueOf(long n) {
-        for (/*<name>*/GCSystemGestureState/*</name>*/ v : values()) {
+    public static /*<name>*/CNCinematicCapability/*</name>*/ valueOf(long n) {
+        for (/*<name>*/CNCinematicCapability/*</name>*/ v : values()) {
             if (v.n == n) {
                 return v;
             }
         }
         throw new IllegalArgumentException("No constant with value " + n + " found in " 
-            + /*<name>*/GCSystemGestureState/*</name>*/.class.getName());
+            + /*<name>*/CNCinematicCapability/*</name>*/.class.getName());
     }
 }

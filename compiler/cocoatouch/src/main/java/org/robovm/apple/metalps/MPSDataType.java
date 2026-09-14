@@ -55,6 +55,22 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      */
     Float16(268435472L),
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Float4e2m1(270598148L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Float8e4m3(272826376L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Float8e5m2(273809416L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Float8e8m0(276824072L),
+    /**
      * @since Available in iOS 16.2 and later.
      */
     ComplexBit(16777216L),
@@ -132,6 +148,10 @@ public enum /*<name>*/MPSDataType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.0 and later.
      */
     BFloat16(2415919120L),
+    /**
+     * @since Available in iOS 26.3 and later.
+     */
+    ComplexBFloat16(2432696352L),
     /**
      * @since Available in iOS 11.0 and later.
      */

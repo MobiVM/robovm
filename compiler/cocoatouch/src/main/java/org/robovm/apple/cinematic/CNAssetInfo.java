@@ -80,12 +80,62 @@ import org.robovm.apple.metal.*;
     public native NSArray<NSNumber> getVideoCompositionTrackIDs();
     @Property(selector = "sampleDataTrackIDs")
     public native NSArray<NSNumber> getSampleDataTrackIDs();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "defaultResourceDownloadTimeout")
+    public static native double getDefaultResourceDownloadTimeout();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isPreprocessed")
+    public native boolean isPreprocessed();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "cinematicCapability")
+    public native CNCinematicCapability getCinematicCapability();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "resourceStatus")
+    public native CNResourceStatus getResourceStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "checkCinematicCapabilityForAsset:completionHandler:")
+    public static native void checkCinematicCapability(AVAsset asset, @Block VoidBlock1<CNCinematicCapability> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use checkCinematicCapabilityForAsset:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "checkIfCinematic:completionHandler:")
     public static native void checkIfCinematic(AVAsset asset, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "loadFromAsset:completionHandler:")
     public static native void load(AVAsset asset, @Block VoidBlock2<CNAssetInfo, NSError> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "downloadResourcesWithTimeout:completionHandler:")
+    public native NSProgress downloadResources(double downloadTimeout, @Block VoidBlock2<CNAssetInfo, NSError> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "preprocessAssetWithConfiguration:completionHandler:")
+    public native NSProgress preprocess(CNAssetPreprocessConfiguration configuration, @Block VoidBlock2<CNAssetInfo, NSError> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "resourceStatusForVersions:")
+    public static native CNResourceStatus resourceStatusForVersions(NSSet<NSNumber> resourceVersions);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "downloadResourcesForVersions:timeout:completionHandler:")
+    public static native NSProgress downloadResources(NSSet<NSNumber> resourceVersions, double downloadTimeout, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
 }

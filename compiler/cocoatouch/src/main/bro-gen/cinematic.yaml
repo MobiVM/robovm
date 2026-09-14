@@ -16,6 +16,9 @@ enums:
     CNDetectionType: {} #since 17.0
     CNSpatialAudioRenderingStyle: {} #since 26.0
     CNSpatialAudioContentType: {} #since 26.0
+    CNCinematicResourceVersion: { prefix: CNCinematicResource } #since 27.0
+    CNCinematicCapability: {} #since 27.0
+    CNResourceStatus: {} #since 27.0
 typed_enums:
 
 classes:
@@ -25,6 +28,14 @@ classes:
                 name: checkIfCinematic
             '+loadFromAsset:completionHandler:':
                 name: load
+            '+checkCinematicCapabilityForAsset:completionHandler:':
+                name: checkCinematicCapability
+            '-downloadResourcesWithTimeout:completionHandler:':
+                name: downloadResources
+            '-preprocessAssetWithConfiguration:completionHandler:':
+                name: preprocess
+            '+downloadResourcesForVersions:timeout:completionHandler:':
+                name: downloadResources
     CNBoundsPrediction: {} #since 17.0
     CNCompositionInfo: #since 17.0
         methods:
@@ -107,6 +118,26 @@ classes:
                 name: loadFromAsset
             '-audioMixWithEffectIntensity:renderingStyle:':
                 name: audioMix
+    CNAssetPreprocessConfiguration: #since 27.0
+        methods:
+            '-initWithDestinationAssetURL:':
+                name: init
+    CNImageRenderingSession: #since 27.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+            '-encodeRenderToCommandBuffer:sourceRGBA:sourceDisparity:destinationRGBA:fNumber:focusDisparity:':
+                name: encodeRender
+            '-encodeTileRenderToCommandBuffer:sourceTileRGBA:sourceDisparity:destinationTileRGBA:fNumber:focusDisparity:sourceRGBASize:tileOffset:tileExtendOffset:':
+                name: encodeTileRender
+            '+minimumTileExtendRectForTileRect:sourceRGBASize:':
+                name: minimumTileExtendRect
+    CNImageRenderingSessionConfiguration: #since 27.0
+        methods:
+            '-initWithQuality:':
+                name: init
+            '-initWithQuality:renderingVersion:':
+                name: init
 protocols:
 
 functions:
