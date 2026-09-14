@@ -84,5 +84,15 @@ import org.robovm.apple.dispatch.*;
     public void peripheralIsReadyToSendWrite(CBPeripheral peripheral) {}
     @NotImplemented("peripheral:didOpenL2CAPChannel:error:")
     public void didOpenL2CAPChannel(CBPeripheral peripheral, CBL2CAPChannel channel, NSError error) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("peripheral:didReceiveChannelSoundingProcedureResults:error:")
+    public void didReceiveChannelSoundingProcedureResults(CBPeripheral peripheral, CBChannelSoundingProcedureResults results, NSError error) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("peripheral:didCompleteChannelSoundingSession:")
+    public void didCompleteChannelSoundingSession(CBPeripheral peripheral, NSError error) {}
     /*</methods>*/
 }

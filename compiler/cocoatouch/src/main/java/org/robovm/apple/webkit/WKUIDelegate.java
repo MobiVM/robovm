@@ -135,6 +135,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:")
     void runOpenPanel(WKWebView webView, WKOpenPanelParameters parameters, WKFrameInfo frame, @Block VoidBlock1<NSArray<NSURL>> completionHandler);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "webView:requestGeolocationPermissionForOrigin:initiatedByFrame:decisionHandler:")
+    void requestGeolocationPermission(WKWebView webView, WKSecurityOrigin origin, WKFrameInfo frame, @Block VoidBlock1<WKPermissionDecision> decisionHandler);
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "webView:insertInputSuggestion:")

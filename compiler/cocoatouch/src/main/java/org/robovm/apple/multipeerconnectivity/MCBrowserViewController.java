@@ -33,9 +33,11 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 27.0. Use Network Framework instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MultipeerConnectivity") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MultipeerConnectivity") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MCBrowserViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*/implements MCNearbyServiceBrowserDelegate/*</implements>*/ {

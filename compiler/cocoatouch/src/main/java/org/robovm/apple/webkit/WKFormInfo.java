@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,33 +35,34 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 27.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("WebKit") @NativeClass/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKNavigationResponse/*</name>*/ 
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/WKFormInfo/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class WKNavigationResponsePtr extends Ptr<WKNavigationResponse, WKNavigationResponsePtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(WKNavigationResponse.class); }/*</bind>*/
+    /*<ptr>*/public static class WKFormInfoPtr extends Ptr<WKFormInfo, WKFormInfoPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(WKFormInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public WKNavigationResponse() {}
-    protected WKNavigationResponse(Handle h, long handle) { super(h, handle); }
-    protected WKNavigationResponse(SkipInit skipInit) { super(skipInit); }
+    public WKFormInfo() {}
+    protected WKFormInfo(Handle h, long handle) { super(h, handle); }
+    protected WKFormInfo(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "isForMainFrame")
-    public native boolean isForMainFrame();
-    @Property(selector = "response")
-    public native NSURLResponse getResponse();
-    @Property(selector = "canShowMIMEType")
-    public native boolean canShowMIMEType();
-    /**
-     * @since Available in iOS 27.0 and later.
-     */
-    @Property(selector = "mainFrameNavigation")
-    public native WKNavigation getMainFrameNavigation();
+    @Property(selector = "targetFrame")
+    public native WKFrameInfo getTargetFrame();
+    @Property(selector = "sourceFrame")
+    public native WKFrameInfo getSourceFrame();
+    @Property(selector = "submissionURL")
+    public native NSURL getSubmissionURL();
+    @Property(selector = "httpMethod")
+    public native String getHttpMethod();
+    @Property(selector = "formValues")
+    public native NSDictionary<NSString, NSString> getFormValues();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

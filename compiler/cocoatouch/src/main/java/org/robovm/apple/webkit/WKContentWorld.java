@@ -51,6 +51,10 @@ import org.robovm.apple.coreanimation.*;
     protected WKContentWorld() {}
     protected WKContentWorld(Handle h, long handle) { super(h, handle); }
     protected WKContentWorld(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public WKContentWorld(WKContentWorldConfiguration configuration) { super((Handle) null, create(configuration)); retain(getHandle()); }
     public WKContentWorld(String name) { super((Handle) null, create(name)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -63,6 +67,11 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "worldWithConfiguration:")
+    protected static native @Pointer long create(WKContentWorldConfiguration configuration);
     @Method(selector = "worldWithName:")
     protected static native @Pointer long create(String name);
     /*</methods>*/

@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.multipeerconnectivity;
+package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
 import java.io.*;
@@ -28,44 +28,34 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
-import org.robovm.apple.security.*;
+import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
+/**
+ * @since Available in iOS 27.0 and later.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MultipeerConnectivity") @StronglyLinked/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MCError/*</name>*/ 
-    extends /*<extends>*/NSError/*</extends>*/ 
+/*<annotations>*/@Library("CoreBluetooth") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/CBChannelSoundingProcedureResults/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    protected MCError(SkipInit skipInit) {
-        super(skipInit);
-    }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(MCError.class); }/*</bind>*/
+    /*<ptr>*/public static class CBChannelSoundingProcedureResultsPtr extends Ptr<CBChannelSoundingProcedureResults, CBChannelSoundingProcedureResultsPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(CBChannelSoundingProcedureResults.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
+    /*<constructors>*/
+    protected CBChannelSoundingProcedureResults() {}
+    protected CBChannelSoundingProcedureResults(Handle h, long handle) { super(h, handle); }
+    protected CBChannelSoundingProcedureResults(SkipInit skipInit) { super(skipInit); }
+    /*</constructors>*/
+    /*<properties>*/
+    @Property(selector = "distance")
+    public native double getDistance();
+    /*</properties>*/
     /*<members>*//*</members>*/
-    @Override
-    public MCErrorCode getErrorCode() {
-        MCErrorCode code = null;
-        try {
-            code = MCErrorCode.valueOf(getCode());
-        } catch (IllegalArgumentException e) {
-            // ignore
-        }
-        return code;
-    }
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 27.0. Use Network Framework instead
-     */
-    @Deprecated
-    @GlobalValue(symbol="MCErrorDomain", optional=true)
-    public static native String getClassDomain();
+    
     /*</methods>*/
 }

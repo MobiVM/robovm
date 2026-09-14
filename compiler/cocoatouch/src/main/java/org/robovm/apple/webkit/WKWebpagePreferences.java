@@ -93,6 +93,56 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setPreferredHTTPSNavigationPolicy:")
     public native void setPreferredHTTPSNavigationPolicy(WKWebpagePreferencesUpgradeToHTTPSPolicy v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "securityRestrictionMode")
+    public native WKSecurityRestrictionMode getSecurityRestrictionMode();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setSecurityRestrictionMode:")
+    public native void setSecurityRestrictionMode(WKSecurityRestrictionMode v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "alternateRequest")
+    public native NSURLRequest getAlternateRequest();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAlternateRequest:")
+    public native void setAlternateRequest(NSURLRequest v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "overrideReferrer")
+    public native String getOverrideReferrer();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOverrideReferrer:")
+    public native void setOverrideReferrer(String v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsJSHandleCreationInPageWorld")
+    public native boolean allowsJSHandleCreationInPageWorld();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsJSHandleCreationInPageWorld:")
+    public native void setAllowsJSHandleCreationInPageWorld(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "globalPrivacyControlEnabled")
+    public native boolean isGlobalPrivacyControlEnabled();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setGlobalPrivacyControlEnabled:")
+    public native void setGlobalPrivacyControlEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

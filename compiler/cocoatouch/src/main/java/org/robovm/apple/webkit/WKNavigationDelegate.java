@@ -99,6 +99,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "webView:shouldGoToBackForwardListItem:willUseInstantBack:completionHandler:")
     void shouldGoToBackForwardListItem(WKWebView webView, WKBackForwardListItem backForwardListItem, boolean willUseInstantBack, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "webView:willSubmitForm:submissionHandler:")
+    void willSubmitForm(WKWebView webView, WKFormInfo formInfo, @Block Runnable submissionHandler);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/
