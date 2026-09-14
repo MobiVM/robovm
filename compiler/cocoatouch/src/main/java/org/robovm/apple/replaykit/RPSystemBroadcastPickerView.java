@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCContentSharingPicker instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPSystemBroadcastPickerView/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
     /*<implements>*/implements NSCoding/*</implements>*/ {

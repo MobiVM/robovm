@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastActivityViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -67,7 +68,9 @@ import org.robovm.apple.coreanimation.*;
     public static native void load(@Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported
      */
+    @Deprecated
     @Method(selector = "loadBroadcastActivityViewControllerWithPreferredExtension:handler:")
     public static native void load(String preferredExtension, @Block VoidBlock2<RPBroadcastActivityViewController, NSError> handler);
     /*</methods>*/

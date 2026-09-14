@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastControllerDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -57,7 +58,9 @@ import org.robovm.apple.coreanimation.*;
     void didUpdateServiceInfo(RPBroadcastController broadcastController, NSDictionary<?, ?> serviceInfo);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported
      */
+    @Deprecated
     @Method(selector = "broadcastController:didUpdateBroadcastURL:")
     void didUpdateBroadcastURL(RPBroadcastController broadcastController, NSURL broadcastURL);
     /*</methods>*/

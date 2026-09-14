@@ -74,20 +74,40 @@ import org.robovm.apple.avfoundation.*;
     private native @Pointer long init(ObjCObject xpcRepresentation, NSError.NSErrorPtr error);
     @Method(selector = "createXPCRepresentation")
     public native ObjCObject createXPCRepresentation();
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -[BEProcessCapability activateWithError:] instead
+     */
+    @Deprecated
     public boolean activate() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = activate(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -[BEProcessCapability activateWithError:] instead
+     */
+    @Deprecated
     @Method(selector = "activateWithError:")
     private native boolean activate(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -[BEProcessCapability suspendWithError:] instead
+     */
+    @Deprecated
     public boolean suspend() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = suspend(ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -[BEProcessCapability suspendWithError:] instead
+     */
+    @Deprecated
     @Method(selector = "suspendWithError:")
     private native boolean suspend(NSError.NSErrorPtr error);
     public AVCaptureSession makeCaptureSession() throws NSErrorException {

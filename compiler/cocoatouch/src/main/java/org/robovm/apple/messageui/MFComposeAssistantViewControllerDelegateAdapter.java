@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.replaykit;
+package org.robovm.apple.messageui;
 
 /*<imports>*/
 import java.io.*;
@@ -29,37 +29,28 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coremedia.*;
-import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.messages.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 27.0. No longer supported
- */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastActivityViewControllerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*//*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MFComposeAssistantViewControllerDelegateAdapter/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements MFComposeAssistantViewControllerDelegate/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*/
     
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 27.0. No longer supported
-     */
-    @Deprecated
-    @Method(selector = "broadcastActivityViewController:didFinishWithBroadcastController:error:")
-    void didFinish(RPBroadcastActivityViewController broadcastActivityViewController, RPBroadcastController broadcastController, NSError error);
+    @NotImplemented("composeAssistantViewController:didComposeDraft:")
+    public void composeAssistant(MFComposeAssistantViewController controller, MFMailDraft draft) {}
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

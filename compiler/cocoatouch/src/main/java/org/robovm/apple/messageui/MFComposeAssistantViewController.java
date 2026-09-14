@@ -1,19 +1,19 @@
 /*
  * Copyright (C) 2013-2015 RoboVM AB
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.replaykit;
+package org.robovm.apple.messageui;
 
 /*<imports>*/
 import java.io.*;
@@ -29,41 +29,37 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coremedia.*;
-import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.messages.*;
 /*</imports>*/
 
 /*<javadoc>*/
-/**
- * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 27.0. Use SCRecordingEditor instead
- */
+
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/RPPreviewViewController/*</name>*/ 
+/*<annotations>*/@Library("MessageUI") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/MFComposeAssistantViewController/*</name>*/ 
     extends /*<extends>*/UIViewController/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class RPPreviewViewControllerPtr extends Ptr<RPPreviewViewController, RPPreviewViewControllerPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(RPPreviewViewController.class); }/*</bind>*/
+    /*<ptr>*/public static class MFComposeAssistantViewControllerPtr extends Ptr<MFComposeAssistantViewController, MFComposeAssistantViewControllerPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MFComposeAssistantViewController.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public RPPreviewViewController() {}
-    protected RPPreviewViewController(Handle h, long handle) { super(h, handle); }
-    protected RPPreviewViewController(SkipInit skipInit) { super(skipInit); }
+    public MFComposeAssistantViewController() {}
+    protected MFComposeAssistantViewController(Handle h, long handle) { super(h, handle); }
+    protected MFComposeAssistantViewController(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithDelegate:")
+    public MFComposeAssistantViewController(MFComposeAssistantViewControllerDelegate delegate) { super((SkipInit) null); initObject(init(delegate)); }
     @Method(selector = "initWithNibName:bundle:")
-    public RPPreviewViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
+    public MFComposeAssistantViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
-    public RPPreviewViewController(NSCoder coder) { super(coder); }
+    public MFComposeAssistantViewController(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "previewControllerDelegate")
-    public native RPPreviewViewControllerDelegate getPreviewControllerDelegate();
-    @Property(selector = "setPreviewControllerDelegate:", strongRef = true)
-    public native void setPreviewControllerDelegate(RPPreviewViewControllerDelegate v);
+    
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "initWithDelegate:")
+    protected native @Pointer long init(MFComposeAssistantViewControllerDelegate delegate);
     /*</methods>*/
 }

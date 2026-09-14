@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.replaykit;
+package org.robovm.apple.browserenginekit;
 
 /*<imports>*/
 import java.io.*;
@@ -29,37 +29,41 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.uniformtypeid.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 10.0 and later.
- * @deprecated Deprecated in iOS 27.0. No longer supported
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPBroadcastActivityViewControllerDelegate/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/BEAccessibilityOrientation/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Unknown(0L),
+    Vertical(1L),
+    Horizontal(2L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 27.0. No longer supported
-     */
-    @Deprecated
-    @Method(selector = "broadcastActivityViewController:didFinishWithBroadcastController:error:")
-    void didFinish(RPBroadcastActivityViewController broadcastActivityViewController, RPBroadcastController broadcastController, NSError error);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/BEAccessibilityOrientation/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/BEAccessibilityOrientation/*</name>*/ valueOf(long n) {
+        for (/*<name>*/BEAccessibilityOrientation/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/BEAccessibilityOrientation/*</name>*/.class.getName());
+    }
 }

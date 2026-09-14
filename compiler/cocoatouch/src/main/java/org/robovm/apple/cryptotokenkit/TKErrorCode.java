@@ -47,6 +47,10 @@ public enum /*<name>*/TKErrorCode/*</name>*/ implements NSErrorCode {
     CodeBadParameter(-8L),
     CodeAuthenticationNeeded(-9L),
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    CodeInvalidatedDeviceKey(-10L),
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 9.0. Use TKErrorCodeAuthenticationFailed
      */
