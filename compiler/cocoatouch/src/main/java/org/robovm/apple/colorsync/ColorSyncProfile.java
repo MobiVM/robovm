@@ -172,5 +172,30 @@ import org.robovm.apple.corefoundation.*;
      */
     @Bridge(symbol="ColorSyncProfileRemoveTag", optional=true)
     public static native void removeTag(ColorSyncMutableProfile prof, CFString signature);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileCreateCopyWithHeadroomAdaptiveGainCurveMetadata", optional=true)
+    public native ColorSyncProfile createCopyWithHeadroomAdaptiveGainCurveMetadata(CFData data, CFDictionary options);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileCopyHeadroomAdaptiveGainCurveMetadata", optional=true)
+    public native CFData copyHeadroomAdaptiveGainCurveMetadata();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileCreateCopyWithHeadroomAdaptiveGainCurveInfoDictionary", optional=true)
+    public native ColorSyncProfile createCopyWithHeadroomAdaptiveGainCurveInfoDictionary(CFDictionary info);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileCopyHeadroomAdaptiveGainCurveInfoDictionary", optional=true)
+    public native CFDictionary copyHeadroomAdaptiveGainCurveInfoDictionary();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Bridge(symbol="ColorSyncProfileContainsHeadroomAdaptiveGainCurve", optional=true)
+    public native boolean containsHeadroomAdaptiveGainCurve();
     /*</methods>*/
 }

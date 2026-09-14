@@ -814,6 +814,14 @@ classes:
                 name: sliceUpdateDataTensor
             '-sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:':
                 name: sliceUpdateDataTensor
+            '-runAsyncWithMTL4CommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:':
+                name: runAsync
+            '-runAsyncWithMTL4CommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:':
+                name: runAsync
+            '-planarTensorWithComplexTensor:name:':
+                name: planarTensor
+            '-scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:descriptor:name:':
+                name: scaledDotProductAttention
 
     MPSGraphConvolution2DOpDescriptor:
         methods:
@@ -919,6 +927,10 @@ classes:
             '-initWithCoreMLPackageAtURL:compilationDescriptor:':
                 static_constructor_name: createUsingCoreMLPackage
                 name: initWithCoreMLPackageAtURL
+            '-runWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:':
+                name: run
+            '-runAsyncWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:':
+                name: runAsync
     MPSGraphExecutableExecutionDescriptor:  #since 15.0
         methods:
             '-waitForEvent:value:':
@@ -979,6 +991,11 @@ classes:
                 constructor: true
                 name: create
     MPSGraphObject: {} #since 17.0
+    MPSGraphSDPADescriptor: #since 27.0
+        methods:
+            '+descriptorWithScale:':
+                name: create
+                constructor: true
 protocols:
 
 functions:

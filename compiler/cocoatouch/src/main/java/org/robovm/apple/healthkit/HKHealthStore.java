@@ -110,6 +110,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "earliestPermittedSampleDate")
     public native NSDate earliestPermittedSampleDate();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "getEarliestAuthorizedSampleDateForTypes:completion:")
+    public native void getEarliestAuthorizedSampleDate(NSSet<HKObjectType> types, @Block VoidBlock2<NSDictionary<HKObjectType, NSDate>, NSError> completion);
     @Method(selector = "saveObject:withCompletion:")
     public native void saveObject(HKObject object, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "saveObjects:withCompletion:")

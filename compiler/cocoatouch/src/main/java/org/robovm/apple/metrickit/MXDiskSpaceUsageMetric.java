@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 26.0 and later.
+ * @deprecated Use MetricResult instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXDiskSpaceUsageMetric/*</name>*/ 
     extends /*<extends>*/MXMetric/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

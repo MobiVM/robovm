@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use MetricResult instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXSignpostMetric/*</name>*/ 
     extends /*<extends>*/MXMetric/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.metrickit;
+package org.robovm.apple.healthkit;
 
 /*<imports>*/
 import java.io.*;
@@ -28,32 +28,30 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use MetricResult instead.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ class /*<name>*/MXDiskIOMetric/*</name>*/ 
-    extends /*<extends>*/MXMetric/*</extends>*/ 
+/*<annotations>*/@Library("HealthKit") @NativeClass/*</annotations>*/
+/*<visibility>*/public/*</visibility>*/ class /*<name>*/HKLiveWorkoutZoneUpdate/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/public static class MXDiskIOMetricPtr extends Ptr<MXDiskIOMetric, MXDiskIOMetricPtr> {}/*</ptr>*/
-    /*<bind>*/static { ObjCRuntime.bind(MXDiskIOMetric.class); }/*</bind>*/
+    /*<ptr>*/public static class HKLiveWorkoutZoneUpdatePtr extends Ptr<HKLiveWorkoutZoneUpdate, HKLiveWorkoutZoneUpdatePtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(HKLiveWorkoutZoneUpdate.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public MXDiskIOMetric() {}
-    protected MXDiskIOMetric(Handle h, long handle) { super(h, handle); }
-    protected MXDiskIOMetric(SkipInit skipInit) { super(skipInit); }
+    protected HKLiveWorkoutZoneUpdate() {}
+    protected HKLiveWorkoutZoneUpdate(Handle h, long handle) { super(h, handle); }
+    protected HKLiveWorkoutZoneUpdate(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "cumulativeLogicalWrites")
-    public native NSMeasurement<NSUnitInformationStorage> getCumulativeLogicalWrites();
-    @Property(selector = "supportsSecureCoding")
-    public static native boolean supportsSecureCoding();
+    @Property(selector = "lastSampleProcessedDate")
+    public native NSDate getLastSampleProcessedDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

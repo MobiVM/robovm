@@ -94,6 +94,10 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKVitalSignsQuantityTypeIdentifier HeartRateRecoveryOneMinute = new HKVitalSignsQuantityTypeIdentifier("HeartRateRecoveryOneMinute");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final HKVitalSignsQuantityTypeIdentifier HeartRateVariabilityRMSSD = new HKVitalSignsQuantityTypeIdentifier("HeartRateVariabilityRMSSD");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final HKVitalSignsQuantityTypeIdentifier HeartRateVariabilitySDNN = new HKVitalSignsQuantityTypeIdentifier("HeartRateVariabilitySDNN");
@@ -115,7 +119,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKVitalSignsQuantityTypeIdentifier BodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BodyTemperature");
     /*</constants>*/
     
-    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, HeartRateRecoveryOneMinute, HeartRateVariabilitySDNN, RestingHeartRate, WalkingHeartRateAverage, BloodPressureDiastolic, BloodPressureSystolic, BasalBodyTemperature, RespiratoryRate, BodyTemperature/*</value_list>*/};
+    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, HeartRateRecoveryOneMinute, HeartRateVariabilityRMSSD, HeartRateVariabilitySDNN, RestingHeartRate, WalkingHeartRateAverage, BloodPressureDiastolic, BloodPressureSystolic, BasalBodyTemperature, RespiratoryRate, BodyTemperature/*</value_list>*/};
     
     /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -145,6 +149,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateRecoveryOneMinute", optional=true)
         public static native NSString HeartRateRecoveryOneMinute();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateVariabilityRMSSD", optional=true)
+        public static native NSString HeartRateVariabilityRMSSD();
         /**
          * @since Available in iOS 11.0 and later.
          */

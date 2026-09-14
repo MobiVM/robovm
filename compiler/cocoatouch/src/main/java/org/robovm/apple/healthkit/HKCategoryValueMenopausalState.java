@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robovm.apple.metrickit;
+package org.robovm.apple.healthkit;
 
 /*<imports>*/
 import java.io.*;
@@ -28,42 +28,38 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 13.0 and later.
- * @deprecated Use MetricManager instead.
+ * @since Available in iOS 27.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated/*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MXMetricManagerSubscriber/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+public enum /*<name>*/HKCategoryValueMenopausalState/*</name>*/ implements ValuedEnum {
+    /*<values>*/
+    Menopause(1L),
+    Perimenopause(2L),
+    None(3L);
+    /*</values>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<properties>*/
-    
-    /*</properties>*/
-    /*<methods>*/
-    /**
-     * @since Available in iOS 13.0 and later.
-     * @deprecated Use MetricManager.metricReports instead.
-     */
-    @Deprecated
-    @Method(selector = "didReceiveMetricPayloads:")
-    void didReceiveMetricPayloads(NSArray<MXMetricPayload> payloads);
-    /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Use MetricManager.diagnosticReports instead.
-     */
-    @Deprecated
-    @Method(selector = "didReceiveDiagnosticPayloads:")
-    void didReceiveDiagnosticPayloads(NSArray<MXDiagnosticPayload> payloads);
-    /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
+    /*<methods>*//*</methods>*/
+
+    private final long n;
+
+    private /*<name>*/HKCategoryValueMenopausalState/*</name>*/(long n) { this.n = n; }
+    public long value() { return n; }
+    public static /*<name>*/HKCategoryValueMenopausalState/*</name>*/ valueOf(long n) {
+        for (/*<name>*/HKCategoryValueMenopausalState/*</name>*/ v : values()) {
+            if (v.n == n) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+            + /*<name>*/HKCategoryValueMenopausalState/*</name>*/.class.getName());
+    }
 }
