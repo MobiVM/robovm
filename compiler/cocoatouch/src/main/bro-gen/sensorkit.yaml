@@ -32,6 +32,9 @@ enums:
     SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning: {} #since 26.0
     SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting: {} #since 26.0
     SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication: {} #since 26.0
+    SRHeadphoneSettingsSettingEnablement: {} #since 27.0
+    SRHeadphoneSettingsListeningMode: {} #since 27.0
+    SRHeadphoneSettingsAdaptiveAudioStrength: {} #since 27.0
 categories:
     SensorKit@NSDate:
         methods:
@@ -91,6 +94,9 @@ classes:
     SRPhotoplethysmogramOpticalSample: { } #since 17.4
     SRPhotoplethysmogramSample: { } #since 17.4
     SRSleepSession: { } #since 26.0
+    SRHeadphoneSettings: {} #since 27.0
+    SRHeadphoneSettingsHearingAssistance: {} #since 27.0
+    SRSourceDevice: {} #since 27.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:

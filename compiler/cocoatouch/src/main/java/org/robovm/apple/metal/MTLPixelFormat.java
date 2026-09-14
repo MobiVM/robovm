@@ -58,6 +58,22 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
     A1BGR5Unorm(41L),
     ABGR4Unorm(42L),
     BGR5A1Unorm(43L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB8Unorm(45L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB8Snorm(46L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB8Uint(47L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB8Sint(48L),
     R32Uint(53L),
     R32Sint(54L),
     R32Float(55L),
@@ -89,6 +105,26 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 10.0 and later.
      */
     BGR10_XR_sRGB(555L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB16Unorm(95L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB16Snorm(96L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB16Uint(97L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB16Sint(98L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB16Float(99L),
     RG32Uint(103L),
     RG32Sint(104L),
     RG32Float(105L),
@@ -105,6 +141,18 @@ public enum /*<name>*/MTLPixelFormat/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 10.0 and later.
      */
     BGRA10_XR_sRGB(553L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB32Uint(120L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB32Sint(121L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    RGB32Float(122L),
     RGBA32Uint(123L),
     RGBA32Sint(124L),
     RGBA32Float(125L),

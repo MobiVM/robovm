@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:")
     public CPTravelEstimates(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time) { super((SkipInit) null); initObject(init(distanceRemaining, distanceRemainingToDisplay, time)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:routeDetails:")
+    public CPTravelEstimates(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time, NSArray<CPRouteDetail> routeDetails) { super((SkipInit) null); initObject(init(distanceRemaining, distanceRemainingToDisplay, time, routeDetails)); }
     @Method(selector = "initWithCoder:")
     public CPTravelEstimates(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -71,6 +77,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSMeasurement<NSUnitLength> getDistanceRemaining();
     @Property(selector = "timeRemaining")
     public native double getTimeRemaining();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "routeDetails")
+    public native NSArray<CPRouteDetail> getRouteDetails();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -83,6 +94,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:")
     protected native @Pointer long init(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:routeDetails:")
+    protected native @Pointer long init(NSMeasurement<NSUnitLength> distanceRemaining, NSMeasurement<NSUnitLength> distanceRemainingToDisplay, double time, NSArray<CPRouteDetail> routeDetails);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

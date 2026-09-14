@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,12 +58,77 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("mapTemplateShouldProvideNavigationMetadata:")
     public boolean mapTemplateShouldProvideNavigationMetadata(CPMapTemplate mapTemplate) { return false; }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplateShouldProvideRouteSharing:")
+    public boolean mapTemplateShouldProvideRouteSharing(CPMapTemplate mapTemplate) { return false; }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:didRequestToInsertWaypoint:intoSegment:completion:")
+    public void didRequestToInsertWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint, CPRouteSegment segment, @Block VoidBlock1<CPTravelEstimates> completion) {}
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:mapTemplateWaypoint:accepted:forSegment:")
+    public void mapTemplateWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint, boolean accepted, CPRouteSegment segment) {}
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:didReceiveUpdatedRouteSource:")
+    public void didReceiveUpdatedRouteSource(CPMapTemplate mapTemplate, CPRouteSource routeSource) {}
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:didReceiveRequestForDestination:")
+    public void didReceiveRequestForDestination(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("mapTemplate:didUpdateRouteSharingEnabled:")
+    public void didUpdateRouteSharingEnabled(CPMapTemplate mapTemplate, boolean enabled) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("mapTemplateShouldProvideMultiStopRouting:")
+    public boolean mapTemplateShouldProvideMultiStopRouting(CPMapTemplate mapTemplate) { return false; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("mapTemplate:didRequestToRemoveWaypoint:")
+    public void didRequestToRemoveWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("mapTemplate:didRequestToRemoveDestination:")
+    public void didRequestToRemoveDestination(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("mapTemplate:didRequestMultiStopCardConfigurationWithCompletion:")
+    public void didRequestMultiStopCardConfiguration(CPMapTemplate mapTemplate, @Block VoidBlock1<CPMultiStopCardConfiguration> completion) {}
     @NotImplemented("mapTemplate:shouldShowNotificationForManeuver:")
     public boolean shouldShowNotificationForManeuver(CPMapTemplate mapTemplate, CPManeuver maneuver) { return false; }
     @NotImplemented("mapTemplate:shouldUpdateNotificationForManeuver:withTravelEstimates:")
     public boolean shouldUpdateNotificationForManeuver(CPMapTemplate mapTemplate, CPManeuver maneuver, CPTravelEstimates travelEstimates) { return false; }
     @NotImplemented("mapTemplate:shouldShowNotificationForNavigationAlert:")
     public boolean shouldShowNotificationForNavigationAlert(CPMapTemplate mapTemplate, CPNavigationAlert navigationAlert) { return false; }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:willShareDestinationForTrip:")
+    public void willShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip) {}
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:didFailToShareDestinationForTrip:error:")
+    public void didFailToShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip, NSError error) {}
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @NotImplemented("mapTemplate:didShareDestinationForTrip:")
+    public void didShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip) {}
     @NotImplemented("mapTemplateDidShowPanningInterface:")
     public void mapTemplateDidShowPanningInterface(CPMapTemplate mapTemplate) {}
     @NotImplemented("mapTemplateWillDismissPanningInterface:")

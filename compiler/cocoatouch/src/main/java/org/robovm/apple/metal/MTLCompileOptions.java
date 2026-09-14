@@ -194,6 +194,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setEnableLogging:")
     public native void setEnableLogging(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "floatingPointConversionRoundingMode")
+    public native MTLFloatingPointConversionRoundingMode getFloatingPointConversionRoundingMode();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setFloatingPointConversionRoundingMode:")
+    public native void setFloatingPointConversionRoundingMode(MTLFloatingPointConversionRoundingMode v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

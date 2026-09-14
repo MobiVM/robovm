@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,12 +58,77 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "mapTemplateShouldProvideNavigationMetadata:")
     boolean mapTemplateShouldProvideNavigationMetadata(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplateShouldProvideRouteSharing:")
+    boolean mapTemplateShouldProvideRouteSharing(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:didRequestToInsertWaypoint:intoSegment:completion:")
+    void didRequestToInsertWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint, CPRouteSegment segment, @Block VoidBlock1<CPTravelEstimates> completion);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:mapTemplateWaypoint:accepted:forSegment:")
+    void mapTemplateWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint, boolean accepted, CPRouteSegment segment);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:didReceiveUpdatedRouteSource:")
+    void didReceiveUpdatedRouteSource(CPMapTemplate mapTemplate, CPRouteSource routeSource);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:didReceiveRequestForDestination:")
+    void didReceiveRequestForDestination(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "mapTemplate:didUpdateRouteSharingEnabled:")
+    void didUpdateRouteSharingEnabled(CPMapTemplate mapTemplate, boolean enabled);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "mapTemplateShouldProvideMultiStopRouting:")
+    boolean mapTemplateShouldProvideMultiStopRouting(CPMapTemplate mapTemplate);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "mapTemplate:didRequestToRemoveWaypoint:")
+    void didRequestToRemoveWaypoint(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "mapTemplate:didRequestToRemoveDestination:")
+    void didRequestToRemoveDestination(CPMapTemplate mapTemplate, CPNavigationWaypoint waypoint);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "mapTemplate:didRequestMultiStopCardConfigurationWithCompletion:")
+    void didRequestMultiStopCardConfiguration(CPMapTemplate mapTemplate, @Block VoidBlock1<CPMultiStopCardConfiguration> completion);
     @Method(selector = "mapTemplate:shouldShowNotificationForManeuver:")
     boolean shouldShowNotificationForManeuver(CPMapTemplate mapTemplate, CPManeuver maneuver);
     @Method(selector = "mapTemplate:shouldUpdateNotificationForManeuver:withTravelEstimates:")
     boolean shouldUpdateNotificationForManeuver(CPMapTemplate mapTemplate, CPManeuver maneuver, CPTravelEstimates travelEstimates);
     @Method(selector = "mapTemplate:shouldShowNotificationForNavigationAlert:")
     boolean shouldShowNotificationForNavigationAlert(CPMapTemplate mapTemplate, CPNavigationAlert navigationAlert);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:willShareDestinationForTrip:")
+    void willShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:didFailToShareDestinationForTrip:error:")
+    void didFailToShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip, NSError error);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "mapTemplate:didShareDestinationForTrip:")
+    void didShareDestinationForTrip(CPMapTemplate mapTemplate, CPTrip trip);
     @Method(selector = "mapTemplateDidShowPanningInterface:")
     void mapTemplateDidShowPanningInterface(CPMapTemplate mapTemplate);
     @Method(selector = "mapTemplateWillDismissPanningInterface:")

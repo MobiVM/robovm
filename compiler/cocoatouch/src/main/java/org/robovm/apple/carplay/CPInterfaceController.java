@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,6 +119,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "dismissTemplateAnimated:completion:")
     public native void dismissTemplate(boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "showOverlayTemplate:animated:completion:")
+    public native void showOverlayTemplate(CPTemplate templateToShow, boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "hideOverlayTemplateAnimated:completion:")
+    public native void hideOverlayTemplate(boolean animated, @Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 12.0 and later.
      * @deprecated Deprecated in iOS 14.0. Use -setRootTemplate:animated:completion:

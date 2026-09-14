@@ -39,11 +39,15 @@ public enum /*<name>*/ENRiskLevelValue/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     Min(0L),
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     Max(8L);
     /*</values>*/
 

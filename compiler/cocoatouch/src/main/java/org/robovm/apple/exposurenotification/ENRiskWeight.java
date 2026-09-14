@@ -39,23 +39,33 @@ public enum /*<name>*/ENRiskWeight/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     Default(1L),
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     DefaultV2(100L),
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     Min(0L),
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     Max(100L),
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     MaxV2(250L);
     /*</values>*/
 

@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public enum /*<name>*/ENDiagnosisReportType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),

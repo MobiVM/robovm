@@ -1,5 +1,5 @@
 package: org.robovm.apple.carplay
-include: [foundation, uikit, coregraphics, mapkit, coreanimation]
+include: [foundation, uikit, coregraphics, mapkit, coreanimation, coremedia]
 library: CarPlay
 framework: CarPlay
 clang_args: ['-x', 'objective-c']
@@ -36,6 +36,12 @@ enums:
     CPJunctionType: { } #since 17.4
     CPTrafficSide: { } #since 17.4
     CPManeuverState: { } #since 17.4
+    CPChargingStationConnectionConnector: {} #since 27.0
+    CPImageOverlayAlignment: {} #since 26.4
+    CPPlaybackPresentation: {} #since 26.4
+    CPPlaybackAction: {} #since 26.4
+    CPRerouteReason: {} #since 26.4
+    CPRouteSource: {} #since 27.0
 classes:
     CPActionSheetTemplate: #since 12.0
         methods:
@@ -97,6 +103,10 @@ classes:
                 name: presentTemplate
             '-dismissTemplateAnimated:completion:':
                 name: dismissTemplate
+            '-showOverlayTemplate:animated:completion:':
+                name: showOverlayTemplate
+            '-hideOverlayTemplateAnimated:completion:':
+                name: hideOverlayTemplate
     CPListItem: #since 12.0
         methods:
             '-initWithText:detailText:image:showsDisclosureIndicator:':
@@ -123,6 +133,8 @@ classes:
                 name: init
             '-initWithTitle:sections:assistantCellConfiguration:headerGridButtons:':
                 name: init
+            '-initWithTitle:listHeader:sections:assistantCellConfiguration:':
+                name: init
     CPManeuver: {} #since 12.0
     CPMapButton: #since 12.0
         methods:
@@ -144,14 +156,26 @@ classes:
                 trim_after_first_colon: true
             '-showTripPreviews:selectedTrip:textConfiguration:':
                 name: showTripPreviews
+            '-showPanel:completion:':
+                name: showPanel
+            '-pushPanel:completion:':
+                name: pushPanel
+            '-popPanelWithCompletion:':
+                name: popPanel
+            '-hidePanelWithCompletion:':
+                name: hidePanel
     CPNavigationAlert: #since 12.0
         methods:
             '-initWithTitleVariants:subtitleVariants:imageSet:primaryAction:secondaryAction:duration:':
                 name: init
             '-initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:':
                 name: init
+            '-initWithTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:':
+                name: init
             '-updateTitleVariants:subtitleVariants:':
                 trim_after_first_colon: true
+            '-updateTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:':
+                name: updateTitleVariants
     CPNavigationSession: #since 12.0
         methods:
             '-pauseTripForReason:description:':
@@ -162,9 +186,15 @@ classes:
                 name: pauseTripForReason
             '-resumeTripWithUpdatedRouteInformation:':
                 name: resumeTrip
+            '-resumeTripWithUpdatedRouteSegments:currentSegment:rerouteReason:':
+                name: resumeTrip
+            '-resumeNavigationWithUpdatedTrip:routeSegments:currentSegment:rerouteReason:':
+                name: resumeNavigation
     CPRouteChoice: #since 12.0
         methods:
             '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:':
+                name: init
+            '-initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:travelEstimates:':
                 name: init
     CPSearchTemplate: {} #since 12.0
     CPSessionConfiguration: #since 12.0
@@ -178,9 +208,13 @@ classes:
                 name: init
             '-initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:':
                 name: init
+            '-initWithDistanceRemaining:distanceRemainingToDisplay:timeRemaining:routeDetails:':
+                name: init
     CPTrip: #since 12.0
         methods:
             '-initWithOrigin:destination:routeChoices:':
+                name: init
+            '-initWithOriginWaypoint:destinationWaypoint:routeChoices:':
                 name: init
     CPTripPreviewTextConfiguration: #since 12.0
         methods:
@@ -189,6 +223,8 @@ classes:
     CPVoiceControlState: #since 12.0
         methods:
             '-initWithIdentifier:titleVariants:image:repeats:':
+                name: init
+            '-initWithIdentifier:titleVariants:image:backgroundImage:repeats:':
                 name: init
     CPVoiceControlTemplate: #since 12.0
         methods:
@@ -334,6 +370,8 @@ classes:
         methods:
             '-initWithImage:showsImageFullHeight:title:subtitle:tintColor:':
                 name: init
+            '-initWithThumbnail:title:subtitle:tintColor:':
+                name: init
     CPListImageRowItemCondensedElement: #since 26.0
         methods:
             '-initWithImage:imageShape:title:subtitle:accessorySymbolName:':
@@ -385,6 +423,130 @@ classes:
         methods:
             '-initWithManeuvers:laneGuidances:currentManeuvers:currentLaneGuidance:tripTravelEstimates:maneuverTravelEstimates:':
                 name: init
+    CPLocationCoordinate3D: {} #since 26.4
+    CPChargingStationConnection: #since 27.0
+        methods:
+            '-initWithConnector:voltage:power:':
+                name: init
+    CPImageOverlay: #since 26.4
+        methods:
+            '-initWithImage:alignment:':
+                name: init
+            '-initWithText:textColor:backgroundColor:alignment:':
+                name: init
+    CPListTemplateDetailsHeader: #since 26.4
+        methods:
+            '-initWithThumbnail:title:subtitle:actionButtons:':
+                name: init
+            '-initWithThumbnail:title:subtitle:bodyVariants:actionButtons:':
+                name: init
+    CPMapPanel: #since 27.0
+        methods:
+            '-initWithTitle:sections:buttonConfiguration:':
+                name: init
+    CPMapPanelButtonConfiguration: #since 27.0
+        methods:
+            '-initWithPrimaryAction:secondaryButton:travelEstimates:':
+                name: init
+    CPMapPanelItem: #since 27.0
+        methods:
+            '-initWithTrip:handler:':
+                name: init
+            '-initWithTravelEstimates:handler:':
+                name: init
+            '-initWithRouteChoice:handler:':
+                name: init
+            '-initWithRouteDetails:handler:':
+                name: init
+            '-initWithChargingStationConnection:handler:':
+                name: init
+            '-initWithMapTemplateWaypoint:image:handler:':
+                name: init
+    CPMapPanelSection: #since 27.0
+        methods:
+            '-initWithTitle:items:':
+                name: init
+    CPMapTemplateWaypoint: #since 26.4
+        methods:
+            '-initWithWaypoint:travelEstimates:':
+                name: init
+    CPMultiStopCardConfiguration: #since 27.0
+        methods:
+            '-initWithTitle:buttons:':
+                name: init
+            '-initWithTitle:buttons:image:':
+                name: init
+    CPNavigationWaypoint: #since 26.4
+        methods:
+            '-initWithCenterPoint:locationThreshold:nameVariants:addressVariants:entryPoints:entryPointsCount:timeZone:':
+                name: init
+            '-initWithCenterPoint:locationThreshold:name:address:entryPoints:entryPointsCount:timeZone:':
+                name: init
+            '-initWithMapItem:locationThreshold:entryPoints:entryPointsCount:':
+                name: init
+    CPPanel: {} #since 27.0
+    CPPanelButtonConfiguration: #since 27.0
+        methods:
+            '-initWithPrimaryAction:secondaryAction:':
+                name: init
+    CPPanelItem: #since 27.0
+        methods:
+            '-initWithListItem:':
+                name: init
+            '-initWithGridButtons:':
+                name: init
+    CPPlaybackConfiguration: #since 26.4
+        methods:
+            '-initWithPreferredPresentation:playbackAction:elapsedTime:duration:':
+                name: init
+    CPRouteDetail: #since 27.0
+        methods:
+            '+routeDetailWithTollAmount:locale:':
+                name: routeDetailWithTollAmount
+            '+routeDetailWithFuelLevel:':
+                name: routeDetailWithFuelLevel
+            '+routeDetailWithFuelEnergy:':
+                name: routeDetailWithFuelEnergy
+            '+routeDetailWithFuelMass:':
+                name: routeDetailWithFuelMass
+            '+routeDetailWithBatteryLevel:':
+                name: routeDetailWithBatteryLevel
+            '+routeDetailWithKilowattHours:':
+                name: routeDetailWithKilowattHours
+            '+routeDetailWithCarbonFootprint:':
+                name: routeDetailWithCarbonFootprint
+            '+routeDetailWithEcoScore:':
+                name: routeDetailWithEcoScore
+            '+routeDetailWithEmissions:':
+                name: routeDetailWithEmissions
+            '+routeDetailWithRating:':
+                name: routeDetailWithRating
+            '+routeDetailWithHOV:':
+                name: routeDetailWithHOV
+            '+routeDetailWithTrafficLights:':
+                name: routeDetailWithTrafficLights
+            '+routeDetailWithWarning:':
+                name: routeDetailWithWarning
+            '+routeDetailWithInfo:':
+                name: routeDetailWithInfo
+            '+routeDetailWithParking:':
+                name: routeDetailWithParking
+            '+routeDetailWithSymbolName:value:':
+                name: routeDetailWithSymbolName
+    CPRouteSegment: #since 26.4
+        methods:
+            '-initWithOrigin:destination:maneuvers:laneGuidances:currentManeuvers:currentLaneGuidance:tripTravelEstimates:maneuverTravelEstimates:coordinates:coordinatesCount:':
+                name: init
+    CPSportsOverlay: #since 26.4
+        methods:
+            '-initWithLeftTeam:rightTeam:eventStatus:':
+                name: init
+    CPThumbnailImage: #since 26.4
+        methods:
+            '-initWithImage:':
+                name: init
+            '-initWithImage:imageOverlay:sportsOverlay:':
+                name: init
 protocols:
     CPApplicationDelegate: #since 12.0
         methods:
@@ -411,6 +573,7 @@ protocols:
         methods:
             '-listTemplate:didSelectListItem:completionHandler:':
                 name: didSelectListItem
+    CPMapPanelDelegate: {} #since 27.0
     CPMapTemplateDelegate: #since 12.0
         methods:
             '-mapTemplate:shouldShowNotificationForManeuver:':
@@ -455,6 +618,28 @@ protocols:
                 name: pitch
             '-mapTemplate:pitchEndedWithCenter:':
                 name: pitchEndedWith
+            '-mapTemplate:didRequestToInsertWaypoint:intoSegment:completion:':
+                name: didRequestToInsertWaypoint
+            '-mapTemplate:mapTemplateWaypoint:accepted:forSegment:':
+                name: mapTemplateWaypoint
+            '-mapTemplate:didReceiveUpdatedRouteSource:':
+                name: didReceiveUpdatedRouteSource
+            '-mapTemplate:didReceiveRequestForDestination:':
+                name: didReceiveRequestForDestination
+            '-mapTemplate:didUpdateRouteSharingEnabled:':
+                name: didUpdateRouteSharingEnabled
+            '-mapTemplate:didRequestToRemoveWaypoint:':
+                name: didRequestToRemoveWaypoint
+            '-mapTemplate:didRequestToRemoveDestination:':
+                name: didRequestToRemoveDestination
+            '-mapTemplate:didRequestMultiStopCardConfigurationWithCompletion:':
+                name: didRequestMultiStopCardConfiguration
+            '-mapTemplate:willShareDestinationForTrip:':
+                name: willShareDestinationForTrip
+            '-mapTemplate:didFailToShareDestinationForTrip:error:':
+                name: didFailToShareDestinationForTrip
+            '-mapTemplate:didShareDestinationForTrip:':
+                name: didShareDestinationForTrip
     CPSearchTemplateDelegate: #since 12.0
         methods:
             '-searchTemplate:updatedSearchText:completionHandler:':
@@ -488,6 +673,7 @@ protocols:
             '-templateApplicationDashboardScene:didDisconnectDashboardController:fromWindow:':
                 name: didDisconnectDashboardController
     CPListTemplateItem: {} #since 14.0
+    CPPlayableItem: {} #since 26.4
     CPNowPlayingTemplateObserver:  #since 14.0
         methods:
             '-nowPlayingTemplateUpNextButtonTapped:':

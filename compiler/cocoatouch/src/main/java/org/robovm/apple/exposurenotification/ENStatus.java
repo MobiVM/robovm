@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/ENStatus/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unknown(0L),
