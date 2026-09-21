@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.CpuArch;
+import org.robovm.compiler.target.ios.devicectl.DeviceCtl;
 import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
@@ -45,6 +46,7 @@ import java.util.*;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_PROVISIONING_PROFILE;
 import static org.robovm.idea.running.RoboVmRunConfiguration.AUTO_SIGNING_IDENTITY;
@@ -85,7 +87,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     private final SigningIdentityDecorator signingIdentityAuto = new SigningIdentityDecorator(AUTO_SIGNING_IDENTITY, EntryType.AUTO);
 
     private List<IDeviceDecorator> connectedDevices;
-    private final IDeviceDecorator connectedDeviceAuto = new IDeviceDecorator("Auto (single connected device)", EntryType.AUTO);;
+    private final IDeviceDecorator connectedDeviceAuto = new IDeviceDecorator("Auto (single connected device)", EntryType.AUTO, true);
 
     private boolean moduleHasWatchApp;
     // true if editor internally updating data and listeners should ignore the events
@@ -276,8 +278,10 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
     }
 
     private void populateDevices () {
-        this.connectedDevices = Arrays.stream(IDevice.listUdids()).map(IDeviceDecorator::new).collect(Collectors.toList());
-
+        this.connectedDevices = Stream.concat(
+            DeviceCtl.listDevices().stream().map(d -> new IDeviceDecorator(d.hardwareProperties.udid, d.deviceProperties.name, false)),
+            Arrays.stream(IDevice.listUdids()).map(s -> new IDeviceDecorator(s, s, false))
+        ).distinct().collect(Collectors.toList());
         IDeviceDecorator previousSelection = (IDeviceDecorator) targetDeviceUDID.getSelectedItem();
         Vector<IDeviceDecorator> items = new Vector<>();
         items.add(connectedDeviceAuto);
@@ -344,7 +348,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
         }
 
         // check if it is in the list
-        IDeviceDecorator candidate = new IDeviceDecorator(udid);
+        IDeviceDecorator candidate = new IDeviceDecorator(udid, true);
         ComboBoxModel<IDeviceDecorator> model = targetDeviceUDID.getModel();
         for (int i = 0; i < model.getSize(); i++) {
             IDeviceDecorator item = model.getElementAt(i);
@@ -896,14 +900,21 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
      * decorator for connected device
      */
     private static class IDeviceDecorator extends Decorator<String> {
-
+        private final boolean offline;
         private boolean currentlyCompatible = true;
-        IDeviceDecorator (String title, EntryType entryType) {
+        IDeviceDecorator (String title, EntryType entryType, boolean offline) {
             super(null, null, title, entryType);
+            this.offline = offline;
         }
 
-        IDeviceDecorator(String deviceIdentifier) {
+        IDeviceDecorator(String deviceIdentifier, boolean offline) {
             super(deviceIdentifier, deviceIdentifier, deviceIdentifier, EntryType.ID);
+            this.offline = offline;
+        }
+
+        IDeviceDecorator(String deviceIdentifier, String name, boolean offline) {
+            super(deviceIdentifier, deviceIdentifier, name, EntryType.ID);
+            this.offline = offline;
         }
 
         public void setCurrentlyCompatible(boolean currentlyCompatible) {
@@ -920,8 +931,7 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
 
         @Override
         public boolean equals(Object obj) {
-            if (obj instanceof IDeviceDecorator) {
-                IDeviceDecorator other = (IDeviceDecorator) obj;
+            if (obj instanceof IDeviceDecorator other) {
                 if (this.entryType == other.entryType) {
                     if (this.id != null && other.id != null)
                         return this.id.equals(other.id);
@@ -938,20 +948,19 @@ public class RoboVmIOSRunConfigurationSettingsEditor extends SettingsEditor<Robo
             if (id == null) {
                 return name;
             } else {
-                boolean offline = !IDevice.isConnected(id);
-                if (currentlyCompatible && !offline) {
-                    return name;
+                String nameBuffer = "";
+                if (name != null && !name.isEmpty()) {
+                    nameBuffer += name + " - " + id;
                 } else {
-                    String nameBuffer = "";
                     nameBuffer += id;
-                    if (!currentlyCompatible) {
-                        nameBuffer += " [Incompatible]";
-                    }
-                    if (offline) {
-                        nameBuffer += " [Offline]";
-                    }
-                    return nameBuffer;
                 }
+                if (!currentlyCompatible) {
+                    nameBuffer += " [Incompatible]";
+                }
+                if (offline) {
+                    nameBuffer += " [Offline]";
+                }
+                return nameBuffer;
             }
         }
     }

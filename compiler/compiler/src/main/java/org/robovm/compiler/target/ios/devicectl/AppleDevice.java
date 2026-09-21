@@ -145,6 +145,8 @@ public class AppleDevice {
 
             // known constants
             public static TunnelState CONNECTED = of("connected");
+            public static TunnelState DISCONNECTED = of("disconnected");
+            public static TunnelState UNAVAILABLE = of("unavailable");
         }
 
         public final AuthenticationType authenticationType;
