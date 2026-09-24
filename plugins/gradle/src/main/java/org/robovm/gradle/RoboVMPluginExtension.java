@@ -43,8 +43,6 @@ public class RoboVMPluginExtension {
     private String keychainPassword;
     private String keychainPasswordFile;
     private boolean dumpIntermediates = false;
-    private String configurationName;
-    private boolean skipDefaultClasspathEntries = false;
 
     public RoboVMPluginExtension(Project project) {
         this.project = project;
@@ -220,22 +218,4 @@ public class RoboVMPluginExtension {
 	public void setDumpIntermediates(boolean dumpIntermediates) {
 		this.dumpIntermediates = dumpIntermediates;
 	}
-
-    public String getConfigurationName() {
-        return project.hasProperty("robovm.configurationName") ? project.getProperties().get("robovm.configurationName").toString() : configurationName;
-    }
-
-    public void setConfigurationName(String configurationName) {
-        this.configurationName = configurationName;
-    }
-
-    public boolean isSkipDefaultClasspathEntries() {
-        return project.hasProperty("robovm.skipDefaultClasspathEntries")
-                ? Boolean.parseBoolean(project.getProperties().get("robovm.skipDefaultClasspathEntries").toString())
-                : skipDefaultClasspathEntries;
-    }
-
-    public void setSkipDefaultClasspathEntries(boolean skipDefaultClasspathEntries) {
-        this.skipDefaultClasspathEntries = skipDefaultClasspathEntries;
-    }
 }
