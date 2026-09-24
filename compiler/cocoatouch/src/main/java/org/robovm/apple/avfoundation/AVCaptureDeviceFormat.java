@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,10 +79,20 @@ import org.robovm.apple.audiotoolbox.*;
     public native @MachineSizedFloat double getVideoMaxZoomFactor();
     @Property(selector = "videoZoomFactorUpscaleThreshold")
     public native @MachineSizedFloat double getVideoZoomFactorUpscaleThreshold();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "systemRecommendedVideoZoomRange")
+    public native AVZoomRange getSystemRecommendedVideoZoomRange();
     @Property(selector = "minExposureDuration")
     public native @ByVal CMTime getMinExposureDuration();
     @Property(selector = "maxExposureDuration")
     public native @ByVal CMTime getMaxExposureDuration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "systemRecommendedExposureBiasRange")
+    public native AVExposureBiasRange getSystemRecommendedExposureBiasRange();
     @Property(selector = "minISO")
     public native float getMinISO();
     @Property(selector = "maxISO")
@@ -92,6 +104,10 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isGlobalToneMappingSupported();
     @Property(selector = "isVideoHDRSupported")
     public native boolean isVideoHDRSupported();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use supportedMaxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "highResolutionStillImageDimensions")
     public native @ByVal CMVideoDimensions getHighResolutionStillImageDimensions();
     /**
@@ -113,14 +129,35 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<NSNumber> getSupportedColorSpaces();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supportedVideoZoomFactorsForDepthDataDelivery
      */
+    @Deprecated
     @Property(selector = "videoMinZoomFactorForDepthDataDelivery")
     public native @MachineSizedFloat double getVideoMinZoomFactorForDepthDataDelivery();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supportedVideoZoomFactorsForDepthDataDelivery
      */
+    @Deprecated
     @Property(selector = "videoMaxZoomFactorForDepthDataDelivery")
     public native @MachineSizedFloat double getVideoMaxZoomFactorForDepthDataDelivery();
+    /**
+     * @since Available in iOS 16.0 and later.
+     * @deprecated Deprecated in iOS 17.2. Use supportedVideoZoomRangesForDepthDataDelivery
+     */
+    @Deprecated
+    @Property(selector = "supportedVideoZoomFactorsForDepthDataDelivery")
+    public native NSArray<NSNumber> getSupportedVideoZoomFactorsForDepthDataDelivery();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "supportedVideoZoomRangesForDepthDataDelivery")
+    public native NSArray<AVZoomRange> getSupportedVideoZoomRangesForDepthDataDelivery();
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    @Property(selector = "zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported")
+    public native boolean isZoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -132,6 +169,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "unsupportedCaptureOutputClasses")
     public native NSArray<?> getUnsupportedCaptureOutputClasses();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supportedMaxPhotoDimensions")
+    public native NSArray<NSValue> getSupportedMaxPhotoDimensions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "secondaryNativeResolutionZoomFactors")
+    public native NSArray<NSNumber> getSecondaryNativeResolutionZoomFactors();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isAutoVideoFrameRateSupported")
+    public native boolean isAutoVideoFrameRateSupported();
+    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "isPortraitEffectsMatteStillImageDeliverySupported")
@@ -141,6 +193,8 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isMultiCamSupported")
     public native boolean isMultiCamSupported();
+    @Property(selector = "isSpatialVideoCaptureSupported")
+    public native boolean isSpatialVideoCaptureSupported();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -176,10 +230,91 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "videoFrameRateRangeForPortraitEffect")
     public native AVFrameRateRange getVideoFrameRateRangeForPortraitEffect();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightSupported")
+    public native boolean isStudioLightSupported();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForStudioLight")
+    public native AVFrameRateRange getVideoFrameRateRangeForStudioLight();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "reactionEffectsSupported")
+    public native boolean isReactionEffectsSupported();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForReactionEffectsInProgress")
+    public native AVFrameRateRange getVideoFrameRateRangeForReactionEffectsInProgress();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isBackgroundReplacementSupported")
+    public native boolean isBackgroundReplacementSupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForBackgroundReplacement")
+    public native AVFrameRateRange getVideoFrameRateRangeForBackgroundReplacement();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightSupported")
+    public native boolean isEdgeLightSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCinematicVideoCaptureSupported")
+    public native boolean isCinematicVideoCaptureSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultSimulatedAperture")
+    public native float getDefaultSimulatedAperture();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minSimulatedAperture")
+    public native float getMinSimulatedAperture();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maxSimulatedAperture")
+    public native float getMaxSimulatedAperture();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "videoMinZoomFactorForCinematicVideo")
+    public native @MachineSizedFloat double getVideoMinZoomFactorForCinematicVideo();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "videoMaxZoomFactorForCinematicVideo")
+    public native @MachineSizedFloat double getVideoMaxZoomFactorForCinematicVideo();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "videoFrameRateRangeForCinematicVideo")
+    public native AVFrameRateRange getVideoFrameRateRangeForCinematicVideo();
+    @Property(selector = "supportedDynamicAspectRatios")
+    public native NSArray<NSString> getSupportedDynamicAspectRatios();
+    @Property(selector = "isSmartFramingSupported")
+    public native boolean isSmartFramingSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraLensSmudgeDetectionSupported")
+    public native boolean isCameraLensSmudgeDetectionSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "isVideoStabilizationModeSupported:")
     public native boolean isVideoStabilizationModeSupported(AVCaptureVideoStabilizationMode videoStabilizationMode);
+    @Method(selector = "videoFieldOfViewForAspectRatio:geometricDistortionCorrected:")
+    public native float getVideoFieldOfViewForAspectRatio(AVCaptureAspectRatio aspectRatio, boolean geometricDistortionCorrected);
     /*</methods>*/
 }

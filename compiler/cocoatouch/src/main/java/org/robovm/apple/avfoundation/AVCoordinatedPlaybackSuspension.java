@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,7 +62,7 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "reason")
-    public native String getReason();
+    public native AVCoordinatedPlaybackSuspensionReason getReason();
     @Property(selector = "beginDate")
     public native NSDate getBeginDate();
     /*</properties>*/

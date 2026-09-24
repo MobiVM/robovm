@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -156,6 +157,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "dragStateDidChange:")
     public native void dragStateDidChange(UICollectionViewCellDragState dragState);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "defaultBackgroundConfiguration")
+    public native UIBackgroundConfiguration defaultBackgroundConfiguration();
     /**
      * @since Available in iOS 9.0 and later.
      */

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +61,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     public AVMutableComposition(AVURLAssetOptions urlAssetInitializationOptions) { super((Handle) null, create(urlAssetInitializationOptions)); retain(getHandle()); }
+    public AVMutableComposition(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
@@ -75,14 +78,26 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "compositionWithURLAssetInitializationOptions:")
     protected static native @Pointer long create(AVURLAssetOptions urlAssetInitializationOptions);
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use insertTimeRange:ofAsset:atTime:completionHandler:
+     */
+    @Deprecated
     public boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = insertTimeRange(timeRange, asset, startTime, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use insertTimeRange:ofAsset:atTime:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "insertTimeRange:ofAsset:atTime:error:")
     private native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
+    @Method(selector = "insertTimeRange:ofAsset:atTime:completionHandler:")
+    public native void insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "insertEmptyTimeRange:")
     public native void insertEmptyTimeRange(@ByVal CMTimeRange timeRange);
     @Method(selector = "removeTimeRange:")

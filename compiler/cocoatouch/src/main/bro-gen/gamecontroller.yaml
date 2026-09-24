@@ -5,6 +5,15 @@ framework: GameController
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/GameController.framework/Headers/GameController.h
+
+private_typedefs:
+    'NSString<GCPhysicalInputElementName> *': NSString
+    'NSString<GCSwitchElementName> *': NSString
+    'NSString<GCDirectionPadElementName> *': NSString
+    'NSString<GCButtonElementName> *': NSString
+    'NSString<GCAxisElementName> *': NSString
+    CGPoint: org.robovm.apple.coregraphics.CGPoint
+
 typedefs:
     'void (^)(GCController *)': '@Block VoidBlock1<GCController>'
     
@@ -17,6 +26,9 @@ enums:
     GCTouchState: {}
     GCDualSenseAdaptiveTriggerMode: {}
     GCDualSenseAdaptiveTriggerStatus: {}
+    GCDevicePhysicalInputElementChange: {prefix: GCDevicePhysicalInputElement}
+    GCPhysicalInputSourceDirection: {}
+    GCUIEventTypes: {prefix: GCUIEventType} #since 18.0
 classes:
     # Structs
     GCAcceleration: {}
@@ -29,6 +41,9 @@ classes:
         annotations: ['@Packed(1)']
     GCMicroGamepadSnapshotData:
         annotations: ['@Packed(1)']
+    GCDualSenseAdaptiveTriggerPositionalAmplitudes: {} #since 15.4
+    GCDualSenseAdaptiveTriggerPositionalResistiveStrengths: {} #since 15.4
+    GCPoint2: {}
 
     GCController: # DONE
         methods:
@@ -117,6 +132,12 @@ classes:
                 name: setModeWeapon
             '-setModeVibrationWithStartPosition:amplitude:frequency:':
                 name: setModeVibration
+            '-setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:':
+                name: setModeSlopeFeedback
+            '-setModeFeedbackWithResistiveStrengths:':
+                name: setModeFeedback
+            '-setModeVibrationWithAmplitudes:frequency:':
+                name: setModeVibration
     GCDualSenseGamepad: {} #since 14.5
     GCVirtualController: #since 15.0
         methods:
@@ -128,10 +149,108 @@ classes:
                 name: updateConfiguration
             '+virtualControllerWithConfiguration:':
                 name: virtualControllerWithConfiguration$
+            '-setValue:forButtonElement:':
+                name: setValue
+                parameters:
+                    element:
+                        type: NSString
+            '-setPosition:forDirectionPadElement:':
+                name: setPosition
+                parameters:
+                    element:
+                        type: NSString
     GCVirtualControllerConfiguration: {} #since 15.0
     GCVirtualControllerElementConfiguration: {} #since 15.0
+    GCGearShifterElement: {}
+    GCPhysicalInputElementCollection: #since 16.0
+        template_parameters:
+            Key:
+                type: NSString
+    GCRacingWheel:
+        methods:
+            '-acquireDeviceWithError:':
+                name: acquireDevice
+                throws: NSErrorException
+    GCRacingWheelInput: {}
+    GCRacingWheelInputState: {}
+    GCSteeringWheelElement: {}
+    GCControllerInputState: {} #since 17.0
+    GCControllerLiveInput: {} #since 17.0
+    GCEventInteraction: { } #since 18.0
+    GCGameControllerActivationContext: { } #since 18.0
 protocols:
     GCDevice: {} #since 14.0
+    GCAxisElement: {} #since 16.0
+    GCAxisInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCButtonElement: {} #since 16.0
+    GCDevicePhysicalInput: #since 16.0
+        methods:
+            '-nextInputState':
+                return_type: NSObjectProtocol # there are two default wrappers,
+    GCDevicePhysicalInputState: #since 16.0
+        properties:
+            elements:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            buttons:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            axes:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            switches:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+            dpads:
+                type: "GCPhysicalInputElementCollection<NSString, ?>" # FIXME: once NS collections allows id/protocols
+        methods:
+            '-objectForKeyedSubscript:':
+                parameters:
+                    key:
+                        type: NSString
+    GCDevicePhysicalInputStateDiff: #since 16.0
+        methods:
+            '-changedElements':
+                return_type: NSEnumerator<?> # FIXME: once NS collections allows id/protocols
+    GCDirectionPadElement: {} #since 16.0
+    GCLinearInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCPhysicalInputElement: {} #since 16.0
+    GCPressedStateInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCRelativeInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCSwitchElement: {} #since 16.0
+    GCSwitchPositionInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCTouchedStateInput: #since 16.0
+        properties:
+            sources:
+                type: 'NSSet<?>' # FIXME: remove once NS collections support protocols
+    GCPhysicalInputSource: {} #since 17.0
+    GCAxis2DInput: {} #since 17.4
+    GCGameControllerSceneDelegate: #since 18.0
+        methods:
+            '-scene:didActivateGameControllerWithContext:':
+                name: didActivateGameController
+    GCPhysicalInputExtents: {} #since 26.2
+    GCSwitchElementName:
+        exclude: true # used to simulate typed enum
+    GCPhysicalInputElementName:
+        exclude: true # used to simulate typed enum
+    GCDirectionPadElementName:
+        exclude: true # used to simulate typed enum
+    GCButtonElementName:
+        exclude: true # used to simulate typed enum
+    GCAxisElementName:
+        exclude: true # used to simulate typed enum
 
 functions:
     (GCExtendedGamepadSnapShotDataV100FromNSData):
@@ -161,6 +280,15 @@ functions:
     GCMicroGamepadSnapshotDataFromNSData:
         class: GCMicroGamepadSnapshot
         name: getDataFromNSData
+
+    GCInputArcadeButtonName:
+        class: GCPhysicalInputProfile
+        name: getArcadeButtonName
+
+    GCInput(BackLeftButton|BackRightButton):
+        class: GCPhysicalInputProfile
+        name: 'get#{g[0]}'
+
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?GC.*):
@@ -217,7 +345,11 @@ values:
         name: '#{g[0]}'
     GCProductCategory(.*):
         class: GCProductCategory
+        type: NSString
         name: '#{g[0]}'
+    GCPoint2Zero:
+        class: GCPoint2
+        name: Zero
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?GC.*):
@@ -235,6 +367,10 @@ constants:
     GCControllerPlayerIndexUnset:
         class: GCController
         name: UnsetPlayerIndex
+
+    GCDualSenseAdaptiveTriggerDiscretePositionCount:
+        class: GCDualSenseAdaptiveTrigger
+        name: DiscretePositionCount
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?GC.*):

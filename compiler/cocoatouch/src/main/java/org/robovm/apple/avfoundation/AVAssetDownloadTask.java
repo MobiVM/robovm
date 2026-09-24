@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,8 +70,18 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "destinationURL")
     public native NSURL getDestinationURL();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use AVAssetDownloadConfiguration instead
+     */
+    @Deprecated
     @Property(selector = "options")
     public native AVAssetDownloadTaskOptions getOptions();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use NSURLSessionTask.progress instead
+     */
+    @Deprecated
     @Property(selector = "loadedTimeRanges")
     public native @org.robovm.rt.bro.annotation.Marshaler(CMTimeRange.AsValuedListMarshaler.class) List<CMTimeRange> getLoadedTimeRanges();
     /*</properties>*/

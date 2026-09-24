@@ -8,6 +8,7 @@ include:
     - coreimage
     - coremedia
     - imageio
+    - uniformtypeid
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
@@ -38,6 +39,9 @@ enums:
     PHAssetPlaybackStyle: {} #since 11.0
     PHPhotosError: {nserror: true, prefix: PHPhotosError, first: PHPhotosErrorInvalid} #since 13.0
     PHAccessLevel: { } #since 14.0
+    PHObjectType: {} #since 16.0
+    PHAssetResourceUploadJobState: {} #since 26.1
+    PHAssetResourceUploadJobAction: {} #since 26.1
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -267,6 +271,9 @@ classes:
         methods:
             '-init.*':
                 name: init
+            '-renderedContentURLForType:error:':
+                throws: NSErrorException
+                name: renderedContentURL
     PHFetchOptions: # DONE
         properties:
             'includeHiddenAssets':
@@ -363,6 +370,12 @@ classes:
                 trim_after_first_colon: true
             '+requestAuthorizationForAccessLevel:handler:':
                 name: requestAuthorization
+            '-fetchPersistentChangesSinceToken:error:':
+                name: fetchPersistentChangesSinceToken
+                throws: NSErrorException
+            '-setUploadJobExtensionEnabled:error:':
+                name: setUploadJobExtensionEnabled
+                throws: NSErrorException
     PHVideoRequestOptions: {} # DONE
     PHLivePhotoEditingContext:
         methods:
@@ -379,6 +392,26 @@ classes:
                 name: init
     PHCloudIdentifierMapping: {} #since 15.0
     PHLocalIdentifierMapping: {} #since 15.0
+    PHPersistentChange: #since 16.0
+        methods:
+            '-changeDetailsForObjectType:error:':
+                name: changeDetails
+    PHPersistentChangeFetchResult: #since 16.0
+        methods:
+            '-enumerateChangesWithBlock:':
+                name: enumerateChanges
+    PHPersistentChangeToken: {} #since 16.0
+    PHPersistentObjectChangeDetails: {} #since 16.0
+    PHAssetResourceUploadJob: #since 26.1
+        methods:
+            '+fetchJobsWithAction:options:':
+                name: fetchJobs
+    PHAssetResourceUploadJobChangeRequest: #since 26.1
+        methods:
+            '-retryWithDestination:':
+                name: retry
+            '+createJobWithDestination:resource:':
+                name: createJob
 protocols:
     PHLivePhotoFrame: {}
 

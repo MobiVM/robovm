@@ -32,9 +32,11 @@ import org.robovm.apple.corefoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. Deprecated with no replacement
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreTelephony") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreTelephony") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CTCarrier/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -48,14 +50,34 @@ import org.robovm.apple.corefoundation.*;
     protected CTCarrier(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 16.0. Deprecated; returns '--' at some point in the future
+     */
+    @Deprecated
     @Property(selector = "carrierName")
     public native String getCarrierName();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Deprecated; returns '65535' at some point in the future
+     */
+    @Deprecated
     @Property(selector = "mobileCountryCode")
     public native String getMobileCountryCode();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Deprecated; returns '65535' at some point in the future
+     */
+    @Deprecated
     @Property(selector = "mobileNetworkCode")
     public native String getMobileNetworkCode();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Deprecated; returns '--' at some point in the future
+     */
+    @Deprecated
     @Property(selector = "isoCountryCode")
     public native String getIsoCountryCode();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Deprecated; returns YES at some point in the future
+     */
+    @Deprecated
     @Property(selector = "allowsVOIP")
     public native boolean allowsVOIP();
     /*</properties>*/

@@ -65,6 +65,10 @@ public final class /*<name>*/SecAccessControlCreateFlags/*</name>*/ extends Bits
      */
     public static final SecAccessControlCreateFlags DevicePasscode = new SecAccessControlCreateFlags(16L);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final SecAccessControlCreateFlags Companion = new SecAccessControlCreateFlags(32L);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final SecAccessControlCreateFlags Or = new SecAccessControlCreateFlags(16384L);

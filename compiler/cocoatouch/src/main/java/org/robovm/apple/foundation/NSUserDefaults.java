@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidChange(NSUserDefaults object, final VoidBlock1<NSUserDefaults> block) {
+        public static NSObject observeDidChange(NSUserDefaults object, final VoidBlock1<NSUserDefaults> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -64,6 +64,8 @@ import org.robovm.apple.dispatch.*;
     public NSUserDefaults() {}
     protected NSUserDefaults(Handle h, long handle) { super(h, handle); }
     protected NSUserDefaults(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithSuiteName:")
+    public NSUserDefaults(String suitename) { super((SkipInit) null); initObject(init(suitename)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "standardUserDefaults")
@@ -143,22 +145,30 @@ import org.robovm.apple.dispatch.*;
     public static native NSString SizeLimitExceededNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsNoCloudAccountNotification", optional=true)
     public static native NSString NoCloudAccountNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsDidChangeAccountsNotification", optional=true)
     public static native NSString DidChangeAccountsNotification();
     /**
      * @since Available in iOS 9.3 and later.
+     * @deprecated Deprecated in iOS 9.3. Notification is never posted
      */
+    @Deprecated
     @GlobalValue(symbol="NSUbiquitousUserDefaultsCompletedInitialSyncNotification", optional=true)
     public static native NSString CompletedInitialSyncNotification();
     @GlobalValue(symbol="NSUserDefaultsDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     
+    @Method(selector = "initWithSuiteName:")
+    protected native @Pointer long init(String suitename);
     @Method(selector = "objectForKey:")
     public native NSObject get(String defaultName);
     @Method(selector = "setObject:forKey:")
@@ -209,12 +219,6 @@ import org.robovm.apple.dispatch.*;
     protected native void setVolatileDomain(NSDictionary<NSString, ?> domain, String domainName);
     @Method(selector = "removeVolatileDomainForName:")
     public native void removeVolatileDomain(String domainName);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Not recommended
-     */
-    @Deprecated
-    @Method(selector = "persistentDomainNames")
-    public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPersistentDomainNames();
     @Method(selector = "persistentDomainForName:")
     public native NSDictionary<NSString, ?> getPersistentDomain(String domainName);
     @Method(selector = "setPersistentDomain:forName:")

@@ -30,6 +30,8 @@ void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOf
 
 void rvmHookWaitForAttach(Options* options);
 void rvmHookDebuggerAttached(Options* options);
+jboolean _rvmHookAfterThreadStackCaptured(Env* env, void (*unlockFun)(void));
+
 static inline void rvmHookBeforeAppEntryPoint(Env* env, char* mainClass) {
     if (env->vm->options->enableHooks) {
         _rvmHookBeforeAppEntryPoint(env, mainClass);
@@ -88,6 +90,14 @@ static inline jboolean rvmHookHandshake(Options* options) {
 static inline void rvmHookInstrumented(DebugEnv* env, jint lineNumber, jint lineNumberOffset, jbyte* bptable, void* pc) {
     if (env->env.vm->options->enableHooks) {
         _rvmHookInstrumented(env, lineNumber, lineNumberOffset, bptable, pc);
+    }
+}
+
+static inline jboolean rvmHookAfterThreadStackCaptured(Env* env, void (*unlockFun)(void)) {
+    if(env->vm->options->enableHooks) {
+        return _rvmHookAfterThreadStackCaptured(env, unlockFun);
+    } else {
+        return FALSE;
     }
 }
 

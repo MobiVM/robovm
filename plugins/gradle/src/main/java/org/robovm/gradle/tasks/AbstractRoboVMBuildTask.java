@@ -15,18 +15,20 @@
  */
 package org.robovm.gradle.tasks;
 
+import org.gradle.api.tasks.UntrackedTask;
+import org.robovm.compiler.AppCompiler;
+import org.robovm.compiler.config.Arch;
+import org.robovm.compiler.config.Config;
+import org.robovm.gradle.RoboVMGradleException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gradle.api.GradleException;
-import org.robovm.compiler.AppCompiler;
-import org.robovm.compiler.config.Arch;
-import org.robovm.compiler.config.Config;
-
 /**
  * 
  */
+@UntrackedTask(because = "caching not implemented")
 public abstract class AbstractRoboVMBuildTask extends AbstractRoboVMTask {
 
     protected abstract boolean shouldArchive();
@@ -54,9 +56,9 @@ public abstract class AbstractRoboVMBuildTask extends AbstractRoboVMTask {
             }
         } catch (IOException e) {
             if (shouldArchive()) {
-                throw new GradleException("Failed to create archive", e);
+                throw new RoboVMGradleException("Failed to create archive", e);
             } else {
-                throw new GradleException("Failed to install", e);
+                throw new RoboVMGradleException("Failed to install", e);
             }
         }
     }

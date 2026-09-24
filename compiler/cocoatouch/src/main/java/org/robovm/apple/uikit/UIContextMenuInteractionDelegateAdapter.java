@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,15 +62,35 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("contextMenuInteraction:configurationForMenuAtLocation:")
     public UIContextMenuConfiguration getConfiguration(UIContextMenuInteraction interaction, @ByVal CGPoint location) { return null; }
-    @NotImplemented("contextMenuInteraction:previewForHighlightingMenuWithConfiguration:")
-    public UITargetedPreview getPreviewForHighlightingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration) { return null; }
-    @NotImplemented("contextMenuInteraction:previewForDismissingMenuWithConfiguration:")
-    public UITargetedPreview getPreviewForDismissingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:")
+    public UITargetedPreview getHighlightPreview(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, NSObject identifier) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:")
+    public UITargetedPreview getDismissalPreview(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, NSObject identifier) { return null; }
     @NotImplemented("contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:")
     public void willPerformPreviewAction(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionCommitAnimating animator) {}
     @NotImplemented("contextMenuInteraction:willDisplayMenuForConfiguration:animator:")
     public void willDisplayMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
     @NotImplemented("contextMenuInteraction:willEndForConfiguration:animator:")
     public void willEnd(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration, UIContextMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:
+     */
+    @Deprecated
+    @NotImplemented("contextMenuInteraction:previewForHighlightingMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForHighlightingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:
+     */
+    @Deprecated
+    @NotImplemented("contextMenuInteraction:previewForDismissingMenuWithConfiguration:")
+    public UITargetedPreview getPreviewForDismissingMenu(UIContextMenuInteraction interaction, UIContextMenuConfiguration configuration) { return null; }
     /*</methods>*/
 }

@@ -63,6 +63,16 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setCpuCacheMode:")
     public native void setCpuCacheMode(MTLCPUCacheMode v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "sparsePageSize")
+    public native MTLSparsePageSize getSparsePageSize();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSparsePageSize:")
+    public native void setSparsePageSize(MTLSparsePageSize v);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "hazardTrackingMode")
@@ -92,6 +102,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setType:")
     public native void setType(MTLHeapType v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maxCompatiblePlacementSparsePageSize")
+    public native MTLSparsePageSize getMaxCompatiblePlacementSparsePageSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMaxCompatiblePlacementSparsePageSize:")
+    public native void setMaxCompatiblePlacementSparsePageSize(MTLSparsePageSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -37,6 +37,10 @@ if(DARWIN)
   if(IOS)
     set(OBJC_FLAGS "${OBJC_FLAGS} -fobjc-abi-version=2")
   endif()
+  # disable errors on clang clang-1500.3.9.4
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion")
+  # disable XCode14 objc-msgsend stubs to allow this lib to be linked with XCode13 and bellow
+  set(OBJC_FLAGS "${OBJC_FLAGS} -fno-objc-msgsend-selector-stubs")
   set_property(SOURCE ${OBJC_SRC} PROPERTY LANGUAGE C)
   set_property(SOURCE ${OBJC_SRC} PROPERTY COMPILE_FLAGS ${OBJC_FLAGS})
 endif()

@@ -35,8 +35,8 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 13.0. GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead
+ * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 13.0. Use the -[GCController controllerWithMicroGamepad] method instead
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/

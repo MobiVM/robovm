@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -85,6 +87,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "contentKeySessionDidGenerateExpiredSessionReport:")
     void contentKeySessionDidGenerateExpiredSessionReport(AVContentKeySession session);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "contentKeySession:externalProtectionStatusDidChangeForContentKey:")
+    void externalProtectionStatusDidChange(AVContentKeySession session, AVContentKey contentKey);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "contentKeySession:didProvideContentKeyRequests:forInitializationData:")
+    void didProvideContentKeyRequests(AVContentKeySession session, NSArray<AVContentKeyRequest> keyRequests, NSData initializationData);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

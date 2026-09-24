@@ -45,7 +45,7 @@ import org.robovm.apple.fileprovider.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeAccountChanged(final Runnable block) {
+        public static NSObject observeAccountChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(AccountChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -109,30 +109,46 @@ import org.robovm.apple.fileprovider.*;
     public native CKDatabase getDatanase(CKDatabaseScope databaseScope);
     @Method(selector = "accountStatusWithCompletionHandler:")
     public native void getAccountStatus(@Block VoidBlock2<CKAccountStatus, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
+     */
+    @Deprecated
     @Method(selector = "statusForApplicationPermission:completionHandler:")
     public native void getStatusForApplicationPermission(CKApplicationPermissions applicationPermission, @Block VoidBlock2<CKApplicationPermissionStatus, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
+     */
+    @Deprecated
     @Method(selector = "requestApplicationPermission:completionHandler:")
     public native void requestApplicationPermission(CKApplicationPermissions applicationPermission, @Block VoidBlock2<CKApplicationPermissionStatus, NSError> completionHandler);
     @Method(selector = "fetchUserRecordIDWithCompletionHandler:")
     public native void fetchUserRecordID(@Block VoidBlock2<CKRecordID, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
      */
+    @Deprecated
     @Method(selector = "discoverAllIdentitiesWithCompletionHandler:")
     public native void discoverAllIdentities(@Block VoidBlock2<NSArray<CKUserIdentity>, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
      */
+    @Deprecated
     @Method(selector = "discoverUserIdentityWithEmailAddress:completionHandler:")
     public native void discoverUserIdentityWithEmailAddress(String email, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
      */
+    @Deprecated
     @Method(selector = "discoverUserIdentityWithPhoneNumber:completionHandler:")
     public native void discoverUserIdentityWithPhoneNumber(String phoneNumber, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
      */
+    @Deprecated
     @Method(selector = "discoverUserIdentityWithUserRecordID:completionHandler:")
     public native void discoverUserIdentityWithUserRecordID(CKRecordID userRecordID, @Block VoidBlock2<CKUserIdentity, NSError> completionHandler);
     /**

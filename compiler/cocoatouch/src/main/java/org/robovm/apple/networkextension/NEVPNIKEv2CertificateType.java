@@ -47,7 +47,11 @@ public enum /*<name>*/NEVPNIKEv2CertificateType/*</name>*/ implements ValuedEnum
     /**
      * @since Available in iOS 13.0 and later.
      */
-    Ed25519(5L);
+    Ed25519(5L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    RSAPSS(6L);
     /*</values>*/
 
     /*<bind>*/

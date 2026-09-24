@@ -54,6 +54,8 @@ import org.robovm.apple.dispatch.*;
     MTLDevice getDevice();
     @Property(selector = "commandQueue")
     MTLCommandQueue getCommandQueue();
+    @Property(selector = "mtl4CommandQueue")
+    MTL4CommandQueue getMtl4CommandQueue();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "beginScope")

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,6 +100,10 @@ import org.robovm.apple.audiotoolbox.*;
 
     /*<constants>*/
     public static final AVFileType QuickTimeMovie = new AVFileType("QuickTimeMovie");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVFileType QuickTimeAudio = new AVFileType("QuickTimeAudio");
     public static final AVFileType MPEG4 = new AVFileType("MPEG4");
     public static final AVFileType AppleM4V = new AVFileType("AppleM4V");
     public static final AVFileType AppleM4A = new AVFileType("AppleM4A");
@@ -140,6 +146,22 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVFileType TIFF = new AVFileType("TIFF");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVFileType AppleiTT = new AVFileType("AppleiTT");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVFileType SCC = new AVFileType("SCC");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVFileType AHAP = new AVFileType("AHAP");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVFileType DICOM = new AVFileType("DICOM");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVFileType StreamingKeyDeliveryContentKey = new AVFileType("StreamingKeyDeliveryContentKey");
@@ -157,7 +179,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVFileType ProfileMPEG4CMAFCompliant = new AVFileType("ProfileMPEG4CMAFCompliant");
     /*</constants>*/
     
-    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
+    private static /*<name>*/AVFileType/*</name>*/[] values = new /*<name>*/AVFileType/*</name>*/[] {/*<value_list>*/QuickTimeMovie, QuickTimeAudio, MPEG4, AppleM4V, AppleM4A, _3GPP, _3GPP2, CoreAudioFormat, WAVE, AIFF, AIFC, AMR, MPEGLayer3, SunAU, AC3, EnhancedAC3, JPEG, DNG, HEIC, AVCI, HEIF, TIFF, AppleiTT, SCC, AHAP, DICOM, StreamingKeyDeliveryContentKey, StreamingKeyDeliveryPersistentContentKey, ProfileMPEG4AppleHLS, ProfileMPEG4CMAFCompliant/*</value_list>*/};
     
     /*<name>*/AVFileType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -182,6 +204,11 @@ import org.robovm.apple.audiotoolbox.*;
         /*<values>*/
         @GlobalValue(symbol="AVFileTypeQuickTimeMovie", optional=true)
         public static native NSString QuickTimeMovie();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeQuickTimeAudio", optional=true)
+        public static native NSString QuickTimeAudio();
         @GlobalValue(symbol="AVFileTypeMPEG4", optional=true)
         public static native NSString MPEG4();
         @GlobalValue(symbol="AVFileTypeAppleM4V", optional=true)
@@ -243,6 +270,26 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVFileTypeTIFF", optional=true)
         public static native NSString TIFF();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeAppleiTT", optional=true)
+        public static native NSString AppleiTT();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeSCC", optional=true)
+        public static native NSString SCC();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeAHAP", optional=true)
+        public static native NSString AHAP();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVFileTypeDICOM", optional=true)
+        public static native NSString DICOM();
         /**
          * @since Available in iOS 9.0 and later.
          */

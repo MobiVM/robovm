@@ -41,7 +41,15 @@ public enum /*<name>*/LAPolicy/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 9.0 and later.
      */
-    DeviceOwnerAuthentication(2L);
+    DeviceOwnerAuthentication(2L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    DeviceOwnerAuthenticationWithCompanion(3L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    DeviceOwnerAuthenticationWithBiometricsOrCompanion(4L);
     /*</values>*/
 
     /*<bind>*/

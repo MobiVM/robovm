@@ -49,9 +49,11 @@ public final class MachOConsts {
         public static final int LC_SEGMENT_64 = 0x19;
         public static final int LC_SYMTAB = 0x2;
         public static final int LC_DYSYMTAB = 0xb;
+        public static final int LC_DYLD_EXPORTS_TRIE = 0x80000033;
+        public static final int LC_DYLD_CHAINED_FIXUPS = 0x80000034;
     }
 
-    public static class nlist {
+    public static final class nlist {
         public static final int N_STAB = 0xe0;  // if any of these bits set, a symbolic debugging entry
         public static final int N_PEXT = 0x10;  // private external symbol bit
         public static final int N_TYPE = 0x0e;  // mask for the type bits
@@ -64,7 +66,7 @@ public final class MachOConsts {
         public static final int N_TYPE_INDR = 0xa;  // indirect
     }
 
-    public static class stab {
+    public static final class stab {
         public static final int N_GSYM = 0x20;   // global symbol: name,,NO_SECT,type,0
         public static final int N_FNAME = 0x22;  // procedure name (f77 kludge): name,,NO_SECT,0,0
         public static final int N_FUN = 0x24;    // procedure: name,,n_sect,linenumber,address
@@ -95,5 +97,43 @@ public final class MachOConsts {
         public static final int N_ECOMM = 0xe4;  // end common: name,,n_sect,0,0
         public static final int N_ECOML = 0xe8;  // end common (local name): 0,,n_sect,0,address
         public static final int N_LENG = 0xfe;   // second stab entry with length information
+    }
+
+    public static final class ExportSymbolFlags {
+        public static final int KIND_MASK = 0x03;
+        public static final int WEAK_DEFINITION = 0x04;
+        public static final int REEXPORT = 0x08;
+        public static final int STUB_AND_RESOLVER = 0x10;
+    }
+
+    public enum ExportSymbolKind {
+        REGULAR, THREAD_LOCAL, ABSOLUTE
+    }
+
+    public static final class BindSpecialDylib {
+        public static final int SELF = 0;
+        public static final int MAIN_EXECUTABLE = -1;
+        public static final int FLAT_LOOKUP = -2;
+        public static final int WEAK_LOOKUP = -3;
+    }
+
+    public static final class dyld {
+        public static final short DYLD_CHAINED_PTR_START_NONE   = (short) 0xFFFF; // denote a page with no fixups
+        public static final int DYLD_CHAINED_PTR_START_MULTI  = 0x8000; // denote a page which has multiple starts
+        public static final int DYLD_CHAINED_PTR_START_LAST   = 0x8000; // to denote last start in list for page
+
+        public static final int DYLD_CHAINED_PTR_ARM64E              =  1;    // stride 8, unauth target is vmaddr
+        public static final int DYLD_CHAINED_PTR_64                  =  2;    // target is vmaddr
+        public static final int DYLD_CHAINED_PTR_32                  =  3;
+        public static final int DYLD_CHAINED_PTR_32_CACHE            =  4;
+        public static final int DYLD_CHAINED_PTR_32_FIRMWARE         =  5;
+        public static final int DYLD_CHAINED_PTR_64_OFFSET           =  6;    // target is vm offset
+        public static final int DYLD_CHAINED_PTR_ARM64E_OFFSET       =  7;    // old name
+        public static final int DYLD_CHAINED_PTR_ARM64E_KERNEL       =  7;    // stride 4, unauth target is vm offset
+        public static final int DYLD_CHAINED_PTR_64_KERNEL_CACHE     =  8;
+        public static final int DYLD_CHAINED_PTR_ARM64E_USERLAND     =  9;    // stride 8, unauth target is vm offset
+        public static final int DYLD_CHAINED_PTR_ARM64E_FIRMWARE     = 10;   // stride 4, unauth target is vmaddr
+        public static final int DYLD_CHAINED_PTR_X86_64_KERNEL_CACHE = 11;   // stride 1, x86_64 kernel caches
+        public static final int DYLD_CHAINED_PTR_ARM64E_USERLAND24   = 12;   // stride 8, unauth target is vm offset, 24-bit bind
     }
 }

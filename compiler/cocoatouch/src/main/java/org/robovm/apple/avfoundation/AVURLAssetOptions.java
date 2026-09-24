@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -157,6 +159,11 @@ import org.robovm.apple.audiotoolbox.*;
         static { Bro.bind(Keys.class); }
         @GlobalValue(symbol="AVURLAssetPreferPreciseDurationAndTimingKey", optional=true)
         public static native NSString PreferPreciseDurationAndTiming();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetOverrideMIMETypeKey", optional=true)
+        public static native NSString OverrideMIMEType();
         @GlobalValue(symbol="AVURLAssetReferenceRestrictionsKey", optional=true)
         public static native NSString ReferenceRestrictions();
         @GlobalValue(symbol="AVURLAssetHTTPCookiesKey", optional=true)
@@ -181,6 +188,21 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVURLAssetURLRequestAttributionKey", optional=true)
         public static native NSString URLRequestAttribution();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetHTTPUserAgentKey", optional=true)
+        public static native NSString HTTPUserAgent();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetPrimarySessionIdentifierKey", optional=true)
+        public static native NSString PrimarySessionIdentifier();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVURLAssetShouldParseExternalSphericalTagsKey", optional=true)
+        public static native NSString ShouldParseExternalSphericalTags();
     }
     /*</keys>*/
 }

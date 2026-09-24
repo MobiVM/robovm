@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +69,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAssetVariantVideoAttributes getVideoAttributes();
     @Property(selector = "audioAttributes")
     public native AVAssetVariantAudioAttributes getAudioAttributes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "URL")
+    public native NSURL getURL();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

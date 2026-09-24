@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObjectProtocol observeUbiquityIdentityDidChange(final Runnable block) {
+        public static NSObject observeUbiquityIdentityDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UbiquityIdentityDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -398,6 +398,26 @@ import org.robovm.apple.dispatch.*;
     }
     @Method(selector = "URLForPublishingUbiquitousItemAtURL:expirationDate:error:")
     private native NSURL getURLForPublishingUbiquitousItemAtURL(NSURL url, NSDate.NSDatePtr outDate, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "pauseSyncForUbiquitousItemAtURL:completionHandler:")
+    public native void pauseSyncForUbiquitousItem(NSURL url, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:")
+    public native void resumeSyncForUbiquitousItem(NSURL url, NSFileManagerResumeSyncBehavior behavior, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fetchLatestRemoteVersionOfItemAtURL:completionHandler:")
+    public native void fetchLatestRemoteVersionOfItem(NSURL url, @Block VoidBlock2<NSFileVersion, NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:")
+    public native void uploadLocalVersionOfUbiquitousItem(NSURL url, NSFileManagerUploadLocalVersionConflictPolicy conflictResolutionPolicy, @Block VoidBlock2<NSFileVersion, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

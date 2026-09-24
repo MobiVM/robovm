@@ -18,13 +18,13 @@ elseif(OS STREQUAL "macosx")
   set(MACOSX YES)
   if (ARCH STREQUAL "x86_64")
     set(X86_64 YES)
-    set(C_CXX_FLAGS "${C_CXX_FLAGS} --target=x86_64-apple-macos10.6")
-    set(LD_FLAGS "${LD_FLAGS} --target=x86_64-apple-macos10.6")
+    set(C_CXX_FLAGS "${C_CXX_FLAGS} --target=x86_64-apple-macos12.3")
+    set(LD_FLAGS "${LD_FLAGS} --target=x86_64-apple-macos12.3")
     set(TENTATIVE_CROSS_COMPILE_HOST "--host=x86_64-apple-darwin")
   elseif (ARCH STREQUAL "arm64")
     set(ARM64 YES)
-    set(C_CXX_FLAGS "${C_CXX_FLAGS} --target=arm64-apple-macos11.0")
-    set(LD_FLAGS "${LD_FLAGS} --target=arm64-apple-macos11.0")
+    set(C_CXX_FLAGS "${C_CXX_FLAGS} --target=arm64-apple-macos12.3")
+    set(LD_FLAGS "${LD_FLAGS} --target=arm64-apple-macos12.3")
     set(TENTATIVE_CROSS_COMPILE_HOST "--host=aarch64-apple-darwin")
   else()
     message(FATAL_ERROR "Unsupported ARCH: ${ARCH}")
@@ -69,16 +69,23 @@ ExternalProject_Add(extlibusbx
   BUILD_IN_SOURCE 1
 )
 ExternalProject_Add(extlibplist
-  URL https://github.com/libimobiledevice/libplist/archive/2.0.0.tar.gz
+  URL https://github.com/libimobiledevice/libplist/archive/2.2.0.tar.gz
   CONFIGURE_COMMAND bash -c "CC=${CMAKE_C_COMPILER} CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --enable-shared=no --enable-udev=no --prefix=${EXTPREFIX} --without-cython"
   BUILD_IN_SOURCE 1
 )
 ExternalProject_Add(extlibusbmuxd
   GIT_REPOSITORY https://github.com/libimobiledevice/libusbmuxd.git
-  GIT_TAG c2db27c92341e1ba257102f6fb29a61f66c2fb6d
+  GIT_TAG ce98c346b7c1dc2a21faea4fd3f32c88e27ca2af # release 2.0.2
   CONFIGURE_COMMAND bash -c "CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' ac_cv_func_realloc_0_nonnull=yes ac_cv_func_malloc_0_nonnull=yes ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --enable-shared=no --prefix=${EXTPREFIX}"
   BUILD_IN_SOURCE 1
   DEPENDS extlibusbx extlibplist
+)
+ExternalProject_Add(extlibimobiledeviceglue
+  GIT_REPOSITORY https://github.com/libimobiledevice/libimobiledevice-glue.git
+  GIT_TAG 7eaa28ea9529b69da6b1721ba3e791e7ea5e950b # master at Aug 24, 2022
+  CONFIGURE_COMMAND bash -c "CFLAGS='${EXTCFLAGS}' PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' LDFLAGS='${LDFLAGS}' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --prefix=${EXTPREFIX} --enable-shared=no"
+  UPDATE_COMMAND ""
+  BUILD_IN_SOURCE 1
 )
 set(LIBIMOBILEDEVICE_CFLAGS "${EXTCFLAGS}")
 if(MACOSX)
@@ -86,12 +93,12 @@ if(MACOSX)
 endif()
 ExternalProject_Add(extlibimobiledevice
   GIT_REPOSITORY https://github.com/libimobiledevice/libimobiledevice.git
-  GIT_TAG 60823f9eeb3f09cd8083f613522d01e21d2f6d2d
-  CONFIGURE_COMMAND bash -c "PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' CFLAGS='${LIBIMOBILEDEVICE_CFLAGS}' LDFLAGS='${LDFLAGS}' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --prefix=${EXTPREFIX} --enable-debug-code --enable-shared=no --without-cython"
+  GIT_TAG 7a8e432e9b492bd3e800861f435d1bbe751076b0 # master at Dec 10, 2022
+  CONFIGURE_COMMAND bash -c "PKG_CONFIG_PATH='${EXTPREFIX}/lib/pkgconfig' CFLAGS='${LIBIMOBILEDEVICE_CFLAGS}' LDFLAGS='${LDFLAGS}' ./autogen.sh ${TENTATIVE_CROSS_COMPILE_HOST} --prefix=${EXTPREFIX} --enable-shared=no --enable-debug --without-cython"
   UPDATE_COMMAND ""
   PATCH_COMMAND bash -c "${CMAKE_SOURCE_DIR}/patches/apply-patches"
   BUILD_IN_SOURCE 1
-  DEPENDS extlibplist extlibusbmuxd extopenssl
+  DEPENDS extlibplist extlibusbmuxd extopenssl extlibimobiledeviceglue
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_CXX_FLAGS}")
@@ -100,7 +107,7 @@ set(CMAKE_INSTALL_DO_STRIP YES)
 
 include_directories(${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2} ${EXTPREFIX}/include)
 
-set(LIBS -limobiledevice -lusbmuxd -lplist -lssl -lcrypto)
+set(LIBS -limobiledevice-glue-1.0 -limobiledevice-1.0 -lusbmuxd-2.0 -lplist-2.0 -lssl -lcrypto)
 
 if(MACOSX)
   set(LIBS ${LIBS} -liconv)

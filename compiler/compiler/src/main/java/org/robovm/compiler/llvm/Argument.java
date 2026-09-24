@@ -16,13 +16,15 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 
 /**
  *
  * @version $Id$
  */
-public class Argument {
+public class Argument implements Writable {
     private final Value value;
     private final ParameterAttribute[] attributes;
 
@@ -78,13 +80,16 @@ public class Argument {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public void write(Writer writer) throws IOException {
         for (ParameterAttribute attribute : attributes) {
-            sb.append(attribute);
-            sb.append(' ');
+            writer.write(attribute.toString());
+            writer.write(' ');
         }
-        sb.append(value);
-        return sb.toString();
+        value.write(writer);
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

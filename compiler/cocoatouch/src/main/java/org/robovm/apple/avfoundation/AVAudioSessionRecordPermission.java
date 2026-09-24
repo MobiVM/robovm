@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,8 +48,20 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/AVAudioSessionRecordPermission/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionUndetermined
+     */
+    @Deprecated
     Undetermined(1970168948L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionDenied
+     */
+    @Deprecated
     Denied(1684369017L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use AVAudioApplicationRecordPermissionGranted
+     */
+    @Deprecated
     Granted(1735552628L);
     /*</values>*/
 

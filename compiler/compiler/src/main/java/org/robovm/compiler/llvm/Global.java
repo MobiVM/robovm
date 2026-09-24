@@ -17,11 +17,14 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
  */
-public class Global {
+public class Global implements Writable {
     private final String name;
     private final Linkage linkage;
     private final Constant value;
@@ -86,34 +89,41 @@ public class Global {
     public PointerType getType() {
         return new PointerType(type);
     }
-    
-    public String getDefinition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("@\"");
-        sb.append(name);
-        sb.append("\" = ");
+
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.write("@\"");
+        writer.write(name);
+        writer.write("\" = ");
         if (linkage != null) {
-            sb.append(linkage);
-            sb.append(' ');
+            writer.write(linkage.toString());
+            writer.write(' ');
         }
         if (constant) {
-            sb.append("constant ");
+            writer.write("constant ");
         } else {
-            sb.append("global ");
+            writer.write("global ");
         }
-        sb.append(type);
+        type.write(writer);
         if (value != null) {
-            sb.append(' ');
-            sb.append(value);
+            writer.write(' ');
+            value.write(writer);
         }
         if (section != null) {
-            sb.append(", section \"");
-            sb.append(section);
-            sb.append('"');
+            writer.write(", section \"");
+            writer.write(section);
+            writer.write('"');
         }
-        return sb.toString();
     }
-    
+
+    public String getDefinition() {
+        return toString(this::writeDefinition);
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        throw new IllegalStateException("writeDefinition to be called!");
+    }
+
     @Override
     public String toString() {
         return "@\"" + name + "\"";

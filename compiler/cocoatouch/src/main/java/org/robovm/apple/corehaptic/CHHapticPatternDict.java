@@ -346,6 +346,11 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="CHHapticPatternKeyEventWaveformUseVolumeEnvelope", optional=true)
         public static native NSString EventWaveformUseVolumeEnvelope();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="CHHapticPatternKeyEventWaveformLoopEnabled", optional=true)
+        public static native NSString EventWaveformLoopEnabled();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="CHHapticPatternKeyParameter", optional=true)

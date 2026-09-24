@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeWasConnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasConnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -63,7 +65,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeWasDisconnected(final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasDisconnectedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +76,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
+        public static NSObject observeSubjectAreaDidChange(AVCaptureDevice object, final VoidBlock1<AVCaptureDevice> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SubjectAreaDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -125,6 +127,36 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getActiveVideoMaxFrameDuration();
     @Property(selector = "setActiveVideoMaxFrameDuration:")
     public native void setActiveVideoMaxFrameDuration(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isVideoFrameDurationLocked")
+    public native boolean isVideoFrameDurationLocked();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minSupportedLockedVideoFrameDuration")
+    public native @ByVal CMTime getMinSupportedLockedVideoFrameDuration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isFollowingExternalSyncDevice")
+    public native boolean isFollowingExternalSyncDevice();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minSupportedExternalSyncFrameDuration")
+    public native @ByVal CMTime getMinSupportedExternalSyncFrameDuration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isAutoVideoFrameRateEnabled")
+    public native boolean isAutoVideoFrameRateEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAutoVideoFrameRateEnabled:")
+    public native void setAutoVideoFrameRateEnabled(boolean v);
     @Property(selector = "position")
     public native AVCaptureDevicePosition getPosition();
     /**
@@ -132,6 +164,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "deviceType")
     public native String getDeviceType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "userPreferredCamera")
+    public static native AVCaptureDevice getUserPreferredCamera();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setUserPreferredCamera:")
+    public static native void setUserPreferredCamera(AVCaptureDevice v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "systemPreferredCamera")
+    public static native AVCaptureDevice getSystemPreferredCamera();
     /**
      * @since Available in iOS 11.1 and later.
      */
@@ -241,6 +288,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGPoint getFocusPointOfInterest();
     @Property(selector = "setFocusPointOfInterest:")
     public native void setFocusPointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isFocusRectOfInterestSupported")
+    public native boolean isFocusRectOfInterestSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minFocusRectOfInterestSize")
+    public native @ByVal CGSize getMinFocusRectOfInterestSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "focusRectOfInterest")
+    public native @ByVal CGRect getFocusRectOfInterest();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setFocusRectOfInterest:")
+    public native void setFocusRectOfInterest(@ByVal CGRect v);
     @Property(selector = "isAdjustingFocus")
     public native boolean isAdjustingFocus();
     @Property(selector = "isAutoFocusRangeRestrictionSupported")
@@ -255,6 +322,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isSmoothAutoFocusEnabled();
     @Property(selector = "setSmoothAutoFocusEnabled:")
     public native void setSmoothAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoFocusEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoFocusEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoFocusEnabled")
+    public native boolean isFaceDrivenAutoFocusEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoFocusEnabled:")
+    public native void setFaceDrivenAutoFocusEnabled(boolean v);
     @Property(selector = "lensPosition")
     public native float getLensPosition();
     /**
@@ -272,6 +359,46 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGPoint getExposurePointOfInterest();
     @Property(selector = "setExposurePointOfInterest:")
     public native void setExposurePointOfInterest(@ByVal CGPoint v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isExposureRectOfInterestSupported")
+    public native boolean isExposureRectOfInterestSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "minExposureRectOfInterestSize")
+    public native @ByVal CGSize getMinExposureRectOfInterestSize();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "exposureRectOfInterest")
+    public native @ByVal CGRect getExposureRectOfInterest();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setExposureRectOfInterest:")
+    public native void setExposureRectOfInterest(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "automaticallyAdjustsFaceDrivenAutoExposureEnabled")
+    public native boolean automaticallyAdjustsFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled:")
+    public native void setAutomaticallyAdjustsFaceDrivenAutoExposureEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isFaceDrivenAutoExposureEnabled")
+    public native boolean isFaceDrivenAutoExposureEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setFaceDrivenAutoExposureEnabled:")
+    public native void setFaceDrivenAutoExposureEnabled(boolean v);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -350,6 +477,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "dualCameraSwitchOverVideoZoomFactor")
     public native @MachineSizedFloat double getDualCameraSwitchOverVideoZoomFactor();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "displayVideoZoomFactorMultiplier")
+    public native @MachineSizedFloat double getDisplayVideoZoomFactorMultiplier();
     @Property(selector = "automaticallyAdjustsVideoHDREnabled")
     public native boolean automaticallyAdjustsVideoHDREnabled();
     @Property(selector = "setAutomaticallyAdjustsVideoHDREnabled:")
@@ -439,6 +571,16 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isCenterStageActive")
     public native boolean isCenterStageActive();
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "centerStageRectOfInterest")
+    public native @ByVal CGRect getCenterStageRectOfInterest();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setCenterStageRectOfInterest:")
+    public native void setCenterStageRectOfInterest(@ByVal CGRect v);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "isPortraitEffectEnabled")
@@ -449,6 +591,51 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isPortraitEffectActive")
     public native boolean isPortraitEffectActive();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "reactionEffectsEnabled")
+    public static native boolean isReactionEffectsEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "reactionEffectGesturesEnabled")
+    public static native boolean isReactionEffectGesturesEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "canPerformReactionEffects")
+    public native boolean canPerformReactionEffects();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "availableReactionTypes")
+    public native NSSet<NSString> getAvailableReactionTypes();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "reactionEffectsInProgress")
+    public native NSArray<AVCaptureReactionEffectState> getReactionEffectsInProgress();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isBackgroundReplacementEnabled")
+    public static native boolean isBackgroundReplacementEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isBackgroundReplacementActive")
+    public native boolean isBackgroundReplacementActive();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isContinuityCamera")
+    public native boolean isContinuityCamera();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "companionDeskViewCamera")
+    public native AVCaptureDevice getCompanionDeskViewCamera();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "preferredMicrophoneMode")
@@ -458,6 +645,59 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "activeMicrophoneMode")
     public static native AVCaptureMicrophoneMode getActiveMicrophoneMode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "spatialCaptureDiscomfortReasons")
+    public native NSSet<NSString> getSpatialCaptureDiscomfortReasons();
+    @Property(selector = "cinematicVideoCaptureSceneMonitoringStatuses")
+    public native NSSet<NSString> getCinematicVideoCaptureSceneMonitoringStatuses();
+    @Property(selector = "dynamicAspectRatio")
+    public native AVCaptureAspectRatio getDynamicAspectRatio();
+    @Property(selector = "dynamicDimensions")
+    public native @ByVal CMVideoDimensions getDynamicDimensions();
+    @Property(selector = "smartFramingMonitor")
+    public native AVCaptureSmartFramingMonitor getSmartFramingMonitor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "nominalFocalLengthIn35mmFilm")
+    public native float getNominalFocalLengthIn35mmFilm();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightEnabled")
+    public static native boolean isStudioLightEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isStudioLightActive")
+    public native boolean isStudioLightActive();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightEnabled")
+    public static native boolean isEdgeLightEnabled();
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Property(selector = "isEdgeLightActive")
+    public static native boolean isEdgeLightActive();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraLensSmudgeDetectionEnabled")
+    public native boolean isCameraLensSmudgeDetectionEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "cameraLensSmudgeDetectionInterval")
+    public native @ByVal CMTime getCameraLensSmudgeDetectionInterval();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "cameraLensSmudgeDetectionStatus")
+    public native AVCaptureCameraLensSmudgeDetectionStatus getCameraLensSmudgeDetectionStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -538,16 +778,46 @@ import org.robovm.apple.audiotoolbox.*;
     private native boolean setTorchModeOn(float torchLevel, NSError.NSErrorPtr outError);
     @Method(selector = "isFocusModeSupported:")
     public native boolean isFocusModeSupported(AVCaptureFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "defaultRectForFocusPointOfInterest:")
+    public native @ByVal CGRect defaultRectForFocusPointOfInterest(@ByVal CGPoint pointOfInterest);
     @Method(selector = "setFocusModeLockedWithLensPosition:completionHandler:")
     public native void setFocusModeLocked(float lensPosition, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:")
+    public native void setCinematicVideoTrackingFocus(@MachineSizedSInt long detectedObjectID, AVCaptureCinematicVideoFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoTrackingFocusAtPoint:focusMode:")
+    public native void setCinematicVideoTrackingFocusAtPoint(@ByVal CGPoint point, AVCaptureCinematicVideoFocusMode focusMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCinematicVideoFixedFocusAtPoint:focusMode:")
+    public native void setCinematicVideoFixedFocusAtPoint(@ByVal CGPoint point, AVCaptureCinematicVideoFocusMode focusMode);
     @Method(selector = "isExposureModeSupported:")
     public native boolean isExposureModeSupported(AVCaptureExposureMode exposureMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "defaultRectForExposurePointOfInterest:")
+    public native @ByVal CGRect defaultRectForExposurePointOfInterest(@ByVal CGPoint pointOfInterest);
     @Method(selector = "setExposureModeCustomWithDuration:ISO:completionHandler:")
     public native void setExposureModeCustom(@ByVal CMTime duration, float ISO, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setExposureTargetBias:completionHandler:")
     public native void setExposureTargetBias(float bias, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "isWhiteBalanceModeSupported:")
     public native boolean isWhiteBalanceModeSupported(AVCaptureWhiteBalanceMode whiteBalanceMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:")
+    public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceTemperatureAndTintValues whiteBalanceTemperatureAndTintValues, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:")
     public native void setWhiteBalanceModeLocked(@ByVal AVCaptureWhiteBalanceGains whiteBalanceGains, @Block("(@ByVal)") VoidBlock1<CMTime> handler);
     @Method(selector = "chromaticityValuesForDeviceWhiteBalanceGains:")
@@ -572,9 +842,21 @@ import org.robovm.apple.audiotoolbox.*;
     @Method(selector = "extrinsicMatrixFromDevice:toDevice:")
     public static native NSData getExtrinsicMatrix(AVCaptureDevice fromDevice, AVCaptureDevice toDevice);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "performEffectForReaction:")
+    public native void performEffectForReaction(AVCaptureReactionType reactionType);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "showSystemUserInterface:")
     public static native void showSystemUserInterface(AVCaptureSystemUserInterface systemUserInterface);
+    @Method(selector = "setDynamicAspectRatio:completionHandler:")
+    public native void setDynamicAspectRatio(AVCaptureAspectRatio dynamicAspectRatio, @Block("(@ByVal,)") VoidBlock2<CMTime, NSError> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setCameraLensSmudgeDetectionEnabled:detectionInterval:")
+    public native void setCameraLensSmudgeDetectionEnabled(boolean cameraLensSmudgeDetectionEnabled, @ByVal CMTime detectionInterval);
     /*</methods>*/
 }

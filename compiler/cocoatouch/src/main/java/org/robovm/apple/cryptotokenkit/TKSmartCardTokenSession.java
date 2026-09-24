@@ -52,11 +52,29 @@ import org.robovm.apple.security.*;
     public TKSmartCardTokenSession(TKToken token) { super(token); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use getSmartCardWithError:
+     */
+    @Deprecated
     @Property(selector = "smartCard")
     public native TKSmartCard getSmartCard();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public TKSmartCard getSmartCardThrowsError() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       TKSmartCard result = getSmartCardThrowsError(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "getSmartCardWithError:")
+    private native TKSmartCard getSmartCardThrowsError(NSError.NSErrorPtr error);
     /*</methods>*/
 }

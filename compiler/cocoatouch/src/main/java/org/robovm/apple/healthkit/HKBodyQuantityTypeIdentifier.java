@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,10 +88,14 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
-    public static final HKBodyQuantityTypeIdentifier BodyMassIndex = new HKBodyQuantityTypeIdentifier("BodyMassIndex");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final HKBodyQuantityTypeIdentifier AppleSleepingWristTemperature = new HKBodyQuantityTypeIdentifier("AppleSleepingWristTemperature");
     public static final HKBodyQuantityTypeIdentifier BodyFatPercentage = new HKBodyQuantityTypeIdentifier("BodyFatPercentage");
-    public static final HKBodyQuantityTypeIdentifier Height = new HKBodyQuantityTypeIdentifier("Height");
     public static final HKBodyQuantityTypeIdentifier BodyMass = new HKBodyQuantityTypeIdentifier("BodyMass");
+    public static final HKBodyQuantityTypeIdentifier BodyMassIndex = new HKBodyQuantityTypeIdentifier("BodyMassIndex");
+    public static final HKBodyQuantityTypeIdentifier Height = new HKBodyQuantityTypeIdentifier("Height");
     public static final HKBodyQuantityTypeIdentifier LeanBodyMass = new HKBodyQuantityTypeIdentifier("LeanBodyMass");
     /**
      * @since Available in iOS 11.0 and later.
@@ -98,7 +103,7 @@ import org.robovm.apple.foundation.*;
     public static final HKBodyQuantityTypeIdentifier WaistCircumference = new HKBodyQuantityTypeIdentifier("WaistCircumference");
     /*</constants>*/
     
-    private static /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/BodyMassIndex, BodyFatPercentage, Height, BodyMass, LeanBodyMass, WaistCircumference/*</value_list>*/};
+    private static /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleSleepingWristTemperature, BodyFatPercentage, BodyMass, BodyMassIndex, Height, LeanBodyMass, WaistCircumference/*</value_list>*/};
     
     /*<name>*/HKBodyQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -121,14 +126,19 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBodyMassIndex", optional=true)
-        public static native NSString BodyMassIndex();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierAppleSleepingWristTemperature", optional=true)
+        public static native NSString AppleSleepingWristTemperature();
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyFatPercentage", optional=true)
         public static native NSString BodyFatPercentage();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierHeight", optional=true)
-        public static native NSString Height();
         @GlobalValue(symbol="HKQuantityTypeIdentifierBodyMass", optional=true)
         public static native NSString BodyMass();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBodyMassIndex", optional=true)
+        public static native NSString BodyMassIndex();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeight", optional=true)
+        public static native NSString Height();
         @GlobalValue(symbol="HKQuantityTypeIdentifierLeanBodyMass", optional=true)
         public static native NSString LeanBodyMass();
         /**

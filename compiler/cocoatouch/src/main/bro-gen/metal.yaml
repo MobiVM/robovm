@@ -11,6 +11,7 @@ private_typedefs:
     '__IOSurface *': org.robovm.apple.iosurface.IOSurface
 private_structdefs:
     MTLPackedFloat3: MTLPackedFloat3
+    _MTLPackedFloat3: MTLPackedFloat3
 enums:
     MTLBlitOption: {}
     MTLPixelFormat: {}
@@ -32,7 +33,6 @@ enums:
     MTLStoreAction: {}
     MTLDataType: {}
     MTLArgumentType: {}
-    MTLArgumentAccess: {}
     MTLBlendFactor: {}
     MTLBlendOperation: {}
     MTLColorWriteMask: {}
@@ -97,6 +97,56 @@ enums:
     MTLTextureCompressionType: {} #since 15.0
     MTLMotionBorderMode: {} #since 15.0
     MTLAccelerationStructureInstanceDescriptorType: {} #since 15.0
+
+    MTLBindingType: {} #since 14.0
+    MTLLibraryOptimizationLevel: {} #since 16.0
+    MTLIOCompressionMethod: {}
+    MTLSparsePageSize: {} #since 16.0
+    MTLAccelerationStructureRefitOptions: {prefix: MTLAccelerationStructureRefitOption} #since 16.0
+    MTLIOPriority: {} #since 16.0
+    MTLIOCommandQueueType: {} #since 16.0
+    MTLIOError: {nserror: true} #since 16.0
+    MTLIOStatus: {} #since 16.0
+    MTLIOCompressionStatus: {} #since 16.0
+
+    MTLBindingAccess: {
+        prefix: MTLBindingAccess,
+        ignore: "MTLArgumentAccess(.*)"
+    }
+    MTLCompileSymbolVisibility: { } #since 16.4
+    MTLCurveType: { } #since 17.0
+    MTLCurveBasis: { } #since 17.0
+    MTLCurveEndCaps: { } #since 17.0
+    MTLStages: {prefix: MTLStage} #since 26.0
+    MTLBufferSparseTier: {} #since 26.0
+    MTLTextureSparseTier: {} #since 26.0
+    MTLTensorDataType: {} #since 26.0
+    MTLTensorError: { nserror: true} #since 26.0
+    MTLTensorUsage: {} #since 26.0
+    MTLMathMode: {}
+    MTLMathFloatingPointFunctions: {}
+    MTL4CompilerTaskStatus: {}
+    MTL4CounterHeapType: {} #since 26.0
+    MTL4TimestampGranularity: {} #since 26.0
+    MTLVisibilityResultType: {} #since 26.0
+    MTLShaderValidation: {} #since 18.0
+    MTLSamplerReductionMode: {} #since 26.0
+    MTLMatrixLayout: {} #since 18.0
+    MTLTransformType: {} #since 18.0
+    MTL4VisibilityOptions: {prefix: MTL4VisibilityOption} #since 26.0
+    MTL4RenderEncoderOptions: {prefix: MTL4RenderEncoderOption} #since 26.0
+    MTL4CommandQueueError: {} #since 26.0
+    MTLLogLevel: {} #since 18.0
+    MTLLogStateError: { nserror: true } #since 18.0
+    MTLStitchedLibraryOptions: {prefix: MTLStitchedLibraryOption} #since 18.0
+    MTL4ShaderReflection: {} #since 26.0
+    MTL4AlphaToOneState: {} #since 26.0
+    MTL4AlphaToCoverageState: {} #since 26.0
+    MTL4BlendState: {} #since 26.0
+    MTL4IndirectCommandBufferSupportState: {} #since 26.0
+    MTL4LogicalToPhysicalColorAttachmentMappingState: {}
+    MTL4PipelineDataSetSerializerConfiguration: {} #since 26.0
+    MTL4BinaryFunctionOptions: {prefix: MTL4BinaryFunctionOption} #since 26.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -158,6 +208,21 @@ classes:
     MTLAccelerationStructureInstanceDescriptor: {}
     MTLAccelerationStructureUserIDInstanceDescriptor: {} #since 15.0
     MTLAccelerationStructureMotionInstanceDescriptor: {} #since 15.0
+    MTLResourceID: {} #since 16.0
+    MTLIOCompressionContext:
+        extends: NativeObject
+    MTLIndirectAccelerationStructureInstanceDescriptor: {} #since 17.0
+    MTLIndirectAccelerationStructureMotionInstanceDescriptor: {} #since 17.0
+    MTL4TimestampHeapEntry: { } #since 26.0
+    MTLDispatchThreadsIndirectArguments: { }
+    MTL4BufferRange: { }
+    MTLPackedFloatQuaternion: { }
+    MTLComponentTransform: { }
+    MTL4UpdateSparseTextureMappingOperation: { } #since 26.0
+    MTL4CopySparseTextureMappingOperation: { } #since 26.0
+    MTL4UpdateSparseBufferMappingOperation: { } #since 26.0
+    MTL4CopySparseBufferMappingOperation: { } #since 26.0
+    MTLIntersectionFunctionBufferArguments: { }
 
     MTLArgument: {} # DONE
     MTLArrayType: # DONE
@@ -273,6 +338,8 @@ classes:
             '-startCaptureWithDescriptor:error:':
                 name: startCapture
                 throws: NSErrorException
+            '-newCaptureScopeWithMTL4CommandQueue:':
+                name: newCaptureScope
     MTLPipelineBufferDescriptor: {} #since 11.0
     MTLPipelineBufferDescriptorArray: #since 11.0
         methods:
@@ -387,6 +454,88 @@ classes:
     MTLMotionKeyframeData: {} #since 15.0
     MTLRenderPipelineFunctionsDescriptor: {} #since 15.0
     MTLStitchedLibraryDescriptor: {} #since 15.0
+    MTLAccelerationStructurePassDescriptor: {} #since 16.0
+    MTLAccelerationStructurePassSampleBufferAttachmentDescriptor: {} #since 16.0
+    MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray: #since 16.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTLIOCommandQueueDescriptor: {} #since 16.0
+    MTLMeshRenderPipelineDescriptor: {} #since 16.0
+    MTLAccelerationStructureCurveGeometryDescriptor: {} #since 17.0
+    MTLAccelerationStructureMotionCurveGeometryDescriptor: {} #since 17.0
+    MTLArchitecture: {} #since 17.0
+    MTLIndirectInstanceAccelerationStructureDescriptor: {} #since 17.0
+    MTL4AccelerationStructureBoundingBoxGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureCurveGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureDescriptor: {} #since 26.0
+    MTL4AccelerationStructureGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureMotionCurveGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureMotionTriangleGeometryDescriptor: {} #since 26.0
+    MTL4AccelerationStructureTriangleGeometryDescriptor: {} #since 26.0
+    MTL4ArgumentTableDescriptor: {} #since 26.0
+    MTL4BinaryFunctionDescriptor: {} #since 26.0
+    MTL4CommandAllocatorDescriptor: {} #since 26.0
+    MTL4CommandBufferOptions: {} #since 26.0
+    MTL4CommandQueueDescriptor: {} #since 26.0
+    MTL4CommitOptions: {} #since 26.0
+    MTL4CompilerDescriptor: {} #since 26.0
+    MTL4CompilerTaskOptions: {} #since 26.0
+    MTL4ComputePipelineDescriptor: {} #since 26.0
+    MTL4CounterHeapDescriptor: {} #since 26.0
+    MTL4FunctionDescriptor: {} #since 26.0
+    MTL4IndirectInstanceAccelerationStructureDescriptor: {} #since 26.0
+    MTL4InstanceAccelerationStructureDescriptor: {} #since 26.0
+    MTL4LibraryDescriptor: {} #since 26.0
+    MTL4LibraryFunctionDescriptor: {} #since 26.0
+    MTL4MachineLearningPipelineDescriptor: #since 26.0
+        methods:
+            '-setInputDimensions:atBufferIndex:':
+                name: setInputDimensions
+            '-setInputDimensions:withRange:':
+                name: setInputDimensions
+    MTL4MachineLearningPipelineReflection: {} #since 26.0
+    MTL4MeshRenderPipelineDescriptor: {} #since 26.0
+    MTL4PipelineDataSetSerializerDescriptor: {} #since 26.0
+    MTL4PipelineDescriptor: {} #since 26.0
+    MTL4PipelineOptions: {} #since 26.0
+    MTL4PipelineStageDynamicLinkingDescriptor: {} #since 26.0
+    MTL4PrimitiveAccelerationStructureDescriptor: {} #since 26.0
+    MTL4RenderPassDescriptor: #since 26.0
+        methods:
+            '-setSamplePositions:count:':
+                name: setSamplePositions
+            '-getSamplePositions:count:':
+                name: getSamplePositions
+    MTL4RenderPipelineBinaryFunctionsDescriptor: {} #since 26.0
+    MTL4RenderPipelineColorAttachmentDescriptor: {} #since 26.0
+    MTL4RenderPipelineColorAttachmentDescriptorArray: #since 26.0
+        methods:
+            '-setObject:atIndexedSubscript:':
+                name: setObject
+    MTL4RenderPipelineDescriptor: {} #since 26.0
+    MTL4RenderPipelineDynamicLinkingDescriptor: {} #since 26.0
+    MTL4SpecializedFunctionDescriptor: {} #since 26.0
+    MTL4StaticLinkingDescriptor: {} #since 26.0
+    MTL4StitchedFunctionDescriptor: {} #since 26.0
+    MTL4TileRenderPipelineDescriptor: {} #since 26.0
+    MTLCommandQueueDescriptor: {} #since 18.0
+    MTLFunctionReflection: {} #since 26.0
+    MTLLogStateDescriptor: {} #since 18.0
+    MTLLogicalToPhysicalColorAttachmentMap: #since 26.0
+        methods:
+            '-setPhysicalIndex:forLogicalIndex:':
+                name: setPhysicalIndex
+    MTLResidencySetDescriptor: {} #since 18.0
+    MTLResourceViewPoolDescriptor: {} #since 26.0
+    MTLTensorDescriptor: {} #since 26.0
+    MTLTensorExtents: #since 26.0
+        methods:
+            '-initWithRank:values:':
+                name: init
+    MTLTensorReferenceType: {} #since 26.0
+    MTLTextureViewDescriptor: {} #since 26.0
 protocols:
     MTLHeap:
         methods:
@@ -400,6 +549,14 @@ protocols:
                 name: newBuffer
             '-newTextureWithDescriptor:offset:':
                 name: newTexture
+            '-newAccelerationStructureWithSize:':
+                name: newAccelerationStructure
+            '-newAccelerationStructureWithDescriptor:':
+                name: newAccelerationStructure
+            '-newAccelerationStructureWithSize:offset:':
+                name: newAccelerationStructure
+            '-newAccelerationStructureWithDescriptor:offset:':
+                name: newAccelerationStructure
     MTLFence: {}
 
 
@@ -438,6 +595,10 @@ protocols:
                 name: sampleCountersInBuffer
             '-resolveCounters:inRange:destinationBuffer:destinationOffset:':
                 name: resolveCounters
+            '-copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:':
+                name: copyFromTensor
+            '-barrierAfterQueueStages:beforeStages:':
+                name: barrierAfterQueueStages
     MTLBuffer: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -452,6 +613,10 @@ protocols:
                 return_marshaler: NSObject.NoRetainMarshaler
             '-addDebugMarker:range:':
                 trim_after_first_colon: true
+            '-newTensorWithDescriptor:offset:error:':
+                name: newTensor
+            '-setOwnerWithIdentity:':
+                name: setOwner
     MTLCommandBuffer: # DONE
         skip_adapter: true
         # dkimitsa: switched back to pure protocol as there other frameworks that implements it (like MPS)
@@ -499,12 +664,18 @@ protocols:
                 name: blitCommandEncoder
             '-resourceStateCommandEncoderWithDescriptor:':
                 name: resourceStateCommandEncoder
+            '-accelerationStructureCommandEncoderWithDescriptor:':
+                name: accelerationStructureCommandEncoder
+            '-useResidencySets:count:':
+                name: useResidencySets
     MTLCommandEncoder: # DONE
         methods:
             '-insertDebugSignpost:':
                 trim_after_first_colon: true
             '-pushDebugGroup:':
                 trim_after_first_colon: true
+            '-barrierAfterQueueStages:beforeStages:':
+                name: barrierAfterQueueStages
     MTLCommandQueue: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -516,6 +687,10 @@ protocols:
                 property: true
             '-commandBufferWithDescriptor:':
                 name: commandBuffer
+            '-addResidencySets:count:':
+                name: addResidencySets
+            '-removeResidencySets:count:':
+                name: removeResidencySets
     MTLComputeCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -599,6 +774,17 @@ protocols:
                 name: setAccelerationStructure
             '-sampleCountersInBuffer:atSampleIndex:withBarrier:':
                 name: sampleCountersInBuffer
+            '-setBuffer:offset:attributeStride:atIndex:':
+                name: setBuffer
+            '-setBuffers:offsets:attributeStrides:withRange:':
+                name: setBuffers
+            '-setBufferOffset:attributeStride:atIndex:':
+                name: setBufferOffset
+            '-setBytes:length:attributeStride:atIndex:':
+                name: setBytes
+            '-barrierAfterQueueStages:beforeStages:':
+                name: barrierAfterQueueStages
+
     MTLComputePipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -611,7 +797,13 @@ protocols:
             '-newVisibleFunctionTableWithDescriptor:':
                 name: newVisibleFunctionTable
             '-newIntersectionFunctionTableWithDescriptor:':
-                name: newIntersectionFunctionTabl
+                name: newIntersectionFunctionTable
+            '-functionHandleWithName:':
+                name: functionHandle
+            '-functionHandleWithBinaryFunction:':
+                name: functionHandle
+            '-newComputePipelineStateWithBinaryFunctions:error:':
+                name: newComputePipelineStateWithBinaryFunctions
     MTLDepthStencilState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -730,6 +922,57 @@ protocols:
                 name: newLibrary
             '-newLibraryWithStitchedDescriptor:completionHandler:':
                 name: newLibrary
+            '-newIOHandleWithURL:error:':
+                name: newIOHandle
+            '-newIOCommandQueueWithDescriptor:error:':
+                name: newIOCommandQueue
+            '-newIOHandleWithURL:compressionMethod:error:':
+                name: newIOHandle
+            '-sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:':
+                name: sparseTileSize
+            '-newArgumentEncoderWithBufferBinding:':
+                name: newArgumentEncoder
+            '-heapAccelerationStructureSizeAndAlignWithSize:':
+                name: heapAccelerationStructureSizeAndAlign
+            '-heapAccelerationStructureSizeAndAlignWithDescriptor:':
+                name: heapAccelerationStructureSizeAndAlign
+            '-newIOFileHandleWithURL:error:':
+                name: newIOFileHandle
+                throws: NSErrorException
+            '-newIOFileHandleWithURL:compressionMethod:error:':
+                name: newIOFileHandle
+            '-newLogStateWithDescriptor:error:':
+                name: newLogState
+            '-newCommandQueueWithDescriptor:':
+                name: newCommandQueue
+            '-newResidencySetWithDescriptor:error:':
+                name: newResidencySet
+            '-tensorSizeAndAlignWithDescriptor:':
+                name: tensorSizeAndAlign
+            '-newTensorWithDescriptor:error:':
+                name: newTensor
+            '-functionHandleWithFunction:':
+                name: functionHandle
+            '-newCommandAllocatorWithDescriptor:error:':
+                name: newCommandAllocator
+            '-newMTL4CommandQueueWithDescriptor:error:':
+                name: newMTL4CommandQueue
+            '-newArgumentTableWithDescriptor:error:':
+                name: newArgumentTable
+            '-newTextureViewPoolWithDescriptor:error:':
+                name: newTextureViewPool
+            '-newCompilerWithDescriptor:error:':
+                name: newCompiler
+            '-newArchiveWithURL:error:':
+                name: newArchive
+            '-newPipelineDataSetSerializerWithDescriptor:':
+                name: newPipelineDataSetSerializer
+            '-newBufferWithLength:options:placementSparsePageSize:':
+                name: newBuffer
+            '-newCounterHeapWithDescriptor:error:':
+                name: newCounterHeap
+            '-functionHandleWithBinaryFunction:':
+                name: functionHandle
     MTLDrawable: # DONE
         methods:
             '-presentAtTime:':
@@ -770,6 +1013,8 @@ protocols:
                 name: newIntersectionFunction
             '-newIntersectionFunctionWithDescriptor:error:':
                 name: newIntersectionFunction
+            '-reflectionForFunctionWithName:':
+                name: reflectionForFunction
     MTLParallelRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -781,6 +1026,8 @@ protocols:
                 name: setColorStoreAction
             '-setColorStoreActionOptions:atIndex:':
                 trim_after_first_colon: true
+            '-barrierAfterQueueStages:beforeStages:':
+                name: barrierAfterQueueStages
     MTLRenderCommandEncoder: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -986,6 +1233,70 @@ protocols:
                 name: setTileIntersectionFunctionTables
             '-setTileAccelerationStructure:atBufferIndex:':
                 name: setTileAccelerationStructure
+            '-setObjectBytes:length:atIndex:':
+                name: setObjectBytes
+            '-setObjectBuffer:offset:atIndex:':
+                name: setObjectBuffer
+            '-setObjectBufferOffset:atIndex:':
+                name: setObjectBufferOffset
+            '-setObjectBuffers:offsets:withRange:':
+                name: setObjectBuffers
+            '-setObjectTexture:atIndex:':
+                name: setObjectTexture
+            '-setObjectTextures:withRange:':
+                name: setObjectTextures
+            '-setObjectSamplerState:atIndex:':
+                name: setObjectSamplerState
+            '-setObjectSamplerStates:withRange:':
+                name: setObjectSamplerStates
+            '-setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:':
+                name: setObjectSamplerState
+            '-setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:':
+                name: setObjectSamplerStates
+            '-setObjectThreadgroupMemoryLength:atIndex:':
+                name: setObjectThreadgroupMemoryLength
+            '-setMeshBytes:length:atIndex:':
+                name: setMeshBytes
+            '-setMeshBuffer:offset:atIndex:':
+                name: setMeshBuffer
+            '-setMeshBufferOffset:atIndex:':
+                name: setMeshBufferOffset
+            '-setMeshBuffers:offsets:withRange:':
+                name: setMeshBuffers
+            '-setMeshTexture:atIndex:':
+                name: setMeshTexture
+            '-setMeshTextures:withRange:':
+                name: setMeshTextures
+            '-setMeshSamplerState:atIndex:':
+                name: setMeshSamplerState
+            '-setMeshSamplerStates:withRange:':
+                name: setMeshSamplerStates
+            '-setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:':
+                name: setMeshSamplerState
+            '-setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:':
+                name: setMeshSamplerStates
+            '-drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreads
+            '-drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-memoryBarrierWithScope:afterStages:beforeStages:':
+                name: memoryBarrier
+            '-memoryBarrierWithResources:count:afterStages:beforeStages:':
+                name: memoryBarrier
+            '-setVertexBuffer:offset:attributeStride:atIndex:':
+                name: setVertexBuffer
+            '-setVertexBuffers:offsets:attributeStrides:withRange:':
+                name: setVertexBuffers
+            '-setVertexBufferOffset:attributeStride:atIndex:':
+                name: setVertexBufferOffset
+            '-setVertexBytes:length:attributeStride:atIndex:':
+                name: setVertexBytes
+            '-setDepthTestMinBound:maxBound:':
+                name: setDepthTestMinMaxBounds
+            '-barrierAfterQueueStages:beforeStages:':
+                name: barrierAfterQueueStages
     MTLRenderPipelineState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -999,10 +1310,18 @@ protocols:
                 name: newIntersectionFunctionTable
             '-newRenderPipelineStateWithAdditionalBinaryFunctions:error:':
                 name: newRenderPipelineState
+            '-functionHandleWithName:stage:':
+                name: functionHandle
+            '-functionHandleWithBinaryFunction:stage:':
+                name: functionHandle
+            '-newRenderPipelineStateWithBinaryFunctions:error:':
+                name: newRenderPipelineState
     MTLResource: # DONE
         methods:
             '-setPurgeableState:':
                 trim_after_first_colon: true
+            '-setOwnerWithIdentity:':
+                name: setOwner
     MTLSamplerState: # DONE
         class: true
         annotations: ['@NativeProtocolProxy']
@@ -1039,6 +1358,8 @@ protocols:
             '-newTextureViewWith.*':
                 name: newTextureView
                 return_marshaler: NSObject.NoRetainMarshaler
+            '-setOwnerWithIdentity:':
+                name: setOwner
     MTLArgumentEncoder: #since 11.0
         methods:
             '-setArgumentBuffer:offset:':
@@ -1079,6 +1400,10 @@ protocols:
                 name: setIntersectionFunctionTable
             '-setIntersectionFunctionTables:withRange:':
                 name: setIntersectionFunctionTables
+            '-setDepthStencilState:atIndex:':
+                name: setDepthStencilState
+            '-setDepthStencilStates:withRange:':
+                name: setDepthStencilStates
     MTLCaptureScope: {} #since 11.0
 
     MTLEvent: {} #since 12.0
@@ -1100,10 +1425,26 @@ protocols:
                 trim_after_first_colon: true
             '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:':
                 trim_after_first_colon: true
+            '-setVertexBuffer:offset:attributeStride:atIndex:':
+                name: setVertexBuffer
+            '-setObjectThreadgroupMemoryLength:atIndex:':
+                name: setObjectThreadgroupMemoryLength
+            '-setObjectBuffer:offset:atIndex:':
+                name: setObjectBuffer
+            '-setMeshBuffer:offset:atIndex:':
+                name: setMeshBuffer
+            '-drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreads
+            '-setDepthBias:slopeScale:clamp:':
+                name: setDepthBias
     MTLSharedEvent: #since 12.0
         methods:
             '-notifyListener:atValue:block:':
                 trim_after_first_colon: true
+            '-waitUntilSignaledValue:timeoutMS:':
+                name: waitUntilSignaledValue
     MTLIndirectComputeCommand: #since 13.0
         methods:
             '-setKernelBuffer:offset:atIndex:':
@@ -1116,6 +1457,8 @@ protocols:
                 name: setThreadgroupMemoryLength
             '-setImageblockWidth:height:':
                 name: setImageblockWidth
+            '-setKernelBuffer:offset:attributeStride:atIndex:':
+                name: setKernelBuffer
     MTLRasterizationRateMap: #since 13.0
         methods:
             '-copyParameterDataToBuffer:offset:':
@@ -1132,6 +1475,8 @@ protocols:
                 name: updateTextureMapping
             '-updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:':
                 name: updateTextureMapping
+            '-moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:':
+                name: moveTextureMappings
     MTLAccelerationStructure: {} #since 14.0
     MTLAccelerationStructureCommandEncoder: #since 14.0
         methods:
@@ -1155,6 +1500,8 @@ protocols:
                 name: sampleCountersInBuffer
             '-writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:':
                 name: writeCompactedAccelerationStructure
+            '-refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:':
+                name: refitAccelerationStructure
     MTLBinaryArchive: #since 14.0
         methods:
             '-addComputePipelineFunctionsWithDescriptor:error:':
@@ -1165,14 +1512,20 @@ protocols:
                 name: addTileRenderPipelineFunctions
             '-serializeToURL:error:':
                 name: serializeToURL
-                throws: NSErrorException
             '-addFunctionWithDescriptor:library:error:':
                 name: addFunction
+            '-addMeshRenderPipelineFunctionsWithDescriptor:error:':
+                name: addMeshRenderPipelineFunctions
+            '-addLibraryWithDescriptor:error:':
+                name: addLibrary
     MTLCommandBufferEncoderInfo: {} #since 14.0
     MTLCounter: {} #since 14.0
     MTLCounterSampleBuffer: {} #since 14.0
     MTLCounterSet: {} #since 14.0
     MTLDynamicLibrary: #since 14.0
+        class: true
+        annotations: ['@NativeProtocolProxy']
+        visibility: 'public final'
         methods:
             '-serializeToURL:error:':
                 name: serializeToUR
@@ -1198,6 +1551,10 @@ protocols:
                 name: setVisibleFunctionTable
             '-setVisibleFunctionTables:withBufferRange:':
                 name: setVisibleFunctionTables
+            '-setOpaqueCurveIntersectionFunctionWithSignature:atIndex:':
+                name: setOpaqueCurveIntersectionFunction
+            '-setOpaqueCurveIntersectionFunctionWithSignature:withRange:':
+                name: setOpaqueCurveIntersectionFunction
     MTLLogContainer: {} #since 14.0
     MTLVisibleFunctionTable: #since 14.0
         methods:
@@ -1207,6 +1564,313 @@ protocols:
                 name: setFunctions
     MTLFunctionStitchingAttribute: {} #since 15.0
     MTLFunctionStitchingNode: {} #since 15.0
+    MTLBinding: {} #since 16.0
+    MTLBufferBinding: {} #since 16.0
+    MTLIOCommandBuffer: #since 16.0
+        methods:
+            '-loadBytes:size:sourceHandle:sourceHandleOffset:':
+                name: loadBytes
+            '-loadBuffer:offset:size:sourceHandle:sourceHandleOffset:':
+                name: loadBuffer
+            '-loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:':
+                name: loadTexture
+            '-copyStatusToBuffer:offset:':
+                name: copyStatus
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-signalEvent:value:':
+                name: signalEvent
+    MTLIOCommandQueue: #since 16.0
+        methods:
+            '-commandBufferWithUnretainedReferences':
+                name: commandBufferWithUnretainedReferences
+    MTLIOFileHandle: {} #since 16.0
+    MTLIOScratchBuffer: {} #since 16.0
+    MTLIOScratchBufferAllocator: #since 16.0
+        methods:
+            '-newScratchBufferWithMinimumSize:':
+                name: newScratchBuffer
+    MTLObjectPayloadBinding: {} #since 16.0
+    MTLTextureBinding: {} #since 16.0
+    MTLThreadgroupBinding: {} #since 16.0
+    MTL4Archive: #since 26.0
+        methods:
+            '-newComputePipelineStateWithDescriptor:error:':
+                name: newComputePipelineState
+            '-newComputePipelineStateWithDescriptor:dynamicLinkingDescriptor:error:':
+                name: newComputePipelineState
+            '-newRenderPipelineStateWithDescriptor:error:':
+                name: newRenderPipelineState
+            '-newRenderPipelineStateWithDescriptor:dynamicLinkingDescriptor:error:':
+                name: newRenderPipelineState
+            '-newBinaryFunctionWithDescriptor:error:':
+                name: newBinaryFunction
+    MTL4ArgumentTable: #since 26.0
+        methods:
+            '-setAddress:atIndex:':
+                name: setAddress
+            '-setAddress:attributeStride:atIndex:':
+                name: setAddress
+            '-setResource:atBufferIndex:':
+                name: setResource
+            '-setTexture:atIndex:':
+                name: setTexture
+            '-setSamplerState:atIndex:':
+                name: setSamplerState
+    MTL4BinaryFunction: #since 26.0
+        class: true
+        annotations: ['@NativeProtocolProxy']
+        visibility: 'public final'
+    MTL4CommandAllocator: { } #since 26.0
+    MTL4CommandBuffer: #since 26.0
+        methods:
+            '-beginCommandBufferWithAllocator:':
+                name: beginCommandBuffer
+            '-beginCommandBufferWithAllocator:options:':
+                name: beginCommandBuffer
+            '-renderCommandEncoderWithDescriptor:':
+                name: renderCommandEncoder
+            '-renderCommandEncoderWithDescriptor:options:':
+                name: renderCommandEncoder
+            '-useResidencySets:count:':
+                name: useResidencySets
+            '-writeTimestampIntoHeap:atIndex:':
+                name: writeTimestampIntoHeap
+            '-resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:':
+                name: resolveCounterHeap
+    MTL4CommandEncoder: #since 26.0
+        methods:
+            '-barrierAfterQueueStages:beforeStages:visibilityOptions:':
+                name: barrierAfterQueueStages
+            '-barrierAfterStages:beforeQueueStages:visibilityOptions:':
+                name: barrierAfterStages
+            '-barrierAfterEncoderStages:beforeEncoderStages:visibilityOptions:':
+                name: barrierAfterEncoderStages
+            '-updateFence:afterEncoderStages:':
+                name: updateFence
+            '-waitForFence:beforeEncoderStages:':
+                name: waitForFence
+    MTL4CommandQueue: #since 26.0
+        methods:
+            '-commit:count:':
+                name: commit
+            '-commit:count:options:':
+                name: commit
+            '-signalEvent:value:':
+                name: signalEvent
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-addResidencySets:count:':
+                name: addResidencySets
+            '-removeResidencySets:count:':
+                name: removeResidencySets
+            '-updateTextureMappings:heap:operations:count:':
+                name: updateTextureMappings
+            '-copyTextureMappingsFromTexture:toTexture:operations:count:':
+                name: copyTextureMappingsFromTexture
+            '-updateBufferMappings:heap:operations:count:':
+                name: updateBufferMappings
+            '-copyBufferMappingsFromBuffer:toBuffer:operations:count:':
+                name: copyBufferMappingsFromBuffer
+    MTL4CommitFeedback: { } #since 26.0
+    MTL4Compiler: #since 26.0
+        methods:
+            '-newLibraryWithDescriptor:error:':
+                name: newLibrary
+            '-newDynamicLibrary:error:':
+                name: newDynamicLibrary
+            '-newDynamicLibraryWithURL:error:':
+                name: newDynamicLibrary
+            '-newComputePipelineStateWithDescriptor:compilerTaskOptions:error:':
+                name: newComputePipelineState
+            '-newComputePipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:error:':
+                name: newComputePipelineState
+            '-newRenderPipelineStateWithDescriptor:compilerTaskOptions:error:':
+                name: newRenderPipelineState
+            '-newRenderPipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:error:':
+                name: newRenderPipelineState
+            '-newRenderPipelineStateBySpecializationWithDescriptor:pipeline:error:':
+                name: newRenderPipelineStateBySpecialization
+            '-newBinaryFunctionWithDescriptor:compilerTaskOptions:error:':
+                name: newBinaryFunction
+            '-newLibraryWithDescriptor:completionHandler:':
+                name: newLibrary
+            '-newDynamicLibrary:completionHandler:':
+                name: newDynamicLibrary
+            '-newDynamicLibraryWithURL:completionHandler:':
+                name: newDynamicLibrary
+            '-newComputePipelineStateWithDescriptor:compilerTaskOptions:completionHandler:':
+                name: newComputePipelineState
+            '-newComputePipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:completionHandler:':
+                name: newComputePipelineState
+            '-newRenderPipelineStateWithDescriptor:compilerTaskOptions:completionHandler:':
+                name: newRenderPipelineState
+            '-newRenderPipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:completionHandler:':
+                name: newRenderPipelineState
+            '-newRenderPipelineStateBySpecializationWithDescriptor:pipeline:completionHandler:':
+                name: newRenderPipelineState
+            '-newBinaryFunctionWithDescriptor:compilerTaskOptions:completionHandler:':
+                name: newBinaryFunction
+            '-newMachineLearningPipelineStateWithDescriptor:error:':
+                name: newMachineLearningPipelineState
+            '-newMachineLearningPipelineStateWithDescriptor:completionHandler:':
+                name: newMachineLearningPipelineState
+    MTL4CompilerTask: { } #since 26.0
+    MTL4ComputeCommandEncoder: #since 26.0
+        methods:
+            '-setThreadgroupMemoryLength:atIndex:':
+                name: setThreadgroupMemoryLength
+            '-setImageblockWidth:height:':
+                name: setImageblockWidthHeight
+            '-dispatchThreads:threadsPerThreadgroup:':
+                name: dispatchThreads
+            '-dispatchThreadgroups:threadsPerThreadgroup:':
+                name: dispatchThreadgroups
+            '-dispatchThreadgroupsWithIndirectBuffer:threadsPerThreadgroup:':
+                name: dispatchThreadgroups
+            '-dispatchThreadsWithIndirectBuffer:':
+                name: dispatchThreads
+            '-executeCommandsInBuffer:withRange:':
+                name: executeCommandsInBuffer
+            '-executeCommandsInBuffer:indirectBuffer:':
+                name: executeCommandsInBuffer
+            '-copyFromTexture:toTexture:':
+                name: copyFromTexture
+            '-copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:':
+                name: copyFromTexture
+            '-copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:':
+                name: copyFromTexture
+            '-copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:':
+                name: copyFromTexture
+            '-copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:':
+                name: copyFromTexture
+            '-copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:':
+                name: copyFromBuffer
+            '-copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:':
+                name: copyFromBuffer
+            '-copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:':
+                name: copyFromBuffer
+            '-copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:':
+                name: copyFromTensor
+            '-fillBuffer:range:value:':
+                name: fillBuffer
+            '-optimizeContentsForGPUAccess:slice:level:':
+                name: optimizeContentsForGPUAccess
+            '-optimizeContentsForCPUAccess:slice:level:':
+                name: optimizeContentsForCPUAccess
+            '-resetCommandsInBuffer:withRange:':
+                name: resetCommandsInBuffer
+            '-copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:':
+                name: copyIndirectCommandBuffer
+            '-optimizeIndirectCommandBuffer:withRange:':
+                name: optimizeIndirectCommandBuffer
+            '-buildAccelerationStructure:descriptor:scratchBuffer:':
+                name: buildAccelerationStructure
+            '-refitAccelerationStructure:descriptor:destination:scratchBuffer:':
+                name: refitAccelerationStructure
+            '-refitAccelerationStructure:descriptor:destination:scratchBuffer:options:':
+                name: refitAccelerationStructure
+            '-copyAccelerationStructure:toAccelerationStructure:':
+                name: copyAccelerationStructure
+            '-writeCompactedAccelerationStructureSize:toBuffer:':
+                name: writeCompactedAccelerationStructureSize
+            '-copyAndCompactAccelerationStructure:toAccelerationStructure:':
+                name: copyAndCompactAccelerationStructure
+            '-writeTimestampWithGranularity:intoHeap:atIndex:':
+                name: writeTimestampWithGranularity
+    MTL4CounterHeap: { } #since 26.0
+    MTL4MachineLearningCommandEncoder: #since 26.0
+        methods:
+            '-dispatchNetworkWithIntermediatesHeap:':
+                name: dispatchNetwork
+    MTL4MachineLearningPipelineState: { } #since 26.0
+    MTL4PipelineDataSetSerializer: #since 26.0
+        methods:
+            '-serializeAsArchiveAndFlushToURL:error:':
+                name: serializeAsArchiveAndFlush
+            '-serializeAsPipelinesScriptWithError:':
+                name: serializeAsPipelinesScript
+    MTL4RenderCommandEncoder: #since 26.0
+        methods:
+            '-setViewports:count:':
+                name: setViewports
+            '-setVertexAmplificationCount:viewMappings:':
+                name: setVertexAmplificationCount
+            '-setDepthBias:slopeScale:clamp:':
+                name: setDepthBias
+            '-setDepthTestMinBound:maxBound:':
+                name: setDepthTestMinMaxBound
+            '-setScissorRects:count:':
+                name: setScissorRects
+            '-setBlendColorRed:green:blue:alpha:':
+                name: setBlendColor
+            '-setStencilFrontReferenceValue:backReferenceValue:':
+                name: setStencilFrontBackReferenceValues
+            '-setVisibilityResultMode:offset:':
+                name: setVisibilityResultMode
+            '-setColorStoreAction:atIndex:':
+                name: setColorStoreAction
+            '-drawPrimitives:vertexStart:vertexCount:':
+                name: drawPrimitives
+            '-drawPrimitives:vertexStart:vertexCount:instanceCount:':
+                name: drawPrimitives
+            '-drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:':
+                name: drawPrimitives
+            '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:':
+                name: drawIndexedPrimitives
+            '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:instanceCount:':
+                name: drawIndexedPrimitives
+            '-drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:instanceCount:baseVertex:baseInstance:':
+                name: drawIndexedPrimitives
+            '-drawPrimitives:indirectBuffer:':
+                name: drawPrimitives
+            '-drawIndexedPrimitives:indexType:indexBuffer:indexBufferLength:indirectBuffer:':
+                name: drawIndexedPrimitives
+            '-executeCommandsInBuffer:withRange:':
+                name: executeCommandsInBuffer
+            '-executeCommandsInBuffer:indirectBuffer:':
+                name: executeCommandsInBuffer
+            '-setObjectThreadgroupMemoryLength:atIndex:':
+                name: setObjectThreadgroupMemoryLength
+            '-drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreads
+            '-drawMeshThreadgroupsWithIndirectBuffer:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:':
+                name: drawMeshThreadgroups
+            '-setThreadgroupMemoryLength:offset:atIndex:':
+                name: setThreadgroupMemoryLength
+            '-setArgumentTable:atStages:':
+                name: setArgumentTable
+            '-writeTimestampWithGranularity:afterStage:intoHeap:atIndex:':
+                name: writeTimestamp
+    MTLAllocation: { } #since 18.0
+    MTLLogState: { } #since 18.0
+    MTLResidencySet: #since 18.0
+        methods:
+            '-addAllocations:count:':
+                name: addAllocations
+            '-removeAllocations:count:':
+                name: removeAllocations
+    MTLResourceViewPool: #since 26.0
+        methods:
+            '-copyResourceViewsFromPool:sourceRange:destinationIndex:':
+                name: copyResourceViews
+    MTLTensor: #since 26.0
+        methods:
+            '-replaceSliceOrigin:sliceDimensions:withBytes:strides:':
+                name: replaceSliceOrigin
+            '-getBytes:strides:fromSliceOrigin:sliceDimensions:':
+                name: getBytes
+    MTLTensorBinding: { } #since 26.0
+    MTLTextureViewPool: #since 26.0
+        methods:
+            '-setTextureView:atIndex:':
+                name: setTextureView
+            '-setTextureView:descriptor:atIndex:':
+                name: setTextureView
+            '-setTextureViewFromBuffer:descriptor:offset:bytesPerRow:atIndex:':
+                name: setTextureView
 functions:
     MTLClearColorMake:
         exclude: true # use constructor instead
@@ -1214,6 +1878,26 @@ functions:
         class: MTLDevice
         name: 'get#{g[0]}'
         return_marshaler: NSObject.NoRetainMarshaler
+
+    MTLIOCompressionContextDefaultChunkSize:
+        class: MTLIOCompressionContext
+        name: getDefaultChunkSize
+    MTLIOCreateCompressionContext:
+        class: MTLIOCompressionContext
+        name: create
+        parameters:
+            0:
+                type: String
+                marshaler: StringMarshalers.AsAsciiZMarshaler
+    MTLIOCompressionContextAppendData:
+        class: MTLIOCompressionContext
+        name: appendData
+    MTLIOFlushAndDestroyCompressionContext:
+        class: MTLIOCompressionContext
+        name: flushAndDestroy
+    MTLCopyAllDevices:
+        class: MTLDevice
+        name: copyAllDevices
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?MTL.*):
@@ -1246,6 +1930,18 @@ values:
     MTLCommandBufferEncoderInfoErrorKey:
         class: MTLCommandBufferError
         name: getEncoderInfoErrorKey
+    MTLIOErrorDomain:
+        class: MTLIOError
+        name: getClassDomain
+    MTLTensorDomain:
+        class: MTLTensorError
+        name: getClassDomain
+    MTLLogStateErrorDomain:
+        class: MTLLogStateError
+        name: getClassDomain
+    MTL4CommandQueueErrorDomain:
+        class: MTL4CommandQueueError
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?MTL.*):
@@ -1263,6 +1959,9 @@ typed_enums:
         type: NSString
 
 constants:
+    MTL_TENSOR_MAX_RANK:
+        class: MTLTensor
+        name: MAX_RANK
     MTLResourceCPUCacheModeShift:
         exclude: true
     MTLResourceStorageModeShift:

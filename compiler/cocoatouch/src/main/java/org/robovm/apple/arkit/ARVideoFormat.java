@@ -75,6 +75,26 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGSize getImageResolution();
     @Property(selector = "framesPerSecond")
     public native @MachineSizedSInt long getFramesPerSecond();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isRecommendedForHighResolutionFrameCapturing")
+    public native boolean isRecommendedForHighResolutionFrameCapturing();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isVideoHDRSupported")
+    public native boolean isVideoHDRSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultColorSpace")
+    public native AVCaptureColorSpace getDefaultColorSpace();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "defaultPhotoSettings")
+    public native AVCapturePhotoSettings getDefaultPhotoSettings();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

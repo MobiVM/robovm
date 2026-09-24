@@ -67,13 +67,13 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setChallenge:")
     void setChallenge(NSData v);
     @Property(selector = "userVerificationPreference")
-    String getUserVerificationPreference();
+    ASAuthorizationPublicKeyCredentialUserVerificationPreference getUserVerificationPreference();
     @Property(selector = "setUserVerificationPreference:")
-    void setUserVerificationPreference(String v);
+    void setUserVerificationPreference(ASAuthorizationPublicKeyCredentialUserVerificationPreference v);
     @Property(selector = "attestationPreference")
-    String getAttestationPreference();
+    ASAuthorizationPublicKeyCredentialAttestationKind getAttestationPreference();
     @Property(selector = "setAttestationPreference:")
-    void setAttestationPreference(String v);
+    void setAttestationPreference(ASAuthorizationPublicKeyCredentialAttestationKind v);
     /*</properties>*/
     /*<methods>*/
     

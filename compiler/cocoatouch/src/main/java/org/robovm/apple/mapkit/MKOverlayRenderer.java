@@ -62,6 +62,16 @@ import org.robovm.apple.coreanimation.*;
     public native void setAlpha(@MachineSizedFloat double v);
     @Property(selector = "contentScaleFactor")
     public native @MachineSizedFloat double getContentScaleFactor();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "blendMode")
+    public native CGBlendMode getBlendMode();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setBlendMode:")
+    public native void setBlendMode(CGBlendMode v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

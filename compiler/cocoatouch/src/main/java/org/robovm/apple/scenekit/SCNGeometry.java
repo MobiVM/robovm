@@ -76,6 +76,11 @@ import org.robovm.apple.avfoundation.*;
     public native NSArray<SCNGeometryElement> getGeometryElements();
     @Property(selector = "geometryElementCount")
     public native @MachineSizedSInt long getGeometryElementCount();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "geometrySourceChannels")
+    public native NSArray<NSNumber> getGeometrySourceChannels();
     @Property(selector = "levelsOfDetail")
     public native NSArray<SCNLevelOfDetail> getLevelsOfDetail();
     @Property(selector = "setLevelsOfDetail:")
@@ -153,6 +158,11 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNGeometry createGeometry();
     @Method(selector = "geometryWithSources:elements:")
     public static native SCNGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "geometryWithSources:elements:sourceChannels:")
+    public static native SCNGeometry createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements, NSArray<NSNumber> sourceChannels);
     @Method(selector = "addAnimation:forKey:")
     public native void addAnimation(SCNAnimationProtocol animation, String key);
     /**

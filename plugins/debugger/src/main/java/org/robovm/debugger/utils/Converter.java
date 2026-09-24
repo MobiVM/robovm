@@ -20,6 +20,7 @@ import org.robovm.debugger.state.classdata.ClassDataConsts;
 import org.robovm.debugger.state.classdata.ClassInfo;
 import org.robovm.debugger.state.classdata.ClassInfoImpl;
 import org.robovm.debugger.state.classdata.ClassInfoLoader;
+import org.robovm.debugger.state.instances.VmThread;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -217,6 +218,17 @@ public final class Converter {
         else
             tag = 'L';
         return tag;
+    }
+
+    /**
+     * returns JDWP thread status
+     */
+    public static int jdwpThreadStatus(VmThread thread) {
+        int status = thread.getJdwpThreadStatus();
+        if (status >= JdwpConsts.ThreadStatus.ZOMBIE && status <= JdwpConsts.ThreadStatus.WAIT)
+            return status;
+        else
+            return JdwpConsts.ThreadStatus.RUNNING;
     }
 
     private final Map<Long, Byte> classInfoToTagMap = new HashMap<>();

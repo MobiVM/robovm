@@ -195,7 +195,7 @@ public class AnnotationImplPluginTest {
         assertTrue(annotation.equals(impl1));
         assertTrue(impl1.equals(annotation));
         assertEquals(annotation.hashCode(), impl1.hashCode());
-        assertEquals(annotation.toString(), impl1.toString());
+        assertEquals(toString(annotation), toString(impl1));
         assertSame(annotation.annotationType(), impl1.annotationType());
     }
 
@@ -358,5 +358,34 @@ public class AnnotationImplPluginTest {
             }
         }.loadClass(className);
         return implClass;
+    }
+
+    // dkitmisa: JDK19+ uses getCanonicalName() instead of getName() to build toString()
+    //           as result this will make tests to fail as RoboVM uses old one.
+    //           at same time have to keep compatibility when running on JDK18- hosts.
+    //           workaround is to replace getCanonicalName() with getName() in returned string
+    //           to make it looks same as on RoboVM and JDK18-
+    //           details: https://github.com/openjdk/jdk/pull/7418
+    private static String toString(Annotation anno) {
+        String s = anno.toString();
+        if (java19orHigher) {
+            String canonicalName = anno.annotationType().getCanonicalName();
+            String binaryName = anno.annotationType().getName();
+            if (canonicalName != null && !canonicalName.isEmpty() && !canonicalName.equals(binaryName) &&
+                s.startsWith("@" + canonicalName + "("))  {
+                // replace canonical class name with binary name to keep compatibility with RoboVM implementation
+                return "@" + binaryName + "(" + s.substring(2 + canonicalName.length());
+            }
+        }
+
+        return s;
+    }
+    private final static boolean java19orHigher = isJava19orHigher();
+    private static boolean isJava19orHigher() {
+        try {
+            return Integer.parseInt(System.getProperty("java.specification.version")) >= 19;
+        } catch (NumberFormatException ignored) {
+            return false;
+        }
     }
 }

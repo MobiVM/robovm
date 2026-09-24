@@ -6,12 +6,14 @@ import com.intellij.execution.process.ProcessOutput;
 import com.intellij.execution.util.ExecUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
 import com.intellij.openapi.projectRoots.JavaSdk;
 import com.intellij.openapi.projectRoots.JdkUtil;
 import com.intellij.openapi.projectRoots.ProjectJdkTable;
 import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class JdkSetupDialog extends JDialog {
@@ -40,24 +43,17 @@ public class JdkSetupDialog extends JDialog {
         setTitle("RoboVM Setup");
         infoText.setText("<html>RoboVM requires Java Development Kit (JDK) 8.0 or higher.<br><br>Please specify the location of your JDK.");
 
-        for (String jdkLocation : JavaSdk.getInstance().suggestHomePaths()) {
+        final Collection<String> existingSdks = ApplicationManager.getApplication().runWriteAction(
+                (Computable<Collection<String>>) () -> JavaSdk.getInstance().suggestHomePaths()
+        );
+        for (String jdkLocation : existingSdks) {
             jdkHome.setText(jdkLocation);
             break;
         }
 
         browseButton.addActionListener(e -> {
-            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
-                        @Override
-                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                            return file.isDirectory();
-                        }
-
-                        @Override
-                        public boolean isFileSelectable(VirtualFile file) {
-                            return file.isDirectory();
-                        }
-                    }, null, panel);
+            FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance().createFileChooser(descriptor, null, panel);
             File jdkDir = new File(System.getProperty("user.home"));
             if (jdkHome.getText() != null && !jdkHome.getText().isEmpty()) {
                 jdkDir = new File(jdkHome.getText());

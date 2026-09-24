@@ -35,9 +35,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MPSRayMaskOptions/*</name>*/ extends Bits</*<name>*/MPSRayMaskOptions/*</name>*/> {
     /*<values>*/
     public static final MPSRayMaskOptions None = new MPSRayMaskOptions(0L);

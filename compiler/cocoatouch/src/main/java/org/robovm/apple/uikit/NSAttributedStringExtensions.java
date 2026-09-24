@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,9 +65,15 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment);
     public static @Pointer long create(NSTextAttachment attachment) { return create(ObjCClass.getByType(NSAttributedString.class), attachment); }
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "attributedStringWithAttachment:attributes:")
+    protected static native @Pointer long create(ObjCClass clazz, NSTextAttachment attachment, NSDictionary<NSString, ?> attributes);
+    public static @Pointer long create(NSTextAttachment attachment, NSDictionary<NSString, ?> attributes) { return create(ObjCClass.getByType(NSAttributedString.class), attachment, attributes); }
+    /**
      * @since Available in iOS 9.0 and later.
      */
-    public static @Pointer long init(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    public static @Pointer long init(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = init(thiz, url, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -76,15 +83,15 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "initWithURL:options:documentAttributes:error:")
-    private static native @Pointer long init(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
-    public static @Pointer long init(NSAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    private static native @Pointer long init(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    public static @Pointer long init(@Pointer long thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = init(thiz, data, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
     @Method(selector = "initWithData:options:documentAttributes:error:")
-    private static native @Pointer long init(NSAttributedString thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    private static native @Pointer long init(@Pointer long thiz, NSData data, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     public static NSData getData(NSAttributedString thiz, @ByVal NSRange range, NSAttributedStringDocumentAttributes dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = getData(thiz, range, dict, ptr);
@@ -107,10 +114,15 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "containsAttachmentsInRange:")
     public static native boolean containsAttachments(NSAttributedString thiz, @ByVal NSRange range);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prefersRTFDInRange:")
+    public static native boolean prefersRTFDInRange(NSAttributedString thiz, @ByVal NSRange range);
+    /**
      * @deprecated Deprecated in iOS 9.0. Use initWithURL:options:documentAttributes:error:
      */
     @Deprecated
-    public static @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
+    public static @Pointer long initWithFileURL(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        long result = initWithFileURL(thiz, url, options, dict, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -121,7 +133,7 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Deprecated
     @Method(selector = "initWithFileURL:options:documentAttributes:error:")
-    private static native @Pointer long initWithFileURL(NSAttributedString thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
+    private static native @Pointer long initWithFileURL(@Pointer long thiz, NSURL url, NSAttributedStringDocumentAttributes options, NSDictionary.NSDictionaryPtr<?, ?> dict, NSError.NSErrorPtr error);
     @Method(selector = "size")
     public static native @ByVal CGSize getSize(NSAttributedString thiz);
     @Method(selector = "drawAtPoint:")
@@ -132,5 +144,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native void draw(NSAttributedString thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSStringDrawingContext context);
     @Method(selector = "boundingRectWithSize:options:context:")
     public static native @ByVal CGRect getBoundingRect(NSAttributedString thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSStringDrawingContext context);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "attributedStringWithAdaptiveImageGlyph:attributes:")
+    protected static native @Pointer long create(ObjCClass clazz, NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes);
+    public static @Pointer long create(NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes) { return create(ObjCClass.getByType(NSAttributedString.class), adaptiveImageGlyph, attributes); }
     /*</methods>*/
 }

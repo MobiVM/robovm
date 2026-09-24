@@ -55,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "textureType")
     public native MTLTextureType getTextureType();
     @Property(selector = "access")
-    public native MTLArgumentAccess getAccess();
+    public native MTLBindingAccess getAccess();
     @Property(selector = "isDepthTexture")
     public native boolean isDepthTexture();
     /*</properties>*/

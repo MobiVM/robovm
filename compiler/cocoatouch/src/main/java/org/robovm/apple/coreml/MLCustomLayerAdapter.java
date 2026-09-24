@@ -60,6 +60,6 @@ import org.robovm.apple.metal.*;
     @NotImplemented("evaluateOnCPUWithInputs:outputs:error:")
     public boolean evaluateOnCPU(NSArray<MLMultiArray> inputs, NSArray<MLMultiArray> outputs, NSError.NSErrorPtr error) { return false; }
     @NotImplemented("encodeToCommandBuffer:inputs:outputs:error:")
-    public boolean encodeToCommandBuffer(org.robovm.apple.metal.MTLCommandBuffer commandBuffer, NSArray<?> inputs, NSArray<?> outputs, NSError.NSErrorPtr error) { return false; }
+    public boolean encodeToCommandBuffer(org.robovm.apple.metal.MTLCommandBuffer commandBuffer, NSArray<MTLTexture> inputs, NSArray<MTLTexture> outputs, NSError.NSErrorPtr error) { return false; }
     /*</methods>*/
 }

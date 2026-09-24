@@ -146,22 +146,58 @@ import org.robovm.apple.dispatch.*;
         return setCallback(new FunctionPtr(cbInvoke), context);
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddress", optional=true)
     private static native @Pointer long create(CFAllocator allocator, Struct<?> address);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityCreateWithAddressPair", optional=true)
     private static native @Pointer long create(CFAllocator allocator, Struct<?> localAddress, Struct<?> remoteAddress);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityCreateWithName", optional=true)
     private static native @Pointer long create(CFAllocator allocator, BytePtr nodename);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityGetFlags", optional=true)
     protected native boolean getFlags(IntPtr flags);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilitySetCallback", optional=true)
     protected native boolean setCallback(FunctionPtr callout, SCNetworkReachabilityContext context);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityScheduleWithRunLoop", optional=true)
     public native boolean schedule(CFRunLoop runLoop, CFString runLoopMode);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @Bridge(symbol="SCNetworkReachabilityUnscheduleFromRunLoop", optional=true)
     public native boolean unschedule(CFRunLoop runLoop, CFString runLoopMode);
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use URLSession or NWConnection to create connections that dynamically handle changing networks. Use NWPathMonitor to enumerate available network interfaces.
+     */
+    @Deprecated
     @WeaklyLinked
     @Bridge(symbol="SCNetworkReachabilitySetDispatchQueue", optional=true)
     public native boolean setDispatchQueue(DispatchQueue queue);

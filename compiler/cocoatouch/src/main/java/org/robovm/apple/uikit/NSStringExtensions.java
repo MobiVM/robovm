@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +71,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native void draw(@Pointer long thiz, @ByVal CGRect rect, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
     @Method(selector = "boundingRectWithSize:options:attributes:context:")
     public static native @ByVal CGRect getBoundingRect(@Pointer long thiz, @ByVal CGSize size, NSStringDrawingOptions options, NSDictionary<NSString, ?> attributes, NSStringDrawingContext context);
+    /*</methods>*/
+
+    ///  dkimitsa: these are outdated in iOS7 and being removed by bro-gen
+    ///  but this is simple API that not required creating NSStringDrawingOptions at Java side so keeping it as long as these
+    ///  works
     /**
      * @deprecated Deprecated in iOS 7.0. Use sizeWithAttributes:
      */
@@ -142,5 +148,4 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Method(selector = "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:")
     public static native @ByVal CGSize draw(@Pointer long thiz, @ByVal CGPoint point, @MachineSizedFloat double width, UIFont font, @MachineSizedFloat double minFontSize, MachineSizedFloatPtr actualFontSize, NSLineBreakMode lineBreakMode, UIBaselineAdjustment baselineAdjustment);
-    /*</methods>*/
 }

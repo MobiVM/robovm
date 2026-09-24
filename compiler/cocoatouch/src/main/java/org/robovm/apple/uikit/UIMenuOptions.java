@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,6 +57,10 @@ public final class /*<name>*/UIMenuOptions/*</name>*/ extends Bits</*<name>*/UIM
      * @since Available in iOS 15.0 and later.
      */
     public static final UIMenuOptions SingleSelection = new UIMenuOptions(32L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIMenuOptions DisplayAsPalette = new UIMenuOptions(128L);
     /*</values>*/
 
     /*<bind>*/

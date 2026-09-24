@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -191,7 +193,43 @@ public enum /*<name>*/AVErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.6 and later.
      */
-    ContentKeyRequestCancelled(-11879L);
+    ContentKeyRequestCancelled(-11879L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    InvalidSampleCursor(-11880L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    FailedToLoadSampleData(-11881L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AirPlayReceiverTemporarilyUnavailable(-11882L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    EncodeFailed(-11883L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    SandboxExtensionDenied(-11884L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    ToneMappingFailed(-11885L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    NoSmartFramingsEnabled(-11890L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    AutoWhiteBalanceNotLocked(-11891L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    FollowExternalSyncDeviceTimedOut(-11892L);
     /*</values>*/
 
     /*<bind>*/

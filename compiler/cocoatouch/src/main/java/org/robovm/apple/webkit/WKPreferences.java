@@ -72,6 +72,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setFraudulentWebsiteWarningEnabled:")
     public native void setFraudulentWebsiteWarningEnabled(boolean v);
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "shouldPrintBackgrounds")
+    public native boolean shouldPrintBackgrounds();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setShouldPrintBackgrounds:")
+    public native void setShouldPrintBackgrounds(boolean v);
+    /**
      * @since Available in iOS 14.5 and later.
      */
     @Property(selector = "isTextInteractionEnabled")
@@ -82,13 +92,43 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setTextInteractionEnabled:")
     public native void setTextInteractionEnabled(boolean v);
     /**
-     * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isSiteSpecificQuirksModeEnabled")
+    public native boolean isSiteSpecificQuirksModeEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setSiteSpecificQuirksModeEnabled:")
+    public native void setSiteSpecificQuirksModeEnabled(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isElementFullscreenEnabled")
+    public native boolean isElementFullscreenEnabled();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setElementFullscreenEnabled:")
+    public native void setElementFullscreenEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inactiveSchedulingPolicy")
+    public native WKInactiveSchedulingPolicy getInactiveSchedulingPolicy();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInactiveSchedulingPolicy:")
+    public native void setInactiveSchedulingPolicy(WKInactiveSchedulingPolicy v);
+    /**
+     * @deprecated Deprecated in iOS 14.0. Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
      */
     @Deprecated
     @Property(selector = "javaScriptEnabled")
     public native boolean isJavaScriptEnabled();
     /**
-     * @deprecated Deprecated in iOS 14.0. Use WKWebPagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
+     * @deprecated Deprecated in iOS 14.0. Use WKWebpagePreferences.allowsContentJavaScript to disable content JavaScript on a per-navigation basis
      */
     @Deprecated
     @Property(selector = "setJavaScriptEnabled:")

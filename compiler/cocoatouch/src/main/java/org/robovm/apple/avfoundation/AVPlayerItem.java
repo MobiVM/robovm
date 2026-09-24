@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,13 +48,13 @@ import org.robovm.apple.audiotoolbox.*;
 /*<annotations>*/@Library("AVFoundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVPlayerItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements AVMetricEventStreamPublisher/*</implements>*/ {
 
     public static class Notifications {
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeTimeJumped(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObject observeTimeJumped(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TimeJumpedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -63,7 +65,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeDidPlayToEndTime(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObject observeDidPlayToEndTime(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidPlayToEndTimeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -74,7 +76,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.3 and later.
          */
-        public static NSObjectProtocol observeFailedToPlayToEndTime(AVPlayerItem object, final VoidBlock2<AVPlayerItem, NSError> block) {
+        public static NSObject observeFailedToPlayToEndTime(AVPlayerItem object, final VoidBlock2<AVPlayerItem, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FailedToPlayToEndTimeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -90,7 +92,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObjectProtocol observePlaybackStalled(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObject observePlaybackStalled(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackStalledNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -101,7 +103,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObjectProtocol observeNewAccessLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObject observeNewAccessLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NewAccessLogEntryNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -112,7 +114,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 6.0 and later.
          */
-        public static NSObjectProtocol observeNewErrorLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
+        public static NSObject observeNewErrorLogEntry(AVPlayerItem object, final VoidBlock1<AVPlayerItem> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NewErrorLogEntryNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -249,14 +251,14 @@ import org.robovm.apple.audiotoolbox.*;
     public native void setAudioTimePitchAlgorithm(String v);
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Use allowedAudioSpatializationFormats
+     * @deprecated Deprecated in iOS 18.0. Use allowedAudioSpatializationFormats instead
      */
     @Deprecated
     @Property(selector = "isAudioSpatializationAllowed")
     public native boolean isAudioSpatializationAllowed();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Use allowedAudioSpatializationFormats
+     * @deprecated Deprecated in iOS 18.0. Use allowedAudioSpatializationFormats instead
      */
     @Deprecated
     @Property(selector = "setAudioSpatializationAllowed:")
@@ -362,6 +364,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "currentMediaSelection")
     public native AVMediaSelection getCurrentMediaSelection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preferredCustomMediaSelectionSchemes")
+    public native NSArray<AVCustomMediaSelectionScheme> getPreferredCustomMediaSelectionSchemes();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreferredCustomMediaSelectionSchemes:")
+    public native void setPreferredCustomMediaSelectionSchemes(NSArray<AVCustomMediaSelectionScheme> v);
     @Property(selector = "outputs")
     public native NSArray<AVPlayerItemOutput> getOutputs();
     /**
@@ -384,6 +396,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "templatePlayerItem")
     public native AVPlayerItem getTemplatePlayerItem();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "integratedTimeline")
+    public native AVPlayerItemIntegratedTimeline getIntegratedTimeline();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -440,6 +457,31 @@ import org.robovm.apple.audiotoolbox.*;
     public native void selectMediaOption(AVMediaSelectionOption mediaSelectionOption, AVMediaSelectionGroup mediaSelectionGroup);
     @Method(selector = "selectMediaOptionAutomaticallyInMediaSelectionGroup:")
     public native void selectMediaOptionAutomatically(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "selectMediaPresentationLanguage:forMediaSelectionGroup:")
+    public native void selectMediaPresentationLanguage(String language, AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "selectedMediaPresentationLanguageForMediaSelectionGroup:")
+    public native String selectedMediaPresentationLanguageForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "selectMediaPresentationSetting:forMediaSelectionGroup:")
+    public native void selectMediaPresentationSetting(AVMediaPresentationSetting mediaPresentationSetting, AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "selectedMediaPresentationSettingsForMediaSelectionGroup:")
+    public native NSDictionary<AVMediaPresentationSelector, ?> selectedMediaPresentationSettingsForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "effectiveMediaPresentationSettingsForMediaSelectionGroup:")
+    public native NSDictionary<AVMediaPresentationSelector, ?> effectiveMediaPresentationSettingsForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
     @Method(selector = "accessLog")
     public native AVPlayerItemAccessLog getAccessLog();
     @Method(selector = "errorLog")

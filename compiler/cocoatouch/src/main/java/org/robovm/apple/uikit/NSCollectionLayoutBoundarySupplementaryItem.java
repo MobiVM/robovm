@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +61,10 @@ import org.robovm.apple.linkpresentation.*;
     protected NSCollectionLayoutBoundarySupplementaryItem(SkipInit skipInit) { super(skipInit); }
     public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSRectAlignment alignment) { super((Handle) null, create(layoutSize, elementKind, alignment)); retain(getHandle()); }
     public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSRectAlignment alignment, @ByVal CGPoint absoluteOffset) { super((Handle) null, create(layoutSize, elementKind, alignment, absoluteOffset)); retain(getHandle()); }
+    public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor) { super((Handle) null, create(layoutSize, elementKind, containerAnchor)); retain(getHandle()); }
+    public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor, NSCollectionLayoutAnchor itemAnchor) { super((Handle) null, create(layoutSize, elementKind, containerAnchor, itemAnchor)); retain(getHandle()); }
+    public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize) { super((Handle) null, create(layoutSize)); retain(getHandle()); }
+    public NSCollectionLayoutBoundarySupplementaryItem(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems) { super((Handle) null, create(layoutSize, supplementaryItems)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "extendsBoundary")
@@ -81,5 +86,13 @@ import org.robovm.apple.linkpresentation.*;
     protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSRectAlignment alignment);
     @Method(selector = "boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:")
     protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSRectAlignment alignment, @ByVal CGPoint absoluteOffset);
+    @Method(selector = "supplementaryItemWithLayoutSize:elementKind:containerAnchor:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor);
+    @Method(selector = "supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, String elementKind, NSCollectionLayoutAnchor containerAnchor, NSCollectionLayoutAnchor itemAnchor);
+    @Method(selector = "itemWithLayoutSize:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize);
+    @Method(selector = "itemWithLayoutSize:supplementaryItems:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems);
     /*</methods>*/
 }

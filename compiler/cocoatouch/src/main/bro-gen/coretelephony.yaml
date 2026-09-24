@@ -19,7 +19,7 @@ enums:
     CTErrorDomain: { first: kCTErrorDomainNoError, type: 'SInt32' }
     CTCellularDataRestrictedState: {prefix: kCTCellularData}
     CTCellularPlanProvisioningAddPlanResult: {}
-
+    CTCellularPlanCapability: {} #since 26.0
 classes:
     CTCall: # DONE
         properties:
@@ -51,6 +51,11 @@ classes:
         methods:
             '-addPlanWith:completionHandler:':
                 name: addPlan
+            '-addPlanWithRequest:properties:completionHandler:':
+                #trim_after_first_colon: true
+                name: addPlan
+            '-updateCellularPlanProperties:completionHandler:':
+                name: updateCellularPlanProperties
     CTCellularPlanProvisioningRequest: {}
 
     # Structs
@@ -60,7 +65,7 @@ classes:
         error:
             name: errorCode
             type: NSErrorCode
-
+    CTCellularPlanProperties: {} #since 26.0
 protocols:
     CTSubscriberDelegate: {}
     CTTelephonyNetworkInfoDelegate: {} #since 13.0

@@ -94,6 +94,12 @@ import org.robovm.apple.dispatch.*;
     protected NSMutableArray(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCapacity:")
     public NSMutableArray(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
+    @Method(selector = "initWithCoder:")
+    public NSMutableArray(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithContentsOfFile:")
+    public NSMutableArray(String path) { super((SkipInit) null); initObject(init(path)); }
+    @Method(selector = "initWithContentsOfURL:")
+    public NSMutableArray(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     
     public NSMutableArray(Collection<T> c) {
@@ -226,24 +232,76 @@ import org.robovm.apple.dispatch.*;
         return new NSMutableArray<>(nsStrings);
     }
     
-    public static NSArray<?> read(java.io.File file) {
+    public static NSMutableArray<?> read(java.io.File file) {
         return read(file.getAbsolutePath());
     }
-    @Method(selector = "arrayWithContentsOfFile:")
-    protected static native NSArray<? extends NSObject> read(String path);
-    @Method(selector = "arrayWithContentsOfURL:")
-    public static native NSArray<? extends NSObject> read(NSURL url);
-    
+
     /*<methods>*/
+    @Method(selector = "addObject:")
+    public native void addObject(T anObject);
     @Method(selector = "insertObject:atIndex:")
     protected native void insertObject(T anObject, @MachineSizedUInt long index);
+    @Method(selector = "removeLastObject")
+    public native void removeLastObject();
     @Method(selector = "removeObjectAtIndex:")
     protected native void removeObject(@MachineSizedUInt long index);
     @Method(selector = "replaceObjectAtIndex:withObject:")
     protected native void replaceObject(@MachineSizedUInt long index, T anObject);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "addObjectsFromArray:")
+    public native void addObjectsFromArray(NSArray<T> otherArray);
+    @Method(selector = "exchangeObjectAtIndex:withObjectAtIndex:")
+    public native void exchangeObject(@MachineSizedUInt long idx1, @MachineSizedUInt long idx2);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
+    @Method(selector = "removeObject:inRange:")
+    public native void removeObject(T anObject, @ByVal NSRange range);
+    @Method(selector = "removeObject:")
+    public native void removeObject(T anObject);
+    @Method(selector = "removeObjectIdenticalTo:inRange:")
+    public native void removeObjectIdenticalTo(T anObject, @ByVal NSRange range);
+    @Method(selector = "removeObjectIdenticalTo:")
+    public native void removeObjectIdenticalTo(T anObject);
+    @Method(selector = "removeObjectsInArray:")
+    public native void removeObjectsInArray(NSArray<T> otherArray);
+    @Method(selector = "removeObjectsInRange:")
+    public native void removeObjectsInRange(@ByVal NSRange range);
+    @Method(selector = "replaceObjectsInRange:withObjectsFromArray:range:")
+    public native void replaceObjectsInRange(@ByVal NSRange range, NSArray<T> otherArray, @ByVal NSRange otherRange);
+    @Method(selector = "replaceObjectsInRange:withObjectsFromArray:")
+    public native void replaceObjectsInRange(@ByVal NSRange range, NSArray<T> otherArray);
+    @Method(selector = "setArray:")
+    public native void setArray(NSArray<T> otherArray);
+    @Method(selector = "sortUsingSelector:")
+    public native void sortUsingSelector(Selector comparator);
+    @Method(selector = "insertObjects:atIndexes:")
+    public native void insertObjects(NSArray<T> objects, NSIndexSet indexes);
+    @Method(selector = "removeObjectsAtIndexes:")
+    public native void removeObjectsAtIndexes(NSIndexSet indexes);
+    @Method(selector = "replaceObjectsAtIndexes:withObjects:")
+    public native void replaceObjectsAtIndexes(NSIndexSet indexes, NSArray<T> objects);
+    @Method(selector = "setObject:atIndexedSubscript:")
+    public native void setObjectAtIndexedSubscript(T obj, @MachineSizedUInt long idx);
+    @Method(selector = "sortUsingComparator:")
+    public native void sortUsingComparator(@Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "sortWithOptions:usingComparator:")
+    public native void sort(NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "initWithContentsOfFile:")
+    protected native @Pointer long init(String path);
+    @Method(selector = "initWithContentsOfURL:")
+    protected native @Pointer long init(NSURL url);
+    @Method(selector = "arrayWithContentsOfFile:")
+    public static native NSMutableArray<?> read(String path);
+    @Method(selector = "arrayWithContentsOfURL:")
+    public static native NSMutableArray<?> read(NSURL url);
+    @Method(selector = "applyDifference:")
+    public native void applyDifference(NSOrderedCollectionDifference<T> difference);
+    @Method(selector = "sortUsingDescriptors:")
+    public native void sortUsingDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
+    @Method(selector = "filterUsingPredicate:")
+    public native void filterUsingPredicate(NSPredicate predicate);
     /*</methods>*/
 }

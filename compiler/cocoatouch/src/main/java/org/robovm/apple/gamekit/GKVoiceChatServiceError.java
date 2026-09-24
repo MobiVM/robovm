@@ -37,7 +37,7 @@ import org.robovm.apple.coregraphics.*;
  * @deprecated Deprecated in iOS 7.0.
  */
 /*</javadoc>*/
-/*<annotations>*/@Deprecated @Library("GameKit")/*</annotations>*/
+/*<annotations>*/@Library("GameKit")/*</annotations>*/
 public enum /*<name>*/GKVoiceChatServiceError/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Internal(32000L),
@@ -63,6 +63,10 @@ public enum /*<name>*/GKVoiceChatServiceError/*</name>*/ implements NSErrorCode 
     /*<constants>*//*</constants>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 18.4. No longer supported
+     */
+    @Deprecated
     @GlobalValue(symbol="GKVoiceChatServiceErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -32,7 +32,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/TKSmartCard/*</name>*/ 
@@ -66,16 +68,34 @@ import org.robovm.apple.security.*;
     public native NSObject getContext();
     @Property(selector = "setContext:")
     public native void setContext(NSObject v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "cla")
     public native byte getCla();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setCla:")
     public native void setCla(byte v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "useExtendedLength")
     public native boolean isUseExtendedLength();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setUseExtendedLength:")
     public native void setUseExtendedLength(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "useCommandChaining")
     public native boolean isUseCommandChaining();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setUseCommandChaining:")
     public native void setUseCommandChaining(boolean v);
     /*</properties>*/
@@ -97,10 +117,19 @@ import org.robovm.apple.security.*;
      */
     @Method(selector = "userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:")
     public native TKSmartCardUserInteractionForSecurePINChange userInteractionForSecurePINChange(TKSmartCardPINFormat PINFormat, NSData APDU, @MachineSizedSInt long currentPINByteOffset, @MachineSizedSInt long newPINByteOffset);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Method(selector = "sendIns:p1:p2:data:le:reply:")
     public native void send(byte ins, byte p1, byte p2, NSData requestData, NSNumber le, @Block VoidBlock3<NSData, Short, NSError> reply);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "inSessionWithError:executeBlock:")
     public native boolean executeBlock(NSError.NSErrorPtr error, @Block Block1<NSError.NSErrorPtr, Boolean> block);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Method(selector = "sendIns:p1:p2:data:le:sw:error:")
     public native NSData send(byte ins, byte p1, byte p2, NSData requestData, NSNumber le, ShortPtr sw, NSError.NSErrorPtr error);
     /*</methods>*/

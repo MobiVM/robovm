@@ -32,7 +32,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.exec.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -49,23 +48,21 @@ import org.eclipse.jdi.internal.VirtualMachineImpl;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.debug.core.JDIDebugModel;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
+import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
+import org.eclipse.jdt.launching.IVMConnector;
+import org.eclipse.jdt.launching.JavaRuntime;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Config.Builder;
 import org.robovm.compiler.config.Config.Home;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.LauncherUtils;
 import org.robovm.compiler.plugin.Plugin;
 import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.util.io.Fifos;
-import org.robovm.compiler.util.io.OpenOnReadFileInputStream;
 import org.robovm.eclipse.RoboVMPlugin;
 
-import com.sun.jdi.VirtualMachine;
-import com.sun.jdi.VirtualMachineManager;
-import com.sun.jdi.connect.AttachingConnector;
-import com.sun.jdi.connect.Connector.Argument;
 
 /**
  *
@@ -87,8 +84,6 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
 
     protected void customizeLaunchParameters(Config config, LaunchParameters launchParameters, ILaunchConfiguration configuration,
             String mode) throws IOException, CoreException {
-        launchParameters.setStdoutFifo(Fifos.mkfifo("stdout"));
-        launchParameters.setStderrFifo(Fifos.mkfifo("stderr"));
     }
 
     protected boolean isTestConfiguration() {
@@ -242,42 +237,18 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
                 customizeLaunchParameters(config, launchParameters, configuration, mode);
                 String label = String.format("%s (%s)", mainTypeName,
                         DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(new Date()));
-                // launch plugin may proxy stdout/stderr fifo, which
-                // it then writes to. Need to save the original fifos
-                File stdOutFifo = launchParameters.getStdoutFifo();
-                File stdErrFifo = launchParameters.getStderrFifo();
-                PipedInputStream pipedIn = new PipedInputStream();
-                PipedOutputStream pipedOut = new PipedOutputStream(pipedIn);
                 
-                Process process = compiler.launchAsync(launchParameters, pipedIn);
-                
-                if (stdOutFifo != null || stdErrFifo != null) {
-                    InputStream stdoutStream = null;
-                    InputStream stderrStream = null;
-                    if (launchParameters.getStdoutFifo() != null) {
-                        stdoutStream = new OpenOnReadFileInputStream(stdOutFifo);
-                    }
-                    if (launchParameters.getStderrFifo() != null) {
-                        stderrStream = new OpenOnReadFileInputStream(stdErrFifo);
-                    }
-                    process = new ProcessProxy(process, pipedOut, stdoutStream, stderrStream, compiler);
-                }
-
+                Process process = compiler.launchAsync(launchParameters);
                 IProcess iProcess = DebugPlugin.newProcess(launch, process, label);
                 
                 // setup the debugger
                 if (ILaunchManager.DEBUG_MODE.equals(mode)) {
-                    VirtualMachine vm = attachToVm(monitor, debuggerPort);
-                    // we were canceled
-                    if (vm == null) {
+                	try {
+                		attachToVm(monitor, debuggerPort, launch);
+                	} catch (Exception e) {
                         process.destroy();
-                        return;
-                    }
-                    if (vm instanceof VirtualMachineImpl) {
-                        ((VirtualMachineImpl) vm).setRequestTimeout(DEBUGGER_REQUEST_TIMEOUT);
-                    }
-                    JDIDebugModel.newDebugTarget(launch, vm, mainTypeName + " at localhost:" + debuggerPort, iProcess,
-                            true, false, true);
+                        throw e;
+                	}
                 }
                 RoboVMPlugin.consoleInfo("Launch done");
 
@@ -316,47 +287,43 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         }        
     }
 
-    private VirtualMachine attachToVm(IProgressMonitor monitor, int port) throws CoreException {
-        VirtualMachineManager manager = Bootstrap.virtualMachineManager();
-        AttachingConnector connector = null;
-        for (Iterator<?> it = manager.attachingConnectors().iterator(); it.hasNext();) {
-            AttachingConnector con = (AttachingConnector) it.next();
-            if ("dt_socket".equalsIgnoreCase(con.transport().name())) {
-                connector = con;
-                break;
-            }
-        }
+    private void attachToVm(IProgressMonitor monitor, int port,  ILaunch launch) throws CoreException {
+    	IVMConnector connector = JavaRuntime.getVMConnector(IJavaLaunchConfigurationConstants.ID_SOCKET_ATTACH_VM_CONNECTOR);
         if (connector == null) {
-            throw new CoreException(new Status(IStatus.ERROR, RoboVMPlugin.PLUGIN_ID, "Couldn't find socket transport"));
+            throw new CoreException(new Status(IStatus.ERROR, RoboVMPlugin.PLUGIN_ID, "Socket attaching connector not found"));
         }
-        Map<String, Argument> defaultArguments = connector.defaultArguments();
-        defaultArguments.get("hostname").setValue("localhost");
-        defaultArguments.get("port").setValue("" + port);
+
+        Map<String, String> connectMap = new HashMap<>();
+        connectMap.put("hostname", "localhost");
+        connectMap.put("port", String.valueOf(port));
+        connectMap.put("timeout", String.valueOf(DEBUGGER_REQUEST_TIMEOUT));
         
-        try {
-        	Thread.sleep(5000); //waiting at least 5 secs before attempting to connect.
-        }
-        catch (InterruptedException e) {}
-        
+        boolean connected = false;
+        CoreException lastException = null;
         int retries = 60;
-        CoreException exception = null;
-        while (retries > 0) {
+
+        while (retries > 0 && !monitor.isCanceled()) {
             try {
-                return connector.attach(defaultArguments);
-            } catch (Exception e) {
-                exception = new CoreException(new Status(IStatus.ERROR, RoboVMPlugin.PLUGIN_ID,
-                        "Couldn't connect to JDWP server at localhost:" + port, e));
+                // This single call attaches to the VM, creates the JDIDebugTarget, 
+                // and wires it to the Eclipse Debug view automatically!
+                connector.connect(connectMap, monitor, launch);
+                connected = true;
+                break;
+            } catch (CoreException e) {
+                lastException = e;
             }
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
-            }
-            if (monitor.isCanceled()) {
-                return null;
-            }
+            } catch (InterruptedException e) {}
             retries--;
         }
-        throw exception;
+
+        if (!connected || monitor.isCanceled()) {
+            if (lastException != null && !monitor.isCanceled()) {
+                throw lastException;
+            }
+            return;
+        }
     }
 
     private Map<String, String> envToMap(String[] envp) throws IOException {
@@ -373,26 +340,15 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
         return result;
     }
 
-    private String unquoteArg(String arg) {
-        if (arg.startsWith("\"") && arg.endsWith("\"")) {
-            return arg.substring(1, arg.length() - 1);
-        }
-        return arg;
-    }
-
     private List<String> splitArgs(String args) {
         if (args == null || args.trim().length() == 0) {
             return Collections.emptyList();
         }
-        String[] parts = CommandLine.parse("foo " + args).toStrings();
-        if (parts.length <= 1) {
+        List<String> parts = LauncherUtils.splitCommandLine(args);
+        if (parts.isEmpty()) {
             return Collections.emptyList();
         }
-        List<String> result = new ArrayList<String>(parts.length - 1);
-        for (int i = 1; i < parts.length; i++) {
-            result.add(unquoteArg(parts[i]));
-        }
-        return result;
+        return parts;
     }
 
     public int findFreePort()
@@ -411,84 +367,5 @@ public abstract class AbstractLaunchConfigurationDelegate extends AbstractJavaLa
             }
         }
         return -1;
-    }
-
-    private static class ProcessProxy extends Process {
-        private final Process target;
-        private final OutputStream outputStream;
-        private final InputStream inputStream;
-        private final InputStream errorStream;
-        private final AppCompiler appCompiler;
-        private volatile boolean cleanedUp = false;
-
-        ProcessProxy(Process target, OutputStream outputStream, InputStream inputStream, InputStream errorStream,
-                AppCompiler appCompiler) {
-            this.target = target;
-            this.outputStream = outputStream;
-            this.inputStream = inputStream;
-            this.errorStream = errorStream;
-            this.appCompiler = appCompiler;
-        }
-
-        public void destroy() {
-            synchronized(this) {
-                if(!cleanedUp) {
-                    appCompiler.launchAsyncCleanup();
-                    cleanedUp = true;
-                }
-            }            
-            target.destroy();
-        }
-
-        public boolean equals(Object obj) {
-            return target.equals(obj);
-        }
-
-        public int exitValue() {
-            return target.exitValue();
-        }
-
-        public InputStream getErrorStream() {
-            if (errorStream != null) {
-                return errorStream;
-            }
-            return target.getErrorStream();
-        }
-
-        public InputStream getInputStream() {
-            if (inputStream != null) {
-                return inputStream;
-            }
-            return target.getInputStream();
-        }
-
-        public OutputStream getOutputStream() {
-            if (outputStream != null) {
-                return outputStream;
-            }
-            return target.getOutputStream();
-        }
-
-        public int hashCode() {
-            return target.hashCode();
-        }
-
-        public String toString() {
-            return target.toString();
-        }
-
-        public int waitFor() {
-            try {
-                return target.waitFor();
-            } catch (Throwable t) {
-                synchronized(this) {
-                    if(!cleanedUp) {
-                        appCompiler.launchAsyncCleanup();
-                        cleanedUp = true;
-                    }
-                } 
-                throw new RuntimeException(t);
-            }
-        }
     }
 }

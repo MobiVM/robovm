@@ -43,8 +43,13 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PKShippingContactEditingMode/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    Enabled(1L),
-    StorePickup(2L);
+    Available(1L),
+    StorePickup(2L),
+    /**
+     * @deprecated Use PKShippingContactEditingModeAvailable instead
+     */
+    @Deprecated
+    Enabled(1L);
     /*</values>*/
 
     /*<bind>*/

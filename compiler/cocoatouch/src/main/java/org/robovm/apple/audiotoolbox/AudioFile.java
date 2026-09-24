@@ -74,7 +74,32 @@ import org.robovm.apple.uikit.*;
     }
     
     /*<bind>*/static { Bro.bind(AudioFile.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static class InfoDictionaryKeys {
+        public static final String Album = "album";
+        public static final String ApproximateDurationInSeconds = "approximate duration in seconds";
+        public static final String Artist = "artist";
+        public static final String ChannelLayout = "channel layout";
+        public static final String Comments = "comments";
+        public static final String Composer = "composer";
+        public static final String Copyright = "copyright";
+        public static final String EncodingApplication = "encoding application";
+        public static final String Genre = "genre";
+        public static final String ISRC = "ISRC";
+        public static final String KeySignature = "key signature";
+        public static final String Lyricist = "lyricist";
+        public static final String NominalBitRate = "nominal bit rate";
+        public static final String RecordedDate = "recorded date";
+        public static final String SourceBitDepth = "source bit depth";
+        public static final String SourceEncoder = "source encoder";
+        public static final String SubTitle = "subtitle";
+        public static final String Tempo = "tempo";
+        public static final String TimeSignature = "time signature";
+        public static final String Title = "title";
+        public static final String TrackNumber = "track number";
+        public static final String Year = "year";
+    }
+    /*</constants>*/
     /*<constructors>*/
     protected AudioFile() {}
     /*</constructors>*/
@@ -378,12 +403,27 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus readPackets0(boolean inUseCache, IntPtr outNumBytes, AudioStreamPacketDescription outPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr outBuffer);
     @Bridge(symbol="AudioFileWritePackets", optional=true)
     protected native OSStatus writePackets0(boolean inUseCache, int inNumBytes, AudioStreamPacketDescription inPacketDescriptions, long inStartingPacket, IntPtr ioNumPackets, VoidPtr inBuffer);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AudioFileWritePacketsWithDependencies", optional=true)
+    protected native OSStatus writePacketsWithDependencies0(boolean inUseCache, int inNumBytes, AudioStreamPacketDescription inPacketDescriptions, AudioStreamPacketDependencyDescription inPacketDependencies, long inStartingPacket, IntPtr ioNumPackets, VoidPtr inBuffer);
     @Bridge(symbol="AudioFileCountUserData", optional=true)
     protected native OSStatus countUserData0(int inUserDataID, IntPtr outNumberItems);
     @Bridge(symbol="AudioFileGetUserDataSize", optional=true)
     protected native OSStatus getUserDataSize0(int inUserDataID, int inIndex, IntPtr outUserDataSize);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AudioFileGetUserDataSize64", optional=true)
+    protected native OSStatus getUserDataSize640(int inUserDataID, int inIndex, LongPtr outUserDataSize);
     @Bridge(symbol="AudioFileGetUserData", optional=true)
     protected native OSStatus getUserData0(int inUserDataID, int inIndex, IntPtr ioUserDataSize, VoidPtr outUserData);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="AudioFileGetUserDataAtOffset", optional=true)
+    protected native OSStatus getUserDataAtOffset0(int inUserDataID, int inIndex, long inOffset, IntPtr ioUserDataSize, VoidPtr outUserData);
     @Bridge(symbol="AudioFileSetUserData", optional=true)
     protected native OSStatus setUserData0(int inUserDataID, int inIndex, int inUserDataSize, VoidPtr inUserData);
     @Bridge(symbol="AudioFileRemoveUserData", optional=true)

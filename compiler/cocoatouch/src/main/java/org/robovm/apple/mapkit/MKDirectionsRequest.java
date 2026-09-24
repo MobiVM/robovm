@@ -78,6 +78,26 @@ import org.robovm.apple.coreanimation.*;
     public native NSDate getArrivalDate();
     @Property(selector = "setArrivalDate:")
     public native void setArrivalDate(NSDate v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "tollPreference")
+    public native MKDirectionsRoutePreference getTollPreference();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTollPreference:")
+    public native void setTollPreference(MKDirectionsRoutePreference v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "highwayPreference")
+    public native MKDirectionsRoutePreference getHighwayPreference();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setHighwayPreference:")
+    public native void setHighwayPreference(MKDirectionsRoutePreference v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

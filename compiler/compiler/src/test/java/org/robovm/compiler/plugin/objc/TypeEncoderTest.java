@@ -154,55 +154,47 @@ public class TypeEncoderTest {
 
     @Test
     public void testVoidReturnTypeNoParameters() {
-        assertEquals("v", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m1"), false));
+        assertEquals("v", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m1")));
     }
 
     @Test
     public void testSimplePrimitiveTypes() {
-        assertEquals("ccsSiqfd", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m2"), false));
-        assertEquals("ccsSiqfd", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m2"), true));
+        assertEquals("ccsSiqfd", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m2")));
     }
 
     @Test
     public void testArchDependentPrimitiveTypes() {
-        assertEquals("^v^viIff", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m3"), false));
-        assertEquals("^v^vqQdd", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m3"), true));
+        assertEquals("^v^vqQdd", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m3")));
     }
 
     @Test
     public void testSimpleStructTypes() {
-        assertEquals("^v{?=ii}{?=ff}",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m4"), false));
-        assertEquals("^v{?=ii}{?=dd}", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m4"), true));
+        assertEquals("^v{?=ii}{?=dd}", new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m4")));
     }
 
     @Test
     public void testNestedStructTypes() {
-        assertEquals("v{?={?=ff}{?=ff}}",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m5"), false));
         assertEquals("v{?={?=dd}{?=dd}}",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m5"), true));
+                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m5")));
     }
 
     @Test
     public void testUnionTypes() {
-        assertEquals("v(?=i{?=ff})",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m6"), false));
         assertEquals("v(?=i{?=dd})",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m6"), true));
+                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m6")));
     }
 
     @Test
     public void testObjectType() {
         assertEquals("@@",
-                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m7"), false));
+                new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m7")));
     }
 
     @Test
     public void testArrayInStructTypeFails1() {
         // We don't support arrays in structs yet
         try {
-            new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m8"), false);
+            new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m8"));
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             // Expected
@@ -213,7 +205,7 @@ public class TypeEncoderTest {
     public void testArrayInStructTypeFails2() {
         // We don't support arrays in structs yet
         try {
-            new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m9"), false);
+            new TypeEncoder().encode(toSootClass(Methods.class).getMethodByName("m9"));
             fail("IllegalArgumentException expected");
         } catch (IllegalArgumentException e) {
             // Expected

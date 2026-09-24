@@ -160,11 +160,6 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureRFC4754", optional=true)
-    public static native String ECDSASignatureRFC4754();
-    /**
-     * @since Available in iOS 10.0 and later.
-     */
     @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestX962", optional=true)
     public static native String ECDSASignatureDigestX962();
     /**
@@ -217,6 +212,68 @@ import org.robovm.apple.dispatch.*;
      */
     @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageX962SHA512", optional=true)
     public static native String ECDSASignatureMessageX962SHA512();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754", optional=true)
+    public static native String ECDSASignatureDigestRFC4754();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA1", optional=true)
+    public static native String ECDSASignatureDigestRFC4754SHA1();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA224", optional=true)
+    public static native String ECDSASignatureDigestRFC4754SHA224();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA256", optional=true)
+    public static native String ECDSASignatureDigestRFC4754SHA256();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA384", optional=true)
+    public static native String ECDSASignatureDigestRFC4754SHA384();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA512", optional=true)
+    public static native String ECDSASignatureDigestRFC4754SHA512();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA1", optional=true)
+    public static native String ECDSASignatureMessageRFC4754SHA1();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA224", optional=true)
+    public static native String ECDSASignatureMessageRFC4754SHA224();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA256", optional=true)
+    public static native String ECDSASignatureMessageRFC4754SHA256();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA384", optional=true)
+    public static native String ECDSASignatureMessageRFC4754SHA384();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA512", optional=true)
+    public static native String ECDSASignatureMessageRFC4754SHA512();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use kSecKeyAlgorithmECDSASignatureDigestRFC4754
+     */
+    @Deprecated
+    @GlobalValue(symbol="kSecKeyAlgorithmECDSASignatureRFC4754", optional=true)
+    public static native String ECDSASignatureRFC4754();
     /**
      * @since Available in iOS 10.0 and later.
      */

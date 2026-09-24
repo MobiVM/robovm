@@ -58,6 +58,11 @@ import org.robovm.apple.coreanimation.*;
     public native PKInkType getInkType();
     @Property(selector = "color")
     public native UIColor getColor();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "requiredContentVersion")
+    public native PKContentVersion getRequiredContentVersion();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

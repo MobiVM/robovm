@@ -1,0 +1,479 @@
+package: org.robovm.apple.videotoolbox
+include: [foundation, corefoundation, coregraphics, corevideo, coremedia, metal]
+library: VideoToolbox
+framework: VideoToolbox
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/VideoToolbox.framework/Headers/VideoToolbox.h
+
+typedefs:
+    
+enums:
+    VTDecodeFrameFlags: {prefix: kVTDecodeFrame_}
+    VTDecodeInfoFlags: {prefix: kVTDecodeInfo_}
+    VTEncodeInfoFlags: {prefix: kVTEncodeInfo_}
+    VTCompressionSessionOptionFlags: {} #since 8.0
+    VTMotionEstimationFrameFlags: {}
+    VTMotionEstimationInfoFlags: {}
+    VTFrameProcessorError: {prefix: VTFrameProcessor}
+    VTMotionBlurConfigurationQualityPrioritization: {}
+    VTMotionBlurConfigurationRevision: {}
+    VTMotionBlurParametersSubmissionMode: {}
+    VTFrameRateConversionConfigurationQualityPrioritization: {}
+    VTFrameRateConversionConfigurationRevision: {}
+    VTFrameRateConversionParametersSubmissionMode: {}
+    VTOpticalFlowConfigurationQualityPrioritization: {}
+    VTOpticalFlowConfigurationRevision: {}
+    VTOpticalFlowParametersSubmissionMode: {}
+    VTSuperResolutionScalerConfigurationQualityPrioritization: {}
+    VTSuperResolutionScalerConfigurationRevision: {}
+    VTSuperResolutionScalerConfigurationInputType: {}
+    VTSuperResolutionScalerConfigurationModelStatus: {}
+    VTSuperResolutionScalerParametersSubmissionMode: {}
+    VTErrors: { prefix: kVT, suffix: Err, first: kVTPropertyNotSupportedErr }
+
+
+categories:
+
+classes:
+    # structs
+    VTInt32Point: {}
+    VTInt32Size: {}
+    VTDecompressionOutputCallbackRecord: {} #since 8.0
+
+    # classes
+    VTFrameProcessor: #since 26.0
+        methods:
+            '-startSessionWithConfiguration:error:':
+                name: startSession
+                throws: NSErrorException
+            '-processWithParameters:error:':
+                name: process
+                throws: NSErrorException
+            '-processWithParameters:completionHandler:':
+                name: process
+            '-processWithParameters:frameOutputHandler:':
+                name: process
+            '-processWithCommandBuffer:parameters:':
+                name: process
+    VTFrameProcessorFrame: #since 26.0
+        methods:
+            '-initWithBuffer:presentationTimeStamp:':
+                name: init
+    VTFrameProcessorOpticalFlow: #since 26.0
+        methods:
+            '-initWithForwardFlow:backwardFlow:':
+                name: init
+    VTFrameRateConversionConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:usePrecomputedFlow:qualityPrioritization:revision:':
+                name: init
+    VTFrameRateConversionParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:nextFrame:opticalFlow:interpolationPhase:submissionMode:destinationFrames:':
+                name: init
+    VTLowLatencyFrameInterpolationConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:numberOfInterpolatedFrames:':
+                name: initWithNumberOfInterpolatedFrames
+                static_constructor_name: createWithNumberOfInterpolatedFrames
+            '-initWithFrameWidth:frameHeight:spatialScaleFactor:':
+                name: initWithSpatialScaleFactor
+                static_constructor_name: createWithSpatialScaleFactor
+    VTLowLatencyFrameInterpolationParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:previousFrame:interpolationPhase:destinationFrames:':
+                name: init
+    VTLowLatencySuperResolutionScalerConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:scaleFactor:':
+                name: init
+            '+supportedScaleFactorsForFrameWidth:frameHeight:':
+                name: supportedScaleFactors
+    VTLowLatencySuperResolutionScalerParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:destinationFrame:':
+                name: init
+    VTMotionBlurConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:usePrecomputedFlow:qualityPrioritization:revision:':
+                name: init
+    VTMotionBlurParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:nextFrame:previousFrame:nextOpticalFlow:previousOpticalFlow:motionBlurStrength:submissionMode:destinationFrame:':
+                name: init
+    VTOpticalFlowConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:qualityPrioritization:revision:':
+                name: init
+    VTOpticalFlowParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:nextFrame:submissionMode:destinationOpticalFlow:':
+                name: init
+    VTSuperResolutionScalerConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:scaleFactor:inputType:usePrecomputedFlow:qualityPrioritization:revision:':
+                name: init
+            '-downloadConfigurationModelWithCompletionHandler:':
+                name: downloadConfigurationModel
+    VTSuperResolutionScalerParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:previousFrame:previousOutputFrame:opticalFlow:submissionMode:destinationFrame:':
+                name: init
+    VTTemporalNoiseFilterConfiguration: #since 26.0
+        methods:
+            '-initWithFrameWidth:frameHeight:sourcePixelFormat:':
+                name: init
+    VTTemporalNoiseFilterParameters: #since 26.0
+        methods:
+            '-initWithSourceFrame:nextFrames:previousFrames:destinationFrame:filterStrength:hasDiscontinuity:':
+                name: init
+
+    VTSessionRef:
+        name: VTSession
+        extends: CFType
+    VTHDRPerFrameMetadataGenerationSessionRef:
+        name: VTHDRPerFrameMetadataGenerationSession
+        extends: CFType
+    VTMultiPassStorageRef:
+        name: VTMultiPassStorage
+        extends: CFType
+    VTCompressionSessionRef:
+        name: VTCompressionSession
+        extends: CFType
+    VTDecompressionSessionRef:
+        name: VTDecompressionSession
+        extends: CFType
+    VTFrameSiloRef:
+        name: VTFrameSilo
+        extends: CFType
+    VTMotionEstimationSessionRef:
+        name: VTMotionEstimationSession
+        extends: CFType
+    VTPixelRotationSessionRef:
+        name: VTPixelRotationSession
+        extends: CFType
+    VTPixelTransferSessionRef:
+        name: VTPixelTransferSession
+        extends: CFType
+
+protocols:
+    VTFrameProcessorConfiguration: {} #since 26.0
+    VTFrameProcessorParameters: {} #since 26.0
+
+functions:
+    VTCompressionSessionGetTypeID:
+        class: VTCompressionSession
+        name: TypeID
+    VTCompressionSession(.*):
+        class: VTCompressionSession
+        name: '#{g[0].downcase_first}'
+
+    VTCopySupportedPropertyDictionaryForEncoder:
+        class: VTVideoEncoderList
+        name: copySupportedPropertyDictionaryForEncoder
+
+    VTCopyVideoEncoderList:
+        class: VTVideoEncoderList
+        name: copyVideoEncoderList
+
+    VTCreateCGImageFromCVPixelBuffer:
+        class: VTUtilities
+        name: createCGImageFromCVPixelBuffer
+
+    VTDecompressionSessionGetTypeID:
+        class: VTDecompressionSession
+        name: TypeID
+    VTDecompressionSession(.*):
+        class: VTDecompressionSession
+        name: '#{g[0].downcase_first}'
+    VT(IsHardwareDecodeSupported|IsStereoMVHEVCDecodeSupported|IsStereoMVHEVCEncodeSupported):
+        class: VTDecompressionSession
+        name: '#{g[0].downcase_first}'
+
+    VTFrameSiloGetTypeID:
+        class: VTFrameSilo
+        name: TypeID
+    VTFrameSilo(.*):
+        class: VTFrameSilo
+        name: '#{g[0].downcase_first}'
+
+    VTHDRPerFrameMetadataGenerationSessionGetTypeID:
+        class: VTHDRPerFrameMetadataGenerationSession
+        name: TypeID
+    VTHDRPerFrameMetadataGenerationSession(.*):
+        class: VTHDRPerFrameMetadataGenerationSession
+        name: '#{g[0].downcase_first}'
+
+    VTMotionEstimationSessionGetTypeID:
+        class: VTMotionEstimationSession
+        name: TypeID
+    VTMotionEstimationSession(.*):
+        class: VTMotionEstimationSession
+        name: '#{g[0].downcase_first}'
+
+    VTMultiPassStorageGetTypeID:
+        class: VTMultiPassStorage
+        name: TypeID
+    VTMultiPassStorageClose:
+        class: VTMultiPassStorage
+        name: closeStorage
+    VTMultiPassStorage(.*):
+        class: VTMultiPassStorage
+        name: '#{g[0].downcase_first}'
+
+    VTPixelRotationSessionGetTypeID:
+        class: VTPixelRotationSession
+        name: TypeID
+    VTPixelRotationSession(.*):
+        class: VTPixelRotationSession
+        name: '#{g[0].downcase_first}'
+
+    VTPixelTransferSessionGetTypeID:
+        class: VTPixelTransferSession
+        name: TypeID
+    VTPixelTransferSession(.*):
+        class: VTPixelTransferSession
+        name: '#{g[0].downcase_first}'
+
+    VTSession(.*):
+        class: VTSession
+        name: '#{g[0].downcase_first}'
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?VT.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    kVTCompressionPropertyKey_(.*):
+        class: VTCompressionProperties
+        static_class: Keys
+        name: '#{g[0]}'
+    kVTProfileLevel_(.*): # values for key kVTCompressionPropertyKey_ProfileLevel
+        class: VTCompressionProperties
+        static_class: ProfileLevels
+        name: '#{g[0]}'
+    kVTHDRMetadataInsertionMode_(.*): # values for key kVTCompressionPropertyKey_HDRMetadataInsertionMode
+        class: VTCompressionProperties
+        static_class: HDRMetadataInsertionMode
+        name: '#{g[0]}'
+    kVTH264EntropyMode_(.*): # values for key kVTCompressionPropertyKey_H264EntropyMode
+        class: VTCompressionProperties
+        static_class: H264EntropyMode
+        name: '#{g[0]}'
+    kVTSampleAttachmentKey_(.*):
+        class: VTCompressionProperties
+        static_class: SampleAttachmentKeys
+        name: '#{g[0]}'
+        type: CFString
+    kVTSampleAttachmentQualityMetricsKey_(.*):
+        class: VTCompressionProperties
+        static_class: SampleAttachmentQualityMetricsKeys
+        name: '#{g[0]}'
+        type: CFString
+    kVTVideoEncoderSpecification_(.*):
+        class: VTCompressionProperties
+        static_class: VideoDecoderSpecification
+        name: '#{g[0]}'
+        type: CFString
+    kVTEncodeFrameOptionKey_(.*):
+        class: VTCompressionProperties
+        static_class: VTEncodeFrameOptionKeys
+        name: '#{g[0]}'
+        type: CFString
+    kVTAlphaChannelMode_(.*): # values for key kVTCompressionPropertyKey_AlphaChannelMode
+        class: VTCompressionProperties
+        static_class: VTAlphaChannelMode
+        name: '#{g[0]}'
+        type: CFString
+    kVTHeroEye_(.*): # values for key kVTCompressionPropertyKey_HeroEye
+        class: VTCompressionProperties
+        static_class: HeroEye
+        name: '#{g[0]}'
+        type: CFString
+    kVTProjectionKind_(.*): # values for key kVTCompressionPropertyKey_ProjectionKind
+        class: VTCompressionProperties
+        static_class: ProjectionKind
+        name: '#{g[0]}'
+        type: CFString
+    kVTViewPackingKind_(.*): # values for key kVTCompressionPropertyKey_ViewPackingKind
+        class: VTCompressionProperties
+        static_class: ViewPackingKind
+        name: '#{g[0]}'
+        type: CFString
+    kVTCameraCalibrationLensAlgorithmKind_(.*): # value for kVTCompressionPropertyCameraCalibrationKey_LensAlgorithmKind
+        class: VTCompressionProperties
+        static_class: CameraCalibrationLensAlgorithmKind
+        name: '#{g[0]}'
+        type: CFString
+    kVTCameraCalibrationLensDomain_(.*): # value for kVTCompressionPropertyCameraCalibrationKey_LensDomain
+        class: VTCompressionProperties
+        static_class: CameraCalibrationLensDomain
+        name: '#{g[0]}'
+        type: CFString
+    kVTCameraCalibrationLensRole_(.*): # values for kVTCompressionPropertyCameraCalibrationKey_LensRole
+        class: VTCompressionProperties
+        static_class: CameraCalibrationLensRole
+        name: '#{g[0]}'
+        type: CFString
+    kVTCameraCalibrationExtrinsicOriginSource_(.*): # value for kVTCompressionPropertyCameraCalibrationKey_ExtrinsicOriginSource
+        class: VTCompressionProperties
+        static_class: CameraCalibrationExtrinsicOriginSource
+        name: '#{g[0]}'
+        type: CFString
+    kVTCompressionPreset_(.*):
+        class: VTCompressionProperties
+        static_class: CompressionPreset
+        name: '#{g[0]}'
+        type: CFString
+    kVTCompressionPropertyCameraCalibrationKey_(.*):
+        class: VTCompressionProperties
+        static_class: CameraCalibrationKeys
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTDecompressionProperties
+    kVTDecompressionPropertyKey_(.*):
+        class: VTDecompressionProperties
+        static_class: 'Keys'
+        name: '#{g[0]}'
+        type: CFString
+    kVTDecompressionProperty_(.*?)_(.*?):
+        class: VTDecompressionProperties
+        static_class: '#{g[0]}'
+        name: '#{g[1]}'
+        type: CFString
+    kVTDecompressionResolutionKey_(.*):
+        class: VTDecompressionProperties
+        static_class: ResolutionKeys
+        name: '#{g[0]}'
+        type: CFString
+    kVTVideoDecoderSpecification_(.*):
+        class: VTDecompressionProperties
+        static_class: VideoDecoderSpecification
+        name: '#{g[0]}'
+        type: CFString
+    kVTDecodeFrameOptionKey_(.*):
+        class: VTDecompressionProperties
+        static_class: DecodeFrameOptionKeys
+        name: '#{g[0]}'
+        type: CFString
+    kVTDecompressionProperty_(.*):
+        class: VTDecompressionProperties
+        name: '#{g[0]}'
+        type: CFString
+
+
+    # VTPixelTransferProperties
+    kVTPixelTransferPropertyKey_(.*):
+        class: VTPixelTransferProperties
+        static_class: Keys
+        name: '#{g[0]}'
+        type: CFString
+    kVTDownsamplingMode_(.*): # values for key kVTPixelTransferPropertyKey_DownsamplingMode
+        class: VTPixelTransferProperties
+        static_class: DownsamplingMode
+        name: '#{g[0]}'
+        type: CFString
+
+    kVTScalingMode_(.*): # values for kVTPixelTransferPropertyKey_ScalingMode
+        class: VTPixelTransferProperties
+        static_class: ScalingMode
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTSession
+    kVTPropertyTypeKey:
+        name: PropertyTypeKey
+        class: VTSession
+        type: CFString
+    kVTPropertyType_(.*):
+        class: VTSession
+        static_class: PropertyTypes
+        name: '#{g[0]}'
+        type: CFString
+    kVTProperty(.*)Key:
+        class: VTSession
+        static_class: Keys
+        name: '#{g[0]}'
+        type: CFString
+    kVTPropertyReadWriteStatus_(.*): # values for kVTPropertyReadWriteStatusKey
+        class: VTSession
+        static_class: ReadWriteStatus
+        name: '#{g[0]}'
+        type: CFString
+
+    VTFrameProcessorErrorDomain:
+        class: VTFrameProcessorError
+        name: getClassDomain
+
+    # VTHDRPerFrameMetadataGenerationSession
+    kVTHDRPerFrameMetadataGenerationHDRFormatType_(.*):
+        class: VTHDRPerFrameMetadataGenerationSession
+        static_class: HDRFormatType
+        name: '#{g[0]}'
+        type: CFString
+    kVTHDRPerFrameMetadataGenerationOptionsKey_(.*):
+        class: VTHDRPerFrameMetadataGenerationSession
+        static_class: OptionsKeys
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTMotionEstimationSessionProperties
+    kVTMotionEstimationSessionCreationOption_(.*):
+        class: VTMotionEstimationSessionProperties
+        static_class: CreationOptions
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTMultiPassStorage
+    kVTMultiPassStorageCreationOption_(.*):
+        class: VTMultiPassStorage
+        static_class: CreationOptions
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTPixelRotationProperties
+    kVTPixelRotationPropertyKey_(.*):
+        class: VTPixelRotationProperties
+        static_class: Keys
+        name: '#{g[0]}'
+        type: CFString
+    kVTRotation_(.*): # values for kVTPixelRotationPropertyKey_Rotation
+        class: VTPixelRotationProperties
+        static_class: Rotation
+        name: '#{g[0]}'
+        type: CFString
+
+    # VTVideoEncoderList
+    kVTVideoEncoderList_(.*):
+        class: VTVideoEncoderList
+        static_class: Options
+        name: '#{g[0]}'
+        type: CFString
+    kVTVideoEncoderListOption_(.*):
+        class: VTVideoEncoderList
+        static_class: Options
+        name: '#{g[0]}'
+        type: CFString
+
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?VT.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    kVTUnlimitedFrameDelayCount:
+        class: VTCompressionProperties
+        name: UnlimitedFrameDelayCount
+    kVTQPModulationLevel_(.*):
+        class: VTCompressionProperties
+        name: 'QPModulationLevel#{g[0]}'
+
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?VT.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

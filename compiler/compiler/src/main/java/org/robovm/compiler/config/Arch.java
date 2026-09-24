@@ -26,9 +26,7 @@ import java.nio.ByteOrder;
  */
 public class Arch implements Comparable<Arch> {
     // constants to keep old code
-    public static final Arch thumbv7 = new Arch(CpuArch.thumbv7);
     public static final Arch arm64 = new Arch(CpuArch.arm64);
-    public static final Arch x86 = new Arch(CpuArch.x86);
     public static final Arch x86_64 = new Arch(CpuArch.x86_64);
 
     private final CpuArch cpuArch;
@@ -53,7 +51,7 @@ public class Arch implements Comparable<Arch> {
      * E.g. x86_64 and iOS exists only for Simulator environment
      */
     public Arch promoteTo(OS os) {
-        if (os == OS.ios && env == Environment.Native && (cpuArch == CpuArch.x86 || cpuArch == CpuArch.x86_64))
+        if (os == OS.ios && env == Environment.Native && cpuArch == CpuArch.x86_64)
             return new Arch(cpuArch, Environment.Simulator);
         return this;
     }
@@ -64,15 +62,14 @@ public class Arch implements Comparable<Arch> {
     public static Arch[] supported(OS os) {
         switch (os) {
             case linux:
-                return new Arch[]{Arch.x86_64, Arch.x86};
+                return new Arch[]{Arch.x86_64};
             case macosx:
-                return new Arch[]{Arch.x86_64, Arch.x86, Arch.arm64};
+                return new Arch[]{Arch.x86_64, Arch.arm64};
             case ios:
                 return new Arch[]{
                         new Arch(CpuArch.x86_64, Environment.Simulator),
-                        new Arch(CpuArch.x86, Environment.Simulator),
                         new Arch(CpuArch.arm64, Environment.Simulator),
-                        Arch.arm64, Arch.thumbv7};
+                        Arch.arm64};
             default:
                 throw new IllegalArgumentException("Unexpected OS");
         }
@@ -136,10 +133,6 @@ public class Arch implements Comparable<Arch> {
         }
 
         return new Arch(cpuArch, env);
-    }
-
-    public boolean is32Bit() {
-        return cpuArch.is32Bit();
     }
 
     public ByteOrder getByteOrder() {

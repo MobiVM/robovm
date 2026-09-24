@@ -64,8 +64,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLVertexDescriptor getVertexDescriptor();
     @Property(selector = "setVertexDescriptor:")
     public native void setVertexDescriptor(MTLVertexDescriptor v);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use rasterSampleCount
+     */
+    @Deprecated
     @Property(selector = "sampleCount")
     public native @MachineSizedUInt long getSampleCount();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use rasterSampleCount
+     */
+    @Deprecated
     @Property(selector = "setSampleCount:")
     public native void setSampleCount(@MachineSizedUInt long v);
     @Property(selector = "rasterSampleCount")
@@ -218,22 +226,22 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "vertexPreloadedLibraries")
-    public native NSArray<?> getVertexPreloadedLibraries();
+    public native NSArray<MTLDynamicLibrary> getVertexPreloadedLibraries();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setVertexPreloadedLibraries:")
-    public native void setVertexPreloadedLibraries(NSArray<?> v);
+    public native void setVertexPreloadedLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "fragmentPreloadedLibraries")
-    public native NSArray<?> getFragmentPreloadedLibraries();
+    public native NSArray<MTLDynamicLibrary> getFragmentPreloadedLibraries();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setFragmentPreloadedLibraries:")
-    public native void setFragmentPreloadedLibraries(NSArray<?> v);
+    public native void setFragmentPreloadedLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -294,6 +302,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxFragmentCallStackDepth:")
     public native void setMaxFragmentCallStackDepth(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shaderValidation")
+    public native MTLShaderValidation getShaderValidation();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShaderValidation:")
+    public native void setShaderValidation(MTLShaderValidation v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -63,11 +63,84 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "prepareCredentialListForServiceIdentifiers:")
     public native void prepareCredentialListForServiceIdentifiers(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareCredentialListForServiceIdentifiers:requestParameters:")
+    public native void prepareCredentialList(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers, ASPasskeyCredentialRequestParameters requestParameters);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepareOneTimeCodeCredentialListForServiceIdentifiers:")
+    public native void prepareOneTimeCodeCredentialListForServiceIdentifiers(NSArray<ASCredentialServiceIdentifier> serviceIdentifiers);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "prepareInterfaceForUserChoosingTextToInsert")
+    public native void prepareInterfaceForUserChoosingTextToInsert();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use provideCredentialWithoutUserInteractionForRequest:
+     */
+    @Deprecated
     @Method(selector = "provideCredentialWithoutUserInteractionForIdentity:")
     public native void provideCredentialWithoutUserInteraction(ASPasswordCredentialIdentity credentialIdentity);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "provideCredentialWithoutUserInteractionForRequest:")
+    public native void provideCredentialWithoutUserInteraction(ASCredentialRequest credentialRequest);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use prepareInterfaceToProvideCredentialForRequest:
+     */
+    @Deprecated
     @Method(selector = "prepareInterfaceToProvideCredentialForIdentity:")
     public native void prepareInterfaceToProvideCredentialForIdentity(ASPasswordCredentialIdentity credentialIdentity);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareInterfaceToProvideCredentialForRequest:")
+    public native void prepareInterfaceToProvideCredentialForRequest(ASCredentialRequest credentialRequest);
     @Method(selector = "prepareInterfaceForExtensionConfiguration")
     public native void prepareInterfaceForExtensionConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "prepareInterfaceForPasskeyRegistration:")
+    public native void prepareInterfaceForPasskeyRegistration(ASCredentialRequest registrationRequest);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "performPasskeyRegistrationWithoutUserInteractionIfPossible:")
+    public native void performPasskeyRegistrationWithoutUserInteractionIfPossible(ASPasskeyCredentialRequest registrationRequest);
+    @Method(selector = "reportPublicKeyCredentialUpdateForRelyingParty:userHandle:newName:")
+    public native void reportPublicKeyCredentialUpdate(String relyingParty, NSData userHandle, String newName);
+    @Method(selector = "reportUnknownPublicKeyCredentialForRelyingParty:credentialID:")
+    public native void reportUnknownPublicKeyCredential(String relyingParty, NSData credentialID);
+    @Method(selector = "reportAllAcceptedPublicKeyCredentialsForRelyingParty:userHandle:acceptedCredentialIDs:")
+    public native void reportAllAcceptedPublicKeyCredentials(String relyingParty, NSData userHandle, NSArray<NSData> acceptedCredentialIDs);
+    @Method(selector = "reportUnusedPasswordCredentialForDomain:userName:")
+    public native void reportUnusedPasswordCredential(String domain, String userName);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "performSavePasswordRequestWithoutUserInteractionIfPossible:")
+    public native void performSavePasswordRequest(ASSavePasswordRequest savePasswordRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "prepareInterfaceForSavePasswordRequest:")
+    public native void prepareInterfaceForSavePasswordRequest(ASSavePasswordRequest savePasswordRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "performGeneratePasswordsRequestWithoutUserInteraction:")
+    public native void performGeneratePasswordsRequest(ASGeneratePasswordsRequest generatePasswordsRequest);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "prepareInterfaceForGeneratePasswordsRequest:")
+    public native void prepareInterfaceForGeneratePasswordsRequest(ASGeneratePasswordsRequest generatePasswordsRequest);
     /*</methods>*/
 }

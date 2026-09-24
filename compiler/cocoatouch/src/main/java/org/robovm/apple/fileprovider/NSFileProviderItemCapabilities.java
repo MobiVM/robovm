@@ -45,6 +45,7 @@ public final class /*<name>*/NSFileProviderItemCapabilities/*</name>*/ extends B
     public static final NSFileProviderItemCapabilities AllowsRenaming = new NSFileProviderItemCapabilities(8L);
     public static final NSFileProviderItemCapabilities AllowsTrashing = new NSFileProviderItemCapabilities(16L);
     public static final NSFileProviderItemCapabilities AllowsDeleting = new NSFileProviderItemCapabilities(32L);
+    public static final NSFileProviderItemCapabilities AllowsEvicting = new NSFileProviderItemCapabilities(64L);
     public static final NSFileProviderItemCapabilities AllowsAddingSubItems = new NSFileProviderItemCapabilities(2L);
     public static final NSFileProviderItemCapabilities AllowsContentEnumerating = new NSFileProviderItemCapabilities(1L);
     /**

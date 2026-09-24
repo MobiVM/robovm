@@ -55,13 +55,13 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:")
     public MKMapCameraZoomRange(double minDistance, double maxDistance) { super((SkipInit) null); initObject(init(minDistance, maxDistance)); }
     @Method(selector = "initWithMinCenterCoordinateDistance:")
-    public static  MKMapCameraZoomRange createUsingMinCenterCoordinateDistance(double minDistance) {
+    public static MKMapCameraZoomRange createUsingMinCenterCoordinateDistance(double minDistance) {
        MKMapCameraZoomRange res = new MKMapCameraZoomRange((SkipInit) null);
        res.initObject(res.initUsingMinCenterCoordinateDistance(minDistance));
        return res;
     }
     @Method(selector = "initWithMaxCenterCoordinateDistance:")
-    public static  MKMapCameraZoomRange createUsingMaxCenterCoordinateDistance(double maxDistance) {
+    public static MKMapCameraZoomRange createUsingMaxCenterCoordinateDistance(double maxDistance) {
        MKMapCameraZoomRange res = new MKMapCameraZoomRange((SkipInit) null);
        res.initObject(res.initUsingMaxCenterCoordinateDistance(maxDistance));
        return res;

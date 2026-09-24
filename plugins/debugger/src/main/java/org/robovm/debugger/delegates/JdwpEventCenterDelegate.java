@@ -45,6 +45,7 @@ import org.robovm.debugger.state.instances.VmInstance;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
 import org.robovm.debugger.utils.DbgLogger;
+import org.robovm.debugger.utils.StackTraceConverter;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
 import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
 
@@ -665,7 +666,8 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
             case HookConsts.events.THREAD_RESUMED:
                 log.debug("THREAD_RESUMED: " + thread);
 
-                thread.setStatus(VmThread.Status.RUNNING);
+                thread.setJdwpThreadStatus(JdwpConsts.ThreadStatus.RUNNING);
+                thread.setHookSuspendStatus(HookConsts.threadSuspendStatus.RUNNING);
                 // there is no corresponding JDPW event
 
                 return null;
@@ -704,51 +706,9 @@ public class JdwpEventCenterDelegate implements IJdwpEventDelegate {
     }
 
     private VmStackTrace[] convertCallStack(int eventId, HooksCallStackEntry[] callStack) {
-        List<VmStackTrace> result = new ArrayList<>();
-        for (HooksCallStackEntry entry : callStack) {
-            VmStackTrace stackTrace = convertStackTrace(eventId, entry);
-            if (stackTrace != null)
-                result.add(stackTrace);
-        }
-
-        if (result.size() == 0)
-            log.error(HookConsts.commandToString(eventId) + ": Empty callstack!");
-
-        return result.toArray(new VmStackTrace[0]);
+        return StackTraceConverter.convertCallStack(eventId, callStack, delegates, log);
     }
 
-    private VmStackTrace convertStackTrace(int eventId, HooksCallStackEntry payload) {
-        String signature = "L" + payload.clazzName() + ";";
-        ClassInfo classInfo = delegates.state().classInfoLoader().classInfoBySignature(signature);
-        if (classInfo == null) {
-            log.error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Class is not known " +
-                    payload.clazzName());
-            return null;
-        }
-
-        // find method
-        MethodInfo[] methods = delegates.state().classInfoLoader().classMethods(classInfo);
-        long implPtr = delegates.runtime().toMachOAddr(payload.impl());
-        MethodInfo methodInfo = null;
-        for (MethodInfo mi : methods) {
-            if (mi.implPtr() == implPtr) {
-                methodInfo = mi;
-                break;
-            }
-        }
-
-        if (methodInfo == null) {
-            log.error(HookConsts.commandToString(eventId) + ": Failed to get get stack entry. Method not found for impl " +
-                    Long.toHexString(payload.impl()) + " class " + payload.clazzName());
-            return null;
-        }
-
-        // skip synthetic methods from being visible to debugger
-        if (methodInfo.isBridge() || methodInfo.isBroCallback() || methodInfo.isBroBridge())
-            return null;
-
-        return new VmStackTrace(classInfo, methodInfo, payload.lineNumber(), payload.fp(), payload.pc() - payload.impl());
-    }
 
     private VmThread getThread(int eventId, long threadObj) {
         VmThread thread = delegates.state().referenceRefIdHolder().instanceByAddr(threadObj);

@@ -45,7 +45,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
+        public static NSObject observeStoresWillChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresWillChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +61,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
+        public static NSObject observeStoresDidChange(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSPersistentStoreCoordinatorChangeNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorStoresDidChange(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -77,7 +77,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
+        public static NSObject observeWillRemoveStore(NSPersistentStoreCoordinator object, final VoidBlock1<NSPersistentStoreCoordinator> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.CoordinatorWillRemoveStore(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -88,7 +88,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
+        public static NSObject observeDidImportUbiquitousContentChanges(NSPersistentStoreCoordinator object, final VoidBlock2<NSPersistentStoreCoordinator, NSNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NotificationKeys.DidImportUbiquitousContentChanges(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -118,7 +118,7 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "setName:")
     public native void setName(String v);
     @Property(selector = "registeredStoreTypes")
-    public static native NSDictionary<NSString, NSPersistentStore> getRegisteredStoreTypes();
+    public static native NSDictionary<NSString, NSValue> getRegisteredStoreTypes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -294,6 +294,36 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "currentPersistentHistoryTokenFromStores:")
     public native NSPersistentHistoryToken currentPersistentHistoryTokenFromStores(NSArray<?> stores);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean finishDeferredLightweightMigration() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = finishDeferredLightweightMigration(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "finishDeferredLightweightMigration:")
+    private native boolean finishDeferredLightweightMigration(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public boolean finishDeferredLightweightMigrationTask() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = finishDeferredLightweightMigrationTask(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "finishDeferredLightweightMigrationTask:")
+    private native boolean finishDeferredLightweightMigrationTask(NSError.NSErrorPtr error);
+    @Method(selector = "managedObjectIDFromUTF8String:length:")
+    public native NSManagedObjectID managedObjectIDFromUTF8String(BytePtr utf8string, @MachineSizedUInt long len);
     /**
      * @deprecated Deprecated in iOS 8.0. Use -performBlockAndWait: instead
      */

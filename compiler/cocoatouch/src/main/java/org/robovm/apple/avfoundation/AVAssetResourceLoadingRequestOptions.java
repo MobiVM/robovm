@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,7 +120,7 @@ import org.robovm.apple.audiotoolbox.*;
 
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead
      */
     @Deprecated
     public boolean requiresPersistentKey() {
@@ -130,7 +132,7 @@ import org.robovm.apple.audiotoolbox.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
+     * @deprecated Deprecated in iOS 18.0. Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead
      */
     @Deprecated
     public AVAssetResourceLoadingRequestOptions setRequiresPersistentKey(boolean requiresPersistentKey) {
@@ -145,7 +147,7 @@ import org.robovm.apple.audiotoolbox.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 9.0 and later.
-         * @deprecated Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:]
+         * @deprecated Deprecated in iOS 18.0. Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey", optional=true)

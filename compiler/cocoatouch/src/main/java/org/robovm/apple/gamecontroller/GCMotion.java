@@ -96,7 +96,7 @@ import org.robovm.apple.corehaptic.*;
     public native void setAcceleration(@ByVal GCAcceleration v);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 14.0. hasAttitudeAndRotationRate has been deprecated, use -hasAttitude and -hasRotationRate instead
+     * @deprecated Deprecated in iOS 14.0. Use -hasAttitude and -hasRotationRate methods instead
      */
     @Deprecated
     @Property(selector = "hasAttitudeAndRotationRate")
@@ -111,24 +111,12 @@ import org.robovm.apple.corehaptic.*;
      */
     @Property(selector = "hasRotationRate")
     public native boolean hasRotationRate();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "attitude")
     public native @ByVal GCQuaternion getAttitude();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setAttitude:")
     public native void setAttitude(@ByVal GCQuaternion v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "rotationRate")
     public native @ByVal GCRotationRate getRotationRate();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setRotationRate:")
     public native void setRotationRate(@ByVal GCRotationRate v);
     /*</properties>*/

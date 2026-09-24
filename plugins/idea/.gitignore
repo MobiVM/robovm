@@ -5,3 +5,4 @@
 /build/
 org.robovm.idea.iml
 /.gradle/
+/.intellijPlatform/

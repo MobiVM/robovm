@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 
+import com.dd.plist.NSString;
 import org.robovm.libimobiledevice.binding.LibIMobileDevice;
 import org.robovm.libimobiledevice.binding.LibIMobileDeviceConstants;
 import org.robovm.libimobiledevice.binding.LockdowndServiceDescriptorStruct;
@@ -33,6 +34,9 @@ import org.robovm.libimobiledevice.binding.PlistRefOut;
 
 import com.dd.plist.NSDictionary;
 import com.dd.plist.NSObject;
+
+import static org.robovm.libimobiledevice.binding.MobileImageMounterError.MOBILE_IMAGE_MOUNTER_E_DEVICE_LOCKED;
+import static org.robovm.libimobiledevice.binding.MobileImageMounterError.MOBILE_IMAGE_MOUNTER_E_UNKNOWN_ERROR;
 
 /**
  * Mounts developer/debug disk images on the device.
@@ -153,7 +157,18 @@ public class MobileImageMounterClient implements AutoCloseable {
         try {
             checkResult(LibIMobileDevice.mobile_image_mounter_lookup_image(getRef(), imageType, plistOut));
             PlistRef plist = plistOut.getValue();
-            return (NSDictionary) PlistUtil.toJavaPlist(plist);
+            NSDictionary dict = (NSDictionary) PlistUtil.toJavaPlist(plist);
+            // TODO: mobile_image_mounter_lookup_image doesn't check plist for possible error, this might
+            //       happen when device is locked
+            NSString possibleError = dict != null ? (NSString) dict.objectForKey("Error") : null;
+            if (possibleError != null) {
+                if ("DeviceLocked".equals(possibleError.toString()))
+                    throw new LibIMobileDeviceException(MOBILE_IMAGE_MOUNTER_E_DEVICE_LOCKED.swigValue(),
+                            MOBILE_IMAGE_MOUNTER_E_DEVICE_LOCKED.name());
+                throw new LibIMobileDeviceException(MOBILE_IMAGE_MOUNTER_E_UNKNOWN_ERROR.swigValue(),
+                        MOBILE_IMAGE_MOUNTER_E_UNKNOWN_ERROR.name());
+            }
+            return dict;
         } finally {
             plistOut.delete();
         }
@@ -234,18 +249,16 @@ public class MobileImageMounterClient implements AutoCloseable {
             }
             
             if (deviceId == null) {
-                if (deviceId == null) {
-                    String[] udids = IDevice.listUdids();
-                    if (udids.length == 0) {
-                        System.err.println("No device connected");
-                        return;
-                    }
-                    if (udids.length > 1) {
-                        System.err.println("More than 1 device connected (" 
-                                + Arrays.asList(udids) + "). Using " + udids[0]);
-                    }
-                    deviceId = udids[0];
+                String[] udids = IDevice.listUdids();
+                if (udids.length == 0) {
+                    System.err.println("No device connected");
+                    return;
                 }
+                if (udids.length > 1) {
+                    System.err.println("More than 1 device connected ("
+                            + Arrays.asList(udids) + "). Using " + udids[0]);
+                }
+                deviceId = udids[0];
             }
             
             try (IDevice device = new IDevice(deviceId)) {

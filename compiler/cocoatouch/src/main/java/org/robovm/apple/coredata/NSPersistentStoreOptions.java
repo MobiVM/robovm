@@ -360,6 +360,11 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="NSPersistentStoreConnectionPoolMaxSizeKey", optional=true)
         public static native NSString ConnectionPoolMaxSize();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreStagedMigrationManagerOptionKey", optional=true)
+        public static native NSString StagedMigrationManagerOption();
         @GlobalValue(symbol="NSPersistentStoreForceDestroyOption", optional=true)
         public static native NSString ForceDestroy();
         @GlobalValue(symbol="NSPersistentStoreFileProtectionKey", optional=true)
@@ -394,6 +399,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="NSPersistentHistoryTokenKey", optional=true)
         public static native NSString HistoryTokenKey();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreDeferredLightweightMigrationOptionKey", optional=true)
+        public static native NSString DeferredLightweightMigrationOption();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSPersistentStoreModelVersionChecksumKey", optional=true)
+        public static native NSString ModelVersionChecksum();
         /**
          * @deprecated Deprecated in iOS 10.0. Please see the release notes and Core Data documentation.
          */

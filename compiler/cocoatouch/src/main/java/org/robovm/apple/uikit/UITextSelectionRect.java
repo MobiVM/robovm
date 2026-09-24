@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,11 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean containsEnd();
     @Property(selector = "isVertical")
     public native boolean isVertical();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "transform")
+    public native @ByVal CGAffineTransform getTransform();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

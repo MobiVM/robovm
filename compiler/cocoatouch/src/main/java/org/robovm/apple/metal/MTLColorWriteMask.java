@@ -43,6 +43,10 @@ public final class /*<name>*/MTLColorWriteMask/*</name>*/ extends Bits</*<name>*
     public static final MTLColorWriteMask Blue = new MTLColorWriteMask(2L);
     public static final MTLColorWriteMask Alpha = new MTLColorWriteMask(1L);
     public static final MTLColorWriteMask All = new MTLColorWriteMask(15L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLColorWriteMask Unspecialized = new MTLColorWriteMask(16L);
     /*</values>*/
 
     /*<bind>*/

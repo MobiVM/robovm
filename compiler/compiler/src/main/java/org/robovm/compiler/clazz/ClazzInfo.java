@@ -43,13 +43,13 @@ public class ClazzInfo implements Serializable {
     private String name;
     private String internalName;
     private String superclassName;
-    private final List<String> interfaceNames = new ArrayList<String>();
-    private final List<MethodInfo> methods = new ArrayList<MethodInfo>();
-    private final Set<String> catchNames = new HashSet<String>();
-    private Map<String, Dependency> dependencies = new HashMap<String,Dependency>();
-    private final Set<String> checkcasts = new HashSet<String>();
-    private final Set<String> instanceofs = new HashSet<String>();
-    private final Set<String> invokes = new HashSet<String>();
+    private final List<String> interfaceNames = new ArrayList<>();
+    private final List<MethodInfo> methods = new ArrayList<>();
+    private final Set<String> catchNames = new HashSet<>();
+    private Map<String, Dependency> dependencies = new HashMap<>();
+    private final Set<String> checkcasts = new HashSet<>();
+    private final Set<String> instanceofs = new HashSet<>();
+    private final Set<String> invokes = new HashSet<>();
     private boolean isStruct;
     private boolean isEnum;
     
@@ -190,7 +190,7 @@ public class ClazzInfo implements Serializable {
     }
     
     public List<ClazzInfo> getInterfaces() {
-        List<ClazzInfo> result = new ArrayList<ClazzInfo>();
+        List<ClazzInfo> result = new ArrayList<>();
         for (String ifname : interfaceNames) {
             result.add(loadClazzInfo(ifname));
         }
@@ -207,7 +207,7 @@ public class ClazzInfo implements Serializable {
     }
 
     public List<ClazzInfo> getCatches() {
-        List<ClazzInfo> result = new ArrayList<ClazzInfo>();
+        List<ClazzInfo> result = new ArrayList<>();
         for (String n : catchNames) {
             result.add(loadClazzInfo(n));
         }
@@ -268,11 +268,11 @@ public class ClazzInfo implements Serializable {
     }
     
     public void clearDependencies() {
-        dependencies = new HashMap<String, Dependency>();
+        dependencies = new HashMap<>();
     }
 
     public Set<Dependency> getDependencies() {
-        return new HashSet<Dependency>(dependencies.values());
+        return new HashSet<>(dependencies.values());
     }
 
     public Set<Dependency> getAllDependencies() {
@@ -359,5 +359,11 @@ public class ClazzInfo implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void dropDependencyData() {
+        for (MethodInfo mi : getMethods())
+                mi.dropDependencyData();
+        dependencies = null;
     }
 }

@@ -749,4 +749,48 @@ public abstract class CharBuffer extends Buffer implements
         }
         return remaining;
     }
+
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final CharBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final CharBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final CharBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final CharBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final CharBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final CharBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final CharBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

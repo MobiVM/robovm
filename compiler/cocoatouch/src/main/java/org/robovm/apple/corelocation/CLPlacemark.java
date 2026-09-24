@@ -34,9 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use either GeoToolbox.PlaceDescriptor or MapKit
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLPlacemark/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
@@ -45,7 +47,7 @@ import org.robovm.apple.contacts.*;
     /*<bind>*/static { ObjCRuntime.bind(CLPlacemark.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLPlacemark() {}
+    protected CLPlacemark() {}
     protected CLPlacemark(Handle h, long handle) { super(h, handle); }
     protected CLPlacemark(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlacemark:")
@@ -98,7 +100,9 @@ import org.robovm.apple.contacts.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAreasOfInterest();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Use either GeoToolbox.PlaceDescriptor or MapKit
      */
+    @Deprecated
     @Property(selector = "postalAddress")
     public native CNPostalAddress getPostalAddress();
     @Property(selector = "supportsSecureCoding")

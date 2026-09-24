@@ -71,5 +71,20 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(NSArray<ASAuthorizationRequest> authorizationRequests);
     @Method(selector = "performRequests")
     public native void performRequests();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "performAutoFillAssistedRequests")
+    public native void performAutoFillAssistedRequests();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "performRequestsWithOptions:")
+    public native void performRequests(ASAuthorizationControllerRequestOptions options);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cancel")
+    public native void cancel();
     /*</methods>*/
 }

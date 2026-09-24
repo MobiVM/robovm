@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,6 +73,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIMenuIdentifier getIdentifier();
     @Property(selector = "options")
     public native UIMenuOptions getOptions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredElementSize")
+    public native UIMenuElementSize getPreferredElementSize();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredElementSize:")
+    public native void setPreferredElementSize(UIMenuElementSize v);
     @Property(selector = "children")
     public native NSArray<UIMenuElement> getChildren();
     /**
@@ -79,6 +90,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "selectedElements")
     public native NSArray<UIMenuElement> getSelectedElements();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "displayPreferences")
+    public native UIMenuDisplayPreferences getDisplayPreferences();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setDisplayPreferences:")
+    public native void setDisplayPreferences(UIMenuDisplayPreferences v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -43,6 +43,7 @@ import org.robovm.apple.imageio.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("Vision")/*</annotations>*/
 public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    TuriCoreErrorCode(-1L),
     OK(0L),
     RequestCancelled(1L),
     InvalidFormat(2L),
@@ -74,7 +75,19 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    UnsupportedRequest(19L);
+    UnsupportedRequest(19L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Timeout(20L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnsupportedComputeStage(21L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnsupportedComputeDevice(22L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

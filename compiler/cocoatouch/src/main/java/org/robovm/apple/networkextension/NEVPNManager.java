@@ -44,7 +44,7 @@ import org.robovm.apple.network.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObjectProtocol observeConfigurationChange(final Runnable block) {
+        public static NSObject observeConfigurationChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ConfigurationChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -76,13 +76,13 @@ import org.robovm.apple.network.*;
     @Property(selector = "setLocalizedDescription:")
     public native void setLocalizedDescription(String v);
     /**
-     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration
      */
     @Deprecated
     @Property(selector = "protocol")
     public native NEVPNProtocol getProtocol();
     /**
-     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration instead
+     * @deprecated Deprecated in iOS 9.0. Use protocolConfiguration
      */
     @Deprecated
     @Property(selector = "setProtocol:")

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 #include <string.h>
-#include "packed.h"
+#include "aligned.h"
 #include "classinfo.h"
 
 #define FI_ACCESS_MASK 0x3

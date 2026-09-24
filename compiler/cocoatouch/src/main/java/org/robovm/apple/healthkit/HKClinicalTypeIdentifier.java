@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,6 +93,10 @@ import org.robovm.apple.foundation.*;
      */
     public static final HKClinicalTypeIdentifier AllergyRecord = new HKClinicalTypeIdentifier("AllergyRecord");
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final HKClinicalTypeIdentifier ClinicalNoteRecord = new HKClinicalTypeIdentifier("ClinicalNoteRecord");
+    /**
      * @since Available in iOS 12.0 and later.
      */
     public static final HKClinicalTypeIdentifier ConditionRecord = new HKClinicalTypeIdentifier("ConditionRecord");
@@ -121,7 +126,7 @@ import org.robovm.apple.foundation.*;
     public static final HKClinicalTypeIdentifier CoverageRecord = new HKClinicalTypeIdentifier("CoverageRecord");
     /*</constants>*/
     
-    private static /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] values = new /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] {/*<value_list>*/AllergyRecord, ConditionRecord, ImmunizationRecord, LabResultRecord, MedicationRecord, ProcedureRecord, VitalSignRecord, CoverageRecord/*</value_list>*/};
+    private static /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] values = new /*<name>*/HKClinicalTypeIdentifier/*</name>*/[] {/*<value_list>*/AllergyRecord, ClinicalNoteRecord, ConditionRecord, ImmunizationRecord, LabResultRecord, MedicationRecord, ProcedureRecord, VitalSignRecord, CoverageRecord/*</value_list>*/};
     
     /*<name>*/HKClinicalTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -149,6 +154,11 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKClinicalTypeIdentifierAllergyRecord", optional=true)
         public static native NSString AllergyRecord();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="HKClinicalTypeIdentifierClinicalNoteRecord", optional=true)
+        public static native NSString ClinicalNoteRecord();
         /**
          * @since Available in iOS 12.0 and later.
          */

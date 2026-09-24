@@ -186,9 +186,13 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final VNBarcodeSymbology MicroQR = new VNBarcodeSymbology("MicroQR");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final VNBarcodeSymbology MSIPlessey = new VNBarcodeSymbology("MSIPlessey");
     /*</constants>*/
     
-    private static /*<name>*/VNBarcodeSymbology/*</name>*/[] values = new /*<name>*/VNBarcodeSymbology/*</name>*/[] {/*<value_list>*/Aztec, Code39, Code39Checksum, Code39FullASCII, Code39FullASCIIChecksum, Code93, Code93i, Code128, DataMatrix, EAN8, EAN13, I2of5, I2of5Checksum, ITF14, PDF417, QR, UPCE, Codabar, GS1DataBar, GS1DataBarExpanded, GS1DataBarLimited, MicroPDF417, MicroQR/*</value_list>*/};
+    private static /*<name>*/VNBarcodeSymbology/*</name>*/[] values = new /*<name>*/VNBarcodeSymbology/*</name>*/[] {/*<value_list>*/Aztec, Code39, Code39Checksum, Code39FullASCII, Code39FullASCIIChecksum, Code93, Code93i, Code128, DataMatrix, EAN8, EAN13, I2of5, I2of5Checksum, ITF14, PDF417, QR, UPCE, Codabar, GS1DataBar, GS1DataBarExpanded, GS1DataBarLimited, MicroPDF417, MicroQR, MSIPlessey/*</value_list>*/};
     
     /*<name>*/VNBarcodeSymbology/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -326,6 +330,11 @@ import org.robovm.apple.imageio.*;
          */
         @GlobalValue(symbol="VNBarcodeSymbologyMicroQR", optional=true)
         public static native NSString MicroQR();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="VNBarcodeSymbologyMSIPlessey", optional=true)
+        public static native NSString MSIPlessey();
         /*</values>*/
     }
 }

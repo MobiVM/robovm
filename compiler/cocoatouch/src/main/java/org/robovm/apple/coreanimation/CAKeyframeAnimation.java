@@ -33,6 +33,7 @@ import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,11 +51,8 @@ import org.robovm.apple.metal.*;
     public CAKeyframeAnimation() {}
     protected CAKeyframeAnimation(Handle h, long handle) { super(h, handle); }
     protected CAKeyframeAnimation(SkipInit skipInit) { super(skipInit); }
+    public CAKeyframeAnimation(String path) { super((Handle) null, create(path)); retain(getHandle()); }
     /*</constructors>*/
-    public CAKeyframeAnimation(String path) {
-        super(create(path));
-        retain(getHandle());
-    }
     /*<properties>*/
     @Property(selector = "values")
     public native NSArray<NSObject> getValues();
@@ -96,9 +94,9 @@ import org.robovm.apple.metal.*;
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
+    /*<methods>*/
     @Method(selector = "animationWithKeyPath:")
     protected static native @Pointer long create(String path);
-    /*<methods>*/
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
     /*</methods>*/

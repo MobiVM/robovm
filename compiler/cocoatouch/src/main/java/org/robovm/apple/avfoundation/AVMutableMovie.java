@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -76,6 +78,7 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithData:options:")
     public AVMutableMovie(NSData data, NSDictionary<NSString, ?> options) { super(data, options); }
+    public AVMutableMovie(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredRate")
@@ -95,7 +98,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "setTimescale:")
     public native void setTimescale(int v);
     @Property(selector = "tracks")
-    public native NSArray<AVMutableMovieTrack> getTracks();
+    public native NSArray<? extends AVMovieTrack> getTracks();
     @Property(selector = "isModified")
     public native boolean isModified();
     @Property(selector = "setModified:")
@@ -123,6 +126,8 @@ import org.robovm.apple.audiotoolbox.*;
     private native @Pointer long init(AVMovie movie, NSDictionary<NSString, ?> options, NSError.NSErrorPtr outError);
     @Method(selector = "movieTypes")
     public static native NSArray<NSString> movieTypes();
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     @Method(selector = "insertTimeRange:ofAsset:atTime:copySampleData:error:")
     public native boolean insertTimeRange(@ByVal CMTimeRange timeRange, AVAsset asset, @ByVal CMTime startTime, boolean copySampleData, NSError.NSErrorPtr outError);
     @Method(selector = "insertEmptyTimeRange:")
@@ -160,5 +165,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
     public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    @Method(selector = "metadataForFormat:")
+    public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
+    @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
+    public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
+    @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
+    public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
+    @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
+    public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
+    @Method(selector = "unusedTrackID")
+    public native int getUnusedTrackID();
     /*</methods>*/
 }

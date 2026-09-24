@@ -107,9 +107,37 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 13.2 and later.
      */
     public static final CMMetadataIdentifier QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions = new CMMetadataIdentifier("QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataSegmentIdentifier = new CMMetadataIdentifier("QuickTimeMetadataSegmentIdentifier");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataSceneIlluminance = new CMMetadataIdentifier("QuickTimeMetadataSceneIlluminance");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataSpatialAudioMix = new CMMetadataIdentifier("QuickTimeMetadataSpatialAudioMix");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataDisplayMaskRectangleMono = new CMMetadataIdentifier("QuickTimeMetadataDisplayMaskRectangleMono");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataDisplayMaskRectangleStereoLeft = new CMMetadataIdentifier("QuickTimeMetadataDisplayMaskRectangleStereoLeft");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataDisplayMaskRectangleStereoRight = new CMMetadataIdentifier("QuickTimeMetadataDisplayMaskRectangleStereoRight");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CMMetadataIdentifier QuickTimeMetadataPresentationImmersiveMedia = new CMMetadataIdentifier("QuickTimeMetadataPresentationImmersiveMedia");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation, QuickTimeMetadataLivePhotoStillImageTransform, QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions/*</value_list>*/};
+    private static /*<name>*/CMMetadataIdentifier/*</name>*/[] values = new /*<name>*/CMMetadataIdentifier/*</name>*/[] {/*<value_list>*/QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection_Facing, QuickTimeMetadataPreferredAffineTransform, QuickTimeMetadataVideoOrientation, QuickTimeMetadataLivePhotoStillImageTransform, QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions, QuickTimeMetadataSegmentIdentifier, QuickTimeMetadataSceneIlluminance, QuickTimeMetadataSpatialAudioMix, QuickTimeMetadataDisplayMaskRectangleMono, QuickTimeMetadataDisplayMaskRectangleStereoLeft, QuickTimeMetadataDisplayMaskRectangleStereoRight, QuickTimeMetadataPresentationImmersiveMedia/*</value_list>*/};
     
     /*<name>*/CMMetadataIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -240,6 +268,41 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions", optional=true)
         public static native CFString QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier", optional=true)
+        public static native CFString QuickTimeMetadataSegmentIdentifier();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance", optional=true)
+        public static native CFString QuickTimeMetadataSceneIlluminance();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix", optional=true)
+        public static native CFString QuickTimeMetadataSpatialAudioMix();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono", optional=true)
+        public static native CFString QuickTimeMetadataDisplayMaskRectangleMono();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft", optional=true)
+        public static native CFString QuickTimeMetadataDisplayMaskRectangleStereoLeft();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight", optional=true)
+        public static native CFString QuickTimeMetadataDisplayMaskRectangleStereoRight();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia", optional=true)
+        public static native CFString QuickTimeMetadataPresentationImmersiveMedia();
         /*</values>*/
     }
 }

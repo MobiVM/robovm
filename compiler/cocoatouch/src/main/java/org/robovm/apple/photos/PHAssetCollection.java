@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -80,6 +81,10 @@ import org.robovm.apple.imageio.*;
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithType(PHAssetCollectionType type, PHAssetCollectionSubtype subtype, PHFetchOptions options);
     @Method(selector = "fetchAssetCollectionsContainingAsset:withType:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsContainingAsset(PHAsset asset, PHAssetCollectionType type, PHFetchOptions options);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Will be removed in a future release
+     */
+    @Deprecated
     @Method(selector = "fetchAssetCollectionsWithALAssetGroupURLs:options:")
     public static native PHFetchResult<PHAssetCollection> fetchAssetCollectionsWithALAssetGroupURLs(NSArray<NSURL> assetGroupURLs, PHFetchOptions options);
     /**

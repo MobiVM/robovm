@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     protected PKPaymentAuthorizationController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPaymentRequest:")
     public PKPaymentAuthorizationController(PKPaymentRequest request) { super((SkipInit) null); initObject(init(request)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDisbursementRequest:")
+    public PKPaymentAuthorizationController(PKDisbursementRequest request) { super((SkipInit) null); initObject(init(request)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "delegate")
@@ -69,11 +74,31 @@ import org.robovm.apple.coreanimation.*;
     public native void present(@Block VoidBooleanBlock completion);
     @Method(selector = "dismissWithCompletion:")
     public native void dismiss(@Block Runnable completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDisbursementRequest:")
+    protected native @Pointer long init(PKDisbursementRequest request);
     @Method(selector = "canMakePayments")
     public static native boolean canMakePayments();
     @Method(selector = "canMakePaymentsUsingNetworks:")
     public static native boolean canMakePaymentsUsingNetworks(NSArray<NSString> supportedNetworks);
     @Method(selector = "canMakePaymentsUsingNetworks:capabilities:")
     public static native boolean canMakePayments(NSArray<NSString> supportedNetworks, PKMerchantCapability capabilties);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursements")
+    public static native boolean supportsDisbursements();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursementsUsingNetworks:")
+    public static native boolean supportsDisbursementsUsingNetworks(NSArray<NSString> supportedNetworks);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursementsUsingNetworks:capabilities:")
+    public static native boolean supportsDisbursementsUsingNetworks(NSArray<NSString> supportedNetworks, PKMerchantCapability capabilties);
     /*</methods>*/
 }

@@ -34,6 +34,7 @@ import com.dd.plist.NSObject;
  */
 public class LockdowndClient implements AutoCloseable {
     protected LockdowndClientRef ref;
+    private IDevice device;
 
     LockdowndClient(LockdowndClientRef ref) {
         this.ref = ref;
@@ -58,6 +59,7 @@ public class LockdowndClient implements AutoCloseable {
                     LibIMobileDevice.lockdownd_client_new_with_handshake(device.getRef(), refOut, label) :
                     LibIMobileDevice.lockdownd_client_new(device.getRef(), refOut, label));
             this.ref = refOut.getValue();
+            this.device = device;
         } finally {
             refOut.delete();
         }
@@ -67,7 +69,11 @@ public class LockdowndClient implements AutoCloseable {
         checkDisposed();
         return ref;
     }
-    
+
+    public IDevice getDevice() {
+        return device;
+    }
+
     /**
      * Requests to start a service.
      * 

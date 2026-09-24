@@ -39,6 +39,10 @@ import org.robovm.apple.metalps.*;
 public enum /*<name>*/MPSGraphLossReductionType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    None(0L),
+    /**
      * @since Available in iOS 14.0 and later.
      */
     Axis(0L),

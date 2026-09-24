@@ -46,7 +46,7 @@ import org.robovm.apple.mapkit.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeChanged(EKEventStore object, final VoidBlock1<EKEventStore> block) {
+        public static NSObject observeChanged(EKEventStore object, final VoidBlock1<EKEventStore> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -62,6 +62,11 @@ import org.robovm.apple.mapkit.*;
     public EKEventStore() {}
     protected EKEventStore(Handle h, long handle) { super(h, handle); }
     protected EKEventStore(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSources:")
+    public EKEventStore(NSArray<EKSource> sources) { super((SkipInit) null); initObject(init(sources)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "eventStoreIdentifier")
@@ -81,6 +86,30 @@ import org.robovm.apple.mapkit.*;
     @GlobalValue(symbol="EKEventStoreChangedNotification", optional=true)
     public static native NSString ChangedNotification();
     
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithSources:")
+    protected native @Pointer long init(NSArray<EKSource> sources);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestFullAccessToEventsWithCompletion:")
+    public native void requestFullAccessToEvents(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestWriteOnlyAccessToEventsWithCompletion:")
+    public native void requestWriteOnlyAccessToEventsWithCompletion(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestFullAccessToRemindersWithCompletion:")
+    public native void requestFullAccessToReminders(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:
+     */
+    @Deprecated
     @Method(selector = "requestAccessToEntityType:completion:")
     public native void requestAccess(EKEntityType entityType, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "sourceWithIdentifier:")

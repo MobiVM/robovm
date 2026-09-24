@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeDurationDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObject observeDurationDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DurationDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -63,7 +65,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeChapterMetadataGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObject observeChapterMetadataGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChapterMetadataGroupsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -74,7 +76,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeMediaSelectionGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
+        public static NSObject observeMediaSelectionGroupsDidChange(AVAsset object, final VoidBlock1<AVAsset> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(MediaSelectionGroupsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -219,6 +221,10 @@ import org.robovm.apple.audiotoolbox.*;
     protected static native @Pointer long create(NSURL URL);
     @Method(selector = "cancelLoading")
     public native void cancelLoading();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVAssetTrack getTrack(int trackID);
     /**
@@ -226,6 +232,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
     /**
@@ -233,6 +243,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaCharacteristic:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**
@@ -240,6 +254,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
     public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadMetadataForFormat:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "metadataForFormat:")
     public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
     /**
@@ -247,6 +265,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadMetadataForFormat:completionHandler:")
     public native void loadMetadataForFormat(String format, @Block VoidBlock2<NSArray<AVMetadataItem>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
     /**
@@ -254,6 +276,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:")
     public native void loadChapterMetadataGroups(NSLocale locale, NSArray<NSString> commonKeys, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
     public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
     /**
@@ -261,6 +287,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:")
     public native void loadChapterMetadataGroupsBestMatchingPreferredLanguages(NSArray<NSString> preferredLanguages, @Block VoidBlock2<NSArray<AVTimedMetadataGroup>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
     public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
     /**
@@ -268,6 +298,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadMediaSelectionGroupForMediaCharacteristic:completionHandler:")
     public native void loadMediaSelectionGroupForMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<AVMediaSelectionGroup, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use findUnusedTrackIDWithCompletionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "unusedTrackID")
     public native int getUnusedTrackID();
     /**

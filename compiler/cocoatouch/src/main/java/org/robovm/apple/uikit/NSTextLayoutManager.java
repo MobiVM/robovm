@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,6 +79,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean usesHyphenation();
     @Property(selector = "setUsesHyphenation:")
     public native void setUsesHyphenation(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "resolvesNaturalAlignmentWithBaseWritingDirection")
+    public native boolean isResolvesNaturalAlignmentWithBaseWritingDirection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setResolvesNaturalAlignmentWithBaseWritingDirection:")
+    public native void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v);
     @Property(selector = "textContentManager")
     public native NSTextContentManager getTextContentManager();
     @Property(selector = "textContainer")

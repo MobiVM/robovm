@@ -42,7 +42,23 @@ public enum /*<name>*/NIErrorCode/*</name>*/ implements NSErrorCode {
     SessionFailed(-5887L),
     ResourceUsageTimeout(-5886L),
     ActiveSessionsLimitExceeded(-5885L),
-    UserDidNotAllow(-5884L);
+    UserDidNotAllow(-5884L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    InvalidARConfiguration(-5883L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AccessoryPeerDeviceUnavailable(-5882L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    IncompatiblePeerDevice(-5881L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ActiveExtendedDistanceSessionsLimitExceeded(-5880L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(NIErrorCode.class); }/*</bind>*/

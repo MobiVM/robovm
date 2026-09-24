@@ -51,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNGenerateAttentionBasedSaliencyImageRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     public VNGenerateAttentionBasedSaliencyImageRequest() {}

@@ -66,6 +66,11 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "networkList")
     public native NSArray<NEHotspotNetwork> getNetworkList();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "interface")
+    public native NWInterface getInterface();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,12 +81,16 @@ import org.robovm.apple.network.*;
     public native NEHotspotHelperResponse createResponse(NEHotspotHelperResult result);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use the `interface` property with `nw_parameters_require_interface`
      */
+    @Deprecated
     @Method(selector = "createTCPConnection:")
     public native NWTCPConnection createTCPConnection(NWEndpoint endpoint);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use the `interface` property with `nw_parameters_require_interface`
      */
+    @Deprecated
     @Method(selector = "createUDPSession:")
     public native NWUDPSession createUDPSession(NWEndpoint endpoint);
     /*</methods>*/

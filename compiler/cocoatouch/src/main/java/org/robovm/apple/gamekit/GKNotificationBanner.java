@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 17.0. Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKNotificationBanner/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,8 +55,16 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 16.1. Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit.
+     */
+    @Deprecated
     @Method(selector = "showBannerWithTitle:message:completionHandler:")
     public static native void showBanner(String title, String message, @Block Runnable completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 16.1. Use UNNotificationRequest or provide custom UI instead. This method will become a no-op in a future version of GameKit.
+     */
+    @Deprecated
     @Method(selector = "showBannerWithTitle:message:duration:completionHandler:")
     public static native void showBanner(String title, String message, double duration, @Block Runnable completionHandler);
     /*</methods>*/

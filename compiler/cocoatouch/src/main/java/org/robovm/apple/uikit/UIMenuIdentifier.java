@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -143,9 +144,19 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier Quit = new UIMenuIdentifier("Quit");
     /**
-     * @since Available in iOS 13.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
+    public static final UIMenuIdentifier NewItem = new UIMenuIdentifier("NewItem");
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIMenuNewItem
+     */
+    @Deprecated
     public static final UIMenuIdentifier NewScene = new UIMenuIdentifier("NewScene");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final UIMenuIdentifier Open = new UIMenuIdentifier("Open");
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -159,6 +170,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier Print = new UIMenuIdentifier("Print");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final UIMenuIdentifier Document = new UIMenuIdentifier("Document");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier UndoRedo = new UIMenuIdentifier("UndoRedo");
@@ -170,6 +185,10 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier Find = new UIMenuIdentifier("Find");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final UIMenuIdentifier FindPanel = new UIMenuIdentifier("FindPanel");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -227,6 +246,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     public static final UIMenuIdentifier Format = new UIMenuIdentifier("Format");
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIMenuIdentifier AutoFill = new UIMenuIdentifier("AutoFill");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final UIMenuIdentifier Font = new UIMenuIdentifier("Font");
@@ -280,7 +303,7 @@ import org.robovm.apple.linkpresentation.*;
     public static final UIMenuIdentifier Root = new UIMenuIdentifier("Root");
     /*</constants>*/
     
-    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewScene, OpenRecent, Close, Print, UndoRedo, StandardEdit, Find, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
+    private static /*<name>*/UIMenuIdentifier/*</name>*/[] values = new /*<name>*/UIMenuIdentifier/*</name>*/[] {/*<value_list>*/Application, File, Edit, View, Window, Help, About, Preferences, Services, Hide, Quit, NewItem, NewScene, Open, OpenRecent, Close, Print, Document, UndoRedo, StandardEdit, Find, FindPanel, Replace, Share, TextStyle, Spelling, SpellingPanel, SpellingOptions, Substitutions, SubstitutionsPanel, SubstitutionOptions, Transformations, Speech, Lookup, Learn, Format, AutoFill, Font, TextSize, TextColor, TextStylePasteboard, Text, WritingDirection, Alignment, Toolbar, Sidebar, Fullscreen, MinimizeAndZoom, BringAllToFront, Root/*</value_list>*/};
     
     /*<name>*/UIMenuIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -359,10 +382,22 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIMenuQuit", optional=true)
         public static native NSString Quit();
         /**
-         * @since Available in iOS 13.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
+        @GlobalValue(symbol="UIMenuNewItem", optional=true)
+        public static native NSString NewItem();
+        /**
+         * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIMenuNewItem
+         */
+        @Deprecated
         @GlobalValue(symbol="UIMenuNewScene", optional=true)
         public static native NSString NewScene();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuOpen", optional=true)
+        public static native NSString Open();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -379,6 +414,11 @@ import org.robovm.apple.linkpresentation.*;
         @GlobalValue(symbol="UIMenuPrint", optional=true)
         public static native NSString Print();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuDocument", optional=true)
+        public static native NSString Document();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="UIMenuUndoRedo", optional=true)
@@ -393,6 +433,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIMenuFind", optional=true)
         public static native NSString Find();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuFindPanel", optional=true)
+        public static native NSString FindPanel();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -463,6 +508,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIMenuFormat", optional=true)
         public static native NSString Format();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="UIMenuAutoFill", optional=true)
+        public static native NSString AutoFill();
         /**
          * @since Available in iOS 13.0 and later.
          */

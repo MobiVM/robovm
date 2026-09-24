@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,6 +57,11 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "requiresPerObjectAuthorization")
+    public native boolean requiresPerObjectAuthorization();
     @Method(selector = "quantityTypeForIdentifier:")
     public static native HKQuantityType getQuantityType(HKQuantityTypeIdentifier identifier);
     @Method(selector = "categoryTypeForIdentifier:")
@@ -69,6 +75,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "documentTypeForIdentifier:")
     public static native HKDocumentType documentTypeForIdentifier(String identifier);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "scoredAssessmentTypeForIdentifier:")
+    public static native HKScoredAssessmentType scoredAssessmentTypeForIdentifier(HKScoredAssessmentTypeIdentifier identifier);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -91,6 +102,26 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "electrocardiogramType")
     public static native HKElectrocardiogramType electrocardiogramType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "medicationDoseEventType")
+    public static native HKMedicationDoseEventType medicationDoseEventType();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "visionPrescriptionType")
+    public static native HKPrescriptionType visionPrescriptionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "stateOfMindType")
+    public static native HKStateOfMindType stateOfMindType();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "userAnnotatedMedicationType")
+    public static native HKUserAnnotatedMedicationType userAnnotatedMedicationType();
     /**
      * @since Available in iOS 12.0 and later.
      */

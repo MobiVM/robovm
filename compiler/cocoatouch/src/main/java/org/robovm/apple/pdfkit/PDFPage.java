@@ -51,6 +51,11 @@ import org.robovm.apple.coreanimation.*;
     protected PDFPage(Handle h, long handle) { super(h, handle); }
     protected PDFPage(SkipInit skipInit) { super(skipInit); }
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithImage:options:")
+    public PDFPage(UIImage image, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(image, options)); }
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithImage:")
@@ -84,6 +89,11 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithImage:options:")
+    protected native @Pointer long init(UIImage image, NSDictionary<NSString, ?> options);
     /**
      * @since Available in iOS 11.0 and later.
      */

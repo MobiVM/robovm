@@ -51,13 +51,13 @@ import org.robovm.apple.fileprovider.*;
     protected CKUserIdentityLookupInfo(Handle h, long handle) { super(h, handle); }
     protected CKUserIdentityLookupInfo(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithEmailAddress:")
-    public static  CKUserIdentityLookupInfo createWithEmailAddress(String emailAddress) {
+    public static CKUserIdentityLookupInfo createWithEmailAddress(String emailAddress) {
        CKUserIdentityLookupInfo res = new CKUserIdentityLookupInfo((SkipInit) null);
        res.initObject(res.initWithEmailAddress(emailAddress));
        return res;
     }
     @Method(selector = "initWithPhoneNumber:")
-    public static  CKUserIdentityLookupInfo createWithPhoneNumber(String phoneNumber) {
+    public static CKUserIdentityLookupInfo createWithPhoneNumber(String phoneNumber) {
        CKUserIdentityLookupInfo res = new CKUserIdentityLookupInfo((SkipInit) null);
        res.initObject(res.initWithPhoneNumber(phoneNumber));
        return res;

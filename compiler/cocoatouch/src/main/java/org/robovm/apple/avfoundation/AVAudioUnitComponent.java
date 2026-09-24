@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,7 +56,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 9.0 and later.
          */
-        public static NSObjectProtocol observeTagsDidChange(AVAudioUnitComponent object, final VoidBlock1<AVAudioUnitComponent> block) {
+        public static NSObject observeTagsDidChange(AVAudioUnitComponent object, final VoidBlock1<AVAudioUnitComponent> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(TagsDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -97,6 +99,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAllTagNames();
     @Property(selector = "audioComponentDescription")
     public native @ByVal AudioComponentDescription getAudioComponentDescription();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "icon")
+    public native UIImage getIcon();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "passesAUVal")
+    public native boolean isPassesAUVal();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "configurationDictionary")
+    public native NSDictionary<NSString, ?> getConfigurationDictionary();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

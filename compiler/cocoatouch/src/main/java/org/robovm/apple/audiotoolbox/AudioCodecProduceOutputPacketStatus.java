@@ -45,7 +45,8 @@ public enum /*<name>*/AudioCodecProduceOutputPacketStatus/*</name>*/ implements 
     Success(2L),
     SuccessHasMore(3L),
     NeedsMoreInputData(4L),
-    AtEOF(5L);
+    AtEOF(5L),
+    SuccessConcealed(6L);
     /*</values>*/
 
     /*<bind>*/

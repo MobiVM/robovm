@@ -29,7 +29,7 @@ git push
 
 # Copy the update-site/target/ to whereever you want it
 ssh robovm@robovm.mobidevelop.com "mkdir -p /usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION"
-scp -r update-site/target/site/ robovm@robovm.mobidevelop.com:/usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION/
+scp -r update-site/target/repository/ robovm@robovm.mobidevelop.com:/usr/share/nginx/html/downloads/releases/eclipse/$RELEASE_VERSION/
 
 # Set the pom version to the next development version
 mvn org.eclipse.tycho:tycho-versions-plugin:1.5.1:set-version -DnewVersion="$DEVELOPMENT_VERSION-SNAPSHOT"
@@ -75,12 +75,12 @@ cd ../gradle
 # Set release version
 sed "s/^version *=.*/version = '$RELEASE_VERSION'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$RELEASE_VERSION'/" > build.gradle.tmp
 mv build.gradle.tmp build.gradle
-./gradlew clean build install
+./gradlew clean build
 git commit -am "Set release version of Gradle plugin, $RELEASE_VERSION"
 git push
 
 # Release
-./gradlew uploadArchives
+./gradlew publish
 
 # Set development version
 sed "s/^version *=.*/version = '$DEVELOPMENT_VERSION-SNAPSHOT'/" build.gradle | sed "s/roboVMVersion *=.*/roboVMVersion = '$DEVELOPMENT_VERSION-SNAPSHOT'/" > build.gradle.tmp

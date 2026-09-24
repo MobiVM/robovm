@@ -58,6 +58,36 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "completeRequestWithSelectedCredential:completionHandler:")
     public native void completeRequest(ASPasswordCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:")
+    public native void completeAssertionRequest(ASPasskeyAssertionCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "completeRegistrationRequestWithSelectedPasskeyCredential:completionHandler:")
+    public native void completeRegistrationRequest(ASPasskeyRegistrationCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "completeOneTimeCodeRequestWithSelectedCredential:completionHandler:")
+    public native void completeOneTimeCodeRequest(ASOneTimeCodeCredential credential, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "completeRequestWithTextToInsert:completionHandler:")
+    public native void completeRequest(String text, @Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "completeSavePasswordRequestWithCompletionHandler:")
+    public native void completeSavePasswordRequest(@Block VoidBooleanBlock completionHandler);
+    /**
+     * @since Available in iOS 26.2 and later.
+     */
+    @Method(selector = "completeGeneratePasswordRequestWithResults:completionHandler:")
+    public native void completeGeneratePasswordRequest(NSArray<ASGeneratedPassword> results, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "completeExtensionConfigurationRequest")
     public native void completeExtensionConfigurationRequest();
     @Method(selector = "cancelRequestWithError:")

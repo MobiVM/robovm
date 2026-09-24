@@ -53,6 +53,11 @@ import org.robovm.apple.dispatch.*;
     void buildAccelerationStructure(MTLAccelerationStructure accelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
     @Method(selector = "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:")
     void refitAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:")
+    void refitAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructureDescriptor descriptor, MTLAccelerationStructure destinationAccelerationStructure, MTLBuffer scratchBuffer, @MachineSizedUInt long scratchBufferOffset, MTLAccelerationStructureRefitOptions options);
     @Method(selector = "copyAccelerationStructure:toAccelerationStructure:")
     void copyAccelerationStructure(MTLAccelerationStructure sourceAccelerationStructure, MTLAccelerationStructure destinationAccelerationStructure);
     @Method(selector = "writeCompactedAccelerationStructureSize:toBuffer:offset:")

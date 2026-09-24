@@ -23,6 +23,16 @@ classes:
             '-initWithBundleIdentifier:error:':
                 name: init
                 throws: NSErrorException
+            '-initWithBundleIdentifier:profileIdentifier:error:':
+                name: init
+                throws: NSErrorException
+            '-initWithProfileIdentifier:':
+                name: initWithProfileIdentifier
+                static_constructor_name: createWithProfileIdentifier
+            '-fetchHistoryDuringInterval:completionHandler:':
+                name: fetchHistoryDuringInterval
+            '-fetchAllHistoryWithCompletionHandler:':
+                name: fetchAllHistory
     STWebpageController: #since 14.0
         methods:
             '-setBundleIdentifier:error:':

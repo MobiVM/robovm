@@ -46,7 +46,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("SpriteKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKNode/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding, UIFocusItem/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, UIFocusItem, UIFocusItemContainer, UICoordinateSpace/*</implements>*/ {
 
     /*<ptr>*/public static class SKNodePtr extends Ptr<SKNode, SKNodePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(SKNode.class); }/*</bind>*/
@@ -181,6 +181,8 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "focusGroupPriority")
     public native @MachineSizedSInt long getFocusGroupPriority();
+    @Property(selector = "focusItemDeferralMode")
+    public native UIFocusItemDeferralMode getFocusItemDeferralMode();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -210,6 +212,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "focusGroupIdentifier")
     public native String getFocusGroupIdentifier();
+    @Property(selector = "coordinateSpace")
+    public native UICoordinateSpace getCoordinateSpace();
+    @Property(selector = "bounds")
+    public native @ByVal CGRect getBounds();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -306,5 +312,15 @@ import org.robovm.apple.coreanimation.*;
     public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
     @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
     public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    @Method(selector = "focusItemsInRect:")
+    public native NSArray<?> focusItemsInRect(@ByVal CGRect rect);
+    @Method(selector = "convertPoint:toCoordinateSpace:")
+    public native @ByVal CGPoint convertPointToCoordinateSpace(@ByVal CGPoint point, UICoordinateSpace coordinateSpace);
+    @Method(selector = "convertPoint:fromCoordinateSpace:")
+    public native @ByVal CGPoint convertPointFromCoordinateSpace(@ByVal CGPoint point, UICoordinateSpace coordinateSpace);
+    @Method(selector = "convertRect:toCoordinateSpace:")
+    public native @ByVal CGRect convertRectToCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
+    @Method(selector = "convertRect:fromCoordinateSpace:")
+    public native @ByVal CGRect convertRectFromCoordinateSpace(@ByVal CGRect rect, UICoordinateSpace coordinateSpace);
     /*</methods>*/
 }

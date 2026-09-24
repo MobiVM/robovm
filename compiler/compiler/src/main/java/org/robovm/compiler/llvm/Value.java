@@ -21,7 +21,7 @@ package org.robovm.compiler.llvm;
  *
  * @version $Id$
  */
-public abstract class Value {
+public abstract class Value implements Writable{
     
     public boolean isInteger() {
         return getType() instanceof IntegerType;

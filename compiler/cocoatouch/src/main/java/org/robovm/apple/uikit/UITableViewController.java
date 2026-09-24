@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -129,6 +130,16 @@ import org.robovm.apple.linkpresentation.*;
     public native void didSelectRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:didDeselectRowAtIndexPath:")
     public native void didDeselectRow(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "tableView:canPerformPrimaryActionForRowAtIndexPath:")
+    public native boolean canPerformPrimaryAction(UITableView tableView, NSIndexPath indexPath);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "tableView:performPrimaryActionForRowAtIndexPath:")
+    public native void performPrimaryAction(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:editingStyleForRowAtIndexPath:")
     public native UITableViewCellEditingStyle getEditingStyleForRow(UITableView tableView, NSIndexPath indexPath);
     @Method(selector = "tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:")

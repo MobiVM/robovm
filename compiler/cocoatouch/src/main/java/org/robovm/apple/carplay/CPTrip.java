@@ -67,6 +67,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "destinationNameVariants")
+    public native NSArray<NSString> getDestinationNameVariants();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setDestinationNameVariants:")
+    public native void setDestinationNameVariants(NSArray<NSString> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

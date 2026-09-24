@@ -35,7 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLResourceAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLAllocationAdapter/*</extends>*/ 
     /*<implements>*/implements MTLResource/*</implements>*/ {
 
     /*<ptr>*/
@@ -98,5 +98,10 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("isAliasable")
     public boolean isAliasable() { return false; }
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @NotImplemented("setOwnerWithIdentity:")
+    public int setOwner(int task_id_token) { return 0; }
     /*</methods>*/
 }

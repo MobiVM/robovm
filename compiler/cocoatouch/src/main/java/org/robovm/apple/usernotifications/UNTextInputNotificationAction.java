@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,6 +53,11 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 15.0 and later.
      */
     public UNTextInputNotificationAction(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon, String textInputButtonTitle, String textInputPlaceholder) { super((Handle) null, create(identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder)); retain(getHandle()); }
+    public UNTextInputNotificationAction(String identifier, String title, UNNotificationActionOptions options) { super((Handle) null, create(identifier, title, options)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public UNTextInputNotificationAction(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon) { super((Handle) null, create(identifier, title, options, icon)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textInputButtonTitle")
@@ -70,5 +76,12 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:")
     protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon, String textInputButtonTitle, String textInputPlaceholder);
+    @Method(selector = "actionWithIdentifier:title:options:")
+    protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "actionWithIdentifier:title:options:icon:")
+    protected static native @Pointer long create(String identifier, String title, UNNotificationActionOptions options, UNNotificationActionIcon icon);
     /*</methods>*/
 }

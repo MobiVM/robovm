@@ -24,7 +24,8 @@ enums:
     IOSurfaceComponentRange: {prefix: kIOSurfaceComponentRange}
     IOSurfaceSubsampling: {prefix: kIOSurfaceSubsampling}
     IOSurfaceComponentName: {prefix: kIOSurfaceComponentName}
-
+    IOSurfaceMemoryLedgerTags: {prefix: kIOSurfaceMemoryLedgerTag}
+    IOSurfaceMemoryLedgerFlags: {prefix: kIOSurfaceMemoryLedgerFlag}
 classes:
     IOSurface: #since 10.0
         methods:

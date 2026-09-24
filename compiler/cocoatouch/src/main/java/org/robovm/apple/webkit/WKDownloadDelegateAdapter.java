@@ -62,5 +62,20 @@ import org.robovm.apple.coreanimation.*;
     public void didFinish(WKDownload download) {}
     @NotImplemented("download:didFailWithError:resumeData:")
     public void didFailWithError(WKDownload download, NSError error, NSData resumeData) {}
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @NotImplemented("download:decidePlaceholderPolicy:")
+    public void decidePlaceholderPolicy(WKDownload download, @Block VoidBlock2<WKDownloadPlaceholderPolicy, NSURL> completionHandler) {}
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @NotImplemented("download:didReceivePlaceholderURL:completionHandler:")
+    public void didReceivePlaceholderURL(WKDownload download, NSURL url, @Block Runnable completionHandler) {}
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @NotImplemented("download:didReceiveFinalURL:")
+    public void didReceiveFinalURL(WKDownload download, NSURL url) {}
     /*</methods>*/
 }

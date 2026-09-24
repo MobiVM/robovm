@@ -46,6 +46,10 @@ public final class /*<name>*/MKLocalSearchResultType/*</name>*/ extends Bits</*<
     public static final MKLocalSearchResultType None = new MKLocalSearchResultType(0L);
     public static final MKLocalSearchResultType Address = new MKLocalSearchResultType(1L);
     public static final MKLocalSearchResultType PointOfInterest = new MKLocalSearchResultType(2L);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final MKLocalSearchResultType PhysicalFeature = new MKLocalSearchResultType(4L);
     /*</values>*/
 
     /*<bind>*/

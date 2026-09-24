@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * @author niklas
  *
@@ -32,4 +35,8 @@ public class Fence extends Instruction {
         return "fence " + ordering;
     }
 
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
+    }
 }

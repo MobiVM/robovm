@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,10 +61,16 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVFragmentedAsset(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithURL:options:")
     public AVFragmentedAsset(NSURL URL, AVURLAssetOptions options) { super(URL, options); }
+    public AVFragmentedAsset(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
-    public native NSArray<AVFragmentedAssetTrack> getTracks();
+    public native NSArray<? extends AVAssetTrack> getTracks();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "audiovisualContentTypes")
+    public static native NSArray<org.robovm.apple.uniformtypeid.UTType> getAudiovisualContentTypes();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -75,12 +83,22 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Use audiovisualContentTypes instead
+     */
+    @Deprecated
     @Method(selector = "audiovisualTypes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualTypes();
     @Method(selector = "audiovisualMIMETypes")
     public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAudiovisualMIMETypes();
     @Method(selector = "isPlayableExtendedMIMEType:")
     public static native boolean isPlayableExtendedMIMEType(String extendedMIMEType);
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedAssetTrack getTrack(int trackID);
     /**
@@ -88,6 +106,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaType(String mediaType);
     /**
@@ -95,6 +117,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaCharacteristic:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVFragmentedAssetTrack> getTracksForMediaCharacteristic(String mediaCharacteristic);
     /**

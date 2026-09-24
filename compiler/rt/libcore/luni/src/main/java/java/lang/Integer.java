@@ -302,6 +302,10 @@ public final class Integer extends Number implements Comparable<Integer> {
         return value;
     }
 
+    public static int hashCode(int value) {
+        return value;
+    }
+
     /**
      * Gets the primitive value of this int.
      *

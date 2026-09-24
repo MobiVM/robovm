@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,7 +47,7 @@ import org.robovm.apple.coreanimation.*;
         /**
          * @since Available in iOS 3.2 and later.
          */
-        public static NSObjectProtocol observeIsPreparedToPlayDidChange(MPMusicPlayerController object, final VoidBlock1<MPMediaPlayback> block) {
+        public static NSObject observeIsPreparedToPlayDidChange(MPMusicPlayerController object, final VoidBlock1<MPMediaPlayback> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(IsPreparedToPlayDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -53,7 +55,7 @@ import org.robovm.apple.coreanimation.*;
                 }
             });
         }
-        public static NSObjectProtocol observePlaybackStateDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
+        public static NSObject observePlaybackStateDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(PlaybackStateDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -61,7 +63,7 @@ import org.robovm.apple.coreanimation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeNowPlayingItemDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
+        public static NSObject observeNowPlayingItemDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(NowPlayingItemDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -69,7 +71,7 @@ import org.robovm.apple.coreanimation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeVolumeDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
+        public static NSObject observeVolumeDidChange(MPMusicPlayerController object, final VoidBlock1<MPMusicPlayerController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(VolumeDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -107,18 +109,6 @@ import org.robovm.apple.coreanimation.*;
     public native MPMusicShuffleMode getShuffleMode();
     @Property(selector = "setShuffleMode:")
     public native void setShuffleMode(MPMusicShuffleMode v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
-     */
-    @Deprecated
-    @Property(selector = "volume")
-    public native float getVolume();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use MPVolumeView for volume control.
-     */
-    @Deprecated
-    @Property(selector = "setVolume:")
-    public native void setVolume(float v);
     @Property(selector = "nowPlayingItem")
     public native MPMediaItem getNowPlayingItem();
     @Property(selector = "setNowPlayingItem:")

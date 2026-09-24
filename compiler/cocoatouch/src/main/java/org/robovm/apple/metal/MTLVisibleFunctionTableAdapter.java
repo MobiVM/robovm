@@ -45,7 +45,11 @@ import org.robovm.apple.dispatch.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("gpuResourceID")
+    public @ByVal MTLResourceID getGpuResourceID() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

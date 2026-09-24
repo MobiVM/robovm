@@ -35,9 +35,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetalPerformanceShaders") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSInstanceAccelerationStructure/*</name>*/ 
     extends /*<extends>*/MPSAccelerationStructure/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

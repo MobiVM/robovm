@@ -30,8 +30,6 @@ public class RoboVMPluginExtension {
     private String iosSignIdentity;
     private String iosProvisioningProfile;
     private String iosSimulatorSdk;
-    private String stdoutFifo;
-    private String stderrFifo;
     private String os;
     private String arch;
     private boolean iosSkipSigning = false;
@@ -39,7 +37,6 @@ public class RoboVMPluginExtension {
     private int debugPort = -1;
     private boolean skipLaunch = false;
     private boolean skipLinking = false;
-    private boolean enableBitcode = false;
     private String archs;
     private String installDir;    
     private String cacheDir;
@@ -103,22 +100,6 @@ public class RoboVMPluginExtension {
         this.iosSimulatorSdk = iosSimulatorSdk;
     }
 
-    public String getStdoutFifo() {
-        return stdoutFifo;
-    }
-
-    public void setStdoutFifo(String stdoutFifo) {
-        this.stdoutFifo = stdoutFifo;
-    }
-
-    public String getStderrFifo() {
-        return stderrFifo;
-    }
-
-    public void setStderrFifo(String stderrFifo) {
-        this.stderrFifo = stderrFifo;
-    }
-
     public boolean isIosSkipSigning() {
         return project.hasProperty("robovm.iosSkipSigning") 
                 ? Boolean.parseBoolean(project.getProperties().get("robovm.iosSkipSigning").toString())
@@ -175,16 +156,6 @@ public class RoboVMPluginExtension {
         this.skipLinking = skipLinking;
     }
 
-    public boolean isEnableBitcode() {
-        return project.hasProperty("robovm.enableBitcode")
-                ? Boolean.parseBoolean(project.getProperties().get("robovm.enableBitcode").toString())
-                : enableBitcode;
-    }
-
-    public void setEnableBitcode(boolean enableBitcode) {
-        this.enableBitcode = enableBitcode;
-    }
-    
     public int getDebugPort() {
         return project.hasProperty("robovm.debugPort") 
                 ? Integer.parseInt(project.getProperties().get("robovm.debugPort").toString()) 
@@ -216,10 +187,6 @@ public class RoboVMPluginExtension {
 
     public void setInstallDir(String installDir) {
         this.installDir = installDir;
-    }
-    
-    public String getLicenseKey() {
-        return project.hasProperty("robovm.licenseKey") ? project.getProperties().get("robovm.licenseKey").toString() : null;
     }
     
     public void setCachedir(String cacheDir) {

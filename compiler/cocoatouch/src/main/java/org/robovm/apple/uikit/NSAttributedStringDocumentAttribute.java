@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,10 +103,13 @@ import org.robovm.apple.linkpresentation.*;
     public static final NSAttributedStringDocumentAttribute CharacterEncoding = new NSAttributedStringDocumentAttribute("CharacterEncoding");
     public static final NSAttributedStringDocumentAttribute DefaultAttributes = new NSAttributedStringDocumentAttribute("DefaultAttributes");
     public static final NSAttributedStringDocumentAttribute PaperSize = new NSAttributedStringDocumentAttribute("PaperSize");
-    public static final NSAttributedStringDocumentAttribute PaperMargin = new NSAttributedStringDocumentAttribute("PaperMargin");
     public static final NSAttributedStringDocumentAttribute ViewSize = new NSAttributedStringDocumentAttribute("ViewSize");
     public static final NSAttributedStringDocumentAttribute ViewZoom = new NSAttributedStringDocumentAttribute("ViewZoom");
     public static final NSAttributedStringDocumentAttribute ViewMode = new NSAttributedStringDocumentAttribute("ViewMode");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSAttributedStringDocumentAttribute DefaultFontExcluded = new NSAttributedStringDocumentAttribute("DefaultFontExcluded");
     public static final NSAttributedStringDocumentAttribute ReadOnly = new NSAttributedStringDocumentAttribute("ReadOnly");
     public static final NSAttributedStringDocumentAttribute BackgroundColor = new NSAttributedStringDocumentAttribute("BackgroundColor");
     public static final NSAttributedStringDocumentAttribute HyphenationFactor = new NSAttributedStringDocumentAttribute("HyphenationFactor");
@@ -123,9 +127,10 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final NSAttributedStringDocumentAttribute CocoaVersion = new NSAttributedStringDocumentAttribute("CocoaVersion");
+    public static final NSAttributedStringDocumentAttribute PaperMargin = new NSAttributedStringDocumentAttribute("PaperMargin");
     /*</constants>*/
     
-    private static /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] {/*<value_list>*/DocumentType, CharacterEncoding, DefaultAttributes, PaperSize, PaperMargin, ViewSize, ViewZoom, ViewMode, ReadOnly, BackgroundColor, HyphenationFactor, DefaultTabInterval, TextLayoutSections, TextScaling, SourceTextScaling, CocoaVersion/*</value_list>*/};
+    private static /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] values = new /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/[] {/*<value_list>*/DocumentType, CharacterEncoding, DefaultAttributes, PaperSize, ViewSize, ViewZoom, ViewMode, DefaultFontExcluded, ReadOnly, BackgroundColor, HyphenationFactor, DefaultTabInterval, TextLayoutSections, TextScaling, SourceTextScaling, CocoaVersion, PaperMargin/*</value_list>*/};
     
     /*<name>*/NSAttributedStringDocumentAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -156,14 +161,17 @@ import org.robovm.apple.linkpresentation.*;
         public static native NSString DefaultAttributes();
         @GlobalValue(symbol="NSPaperSizeDocumentAttribute", optional=true)
         public static native NSString PaperSize();
-        @GlobalValue(symbol="NSPaperMarginDocumentAttribute", optional=true)
-        public static native NSString PaperMargin();
         @GlobalValue(symbol="NSViewSizeDocumentAttribute", optional=true)
         public static native NSString ViewSize();
         @GlobalValue(symbol="NSViewZoomDocumentAttribute", optional=true)
         public static native NSString ViewZoom();
         @GlobalValue(symbol="NSViewModeDocumentAttribute", optional=true)
         public static native NSString ViewMode();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSDefaultFontExcludedDocumentAttribute", optional=true)
+        public static native NSString DefaultFontExcluded();
         @GlobalValue(symbol="NSReadOnlyDocumentAttribute", optional=true)
         public static native NSString ReadOnly();
         @GlobalValue(symbol="NSBackgroundColorDocumentAttribute", optional=true)
@@ -189,6 +197,8 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="NSCocoaVersionDocumentAttribute", optional=true)
         public static native NSString CocoaVersion();
+        @GlobalValue(symbol="NSPaperMarginDocumentAttribute", optional=true)
+        public static native NSString PaperMargin();
         /*</values>*/
     }
 }

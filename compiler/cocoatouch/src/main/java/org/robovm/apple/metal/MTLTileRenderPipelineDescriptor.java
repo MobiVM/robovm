@@ -97,12 +97,12 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "preloadedLibraries")
-    public native NSArray<?> getPreloadedLibraries();
+    public native NSArray<MTLDynamicLibrary> getPreloadedLibraries();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setPreloadedLibraries:")
-    public native void setPreloadedLibraries(NSArray<?> v);
+    public native void setPreloadedLibraries(NSArray<MTLDynamicLibrary> v);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -133,6 +133,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMaxCallStackDepth:")
     public native void setMaxCallStackDepth(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "shaderValidation")
+    public native MTLShaderValidation getShaderValidation();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShaderValidation:")
+    public native void setShaderValidation(MTLShaderValidation v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredThreadsPerThreadgroup")
+    public native @ByVal MTLSize getRequiredThreadsPerThreadgroup();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setRequiredThreadsPerThreadgroup:")
+    public native void setRequiredThreadsPerThreadgroup(@ByVal MTLSize v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

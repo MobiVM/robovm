@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -79,6 +80,16 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean hidesForSinglePage();
     @Property(selector = "setHidesForSinglePage:")
     public native void setHidesForSinglePage(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "progress")
+    public native UIPageControlProgress getProgress();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setProgress:")
+    public native void setProgress(UIPageControlProgress v);
     @Property(selector = "pageIndicatorTintColor")
     public native UIColor getPageIndicatorTintColor();
     @Property(selector = "setPageIndicatorTintColor:")
@@ -97,6 +108,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setBackgroundStyle:")
     public native void setBackgroundStyle(UIPageControlBackgroundStyle v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "direction")
+    public native UIPageControlDirection getDirection();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDirection:")
+    public native void setDirection(UIPageControlDirection v);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -122,6 +143,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setPreferredIndicatorImage:")
     public native void setPreferredIndicatorImage(UIImage v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredCurrentPageIndicatorImage")
+    public native UIImage getPreferredCurrentPageIndicatorImage();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredCurrentPageIndicatorImage:")
+    public native void setPreferredCurrentPageIndicatorImage(UIImage v);
     /**
      * @deprecated Deprecated in iOS 14.0. defersCurrentPageDisplay no longer does anything reasonable with the new interaction mode.
      */
@@ -150,6 +181,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "setIndicatorImage:forPage:")
     public native void setIndicatorImage(UIImage image, @MachineSizedSInt long page);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "currentPageIndicatorImageForPage:")
+    public native UIImage currentPageIndicatorImageForPage(@MachineSizedSInt long page);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setCurrentPageIndicatorImage:forPage:")
+    public native void setCurrentPageIndicatorImage(UIImage image, @MachineSizedSInt long page);
     @Method(selector = "sizeForNumberOfPages:")
     public native @ByVal CGSize getSizeForNumberOfPages(@MachineSizedSInt long pageCount);
     /**

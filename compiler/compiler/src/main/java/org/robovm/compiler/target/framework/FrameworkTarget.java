@@ -10,6 +10,7 @@ import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.target.AbstractTarget;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.ios.SDK;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.ToolchainUtil;
@@ -175,11 +176,6 @@ public class FrameworkTarget extends AbstractTarget {
 		ccArgs.add("1");
 		ccArgs.add("-current_version");
 		ccArgs.add("1");
-
-		if (this.config.getArch().getCpuArch() == CpuArch.x86) {
-			ccArgs.add("-read_only_relocs");
-			ccArgs.add("suppress");
-		}
 
 		ccArgs.add("-install_name");
 		ccArgs.add(String.format("@rpath/%s.framework/%s", config.getImageName(), config.getImageName()));
@@ -358,7 +354,7 @@ public class FrameworkTarget extends AbstractTarget {
 		if (dsymDir.exists())
 			FileUtils.deleteDirectory(dsymDir);
 		dsymDir.mkdirs();
-		new Executor(config.getLogger(), "xcrun").args("dsymutil", "-o", dsymDir, executable).exec();
+		ToolchainUtil.generateDsym(config, dsymDir, executable);
 
 		if (!config.isDebug()) {
 			config.getLogger().info("Striping framework binary: %s", executable);
@@ -378,4 +374,9 @@ public class FrameworkTarget extends AbstractTarget {
 		config.getLogger().info("Installing Info.plist to: %s", infoPlistBin);
 		PropertyListParser.saveAsBinary(infoPlist, infoPlistBin);
 	}
+
+    @Override
+    public LaunchParameters createLaunchParameters() {
+        throw new UnsupportedOperationException();
+    }
 }

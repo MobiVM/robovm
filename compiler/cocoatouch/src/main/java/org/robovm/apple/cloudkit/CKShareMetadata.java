@@ -47,7 +47,7 @@ import org.robovm.apple.fileprovider.*;
     /*<bind>*/static { ObjCRuntime.bind(CKShareMetadata.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CKShareMetadata() {}
+    protected CKShareMetadata() {}
     protected CKShareMetadata(Handle h, long handle) { super(h, handle); }
     protected CKShareMetadata(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
@@ -78,14 +78,14 @@ import org.robovm.apple.fileprovider.*;
     public native CKRecord getRootRecord();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Deprecated in iOS 12.0. Use participantRole
+     * @deprecated Deprecated in iOS 12.0. Use role
      */
     @Deprecated
     @Property(selector = "participantType")
     public native CKShareParticipantType getParticipantType();
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use hierarchicalRootRecordID
+     * @deprecated Deprecated in iOS 16.0. Use hierarchicalRootRecordID
      */
     @Deprecated
     @Property(selector = "rootRecordID")

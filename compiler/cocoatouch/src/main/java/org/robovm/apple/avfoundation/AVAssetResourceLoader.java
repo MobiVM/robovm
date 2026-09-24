@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,6 +74,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setPreloadsEligibleContentKeys:")
     public native void setPreloadsEligibleContentKeys(boolean v);
+    @Property(selector = "sendsCommonMediaClientDataAsHTTPHeaders")
+    public native boolean sendsCommonMediaClientDataAsHTTPHeaders();
+    @Property(selector = "setSendsCommonMediaClientDataAsHTTPHeaders:")
+    public native void setSendsCommonMediaClientDataAsHTTPHeaders(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

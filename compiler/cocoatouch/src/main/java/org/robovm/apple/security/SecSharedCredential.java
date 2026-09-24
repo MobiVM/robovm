@@ -67,6 +67,10 @@ import org.robovm.apple.dispatch.*;
     }
 
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 26.2. Use ASCredentialDataManager.save(password:for:title:anchor:)  (AuthenticationServices framework)
+     */
+    @Deprecated
     @Bridge(symbol="SecAddSharedWebCredential", optional=true)
     public static native void addSharedWebCredential(String fqdn, String account, String password, @Block VoidBlock1<NSError> completionHandler);
     /**

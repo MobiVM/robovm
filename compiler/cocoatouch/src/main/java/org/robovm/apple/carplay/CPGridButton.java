@@ -53,6 +53,11 @@ import org.robovm.apple.coreanimation.*;
     protected CPGridButton(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitleVariants:image:handler:")
     public CPGridButton(NSArray<NSString> titleVariants, UIImage image, @Block VoidBlock1<CPGridButton> handler) { super((SkipInit) null); initObject(init(titleVariants, image, handler)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithTitleVariants:image:messageConfiguration:handler:")
+    public CPGridButton(NSArray<NSString> titleVariants, UIImage image, CPMessageGridItemConfiguration messageConfiguration, @Block VoidBlock1<CPGridButton> handler) { super((SkipInit) null); initObject(init(titleVariants, image, messageConfiguration, handler)); }
     @Method(selector = "initWithCoder:")
     public CPGridButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -61,6 +66,11 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isEnabled();
     @Property(selector = "setEnabled:")
     public native void setEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "messageConfiguration")
+    public native CPMessageGridItemConfiguration getMessageConfiguration();
     @Property(selector = "image")
     public native UIImage getImage();
     @Property(selector = "titleVariants")
@@ -72,6 +82,21 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithTitleVariants:image:handler:")
     protected native @Pointer long init(NSArray<NSString> titleVariants, UIImage image, @Block VoidBlock1<CPGridButton> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithTitleVariants:image:messageConfiguration:handler:")
+    protected native @Pointer long init(NSArray<NSString> titleVariants, UIImage image, CPMessageGridItemConfiguration messageConfiguration, @Block VoidBlock1<CPGridButton> handler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateImage:")
+    public native void updateImage(UIImage image);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateTitleVariants:")
+    public native void updateTitleVariants(NSArray<NSString> titleVariants);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

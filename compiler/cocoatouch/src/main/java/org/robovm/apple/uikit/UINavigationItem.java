@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,10 +67,90 @@ import org.robovm.apple.linkpresentation.*;
     public native String getTitle();
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributedTitle")
+    public native NSAttributedString getAttributedTitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributedTitle:")
+    public native void setAttributedTitle(NSAttributedString v);
     @Property(selector = "titleView")
     public native UIView getTitleView();
     @Property(selector = "setTitleView:")
     public native void setTitleView(UIView v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributedSubtitle")
+    public native NSAttributedString getAttributedSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributedSubtitle:")
+    public native void setAttributedSubtitle(NSAttributedString v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "subtitleView")
+    public native UIView getSubtitleView();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSubtitleView:")
+    public native void setSubtitleView(UIView v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeTitle")
+    public native String getLargeTitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeTitle:")
+    public native void setLargeTitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeSubtitle")
+    public native String getLargeSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeSubtitle:")
+    public native void setLargeSubtitle(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeAttributedSubtitle")
+    public native NSAttributedString getLargeAttributedSubtitle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeAttributedSubtitle:")
+    public native void setLargeAttributedSubtitle(NSAttributedString v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "largeSubtitleView")
+    public native UIView getLargeSubtitleView();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setLargeSubtitleView:")
+    public native void setLargeSubtitleView(UIView v);
     @Property(selector = "prompt")
     public native String getPrompt();
     @Property(selector = "setPrompt:")
@@ -102,6 +183,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setBackButtonDisplayMode:")
     public native void setBackButtonDisplayMode(UINavigationItemBackButtonDisplayMode v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "backAction")
+    public native UIAction getBackAction();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setBackAction:")
+    public native void setBackAction(UIAction v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "titleMenuProvider")
+    public native @Block Block1<NSArray<UIMenuElement>, UIMenu> getTitleMenuProvider();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTitleMenuProvider:")
+    public native void setTitleMenuProvider(@Block Block1<NSArray<UIMenuElement>, UIMenu> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "renameDelegate")
+    public native UINavigationItemRenameDelegate getRenameDelegate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRenameDelegate:", strongRef = true)
+    public native void setRenameDelegate(UINavigationItemRenameDelegate v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "documentProperties")
+    public native UIDocumentProperties getDocumentProperties();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDocumentProperties:")
+    public native void setDocumentProperties(UIDocumentProperties v);
     @Property(selector = "leftBarButtonItems")
     public native NSArray<UIBarButtonItem> getLeftBarButtonItems();
     @Property(selector = "setLeftBarButtonItems:")
@@ -123,6 +244,71 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setRightBarButtonItem:")
     public native void setRightBarButtonItem(UIBarButtonItem v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "customizationIdentifier")
+    public native String getCustomizationIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCustomizationIdentifier:")
+    public native void setCustomizationIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "leadingItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getLeadingItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setLeadingItemGroups:")
+    public native void setLeadingItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "centerItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getCenterItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCenterItemGroups:")
+    public native void setCenterItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "trailingItemGroups")
+    public native NSArray<UIBarButtonItemGroup> getTrailingItemGroups();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTrailingItemGroups:")
+    public native void setTrailingItemGroups(NSArray<UIBarButtonItemGroup> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pinnedTrailingGroup")
+    public native UIBarButtonItemGroup getPinnedTrailingGroup();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPinnedTrailingGroup:")
+    public native void setPinnedTrailingGroup(UIBarButtonItemGroup v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "additionalOverflowItems")
+    public native UIDeferredMenuElement getAdditionalOverflowItems();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAdditionalOverflowItems:")
+    public native void setAdditionalOverflowItems(UIDeferredMenuElement v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "overflowPresentationSource")
+    public native UIPopoverPresentationControllerSourceItem getOverflowPresentationSource();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "largeTitleDisplayMode")
@@ -132,6 +318,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setLargeTitleDisplayMode:")
     public native void setLargeTitleDisplayMode(UINavigationItemLargeTitleDisplayMode v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "style")
+    public native UINavigationItemStyle getStyle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setStyle:")
+    public native void setStyle(UINavigationItemStyle v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -152,6 +348,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setHidesSearchBarWhenScrolling:")
     public native void setHidesSearchBarWhenScrolling(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredSearchBarPlacement")
+    public native UINavigationItemSearchBarPlacement getPreferredSearchBarPlacement();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredSearchBarPlacement:")
+    public native void setPreferredSearchBarPlacement(UINavigationItemSearchBarPlacement v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "searchBarPlacement")
+    public native UINavigationItemSearchBarPlacement getSearchBarPlacement();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementBarButtonItem")
+    public native UIBarButtonItem getSearchBarPlacementBarButtonItem();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementAllowsToolbarIntegration")
+    public native boolean isSearchBarPlacementAllowsToolbarIntegration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSearchBarPlacementAllowsToolbarIntegration:")
+    public native void setSearchBarPlacementAllowsToolbarIntegration(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "searchBarPlacementAllowsExternalIntegration")
+    public native boolean isSearchBarPlacementAllowsExternalIntegration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSearchBarPlacementAllowsExternalIntegration:")
+    public native void setSearchBarPlacementAllowsExternalIntegration(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
      */

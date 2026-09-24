@@ -42,6 +42,10 @@ public enum /*<name>*/MTLCommandBufferErrorCode/*</name>*/ implements NSErrorCod
     Internal(1L),
     Timeout(2L),
     PageFault(3L),
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use MTLCommandBufferErrorAccessRevoked
+     */
+    @Deprecated
     Blacklisted(4L),
     AccessRevoked(4L),
     NotPermitted(7L),

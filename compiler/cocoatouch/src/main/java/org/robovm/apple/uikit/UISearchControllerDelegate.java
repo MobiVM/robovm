@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,6 +68,16 @@ import org.robovm.apple.linkpresentation.*;
     void didDismiss(UISearchController searchController);
     @Method(selector = "presentSearchController:")
     void present(UISearchController searchController);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "searchController:willChangeToSearchBarPlacement:")
+    void willChangeToSearchBarPlacement(UISearchController searchController, UINavigationItemSearchBarPlacement newPlacement);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "searchController:didChangeFromSearchBarPlacement:")
+    void didChangeFromSearchBarPlacement(UISearchController searchController, UINavigationItemSearchBarPlacement previousPlacement);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

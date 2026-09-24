@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,6 +79,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "setInterstitialMediaSelectionCriteria:forMediaCharacteristic:")
+    public native void setInterstitialMediaSelectionCriteria(NSArray<AVPlayerMediaSelectionCriteria> criteria, String mediaCharacteristic);
     @Method(selector = "downloadConfigurationWithAsset:title:")
     protected static native @Pointer long create(AVURLAsset asset, String title);
     /*</methods>*/

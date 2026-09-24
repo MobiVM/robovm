@@ -38,7 +38,12 @@ import org.robovm.apple.dispatch.*;
 public final class /*<name>*/MTLPipelineOption/*</name>*/ extends Bits</*<name>*/MTLPipelineOption/*</name>*/> {
     /*<values>*/
     public static final MTLPipelineOption None = new MTLPipelineOption(0L);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use MTLPipelineOptionBindingInfo
+     */
+    @Deprecated
     public static final MTLPipelineOption ArgumentInfo = new MTLPipelineOption(1L);
+    public static final MTLPipelineOption BindingInfo = new MTLPipelineOption(1L);
     public static final MTLPipelineOption BufferTypeInfo = new MTLPipelineOption(2L);
     /**
      * @since Available in iOS 14.0 and later.

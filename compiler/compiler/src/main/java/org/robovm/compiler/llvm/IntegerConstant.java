@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -30,27 +33,27 @@ public class IntegerConstant extends Constant implements Comparable<IntegerConst
     }
     
     public IntegerConstant(long value, IntegerType type) {
-        this(new Long(value), type);
+        this(Long.valueOf(value), type);
     }
     
     public IntegerConstant(byte value) {
-        this(new Byte(value), Type.I8);
+        this(Byte.valueOf(value), Type.I8);
     }
     
     public IntegerConstant(short value) {
-        this(new Short(value), Type.I16);
+        this(Short.valueOf(value), Type.I16);
     }
     
     public IntegerConstant(char value) {
-        this(new Integer(value), Type.I16);
+        this(Integer.valueOf(value), Type.I16);
     }
     
     public IntegerConstant(int value) {
-        this(new Integer(value), Type.I32);
+        this(Integer.valueOf(value), Type.I32);
     }
     
     public IntegerConstant(long value) {
-        this(new Long(value), Type.I64);
+        this(Long.valueOf(value), Type.I64);
     }
     
     @Override
@@ -104,5 +107,10 @@ public class IntegerConstant extends Constant implements Comparable<IntegerConst
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
     }
 }

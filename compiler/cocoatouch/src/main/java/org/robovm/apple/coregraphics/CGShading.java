@@ -52,7 +52,22 @@ import org.robovm.apple.uikit.*;
     public static native @MachineSizedUInt long getClassTypeID();
     @Bridge(symbol="CGShadingCreateAxial", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createAxial(CGColorSpace space, @ByVal CGPoint start, @ByVal CGPoint end, CGFunction function, boolean extendStart, boolean extendEnd);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGShadingCreateAxialWithContentHeadroom", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createAxialWithContentHeadroom(float headroom, CGColorSpace space, @ByVal CGPoint start, @ByVal CGPoint end, CGFunction function, boolean extendStart, boolean extendEnd);
     @Bridge(symbol="CGShadingCreateRadial", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createRadial(CGColorSpace space, @ByVal CGPoint start, @MachineSizedFloat double startRadius, @ByVal CGPoint end, @MachineSizedFloat double endRadius, CGFunction function, boolean extendStart, boolean extendEnd);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGShadingCreateRadialWithContentHeadroom", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGShading createRadialWithContentHeadroom(float headroom, CGColorSpace space, @ByVal CGPoint start, @MachineSizedFloat double startRadius, @ByVal CGPoint end, @MachineSizedFloat double endRadius, CGFunction function, boolean extendStart, boolean extendEnd);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGShadingGetContentHeadroom", optional=true)
+    public native float getContentHeadroom();
     /*</methods>*/
 }

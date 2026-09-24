@@ -36,14 +36,15 @@ import org.robovm.apple.uikit.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("CoreGraphics")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CGColorConversionInfo/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/CFType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class CGColorConversionInfoPtr extends Ptr<CGColorConversionInfo, CGColorConversionInfoPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CGColorConversionInfo.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CGColorConversionInfo() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -70,5 +71,10 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorConversionInfoCreateWithOptions", optional=true)
     public static native CGColorConversionInfo createWithOptions(CGColorSpace src, CGColorSpace dst, NSDictionary options);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGColorConversionInfoCreateForToneMapping", optional=true)
+    public static native CGColorConversionInfo createForToneMapping(CGColorSpace from, float source_headroom, CGColorSpace to, float target_headroom, CGToneMapping method, NSDictionary options, CFError.CFErrorPtr error);
     /*</methods>*/
 }

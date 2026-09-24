@@ -72,6 +72,8 @@ public enum /*<name>*/AudioConverterProperty/*</name>*/ implements ValuedEnum {
     Settings(1633906803L),
     BitDepthHint(1633903204L),
     FormatList(1718383476L),
+    PerformDownmix(1684892024L),
+    ChannelMixMap(1835884912L),
     PropertyMaximumInputBufferSize(2020172403L),
     SampleRateConverterAlgorithm(1936876393L),
     CanResumeFromInterruption(1668441705L);

@@ -192,9 +192,37 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 11.2 and later.
      */
     public static final HMAccessoryCategoryType ShowerHead = new HMAccessoryCategoryType("ShowerHead");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType Television = new HMAccessoryCategoryType("Television");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType TelevisionSetTopBox = new HMAccessoryCategoryType("TelevisionSetTopBox");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType TelevisionStreamingStick = new HMAccessoryCategoryType("TelevisionStreamingStick");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType WiFiRouter = new HMAccessoryCategoryType("WiFiRouter");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType Speaker = new HMAccessoryCategoryType("Speaker");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType AudioReceiver = new HMAccessoryCategoryType("AudioReceiver");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMAccessoryCategoryType AirPort = new HMAccessoryCategoryType("AirPort");
     /*</constants>*/
     
-    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, IPCamera, Lightbulb, Outlet, ProgrammableSwitch, RangeExtender, Sensor, Switch, Thermostat, VideoDoorbell, Window, WindowCovering, AirPurifier, AirHeater, AirConditioner, AirHumidifier, AirDehumidifier, Sprinkler, Faucet, ShowerHead/*</value_list>*/};
+    private static /*<name>*/HMAccessoryCategoryType/*</name>*/[] values = new /*<name>*/HMAccessoryCategoryType/*</name>*/[] {/*<value_list>*/Other, SecuritySystem, Bridge, Door, DoorLock, Fan, GarageDoorOpener, IPCamera, Lightbulb, Outlet, ProgrammableSwitch, RangeExtender, Sensor, Switch, Thermostat, VideoDoorbell, Window, WindowCovering, AirPurifier, AirHeater, AirConditioner, AirHumidifier, AirDehumidifier, Sprinkler, Faucet, ShowerHead, Television, TelevisionSetTopBox, TelevisionStreamingStick, WiFiRouter, Speaker, AudioReceiver, AirPort/*</value_list>*/};
     
     /*<name>*/HMAccessoryCategoryType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -347,6 +375,41 @@ import org.robovm.apple.corelocation.*;
          */
         @GlobalValue(symbol="HMAccessoryCategoryTypeShowerHead", optional=true)
         public static native NSString ShowerHead();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeTelevision", optional=true)
+        public static native NSString Television();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeTelevisionSetTopBox", optional=true)
+        public static native NSString TelevisionSetTopBox();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeTelevisionStreamingStick", optional=true)
+        public static native NSString TelevisionStreamingStick();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeWiFiRouter", optional=true)
+        public static native NSString WiFiRouter();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeSpeaker", optional=true)
+        public static native NSString Speaker();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeAudioReceiver", optional=true)
+        public static native NSString AudioReceiver();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMAccessoryCategoryTypeAirPort", optional=true)
+        public static native NSString AirPort();
         /*</values>*/
     }
 }

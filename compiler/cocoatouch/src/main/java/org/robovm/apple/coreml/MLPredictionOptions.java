@@ -68,6 +68,16 @@ import org.robovm.apple.metal.*;
     @Deprecated
     @Property(selector = "setUsesCPUOnly:")
     public native void setUsesCPUOnly(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "outputBackings")
+    public native NSDictionary<NSString, ?> getOutputBackings();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setOutputBackings:")
+    public native void setOutputBackings(NSDictionary<NSString, ?> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

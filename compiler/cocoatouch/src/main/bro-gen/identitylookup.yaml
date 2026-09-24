@@ -11,6 +11,7 @@ enums:
     ILMessageFilterAction: {} #since 11.0
     ILMessageFilterError: {nserror: true} #since 11.0
     ILClassificationAction: {} #since 12.0
+    ILMessageFilterSubAction: {} #since 16.0
 
 classes:
     ILCallClassificationRequest: {} #since 12.0
@@ -31,12 +32,18 @@ classes:
     ILMessageFilterQueryRequest: {} #since 11.0
     ILMessageFilterQueryResponse: {} #since 11.0
     ILNetworkResponse: {} #since 11.0
+    ILMessageFilterCapabilitiesQueryRequest: {} #since 16.0
+    ILMessageFilterCapabilitiesQueryResponse: {} #since 16.0
 
 protocols:
     ILMessageFilterQueryHandling: #since 11.0
         methods:
             '-handleQueryRequest:context:completion:':
                 trim_after_first_colon: true
+    ILMessageFilterCapabilitiesQueryHandling: #since 16.0
+        methods:
+            '-handleCapabilitiesQueryRequest:context:completion:':
+                name: handleCapabilitiesQueryRequest
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

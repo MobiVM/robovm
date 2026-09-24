@@ -55,6 +55,11 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "URLSession:didCreateTask:")
+    void didCreateTask(NSURLSession session, NSURLSessionTask task);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "URLSession:task:willBeginDelayedRequest:completionHandler:")
@@ -70,8 +75,18 @@ import org.robovm.apple.dispatch.*;
     void didReceiveChallenge(NSURLSession session, NSURLSessionTask task, NSURLAuthenticationChallenge challenge, @Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential> completionHandler);
     @Method(selector = "URLSession:task:needNewBodyStream:")
     void needNewBodyStream(NSURLSession session, NSURLSessionTask task, @Block VoidBlock1<NSInputStream> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "URLSession:task:needNewBodyStreamFromOffset:completionHandler:")
+    void needNewBodyStream(NSURLSession session, NSURLSessionTask task, long offset, @Block VoidBlock1<NSInputStream> completionHandler);
     @Method(selector = "URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:")
     void didSendBodyData(NSURLSession session, NSURLSessionTask task, long bytesSent, long totalBytesSent, long totalBytesExpectedToSend);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "URLSession:task:didReceiveInformationalResponse:")
+    void didReceiveInformationalResponse(NSURLSession session, NSURLSessionTask task, NSHTTPURLResponse response);
     /**
      * @since Available in iOS 10.0 and later.
      */

@@ -35,9 +35,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedUIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MPSRayMaskOperator/*</name>*/ implements ValuedEnum {
     /*<values>*/
     And(0L),
@@ -52,11 +53,15 @@ public enum /*<name>*/MPSRayMaskOperator/*</name>*/ implements ValuedEnum {
     GreaterThanOrEqualTo(9L),
     /**
      * @since Available in iOS 13.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     Equal(10L),
     /**
      * @since Available in iOS 13.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     NotEqual(11L);
     /*</values>*/
 

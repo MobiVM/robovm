@@ -77,6 +77,26 @@ import org.robovm.apple.coretext.*;
     public static native CFAllocator getDefault();
     @Bridge(symbol="CFAllocatorCreate", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFAllocator create(CFAllocatorContext context);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CFAllocatorAllocateTyped", optional=true)
+    public native VoidPtr allocateTyped(@MachineSizedSInt long size, long descriptor, @MachineSizedSInt long hint);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CFAllocatorReallocateTyped", optional=true)
+    public native VoidPtr reallocateTyped(VoidPtr ptr, @MachineSizedSInt long newsize, long descriptor, @MachineSizedSInt long hint);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CFAllocatorAllocateBytes", optional=true)
+    public native VoidPtr allocateBytes(@MachineSizedSInt long size, @MachineSizedSInt long hint);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CFAllocatorReallocateBytes", optional=true)
+    public native VoidPtr reallocateBytes(VoidPtr ptr, @MachineSizedSInt long newsize, @MachineSizedSInt long hint);
     @Bridge(symbol="CFAllocatorAllocate", optional=true)
     public native VoidPtr allocate(@MachineSizedSInt long size, @MachineSizedSInt long hint);
     @Bridge(symbol="CFAllocatorReallocate", optional=true)

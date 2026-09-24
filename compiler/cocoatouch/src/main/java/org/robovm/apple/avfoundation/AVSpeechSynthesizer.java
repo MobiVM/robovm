@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -95,6 +97,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setMixToTelephonyUplink:")
     public native void setMixToTelephonyUplink(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "personalVoiceAuthorizationStatus")
+    public static native AVSpeechSynthesisPersonalVoiceAuthorizationStatus getPersonalVoiceAuthorizationStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -105,11 +112,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "writeUtterance:toBufferCallback:")
     public native void writeUtterance(AVSpeechUtterance utterance, @Block VoidBlock1<AVAudioBuffer> bufferCallback);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "writeUtterance:toBufferCallback:toMarkerCallback:")
+    public native void writeUtterance(AVSpeechUtterance utterance, @Block VoidBlock1<AVAudioBuffer> bufferCallback, @Block VoidBlock1<NSArray<AVSpeechSynthesisMarker>> markerCallback);
     @Method(selector = "stopSpeakingAtBoundary:")
     public native boolean stopSpeaking(AVSpeechBoundary boundary);
     @Method(selector = "pauseSpeakingAtBoundary:")
     public native boolean pauseSpeaking(AVSpeechBoundary boundary);
     @Method(selector = "continueSpeaking")
     public native boolean continueSpeaking();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "requestPersonalVoiceAuthorizationWithCompletionHandler:")
+    public static native void requestPersonalVoiceAuthorization(@Block VoidBlock1<AVSpeechSynthesisPersonalVoiceAuthorizationStatus> handler);
     /*</methods>*/
 }

@@ -1,0 +1,41 @@
+package: org.robovm.apple.adservices
+include: [foundation.yaml]
+library: AdServices
+framework: AdServices
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/AdServices.framework/Headers/AdServices.h
+typedefs: 
+    
+enums:
+    AAAttributionErrorCode: { nserror: true } #since 14.3
+
+classes:
+    AAAttribution: #since 14.3
+        methods:
+            '+attributionTokenWithError:':
+                name: attributionToken
+                throws: NSErrorException
+protocols: 
+
+functions:
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: !!!FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    AAAttributionErrorDomain:
+        class: AAAttributionErrorCode
+        name: getClassDomain
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: !!!FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: !!!FIXME
+        name: 'Constant__#{g[0]}'

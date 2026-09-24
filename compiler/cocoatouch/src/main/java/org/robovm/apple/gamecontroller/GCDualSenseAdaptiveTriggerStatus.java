@@ -34,7 +34,9 @@ import org.robovm.apple.corehaptic.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.5 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/GCDualSenseAdaptiveTriggerStatus/*</name>*/ implements ValuedEnum {
@@ -46,7 +48,19 @@ public enum /*<name>*/GCDualSenseAdaptiveTriggerStatus/*</name>*/ implements Val
     WeaponFiring(3L),
     WeaponFired(4L),
     VibrationNotVibrating(5L),
-    VibrationIsVibrating(6L);
+    VibrationIsVibrating(6L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    SlopeFeedbackReady(7L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    SlopeFeedbackApplyingLoad(8L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
+    SlopeFeedbackFinished(9L);
     /*</values>*/
 
     /*<bind>*/

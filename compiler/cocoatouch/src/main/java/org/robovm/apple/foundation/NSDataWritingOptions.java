@@ -51,6 +51,10 @@ public final class /*<name>*/NSDataWritingOptions/*</name>*/ extends Bits</*<nam
     public static final NSDataWritingOptions FileProtectionComplete = new NSDataWritingOptions(536870912L);
     public static final NSDataWritingOptions FileProtectionCompleteUnlessOpen = new NSDataWritingOptions(805306368L);
     public static final NSDataWritingOptions FileProtectionCompleteUntilFirstUserAuthentication = new NSDataWritingOptions(1073741824L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSDataWritingOptions FileProtectionCompleteWhenUserInactive = new NSDataWritingOptions(1342177280L);
     public static final NSDataWritingOptions FileProtectionMask = new NSDataWritingOptions(4026531840L);
     /*</values>*/
 

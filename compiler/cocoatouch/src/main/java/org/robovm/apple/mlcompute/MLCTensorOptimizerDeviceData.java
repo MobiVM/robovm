@@ -33,9 +33,12 @@ import org.robovm.apple.metalps.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 14.0 and later.
+ * @deprecated Deprecated in iOS 17.4. Use Metal Performance Shaders Graph or BNNS instead.
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MLCompute") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCTensorOptimizerDeviceData/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

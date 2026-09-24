@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,6 +71,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSArray<AVPlayerInterstitialEvent> getEvents();
     @Property(selector = "currentEvent")
     public native AVPlayerInterstitialEvent getCurrentEvent();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "currentEventSkippableState")
+    public native AVPlayerInterstitialEventSkippableEventState getCurrentEventSkippableState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "currentEventSkipControlLabel")
+    public native String getCurrentEventSkipControlLabel();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

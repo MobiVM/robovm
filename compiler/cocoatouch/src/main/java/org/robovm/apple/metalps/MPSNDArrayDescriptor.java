@@ -61,6 +61,16 @@ import org.robovm.apple.metal.*;
     public native @MachineSizedUInt long getNumberOfDimensions();
     @Property(selector = "setNumberOfDimensions:")
     public native void setNumberOfDimensions(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "preferPackedRows")
+    public native boolean isPreferPackedRows();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPreferPackedRows:")
+    public native void setPreferPackedRows(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -72,8 +82,18 @@ import org.robovm.apple.metal.*;
     public native void sliceDimension(@MachineSizedUInt long dimensionIndex, @ByVal MPSDimensionSlice subRange);
     @Method(selector = "transposeDimension:withDimension:")
     public native void transposeDimension(@MachineSizedUInt long dimensionIndex, @MachineSizedUInt long dimensionIndex2);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "permuteWithDimensionOrder:")
+    public native void permute(MachineSizedUIntPtr dimensionOrder);
     @Method(selector = "dimensionOrder")
     public native @ByVal VectorChar16 dimensionOrder();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "getShape")
+    public native NSArray<NSNumber> getShape();
     @Method(selector = "reshapeWithDimensionCount:dimensionSizes:")
     public native void reshape(@MachineSizedUInt long numberOfDimensions, MachineSizedUIntPtr dimensionSizes);
     @Method(selector = "reshapeWithShape:")

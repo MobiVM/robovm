@@ -189,6 +189,11 @@ import org.robovm.apple.coreanimation.*;
     public native void cancelFindString();
     @Method(selector = "selectionFromPage:atPoint:toPage:atPoint:")
     public native PDFSelection selection(PDFPage startPage, @ByVal CGPoint startPoint, PDFPage endPage, @ByVal CGPoint endPoint);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "selectionFromPage:atPoint:toPage:atPoint:withGranularity:")
+    public native PDFSelection selection(PDFPage startPage, @ByVal CGPoint startPoint, PDFPage endPage, @ByVal CGPoint endPoint, PDFSelectionGranularity granularity);
     @Method(selector = "selectionFromPage:atCharacterIndex:toPage:atCharacterIndex:")
     public native PDFSelection selection(PDFPage startPage, @MachineSizedUInt long startCharacter, PDFPage endPage, @MachineSizedUInt long endCharacter);
     /*</methods>*/

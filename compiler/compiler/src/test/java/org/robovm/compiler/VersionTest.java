@@ -26,14 +26,36 @@ import org.junit.Test;
 public class VersionTest {
 
     @Test
-    public void testToInt() {
-        assertEquals(15701, Version.toLong("0.0.15"));
-        assertEquals(1001001701, Version.toLong("1.1.1"));
-        assertEquals(123456789701L, Version.toLong("123.456.789"));
-        assertEquals(1002003000, Version.toLong("1.2.3-SNAPSHOT"));
-        assertEquals(1002003101, Version.toLong("1.2.3-alpha-01"));
-        assertEquals(1002003323, Version.toLong("1.2.3-beta-23"));
-        assertEquals(1002003507, Version.toLong("1.2.3-rc-07"));
+    public void testVersion() {
+        Version version = Version.parse("1.2.15");
+        assertEquals(1, version.getMajor(), 1);
+        assertEquals(2, version.getMinor(), 2);
+        assertEquals(15, version.getRevision(), 15);
+        assertEquals(0, version.getBuild(), 0);
+        assertEquals(Version.BuildType.Release, version.getBuildType());
+
+        assertEquals(Version.BuildType.Snapshot, Version.parse("1.2.3-SNAPSHOT").getBuildType());
+        assertEquals(Version.BuildType.Alpha, Version.parse("1.2.3-alpha-01").getBuildType());
+        assertEquals(Version.BuildType.Beta, Version.parse("1.2.3-beta-23").getBuildType());
+        assertEquals(Version.BuildType.RC, Version.parse("1.2.3-rc-07").getBuildType());
+
+        assertCompareSmallerThan(Version.parse("1.2.3.4"), Version.parse("1.2.3.5"));
+        assertCompareSmallerThan(Version.parse("1.2.3.4"), Version.parse("1.2.3.4.5"));
+        assertCompareSmallerThan(Version.parse("1.2.3.4-rc-1"), Version.parse("1.2.3.4"));
+        assertCompareSmallerThan(Version.parse("1.2.3.4-beta-1"), Version.parse("1.2.3.4-rc-1"));
+        assertCompareSmallerThan(Version.parse("1.2.3.4-alpha-1"), Version.parse("1.2.3.4-beta-1"));
+        assertCompareSmallerThan(Version.parse("1.2.3.4-SNAPSHOT"), Version.parse("1.2.3.4-alpha-1"));
+
+        // basic to string
+        assertEquals("1.2.3-SNAPSHOT", Version.parse("1.2.3-SNAPSHOT").toString());
+        assertEquals("1.2.3-alpha-1", Version.parse("1.2.3-alpha-1").toString());
+        assertEquals("1.2.3-beta-23", Version.parse("1.2.3-beta-23").toString());
+        assertEquals("1.2.3-rc-7", Version.parse("1.2.3-rc-7").toString());
+        assertEquals("1.2.3", Version.parse("1.2.3").toString());
     }
 
+
+    static <T> void assertCompareSmallerThan(Comparable<T> a, T b) {
+        assertTrue(a.compareTo(b) < 0);
+    }
 }

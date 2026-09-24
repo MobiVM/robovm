@@ -56,6 +56,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithWindowScene:")
     public CPWindow(UIWindowScene windowScene) { super(windowScene); }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(windowScene:) instead.
+     */
+    @Deprecated
     @Method(selector = "initWithFrame:")
     public CPWindow(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")

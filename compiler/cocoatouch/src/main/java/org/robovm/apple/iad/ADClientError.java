@@ -61,7 +61,7 @@ import org.robovm.apple.coreanimation.*;
     }
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 15.0.
+     * @deprecated Deprecated in iOS 15.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */
     @Deprecated
     @GlobalValue(symbol="ADClientErrorDomain", optional=true)

@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 7.0. Use MCBrowserViewController from the MultipeerConnectivity framework
+ * @deprecated Deprecated in iOS 7.0. Use MCBrowserViewController from the MultipeerConnectivity framework.
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/

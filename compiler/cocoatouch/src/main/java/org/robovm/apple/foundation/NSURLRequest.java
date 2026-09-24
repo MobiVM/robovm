@@ -86,6 +86,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "allowsConstrainedNetworkAccess")
     public native boolean allowsConstrainedNetworkAccess();
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "allowsUltraConstrainedNetworkAccess")
+    public native boolean allowsUltraConstrainedNetworkAccess();
+    /**
      * @since Available in iOS 14.5 and later.
      */
     @Property(selector = "assumesHTTP3Capable")
@@ -95,6 +100,21 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "attribution")
     public native NSURLRequestAttribution getAttribution();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "requiresDNSSECValidation")
+    public native boolean requiresDNSSECValidation();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowsPersistentDNS")
+    public native boolean allowsPersistentDNS();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "cookiePartitionIdentifier")
+    public native String getCookiePartitionIdentifier();
     @Property(selector = "HTTPMethod")
     public native String getHTTPMethod();
     @Property(selector = "allHTTPHeaderFields")
@@ -105,6 +125,10 @@ import org.robovm.apple.dispatch.*;
     public native NSInputStream getHTTPBodyStream();
     @Property(selector = "HTTPShouldHandleCookies")
     public native boolean shouldHandleHTTPCookies();
+    /**
+     * @deprecated Deprecated in iOS 18.4. Only supported in the classic loader, please adopt HTTP/2 and HTTP/3 instead
+     */
+    @Deprecated
     @Property(selector = "HTTPShouldUsePipelining")
     public native boolean shouldUseHTTPPipelining();
     /*</properties>*/

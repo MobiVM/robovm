@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,12 +71,12 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "nextFocusedItem")
     public native UIFocusItem getNextFocusedItem();
+    @Property(selector = "focusHeading")
+    public native UIFocusHeading getFocusHeading();
     @Property(selector = "previouslyFocusedView")
     public native UIView getPreviouslyFocusedView();
     @Property(selector = "nextFocusedView")
     public native UIView getNextFocusedView();
-    @Property(selector = "focusHeading")
-    public native UIFocusHeading getFocusHeading();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

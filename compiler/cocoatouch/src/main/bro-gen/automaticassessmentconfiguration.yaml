@@ -12,13 +12,22 @@ enums:
     AEAutocorrectMode: {}
 
 classes:
-    AEAssessmentConfiguration: {} #since 13.4
+    AEAssessmentConfiguration: #since 13.4
+        methods:
+            '-setConfiguration:forApplication:':
+                name: setConfiguration
     AEAssessmentSession: #since 13.4
         methods:
             '-initWithConfiguration:':
                 name: init
-    AEAssessmentApplication: {} #since 15.0
-    AEAssessmentParticipantConfiguration: {} #since 15.0
+    AEAssessmentApplication: #since 15.0
+        methods:
+            '-initWithBundleIdentifier:':
+                name: init
+    AEAssessmentParticipantConfiguration:  #since 15.0
+        methods:
+            '+new':
+                exclude: true
 protocols:
     AEAssessmentSessionDelegate: #since 13.4
         methods:
@@ -30,6 +39,8 @@ protocols:
                 name: failedToBegin
             '-assessmentSession:wasInterruptedWithError:':
                 name: wasInterrupted
+            '-assessmentSession:failedToUpdateToConfiguration:error:':
+                name: failedToUpdateToConfiguration
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AE.*):
@@ -40,6 +51,16 @@ values:
     AEAssessmentErrorDomain:
         class: AEAssessmentErrorCode
         name: getClassDomain
+    AENotInstalledParticipantsKey:
+        class: AEAssessmentErrorCode
+        static_class: Keys
+        readonly: true
+        name: NotInstalledParticipants
+    AERestrictedSystemParticipantsKey:
+        class: AEAssessmentErrorCode
+        static_class: Keys
+        readonly: true
+        name: RestrictedSystemParticipants
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AE.*):

@@ -40,6 +40,10 @@ import org.robovm.apple.fileprovider.*;
 public final class /*<name>*/CKApplicationPermissions/*</name>*/ extends Bits</*<name>*/CKApplicationPermissions/*</name>*/> {
     /*<values>*/
     public static final CKApplicationPermissions None = new CKApplicationPermissions(0L);
+    /**
+     * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
+     */
+    @Deprecated
     public static final CKApplicationPermissions UserDiscoverability = new CKApplicationPermissions(1L);
     /*</values>*/
 

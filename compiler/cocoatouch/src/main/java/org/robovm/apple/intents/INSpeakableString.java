@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     protected INSpeakableString(Handle h, long handle) { super(h, handle); }
     protected INSpeakableString(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithVocabularyIdentifier:spokenPhrase:pronunciationHint:")
-    public static  INSpeakableString createWithVocabulary(String vocabularyIdentifier, String spokenPhrase, String pronunciationHint) {
+    public static INSpeakableString createWithVocabulary(String vocabularyIdentifier, String spokenPhrase, String pronunciationHint) {
        INSpeakableString res = new INSpeakableString((SkipInit) null);
        res.initObject(res.initWithVocabulary(vocabularyIdentifier, spokenPhrase, pronunciationHint));
        return res;

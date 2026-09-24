@@ -72,6 +72,16 @@ import org.robovm.apple.network.*;
     @Property(selector = "setMatchPrivateLTENetworks:")
     public native void setMatchPrivateLTENetworks(NSArray<NEPrivateLTENetwork> v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "matchEthernet")
+    public native boolean isMatchEthernet();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setMatchEthernet:")
+    public native void setMatchEthernet(boolean v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "providerConfiguration")

@@ -40,17 +40,21 @@ import soot.options.Options;
  */
 public class Clazzes {
     private final Config config;
-    private final List<Path> bootclasspathPaths = new ArrayList<Path>();
-    private final List<Path> classpathPaths = new ArrayList<Path>();
-    private final List<Path> paths = new ArrayList<Path>();
-    private final Map<String, Clazz> cache = new HashMap<String, Clazz>();
-    private final List<Clazz> allClasses = new ArrayList<Clazz>();
+    private final List<Path> bootclasspathPaths = new ArrayList<>();
+    private final List<Path> classpathPaths = new ArrayList<>();
+    private final List<Path> paths = new ArrayList<>();
+    private final Map<String, Clazz> cache = new HashMap<>();
+    private final List<Clazz> allClasses = new ArrayList<>();
 
     private boolean sootInitialized = false;
 
+    // disposed state
+    private boolean sootDisposed = false;
+    private boolean contentDisposed = false;
+
     public Clazzes(Config config, List<File> bootclasspath, List<File> classpath) throws IOException {
         this.config = config;
-        Set<File> seen = new HashSet<File>();
+        Set<File> seen = new HashSet<>();
         addPaths(bootclasspath, bootclasspathPaths, seen, true);
         addPaths(classpath, classpathPaths, seen, false);
         paths.addAll(bootclasspathPaths);
@@ -70,7 +74,7 @@ public class Clazzes {
     private void addPaths(List<File> files, List<Path> cp, Set<File> seen, boolean inBootclasspath) throws IOException {
         for (File file : files) {
             if (SourceLocator.DUMMY_CLASSPATH_JDK9_FS.equals(file.getPath()) && !seen.contains(file)) {
-                // java9 runtime: add special mark to allow recognize it latter when providing soot CP
+                // java9 runtime: add special mark to allow to recognize it later when providing soot CP
                 Path p = new Java9RuntimePath(file, this, cp.size(), inBootclasspath);
                 cp.add(p);
                 seen.add(file);
@@ -123,6 +127,7 @@ public class Clazzes {
     }
 
     private void populateCache() {
+        requiresContent();
         for (Path p : paths) {
             for (Clazz clazz : p.listClasses()) {
                 if (!cache.containsKey(clazz.getInternalName())) {
@@ -134,6 +139,7 @@ public class Clazzes {
     }
 
     public Clazz load(String internalName) {
+        requiresContent();
         Clazz clazz = cache.get(internalName);
         if (clazz == null) {
             // Could be a generated class
@@ -145,6 +151,11 @@ public class Clazzes {
             }
         }
         return clazz;
+    }
+
+    public SootClass loadSootClass(String internalName) {
+        Clazz clazz = load(internalName);
+        return clazz != null ? clazz.getSootClass() : null;
     }
 
     public List<InputStream> loadResources(String resource) throws IOException {
@@ -170,10 +181,12 @@ public class Clazzes {
     }
 
     public List<Clazz> listClasses() {
+        requiresContent();
         return Collections.unmodifiableList(allClasses);
     }
 
     SootClass getSootClass(Clazz clazz) {
+        requiresSoot();
         if (!sootInitialized) {
             initializeSoot(this);
             sootInitialized = true;
@@ -203,6 +216,42 @@ public class Clazzes {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * sanity: checks if soot was disposed
+     */
+    private void requiresSoot() {
+        if (sootDisposed)
+            throw new IllegalStateException("Soot has been disposed !");
+    }
+
+    /**
+     * releases soot resources, singletons once these are not required anymore to reduce memory pressure
+     * after this point soot is not usable anymore
+     */
+    public void disposeSoot() {
+        requiresSoot();
+        soot.G.reset();
+        sootDisposed = true;
+    }
+
+
+    private void requiresContent() {
+        if (contentDisposed)
+            throw new IllegalStateException("Content has been disposed !");
+    }
+
+    /**
+     * drops caches and all classes data. after this point this data is not accessible
+     */
+    public void disposeData() {
+        requiresContent();
+        cache.clear();
+        allClasses.clear();
+        for (Path p : paths)
+            p.disposeBuildData();
+        contentDisposed = true;
     }
 
     private static void initializeSoot(Clazzes clazzes) {

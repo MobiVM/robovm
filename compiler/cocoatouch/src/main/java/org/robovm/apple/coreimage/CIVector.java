@@ -67,7 +67,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithCGRect:")
     public CIVector(@ByVal CGRect r) { super((SkipInit) null); initObject(init(r)); }
     @Method(selector = "initWithCGAffineTransform:")
-    public CIVector(@ByVal CGAffineTransform r) { super((SkipInit) null); initObject(init(r)); }
+    public CIVector(@ByVal CGAffineTransform t) { super((SkipInit) null); initObject(init(t)); }
     @Method(selector = "initWithString:")
     public CIVector(String representation) { super((SkipInit) null); initObject(init(representation)); }
     @Method(selector = "initWithCoder:")
@@ -133,7 +133,7 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "initWithCGRect:")
     protected native @Pointer long init(@ByVal CGRect r);
     @Method(selector = "initWithCGAffineTransform:")
-    protected native @Pointer long init(@ByVal CGAffineTransform r);
+    protected native @Pointer long init(@ByVal CGAffineTransform t);
     @Method(selector = "initWithString:")
     protected native @Pointer long init(String representation);
     @Method(selector = "valueAtIndex:")

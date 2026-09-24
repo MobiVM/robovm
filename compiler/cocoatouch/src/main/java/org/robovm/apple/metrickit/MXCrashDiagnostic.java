@@ -61,6 +61,11 @@ import org.robovm.apple.foundation.*;
     public native NSNumber getExceptionCode();
     @Property(selector = "signal")
     public native NSNumber getSignal();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "exceptionReason")
+    public native MXCrashDiagnosticObjectiveCExceptionReason getExceptionReason();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -173,6 +174,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "validateCommand:")
     public native void validateCommand(UICommand command);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "providerForDeferredMenuElement:")
+    public native UIDeferredMenuElementProvider providerForDeferredMenuElement(UIDeferredMenuElement deferredElement);
     @Method(selector = "reloadInputViews")
     public native void reloadInputViews();
     @Method(selector = "clearTextInputContextIdentifier:")
@@ -207,6 +213,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "pasteAndSearch:")
     public native void pasteAndSearch(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newFromPasteboard:")
+    public native void newFromPasteboard(NSObject sender);
     @Method(selector = "select:")
     public native void select(NSObject sender);
     @Method(selector = "selectAll:")
@@ -228,6 +239,51 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "decreaseSize:")
     public native void decreaseSize(NSObject sender);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignLeft:")
+    public native void alignLeft(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignCenter:")
+    public native void alignCenter(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignJustified:")
+    public native void alignJustified(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignRight:")
+    public native void alignRight(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "find:")
+    public native void find(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findAndReplace:")
+    public native void findAndReplace(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findNext:")
+    public native void findNext(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findPrevious:")
+    public native void findPrevious(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "useSelectionForFind:")
+    public native void useSelectionForFind(NSObject sender);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "updateTextAttributesWithConversionHandler:")
@@ -237,6 +293,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "print:")
     public native void print(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "rename:")
+    public native void rename(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "duplicate:")
+    public native void duplicate(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "move:")
+    public native void move(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "export:")
+    public native void export(NSObject sender);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "toggleSidebar:")
+    public native void toggleSidebar(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "toggleInspector:")
+    public native void toggleInspector(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "performClose:")
+    public native void performClose(NSObject sender);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "showWritingTools:")
+    public native void showWritingTools(NSObject sender);
     @Method(selector = "pasteItemProviders:")
     public native void pasteItemProviders(NSArray<NSItemProvider> itemProviders);
     @Method(selector = "canPasteItemProviders:")

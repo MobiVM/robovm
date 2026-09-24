@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -167,5 +169,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "insertMediaTimeRange:intoTimeRange:")
     public native boolean insertMediaTimeRange(@ByVal CMTimeRange mediaTimeRange, @ByVal CMTimeRange trackTimeRange);
+    @Method(selector = "hasMediaCharacteristic:")
+    public native boolean hasMediaCharacteristic(AVMediaCharacteristic mediaCharacteristic);
+    @Method(selector = "segmentForTrackTime:")
+    public native AVAssetTrackSegment getSegment(@ByVal CMTime trackTime);
+    @Method(selector = "samplePresentationTimeForTrackTime:")
+    public native @ByVal CMTime getSamplePresentationTime(@ByVal CMTime trackTime);
+    @Method(selector = "metadataForFormat:")
+    public native NSArray<AVMetadataItem> getMetadataForFormat(AVMetadataFormat format);
+    @Method(selector = "associatedTracksOfType:")
+    public native NSArray<AVAssetTrack> getAssociatedTracksOfType(AVTrackAssociationType trackAssociationType);
     /*</methods>*/
 }

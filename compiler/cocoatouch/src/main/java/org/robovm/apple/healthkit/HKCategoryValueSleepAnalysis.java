@@ -28,26 +28,52 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("HealthKit")/*</annotations>*/
 public enum /*<name>*/HKCategoryValueSleepAnalysis/*</name>*/ implements ValuedEnum {
     /*<values>*/
     InBed(0L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AsleepUnspecified(1L),
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use HKCategoryValueSleepAnalysisAsleepUnspecified
+     */
+    @Deprecated
     Asleep(1L),
     /**
      * @since Available in iOS 10.0 and later.
      */
-    Awake(2L);
+    Awake(2L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AsleepCore(3L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AsleepDeep(4L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    AsleepREM(5L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(HKCategoryValueSleepAnalysis.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="HKCategoryValueSleepAnalysisAsleepValues", optional=true)
+    public static native NSSet<NSNumber> asleepValues();
+    /*</methods>*/
 
     private final long n;
 

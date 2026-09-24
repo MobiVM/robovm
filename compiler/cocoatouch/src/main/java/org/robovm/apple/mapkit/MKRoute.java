@@ -66,6 +66,16 @@ import org.robovm.apple.coreanimation.*;
     public native MKPolyline getPolyline();
     @Property(selector = "steps")
     public native NSArray<MKRouteStep> getSteps();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "hasTolls")
+    public native boolean hasTolls();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "hasHighways")
+    public native boolean hasHighways();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

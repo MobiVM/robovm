@@ -432,7 +432,8 @@ public enum /*<name>*/SecErrorCode/*</name>*/ implements ValuedEnum {
     CertificateNameNotAllowed(-67900L),
     CertificateValidityPeriodTooLong(-67901L),
     CertificateIsCA(-67902L),
-    CertificateDuplicateExtension(-67903L);
+    CertificateDuplicateExtension(-67903L),
+    MissingQualifiedCertStatement(-67904L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(SecErrorCode.class); }/*</bind>*/

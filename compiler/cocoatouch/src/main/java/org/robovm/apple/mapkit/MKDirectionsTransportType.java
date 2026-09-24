@@ -48,6 +48,10 @@ public final class /*<name>*/MKDirectionsTransportType/*</name>*/ extends Bits</
      * @since Available in iOS 9.0 and later.
      */
     public static final MKDirectionsTransportType Transit = new MKDirectionsTransportType(4L);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final MKDirectionsTransportType Cycling = new MKDirectionsTransportType(8L);
     public static final MKDirectionsTransportType Any = new MKDirectionsTransportType(268435455L);
     /*</values>*/
 

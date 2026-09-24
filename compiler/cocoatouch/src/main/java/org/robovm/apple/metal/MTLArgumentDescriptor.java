@@ -63,9 +63,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setArrayLength:")
     public native void setArrayLength(@MachineSizedUInt long v);
     @Property(selector = "access")
-    public native MTLArgumentAccess getAccess();
+    public native MTLBindingAccess getAccess();
     @Property(selector = "setAccess:")
-    public native void setAccess(MTLArgumentAccess v);
+    public native void setAccess(MTLBindingAccess v);
     @Property(selector = "textureType")
     public native MTLTextureType getTextureType();
     @Property(selector = "setTextureType:")

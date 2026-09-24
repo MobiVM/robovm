@@ -53,6 +53,11 @@ import org.robovm.apple.coreanimation.*;
     protected CPAlertAction(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithTitle:style:handler:")
     public CPAlertAction(String title, CPAlertActionStyle style, @Block VoidBlock1<CPAlertAction> handler) { super((SkipInit) null); initObject(init(title, style, handler)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithTitle:color:handler:")
+    public CPAlertAction(String title, UIColor color, @Block VoidBlock1<CPAlertAction> handler) { super((SkipInit) null); initObject(init(title, color, handler)); }
     @Method(selector = "initWithCoder:")
     public CPAlertAction(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -63,6 +68,11 @@ import org.robovm.apple.coreanimation.*;
     public native CPAlertActionStyle getStyle();
     @Property(selector = "handler")
     public native @Block VoidBlock1<CPAlertAction> getHandler();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "color")
+    public native UIColor getColor();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -70,6 +80,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithTitle:style:handler:")
     protected native @Pointer long init(String title, CPAlertActionStyle style, @Block VoidBlock1<CPAlertAction> handler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithTitle:color:handler:")
+    protected native @Pointer long init(String title, UIColor color, @Block VoidBlock1<CPAlertAction> handler);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

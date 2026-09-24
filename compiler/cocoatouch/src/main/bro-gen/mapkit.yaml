@@ -25,7 +25,16 @@ enums:
     MKScaleViewAlignment: {} #since 11.0
     MKLocalSearchResultType: {} #since 13.0
     MKLocalSearchCompleterResultType: {} #since 13.0
-
+    MKMapFeatureType: {} #since 16.0
+    MKMapFeatureOptions: {prefix: MKMapFeatureOption} #since 16.0
+    MKDirectionsRoutePreference: {}
+    MKMapElevationStyle: {}
+    MKStandardMapEmphasisStyle: {}
+    MKLookAroundBadgePosition: {} #since 16.0
+    MKAddressRepresentationsContextStyle: {} #since 26.0
+    MKAddressFilterOption: {} #since 18.0
+    MKLocalSearchRegionPriority: {} #since 18.0
+    MKMapItemDetailSelectionAccessoryCalloutStyle: {} #since 18.0
 typed_enums:
     MKPointOfInterestCategory:
         enum: MKPointOfInterestCategory
@@ -152,6 +161,9 @@ classes:
             '+cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:':
                 name: create
                 constructor: true
+            '+cameraLookingAtMapItem:forViewSize:allowPitch:':
+                name: create
+                constructor: true
     MKMapItem: # DONE
         properties:
             'isCurrentLocation':
@@ -177,6 +189,8 @@ classes:
                 name: openInMaps
             '+openMapsWithItems:launchOptions:fromScene:completionHandler:':
                 name: openMaps
+            '-initWithLocation:address:':
+                name: init
     MKMapSnapshot: # DONE
         methods:
             '-pointForCoordinate:':
@@ -585,6 +599,108 @@ classes:
             '-initWithCoordinateRegion:':
                 name: init
     MKUserLocationView: {} #since 14.0
+    MKHybridMapConfiguration: #since 16.0
+        methods:
+            '-initWithElevationStyle:':
+                name: init
+    MKIconStyle: {} #since 16.0
+    MKImageryMapConfiguration: #since 16.0
+        methods:
+            '-initWithElevationStyle:':
+                name: init
+    MKLookAroundScene: {} #since 16.0
+    MKLookAroundSceneRequest: #since 16.0
+        methods:
+            '-initWithCoordinate:':
+                name: init
+            '-initWithMapItem:':
+                name: init
+            '-getSceneWithCompletionHandler:':
+                name: getScene
+    MKLookAroundSnapshot: {} #since 16.0
+    MKLookAroundSnapshotOptions: {} #since 16.0
+    MKLookAroundSnapshotter: #since 16.0
+        methods:
+            '-initWithScene:options:':
+                name: init
+            '-getSnapshotWithCompletionHandler:':
+                name: getSnapshot
+    MKLookAroundViewController: #since 16.0
+        methods:
+            '-initWithScene:':
+                name: init
+    MKMapConfiguration: {} #since 16.0
+    MKMapFeatureAnnotation: {} #since 16.0
+    MKMapItemRequest: #since 16.0
+        methods:
+            '-initWithMapFeatureAnnotation:':
+                name: init
+            '-getMapItemWithCompletionHandler:':
+                name: getMapItem
+            '-initWithMapItemIdentifier:':
+                name: init
+    MKStandardMapConfiguration: #since 16.0
+        methods:
+            '-initWithElevationStyle:':
+                name: init
+            '-initWithElevationStyle:emphasisStyle:':
+                name: init
+            '-initWithEmphasisStyle:':
+                name: init
+    MKAddress: #since 26.0
+        methods:
+            '-initWithFullAddress:shortAddress:':
+                name: init
+    MKAddressFilter: #since 18.0
+        methods:
+            '-initIncludingOptions:':
+                static_constructor_name: createIncludingOptions
+                name: initIncludingOptions
+            '-initExcludingOptions:':
+                static_constructor_name: createExcludingOptions
+                name: initExcludingOptions
+    MKAddressRepresentations: #since 26.0
+        methods:
+            '-fullAddressIncludingRegion:singleLine:':
+                name: fullAddressIncludingRegion
+            '-cityWithContextUsingStyle:':
+                name: cityWithContext
+    MKGeocodingRequest: #since 26.0
+        methods:
+            '-initWithAddressString:':
+                name: init
+            '-getMapItemsWithCompletionHandler:':
+                name: getMapItems
+    MKMapItemAnnotation: #since 18.0
+        methods:
+            '-initWithMapItem:':
+                name: init
+    MKMapItemDetailSelectionAccessoryPresentationStyle: #since 18.0
+        methods:
+            '+automaticWithPresentationViewController:':
+                name: automatic
+            '+calloutWithCalloutStyle:':
+                name: callout
+    MKMapItemDetailViewController: #since 18.0
+        methods:
+            '-initWithMapItem:displaysMap:':
+                name: init
+            '-initWithMapItem:':
+                name: init
+    MKMapItemIdentifier: #since 18.0
+        methods:
+            '-initWithIdentifierString:':
+                name: init
+    MKReverseGeocodingRequest: #since 26.0
+        methods:
+            '-initWithLocation:':
+                name: init
+            '-getMapItemsWithCompletionHandler:':
+                name: getMapItems
+    MKSelectionAccessory: #since 18.0
+        methods:
+            '+mapItemDetailWithPresentationStyle:':
+                name: getMapItemDetail
 protocols:
     MKAnnotation: {} # DONE
     MKMapViewDelegate: # DONE
@@ -644,6 +760,12 @@ protocols:
                         type: NSArray<MKOverlayView>
             '-mapView:clusterAnnotationForMemberAnnotations:':
                 name: getClusterAnnotationForMemberAnnotations
+            '-mapView:didSelectAnnotation:':
+                name: didSelectAnnotation
+            '-mapView:didDeselectAnnotation:':
+                name: didDeselectAnnotation
+            '-mapView:selectionAccessoryForAnnotation:':
+                name: getSelectionAccessoryForAnnotation
     MKOverlay: # DONE
         methods:
             '-intersectsMapRect:':
@@ -656,7 +778,8 @@ protocols:
                 name: didFailWithError
     MKGeoJSONObject: #since 13.0
         skip_adapter: true
-
+    MKLookAroundViewControllerDelegate: {} #since 16.0
+    MKMapItemDetailViewControllerDelegate: {} #since 18.0
 functions:
     # MKCoordinateRegion
     MKCoordinateRegionMake:

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,5 +62,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @NotImplemented("searchTextField:itemProviderForCopyingToken:")
     public NSItemProvider getItemProviderForCopyingToken(UISearchTextField searchTextField, UISearchToken token) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("searchTextField:didSelectSuggestion:")
+    public void didSelectSuggestion(UISearchTextField searchTextField, UISearchSuggestion suggestion) {}
     /*</methods>*/
 }

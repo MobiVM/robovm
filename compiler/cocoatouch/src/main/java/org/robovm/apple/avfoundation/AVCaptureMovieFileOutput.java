@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -90,6 +92,21 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording")
     public native AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions getPrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isSpatialVideoCaptureSupported")
+    public native boolean isSpatialVideoCaptureSupported();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isSpatialVideoCaptureEnabled")
+    public native boolean isSpatialVideoCaptureEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSpatialVideoCaptureEnabled:")
+    public native void setSpatialVideoCaptureEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

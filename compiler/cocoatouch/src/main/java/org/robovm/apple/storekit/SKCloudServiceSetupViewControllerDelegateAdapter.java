@@ -50,9 +50,6 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @since Available in iOS 10.1 and later.
-     */
     @NotImplemented("cloudServiceSetupViewControllerDidDismiss:")
     public void didDismiss(SKCloudServiceSetupViewController cloudServiceSetupViewController) {}
     /*</methods>*/

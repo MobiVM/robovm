@@ -221,6 +221,11 @@ public final class Double extends Number implements Comparable<Double> {
         return (int) (v ^ (v >>> 32));
     }
 
+    public static int hashCode(double value) {
+        long v = doubleToLongBits(value);
+        return (int) (v ^ (v >>> 32));
+    }
+
     @Override
     public int intValue() {
         return (int) value;

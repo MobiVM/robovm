@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -80,6 +81,11 @@ import org.robovm.apple.foundation.*;
     public native void removeDeliveredNotifications(NSArray<NSString> identifiers);
     @Method(selector = "removeAllDeliveredNotifications")
     public native void removeAllDeliveredNotifications();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setBadgeCount:withCompletionHandler:")
+    public native void setBadgeCount(@MachineSizedSInt long newBadgeCount, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "currentNotificationCenter")
     public static native UNUserNotificationCenter currentNotificationCenter();
     /*</methods>*/

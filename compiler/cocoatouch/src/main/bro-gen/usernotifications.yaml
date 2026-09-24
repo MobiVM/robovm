@@ -1,5 +1,5 @@
 package: org.robovm.apple.usernotifications
-include: [foundation.yaml]
+include: [foundation, intents]
 library: UserNotifications
 framework: UserNotifications
 clang_args: ['-x', 'objective-c']
@@ -117,12 +117,19 @@ classes:
                 name: getDeliveredNotifications
             '-removeDeliveredNotificationsWithIdentifiers:':
                 name: removeDeliveredNotifications
+            '-setBadgeCount:withCompletionHandler:':
+                name: setBadgeCount
     UNNotificationActionIcon: #since 15.0
         methods:
             '+iconWithTemplateImageName:':
                 name: createWithTemplateImageName
             '+iconWithSystemImageName:':
                 name: createWithSystemImageName
+    UNNotificationAttributedMessageContext: #since 18.0
+        methods:
+            '+contextWithSendMessageIntent:attributedContent:':
+                name: create
+                constructor: true
 protocols:
     UNUserNotificationCenterDelegate:
         methods:

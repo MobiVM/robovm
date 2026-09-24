@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,11 @@ public enum /*<name>*/UINavigationItemLargeTitleDisplayMode/*</name>*/ implement
     /*<values>*/
     Automatic(0L),
     Always(1L),
-    Never(2L);
+    Never(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Inline(3L);
     /*</values>*/
 
     /*<bind>*/

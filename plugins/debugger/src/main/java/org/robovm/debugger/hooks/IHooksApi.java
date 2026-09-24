@@ -33,7 +33,7 @@ public interface IHooksApi {
     long allocate(int numBytes);
     void free(long addr);
     void classFilter(boolean isSet, String className);
-    void threadSuspend(long thread);
+    HooksCmdResponse threadSuspend(long thread);
     void threadResume(long thread);
     void threadStep(long thread, long pcLow, long pcHigh, long pcLow2, long pcHigh2);
     HooksCmdResponse threadInvoke(long thread, long classOrObjectPtr, String methodName, String descriptor,

@@ -174,6 +174,21 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="kCIImageRepresentationSemanticSegmentationSkyMatteImage", optional=true)
         public static native NSString SemanticSegmentationSkyMatteImage();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationHDRImage", optional=true)
+        public static native NSString HDRImage();
+        /**
+         * @since Available in iOS 14.1 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationHDRGainMapImage", optional=true)
+        public static native NSString HDRGainMapImage();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCIImageRepresentationHDRGainMapAsRGB", optional=true)
+        public static native NSString HDRGainMapAsRGB();
     }
     /*</keys>*/
 }

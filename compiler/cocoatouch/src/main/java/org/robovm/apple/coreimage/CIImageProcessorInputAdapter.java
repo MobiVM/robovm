@@ -67,6 +67,21 @@ import org.robovm.apple.avfoundation.*;
     public CVPixelBuffer getPixelBuffer() { return null; }
     @NotImplemented("metalTexture")
     public MTLTexture getMetalTexture() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("digest")
+    public long getDigest() { return 0; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("roiTileIndex")
+    public @MachineSizedUInt long getRoiTileIndex() { return 0; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("roiTileCount")
+    public @MachineSizedUInt long getRoiTileCount() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

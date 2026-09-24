@@ -97,6 +97,14 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyTIFF Orientation = new CGImagePropertyTIFF("Orientation");
     public static final CGImagePropertyTIFF XResolution = new CGImagePropertyTIFF("XResolution");
     public static final CGImagePropertyTIFF YResolution = new CGImagePropertyTIFF("YResolution");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final CGImagePropertyTIFF XPosition = new CGImagePropertyTIFF("XPosition");
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    public static final CGImagePropertyTIFF YPosition = new CGImagePropertyTIFF("YPosition");
     public static final CGImagePropertyTIFF ResolutionUnit = new CGImagePropertyTIFF("ResolutionUnit");
     public static final CGImagePropertyTIFF Software = new CGImagePropertyTIFF("Software");
     public static final CGImagePropertyTIFF TransferFunction = new CGImagePropertyTIFF("TransferFunction");
@@ -116,7 +124,7 @@ import org.robovm.apple.coregraphics.*;
     public static final CGImagePropertyTIFF TileLength = new CGImagePropertyTIFF("TileLength");
     /*</constants>*/
     
-    private static /*<name>*/CGImagePropertyTIFF/*</name>*/[] values = new /*<name>*/CGImagePropertyTIFF/*</name>*/[] {/*<value_list>*/Compression, PhotometricInterpretation, DocumentName, ImageDescription, Make, Model, Orientation, XResolution, YResolution, ResolutionUnit, Software, TransferFunction, DateTime, Artist, HostComputer, Copyright, WhitePoint, PrimaryChromaticities, TileWidth, TileLength/*</value_list>*/};
+    private static /*<name>*/CGImagePropertyTIFF/*</name>*/[] values = new /*<name>*/CGImagePropertyTIFF/*</name>*/[] {/*<value_list>*/Compression, PhotometricInterpretation, DocumentName, ImageDescription, Make, Model, Orientation, XResolution, YResolution, XPosition, YPosition, ResolutionUnit, Software, TransferFunction, DateTime, Artist, HostComputer, Copyright, WhitePoint, PrimaryChromaticities, TileWidth, TileLength/*</value_list>*/};
     
     /*<name>*/CGImagePropertyTIFF/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -157,6 +165,16 @@ import org.robovm.apple.coregraphics.*;
         public static native CFString XResolution();
         @GlobalValue(symbol="kCGImagePropertyTIFFYResolution", optional=true)
         public static native CFString YResolution();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyTIFFXPosition", optional=true)
+        public static native CFString XPosition();
+        /**
+         * @since Available in iOS 17.4 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyTIFFYPosition", optional=true)
+        public static native CFString YPosition();
         @GlobalValue(symbol="kCGImagePropertyTIFFResolutionUnit", optional=true)
         public static native CFString ResolutionUnit();
         @GlobalValue(symbol="kCGImagePropertyTIFFSoftware", optional=true)

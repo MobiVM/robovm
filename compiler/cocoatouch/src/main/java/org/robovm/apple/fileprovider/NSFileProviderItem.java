@@ -65,8 +65,18 @@ import org.robovm.apple.uniformtypeid.*;
     @Deprecated
     @Property(selector = "typeIdentifier")
     String getTypeIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "typeAndCreator")
+    @ByVal NSFileProviderTypeAndCreator getTypeAndCreator();
     @Property(selector = "capabilities")
     NSFileProviderItemCapabilities getCapabilities();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "fileSystemFlags")
+    NSFileProviderFileSystemFlags getFileSystemFlags();
     @Property(selector = "documentSize")
     NSNumber getDocumentSize();
     @Property(selector = "childItemCount")
@@ -75,6 +85,11 @@ import org.robovm.apple.uniformtypeid.*;
     NSDate getCreationDate();
     @Property(selector = "contentModificationDate")
     NSDate getContentModificationDate();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "extendedAttributes")
+    NSDictionary<NSString, NSData> getExtendedAttributes();
     @Property(selector = "lastUsedDate")
     NSDate getLastUsedDate();
     @Property(selector = "tagData")
@@ -116,8 +131,23 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "versionIdentifier")
     NSData getVersionIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "itemVersion")
+    NSFileProviderItemVersion getItemVersion();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "symlinkTargetPath")
+    String getSymlinkTargetPath();
     @Property(selector = "userInfo")
     NSDictionary<?, ?> getUserInfo();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "contentPolicy")
+    NSFileProviderContentPolicy getContentPolicy();
     /*</properties>*/
     /*<methods>*/
     

@@ -40,7 +40,8 @@ public enum /*<name>*/NWQuicStreamType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     unknown(0L),
     bidirectional(1L),
-    unidirectional(2L);
+    unidirectional(2L),
+    datagram(3L);
     /*</values>*/
 
     /*<bind>*/

@@ -48,6 +48,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKRecordZoneNotification() {}
     protected CKRecordZoneNotification(Handle h, long handle) { super(h, handle); }
     protected CKRecordZoneNotification(SkipInit skipInit) { super(skipInit); }
+    public CKRecordZoneNotification(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary) { super((Handle) null, create(notificationDictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "recordZoneID")
@@ -60,6 +61,7 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "notificationFromRemoteNotificationDictionary:")
+    protected static native @Pointer long create(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary);
     /*</methods>*/
 }

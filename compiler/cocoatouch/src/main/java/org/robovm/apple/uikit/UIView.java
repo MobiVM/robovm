@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIView/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UIAccessibilityIdentification, UILargeContentViewerItem/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate, UITraitChangeObservable, UIAccessibilityIdentification, UILargeContentViewerItem, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UIViewPtr extends Ptr<UIView, UIViewPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIView.class); }/*</bind>*/
@@ -162,6 +163,16 @@ import org.robovm.apple.linkpresentation.*;
     public native @MachineSizedFloat double getContentScaleFactor();
     @Property(selector = "setContentScaleFactor:")
     public native void setContentScaleFactor(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "anchorPoint")
+    public native @ByVal CGPoint getAnchorPoint();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAnchorPoint:")
+    public native void setAnchorPoint(@ByVal CGPoint v);
     @Property(selector = "isMultipleTouchEnabled")
     public native boolean isMultipleTouchEnabled();
     @Property(selector = "setMultipleTouchEnabled:")
@@ -395,16 +406,40 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "minimumContentSizeCategory")
     public native String getMinimumContentSizeCategory();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "setMinimumContentSizeCategory:")
     public native void setMinimumContentSizeCategory(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "maximumContentSizeCategory")
     public native String getMaximumContentSizeCategory();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "setMaximumContentSizeCategory:")
     public native void setMaximumContentSizeCategory(String v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "appliedContentSizeCategoryLimitsDescription")
     public native String getAppliedContentSizeCategoryLimitsDescription();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
+    @Property(selector = "cornerConfiguration")
+    public native UICornerConfiguration getCornerConfiguration();
+    @Property(selector = "setCornerConfiguration:")
+    public native void setCornerConfiguration(UICornerConfiguration v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -475,6 +510,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setLargeContentImageInsets:")
     public native void setLargeContentImageInsets(@ByVal UIEdgeInsets v);
+    @Property(selector = "hoverStyle")
+    public native UIHoverStyle getHoverStyle();
+    @Property(selector = "setHoverStyle:")
+    public native void setHoverStyle(UIHoverStyle v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -487,6 +526,8 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBezierPath getCollisionBoundingPath();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    @Property(selector = "focusItemDeferralMode")
+    public native UIFocusItemDeferralMode getFocusItemDeferralMode();
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -585,6 +626,21 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isDescendantOf(UIView view);
     @Method(selector = "viewWithTag:")
     public native UIView getViewWithTag(@MachineSizedSInt long tag);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateProperties")
+    public native void setNeedsUpdateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateProperties")
+    public native void updateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updatePropertiesIfNeeded")
+    public native void updatePropertiesIfNeeded();
     @Method(selector = "setNeedsLayout")
     public native void setNeedsLayout();
     @Method(selector = "layoutIfNeeded")
@@ -616,6 +672,11 @@ import org.robovm.apple.linkpresentation.*;
     public static native void animate(double duration, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "animateWithDuration:animations:")
     public static native void animate(double duration, @Block Runnable animations);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:")
+    public static native void animateWithSpring(double duration, @MachineSizedFloat double bounce, @MachineSizedFloat double velocity, double delay, UIViewAnimationOptions options, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:")
     public static native void animate(double duration, double delay, @MachineSizedFloat double dampingRatio, @MachineSizedFloat double velocity, UIViewAnimationOptions options, @Block Runnable animations, @Block VoidBooleanBlock completion);
     @Method(selector = "transitionWithView:duration:options:animations:completion:")
@@ -786,6 +847,19 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "setAnimationTransition:forView:cache:")
     public static native void setAnimationTransition(UIViewAnimationTransition transition, UIView view, boolean cache);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "updateTraitsIfNeeded")
+    public native void updateTraitsIfNeeded();
+    @Method(selector = "layoutGuideForLayoutRegion:")
+    public native UILayoutGuide layoutGuideForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "edgeInsetsForLayoutRegion:")
+    public native @ByVal UIEdgeInsets edgeInsetsForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "directionalEdgeInsetsForLayoutRegion:")
+    public native @ByVal NSDirectionalEdgeInsets directionalEdgeInsetsForLayoutRegion(UIViewLayoutRegion layoutRegion);
+    @Method(selector = "effectiveRadiusForCorner:")
+    public native @MachineSizedFloat double effectiveRadiusForCorner(UIRectCorner corner);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "addInteraction:")
@@ -803,6 +877,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void draw(@ByVal CGRect rect, UIViewPrintFormatter formatter);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     @Method(selector = "convertPoint:toCoordinateSpace:")
@@ -841,5 +919,12 @@ import org.robovm.apple.linkpresentation.*;
     public native void layoutSublayers(CALayer layer);
     @Method(selector = "actionForLayer:forKey:")
     public native CAAction getAction(CALayer layer, String event);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "frameInView:")
+    public native @ByVal CGRect frameInView(UIView referenceView);
     /*</methods>*/
 }

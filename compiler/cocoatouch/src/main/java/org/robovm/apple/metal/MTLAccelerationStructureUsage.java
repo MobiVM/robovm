@@ -46,6 +46,14 @@ public final class /*<name>*/MTLAccelerationStructureUsage/*</name>*/ extends Bi
      * @since Available in iOS 15.0 and later.
      */
     public static final MTLAccelerationStructureUsage ExtendedLimits = new MTLAccelerationStructureUsage(4L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLAccelerationStructureUsage PreferFastIntersection = new MTLAccelerationStructureUsage(16L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final MTLAccelerationStructureUsage MinimizeMemory = new MTLAccelerationStructureUsage(32L);
     /*</values>*/
 
     /*<bind>*/

@@ -60,7 +60,7 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPTabBarTemplateDelegate v);
     @Property(selector = "maximumTabCount")
-    public static native @MachineSizedUInt long getMaximumTabCount();
+    public static native @MachineSizedSInt long getMaximumTabCount();
     @Property(selector = "templates")
     public native NSArray<CPTemplate> getTemplates();
     @Property(selector = "selectedTemplate")
@@ -74,5 +74,15 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(NSArray<CPTemplate> templates);
     @Method(selector = "updateTemplates:")
     public native void updateTemplates(NSArray<CPTemplate> newTemplates);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "selectTemplate:")
+    public native void selectTemplate(CPTemplate newTemplate);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "selectTemplateAtIndex:")
+    public native void selectTemplateAtIndex(@MachineSizedSInt long index);
     /*</methods>*/
 }

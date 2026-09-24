@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeSystemClockDidChange(final Runnable block) {
+        public static NSObject observeSystemClockDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SystemClockDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

@@ -29,6 +29,7 @@ import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.browserenginekit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,22 +76,30 @@ import org.robovm.apple.uikit.*;
     public native SFSafariViewControllerConfiguration getConfiguration();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the bars interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "preferredBarTintColor")
     public native UIColor getPreferredBarTintColor();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the bars interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "setPreferredBarTintColor:")
     public native void setPreferredBarTintColor(UIColor v);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the controls interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "preferredControlTintColor")
     public native UIColor getPreferredControlTintColor();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Tinting the controls interferes with background effects that the system provides.
      */
+    @Deprecated
     @Property(selector = "setPreferredControlTintColor:")
     public native void setPreferredControlTintColor(UIColor v);
     /**
@@ -111,6 +120,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="SFExtensionMessageKey", optional=true)
     public static native String getExtensionMessageKey();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="SFExtensionProfileKey", optional=true)
+    public static native String getExtensionProfileKey();
     
     /**
      * @since Available in iOS 11.0 and later.

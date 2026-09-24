@@ -47,7 +47,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -61,6 +68,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_framer_create_options", optional=true)
     public static native NWProtocolOptions createFramerOptions(NWProtocolDefinition framer_definition);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Bridge(symbol="nw_framer_options_set_object_value", optional=true)
+    public native void setFramerObjectValue(BytePtr key, NSObject value);
     /**
      * @since Available in iOS 12.0 and later.
      */

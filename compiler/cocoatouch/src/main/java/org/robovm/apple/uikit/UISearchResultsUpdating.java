@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +60,11 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "updateSearchResultsForSearchController:")
     void updateSearchResults(UISearchController searchController);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "updateSearchResultsForSearchController:selectingSearchSuggestion:")
+    void updateSearchResults(UISearchController searchController, UISearchSuggestion searchSuggestion);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

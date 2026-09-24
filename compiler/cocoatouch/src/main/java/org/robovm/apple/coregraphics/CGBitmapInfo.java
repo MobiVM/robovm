@@ -40,13 +40,48 @@ public final class /*<name>*/CGBitmapInfo/*</name>*/ extends Bits</*<name>*/CGBi
     /*<values>*/
     public static final CGBitmapInfo None = new CGBitmapInfo(0L);
     public static final CGBitmapInfo AlphaInfoMask = new CGBitmapInfo(31L);
+    public static final CGBitmapInfo ComponentInfoMask = new CGBitmapInfo(3840L);
+    public static final CGBitmapInfo ByteOrderInfoMask = new CGBitmapInfo(28672L);
+    public static final CGBitmapInfo PixelFormatInfoMask = new CGBitmapInfo(983040L);
+    /**
+     * @deprecated Use kCGBitmapComponentInfoMask
+     */
+    @Deprecated
     public static final CGBitmapInfo FloatInfoMask = new CGBitmapInfo(3840L);
-    public static final CGBitmapInfo FloatComponents = new CGBitmapInfo(256L);
+    /**
+     * @deprecated Use kCGBitmapByteOrderInfoMask
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrderMask = new CGBitmapInfo(28672L);
+    /**
+     * @deprecated Use kCGImageComponentFloat
+     */
+    @Deprecated
+    public static final CGBitmapInfo FloatComponents = new CGBitmapInfo(256L);
+    /**
+     * @deprecated Use kCGImageByteOrderDefault
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrderDefault = new CGBitmapInfo(0L);
+    /**
+     * @deprecated Use kCGImageByteOrder16Little
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrder16Little = new CGBitmapInfo(4096L);
+    /**
+     * @deprecated Use kCGImageByteOrder32Little
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrder32Little = new CGBitmapInfo(8192L);
+    /**
+     * @deprecated Use kCGImageByteOrder16Big
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrder16Big = new CGBitmapInfo(12288L);
+    /**
+     * @deprecated Use kCGImageByteOrder32Big
+     */
+    @Deprecated
     public static final CGBitmapInfo ByteOrder32Big = new CGBitmapInfo(16384L);
     /*</values>*/
 

@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,6 +59,16 @@ import org.robovm.apple.foundation.*;
     public native SRWristLocation getWristLocation();
     @Property(selector = "crownOrientation")
     public native SRCrownOrientation getCrownOrientation();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "onWristDate")
+    public native NSDate getOnWristDate();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "offWristDate")
+    public native NSDate getOffWristDate();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

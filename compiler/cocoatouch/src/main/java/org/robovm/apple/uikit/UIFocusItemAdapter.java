@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,6 +73,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("focusGroupPriority")
     public @MachineSizedSInt long getFocusGroupPriority() { return 0; }
+    @NotImplemented("focusItemDeferralMode")
+    public UIFocusItemDeferralMode getFocusItemDeferralMode() { return null; }
     /**
      * @since Available in iOS 15.0 and later.
      */

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -107,6 +108,11 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "searchBar")
     public native UISearchBar getSearchBar();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "searchBarPlacement")
+    public native UINavigationItemSearchBarPlacement getSearchBarPlacement();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "automaticallyShowsSearchResultsController")
@@ -138,14 +144,48 @@ import org.robovm.apple.linkpresentation.*;
     public native void setAutomaticallyShowsCancelButton(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use scopeBarActivation instead
      */
+    @Deprecated
     @Property(selector = "automaticallyShowsScopeBar")
     public native boolean automaticallyShowsScopeBar();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use scopeBarActivation instead
      */
+    @Deprecated
     @Property(selector = "setAutomaticallyShowsScopeBar:")
     public native void setAutomaticallyShowsScopeBar(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "scopeBarActivation")
+    public native UISearchControllerScopeBarActivation getScopeBarActivation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setScopeBarActivation:")
+    public native void setScopeBarActivation(UISearchControllerScopeBarActivation v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "searchSuggestions")
+    public native NSArray<?> getSearchSuggestions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSearchSuggestions:")
+    public native void setSearchSuggestions(NSArray<?> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "ignoresSearchSuggestionsForSearchBarPlacementStacked")
+    public native boolean ignoresSearchSuggestionsForSearchBarPlacementStacked();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setIgnoresSearchSuggestionsForSearchBarPlacementStacked:")
+    public native void setIgnoresSearchSuggestionsForSearchBarPlacementStacked(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

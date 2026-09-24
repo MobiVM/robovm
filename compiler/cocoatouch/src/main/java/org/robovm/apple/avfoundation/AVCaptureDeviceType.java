@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,10 +58,15 @@ import org.robovm.apple.audiotoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
-    public static native String BuiltInMicrophone();
+    @GlobalValue(symbol="AVCaptureDeviceTypeExternal", optional=true)
+    public static native String External();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeMicrophone", optional=true)
+    public static native String Microphone();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -96,11 +103,28 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInTrueDepthCamera", optional=true)
     public static native String BuiltInTrueDepthCamera();
     /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInLiDARDepthCamera", optional=true)
+    public static native String BuiltInLiDARDepthCamera();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="AVCaptureDeviceTypeContinuityCamera", optional=true)
+    public static native String ContinuityCamera();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 10.2. Use AVCaptureDeviceTypeBuiltInDualCamera instead.
      */
     @Deprecated
     @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInDuoCamera", optional=true)
     public static native String BuiltInDuoCamera();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use AVCaptureDeviceTypeMicrophone
+     */
+    @Deprecated
+    @GlobalValue(symbol="AVCaptureDeviceTypeBuiltInMicrophone", optional=true)
+    public static native String BuiltInMicrophone();
     /*</methods>*/
 }

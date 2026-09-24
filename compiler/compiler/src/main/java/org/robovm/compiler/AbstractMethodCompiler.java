@@ -16,16 +16,8 @@
  */
 package org.robovm.compiler;
 
-import static org.robovm.compiler.Functions.*;
-import static org.robovm.compiler.Types.*;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.config.OS.Family;
 import org.robovm.compiler.llvm.BasicBlockRef;
 import org.robovm.compiler.llvm.Function;
 import org.robovm.compiler.llvm.FunctionRef;
@@ -35,9 +27,19 @@ import org.robovm.compiler.llvm.Ret;
 import org.robovm.compiler.llvm.Unreachable;
 import org.robovm.compiler.llvm.Value;
 import org.robovm.compiler.trampoline.Trampoline;
-
 import soot.SootClass;
 import soot.SootMethod;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.robovm.compiler.Functions.BC_THROW_IF_EXCEPTION_OCCURRED;
+import static org.robovm.compiler.Functions.MONITORENTER;
+import static org.robovm.compiler.Functions.MONITOREXIT;
+import static org.robovm.compiler.Functions.call;
+import static org.robovm.compiler.Functions.trycatchAllEnter;
+import static org.robovm.compiler.Functions.trycatchLeave;
+import static org.robovm.compiler.Types.getInternalName;
 
 /**
  *
@@ -84,14 +86,7 @@ public abstract class AbstractMethodCompiler {
     protected abstract Function doCompile(ModuleBuilder moduleBuilder, SootMethod method);
 
     protected Function createMethodFunction(SootMethod method) {
-        /*
-         * Hack to make OSX/iOS x86 binaries link properly. The linker will
-         * crash if we make method functions weak which is what we need for the
-         * tree shaking. So in OSX/iOS x86 builds we make method functions
-         * strong and we behave as if tree shaking was disabled.
-         */
-        return FunctionBuilder.method(method,
-                !(config.getOs().getFamily() == Family.darwin && config.getArch().getCpuArch() == CpuArch.x86));
+        return FunctionBuilder.method(method, true);
     }
 
     private void compileSynchronizedWrapper(ModuleBuilder moduleBuilder, SootMethod method) {

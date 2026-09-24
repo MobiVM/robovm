@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -89,6 +91,11 @@ import org.robovm.apple.audiotoolbox.*;
     }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isOpen")
+    public native boolean isOpen();
     @Property(selector = "url")
     public native NSURL getUrl();
     @Property(selector = "fileFormat")
@@ -118,6 +125,11 @@ import org.robovm.apple.audiotoolbox.*;
     private native @Pointer long init(NSURL fileURL, AVAudioSettings settings, NSError.NSErrorPtr outError);
     @Method(selector = "initForWriting:settings:commonFormat:interleaved:error:")
     private native @Pointer long init(NSURL fileURL, AVAudioSettings settings, AVAudioCommonFormat format, boolean interleaved, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "close")
+    public native void close();
     public boolean readIntoBuffer(AVAudioPCMBuffer buffer) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = readIntoBuffer(buffer, ptr);

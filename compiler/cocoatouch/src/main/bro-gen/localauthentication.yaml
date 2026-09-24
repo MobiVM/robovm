@@ -5,14 +5,16 @@ framework: LocalAuthentication
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/LocalAuthentication.framework/Headers/LocalAuthentication.h
-
+private_typedefs:
+    '__CFString *': String
 enums:
     LAPolicy: {prefix: LAPolicy}
     LAError: {nserror: true, name: LAError}
     LAAccessControlOperation: {}
     LACredentialType: {prefix: LACredentialType}
     LABiometryType: {prefix: LABiometry} #since 11.0
-
+    LARightState: {} #since 16.0
+    LACompanionType: {} #since 18.0
 classes:
     LAContext: # DONE
         methods:
@@ -27,8 +29,71 @@ classes:
                 trim_after_first_colon: true
             '-evaluateAccessControl:operation:localizedReason:reply:':
                 trim_after_first_colon: true
-
-protocols: {}
+    LAAuthenticationRequirement: #since 16.0
+        methods:
+            '+biometryRequirementWithFallback:':
+                name: create
+                constructor: true
+    LABiometryFallbackRequirement: {} #since 16.0
+    LAPersistedRight: {} #since 16.0
+    LAPrivateKey: #since 16.0
+        methods:
+            '-signData:secKeyAlgorithm:completion:':
+                name: signData
+            '-decryptData:secKeyAlgorithm:completion:':
+                name: decryptData
+            '-exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:':
+                name: exchangeKeys
+    LAPublicKey: #since 16.0
+        methods:
+            '-exportBytesWithCompletion:':
+                name: exportBytes
+            '-encryptData:secKeyAlgorithm:completion:':
+                name: encryptData
+            '-verifyData:signature:secKeyAlgorithm:completion:':
+                name: verifyData
+    LARight: #since 16.0
+        methods:
+            '-initWithRequirement:':
+                name: init
+            '-authorizeWithLocalizedReason:completion:':
+                name: authorizeWithLocalizedReason
+            '-checkCanAuthorizeWithCompletion:':
+                name: checkCanAuthorize
+            '-deauthorizeWithCompletion:':
+                name: deauthorize
+    LARightStore: #since 16.0
+        methods:
+            '-rightForIdentifier:completion:':
+                name: rightForIdentifier
+            '-saveRight:identifier:completion:':
+                name: saveRight
+            '-saveRight:identifier:secret:completion:':
+                name: saveRight
+            '-removeRight:completion:':
+                name: removeRight
+            '-removeRightForIdentifier:completion:':
+                name: removeRightForIdentifier
+            '-removeAllRightsWithCompletion:':
+                name: removeAllRights
+    LASecret: #since 16.0
+        methods:
+            '-loadDataWithCompletion:':
+                name: loadData
+    LADomainState: {} #since 18.0
+    LADomainStateBiometry: {} #since 18.0
+    LADomainStateCompanion: {} #since 18.0
+    LAEnvironment: {} #since 18.0
+    LAEnvironmentMechanism: {} #since 18.0
+    LAEnvironmentMechanismBiometry: {} #since 18.0
+    LAEnvironmentMechanismCompanion: {} #since 18.0
+    LAEnvironmentMechanismUserPassword: {} #since 18.0
+    LAEnvironmentState: {} #since 18.0
+protocols:
+    LAEnvironmentObserver: #since 18.0
+        methods:
+            '-environment:stateDidChangeFromOldState:':
+                name: stateDidChange
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
@@ -55,13 +120,19 @@ constants:
     # Unused as these defines are used to initialize enums
     kLAPolicyDeviceOwnerAuthentication(.*):
         exclude: true
+    kLAAccessControlOperation(.*):
+        exclude: true
     kLAPolicyDeviceOwnerAuthentication:
+        exclude: true
+    kLACompanionTypeNone:
         exclude: true
     kLAError.*:
         exclude: true
     kLAOption.*:
         exclude: true
     kLACredential.*:
+        exclude: true
+    kLABiometryType.*:
         exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version

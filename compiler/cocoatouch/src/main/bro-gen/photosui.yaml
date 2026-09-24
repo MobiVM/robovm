@@ -16,6 +16,8 @@ enums:
     PHLivePhotoViewPlaybackStyle: {}
     PHPickerConfigurationAssetRepresentationMode: {} #since 14.0
     PHPickerConfigurationSelection: {} #since 15.0
+    PHPickerMode: { } #since 17.0
+    PHPickerCapabilities: { } #since 17.0
 classes:
     PHLivePhotoView: #since 9.1
         methods:
@@ -34,6 +36,11 @@ classes:
         methods:
             '-initWithConfiguration:':
                 name: init
+            '-deselectAssetsWithIdentifiers:':
+                name: deselectAssets
+            '-moveAssetWithIdentifier:afterAssetWithIdentifier:':
+                name: moveAsset
+    PHPickerUpdateConfiguration: {} #since 17.0
 protocols:
     PHLivePhotoViewDelegate:
         methods:
@@ -43,6 +50,8 @@ protocols:
                 name: didEndPlayback
             '-livePhotoView:canBeginPlaybackWithStyle:':
                 name: canBeginPlayback
+            '-livePhotoView:extraMinimumTouchDurationForTouch:withStyle:':
+                name: getExtraMinimumTouchDuration
     PHContentEditingController: # DONE
         properties:
             'shouldShowCancelConfirmation':

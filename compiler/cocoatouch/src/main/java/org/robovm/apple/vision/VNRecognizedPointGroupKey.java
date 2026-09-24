@@ -100,6 +100,10 @@ import org.robovm.apple.imageio.*;
     public static final VNRecognizedPointGroupKey RecognizedPointGroupKeyAll = new VNRecognizedPointGroupKey("RecognizedPointGroupKeyAll");
     /**
      * @since Available in iOS 14.0 and later.
+     */
+    public static final VNRecognizedPointGroupKey RecognizedPoint3DGroupKeyAll = new VNRecognizedPointGroupKey("RecognizedPoint3DGroupKeyAll");
+    /**
+     * @since Available in iOS 14.0 and later.
      * @deprecated Deprecated in iOS 14.0. Use VNHumanBodyPoseObservationJointsGroupNameFace
      */
     @Deprecated
@@ -136,7 +140,7 @@ import org.robovm.apple.imageio.*;
     public static final VNRecognizedPointGroupKey BodyLandmarkRegionKeyRightLeg = new VNRecognizedPointGroupKey("BodyLandmarkRegionKeyRightLeg");
     /*</constants>*/
     
-    private static /*<name>*/VNRecognizedPointGroupKey/*</name>*/[] values = new /*<name>*/VNRecognizedPointGroupKey/*</name>*/[] {/*<value_list>*/RecognizedPointGroupKeyAll, BodyLandmarkRegionKeyFace, BodyLandmarkRegionKeyTorso, BodyLandmarkRegionKeyLeftArm, BodyLandmarkRegionKeyRightArm, BodyLandmarkRegionKeyLeftLeg, BodyLandmarkRegionKeyRightLeg/*</value_list>*/};
+    private static /*<name>*/VNRecognizedPointGroupKey/*</name>*/[] values = new /*<name>*/VNRecognizedPointGroupKey/*</name>*/[] {/*<value_list>*/RecognizedPointGroupKeyAll, RecognizedPoint3DGroupKeyAll, BodyLandmarkRegionKeyFace, BodyLandmarkRegionKeyTorso, BodyLandmarkRegionKeyLeftArm, BodyLandmarkRegionKeyRightArm, BodyLandmarkRegionKeyLeftLeg, BodyLandmarkRegionKeyRightLeg/*</value_list>*/};
     
     /*<name>*/VNRecognizedPointGroupKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -153,7 +157,12 @@ import org.robovm.apple.imageio.*;
     }
     
     /*<methods>*//*</methods>*/
-    
+
+    // dkimitsa: manually added code to support subclasses
+    protected VNRecognizedPointGroupKey (Class<?> clazz, String getterName) {
+        super(clazz, getterName);
+    }
+
     /*<annotations>*/@Library("Vision") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }
@@ -164,6 +173,11 @@ import org.robovm.apple.imageio.*;
          */
         @GlobalValue(symbol="VNRecognizedPointGroupKeyAll", optional=true)
         public static native NSString RecognizedPointGroupKeyAll();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="VNRecognizedPoint3DGroupKeyAll", optional=true)
+        public static native NSString RecognizedPoint3DGroupKeyAll();
         /**
          * @since Available in iOS 14.0 and later.
          * @deprecated Deprecated in iOS 14.0. Use VNHumanBodyPoseObservationJointsGroupNameFace

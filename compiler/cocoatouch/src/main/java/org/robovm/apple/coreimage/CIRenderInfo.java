@@ -60,6 +60,11 @@ import org.robovm.apple.avfoundation.*;
     /*<properties>*/
     @Property(selector = "kernelExecutionTime")
     public native double getKernelExecutionTime();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "kernelCompileTime")
+    public native double getKernelCompileTime();
     @Property(selector = "passCount")
     public native @MachineSizedSInt long getPassCount();
     @Property(selector = "pixelsProcessed")

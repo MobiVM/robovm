@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -131,6 +132,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setActionHandler:")
     public native void setActionHandler(@Block Block1<UIAccessibilityCustomAction, Boolean> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "category")
+    public native String getCategory();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setCategory:")
+    public native void setCategory(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

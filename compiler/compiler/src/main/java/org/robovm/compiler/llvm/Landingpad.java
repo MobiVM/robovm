@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * @author niklas
  *
@@ -41,35 +44,47 @@ public class Landingpad extends Instruction {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(result);
-        sb.append(" = landingpad ");
-        sb.append(result.getType());
-        sb.append(" personality ");
-        sb.append(personalityFn.getType());
-        sb.append(' ');
-        sb.append(personalityFn);
+    public void write(Writer writer) throws IOException {
+        writer.write(result.toString());
+        writer.write(" = landingpad ");
+        result.getType().write(writer);
+        writer.write(" personality ");
+        personalityFn.getType().write(writer);
+        writer.write(' ');
+        personalityFn.write(writer);
         if (cleanup) {
-            sb.append(" cleanup");
+            writer.write(" cleanup");
         }
         for (Clause clause : clauses) {
-            sb.append(' ');
-            sb.append(clause);
+            writer.write(' ');
+            clause.write(writer);
         }
-        return sb.toString();
     }
-    
-    public interface Clause {}
+
+    @Override
+    public String toString() {
+        return toString(this::write);
+    }
+
+    public interface Clause extends Writable {}
     
     public static class Catch implements Clause {
         private final Value value;
         public Catch(Value value) {
             this.value = value;
         }
+
+        @Override
+        public void write(Writer writer) throws IOException {
+            writer.write("catch ");
+            value.getType().write(writer);
+            writer.write(' ');
+            value.write(writer);
+        }
+
         @Override
         public String toString() {
-            return "catch " + value.getType() + " " + value;
+            return toString(this::write);
         }
     }
     
@@ -78,9 +93,18 @@ public class Landingpad extends Instruction {
         public Filter(ArrayConstant value) {
             this.value = value;
         }
+
+        @Override
+        public void write(Writer writer) throws IOException {
+            writer.write("filter ");
+            value.getType().write(writer);
+            writer.write(' ');
+            value.write(writer);
+        }
+
         @Override
         public String toString() {
-            return "filter " + value.getType() + " " + value;
+            return toString(this::write);
         }
     }
 }

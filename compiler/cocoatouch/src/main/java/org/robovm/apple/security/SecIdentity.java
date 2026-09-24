@@ -70,6 +70,11 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Bridge(symbol="SecIdentityGetTypeID", optional=true)
     public static native @MachineSizedUInt long getClassTypeID();
+    /**
+     * @since Available in iOS 11.2 and later.
+     */
+    @Bridge(symbol="SecIdentityCreate", optional=true)
+    public static native SecIdentity create(CFAllocator allocator, SecCertificate certificate, SecKey privateKey);
     @Bridge(symbol="SecIdentityCopyCertificate", optional=true)
     protected native OSStatus getCertificate0(SecCertificate.SecCertificatePtr certificateRef);
     @Bridge(symbol="SecIdentityCopyPrivateKey", optional=true)

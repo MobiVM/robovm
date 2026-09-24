@@ -209,7 +209,15 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    AccessoryIsSuspended(103L);
+    AccessoryIsSuspended(103L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    PartialCommunicationFailure(104L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    HomeUpgradeRequired(105L);
     /*</values>*/
 
     /*<bind>*/

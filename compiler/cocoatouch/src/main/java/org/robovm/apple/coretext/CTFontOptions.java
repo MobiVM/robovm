@@ -43,6 +43,7 @@ public final class /*<name>*/CTFontOptions/*</name>*/ extends Bits</*<name>*/CTF
     public static final CTFontOptions None = new CTFontOptions(0L);
     public static final CTFontOptions Default = new CTFontOptions(0L);
     public static final CTFontOptions PreventAutoActivation = new CTFontOptions(1L);
+    public static final CTFontOptions PreventAutoDownload = new CTFontOptions(2L);
     public static final CTFontOptions PreferSystemFont = new CTFontOptions(4L);
     /*</values>*/
 

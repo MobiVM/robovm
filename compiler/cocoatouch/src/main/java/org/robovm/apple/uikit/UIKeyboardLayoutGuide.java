@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +65,26 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isFollowsUndockedKeyboard();
     @Property(selector = "setFollowsUndockedKeyboard:")
     public native void setFollowsUndockedKeyboard(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "usesBottomSafeArea")
+    public native boolean usesBottomSafeArea();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setUsesBottomSafeArea:")
+    public native void setUsesBottomSafeArea(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "keyboardDismissPadding")
+    public native @MachineSizedFloat double getKeyboardDismissPadding();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setKeyboardDismissPadding:")
+    public native void setKeyboardDismissPadding(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

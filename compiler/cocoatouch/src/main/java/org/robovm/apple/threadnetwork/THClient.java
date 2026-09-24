@@ -59,6 +59,11 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "retrieveAllCredentials:")
     public native void retrieveAllCredentials(@Block VoidBlock2<NSSet<THCredentials>, NSError> completion);
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "retrieveAllActiveCredentials:")
+    public native void retrieveAllActiveCredentials(@Block VoidBlock2<NSSet<THCredentials>, NSError> completion);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "deleteCredentialsForBorderAgent:completion:")
@@ -83,5 +88,15 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "retrieveCredentialsForExtendedPANID:completion:")
     public native void retrieveCredentialsForExtendedPANID(NSData extendedPANID, @Block VoidBlock2<THCredentials, NSError> completion);
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Method(selector = "checkPreferredNetworkForActiveOperationalDataset:completion:")
+    public native void checkPreferredNetworkForActiveOperationalDataset(NSData activeOperationalDataSet, @Block VoidBooleanBlock completion);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "isPreferredNetworkAvailableWithCompletion:")
+    public native void isPreferredNetworkAvailable(@Block VoidBooleanBlock completion);
     /*</methods>*/
 }

@@ -100,6 +100,31 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setFrameSemantics:")
     public native void setFrameSemantics(ARFrameSemantics v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "configurableCaptureDeviceForPrimaryCamera")
+    public static native AVCaptureDevice getConfigurableCaptureDeviceForPrimaryCamera();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recommendedVideoFormatFor4KResolution")
+    public static native ARVideoFormat getRecommendedVideoFormatFor4KResolution();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recommendedVideoFormatForHighResolutionFrameCapturing")
+    public static native ARVideoFormat getRecommendedVideoFormatForHighResolutionFrameCapturing();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "videoHDRAllowed")
+    public native boolean isVideoHDRAllowed();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setVideoHDRAllowed:")
+    public native void setVideoHDRAllowed(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

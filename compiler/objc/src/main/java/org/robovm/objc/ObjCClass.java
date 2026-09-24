@@ -222,8 +222,12 @@ public final class ObjCClass extends ObjCObject {
         }
         return getByType(id.getClass());
     }
-    
+
     public static ObjCClass getFromObject(long handle) {
+        return getFromObject(handle, false);
+    }
+
+    public static ObjCClass getFromObject(long handle, boolean optional) {
         long classPtr = ObjCRuntime.object_getClass(handle);
         // dkimitsa. There is a bug observed in iOS12 that causes not all Objective-C class fields properly initialized
         // in Class instance of Swift classes. This causes a crash in APIs like class_copyProtocolList to crash
@@ -234,7 +238,7 @@ public final class ObjCClass extends ObjCObject {
         if (classPtr != 0 && ObjCRuntime.class_respondsToSelector(classPtr, SELECTOR_NSOBJECT_CLASS.getHandle())) {
             classPtr = ObjCRuntime.ptr_objc_msgSend(handle, SELECTOR_NSOBJECT_CLASS.getHandle());
         }
-        return toObjCClass(classPtr);
+        return toObjCClass(classPtr, optional);
     }
     
     public static ObjCClass getByType(Class<? extends ObjCObject> type) {
@@ -302,6 +306,10 @@ public final class ObjCClass extends ObjCObject {
     }
 
     public static ObjCClass toObjCClass(final long handle) {
+        return toObjCClass(handle, false);
+    }
+
+    public static ObjCClass toObjCClass(final long handle, final boolean optional) {
         long classPtr = handle;
         ObjCClass c = ObjCObject.getPeerObject(classPtr);
         if (c == null) {
@@ -332,7 +340,7 @@ public final class ObjCClass extends ObjCObject {
                 }
             }
         }
-        if (c == null) {
+        if (c == null && !optional) {
             String name = VM.newStringUTF(ObjCRuntime.class_getName(handle));
             throw new ObjCClassNotFoundException("Could not find Java class corresponding to Objective-C class: " + name);
         }
@@ -363,12 +371,17 @@ public final class ObjCClass extends ObjCObject {
     private static String getCustomClassName(Class<? extends ObjCObject> type) {
         CustomClass customClassAnno = type.getAnnotation(CustomClass.class);
         String name = type.getName();
-        if (customClassAnno != null && customClassAnno.value().length() > 0) {
-            name = customClassAnno.value();
+        if (customClassAnno != null) {
+            // if there is name provided in annotation (e.g. @CustomClass("TestClass")) -- use it directly
+            // otherwise use fully qualified name with package (e.g. com.test.TestClass) and replace `$`
+            // for inner classes with `.`
+            if (customClassAnno.value().length() > 0)
+                name = customClassAnno.value();
+            else
+                name = name.replace('$', '.');
         } else {
-            name = CUSTOM_CLASS_NAME_PREFIX + name;
+            name = CUSTOM_CLASS_NAME_PREFIX + name.replace('.', '_');
         }
-        name = name.replace('.', '_');
         return name;
     }
 

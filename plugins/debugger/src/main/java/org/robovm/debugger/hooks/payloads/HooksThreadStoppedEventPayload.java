@@ -25,24 +25,27 @@ public class HooksThreadStoppedEventPayload extends HooksEventPayload{
     private final long threadObj;
     private final long thread;
     private final long throwable;
+    private final int threadStatus;
     private final boolean isCaught;
     private final HooksCallStackEntry[] callStack;
 
-    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, HooksCallStackEntry[] callStack) {
+    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, int threadStatus, HooksCallStackEntry[] callStack) {
         super(eventId);
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = 0;
         this.isCaught = false;
+        this.threadStatus = threadStatus;
         this.callStack = callStack;
     }
 
-    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, long throwable, boolean isCaught, HooksCallStackEntry[] callStack) {
+    public HooksThreadStoppedEventPayload(int eventId, long threadObj, long thread, long throwable, boolean isCaught, int threadStatus, HooksCallStackEntry[] callStack) {
         super(eventId);
         this.threadObj = threadObj;
         this.thread = thread;
         this.throwable = throwable;
         this.isCaught = isCaught;
+        this.threadStatus = threadStatus;
         this.callStack = callStack;
     }
 
@@ -60,6 +63,10 @@ public class HooksThreadStoppedEventPayload extends HooksEventPayload{
 
     public boolean isCaught() {
         return isCaught;
+    }
+
+    public int getThreadStatus() {
+        return threadStatus;
     }
 
     public HooksCallStackEntry[] callStack() {

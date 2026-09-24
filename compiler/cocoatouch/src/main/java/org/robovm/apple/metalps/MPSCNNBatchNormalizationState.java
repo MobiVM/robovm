@@ -81,5 +81,12 @@ import org.robovm.apple.metal.*;
     public native MTLBuffer gradientForGamma();
     @Method(selector = "gradientForBeta")
     public native MTLBuffer gradientForBeta();
+    @Method(selector = "temporaryStateWithCommandBuffer:")
+    public static native MPSCNNBatchNormalizationState createTemporaryState(MTLCommandBuffer cmdBuf);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSCNNBatchNormalizationState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

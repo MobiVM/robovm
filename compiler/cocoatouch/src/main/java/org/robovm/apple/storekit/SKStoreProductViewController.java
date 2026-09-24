@@ -62,5 +62,10 @@ import org.robovm.apple.coregraphics.*;
     /*<methods>*/
     @Method(selector = "loadProductWithParameters:completionBlock:")
     public native void loadProduct(SKStoreProductParameters parameters, @Block VoidBlock2<Boolean, NSError> block);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "loadProductWithParameters:impression:completionBlock:")
+    public native void loadProduct(NSDictionary<NSString, ?> parameters, SKAdImpression impression, @Block VoidBlock2<Boolean, NSError> block);
     /*</methods>*/
 }

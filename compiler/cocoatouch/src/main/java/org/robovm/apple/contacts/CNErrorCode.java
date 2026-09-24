@@ -54,6 +54,10 @@ public enum /*<name>*/CNErrorCode/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 13.0 and later.
      */
     FeatureDisabledByUser(103L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FeatureNotAvailable(104L),
     RecordDoesNotExist(200L),
     InsertedRecordAlreadyExists(201L),
     ContainmentCycle(202L),

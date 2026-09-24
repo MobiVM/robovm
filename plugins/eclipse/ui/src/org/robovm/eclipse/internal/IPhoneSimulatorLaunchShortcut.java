@@ -16,7 +16,7 @@
  */
 package org.robovm.eclipse.internal;
 
-import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  * @author niklas

@@ -99,6 +99,7 @@ import org.robovm.apple.avfoundation.*;
     public static final CIFormat ARGB8 = new CIFormat("ARGB8");
     public static final CIFormat BGRA8 = new CIFormat("BGRA8");
     public static final CIFormat RGBA8 = new CIFormat("RGBA8");
+    public static final CIFormat RGBX8 = new CIFormat("RGBX8");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -109,6 +110,22 @@ import org.robovm.apple.avfoundation.*;
      */
     public static final CIFormat RGBA16 = new CIFormat("RGBA16");
     public static final CIFormat RGBAf = new CIFormat("RGBAf");
+    /**
+     * @since Available in iOS 14.2 and later.
+     */
+    public static final CIFormat RGBX16 = new CIFormat("RGBX16");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final CIFormat RGBXh = new CIFormat("RGBXh");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final CIFormat RGBXf = new CIFormat("RGBXf");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final CIFormat RGB10 = new CIFormat("RGB10");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -191,7 +208,7 @@ import org.robovm.apple.avfoundation.*;
     public static final CIFormat LAf = new CIFormat("LAf");
     /*</constants>*/
     
-    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, ABGR8, RGBAh, RGBA16, RGBAf, A8, A16, Ah, Af, R8, R16, Rh, Rf, RG8, RG16, RGh, RGf, L8, L16, Lh, Lf, LA8, LA16, LAh, LAf/*</value_list>*/};
+    private static /*<name>*/CIFormat/*</name>*/[] values = new /*<name>*/CIFormat/*</name>*/[] {/*<value_list>*/ARGB8, BGRA8, RGBA8, RGBX8, ABGR8, RGBAh, RGBA16, RGBAf, RGBX16, RGBXh, RGBXf, RGB10, A8, A16, Ah, Af, R8, R16, Rh, Rf, RG8, RG16, RGh, RGf, L8, L16, Lh, Lf, LA8, LA16, LAh, LAf/*</value_list>*/};
     
     /*<name>*/CIFormat/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -220,6 +237,8 @@ import org.robovm.apple.avfoundation.*;
         public static native int BGRA8();
         @GlobalValue(symbol="kCIFormatRGBA8", optional=true)
         public static native int RGBA8();
+        @GlobalValue(symbol="kCIFormatRGBX8", optional=true)
+        public static native int RGBX8();
         /**
          * @since Available in iOS 9.0 and later.
          */
@@ -234,6 +253,26 @@ import org.robovm.apple.avfoundation.*;
         public static native int RGBA16();
         @GlobalValue(symbol="kCIFormatRGBAf", optional=true)
         public static native int RGBAf();
+        /**
+         * @since Available in iOS 14.2 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGBX16", optional=true)
+        public static native int RGBX16();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGBXh", optional=true)
+        public static native int RGBXh();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGBXf", optional=true)
+        public static native int RGBXf();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCIFormatRGB10", optional=true)
+        public static native int RGB10();
         /**
          * @since Available in iOS 9.0 and later.
          */

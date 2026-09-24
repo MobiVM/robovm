@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +62,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "playbackCoordinator:identifierForPlayerItem:")
     String identifierForPlayerItem(AVPlayerPlaybackCoordinator coordinator, AVPlayerItem playerItem);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "playbackCoordinator:interstitialTimeRangesForPlayerItem:")
+    NSArray<NSValue> interstitialTimeRangesForPlayerItem(AVPlayerPlaybackCoordinator coordinator, AVPlayerItem playerItem);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

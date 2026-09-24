@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -36,5 +39,10 @@ public class NullConstant extends Constant {
     @Override
     public String toString() {
         return "null";
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
     }
 }

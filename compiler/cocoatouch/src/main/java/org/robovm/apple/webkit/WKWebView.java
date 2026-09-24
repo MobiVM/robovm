@@ -155,6 +155,11 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setInteractionState:")
     public native void setInteractionState(NSObject v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isBlockedByScreenTime")
+    public native boolean isBlockedByScreenTime();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "themeColor")
@@ -169,6 +174,71 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setUnderPageBackgroundColor:")
     public native void setUnderPageBackgroundColor(UIColor v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "fullscreenState")
+    public native WKFullscreenState getFullscreenState();
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Property(selector = "minimumViewportInset")
+    public native @ByVal UIEdgeInsets getMinimumViewportInset();
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Property(selector = "maximumViewportInset")
+    public native @ByVal UIEdgeInsets getMaximumViewportInset();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isFindInteractionEnabled")
+    public native boolean isFindInteractionEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setFindInteractionEnabled:")
+    public native void setFindInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "findInteraction")
+    public native UIFindInteraction getFindInteraction();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "conversationContext")
+    public native UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    public native void setConversationContext(UIConversationContext v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "isInspectable")
+    public native boolean isInspectable();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setInspectable:")
+    public native void setInspectable(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isWritingToolsActive")
+    public native boolean isWritingToolsActive();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "obscuredContentInsets")
+    public native @ByVal UIEdgeInsets getObscuredContentInsets();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setObscuredContentInsets:")
+    public native void setObscuredContentInsets(@ByVal UIEdgeInsets v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -327,6 +397,21 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Method(selector = "loadSimulatedRequest:withResponseHTMLString:")
     public native WKNavigation loadSimulatedReques(NSURLRequest request, String string);
+    /**
+     * @since Available in iOS 15.5 and later.
+     */
+    @Method(selector = "setMinimumViewportInset:maximumViewportInset:")
+    public native void setMinimumViewportInset(@ByVal UIEdgeInsets minimumViewportInset, @ByVal UIEdgeInsets maximumViewportInset);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "fetchDataOfTypes:completionHandler:")
+    public native void fetchData(WKWebViewDataType dataTypes, @Block VoidBlock2<NSData, NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "restoreData:completionHandler:")
+    public native void restoreData(NSData data, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
      */

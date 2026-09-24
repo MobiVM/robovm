@@ -89,6 +89,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "options")
     public native MTLFunctionOptions getOptions();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -99,7 +107,9 @@ import org.robovm.apple.dispatch.*;
     public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use MTLDevice's newArgumentEncoderWithBufferBinding: instead
      */
+    @Deprecated
     @Method(selector = "newArgumentEncoderWithBufferIndex:reflection:")
     public native MTLArgumentEncoder newArgumentEncoder(@MachineSizedUInt long bufferIndex, MTLArgument.MTLArgumentPtr reflection);
     /*</methods>*/

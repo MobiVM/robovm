@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. No longer supported.
      */
     @Deprecated
     @NotImplemented("friendRequestComposeViewControllerDidFinish:")

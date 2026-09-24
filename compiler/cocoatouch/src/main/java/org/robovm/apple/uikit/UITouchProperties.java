@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,6 +55,10 @@ public final class /*<name>*/UITouchProperties/*</name>*/ extends Bits</*<name>*
     public static final UITouchProperties Azimuth = new UITouchProperties(2L);
     public static final UITouchProperties Altitude = new UITouchProperties(4L);
     public static final UITouchProperties Location = new UITouchProperties(8L);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    public static final UITouchProperties Roll = new UITouchProperties(16L);
     /*</values>*/
 
     /*<bind>*/

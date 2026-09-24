@@ -59,6 +59,18 @@ import org.robovm.apple.coreanimation.*;
     protected SKCameraNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithCoder:")
     public SKCameraNode(NSCoder coder) { super(coder); }
+    public SKCameraNode(String filename) { super((Handle) null, create(filename)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKCameraNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKCameraNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supportsSecureCoding")
@@ -70,5 +82,12 @@ import org.robovm.apple.coreanimation.*;
     public native boolean containsNode(SKNode node);
     @Method(selector = "containedNodeSet")
     public native NSSet<SKNode> getContainedNodeSet();
+    @Method(selector = "nodeWithFileNamed:")
+    protected static native @Pointer long create(String filename);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

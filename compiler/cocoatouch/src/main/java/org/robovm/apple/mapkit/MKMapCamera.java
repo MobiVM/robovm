@@ -55,6 +55,10 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 9.0 and later.
      */
     public MKMapCamera(@ByVal CLLocationCoordinate2D centerCoordinate, double distance, @MachineSizedFloat double pitch, double heading) { super((Handle) null, create(centerCoordinate, distance, pitch, heading)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public MKMapCamera(MKMapItem mapItem, @ByVal CGSize viewSize, boolean allowPitch) { super((Handle) null, create(mapItem, viewSize, allowPitch)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public MKMapCamera(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -105,6 +109,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:")
     protected static native @Pointer long create(@ByVal CLLocationCoordinate2D centerCoordinate, double distance, @MachineSizedFloat double pitch, double heading);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cameraLookingAtMapItem:forViewSize:allowPitch:")
+    protected static native @Pointer long create(MKMapItem mapItem, @ByVal CGSize viewSize, boolean allowPitch);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

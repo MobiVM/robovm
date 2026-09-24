@@ -1,12 +1,12 @@
-<idea-plugin url="https://github.com/robovm/robovm-idea">
+<idea-plugin url="https://github.com/MobiVM/robovm">
     <id>com.mobidevelop.robovm.intellij</id>
     <version>${project.version}</version>
-    <vendor email="robovm@mobidevelop.com" url="https://github.com/MobiVM/robovm">MobiVM</vendor>
+    <vendor email="tom@asidik.com" url="https://mobivm.github.io">MobiVM</vendor>
 
     <depends optional="true" config-file="com.mobidevelop.robovm.intellij-maven.xml">org.jetbrains.idea.maven</depends>
     <depends>org.jetbrains.plugins.gradle</depends>
     <depends>com.intellij.modules.java</depends>
-    <idea-version since-build="193.1"/>
+    <idea-version since-build="242.20224.300"/>
 
     <name>MobiVM</name>
     <description>
@@ -18,60 +18,66 @@
     </description>
     <change-notes>
         <![CDATA[
-            <b>2.3.15</b>
-            <li> Mac M1 support</li>
-            <li> Improved XCFramework support </li>
-            <li> Bug fixes in StringConcat plugin </li>
-            <li> Debugger fixes </li>
-            <li> Java 9 support in Stringconcat plugin </li>
-            <li> Tree shaking fixes </li>
+            <b>2.3.26</b>
+
+            <h2>New Features</h2>
+            <ul>
+                <li>Maintenance, Migration to plugin platform v2</li>
+            </ul>
+            <h2>Bug Fixes</h2>
+            <ul>
+                <li>Modules-per-source fix with gradle facets</li>
+                <li>Fixes for crashes/failures regarding missing SDK</li>
+                <li>Related: Too many root sets - debugger fix</li>
+            </ul>
         ]]>
     </change-notes>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.gradle">
-        <projectResolve implementation="org.robovm.idea.gradle.RoboVMGradleProjectResolver"/>
+        <projectResolve implementation="org.robovm.idea.gradle.sync.RoboVMGradleProjectResolver"/>
     </extensions>
+
     <extensions defaultExtensionNs="com.intellij">
         <configurationType implementation="org.robovm.idea.running.RoboVmIOSConfigurationType"/>
         <configurationType implementation="org.robovm.idea.running.RoboVmConsoleConfigurationType"/>
         <programRunner implementation="org.robovm.idea.running.RoboVmRunner"/>
         <projectTemplatesFactory implementation="org.robovm.idea.builder.RoboVmTemplatesFactory"/>
         <sdkType implementation="org.robovm.idea.sdk.RoboVmSdkType"/>
-        <buildProcess.parametersProvider implementation="org.robovm.idea.components.RoboVmBuildProcessParametersProvider"/>
+        <postStartupActivity implementation="org.robovm.idea.components.RoboVmProjectStartupActivity"/>
         <stepsBeforeRunProvider implementation="org.robovm.idea.running.RoboVmBeforeRunTaskProvider"/>
         <!-- dkimitsa: removed as it is not required for open source xcode integration -->
         <!--<applicationConfigurable implementation="org.robovm.idea.config.RoboVmGlobalConfig"></applicationConfigurable>-->
         <toolWindow id="RoboVM" anchor="bottom" icon="org.robovm.idea.RoboVmIcons.ROBOVM_SMALL" secondary="true"
                     factoryClass="org.robovm.idea.components.RoboVmToolWindowFactory"/>
+
+        <!--group.names.language.level.specific.issues.and.migration.aids-->
+        <localInspection language="JAVA"
+                         shortName="ClassWithProtocolShouldExtendNSObject"
+                         bundle="robovm.RvmInspectionBundle"
+                         key="robovm.inspection.objcprotocol.shouldbe.in.nsobject"
+                         groupBundle="robovm.RvmInspectionBundle"
+                         groupKey="robovm.inspection.group"
+                         enabledByDefault="true"
+                         level="WARNING"
+                         implementationClass="org.robovm.idea.inspection.ClassWithProtocolShouldExtendNSObject"
+                         cleanupTool="true"/>
+        <externalProjectDataService implementation="org.robovm.idea.gradle.sync.RoboVmModuleDataService" order="last"/>
+        <facetType implementation="org.robovm.idea.facet.RoboVmFacetType"/>
+        <notificationGroup id="RoboVM" displayType="BALLOON"/>
+
     </extensions>
 
-    <application-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmApplicationComponent</implementation-class>
-        </component>
-    </application-components>
-
-    <project-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmProjectComponent</implementation-class>
-        </component>
-    </project-components>
-
-    <module-components>
-        <component>
-            <implementation-class>org.robovm.idea.components.RoboVmSdkUpdateComponent</implementation-class>
-        </component>
-    </module-components>
-
     <actions>
-        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu">
+        <group id="org.robovm.idea.Menu" text="RoboVM" description="RoboVM menu" popup="true">
             <add-to-group group-id="MainMenu" anchor="after" relative-to-action="ToolsMenu"/>
 
             <action id="org.robovm.idea.create-ipa" class="org.robovm.idea.actions.CreateIpaAction" text="Create IPA"
                     description="Create an IPA for App Store or ad-hoc distribution"/>
-            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction" text="Create Framework"
+            <action id="org.robovm.idea.create-framework" class="org.robovm.idea.actions.CreateFrameworkAction"
+                    text="Create Framework"
                     description="Create a Framework"/>
-            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction" text="Open in Interface Builder (Xcode)"
+            <action id="org.robovm.idea.open-ibxcode" class="org.robovm.idea.actions.GenerateXCodeProjectAction"
+                    text="Open in Interface Builder (Xcode)"
                     description="Generate and open XCode project to edit xib/storyboard in Interface Builder"/>
             <separator/>
             <action id="org.robovm.idea.clean-build" class="org.robovm.idea.actions.CleanBuildFoldersAction"
@@ -82,9 +88,12 @@
                     description="Deletes as files in ~/.robovm/cache folder"/>
             <separator/>
 
-            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New" description="New project/module workaround for Android Studio" popup="true">
-                <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction" text="Project..."/>
-                <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction" text="Module..."/>
+            <group id="org.robovm.idea.as-fixes-new" class="org.robovm.idea.actions.ASNewGroup" text="New"
+                   description="New project/module workaround for Android Studio" popup="true">
+                <action id="org.robovm.idea.as-fixes-new-project" class="org.robovm.idea.actions.ASNewProjectAction"
+                        text="Project..."/>
+                <action id="org.robovm.idea.as-fixes-new-module" class="org.robovm.idea.actions.ASNewModuleAction"
+                        text="Module..."/>
             </group>
         </group>
 

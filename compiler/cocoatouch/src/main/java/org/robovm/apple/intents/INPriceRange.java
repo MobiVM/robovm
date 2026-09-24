@@ -53,13 +53,13 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "initWithRangeBetweenPrice:andPrice:currencyCode:")
     public INPriceRange(NSDecimalNumber firstPrice, NSDecimalNumber secondPrice, String currencyCode) { super((SkipInit) null); initObject(init(firstPrice, secondPrice, currencyCode)); }
     @Method(selector = "initWithMaximumPrice:currencyCode:")
-    public static  INPriceRange createWithMaximumPrice(NSDecimalNumber maximumPrice, String currencyCode) {
+    public static INPriceRange createWithMaximumPrice(NSDecimalNumber maximumPrice, String currencyCode) {
        INPriceRange res = new INPriceRange((SkipInit) null);
        res.initObject(res.initWithMaximumPrice(maximumPrice, currencyCode));
        return res;
     }
     @Method(selector = "initWithMinimumPrice:currencyCode:")
-    public static  INPriceRange createWithMinimumPrice(NSDecimalNumber minimumPrice, String currencyCode) {
+    public static INPriceRange createWithMinimumPrice(NSDecimalNumber minimumPrice, String currencyCode) {
        INPriceRange res = new INPriceRange((SkipInit) null);
        res.initObject(res.initWithMinimumPrice(minimumPrice, currencyCode));
        return res;

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,7 +58,11 @@ public enum /*<name>*/AVCaptureSessionInterruptionReason/*</name>*/ implements V
     /**
      * @since Available in iOS 11.1 and later.
      */
-    VideoDeviceNotAvailableDueToSystemPressure(5L);
+    VideoDeviceNotAvailableDueToSystemPressure(5L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    SensitiveContentMitigationActivated(6L);
     /*</values>*/
 
     /*<bind>*/

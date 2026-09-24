@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPointerEffect/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UIHoverEffect/*</implements>*/ {
 
     /*<ptr>*/public static class UIPointerEffectPtr extends Ptr<UIPointerEffect, UIPointerEffectPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPointerEffect.class); }/*</bind>*/

@@ -35,8 +35,7 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @since Available in iOS 9.0 and later.
- * @deprecated Deprecated in iOS 13.0. GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead
+ * @deprecated Deprecated in iOS 13.0. Use the -[GCController controllerWithExtendedGamepad] method instead
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/
@@ -66,15 +65,15 @@ import org.robovm.apple.corehaptic.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead
+     * @deprecated Deprecated in iOS 13.0. Use the -[GCController controllerWithExtendedGamepad] method instead
      */
     @Deprecated
     @GlobalValue(symbol="GCCurrentExtendedGamepadSnapshotDataVersion", optional=true)
     public static native GCExtendedGamepadSnapshotDataVersion getDataVersion();
     
     /**
-     * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use the -[GCController controllerWithExtendedGamepad] method instead
      */
     @Deprecated
     @Bridge(symbol="GCExtendedGamepadSnapshotDataFromNSData", optional=true)

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,7 +70,7 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initForOpeningContentTypes:")
-    public static  UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
+    public static UIDocumentBrowserViewController createForOpeningContentTypes(NSArray<org.robovm.apple.uniformtypeid.UTType> contentTypes) {
        UIDocumentBrowserViewController res = new UIDocumentBrowserViewController((SkipInit) null);
        res.initObject(res.initForOpeningContentTypes(contentTypes));
        return res;
@@ -86,6 +87,11 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean allowsDocumentCreation();
     @Property(selector = "setAllowsDocumentCreation:")
     public native void setAllowsDocumentCreation(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "activeDocumentCreationIntent")
+    public native UIDocumentCreationIntent getActiveDocumentCreationIntent();
     @Property(selector = "allowsPickingMultipleItems")
     public native boolean allowsPickingMultipleItems();
     @Property(selector = "setAllowsPickingMultipleItems:")
@@ -174,6 +180,11 @@ import org.robovm.apple.linkpresentation.*;
     public native void revealDocument(NSURL url, boolean importIfNeeded, @Block VoidBlock2<NSURL, NSError> completion);
     @Method(selector = "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:")
     public native void importDocument(NSURL documentURL, NSURL neighbourURL, UIDocumentBrowserImportMode importMode, @Block VoidBlock2<NSURL, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "renameDocumentAtURL:proposedName:completionHandler:")
+    public native void renameDocument(NSURL documentURL, String proposedName, @Block VoidBlock2<NSURL, NSError> completionHandler);
     /**
      * @since Available in iOS 12.0 and later.
      */

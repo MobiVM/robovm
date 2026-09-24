@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -32,5 +35,10 @@ public class OpaqueType extends UserType {
     @Override
     public String getDefinition() {
         return "opaque";
+    }
+
+    @Override
+    public void writeDefinition(Writer writer) throws IOException {
+        writer.write(getDefinition());
     }
 }

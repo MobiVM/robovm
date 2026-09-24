@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +55,15 @@ public enum /*<name>*/AVCaptureColorSpace/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.1 and later.
      */
-    HLG_BT2020(2L);
+    HLG_BT2020(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    AppleLog(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    AppleLog2(4L);
     /*</values>*/
 
     /*<bind>*/

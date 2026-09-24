@@ -422,6 +422,17 @@ public class AfcClient implements AutoCloseable {
     }
 
     /**
+     * Same as removePath(recursive = true) but provided by lib itself
+     * @param path the fully-qualified path to delete.
+     */
+    public void removePathAndContent(String path) {
+        AfcError result = LibIMobileDevice.afc_remove_path_and_contents(getRef(), path);
+        if (result != AfcError.AFC_E_SUCCESS && result != AfcError.AFC_E_OBJECT_NOT_FOUND) {
+            throw new LibIMobileDeviceException(result.swigValue(), result.name());
+        }
+    }
+
+    /**
      * Renames a file or directory on the device.
      * 
      * @param from the fully-qualified path of the file or directory to rename.
@@ -500,9 +511,12 @@ public class AfcClient implements AutoCloseable {
      */
     public void upload(File localFile, final String targetPath, 
             final UploadProgressCallback callback) throws IOException {
-        
-        makeDirectory(targetPath);
         final Path root = localFile.toPath().getParent();
+
+        // remove recursively destination folder as it might contain previous data
+        // due failed attempt
+        removePathAndContent(toAbsoluteDevicePath(targetPath, root.relativize(localFile.toPath())));
+        makeDirectory(targetPath);
 
         // 64k seems to be a good buffer size. If smaller we will not get
         // acceptable write speeds.
@@ -714,18 +728,16 @@ public class AfcClient implements AutoCloseable {
             }
             
             if (deviceId == null) {
-                if (deviceId == null) {
-                    String[] udids = IDevice.listUdids();
-                    if (udids.length == 0) {
-                        System.err.println("No device connected");
-                        return;
-                    }
-                    if (udids.length > 1) {
-                        System.err.println("More than 1 device connected (" 
-                                + Arrays.asList(udids) + "). Using " + udids[0]);
-                    }
-                    deviceId = udids[0];
+                String[] udids = IDevice.listUdids();
+                if (udids.length == 0) {
+                    System.err.println("No device connected");
+                    return;
                 }
+                if (udids.length > 1) {
+                    System.err.println("More than 1 device connected ("
+                            + Arrays.asList(udids) + "). Using " + udids[0]);
+                }
+                deviceId = udids[0];
             }
             
             try (IDevice device = new IDevice(deviceId)) {

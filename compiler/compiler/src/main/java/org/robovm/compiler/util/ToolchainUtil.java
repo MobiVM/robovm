@@ -17,16 +17,16 @@
  */
 package org.robovm.compiler.util;
 
-import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.CpuArch;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.config.tools.ActoolOptions;
 import org.robovm.compiler.config.tools.TextureAtlas;
 import org.robovm.compiler.log.ConsoleLogger;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.IOSTarget;
+import org.robovm.compiler.util.Executor.ExecuteException;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +52,8 @@ public class ToolchainUtil {
     private static String NM;
     private static String OTOOL;
     private static String FILE;
+    private static String DSYMUTIL;
+    private static String SYMBOLS;
 
     private static String getIOSDevClang() throws IOException {
         if (IOS_DEV_CLANG == null) {
@@ -144,13 +146,27 @@ public class ToolchainUtil {
         return PACKAGE_APPLICATION;
     }
 
+    private static String getDsymutil() throws IOException {
+        if (DSYMUTIL == null) {
+            DSYMUTIL = findXcodeCommand("dsymutil", "iphoneos");
+        }
+        return DSYMUTIL;
+    }
+
+    private static String getSymbols() throws IOException {
+        if (SYMBOLS == null) {
+            SYMBOLS = findXcodeCommand("symbols", "iphoneos");
+        }
+        return SYMBOLS;
+    }
+
     private static void handleExecuteException(ExecuteException e) {
-        if (e.getExitValue() == 2) {
+        if (e.getExitCode() == 2) {
             throw new IllegalArgumentException("No Xcode is selected. Is Xcode installed? "
                     + "If yes, use 'sudo xcode-select -switch <path-to-xcode>' from a Terminal "
                     + "to switch to the correct Xcode path.");
         }
-        if (e.getExitValue() == 69) {
+        if (e.getExitCode() == 69) {
             throw new IllegalArgumentException("You must agree to the Xcode/iOS license. "
                     + "Please open Xcode once or run 'sudo xcrun clang' from a Terminal to agree to the terms.");
         }
@@ -223,35 +239,78 @@ public class ToolchainUtil {
 
     public static void actool(Config config, File partialInfoPlist, File outDir, List<File> inDirs) throws IOException {
         List<Object> opts = new ArrayList<>();
-
         String appIconSetName = null;
+        boolean appIconSetNameByArgs = false;
         String launchImagesName = null;
+        boolean launchImagesNameByArgs = false;
+        boolean includeAllAppIcons = false;
 
-        final String appiconset = "appiconset";
-        final String launchimage = "launchimage";
+        // pick values from config of robovm.xml
+        if (config.getTools() != null && config.getTools().getActool() != null) {
+            ActoolOptions options = config.getTools().getActool();
+            opts.addAll(options.getArguments());
+            // if "--app-icon" specified in arguments will not use iconName option or look up for asset
+            appIconSetNameByArgs = opts.contains("--app-icon");
+            // if "--launch-image" specified in arguments will not use launchImagesName option or look up for asset
+            launchImagesNameByArgs = opts.contains("--launch-image");
+            // pick other options
+            includeAllAppIcons = options.shouldIncludeAllAppIcons();
+            appIconSetName = appIconSetNameByArgs ? null : options.getAppIconName();
+            launchImagesName = launchImagesNameByArgs ? null: options.getLaunchImageName();
+        }
 
-        for (File inDir : inDirs) {
-            for (String fileName : inDir.list()) {
-                String ext = FilenameUtils.getExtension(fileName);
-                if (ext.equals(appiconset)) {
-                    appIconSetName = FilenameUtils.getBaseName(fileName);
-                } else if (ext.equals(launchimage)) {
-                    launchImagesName = FilenameUtils.getBaseName(fileName);
+        // look for icon and launch image sets if not specified by config
+        // these options might be provided also in argument list. do lookup only if required
+        List<String> availableIcons = appIconSetName == null && !appIconSetNameByArgs ?  new ArrayList<>() : null;
+        List<String> availableImages = launchImagesName == null && !launchImagesNameByArgs ? new ArrayList<>() : null;
+        if (availableIcons != null || availableImages != null) {
+            final String appiconset = "appiconset";
+            final String launchimage = "launchimage";
+
+            for (File inDir : inDirs) {
+                for (String fileName : inDir.list()) {
+                    String ext = FilenameUtils.getExtension(fileName);
+                    if (ext.equals(appiconset)) {
+                        if (availableIcons != null)
+                            availableIcons.add(FilenameUtils.getBaseName(fileName));
+                    } else if (ext.equals(launchimage)) {
+                        if (availableImages != null)
+                            availableImages.add(FilenameUtils.getBaseName(fileName));
+                    }
                 }
             }
-        }
-        if (appIconSetName != null || launchImagesName != null) {
-            if (appIconSetName != null) {
-                opts.add("--app-icon");
-                opts.add(appIconSetName);
-            }
-            if (launchImagesName != null) {
-                opts.add("--launch-image");
-                opts.add(launchImagesName);
-            }
 
+            // pick values
+            if (availableIcons != null && availableIcons.size() >= 1) {
+                appIconSetName = availableIcons.get(0);
+                if (availableIcons.size() > 1)
+                    config.getLogger().error("actool: multiple .appiconset found but %s will be used", appIconSetName);
+            }
+            if (availableImages != null && availableImages.size() >= 1) {
+                launchImagesName = availableImages.get(0);
+                if (availableImages.size() > 1)
+                    config.getLogger().error("actool: multiple .launchimage found but %s will be used", launchImagesName);
+            }
+        }
+
+        if (appIconSetName != null) {
+            opts.add("--app-icon");
+            opts.add(appIconSetName);
+            appIconSetNameByArgs = true;
+        }
+        if (launchImagesName != null) {
+            opts.add("--launch-image");
+            opts.add(launchImagesName);
+            launchImagesNameByArgs = true;
+        }
+
+        if (appIconSetNameByArgs || launchImagesNameByArgs) {
             opts.add("--output-partial-info-plist");
             opts.add(partialInfoPlist);
+        }
+
+        if (includeAllAppIcons) {
+            opts.add("--include-all-app-icons");
         }
 
         opts.add("--platform");
@@ -329,7 +388,7 @@ public class ToolchainUtil {
         }
         args.add("-output");
         args.add(outFile);
-        new Executor(Logger.NULL_LOGGER, getLipo()).args(args).exec();
+        new Executor(config.getLogger(), getLipo()).args(args).exec();
     }
 
 
@@ -350,6 +409,15 @@ public class ToolchainUtil {
 
     public static void packageApplication(Config config, File appDir, File outFile) throws IOException {
         new Executor(config.getLogger(), getPackageApplication()).args(appDir, "-o", outFile).exec();
+    }
+
+    public static void generateDsym(Config config, File dsymDir, File exePath) throws IOException {
+        new Executor(config.getLogger(), getDsymutil()).args("-o", dsymDir, exePath).exec();
+    }
+
+    public static void dsymToSymbols(Config config, File dsymExecutable, File outDir) throws IOException {
+        new Executor(config.getLogger(), getSymbols()).args("-noTextInSOD", "-noDaemon", "-arch", "all",
+                "-symbolsPackageDir", outDir, dsymExecutable).exec();
     }
 
     private static List<File> writeObjectsFiles(Config config, List<File> objectFiles, int maxObjectsPerFile,
@@ -393,13 +461,8 @@ public class ToolchainUtil {
             for (File objectsFile : objectsFiles) {
                 opts.add("-Wl,-filelist," + objectsFile.getAbsolutePath());
             }
-            /*
-             * See #123, ignore ld: warning: pointer not aligned at address [infostruct] message with Xcode 8.3
-             * unless we find a better solution
-             */
-            opts.add("-w");
         } else {
-            opts.add(config.getArch().is32Bit() ? "-m32" : "-m64");
+            opts.add("-m64");
             for (File objectsFile : objectsFiles) {
                 opts.add("@" + objectsFile.getAbsolutePath());
             }
@@ -414,11 +477,7 @@ public class ToolchainUtil {
         if (config.getCcBinPath() != null) {
             ccPath = config.getCcBinPath().getAbsolutePath();
         } else if (config.getOs() == OS.ios) {
-            if (config.getArch().getCpuArch() == CpuArch.x86) {
-                ccPath = getIOSSimClang();
-            } else {
-                ccPath = getIOSDevClang();
-            }
+            ccPath = getIOSDevClang();
         }
         return ccPath;
     }

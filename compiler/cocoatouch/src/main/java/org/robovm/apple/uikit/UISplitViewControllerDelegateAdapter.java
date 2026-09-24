@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -133,6 +134,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("splitViewController:willHideColumn:")
     public void willHideColumn(UISplitViewController svc, UISplitViewControllerColumn column) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("splitViewController:didShowColumn:")
+    public void didShowColumn(UISplitViewController svc, UISplitViewControllerColumn column) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("splitViewController:didHideColumn:")
+    public void didHideColumn(UISplitViewController svc, UISplitViewControllerColumn column) {}
     /**
      * @since Available in iOS 14.0 and later.
      */

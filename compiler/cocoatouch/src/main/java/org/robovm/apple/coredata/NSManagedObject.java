@@ -82,7 +82,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void setValue(String key, NSObject value) {
-        setValue(value, key);
+        setValueForKey(value, key);
     }
     public void setPrimitiveValue(String key, NSObject value) {
         setPrimitiveValue(value, key);
@@ -95,7 +95,7 @@ import org.robovm.apple.uikit.*;
      * @throws NSErrorException
      */
     public boolean validateValue(String key, NSObject value) throws NSErrorException {
-        return validateValue(value, key);
+        return validateValueForKey(value, key);
     }
     /*<methods>*/
     @Method(selector = "initWithEntity:insertIntoManagedObjectContext:")
@@ -143,7 +143,7 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "valueForKey:")
     public native NSObject getValue(String key);
     @Method(selector = "setValue:forKey:")
-    private native void setValue(NSObject value, String key);
+    public native void setValueForKey(NSObject value, String key);
     @Method(selector = "primitiveValueForKey:")
     public native NSObject getPrimitiveValue(String key);
     @Method(selector = "setPrimitiveValue:forKey:")
@@ -154,14 +154,14 @@ import org.robovm.apple.uikit.*;
     public native NSDictionary<NSString, ?> getChangedValues();
     @Method(selector = "changedValuesForCurrentEvent")
     public native NSDictionary<NSString, ?> getChangedValuesForCurrentEvent();
-    private boolean validateValue(NSObject value, String key) throws NSErrorException {
+    public boolean validateValueForKey(NSObject value, String key) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       boolean result = validateValue(value, key, ptr);
+       boolean result = validateValueForKey(value, key, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
     @Method(selector = "validateValue:forKey:error:")
-    private native boolean validateValue(NSObject value, String key, NSError.NSErrorPtr error);
+    private native boolean validateValueForKey(NSObject value, String key, NSError.NSErrorPtr error);
     public boolean validateForDelete() throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = validateForDelete(ptr);

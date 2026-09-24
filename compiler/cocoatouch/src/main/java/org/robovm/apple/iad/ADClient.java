@@ -65,12 +65,6 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "requestAttributionDetailsWithBlock:")
     public native void requestAttributionDetails(@Block VoidBlock2<NSDictionary<?, ?>, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 13.0.
-     */
-    @Deprecated
-    @Method(selector = "addClientToSegments:replaceExisting:")
-    public native void addClientToSegments(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> segmentIdentifiers, boolean replaceExisting);
-    /**
      * @deprecated Deprecated in iOS 14.5. This has been replaced by functionality in AdServices.framework's AAAttribution class.
      */
     @Deprecated

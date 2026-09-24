@@ -56,6 +56,16 @@ import org.robovm.apple.uikit.*;
     public native ILMessageFilterAction getAction();
     @Property(selector = "setAction:")
     public native void setAction(ILMessageFilterAction v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "subAction")
+    public native ILMessageFilterSubAction getSubAction();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSubAction:")
+    public native void setSubAction(ILMessageFilterSubAction v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

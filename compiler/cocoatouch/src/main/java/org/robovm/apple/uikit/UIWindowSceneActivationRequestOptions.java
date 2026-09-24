@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,10 +61,30 @@ import org.robovm.apple.linkpresentation.*;
     protected UIWindowSceneActivationRequestOptions(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Place use .placement with an appropriate UIWindowScenePlacement.
+     */
+    @Deprecated
     @Property(selector = "preferredPresentationStyle")
     public native UIWindowScenePresentationStyle getPreferredPresentationStyle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Place use .placement with an appropriate UIWindowScenePlacement.
+     */
+    @Deprecated
     @Property(selector = "setPreferredPresentationStyle:")
     public native void setPreferredPresentationStyle(UIWindowScenePresentationStyle v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "placement")
+    public native UIWindowScenePlacement getPlacement();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPlacement:")
+    public native void setPlacement(UIWindowScenePlacement v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -23,10 +23,7 @@ import org.robovm.compiler.config.OS;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Reads/Writes .xcframework/Info.plist
@@ -89,6 +86,12 @@ public class XCFrameworkPlist {
         public Environment getVariant() {
             return variant;
         }
+
+        public boolean supportCpuArch(CpuArch cpuArch) {
+            for (CpuArch c: supportedArchitectures)
+                if (c == cpuArch) return true;
+            return false;
+        }
     }
 
     public static class Builder {
@@ -141,7 +144,7 @@ public class XCFrameworkPlist {
     /**
      * Parses XCFramework structure from plist
      */
-    public static XCFrameworkPlist load(File f) throws IOException {
+    public static XCFrameworkPlist loadPlist(File f) throws IOException {
         try {
             List<Library> libraries = new ArrayList<>();
             NSDictionary plist = (NSDictionary) PropertyListParser.parse(f);
@@ -154,8 +157,8 @@ public class XCFrameworkPlist {
                     String identifier = dictLib.get(KEY_LIBRARY_IDENTIFIER).toString();
                     String libraryPath = dictLib.get(KEY_LIBRARY_PATH).toString();
                     String supportedPlatform = dictLib.get(KEY_SUPPORTED_PLATFORM).toString();
-                    String supportedPlatformVariant = dictLib.get(KEY_SUPPORTED_PLATFORM_VARIANT).toString();
-                    String debugSymbolsPath = dictLib.get(KEY_DEBUG_SYMBOLS_PATH).toString();
+                    String supportedPlatformVariant = toStringOrNull(dictLib.get(KEY_SUPPORTED_PLATFORM_VARIANT));
+                    String debugSymbolsPath = toStringOrNull(dictLib.get(KEY_DEBUG_SYMBOLS_PATH));
                     NSArray arrayArches = (NSArray) dictLib.get(KEY_SUPPORTED_ARCHITECTURES);
 
                     // parse
@@ -185,10 +188,21 @@ public class XCFrameworkPlist {
         }
     }
 
+    /**
+     * Parses XCFramework structure from .xcframework directory
+     */
+    public static XCFrameworkPlist load(File xcFramework) throws IOException {
+        return loadPlist(new File(xcFramework, "Info.plist"));
+    }
+
     private static CpuArch parse(String s) {
         for (CpuArch v: CpuArch.values())
             if (s.equals(v.getClangName()))
                 return v;
         return null;
+    }
+
+    private static String toStringOrNull(Object o) {
+        return o != null ? o.toString() : null;
     }
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,7 +63,11 @@ import org.robovm.apple.linkpresentation.*;
     void setConfiguration(UIContentConfiguration v);
     /*</properties>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "supportsConfiguration:")
+    boolean supportsConfiguration(UIContentConfiguration configuration);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

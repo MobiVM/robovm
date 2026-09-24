@@ -68,12 +68,18 @@ classes:
         methods:
             '-getSlotWithName:reply:':
                 name: getSlot
+            '-createNFCSlotWithMessage:completion:':
+                name: createNFCSlot
     TKSmartCardToken: #since 10.0
         methods:
             '-initWithSmartCard:AID:instanceID:tokenDriver:':
                 name: init
     TKSmartCardTokenDriver: {} #since 10.0
-    TKSmartCardTokenSession: {} #since 10.0
+    TKSmartCardTokenSession: #since 10.0
+        methods:
+            '-getSmartCardWithError:':
+                name: getSmartCardThrowsError # clashes with smartCard property
+                throws: NSErrorException
     TKSmartCardUserInteraction:
         methods:
             '-runWithReply:':
@@ -137,6 +143,19 @@ classes:
             '-addRemovalHandler:forTokenID:':
                 name: addRemovalHandler
     TKTokenWatcherTokenInfo: {} #since 15.0
+    TKSmartCardSlotNFCSession: #since 26.0
+        methods:
+            '-updateWithMessage:error:':
+                name: update
+                throws: NSErrorException
+    TKSmartCardTokenRegistrationManager: #since 26.0
+        methods:
+            '-registerSmartCardWithTokenID:promptMessage:error:':
+                name: registerSmartCard
+                throws: NSErrorException
+            '-unregisterSmartCardWithTokenID:error:':
+                name: unregisterSmartCard
+                throws: NSErrorException
 protocols:
     TKSmartCardTokenDriverDelegate:
         methods:

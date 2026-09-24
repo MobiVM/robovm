@@ -99,6 +99,11 @@ import org.robovm.apple.dispatch.*;
     public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSURL fileURL);
     @Method(selector = "uploadTaskWithRequest:fromData:")
     public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSData bodyData);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "uploadTaskWithResumeData:")
+    public native NSURLSessionUploadTask newUploadTask(NSData resumeData);
     @Method(selector = "uploadTaskWithStreamedRequest:")
     public native NSURLSessionUploadTask newStreamedUploadTask(NSURLRequest request);
     @Method(selector = "downloadTaskWithRequest:")
@@ -146,6 +151,11 @@ import org.robovm.apple.dispatch.*;
     public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSURL fileURL, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
     @Method(selector = "uploadTaskWithRequest:fromData:completionHandler:")
     public native NSURLSessionUploadTask newUploadTask(NSURLRequest request, NSData bodyData, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "uploadTaskWithResumeData:completionHandler:")
+    public native NSURLSessionUploadTask newUploadTask(NSData resumeData, @Block VoidBlock3<NSData, NSURLResponse, NSError> completionHandler);
     @Method(selector = "downloadTaskWithRequest:completionHandler:")
     public native NSURLSessionDownloadTask newDownloadTask(NSURLRequest request, @Block VoidBlock3<NSURL, NSURLResponse, NSError> completionHandler);
     @Method(selector = "downloadTaskWithURL:completionHandler:")

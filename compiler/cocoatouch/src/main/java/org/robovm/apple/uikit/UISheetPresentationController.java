@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +71,16 @@ import org.robovm.apple.linkpresentation.*;
     public native UIView getSourceView();
     @Property(selector = "setSourceView:")
     public native void setSourceView(UIView v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "prefersPageSizing")
+    public native boolean prefersPageSizing();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPrefersPageSizing:")
+    public native void setPrefersPageSizing(boolean v);
     @Property(selector = "prefersEdgeAttachedInCompactHeight")
     public native boolean prefersEdgeAttachedInCompactHeight();
     @Property(selector = "setPrefersEdgeAttachedInCompactHeight:")
@@ -111,6 +122,11 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UISheetPresentationControllerAutomaticDimension", optional=true)
     public static native @MachineSizedFloat double AutomaticDimension();
     
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "invalidateDetents")
+    public native void invalidateDetents();
     @Method(selector = "animateChanges:")
     public native void animateChanges(@Block Runnable changes);
     /*</methods>*/

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,6 +71,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "captureOutput:didFinishProcessingPhoto:error:")
     void didFinishProcessingPhoto(AVCapturePhotoOutput output, AVCapturePhoto photo, NSError error);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "captureOutput:didFinishCapturingDeferredPhotoProxy:error:")
+    void didFinishCapturingDeferredPhotoProxy(AVCapturePhotoOutput output, AVCaptureDeferredPhotoProxy deferredPhotoProxy, NSError error);
     /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 11.0. Use -captureOutput:didFinishProcessingPhoto:error:

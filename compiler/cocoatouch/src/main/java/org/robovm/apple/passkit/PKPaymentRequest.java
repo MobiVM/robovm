@@ -56,6 +56,16 @@ import org.robovm.apple.coreanimation.*;
     public native String getMerchantIdentifier();
     @Property(selector = "setMerchantIdentifier:")
     public native void setMerchantIdentifier(String v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "attributionIdentifier")
+    public native String getAttributionIdentifier();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAttributionIdentifier:")
+    public native void setAttributionIdentifier(String v);
     @Property(selector = "countryCode")
     public native String getCountryCode();
     @Property(selector = "setCountryCode:")
@@ -88,6 +98,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setCouponCode:")
     public native void setCouponCode(String v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "merchantCategoryCode")
+    public native short getMerchantCategoryCode();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMerchantCategoryCode:")
+    public native void setMerchantCategoryCode(short v);
     @Property(selector = "paymentSummaryItems")
     public native NSArray<PKPaymentSummaryItem> getPaymentSummaryItems();
     @Property(selector = "setPaymentSummaryItems:")
@@ -222,9 +242,70 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "setBillingAddress:", strongRef = true)
     public native void setBillingAddress(ABRecord v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "multiTokenContexts")
+    public native NSArray<PKPaymentTokenContext> getMultiTokenContexts();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMultiTokenContexts:")
+    public native void setMultiTokenContexts(NSArray<PKPaymentTokenContext> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recurringPaymentRequest")
+    public native PKRecurringPaymentRequest getRecurringPaymentRequest();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setRecurringPaymentRequest:")
+    public native void setRecurringPaymentRequest(PKRecurringPaymentRequest v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "automaticReloadPaymentRequest")
+    public native PKAutomaticReloadPaymentRequest getAutomaticReloadPaymentRequest();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAutomaticReloadPaymentRequest:")
+    public native void setAutomaticReloadPaymentRequest(PKAutomaticReloadPaymentRequest v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "deferredPaymentRequest")
+    public native PKDeferredPaymentRequest getDeferredPaymentRequest();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setDeferredPaymentRequest:")
+    public native void setDeferredPaymentRequest(PKDeferredPaymentRequest v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "applePayLaterAvailability")
+    public native PKApplePayLaterAvailability getApplePayLaterAvailability();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setApplePayLaterAvailability:")
+    public native void setApplePayLaterAvailability(PKApplePayLaterAvailability v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("PassKit")
+    public static class MerchantCategoryCodes {
+        static { Bro.bind(MerchantCategoryCodes.class); }
+
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="PKMerchantCategoryCodeNone", optional=true)
+        public static native short None();
+    }
+    
     /**
      * @since Available in iOS 10.0 and later.
      */

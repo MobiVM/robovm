@@ -45,25 +45,55 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     protected HMTimerTrigger(Handle h, long handle) { super(h, handle); }
     protected HMTimerTrigger(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithName:fireDate:recurrence:")
+    public HMTimerTrigger(String name, NSDate fireDate, NSDateComponents recurrence) { super((SkipInit) null); initObject(init(name, fireDate, recurrence)); }
+    /**
+     * @deprecated Deprecated in iOS 16.4. Use -initWithName:fireDate:recurrence:
+     */
+    @Deprecated
     @Method(selector = "initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:")
     public HMTimerTrigger(String name, NSDate fireDate, NSTimeZone timeZone, NSDateComponents recurrence, NSCalendar recurrenceCalendar) { super((SkipInit) null); initObject(init(name, fireDate, timeZone, recurrence, recurrenceCalendar)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fireDate")
     public native NSDate getFireDate();
+    /**
+     * @deprecated Deprecated in iOS 16.4. Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day
+     */
+    @Deprecated
     @Property(selector = "timeZone")
     public native NSTimeZone getTimeZone();
     @Property(selector = "recurrence")
     public native NSDateComponents getRecurrence();
+    /**
+     * @deprecated Deprecated in iOS 16.4. No longer supported
+     */
+    @Deprecated
     @Property(selector = "recurrenceCalendar")
     public native NSCalendar getRecurrenceCalendar();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "initWithName:fireDate:recurrence:")
+    protected native @Pointer long init(String name, NSDate fireDate, NSDateComponents recurrence);
+    /**
+     * @deprecated Deprecated in iOS 16.4. Use -initWithName:fireDate:recurrence:
+     */
+    @Deprecated
     @Method(selector = "initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:")
     protected native @Pointer long init(String name, NSDate fireDate, NSTimeZone timeZone, NSDateComponents recurrence, NSCalendar recurrenceCalendar);
     @Method(selector = "updateFireDate:completionHandler:")
     public native void updateFireDate(NSDate fireDate, @Block VoidBlock1<NSError> completion);
+    /**
+     * @deprecated Deprecated in iOS 16.4. Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day
+     */
+    @Deprecated
     @Method(selector = "updateTimeZone:completionHandler:")
     public native void updateTimeZone(NSTimeZone timeZone, @Block VoidBlock1<NSError> completion);
     @Method(selector = "updateRecurrence:completionHandler:")

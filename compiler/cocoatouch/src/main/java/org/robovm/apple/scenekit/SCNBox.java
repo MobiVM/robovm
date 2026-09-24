@@ -99,5 +99,10 @@ import org.robovm.apple.avfoundation.*;
     public static native SCNBox createGeometry();
     @Method(selector = "geometryWithSources:elements:")
     public static native SCNBox createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "geometryWithSources:elements:sourceChannels:")
+    public static native SCNBox createGeometry(NSArray<SCNGeometrySource> sources, NSArray<SCNGeometryElement> elements, NSArray<NSNumber> sourceChannels);
     /*</methods>*/
 }

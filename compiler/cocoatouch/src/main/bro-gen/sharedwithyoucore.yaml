@@ -1,0 +1,95 @@
+package: org.robovm.apple.sharedwithyoucore
+include: [foundation]
+library: SharedWithYouCore
+framework: SharedWithYouCore
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SharedWithYouCore.framework/Headers/SharedWithYouCore.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+    SWAction: {} #since 16.0
+    SWCollaborationCoordinator: {} #since 16.0
+    SWCollaborationMetadata: #since 16.0
+        methods:
+            '-initWithLocalIdentifier:':
+                name: init
+            '-initWithCollaborationIdentifier:':
+                name: initWithCollaborationIdentifier
+                static_constructor_name: createWithCollaborationIdentifier
+    SWCollaborationOption: #since 16.0
+        methods:
+            '-initWithTitle:identifier:':
+                name: init
+            '+optionWithTitle:identifier:':
+                exclude: true
+    SWCollaborationOptionsGroup: #since 16.0
+        methods:
+            '-initWithIdentifier:options:':
+                name: init
+            '+optionsGroupWithIdentifier:options:':
+                exclude: true
+    SWCollaborationOptionsPickerGroup: {} #since 16.0
+    SWCollaborationShareOptions: #since 16.0
+        methods:
+            '-initWithOptionsGroups:summary:':
+                name: init
+            '-initWithOptionsGroups:':
+                name: init
+            '-initWithCoder:':
+                name: init
+            '+shareOptionsWithOptionsGroups:summary:':
+                exclude: true
+            '+shareOptionsWithOptionsGroups:':
+                exclude: true
+    SWPerson: #since 16.0
+        methods:
+            '-initWithHandle:identity:displayName:thumbnailImageData:':
+                name: init
+    SWPersonIdentity: #since 16.0
+        methods:
+            '-initWithRootHash:':
+                name: init
+    SWPersonIdentityProof: {} #since 16.0
+    SWSignedPersonIdentityProof: #since 16.0
+        methods:
+            '-initWithPersonIdentityProof:signatureData:':
+                name: init
+    SWStartCollaborationAction: #since 16.0
+        methods:
+            '-fulfillUsingURL:collaborationIdentifier:':
+                name: fulfillUsingURL
+    SWUpdateCollaborationParticipantsAction: {} #since 16.0
+
+protocols:
+    SWCollaborationActionHandler: #since 16.0
+        methods:
+            '-collaborationCoordinator:handleStartCollaborationAction:':
+                name: handleStartCollaborationAction
+            '-collaborationCoordinator:handleUpdateCollaborationParticipantsAction:':
+                name: handleUpdateCollaborationParticipantsAction
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?SW.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?SW.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?SW.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

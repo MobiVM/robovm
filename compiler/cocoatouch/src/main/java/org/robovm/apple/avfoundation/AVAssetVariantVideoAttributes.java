@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,13 +62,18 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "videoRange")
-    public native String getVideoRange();
+    public native AVVideoRange getVideoRange();
     @Property(selector = "codecTypes")
     public native NSArray<NSNumber> getCodecTypes();
     @Property(selector = "presentationSize")
     public native @ByVal CGSize getPresentationSize();
     @Property(selector = "nominalFrameRate")
     public native double getNominalFrameRate();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoLayoutAttributes")
+    public native NSArray<AVAssetVariantVideoLayoutAttributes> getVideoLayoutAttributes();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

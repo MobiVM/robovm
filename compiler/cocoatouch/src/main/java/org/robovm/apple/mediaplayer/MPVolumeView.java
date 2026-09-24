@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -45,7 +47,7 @@ import org.robovm.apple.coreanimation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeWirelessRoutesAvailableDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
+        public static NSObject observeWirelessRoutesAvailableDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WirelessRoutesAvailableDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -56,7 +58,7 @@ import org.robovm.apple.coreanimation.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeWirelessRouteActiveDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
+        public static NSObject observeWirelessRouteActiveDidChange(MPVolumeView object, final VoidBlock1<MPVolumeView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WirelessRouteActiveDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -107,8 +109,16 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "isWirelessRouteActive")
     public native boolean isWirelessRouteActive();
+    /**
+     * @deprecated Deprecated in iOS 17.0. This is no longer supported
+     */
+    @Deprecated
     @Property(selector = "volumeWarningSliderImage")
     public native UIImage getVolumeWarningSliderImage();
+    /**
+     * @deprecated Deprecated in iOS 17.0. This is no longer supported
+     */
+    @Deprecated
     @Property(selector = "setVolumeWarningSliderImage:")
     public native void setVolumeWarningSliderImage(UIImage v);
     @WeaklyLinked

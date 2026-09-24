@@ -48,6 +48,16 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "length")
     public native @MachineSizedUInt long getLength();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuAddress")
+    public native long getGpuAddress();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "sparseBufferTier")
+    public native MTLBufferSparseTier getSparseBufferTier();
     @Property(selector = "label")
     public native String getLabel();
     @Property(selector = "setLabel:")
@@ -86,6 +96,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "allocatedSize")
     public native @MachineSizedUInt long getAllocatedSize();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     public ByteBuffer getContents() {
@@ -96,6 +114,11 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long getContents0();
     @Method(selector = "newTextureWithDescriptor:offset:bytesPerRow:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSObject.NoRetainMarshaler.class) MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset, @MachineSizedUInt long bytesPerRow);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newTensorWithDescriptor:offset:error:")
+    public native MTLTensor newTensor(MTLTensorDescriptor descriptor, @MachineSizedUInt long offset, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -118,5 +141,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "isAliasable")
     public native boolean isAliasable();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "setOwnerWithIdentity:")
+    public native int setOwner(int task_id_token);
     /*</methods>*/
 }

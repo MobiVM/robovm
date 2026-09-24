@@ -7,7 +7,10 @@ headers:
     - /System/Library/Frameworks/MetalPerformanceShadersGraph.framework/Headers/MetalPerformanceShadersGraph.h
 
 typedefs:
-    
+
+private_typedefs:
+    OS_dispatch_queue: org.robovm.apple.dispatch.DispatchQueue
+
 enums:
     MPSGraphTensorNamedDataLayout: {}
     MPSGraphPaddingStyle: {}
@@ -21,6 +24,16 @@ enums:
     MPSGraphRandomDistribution: {}
     MPSGraphRandomNormalSamplingMethod: {prefix: MPSGraphRandomNormalSampling}
     MPSGraphScatterMode: {}
+    MPSGraphOptimization: {}
+    MPSGraphOptimizationProfile: {}
+    MPSGraphPoolingReturnIndicesMode: {prefix: MPSGraphPoolingReturnIndices}
+    MPSGraphExecutionStage: {}
+    MPSGraphResizeNearestRoundingMode: {}
+    MPSGraphRNNActivation: {}
+    MPSGraphDeploymentPlatform: { }
+    MPSGraphFFTScalingMode: { }
+    MPSGraphNonMaximumSuppressionCoordinateMode: { }
+    MPSGraphReducedPrecisionFastMath: {} #since 26.0
 categories:
 
 classes:
@@ -454,11 +467,354 @@ classes:
             '-topKWithSourceTensor:kTensor:name:':
                 name: topK
             '-topKWithGradientTensor:source:k:name:':
-                name: topK
+                name: topKWithGradient
             '-topKWithGradientTensor:source:kTensor:name:':
-                name: topK
+                name: topKWithGradient
             '+new':
                 exclude: true
+            '-gatherAlongAxis:withUpdatesTensor:indicesTensor:name:':
+                name: gatherAlongAxis
+            '-gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:':
+                name: gatherAlongAxisTensor
+            '-bandPartWithTensor:numLower:numUpper:name:':
+                name: bandPart
+            '-bandPartWithTensor:numLowerTensor:numUpperTensor:name:':
+                name: bandPart
+            '-maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:':
+                name: maxPooling2DReturnIndices
+            '-maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:':
+                name: maxPooling4DReturnIndices
+            '-reductionAndWithTensor:axis:name:':
+                name: reductionAnd
+            '-reductionAndWithTensor:axes:name:':
+                name: reductionAnd
+            '-reductionOrWithTensor:axis:name:':
+                name: reductionOr
+            '-reductionOrWithTensor:axes:name:':
+                name: reductionOr
+            '-scatterAlongAxis:withUpdatesTensor:indicesTensor:shape:mode:name:':
+                name: scatterAlongAxis
+            '-scatterAlongAxisTensor:withUpdatesTensor:indicesTensor:shape:mode:name:':
+                name: scatterAlongAxisTensor
+            '-scatterAlongAxis:withDataTensor:updatesTensor:indicesTensor:mode:name:':
+                name: scatterAlongAxis
+            '-scatterAlongAxisTensor:withDataTensor:updatesTensor:indicesTensor:mode:name:':
+                name: scatterAlongAxisTensor
+            '-stackTensors:axis:name:':
+                name: stackTensors
+            '-splitTensor:splitSizes:axis:name:':
+                name: splitTensor
+            '-splitTensor:splitSizesTensor:axis:name:':
+                name: splitTensor
+            '-splitTensor:numSplits:axis:name:':
+                name: splitTensor
+            '-squeezeTensor:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axis:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axes:name:':
+                name: squeezeTensor
+            '-squeezeTensor:axesTensor:name:':
+                name: squeezeTensor
+            '-expandDimsOfTensor:axis:name:':
+                name: expandDimsOfTensor
+            '-expandDimsOfTensor:axes:name:':
+                name: expandDimsOfTensor
+            '-expandDimsOfTensor:axesTensor:name:':
+                name: expandDimsOfTensor
+            '-coordinateAlongAxis:withShape:name:':
+                name: coordinateAlongAxis
+            '-coordinateAlongAxisTensor:withShape:name:':
+                name: coordinateAlongAxisTensor
+            '-coordinateAlongAxis:withShapeTensor:name:':
+                name: coordinateAlongAxis
+            '-coordinateAlongAxisTensor:withShapeTensor:name:':
+                name: coordinateAlongAxisTensor
+            '-truncateWithTensor:name:':
+                name: truncate
+            '-cumulativeSumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axis:name:':
+                name: cumulativeSum
+            '-cumulativeSumWithTensor:axisTensor:name:':
+                name: cumulativeSum
+            '-cumulativeProductWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axis:name:':
+                name: cumulativeProduct
+            '-cumulativeProductWithTensor:axisTensor:name:':
+                name: cumulativeProduct
+            '-cumulativeMinimumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axis:name:':
+                name: cumulativeMinimum
+            '-cumulativeMinimumWithTensor:axisTensor:name:':
+                name: cumulativeMinimum
+            '-cumulativeMaximumWithTensor:axis:exclusive:reverse:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axisTensor:exclusive:reverse:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axis:name:':
+                name: cumulativeMaximum
+            '-cumulativeMaximumWithTensor:axisTensor:name:':
+                name: cumulativeMaximum
+            '-HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:':
+                name: HammingDistance
+            '-adamWithLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:beta1PowerTensor:beta2PowerTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:':
+                name: adamWithLearningRateTensor
+            '-adamWithCurrentLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:':
+                name: adamWithCurrentLearningRateTensor
+            '-maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:':
+                name: maxPooling2DGradient
+            '-maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:':
+                name: maxPooling2DGradient
+            '-maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:':
+                name: maxPooling4DGradient
+            '-maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:':
+                name: maxPooling4DGradient
+            '-resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:':
+                name: resizeNearestWithTensor
+            '-resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:':
+                name: resizeBilinearWithTensor
+            '-resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:':
+                name: resizeTensor
+            '-resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:':
+                name: resizeNearestWithTensor
+            '-resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:':
+                name: resizeBilinearWithTensor
+            '-resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:':
+                name: resizeNearestWithGradientTensor
+            '-resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:':
+                name: resizeBilinearWithGradientTensor
+            '-resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:':
+                name: resizeWithGradientTensor
+            '-resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:':
+                name: resizeNearestWithGradientTensor
+            '-resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:':
+                name: resizeBilinearWithGradientTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:':
+                name: singleGateRNNWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNGradientsWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:':
+                name: singleGateRNNGradients
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:':
+                name: singleGateRNNGradientsWithSourceTensor
+            '-singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:':
+                name: singleGateRNNGradients
+            '-LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:':
+                name: LSTMWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:':
+                name: LSTMGradientsWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:':
+                name: GRUWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:':
+                name: GRUGradientsWithSourceTensor
+            '-sortWithTensor:axis:descending:name:':
+                name: sort
+            '-sortWithTensor:axisTensor:descending:name:':
+                name: sort
+            '-sortWithTensor:axis:name:':
+                name: sort
+            '-sortWithTensor:axisTensor:name:':
+                name: sort
+            '-transposeTensor:permutation:name:':
+                name: transposeTensor
+            '-bitwiseNOTWithTensor:name:':
+                name: bitwiseNOT
+            '-bitwisePopulationCountWithTensor:name:':
+                name: bitwisePopulationCount
+            '-bitwiseANDWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseAND
+            '-bitwiseORWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseOR
+            '-bitwiseXORWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseXOR
+            '-bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseLeftShift
+            '-bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:':
+                name: bitwiseRightShift
+            '-inverseOfTensor:name:':
+                name: inverseOfTensor
+            '-quantizeTensor:scale:zeroPoint:dataType:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scale:zeroPoint:dataType:name:':
+                name: dequantizeTensor
+            '-quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:':
+                name: dequantizeTensor
+            '-quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:':
+                name: quantizeTensor
+            '-dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:':
+                name: dequantizeTensor
+            '-sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:samplingMode:constantValue:name:':
+                name: sampleGrid
+            '-sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:nearestRoundingMode:constantValue:name:':
+                name: sampleGrid
+            '-argSortWithTensor:axis:descending:name:':
+                name: argSort
+            '-argSortWithTensor:axisTensor:descending:name:':
+                name: argSort
+            '-argSortWithTensor:axis:name:':
+                name: argSort
+            '-argSortWithTensor:axisTensor:name:':
+                name: argSort
+            '-spaceToBatchTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:':
+                name: spaceToBatch
+            '-spaceToBatchTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:':
+                name: spaceToBatch
+            '-batchToSpaceTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:':
+                name: batchToSpace
+            '-batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:':
+                name: batchToSpace
+            '-absoluteSquareWithTensor:name:':
+                name: absoluteSquare
+            '-conjugateWithTensor:name:':
+                name: conjugate
+            '-realPartOfTensor:name:':
+                name: realPart
+            '-imaginaryPartOfTensor:name:':
+                name: imaginaryPart
+            '-complexTensorWithRealTensor:imaginaryTensor:name:':
+                name: complexTensorWithRealTensor
+            '-convolution3DWithSourceTensor:weightsTensor:descriptor:name:':
+                name: convolution3D
+            '-convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution3DDataGradient
+            '-convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution3DDataGradient
+            '-convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:':
+                name: convolution3DWeightsGradient
+            '-convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:':
+                name: convolution3DWeightsGradient
+            '-fastFourierTransformWithTensor:axes:descriptor:name:':
+                name: fastFourierTransformWithTensor$axes$descriptor$name$
+            '-fastFourierTransformWithTensor:axesTensor:descriptor:name:':
+                name: fastFourierTransform
+            '-realToHermiteanFFTWithTensor:axes:descriptor:name:':
+                name: realToHermiteanFFT
+            '-realToHermiteanFFTWithTensor:axesTensor:descriptor:name:':
+                name: realToHermiteanFFT
+            '-HermiteanToRealFFTWithTensor:axes:descriptor:name:':
+                name: HermiteanToRealFFT
+            '-HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:':
+                name: HermiteanToRealFFT
+            '-imToColWithSourceTensor:descriptor:name:':
+                name: imToCol
+            '-colToImWithSourceTensor:outputShape:descriptor:name:':
+                name: colToIm
+            '-constantWithRealPart:imaginaryPart:':
+                name: constant
+            '-constantWithRealPart:imaginaryPart:dataType:':
+                name: constant
+            '-constantWithRealPart:imaginaryPart:shape:dataType:':
+                name: constant
+            '-nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:':
+                name: nonMaximumSuppression
+            '-nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:':
+                name: nonMaximumSuppression
+            '-nonZeroIndicesOfTensor:name:':
+                name: nonZeroIndices
+            '-resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:':
+                name: resize
+            '-resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:':
+                name: resizeTensor
+            '-resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:':
+                name: resizeWithGradient
+            '-resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:':
+                name: resizeNearest
+            '-resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:':
+                name: resizeNearest
+            '-resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:':
+                name: resizeNearestWithGradient
+            '-resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:':
+                name: resizeBilinear
+            '-resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:':
+                name: resizeBilinear
+            '-resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:':
+                name: resizeBilinearWithGradient
+            '-reinterpretCastTensor:toType:name:':
+                name: reinterpretCast
+            '-topKWithSourceTensor:axis:k:name:':
+                name: topK
+            '-topKWithSourceTensor:axisTensor:kTensor:name:':
+                name: topK
+            '-topKWithGradientTensor:source:axis:k:name:':
+                name: topKWithGradient
+            '-topKWithGradientTensor:source:axisTensor:kTensor:name:':
+                name: topKWithGradient
+            '-bottomKWithSourceTensor:axis:k:name:':
+                name: bottomK
+            '-bottomKWithSourceTensor:axisTensor:kTensor:name:':
+                name: bottomK
+            '-bottomKWithGradientTensor:source:axis:k:name:':
+                name: bottomKWithGradient
+            '-bottomKWithGradientTensor:source:axisTensor:kTensor:name:':
+                name: bottomKWithGradient
+            '-reciprocalSquareRootWithTensor:name:':
+                name: reciprocalSquareRoot
+            '-callSymbolName:inputTensors:outputTypes:name:':
+                name: callSymbol
+            '-scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:':
+                name: scaledDotProductAttention
+            '-scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:':
+                name: scaledDotProductAttention
+            '-variableFromTensorWithTensor:name:':
+                name: variableFromTensor
+            '-dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:scaleTensor:dataType:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:LUTTensor:name:':
+                name: dequantizeTensor
+            '-dequantizeTensor:LUTTensor:axis:name:':
+                name: dequantizeTensor
+            '-sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceTensor
+            '-sliceTensor:startTensor:sizeTensor:squeezeMask:name:':
+                name: sliceTensor
+            '-sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceGradientTensor
+            '-sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:':
+                name: sliceGradientTensor
+            '-sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:':
+                name: sliceUpdateDataTensor
+            '-sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:':
+                name: sliceUpdateDataTensor
+
     MPSGraphConvolution2DOpDescriptor:
         methods:
             '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
@@ -484,7 +840,12 @@ classes:
             '+deviceWithMTLDevice:':
                 name: create
                 constructor: true
-    MPSGraphExecutionDescriptor: {} #since 14.0
+    MPSGraphExecutionDescriptor: #since 14.0
+        methods:
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-signalEvent:atExecutionEvent:value:':
+                name: signalEvent
     MPSGraphOperation: {} #since 14.0
     MPSGraphPooling2DOpDescriptor:
         methods:
@@ -519,6 +880,10 @@ classes:
                 name: init
             '-initWithMPSImageBatch:':
                 name: init
+            '-initWithMTLBuffer:shape:dataType:rowBytes:':
+                name: init
+            '-initWithMTLTensor:':
+                name: init
     MPSGraphVariableOp: {}
     MPSGraphCompilationDescriptor: {} #since 15.0
     MPSGraphCreateSparseOpDescriptor: #since 15.0
@@ -544,7 +909,22 @@ classes:
                 name: runAsync
             '-encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:':
                 name: encodeToCommandBuffer
-    MPSGraphExecutableExecutionDescriptor: {} #since 15.0
+            '-getOutputTypesWithDevice:inputTypes:compilationDescriptor:':
+                name: getOutputTypes
+            '-serializeToMPSGraphPackageAtURL:descriptor:':
+                name: serializeToMPSGraphPackage
+            '-initWithMPSGraphPackageAtURL:compilationDescriptor:':
+                static_constructor_name: createUsingMPSGraphPackage
+                name: initWithMPSGraphPackageAtURL
+            '-initWithCoreMLPackageAtURL:compilationDescriptor:':
+                static_constructor_name: createUsingCoreMLPackage
+                name: initWithCoreMLPackageAtURL
+    MPSGraphExecutableExecutionDescriptor:  #since 15.0
+        methods:
+            '-waitForEvent:value:':
+                name: waitForEvent
+            '-signalEvent:atExecutionEvent:value:':
+                name: signalEvent
     MPSGraphPooling4DOpDescriptor: #since 15.0
         methods:
             '+descriptorWithKernelSizes:strides:dilationRates:paddingValues:paddingStyle:':
@@ -573,6 +953,32 @@ classes:
                 name: create
                 constructor: true
     MPSGraphType: {} #since 15.0
+    MPSGraphGRUDescriptor: {} #since 16.0
+    MPSGraphLSTMDescriptor: {} #since 15.4
+    MPSGraphSingleGateRNNDescriptor: {} #since 15.4
+    MPSGraphConvolution3DOpDescriptor: #since 16.3
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:':
+                name: setExplicitPadding
+            '+descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:':
+                constructor: true
+                name: create
+            '+descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingStyle:dataLayout:weightsLayout:':
+                constructor: true
+                name: create
+    MPSGraphExecutableSerializationDescriptor: {} #since 17.0
+    MPSGraphFFTDescriptor: {} #since 17.0
+    MPSGraphImToColOpDescriptor: #since 17.0
+        methods:
+            '-setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:':
+                name: setExplicitPadding
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:dataLayout:':
+                constructor: true
+                name: create
+            '+descriptorWithKernelWidth:kernelHeight:strideInX:strideInY:dilationRateInX:dilationRateInY:dataLayout:':
+                constructor: true
+                name: create
+    MPSGraphObject: {} #since 17.0
 protocols:
 
 functions:

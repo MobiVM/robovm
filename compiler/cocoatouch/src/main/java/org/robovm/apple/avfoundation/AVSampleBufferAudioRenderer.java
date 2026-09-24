@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -100,13 +102,23 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 11.0 and later.
      */
-    @GlobalValue(symbol="AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification", optional=true)
-    public static native String WasFlushedAutomaticallyNotification();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @GlobalValue(symbol="AVSampleBufferAudioRendererFlushTimeKey", optional=true)
     public static native String FlushTimeKey();
+    @Library("AVFoundation")
+    public static class Notifications {
+        static { Bro.bind(Notifications.class); }
+
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification", optional=true)
+        public static native String WasFlushedAutomatically();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="AVSampleBufferAudioRendererOutputConfigurationDidChangeNotification", optional=true)
+        public static native String OutputConfigurationDidChange();
+    }
     
     @Method(selector = "flushFromSourceTime:completionHandler:")
     public native void flushFromSourceTime(@ByVal CMTime time, @Block VoidBooleanBlock completionHandler);

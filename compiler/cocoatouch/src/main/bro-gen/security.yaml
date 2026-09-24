@@ -617,6 +617,10 @@ values:
         methods:
             Passphrase:
                 type: String
+    kSec(ImportToMemoryOnly):
+        dictionary: SecImportExportOptions
+        name: '#{g[0]}'
+        type: CFString
 
     # SecItem
     kSecClass(.+):

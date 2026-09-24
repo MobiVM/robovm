@@ -56,6 +56,17 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("AuthenticationServices")
+    public static class Notifications {
+        static { Bro.bind(Notifications.class); }
+
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="ASAuthorizationAppleIDProviderCredentialRevokedNotification", optional=true)
+        public static native String CredentialRevoked();
+    }
+    
     @Method(selector = "createRequest")
     public native ASAuthorizationAppleIDRequest createRequest();
     @Method(selector = "getCredentialStateForUserID:completion:")

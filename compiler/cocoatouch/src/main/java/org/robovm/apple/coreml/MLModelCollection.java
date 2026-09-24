@@ -38,9 +38,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 14.0 and later.
+ * @deprecated Use Background Assets or NSURLSession instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreML") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreML") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLModelCollection/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -54,10 +55,25 @@ import org.robovm.apple.metal.*;
     protected MLModelCollection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Property(selector = "identifier")
     public native String getIdentifier();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Property(selector = "entries")
     public native NSDictionary<NSString, MLModelCollectionEntry> getEntries();
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Property(selector = "deploymentID")
     public native String getDeploymentID();
     /*</properties>*/
@@ -65,12 +81,24 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MLModelCollectionDidChangeNotification", optional=true)
     public static native NSString DidChangeNotification();
     
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Method(selector = "beginAccessingModelCollectionWithIdentifier:completionHandler:")
     public static native NSProgress beginAccessingModelCollection(String identifier, @Block VoidBlock2<MLModelCollection, NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Use Background Assets or NSURLSession instead.
+     */
+    @Deprecated
     @Method(selector = "endAccessingModelCollectionWithIdentifier:completionHandler:")
     public static native void endAccessingModelCollection(String identifier, @Block VoidBlock2<Boolean, NSError> completionHandler);
     /*</methods>*/

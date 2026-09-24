@@ -52,8 +52,15 @@ import org.robovm.apple.network.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
+    @Property(selector = "remoteFlowEndpoint")
+    public native NWEndpoint getRemoteFlowEndpoint();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use remoteFlowEndpoint
+     */
+    @Deprecated
     @Property(selector = "remoteEndpoint")
     public native NWEndpoint getRemoteEndpoint();
     /*</properties>*/

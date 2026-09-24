@@ -56,6 +56,11 @@ import org.robovm.apple.uikit.*;
     public native String getSender();
     @Property(selector = "messageBody")
     public native String getMessageBody();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "receiverISOCountryCode")
+    public native String getReceiverISOCountryCode();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

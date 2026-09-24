@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -174,17 +175,6 @@ import org.robovm.apple.linkpresentation.*;
         set(NSAttributedStringDocumentAttribute.PaperSize, NSValue.valueOf(paperSize));
         return this;
     }
-    public UIEdgeInsets getPaperMargin() {
-        if (has(NSAttributedStringDocumentAttribute.PaperMargin)) {
-            NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.PaperMargin);
-            return val.edgeInsetsValue();
-        }
-        return null;
-    }
-    public NSAttributedStringDocumentAttributes setPaperMargin(UIEdgeInsets paperMargin) {
-        set(NSAttributedStringDocumentAttribute.PaperMargin, NSValue.valueOf(paperMargin));
-        return this;
-    }
     public CGSize getViewSize() {
         if (has(NSAttributedStringDocumentAttribute.ViewSize)) {
             NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.ViewSize);
@@ -249,6 +239,17 @@ import org.robovm.apple.linkpresentation.*;
     }
     public NSAttributedStringDocumentAttributes setDefaultTabInterval(double defaultTabInterval) {
         set(NSAttributedStringDocumentAttribute.DefaultTabInterval, NSNumber.valueOf(defaultTabInterval));
+        return this;
+    }
+    public UIEdgeInsets getPaperMargin() {
+        if (has(NSAttributedStringDocumentAttribute.PaperMargin)) {
+            NSValue val = (NSValue) get(NSAttributedStringDocumentAttribute.PaperMargin);
+            return val.edgeInsetsValue();
+        }
+        return null;
+    }
+    public NSAttributedStringDocumentAttributes setPaperMargin(UIEdgeInsets paperMargin) {
+        set(NSAttributedStringDocumentAttribute.PaperMargin, NSValue.valueOf(paperMargin));
         return this;
     }
     /*</methods>*/

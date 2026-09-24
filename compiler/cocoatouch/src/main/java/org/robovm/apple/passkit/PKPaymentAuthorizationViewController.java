@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected PKPaymentAuthorizationViewController(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPaymentRequest:")
     public PKPaymentAuthorizationViewController(PKPaymentRequest request) { super((SkipInit) null); initObject(init(request)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDisbursementRequest:")
+    public PKPaymentAuthorizationViewController(PKDisbursementRequest request) { super((SkipInit) null); initObject(init(request)); }
     @Method(selector = "initWithNibName:bundle:")
     public PKPaymentAuthorizationViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super(nibNameOrNil, nibBundleOrNil); }
     @Method(selector = "initWithCoder:")
@@ -67,6 +72,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithPaymentRequest:")
     protected native @Pointer long init(PKPaymentRequest request);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithDisbursementRequest:")
+    protected native @Pointer long init(PKDisbursementRequest request);
     @Method(selector = "canMakePayments")
     public static native boolean canMakePayments();
     @Method(selector = "canMakePaymentsUsingNetworks:")
@@ -76,5 +86,20 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "canMakePaymentsUsingNetworks:capabilities:")
     public static native boolean canMakePaymentsUsingNetworks(@org.robovm.rt.bro.annotation.Marshaler(PKPaymentNetwork.AsListMarshaler.class) List<PKPaymentNetwork> supportedNetworks, PKMerchantCapability capabilties);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursements")
+    public static native boolean supportsDisbursements();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursementsUsingNetworks:")
+    public static native boolean supportsDisbursementsUsingNetworks(NSArray<NSString> supportedNetworks);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportsDisbursementsUsingNetworks:capabilities:")
+    public static native boolean supportsDisbursementsUsingNetworks(NSArray<NSString> supportedNetworks, PKMerchantCapability capabilities);
     /*</methods>*/
 }

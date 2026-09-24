@@ -122,9 +122,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final CMSampleAttachmentKey CryptorSubsampleAuxiliaryData = new CMSampleAttachmentKey("CryptorSubsampleAuxiliaryData");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final CMSampleAttachmentKey HDR10PlusPerFrameData = new CMSampleAttachmentKey("HDR10PlusPerFrameData");
     /*</constants>*/
     
-    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay, HEVCTemporalLevelInfo, HEVCTemporalSubLayerAccess, HEVCStepwiseTemporalSubLayerAccess, HEVCSyncSampleNALUnitType, AudioIndependentSampleDecoderRefreshCount, CryptorSubsampleAuxiliaryData/*</value_list>*/};
+    private static /*<name>*/CMSampleAttachmentKey/*</name>*/[] values = new /*<name>*/CMSampleAttachmentKey/*</name>*/[] {/*<value_list>*/NotSync, PartialSync, HasRedundantCoding, IsDependedOnByOthers, DependsOnOthers, EarlierDisplayTimesAllowed, DisplayImmediately, DoNotDisplay, HEVCTemporalLevelInfo, HEVCTemporalSubLayerAccess, HEVCStepwiseTemporalSubLayerAccess, HEVCSyncSampleNALUnitType, AudioIndependentSampleDecoderRefreshCount, CryptorSubsampleAuxiliaryData, HDR10PlusPerFrameData/*</value_list>*/};
     
     /*<name>*/CMSampleAttachmentKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -193,6 +197,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData", optional=true)
         public static native CFString CryptorSubsampleAuxiliaryData();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCMSampleAttachmentKey_HDR10PlusPerFrameData", optional=true)
+        public static native CFString HDR10PlusPerFrameData();
         /*</values>*/
     }
 }

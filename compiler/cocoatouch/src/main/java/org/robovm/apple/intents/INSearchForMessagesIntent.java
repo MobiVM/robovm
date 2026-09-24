@@ -61,7 +61,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:groupNames:")
-    public static  INSearchForMessagesIntent createWithGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<NSString> groupNames) {
+    public static INSearchForMessagesIntent createWithGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<NSString> groupNames) {
        INSearchForMessagesIntent res = new INSearchForMessagesIntent((SkipInit) null);
        res.initObject(res.initWithGroupNames(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, groupNames));
        return res;
@@ -72,7 +72,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithRecipients:senders:searchTerms:attributes:dateTimeRange:identifiers:notificationIdentifiers:speakableGroupNames:")
-    public static  INSearchForMessagesIntent createWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames) {
+    public static INSearchForMessagesIntent createWithSpeakableGroupNames(NSArray<INPerson> recipients, NSArray<INPerson> senders, NSArray<NSString> searchTerms, INMessageAttributeOptions attributes, INDateComponentsRange dateTimeRange, NSArray<NSString> identifiers, NSArray<NSString> notificationIdentifiers, NSArray<INSpeakableString> speakableGroupNames) {
        INSearchForMessagesIntent res = new INSearchForMessagesIntent((SkipInit) null);
        res.initObject(res.initWithSpeakableGroupNames(recipients, senders, searchTerms, attributes, dateTimeRange, identifiers, notificationIdentifiers, speakableGroupNames));
        return res;

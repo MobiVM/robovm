@@ -117,5 +117,19 @@ import org.robovm.apple.uikit.*;
     public boolean equalsTo(CGAffineTransform t2) { return equalsTo(this, t2); }
     @Bridge(symbol="CGAffineTransformEqualToTransform", optional=true)
     private static native boolean equalsTo(@ByVal CGAffineTransform t1, @ByVal CGAffineTransform t2);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public CGAffineTransformComponents decompose() { return decompose(this); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGAffineTransformDecompose", optional=true)
+    private static native @ByVal CGAffineTransformComponents decompose(@ByVal CGAffineTransform transform);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGAffineTransformMakeWithComponents", optional=true)
+    public static native @ByVal CGAffineTransform createWithComponents(@ByVal CGAffineTransformComponents components);
     /*</methods>*/
 }

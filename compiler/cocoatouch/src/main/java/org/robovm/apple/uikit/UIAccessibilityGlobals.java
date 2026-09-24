@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -101,7 +102,9 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSString BoldTextStatusDidChangeNotification();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.1. Use AXShowBordersEnabledStatusDidChangeNotification
      */
+    @Deprecated
     @GlobalValue(symbol="UIAccessibilityButtonShapesEnabledStatusDidChangeNotification", optional=true)
     public static native NSString ButtonShapesEnabledStatusDidChangeNotification();
     @GlobalValue(symbol="UIAccessibilityGrayscaleStatusDidChangeNotification", optional=true)
@@ -183,7 +186,9 @@ import org.robovm.apple.linkpresentation.*;
     public static native boolean isBoldTextEnabled();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 26.1. Use AXShowBordersEnabled
      */
+    @Deprecated
     @Bridge(symbol="UIAccessibilityButtonShapesEnabled", optional=true)
     public static native boolean buttonShapesEnabled();
     @Bridge(symbol="UIAccessibilityIsGrayscaleEnabled", optional=true)

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -49,7 +50,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UISearchBar/*</name>*/ 
     extends /*<extends>*/UIView/*</extends>*/ 
-    /*<implements>*/implements UIBarPositioning, UITextInputTraits/*</implements>*/ {
+    /*<implements>*/implements UIBarPositioning, UITextInputTraits, UILookToDictateCapable/*</implements>*/ {
 
     /*<ptr>*/public static class UISearchBarPtr extends Ptr<UISearchBar, UISearchBarPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UISearchBar.class); }/*</bind>*/
@@ -142,6 +143,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UIView getInputAccessoryView();
     @Property(selector = "setInputAccessoryView:")
     public native void setInputAccessoryView(UIView v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "isEnabled")
+    public native boolean isEnabled();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setEnabled:")
+    public native void setEnabled(boolean v);
     @Property(selector = "backgroundImage")
     public native UIImage getBackgroundImage();
     @Property(selector = "setBackgroundImage:")
@@ -158,6 +169,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal UIOffset getSearchTextPositionAdjustment();
     @Property(selector = "setSearchTextPositionAdjustment:")
     public native void setSearchTextPositionAdjustment(@ByVal UIOffset v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isLookToDictateEnabled")
+    public native boolean isLookToDictateEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setLookToDictateEnabled:")
+    public native void setLookToDictateEnabled(boolean v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -205,6 +226,26 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     public native void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    public native UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    public native void setInlinePredictionType(UITextInlinePredictionType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathExpressionCompletionType")
+    public native UITextMathExpressionCompletionType getMathExpressionCompletionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathExpressionCompletionType:")
+    public native void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -245,6 +286,46 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setPasswordRules:")
     public native void setPasswordRules(UITextInputPasswordRules v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    public native UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    public native void setWritingToolsBehavior(UIWritingToolsBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowedWritingToolsResultOptions")
+    public native UIWritingToolsResultOptions getAllowedWritingToolsResultOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowedWritingToolsResultOptions:")
+    public native void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "conversationContext")
+    public native UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    public native void setConversationContext(UIConversationContext v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsNumberPadPopover")
+    public native boolean allowsNumberPadPopover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsNumberPadPopover:")
+    public native void setAllowsNumberPadPopover(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**

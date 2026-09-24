@@ -16,41 +16,36 @@
  */
 package org.robovm.compiler.config;
 
-import java.nio.ByteOrder;
-
 import org.robovm.compiler.CompilerException;
-import org.robovm.llvm.Target;
+
+import java.nio.ByteOrder;
 
 /**
  * @author niklas
  *
  */
 public enum CpuArch {
-    x86("i386", "i386", "penryn", true, false),
-    x86_64("x86_64", "x86_64", "penryn", false, false),
-    thumbv7("thumbv7", "armv7", true, true),
-    arm64("arm64", "arm64", false, true);
+    x86_64("x86_64", "x86_64", "penryn", false),
+    arm64("arm64", "arm64", true);
 
     private final String llvmName;
     private final String clangName;
     private final String llvmCpu;
-    private final boolean is32Bit;
     private final boolean isArm;
     private final ByteOrder byteOrder;
 
-    private CpuArch(String llvmName, String clangName, boolean is32Bit, boolean isArm) {
-        this(llvmName, clangName, "generic", is32Bit, isArm);
+    private CpuArch(String llvmName, String clangName, boolean isArm) {
+        this(llvmName, clangName, "generic", isArm);
     }
 
-    private CpuArch(String llvmName, String clangName, String llvmCpu, boolean is32Bit, boolean isArm) {
-        this(llvmName, clangName, llvmCpu, is32Bit, isArm, ByteOrder.LITTLE_ENDIAN);
+    private CpuArch(String llvmName, String clangName, String llvmCpu, boolean isArm) {
+        this(llvmName, clangName, llvmCpu, isArm, ByteOrder.LITTLE_ENDIAN);
     }
 
-    private CpuArch(String llvmName, String clangName, String llvmCpu, boolean is32Bit, boolean isArm, ByteOrder byteOrder) {
+    private CpuArch(String llvmName, String clangName, String llvmCpu, boolean isArm, ByteOrder byteOrder) {
         this.llvmName = llvmName;
         this.clangName = clangName;
         this.llvmCpu = llvmCpu;
-        this.is32Bit = is32Bit;
         this.isArm = isArm;
         this.byteOrder = byteOrder;
     }
@@ -71,10 +66,6 @@ public enum CpuArch {
         return isArm;
     }
 
-    public boolean is32Bit() {
-        return is32Bit;
-    }
-
     public ByteOrder getByteOrder() {
         return byteOrder;
     }
@@ -83,8 +74,6 @@ public enum CpuArch {
         String archProp = System.getProperty("os.arch").toLowerCase();
         if (archProp.matches("amd64|x86[-_]64")) {
             return CpuArch.x86_64;
-        } else if (archProp.matches("i386|x86")) {
-            return CpuArch.x86;
         } else if (archProp.matches("aarch64|arm64")) {
             // MacOSX m1 CPU
             return CpuArch.arm64;

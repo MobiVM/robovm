@@ -17,11 +17,14 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
  */
-public class Alias {
+public class Alias implements Writable{
     private final String name;
     private final Linkage linkage;
     private final Constant value;
@@ -48,22 +51,29 @@ public class Alias {
         return value.getType();
     }
     
-    public String getDefinition() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("@\"");
-        sb.append(name);
-        sb.append("\" = ");
+     public void writeDefinition(Writer writer) throws IOException {
+        writer.write("@\"");
+        writer.write(name);
+        writer.write("\" = ");
         if (linkage != null) {
-            sb.append(linkage);
-            sb.append(' ');
+            writer.write(linkage.toString());
+            writer.write(' ');
         }
-        sb.append("alias ");
-        sb.append(value.getType());
-        sb.append(' ');
-        sb.append(value);
-        return sb.toString();
+        writer.write("alias ");
+        value.getType().write(writer);
+        writer.write(' ');
+        value.write(writer);
     }
-    
+
+    public String getDefinition() {
+        return toString(this::writeDefinition);
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        throw new IllegalStateException("writeDefinition to be used");
+    }
+
     @Override
     public String toString() {
         return name;

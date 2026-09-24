@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -43,7 +44,11 @@ public enum /*<name>*/HKSwimmingStrokeStyle/*</name>*/ implements ValuedEnum {
     Freestyle(2L),
     Backstroke(3L),
     Breaststroke(4L),
-    Butterfly(5L);
+    Butterfly(5L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Kickboard(6L);
     /*</values>*/
 
     /*<bind>*/

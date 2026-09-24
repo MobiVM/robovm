@@ -154,6 +154,12 @@ enums:
     INStartCallCallRecordToCallBackUnsupportedReason: {} #since 14.0
     INShareFocusStatusIntentResponseCode: {} #since 15.0
     INFocusStatusAuthorizationStatus: {} #since 15.0
+    INAnswerCallIntentResponseCode: { } #since 16.2
+    INHangUpCallIntentResponseCode: { } #since 16.2
+    INEditMessageIntentResponseCode: {} #since 17.0
+    INUnsendMessagesIntentResponseCode: {} #since 17.0
+    INMessageReactionType: { } #since 18.0
+    INStickerType: { } #since 18.0
 typed_enums:
     INCarChargingConnectorType:
         enum: INCarChargingConnectorType
@@ -1725,6 +1731,50 @@ classes:
         methods:
             '-initWithCode:userActivity:':
                 name: init
+    INAnswerCallIntent: #since 16.2
+        methods:
+            '-initWithAudioRoute:callIdentifier:':
+                name: init
+    INAnswerCallIntentResponse: #since 16.2
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INHangUpCallIntent: #since 16.2
+        methods:
+            '-initWithCallIdentifier:':
+                name: init
+    INHangUpCallIntentResponse: #since 16.2
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INEditMessageIntent: #since 17.0
+        methods:
+            '-initWithMessageIdentifier:editedContent:':
+                name: init
+    INEditMessageIntentResponse: #since 17.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INMessageLinkMetadata: #since 17.0
+        methods:
+            '-initWithSiteName:summary:title:openGraphType:linkURL:':
+                name: init
+    INUnsendMessagesIntent: #since 17.0
+        methods:
+            '-initWithMessageIdentifiers:':
+                name: init
+    INUnsendMessagesIntentResponse: #since 17.0
+        methods:
+            '-initWithCode:userActivity:':
+                name: init
+    INMessageReaction: #since 18.0
+        methods:
+            '-initWithReactionType:reactionDescription:emoji:':
+                name: init
+    INSticker: #since 18.0
+        methods:
+            '-initWithType:emoji:':
+                name: init
 protocols:
     INActivateCarSignalIntentHandling: #since 10.3
         methods:
@@ -2443,6 +2493,32 @@ protocols:
                 name: handleShareFocusStatus
             '-confirmShareFocusStatus:completion:':
                 name: confirmShareFocusStatus
+    INAnswerCallIntentHandling: #since 16.2
+        methods:
+            '-handleAnswerCall:completion:':
+                name: handleAnswerCall
+            '-confirmAnswerCall:completion:':
+                name: confirmAnswerCall
+    INHangUpCallIntentHandling: #since 16.2
+        methods:
+            '-handleHangUpCall:completion:':
+                name: handleHangUpCall
+            '-confirmHangUpCall:completion:':
+                name: confirmHangUpCall
+    INEditMessageIntentHandling: #since 17.0
+        methods:
+            '-handleEditMessage:completion:':
+                name: handleEditMessage
+            '-confirmEditMessage:completion:':
+                name: confirmEditMessage
+            '-resolveEditedContentForEditMessage:withCompletion:':
+                name: resolveEditedContent
+    INUnsendMessagesIntentHandling: #since 17.0
+        methods:
+            '-handleUnsendMessages:completion:':
+                name: handleUnsendMessages
+            '-confirmUnsendMessages:completion:':
+                name: confirmUnsendMessages
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (IN.*):

@@ -48,7 +48,11 @@ public enum /*<name>*/NSURLErrorNetworkUnavailableReason/*</name>*/ implements V
     /*<values>*/
     Cellular(0L),
     Expensive(1L),
-    Constrained(2L);
+    Constrained(2L),
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    UltraConstrained(3L);
     /*</values>*/
 
     /*<bind>*/

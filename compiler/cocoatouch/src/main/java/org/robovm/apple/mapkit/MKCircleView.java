@@ -52,42 +52,18 @@ import org.robovm.apple.coreanimation.*;
     public MKCircleView() {}
     protected MKCircleView(Handle h, long handle) { super(h, handle); }
     protected MKCircleView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithCircle:")
-    public MKCircleView(MKCircle circle) { super((SkipInit) null); initObject(init(circle)); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    public MKCircleView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
     public MKCircleView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public MKCircleView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "circle")
-    public native MKCircle getCircle();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithCircle:")
-    protected native @Pointer long init(MKCircle circle);
     /**
      * @since Available in iOS 9.0 and later.
      */

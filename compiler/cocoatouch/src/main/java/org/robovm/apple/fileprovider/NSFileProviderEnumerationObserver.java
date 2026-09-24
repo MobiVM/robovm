@@ -47,7 +47,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "suggestedPageSize")
+    @MachineSizedSInt long getSuggestedPageSize();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "didEnumerateItems:")

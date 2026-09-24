@@ -48,6 +48,15 @@ import org.robovm.apple.dispatch.*;
     protected MTLComputePipelineReflection(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "bindings")
+    public native NSArray<?> getBindings();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use bindings
+     */
+    @Deprecated
     @Property(selector = "arguments")
     public native NSArray<MTLArgument> getArguments();
     /*</properties>*/

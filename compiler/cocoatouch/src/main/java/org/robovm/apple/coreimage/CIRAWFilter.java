@@ -104,6 +104,21 @@ import org.robovm.apple.avfoundation.*;
     public native float getBoostShadowAmount();
     @Property(selector = "setBoostShadowAmount:")
     public native void setBoostShadowAmount(float v);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "isHighlightRecoverySupported")
+    public native boolean isHighlightRecoverySupported();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "isHighlightRecoveryEnabled")
+    public native boolean isHighlightRecoveryEnabled();
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "setHighlightRecoveryEnabled:")
+    public native void setHighlightRecoveryEnabled(boolean v);
     @Property(selector = "isGamutMappingEnabled")
     public native boolean isGamutMappingEnabled();
     @Property(selector = "setGamutMappingEnabled:")

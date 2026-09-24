@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use NFCTagReaderSession
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreNFC") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreNFC") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NFCISO15693ReaderSession/*</name>*/ 
     extends /*<extends>*/NFCReaderSession/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -48,6 +49,11 @@ import org.robovm.apple.dispatch.*;
     protected NFCISO15693ReaderSession() {}
     protected NFCISO15693ReaderSession(Handle h, long handle) { super(h, handle); }
     protected NFCISO15693ReaderSession(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported
+     */
+    @Deprecated
     @Method(selector = "initWithDelegate:queue:")
     public NFCISO15693ReaderSession(NFCReaderSessionDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /*</constructors>*/
@@ -60,8 +66,18 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported
+     */
+    @Deprecated
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(NFCReaderSessionDelegate delegate, DispatchQueue queue);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. No longer supported
+     */
+    @Deprecated
     @Method(selector = "restartPolling")
     public native void restartPolling();
     /*</methods>*/

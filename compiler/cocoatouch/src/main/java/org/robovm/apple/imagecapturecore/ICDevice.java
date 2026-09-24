@@ -87,6 +87,11 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "icon")
     public native CGImage getIcon();
     /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "systemSymbolName")
+    public native String getSystemSymbolName();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "transportType")

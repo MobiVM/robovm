@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Set;
 
@@ -73,21 +75,24 @@ public class Getelementptr extends Instruction {
         }
         return super.getReadsFrom();
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(result.toString());
+        writer.write(" = getelementptr ");
+        ptr.getType().write(writer);
+        writer.write(' ');
+        ptr.write(writer);
+        for (Value value : idx) {
+            writer.write(", ");
+            value.getType().write(writer);
+            writer.write(" ");
+            value.write(writer);
+        }
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(result);
-        sb.append(" = getelementptr ");
-        sb.append(ptr.getType());
-        sb.append(' ');
-        sb.append(ptr);
-        for (int i = 0; i < idx.length; i++) {
-            sb.append(", ");
-            sb.append(idx[i].getType());
-            sb.append(" ");
-            sb.append(idx[i]);
-        }
-        return sb.toString();
+        return toString(this::write);
     }
 }

@@ -5,6 +5,10 @@ framework: Vision
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/Vision.framework/Headers/Vision.h
+
+private_typedefs:
+    'AVDepthData *': org.robovm.apple.avfoundation.AVDepthData
+
 typedefs: {}
 
 enums:
@@ -17,6 +21,10 @@ enums:
     VNGenerateOpticalFlowRequestComputationAccuracy: {}
     VNChirality: {}
     VNGeneratePersonSegmentationRequestQualityLevel: {}
+    VNPointsClassification: {}
+    VNBarcodeCompositeType: { }
+    VNHumanBodyPose3DObservationHeightEstimation: { }
+    VNTrackOpticalFlowRequestComputationAccuracy: { }
 classes:
     VNBarcodeObservation: {} #since 11.0
     VNClassificationObservation: #since 11.0
@@ -69,8 +77,10 @@ classes:
                 name: create
                 constructor: true
     VNHomographicImageRegistrationRequest: {} #since 11.0
-    VNHorizonObservation: {} #since 11.0
-    VNImageAlignmentObservation: {} #since 11.0
+    VNHorizonObservation: #since 11.0
+        methods:
+            '-transformForImageWidth:height:':
+                name: transform
     VNImageBasedRequest: {} #since 11.0
     VNImageHomographicAlignmentObservation: {} #since 11.0
     VNImageRegistrationRequest: {} #since 11.0
@@ -87,15 +97,19 @@ classes:
     VNRectangleObservation: #since 11.0
         methods:
             '+rectangleObservationWithRequestRevision:topLeft:bottomLeft:bottomRight:topRight:':
-                name: create
+                name: createDeprecated
                 constructor: true
+            '+rectangleObservationWithRequestRevision:topLeft:topRight:bottomRight:bottomLeft:':
+                name: create # conflicts with one above
     VNRequest: #since 11.0
-        properties:
+        properties_private: # do not extend to subclasses
             'results':
                 type: 'NSArray<? extends VNObservation>'
         methods:
             '-initWithCompletionHandler:':
                 name: init
+            '-setComputeDevice:forComputeStage:':
+                name: setComputeDevice
     VNSequenceRequestHandler: #since 11.0
         methods:
             '-performRequests:onCVPixelBuffer:error:':
@@ -367,6 +381,59 @@ classes:
         methods:
             '+new': { exclude: true }
     VNHumanObservation: {} #since 15.0
+    VNImageAlignmentObservation: {} #since 11.0
+    VNAnimalBodyPoseObservation: #since 17.0
+        methods:
+            '-recognizedPointForJointName:error:':
+                name: getRecognizedPoint
+            '-recognizedPointsForJointsGroupName:error:':
+                name: getRecognizedPoints
+    VNDetectAnimalBodyPoseRequest: {} #since 17.0
+    VNDetectHumanBodyPose3DRequest: {} #since 17.0
+    VNGenerateForegroundInstanceMaskRequest: {} #since 17.0
+    VNGeneratePersonInstanceMaskRequest: {} #since 17.0
+    VNHumanBodyPose3DObservation: #since 17.0
+        methods:
+            '-recognizedPointsForJointsGroupName:error:':
+                name: getRecognizedPoints
+            '-recognizedPointForJointName:error:':
+                name: getRecognizedPoint
+            '-pointInImageForJointName:error:':
+                name: getPointInImage
+                throws: NSErrorException
+            '-getCameraRelativePosition:forJointName:error:':
+                name: getCameraRelativePosition
+                throws: NSErrorException
+    VNHumanBodyRecognizedPoint3D: {} #since 17.0
+    VNInstanceMaskObservation: #since 17.0
+        methods:
+            '-generateMaskForInstances:error:':
+                name: generateMaskForInstances
+                throws: NSErrorException
+            '-generateMaskedImageOfInstances:fromRequestHandler:croppedToInstancesExtent:error:':
+                name: generateMaskedImageOfInstances
+                throws: NSErrorException
+            '-generateScaledMaskForImageForInstances:fromRequestHandler:error:':
+                name: generateScaledMaskForImageForInstances
+                throws: NSErrorException
+    VNPoint3D: #since 17.0
+        methods:
+            '-initWithPosition:':
+                name: init
+    VNRecognizedPoint3D: {} #since 17.0
+    VNRecognizedPoints3DObservation: #since 14.0
+        methods:
+            '-recognizedPointForKey:error:':
+                name: getRecognizedPoint
+                throws: NSErrorException
+            '-recognizedPointsForGroupKey:error:':
+                name: getRecognizedPoint
+                throws: NSErrorException
+    VNTrackHomographicImageRegistrationRequest: {} #since 17.0
+    VNTrackOpticalFlowRequest: {} #since 17.0
+    VNTrackTranslationalImageRegistrationRequest: {} #since 17.0
+    VNCalculateImageAestheticsScoresRequest: {} #since 18.0
+    VNImageAestheticsScoresObservation: {} #since 18.0
 protocols:
     VNFaceObservationAccepting: {} #since 11.0
     VNRequestRevisionProviding: {} #since 12.0
@@ -503,83 +570,40 @@ typed_enums:
         prefix: VN
         enum: VNRecognizedPointGroupKey
         type: NSString
+    VNComputeStage:
+        prefix: VNComputeStage
+        enum: VNComputeStage
+        type: NSString
+    VNAnimalBodyPoseObservationJointName:
+        prefix: VNAnimalBodyPoseObservationJointName
+        enum: VNAnimalBodyPoseObservationJointName
+        type: NSString
+        extends: VNRecognizedPointKey
+    VNAnimalBodyPoseObservationJointsGroupName:
+        enum: VNAnimalBodyPoseObservationJointsGroupName
+        prefix: VNAnimalBodyPoseObservationJointsGroupName
+        type: NSString
+        extends: VNRecognizedPointGroupKey
+    VNHumanBodyPose3DObservationJointName:
+        enum: VNHumanBodyPose3DObservationJointName
+        prefix: VNHumanBodyPose3DObservationJointName
+        type: NSString
+        extends: VNRecognizedPointKey
+    VNHumanBodyPose3DObservationJointsGroupName:
+        enum: VNHumanBodyPose3DObservationJointsGroupName
+        prefix: VNHumanBodyPose3DObservationJointsGroupName
+        type: NSString
+        extends: VNRecognizedPointGroupKey
 
 constants:
-    VNDetectBarcodesRequest(Revision1):
-        class: VNDetectBarcodesRequest
-        name: '#{g[0]}'
-    VNTranslationalImageRegistrationRequest(Revision1):
-        class: VNTranslationalImageRegistrationRequest
-        name: '#{g[0]}'
-    VNHomographicImageRegistrationRequest(Revision1):
-        class: VNHomographicImageRegistrationRequest
-        name: '#{g[0]}'
-    VNRequest(RevisionUnspecified):
-        class: VNRequest
-        name: '#{g[0]}'
-    VNClassifyImageRequestRevision(.*):
-        class: VNClassifyImageRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceRectanglesRequestRevision(.*):
-        class: VNDetectFaceRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceLandmarksRequestRevision(.*):
-        class: VNDetectFaceLandmarksRequest
-        name: 'Revision#{g[0]}'
-    VNDetectFaceCaptureQualityRequestRevision(.*):
-        class: VNDetectFaceCaptureQualityRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHorizonRequestRevision(.*):
-        class: VNDetectHorizonRequest
-        name: 'Revision#{g[0]}'
-    VNDetectRectanglesRequestRevision(.*):
-        class: VNDetectRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNDetectTextRectanglesRequestRevision(.*):
-        class: VNDetectTextRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNRecognizeTextRequestRevision(.*):
-        class: VNRecognizeTextRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateAttentionBasedSaliencyImageRequestRevision(.*):
-        class: VNGenerateAttentionBasedSaliencyImageRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateObjectnessBasedSaliencyImageRequestRevision(.*):
-        class: VNGenerateObjectnessBasedSaliencyImageRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateImageFeaturePrintRequestRevision(.*):
-        class: VNGenerateImageFeaturePrintRequest
-        name: 'Revision#{g[0]}'
-    VNCoreMLRequestRevision(.*):
-        class: VNCoreMLRequest
-        name: 'Revision#{g[0]}'
-    VNTrackObjectRequestRevision(.*):
-        class: VNTrackObjectRequest
-        name: 'Revision#{g[0]}'
-    VNTrackRectangleRequestRevision(.*):
-        class: VNTrackRectangleRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanRectanglesRequestRevision(.*):
-        class: VNDetectHumanRectanglesRequest
-        name: 'Revision#{g[0]}'
-    VNRecognizeAnimalsRequestRevision(.*):
-        class: VNRecognizeAnimalsRequest
-        name: 'Revision#{g[0]}'
-    VNGenerateOpticalFlowRequestRevision(.*):
-        class: VNGenerateOpticalFlowRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanBodyPoseRequestRevision(.*):
-        class: VNDetectHumanBodyPoseRequest
-        name: 'Revision#{g[0]}'
-    VNDetectHumanHandPoseRequestRevision(.*):
-        class: VNDetectHumanHandPoseRequest
-        name: 'Revision#{g[0]}'
     VNDetectContourRequestRevision(.*):
         class: VNDetectContoursRequest
         name: 'Revision#{g[0]}'
-    VNDetectTrajectoriesRequestRevision(.*):
-        class: VNDetectTrajectoriesRequest
-        name: 'Revision#{g[0]}'
+
+    VN(.*)RequestRevision(.*):
+        class: 'VN#{g[0]}Request'
+        name: 'Revision#{g[1]}'
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (VN.*):
         class: Vision

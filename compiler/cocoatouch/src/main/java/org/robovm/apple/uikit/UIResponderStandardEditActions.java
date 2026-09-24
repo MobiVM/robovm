@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,6 +79,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "pasteAndSearch:")
     void pasteAndSearch(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "newFromPasteboard:")
+    void newFromPasteboard(NSObject sender);
     @Method(selector = "select:")
     void select(NSObject sender);
     @Method(selector = "selectAll:")
@@ -99,6 +105,51 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "decreaseSize:")
     void decreaseSize(NSObject sender);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignLeft:")
+    void alignLeft(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignCenter:")
+    void alignCenter(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignJustified:")
+    void alignJustified(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "alignRight:")
+    void alignRight(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "find:")
+    void find(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findAndReplace:")
+    void findAndReplace(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findNext:")
+    void findNext(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "findPrevious:")
+    void findPrevious(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "useSelectionForFind:")
+    void useSelectionForFind(NSObject sender);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "updateTextAttributesWithConversionHandler:")
@@ -108,6 +159,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "print:")
     void print(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "rename:")
+    void rename(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "duplicate:")
+    void duplicate(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "move:")
+    void move(NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "export:")
+    void export(NSObject sender);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "toggleSidebar:")
+    void toggleSidebar(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "toggleInspector:")
+    void toggleInspector(NSObject sender);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "performClose:")
+    void performClose(NSObject sender);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "showWritingTools:")
+    void showWritingTools(NSObject sender);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

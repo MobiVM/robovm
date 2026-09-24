@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,6 +75,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAssetImageGeneratorApertureMode getApertureMode();
     @Property(selector = "setApertureMode:")
     public native void setApertureMode(AVAssetImageGeneratorApertureMode v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "dynamicRangePolicy")
+    public native AVAssetImageGeneratorDynamicRangePolicy getDynamicRangePolicy();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDynamicRangePolicy:")
+    public native void setDynamicRangePolicy(AVAssetImageGeneratorDynamicRangePolicy v);
     @Property(selector = "videoComposition")
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
@@ -92,6 +104,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithAsset:")
     protected native @Pointer long init(AVAsset asset);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use generateCGImageAsynchronouslyForTime:completionHandler: instead
+     */
+    @Deprecated
     @WeaklyLinked
     public CGImage getCGImageAtTime(@ByVal CMTime requestedTime, CMTime actualTime) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
@@ -99,11 +115,20 @@ import org.robovm.apple.audiotoolbox.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use generateCGImageAsynchronouslyForTime:completionHandler: instead
+     */
+    @Deprecated
     @WeaklyLinked
     @Method(selector = "copyCGImageAtTime:actualTime:error:")
     private native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage getCGImageAtTime(@ByVal CMTime requestedTime, CMTime actualTime, NSError.NSErrorPtr outError);
     @Method(selector = "generateCGImagesAsynchronouslyForTimes:completionHandler:")
     public native void generateCGImagesAsynchronously(@org.robovm.rt.bro.annotation.Marshaler(CMTime.AsValuedListMarshaler.class) List<CMTime> requestedTimes, @Block VoidBlock5<CMTime, CGImage, CMTime, AVAssetImageGeneratorResult, NSError> handler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "generateCGImageAsynchronouslyForTime:completionHandler:")
+    public native void generateCGImageAsynchronouslyForTime(@ByVal CMTime requestedTime, @Block("(,@ByVal,)") VoidBlock3<CGImage, CMTime, NSError> handler);
     @Method(selector = "cancelAllCGImageGeneration")
     public native void cancelAllCGImageGeneration();
     /*</methods>*/

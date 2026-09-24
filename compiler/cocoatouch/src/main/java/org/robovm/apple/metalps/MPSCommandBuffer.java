@@ -190,6 +190,11 @@ import org.robovm.apple.metal.*;
     @Method(selector = "accelerationStructureCommandEncoder")
     public native MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "accelerationStructureCommandEncoderWithDescriptor:")
+    public native MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder(MTLAccelerationStructurePassDescriptor descriptor);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "pushDebugGroup:")
@@ -199,5 +204,15 @@ import org.robovm.apple.metal.*;
      */
     @Method(selector = "popDebugGroup")
     public native void popDebugGroup();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "useResidencySet:")
+    public native void useResidencySet(MTLResidencySet residencySet);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "useResidencySets:count:")
+    public native void useResidencySets(MTLResidencySet residencySets, @MachineSizedUInt long count);
     /*</methods>*/
 }

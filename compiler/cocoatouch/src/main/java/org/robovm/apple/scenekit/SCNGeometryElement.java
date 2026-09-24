@@ -65,6 +65,18 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "primitiveCount")
     public native @MachineSizedSInt long getPrimitiveCount();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "hasInterleavedIndicesChannels")
+    public native boolean isInterleavedIndicesChannels();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "indicesChannelCount")
+    public native @MachineSizedSInt long getIndicesChannelCount();
+    @Property(selector = "bytesPerIndex")
+    public native @MachineSizedSInt long getBytesPerIndex();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Property(selector = "primitiveRange")
@@ -74,8 +86,6 @@ import org.robovm.apple.avfoundation.*;
      */
     @Property(selector = "setPrimitiveRange:")
     public native void setPrimitiveRange(@ByVal NSRange v);
-    @Property(selector = "bytesPerIndex")
-    public native @MachineSizedSInt long getBytesPerIndex();
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -114,10 +124,20 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "geometryElementWithData:primitiveType:primitiveCount:bytesPerIndex:")
     public static native SCNGeometryElement create(NSData data, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long bytesPerIndex);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "geometryElementWithData:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:")
+    public static native SCNGeometryElement create(NSData data, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long indicesChannelCount, boolean interleavedIndicesChannels, @MachineSizedSInt long bytesPerIndex);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:")
     public static native SCNGeometryElement create(MTLBuffer buffer, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long bytesPerIndex);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:")
+    public static native SCNGeometryElement create(MTLBuffer buffer, SCNGeometryPrimitiveType primitiveType, @MachineSizedSInt long primitiveCount, @MachineSizedSInt long indicesChannelCount, boolean interleavedIndicesChannels, @MachineSizedSInt long bytesPerIndex);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

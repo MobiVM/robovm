@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +66,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setPlaybackState:")
     public native void setPlaybackState(MPNowPlayingPlaybackState v);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Property(selector = "supportedAnimatedArtworkKeys")
+    public static native NSArray<NSString> getSupportedAnimatedArtworkKeys();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

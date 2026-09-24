@@ -50,10 +50,18 @@ public enum /*<name>*/MLMultiArrayDataType/*</name>*/ implements ValuedEnum {
     Float64(65600L),
     Float32(65568L),
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Float16(65552L),
+    /**
      * @since Available in iOS 14.0 and later.
      */
     Float(65568L),
-    Int32(131104L);
+    Int32(131104L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Int8(131080L);
     /*</values>*/
 
     /*<bind>*/

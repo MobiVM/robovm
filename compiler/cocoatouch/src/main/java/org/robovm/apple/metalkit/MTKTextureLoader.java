@@ -74,12 +74,12 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newTexturesWithContentsOfURLs:options:completionHandler:")
-    public native void newTexture(NSArray<NSURL> URLs, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public native void newTexture(NSArray<NSURL> URLs, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<MTLTexture>, NSError> completionHandler);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newTexturesWithNames:scaleFactor:bundle:options:completionHandler:")
-    public native void newTexture(NSArray<NSString> names, @MachineSizedFloat double scaleFactor, NSBundle bundle, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    public native void newTexture(NSArray<NSString> names, @MachineSizedFloat double scaleFactor, NSBundle bundle, MTKTextureLoaderOptions options, @Block VoidBlock2<NSArray<MTLTexture>, NSError> completionHandler);
     @Method(selector = "newTextureWithData:options:completionHandler:")
     public native void newTexture(NSData data, MTKTextureLoaderOptions options, @Block VoidBlock2<MTLTexture, NSError> completionHandler);
     @Method(selector = "newTextureWithCGImage:options:completionHandler:")
@@ -100,9 +100,9 @@ import org.robovm.apple.coreanimation.*;
     /**
      * @since Available in iOS 10.0 and later.
      */
-    public NSArray<?> newTextures(NSArray<NSURL> URLs, MTKTextureLoaderOptions options) throws NSErrorException {
+    public NSArray<MTLTexture> newTextures(NSArray<NSURL> URLs, MTKTextureLoaderOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
-       NSArray<?> result = newTextures(URLs, options, ptr);
+       NSArray<MTLTexture> result = newTextures(URLs, options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        return result;
     }
@@ -110,7 +110,7 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newTexturesWithContentsOfURLs:options:error:")
-    private native NSArray<?> newTextures(NSArray<NSURL> URLs, MTKTextureLoaderOptions options, NSError.NSErrorPtr error);
+    private native NSArray<MTLTexture> newTextures(NSArray<NSURL> URLs, MTKTextureLoaderOptions options, NSError.NSErrorPtr error);
     public MTLTexture newTexture(NSData data, MTKTextureLoaderOptions options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        MTLTexture result = newTexture(data, options, ptr);

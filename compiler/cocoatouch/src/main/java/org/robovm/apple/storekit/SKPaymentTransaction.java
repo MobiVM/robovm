@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 18.0. Use PurchaseResult from Product.purchase(confirmIn:options:).
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("StoreKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("StoreKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SKPaymentTransaction/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -55,18 +57,16 @@ import org.robovm.apple.coregraphics.*;
     public native SKPaymentTransaction getOriginalTransaction();
     @Property(selector = "payment")
     public native SKPayment getPayment();
+    /**
+     * @deprecated Deprecated in iOS 16.0. Hosted content is no longer supported.
+     */
+    @Deprecated
     @Property(selector = "downloads")
     public native NSArray<SKDownload> getDownloads();
     @Property(selector = "transactionDate")
     public native NSDate getTransactionDate();
     @Property(selector = "transactionIdentifier")
     public native String getTransactionIdentifier();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use -[NSBundle appStoreReceiptURL]
-     */
-    @Deprecated
-    @Property(selector = "transactionReceipt")
-    public native NSData getTransactionReceipt();
     @Property(selector = "transactionState")
     public native SKPaymentTransactionState getTransactionState();
     /*</properties>*/

@@ -101,7 +101,11 @@ classes:
     CTFontManagerError:
         extends: NSError
 
-protocols: {}
+protocols:
+    CTAdaptiveImageProviding:
+        methods:
+            '-imageForProposedSize:scaleFactor:imageOffset:imageSize:':
+                name: imageForProposedSize
 
 functions:
     CTRunDelegateGetTypeID:

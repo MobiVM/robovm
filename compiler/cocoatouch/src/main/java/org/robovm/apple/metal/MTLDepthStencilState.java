@@ -50,6 +50,19 @@ import org.robovm.apple.dispatch.*;
     public native String getLabel();
     @Property(selector = "device")
     public native MTLDevice getDevice();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    public native @ByVal MTLResourceID getGpuResourceID();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -19,36 +19,24 @@ package org.robovm.compiler.config;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.robovm.compiler.DependencyGraph;
-import org.robovm.compiler.ITable;
-import org.robovm.compiler.MarshalerLookup;
-import org.robovm.compiler.VTable;
 import org.robovm.compiler.Version;
+import org.robovm.compiler.*;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.clazz.Clazzes;
 import org.robovm.compiler.clazz.Path;
-import org.robovm.compiler.config.OS.Family;
+import org.robovm.compiler.config.ConfigXmlEntries.*;
 import org.robovm.compiler.config.StripArchivesConfig.StripArchivesBuilder;
 import org.robovm.compiler.config.tools.Tools;
 import org.robovm.compiler.llvm.DataLayout;
 import org.robovm.compiler.log.Logger;
-import org.robovm.compiler.plugin.CompilerPlugin;
-import org.robovm.compiler.plugin.LaunchPlugin;
-import org.robovm.compiler.plugin.Plugin;
-import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.plugin.TargetPlugin;
+import org.robovm.compiler.plugin.*;
 import org.robovm.compiler.plugin.annotation.AnnotationImplPlugin;
 import org.robovm.compiler.plugin.debug.DebugInformationPlugin;
 import org.robovm.compiler.plugin.debug.DebuggerLaunchPlugin;
-import org.robovm.compiler.plugin.desugar.ByteBufferJava9ApiPlugin;
-import org.robovm.compiler.plugin.desugar.StringConcatRewriterPlugin;
-import org.robovm.compiler.plugin.lambda.LambdaPlugin;
-import org.robovm.compiler.plugin.objc.InterfaceBuilderClassesPlugin;
-import org.robovm.compiler.plugin.objc.ObjCBlockPlugin;
-import org.robovm.compiler.plugin.objc.ObjCMemberPlugin;
-import org.robovm.compiler.plugin.objc.ObjCProtocolToObjCObjectPlugin;
-import org.robovm.compiler.plugin.objc.ObjCProtocolProxyPlugin;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.plugin.invokedynamic.InvokeDynamicCompilerPlugin;
+import org.robovm.compiler.plugin.launch.LaunchPlugin;
+import org.robovm.compiler.plugin.objc.*;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.Target;
 import org.robovm.compiler.target.framework.FrameworkTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
@@ -56,13 +44,7 @@ import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
 import org.robovm.compiler.util.DigestUtil;
 import org.robovm.compiler.util.InfoPList;
-import org.robovm.compiler.util.io.RamDiskTools;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
-import org.simpleframework.xml.Root;
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.Text;
+import org.simpleframework.xml.*;
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.convert.Registry;
 import org.simpleframework.xml.convert.RegistryStrategy;
@@ -75,22 +57,14 @@ import org.simpleframework.xml.stream.OutputNode;
 import org.simpleframework.xml.transform.RegistryMatcher;
 import org.simpleframework.xml.transform.Transform;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.stream.Collectors;
@@ -138,38 +112,42 @@ public class Config {
     private OS os = null;
     @ElementList(required = false, inline = true)
     private ArrayList<Arch> archs = null;
-    @ElementList(required = false, entry = "root")
-    private ArrayList<String> roots;
-    @ElementList(required = false, entry = "pattern")
-    private ArrayList<String> forceLinkClasses;
-    @ElementList(required = false, entry = "entry")
-    private ArrayList<ForceLinkMethodsConfig> forceLinkMethods;
-    @ElementList(required = false, entry = "lib")
-    private ArrayList<Lib> libs;
-    @ElementList(required = false, entry = "symbol")
-    private ArrayList<String> exportedSymbols;
-    @ElementList(required = false, entry = "symbol")
-    private ArrayList<String> unhideSymbols;
-    @ElementList(required = false, entry = "framework")
-    private ArrayList<String> frameworks;
-    @ElementList(required = false, entry = "framework")
-    private ArrayList<String> weakFrameworks;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<QualifiedFile> frameworkPaths;
-    @ElementList(required = false, entry = "extension")
-    private ArrayList<AppExtension> appExtensions;
-    @ElementList(required = false, entry = "path")
-    private ArrayList<QualifiedFile> appExtensionPaths;
     @Element(required = false)
-    private SwiftSupport swiftSupport = null;
-    @ElementList(required = false, entry = "resource")
-    private ArrayList<Resource> resources;
-    @ElementList(required = false, entry = "classpathentry")
-    private ArrayList<File> bootclasspath;
-    @ElementList(required = false, entry = "classpathentry")
-    private ArrayList<File> classpath;
-    @ElementList(required = false, entry = "argument")
-    private ArrayList<String> pluginArguments;
+    private RootsList roots;
+    @Element(required = false)
+    private ForceLinkClassesList forceLinkClasses;
+    @Element(required = false)
+    private ForceLinkMethodsList forceLinkMethods;
+    @Element(required = false)
+    private LibsList libs;
+    @Element(required = false)
+    private SymbolsList exportedSymbols;
+    @Element(required = false)
+    private SymbolsList unhideSymbols;
+    @Element(required = false)
+    private FrameworksList frameworks;
+    @Element(required = false)
+    private FrameworksList weakFrameworks;
+    @Element(required = false)
+    private PathsList frameworkPaths;
+    @Element(required = false)
+    private PathsList xcFrameworks;
+    @Element(required = false)
+    private AppExtensionsList appExtensions;
+    @Element(required = false)
+    private PathsList appExtensionPaths;
+    @Element(required = false)
+    private SwiftSupport swiftSupport = new SwiftSupport();
+    @Element(required = false)
+    private ExperimentalFeatures experimental = new ExperimentalFeatures();
+    @Element(required = false)
+    private ResourcesList resources;
+    @Element(required = false)
+    private ClasspathentryList bootclasspath;
+    @Element(required = false)
+    private ClasspathentryList classpath;
+    @Element(required = false)
+    private PluginArgumentsList pluginArguments;
     @Element(required = false, name = "target")
     private String targetType;
     @Element(required = false, name = "stripArchives")
@@ -193,9 +171,6 @@ public class Config {
 
     @Element(required = false)
     private Tools tools;
-
-    @Element(required = false)
-    private Boolean enableBitcode;
 
     private SigningIdentity iosSignIdentity;
     private ProvisioningProfile iosProvisioningProfile;
@@ -242,6 +217,7 @@ public class Config {
     private transient DependencyGraph dependencyGraph;
     private transient Arch sliceArch;
     private transient StripArchivesBuilder stripArchivesBuilder;
+    private transient ResolvedLocations resolvedLocations;
 
     protected Config(UUID uuid) {
         // save session uuid
@@ -255,11 +231,10 @@ public class Config {
                 new ObjCMemberPlugin(),
                 new ObjCBlockPlugin(),
                 new AnnotationImplPlugin(),
-                new StringConcatRewriterPlugin(),
-                new ByteBufferJava9ApiPlugin(),
-                new LambdaPlugin(),
+                new InvokeDynamicCompilerPlugin(),
                 new DebugInformationPlugin(),
-                new DebuggerLaunchPlugin()
+                new DebuggerLaunchPlugin(),
+                new BuildGarbageCollectorPlugin()
                 ));
         this.loadPluginsFromClassPath();
     }
@@ -404,6 +379,8 @@ public class Config {
     }
 
     public DependencyGraph getDependencyGraph() {
+        if (dependencyGraph == null)
+            throw new IllegalStateException(".dependencyGraph has been disposed!");
         return dependencyGraph;
     }
 
@@ -441,28 +418,25 @@ public class Config {
     }
 
     public List<Lib> getLibs() {
-        return libs == null ? Collections.emptyList()
-                : libs.stream()
-                .filter(this::isQualified)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+        return getResolvedLocations().libs;
     }
 
     public List<String> getFrameworks() {
-        return frameworks == null ? Collections.emptyList()
-                : Collections.unmodifiableList(frameworks);
+        return getResolvedLocations().frameworks;
     }
 
     public List<String> getWeakFrameworks() {
-        return weakFrameworks == null ? Collections.emptyList()
-                : Collections.unmodifiableList(weakFrameworks);
+        return getResolvedLocations().weakFrameworks;
+    }
+
+    private synchronized ResolvedLocations getResolvedLocations() {
+        if (resolvedLocations == null)
+            resolvedLocations = resolveLocations();
+        return resolvedLocations;
     }
 
     public List<File> getFrameworkPaths() {
-        return frameworkPaths == null ? Collections.emptyList()
-                : frameworkPaths.stream()
-                .filter(this::isQualified)
-                .map(f -> f.entry)
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
+        return getResolvedLocations().frameworkPaths;
     }
 
     public List<AppExtension> getAppExtensions() {
@@ -479,15 +453,15 @@ public class Config {
     }
 
     public SwiftSupport getSwiftSupport() {
-        return swiftSupport;
+        return swiftSupport.isEnabled() ? swiftSupport : null;
     }
 
     public boolean hasSwiftSupport() {
-        return swiftSupport != null;
+        return swiftSupport.isEnabled();
     }
 
     public List<File> getSwiftLibPaths() {
-        return swiftSupport == null ? Collections.emptyList()
+        return !swiftSupport.isEnabled() ? Collections.emptyList()
                 : swiftSupport.getSwiftLibPaths().stream()
                 .filter(this::isQualified)
                 .map(f -> f.entry)
@@ -504,14 +478,29 @@ public class Config {
     }
 
     public Clazzes getClazzes() {
+        if (clazzes == null)
+            throw new IllegalStateException(".clazzes has been disposed!");
         return clazzes;
     }
 
+    public void disposeBuildData() {
+        // not null clazzes as some data like allPath is required post-build (e.g. to stripArchives)
+        clazzes.disposeData();
+        dependencyGraph = null;
+        vtableCache = null;
+        itableCache = null;
+        marshalerLookup = null;
+    }
+
     public VTable.Cache getVTableCache() {
+        if (vtableCache == null)
+            throw new IllegalStateException(".vtableCache has been disposed!");
         return vtableCache;
     }
 
     public ITable.Cache getITableCache() {
+        if (itableCache == null)
+            throw new IllegalStateException(".itableCache has been disposed!");
         return itableCache;
     }
 
@@ -629,18 +618,27 @@ public class Config {
         return iosSkipSigning;
     }
 
-    public boolean isEnableBitcode() {return enableBitcode != null && enableBitcode && shouldEmitBitcode(); }
+    public boolean isEnableBitcode() {
+        // TODO: FIXME: bitcode forced to be disabled as with XCode16 it is deprecated and Apple will not accept
+        //              binaries with it. Infrastructure is kept for a while
+
+        return false;
+    }
 
     public boolean shouldEmitBitcode() {
         // emit bitcode to object file even if it is not enabled.
         // as currently only `__LLVM,__asm` is being added
         // but build should match criteria
-        return !debug && os == OS.ios && sliceArch.getEnv() == Environment.Native &&
-                (sliceArch.getCpuArch() == CpuArch.arm64 || sliceArch.getCpuArch() == CpuArch.thumbv7);
+        // return !debug && os == OS.ios && sliceArch.getEnv() == Environment.Native &&
+        //        (sliceArch.getCpuArch() == CpuArch.arm64 || sliceArch.getCpuArch() == CpuArch.thumbv7);
+
+        // TODO: FIXME: bitcode forced to be disabled as with XCode16 it is deprecated and Apple will not accept
+        //              binaries with it. Infrastructure is kept for a while
+        return false;
     }
 
     public Tools getTools() {
-        return tools;
+        return tools != null ? tools : Tools.Empty;
     }
 
     public WatchKitApp getWatchKitApp() {
@@ -749,7 +747,7 @@ public class Config {
                 return false;
         }
         if (qualified.filterArch() != null) {
-            if (!Arrays.asList(qualified.filterArch()).contains(sliceArch))
+            if (Arrays.stream(qualified.filterArch()).noneMatch((a) -> a.promoteTo(os).equals(sliceArch)))
                 return false;
         }
         if (qualified.filterPlatformVariants() != null) {
@@ -809,12 +807,12 @@ public class Config {
         }
     }
 
-    private <T> ArrayList<T> mergeLists(ArrayList<T> from, ArrayList<T> to) {
+    private <E, T extends ArrayList<E>> T mergeLists(T from, T to, Supplier<T> creator) {
         if (from == null) {
             return to;
         }
-        to = to != null ? to : new ArrayList<>();
-        for (T o : from) {
+        to = to != null ? to : creator.get();
+        for (E o : from) {
             if (!to.contains(o)) {
                 to.add(o);
             }
@@ -823,15 +821,16 @@ public class Config {
     }
 
     private void mergeConfig(Config from, Config to) {
-        to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols);
-        to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols);
-        to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses);
-        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods);
-        to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths);
-        to.frameworks = mergeLists(from.frameworks, to.frameworks);
-        to.libs = mergeLists(from.libs, to.libs);
-        to.resources = mergeLists(from.resources, to.resources);
-        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks);
+        to.exportedSymbols = mergeLists(from.exportedSymbols, to.exportedSymbols, SymbolsList::new);
+        to.unhideSymbols = mergeLists(from.unhideSymbols, to.unhideSymbols, SymbolsList::new);
+        to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses, ForceLinkClassesList::new);
+        to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods, ForceLinkMethodsList::new);
+        to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths, PathsList::new);
+        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks, PathsList::new);
+        to.frameworks = mergeLists(from.frameworks, to.frameworks, FrameworksList::new);
+        to.libs = mergeLists(from.libs, to.libs, LibsList::new);
+        to.resources = mergeLists(from.resources, to.resources, ResourcesList::new);
+        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks, FrameworksList::new);
     }
 
     private void mergeConfigsFromClasspath() throws IOException {
@@ -913,6 +912,9 @@ public class Config {
     }
 
     private Config build() throws IOException {
+        // drop any resolved entities to have it re-resolved with updated data
+        resolvedLocations = null;
+
         // Create a clone of this Config before we have done anything with it so
         // that builder() has a fresh Config it can use.
         this.configBeforeBuild = clone(this);
@@ -922,10 +924,10 @@ public class Config {
         }
 
         if (bootclasspath == null) {
-            bootclasspath = new ArrayList<>();
+            bootclasspath = new ClasspathentryList();
         }
         if (classpath == null) {
-            classpath = new ArrayList<>();
+            classpath = new ClasspathentryList();
         }
 
         if (mainJar != null) {
@@ -957,17 +959,16 @@ public class Config {
             imageName = executableName;
         }
 
-        // promote environment of arch if it is not ambigious (e.g. x86_64 or iOS exists only
+        // promote environment of arch if it is not ambiguous (e.g. x86_64 or iOS exists only
         // in simulator environment)
         if (archs != null) {
-            for (int idx = 0; idx < archs.size(); idx++)
-                archs.set(idx, archs.get(idx).promoteTo(os));
+            archs.replaceAll(arch -> arch.promoteTo(os));
         }
 
         List<File> realBootclasspath = bootclasspath == null ? new ArrayList<>() : bootclasspath;
         if (!isSkipRuntimeLib()) {
             realBootclasspath = new ArrayList<>(bootclasspath);
-            realBootclasspath.add(0, home.rtPath);
+            realBootclasspath.add(0, home.rtJarPath);
         }
 
         this.vtableCache = new VTable.Cache();
@@ -1019,22 +1020,7 @@ public class Config {
         dataLayout = new DataLayout(getTriple());
 
         osArchDepLibDir = new File(new File(home.libVmDir, os.toString()), sliceArch.toString());
-
-        if (treeShakerMode != null && treeShakerMode != TreeShakerMode.none
-                && os.getFamily() == Family.darwin && sliceArch.getCpuArch() == CpuArch.x86) {
-
-            logger.warn("Tree shaking is not supported when building "
-                    + "for OS X/iOS x86 32-bit due to a bug in Xcode's linker. No tree "
-                    + "shaking will be performed. Run in 64-bit mode instead to "
-                    + "use tree shaking.");
-            treeShakerMode = TreeShakerMode.none;
-        }
         dependencyGraph = new DependencyGraph(getTreeShakerMode());
-
-        RamDiskTools ramDiskTools = new RamDiskTools();
-        ramDiskTools.setupRamDisk(this, this.cacheDir, this.tmpDir);
-        this.cacheDir = ramDiskTools.getCacheDir();
-        this.tmpDir = ramDiskTools.getTmpDir();
 
         File osDir = new File(cacheDir, os.toString());
         String archName = sliceArch.toString();
@@ -1059,35 +1045,41 @@ public class Config {
     }
 
     public static class Home {
-        private File binDir;
-        private File libVmDir;
-        private File rtPath;
-        private Map<Cacerts, File> cacertsPath;
-        private boolean dev = false;
+        private final File homeDir;
+        private final File binDir;
+        private final File libVmDir;
+        private final File rtJarPath;
+        private final Map<Cacerts, File> cacertsPath;
+        private final boolean dev;
 
         public Home(File homeDir) {
             this(homeDir, true);
         }
 
-        protected Home(File homeDir, boolean validate) {
-            if (validate) {
-                validate(homeDir);
-            }
+        public Home(File homeDir, boolean validate) {
+            this.homeDir = homeDir;
             binDir = new File(homeDir, "bin");
             libVmDir = new File(homeDir, "lib/vm");
-            rtPath = new File(homeDir, "lib/robovm-rt.jar");
+            rtJarPath = new File(homeDir, "lib/robovm-rt.jar");
             cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(homeDir, "lib/robovm-cacerts-full.jar"));
+            dev = false;
+            if (validate) validate();
         }
 
-        private Home(File devDir, File binDir, File libVmDir, File rtPath) {
+        private Home(File devDir, File binDir, File libVmDir, File rtJarPath) {
+            this.homeDir = devDir;
             this.binDir = binDir;
             this.libVmDir = libVmDir;
-            this.rtPath = rtPath;
+            this.rtJarPath = rtJarPath;
             cacertsPath = new HashMap<>();
             cacertsPath.put(Cacerts.full, new File(devDir,
-                    "cacerts/full/target/robovm-cacerts-full-" + Version.getVersion() + ".jar"));
+                    "cacerts/full/target/robovm-cacerts-full-" + Version.getCompilerVersion() + ".jar"));
             this.dev = true;
+        }
+
+        public File getHomeDir() {
+            return homeDir;
         }
 
         public boolean isDev() {
@@ -1103,23 +1095,39 @@ public class Config {
         }
 
         public File getRtPath() {
-            return rtPath;
+            return rtJarPath;
         }
 
         public File getCacertsPath(Cacerts cacerts) {
             return cacertsPath.get(cacerts);
         }
 
+        /**
+         * Suggest home location in case running under ROBOVM_DEV_ROOT, doesn't validate it
+         * @return home location for dev or null if not running in dev mode
+         */
+        public static Home suggestDevHome() {
+            String prop = System.getProperty("ROBOVM_DEV_ROOT");
+            if (prop == null)
+                prop = System.getenv("ROBOVM_DEV_ROOT");
+            if (prop == null)
+                return null;
+
+            File devDir = new File(prop);
+            File vmBinariesDir = new File(devDir, "vm/target/binaries");
+            File binDir = new File(devDir, "bin");
+            String rtJarName = "robovm-rt-" + Version.getCompilerVersion() + ".jar";
+            File rtJar = new File(devDir, "rt/target/" + rtJarName);
+            return new Home(devDir, binDir, vmBinariesDir, rtJar);
+        }
+
         public static Home find() {
             // Check if ROBOVM_DEV_ROOT has been set. If set it should be
             // pointing at the root of a complete RoboVM source tree.
-            if (System.getenv("ROBOVM_DEV_ROOT") != null) {
-                File dir = new File(System.getenv("ROBOVM_DEV_ROOT"));
-                return validateDevRootDir(dir);
-            }
-            if (System.getProperty("ROBOVM_DEV_ROOT") != null) {
-                File dir = new File(System.getProperty("ROBOVM_DEV_ROOT"));
-                return validateDevRootDir(dir);
+            Home devHome = suggestDevHome();
+            if (devHome != null) {
+                devHome.validate();
+                return devHome;
             }
 
             if (System.getenv("ROBOVM_HOME") != null) {
@@ -1127,6 +1135,8 @@ public class Config {
                 return new Home(dir);
             }
 
+            // FIXME: this lookup will not work as SDKs are located at `~/.robovm-sdks`
+            //        in corresponding version sub-folders e.g. `~/.robovm-sdks/robovm-2.3.23`
             List<File> candidates = new ArrayList<>();
             File userHome = new File(System.getProperty("user.home"));
             candidates.add(new File(userHome, "Applications/robovm"));
@@ -1145,85 +1155,57 @@ public class Config {
                     + "installation found in " + candidates);
         }
 
-        public static void validate(File dir) {
-            String error = "Path " + dir + " is not a valid RoboVM install directory: ";
+        public void validate() {
+            String error = "Path " + homeDir + " is not a valid RoboVM install directory: ";
             // Check for required dirs and match the compiler version with our
             // version.
-            if (!dir.exists()) {
+            if (!homeDir.exists()) {
                 throw new IllegalArgumentException(error + "no such path");
             }
 
-            if (!dir.isDirectory()) {
+            if (!homeDir.isDirectory()) {
                 throw new IllegalArgumentException(error + "not a directory");
             }
 
-            File libDir = new File(dir, "lib");
-            if (!libDir.exists() || !libDir.isDirectory()) {
-                throw new IllegalArgumentException(error + "lib/ missing or invalid");
-            }
-            File binDir = new File(dir, "bin");
             if (!binDir.exists() || !binDir.isDirectory()) {
-                throw new IllegalArgumentException(error + "bin/ missing or invalid");
+                throw new IllegalArgumentException(error + relativize(binDir, homeDir) + " missing or invalid");
             }
-            File libVmDir = new File(libDir, "vm");
             if (!libVmDir.exists() || !libVmDir.isDirectory()) {
-                throw new IllegalArgumentException(error + "lib/vm/ missing or invalid");
+                throw new IllegalArgumentException(error + relativize(libVmDir, homeDir) + " missing or invalid");
             }
-            File rtJarFile = new File(libDir, "robovm-rt.jar");
-            if (!rtJarFile.exists() || !rtJarFile.isFile()) {
-                throw new IllegalArgumentException(error
-                        + "lib/robovm-rt.jar missing or invalid");
+            if (!rtJarPath.exists() || !rtJarPath.isFile()) {
+                throw new IllegalArgumentException(error + relativize(rtJarPath, homeDir) + " missing or invalid");
             }
 
             // Compare the version of this compiler with the version of the
             // robovm-rt.jar in the home dir. They have to match.
             try {
-                String thisVersion = Version.getVersion();
-                String thatVersion = getImplementationVersion(rtJarFile);
+                String thisVersion = Version.getCompilerVersion();
+                String thatVersion = getImplementationVersion(rtJarPath);
                 if (thisVersion == null || !thisVersion.equals(thatVersion)) {
                     throw new IllegalArgumentException(error + "version mismatch (expected: "
                             + thisVersion + ", was: " + thatVersion + ")");
                 }
             } catch (IOException e) {
-                throw new IllegalArgumentException(error
-                        + "failed to get version of rt jar", e);
+                throw new IllegalArgumentException(error + "failed to get version of rt jar", e);
             }
         }
 
-        private static Home validateDevRootDir(File dir) {
-            String error = "Path " + dir + " is not a valid RoboVM source tree: ";
-            // Check for required dirs.
-            if (!dir.exists()) {
-                throw new IllegalArgumentException(error + "no such path");
+        private static String relativize(File dir, File base) {
+            try {
+                return dir.toPath().relativize(base.toPath()).toString();
+            } catch (Exception e) {
+                return dir.toString();
             }
+        }
 
-            if (!dir.isDirectory()) {
-                throw new IllegalArgumentException(error + "not a directory");
+        public boolean isValid() {
+            try {
+                validate();
+                return true;
+            } catch (Exception ignored) {
+                return false;
             }
-
-            File vmBinariesDir = new File(dir, "vm/target/binaries");
-            if (!vmBinariesDir.exists() || !vmBinariesDir.isDirectory()) {
-                throw new IllegalArgumentException(error + "vm/target/binaries/ missing or invalid");
-            }
-            File binDir = new File(dir, "bin");
-            if (!binDir.exists() || !binDir.isDirectory()) {
-                throw new IllegalArgumentException(error + "bin/ missing or invalid");
-            }
-
-            String rtJarName = "robovm-rt-" + Version.getVersion() + ".jar";
-            File rtJar = new File(dir, "rt/target/" + rtJarName);
-            File rtClasses = new File(dir, "rt/target/classes/");
-            File rtSource = rtJar;
-            if (!rtJar.exists() || rtJar.isDirectory()) {
-                if (!rtClasses.exists() || rtClasses.isFile()) {
-                    throw new IllegalArgumentException(error
-                            + "rt/target/" + rtJarName + " missing or invalid");
-                } else {
-                    rtSource = rtClasses;
-                }
-            }
-
-            return new Home(dir, binDir, vmBinariesDir, rtSource);
         }
     }
 
@@ -1270,6 +1252,9 @@ public class Config {
             }
             config.archs.clear();
             config.archs.addAll(archs);
+
+            // initialization of sliceArch is needed for IBXcodeProjects where build() is not invoked
+            config.sliceArch = config.archs.isEmpty() ? null : config.archs.get(0);
             return this;
         }
 
@@ -1282,7 +1267,7 @@ public class Config {
 
         public Builder addClasspathEntry(File f) {
             if (config.classpath == null) {
-                config.classpath = new ArrayList<>();
+                config.classpath = new ClasspathentryList();
             }
             config.classpath.add(f);
             return this;
@@ -1297,7 +1282,7 @@ public class Config {
 
         public Builder addBootClasspathEntry(File f) {
             if (config.bootclasspath == null) {
-                config.bootclasspath = new ArrayList<>();
+                config.bootclasspath = new ClasspathentryList();
             }
             config.bootclasspath.add(f);
             return this;
@@ -1417,7 +1402,7 @@ public class Config {
 
         public Builder addForceLinkClass(String pattern) {
             if (config.forceLinkClasses == null) {
-                config.forceLinkClasses = new ArrayList<>();
+                config.forceLinkClasses = new ForceLinkClassesList();
             }
             config.forceLinkClasses.add(pattern);
             return this;
@@ -1432,7 +1417,7 @@ public class Config {
 
         public Builder addExportedSymbol(String symbol) {
             if (config.exportedSymbols == null) {
-                config.exportedSymbols = new ArrayList<>();
+                config.exportedSymbols = new SymbolsList();
             }
             config.exportedSymbols.add(symbol);
             return this;
@@ -1447,7 +1432,7 @@ public class Config {
 
         public Builder addUnhideSymbol(String symbol) {
             if (config.unhideSymbols == null) {
-                config.unhideSymbols = new ArrayList<>();
+                config.unhideSymbols = new SymbolsList();
             }
             config.unhideSymbols.add(symbol);
             return this;
@@ -1462,7 +1447,7 @@ public class Config {
 
         public Builder addLib(Lib lib) {
             if (config.libs == null) {
-                config.libs = new ArrayList<>();
+                config.libs = new LibsList();
             }
             config.libs.add(lib);
             return this;
@@ -1477,9 +1462,17 @@ public class Config {
 
         public Builder addFramework(String framework) {
             if (config.frameworks == null) {
-                config.frameworks = new ArrayList<>();
+                config.frameworks = new FrameworksList();
             }
-            config.frameworks.add(framework);
+            config.frameworks.add(new QualifiedEntry(framework));
+            return this;
+        }
+
+        public Builder addXCFramework(File xcFramework) {
+            if (config.xcFrameworks == null) {
+                config.xcFrameworks = new PathsList();
+            }
+            config.xcFrameworks.add(new QualifiedFile(xcFramework));
             return this;
         }
 
@@ -1492,9 +1485,9 @@ public class Config {
 
         public Builder addWeakFramework(String framework) {
             if (config.weakFrameworks == null) {
-                config.weakFrameworks = new ArrayList<>();
+                config.weakFrameworks = new FrameworksList();
             }
-            config.weakFrameworks.add(framework);
+            config.weakFrameworks.add(new QualifiedEntry(framework));
             return this;
         }
 
@@ -1507,7 +1500,7 @@ public class Config {
 
         public Builder addFrameworkPath(File frameworkPath) {
             if (config.frameworkPaths == null) {
-                config.frameworkPaths = new ArrayList<>();
+                config.frameworkPaths = new PathsList();
             }
             config.frameworkPaths.add(new QualifiedFile(frameworkPath));
             return this;
@@ -1522,7 +1515,7 @@ public class Config {
 
         public Builder addExtension(String name, String profile) {
             if (config.appExtensions == null) {
-                config.appExtensions = new ArrayList<>();
+                config.appExtensions = new AppExtensionsList();
             }
             AppExtension extension = new AppExtension();
             extension.name = name;
@@ -1540,7 +1533,7 @@ public class Config {
 
         public Builder addExtenaionPath(File extensionPath) {
             if (config.appExtensionPaths == null) {
-                config.appExtensionPaths = new ArrayList<>();
+                config.appExtensionPaths = new PathsList();
             }
             config.appExtensionPaths.add(new QualifiedFile(extensionPath));
             return this;
@@ -1555,7 +1548,7 @@ public class Config {
 
         public Builder addResource(Resource resource) {
             if (config.resources == null) {
-                config.resources = new ArrayList<>();
+                config.resources = new ResourcesList();
             }
             config.resources.add(resource);
             return this;
@@ -1577,6 +1570,11 @@ public class Config {
         }
 
         public Builder addProperties(Properties properties) {
+            config.properties.putAll(properties);
+            return this;
+        }
+
+        public Builder addProperties(Map<String, ?> properties) {
             config.properties.putAll(properties);
             return this;
         }
@@ -1660,14 +1658,9 @@ public class Config {
             return this;
         }
 
-        public Builder enableBitcode(boolean enableBitcode) {
-            config.enableBitcode = enableBitcode;
-            return this;
-        }
-
         public void addPluginArgument(String argName) {
             if (config.pluginArguments == null) {
-                config.pluginArguments = new ArrayList<>();
+                config.pluginArguments = new PluginArgumentsList();
             }
             config.pluginArguments.add(argName);
         }
@@ -1777,14 +1770,14 @@ public class Config {
             } catch (IOException | RuntimeException e) {
                 throw e;
             } catch (Exception e) {
-                throw new IOException(e);
+                throw new IOException(e.getLocalizedMessage(), e);
             }
             // <roots> was renamed to <forceLinkClasses> but we still support
             // <roots>. We need to copy <roots> to <forceLinkClasses> and set
             // <roots> to null.
             if (config.roots != null && !config.roots.isEmpty()) {
                 if (config.forceLinkClasses == null) {
-                    config.forceLinkClasses = new ArrayList<>();
+                    config.forceLinkClasses = new ForceLinkClassesList();
                 }
                 config.forceLinkClasses.addAll(config.roots);
                 config.roots = null;
@@ -1934,6 +1927,29 @@ public class Config {
             if (pathWrap == null) {
                 return other.pathWrap == null;
             } else return pathWrap.value.equals(other.pathWrap.value);
+        }
+    }
+
+    /**
+     * Container for text entry with platform/arch constraints
+     */
+    public static final class QualifiedEntry extends AbstractQualified {
+        @Text String entry;
+
+        protected QualifiedEntry() {
+        }
+
+        public QualifiedEntry(String entry) {
+            this.entry = entry;
+        }
+
+        public String getEntry() {
+            return entry;
+        }
+
+        @Override
+        public String toString() {
+            return entry + " " + super.toString();
         }
     }
 
@@ -2178,5 +2194,17 @@ public class Config {
             node.commit();
         }
 
+    }
+
+    private ResolvedLocations resolveLocations() {
+        ResolvedLocations.Resolver resolver = new ResolvedLocations.Resolver(os, sliceArch);
+        resolver.setFrameworks(frameworks)
+                .setWeakFrameworks(weakFrameworks)
+                .setFrameworkPaths(frameworkPaths)
+                .setLibs(libs)
+                .setXcFrameworkLookup(experimental.isXCFrameworksEnabled())
+                .setQualifier(this::isQualified)
+                .setXcFrameworks(xcFrameworks);
+        return resolver.resolve();
     }
 }

@@ -34,9 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use CLCircularGeographicCondition
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLCircularRegion/*</name>*/ 
     extends /*<extends>*/CLRegion/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

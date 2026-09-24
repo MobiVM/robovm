@@ -23,10 +23,33 @@ import org.simpleframework.xml.Element;
  *
  */
 public class Tools {
+    public static Tools Empty = new Tools();
+
     @Element(required = false)
     private TextureAtlas textureAtlas;
-    
+
+    @Element(required = false)
+    private LinkerOptions linker;
+
+    @Element(required = false)
+    private ActoolOptions actool;
+
+    @Element(required = false)
+    private IBXOptions ibx;
+
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;
+    }
+
+    public LinkerOptions getLinker() {
+        return linker;
+    }
+
+    public ActoolOptions getActool() {
+        return actool;
+    }
+
+    public IBXOptions getIbx() {
+        return ibx;
     }
 }

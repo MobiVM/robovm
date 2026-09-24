@@ -58,12 +58,12 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithRed:green:blue:alpha:colorSpace:")
-    public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, a, colorSpace)); }
+    public CIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(red, green, blue, alpha, colorSpace)); }
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithRed:green:blue:colorSpace:")
-    public CIColor(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(r, g, b, colorSpace)); }
+    public CIColor(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, CGColorSpace colorSpace) { super((SkipInit) null); initObject(init(red, green, blue, colorSpace)); }
     @Method(selector = "initWithCoder:")
     public CIColor(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -169,28 +169,28 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithRed:green:blue:alpha:colorSpace:")
-    protected native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace);
+    protected native @Pointer long init(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "initWithRed:green:blue:colorSpace:")
-    protected native @Pointer long init(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
+    protected native @Pointer long init(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, CGColorSpace colorSpace);
     @Method(selector = "colorWithCGColor:")
-    protected static native @Pointer long create(CGColor c);
+    protected static native @Pointer long create(CGColor color);
     @Method(selector = "colorWithRed:green:blue:alpha:")
-    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a);
+    protected static native @Pointer long create(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha);
     @Method(selector = "colorWithRed:green:blue:")
-    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b);
+    protected static native @Pointer long create(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "colorWithRed:green:blue:alpha:colorSpace:")
-    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, @MachineSizedFloat double a, CGColorSpace colorSpace);
+    protected static native @Pointer long create(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha, CGColorSpace colorSpace);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "colorWithRed:green:blue:colorSpace:")
-    protected static native @Pointer long create(@MachineSizedFloat double r, @MachineSizedFloat double g, @MachineSizedFloat double b, CGColorSpace colorSpace);
+    protected static native @Pointer long create(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, CGColorSpace colorSpace);
     @Method(selector = "colorWithString:")
     protected static native @Pointer long create(String representation);
     @Method(selector = "encodeWithCoder:")

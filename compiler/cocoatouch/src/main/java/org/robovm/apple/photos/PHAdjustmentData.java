@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/

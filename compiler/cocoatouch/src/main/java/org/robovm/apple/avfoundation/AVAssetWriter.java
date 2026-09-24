@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -98,6 +100,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CMTime getMovieFragmentInterval();
     @Property(selector = "setMovieFragmentInterval:")
     public native void setMovieFragmentInterval(@ByVal CMTime v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "initialMovieFragmentInterval")
+    public native @ByVal CMTime getInitialMovieFragmentInterval();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInitialMovieFragmentInterval:")
+    public native void setInitialMovieFragmentInterval(@ByVal CMTime v);
     /**
      * @since Available in iOS 14.0 and later.
      */

@@ -1,0 +1,70 @@
+# OS log api from os/log.h
+package: org.robovm.apple.oslog
+include: [foundation]
+header: /usr/include/os/log.h
+path_match: ^.*/usr/include/os/log.*$
+clang_args: ['-x', 'objective-c']
+
+typedefs:
+    os_log_s: OSLog
+    
+enums:
+    os_log_type_t: { name: Type } # will me moved manually inside OSLog!
+
+categories:
+
+classes:
+
+protocols:
+    OS_os_log:
+        name: OSLog
+        class: true
+        protocols: []
+        annotations: ['@NativeClass("NSObject")']
+        visibility: 'public final'
+        skip_adapter: true
+
+functions:
+    os_log_create:
+        name: create
+        class: OSLog
+        parameters:
+            0:
+                marshaler: StringMarshalers.AsAsciiZMarshaler
+                type: String
+            1:
+                marshaler: StringMarshalers.AsAsciiZMarshaler
+                type: String
+    os_log_type_enabled:
+        name: isEnabled
+        class: OSLog
+    os_log_is_enabled:
+        exclude: true # deprecated !
+    os_log_is_debug_enabled:
+        exclude: true # deprecated !
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (os_.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    RVM_OS_LOG_DISABLED:
+        name: DISABLED
+        class: OSLog
+        readonly: true
+    RVM_OS_LOG_DEFAULT:
+        name: DEFAULT
+        class: OSLog
+        readonly: true
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (os_.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (os_.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

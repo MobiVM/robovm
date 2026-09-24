@@ -125,6 +125,11 @@ import org.robovm.apple.coretext.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFArray getResourceURLsOfType(String resourceType, String subDirName);
     @Bridge(symbol="CFBundleCopyLocalizedString", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(CFString.AsStringNoRetainMarshaler.class) String getLocalizedString(String key, String value, String tableName);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Bridge(symbol="CFBundleCopyLocalizedStringForLocalizations", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) String getLocalizedStringForLocalizations(String key, String value, String tableName, CFArray localizations);
     @Bridge(symbol="CFBundleCopyResourceURLInDirectory", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL getResourceURLInDirectory(CFURL bundleURL, String resourceName, String resourceType, String subDirName);
     @Bridge(symbol="CFBundleCopyResourceURLsOfTypeInDirectory", optional=true)

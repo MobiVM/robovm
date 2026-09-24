@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.intents.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -100,6 +101,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "relevanceScore")
     public native double getRelevanceScore();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "filterCriteria")
+    public native String getFilterCriteria();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -35,7 +35,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLHeapAdapter/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MTLAllocationAdapter/*</extends>*/ 
     /*<implements>*/implements MTLHeap/*</implements>*/ {
 
     /*<ptr>*/
@@ -87,7 +87,7 @@ import org.robovm.apple.dispatch.*;
     @NotImplemented("newBufferWithLength:options:")
     public MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options) { return null; }
     @NotImplemented("newTextureWithDescriptor:")
-    public MTLTexture newTexture(MTLTextureDescriptor desc) { return null; }
+    public MTLTexture newTexture(MTLTextureDescriptor descriptor) { return null; }
     @NotImplemented("setPurgeableState:")
     public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
     /**
@@ -100,5 +100,25 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("newTextureWithDescriptor:offset:")
     public MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithSize:")
+    public MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithDescriptor:")
+    public MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithSize:offset:")
+    public MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size, @MachineSizedUInt long offset) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("newAccelerationStructureWithDescriptor:offset:")
+    public MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor, @MachineSizedUInt long offset) { return null; }
     /*</methods>*/
 }

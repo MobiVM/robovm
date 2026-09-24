@@ -110,6 +110,8 @@ import org.robovm.apple.dispatch.*;
     public NSMutableOrderedSet() {}
     protected NSMutableOrderedSet(Handle h, long handle) { super(h, handle); }
     protected NSMutableOrderedSet(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSMutableOrderedSet(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithCapacity:")
     public NSMutableOrderedSet(@MachineSizedUInt long numItems) { super((SkipInit) null); initObject(init(numItems)); }
     /*</constructors>*/
@@ -143,11 +145,59 @@ import org.robovm.apple.dispatch.*;
     protected native void removeObject(@MachineSizedUInt long idx);
     @Method(selector = "replaceObjectAtIndex:withObject:")
     protected native void replaceObject(@MachineSizedUInt long idx, T object);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithCapacity:")
     protected native @Pointer long init(@MachineSizedUInt long numItems);
+    @Method(selector = "addObject:")
+    public native void addObject(T object);
+    @Method(selector = "addObjectsFromArray:")
+    public native void addObjectsFromArray(NSArray<T> array);
+    @Method(selector = "exchangeObjectAtIndex:withObjectAtIndex:")
+    public native void exchangeObject(@MachineSizedUInt long idx1, @MachineSizedUInt long idx2);
+    @Method(selector = "moveObjectsAtIndexes:toIndex:")
+    public native void moveObjects(NSIndexSet indexes, @MachineSizedUInt long idx);
+    @Method(selector = "insertObjects:atIndexes:")
+    public native void insertObjects(NSArray<T> objects, NSIndexSet indexes);
+    @Method(selector = "setObject:atIndex:")
+    public native void setObject(T obj, @MachineSizedUInt long idx);
+    @Method(selector = "setObject:atIndexedSubscript:")
+    public native void setObjectAtIndexedSubscript(T obj, @MachineSizedUInt long idx);
+    @Method(selector = "replaceObjectsAtIndexes:withObjects:")
+    public native void replaceObjectsAtIndexes(NSIndexSet indexes, NSArray<T> objects);
+    @Method(selector = "removeObjectsInRange:")
+    public native void removeObjectsInRange(@ByVal NSRange range);
+    @Method(selector = "removeObjectsAtIndexes:")
+    public native void removeObjectsAtIndexes(NSIndexSet indexes);
     @Method(selector = "removeAllObjects")
     protected native void removeAllObjects();
     @Method(selector = "removeObject:")
     protected native void removeObject(T object);
+    @Method(selector = "removeObjectsInArray:")
+    public native void removeObjectsInArray(NSArray<T> array);
+    @Method(selector = "intersectOrderedSet:")
+    public native void intersectOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "minusOrderedSet:")
+    public native void minusOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "unionOrderedSet:")
+    public native void unionOrderedSet(NSOrderedSet<T> other);
+    @Method(selector = "intersectSet:")
+    public native void intersectSet(NSSet<T> other);
+    @Method(selector = "minusSet:")
+    public native void minusSet(NSSet<T> other);
+    @Method(selector = "unionSet:")
+    public native void unionSet(NSSet<T> other);
+    @Method(selector = "sortUsingComparator:")
+    public native void sortUsingComparator(@Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "sortWithOptions:usingComparator:")
+    public native void sort(NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "sortRange:options:usingComparator:")
+    public native void sort(@ByVal NSRange range, NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "applyDifference:")
+    public native void applyDifference(NSOrderedCollectionDifference<T> difference);
+    @Method(selector = "sortUsingDescriptors:")
+    public native void sortUsingDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
+    @Method(selector = "filterUsingPredicate:")
+    public native void filterUsingPredicate(NSPredicate p);
     /*</methods>*/
 }

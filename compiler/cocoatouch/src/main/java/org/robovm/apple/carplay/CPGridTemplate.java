@@ -55,6 +55,11 @@ import org.robovm.apple.coreanimation.*;
     public CPGridTemplate(String title, NSArray<CPGridButton> gridButtons) { super((SkipInit) null); initObject(init(title, gridButtons)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "maximumGridButtonImageSize")
+    public static native @ByVal CGSize getMaximumGridButtonImageSize();
     @Property(selector = "gridButtons")
     public native NSArray<CPGridButton> getGridButtons();
     @Property(selector = "title")

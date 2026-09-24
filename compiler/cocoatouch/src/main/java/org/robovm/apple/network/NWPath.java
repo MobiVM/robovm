@@ -47,7 +47,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,6 +88,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_path_is_constrained", optional=true)
     public native boolean isConstrained();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="nw_path_is_ultra_constrained", optional=true)
+    public native boolean isUltraConstrained();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -116,6 +128,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_path_enumerate_gateways", optional=true)
     public native void enumerateGateways(@Block Block1<NWEndpoint, Boolean> enumerate_block);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="nw_path_get_link_quality", optional=true)
+    public native NWLinkQuality getLinkQuality();
     
     
     /*</methods>*/

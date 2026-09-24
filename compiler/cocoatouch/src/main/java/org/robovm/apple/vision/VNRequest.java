@@ -64,8 +64,18 @@ import org.robovm.apple.imageio.*;
     public native boolean isPreferBackgroundProcessing();
     @Property(selector = "setPreferBackgroundProcessing:")
     public native void setPreferBackgroundProcessing(boolean v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use -setComputeDevice:forComputeStage:
+     */
+    @Deprecated
     @Property(selector = "usesCPUOnly")
     public native boolean usesCPUOnly();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use -setComputeDevice:forComputeStage:
+     */
+    @Deprecated
     @Property(selector = "setUsesCPUOnly:")
     public native void setUsesCPUOnly(boolean v);
     @Property(selector = "results")
@@ -107,5 +117,11 @@ import org.robovm.apple.imageio.*;
      */
     @Method(selector = "cancel")
     public native void cancel();
+    @Method(selector = "supportedComputeStageDevicesAndReturnError:")
+    public native NSDictionary<?, ?> supportedComputeStageDevicesAndReturnError(NSError.NSErrorPtr error);
+    @Method(selector = "computeDeviceForComputeStage:")
+    public native MLComputeDeviceProtocol computeDeviceForComputeStage(VNComputeStage computeStage);
+    @Method(selector = "setComputeDevice:forComputeStage:")
+    public native void setComputeDevice(MLComputeDeviceProtocol computeDevice, VNComputeStage computeStage);
     /*</methods>*/
 }

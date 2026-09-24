@@ -55,6 +55,11 @@ import org.robovm.apple.foundation.*;
     public native MXMetaData getMetaData();
     @Property(selector = "applicationVersion")
     public native String getApplicationVersion();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "signpostData")
+    public native NSArray<MXSignpostRecord> getSignpostData();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

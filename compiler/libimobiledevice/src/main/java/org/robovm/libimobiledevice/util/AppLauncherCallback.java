@@ -21,14 +21,12 @@ import org.robovm.libimobiledevice.IDevice;
 /**
  * Can be set on {@link AppLauncher} so it returns the remote app path, product
  * version and build version after the application has been deployed to the device.
- *
  */
+@FunctionalInterface
 public interface AppLauncherCallback {
-    public void setAppLaunchInfo(AppLauncherInfo info);
-    
-    public byte[] filterOutput(byte[] data);
-    
-    static class AppLauncherInfo {
+    void setAppLaunchInfo(AppLauncherInfo info);
+
+    class AppLauncherInfo {
         final IDevice device;
         final String remoteAppPath;
         final String productVersion;

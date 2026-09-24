@@ -177,10 +177,20 @@ import org.robovm.apple.uikit.*;
         OSStatusException.throwIfNecessary(status);
     }
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AudioConverterPrepare", optional=true)
+    protected static native void prepare0(int inFlags, VoidPtr ioReserved, @Block VoidBlock1<OSStatus> inCompletionBlock);
     @Bridge(symbol="AudioConverterNew", optional=true)
     protected static native OSStatus create0(AudioStreamBasicDescription inSourceFormat, AudioStreamBasicDescription inDestinationFormat, AudioConverter.AudioConverterPtr outAudioConverter);
     @Bridge(symbol="AudioConverterNewSpecific", optional=true)
     protected static native OSStatus create0(AudioStreamBasicDescription inSourceFormat, AudioStreamBasicDescription inDestinationFormat, int inNumberClassDescriptions, AudioClassDescription inClassDescriptions, AudioConverter.AudioConverterPtr outAudioConverter);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="AudioConverterNewWithOptions", optional=true)
+    protected static native OSStatus create0(AudioStreamBasicDescription inSourceFormat, AudioStreamBasicDescription inDestinationFormat, AudioConverterOptions inOptions, AudioConverter.AudioConverterPtr outAudioConverter);
     @Bridge(symbol="AudioConverterDispose", optional=true)
     protected native OSStatus dispose0();
     @Bridge(symbol="AudioConverterReset", optional=true)
@@ -195,6 +205,16 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus convertBuffer0(int inInputDataSize, @Pointer long inInputData, IntPtr ioOutputDataSize, BytePtr outOutputData);
     @Bridge(symbol="AudioConverterFillComplexBuffer", optional=true)
     protected native OSStatus fillComplexBuffer0(FunctionPtr inInputDataProc, @Pointer long inInputDataProcUserData, IntPtr ioOutputDataPacketSize, AudioBufferList outOutputData, AudioStreamPacketDescription.AudioStreamPacketDescriptionPtr outPacketDescription);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AudioConverterFillComplexBufferRealtimeSafe", optional=true)
+    protected native OSStatus fillComplexBufferRealtimeSafe0(FunctionPtr inInputDataProc, VoidPtr inInputDataProcUserData, IntPtr ioOutputDataPacketSize, AudioBufferList outOutputData, AudioStreamPacketDescription outPacketDescription);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="AudioConverterFillComplexBufferWithPacketDependencies", optional=true)
+    protected native OSStatus fillComplexBufferWithPacketDependencies0(FunctionPtr inInputDataProc, VoidPtr inInputDataProcUserData, IntPtr ioOutputDataPacketSize, AudioBufferList outOutputData, AudioStreamPacketDescription outPacketDescriptions, AudioStreamPacketDependencyDescription outPacketDependencies);
     @Bridge(symbol="AudioConverterConvertComplexBuffer", optional=true)
     protected native OSStatus convertComplexBuffer0(int inNumberPCMFrames, AudioBufferList inInputData, AudioBufferList outOutputData);
     /*</methods>*/

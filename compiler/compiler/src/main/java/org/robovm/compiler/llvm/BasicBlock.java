@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +27,7 @@ import java.util.Set;
  *
  * @version $Id$
  */
-public class BasicBlock {
+public class BasicBlock implements Writable {
     private final Function function;
     private final Label label;
     private final List<Instruction> instructions = new ArrayList<Instruction>();
@@ -99,24 +101,27 @@ public class BasicBlock {
         }
         return instructions.get(instructions.size() - 1);
     }
-    
+
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getName());
-        sb.append(":\n");
+    public void write(Writer writer) throws IOException {
+        writer.write(getName());
+        writer.write(":\n");
         for (Instruction instruction : instructions) {
-            sb.append("    ");
-            sb.append(instruction.toString());
+            writer.write("    ");
+            instruction.write(writer);
             List<Metadata> metadata = instruction.getMetadata();
             if (!metadata.isEmpty()) {
                 for (Metadata md : metadata) {
-                    sb.append(", ");
-                    sb.append(md.toString());
+                    writer.write(", ");
+                    md.write(writer);
                 }
             }
-            sb.append('\n');
+            writer.write('\n');
         }
-        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

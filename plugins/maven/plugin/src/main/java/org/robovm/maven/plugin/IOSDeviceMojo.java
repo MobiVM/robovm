@@ -23,9 +23,8 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
 import org.robovm.compiler.target.ios.IOSTarget;
 
 /**
@@ -39,13 +38,7 @@ public class IOSDeviceMojo extends AbstractRoboVMMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         try {
-
-            Arch arch = Arch.arm64;
-            if (super.arch != null && super.arch.equals(Arch.thumbv7.toString())) {
-                arch = Arch.thumbv7;
-            }
-
-            AppCompiler compiler = build(OS.ios, arch, IOSTarget.TYPE);
+            AppCompiler compiler = build(OS.ios, Arch.arm64, IOSTarget.TYPE);
             Config config = compiler.getConfig();
             LaunchParameters launchParameters = config.getTarget()
                     .createLaunchParameters();

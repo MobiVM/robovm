@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,6 +88,10 @@ import org.robovm.apple.foundation.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final HKCharacteristicTypeIdentifier ActivityMoveMode = new HKCharacteristicTypeIdentifier("ActivityMoveMode");
     public static final HKCharacteristicTypeIdentifier BiologicalSex = new HKCharacteristicTypeIdentifier("BiologicalSex");
     public static final HKCharacteristicTypeIdentifier BloodType = new HKCharacteristicTypeIdentifier("BloodType");
     public static final HKCharacteristicTypeIdentifier DateOfBirth = new HKCharacteristicTypeIdentifier("DateOfBirth");
@@ -98,13 +103,9 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final HKCharacteristicTypeIdentifier WheelchairUse = new HKCharacteristicTypeIdentifier("WheelchairUse");
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    public static final HKCharacteristicTypeIdentifier ActivityMoveMode = new HKCharacteristicTypeIdentifier("ActivityMoveMode");
     /*</constants>*/
     
-    private static /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] {/*<value_list>*/BiologicalSex, BloodType, DateOfBirth, FitzpatrickSkinType, WheelchairUse, ActivityMoveMode/*</value_list>*/};
+    private static /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/[] {/*<value_list>*/ActivityMoveMode, BiologicalSex, BloodType, DateOfBirth, FitzpatrickSkinType, WheelchairUse/*</value_list>*/};
     
     /*<name>*/HKCharacteristicTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -127,6 +128,11 @@ import org.robovm.apple.foundation.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="HKCharacteristicTypeIdentifierActivityMoveMode", optional=true)
+        public static native NSString ActivityMoveMode();
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierBiologicalSex", optional=true)
         public static native NSString BiologicalSex();
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierBloodType", optional=true)
@@ -143,11 +149,6 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKCharacteristicTypeIdentifierWheelchairUse", optional=true)
         public static native NSString WheelchairUse();
-        /**
-         * @since Available in iOS 14.0 and later.
-         */
-        @GlobalValue(symbol="HKCharacteristicTypeIdentifierActivityMoveMode", optional=true)
-        public static native NSString ActivityMoveMode();
         /*</values>*/
     }
 }

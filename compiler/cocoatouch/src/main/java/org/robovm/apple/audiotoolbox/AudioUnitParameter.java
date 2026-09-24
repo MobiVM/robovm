@@ -38,14 +38,13 @@ import org.robovm.apple.uikit.*;
 /*<javadoc>*/
 
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Library("AudioToolbox")/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AudioUnitParameter/*</name>*/ 
     extends /*<extends>*/Struct<AudioUnitParameter>/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class AudioUnitParameterPtr extends Ptr<AudioUnitParameter, AudioUnitParameterPtr> {}/*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(AudioUnitParameter.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AudioUnitParameter() {}
@@ -67,5 +66,18 @@ import org.robovm.apple.uikit.*;
     @StructMember(3) public native int getElement();
     @StructMember(3) public native AudioUnitParameter setElement(int element);
     /*</members>*/
-    /*<methods>*//*</methods>*/
+    /*<methods>*/
+    @Bridge(symbol="AUParameterValueFromLinear", optional=true)
+    public static native float fromLinear(float inLinearValue, AudioUnitParameter inParameter);
+    @Bridge(symbol="AUParameterValueToLinear", optional=true)
+    public static native float toLinear(float inParameterValue, AudioUnitParameter inParameter);
+    /*</methods>*/
+
+    public float fromLinear(float inLinearValue) {
+        return fromLinear(inLinearValue, this);
+    }
+
+    public float toLinear(float inParameterValue) {
+        return toLinear(inParameterValue, this);
+    }
 }

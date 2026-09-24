@@ -44,7 +44,7 @@ import org.robovm.apple.coreanimation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
+        public static NSObject observeDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -57,7 +57,7 @@ import org.robovm.apple.coreanimation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeRemotePaymentPassesDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
+        public static NSObject observeRemotePaymentPassesDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RemotePaymentPassesDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
@@ -113,6 +113,8 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<PKPass> getPasses();
     @Method(selector = "passWithPassTypeIdentifier:serialNumber:")
     public native PKPass getPass(String identifier, String serialNumber);
+    @Method(selector = "passesWithReaderIdentifier:")
+    public native NSSet<PKSecureElementPass> passesWithReaderIdentifier(String readerIdentifier);
     @Method(selector = "passesOfType:")
     public native NSArray<PKPass> getPassesOfType(PKPassType passType);
     /**
@@ -187,10 +189,25 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "signData:withSecureElementPass:completion:")
     public native void signData(NSData signData, PKSecureElementPass secureElementPass, @Block VoidBlock3<NSData, NSData, NSError> completion);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "encryptedServiceProviderDataForSecureElementPass:completion:")
+    public native void encryptedServiceProviderDataForSecureElementPass(PKSecureElementPass secureElementPass, @Block VoidBlock2<NSDictionary<?, ?>, NSError> completion);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "serviceProviderDataForSecureElementPass:completion:")
     public native void serviceProviderDataForSecureElementPass(PKSecureElementPass secureElementPass, @Block VoidBlock2<NSData, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "authorizationStatusForCapability:")
+    public native PKPassLibraryAuthorizationStatus authorizationStatusForCapability(PKPassLibraryCapability capability);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "requestAuthorizationForCapability:completion:")
+    public native void requestAuthorizationForCapability(PKPassLibraryCapability capability, @Block VoidBlock1<PKPassLibraryAuthorizationStatus> completion);
     @Method(selector = "isPassLibraryAvailable")
     public static native boolean isPassLibraryAvailable();
     /**

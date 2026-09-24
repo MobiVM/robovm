@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     public PKDeferredPaymentSummaryItem() {}
     protected PKDeferredPaymentSummaryItem(Handle h, long handle) { super(h, handle); }
     protected PKDeferredPaymentSummaryItem(SkipInit skipInit) { super(skipInit); }
+    public PKDeferredPaymentSummaryItem(String label, NSDecimalNumber amount) { super((Handle) null, create(label, amount)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    public PKDeferredPaymentSummaryItem(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type) { super((Handle) null, create(label, amount, type)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "deferredDate")
@@ -61,6 +66,12 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "summaryItemWithLabel:amount:")
+    protected static native @Pointer long create(String label, NSDecimalNumber amount);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Method(selector = "summaryItemWithLabel:amount:type:")
+    protected static native @Pointer long create(String label, NSDecimalNumber amount, PKPaymentSummaryItemType type);
     /*</methods>*/
 }

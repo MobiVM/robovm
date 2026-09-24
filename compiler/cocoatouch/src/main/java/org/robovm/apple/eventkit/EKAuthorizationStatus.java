@@ -43,6 +43,18 @@ public enum /*<name>*/EKAuthorizationStatus/*</name>*/ implements ValuedEnum {
     NotDetermined(0L),
     Restricted(1L),
     Denied(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FullAccess(3L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    WriteOnly(4L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. Check for full access or write only access
+     */
+    @Deprecated
     Authorized(3L);
     /*</values>*/
 

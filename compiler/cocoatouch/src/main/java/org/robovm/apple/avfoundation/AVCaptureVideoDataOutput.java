@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -80,6 +82,11 @@ import org.robovm.apple.audiotoolbox.*;
     protected native NSDictionary<NSString, ?> getVideoSettings0();
     @Property(selector = "setVideoSettings:")
     protected native void setVideoSettings0(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "recommendedMediaTimeScaleForAssetWriter")
+    public native int getRecommendedMediaTimeScaleForAssetWriter();
     @WeaklyLinked
     @Property(selector = "availableVideoCVPixelFormatTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableVideoCVPixelFormatTypes();
@@ -109,6 +116,26 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setDeliversPreviewSizedOutputBuffers:")
     public native void setDeliversPreviewSizedOutputBuffers(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preparesCellularRadioForNetworkConnection")
+    public native boolean isPreparesCellularRadioForNetworkConnection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreparesCellularRadioForNetworkConnection:")
+    public native void setPreparesCellularRadioForNetworkConnection(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "preservesDynamicHDRMetadata")
+    public native boolean preservesDynamicHDRMetadata();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setPreservesDynamicHDRMetadata:")
+    public native void setPreservesDynamicHDRMetadata(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -140,6 +167,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:")
     public native NSDictionary<NSString, ?> getRecommendedVideoSettings(AVVideoCodecType videoCodecType, String outputFileType);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:")
+    public native NSDictionary<NSString, ?> getRecommendedVideoSettings(AVVideoCodecType videoCodecType, String outputFileType, NSURL outputFileURL);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:")
+    public native NSArray<AVMetadataItem> getRecommendedMovieMetadata(AVVideoCodecType videoCodecType, String outputFileType);
     @Method(selector = "new")
     protected static native @Pointer long create();
     /*</methods>*/

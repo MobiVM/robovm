@@ -62,5 +62,10 @@ import org.robovm.apple.coremedia.*;
     public void speechRecognitionTaskWasCancelled(SFSpeechRecognitionTask task) {}
     @NotImplemented("speechRecognitionTask:didFinishSuccessfully:")
     public void didFinishSuccessfully(SFSpeechRecognitionTask task, boolean successfully) {}
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @NotImplemented("speechRecognitionTask:didProcessAudioDuration:")
+    public void didProcessAudio(SFSpeechRecognitionTask task, double duration) {}
     /*</methods>*/
 }

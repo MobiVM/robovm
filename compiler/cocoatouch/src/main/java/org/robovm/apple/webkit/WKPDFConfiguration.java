@@ -57,6 +57,16 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGRect getRect();
     @Property(selector = "setRect:")
     public native void setRect(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "allowTransparentBackground")
+    public native boolean isAllowTransparentBackground();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAllowTransparentBackground:")
+    public native void setAllowTransparentBackground(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

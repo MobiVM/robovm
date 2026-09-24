@@ -1,0 +1,8 @@
+<config>
+    <frameworks>
+        <framework>RvmCocoaTouch</framework>
+    </frameworks>
+    <frameworkPaths>
+        <path>libs/</path>
+    </frameworkPaths>
+</config>

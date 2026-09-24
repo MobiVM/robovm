@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -65,6 +66,11 @@ import org.robovm.apple.linkpresentation.*;
     void textWillChange(UITextInput textInput);
     @Method(selector = "textDidChange:")
     void textDidChange(UITextInput textInput);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "conversationContext:didChange:")
+    void didChange(UIConversationContext context, UITextInput textInput);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +55,18 @@ public enum /*<name>*/AVCaptureVideoStabilizationMode/*</name>*/ implements Valu
      * @since Available in iOS 13.0 and later.
      */
     CinematicExtended(3L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    PreviewOptimized(4L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    CinematicExtendedEnhanced(5L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    LowLatency(6L),
     Auto(-1L);
     /*</values>*/
 

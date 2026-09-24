@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -84,6 +86,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "contentKey")
     public native AVContentKey getContentKey();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "originatingRecipient")
+    public native AVContentKeyRecipient getOriginatingRecipient();
     @Property(selector = "renewsExpiringResponseData")
     public native boolean isRenewsExpiringResponseData();
     /*</properties>*/

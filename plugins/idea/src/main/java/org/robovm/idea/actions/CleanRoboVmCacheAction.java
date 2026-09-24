@@ -18,6 +18,7 @@ package org.robovm.idea.actions;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.progress.ProgressIndicator;
@@ -25,7 +26,6 @@ import com.intellij.openapi.progress.ProgressManager;
 import com.intellij.openapi.progress.Task;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
-import org.robovm.idea.ibxcode.RoboVmIbXcodeProjectTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +41,11 @@ public class CleanRoboVmCacheAction extends AnAction {
     public void actionPerformed(AnActionEvent anActionEvent) {
         if (!busy.get())
             ProgressManager.getInstance().run(new CleanTask());
+    }
+
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.EDT;
     }
 
     @Override

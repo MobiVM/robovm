@@ -43,7 +43,8 @@ public enum /*<name>*/MIDINotificationMessageID/*</name>*/ implements ValuedEnum
     PropertyChanged(4L),
     ThruConnectionsChanged(5L),
     SerialPortOwnerChanged(6L),
-    IOError(7L);
+    IOError(7L),
+    InternalStart(4096L);
     /*</values>*/
 
     /*<bind>*/

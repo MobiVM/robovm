@@ -123,6 +123,11 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "filesOfType:")
     public native NSArray<NSString> filesOfType(String fileUTType);
     /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Method(selector = "requestReadDataFromFile:atOffset:length:readDelegate:didReadDataSelector:contextInfo:")
+    public native void requestReadDataFromFile(ICCameraFile file, long offset, long length, NSObject readDelegate, Selector selector, VoidPtr contextInfo);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:")
@@ -137,6 +142,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "requestDeleteFiles:deleteFailed:completion:")
     public native NSProgress requestDeleteFiles(NSArray<ICCameraItem> files, @Block VoidBlock1<NSDictionary<NSString, ICCameraItem>> deleteFailed, @Block VoidBlock2<NSDictionary<?, ?>, NSError> completion);
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Method(selector = "requestSendPTPCommand:outData:sendCommandDelegate:didSendCommandSelector:contextInfo:")
+    public native void requestSendPTPCommand(NSData command, NSData data, NSObject sendCommandDelegate, Selector selector, VoidPtr contextInfo);
     /**
      * @since Available in iOS 13.0 and later.
      */

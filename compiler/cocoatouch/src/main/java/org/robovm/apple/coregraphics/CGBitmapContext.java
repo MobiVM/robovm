@@ -219,10 +219,21 @@ import org.robovm.apple.uikit.*;
     }
 
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @GlobalValue(symbol="kCGAdaptiveMaximumBitDepth", optional=true)
+    public static native String AdaptiveMaximumBitDepth();
+    
     @Bridge(symbol="CGBitmapContextCreateWithData", optional=true)
     private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(@Pointer long data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo, FunctionPtr releaseCallback, @Pointer long releaseInfo);
     @Bridge(symbol="CGBitmapContextCreate", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGBitmapContext create(@Pointer long data, @MachineSizedUInt long width, @MachineSizedUInt long height, @MachineSizedUInt long bitsPerComponent, @MachineSizedUInt long bytesPerRow, CGColorSpace space, CGBitmapInfo bitmapInfo);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Bridge(symbol="CGBitmapContextCreateAdaptive", optional=true)
+    public static native CGContext createAdaptive(@MachineSizedUInt long width, @MachineSizedUInt long height, NSDictionary auxiliaryInfo, @Block Block2<CGContentInfo, CGBitmapParameters, Boolean> onResolve, @Block Block2<CGContentInfo, CGBitmapParameters, CGRenderingBufferProvider> onAllocate, @Block VoidBlock3<CGRenderingBufferProvider, CGContentInfo, CGBitmapParameters> onFree, @Block VoidBlock3<CFError, CGContentInfo, CGBitmapParameters> onError);
     @Bridge(symbol="CGBitmapContextGetData", optional=true)
     public native @Pointer long getData();
     @Bridge(symbol="CGBitmapContextGetWidth", optional=true)

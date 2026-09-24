@@ -52,6 +52,11 @@ import org.robovm.apple.coreanimation.*;
     protected PKStroke(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithInk:strokePath:transform:mask:")
     public PKStroke(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask) { super((SkipInit) null); initObject(init(ink, strokePath, transform, mask)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:")
+    public PKStroke(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed) { super((SkipInit) null); initObject(init(ink, strokePath, transform, mask, randomSeed)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "ink")
@@ -66,10 +71,25 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGRect getRenderBounds();
     @Property(selector = "maskedPathRanges")
     public native NSArray<PKFloatRange> getMaskedPathRanges();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "randomSeed")
+    public native int getRandomSeed();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "requiredContentVersion")
+    public native PKContentVersion getRequiredContentVersion();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithInk:strokePath:transform:mask:")
     protected native @Pointer long init(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithInk:strokePath:transform:mask:randomSeed:")
+    protected native @Pointer long init(PKInk ink, PKStrokePath strokePath, @ByVal CGAffineTransform transform, UIBezierPath mask, int randomSeed);
     /*</methods>*/
 }

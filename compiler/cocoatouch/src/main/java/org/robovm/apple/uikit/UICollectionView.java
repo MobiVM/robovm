@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -141,6 +142,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setReorderingCadence:")
     public native void setReorderingCadence(UICollectionViewReorderingCadence v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selfSizingInvalidation")
+    public native UICollectionViewSelfSizingInvalidation getSelfSizingInvalidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelfSizingInvalidation:")
+    public native void setSelfSizingInvalidation(UICollectionViewSelfSizingInvalidation v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
@@ -249,14 +260,8 @@ import org.robovm.apple.linkpresentation.*;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/
@@ -323,6 +328,8 @@ import org.robovm.apple.linkpresentation.*;
     public native NSIndexPath getIndexPathForItem(@ByVal CGPoint point);
     @Method(selector = "indexPathForCell:")
     public native NSIndexPath getIndexPathForCell(UICollectionViewCell cell);
+    @Method(selector = "indexPathForSupplementaryView:")
+    public native NSIndexPath indexPathForSupplementaryView(UICollectionReusableView supplementaryView);
     @Method(selector = "cellForItemAtIndexPath:")
     public native UICollectionViewCell getCellForItem(NSIndexPath indexPath);
     /**

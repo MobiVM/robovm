@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITabBarItem/*</name>*/ 
     extends /*<extends>*/UIBarItem/*</extends>*/ 
-    /*<implements>*/implements UISpringLoadedInteractionSupporting/*</implements>*/ {
+    /*<implements>*/implements UISpringLoadedInteractionSupporting, UIPopoverPresentationControllerSourceItem/*</implements>*/ {
 
     /*<ptr>*/public static class UITabBarItemPtr extends Ptr<UITabBarItem, UITabBarItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UITabBarItem.class); }/*</bind>*/
@@ -108,14 +109,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setScrollEdgeAppearance:")
     public native void setScrollEdgeAppearance(UITabBarAppearance v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/
@@ -130,24 +125,6 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "initWithTabBarSystemItem:tag:")
     protected native @Pointer long init(UITabBarSystemItem systemItem, @MachineSizedSInt long tag);
     /**
-     * @deprecated Deprecated in iOS 7.0. Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal
-     */
-    @Deprecated
-    @Method(selector = "setFinishedSelectedImage:withFinishedUnselectedImage:")
-    public native void setFinishedImages(UIImage selectedImage, UIImage unselectedImage);
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "finishedSelectedImage")
-    public native UIImage getFinishedSelectedImage();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "finishedUnselectedImage")
-    public native UIImage getFinishedUnselectedImage();
-    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "setBadgeTextAttributes:forState:")
@@ -157,5 +134,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "badgeTextAttributesForState:")
     public native NSDictionary<NSString, ?> getBadgeTextAttributes(UIControlState state);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "frameInView:")
+    public native @ByVal CGRect frameInView(UIView referenceView);
     /*</methods>*/
 }

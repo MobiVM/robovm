@@ -43,8 +43,19 @@ public enum /*<name>*/AUParameterNewTimePitch/*</name>*/ implements AUParameterT
     /*<values>*/
     Rate(0L),
     Pitch(1L),
+    Smoothness(4L),
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use kNewTimePitchParam_Smoothness
+     */
+    @Deprecated
     Overlap(4L),
-    EnablePeakLocking(6L);
+    EnableSpectralCoherence(6L),
+    /**
+     * @deprecated Deprecated in iOS 16.0. Use kNewTimePitchParam_EnableSpectralCoherence
+     */
+    @Deprecated
+    EnablePeakLocking(6L),
+    EnableTransientPreservation(7L);
     /*</values>*/
 
     /*<bind>*/

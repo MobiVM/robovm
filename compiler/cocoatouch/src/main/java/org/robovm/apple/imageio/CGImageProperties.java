@@ -444,12 +444,57 @@ import org.robovm.apple.coregraphics.*;
     @Library("ImageIO")
     public static class Keys {
         static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyEncoder", optional=true)
+        public static native CFString Encoder();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyASTCEncoder", optional=true)
+        public static native CFString ASTCEncoder();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyPVREncoder", optional=true)
+        public static native CFString PVREncoder();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyBCEncoder", optional=true)
+        public static native CFString BCEncoder();
+        /**
+         * @since Available in iOS 12.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyBCFormat", optional=true)
+        public static native CFString BCFormat();
+        /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyASTCBlockSize", optional=true)
+        public static native CFString ASTCBlockSize();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyASTCBlockSize4x4", optional=true)
+        public static native CFString ASTCBlockSize4x4();
+        /**
+         * @since Available in iOS 19.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyASTCBlockSize8x8", optional=true)
+        public static native CFString ASTCBlockSize8x8();
         @GlobalValue(symbol="kCGImagePropertyTIFFDictionary", optional=true)
         public static native CFString TIFFDictionary();
         @GlobalValue(symbol="kCGImagePropertyGIFDictionary", optional=true)
         public static native CFString GIFDictionary();
         @GlobalValue(symbol="kCGImagePropertyJFIFDictionary", optional=true)
         public static native CFString JFIFDictionary();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyHEIFDictionary", optional=true)
+        public static native CFString HEIFDictionary();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -502,6 +547,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImagePropertyWebPDictionary", optional=true)
         public static native CFString WebPDictionary();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyAVISDictionary", optional=true)
+        public static native CFString AVISDictionary();
         /**
          * @since Available in iOS 14.0 and later.
          */
@@ -697,6 +747,11 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyGroupImageIndexRight", optional=true)
         public static native CFString GroupImageIndexRight();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIndexMonoscopic", optional=true)
+        public static native CFString GroupImageIndexMonoscopic();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyGroupImageIsLeftImage", optional=true)
@@ -707,10 +762,35 @@ import org.robovm.apple.coregraphics.*;
         @GlobalValue(symbol="kCGImagePropertyGroupImageIsRightImage", optional=true)
         public static native CFString GroupImageIsRightImage();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageIsMonoscopicImage", optional=true)
+        public static native CFString GroupImageIsMonoscopicImage();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="kCGImagePropertyGroupImageIsAlternateImage", optional=true)
         public static native CFString GroupImageIsAlternateImage();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageBaseline", optional=true)
+        public static native CFString GroupImageBaseline();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageDisparityAdjustment", optional=true)
+        public static native CFString GroupImageDisparityAdjustment();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupImageStereoAggressors", optional=true)
+        public static native CFString GroupImageStereoAggressors();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImagePropertyGroupMonoscopicImageLocation", optional=true)
+        public static native CFString GroupMonoscopicImageLocation();
     }
     /*</keys>*/
 }

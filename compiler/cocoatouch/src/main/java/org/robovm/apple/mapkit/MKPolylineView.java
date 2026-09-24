@@ -52,42 +52,18 @@ import org.robovm.apple.coreanimation.*;
     public MKPolylineView() {}
     protected MKPolylineView(Handle h, long handle) { super(h, handle); }
     protected MKPolylineView(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithPolyline:")
-    public MKPolylineView(MKPolyline polyline) { super((SkipInit) null); initObject(init(polyline)); }
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithOverlay:")
-    public MKPolylineView(MKOverlay overlay) { super(overlay); }
     @Method(selector = "initWithFrame:")
     public MKPolylineView(@ByVal CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
     public MKPolylineView(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "polyline")
-    public native MKPolyline getPolyline();
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "initWithPolyline:")
-    protected native @Pointer long init(MKPolyline polyline);
     /**
      * @since Available in iOS 9.0 and later.
      */

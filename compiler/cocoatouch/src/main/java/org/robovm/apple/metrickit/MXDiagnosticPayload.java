@@ -57,6 +57,11 @@ import org.robovm.apple.foundation.*;
     public native NSArray<MXDiskWriteExceptionDiagnostic> getDiskWriteExceptionDiagnostics();
     @Property(selector = "hangDiagnostics")
     public native NSArray<MXHangDiagnostic> getHangDiagnostics();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "appLaunchDiagnostics")
+    public native NSArray<MXAppLaunchDiagnostic> getAppLaunchDiagnostics();
     @Property(selector = "crashDiagnostics")
     public native NSArray<MXCrashDiagnostic> getCrashDiagnostics();
     @Property(selector = "timeStampBegin")

@@ -33,7 +33,7 @@ import org.robovm.apple.corefoundation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreMIDI")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CoreMIDI/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -48,11 +48,22 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @GlobalValue(symbol="MIDINetworkBonjourServiceType", optional=true)
-    public static native NSString NetworkServiceTypeBonjour();
-    @GlobalValue(symbol="MIDINetworkNotificationContactsDidChange", optional=true)
-    public static native NSString NetworkNotificationContactsDidChange();
-    @GlobalValue(symbol="MIDINetworkNotificationSessionDidChange", optional=true)
-    public static native NSString NetworkNotificationSessionDidChange();
+    @Library("CoreMIDI")
+    public static class NetworkNotification {
+        static { Bro.bind(NetworkNotification.class); }
+
+        @GlobalValue(symbol="MIDINetworkNotificationContactsDidChange", optional=true)
+        public static native NSString ContactsDidChange();
+        @GlobalValue(symbol="MIDINetworkNotificationSessionDidChange", optional=true)
+        public static native NSString SessionDidChange();
+    }
+
+    @Library("CoreMIDI")
+    public static class NetworkServiceType {
+        static { Bro.bind(NetworkServiceType.class); }
+
+        @GlobalValue(symbol="MIDINetworkBonjourServiceType", optional=true)
+        public static native NSString Bonjour();
+    }
     /*</methods>*/
 }

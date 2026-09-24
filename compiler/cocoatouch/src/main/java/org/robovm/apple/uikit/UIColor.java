@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -105,6 +106,21 @@ import org.robovm.apple.linkpresentation.*;
     public native CGColor getCGColor();
     @Property(selector = "CIColor")
     public native CIColor getCIColor();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "linearExposure")
+    public native @MachineSizedFloat double getLinearExposure();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "standardDynamicRangeColor")
+    public native UIColor getStandardDynamicRangeColor();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "prominence")
+    public native UIColorProminence getProminence();
     @Property(selector = "systemRedColor")
     public static native UIColor systemRed();
     @Property(selector = "systemGreenColor")
@@ -277,24 +293,6 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "groupTableViewBackgroundColor")
     public static native UIColor groupTableViewBackground();
     /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "viewFlipsideBackgroundColor")
-    public static native UIColor viewFlipsideBackground();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "scrollViewTexturedBackgroundColor")
-    public static native UIColor scrollViewTexturedBackground();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "underPageBackgroundColor")
-    public static native UIColor underPageBackground();
-    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "accessibilityName")
@@ -364,6 +362,11 @@ import org.robovm.apple.linkpresentation.*;
     protected native @Pointer long init(CGColor cgColor);
     @Method(selector = "initWithCIColor:")
     protected native @Pointer long init(CIColor ciColor);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "colorByApplyingContentHeadroom:")
+    public native UIColor colorByApplyingContentHeadroom(@MachineSizedFloat double contentHeadroom);
     @Method(selector = "set")
     public native void setFillAndStroke();
     @Method(selector = "setFill")
@@ -396,6 +399,16 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "colorWithCIColor:")
     public static native UIColor fromCIColor(CIColor ciColor);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "colorWithRed:green:blue:alpha:exposure:")
+    public static native UIColor fromExposure(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha, @MachineSizedFloat double exposure);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "colorWithRed:green:blue:alpha:linearExposure:")
+    public static native UIColor fromLinearExposure(@MachineSizedFloat double red, @MachineSizedFloat double green, @MachineSizedFloat double blue, @MachineSizedFloat double alpha, @MachineSizedFloat double linearExposure);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "colorNamed:")
@@ -415,6 +428,11 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "resolvedColorWithTraitCollection:")
     public native UIColor resolvedColorWithTraitCollection(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "colorWithProminence:")
+    public native UIColor toColorWithProminence(UIColorProminence prominence);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

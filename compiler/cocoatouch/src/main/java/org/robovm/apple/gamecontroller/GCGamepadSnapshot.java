@@ -35,7 +35,7 @@ import org.robovm.apple.corehaptic.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 13.0. GCGamepad has been deprecated, use GCExtendedGamepad instead
+ * @deprecated Deprecated in iOS 13.0. Use GCExtendedGamepad instead
  */
 /*</javadoc>*/
 /*<annotations>*/@Library("GameController") @NativeClass @Deprecated/*</annotations>*/

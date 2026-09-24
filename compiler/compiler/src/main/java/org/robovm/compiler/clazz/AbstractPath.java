@@ -31,9 +31,9 @@ public abstract class AbstractPath implements Path {
     protected final Clazzes clazzes;
     protected final int index;
     protected Set<Clazz> clazzSet = null;
-    protected Set<Package> packageSet = null;
-    protected boolean inBootclasspath = false;
-    protected Map<String, Clazz> generatedClasses = new HashMap<String, Clazz>();
+    protected boolean disposed = false;
+    protected boolean inBootclasspath;
+    protected Map<String, Clazz> generatedClasses = new HashMap<>();
     protected final File generatedClassDir;
     
     AbstractPath(File file, Clazzes clazzes, int index, boolean inBootclasspath) {
@@ -57,6 +57,8 @@ public abstract class AbstractPath implements Path {
     }
     
     public Set<Clazz> listClasses() {
+        if (disposed)
+            throw new IllegalStateException("Path was disposed!");
         if (clazzSet == null) {
             clazzSet = doListClasses();
         }
@@ -119,5 +121,11 @@ public abstract class AbstractPath implements Path {
     public String toString() {
         return file.toString();
     }
-    
+
+    @Override
+    public void disposeBuildData() {
+        disposed = true;
+        clazzSet = null;
+        generatedClasses = null;
+    }
 }

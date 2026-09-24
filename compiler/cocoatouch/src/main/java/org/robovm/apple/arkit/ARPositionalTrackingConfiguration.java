@@ -76,6 +76,21 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "supportedVideoFormats")
     public static native NSArray<ARVideoFormat> getSupportedVideoFormats();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "configurableCaptureDeviceForPrimaryCamera")
+    public static native AVCaptureDevice getConfigurableCaptureDeviceForPrimaryCamera();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recommendedVideoFormatFor4KResolution")
+    public static native ARVideoFormat getRecommendedVideoFormatFor4KResolution();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "recommendedVideoFormatForHighResolutionFrameCapturing")
+    public static native ARVideoFormat getRecommendedVideoFormatForHighResolutionFrameCapturing();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

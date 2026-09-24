@@ -53,6 +53,8 @@ import org.robovm.apple.dispatch.*;
     public MTLDevice getDevice() { return null; }
     @NotImplemented("commandQueue")
     public MTLCommandQueue getCommandQueue() { return null; }
+    @NotImplemented("mtl4CommandQueue")
+    public MTL4CommandQueue getMtl4CommandQueue() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

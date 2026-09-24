@@ -50,6 +50,11 @@ import org.robovm.apple.fileprovider.*;
     protected CKRecordZoneSubscription() {}
     protected CKRecordZoneSubscription(Handle h, long handle) { super(h, handle); }
     protected CKRecordZoneSubscription(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Use initWithZoneID:subscriptionID:
+     */
+    @Deprecated
     @Method(selector = "initWithZoneID:")
     public CKRecordZoneSubscription(CKRecordZoneID zoneID) { super((SkipInit) null); initObject(init(zoneID)); }
     @Method(selector = "initWithZoneID:subscriptionID:")
@@ -69,6 +74,11 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 10.0. Use initWithZoneID:subscriptionID:
+     */
+    @Deprecated
     @Method(selector = "initWithZoneID:")
     protected native @Pointer long init(CKRecordZoneID zoneID);
     @Method(selector = "initWithZoneID:subscriptionID:")

@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,30 +71,33 @@ public class Store extends Instruction {
     }
     
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("store ");
+    public void write(Writer writer) throws IOException {
+        writer.write("store ");
         if (_volatile) {
-            sb.append("volatile ");
+            writer.write("volatile ");
         }
         if (ordering != null) {
-            sb.append("atomic ");
+            writer.write("atomic ");
         }
-        sb.append(value.getType());
-        sb.append(" ");
-        sb.append(value);
-        sb.append(", ");
-        sb.append(pointer.getType());
-        sb.append(" ");
-        sb.append(pointer);
+        value.getType().write(writer);
+        writer.write(" ");
+        value.write(writer);
+        writer.write(", ");
+        pointer.getType().write(writer);
+        writer.write(" ");
+        pointer.write(writer);
         if (ordering != null) {
-            sb.append(" ");
-            sb.append(ordering);
+            writer.write(" ");
+            writer.write(ordering.toString());
         }
         if (alignment > 0) {
-            sb.append(", align ");
-            sb.append(alignment);            
+            writer.write(", align ");
+            writer.write(Integer.toString(alignment));
         }
-        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

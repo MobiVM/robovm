@@ -17,8 +17,8 @@
 package org.robovm.eclipse.internal.junit;
 
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.DeviceType.DeviceFamily;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.simulator.DeviceType.DeviceFamily;
 
 /**
  *

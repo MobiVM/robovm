@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -87,6 +89,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setVoiceProcessingInputMuted:")
     public native void setVoiceProcessingInputMuted(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "voiceProcessingOtherAudioDuckingConfiguration")
+    public native @ByVal AVAudioVoiceProcessingOtherAudioDuckingConfiguration getVoiceProcessingOtherAudioDuckingConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setVoiceProcessingOtherAudioDuckingConfiguration:")
+    public native void setVoiceProcessingOtherAudioDuckingConfiguration(@ByVal AVAudioVoiceProcessingOtherAudioDuckingConfiguration v);
     @Property(selector = "volume")
     public native float getVolume();
     @Property(selector = "setVolume:")
@@ -147,6 +159,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "setManualRenderingInputPCMFormat:inputBlock:")
     public native boolean setManualRenderingInputPCMFormat(AVAudioFormat format, @Block Block1<Integer, AudioBufferList> block);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setMutedSpeechActivityEventListener:")
+    public native boolean setMutedSpeechActivityEventListener(@Block VoidBlock1<AVAudioVoiceProcessingSpeechActivityEvent> listenerBlock);
     /**
      * @since Available in iOS 9.0 and later.
      */

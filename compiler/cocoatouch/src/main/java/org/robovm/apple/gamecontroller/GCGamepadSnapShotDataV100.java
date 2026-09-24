@@ -84,13 +84,13 @@ import org.robovm.apple.corehaptic.*;
     /*</members>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 13.0. GCGamepad has been deprecated, use GCExtendedGamepad instead
+     * @deprecated Deprecated in iOS 13.0. Use GCExtendedGamepad instead
      */
     @Deprecated
     @Bridge(symbol="GCGamepadSnapShotDataV100FromNSData", optional=true)
     public native boolean setData(NSData data);
     /**
-     * @deprecated Deprecated in iOS 13.0. GCGamepad has been deprecated, use GCExtendedGamepad instead
+     * @deprecated Deprecated in iOS 13.0. Use GCExtendedGamepad instead
      */
     @Deprecated
     @Bridge(symbol="NSDataFromGCGamepadSnapShotDataV100", optional=true)

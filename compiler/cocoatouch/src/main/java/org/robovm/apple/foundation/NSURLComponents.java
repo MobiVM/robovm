@@ -57,6 +57,11 @@ import org.robovm.apple.dispatch.*;
     public NSURLComponents(NSURL url, boolean resolve) { super((SkipInit) null); initObject(init(url, resolve)); }
     @Method(selector = "initWithString:")
     public NSURLComponents(String URLString) { super((SkipInit) null); initObject(init(URLString)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithString:encodingInvalidCharacters:")
+    public NSURLComponents(String URLString, boolean encodingInvalidCharacters) { super((SkipInit) null); initObject(init(URLString, encodingInvalidCharacters)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -103,8 +108,16 @@ import org.robovm.apple.dispatch.*;
     public native String getPercentEncodedPassword();
     @Property(selector = "setPercentEncodedPassword:")
     public native void setPercentEncodedPassword(String v);
+    /**
+     * @deprecated Use encodedHost instead
+     */
+    @Deprecated
     @Property(selector = "percentEncodedHost")
     public native String getPercentEncodedHost();
+    /**
+     * @deprecated Use encodedHost instead
+     */
+    @Deprecated
     @Property(selector = "setPercentEncodedHost:")
     public native void setPercentEncodedHost(String v);
     @Property(selector = "percentEncodedPath")
@@ -119,6 +132,16 @@ import org.robovm.apple.dispatch.*;
     public native String getPercentEncodedFragment();
     @Property(selector = "setPercentEncodedFragment:")
     public native void setPercentEncodedFragment(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "encodedHost")
+    public native String getEncodedHost();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setEncodedHost:")
+    public native void setEncodedHost(String v);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -180,6 +203,11 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSURL url, boolean resolve);
     @Method(selector = "initWithString:")
     protected native @Pointer long init(String URLString);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithString:encodingInvalidCharacters:")
+    protected native @Pointer long init(String URLString, boolean encodingInvalidCharacters);
     @Method(selector = "URLRelativeToURL:")
     public native NSURL URLRelativeToURL(NSURL baseURL);
     /*</methods>*/

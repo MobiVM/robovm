@@ -1,0 +1,38 @@
+package: org.robovm.apple.devicediscoveryui
+include: [foundation, uikit]
+library: DeviceDiscoveryUI
+framework: DeviceDiscoveryUI
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/DeviceDiscoveryUI.framework/Headers/DeviceDiscoveryUI.h
+
+typedefs:
+    
+enums:
+
+categories:
+
+classes:
+    DDDevicePickerViewController: {} #since 26.0
+
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?DD.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?DD.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?DD.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

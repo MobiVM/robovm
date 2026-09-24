@@ -151,6 +151,10 @@ import org.robovm.apple.dispatch.*;
     public static final NSURLFileSystemProperty AddedToDirectoryDate = new NSURLFileSystemProperty("AddedToDirectoryDate");
     public static final NSURLFileSystemProperty FileResourceType = new NSURLFileSystemProperty("FileResourceType");
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final NSURLFileSystemProperty FileIdentifier = new NSURLFileSystemProperty("FileIdentifier");
+    /**
      * @since Available in iOS 14.0 and later.
      */
     public static final NSURLFileSystemProperty FileContentIdentifier = new NSURLFileSystemProperty("FileContentIdentifier");
@@ -179,9 +183,13 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final NSURLFileSystemProperty FileProtection = new NSURLFileSystemProperty("FileProtection");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSURLFileSystemProperty DirectoryEntryCount = new NSURLFileSystemProperty("DirectoryEntryCount");
     /*</constants>*/
     
-    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, ContentType, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, FileContentIdentifier, MayShareFileContent, MayHaveExtendedAttributes, IsPurgeable, IsSparse, ThumbnailDictionary, FileProtection/*</value_list>*/};
+    private static /*<name>*/NSURLFileSystemProperty/*</name>*/[] values = new /*<name>*/NSURLFileSystemProperty/*</name>*/[] {/*<value_list>*/Name, LocalizedName, IsRegularFile, IsDirectory, IsSymbolicLink, IsVolume, IsPackage, IsApplication, IsSystemImmutable, IsUserImmutable, IsHidden, HasHiddenExtension, CreationDate, ContentAccessDate, ContentModificationDate, AttributeModificationDate, LinkCount, ParentDirectoryURL, VolumeURL, TypeIdentifier, ContentType, LocalizedTypeDescription, LabelNumber, LabelColor, LocalizedLabel, EffectiveIcon, CustomIcon, FileResourceIdentifier, VolumeIdentifier, PreferredIOBlockSize, IsReadable, IsWritable, IsExecutable, FileSecurity, IsExcludedFromBackup, Path, CanonicalPath, IsMountTrigger, GenerationIdentifier, DocumentIdentifier, AddedToDirectoryDate, FileResourceType, FileIdentifier, FileContentIdentifier, MayShareFileContent, MayHaveExtendedAttributes, IsPurgeable, IsSparse, ThumbnailDictionary, FileProtection, DirectoryEntryCount/*</value_list>*/};
     
     /*<name>*/NSURLFileSystemProperty/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -302,6 +310,11 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="NSURLFileResourceTypeKey", optional=true)
         public static native NSString FileResourceType();
         /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="NSURLFileIdentifierKey", optional=true)
+        public static native NSString FileIdentifier();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="NSURLFileContentIdentifierKey", optional=true)
@@ -337,6 +350,11 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="NSURLFileProtectionKey", optional=true)
         public static native NSString FileProtection();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSURLDirectoryEntryCountKey", optional=true)
+        public static native NSString DirectoryEntryCount();
         /*</values>*/
     }
 }

@@ -64,10 +64,27 @@ import org.robovm.apple.fileprovider.*;
     public native CKRecordID getSubscriptionOwnerUserRecordID();
     @Property(selector = "isPruned")
     public native boolean isPruned();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "subscriptionID")
+    public native String getSubscriptionID();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "alertBody")
     public native String getAlertBody();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "alertLocalizationKey")
     public native String getAlertLocalizationKey();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "alertLocalizationArgs")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getAlertLocalizationArgs();
     /**
@@ -100,19 +117,30 @@ import org.robovm.apple.fileprovider.*;
      */
     @Property(selector = "subtitleLocalizationArgs")
     public native NSArray<NSString> getSubtitleLocalizationArgs();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "alertActionLocalizationKey")
     public native String getAlertActionLocalizationKey();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "alertLaunchImage")
     public native String getAlertLaunchImage();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "badge")
     public native NSNumber getBadge();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Interact with UI elements of a CloudKit-server-generated push message via UserNotifications.framework
+     */
+    @Deprecated
     @Property(selector = "soundName")
     public native String getSoundName();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
-    @Property(selector = "subscriptionID")
-    public native String getSubscriptionID();
     /**
      * @since Available in iOS 9.0 and later.
      */

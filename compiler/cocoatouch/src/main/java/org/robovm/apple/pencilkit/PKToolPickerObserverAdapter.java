@@ -51,8 +51,18 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use toolPickerSelectedToolItemDidChange instead.
+     */
+    @Deprecated
     @NotImplemented("toolPickerSelectedToolDidChange:")
     public void toolPickerSelectedToolDidChange(PKToolPicker toolPicker) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("toolPickerSelectedToolItemDidChange:")
+    public void toolPickerSelectedToolItemDidChange(PKToolPicker toolPicker) {}
     @NotImplemented("toolPickerIsRulerActiveDidChange:")
     public void toolPickerIsRulerActiveDidChange(PKToolPicker toolPicker) {}
     @NotImplemented("toolPickerVisibilityDidChange:")

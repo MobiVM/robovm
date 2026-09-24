@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -152,6 +153,26 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setPrefersLargeTitles:")
     public native void setPrefersLargeTitles(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "currentNSToolbarSection")
+    public native UINavigationBarNSToolbarSection getCurrentNSToolbarSection();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "behavioralStyle")
+    public native UIBehavioralStyle getBehavioralStyle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredBehavioralStyle")
+    public native UIBehavioralStyle getPreferredBehavioralStyle();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredBehavioralStyle:")
+    public native void setPreferredBehavioralStyle(UIBehavioralStyle v);
     @Property(selector = "tintColor")
     public native UIColor getTintColor();
     @Property(selector = "setTintColor:")

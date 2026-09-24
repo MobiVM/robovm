@@ -59,5 +59,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithDispatchQueue:")
     protected native @Pointer long init(DispatchQueue dispatchQueue);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "sharedListener")
+    public static native MTLSharedEventListener sharedListener();
     /*</methods>*/
 }

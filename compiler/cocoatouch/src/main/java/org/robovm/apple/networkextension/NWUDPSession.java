@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWUDPSession/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,44 +52,60 @@ import org.robovm.apple.network.*;
     protected NWUDPSession(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "initWithUpgradeForSession:")
     public NWUDPSession(NWUDPSession session) { super((SkipInit) null); initObject(init(session)); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_state_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "state")
     public native NWUDPSessionState getState();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "endpoint")
     public native NWEndpoint getEndpoint();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "resolvedEndpoint")
     public native NWEndpoint getResolvedEndpoint();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_viability_changed_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "isViable")
     public native boolean isViable();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_set_better_path_available_handler` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "hasBetterPath")
     public native boolean hasBetterPath();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "currentPath")
     public native NWPath getCurrentPath();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_get_maximum_datagram_size` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Property(selector = "maximumDatagramLength")
     public native @MachineSizedUInt long getMaximumDatagramLength();
     /*</properties>*/
@@ -96,32 +113,44 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_create` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "initWithUpgradeForSession:")
     protected native @Pointer long init(NWUDPSession session);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_cancel_current_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "tryNextResolvedEndpoint")
     public native void tryNextResolvedEndpoint();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_receive` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "setReadHandler:maxDatagrams:")
     public native void setReadHandler(@Block VoidBlock2<NSArray<NSData>, NSError> handler, @MachineSizedUInt long maxDatagrams);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "writeMultipleDatagrams:completionHandler:")
     public native void writeMultipleDatagrams(NSArray<NSData> datagramArray, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_send` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "writeDatagram:completionHandler:")
     public native void writeDatagram(NSData datagram, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_connection_cancel` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>
      */
+    @Deprecated
     @Method(selector = "cancel")
     public native void cancel();
     /*</methods>*/

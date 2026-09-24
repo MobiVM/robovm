@@ -49,15 +49,15 @@ import org.robovm.apple.corefoundation.*;
     protected MIDICIProfileState(Handle h, long handle) { super(h, handle); }
     protected MIDICIProfileState(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use initWithEnabledProfiles:
      */
+    @Deprecated
     @Method(selector = "initWithChannel:enabledProfiles:disabledProfiles:")
     public MIDICIProfileState(byte midiChannelNum, NSArray<MIDICIProfile> enabled, NSArray<MIDICIProfile> disabled) { super((SkipInit) null); initObject(init(midiChannelNum, enabled, disabled)); }
     /**
-     * @since Available in iOS 12.0 and later.
-     * @deprecated Use initWithChannel:enabledProfiles:disabledProfiles
+     * @since Available in iOS 14.0 and later.
      */
-    @Deprecated
     @Method(selector = "initWithEnabledProfiles:disabledProfiles:")
     public MIDICIProfileState(NSArray<MIDICIProfile> enabled, NSArray<MIDICIProfile> disabled) { super((SkipInit) null); initObject(init(enabled, disabled)); }
     @Method(selector = "initWithCoder:")
@@ -76,15 +76,15 @@ import org.robovm.apple.corefoundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use initWithEnabledProfiles:
      */
+    @Deprecated
     @Method(selector = "initWithChannel:enabledProfiles:disabledProfiles:")
     protected native @Pointer long init(byte midiChannelNum, NSArray<MIDICIProfile> enabled, NSArray<MIDICIProfile> disabled);
     /**
-     * @since Available in iOS 12.0 and later.
-     * @deprecated Use initWithChannel:enabledProfiles:disabledProfiles
+     * @since Available in iOS 14.0 and later.
      */
-    @Deprecated
     @Method(selector = "initWithEnabledProfiles:disabledProfiles:")
     protected native @Pointer long init(NSArray<MIDICIProfile> enabled, NSArray<MIDICIProfile> disabled);
     @Method(selector = "encodeWithCoder:")

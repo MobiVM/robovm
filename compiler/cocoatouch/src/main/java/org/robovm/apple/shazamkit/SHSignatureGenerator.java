@@ -64,5 +64,10 @@ import org.robovm.apple.avfoundation.*;
     private native boolean appendBuffer(AVAudioPCMBuffer buffer, AVAudioTime time, NSError.NSErrorPtr error);
     @Method(selector = "signature")
     public native SHSignature signature();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "generateSignatureFromAsset:completionHandler:")
+    public static native void generateSignature(AVAsset asset, @Block VoidBlock2<SHSignature, NSError> completionHandler);
     /*</methods>*/
 }

@@ -60,10 +60,38 @@ import org.robovm.apple.coreanimation.*;
     public native MKMapViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(MKMapViewDelegate v);
+    /**
+     * @deprecated Use respective MKMapConfiguration
+     */
+    @Deprecated
     @Property(selector = "mapType")
     public native MKMapType getMapType();
+    /**
+     * @deprecated Use respective MKMapConfiguration
+     */
+    @Deprecated
     @Property(selector = "setMapType:")
     public native void setMapType(MKMapType v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredConfiguration")
+    public native MKMapConfiguration getPreferredConfiguration();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredConfiguration:")
+    public native void setPreferredConfiguration(MKMapConfiguration v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selectableMapFeatures")
+    public native MKMapFeatureOptions getSelectableMapFeatures();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelectableMapFeatures:")
+    public native void setSelectableMapFeatures(MKMapFeatureOptions v);
     @Property(selector = "region")
     public native @ByVal MKCoordinateRegion getRegion();
     @Property(selector = "setRegion:")
@@ -117,6 +145,26 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setPitchEnabled:")
     public native void setPitchEnabled(boolean v);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "showsUserTrackingButton")
+    public native boolean showsUserTrackingButton();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setShowsUserTrackingButton:")
+    public native void setShowsUserTrackingButton(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "pitchButtonVisibility")
+    public native MKFeatureVisibility getPitchButtonVisibility();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPitchButtonVisibility:")
+    public native void setPitchButtonVisibility(MKFeatureVisibility v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "showsCompass")
@@ -138,12 +186,16 @@ import org.robovm.apple.coreanimation.*;
     public native void setShowsScale(boolean v);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use pointOfInterestFilter on respective MKMapConfiguration
      */
+    @Deprecated
     @Property(selector = "pointOfInterestFilter")
     public native MKPointOfInterestFilter getPointOfInterestFilter();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use pointOfInterestFilter on respective MKMapConfiguration
      */
+    @Deprecated
     @Property(selector = "setPointOfInterestFilter:")
     public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
     /**
@@ -158,18 +210,30 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "setShowsPointsOfInterest:")
     public native void setShowsPointsOfInterest(boolean v);
+    /**
+     * @deprecated None
+     */
+    @Deprecated
     @Property(selector = "showsBuildings")
     public native boolean showsBuildings();
+    /**
+     * @deprecated None
+     */
+    @Deprecated
     @Property(selector = "setShowsBuildings:")
     public native void setShowsBuildings(boolean v);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use showsTraffic on respective MKMapConfiguration
      */
+    @Deprecated
     @Property(selector = "showsTraffic")
     public native boolean showsTraffic();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Use showsTraffic on respective MKMapConfiguration
      */
+    @Deprecated
     @Property(selector = "setShowsTraffic:")
     public native void setShowsTraffic(boolean v);
     @Property(selector = "showsUserLocation")

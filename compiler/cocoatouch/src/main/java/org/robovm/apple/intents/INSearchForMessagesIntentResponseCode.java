@@ -48,7 +48,11 @@ public enum /*<name>*/INSearchForMessagesIntentResponseCode/*</name>*/ implement
     Failure(4L),
     FailureRequiringAppLaunch(5L),
     FailureMessageServiceNotAvailable(6L),
-    FailureMessageTooManyResults(7L);
+    FailureMessageTooManyResults(7L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    FailureRequiringInAppAuthentication(8L);
     /*</values>*/
 
     /*<bind>*/

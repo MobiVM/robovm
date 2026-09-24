@@ -75,6 +75,11 @@ import org.robovm.rt.bro.ptr.*;
     public static native void setQosClassFloor(@ByVal DispatchObject object, int qos_class, int relative_priority);
     @Bridge(symbol="dispatch_main", optional=true)
     public static native void main();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Bridge(symbol="dispatch_allow_send_signals", optional=true)
+    public static native int allowSendSignals(int preserve_signum);
     @Bridge(symbol="dispatch_once", optional=true)
     protected static native void once(MachineSizedSIntPtr predicate, @Block Runnable block);
     @Bridge(symbol="dispatch_read", optional=true)

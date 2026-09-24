@@ -48,9 +48,7 @@ import org.robovm.apple.dispatch.*;
 
     /*<ptr>*/public static class NSCharacterSetPtr extends Ptr<NSCharacterSet, NSCharacterSetPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSCharacterSet.class); }/*</bind>*/
-    /*<constants>*/
-    public static final int OpenStepUnicodeReservedBase = 62464;
-    /*</constants>*/
+    /*<constants>*//*</constants>*/
     /*<constructors>*/
     public NSCharacterSet() {}
     @Deprecated protected NSCharacterSet(long handle) { super(handle); }

@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeDidChangeExternally(NSUbiquitousKeyValueStore object, final VoidBlock3<NSUbiquitousKeyValueStore, String, List<String>> block) {
+        public static NSObject observeDidChangeExternally(NSUbiquitousKeyValueStore object, final VoidBlock3<NSUbiquitousKeyValueStore, String, List<String>> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeExternallyNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

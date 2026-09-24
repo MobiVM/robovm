@@ -116,5 +116,7 @@ import org.robovm.apple.dispatch.*;
     public native String format(NSDate startDate, NSDate endDate);
     @Method(selector = "stringFromTimeInterval:")
     public native String format(double ti);
+    @Method(selector = "localizedStringFromDateComponents:unitsStyle:")
+    public static native String localizedStringFromDateComponents(NSDateComponents components, NSDateComponentsFormatterUnitsStyle unitsStyle);
     /*</methods>*/
 }

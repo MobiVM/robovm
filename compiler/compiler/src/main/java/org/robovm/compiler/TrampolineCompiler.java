@@ -31,6 +31,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import org.robovm.compiler.clazz.Clazz;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.llvm.*;
+import org.robovm.compiler.plugin.CompilerPlugin;
 import org.robovm.compiler.trampoline.Anewarray;
 import org.robovm.compiler.trampoline.Checkcast;
 import org.robovm.compiler.trampoline.FieldAccessor;
@@ -447,7 +448,7 @@ public class TrampolineCompiler {
             runtimeClass = c.getSootClass();
         }
         
-        if (Access.checkMemberAccessible(member, caller, target, runtimeClass)) {
+        if (Access.checkMemberAccessible(config.getClazzes(), member, caller, target, runtimeClass)) {
             return true;
         }
 

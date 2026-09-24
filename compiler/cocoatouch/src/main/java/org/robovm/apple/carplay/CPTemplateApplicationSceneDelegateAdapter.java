@@ -70,5 +70,10 @@ import org.robovm.apple.coreanimation.*;
     public void didSelectNavigationAlert(CPTemplateApplicationScene templateApplicationScene, CPNavigationAlert navigationAlert) {}
     @NotImplemented("templateApplicationScene:didSelectManeuver:")
     public void didSelectManeuver(CPTemplateApplicationScene templateApplicationScene, CPManeuver maneuver) {}
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @NotImplemented("contentStyleDidChange:")
+    public void contentStyleDidChange(UIUserInterfaceStyle contentStyle) {}
     /*</methods>*/
 }

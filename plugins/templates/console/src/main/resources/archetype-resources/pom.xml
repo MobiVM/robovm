@@ -46,7 +46,7 @@
     <repositories>
         <repository>
             <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -55,7 +55,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>sonatype-plugin-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

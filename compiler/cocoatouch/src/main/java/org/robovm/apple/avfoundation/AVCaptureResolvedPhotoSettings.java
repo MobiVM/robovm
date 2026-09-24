@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,6 +94,11 @@ import org.robovm.apple.audiotoolbox.*;
     @Property(selector = "isRedEyeReductionEnabled")
     public native boolean isRedEyeReductionEnabled();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "deferredPhotoProxyDimensions")
+    public native @ByVal CMVideoDimensions getDeferredPhotoProxyDimensions();
+    /**
      * @since Available in iOS 10.0 and later.
      * @deprecated Deprecated in iOS 13.0. Use photoProcessingTimeRange
      */
@@ -125,6 +132,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "isContentAwareDistortionCorrectionEnabled")
     public native boolean isContentAwareDistortionCorrectionEnabled();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isFastCapturePrioritizationEnabled")
+    public native boolean isFastCapturePrioritizationEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

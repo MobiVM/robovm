@@ -52,7 +52,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -76,6 +83,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_privacy_context_require_encrypted_name_resolution", optional=true)
     public native void requireEncryptedNameResolution(boolean require_encrypted_name_resolution, NWResolverConfig fallback_resolver_config);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="nw_privacy_context_add_proxy", optional=true)
+    public native void addProxy(NWProxyConfig proxy_config);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="nw_privacy_context_clear_proxies", optional=true)
+    public native void clearProxies();
     
     
     /*</methods>*/

@@ -44,7 +44,11 @@ import org.robovm.apple.coreanimation.*;
 public enum /*<name>*/MKScaleViewAlignment/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Leading(0L),
-    Trailing(1L);
+    Trailing(1L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Center(2L);
     /*</values>*/
 
     /*<bind>*/

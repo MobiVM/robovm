@@ -31,6 +31,8 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +44,7 @@ import org.robovm.apple.coreanimation.*;
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
     
     public static class Notifications {
-        public static NSObjectProtocol observeDidChange(final Runnable block) {
+        public static NSObject observeDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {

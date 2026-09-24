@@ -57,6 +57,11 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("URLSession:didCreateTask:")
+    public void didCreateTask(NSURLSession session, NSURLSessionTask task) {}
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @NotImplemented("URLSession:task:willBeginDelayedRequest:completionHandler:")
@@ -72,8 +77,18 @@ import org.robovm.apple.dispatch.*;
     public void didReceiveChallenge(NSURLSession session, NSURLSessionTask task, NSURLAuthenticationChallenge challenge, @Block VoidBlock2<NSURLSessionAuthChallengeDisposition, NSURLCredential> completionHandler) {}
     @NotImplemented("URLSession:task:needNewBodyStream:")
     public void needNewBodyStream(NSURLSession session, NSURLSessionTask task, @Block VoidBlock1<NSInputStream> completionHandler) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("URLSession:task:needNewBodyStreamFromOffset:completionHandler:")
+    public void needNewBodyStream(NSURLSession session, NSURLSessionTask task, long offset, @Block VoidBlock1<NSInputStream> completionHandler) {}
     @NotImplemented("URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:")
     public void didSendBodyData(NSURLSession session, NSURLSessionTask task, long bytesSent, long totalBytesSent, long totalBytesExpectedToSend) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("URLSession:task:didReceiveInformationalResponse:")
+    public void didReceiveInformationalResponse(NSURLSession session, NSURLSessionTask task, NSHTTPURLResponse response) {}
     /**
      * @since Available in iOS 10.0 and later.
      */

@@ -11,6 +11,8 @@ include:
     - corevideo
     - mediatoolbox
     - audiotoolbox
+    - coremidi
+    - uikit
 library: AVFoundation
 framework: AVFoundation
 internal_frameworks: [AVFAudio]
@@ -27,6 +29,7 @@ private_typedefs:
     # and will fail on any valid track id
     CMPersistentTrackID: int
     UTType *: org.robovm.apple.uniformtypeid.UTType
+    UTType: org.robovm.apple.uniformtypeid.UTType
 enums:
     AVAssetReferenceRestrictions: {}
     AVAssetExportSessionStatus: {}
@@ -123,6 +126,52 @@ enums:
     AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: {prefix: AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorCondition} #since 15.0
     AVCaptureMicrophoneMode: {} #since 15.0
     AVCaptureSystemUserInterface: {} #since 15.0
+    AVAssetTrackGroupOutputHandling: { } #since 16.0
+    AVMIDIControlChangeMessageType: { }
+    AVMIDIMetaEventType: { }
+    AVSpeechSynthesisMarkerMark: { } #since 16.0
+    # ios 17
+    AVPlayerLooperItemOrdering: {} #since 17.0
+    AVPlayerInterstitialEventAssetListResponseStatus: {} #since 16.4
+    AVAudioVoiceProcessingSpeechActivityEvent: {prefix: AVAudioVoiceProcessingSpeechActivity} #since 17.0
+    AVAudioVoiceProcessingOtherAudioDuckingLevel: {} #since 17.0
+    AVSpeechSynthesisPersonalVoiceAuthorizationStatus: {} #since 17.0
+    AVSpeechSynthesisVoiceTraits: {prefix: AVSpeechSynthesisVoiceTrait} #since 17.0
+    AVAudioApplicationRecordPermission: {}
+    AVCapturePhotoOutputCaptureReadiness: {} #since 17.0
+    AVExternalContentProtectionStatus: {} #since 17.4
+    AVCaptionUnitsType: {}
+    AVCaptionRegionDisplayAlignment: {} #since 18.0
+    AVCaptionRegionWritingMode: {} #since 18.0
+    AVCaptionRegionScroll: {} #since 18.0
+    AVCaptionAnimation: {} #since 18.0
+    AVCaptionFontWeight: {} #since 18.0
+    AVCaptionFontStyle: {} #since 18.0
+    AVCaptionDecoration: {} #since 18.0
+    AVCaptionTextCombine: {} #since 18.0
+    AVCaptionTextAlignment: {} #since 18.0
+    AVCaptionRubyPosition: {} #since 18.0
+    AVCaptionRubyAlignment: {} #since 18.0
+    AVCaptionConversionValidatorStatus: {} #since 18.0
+    AVPlayerNetworkResourcePriority: {} #since 26.0
+    CMTagCollectionVideoOutputPreset: {prefix: kCMTagCollectionVideoOutputPreset_} #since 17.2
+    AVPlayerInterstitialEventTimelineOccupancy: {} #since 18.0
+    AVPlayerInterstitialEventSkippableEventState: {} #since 26.0
+    AVPlayerItemSegmentType: {} #since 18.0
+    AVAudioDynamicRangeControlConfiguration: {}
+    AVAudioContentSource: {} #since 26.0
+    AVAudioSessionRenderingMode: {}
+    AVAudioSessionMicrophoneInjectionMode: {}
+    AVAudioApplicationMicrophoneInjectionPermission: {}
+    AVCaptureCinematicVideoFocusMode: {} #since 26.0
+    AVCaptureCameraLensSmudgeDetectionStatus: {} #since 26.0
+    AVExternalSyncDeviceStatus: {} #since 26.0
+    AVCaptureMultichannelAudioMode: {} #since 18.0
+    AVCaptureTimecodeSourceType: {} #since 26.0
+    AVCaptureTimecodeGeneratorSynchronizationStatus: {} #since 26.0
+
+    EXCLUDED2: { exclude: true, first: AVAudioSessionSetActiveFlags_NotifyOthersOnDeactivation} # Deprecated in iOS 6.0
+    EXCLUDED1: { exclude: true, first: AVAudioSessionInterruptionFlags_ShouldResume} #  Deprecated in iOS 6.0
 
 typed_enums:
     AVAssetDownloadedAssetEvictionPriority:
@@ -149,6 +198,71 @@ typed_enums:
         type: NSString
         AVSemanticSegmentationMatteType(.*):
             name: '#{g[0]}'
+    AVAudioSequencerInfoDictionaryKey:
+        enum: AVAudioSequencerInfoDictionaryKey
+        type: NSString
+        prefix: AVAudioSequencerInfoDictionaryKey
+    AVAssetPlaybackConfigurationOption:
+        enum: AVAssetPlaybackConfigurationOption
+        type: NSString
+        prefix: AVAssetPlaybackConfigurationOption
+    AVPlayerInterstitialEventCue:
+        enum: AVPlayerInterstitialEventCue
+        type: NSString
+        prefix: AVPlayerInterstitialEventCue
+    AVVideoRange:
+        enum: AVVideoRange
+        type: NSString
+        prefix: AVVideoRange
+    AVPlayerRateDidChangeReason:
+        enum: AVPlayerRateDidChangeReason
+        type: NSString
+        prefix: AVPlayerRateDidChangeReason
+    AVCoordinatedPlaybackSuspensionReason:
+        enum: AVCoordinatedPlaybackSuspensionReason
+        type: NSString
+        prefix: AVCoordinatedPlaybackSuspensionReason
+    AVVideoCompositionPerFrameHDRDisplayMetadataPolicy:
+        enum: AVVideoCompositionPerFrameHDRDisplayMetadataPolicy
+        type: NSString
+        prefix: AVVideoCompositionPerFrameHDRDisplayMetadataPolicy
+    AVCaptureReactionType:
+        enum: AVCaptureReactionType
+        type: NSString
+        prefix: AVCaptureReactionType
+    AVAssetImageGeneratorDynamicRangePolicy:
+        enum: AVAssetImageGeneratorDynamicRangePolicy
+        type: NSString
+        prefix: AVAssetImageGeneratorDynamicRangePolicy
+    AVCaptionSettingsKey:
+        enum: AVCaptionSettingsKey
+        type: NSString
+        prefix: AVCaption
+    AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason:
+        enum: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason
+        type: NSString
+        prefix: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason
+    AVCaptureSceneMonitoringStatus:
+        enum: AVCaptureSceneMonitoringStatus
+        type: NSString
+        prefix: AVCaptureSceneMonitoringStatus
+    AVCaptionConversionWarningType:
+        enum: AVCaptionConversionWarningType
+        type: NSString
+        prefix: AVCaptionConversionWarningType
+    AVSpatialCaptureDiscomfortReason:
+        enum: AVSpatialCaptureDiscomfortReason
+        type: NSString
+        prefix: AVSpatialCaptureDiscomfortReason
+    AVCaptureAspectRatio:
+        enum: AVCaptureAspectRatio
+        type: NSString
+        prefix: AVCaptureAspectRatio
+    AVCaptionConversionAdjustmentType:
+        enum: AVCaptionConversionAdjustmentType
+        type: NSString
+        prefix: AVCaptionConversionAdjustmentType
+
 categories:
     NSValueAVFoundationExtensions: # DONE
         methods:
@@ -181,7 +295,12 @@ classes:
     AVCaptureWhiteBalanceTemperatureAndTintValues: {}
     AVEdgeWidths: {}
     AVPixelAspectRatio: {}
-    
+    AVAudioVoiceProcessingOtherAudioDuckingConfiguration: {} #since 17.0
+    AVCaptionDimension: { }
+    AVCaptionPoint: { }
+    AVCaptionSize: { }
+    AVCaptureTimecode: { }
+
     AVError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -368,6 +487,8 @@ classes:
                         type: '@Block VoidBlock5<CMTime, CGImage, CMTime, AVAssetImageGeneratorResult, NSError>'
             '+assetImageGeneratorWithAsset:':
                 exclude: true
+            '-generateCGImageAsynchronouslyForTime:completionHandler:':
+                name: generateCGImageAsynchronouslyForTime
     AVAssetReader: # DONE
         properties:
             'outputs':
@@ -533,6 +654,8 @@ classes:
                 name: loadMetadataForFormat
             '-loadAssociatedTracksOfType:completionHandler:':
                 name: loadAssociatedTracksOfType
+            '-makeSampleCursorWithPresentationTimeStamp:':
+                name: makeSampleCursor
     AVAssetTrackGroup: # DONE
         properties:
             'trackIDs':
@@ -681,6 +804,10 @@ classes:
                 annotations: ['@WeaklyLinked']
             '-finishWithError:':
                 name: finish
+            '-finishWithComposedTaggedBufferGroup:':
+                name: finish
+            '-attachSpatialVideoConfiguration:toPixelBuffer:':
+                name: attachSpatialVideoConfiguration
     AVAudioBuffer: # DONE
         properties:
             '(audioBufferList|mutableAudioBufferList)':
@@ -794,6 +921,10 @@ classes:
                 name: disconnectMIDI
             '-disconnectMIDI:fromNodes:':
                 name: disconnectMIDI
+            '-connectMIDI:to:format:eventListBlock:':
+                name: connectMIDI
+            '-connectMIDI:toNodes:format:eventListBlock:':
+                name: connectMIDI
 
     AVAudioEnvironmentDistanceAttenuationParameters: {} # DONE
     AVAudioEnvironmentNode: # DONE
@@ -1104,6 +1235,18 @@ classes:
             '-setSupportsMultichannelContent:error:':
                 name: setSupportsMultichannelContent
                 throws: NSErrorException
+            '-setPrefersInterruptionOnRouteDisconnect:error:':
+                name: setPrefersInterruptionOnRouteDisconnect
+                throws: NSErrorException
+            '-setPrefersEchoCancelledInput:error:':
+                name: setPrefersEchoCancelledInput
+                throws: NSErrorException
+            '-setOutputMuted:error:':
+                name: setOutputMuted
+                throws: NSErrorException
+            '-setPreferredMicrophoneInjectionMode:error:':
+                name: setPreferredMicrophoneInjectionMode
+                throws: NSErrorException
     AVAudioSessionChannelDescription: {} # DONE
     AVAudioSessionDataSourceDescription: # DONE
         properties:
@@ -1399,6 +1542,19 @@ classes:
                 name: getExtrinsicMatrix
             '-setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:':
                 name: setPrimaryConstituentDeviceSwitchingBehavior
+            '-setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:':
+                name: setCinematicVideoTrackingFocus
+            '-setCinematicVideoTrackingFocusAtPoint:focusMode:':
+                name: setCinematicVideoTrackingFocusAtPoint
+            '-setCinematicVideoFixedFocusAtPoint:focusMode:':
+                name: setCinematicVideoFixedFocusAtPoint
+            '-setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:':
+                name: setWhiteBalanceModeLocked
+            '-setDynamicAspectRatio:completionHandler:':
+                name: setDynamicAspectRatio
+            '-setCameraLensSmudgeDetectionEnabled:detectionInterval:':
+                name: setCameraLensSmudgeDetectionEnabled
+
     AVCaptureDeviceFormat: # DONE
         properties:
             'mediaType':
@@ -1407,7 +1563,9 @@ classes:
                 type: NSArray<AVFrameRateRange>
         methods:
             '-isVideoStabilizationModeSupported:':
-                trim_after_first_colon: true
+                name: isVideoStabilizationModeSupported
+            '-videoFieldOfViewForAspectRatio:geometricDistortionCorrected:':
+                name: getVideoFieldOfViewForAspectRatio
     AVCaptureDeviceInput: # DONE
         methods:
             '-initWithDevice:error:':
@@ -1417,6 +1575,8 @@ classes:
                 exclude: true
             '-portsWithMediaType:sourceDeviceType:sourceDevicePosition:':
                 name: getPorts
+            '-followExternalSyncDevice:videoFrameDuration:delegate:':
+                name: followExternalSyncDevice
     AVCaptureDeviceInputSource: {} # DONE
     AVCaptureFileOutput: # DONE
         methods:
@@ -1532,6 +1692,10 @@ classes:
                 trim_after_first_colon: true
             '-removeConnection:':
                 trim_after_first_colon: true
+            '-setControlsDelegate:queue:':
+                name: setControlsDelegate
+            '-setDeferredStartDelegate:deferredStartDelegateCallbackQueue:':
+                name: setDeferredStartDelegate
     AVCaptureStillImageOutput: # DONE
         properties:
             'outputSettings':
@@ -1591,6 +1755,10 @@ classes:
                 name: getRecommendedVideoSettings
             '-availableVideoCodecTypesForAssetWriterWithOutputFileType:':
                 name: getAvailableVideoCodecTypes
+            '-recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:':
+                name: getRecommendedVideoSettings
+            '-recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:':
+                name: getRecommendedMovieMetadata
     AVCaptureVideoPreviewLayer: # DONE
         properties:
             'videoGravity':
@@ -1890,7 +2058,19 @@ classes:
                 throws: NSErrorException
             '-play:':
                 trim_after_first_colon: true
-    AVMusicTrack: {} # DONE
+    AVMusicTrack:
+        methods:
+            '-addEvent:atBeat:':
+                name: addEvent
+            '-moveEventsInRange:byAmount:':
+                name: moveEvents
+            '-copyEventsInRange:fromTrack:insertAtBeat:':
+                name: copyEvents
+            '-copyAndMergeEventsInRange:fromTrack:mergeAtBeat:':
+                name: copyAndMergeEvents
+            '-enumerateEventsInRange:usingBlock:':
+                name: enumerateEvents
+
     AVMutableAudioMix: # DONE
         properties:
             'inputParameters':
@@ -1960,6 +2140,8 @@ classes:
                 parameters:
                     mediaCharacteristic:
                         type: AVMediaCharacteristic
+            '-insertTimeRange:ofAsset:atTime:completionHandler:':
+                name: insertTimeRange
 #            '-loadTrackWithTrackID:completionHandler:':
 #                name: loadMutableCompositionTrack
 #            '-loadTracksWithMediaType:completionHandler:':
@@ -2051,6 +2233,15 @@ classes:
                         type: '@Block VoidBlock1<AVAsynchronousCIImageFilteringRequest>'
             '+videoCompositionWithPropertiesOfAsset:prototypeInstruction:':
                 name: create
+                constructor: true
+            '+videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:':
+                name: create
+                constructor: true
+            '+videoCompositionWithPropertiesOfAsset:completionHandler:':
+                name: create0
+                constructor: true
+            '+videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:':
+                name: create0
                 constructor: true
     AVMutableVideoCompositionInstruction: # DONE
         properties:
@@ -2200,6 +2391,10 @@ classes:
                 trim_after_first_colon: true
             '-copyWithZone:':
                 name: copyWithZone
+            '-selectMediaPresentationLanguage:forMediaSelectionGroup:':
+                name: selectMediaPresentationLanguage
+            '-selectMediaPresentationSetting:forMediaSelectionGroup:':
+                name: selectMediaPresentationSetting
     AVPlayerItemAccessLog: # DONE
         properties:
             'events':
@@ -2299,6 +2494,8 @@ classes:
         methods:
             '-initWithPlayer:templateItem:timeRange:':
                 name: init
+            '-initWithPlayer:templateItem:timeRange:existingItemsOrdering:':
+                name: init
             '+playerLooperWithPlayer:templateItem:timeRange:':
                 exclude: true
             '+playerLooperWithPlayer:templateItem:':
@@ -2376,6 +2573,10 @@ classes:
                 name: pauseSpeaking
             '-writeUtterance:toBufferCallback:':
                 name: writeUtterance
+            '-writeUtterance:toBufferCallback:toMarkerCallback:':
+                name: writeUtterance
+            '+requestPersonalVoiceAuthorizationWithCompletionHandler:':
+                name: requestPersonalVoiceAuthorization
     AVSpeechUtterance: # DONE
         methods:
             '-initWithString:':
@@ -2385,6 +2586,11 @@ classes:
             '-initWithAttributedString:':
                 name: init
             '+speechUtteranceWithAttributedString:':
+                exclude: true
+            '-initWithSSMLRepresentation:':
+                static_constructor_name: createWithSSMLRepresentation
+                name: initWithSSMLRepresentation
+            '+speechUtteranceWithSSMLRepresentation:':
                 exclude: true
     AVSynchronizedLayer: # DONE
         annotations: ['@WeaklyLinked']
@@ -2476,6 +2682,16 @@ classes:
                         type: '@Block VoidBlock1<AVAsynchronousCIImageFilteringRequest>'
             '-isValidForAsset:timeRange:validationDelegate:':
                 name: isValid
+            '+videoCompositionWithPropertiesOfAsset:completionHandler:':
+                name: create
+                constructor: true
+            '+videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:':
+                name: create
+                constructor: true
+            '-determineValidityForAsset:timeRange:validationDelegate:completionHandler:':
+                name: determineValidityForAsset
+            '-isValidForTracks:assetDuration:timeRange:validationDelegate:':
+                name: isValidForTracks
     AVVideoCompositionCoreAnimationTool: # DONE
         methods:
             '+videoCompositionCoreAnimationToolWithAdditionalLayer:asTrackID:':
@@ -2551,6 +2767,8 @@ classes:
                 name: JPEGPhotoDataRepresentationForJPEGSampleBuffer
             '+DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:':
                 name: DNGPhotoDataRepresentationForRawSampleBuffer
+            '-supportedRawPhotoCodecTypesForRawPhotoPixelFormatType:fileType:':
+                name: getSupportedRawPhotoCodecTypes
 
     AVCapturePhotoSettings:
         methods:
@@ -2852,6 +3070,12 @@ classes:
                 exclude: true // COMPATIBILITY SHIM - 72562501
             '+playerInterstitialEventWithPrimaryItem:date:interstitialTemplateItems:restrictions:resumptionOffset:':
                 exclude: true // COMPATIBILITY SHIM - 72562501
+            '+interstitialEventWithPrimaryItem:time:':
+                name: create
+                constructor: true
+            '+interstitialEventWithPrimaryItem:date:':
+                name: create
+                constructor: true
     AVPlayerInterstitialEventController: #since 14.5
         methods:
             '-cancelCurrentEventWithResumptionOffset:':
@@ -2873,6 +3097,8 @@ classes:
             '+downloadConfigurationWithAsset:title:':
                 name: create
                 constructor: true
+            '-setInterstitialMediaSelectionCriteria:forMediaCharacteristic:':
+                name: setInterstitialMediaSelectionCriteria
     AVAssetDownloadContentConfiguration: {} #since 15.0
     AVAssetVariant: {} #since 15.0
     AVAssetVariantAudioAttributes: {} #since 15.0
@@ -2891,6 +3117,18 @@ classes:
                 name: predicateForPresentationWidth
             '+predicateForPresentationHeight:operatorType:':
                 name: predicateForPresentationHeight
+            '+predicateForBinauralAudio:mediaSelectionOption:':
+                name: predicateForBinauralAudio
+            '+predicateForImmersiveAudio:mediaSelectionOption:':
+                name: predicateForImmersiveAudio
+            '+predicateForDownmixAudio:mediaSelectionOption:':
+                name: predicateForDownmixAudio
+            '+predicateForAudioSampleRate:mediaSelectionOption:operatorType:':
+                name: predicateForAudioSampleRate
+            '+predicateForChannelCount:operatorType:':
+                name: predicateForChannelCount
+            '+predicateForAudioSampleRate:operatorType:':
+                name: predicateForAudioSampleRate
     AVAssetVariantVideoAttributes: {} #since 15.0
     AVCoordinatedPlaybackParticipant: {} #since 15.0
     AVCoordinatedPlaybackSuspension: {} #since 15.0
@@ -2921,7 +3159,405 @@ classes:
                 name: init
             '+interstitialEventMonitorWithPrimaryPlayer:':
                 exclude: true
-    AVPlayerPlaybackCoordinator: {} #since 15.0
+    AVPlayerPlaybackCoordinator: #since 15.0
+        methods:
+            '-coordinateUsingCoordinationMedium:error:':
+                name: coordinateUsingCoordinationMedium
+                throws: NSErrorException
+    AVAUPresetEvent: #since 16.0
+        methods:
+            '-initWithScope:element:dictionary:':
+                name: init
+    AVAssetPlaybackAssistant: #since 16.0
+        methods:
+            '-loadPlaybackConfigurationOptionsWithCompletionHandler:':
+                name: loadPlaybackConfigurationOptions
+            '+assetPlaybackAssistantWithAsset:':
+                name: create
+                constructor: true
+    AVExtendedNoteOnEvent: #since 16.0
+        methods:
+            '-initWithMIDINote:velocity:groupID:duration:':
+                name: init
+            '-initWithMIDINote:velocity:instrumentID:groupID:duration:':
+                name: init
+    AVExtendedTempoEvent: #since 16.0
+        methods:
+            '-initWithTempo:':
+                name: init
+    AVMIDIChannelEvent: {} #since 16.0
+    AVMIDIChannelPressureEvent: #since 16.0
+        methods:
+            '-initWithChannel:pressure:':
+                name: init
+    AVMIDIControlChangeEvent: #since 16.0
+        methods:
+            '-initWithChannel:messageType:value:':
+                name: init
+    AVMIDIMetaEvent: #since 16.0
+        methods:
+            '-initWithType:data:':
+                name: init
+    AVMIDINoteEvent: #since 16.0
+        methods:
+            '-initWithChannel:key:velocity:duration:':
+                name: init
+    AVMIDIPitchBendEvent: #since 16.0
+        methods:
+            '-initWithChannel:value:':
+                name: init
+    AVMIDIPolyPressureEvent: #since 16.0
+        methods:
+            '-initWithChannel:key:pressure:':
+                name: init
+    AVMIDIProgramChangeEvent: #since 16.0
+        methods:
+            '-initWithChannel:programNumber:':
+                name: init
+    AVMIDISysexEvent: #since 16.0
+        methods:
+            '-initWithData:':
+                name: init
+    AVMusicEvent: {} #since 16.0
+    AVMusicUserEvent: #since 16.0
+        methods:
+            '-initWithData:':
+                name: init
+    AVParameterEvent: #since 16.0
+        methods:
+            '-initWithParameterID:scope:element:value:':
+                name: init
+    AVSampleBufferGenerator: #since 16.0
+        methods:
+            '-initWithAsset:timebase:':
+                name: init
+            '-createSampleBufferForRequest:error:':
+                name: createSampleBuffer
+            '-createSampleBufferForRequest:addingToBatch:error:':
+                name: createSampleBuffer
+            '+notifyOfDataReadyForSampleBuffer:completionHandler:':
+                name: notifyOfDataReadyForSampleBuffer
+    AVSampleBufferGeneratorBatch: #since 16.0
+        methods:
+            '-makeDataReadyWithCompletionHandler:':
+                name: makeDataReady
+    AVSampleBufferRequest: #since 16.0
+        methods:
+            '-initWithStartCursor:':
+                name: init
+    AVSampleCursor: #since 16.0
+        methods:
+            '-stepByDecodeTime:wasPinned:':
+                name: stepByDecodeTime
+            '-stepByPresentationTime:wasPinned:':
+                name: stepByPresentationTime
+            '-comparePositionInDecodeOrderWithPositionOfCursor:':
+                name: comparePositionInDecodeOrder
+            '-samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor:':
+                name: samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor
+            '-samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor:':
+                name: samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor
+    AVSampleCursorSyncInfo: {}
+    AVSampleCursorDependencyInfo: {}
+    AVSampleCursorAudioDependencyInfo: {}
+    AVSampleCursorStorageRange: {}
+    AVSampleCursorChunkInfo: {}
+    AVSpeechSynthesisMarker: #since 16.0
+        methods:
+            '-initWithMarkerType:forTextRange:atByteSampleOffset:':
+                name: init
+            '-initWithWordRange:atByteSampleOffset:':
+                static_constructor_name: createWithWordRange
+                name: initWithWordRange
+            '-initWithSentenceRange:atByteSampleOffset:':
+                static_constructor_name: createWithSentenceRange
+                name: initWithSentenceRange
+            '-initWithParagraphRange:atByteSampleOffset:':
+                static_constructor_name: createWithParagraphRange
+                name: initWithParagraphRange
+            '-initWithPhonemeString:atByteSampleOffset:':
+                static_constructor_name: createWithPhonemeString
+                name: initWithPhonemeString
+            '-initWithBookmarkName:atByteSampleOffset:':
+                static_constructor_name: createWithBookmarkName
+                name: initWithBookmarkName
+    AVSpeechSynthesisProviderAudioUnit: {} #since 16.0
+    AVSpeechSynthesisProviderRequest: #since 16.0
+        methods:
+            '-initWithSSMLRepresentation:voice:':
+                name: init
+    AVSpeechSynthesisProviderVoice: #since 16.0
+        methods:
+            '-initWithName:identifier:primaryLanguages:supportedLanguages:':
+                name: init
+    AVAssetVariantVideoLayoutAttributes: {} #since 17.0
+    AVAssetWriterInputTaggedPixelBufferGroupAdaptor: #since 17.0
+        methods:
+            '-initWithAssetWriterInput:sourcePixelBufferAttributes:':
+                name: init
+            '-appendTaggedPixelBufferGroup:withPresentationTime:':
+                name: appendTaggedPixelBufferGroup
+            '+assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:':
+                name: assetWriterInputTaggedPixelBufferGroupAdaptor
+    AVAudioApplication: #since 17.0
+        methods:
+            '-setInputMuted:error:':
+                name: setInputMuted
+                throws: NSErrorException
+            '+requestRecordPermissionWithCompletionHandler:':
+                name: requestRecordPermission
+            '+requestMicrophoneInjectionPermissionWithCompletionHandler:':
+                name: requestMicrophoneInjectionPermission
+    AVCaptureDeferredPhotoProxy: {} #since 17.0
+    AVCaptureDeviceRotationCoordinator: #since 17.0
+        methods:
+            '-initWithDevice:previewLayer:':
+                name: init
+    AVCapturePhotoOutputReadinessCoordinator: #since 17.0
+        methods:
+            '-initWithPhotoOutput:':
+                name: init
+    AVCaptureReactionEffectState: {} #since 17.0
+    AVExternalStorageDevice: #since 17.0
+        methods:
+            '-nextAvailableURLsWithPathExtensions:error:':
+                throws: NSErrorException
+                name: getNextAvailableURLs
+            '+requestAccessWithCompletionHandler:':
+                name: requestAccess
+    AVExternalStorageDeviceDiscoverySession: {} #since 17.0
+    AVMetadataHumanFullBodyObject: {} #since 17.0
+    AVSampleBufferVideoRenderer: #since 17.0
+        methods:
+            '-flushWithRemovalOfDisplayedImage:completionHandler:':
+                name: flush
+            '-loadVideoPerformanceMetricsWithCompletionHandler:':
+                name: loadVideoPerformanceMetrics
+    AVAssetReaderOutputCaptionAdaptor: #since 18.0
+        methods:
+            '-initWithAssetReaderTrackOutput:':
+                name: init
+            '+assetReaderOutputCaptionAdaptorWithAssetReaderTrackOutput:':
+                exclude: true # same as init
+    AVAssetWriterInputCaptionAdaptor: #since 18.0
+        methods:
+            '-initWithAssetWriterInput:':
+                name: init
+            '+assetWriterInputCaptionAdaptorWithAssetWriterInput:':
+                exclude: true # same as init
+    AVAudioSessionCapability: {} #since 26.0
+    AVAudioSessionPortExtensionBluetoothMicrophone: {} #since 26.0
+    AVCaption: #since 18.0
+        methods:
+            '-initWithText:timeRange:':
+                name: init
+            '-textColorAtIndex:range:':
+                name: getTextColor
+            '-backgroundColorAtIndex:range:':
+                name: getBackgroundColor
+            '-fontWeightAtIndex:range:':
+                name: getFontWeight
+            '-fontStyleAtIndex:range:':
+                name: getFontStyle
+            '-decorationAtIndex:range:':
+                name: getDecoration
+            '-textCombineAtIndex:range:':
+                name: getTextCombine
+            '-rubyAtIndex:range:':
+                name: getRuby
+    AVCaptionConversionAdjustment: {} #since 18.0
+    AVCaptionConversionTimeRangeAdjustment: {} #since 18.0
+    AVCaptionConversionValidator: #since 18.0
+        methods:
+            '-initWithCaptions:timeRange:conversionSettings:':
+                name: init
+            '-validateCaptionConversionWithWarningHandler:':
+                name: validateCaptionConversion
+            '+captionConversionValidatorWithCaptions:timeRange:conversionSettings:':
+                name: captionConversionValidator
+    AVCaptionConversionWarning: {} #since 18.0
+    AVCaptionFormatConformer: #since 18.0
+        methods:
+            '-initWithConversionSettings:':
+                name: init
+            '-conformedCaptionForCaption:error:':
+                name: conformedCaption
+                throws: NSErrorException
+            '+captionFormatConformerWithConversionSettings:':
+                exclude: true # same as init
+    AVCaptionGroup: #since 18.0
+        methods:
+            '-initWithCaptions:timeRange:':
+                name: init
+            '-initWithTimeRange:':
+                name: init
+    AVCaptionGrouper: {} #since 18.0
+    AVCaptionRegion: #since 18.0
+        methods:
+            '-encodeWithCoder:':
+                name: encode
+            '-mutableCopyWithZone:':
+                exclude: true
+    AVCaptionRenderer: #since 18.0
+        methods:
+            '-renderInContext:forTime:':
+                name: render
+    AVCaptionRendererScene: {} #since 18.0
+    AVCaptionRuby: #since 18.0
+        methods:
+            '-initWithText:':
+                name: init
+            '-initWithText:position:alignment:':
+                name: init
+    AVCaptureControl: {} #since 18.0
+    AVCaptureExternalDisplayConfiguration: {} #since 26.0
+    AVCaptureExternalDisplayConfigurator: #since 26.0
+        methods:
+            '-initWithDevice:previewLayer:configuration:':
+                name: init
+    AVCaptureFraming: {} #since 26.0
+    AVCaptureIndexPicker: #since 18.0
+        methods:
+            '-initWithLocalizedTitle:symbolName:numberOfIndexes:':
+                name: init
+            '-initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:':
+                name: init
+            '-initWithLocalizedTitle:symbolName:localizedIndexTitles:':
+                name: init
+            '-setActionQueue:action:':
+                name: setActionQueue
+    AVCaptureSlider: #since 18.0
+        methods:
+            '-initWithLocalizedTitle:symbolName:minValue:maxValue:':
+                name: init
+            '-initWithLocalizedTitle:symbolName:minValue:maxValue:step:':
+                name: init
+            '-initWithLocalizedTitle:symbolName:values:':
+                name: init
+            '-setActionQueue:action:':
+                name: setActionQueue
+    AVCaptureSmartFramingMonitor: #since 26.0
+        methods:
+            '-startMonitoringWithError:':
+                name: startMonitoring
+                throws: NSErrorException
+    AVCaptureSpatialAudioMetadataSampleGenerator: {} #since 26.0
+    AVCaptureSystemExposureBiasSlider: #since 18.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-initWithDevice:action:':
+                name: init
+    AVCaptureSystemZoomSlider: #since 18.0
+        methods:
+            '-initWithDevice:':
+                name: init
+            '-initWithDevice:action:':
+                name: init
+    AVCaptureTimecodeGenerator: #since 26.0
+        methods:
+            '-setDelegate:queue:':
+                name: setDelegate
+            '-startSynchronizationWithTimecodeSource:':
+                name: startSynchronization
+    AVCaptureTimecodeSource: {} #since 26.0
+    AVCustomMediaSelectionScheme: #since 26.0
+        methods:
+            '-mediaPresentationSettingsForSelector:complementaryToLanguage:settings:':
+                name: getMediaPresentationSettings
+    AVExposureBiasRange: {} #since 18.0
+    AVExternalSyncDevice: {} #since 26.0
+    AVExternalSyncDeviceDiscoverySession: {} #since 26.0
+    AVMediaPresentationSelector: {} #since 26.0
+    AVMediaPresentationSetting: {} #since 26.0
+    AVMetadataCatHeadObject: {} #since 26.0
+    AVMetadataDogHeadObject: {} #since 26.0
+    AVMetricContentKeyRequestEvent: {} #since 18.0
+    AVMetricDownloadSummaryEvent: {} #since 18.0
+    AVMetricErrorEvent: {} #since 18.0
+    AVMetricEvent: {} #since 18.0
+    AVMetricEventStream: #since 18.0
+        methods:
+            '-setSubscriber:queue:':
+                name: setSubscriber
+    AVMetricHLSMediaSegmentRequestEvent: {} #since 18.0
+    AVMetricHLSPlaylistRequestEvent: {} #since 18.0
+    AVMetricMediaRendition: {} #since 26.0
+    AVMetricMediaResourceRequestEvent: {} #since 18.0
+    AVMetricPlayerItemInitialLikelyToKeepUpEvent: {} #since 18.0
+    AVMetricPlayerItemLikelyToKeepUpEvent: {} #since 18.0
+    AVMetricPlayerItemPlaybackSummaryEvent: {} #since 18.0
+    AVMetricPlayerItemRateChangeEvent: {} #since 18.0
+    AVMetricPlayerItemSeekDidCompleteEvent: {} #since 18.0
+    AVMetricPlayerItemSeekEvent: {} #since 18.0
+    AVMetricPlayerItemStallEvent: {} #since 18.0
+    AVMetricPlayerItemVariantSwitchEvent: {} #since 18.0
+    AVMetricPlayerItemVariantSwitchStartEvent: {} #since 18.0
+    AVMutableCaption: #since 18.0
+        methods:
+            '-setTextColor:inRange:':
+                name: setTextColor
+            '-setBackgroundColor:inRange:':
+                name: setBackgroundColor
+            '-setFontWeight:inRange:':
+                name: setFontWeight
+            '-setFontStyle:inRange:':
+                name: setFontStyle
+            '-setDecoration:inRange:':
+                name: setDecoration
+            '-setTextCombine:inRange:':
+                name: setTextCombine
+            '-setRuby:inRange:':
+                name: setRuby
+
+    AVMutableCaptionRegion: #since 18.0
+        methods:
+            '-initWithIdentifier:':
+                name: init
+    AVPlaybackCoordinationMedium: {}
+    AVPlayerItemIntegratedTimeline: #since 18.0
+        methods:
+            '-seekToTime:toleranceBefore:toleranceAfter:completionHandler:':
+                name: seekToTime
+            '-seekToDate:completionHandler:':
+                name: seekToDate
+            '-addPeriodicTimeObserverForInterval:queue:usingBlock:':
+                name: addPeriodicTimeObserver
+            '-addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:':
+                name: addBoundaryTimeObserver
+    AVPlayerItemIntegratedTimelineSnapshot: #since 18.0
+        methods:
+            '-mapTime:toSegment:atSegmentOffset:':
+                name: mapTimeToSegment
+    AVPlayerItemRenderedLegibleOutput: #since 18.0
+        methods:
+            '-initWithVideoDisplaySize:':
+                name: init
+            '-setDelegate:queue:':
+                name: setDelegate
+    AVPlayerItemSegment: {} #since 18.0
+    AVPlayerVideoOutput: #since 17.2
+        methods:
+            '-initWithSpecification:':
+                name: init
+            '-copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:':
+                name: copyTaggedBufferGroup
+    AVPlayerVideoOutputConfiguration: {} #since 17.2
+    AVRenderedCaptionImage: {} #since 18.0
+    AVSpatialVideoConfiguration: #since 26.0
+        methods:
+            '-initWithFormatDescription:':
+                name: init
+    AVVideoOutputSpecification: #since 17.2
+        methods:
+            '-initWithTagCollections:':
+                name: init
+            '-setOutputPixelBufferAttributes:forTagCollection:':
+                name: setOutputPixelBufferAttributes
+            '-setOutputSettings:forTagCollection:':
+                name: setOutputSettings
+    AVVideoPerformanceMetrics: {} #since 17.4
+    AVZoomRange: {} #since 17.2
 protocols:
     AVCapturePhotoCaptureDelegate:
         methods:
@@ -2943,6 +3579,8 @@ protocols:
                 name: didFinishCaptureForResolvedSettings
             '-captureOutput:didFinishProcessingPhoto:error:':
                 name: didFinishProcessingPhoto
+            '-captureOutput:didFinishCapturingDeferredPhotoProxy:error:':
+                name: didFinishCapturingDeferredPhotoProxy
 
     AVContentKeyRecipient:
         skip_adapter: true
@@ -2966,6 +3604,10 @@ protocols:
                 name: didUpdatePersistableContentKey
             '-contentKeySession:contentKeyRequestDidSucceed:':
                 name: contentKeyRequestDidSucceed
+            '-contentKeySession:externalProtectionStatusDidChangeForContentKey:':
+                name: externalProtectionStatusDidChange
+            '-contentKeySession:didProvideContentKeyRequests:forInitializationData:':
+                name: didProvideContentKeyRequests
     AVVideoCompositionInstruction:
         name: AVVideoCompositionInstructionProtocol
         skip_adapter: true
@@ -2996,7 +3638,11 @@ protocols:
             '-URLSession:aggregateAssetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:forMediaSelection:':
                 name: didLoadTimeRange
             '-URLSession:assetDownloadTask:willDownloadVariants:':
-                name: assetDownloadTask
+                name: willDownloadVariants
+            '-URLSession:assetDownloadTask:willDownloadToURL:':
+                name: willDownloadToURL
+            '-URLSession:assetDownloadTask:didReceiveMetricEvent:':
+                name: didReceiveMetricEvent
     AVAssetResourceLoaderDelegate: # DONE
         methods:
             '-resourceLoader:shouldWaitForLoadingOfRequestedResource:':
@@ -3080,6 +3726,12 @@ protocols:
                 parameters:
                     connections:
                         type: NSArray<AVCaptureConnection>
+            '-captureOutput:didStartRecordingToOutputFileAtURL:startPTS:fromConnections:':
+                name: didStartRecordingToOutputFile
+            '-captureOutput:didPauseRecordingToOutputFileAtURL:fromConnections:':
+                name: didPauseRecordingToOutputFile
+            '-captureOutput:didResumeRecordingToOutputFileAtURL:fromConnections:':
+                name: didResumeRecordingToOutputFile
     AVCaptureMetadataOutputObjectsDelegate: # DONE
         methods:
             '-captureOutput:didOutputMetadataObjects:fromConnection:':
@@ -3139,6 +3791,8 @@ protocols:
                 name: didCancelSpeechUtterance
             '-speechSynthesizer:willSpeakRangeOfSpeechString:utterance:':
                 name: willSpeak
+            '-speechSynthesizer:willSpeakMarker:utterance:':
+                name: willSpeakMarker
     AVVideoCompositionValidationHandling: # DONE
         methods:
             '-videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:':
@@ -3204,6 +3858,41 @@ protocols:
         methods:
             '-playbackCoordinator:identifierForPlayerItem:':
                 name: identifierForPlayerItem
+            '-playbackCoordinator:interstitialTimeRangesForPlayerItem:':
+                name: interstitialTimeRangesForPlayerItem
+    AVCapturePhotoOutputReadinessCoordinatorDelegate: #since 17.0
+        methods:
+            '-readinessCoordinator:captureReadinessDidChange:':
+                name: captureReadinessDidChange
+    AVAssetReaderCaptionValidationHandling: #since 18.0
+        methods:
+            '-captionAdaptor:didVendCaption:skippingUnsupportedSourceSyntaxElements:':
+                name: didVendCaption
+    AVCaptureSessionControlsDelegate: {} #since 18.0
+    AVCaptureSessionDeferredStartDelegate: {} #since 26.0
+    AVCaptureTimecodeGeneratorDelegate: #since 26.0
+        methods:
+            '-timecodeGenerator:didReceiveUpdate:fromSource:':
+                name: didReceiveUpdate
+            '-timecodeGenerator:transitionedToSynchronizationStatus:forSource:':
+                name: transitionedToSynchronizationStatus
+            '-timecodeGenerator:didUpdateAvailableSources:':
+                name: didUpdateAvailableSources
+    AVExternalSyncDeviceDelegate: #since 26.0
+        methods:
+            '-externalSyncDevice:failedWithError:':
+                name: failed
+    AVMetricEventStreamPublisher: {} #since 18.0
+    AVMetricEventStreamSubscriber: #since 18.0
+        methods:
+            '-publisher:didReceiveEvent:':
+                name: didReceiveEvent
+    AVPlayerItemIntegratedTimelineObserver: {}
+    AVPlayerItemRenderedLegibleOutputPushDelegate: #since 18.0
+        methods:
+            '-renderedLegibleOutput:didOutputRenderedCaptionImages:forItemTime:':
+                name: didOutputRenderedCaptionImages
+
 functions:
     AVMake(RectWithAspectRatioInsideRect):
         class: AVFoundation
@@ -3567,6 +4256,10 @@ values:
         class: AVSpeechSynthesisAttributes
         name: '#{g[0]}'
         type: NSString
+    AVSpeechSynthesis(.*)Notification:
+        class: AVSpeechSynthesisNotifications
+        name: '#{g[0]}'
+        type: NSString
 
 
 
@@ -3780,9 +4473,10 @@ values:
     AVRouteDetectorMultipleRoutesDetectedDidChangeNotification:
         class: AVRouteDetector
         name: MultipleRoutesDetectedDidChangeNotification
-    AVSampleBufferAudioRendererWasFlushedAutomaticallyNotification:
+    AVSampleBufferAudioRenderer(.*)Notification:
         class: AVSampleBufferAudioRenderer
-        name: WasFlushedAutomaticallyNotification
+        name: '#{g[0]}'
+        static_class: Notifications
     AVAudioFileTypeKey:
         class: AVAudioFile
         name: TypeKey
@@ -3813,11 +4507,59 @@ values:
         static_class: Notifications
         name: '#{g[0]}'
         type: NSString
+    AVExtendedNoteOnEvent(DefaultInstrument):
+        name: '#{g[0]}'
+        class: AVExtendedNoteOnEvent
+    AVPlayer(.*)Key:
+        name: '#{g[0]}'
+        class: AVPlayer
+        static_class: Keys
+    AVPlaybackCoordinator(.*)Notification:
+        class: AVPlaybackCoordinator
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVMovie(.*)Key:
+        class: AVMovie
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioSession(.*)Key:
+        class: AVAudioSession
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+    AVSampleBufferVideoRenderer(.*)Notification:
+        class: AVSampleBufferVideoRenderer
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVSampleBufferVideoRenderer(.*)Key:
+        class: AVSampleBufferVideoRenderer
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioApplication(.*)Notification:
+        class: AVAudioApplication
+        static_class: Notifications
+        name: '#{g[0]}'
+        type: NSString
+    AVAudioApplication(.*)Key:
+        class: AVAudioApplication
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+    AVCaptureWhiteBalanceTemperatureAndTintValues(.*):
+        class: AVCaptureWhiteBalanceTemperatureAndTintValues
+        static_class: Keys
+        name: '#{g[0]}'
+        type: NSString
+
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?AV.*):
-        class: AVFoundation
+        class: FIXME
         name: 'Value__#{g[0]}'
 
 constants:
@@ -3835,8 +4577,12 @@ constants:
         exclude: true
     AVAUDIOENGINE_HAVE_AUAUDIOUNIT:
         exclude: true
+    AVF_DEPRECATED_FOR_SWIFT_ONLY:
+        exclude: true
+    AVMusicTimeStampEndOfTrack:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?AV.*):
-        class: AVFoundation
+        class: FIXME
         name: 'Constant__#{g[0]}'

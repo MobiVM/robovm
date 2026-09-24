@@ -226,12 +226,28 @@ import org.robovm.apple.corelocation.*;
      */
     public static final HMServiceType HumidifierDehumidifier = new HMServiceType("HumidifierDehumidifier");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMServiceType Television = new HMServiceType("Television");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMServiceType InputSource = new HMServiceType("InputSource");
+    /**
      * @since Available in iOS 10.0 and later.
      */
     public static final HMServiceType Doorbell = new HMServiceType("Doorbell");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMServiceType WiFiRouter = new HMServiceType("WiFiRouter");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final HMServiceType WiFiSatellite = new HMServiceType("WiFiSatellite");
     /*</constants>*/
     
-    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Switch, Thermostat, Outlet, LockManagement, AirQualitySensor, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, FilterMaintenance, Slats, Label, IrrigationSystem, Valve, Faucet, AccessoryInformation, Fan, GarageDoorOpener, Lightbulb, LockMechanism, Battery, VentilationFan, HeaterCooler, HumidifierDehumidifier, Doorbell/*</value_list>*/};
+    private static /*<name>*/HMServiceType/*</name>*/[] values = new /*<name>*/HMServiceType/*</name>*/[] {/*<value_list>*/Switch, Thermostat, Outlet, LockManagement, AirQualitySensor, CarbonDioxideSensor, CarbonMonoxideSensor, ContactSensor, Door, HumiditySensor, LeakSensor, LightSensor, MotionSensor, OccupancySensor, SecuritySystem, StatefulProgrammableSwitch, StatelessProgrammableSwitch, SmokeSensor, TemperatureSensor, Window, WindowCovering, CameraRTPStreamManagement, CameraControl, Microphone, Speaker, AirPurifier, FilterMaintenance, Slats, Label, IrrigationSystem, Valve, Faucet, AccessoryInformation, Fan, GarageDoorOpener, Lightbulb, LockMechanism, Battery, VentilationFan, HeaterCooler, HumidifierDehumidifier, Television, InputSource, Doorbell, WiFiRouter, WiFiSatellite/*</value_list>*/};
     
     /*<name>*/HMServiceType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -433,10 +449,30 @@ import org.robovm.apple.corelocation.*;
         @GlobalValue(symbol="HMServiceTypeHumidifierDehumidifier", optional=true)
         public static native NSString HumidifierDehumidifier();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeTelevision", optional=true)
+        public static native NSString Television();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeInputSource", optional=true)
+        public static native NSString InputSource();
+        /**
          * @since Available in iOS 10.0 and later.
          */
         @GlobalValue(symbol="HMServiceTypeDoorbell", optional=true)
         public static native NSString Doorbell();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeWiFiRouter", optional=true)
+        public static native NSString WiFiRouter();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="HMServiceTypeWiFiSatellite", optional=true)
+        public static native NSString WiFiSatellite();
         /*</values>*/
     }
 }

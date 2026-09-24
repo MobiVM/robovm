@@ -40,9 +40,21 @@ import org.robovm.apple.corehaptic.*;
 public enum /*<name>*/GCControllerPlayerIndex/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Unset(-1L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     _1(0L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     _2(1L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     _3(2L),
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     _4(3L);
     /*</values>*/
 

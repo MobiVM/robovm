@@ -172,6 +172,10 @@ import org.robovm.apple.corefoundation.*;
      */
     public static final IOSurfacePropertyKey PixelSizeCastingAllowed = new IOSurfacePropertyKey("PixelSizeCastingAllowed");
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final IOSurfacePropertyKey Name = new IOSurfacePropertyKey("Name");
+    /**
      * @since Available in iOS 11.0 and later.
      * @deprecated Deprecated in iOS 12.0. Use IOSurfacePropertyKeyAllocSize
      */
@@ -179,7 +183,7 @@ import org.robovm.apple.corefoundation.*;
     public static final IOSurfacePropertyKey AllocSizeKey = new IOSurfacePropertyKey("AllocSizeKey");
     /*</constants>*/
     
-    private static /*<name>*/IOSurfacePropertyKey/*</name>*/[] values = new /*<name>*/IOSurfacePropertyKey/*</name>*/[] {/*<value_list>*/AllocSize, Width, Height, BytesPerRow, BytesPerElement, ElementWidth, ElementHeight, Offset, PlaneInfo, PlaneWidth, PlaneHeight, PlaneBytesPerRow, PlaneOffset, PlaneSize, PlaneBase, PlaneBytesPerElement, PlaneElementWidth, PlaneElementHeight, CacheMode, PixelFormat, PixelSizeCastingAllowed, AllocSizeKey/*</value_list>*/};
+    private static /*<name>*/IOSurfacePropertyKey/*</name>*/[] values = new /*<name>*/IOSurfacePropertyKey/*</name>*/[] {/*<value_list>*/AllocSize, Width, Height, BytesPerRow, BytesPerElement, ElementWidth, ElementHeight, Offset, PlaneInfo, PlaneWidth, PlaneHeight, PlaneBytesPerRow, PlaneOffset, PlaneSize, PlaneBase, PlaneBytesPerElement, PlaneElementWidth, PlaneElementHeight, CacheMode, PixelFormat, PixelSizeCastingAllowed, Name, AllocSizeKey/*</value_list>*/};
     
     /*<name>*/IOSurfacePropertyKey/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -307,6 +311,11 @@ import org.robovm.apple.corefoundation.*;
          */
         @GlobalValue(symbol="IOSurfacePropertyKeyPixelSizeCastingAllowed", optional=true)
         public static native CFString PixelSizeCastingAllowed();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="IOSurfacePropertyKeyName", optional=true)
+        public static native CFString Name();
         /**
          * @since Available in iOS 11.0 and later.
          * @deprecated Deprecated in iOS 12.0. Use IOSurfacePropertyKeyAllocSize

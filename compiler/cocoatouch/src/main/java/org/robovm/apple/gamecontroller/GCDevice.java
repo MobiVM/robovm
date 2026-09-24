@@ -48,8 +48,14 @@ import org.robovm.apple.corehaptic.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "handlerQueue")
     DispatchQueue getHandlerQueue();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @Property(selector = "setHandlerQueue:")
     void setHandlerQueue(DispatchQueue v);
     @Property(selector = "vendorName")
@@ -61,7 +67,9 @@ import org.robovm.apple.corehaptic.*;
     String getProductCategory();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use the physicalInputProfile property on GCController instead.  For GCKeyboard, use the keyboardInput property.  For GCMouse, use the mouseInput property.
      */
+    @Deprecated
     @Property(selector = "physicalInputProfile")
     GCPhysicalInputProfile getPhysicalInputProfile();
     /*</properties>*/

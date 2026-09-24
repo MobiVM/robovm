@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -49,10 +50,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextView/*</name>*/ 
     extends /*<extends>*/UIScrollView/*</extends>*/ 
-    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting/*</implements>*/ {
+    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, UITextSearching/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidBeginEditing(UITextView object, final VoidBlock1<UITextView> block) {
+        public static NSObject observeDidBeginEditing(UITextView object, final VoidBlock1<UITextView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBeginEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -60,7 +61,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObjectProtocol observeTextDidChangeEditing(UITextView object, final VoidBlock1<UITextView> block) {
+        public static NSObject observeTextDidChangeEditing(UITextView object, final VoidBlock1<UITextView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -68,7 +69,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
                 }
             });
         }
-        public static NSObjectProtocol observeDidEndEditing(UITextView object, final VoidBlock1<UITextView> block) {
+        public static NSObject observeDidEndEditing(UITextView object, final VoidBlock1<UITextView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidEndEditingNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -231,10 +232,28 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native NSTextAlignment getTextAlignment();
     @Property(selector = "setTextAlignment:")
     public native void setTextAlignment(NSTextAlignment v);
+    /**
+     * @deprecated Use selectedRanges
+     */
+    @Deprecated
     @Property(selector = "selectedRange")
     public native @ByVal NSRange getSelectedRange();
+    /**
+     * @deprecated Use selectedRanges
+     */
+    @Deprecated
     @Property(selector = "setSelectedRange:")
     public native void setSelectedRange(@ByVal NSRange v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "selectedRanges")
+    public native NSArray<NSValue> getSelectedRanges();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSelectedRanges:")
+    public native void setSelectedRanges(NSArray<NSValue> v);
     @Property(selector = "isEditable")
     public native boolean isEditable();
     @Property(selector = "setEditable:")
@@ -277,6 +296,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native @ByVal UIEdgeInsets getTextContainerInset();
     @Property(selector = "setTextContainerInset:")
     public native void setTextContainerInset(@ByVal UIEdgeInsets v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "textLayoutManager")
+    public native NSTextLayoutManager getTextLayoutManager();
     @Property(selector = "layoutManager")
     public native NSLayoutManager getLayoutManager();
     @Property(selector = "textStorage")
@@ -295,6 +319,86 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setUsesStandardTextScaling:")
     public native void setUsesStandardTextScaling(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "findInteraction")
+    public native UIFindInteraction getFindInteraction();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isFindInteractionEnabled")
+    public native boolean isFindInteractionEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setFindInteractionEnabled:")
+    public native void setFindInteractionEnabled(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "borderStyle")
+    public native UITextViewBorderStyle getBorderStyle();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setBorderStyle:")
+    public native void setBorderStyle(UITextViewBorderStyle v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "textHighlightAttributes")
+    public native NSDictionary<NSString, ?> getTextHighlightAttributes();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTextHighlightAttributes:")
+    public native void setTextHighlightAttributes(NSDictionary<NSString, ?> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isWritingToolsActive")
+    public native boolean isWritingToolsActive();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    public native UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    public native void setWritingToolsBehavior(UIWritingToolsBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowedWritingToolsResultOptions")
+    public native UIWritingToolsResultOptions getAllowedWritingToolsResultOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowedWritingToolsResultOptions:")
+    public native void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "subclassForWritingToolsCoordinator")
+    public native Class<?> getSubclassForWritingToolsCoordinator();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "writingToolsCoordinator")
+    public native UIWritingToolsCoordinator getWritingToolsCoordinator();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "textFormattingConfiguration")
+    public native UITextFormattingViewControllerConfiguration getTextFormattingConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setTextFormattingConfiguration:")
+    public native void setTextFormattingConfiguration(UITextFormattingViewControllerConfiguration v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -336,6 +440,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void setSelectionAffinity(UITextStorageDirection v);
     @Property(selector = "insertDictationResultPlaceholder")
     public native NSObject getInsertDictationResultPlaceholder();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsAdaptiveImageGlyph")
+    public native boolean supportsAdaptiveImageGlyph();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupportsAdaptiveImageGlyph:")
+    public native void setSupportsAdaptiveImageGlyph(boolean v);
     @Property(selector = "hasText")
     public native boolean hasText();
     @Property(selector = "autocapitalizationType")
@@ -380,6 +494,26 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     public native void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    public native UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    public native void setInlinePredictionType(UITextInlinePredictionType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathExpressionCompletionType")
+    public native UITextMathExpressionCompletionType getMathExpressionCompletionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathExpressionCompletionType:")
+    public native void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -420,10 +554,34 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setPasswordRules:")
     public native void setPasswordRules(UITextInputPasswordRules v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "conversationContext")
+    public native UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    public native void setConversationContext(UIConversationContext v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsNumberPadPopover")
+    public native boolean allowsNumberPadPopover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsNumberPadPopover:")
+    public native void setAllowsNumberPadPopover(boolean v);
     @Property(selector = "adjustsFontForContentSizeCategory")
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "sizingRule")
+    public native UILetterformAwareSizingRule getSizingRule();
+    @Property(selector = "setSizingRule:")
+    public native void setSizingRule(UILetterformAwareSizingRule v);
     @Property(selector = "textDragDelegate")
     public native UITextDragDelegate getTextDragDelegate();
     @Property(selector = "setTextDragDelegate:", strongRef = true)
@@ -448,6 +606,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native UITextPasteDelegate getPasteDelegate();
     @Property(selector = "setPasteDelegate:", strongRef = true)
     public native void setPasteDelegate(UITextPasteDelegate v);
+    @Property(selector = "supportsTextReplacement")
+    public native boolean supportsTextReplacement();
+    @Property(selector = "selectedTextSearchDocument")
+    public native NSObject getSelectedTextSearchDocument();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -464,6 +626,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     protected native @Pointer long init(@ByVal CGRect frame, NSTextContainer textContainer);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "drawTextHighlightBackgroundForTextRange:origin:")
+    public native void drawTextHighlightBackground(NSTextRange textRange, @ByVal CGPoint origin);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "textViewUsingTextLayoutManager:")
+    public static native UITextView textViewUsingTextLayoutManager(boolean usingTextLayoutManager);
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -553,9 +725,90 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "endFloatingCursor")
     public native void endFloatingCursor();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "caretTransformForPosition:")
+    public native @ByVal CGAffineTransform caretTransformForPosition(UITextPosition position);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "editMenuForTextRange:suggestedActions:")
+    public native UIMenu getEditMenu(UITextRange textRange, NSArray<UIMenuElement> suggestedActions);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "willPresentEditMenuWithAnimator:")
+    public native void willPresentEditMenu(UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "willDismissEditMenuWithAnimator:")
+    public native void willDismissEditMenu(UIEditMenuInteractionAnimating animator);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "insertAdaptiveImageGlyph:replacementRange:")
+    public native void insertAdaptiveImageGlyph(NSAdaptiveImageGlyph adaptiveImageGlyph, UITextRange replacementRange);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "insertAttributedText:")
+    public native void insertAttributedText(NSAttributedString string);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "attributedTextInRange:")
+    public native NSAttributedString attributedTextInRange(UITextRange range);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "replaceRange:withAttributedText:")
+    public native void replaceRange(UITextRange range, NSAttributedString attributedText);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "willPresentWritingTools")
+    public native void willPresentWritingTools();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "didDismissWritingTools")
+    public native void didDismissWritingTools();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "insertInputSuggestion:")
+    public native void insertInputSuggestion(UIInputSuggestion inputSuggestion);
     @Method(selector = "insertText:")
     public native void insertText(String text);
     @Method(selector = "deleteBackward")
     public native void deleteBackward();
+    @Method(selector = "findInteraction:sessionForView:")
+    public native UIFindSession getSession(UIFindInteraction interaction, UIView view);
+    @Method(selector = "findInteraction:didBeginFindSession:")
+    public native void didBeginFindSession(UIFindInteraction interaction, UIFindSession session);
+    @Method(selector = "findInteraction:didEndFindSession:")
+    public native void didEndFindSession(UIFindInteraction interaction, UIFindSession session);
+    @Method(selector = "compareFoundRange:toRange:inDocument:")
+    public native NSComparisonResult compare(UITextRange foundRange, UITextRange toRange, NSObject document);
+    @Method(selector = "performTextSearchWithQueryString:usingOptions:resultAggregator:")
+    public native void performTextSearch(String string, UITextSearchOptions options, UITextSearchAggregator aggregator);
+    @Method(selector = "decorateFoundTextRange:inDocument:usingStyle:")
+    public native void decorateFoundTextRange(UITextRange range, NSObject document, UITextSearchFoundTextStyle style);
+    @Method(selector = "clearAllDecoratedFoundText")
+    public native void clearAllDecoratedFoundText();
+    @Method(selector = "shouldReplaceFoundTextInRange:inDocument:withText:")
+    public native boolean shouldReplaceFoundTextInRange(UITextRange range, NSObject document, String replacementText);
+    @Method(selector = "replaceFoundTextInRange:inDocument:withText:")
+    public native void replaceFoundTextInRange(UITextRange range, NSObject document, String replacementText);
+    @Method(selector = "replaceAllOccurrencesOfQueryString:usingOptions:withText:")
+    public native void replaceAllOccurrencesOfQueryString(String queryString, UITextSearchOptions options, String replacementText);
+    @Method(selector = "willHighlightFoundTextRange:inDocument:")
+    public native void willHighlightFoundTextRange(UITextRange range, NSObject document);
+    @Method(selector = "scrollRangeToVisible:inDocument:")
+    public native void scrollRangeToVisible(UITextRange range, NSObject document);
+    @Method(selector = "compareOrderFromDocument:toDocument:")
+    public native NSComparisonResult compareOrder(NSObject fromDocument, NSObject toDocument);
     /*</methods>*/
 }

@@ -170,6 +170,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native CFString VerbatimSampleDescription();
         @GlobalValue(symbol="kCMFormatDescriptionExtension_VerbatimISOSampleEntry", optional=true)
         public static native CFString VerbatimISOSampleEntry();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HeroEye", optional=true)
+        public static native CFString HeroEye();
     }
     /*</keys>*/
 }

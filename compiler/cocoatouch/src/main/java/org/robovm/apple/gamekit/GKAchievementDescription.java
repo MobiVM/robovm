@@ -68,11 +68,25 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "isReplayable")
     public native boolean isReplayable();
     /**
-     * @deprecated Deprecated in iOS 7.0. Use loadImageWithCompletionHandler: instead
+     * @since Available in iOS 17.0 and later.
      */
-    @Deprecated
-    @Property(selector = "image")
-    public native UIImage getImage();
+    @Property(selector = "rarityPercent")
+    public native NSNumber getRarityPercent();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "releaseState")
+    public native GKReleaseState getReleaseState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activityIdentifier")
+    public native String getActivityIdentifier();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "activityProperties")
+    public native NSDictionary<NSString, NSString> getActivityProperties();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

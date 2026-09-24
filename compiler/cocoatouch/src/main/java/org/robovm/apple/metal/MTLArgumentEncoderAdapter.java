@@ -136,5 +136,15 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("setIntersectionFunctionTables:withRange:")
     public void setIntersectionFunctionTables(MTLIntersectionFunctionTable intersectionFunctionTables, @ByVal NSRange range) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setDepthStencilState:atIndex:")
+    public void setDepthStencilState(MTLDepthStencilState depthStencilState, @MachineSizedUInt long index) {}
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("setDepthStencilStates:withRange:")
+    public void setDepthStencilStates(MTLDepthStencilState depthStencilStates, @ByVal NSRange range) {}
     /*</methods>*/
 }

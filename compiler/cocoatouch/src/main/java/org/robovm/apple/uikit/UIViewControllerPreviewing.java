@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,35 +57,35 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "previewingGestureRecognizerForFailureRelationship")
     UIGestureRecognizer getPreviewingGestureRecognizerForFailureRelationship();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "delegate")
     UIViewControllerPreviewingDelegate getDelegate();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "sourceView")
     UIView getSourceView();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "sourceRect")
     @ByVal CGRect getSourceRect();
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "setSourceRect:")

@@ -62,6 +62,16 @@
 #define EVT_CLASS_LOAD 107
 #define EVT_EXCEPTION 108
 
+// suspend status
+// not suspended -- running normally
+#define SUSPEND_RUNNING 0
+// suspended due bp/exception/class load and running suspend loop
+#define SUSPEND_SOFT    1
+// thread was forced into suspended state using capture stack and signal. waiting for entering loop
+#define SUSPEND_PENDING_HARD 2
+// thread successfully entered suspend loop from signal
+#define SUSPEND_HARD    3
+
 typedef struct {
     int errorCode;
     char* message;
@@ -216,6 +226,10 @@ static jboolean checkError(ChannelError* error) {
     }
 }
 
+// forward declaration
+static jboolean prepareCallStack(Env* env, Thread* suspendedThread, char event, CallStack** callStack, jint* length, jint* payloadSize, CallStackFrame** firstFrame);
+static void writeCallstack(Env* env, jint length, CallStack* callStack );
+
 void rvmHookWaitForResume(Options* options) {
     // resumeFlag is modified in handleVmResume()
     // we sync on the write mutex to ensure
@@ -293,17 +307,17 @@ void _rvmHookThreadDetaching(Env* env, Object* threadObj, Thread* thread, Object
 
 jboolean _rvmHookSetupTCPChannel(Options* options) {
     DEBUG("Setting up TCP channel");
-    listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
+    listeningSocket = socket(AF_INET6, SOCK_STREAM, 0);
     if (listeningSocket < 0) {
         return FALSE;
     }
     int yes = 1;
     setsockopt(listeningSocket, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
 
-    struct sockaddr_in serverAddr;
+    struct sockaddr_in6 serverAddr;
     memset(&serverAddr, 0, sizeof(serverAddr));
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin6_family = AF_INET6;
+    serverAddr.sin6_addr = in6addr_any;
     if (bind(listeningSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr))) {
         DEBUGF("Couldn't bind debug socket, errno: %d", errno);
         close(listeningSocket);
@@ -316,7 +330,7 @@ jboolean _rvmHookSetupTCPChannel(Options* options) {
     }
     socklen_t len = sizeof(serverAddr);
     getsockname(listeningSocket, (struct sockaddr *) &serverAddr, &len);
-    debugPort = ntohs(serverAddr.sin_port);
+    debugPort = ntohs(serverAddr.sin6_port);
     DEBUGF("Listening for debug client on port %u", debugPort);
     if (options->printDebugPort) {
         if (options->debugPortFile) {
@@ -325,7 +339,7 @@ jboolean _rvmHookSetupTCPChannel(Options* options) {
             fprintf(f, "%d", debugPort);
             fclose(f);
         } else {
-            fprintf(stderr, "[DEBUG] %s: debugPort=%d\n", LOG_TAG, debugPort);
+            fprintf(stdout, "[DEBUG] %s: debugPort=%d\n", LOG_TAG, debugPort);
         }
     }
     return TRUE;
@@ -557,7 +571,8 @@ static void handleThreadSuspend(jlong reqId, ChannelError* error) {
     Thread* thread = (Thread*)readChannelLong(clientSocket, error);
     if(checkError(error)) return;
 
-    DebugEnv* debugEnv = (DebugEnv*) thread->env;
+    Env* env = thread->env;
+    DebugEnv* debugEnv = (DebugEnv*) env;
     rvmLockMutex(&debugEnv->suspendMutex);
     // the order of the next few lines is important
     // as we don't use a lock in getSuspendedEvent()
@@ -567,14 +582,37 @@ static void handleThreadSuspend(jlong reqId, ChannelError* error) {
     debugEnv->pchigh = 0;
     debugEnv->pclow2 = 0;
     debugEnv->pchigh2 = 0;
-    debugEnv->suspended = TRUE;
+
+    CallStack* callStack = NULL;
+    jint callStackLength = 0;
+    jint callStackPayloadSize = 0;
+    CallStackFrame* frame = NULL;
+    // thread might be on soft-suspend and running suspend loop, in this case don't force it
+    if (debugEnv->suspendStatus == SUSPEND_RUNNING) {
+        DEBUGF("Suspending thread %p, id %u", thread, thread->threadId);
+        Env* env = (Env*) debugEnv;
+        debugEnv->suspendStatus = SUSPEND_PENDING_HARD;
+        DEBUGF("Getting call stack %p, id %u", thread, thread->threadId);
+        if (!prepareCallStack(env, thread, CMD_THREAD_SUSPEND, &callStack, &callStackLength, &callStackPayloadSize, &frame)) {
+            ERROR("Couldn't prepare callstack for hard suspended thread");
+            callStackPayloadSize = 0;
+        } else {
+            DEBUGF("Received call stack %p, id %u", thread, thread->threadId);
+        }
+    } else {
+        DEBUGF("Will not suspending thread %p, id %u as its suspend state is %d", thread, thread->threadId, debugEnv->suspendStatus);
+    }
+
     rvmUnlockMutex(&debugEnv->suspendMutex);
 
-    DEBUGF("Suspending thread %p, id %u", thread, thread->threadId);
     rvmLockMutex(&writeMutex);
     writeChannelByte(clientSocket, CMD_THREAD_SUSPEND, error);
     writeChannelLong(clientSocket, reqId, error);
-    writeChannelLong(clientSocket, 0, error);
+    writeChannelLong(clientSocket, sizeof(jint) * 2 + callStackPayloadSize, error);
+    writeChannelInt(clientSocket, (jint)thread->status, error);
+    writeChannelInt(clientSocket, (jint)debugEnv->suspendStatus , error);
+    if (callStackPayloadSize)
+        writeCallstack(env, callStackLength, callStack);
     rvmUnlockMutex(&writeMutex);
 }
 
@@ -596,8 +634,11 @@ static void handleThreadResume(jlong reqId, ChannelError* error) {
         DEBUGF("Resuming thread %p, id %u", thread, thread->threadId);
         DebugEnv *debugEnv = (DebugEnv *) thread->env;
         rvmLockMutex(&debugEnv->suspendMutex);
-        debugEnv->suspended = FALSE;
-        pthread_cond_signal(&debugEnv->suspendCond);
+        int suspendStatus = debugEnv->suspendStatus;
+        debugEnv->suspendStatus = SUSPEND_RUNNING;
+        if (suspendStatus == SUSPEND_SOFT || suspendStatus == SUSPEND_HARD) {
+            pthread_cond_signal(&debugEnv->suspendCond);
+        }
         rvmUnlockMutex(&debugEnv->suspendMutex);
     }
 
@@ -832,12 +873,20 @@ static void addGcRoot(DebugEnv* debugEnv, Object* obj) {
     root->root = obj;
     root->next = NULL;
     if(debugEnv->gcRoot == NULL) {
-        debugEnv->gcRoot = root;
-    } else {
-        root->next = debugEnv->gcRoot;
-        debugEnv->gcRoot = root;
+        // special case for the first root, we need to allocate a dummy root and register only it as GC root,
+        // then chain the real roots to it. This is because we want to avoid registering and unregistering GC roots
+        // on every method invocation as it can be expensive and can cause crash with "Too many root sets" message.
+        // it will also "leak" one root per thread but there is 2000 root limit
+        DebugGcRoot* gcRoot = (DebugGcRoot*) gcAllocate(sizeof(DebugGcRoot));
+        gcRoot->root = NULL;
+        gcAddRoot(gcRoot);
+        debugEnv->gcRoot = gcRoot;
     }
-    gcAddRoot(obj);
+
+    // chain the new root to the existing roots so it gets scanned by the GC
+    root->next = debugEnv->gcRoot->next;
+    debugEnv->gcRoot->next = root;
+
     DEBUGF("Added %p, class %s, as GC root", obj, obj->clazz->name);
 }
 
@@ -846,7 +895,9 @@ static void removeGcRoots(DebugEnv* debugEnv) {
     // the roots should be scanned if DebugEnv
     // is scanned. By nulling out the roots
     // the GC should free the root nodes.
-    debugEnv->gcRoot = NULL;
+    if (debugEnv->gcRoot != NULL) {
+        debugEnv->gcRoot->next = NULL;
+    }
 }
 
 static jlong invokeClassMethod(DebugEnv* debugEnv, Method* method) {
@@ -1174,10 +1225,6 @@ static void* channelLoop(void* data) {
 }
 
 static inline char getSuspendedEvent(DebugEnv* debugEnv, jint lineNumberOffset, jbyte* bptable, void* pc) {
-    if (debugEnv->suspended) {
-        return EVT_THREAD_SUSPENDED;
-    }
-
     // we only check for breakpoints if we aren't invoking
     // lineNumberOffset may be < 0 if the instrumented unit
     // is part of a single line multi-statement
@@ -1196,13 +1243,14 @@ static inline char getSuspendedEvent(DebugEnv* debugEnv, jint lineNumberOffset, 
 }
 
 static inline void suspendLoop(DebugEnv* debugEnv) {
+    DEBUG("Entering suspend loop");
     ChannelError error;
     debugEnv->reqId = 0;
     debugEnv->stepping = FALSE;
     debugEnv->pclow = debugEnv->pclow2 = 0;
     debugEnv->pchigh = debugEnv->pchigh2 = 0;
-    debugEnv->suspended = TRUE;
-    while (debugEnv->suspended) {
+    debugEnv->suspendStatus = SUSPEND_SOFT;
+    while (debugEnv->suspendStatus == SUSPEND_SOFT) {
         pthread_cond_wait(&debugEnv->suspendCond, &debugEnv->suspendMutex);
 
         // If reqId is set, we have  method invocation request (see handleThreadInvoke),
@@ -1211,7 +1259,6 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
         // method, then go back into waiting for being woken up again
         // Also ignore any instrumented bp/stepping as these will be triggered during request execution
         if(debugEnv->reqId != 0) {
-            debugEnv->suspended = FALSE;
             debugEnv->ignoreExceptions = TRUE;
             debugEnv->ignoreInstrumented = TRUE;
             switch(debugEnv->command) {
@@ -1232,7 +1279,6 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
             }
             debugEnv->ignoreExceptions = FALSE;
             debugEnv->ignoreInstrumented = FALSE;
-            debugEnv->suspended = TRUE;
         }
     }
 
@@ -1246,9 +1292,10 @@ static inline void suspendLoop(DebugEnv* debugEnv) {
     writeChannelLong(clientSocket, (jlong)debugEnv->env.currentThread->threadObj, &error);
     writeChannelLong(clientSocket, (jlong)debugEnv->env.currentThread, &error);
     rvmUnlockMutex(&writeMutex);
+    DEBUG("Leaving suspend loop");
 }
 
-static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, jint* length, jint* payloadSize, CallStackFrame** firstFrame) {
+static jboolean prepareCallStack(Env* env, Thread* threadToHardSuspend, char event, CallStack** callStack, jint* length, jint* payloadSize, CallStackFrame** firstFrame) {
     DebugEnv* debugEnv = (DebugEnv*)env;
     // need to ignore exceptions, as the callstack unwinding
     // might throw one, resulting in infinite recursion in
@@ -1260,10 +1307,16 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
     jboolean oldIgnoreInstrumented = debugEnv->ignoreInstrumented;
     debugEnv->ignoreInstrumented = TRUE;
 
-    *callStack = rvmCaptureCallStack(env);
+    if (threadToHardSuspend != NULL) {
+        // forcing thread into suspend
+        // capturing stack trace for thread that was hard forced to suspend
+        *callStack = rvmCaptureCallStackAndSuspendThread(env, threadToHardSuspend);
+    } else {
+        *callStack = rvmCaptureCallStack(env);
+    }
     if (rvmExceptionCheck(env)) {
         Object* ex = rvmExceptionClear(env);
-        ERRORF("Failed to get a call stack for thread %p due to event %d. Got an exception of type: %s",
+        ERRORF("Failed to get a call stack for thread %p due to event/req %d. Got an exception of type: %s",
                 env->currentThread, event, ex->clazz->name);
         return FALSE;
     }
@@ -1287,7 +1340,7 @@ static jboolean prepareCallStack(Env* env, char event, CallStack** callStack, ji
 
 
     if(length == 0) {
-        ERRORF("No frames on callstack of thread %p for event %d.", env->currentThread, event);
+        ERRORF("No frames on callstack of thread %p for event/req %d.", env->currentThread, event);
         return FALSE;
     }
     return TRUE;
@@ -1312,7 +1365,7 @@ static void writeCallstack(Env* env, jint length, CallStack* callStack ) {
 
 static void writeStopOrExceptionEvent(Env* env, char event, Object* throwable, jboolean isCaught, CallStack* callStack, jint callStackLength, jint callStackPayloadSize) {
     ChannelError error = { 0 };
-    int payLoadSize = sizeof(jlong) * (event == EVT_EXCEPTION? 3: 2) + (event == EVT_EXCEPTION? 1: 0) + callStackPayloadSize;
+    int payLoadSize = sizeof(jlong) * (event == EVT_EXCEPTION? 3: 2) + sizeof(jint) + (event == EVT_EXCEPTION? 1: 0) + callStackPayloadSize;
 
     rvmLockMutex(&writeMutex);
     writeChannelByte(clientSocket, event, &error);
@@ -1320,6 +1373,7 @@ static void writeStopOrExceptionEvent(Env* env, char event, Object* throwable, j
     writeChannelLong(clientSocket, payLoadSize, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread->threadObj, &error);
     writeChannelLong(clientSocket, (jlong)env->currentThread, &error);
+    writeChannelInt(clientSocket, (jint)env->currentThread->status, &error);
     if(event == EVT_EXCEPTION) {
         writeChannelLong(clientSocket, (jlong)throwable, &error);
         writeChannelByte(clientSocket, isCaught? -1: 0, &error);
@@ -1352,7 +1406,7 @@ void _rvmHookClassLoaded(Env* env, Class* clazz, void* classInfo) {
     // only report the callstack if the class is
     // filtered
     if(javaThread) {
-        if (!prepareCallStack(env, EVT_CLASS_LOAD, &callStack, &callStackLength, &callStackPayloadSize, &frame)) {
+        if (!prepareCallStack(env, NULL, EVT_CLASS_LOAD, &callStack, &callStackLength, &callStackPayloadSize, &frame)) {
             ERROR("Couldn't prepare callstack for class load event, not reporting callstack");
             javaThread = NULL;
             thread = NULL;
@@ -1412,7 +1466,7 @@ void _rvmHookExceptionRaised(Env* env, Object* throwable, jboolean isCaught) {
     jint callStackLength = 0;
     jint callStackPayloadSize = 0;
     CallStackFrame* frame = NULL;
-    jboolean error = !prepareCallStack(env, EVT_EXCEPTION, &callStack, &callStackLength, &callStackPayloadSize, &frame);
+    jboolean error = !prepareCallStack(env, NULL, EVT_EXCEPTION, &callStack, &callStackLength, &callStackPayloadSize, &frame);
     if(error) {
         rvmThrow(env, exception);
         return;
@@ -1472,7 +1526,7 @@ void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOf
         jint callStackLength = 0;
         jint callStackPayloadSize = 0;
         CallStackFrame* frame = NULL;
-        if(!prepareCallStack(env, event, &callStack, &callStackLength, &callStackPayloadSize, &frame)) {
+        if(!prepareCallStack(env, NULL, event, &callStack, &callStackLength, &callStackPayloadSize, &frame)) {
             rvmUnlockMutex(&debugEnv->suspendMutex);
             return;
         }
@@ -1481,5 +1535,29 @@ void _rvmHookInstrumented(DebugEnv* debugEnv, jint lineNumber, jint lineNumberOf
         suspendLoop(debugEnv);
 
         rvmUnlockMutex(&debugEnv->suspendMutex);
+    }
+}
+
+jboolean _rvmHookAfterThreadStackCaptured(Env* env, void (*unlockFun)(void)) {
+    // called from capture thread stack. we us it to suspend function (and receive its stack)
+    // check if this thread
+    DebugEnv* debugEnv = (DebugEnv*)env;
+    if (debugEnv->suspendStatus == SUSPEND_PENDING_HARD) {
+        debugEnv->suspendStatus = SUSPEND_PENDING_HARD;
+        // entered suspend loop
+        DEBUG("Entering forced suspend loop");
+        debugEnv->suspendStatus = SUSPEND_HARD;
+
+        // unlock dumpThreadStackTraceCallSemaphore
+        // this will unlock dumpThreadStackTrace and handleThreadSuspend will receive
+        // thread stack and return it to debugger
+        // meanwhile going to spin suspend loop here till debugger resume this thread
+        unlockFun();
+        while (debugEnv->suspendStatus == SUSPEND_HARD) {
+            pthread_cond_wait(&debugEnv->suspendCond, &debugEnv->suspendMutex);
+        }
+        return TRUE;
+    } else {
+        return FALSE;
     }
 }

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -85,48 +87,34 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean automaticallyAdjustsVideoMirroring();
     @Property(selector = "setAutomaticallyAdjustsVideoMirroring:")
     public native void setAutomaticallyAdjustsVideoMirroring(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "videoRotationAngle")
+    public native @MachineSizedFloat double getVideoRotationAngle();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setVideoRotationAngle:")
+    public native void setVideoRotationAngle(@MachineSizedFloat double v);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -isVideoRotationAngleSupported: instead
+     */
+    @Deprecated
     @Property(selector = "isVideoOrientationSupported")
     public native boolean supportsVideoOrientation();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -videoRotationAngle instead
+     */
+    @Deprecated
     @Property(selector = "videoOrientation")
     public native AVCaptureVideoOrientation getVideoOrientation();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use -videoRotationAngle instead
+     */
+    @Deprecated
     @Property(selector = "setVideoOrientation:")
     public native void setVideoOrientation(AVCaptureVideoOrientation v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
-     */
-    @Deprecated
-    @Property(selector = "isVideoMinFrameDurationSupported")
-    public native boolean supportsVideoMinFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "videoMinFrameDuration")
-    public native @ByVal CMTime getVideoMinFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMinFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "setVideoMinFrameDuration:")
-    public native void setVideoMinFrameDuration(@ByVal CMTime v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeFormat.videoSupportedFrameRateRanges instead.
-     */
-    @Deprecated
-    @Property(selector = "isVideoMaxFrameDurationSupported")
-    public native boolean supportsVideoMaxFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "videoMaxFrameDuration")
-    public native @ByVal CMTime getVideoMaxFrameDuration();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use AVCaptureDevice's activeVideoMaxFrameDuration instead.
-     */
-    @Deprecated
-    @Property(selector = "setVideoMaxFrameDuration:")
-    public native void setVideoMaxFrameDuration(@ByVal CMTime v);
     @Property(selector = "videoMaxScaleAndCropFactor")
     public native @MachineSizedFloat double getVideoMaxScaleAndCropFactor();
     @Property(selector = "videoScaleAndCropFactor")
@@ -181,5 +169,7 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(NSArray<AVCaptureInputPort> ports, AVCaptureOutput output);
     @Method(selector = "initWithInputPort:videoPreviewLayer:")
     protected native @Pointer long init(AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer);
+    @Method(selector = "isVideoRotationAngleSupported:")
+    public native boolean isVideoRotationAngleSupported(@MachineSizedFloat double videoRotationAngle);
     /*</methods>*/
 }

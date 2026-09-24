@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +68,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "inputModes")
     public native NSArray<NSString> getInputModes();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "sessionIdentifiers")
+    public native NSArray<NSString> getSessionIdentifiers();
     @Property(selector = "totalWords")
     public native @MachineSizedSInt long getTotalWords();
     @Property(selector = "totalAlteredWords")
@@ -128,6 +137,11 @@ import org.robovm.apple.foundation.*;
     public native SRKeyboardProbabilityMetric<NSUnitDuration> getShortWordCharKeyTouchDownUp();
     @Property(selector = "touchDownDown")
     public native SRKeyboardProbabilityMetric<NSUnitDuration> getTouchDownDown();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "touchUpDown")
+    public native SRKeyboardProbabilityMetric<NSUnitDuration> getTouchUpDown();
     @Property(selector = "charKeyToPrediction")
     public native SRKeyboardProbabilityMetric<NSUnitDuration> getCharKeyToPrediction();
     @Property(selector = "shortWordCharKeyToCharKey")
@@ -190,6 +204,11 @@ import org.robovm.apple.foundation.*;
     public native NSArray<?> getLongWordTouchDownUp();
     @Property(selector = "longWordTouchDownDown")
     public native NSArray<?> getLongWordTouchDownDown();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "longWordTouchUpDown")
+    public native NSArray<?> getLongWordTouchUpDown();
     @Property(selector = "deleteToDeletes")
     public native NSArray<?> getDeleteToDeletes();
     @Property(selector = "totalPauses")

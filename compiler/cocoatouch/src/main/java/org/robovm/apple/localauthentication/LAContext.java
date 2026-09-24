@@ -79,11 +79,6 @@ import org.robovm.apple.security.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
-    @Property(selector = "evaluatedPolicyDomainState")
-    public native NSData getEvaluatedPolicyDomainState();
-    /**
-     * @since Available in iOS 9.0 and later.
-     */
     @Property(selector = "touchIDAuthenticationAllowableReuseDuration")
     public native double getTouchIDAuthenticationAllowableReuseDuration();
     /**
@@ -116,6 +111,18 @@ import org.robovm.apple.security.*;
      */
     @Property(selector = "biometryType")
     public native LABiometryType getBiometryType();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use domainState.biometry.stateHash
+     */
+    @Deprecated
+    @Property(selector = "evaluatedPolicyDomainState")
+    public native NSData getEvaluatedPolicyDomainState();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "domainState")
+    public native LADomainState getDomainState();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

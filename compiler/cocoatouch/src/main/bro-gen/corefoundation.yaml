@@ -1523,6 +1523,8 @@ functions:
         parameters:
             theString:
                 type: CFString
+    CFStringCreateStringWithValidatedFormatAndArguments:
+        exclude: true  # variable list argument is not suppoered
     CFString(Create.*):
         class: CFString
         name: '#{g[0]}'

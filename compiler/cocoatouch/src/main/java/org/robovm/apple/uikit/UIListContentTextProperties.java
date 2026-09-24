@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,6 +103,10 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean adjustsFontForContentSizeCategory();
     @Property(selector = "setAdjustsFontForContentSizeCategory:")
     public native void setAdjustsFontForContentSizeCategory(boolean v);
+    @Property(selector = "showsExpansionTextWhenTruncated")
+    public native boolean showsExpansionTextWhenTruncated();
+    @Property(selector = "setShowsExpansionTextWhenTruncated:")
+    public native void setShowsExpansionTextWhenTruncated(boolean v);
     @Property(selector = "transform")
     public native UIListContentTextTransform getTransform();
     @Property(selector = "setTransform:")

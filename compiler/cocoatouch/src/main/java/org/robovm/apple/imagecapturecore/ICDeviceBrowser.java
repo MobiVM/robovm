@@ -63,10 +63,30 @@ import org.robovm.apple.uikit.*;
     @Property(selector = "isSuspended")
     public native boolean isSuspended();
     /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "browsedDeviceTypeMask")
+    public native ICDeviceTypeMask getBrowsedDeviceTypeMask();
+    /**
+     * @since Available in iOS 15.2 and later.
+     */
+    @Property(selector = "setBrowsedDeviceTypeMask:")
+    public native void setBrowsedDeviceTypeMask(ICDeviceTypeMask v);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "devices")
     public native NSArray<ICDevice> getDevices();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "contentsAuthorizationStatus")
+    public native ICAuthorizationStatus getContentsAuthorizationStatus();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Property(selector = "controlAuthorizationStatus")
+    public native ICAuthorizationStatus getControlAuthorizationStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -83,18 +103,8 @@ import org.robovm.apple.uikit.*;
     /**
      * @since Available in iOS 14.0 and later.
      */
-    @Method(selector = "contentsAuthorizationStatus")
-    public native ICAuthorizationStatus contentsAuthorizationStatus();
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     @Method(selector = "requestContentsAuthorizationWithCompletion:")
     public native void requestContentsAuthorization(@Block VoidBlock1<ICAuthorizationStatus> completion);
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
-    @Method(selector = "controlAuthorizationStatus")
-    public native ICAuthorizationStatus controlAuthorizationStatus();
     /**
      * @since Available in iOS 14.0 and later.
      */

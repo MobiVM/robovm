@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,14 @@ import org.robovm.apple.linkpresentation.*;
     protected UIImageSymbolConfiguration() {}
     protected UIImageSymbolConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIImageSymbolConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageSymbolConfiguration(UITraitCollection traitCollection) { super((Handle) null, create(traitCollection)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageSymbolConfiguration(NSLocale locale) { super((Handle) null, create(locale)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "unspecifiedConfiguration")
@@ -110,5 +119,30 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "configurationPreferringMulticolor")
     public static native UIImageSymbolConfiguration configurationPreferringMulticolor();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "configurationPreferringMonochrome")
+    public static native UIImageSymbolConfiguration configurationPreferringMonochrome();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "configurationWithVariableValueMode:")
+    public static native UIImageSymbolConfiguration getConfigurationWithVariableValueMode(UIImageSymbolVariableValueMode variableValueMode);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "configurationWithColorRenderingMode:")
+    public static native UIImageSymbolConfiguration getConfigurationWithColorRenderingMode(UIImageSymbolColorRenderingMode mode);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithTraitCollection:")
+    protected static native @Pointer long create(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithLocale:")
+    protected static native @Pointer long create(NSLocale locale);
     /*</methods>*/
 }

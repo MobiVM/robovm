@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,6 +95,21 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean isHighResolutionStillImageOutputEnabled();
     @Property(selector = "setHighResolutionStillImageOutputEnabled:")
     public native void setHighResolutionStillImageOutputEnabled(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraSensorOrientationCompensationSupported")
+    public native boolean isCameraSensorOrientationCompensationSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isCameraSensorOrientationCompensationEnabled")
+    public native boolean isCameraSensorOrientationCompensationEnabled();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setCameraSensorOrientationCompensationEnabled:")
+    public native void setCameraSensorOrientationCompensationEnabled(boolean v);
     @Property(selector = "isCapturingStillImage")
     public native boolean isCapturingStillImage();
     /**

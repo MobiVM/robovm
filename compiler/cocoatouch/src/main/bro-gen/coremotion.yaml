@@ -17,6 +17,11 @@ enums:
     CMAuthorizationStatus: {} #since 11.0
     CMDeviceMotionSensorLocation: {}
     CMFallDetectionEventUserResolution: {}
+    CMWaterSubmersionState: {}
+    CMWaterSubmersionDepthState: {}
+    CMHighFrequencyHeartRateDataConfidence: {} #since 17.0
+    CMOdometerOriginDevice: {} #since 15.4
+    CMHeadphoneActivityStatus: {}
 classes:
     CMError:
         extends: NSError
@@ -145,9 +150,38 @@ classes:
     CMRecordedRotationRateData: {} #since 14.0
     CMRotationRateData: {} #since 14.0
     CMAbsoluteAltitudeData: {} #since 15.0
+    CMAmbientPressureData: {} #since 10.0
+    CMRecordedPressureData: {} #since 12.0
+    CMWaterSubmersionEvent: {}
+    CMWaterSubmersionManager: {}
+    CMWaterSubmersionMeasurement: {}
+    CMWaterTemperature: {}
+    CMBatchedSensorManager:
+        methods:
+            '-startAccelerometerUpdatesWithHandler:':
+                name: startAccelerometerUpdates
+            '-startDeviceMotionUpdatesWithHandler:':
+                name: startDeviceMotionUpdates
+    CMHighFrequencyHeartRateData: {} #since 17.0
+    CMOdometerData: {} #since 8.0
+    CMHeadphoneActivityManager: #since 18.0
+        methods:
+            '-startActivityUpdatesToQueue:withHandler:':
+                name: startActivityUpdates
+            '-startStatusUpdatesToQueue:withHandler:':
+                name: startStatusUpdates
 protocols:
     CMHeadphoneMotionManagerDelegate: {} #since 14.0
-
+    CMWaterSubmersionManagerDelegate:
+        methods:
+            '-manager:didUpdateEvent:':
+                name: didUpdateEvent
+            '-manager:didUpdateMeasurement:':
+                name: didUpdateMeasurement
+            '-manager:didUpdateTemperature:':
+                name: didUpdateTemperature
+            '-manager:errorOccurred:':
+                name: errorOccurred
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CM.*):

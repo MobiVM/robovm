@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeRuntimeError(AVCaptureSession object, final VoidBlock2<AVCaptureSession, NSError> block) {
+        public static NSObject observeRuntimeError(AVCaptureSession object, final VoidBlock2<AVCaptureSession, NSError> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RuntimeErrorNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -68,7 +70,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeDidStartRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObject observeDidStartRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidStartRunningNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -79,7 +81,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeDidStopRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObject observeDidStopRunning(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidStopRunningNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -90,7 +92,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeWasInterrupted(AVCaptureSession object, final VoidBlock2<AVCaptureSession, AVCaptureSessionInterruptionReason> block) {
+        public static NSObject observeWasInterrupted(AVCaptureSession object, final VoidBlock2<AVCaptureSession, AVCaptureSessionInterruptionReason> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(WasInterruptedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification notification) {
@@ -109,7 +111,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeInterruptionEnded(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
+        public static NSObject observeInterruptionEnded(AVCaptureSession object, final VoidBlock1<AVCaptureSession> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(InterruptionEndedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -141,10 +143,50 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "connections")
     public native NSArray<AVCaptureConnection> getConnections();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsControls")
+    public native boolean supportsControls();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "maxControlsCount")
+    public native @MachineSizedSInt long getMaxControlsCount();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controlsDelegate")
+    public native AVCaptureSessionControlsDelegate getControlsDelegate();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controlsDelegateCallbackQueue")
+    public native DispatchQueue getControlsDelegateCallbackQueue();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "controls")
+    public native NSArray<AVCaptureControl> getControls();
     @Property(selector = "isRunning")
     public native boolean isRunning();
     @Property(selector = "isInterrupted")
     public native boolean isInterrupted();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isMultitaskingCameraAccessSupported")
+    public native boolean isMultitaskingCameraAccessSupported();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isMultitaskingCameraAccessEnabled")
+    public native boolean isMultitaskingCameraAccessEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMultitaskingCameraAccessEnabled:")
+    public native void setMultitaskingCameraAccessEnabled(boolean v);
     @Property(selector = "usesApplicationAudioSession")
     public native boolean usesApplicationAudioSession();
     @Property(selector = "setUsesApplicationAudioSession:")
@@ -153,6 +195,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native boolean automaticallyConfiguresApplicationAudioSession();
     @Property(selector = "setAutomaticallyConfiguresApplicationAudioSession:")
     public native void setAutomaticallyConfiguresApplicationAudioSession(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "configuresApplicationAudioSessionToMixWithOthers")
+    public native boolean isConfiguresApplicationAudioSessionToMixWithOthers();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConfiguresApplicationAudioSessionToMixWithOthers:")
+    public native void setConfiguresApplicationAudioSessionToMixWithOthers(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "configuresApplicationAudioSessionForBluetoothHighQualityRecording")
+    public native boolean isConfiguresApplicationAudioSessionForBluetoothHighQualityRecording();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:")
+    public native void setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -163,8 +225,47 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutomaticallyConfiguresCaptureDeviceForWideColor:")
     public native void setAutomaticallyConfiguresCaptureDeviceForWideColor(boolean v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "synchronizationClock")
+    public native CMClock getSynchronizationClock();
+    /**
+     * @deprecated Deprecated in iOS 15.4. Use synchronizationClock
+     */
+    @Deprecated
     @Property(selector = "masterClock")
     public native CMClock getMasterClock();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "hardwareCost")
+    public native float getHardwareCost();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isManualDeferredStartSupported")
+    public native boolean isManualDeferredStartSupported();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "automaticallyRunsDeferredStart")
+    public native boolean automaticallyRunsDeferredStart();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAutomaticallyRunsDeferredStart:")
+    public native void setAutomaticallyRunsDeferredStart(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "deferredStartDelegate")
+    public native AVCaptureSessionDeferredStartDelegate getDeferredStartDelegate();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "deferredStartDelegateCallbackQueue")
+    public native DispatchQueue getDeferredStartDelegateCallbackQueue();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -215,6 +316,26 @@ import org.robovm.apple.audiotoolbox.*;
     public native void addConnection(AVCaptureConnection connection);
     @Method(selector = "removeConnection:")
     public native void removeConnection(AVCaptureConnection connection);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "setControlsDelegate:queue:")
+    public native void setControlsDelegate(AVCaptureSessionControlsDelegate controlsDelegate, DispatchQueue controlsDelegateCallbackQueue);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "canAddControl:")
+    public native boolean canAddControl(AVCaptureControl control);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "addControl:")
+    public native void addControl(AVCaptureControl control);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "removeControl:")
+    public native void removeControl(AVCaptureControl control);
     @Method(selector = "beginConfiguration")
     public native void beginConfiguration();
     @Method(selector = "commitConfiguration")
@@ -223,5 +344,15 @@ import org.robovm.apple.audiotoolbox.*;
     public native void startRunning();
     @Method(selector = "stopRunning")
     public native void stopRunning();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "runDeferredStartWhenNeeded")
+    public native void runDeferredStartWhenNeeded();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setDeferredStartDelegate:deferredStartDelegateCallbackQueue:")
+    public native void setDeferredStartDelegate(AVCaptureSessionDeferredStartDelegate deferredStartDelegate, DispatchQueue deferredStartDelegateCallbackQueue);
     /*</methods>*/
 }

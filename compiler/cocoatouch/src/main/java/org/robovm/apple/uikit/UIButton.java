@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -162,6 +163,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setMenu:")
     public native void setMenu(UIMenu v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredMenuElementOrder")
+    public native UIContextMenuConfigurationElementOrder getPreferredMenuElementOrder();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredMenuElementOrder:")
+    public native void setPreferredMenuElementOrder(UIContextMenuConfigurationElementOrder v);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -300,14 +311,8 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setPreferredBehavioralStyle:")
     public native void setPreferredBehavioralStyle(UIBehavioralStyle v);
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     @Property(selector = "adjustsImageSizeForAccessibilityContentSizeCategory")

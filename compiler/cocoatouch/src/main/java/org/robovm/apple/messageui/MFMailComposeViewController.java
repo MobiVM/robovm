@@ -81,6 +81,11 @@ import org.robovm.apple.messages.*;
      */
     @Method(selector = "setPreferredSendingEmailAddress:")
     public native void setPreferredSendingEmailAddress(String emailAddress);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Method(selector = "insertCollaborationItemProvider:completionHandler:")
+    public native void insertCollaboration(NSItemProvider itemProvider, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "canSendMail")
     public static native boolean canSendMail();
     /*</methods>*/

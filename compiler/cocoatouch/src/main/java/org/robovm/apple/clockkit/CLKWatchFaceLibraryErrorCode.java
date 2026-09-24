@@ -42,7 +42,8 @@ public enum /*<name>*/CLKWatchFaceLibraryErrorCode/*</name>*/ implements NSError
     NotFileURL(1L),
     InvalidFile(2L),
     PermissionDenied(3L),
-    FaceNotAvailable(4L);
+    FaceNotAvailable(4L),
+    NoURL(5L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CLKWatchFaceLibraryErrorCode.class); }/*</bind>*/

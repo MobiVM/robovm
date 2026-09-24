@@ -68,6 +68,17 @@ import org.robovm.apple.coreanimation.*;
     public SKSpriteNode(SKTexture texture, @ByVal CGSize size) { super((Handle) null, create(texture, size)); retain(getHandle()); }
     public SKSpriteNode(SKTexture texture, SKTexture normalMap) { super((Handle) null, create(texture, normalMap)); retain(getHandle()); }
     public SKSpriteNode(String name, boolean generateNormalMap) { super((Handle) null, create(name, generateNormalMap)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKSpriteNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKSpriteNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "texture")
@@ -172,5 +183,10 @@ import org.robovm.apple.coreanimation.*;
     protected static native @Pointer long create(SKTexture texture, SKTexture normalMap);
     @Method(selector = "spriteNodeWithImageNamed:normalMapped:")
     protected static native @Pointer long create(String name, boolean generateNormalMap);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

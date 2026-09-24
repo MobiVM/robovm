@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,15 @@ import org.robovm.apple.imageio.*;
     @WeaklyLinked
     @Property(selector = "location")
     public native CLLocation getLocation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentType")
+    public native UTType getContentType();
+    /**
+     * @deprecated Use contentType instead
+     */
+    @Deprecated
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
     /**

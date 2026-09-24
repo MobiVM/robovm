@@ -38,19 +38,34 @@ import org.robovm.apple.coreanimation.*;
  * @since Available in iOS 12.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
-public enum /*<name>*/ASExtensionErrorCode/*</name>*/ implements ValuedEnum {
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("AuthenticationServices")/*</annotations>*/
+public enum /*<name>*/ASExtensionErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Failed(0L),
     UserCanceled(1L),
     UserInteractionRequired(100L),
-    CredentialIdentityNotFound(101L);
+    CredentialIdentityNotFound(101L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    MatchedExcludedCredential(102L);
     /*</values>*/
 
-    /*<bind>*/
-    /*</bind>*/
+    /*<bind>*/static { Bro.bind(ASExtensionErrorCode.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<methods>*//*</methods>*/
+    /*<members>*//*</members>*/
+    /*<methods>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @GlobalValue(symbol="ASExtensionErrorDomain", optional=true)
+    public static native String getClassDomain();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="ASExtensionLocalizedFailureReasonErrorKey", optional=true)
+    public static native String getLocalizedFailureReasonErrorKey();
+    /*</methods>*/
 
     private final long n;
 
@@ -62,7 +77,27 @@ public enum /*<name>*/ASExtensionErrorCode/*</name>*/ implements ValuedEnum {
                 return v;
             }
         }
-        throw new IllegalArgumentException("No constant with value " + n + " found in " 
+        throw new IllegalArgumentException("No constant with value " + n + " found in "
             + /*<name>*/ASExtensionErrorCode/*</name>*/.class.getName());
+    }
+
+    // bind wrap to include it in compilation as long as nserror enum is used 
+    static { Bro.bind(NSErrorWrap.class); }
+    @StronglyLinked
+    public static class NSErrorWrap extends NSError {
+        protected NSErrorWrap(SkipInit skipInit) {super(skipInit);}
+
+        @Override public NSErrorCode getErrorCode() {
+             try {
+                 return  /*<name>*/ASExtensionErrorCode/*</name>*/.valueOf(getCode());
+             } catch (IllegalArgumentException e) {
+                 return null;
+             }
+         }
+
+        public static String getClassDomain() {
+            /** must be inserted in value section */
+            return /*<name>*/ASExtensionErrorCode/*</name>*/.getClassDomain();
+        }
     }
 }

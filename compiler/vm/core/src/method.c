@@ -257,8 +257,10 @@ CallStack* rvmCaptureCallStack(Env* env) {
     return captureCallStackFromFrame(env, NULL);
 }
 
-CallStack* rvmCaptureCallStackForThread(Env* env, Thread* thread) {
-    if (thread == env->currentThread) {
+// if forceSignal is specified -- thread will be forced to be captured by signal
+// it is used by debugger to suspend running threads and spin suspend loop
+static CallStack* captureCallStackForThread(Env* env, Thread* thread, jboolean forceSignal) {
+    if (!forceSignal && thread == env->currentThread) {
         return rvmCaptureCallStack(env);
     }
 
@@ -291,6 +293,14 @@ CallStack* rvmCaptureCallStackForThread(Env* env, Thread* thread) {
     releaseThreadStackTraceLock();
 
     return copy;
+}
+
+CallStack* rvmCaptureCallStackForThread(Env* env, Thread* thread) {
+    return captureCallStackForThread(env, thread, FALSE);
+}
+
+CallStack* rvmCaptureCallStackAndSuspendThread(Env* env, Thread* thread) {
+    return captureCallStackForThread(env, thread, TRUE);
 }
 
 static inline jint getLineTableEntryB(uint8_t* table, jint index) {

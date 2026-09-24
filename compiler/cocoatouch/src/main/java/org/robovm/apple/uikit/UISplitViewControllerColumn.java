@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +53,11 @@ public enum /*<name>*/UISplitViewControllerColumn/*</name>*/ implements ValuedEn
     Primary(0L),
     Supplementary(1L),
     Secondary(2L),
-    Compact(3L);
+    Compact(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Inspector(4L);
     /*</values>*/
 
     /*<bind>*/

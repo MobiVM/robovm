@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -200,6 +202,21 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString BitRateStrategy();
         @GlobalValue(symbol="AVEncoderBitDepthHintKey", optional=true)
         public static native NSString BitDepthHint();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVEncoderDynamicRangeControlConfigurationKey", optional=true)
+        public static native NSString DynamicRangeControlConfiguration();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVEncoderContentSourceKey", optional=true)
+        public static native NSString ContentSource();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVEncoderASPFrequencyKey", optional=true)
+        public static native NSString ASPFrequency();
     }
     /*</keys>*/
 }

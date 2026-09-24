@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -122,6 +124,10 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMediaCharacteristic ContainsOnlyForcedSubtitles = new AVMediaCharacteristic("ContainsOnlyForcedSubtitles");
     public static final AVMediaCharacteristic TranscribesSpokenDialogForAccessibility = new AVMediaCharacteristic("TranscribesSpokenDialogForAccessibility");
     public static final AVMediaCharacteristic DescribesMusicAndSoundForAccessibility = new AVMediaCharacteristic("DescribesMusicAndSoundForAccessibility");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVMediaCharacteristic EnhancesSpeechIntelligibility = new AVMediaCharacteristic("EnhancesSpeechIntelligibility");
     public static final AVMediaCharacteristic EasyToRead = new AVMediaCharacteristic("EasyToRead");
     public static final AVMediaCharacteristic DescribesVideoForAccessibility = new AVMediaCharacteristic("DescribesVideoForAccessibility");
     /**
@@ -136,9 +142,33 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 9.0 and later.
      */
     public static final AVMediaCharacteristic VoiceOverTranslation = new AVMediaCharacteristic("VoiceOverTranslation");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVMediaCharacteristic TactileMinimal = new AVMediaCharacteristic("TactileMinimal");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVMediaCharacteristic ContainsStereoMultiviewVideo = new AVMediaCharacteristic("ContainsStereoMultiviewVideo");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVMediaCharacteristic CarriesVideoStereoMetadata = new AVMediaCharacteristic("CarriesVideoStereoMetadata");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVMediaCharacteristic IndicatesHorizontalFieldOfView = new AVMediaCharacteristic("IndicatesHorizontalFieldOfView");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMediaCharacteristic IndicatesNonRectilinearProjection = new AVMediaCharacteristic("IndicatesNonRectilinearProjection");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMediaCharacteristic MachineGenerated = new AVMediaCharacteristic("MachineGenerated");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsHDRVideo, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation/*</value_list>*/};
+    private static /*<name>*/AVMediaCharacteristic/*</name>*/[] values = new /*<name>*/AVMediaCharacteristic/*</name>*/[] {/*<value_list>*/Visual, Audible, Legible, FrameBased, UsesWideGamutColorSpace, ContainsHDRVideo, ContainsAlphaChannel, IsMainProgramContent, IsAuxiliaryContent, IsOriginalContent, ContainsOnlyForcedSubtitles, TranscribesSpokenDialogForAccessibility, DescribesMusicAndSoundForAccessibility, EnhancesSpeechIntelligibility, EasyToRead, DescribesVideoForAccessibility, LanguageTranslation, DubbedTranslation, VoiceOverTranslation, TactileMinimal, ContainsStereoMultiviewVideo, CarriesVideoStereoMetadata, IndicatesHorizontalFieldOfView, IndicatesNonRectilinearProjection, MachineGenerated/*</value_list>*/};
     
     /*<name>*/AVMediaCharacteristic/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -199,6 +229,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString TranscribesSpokenDialogForAccessibility();
         @GlobalValue(symbol="AVMediaCharacteristicDescribesMusicAndSoundForAccessibility", optional=true)
         public static native NSString DescribesMusicAndSoundForAccessibility();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicEnhancesSpeechIntelligibility", optional=true)
+        public static native NSString EnhancesSpeechIntelligibility();
         @GlobalValue(symbol="AVMediaCharacteristicEasyToRead", optional=true)
         public static native NSString EasyToRead();
         @GlobalValue(symbol="AVMediaCharacteristicDescribesVideoForAccessibility", optional=true)
@@ -218,6 +253,36 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaCharacteristicVoiceOverTranslation", optional=true)
         public static native NSString VoiceOverTranslation();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicTactileMinimal", optional=true)
+        public static native NSString TactileMinimal();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicContainsStereoMultiviewVideo", optional=true)
+        public static native NSString ContainsStereoMultiviewVideo();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicCarriesVideoStereoMetadata", optional=true)
+        public static native NSString CarriesVideoStereoMetadata();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicIndicatesHorizontalFieldOfView", optional=true)
+        public static native NSString IndicatesHorizontalFieldOfView();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicIndicatesNonRectilinearProjection", optional=true)
+        public static native NSString IndicatesNonRectilinearProjection();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaCharacteristicMachineGenerated", optional=true)
+        public static native NSString MachineGenerated();
         /*</values>*/
     }
 }

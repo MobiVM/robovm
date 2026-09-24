@@ -64,6 +64,16 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<NSError> getErrors();
     @Property(selector = "setErrors:")
     public native void setErrors(NSArray<NSError> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "orderDetails")
+    public native PKPaymentOrderDetails getOrderDetails();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setOrderDetails:")
+    public native void setOrderDetails(PKPaymentOrderDetails v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

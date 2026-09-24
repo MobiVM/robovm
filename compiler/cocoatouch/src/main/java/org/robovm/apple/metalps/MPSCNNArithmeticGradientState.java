@@ -68,6 +68,16 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "temporaryStateWithCommandBuffer:bufferSize:")
+    public static native MPSCNNArithmeticGradientState createTemporaryState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
+    @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
+    public static native MPSCNNArithmeticGradientState createTemporaryState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
+    @Method(selector = "temporaryStateWithCommandBuffer:")
+    public static native MPSCNNArithmeticGradientState createTemporaryState(MTLCommandBuffer cmdBuf);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSCNNArithmeticGradientState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

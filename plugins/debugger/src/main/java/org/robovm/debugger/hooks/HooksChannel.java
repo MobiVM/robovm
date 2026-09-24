@@ -16,14 +16,10 @@
 package org.robovm.debugger.hooks;
 
 import org.robovm.debugger.DebuggerException;
-import org.robovm.debugger.hooks.payloads.HooksCallStackEntry;
-import org.robovm.debugger.hooks.payloads.HooksClassLoadedEventPayload;
-import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
-import org.robovm.debugger.hooks.payloads.HooksEventPayload;
-import org.robovm.debugger.hooks.payloads.HooksThreadEventPayload;
-import org.robovm.debugger.hooks.payloads.HooksThreadStoppedEventPayload;
+import org.robovm.debugger.hooks.payloads.*;
 import org.robovm.debugger.utils.DbgLogger;
 import org.robovm.debugger.utils.IDebuggerToolbox;
+import org.robovm.debugger.utils.IHooksConnectionUtils.SocketHooksConnection;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReader;
 import org.robovm.debugger.utils.bytebuffer.DataBufferReaderWriter;
 import org.robovm.debugger.utils.bytebuffer.DataByteBufferWriter;
@@ -32,13 +28,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.IntSupplier;
 
 /**
  * @author Demyan Kimitsa
@@ -55,8 +48,7 @@ public class HooksChannel implements IHooksApi {
     private final DataBufferReaderWriter headerBuffer;
     private final IHooksEventsHandler eventsHandler;
 
-    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IHooksConnection connection, IHooksEventsHandler eventsHandler) {
-        this.hooksConnection = connection;
+    public HooksChannel(IDebuggerToolbox toolbox, boolean is64bit, IHooksEventsHandler eventsHandler) {
         this.is64bit = is64bit;
         this.eventsHandler = eventsHandler;
         this.socketThread = toolbox.createThread(this::doSocketWork, "HooksChannel socket thread");
@@ -65,7 +57,8 @@ public class HooksChannel implements IHooksApi {
         headerBuffer.setByteOrder(ByteOrder.BIG_ENDIAN);
     }
 
-    public void start() {
+    public void start(IHooksConnection connection) {
+        this.hooksConnection = connection;
         this.socketThread.start();
     }
 
@@ -83,6 +76,7 @@ public class HooksChannel implements IHooksApi {
     private void doSocketWork() {
         // establish connection
         try {
+            // connection has to be provided via start()
             hooksConnection.connect();
             InputStream inputStream = hooksConnection.getInputStream();
             OutputStream outputStream = hooksConnection.getOutputStream();
@@ -139,7 +133,7 @@ public class HooksChannel implements IHooksApi {
                     if (holder == null)
                         throw new DebuggerException("Unexpected response id " + reqId + ", cmd = " + cmd);
 
-                    // notify thread that there is an result
+                    // notify thread that there is a result
                     HooksCmdResponse response = createCmdPayloadObject(cmd, buffer);
                     holder.setResponse(response);
                     holder.release();
@@ -264,10 +258,10 @@ public class HooksChannel implements IHooksApi {
     }
 
     @Override
-    public void threadSuspend(long thread) {
+    public HooksCmdResponse threadSuspend(long thread) {
         DataBufferReaderWriter packet = new DataByteBufferWriter();
         packet.writeLong(thread);
-        sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
+        return sendCommand(HookConsts.commands.THREAD_SUSPEND, packet);
     }
 
     @Override
@@ -378,11 +372,18 @@ public class HooksChannel implements IHooksApi {
                 res = new HooksCmdResponse(reader.readLong());
                 break;
 
+            case HookConsts.commands.THREAD_SUSPEND: {
+                int threadStatus = reader.readInt32();
+                int suspendStatus = reader.readInt32();
+                HooksCallStackEntry[] callStack = readCallStack(reader);
+                res = new HooksCmdResponse(new HooksSuspendThreadPayload(callStack, threadStatus, suspendStatus));
+                break;
+            }
+
             case HookConsts.commands.WRITE_MEMORY:
             case HookConsts.commands.WRITE_AND_BITS:
             case HookConsts.commands.WRITE_OR_BITS:
             case HookConsts.commands.FREE:
-            case HookConsts.commands.THREAD_SUSPEND:
             case HookConsts.commands.THREAD_RESUME:
             case HookConsts.commands.THREAD_STEP:
             case HookConsts.commands.CLASS_FILTER:
@@ -431,18 +432,20 @@ public class HooksChannel implements IHooksApi {
             case HookConsts.events.BREAKPOINT: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
+                int threadStatus = reader.readInt32();
                 HooksCallStackEntry[] callStack = readCallStack(reader);
-                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, callStack);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, threadStatus, callStack);
                 break;
             }
 
             case HookConsts.events.EXCEPTION: {
                 long threadObj = reader.readLong();
                 long thread = reader.readLong();
+                int threadStatus = reader.readInt32();
                 long throwable = reader.readLong();
                 boolean isCaught = reader.readByte() != 0;
                 HooksCallStackEntry[] callStack = readCallStack(reader);
-                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, throwable, isCaught, callStack);
+                res = new HooksThreadStoppedEventPayload(event, threadObj, thread, throwable, isCaught, threadStatus, callStack);
                 break;
             }
 
@@ -465,18 +468,23 @@ public class HooksChannel implements IHooksApi {
     }
 
     private HooksCallStackEntry[] readCallStack(DataBufferReader reader) {
-        int count = reader.readInt32();
-        HooksCallStackEntry[] res = new HooksCallStackEntry[count];
-        for (int idx = 0; idx < count; idx++) {
-            long impl = reader.readLong();
-            int lineNumber = reader.readInt32();
-            long fp = reader.readLong();
-            long pc = reader.readLong();
-            int clazzNameLen = reader.readInt32();
-            String clazzName = reader.readString(clazzNameLen);
-            res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp, pc);
+        HooksCallStackEntry[] res;
+        if (reader.hasRemaining()) {
+            int count = reader.readInt32();
+            res = new HooksCallStackEntry[count];
+            for (int idx = 0; idx < count; idx++) {
+                long impl = reader.readLong();
+                int lineNumber = reader.readInt32();
+                long fp = reader.readLong();
+                long pc = reader.readLong();
+                int clazzNameLen = reader.readInt32();
+                String clazzName = reader.readString(clazzNameLen);
+                res[idx] = new HooksCallStackEntry(clazzName, impl, lineNumber, fp, pc);
+            }
+        } else {
+            res = new HooksCallStackEntry[0]; 
         }
-
+        
         return res;
     }
 
@@ -498,42 +506,6 @@ public class HooksChannel implements IHooksApi {
     }
 
 
-    /**
-     * Connection for socket case (local host simulator)
-     */
-    public static class SocketHooksConnection implements IHooksConnection {
-        private final IntSupplier hooksPortSupplier;
-        private Socket socket;
-
-        public SocketHooksConnection(IntSupplier hooksPortSupplier) {
-            this.hooksPortSupplier = hooksPortSupplier;
-        }
-
-        @Override
-        public void connect() throws IOException {
-            int port = hooksPortSupplier.getAsInt();
-            socket = new Socket();
-            socket.connect(new InetSocketAddress("127.0.0.1", port), 1000);
-            socket.setTcpNoDelay(true);
-        }
-
-        @Override
-        public void disconnect() throws IOException {
-            if (socket != null && socket.isClosed())
-                socket.close();
-        }
-
-        @Override
-        public InputStream getInputStream() throws IOException {
-            return socket.getInputStream();
-        }
-
-        @Override
-        public OutputStream getOutputStream() throws IOException {
-            return socket.getOutputStream();
-        }
-    }
-
     public static void main(String[] argv) {
         int port;
 
@@ -554,7 +526,7 @@ public class HooksChannel implements IHooksApi {
         }
 
         IDebuggerToolbox toolbox = Thread::new;
-        final HooksChannel hooksChannel = new HooksChannel(toolbox, true, new SocketHooksConnection(() -> port),
+        final HooksChannel hooksChannel = new HooksChannel(toolbox, true,
                 new IHooksEventsHandler() {
                     @Override
                     public void onHooksTargetAttached(IHooksApi api, long robovmBaseSymbol) {
@@ -566,6 +538,6 @@ public class HooksChannel implements IHooksApi {
                 });
 
         DbgLogger.setup(null, true);
-        hooksChannel.start();
+        hooksChannel.start(new SocketHooksConnection(port));
     }
 }

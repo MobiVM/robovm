@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -97,6 +99,10 @@ import org.robovm.apple.audiotoolbox.*;
     /*</marshalers>*/
 
     /*<constants>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final AVAudioSessionPort ContinuityMicrophone = new AVAudioSessionPort("ContinuityMicrophone");
     public static final AVAudioSessionPort LineIn = new AVAudioSessionPort("LineIn");
     public static final AVAudioSessionPort BuiltInMic = new AVAudioSessionPort("BuiltInMic");
     public static final AVAudioSessionPort HeadsetMic = new AVAudioSessionPort("HeadsetMic");
@@ -137,7 +143,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVAudioSessionPort Thunderbolt = new AVAudioSessionPort("Thunderbolt");
     /*</constants>*/
     
-    private static /*<name>*/AVAudioSessionPort/*</name>*/[] values = new /*<name>*/AVAudioSessionPort/*</name>*/[] {/*<value_list>*/LineIn, BuiltInMic, HeadsetMic, LineOut, Headphones, BluetoothA2DP, BuiltInReceiver, BuiltInSpeaker, HDMI, AirPlay, BluetoothLE, BluetoothHFP, USBAudio, CarAudio, Virtual, PCI, FireWire, DisplayPort, AVB, Thunderbolt/*</value_list>*/};
+    private static /*<name>*/AVAudioSessionPort/*</name>*/[] values = new /*<name>*/AVAudioSessionPort/*</name>*/[] {/*<value_list>*/ContinuityMicrophone, LineIn, BuiltInMic, HeadsetMic, LineOut, Headphones, BluetoothA2DP, BuiltInReceiver, BuiltInSpeaker, HDMI, AirPlay, BluetoothLE, BluetoothHFP, USBAudio, CarAudio, Virtual, PCI, FireWire, DisplayPort, AVB, Thunderbolt/*</value_list>*/};
     
     /*<name>*/AVAudioSessionPort/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -160,6 +166,11 @@ import org.robovm.apple.audiotoolbox.*;
     	static { Bro.bind(Values.class); }
 
         /*<values>*/
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPortContinuityMicrophone", optional=true)
+        public static native NSString ContinuityMicrophone();
         @GlobalValue(symbol="AVAudioSessionPortLineIn", optional=true)
         public static native NSString LineIn();
         @GlobalValue(symbol="AVAudioSessionPortBuiltInMic", optional=true)

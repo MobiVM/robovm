@@ -93,9 +93,13 @@ import org.robovm.apple.audiotoolbox.*;
     public static final CMImageDescriptionFlavor QuickTimeMovie = new CMImageDescriptionFlavor("QuickTimeMovie");
     public static final CMImageDescriptionFlavor ISOFamily = new CMImageDescriptionFlavor("ISOFamily");
     public static final CMImageDescriptionFlavor _3GPFamily = new CMImageDescriptionFlavor("_3GPFamily");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final CMImageDescriptionFlavor ISOFamilyWithAppleExtensions = new CMImageDescriptionFlavor("ISOFamilyWithAppleExtensions");
     /*</constants>*/
     
-    private static /*<name>*/CMImageDescriptionFlavor/*</name>*/[] values = new /*<name>*/CMImageDescriptionFlavor/*</name>*/[] {/*<value_list>*/QuickTimeMovie, ISOFamily, _3GPFamily/*</value_list>*/};
+    private static /*<name>*/CMImageDescriptionFlavor/*</name>*/[] values = new /*<name>*/CMImageDescriptionFlavor/*</name>*/[] {/*<value_list>*/QuickTimeMovie, ISOFamily, _3GPFamily, ISOFamilyWithAppleExtensions/*</value_list>*/};
     
     /*<name>*/CMImageDescriptionFlavor/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -124,6 +128,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native CFString ISOFamily();
         @GlobalValue(symbol="kCMImageDescriptionFlavor_3GPFamily", optional=true)
         public static native CFString _3GPFamily();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions", optional=true)
+        public static native CFString ISOFamilyWithAppleExtensions();
         /*</values>*/
     }
 }

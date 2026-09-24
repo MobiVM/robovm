@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,7 +62,11 @@ public enum /*<name>*/UIUserInterfaceIdiom/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    Mac(5L);
+    Mac(5L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Vision(6L);
     /*</values>*/
 
     private final long n;

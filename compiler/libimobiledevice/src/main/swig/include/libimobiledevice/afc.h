@@ -31,6 +31,7 @@ extern "C" {
 #include <libimobiledevice/libimobiledevice.h>
 #include <libimobiledevice/lockdown.h>
 
+/** Service identifier passed to lockdownd_start_service() to start the AFC service */
 #define AFC_SERVICE_NAME "com.apple.afc"
 
 /** Error Codes */
@@ -89,7 +90,7 @@ typedef enum {
 	AFC_LOCK_UN = 8 | 4  /**< unlock */
 } afc_lock_op_t;
 
-typedef struct afc_client_private afc_client_private;
+typedef struct afc_client_private afc_client_private; /**< \private */
 typedef afc_client_private *afc_client_t; /**< The client handle. */
 
 /* Interface */
@@ -167,7 +168,7 @@ afc_error_t afc_read_directory(afc_client_t client, const char *path, char ***di
  *
  * @return AFC_E_SUCCESS on success or an AFC_E_* error value.
  */
-afc_error_t afc_get_file_info(afc_client_t client, const char *filename, char ***file_information);
+afc_error_t afc_get_file_info(afc_client_t client, const char *path, char ***file_information);
 
 /**
  * Opens a file on the device.

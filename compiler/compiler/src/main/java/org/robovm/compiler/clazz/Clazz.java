@@ -18,6 +18,7 @@ package org.robovm.compiler.clazz;
 
 import org.apache.commons.io.IOUtils;
 import soot.SootClass;
+import soot.SootMethod;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -204,5 +205,19 @@ public abstract class Clazz implements Comparable<Clazz> {
     @Override
     public String toString() {
         return className;
+    }
+
+    /**
+     * Drops Soot object and releases all its resolved bodies
+     */
+    public void shrinkSoot() {
+        if (sootClass != null) {
+            // dropping all bodies
+            for (SootMethod m: sootClass.getMethods()) {
+                if (m.hasActiveBody())
+                    m.releaseActiveBody();
+            }
+            sootClass = null;
+        }
     }
 }

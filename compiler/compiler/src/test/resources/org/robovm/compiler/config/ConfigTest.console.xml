@@ -1,7 +1,7 @@
 <config>
   <os>macosx</os>
-  <arch>x86</arch>
   <arch>x86_64</arch>
+  <arch>arm64</arch>
   <forceLinkClasses>
     <pattern>javax.**.*</pattern>
   </forceLinkClasses>
@@ -15,6 +15,13 @@
     <framework>Foundation</framework>
     <framework>AppKit</framework>
   </frameworks>
+  <swiftSupport>
+    <enable>true</enable>
+    <copySwiftLibs>true</copySwiftLibs>
+  </swiftSupport>
+  <experimental>
+    <xcFrameworkLookup>true</xcFrameworkLookup>
+  </experimental>
   <resources>
     <resource>resources</resource>
     <resource>/usr/share/resources</resource>

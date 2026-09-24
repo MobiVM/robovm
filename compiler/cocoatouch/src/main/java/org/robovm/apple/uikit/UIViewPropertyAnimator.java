@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -106,6 +107,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setPausesOnCompletion:")
     public native void setPausesOnCompletion(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "flushUpdates")
+    public native boolean isFlushUpdates();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setFlushUpdates:")
+    public native void setFlushUpdates(boolean v);
     @Property(selector = "state")
     public native UIViewAnimatingState getState();
     @Property(selector = "isRunning")

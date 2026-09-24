@@ -1,5 +1,5 @@
 package: org.robovm.apple.safariservices
-include: [foundation.yaml, uikit.yaml]
+include: [foundation, uikit, browserenginekit]
 library: SafariServices
 framework: SafariServices
 clang_args: ['-x', 'objective-c']
@@ -57,6 +57,25 @@ classes:
             '-initWithTemplateImage:extensionIdentifier:':
                 name: init
     SFSafariViewControllerPrewarmingToken: {} #since 15.0
+    SFSafariViewControllerDataStore: #since 16.0
+        methods:
+            '-clearWebsiteDataWithCompletionHandler:':
+                name: clearWebsiteData
+    SFAddToHomeScreenInfo: #since 18.2
+        methods:
+            '-initWithManifest:':
+                name: init
+    SFSafariSettings: #since 26.0
+        methods:
+            '+openExportBrowsingDataSettingsWithCompletionHandler:':
+                name: openExportBrowsingDataSettings
+            '+openExtensionsSettingsForIdentifiers:completionHandler:':
+                name: openExtensionsSettings
+    SFSafariExtensionManager: #since 26.2
+        methods:
+            '+getStateOfExtensionWithIdentifier:completionHandler:':
+                name: getStateOfExtension
+    SFSafariExtensionState: {} #since 26.2
 protocols:
     SFSafariViewControllerDelegate: # DONE
         methods:
@@ -71,6 +90,12 @@ protocols:
                 name: excludedActivityTypesForURL
             '-safariViewController:initialLoadDidRedirectToURL:':
                 name: initialLoadDidRedirectToURL
+    SFAddToHomeScreenActivityItem: #since 17.4
+        methods:
+            '-getWebAppManifestWithCompletionHandler:':
+                name: getWebAppManifest
+            '-getHomeScreenWebAppInfoWithCompletionHandler:':
+                name: getHomeScreenWebAppInfo
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?SS.*):
@@ -96,6 +121,9 @@ values:
     SFExtensionMessageKey:
         class: SFSafariViewController
         name: getExtensionMessageKey
+    SFExtensionProfileKey:
+        class: SFSafariViewController
+        name: getExtensionProfileKey
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SS.*):

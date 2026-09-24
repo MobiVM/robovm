@@ -79,9 +79,16 @@ import org.robovm.apple.uniformtypeid.*;
     public static native CSSearchableIndex defaultSearchableIndex();
     @Method(selector = "beginIndexBatch")
     public native void beginIndexBatch();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "endIndexBatchWithExpectedClientState:newClientState:completionHandler:")
+    public native void endIndexBatch(NSData expectedClientState, NSData newClientState, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "endIndexBatchWithClientState:completionHandler:")
     public native void endIndexBatch(NSData clientState, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "fetchLastClientStateWithCompletionHandler:")
     public native void fetchLastClientState(@Block VoidBlock2<NSData, NSError> completionHandler);
+    @Method(selector = "fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:")
+    public native void fetchDataForBundleIdentifier(String bundleIdentifier, String itemIdentifier, UTType contentType, @Block VoidBlock2<NSData, NSError> completionHandler);
     /*</methods>*/
 }

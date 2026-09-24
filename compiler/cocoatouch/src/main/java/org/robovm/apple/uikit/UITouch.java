@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.rt.annotation.WeaklyLinked;
 import org.robovm.apple.spritekit.SKNode;
@@ -111,6 +112,11 @@ import org.robovm.apple.spritekit.SKNode;
      */
     @Property(selector = "estimatedPropertiesExpectingUpdates")
     public native UITouchProperties getEstimatedPropertiesExpectingUpdates();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "rollAngle")
+    public native @MachineSizedFloat double getRollAngle();
     /*</properties>*/
     /*<members>*//*</members>*/
     

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,6 +70,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("setAccessibilityContainerType:")
     public void setAccessibilityContainerType(UIAccessibilityContainerType v) {}
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("automationElements")
+    public NSArray<?> getAutomationElements() { return null; }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @NotImplemented("setAutomationElements:")
+    public void setAutomationElements(NSArray<?> v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -56,5 +56,15 @@ import org.robovm.apple.foundation.*;
     public void wasInterrupted(AEAssessmentSession session, NSError error) {}
     @NotImplemented("assessmentSessionDidEnd:")
     public void didEnd(AEAssessmentSession session) {}
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @NotImplemented("assessmentSessionDidUpdate:")
+    public void assessmentSessionDidUpdate(AEAssessmentSession session) {}
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @NotImplemented("assessmentSession:failedToUpdateToConfiguration:error:")
+    public void failedToUpdateToConfiguration(AEAssessmentSession session, AEAssessmentConfiguration configuration, NSError error) {}
     /*</methods>*/
 }

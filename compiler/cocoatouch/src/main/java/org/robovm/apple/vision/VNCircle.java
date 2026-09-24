@@ -57,7 +57,7 @@ import org.robovm.apple.imageio.*;
     @Method(selector = "initWithCenter:radius:")
     public VNCircle(VNPoint center, double radius) { super((SkipInit) null); initObject(init(center, radius)); }
     @Method(selector = "initWithCenter:diameter:")
-    public static  VNCircle createUsingCenterDiameter(VNPoint center, double diameter) {
+    public static VNCircle createUsingCenterDiameter(VNPoint center, double diameter) {
        VNCircle res = new VNCircle((SkipInit) null);
        res.initObject(res.initUsingCenterDiameter(center, diameter));
        return res;

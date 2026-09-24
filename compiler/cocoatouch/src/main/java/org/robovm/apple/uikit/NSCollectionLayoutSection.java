@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -83,18 +84,29 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setContentInsetsReference:")
     public native void setContentInsetsReference(UIContentInsetsReference v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "supplementaryContentInsetsReference")
+    public native UIContentInsetsReference getSupplementaryContentInsetsReference();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSupplementaryContentInsetsReference:")
+    public native void setSupplementaryContentInsetsReference(UIContentInsetsReference v);
     @Property(selector = "orthogonalScrollingBehavior")
     public native UICollectionLayoutSectionOrthogonalScrollingBehavior getOrthogonalScrollingBehavior();
     @Property(selector = "setOrthogonalScrollingBehavior:")
     public native void setOrthogonalScrollingBehavior(UICollectionLayoutSectionOrthogonalScrollingBehavior v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "orthogonalScrollingProperties")
+    public native UICollectionLayoutSectionOrthogonalScrollingProperties getOrthogonalScrollingProperties();
     @Property(selector = "boundarySupplementaryItems")
     public native NSArray<NSCollectionLayoutBoundarySupplementaryItem> getBoundarySupplementaryItems();
     @Property(selector = "setBoundarySupplementaryItems:")
     public native void setBoundarySupplementaryItems(NSArray<NSCollectionLayoutBoundarySupplementaryItem> v);
-    @Property(selector = "supplementariesFollowContentInsets")
-    public native boolean isSupplementariesFollowContentInsets();
-    @Property(selector = "setSupplementariesFollowContentInsets:")
-    public native void setSupplementariesFollowContentInsets(boolean v);
     @Property(selector = "visibleItemsInvalidationHandler")
     public native @Block("(,@ByVal,)") VoidBlock3<NSArray<?>, CGPoint, NSCollectionLayoutEnvironment> getVisibleItemsInvalidationHandler();
     @Property(selector = "setVisibleItemsInvalidationHandler:")
@@ -103,6 +115,20 @@ import org.robovm.apple.linkpresentation.*;
     public native NSArray<NSCollectionLayoutDecorationItem> getDecorationItems();
     @Property(selector = "setDecorationItems:")
     public native void setDecorationItems(NSArray<NSCollectionLayoutDecorationItem> v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supplementaryContentInsetsReference
+     */
+    @Deprecated
+    @Property(selector = "supplementariesFollowContentInsets")
+    public native boolean isSupplementariesFollowContentInsets();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use supplementaryContentInsetsReference
+     */
+    @Deprecated
+    @Property(selector = "setSupplementariesFollowContentInsets:")
+    public native void setSupplementariesFollowContentInsets(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

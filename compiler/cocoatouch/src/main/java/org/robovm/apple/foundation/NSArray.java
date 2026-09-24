@@ -192,6 +192,27 @@ import org.robovm.apple.dispatch.*;
     public NSArray() {}
     protected NSArray(Handle h, long handle) { super(h, handle); }
     protected NSArray(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithCoder:")
+    public NSArray(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    @Method(selector = "initWithArray:copyItems:")
+    public NSArray(NSArray<T> array, boolean flag) { super((SkipInit) null); initObject(init(array, flag)); }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithContentsOfURL:error:")
+    public NSArray(NSURL url, NSError.NSErrorPtr error) { super((SkipInit) null); initObject(init(url, error)); }
+    /**
+     * @deprecated Use initWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfFile:")
+    public NSArray(String path) { super((SkipInit) null); initObject(init(path)); }
+    /**
+     * @deprecated Use initWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfURL:")
+    public NSArray(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     /*</constructors>*/
     
     public NSArray(Collection<T> c) {
@@ -481,7 +502,7 @@ import org.robovm.apple.dispatch.*;
     }
     
     public static NSArray<?> read(java.io.File file) {
-        return readFile(file.getAbsolutePath());
+        return read(file.getAbsolutePath());
     }
 
     public void write(java.io.File file, boolean atomically) {
@@ -553,14 +574,115 @@ import org.robovm.apple.dispatch.*;
     protected native T getObjectAt(@MachineSizedUInt long index);
     @Method(selector = "initWithObjects:count:")
     protected native @Pointer long init(@Pointer long objects, @MachineSizedUInt long cnt);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    @Method(selector = "arrayByAddingObject:")
+    public native NSArray<T> arrayByAddingObject(T anObject);
+    @Method(selector = "arrayByAddingObjectsFromArray:")
+    public native NSArray<T> arrayByAddingObjectsFromArray(NSArray<T> otherArray);
+    @Method(selector = "componentsJoinedByString:")
+    public native String componentsJoinedByString(String separator);
     @Method(selector = "containsObject:")
     protected native boolean containsObject(T anObject);
+    @Method(selector = "descriptionWithLocale:")
+    public native String description(NSObject locale);
+    @Method(selector = "descriptionWithLocale:indent:")
+    public native String description(NSObject locale, @MachineSizedUInt long level);
+    @Method(selector = "firstObjectCommonWithArray:")
+    public native T firstObjectCommonWithArray(NSArray<T> otherArray);
     @Method(selector = "indexOfObject:")
     protected native @MachineSizedUInt long indexOfObject(T anObject);
+    @Method(selector = "indexOfObject:inRange:")
+    public native @MachineSizedUInt long indexOfObject(T anObject, @ByVal NSRange range);
+    @Method(selector = "indexOfObjectIdenticalTo:")
+    public native @MachineSizedUInt long indexOfObjectIdenticalTo(T anObject);
+    @Method(selector = "indexOfObjectIdenticalTo:inRange:")
+    public native @MachineSizedUInt long indexOfObjectIdenticalTo(T anObject, @ByVal NSRange range);
+    @Method(selector = "isEqualToArray:")
+    public native boolean isEqualToArray(NSArray<T> otherArray);
+    @Method(selector = "objectEnumerator")
+    public native NSEnumerator<T> objectEnumerator();
+    @Method(selector = "reverseObjectEnumerator")
+    public native NSEnumerator<T> reverseObjectEnumerator();
+    @Method(selector = "sortedArrayUsingSelector:")
+    public native NSArray<T> sortedArrayUsingSelector(Selector comparator);
     @Method(selector = "subarrayWithRange:")
     protected native NSArray<T> getSubarray(@ByVal NSRange range);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public boolean writeToURL(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = writeToURL(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "writeToURL:error:")
+    private native boolean writeToURL(NSURL url, NSError.NSErrorPtr error);
+    @Method(selector = "makeObjectsPerformSelector:")
+    public native void makeObjectsPerformSelector(Selector aSelector);
+    @Method(selector = "makeObjectsPerformSelector:withObject:")
+    public native void makeObjectsPerformSelector(Selector aSelector, NSObject argument);
+    @Method(selector = "objectsAtIndexes:")
+    public native NSArray<T> objectsAtIndexes(NSIndexSet indexes);
+    @Method(selector = "objectAtIndexedSubscript:")
+    public native T objectAtIndexedSubscript(@MachineSizedUInt long idx);
+    @Method(selector = "enumerateObjectsUsingBlock:")
+    public native void enumerateObjectsUsingBlock(@Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "enumerateObjectsWithOptions:usingBlock:")
+    public native void enumerateObjects(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "enumerateObjectsAtIndexes:options:usingBlock:")
+    public native void enumerateObjectsAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") VoidBlock3<T, Long, BooleanPtr> block);
+    @Method(selector = "indexOfObjectPassingTest:")
+    public native @MachineSizedUInt long indexOfObjectPassingTest(@Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexOfObjectWithOptions:passingTest:")
+    public native @MachineSizedUInt long indexOfObject(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexOfObjectAtIndexes:options:passingTest:")
+    public native @MachineSizedUInt long indexOfObjectAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsPassingTest:")
+    public native NSIndexSet indexesOfObjectsPassingTest(@Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsWithOptions:passingTest:")
+    public native NSIndexSet indexesOfObjects(NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "indexesOfObjectsAtIndexes:options:passingTest:")
+    public native NSIndexSet indexesOfObjectsAtIndexes(NSIndexSet s, NSEnumerationOptions opts, @Block("(,@MachineSizedUInt,)") Block3<T, Long, BooleanPtr, Boolean> predicate);
+    @Method(selector = "sortedArrayUsingComparator:")
+    public native NSArray<T> sortedArrayUsingComparator(@Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "sortedArrayWithOptions:usingComparator:")
+    public native NSArray<T> sortedArray(NSSortOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr);
+    @Method(selector = "indexOfObject:inSortedRange:options:usingComparator:")
+    public native @MachineSizedUInt long indexOfObjectInSortedRange(T obj, @ByVal NSRange r, NSBinarySearchingOptions opts, @Block Block2<NSObject, NSObject, NSComparisonResult> cmp);
     @Method(selector = "initWithArray:")
     protected native @Pointer long init(NSArray<T> array);
+    @Method(selector = "initWithArray:copyItems:")
+    protected native @Pointer long init(NSArray<T> array, boolean flag);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Method(selector = "initWithContentsOfURL:error:")
+    protected native @Pointer long init(NSURL url, NSError.NSErrorPtr error);
+    @Method(selector = "differenceFromArray:withOptions:usingEquivalenceTest:")
+    public native NSOrderedCollectionDifference<T> differenceFromArray(NSArray<T> other, NSOrderedCollectionDifferenceCalculationOptions options, @Block Block2<T, T, Boolean> block);
+    @Method(selector = "differenceFromArray:withOptions:")
+    public native NSOrderedCollectionDifference<T> differenceFromArray(NSArray<T> other, NSOrderedCollectionDifferenceCalculationOptions options);
+    @Method(selector = "differenceFromArray:")
+    public native NSOrderedCollectionDifference<T> differenceFromArray(NSArray<T> other);
+    @Method(selector = "arrayByApplyingDifference:")
+    public native NSArray<T> arrayByApplyingDifference(NSOrderedCollectionDifference<T> difference);
+    /**
+     * @deprecated Use initWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfFile:")
+    protected native @Pointer long init(String path);
+    /**
+     * @deprecated Use initWithContentsOfURL:error:
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfURL:")
+    protected native @Pointer long init(NSURL url);
     /**
      * @deprecated Use writeToURL:error:
      */
@@ -578,16 +700,34 @@ import org.robovm.apple.dispatch.*;
      */
     @Deprecated
     @Method(selector = "arrayWithContentsOfFile:")
-    protected static native NSArray<?> readFile(String path);
+    public static native NSArray<?> read(String path);
     /**
      * @deprecated Use arrayWithContentsOfURL:error:
      */
     @Deprecated
     @Method(selector = "arrayWithContentsOfURL:")
     public static native NSArray<?> read(NSURL url);
+    @Method(selector = "pathsMatchingExtensions:")
+    public native NSArray<NSString> pathsMatchingExtensions(NSArray<NSString> filterTypes);
+    @Method(selector = "valueForKey:")
+    public native NSObject valueForKey(String key);
+    @Method(selector = "setValue:forKey:")
+    public native void setValueForKey(NSObject value, String key);
     @Method(selector = "addObserver:toObjectsAtIndexes:forKeyPath:options:context:")
     public native void addObserver(NSObject observer, NSIndexSet indexes, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
     @Method(selector = "removeObserver:fromObjectsAtIndexes:forKeyPath:context:")
     public native void removeObserver(NSObject observer, NSIndexSet indexes, String keyPath, VoidPtr context);
+    @Method(selector = "removeObserver:fromObjectsAtIndexes:forKeyPath:")
+    public native void removeObserver(NSObject observer, NSIndexSet indexes, String keyPath);
+    @Method(selector = "addObserver:forKeyPath:options:context:")
+    private native void addObserver(NSObject observer, String keyPath, NSKeyValueObservingOptions options, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:context:")
+    private native void removeObserver(NSObject observer, String keyPath, VoidPtr context);
+    @Method(selector = "removeObserver:forKeyPath:")
+    public native void removeObserver(NSObject observer, String keyPath);
+    @Method(selector = "sortedArrayUsingDescriptors:")
+    public native NSArray<T> sortedArrayUsingDescriptors(NSArray<NSSortDescriptor> sortDescriptors);
+    @Method(selector = "filteredArrayUsingPredicate:")
+    public native NSArray<T> filteredArrayUsingPredicate(NSPredicate predicate);
     /*</methods>*/
 }

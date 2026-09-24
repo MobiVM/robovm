@@ -36,50 +36,34 @@ import org.robovm.apple.contacts.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use CLBeaconIdentityCondition
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconIdentityConstraint/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/CLBeaconIdentityCondition/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
 
     /*<ptr>*/public static class CLBeaconIdentityConstraintPtr extends Ptr<CLBeaconIdentityConstraint, CLBeaconIdentityConstraintPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CLBeaconIdentityConstraint.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    public CLBeaconIdentityConstraint() {}
+    protected CLBeaconIdentityConstraint() {}
     protected CLBeaconIdentityConstraint(Handle h, long handle) { super(h, handle); }
     protected CLBeaconIdentityConstraint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithUUID:")
-    public CLBeaconIdentityConstraint(NSUUID uuid) { super((SkipInit) null); initObject(init(uuid)); }
+    public CLBeaconIdentityConstraint(NSUUID uuid) { super(uuid); }
     @Method(selector = "initWithUUID:major:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super((SkipInit) null); initObject(init(uuid, major)); }
+    public CLBeaconIdentityConstraint(NSUUID uuid, short major) { super(uuid, major); }
     @Method(selector = "initWithUUID:major:minor:")
-    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super((SkipInit) null); initObject(init(uuid, major, minor)); }
-    @Method(selector = "initWithCoder:")
-    public CLBeaconIdentityConstraint(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
+    public CLBeaconIdentityConstraint(NSUUID uuid, short major, short minor) { super(uuid, major, minor); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "UUID")
-    public native NSUUID getUUID();
-    @Property(selector = "major")
-    public native NSNumber getMajor();
-    @Property(selector = "minor")
-    public native NSNumber getMinor();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "initWithUUID:")
-    protected native @Pointer long init(NSUUID uuid);
-    @Method(selector = "initWithUUID:major:")
-    protected native @Pointer long init(NSUUID uuid, short major);
-    @Method(selector = "initWithUUID:major:minor:")
-    protected native @Pointer long init(NSUUID uuid, short major, short minor);
-    @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
+    
     /*</methods>*/
 }

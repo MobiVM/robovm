@@ -230,6 +230,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MTKTextureLoaderOptionOrigin", optional=true)
         public static native NSString Origin();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="MTKTextureLoaderOptionLoadAsArray", optional=true)
+        public static native NSString LoadAsArray();
     }
     /*</keys>*/
 }

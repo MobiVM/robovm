@@ -70,6 +70,26 @@ import org.robovm.apple.uniformtypeid.*;
     public native CSSearchableItemAttributeSet getAttributeSet();
     @Property(selector = "setAttributeSet:")
     public native void setAttributeSet(CSSearchableItemAttributeSet v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "isUpdate")
+    public native boolean isUpdate();
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
+    @Property(selector = "setIsUpdate:")
+    public native void setIsUpdate(boolean v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "updateListenerOptions")
+    public native CSSearchableItemUpdateListenerOptions getUpdateListenerOptions();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setUpdateListenerOptions:")
+    public native void setUpdateListenerOptions(CSSearchableItemUpdateListenerOptions v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -103,6 +123,11 @@ import org.robovm.apple.uniformtypeid.*;
     
     @Method(selector = "initWithUniqueIdentifier:domainIdentifier:attributeSet:")
     protected native @Pointer long init(String uniqueIdentifier, String domainIdentifier, CSSearchableItemAttributeSet attributeSet);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "compareByRank:")
+    public native NSComparisonResult compareByRank(CSSearchableItem other);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

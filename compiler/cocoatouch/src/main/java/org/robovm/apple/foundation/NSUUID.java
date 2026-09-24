@@ -102,6 +102,13 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(@Pointer long bytes);
     @Method(selector = "getUUIDBytes:")
     protected native void getUUIDBytes(@Pointer long uuid);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "compare:")
+    public native NSComparisonResult compare(NSUUID otherUUID);
+    @Method(selector = "UUID")
+    public static native NSUUID UUID();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

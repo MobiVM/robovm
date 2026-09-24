@@ -47,6 +47,10 @@ public final class /*<name>*/MKLocalSearchCompleterResultType/*</name>*/ extends
     public static final MKLocalSearchCompleterResultType Address = new MKLocalSearchCompleterResultType(1L);
     public static final MKLocalSearchCompleterResultType PointOfInterest = new MKLocalSearchCompleterResultType(2L);
     public static final MKLocalSearchCompleterResultType Query = new MKLocalSearchCompleterResultType(4L);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final MKLocalSearchCompleterResultType PhysicalFeature = new MKLocalSearchCompleterResultType(8L);
     /*</values>*/
 
     /*<bind>*/

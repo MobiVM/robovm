@@ -67,6 +67,16 @@ import org.robovm.apple.corehaptic.*;
     public native void disconnect();
     @Method(selector = "updateConfigurationForElement:configuration:")
     public native void updateConfiguration(String element, @Block Block1<GCVirtualControllerElementConfiguration, GCVirtualControllerElementConfiguration> config);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setValue:forButtonElement:")
+    public native void setValue(double value, NSString element);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setPosition:forDirectionPadElement:")
+    public native void setPosition(org.robovm.apple.coregraphics.CGPoint position, NSString element);
     @Method(selector = "virtualControllerWithConfiguration:")
     public static native GCVirtualController virtualControllerWithConfiguration$(GCVirtualControllerConfiguration configuration);
     /*</methods>*/

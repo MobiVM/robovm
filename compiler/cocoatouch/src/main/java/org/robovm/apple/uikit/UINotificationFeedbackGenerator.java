@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,5 +67,15 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "notificationOccurred:")
     public native void notificationOccurred(UINotificationFeedbackType notificationType);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "notificationOccurred:atLocation:")
+    public native void notificationOccurred(UINotificationFeedbackType notificationType, @ByVal CGPoint location);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UINotificationFeedbackGenerator feedbackGeneratorForView(UIView view);
     /*</methods>*/
 }

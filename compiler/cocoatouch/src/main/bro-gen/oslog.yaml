@@ -1,0 +1,68 @@
+package: org.robovm.apple.oslog
+include: [foundation]
+library: OSLog
+framework: OSLog
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/OSLog.framework/Headers/OSLog.h
+
+typedefs:
+    
+enums:
+    OSLogEntryStoreCategory: {} #since 15.0
+    OSLogEntryLogLevel: {} #since 15.0
+    OSLogEntrySignpostType: {} #since 15.0
+    OSLogEnumeratorOptions: {prefix: OSLogEnumerator} #since 15.0
+    OSLogMessageComponentArgumentCategory: {} #since 15.0
+    OSLogStoreScope: {prefix: OSLogStore} #since 15.0
+
+categories:
+
+classes:
+    OSLogEntry: {} #since 15.0
+    OSLogEntryActivity: {} #since 15.0
+    OSLogEntryBoundary: {} #since 15.0
+    OSLogEntryLog: {} #since 15.0
+    OSLogEntrySignpost: {} #since 15.0
+    OSLogEnumerator: {} #since 15.0
+    OSLogMessageComponent: {} #since 15.0
+    OSLogPosition: {} #since 15.0
+    OSLogStore: #since 15.0
+        methods:
+            '-entriesEnumeratorWithOptions:position:predicate:error:':
+                name: entriesEnumerator
+                throws: NSErrorException
+            '-positionWithDate:':
+                name: positionWithDate
+            '-positionWithTimeIntervalSinceEnd:':
+                name: positionWithTimeIntervalSinceEnd
+            '-positionWithTimeIntervalSinceLatestBoot:':
+                name: positionWithTimeIntervalSinceLatestBoot
+            '+storeWithScope:error:':
+                name: store
+                throws: NSErrorException
+            '+storeWithURL:error:':
+                name: store
+                throws: NSErrorException
+protocols:
+    OSLogEntryFromProcess: {} #since 15.0
+    OSLogEntryWithPayload: {} #since 15.0
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (k?OS.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (k?OS.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (k?OS.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

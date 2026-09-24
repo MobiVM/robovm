@@ -41,7 +41,11 @@ public enum /*<name>*/MTLBlendOperation/*</name>*/ implements ValuedEnum {
     Subtract(1L),
     ReverseSubtract(2L),
     Min(3L),
-    Max(4L);
+    Max(4L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    Unspecialized(5L);
     /*</values>*/
 
     /*<bind>*/

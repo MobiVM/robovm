@@ -57,13 +57,27 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "code")
     public native INSendMessageIntentResponseCode getCode();
     /**
-     * @since Available in iOS 10.3 and later.
+     * @since Available in iOS 16.0 and later.
      */
+    @Property(selector = "sentMessages")
+    public native NSArray<INMessage> getSentMessages();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSentMessages:")
+    public native void setSentMessages(NSArray<INMessage> v);
+    /**
+     * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 16.0. Use sentMessages
+     */
+    @Deprecated
     @Property(selector = "sentMessage")
     public native INMessage getSentMessage();
     /**
      * @since Available in iOS 10.3 and later.
+     * @deprecated Deprecated in iOS 16.0. Use sentMessages
      */
+    @Deprecated
     @Property(selector = "setSentMessage:")
     public native void setSentMessage(INMessage v);
     @Property(selector = "supportsSecureCoding")

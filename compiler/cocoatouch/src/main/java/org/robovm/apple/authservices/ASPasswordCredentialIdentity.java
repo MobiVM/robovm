@@ -41,7 +41,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("AuthenticationServices") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ASPasswordCredentialIdentity/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, ASCredentialIdentity/*</implements>*/ {
 
     /*<ptr>*/public static class ASPasswordCredentialIdentityPtr extends Ptr<ASPasswordCredentialIdentity, ASPasswordCredentialIdentityPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(ASPasswordCredentialIdentity.class); }/*</bind>*/

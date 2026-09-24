@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphCompilationDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphCompilationDescriptorPtr extends Ptr<MPSGraphCompilationDescriptor, MPSGraphCompilationDescriptorPtr> {}/*</ptr>*/
@@ -51,7 +51,80 @@ import org.robovm.apple.metalps.*;
     protected MPSGraphCompilationDescriptor(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "optimizationLevel")
+    public native MPSGraphOptimization getOptimizationLevel();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setOptimizationLevel:")
+    public native void setOptimizationLevel(MPSGraphOptimization v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "waitForCompilationCompletion")
+    public native boolean isWaitForCompilationCompletion();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setWaitForCompilationCompletion:")
+    public native void setWaitForCompilationCompletion(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "compilationCompletionHandler")
+    public native @Block VoidBlock2<MPSGraphExecutable, NSError> getCompilationCompletionHandler();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCompilationCompletionHandler:")
+    public native void setCompilationCompletionHandler(@Block VoidBlock2<MPSGraphExecutable, NSError> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "dispatchQueue")
+    public native org.robovm.apple.dispatch.DispatchQueue getDispatchQueue();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setDispatchQueue:")
+    public native void setDispatchQueue(org.robovm.apple.dispatch.DispatchQueue v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Use MPSGraph will automatically provide the best performance and power efficiency with MPSGraphOptimizationLevel1.
+     */
+    @Deprecated
+    @Property(selector = "optimizationProfile")
+    public native MPSGraphOptimizationProfile getOptimizationProfile();
+    /**
+     * @since Available in iOS 15.4 and later.
+     * @deprecated Deprecated in iOS 17.0. Use MPSGraph will automatically provide the best performance and power efficiency with MPSGraphOptimizationLevel1.
+     */
+    @Deprecated
+    @Property(selector = "setOptimizationProfile:")
+    public native void setOptimizationProfile(MPSGraphOptimizationProfile v);
+    /**
+     * @since Available in iOS 17.1 and later.
+     */
+    @Property(selector = "callables")
+    public native NSDictionary<NSString, MPSGraphExecutable> getCallables();
+    /**
+     * @since Available in iOS 17.1 and later.
+     */
+    @Property(selector = "setCallables:")
+    public native void setCallables(NSDictionary<NSString, MPSGraphExecutable> v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "reducedPrecisionFastMath")
+    public native MPSGraphReducedPrecisionFastMath getReducedPrecisionFastMath();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setReducedPrecisionFastMath:")
+    public native void setReducedPrecisionFastMath(MPSGraphReducedPrecisionFastMath v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

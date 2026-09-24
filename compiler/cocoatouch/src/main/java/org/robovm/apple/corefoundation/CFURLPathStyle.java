@@ -42,11 +42,6 @@ import org.robovm.apple.coretext.*;
 public enum /*<name>*/CFURLPathStyle/*</name>*/ implements ValuedEnum {
     /*<values>*/
     POSIXPathStyle(0L),
-    /**
-     * @deprecated Deprecated in iOS 7.0. Carbon File Manager is deprecated, use kCFURLPOSIXPathStyle where possible
-     */
-    @Deprecated
-    HFSPathStyle(1L),
     WindowsPathStyle(2L);
     /*</values>*/
 

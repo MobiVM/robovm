@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIWindowScene/*</name>*/ 
     extends /*<extends>*/UIScene/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements UITraitEnvironment, UITraitChangeObservable/*</implements>*/ {
 
     /*<ptr>*/public static class UIWindowScenePtr extends Ptr<UIWindowScene, UIWindowScenePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIWindowScene.class); }/*</bind>*/
@@ -64,12 +65,27 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "screen")
     public native UIScreen getScreen();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use effectiveGeometry.interfaceOrientation instead.
+     */
+    @Deprecated
     @Property(selector = "interfaceOrientation")
     public native UIInterfaceOrientation getInterfaceOrientation();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use effectiveGeometry.coordinateSpace instead.
+     */
+    @Deprecated
     @Property(selector = "coordinateSpace")
     public native UICoordinateSpace getCoordinateSpace();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "effectiveGeometry")
+    public native UIWindowSceneGeometry getEffectiveGeometry();
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -93,6 +109,18 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setActivityItemsConfigurationSource:", strongRef = true)
     public native void setActivityItemsConfigurationSource(UIActivityItemsConfigurationProviding v);
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "windowingBehaviors")
+    public native UISceneWindowingBehaviors getWindowingBehaviors();
+    @Property(selector = "isFullScreen")
+    public native boolean isFullScreen();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "focusSystem")
@@ -107,6 +135,18 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "requestGeometryUpdateWithPreferences:errorHandler:")
+    public native void requestGeometryUpdate(UIWindowSceneGeometryPreferences geometryPreferences, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
+    @Method(selector = "traitCollectionDidChange:")
+    public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
     /*</methods>*/
 }

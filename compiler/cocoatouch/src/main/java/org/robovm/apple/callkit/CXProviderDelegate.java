@@ -70,6 +70,8 @@ import org.robovm.apple.avfoundation.*;
     void performSetGroupCallAction(CXProvider provider, CXSetGroupCallAction action);
     @Method(selector = "provider:performPlayDTMFCallAction:")
     void performPlayDTMFCallAction(CXProvider provider, CXPlayDTMFCallAction action);
+    @Method(selector = "provider:performSetTranslatingCallAction:")
+    void performSetTranslatingCallAction(CXProvider provider, CXSetTranslatingCallAction action);
     @Method(selector = "provider:timedOutPerformingAction:")
     void timedOutPerformingAction(CXProvider provider, CXAction action);
     @Method(selector = "provider:didActivateAudioSession:")

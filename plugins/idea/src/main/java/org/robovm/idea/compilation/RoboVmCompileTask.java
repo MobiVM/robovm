@@ -30,7 +30,6 @@ import com.intellij.openapi.roots.OrderEnumerator;
 import com.intellij.openapi.roots.OrderRootsEnumerator;
 import com.intellij.openapi.ui.MessageType;
 import com.intellij.openapi.util.Computable;
-import org.apache.commons.exec.CommandLine;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.AppCompiler;
@@ -38,11 +37,13 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
+import org.robovm.compiler.launcher.LauncherUtils;
 import org.robovm.compiler.plugin.PluginArgument;
-import org.robovm.compiler.target.ConsoleTarget;
+import org.robovm.compiler.target.console.ConsoleTarget;
 import org.robovm.compiler.target.ios.IOSTarget;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.idea.RoboVmLocations;
 import org.robovm.idea.RoboVmPlugin;
 import org.robovm.idea.actions.CreateFrameworkAction;
 import org.robovm.idea.actions.CreateIpaAction;
@@ -53,13 +54,7 @@ import org.robovm.idea.utils.RoboFileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Initially was a CompileTask that was attached as last chain in compilation
@@ -96,7 +91,7 @@ public class RoboVmCompileTask {
                 builder.iosProvisioningProfile(ProvisioningProfile.find(ProvisioningProfile.list(), ipaConfig.getProvisioningProfile()));
             }
             configureClassAndSourcepaths(project, ipaConfig.getModule(), builder);
-            builder.home(RoboVmPlugin.getRoboVmHome());
+            builder.home(RoboVmLocations.getRoboVmHome());
             Config config = builder.build();
 
             progress.setFraction(0.5);
@@ -146,7 +141,7 @@ public class RoboVmCompileTask {
             configureClassAndSourcepaths(project, frameworkConfig.getModule(), builder);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmPlugin.getRoboVmHome();
+            Config.Home home = RoboVmLocations.getRoboVmHome();
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);
@@ -222,7 +217,7 @@ public class RoboVmCompileTask {
             builder.arch(arch);
 
             // set the plugin args
-            List<String> args = splitArgs(runConfig.getArguments());
+            List<String> args = LauncherUtils.splitCommandLine(runConfig.getArguments());
             applyPluginArguments(args, builder);
 
             // set build dir and install dir, pattern
@@ -241,7 +236,7 @@ public class RoboVmCompileTask {
             configureTarget(builder, runConfig);
 
             // Set the Home to be used, create the Config and AppCompiler
-            Config.Home home = RoboVmPlugin.getRoboVmHome();
+            Config.Home home = RoboVmLocations.getRoboVmHome();
             if (home.isDev()) {
                 builder.useDebugLibs(true);
                 builder.dumpIntermediates(true);
@@ -327,7 +322,7 @@ public class RoboVmCompileTask {
         // specified in a Maven/Gradle build file, in which case they'll
         // turn up as order entries. We filter them out here.
         // FIXME junit needs to include test classes
-        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().recursively().withoutSdk().compileOnly().productionOnly();
+        OrderEnumerator classes = ModuleRootManager.getInstance(module).orderEntries().recursively().withoutSdk().productionOnly();
         Set<File> classPaths = new HashSet<>();
         for (String path : classes.getPathsList().getPathList()) {
             if (!RoboVmPlugin.isSdkLibrary(path)) {
@@ -442,28 +437,6 @@ public class RoboVmCompileTask {
         } catch (IOException ignored) {
         }
         return -1;
-    }
-
-    private static String unquoteArg(String arg) {
-        if (arg.startsWith("\"") && arg.endsWith("\"")) {
-            return arg.substring(1, arg.length() - 1);
-        }
-        return arg;
-    }
-
-    public static List<String> splitArgs(String args) {
-        if (args == null || args.trim().length() == 0) {
-            return new ArrayList<>();
-        }
-        String[] parts = CommandLine.parse("foo " + args).toStrings();
-        if (parts.length <= 1) {
-            return Collections.emptyList();
-        }
-        List<String> result = new ArrayList<>(parts.length - 1);
-        for (int i = 1; i < parts.length; i++) {
-            result.add(unquoteArg(parts[i]));
-        }
-        return result;
     }
 
     /**

@@ -54,7 +54,10 @@ import org.robovm.apple.corelocation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    @Method(selector = "addAndSetUpAccessoriesForTopology:completionHandler:")
-    public native void addAndSetUpAccessories(HMMatterTopology topology, @Block VoidBlock1<NSError> completion);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "performAccessorySetupUsingRequest:completionHandler:")
+    public native void performAccessorySetupUsingRequest(HMAccessorySetupRequest request, @Block VoidBlock2<HMAccessorySetupResult, NSError> completion);
     /*</methods>*/
 }

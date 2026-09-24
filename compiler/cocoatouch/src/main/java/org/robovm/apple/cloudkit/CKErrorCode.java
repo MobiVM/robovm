@@ -103,7 +103,11 @@ public enum /*<name>*/CKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    AccountTemporarilyUnavailable(36L);
+    AccountTemporarilyUnavailable(36L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    ParticipantAlreadyInvited(37L);
     /*</values>*/
 
     /*<bind>*/

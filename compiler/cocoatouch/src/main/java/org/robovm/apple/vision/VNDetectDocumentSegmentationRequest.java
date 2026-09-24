@@ -49,7 +49,9 @@ import org.robovm.apple.imageio.*;
 
     /*<ptr>*/public static class VNDetectDocumentSegmentationRequestPtr extends Ptr<VNDetectDocumentSegmentationRequest, VNDetectDocumentSegmentationRequestPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(VNDetectDocumentSegmentationRequest.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final int Revision1 = 1;
+    /*</constants>*/
     /*<constructors>*/
     public VNDetectDocumentSegmentationRequest() {}
     protected VNDetectDocumentSegmentationRequest(Handle h, long handle) { super(h, handle); }

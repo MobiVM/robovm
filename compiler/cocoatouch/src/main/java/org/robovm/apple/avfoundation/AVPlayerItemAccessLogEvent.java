@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,12 +59,6 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerItemAccessLogEvent(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use numberOfMediaRequests
-     */
-    @Deprecated
-    @Property(selector = "numberOfSegmentsDownloaded")
-    public native @MachineSizedSInt long getNumberOfSegmentsDownloaded();
     @Property(selector = "numberOfMediaRequests")
     public native @MachineSizedSInt long getNumberOfMediaRequests();
     @Property(selector = "playbackStartDate")

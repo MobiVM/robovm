@@ -41,7 +41,11 @@ public enum /*<name>*/NWErrorDomain/*</name>*/ implements ValuedEnum {
     invalid(0L),
     posix(1L),
     dns(2L),
-    tls(3L);
+    tls(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    wifi_aware(4L);
     /*</values>*/
 
     /*<bind>*/

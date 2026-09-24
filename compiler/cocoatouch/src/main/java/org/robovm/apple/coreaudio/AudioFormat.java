@@ -76,7 +76,8 @@ public enum /*<name>*/AudioFormat/*</name>*/ implements ValuedEnum {
     AES3(1634038579L),
     EnhancedAC3(1700998451L),
     FLAC(1718378851L),
-    Opus(1869641075L);
+    Opus(1869641075L),
+    APAC(1634754915L);
     /*</values>*/
 
     /*<bind>*/

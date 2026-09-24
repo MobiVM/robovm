@@ -15,22 +15,32 @@
  */
 package org.robovm.gradle.tasks;
 
-import java.io.File;
-
-import org.gradle.api.GradleException;
+import org.apache.tools.ant.types.Commandline;
+import org.gradle.api.tasks.Internal;
+import org.gradle.api.tasks.UntrackedTask;
+import org.gradle.api.tasks.options.Option;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.ios.DeviceType;
-import org.robovm.compiler.target.ios.IOSSimulatorLaunchParameters;
-import org.gradle.api.tasks.Internal;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
+import org.robovm.gradle.RoboVMGradleException;
+
+import java.io.File;
+import java.util.Arrays;
 
 /**
  *
  */
+@UntrackedTask(because = "caching not implemented")
 public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
+    private String[] args;
+
+    @Option(option = "args", description = "Command line arguments passed to app.")
+    public void setArgs(String args) {
+        this.args = Commandline.translateCommandline(args);
+    }
 
     protected void launch(DeviceType type) {
         try {
@@ -43,46 +53,18 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
             Config config = compiler.getConfig();
             IOSSimulatorLaunchParameters launchParameters = (IOSSimulatorLaunchParameters) config.getTarget().createLaunchParameters();
             launchParameters.setDeviceType(type);
-
-            if (extension.getStdoutFifo() != null) {
-                File stdoutFifo = new File(extension.getStdoutFifo());
-                boolean isWritable;
-
-                if (stdoutFifo.exists()) {
-                    isWritable = stdoutFifo.isFile() && stdoutFifo.canWrite();
-                } else {
-                    File parent = stdoutFifo.getParentFile();
-                    isWritable = parent != null && parent.isDirectory() && parent.canWrite();
-                }
-
-                if (!isWritable) {
-                    throw new GradleException("Unwritable 'stdoutFifo' specified for RoboVM compile: " + stdoutFifo);
-                }
-
-                launchParameters.setStdoutFifo(stdoutFifo);
+            if (args != null) {
+                launchParameters.setArguments(Arrays.asList(args));
             }
 
-            if (extension.getStderrFifo() != null) {
-                File stderrFifo = new File(extension.getStderrFifo());
-                boolean isWritable;
-
-                if (stderrFifo.exists()) {
-                    isWritable = stderrFifo.isFile() && stderrFifo.canWrite();
-                } else {
-                    File parent = stderrFifo.getParentFile();
-                    isWritable = parent != null && parent.isDirectory() && parent.canWrite();
-                }
-
-                if (!isWritable) {
-                    throw new GradleException("Unwritable 'stderrFifo' specified for RoboVM compile: " + stderrFifo);
-                }
-
-                launchParameters.setStderrFifo(stderrFifo);
-            }
+            // redirect stdout and stderr to gradle console, ignoring parent in chain
+            // as not returning the process but just running it synchronously
+            launchParameters.getStdoutChain().registerLink((p) -> System.out );
+            launchParameters.getStderrChain().registerLink((p) -> System.err );
 
             compiler.launch(launchParameters);
         } catch (Throwable t) {
-            throw new GradleException("Failed to launch simulator", t);
+            throw new RoboVMGradleException("Failed to launch simulator", t);
         }
     }
 
@@ -95,7 +77,6 @@ public abstract class AbstractSimulatorTask extends AbstractRoboVMTask {
     @Internal
     protected abstract Arch getArch();
 
-    @Internal
     protected DeviceType getDeviceType(DeviceType.DeviceFamily family) {
         String deviceName = (String) project.getProperties().get("robovm.device.name");
         String sdkVersion = (String) project.getProperties().get("robovm.sdk.version");

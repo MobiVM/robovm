@@ -51,7 +51,11 @@ public enum /*<name>*/INPlayMediaIntentResponseCode/*</name>*/ implements Valued
     FailureRequiringAppLaunch(7L),
     FailureUnknownMediaType(8L),
     FailureNoUnplayedContent(9L),
-    FailureRestrictedContent(10L);
+    FailureRestrictedContent(10L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    FailureMaxStreamLimitReached(11L);
     /*</values>*/
 
     /*<bind>*/

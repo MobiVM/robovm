@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     public String getName() { return null; }
     @NotImplemented("device")
     public MTLDevice getDevice() { return null; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("gpuResourceID")
+    public @ByVal MTLResourceID getGpuResourceID() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

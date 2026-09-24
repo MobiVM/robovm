@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -82,6 +83,11 @@ import org.robovm.apple.linkpresentation.*;
     @Deprecated
     @Property(selector = "setPrefersExtendedRange:")
     public native void setPrefersExtendedRange(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "supportsHighDynamicRange")
+    public native boolean supportsHighDynamicRange();
     /**
      * @since Available in iOS 12.0 and later.
      */

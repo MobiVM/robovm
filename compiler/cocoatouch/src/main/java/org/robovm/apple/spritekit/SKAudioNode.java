@@ -65,6 +65,17 @@ import org.robovm.apple.coreanimation.*;
     public SKAudioNode(String name) { super((SkipInit) null); initObject(init(name)); }
     @Method(selector = "initWithURL:")
     public SKAudioNode(NSURL url) { super((SkipInit) null); initObject(init(url)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKAudioNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKAudioNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     public SKAudioNode(File file) {
         this(file.getAbsolutePath());
@@ -95,5 +106,10 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(String name);
     @Method(selector = "initWithURL:")
     protected native @Pointer long init(NSURL url);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

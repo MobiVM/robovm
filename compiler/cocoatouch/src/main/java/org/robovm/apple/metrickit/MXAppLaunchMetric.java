@@ -58,6 +58,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "histogrammedOptimizedTimeToFirstDraw")
     public native MXHistogram<NSUnitDuration> getHistogrammedOptimizedTimeToFirstDraw();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "histogrammedExtendedLaunch")
+    public native MXHistogram<NSUnitDuration> getHistogrammedExtendedLaunch();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

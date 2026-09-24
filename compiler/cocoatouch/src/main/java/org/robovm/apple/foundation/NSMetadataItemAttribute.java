@@ -106,11 +106,6 @@ import org.robovm.apple.dispatch.*;
     public static final NSMetadataItemAttribute ContentTypeTree = new NSMetadataItemAttribute("ContentTypeTree");
     public static final NSMetadataItemAttribute IsUbiquitous = new NSMetadataItemAttribute("IsUbiquitous");
     public static final NSMetadataItemAttribute HasUnresolvedConflicts = new NSMetadataItemAttribute("HasUnresolvedConflicts");
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
-     */
-    @Deprecated
-    public static final NSMetadataItemAttribute IsDownloaded = new NSMetadataItemAttribute("IsDownloaded");
     public static final NSMetadataItemAttribute DownloadingStatus = new NSMetadataItemAttribute("DownloadingStatus");
     public static final NSMetadataItemAttribute IsDownloading = new NSMetadataItemAttribute("IsDownloading");
     public static final NSMetadataItemAttribute IsUploaded = new NSMetadataItemAttribute("IsUploaded");
@@ -130,7 +125,7 @@ import org.robovm.apple.dispatch.*;
     public static final NSMetadataItemAttribute ContentRelevance = new NSMetadataItemAttribute("ContentRelevance");
     /*</constants>*/
     
-    private static /*<name>*/NSMetadataItemAttribute/*</name>*/[] values = new /*<name>*/NSMetadataItemAttribute/*</name>*/[] {/*<value_list>*/FSName, DisplayName, URL, Path, FSSize, FSCreationDate, FSContentChangeDate, ContentType, ContentTypeTree, IsUbiquitous, HasUnresolvedConflicts, IsDownloaded, DownloadingStatus, IsDownloading, IsUploaded, IsUploading, PercentDownloaded, PercentUploaded, DownloadingError, UploadingError, DownloadRequested, IsExternalDocument, ContainerDisplayName, URLInLocalContainer, IsShared, ContentRelevance/*</value_list>*/};
+    private static /*<name>*/NSMetadataItemAttribute/*</name>*/[] values = new /*<name>*/NSMetadataItemAttribute/*</name>*/[] {/*<value_list>*/FSName, DisplayName, URL, Path, FSSize, FSCreationDate, FSContentChangeDate, ContentType, ContentTypeTree, IsUbiquitous, HasUnresolvedConflicts, DownloadingStatus, IsDownloading, IsUploaded, IsUploading, PercentDownloaded, PercentUploaded, DownloadingError, UploadingError, DownloadRequested, IsExternalDocument, ContainerDisplayName, URLInLocalContainer, IsShared, ContentRelevance/*</value_list>*/};
     
     /*<name>*/NSMetadataItemAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -175,12 +170,6 @@ import org.robovm.apple.dispatch.*;
         public static native NSString IsUbiquitous();
         @GlobalValue(symbol="NSMetadataUbiquitousItemHasUnresolvedConflictsKey", optional=true)
         public static native NSString HasUnresolvedConflicts();
-        /**
-         * @deprecated Deprecated in iOS 7.0. Use NSMetadataUbiquitousItemDownloadingStatusKey instead
-         */
-        @Deprecated
-        @GlobalValue(symbol="NSMetadataUbiquitousItemIsDownloadedKey", optional=true)
-        public static native NSString IsDownloaded();
         @GlobalValue(symbol="NSMetadataUbiquitousItemDownloadingStatusKey", optional=true)
         public static native NSString DownloadingStatus();
         @GlobalValue(symbol="NSMetadataUbiquitousItemIsDownloadingKey", optional=true)

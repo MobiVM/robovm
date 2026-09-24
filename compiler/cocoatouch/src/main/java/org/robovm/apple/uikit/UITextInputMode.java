@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,7 +54,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 4.2 and later.
          */
-        public static NSObjectProtocol observeCurrentModeDidChange(final VoidBlock1<UITextInputMode> block) {
+        public static NSObject observeCurrentModeDidChange(final VoidBlock1<UITextInputMode> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CurrentInputModeDidChange(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -85,12 +86,6 @@ import org.robovm.apple.linkpresentation.*;
     @GlobalValue(symbol="UITextInputCurrentInputModeDidChangeNotification", optional=true)
     public static native NSString CurrentInputModeDidChange();
     
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Method(selector = "currentInputMode")
-    public static native UITextInputMode getCurrentInputMode();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

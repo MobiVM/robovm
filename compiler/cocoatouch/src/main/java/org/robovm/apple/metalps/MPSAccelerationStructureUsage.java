@@ -35,9 +35,10 @@ import org.robovm.apple.metal.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.0 and later.
+ * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MPSAccelerationStructureUsage/*</name>*/ extends Bits</*<name>*/MPSAccelerationStructureUsage/*</name>*/> {
     /*<values>*/
     public static final MPSAccelerationStructureUsage None = new MPSAccelerationStructureUsage(0L);
@@ -45,11 +46,15 @@ public final class /*<name>*/MPSAccelerationStructureUsage/*</name>*/ extends Bi
     public static final MPSAccelerationStructureUsage FrequentRebuild = new MPSAccelerationStructureUsage(2L);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     public static final MPSAccelerationStructureUsage PreferGPUBuild = new MPSAccelerationStructureUsage(4L);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use Metal ray tracing API instead
      */
+    @Deprecated
     public static final MPSAccelerationStructureUsage PreferCPUBuild = new MPSAccelerationStructureUsage(8L);
     /*</values>*/
 

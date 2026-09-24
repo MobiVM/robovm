@@ -59,6 +59,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setTransactionAuthor:")
     public native void setTransactionAuthor(String v);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "shouldRefetchContacts")
+    public native boolean shouldRefetchContacts();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "setShouldRefetchContacts:")
+    public native void setShouldRefetchContacts(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -15,6 +15,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  * Straight forward implementation of byte array constant to reduce amount of memory
  * required to do same foe ArrayConstant
@@ -35,17 +38,20 @@ public class ByteArrayConstant extends Constant {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
+    public void write(Writer writer) throws IOException {
+        writer.write('[');
         for (int i = 0; i < values.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append("i8 ");
-            sb.append(values[i]);
+            writer.write("i8 ");
+            writer.write(Byte.toString(values[i]));
         }
-        sb.append(']');
-        return sb.toString();
+        writer.write(']');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

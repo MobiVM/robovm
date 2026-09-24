@@ -64,6 +64,14 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "installName")
     public native String getInstallName();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -82,12 +90,17 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newFunctionWithName:constantValues:error:")
-    private native MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues, NSError.NSErrorPtr error);
+    public native MTLFunction newFunction(String name, MTLFunctionConstantValues constantValues, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "newFunctionWithName:constantValues:completionHandler:")
     public native void newFunction(String name, MTLFunctionConstantValues constantValues, @Block VoidBlock2<MTLFunction, NSError> completionHandler);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "reflectionForFunctionWithName:")
+    public native MTLFunctionReflection reflectionForFunction(String functionName);
     /**
      * @since Available in iOS 14.0 and later.
      */

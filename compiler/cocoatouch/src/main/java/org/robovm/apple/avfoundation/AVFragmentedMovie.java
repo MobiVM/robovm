@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,10 +66,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithData:options:")
     public AVFragmentedMovie(NSData data, NSDictionary<NSString, ?> options) { super(data, options); }
+    public AVFragmentedMovie(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
-    public native NSArray<AVFragmentedMovieTrack> getTracks();
+    public native NSArray<? extends AVMovieTrack> getTracks();
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -99,6 +102,12 @@ import org.robovm.apple.audiotoolbox.*;
     
     @Method(selector = "movieTypes")
     public static native NSArray<NSString> movieTypes();
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVFragmentedMovieTrack getTrack(int trackID);
     /**
@@ -106,6 +115,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
     /**
@@ -113,6 +126,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. loadTracksWithMediaCharacteristic:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**

@@ -78,7 +78,11 @@ public enum /*<name>*/LAError/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 11.0 and later.
      */
     BiometryLockout(-8L),
-    NotInteractive(-1004L);
+    NotInteractive(-1004L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    CompanionNotAvailable(-11L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(LAError.class); }/*</bind>*/

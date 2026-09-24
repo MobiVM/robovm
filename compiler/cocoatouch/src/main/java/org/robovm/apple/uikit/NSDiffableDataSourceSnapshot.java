@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -120,7 +121,7 @@ import org.robovm.apple.linkpresentation.*;
     @Method(selector = "reconfigureItemsWithIdentifiers:")
     public native void reconfigureItems(NSArray<ItemIdentifierType> identifiers);
     @Method(selector = "appendSectionsWithIdentifiers:")
-    public native void appendSections(NSArray<?> sectionIdentifiers);
+    public native void appendSections(NSArray<SectionIdentifierType> sectionIdentifiers);
     @Method(selector = "insertSectionsWithIdentifiers:beforeSectionWithIdentifier:")
     public native void insertSectionsBeforeSection(NSArray<SectionIdentifierType> sectionIdentifiers, SectionIdentifierType toSectionIdentifier);
     @Method(selector = "insertSectionsWithIdentifiers:afterSectionWithIdentifier:")

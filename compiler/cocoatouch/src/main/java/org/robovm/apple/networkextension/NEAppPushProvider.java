@@ -82,9 +82,19 @@ import org.robovm.apple.network.*;
     @Method(selector = "reportIncomingCallWithUserInfo:")
     public native void reportIncomingCall(NSDictionary<?, ?> userInfo);
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Method(selector = "reportPushToTalkMessageWithUserInfo:")
+    public native void reportPushToTalkMessage(NSDictionary<?, ?> userInfo);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "handleTimerEvent")
     public native void handleTimerEvent();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "unmatchEthernet")
+    public native void unmatchEthernet();
     /*</methods>*/
 }

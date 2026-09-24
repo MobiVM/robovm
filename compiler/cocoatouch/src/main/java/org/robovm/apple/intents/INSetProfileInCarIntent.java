@@ -62,7 +62,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileLabel:defaultProfile:")
-    public static  INSetProfileInCarIntent createWithProfileLabel(NSNumber profileNumber, String profileLabel, NSNumber defaultProfile) {
+    public static INSetProfileInCarIntent createWithProfileLabel(NSNumber profileNumber, String profileLabel, NSNumber defaultProfile) {
        INSetProfileInCarIntent res = new INSetProfileInCarIntent((SkipInit) null);
        res.initObject(res.initWithProfileLabel(profileNumber, profileLabel, defaultProfile));
        return res;
@@ -73,7 +73,7 @@ import org.robovm.apple.coregraphics.*;
      */
     @Deprecated
     @Method(selector = "initWithProfileNumber:profileName:defaultProfile:")
-    public static  INSetProfileInCarIntent createWithProfileName(NSNumber profileNumber, String profileName, NSNumber defaultProfile) {
+    public static INSetProfileInCarIntent createWithProfileName(NSNumber profileNumber, String profileName, NSNumber defaultProfile) {
        INSetProfileInCarIntent res = new INSetProfileInCarIntent((SkipInit) null);
        res.initObject(res.initWithProfileName(profileNumber, profileName, defaultProfile));
        return res;

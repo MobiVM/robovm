@@ -35,9 +35,10 @@ import org.robovm.apple.metalps.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 14.0 and later.
+ * @deprecated Deprecated in iOS 17.4. Use Metal Performance Shaders Graph or BNNS instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MLCompute") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MLCompute") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MLCYOLOLossLayer/*</name>*/ 
     extends /*<extends>*/MLCLossLayer/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -50,6 +51,7 @@ import org.robovm.apple.metalps.*;
     protected MLCYOLOLossLayer(Handle h, long handle) { super(h, handle); }
     protected MLCYOLOLossLayer(SkipInit skipInit) { super(skipInit); }
     public MLCYOLOLossLayer(MLCYOLOLossDescriptor lossDescriptor) { super((Handle) null, create(lossDescriptor)); retain(getHandle()); }
+    public MLCYOLOLossLayer(MLCLossDescriptor lossDescriptor, MLCTensor weights) { super((Handle) null, create(lossDescriptor, weights)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "yoloLossDescriptor")
@@ -59,6 +61,8 @@ import org.robovm.apple.metalps.*;
     /*<methods>*/
     @Method(selector = "layerWithDescriptor:")
     protected static native @Pointer long create(MLCYOLOLossDescriptor lossDescriptor);
+    @Method(selector = "layerWithDescriptor:weights:")
+    protected static native @Pointer long create(MLCLossDescriptor lossDescriptor, MLCTensor weights);
     @Method(selector = "softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:")
     public static native MLCYOLOLossLayer createSoftmaxCrossEntropyLoss(MLCReductionType reductionType, float labelSmoothing, @MachineSizedUInt long classCount, float weight);
     @Method(selector = "softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:")

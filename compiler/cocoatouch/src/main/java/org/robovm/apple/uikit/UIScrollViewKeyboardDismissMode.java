@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +50,9 @@ public enum /*<name>*/UIScrollViewKeyboardDismissMode/*</name>*/ implements Valu
     /*<values>*/
     None(0L),
     OnDrag(1L),
-    Interactive(2L);
+    Interactive(2L),
+    OnDragWithAccessory(3L),
+    InteractiveWithAccessory(4L);
     /*</values>*/
 
     private final long n;

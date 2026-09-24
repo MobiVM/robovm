@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +71,10 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      */
     NetworkAccessRequired(3164L),
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    NetworkError(3169L),
+    /**
      * @since Available in iOS 15.0 and later.
      */
     IdentifierNotFound(3201L),
@@ -102,6 +107,10 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      */
     RequestNotSupportedForAsset(3306L),
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    LimitExceeded(3307L),
+    /**
      * @since Available in iOS 15.0 and later.
      */
     AccessRestricted(3310L),
@@ -109,6 +118,18 @@ public enum /*<name>*/PHPhotosError/*</name>*/ implements NSErrorCode {
      * @since Available in iOS 15.0 and later.
      */
     AccessUserDenied(3311L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    LibraryInFileProviderSyncRoot(5423L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    PersistentChangeTokenExpired(3105L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    PersistentChangeDetailsUnavailable(3210L),
     /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 15.0. Use PHPhotosErrorInternalError

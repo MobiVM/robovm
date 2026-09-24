@@ -38,7 +38,15 @@ import org.robovm.apple.network.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/NEVPNIKEv2IntegrityAlgorithm/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @deprecated Deprecated in iOS 17.0. SHA-1 is not supported
+     */
+    @Deprecated
     SHA96(1L),
+    /**
+     * @deprecated Deprecated in iOS 17.0. SHA-1 is not supported
+     */
+    @Deprecated
     SHA160(2L),
     SHA256(3L),
     SHA384(4L),

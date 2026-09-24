@@ -37,7 +37,7 @@ import org.robovm.apple.coreanimation.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 15.0.
+ * @deprecated Deprecated in iOS 15.0. This has been replaced by functionality in AdServices.framework's AAAttribution class.
  */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +64,16 @@ import org.robovm.apple.audiotoolbox.*;
     @WeaklyLinked
     @Property(selector = "sampleBufferCallbackQueue")
     public native DispatchQueue getSampleBufferCallbackQueue();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "spatialAudioChannelLayoutTag")
+    public native AudioChannelLayoutTag getSpatialAudioChannelLayoutTag();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSpatialAudioChannelLayoutTag:")
+    public native void setSpatialAudioChannelLayoutTag(AudioChannelLayoutTag v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

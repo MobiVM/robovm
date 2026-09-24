@@ -42,11 +42,12 @@ import org.robovm.apple.iosurface.*;
     extends /*<extends>*/CFType/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
+    /*<ptr>*/public static class CVBufferPtr extends Ptr<CVBuffer, CVBufferPtr> {}/*</ptr>*/
     /*<bind>*/static { Bro.bind(CVBuffer.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
+    /*<constructors>*/
+    protected CVBuffer() {}
+    /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     protected CFType getAttachment(CFString key) {

@@ -157,6 +157,11 @@ import org.robovm.apple.coregraphics.*;
          */
         @GlobalValue(symbol="kCGImageAuxiliaryDataTypeHDRGainMap", optional=true)
         public static native CFString HDRGainMap();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCGImageAuxiliaryDataTypeISOGainMap", optional=true)
+        public static native CFString ISOGainMap();
     }
     /*</keys>*/
 }

@@ -76,6 +76,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setRegion:")
     public native void setRegion(@ByVal MKCoordinateRegion v);
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "regionPriority")
+    public native MKLocalSearchRegionPriority getRegionPriority();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setRegionPriority:")
+    public native void setRegionPriority(MKLocalSearchRegionPriority v);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "resultTypes")
@@ -95,6 +105,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setPointOfInterestFilter:")
     public native void setPointOfInterestFilter(MKPointOfInterestFilter v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "addressFilter")
+    public native MKAddressFilter getAddressFilter();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAddressFilter:")
+    public native void setAddressFilter(MKAddressFilter v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

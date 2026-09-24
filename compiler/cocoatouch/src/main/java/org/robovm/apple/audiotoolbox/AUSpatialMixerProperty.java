@@ -49,7 +49,19 @@ public enum /*<name>*/AUSpatialMixerProperty/*</name>*/ implements AUPropertyTyp
     DistanceParams(3010L),
     AttenuationCurve(3013L),
     OutputType(3100L),
-    PointSourceInHeadMode(3103L);
+    PointSourceInHeadMode(3103L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    EnableHeadTracking(3111L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    PersonalizedHRTFMode(3113L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    AnyInputIsUsingPersonalizedHRTF(3116L);
     /*</values>*/
 
     /*<bind>*/

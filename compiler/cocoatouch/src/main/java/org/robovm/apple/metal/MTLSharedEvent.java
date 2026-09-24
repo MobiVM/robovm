@@ -56,6 +56,11 @@ import org.robovm.apple.dispatch.*;
     void notifyListener(MTLSharedEventListener listener, long value, @Block VoidBlock2<MTLSharedEvent, Long> block);
     @Method(selector = "newSharedEventHandle")
     MTLSharedEventHandle newSharedEventHandle();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "waitUntilSignaledValue:timeoutMS:")
+    boolean waitUntilSignaledValue(long value, long milliseconds);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

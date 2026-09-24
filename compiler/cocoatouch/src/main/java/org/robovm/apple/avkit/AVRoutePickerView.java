@@ -34,6 +34,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,8 +64,14 @@ import org.robovm.apple.coreanimation.*;
     public native AVRoutePickerViewDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(AVRoutePickerViewDelegate v);
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "activeTintColor")
     public native UIColor getActiveTintColor();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
     @Property(selector = "setActiveTintColor:")
     public native void setActiveTintColor(UIColor v);
     /**
@@ -77,6 +84,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setPrioritizesVideoDevices:")
     public native void setPrioritizesVideoDevices(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "customRoutingController")
+    public native AVCustomRoutingController getCustomRoutingController();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setCustomRoutingController:")
+    public native void setCustomRoutingController(AVCustomRoutingController v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

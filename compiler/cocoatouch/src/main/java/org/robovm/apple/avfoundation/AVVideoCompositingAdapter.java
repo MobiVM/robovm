@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +72,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @NotImplemented("supportsHDRSourceFrames")
     public boolean supportsHDRSourceFrames() { return false; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("supportsSourceTaggedBuffers")
+    public boolean supportsSourceTaggedBuffers() { return false; }
     /**
      * @since Available in iOS 15.0 and later.
      */

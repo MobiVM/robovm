@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,7 +60,22 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 12.1 and later.
+     * @deprecated Deprecated in iOS 17.5. Use pencilInteraction(_:didReceiveTap:) instead
+     */
+    @Deprecated
     @NotImplemented("pencilInteractionDidTap:")
     public void pencilInteractionDidTap(UIPencilInteraction interaction) {}
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @NotImplemented("pencilInteraction:didReceiveTap:")
+    public void didReceiveTap(UIPencilInteraction interaction, UIPencilInteractionTap tap) {}
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @NotImplemented("pencilInteraction:didReceiveSqueeze:")
+    public void didReceiveSqueeze(UIPencilInteraction interaction, UIPencilInteractionSqueeze squeeze) {}
     /*</methods>*/
 }

@@ -15,19 +15,30 @@
  */
 package org.robovm.gradle.tasks;
 
-import org.gradle.api.GradleException;
+import org.apache.tools.ant.types.Commandline;
+import org.gradle.api.tasks.UntrackedTask;
+import org.gradle.api.tasks.options.Option;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
-import org.robovm.compiler.target.ConsoleTarget;
-import org.robovm.compiler.target.LaunchParameters;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.target.console.ConsoleTarget;
+import org.robovm.gradle.RoboVMGradleException;
+
+import java.util.Arrays;
 
 /**
  *
  */
+@UntrackedTask(because = "caching not implemented")
 public class ConsoleTask extends AbstractRoboVMTask {
+    private String[] args;
+
+    @Option(option = "args", description = "Command line arguments passed to app.")
+    public void setArgs(String args) {
+        this.args = Commandline.translateCommandline(args);
+    }
 
     @Override
     public void invoke() {
@@ -40,9 +51,12 @@ public class ConsoleTask extends AbstractRoboVMTask {
             AppCompiler compiler = build(OS.getDefaultOS(), arch, ConsoleTarget.TYPE);
             Config config = compiler.getConfig();
             LaunchParameters launchParameters = config.getTarget().createLaunchParameters();
+            if (args != null) {
+                launchParameters.setArguments(Arrays.asList(args));
+            }
             compiler.launch(launchParameters);
         } catch (Throwable t) {
-            throw new GradleException("Failed to launch console application", t);
+            throw new RoboVMGradleException("Failed to launch console application", t);
         }
     }
 }

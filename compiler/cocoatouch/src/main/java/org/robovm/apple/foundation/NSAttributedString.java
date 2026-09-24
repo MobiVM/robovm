@@ -124,6 +124,22 @@ import org.robovm.apple.dispatch.*;
         super(NSAttributedStringExtensions.create(attachment));
         retain(getHandle());
     }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @WeaklyLinked
+    public NSAttributedString(NSTextAttachment attachment, NSDictionary<NSString, ?> attributes) {
+        super(NSAttributedStringExtensions.create(attachment, attributes));
+        retain(getHandle());
+    }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @WeaklyLinked
+    public NSAttributedString(NSAdaptiveImageGlyph adaptiveImageGlyph, NSDictionary<NSString, ?> attributes) {
+        super(NSAttributedStringExtensions.create(adaptiveImageGlyph, attributes));
+        retain(getHandle());
+    }
     /*<properties>*/
     @Property(selector = "string")
     public native String getString();
@@ -275,7 +291,7 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(NSURL url, NSAttributedStringDocumentAttributes options) throws NSErrorException {
         super((SkipInit) null);
         long h = NSObject.alloc(ObjCClass.getByType(NSAttributedString.class));
-        initObject(NSAttributedStringExtensions.init(ObjCObject.toObjCObject(NSAttributedString.class, h, NSObject.FLAG_NO_RETAIN), url, options, null));
+        initObject(NSAttributedStringExtensions.init(h, url, options, null));
     }
     /**
      * 
@@ -289,7 +305,7 @@ import org.robovm.apple.dispatch.*;
     public NSAttributedString(NSData data, NSAttributedStringDocumentAttributes options) throws NSErrorException {
         super((SkipInit) null);
         long h = NSObject.alloc(ObjCClass.getByType(NSAttributedString.class));
-        initObject(NSAttributedStringExtensions.init(ObjCObject.toObjCObject(NSAttributedString.class, h, NSObject.FLAG_NO_RETAIN), data, options, null));
+        initObject(NSAttributedStringExtensions.init(h, data, options, null));
     }
     /**
      * 
@@ -400,9 +416,25 @@ import org.robovm.apple.dispatch.*;
     }
     /*<methods>*/
     @Library("Foundation")
+    public static class FormattingContextKeys {
+        static { Bro.bind(FormattingContextKeys.class); }
+
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionConceptsKey", optional=true)
+        public static native String InflectionConcepts();
+    }
+
+    @Library("Foundation")
     public static class Keys {
         static { Bro.bind(Keys.class); }
 
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="NSMarkdownSourcePositionAttributeName", optional=true)
+        public static native NSString MarkdownSourcePosition();
         /**
          * @since Available in iOS 15.0 and later.
          */
@@ -414,20 +446,51 @@ import org.robovm.apple.dispatch.*;
         @GlobalValue(symbol="NSMorphologyAttributeName", optional=true)
         public static native NSString Morphology();
         /**
-         * @since Available in iOS 15.0 and later.
+         * @since Available in iOS 18.0 and later.
          */
-        @GlobalValue(symbol="NSInflectionRuleAttributeName", optional=true)
-        public static native NSString InflectionRule();
+        @GlobalValue(symbol="NSLocalizedNumberFormatAttributeName", optional=true)
+        public static native NSString LocalizedNumberFormat();
         /**
-         * @since Available in iOS 15.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
-        @GlobalValue(symbol="NSInflectionAlternativeAttributeName", optional=true)
-        public static native NSString InflectionAlternative();
+        @GlobalValue(symbol="NSListItemDelimiterAttributeName", optional=true)
+        public static native NSString ListItemDelimiter();
         /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="NSPresentationIntentAttributeName", optional=true)
         public static native NSString PresentationIntent();
+    }
+
+    @Library("Foundation")
+    public static class KeysInflection {
+        static { Bro.bind(KeysInflection.class); }
+
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionRuleAttributeName", optional=true)
+        public static native NSString Rule();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAgreementArgumentAttributeName", optional=true)
+        public static native NSString AgreementArgument();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAgreementConceptAttributeName", optional=true)
+        public static native NSString AgreementConcept();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionReferentConceptAttributeName", optional=true)
+        public static native NSString ReferentConcept();
+        /**
+         * @since Available in iOS 15.0 and later.
+         */
+        @GlobalValue(symbol="NSInflectionAlternativeAttributeName", optional=true)
+        public static native NSString Alternative();
     }
 
     @Library("Foundation")

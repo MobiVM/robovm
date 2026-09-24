@@ -76,6 +76,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "drawingGestureRecognizer")
     public native UIGestureRecognizer getDrawingGestureRecognizer();
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isDrawingEnabled")
+    public native boolean isDrawingEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setDrawingEnabled:")
+    public native void setDrawingEnabled(boolean v);
+    /**
      * @since Available in iOS 13.0 and later.
      * @deprecated Deprecated in iOS 14.0. Use 'drawingPolicy' property.
      */
@@ -99,6 +109,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setDrawingPolicy:")
     public native void setDrawingPolicy(PKCanvasViewDrawingPolicy v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "maximumSupportedContentVersion")
+    public native PKContentVersion getMaximumSupportedContentVersion();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setMaximumSupportedContentVersion:")
+    public native void setMaximumSupportedContentVersion(PKContentVersion v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
@@ -115,8 +135,18 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")
     public static native UIUserInterfaceLayoutDirection getUserInterfaceLayoutDirection(UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use toolPickerSelectedToolItemDidChange instead.
+     */
+    @Deprecated
     @Method(selector = "toolPickerSelectedToolDidChange:")
     public native void toolPickerSelectedToolDidChange(PKToolPicker toolPicker);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "toolPickerSelectedToolItemDidChange:")
+    public native void toolPickerSelectedToolItemDidChange(PKToolPicker toolPicker);
     @Method(selector = "toolPickerIsRulerActiveDidChange:")
     public native void toolPickerIsRulerActiveDidChange(PKToolPicker toolPicker);
     @Method(selector = "toolPickerVisibilityDidChange:")

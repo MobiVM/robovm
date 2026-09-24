@@ -44,7 +44,7 @@ import org.robovm.apple.dispatch.*;
 /*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSNull/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding/*</implements>*/, CAAction /* CAAction is added as category in QuartzCore */{
 
     /*<ptr>*/public static class NSNullPtr extends Ptr<NSNull, NSNullPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSNull.class); }/*</bind>*/
@@ -68,4 +68,8 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
+
+    /* CAAction implementation */
+    @Method(selector = "runActionForKey:object:arguments:")
+    public native void runAction(String event, NSObject anObject, NSDictionary<NSString, ?> dict);
 }

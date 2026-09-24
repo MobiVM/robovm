@@ -107,6 +107,11 @@ import org.robovm.apple.dispatch.*;
     public native void resume();
     @Method(selector = "suspend")
     public native void suspend();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "activate")
+    public native void activate();
     @Method(selector = "invalidate")
     public native void invalidate();
     /**

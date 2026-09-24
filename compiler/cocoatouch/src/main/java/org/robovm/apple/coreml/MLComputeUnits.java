@@ -45,7 +45,11 @@ public enum /*<name>*/MLComputeUnits/*</name>*/ implements ValuedEnum {
     /*<values>*/
     CPUOnly(0L),
     CPUAndGPU(1L),
-    All(2L);
+    All(2L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    CPUAndNeuralEngine(3L);
     /*</values>*/
 
     /*<bind>*/

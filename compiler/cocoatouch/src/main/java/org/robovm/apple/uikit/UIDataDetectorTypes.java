@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,14 @@ public final class /*<name>*/UIDataDetectorTypes/*</name>*/ extends Bits</*<name
      * @since Available in iOS 10.0 and later.
      */
     public static final UIDataDetectorTypes LookupSuggestion = new UIDataDetectorTypes(64L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final UIDataDetectorTypes Money = new UIDataDetectorTypes(128L);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final UIDataDetectorTypes PhysicalValue = new UIDataDetectorTypes(256L);
     public static final UIDataDetectorTypes None = new UIDataDetectorTypes(0L);
     public static final UIDataDetectorTypes All = new UIDataDetectorTypes(Bro.IS_32BIT ? 0xffffffffL : 0xffffffffffffffffL);
     /*</values>*/

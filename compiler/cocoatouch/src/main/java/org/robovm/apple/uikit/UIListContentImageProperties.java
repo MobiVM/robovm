@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -90,6 +91,36 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isAccessibilityIgnoresInvertColors();
     @Property(selector = "setAccessibilityIgnoresInvertColors:")
     public native void setAccessibilityIgnoresInvertColors(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "strokeWidth")
+    public native @MachineSizedFloat double getStrokeWidth();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setStrokeWidth:")
+    public native void setStrokeWidth(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "strokeColor")
+    public native UIColor getStrokeColor();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setStrokeColor:")
+    public native void setStrokeColor(UIColor v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "strokeColorTransformer")
+    public native @Block Block1<UIColor, UIColor> getStrokeColorTransformer();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setStrokeColorTransformer:")
+    public native void setStrokeColorTransformer(@Block Block1<UIColor, UIColor> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -103,6 +134,11 @@ import org.robovm.apple.linkpresentation.*;
     
     @Method(selector = "resolvedTintColorForTintColor:")
     public native UIColor resolvedTintColorForTintColor(UIColor tintColor);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "resolvedStrokeColorForTintColor:")
+    public native UIColor resolvedStrokeColorForTintColor(UIColor tintColor);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

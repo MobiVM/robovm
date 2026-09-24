@@ -54,19 +54,21 @@ import org.robovm.apple.fileprovider.*;
     public CKUserIdentity(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    @Property(selector = "userRecordID")
+    public native CKRecordID getUserRecordID();
     @Property(selector = "lookupInfo")
     public native CKUserIdentityLookupInfo getLookupInfo();
     @Property(selector = "nameComponents")
     public native NSPersonNameComponents getNameComponents();
-    @Property(selector = "userRecordID")
-    public native CKRecordID getUserRecordID();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
-    @Property(selector = "contactIdentifiers")
-    public native NSArray<NSString> getContactIdentifiers();
     @Property(selector = "hasiCloudAccount")
     public native boolean isHasiCloudAccount();
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
+     */
+    @Deprecated
+    @Property(selector = "contactIdentifiers")
+    public native NSArray<NSString> getContactIdentifiers();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

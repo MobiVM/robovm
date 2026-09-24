@@ -116,6 +116,36 @@ import org.robovm.apple.network.*;
     @Property(selector = "setExcludeLocalNetworks:")
     public native void setExcludeLocalNetworks(boolean v);
     /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "excludeCellularServices")
+    public native boolean isExcludeCellularServices();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setExcludeCellularServices:")
+    public native void setExcludeCellularServices(boolean v);
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "excludeAPNs")
+    public native boolean isExcludeAPNs();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "setExcludeAPNs:")
+    public native void setExcludeAPNs(boolean v);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "excludeDeviceCommunication")
+    public native boolean isExcludeDeviceCommunication();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "setExcludeDeviceCommunication:")
+    public native void setExcludeDeviceCommunication(boolean v);
+    /**
      * @since Available in iOS 14.2 and later.
      */
     @Property(selector = "enforceRoutes")
@@ -125,6 +155,16 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setEnforceRoutes:")
     public native void setEnforceRoutes(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "sliceUUID")
+    public native String getSliceUUID();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSliceUUID:")
+    public native void setSliceUUID(String v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

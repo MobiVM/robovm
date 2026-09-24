@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,5 +72,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVVideoTransferFunction_ITU_R_2100_HLG", optional=true)
     public static native String ITU_R_2100_HLG();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoTransferFunction_Linear", optional=true)
+    public static native String Linear();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="AVVideoTransferFunction_IEC_sRGB", optional=true)
+    public static native String IEC_sRGB();
     /*</methods>*/
 }

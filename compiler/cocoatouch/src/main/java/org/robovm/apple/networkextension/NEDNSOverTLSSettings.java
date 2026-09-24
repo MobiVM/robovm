@@ -66,6 +66,16 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setServerName:")
     public native void setServerName(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "identityReference")
+    public native NSData getIdentityReference();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setIdentityReference:")
+    public native void setIdentityReference(NSData v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

@@ -51,6 +51,7 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNGenerateOpticalFlowRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
     /*</constants>*/
     /*<constructors>*/
     protected VNGenerateOpticalFlowRequest() {}
@@ -126,6 +127,16 @@ import org.robovm.apple.imageio.*;
     public native int getOutputPixelFormat();
     @Property(selector = "setOutputPixelFormat:")
     public native void setOutputPixelFormat(int v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "keepNetworkOutput")
+    public native boolean isKeepNetworkOutput();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setKeepNetworkOutput:")
+    public native void setKeepNetworkOutput(boolean v);
     @Property(selector = "results")
     public native NSArray<VNPixelBufferObservation> getResults();
     /**

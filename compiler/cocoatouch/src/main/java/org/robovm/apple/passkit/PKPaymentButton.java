@@ -57,6 +57,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     public PKPaymentButton(PKPaymentButtonType type, PKPaymentButtonStyle style) { super((SkipInit) null); initObject(init(type, style)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:disableCardArt:")
+    public PKPaymentButton(PKPaymentButtonType type, PKPaymentButtonStyle style, boolean disableCardArt) { super((SkipInit) null); initObject(init(type, style, disableCardArt)); }
     @Method(selector = "initWithFrame:")
     public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame) { super(frame); }
     @Method(selector = "initWithCoder:")
@@ -66,6 +71,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithFrame:primaryAction:")
     public PKPaymentButton(@ByVal org.robovm.apple.coregraphics.CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
+    public PKPaymentButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public PKPaymentButton(UIButtonType buttonType, UIAction primaryAction) { super((Handle) null, create0(buttonType, primaryAction)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public PKPaymentButton(UIButtonConfiguration configuration, UIAction primaryAction) { super((Handle) null, create(configuration, primaryAction)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -90,6 +104,13 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:")
     protected native @Pointer long init(PKPaymentButtonType type, PKPaymentButtonStyle style);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithPaymentButtonType:paymentButtonStyle:disableCardArt:")
+    protected native @Pointer long init(PKPaymentButtonType type, PKPaymentButtonStyle style, boolean disableCardArt);
+    @Method(selector = "buttonWithType:")
+    protected static native @Pointer long create0(UIButtonType buttonType);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "systemButtonWithImage:target:action:")
@@ -99,6 +120,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "systemButtonWithPrimaryAction:")
     public static native PKPaymentButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "buttonWithType:primaryAction:")
+    protected static native @Pointer long create0(UIButtonType buttonType, UIAction primaryAction);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "buttonWithConfiguration:primaryAction:")
+    protected static native @Pointer long create(UIButtonConfiguration configuration, UIAction primaryAction);
     /**
      * @since Available in iOS 9.0 and later.
      */

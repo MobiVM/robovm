@@ -74,6 +74,11 @@ import org.robovm.apple.uikit.*;
     public native void setVersionIdentifiers(NSSet<?> v);
     @Property(selector = "entityVersionHashesByName")
     public native NSDictionary<NSString, NSData> getEntityVersionHashesByName();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "versionChecksum")
+    public native String getVersionChecksum();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -99,6 +104,20 @@ import org.robovm.apple.uikit.*;
     public static native NSManagedObjectModel createFromBundles(NSArray<NSBundle> bundles, NSPersistentStoreMetadata metadata);
     @Method(selector = "modelByMergingModels:forStoreMetadata:")
     public static native NSManagedObjectModel createByMergingModels(NSArray<NSManagedObjectModel> models, NSPersistentStoreMetadata metadata);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static NSDictionary<NSString, NSString> getChecksumsForVersionedModel(NSURL modelURL) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSDictionary<NSString, NSString> result = getChecksumsForVersionedModel(modelURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "checksumsForVersionedModelAtURL:error:")
+    private static native NSDictionary<NSString, NSString> getChecksumsForVersionedModel(NSURL modelURL, NSError.NSErrorPtr error);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

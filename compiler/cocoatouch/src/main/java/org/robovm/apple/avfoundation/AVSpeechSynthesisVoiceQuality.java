@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,7 +51,11 @@ import org.robovm.apple.audiotoolbox.*;
 public enum /*<name>*/AVSpeechSynthesisVoiceQuality/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(1L),
-    Enhanced(2L);
+    Enhanced(2L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Premium(3L);
     /*</values>*/
 
     /*<bind>*/

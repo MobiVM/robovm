@@ -478,6 +478,11 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCVPixelFormatContainsGrayscale", optional=true)
         public static native CFString ContainsGrayscale();
         /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatContainsSenselArray", optional=true)
+        public static native CFString ContainsSenselArray();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="kCVPixelFormatComponentRange", optional=true)
@@ -505,6 +510,11 @@ import org.robovm.apple.iosurface.*;
         public static native CFString BlockHeight();
         @GlobalValue(symbol="kCVPixelFormatBitsPerBlock", optional=true)
         public static native CFString BitsPerBlock();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCVPixelFormatBitsPerComponent", optional=true)
+        public static native CFString BitsPerComponent();
         @GlobalValue(symbol="kCVPixelFormatBlockHorizontalAlignment", optional=true)
         public static native CFString BlockHorizontalAlignment();
         @GlobalValue(symbol="kCVPixelFormatBlockVerticalAlignment", optional=true)

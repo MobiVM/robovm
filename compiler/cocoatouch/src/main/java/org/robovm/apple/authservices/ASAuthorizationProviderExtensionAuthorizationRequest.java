@@ -55,7 +55,7 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "url")
     public native NSURL getUrl();
     @Property(selector = "requestedOperation")
-    public native String getRequestedOperation();
+    public native ASAuthorizationProviderAuthorizationOperation getRequestedOperation();
     @Property(selector = "httpHeaders")
     public native NSDictionary<NSString, NSString> getHttpHeaders();
     @Property(selector = "httpBody")
@@ -83,6 +83,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "localizedCallerDisplayName")
     public native String getLocalizedCallerDisplayName();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Property(selector = "isUserInterfaceEnabled")
+    public native boolean isUserInterfaceEnabled();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

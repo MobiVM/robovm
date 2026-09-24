@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -114,9 +115,13 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 15.0 and later.
      */
     public static final UIActionIdentifier PasteAndSearch = new UIActionIdentifier("PasteAndSearch");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final UIActionIdentifier NewFromPasteboard = new UIActionIdentifier("NewFromPasteboard");
     /*</constants>*/
     
-    private static /*<name>*/UIActionIdentifier/*</name>*/[] values = new /*<name>*/UIActionIdentifier/*</name>*/[] {/*<value_list>*/Paste, PasteAndMatchStyle, PasteAndGo, PasteAndSearch/*</value_list>*/};
+    private static /*<name>*/UIActionIdentifier/*</name>*/[] values = new /*<name>*/UIActionIdentifier/*</name>*/[] {/*<value_list>*/Paste, PasteAndMatchStyle, PasteAndGo, PasteAndSearch, NewFromPasteboard/*</value_list>*/};
     
     /*<name>*/UIActionIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -159,6 +164,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIActionPasteAndSearch", optional=true)
         public static native NSString PasteAndSearch();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="UIActionNewFromPasteboard", optional=true)
+        public static native NSString NewFromPasteboard();
         /*</values>*/
     }
 }

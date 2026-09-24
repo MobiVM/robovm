@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -64,6 +66,7 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "initWithData:options:")
     public AVMovie(NSData data, NSDictionary<NSString, ?> options) { super((SkipInit) null); initObject(init(data, options)); }
+    public AVMovie(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "URL")
@@ -95,6 +98,16 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @GlobalValue(symbol="AVMovieReferenceRestrictionsKey", optional=true)
     public static native NSString referenceRestrictionsKey();
+    @Library("AVFoundation")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+
+        /**
+         * @since Available in iOS 13.0 and later.
+         */
+        @GlobalValue(symbol="AVMovieShouldSupportAliasDataReferencesKey", optional=true)
+        public static native NSString ShouldSupportAliasDataReferences();
+    }
     
     @Method(selector = "initWithURL:options:")
     protected native @Pointer long init(NSURL URL, NSDictionary<NSString, ?> options);
@@ -105,6 +118,8 @@ import org.robovm.apple.audiotoolbox.*;
     protected native @Pointer long init(NSData data, NSDictionary<NSString, ?> options);
     @Method(selector = "movieTypes")
     public static native NSArray<NSString> movieTypes();
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -120,6 +135,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "isCompatibleWithFileType:")
     public native boolean isCompatibleWithFileType(String fileType);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTrackWithTrackID:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "trackWithTrackID:")
     public native AVMovieTrack getTrack(int trackID);
     /**
@@ -127,6 +146,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTrackWithTrackID:completionHandler:")
     public native void loadTrack(int trackID, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaType:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaType:")
     public native NSArray<AVAssetTrack> getTracksWithType(AVMediaType mediaType);
     /**
@@ -134,6 +157,10 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaType:completionHandler:")
     public native void loadTracksWithMediaType(String mediaType, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use loadTracksWithMediaCharacteristic:completionHandler: instead
+     */
+    @Deprecated
     @Method(selector = "tracksWithMediaCharacteristic:")
     public native NSArray<AVAssetTrack> getTracksWithCharacteristic(AVMediaCharacteristic mediaCharacteristic);
     /**

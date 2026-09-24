@@ -46,7 +46,7 @@ import org.robovm.apple.uikit.*;
         /**
          * @since Available in iOS 7.0 and later.
          */
-        public static NSObjectProtocol observeRegistrationsChanged(final Runnable block) {
+        public static NSObject observeRegistrationsChanged(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(RegistrationsChangedNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -115,6 +115,21 @@ import org.robovm.apple.uikit.*;
     protected native OSStatus getDescription0(AudioComponentDescription.AudioComponentDescriptionPtr desc);
     @Bridge(symbol="AudioComponentGetVersion", optional=true)
     protected native OSStatus getVersion0(IntPtr outVersion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentCopyConfigurationInfo", optional=true)
+    public native OSStatus copyConfigurationInfo(NSDictionary.NSDictionaryPtr outConfigurationInfo);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentValidate", optional=true)
+    public native OSStatus validate(NSDictionary inValidationParameters, IntPtr outValidationResult);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="AudioComponentValidateWithResults", optional=true)
+    public native OSStatus validateWithResults(NSDictionary inValidationParameters, @Block VoidBlock2<AudioComponentValidationResult, NSDictionary> inCompletionHandler);
     /**
      * @deprecated Deprecated in iOS 14.0. Use AudioComponentCopyIcon
      */

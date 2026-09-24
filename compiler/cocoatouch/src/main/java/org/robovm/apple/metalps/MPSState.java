@@ -62,13 +62,6 @@ import org.robovm.apple.metal.*;
     public MPSState(MTLDevice device, MPSStateResourceList resourceList) { super((SkipInit) null); initObject(init(device, resourceList)); }
     @Method(selector = "initWithResources:")
     public MPSState(NSArray<?> resources) { super((SkipInit) null); initObject(init(resources)); }
-    public MPSState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize) { super((Handle) null, create(cmdBuf, bufferSize)); retain(getHandle()); }
-    public MPSState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor) { super((Handle) null, create(cmdBuf, descriptor)); retain(getHandle()); }
-    public MPSState(MTLCommandBuffer cmdBuf) { super((Handle) null, create(cmdBuf)); retain(getHandle()); }
-    /**
-     * @since Available in iOS 11.3 and later.
-     */
-    public MPSState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList) { super((Handle) null, create(commandBuffer, resourceList)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resourceCount")
@@ -127,15 +120,15 @@ import org.robovm.apple.metal.*;
     @Method(selector = "destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:")
     public native MPSImageDescriptor getDestinationImageDescriptor(NSArray<MPSImage> sourceImages, NSArray<MPSState> sourceStates, MPSKernel kernel, MPSImageDescriptor inDescriptor);
     @Method(selector = "temporaryStateWithCommandBuffer:bufferSize:")
-    protected static native @Pointer long create(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
+    public static native MPSState createTemporaryState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
     @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
-    protected static native @Pointer long create(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
+    public static native MPSState createTemporaryState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
     @Method(selector = "temporaryStateWithCommandBuffer:")
-    protected static native @Pointer long create(MTLCommandBuffer cmdBuf);
+    public static native MPSState createTemporaryState(MTLCommandBuffer cmdBuf);
     /**
      * @since Available in iOS 11.3 and later.
      */
     @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
-    protected static native @Pointer long create(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
+    public static native MPSState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

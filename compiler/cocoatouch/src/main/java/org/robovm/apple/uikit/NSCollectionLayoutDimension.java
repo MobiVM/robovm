@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +69,11 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isAbsolute();
     @Property(selector = "isEstimated")
     public native boolean isEstimated();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "isUniformAcrossSiblings")
+    public native boolean isUniformAcrossSiblings();
     @Property(selector = "dimension")
     public native @MachineSizedFloat double getDimension();
     /*</properties>*/
@@ -81,5 +87,10 @@ import org.robovm.apple.linkpresentation.*;
     public static native NSCollectionLayoutDimension absoluteDimension(@MachineSizedFloat double absoluteDimension);
     @Method(selector = "estimatedDimension:")
     public static native NSCollectionLayoutDimension estimatedDimension(@MachineSizedFloat double estimatedDimension);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "uniformAcrossSiblingsWithEstimate:")
+    public static native NSCollectionLayoutDimension uniformAcrossSiblings(@MachineSizedFloat double estimatedDimension);
     /*</methods>*/
 }

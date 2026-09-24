@@ -16,10 +16,14 @@
 package org.robovm.debugger.delegates;
 
 import org.robovm.debugger.DebuggerException;
+import org.robovm.debugger.hooks.HookConsts;
+import org.robovm.debugger.hooks.payloads.HooksCmdResponse;
+import org.robovm.debugger.hooks.payloads.HooksSuspendThreadPayload;
 import org.robovm.debugger.jdwp.JdwpConsts;
 import org.robovm.debugger.jdwp.handlers.thread.IJdwpThreadDelegate;
 import org.robovm.debugger.state.instances.VmStackTrace;
 import org.robovm.debugger.state.instances.VmThread;
+import org.robovm.debugger.utils.StackTraceConverter;
 
 /**
  * @author Demyan Kimitsa
@@ -49,8 +53,13 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         // suspend only if suspend count was 0 (after call it is 1)
         int suspendCount = thread.markSuspended();
         if (suspendCount == 1) {
-            delegates.hooksApi().threadSuspend(thread.threadPtr());
-            thread.setStatus(VmThread.Status.SUSPENDED);
+            HooksCmdResponse resp = delegates.hooksApi().threadSuspend(thread.threadPtr());
+            HooksSuspendThreadPayload payload = resp.result();
+            VmStackTrace[] stack = StackTraceConverter.convertCallStack(HookConsts.commands.THREAD_SUSPEND,
+                    payload.getCallStack(), delegates, delegates.log());
+            setThreadStack(thread, stack);
+            thread.setJdwpThreadStatus(payload.getJvmThreadState());
+            thread.setHookSuspendStatus(payload.getSuspendThreadStatus());
         }
     }
 
@@ -69,7 +78,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
             delegates.events().restepBeforeResume(thread);
 
             delegates.hooksApi().threadResume(thread.threadPtr());
-            thread.setStatus(VmThread.Status.RUNNING);
+            thread.setJdwpThreadStatus(JdwpConsts.ThreadStatus.RUNNING);
+            thread.setHookSuspendStatus(HookConsts.threadSuspendStatus.RUNNING);
             setThreadStack(thread, null);
         }
     }
@@ -104,7 +114,8 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
         if (keepSuspended) {
             setThreadStack(thread, stack);
             thread.markSuspended();
-            thread.setStatus(VmThread.Status.SUSPENDED);
+            thread.setJdwpThreadStatus(JdwpConsts.ThreadStatus.RUNNING);
+            thread.setHookSuspendStatus(HookConsts.threadSuspendStatus.SUSPENDED_SOFT);
         } else {
             if (thread.suspendCount() == 0) {
                 // thread is not suspended and this event is filtered out, so resume thread
@@ -167,7 +178,7 @@ public class ThreadDelegate implements IJdwpThreadDelegate {
      */
     public VmThread anySuspendedThread() {
         for (VmThread thread : delegates.state().threads()) {
-            if (thread.status() == VmThread.Status.SUSPENDED)
+            if (thread.getHookSuspendStatus() == HookConsts.threadSuspendStatus.SUSPENDED_SOFT)
                 return thread;
         }
         return null;

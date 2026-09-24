@@ -41,7 +41,15 @@ public enum /*<name>*/MTLAccelerationStructureInstanceDescriptorType/*</name>*/ 
     /*<values>*/
     Default(0L),
     UserID(1L),
-    Motion(2L);
+    Motion(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    Indirect(3L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    IndirectMotion(4L);
     /*</values>*/
 
     /*<bind>*/

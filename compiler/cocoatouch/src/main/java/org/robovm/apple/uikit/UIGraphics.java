@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -73,12 +74,28 @@ import org.robovm.apple.linkpresentation.*;
     public static native void rectFrame(@ByVal CGRect rect);
     @Bridge(symbol="UIRectClip", optional=true)
     public static native void rectClip(@ByVal CGRect rect);
+    /**
+     * @deprecated Replace usage of UIGraphicsBeginImageContext with UIGraphicsImageRenderer.
+     */
+    @Deprecated
     @Bridge(symbol="UIGraphicsBeginImageContext", optional=true)
     public static native void beginImageContext(@ByVal CGSize size);
+    /**
+     * @deprecated Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer.
+     */
+    @Deprecated
     @Bridge(symbol="UIGraphicsBeginImageContextWithOptions", optional=true)
     public static native void beginImageContext(@ByVal CGSize size, boolean opaque, @MachineSizedFloat double scale);
+    /**
+     * @deprecated Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage.
+     */
+    @Deprecated
     @Bridge(symbol="UIGraphicsGetImageFromCurrentImageContext", optional=true)
     public static native UIImage getImageFromCurrentImageContext();
+    /**
+     * @deprecated UIGraphicsEndImageContext should only be used alongside UIGraphicsBeginImageContext[WithOptions].
+     */
+    @Deprecated
     @Bridge(symbol="UIGraphicsEndImageContext", optional=true)
     public static native void endImageContext();
     @Bridge(symbol="UIGraphicsBeginPDFContextToFile", optional=true)

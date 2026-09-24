@@ -1,5 +1,5 @@
 package: org.robovm.apple.sensorkit
-include: [foundation]
+include: [foundation, coremedia, arkit, speech, soundanalysis]
 library: SensorKit
 framework: SensorKit
 clang_args: ['-x', 'objective-c']
@@ -19,6 +19,19 @@ enums:
     SRCrownOrientation: {} #since 14.0
     SRTextInputSessionType: {} #since 15.0
     SRKeyboardMetricsSentimentCategory: {} #since 15.0
+    SRWristTemperatureCondition: {} #since 17.0
+    SRMediaEventType: {prefix: SRMediaEvent} #since 16.4
+    SRSpeechMetricsSessionFlags: {} #since 17.0
+    SRFaceMetricsContext: {} #since 17.0
+    SRElectrocardiogramSessionState: {} #since 17.4
+    SRElectrocardiogramSessionGuidance: {} #since 17.4
+    SRElectrocardiogramDataFlags: {} #since 17.4
+    SRElectrocardiogramLead: {} #since 17.4
+    SRAcousticSettingsSampleLifetime: {} #since 26.0
+    SRAcousticSettingsAccessibilityBackgroundSoundsName: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting: {} #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication: {} #since 26.0
 categories:
     SensorKit@NSDate:
         methods:
@@ -57,6 +70,27 @@ classes:
     SRWebUsage: {} #since 14.0
     SRWristDetection: {} #since 14.0
     SRTextInputSession: {} #since 15.0
+    SRSupplementalCategory: {} #since 16.0
+    SRAudioLevel: {} #since 17.0
+    SRFaceMetrics: {} #since 17.0
+    SRFaceMetricsExpression: {} #since 17.0
+    SRMediaEvent: {} #since 16.4
+    SRSpeechExpression: {} #since 17.0
+    SRSpeechMetrics: {} #since 17.0
+    SRWristTemperature: {} #since 17.0
+    SRWristTemperatureSession: {} #since 17.0
+    SRAcousticSettings: { } #since 26.0
+    SRAcousticSettingsAccessibility: { } #since 26.0
+    SRAcousticSettingsAccessibilityBackgroundSounds: { } #since 26.0
+    SRAcousticSettingsAccessibilityHeadphoneAccommodations: { } #since 26.0
+    SRAcousticSettingsMusicEQ: { } #since 26.0
+    SRElectrocardiogramData: { } #since 17.4
+    SRElectrocardiogramSample: { } #since 17.4
+    SRElectrocardiogramSession: { } #since 17.4
+    SRPhotoplethysmogramAccelerometerSample: { } #since 17.4
+    SRPhotoplethysmogramOpticalSample: { } #since 17.4
+    SRPhotoplethysmogramSample: { } #since 17.4
+    SRSleepSession: { } #since 26.0
 protocols:
     SRSensorReaderDelegate: #since 14.0
         methods:
@@ -97,6 +131,14 @@ typed_enums:
         enum: SRDeviceUsageCategory
         prefix: SRDeviceUsageCategory
         type: NSString
+    SRPhotoplethysmogramOpticalSampleCondition:
+        enum: SRPhotoplethysmogramOpticalSampleCondition
+        prefix: SRPhotoplethysmogramOpticalSampleCondition
+        type: NSString
+    SRPhotoplethysmogramSampleUsage:
+        enum: SRPhotoplethysmogramSampleUsage
+        prefix: SRPhotoplethysmogramSampleUsage
+        type: NSString
 
 values:
     SRErrorDomain:
@@ -109,6 +151,9 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    SR_ARKIT_SUPPORTED:
+        exclude: true
+
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?SR.*):
         class: FIXME

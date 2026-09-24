@@ -7,29 +7,32 @@ To use the RoboVM plugin, include in your build script:
 ```groovy
 // Pull the plugin from Maven Central
 buildscript {
-    project.ext.roboVMVersion = "2.0.0-SNAPSHOT"
-    project.ext.roboVMGradleVersion = "2.0.0-SNAPSHOT"
-
+    ext.roboVMVersion = "2.3.19-SNAPSHOT"
     repositories {
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url 'https://central.sonatype.com/repository/maven-snapshots' }
     }
     dependencies {
-        classpath group: 'com.mobidevelop.robovm', name: 'robovm-gradle-plugin', version: project.roboVMGradleVersion
+        classpath "com.mobidevelop.robovm:robovm-gradle-plugin:${roboVMVersion}"
     }
 }
+
+apply plugin: 'java'
 
 // Apply the plugin
 apply plugin: 'robovm'
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://central.sonatype.com/repository/maven-snapshots' }
 }
 
 dependencies {
-    compile group: 'com.mobidevelop.robovm', name: 'robovm-rt', version: project.roboVMVersion
-    compile group: 'com.mobidevelop.robovm', name: 'robovm-cocoatouch', version: project.roboVMVersion
+    implementation "com.mobidevelop.robovm:robovm-rt:${roboVMVersion}"
+    implementation "com.mobidevelop.robovm:robovm-cocoatouch:${roboVMVersion}"
 }
 
 robovm {
@@ -104,12 +107,6 @@ The `robovmInstall` task is very similar to the `robovmArchive` task but doesn't
 
 ```
 gradle -Probovm.archs=x86:x86_64 robovmInstall
-```
-
-To enable bitcode when running `createIPA`, `robovmArchive` or `robovmInstall` add `-Probovm.enableBitcode=true`:
-
-```
-gradle -Probovm.enableBitcode=true -Probovm.archs=thumbv7:arm64 robovmArchive
 ```
 
 ## Headless code signing

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,6 +61,7 @@ import org.robovm.apple.linkpresentation.*;
     protected UIStoryboardPopoverSegue(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithIdentifier:source:destination:")
     public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination) { super(identifier, source, destination); }
+    public UIStoryboardPopoverSegue(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler) { super((Handle) null, create(identifier, source, destination, performHandler)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "popoverController")
@@ -67,6 +69,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "segueWithIdentifier:source:destination:performHandler:")
+    protected static native @Pointer long create(String identifier, UIViewController source, UIViewController destination, @Block Runnable performHandler);
     /*</methods>*/
 }

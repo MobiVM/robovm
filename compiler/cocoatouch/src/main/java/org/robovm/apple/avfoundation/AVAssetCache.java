@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,5 +68,15 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "mediaSelectionOptionsInMediaSelectionGroup:")
     public native NSArray<AVMediaSelectionOption> mediaSelectionOptionsInMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mediaPresentationSettingsForMediaSelectionGroup:")
+    public native NSDictionary<?, ?> mediaPresentationSettingsForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "mediaPresentationLanguagesForMediaSelectionGroup:")
+    public native NSArray<NSString> mediaPresentationLanguagesForMediaSelectionGroup(AVMediaSelectionGroup mediaSelectionGroup);
     /*</methods>*/
 }

@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +65,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVMediaSelectionOption getDefaultOption();
     @Property(selector = "allowsEmptySelection")
     public native boolean allowsEmptySelection();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "customMediaSelectionScheme")
+    public native AVCustomMediaSelectionScheme getCustomMediaSelectionScheme();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

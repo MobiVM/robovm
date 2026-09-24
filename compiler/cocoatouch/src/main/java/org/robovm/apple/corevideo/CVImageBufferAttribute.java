@@ -124,12 +124,32 @@ import org.robovm.apple.iosurface.*;
      */
     public static final CVImageBufferAttribute AmbientViewingEnvironment = new CVImageBufferAttribute("AmbientViewingEnvironment");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CVImageBufferAttribute SceneIllumination = new CVImageBufferAttribute("SceneIllumination");
+    /**
      * @since Available in iOS 15.0 and later.
      */
     public static final CVImageBufferAttribute RegionOfInterest = new CVImageBufferAttribute("RegionOfInterest");
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    public static final CVImageBufferAttribute LogTransferFunction = new CVImageBufferAttribute("LogTransferFunction");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CVImageBufferAttribute DisplayMaskRectangle = new CVImageBufferAttribute("DisplayMaskRectangle");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CVImageBufferAttribute DisplayMaskRectangleStereoLeft = new CVImageBufferAttribute("DisplayMaskRectangleStereoLeft");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final CVImageBufferAttribute DisplayMaskRectangleStereoRight = new CVImageBufferAttribute("DisplayMaskRectangleStereoRight");
     /*</constants>*/
     
-    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo, AmbientViewingEnvironment, RegionOfInterest/*</value_list>*/};
+    private static /*<name>*/CVImageBufferAttribute/*</name>*/[] values = new /*<name>*/CVImageBufferAttribute/*</name>*/[] {/*<value_list>*/CGColorSpace, CleanAperture, PreferredCleanAperture, FieldCount, FieldDetail, PixelAspectRatio, DisplayDimensions, GammaLevel, ICCProfile, YCbCrMatrix, ColorPrimaries, TransferFunction, ChromaLocationTopField, ChromaLocationBottomField, ChromaSubsampling, AlphaChannelIsOpaque, AlphaChannelMode, MasteringDisplayColorVolume, ContentLightLevelInfo, AmbientViewingEnvironment, SceneIllumination, RegionOfInterest, LogTransferFunction, DisplayMaskRectangle, DisplayMaskRectangleStereoLeft, DisplayMaskRectangleStereoRight/*</value_list>*/};
     
     /*<name>*/CVImageBufferAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -208,10 +228,35 @@ import org.robovm.apple.iosurface.*;
         @GlobalValue(symbol="kCVImageBufferAmbientViewingEnvironmentKey", optional=true)
         public static native CFString AmbientViewingEnvironment();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferSceneIlluminationKey", optional=true)
+        public static native CFString SceneIllumination();
+        /**
          * @since Available in iOS 15.0 and later.
          */
         @GlobalValue(symbol="kCVImageBufferRegionOfInterestKey", optional=true)
         public static native CFString RegionOfInterest();
+        /**
+         * @since Available in iOS 17.2 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferLogTransferFunctionKey", optional=true)
+        public static native CFString LogTransferFunction();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferDisplayMaskRectangleKey", optional=true)
+        public static native CFString DisplayMaskRectangle();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferDisplayMaskRectangleStereoLeftKey", optional=true)
+        public static native CFString DisplayMaskRectangleStereoLeft();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCVImageBufferDisplayMaskRectangleStereoRightKey", optional=true)
+        public static native CFString DisplayMaskRectangleStereoRight();
         /*</values>*/
     }
 }

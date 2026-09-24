@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -82,6 +83,16 @@ import org.robovm.apple.imageio.*;
     public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "allowSecondaryDegradedImage")
+    public native boolean isAllowSecondaryDegradedImage();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setAllowSecondaryDegradedImage:")
+    public native void setAllowSecondaryDegradedImage(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

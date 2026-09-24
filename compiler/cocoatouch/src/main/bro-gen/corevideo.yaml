@@ -6,19 +6,6 @@ clang_args: ['-x', 'objective-c', '-DCOREVIDEO_USE_DERIVED_ENUMS_FOR_CONSTANTS=1
 headers:
     - /System/Library/Frameworks/CoreVideo.framework/Headers/CoreVideo.h
     - /System/Library/Frameworks/CoreVideo.framework/Headers/CVBase.h
-typedefs:
-    __CVBuffer: CVBuffer
-    __CVOpenGLESTextureCache: CVOpenGLESTextureCache
-    __CVPixelBufferPool: CVPixelBufferPool
-    __CVMetalTextureCache: CVMetalTextureCache
-    CVBufferRef: CVBuffer
-    CVImageBufferRef: CVImageBuffer
-    CVOpenGLESTextureRef: CVOpenGLESTexture
-    CVOpenGLESTextureCacheRef: CVOpenGLESTextureCache
-    CVMetalTextureRef: CVMetalTexture
-    CVMetalTextureCacheRef: CVMetalTextureCache
-    CVPixelBufferRef: CVPixelBuffer
-    CVPixelBufferPoolRef: CVPixelBufferPool
 
 enums:
     CVSMPTETimeType: { }
@@ -35,32 +22,42 @@ enums:
     CVVersatileBayerPattern: {prefix: kCVVersatileBayer_BayerPattern_, first: kCVVersatileBayer_BayerPattern_RGGB}
 classes:
     # Opaque Types
-    CVBuffer:
+    CVBufferRef:
+        name: CVBuffer
         extends: CFType
         visibility: 'public abstract'
-    CVImageBuffer:
+    CVImageBufferRef:
+        name: CVImageBuffer
         extends: CVBuffer
-    CVMetalTexture:
+        add_ptr: true
+    CVMetalTextureRef:
+        name: CVMetalTexture
         extends: CVImageBuffer
         annotations: ['@WeaklyLinked']
         add_ptr: true
-    CVMetalTextureCache:
+    CVMetalTextureCacheRef:
+        name: CVMetalTextureCache
         extends: CFType
         annotations: ['@WeaklyLinked']
         add_ptr: true
-    CVOpenGLESTexture:
+    CVOpenGLESTextureRef:
+        name: CVOpenGLESTexture
         extends: CVImageBuffer
         add_ptr: true
-    CVOpenGLESTextureCache:
-        extends: CFType
-        add_ptr: true
-    CVPixelBuffer:
+    CVPixelBufferRef:
+        name: CVPixelBuffer
         extends: CVImageBuffer
         add_ptr: true
-    CVPixelBufferPool:
+    CVPixelBufferPoolRef:
+        name: CVPixelBufferPool
         extends: CFType
         add_ptr: true
-
+    CVMetalBufferCacheRef:
+        name: CVMetalBuffer
+        extends: CFType
+    CVOpenGLESTextureCacheRef:
+        name: CVOpenGLESTextureCache
+        extends: CFType
     # Structs
     CVSMPTETime:
         type: 
@@ -317,6 +314,15 @@ functions:
         name: isCompressedFormatAvailable
         parameters:
             0: { type: CVPixelFormatType }
+    CVMetalBuffer(GetBuffer):
+        class: CVMetalBuffer
+        name: '#{g[0].downcase_first}'
+    CVMetalBufferCache(.*):
+        class: CVMetalBufferCache
+        name: '#{g[0].downcase_first}'
+    CVPixelFormatType(CopyFourCharCodeString):
+        class: CVPixelFormatType
+        name: '#{g[0].downcase_first}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?CV.*):
@@ -356,6 +362,27 @@ values:
                 type: CVBufferMovieTime
 
     # CVImageBuffer
+    kCVImageBufferDisplayMaskRectangle_(.*)Key:
+        dictionary: CVImageBufferDisplayMaskRectangle
+        name: '#{g[0]}'
+        type: CFString
+        methods:
+            ReferenceRasterWidth:
+                type: long
+            ReferenceRasterHeight:
+                type: long
+            RectangleLeft:
+                type: long
+            RectangleTop:
+                type: long
+            RectangleWidth:
+                type: long
+            RectangleHeight:
+                type: long
+            LeftEdgePoints:
+                type: CFArray
+            RightEdgePoints:
+                type: CFArray
     kCVImageBufferCleanAperture(Width|Height|HorizontalOffset|VerticalOffset)Key:
         dictionary: CVImageBufferCleanAperture
         name: '#{g[0]}'
@@ -430,6 +457,28 @@ values:
             AlphaChannelIsOpaque:
                 name: AlphaChannelOpaque
                 type: boolean
+            MasteringDisplayColorVolume:
+                type: CFData
+            ContentLightLevelInfo:
+                type: CFData
+            AmbientViewingEnvironment:
+                type: CFData
+            SceneIllumination:
+                type: long
+            RegionOfInterest:
+                type: CFDictionary # CGRect -> CGRectCreateDictionaryRepresentation
+            LogTransferFunction:
+                type: CVImageBufferLogTransferFunction
+            DisplayMaskRectangle:
+                type: CVImageBufferDisplayMaskRectangle
+            DisplayMaskRectangleStereoLeft:
+                type: CVImageBufferDisplayMaskRectangle
+            DisplayMaskRectangleStereoRight:
+                type: CVImageBufferDisplayMaskRectangle
+    kCVImageBufferLogTransferFunction_(.*):
+        enum: CVImageBufferLogTransferFunction
+        name: '#{g[0]}'
+        type: CFString
     kCVImageBuffer(AlphaChannelIsOpaque):
         dictionary: CVImageBufferAttributes
         enum: CVImageBufferAttribute
@@ -652,6 +701,12 @@ values:
     kCVMetalTextureStorageMode:
         class: CVMetalTexture
         name: storageMode
+
+    kCVMetalBufferCacheMaximumBufferAgeKey:
+        class: CVMetalBufferCache
+        type: CFString
+        name: MaximumBufferAgeKey
+
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CV.*):

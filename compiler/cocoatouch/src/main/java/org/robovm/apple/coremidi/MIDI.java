@@ -76,6 +76,16 @@ import org.robovm.apple.corefoundation.*;
     @Bridge(symbol="MIDISendSysex", optional=true)
     public static native MIDIError sendSysex(MIDISysexSendRequest request);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="MIDISendUMPSysex", optional=true)
+    public static native MIDIError sendUMPSysex(MIDISysexSendRequestUMP umpRequest);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="MIDISendUMPSysex8", optional=true)
+    public static native MIDIError sendUMPSysex8(MIDISysexSendRequestUMP umpRequest);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Bridge(symbol="MIDIReceivedEventList", optional=true)

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*/implements NSCoding, UIDataSourceTranslating, UISpringLoadedInteractionSupporting/*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeSelectionDidChange(UITableView object, final VoidBlock1<UITableView> block) {
+        public static NSObject observeSelectionDidChange(UITableView object, final VoidBlock1<UITableView> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(SelectionDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -182,6 +183,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setSeparatorInsetReference:")
     public native void setSeparatorInsetReference(UITableViewSeparatorInsetReference v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "selfSizingInvalidation")
+    public native UITableViewSelfSizingInvalidation getSelfSizingInvalidation();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSelfSizingInvalidation:")
+    public native void setSelfSizingInvalidation(UITableViewSelfSizingInvalidation v);
     @Property(selector = "backgroundView")
     public native UIView getBackgroundView();
     @Property(selector = "setBackgroundView:")
@@ -342,17 +353,21 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "hasActiveDrop")
     public native boolean hasActiveDrop();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "contentHuggingElements")
+    public native UITableViewContentHuggingElements getContentHuggingElements();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setContentHuggingElements:")
+    public native void setContentHuggingElements(UITableViewContentHuggingElements v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/

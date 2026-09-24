@@ -63,13 +63,6 @@ import org.robovm.apple.imageio.*;
     @Property(selector = "frameAnalysisSpacing")
     public native @ByVal CMTime getFrameAnalysisSpacing();
     /**
-     * @since Available in iOS 14.0 and later.
-     * @deprecated Deprecated in iOS 14.0. Use -frameAnalysisSpacing
-     */
-    @Deprecated
-    @Property(selector = "requestFrameAnalysisSpacing")
-    public native @ByVal CMTime getRequestFrameAnalysisSpacing();
-    /**
      * @since Available in iOS 12.0 and later.
      */
     @Property(selector = "supportedRevisions")

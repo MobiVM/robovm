@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,13 +48,13 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIDocument/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSFilePresenter, NSProgressReporting, UIUserActivityRestoring/*</implements>*/ {
+    /*<implements>*/implements NSFilePresenter, NSProgressReporting, UINavigationItemRenameDelegate, UIUserActivityRestoring/*</implements>*/ {
 
     public static class Notifications {
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeStateChanged(UIDocument object, final VoidBlock1<UIDocument> block) {
+        public static NSObject observeStateChanged(UIDocument object, final VoidBlock1<UIDocument> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(StateChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -116,6 +117,16 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @GlobalValue(symbol="UIDocumentStateChangedNotification", optional=true)
     public static native NSString StateChangedNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="UIDocumentDidMoveToWritableLocationNotification", optional=true)
+    public static native NSString DidMoveToWritableLocationNotification();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="UIDocumentDidMoveToWritableLocationOldURLKey", optional=true)
+    public static native NSString DidMoveToWritableLocationOldURLKey();
     @GlobalValue(symbol="NSUserActivityDocumentURLKey", optional=true)
     public static native String UserActivityDocumentURLKey();
     
@@ -211,6 +222,11 @@ import org.robovm.apple.linkpresentation.*;
     public native void savePresentedItemChanges(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "accommodatePresentedItemDeletionWithCompletionHandler:")
     public native void accommodatePresentedItemDeletion(@Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "accommodatePresentedItemEvictionWithCompletionHandler:")
+    public native void accommodatePresentedItemEviction(@Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "presentedItemDidMoveToURL:")
     public native void presentedItemDidMoveToURL(NSURL newURL);
     @Method(selector = "presentedItemDidChange")
@@ -240,5 +256,13 @@ import org.robovm.apple.linkpresentation.*;
     public native void presentedSubitemAtURLDidLoseVersion(NSURL url, NSFileVersion version);
     @Method(selector = "presentedSubitemAtURL:didResolveConflictVersion:")
     public native void presentedSubitemAtURLDidResolveConflictVersion(NSURL url, NSFileVersion version);
+    @Method(selector = "navigationItem:didEndRenamingWithTitle:")
+    public native void didEndRenaming(UINavigationItem navigationItem, String title);
+    @Method(selector = "navigationItemShouldBeginRenaming:")
+    public native boolean navigationItemShouldBeginRenaming(UINavigationItem navigationItem);
+    @Method(selector = "navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:")
+    public native String willBeginRenaming(UINavigationItem navigationItem, String title, NSRange selectedRange);
+    @Method(selector = "navigationItem:shouldEndRenamingWithTitle:")
+    public native boolean shouldEndRenaming(UINavigationItem navigationItem, String title);
     /*</methods>*/
 }

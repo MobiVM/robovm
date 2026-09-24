@@ -17,6 +17,9 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -39,9 +42,23 @@ public abstract class IntegerBinaryConstant extends BinaryOpConstant {
     public Type getType() {
         return op1.getType();
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(name);
+        writer.write(" (");
+        op1.getType().write(writer);
+        writer.write(' ');
+        op1.write(writer);
+        writer.write(", ");
+        op2.getType().write(writer);
+        writer.write(' ');
+        op2.write(writer);
+        writer.write(')');
+    }
+
     @Override
     public String toString() {
-        return name + " (" + op1.getType() + " " + op1 + ", " + op2.getType() + " " + op2 + ")";
+        return toString(this::write);
     }
 }

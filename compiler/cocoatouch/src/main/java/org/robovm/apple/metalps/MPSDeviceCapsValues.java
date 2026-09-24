@@ -49,7 +49,10 @@ public enum /*<name>*/MPSDeviceCapsValues/*</name>*/ implements ValuedEnum {
     DeviceSupportsFloat32Filtering(128L),
     DeviceSupportsNorm16BicubicFiltering(256L),
     DeviceSupportsFloat16BicubicFiltering(512L),
-    DeviceIsAppleDevice(1024L);
+    DeviceIsAppleDevice(1024L),
+    DeviceSupportsSimdShuffleAndFill(2048L),
+    DeviceSupportsBFloat16Arithmetic(4096L),
+    DeviceCapsLast(8192L);
     /*</values>*/
 
     /*<bind>*/

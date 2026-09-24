@@ -32,7 +32,7 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("WidgetKit")/*</annotations>*/
+/*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/WGWidget/*</name>*/ 
     extends /*<extends>*/CocoaUtility/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,6 +53,8 @@ import org.robovm.apple.foundation.*;
         public static native NSString Kind();
         @GlobalValue(symbol="WGWidgetUserInfoKeyFamily", optional=true)
         public static native NSString Family();
+        @GlobalValue(symbol="WGWidgetUserInfoKeyActivityID", optional=true)
+        public static native NSString ActivityID();
     }
     /*</methods>*/
 }

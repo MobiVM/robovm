@@ -36,9 +36,10 @@ import org.robovm.apple.fileprovider.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 17.0. No longer supported. Please see Sharing CloudKit Data with Other iCloud Users.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("CloudKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CloudKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKDiscoverAllUserIdentitiesOperation/*</name>*/ 
     extends /*<extends>*/CKOperation/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

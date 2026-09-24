@@ -47,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeChanged(NSURLCredentialStorage object, final VoidBlock1<NSURLCredentialStorage> block) {
+        public static NSObject observeChanged(NSURLCredentialStorage object, final VoidBlock1<NSURLCredentialStorage> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -73,6 +73,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 12.0. Notification is never posted
+     */
+    @Deprecated
     @GlobalValue(symbol="NSURLCredentialStorageChangedNotification", optional=true)
     public static native NSString ChangedNotification();
     

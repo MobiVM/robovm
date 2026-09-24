@@ -36,29 +36,44 @@ import org.robovm.apple.dispatch.*;
  * @since Available in iOS 14.0 and later.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
-/*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLDynamicLibrary/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+/*<annotations>*/@Library("Metal") @NativeProtocolProxy/*</annotations>*/
+/*<visibility>*/public final/*</visibility>*/ class /*<name>*/MTLDynamicLibrary/*</name>*/ 
+    extends /*<extends>*/NSObject/*</extends>*/ 
+    /*<implements>*/implements NSObjectProtocol/*</implements>*/ {
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/
-    /*</bind>*/
+    /*<ptr>*/public static class MTLDynamicLibraryPtr extends Ptr<MTLDynamicLibrary, MTLDynamicLibraryPtr> {}/*</ptr>*/
+    /*<bind>*/static { ObjCRuntime.bind(MTLDynamicLibrary.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
+    /*<constructors>*/
+    
+    /*</constructors>*/
     /*<properties>*/
     @Property(selector = "label")
-    String getLabel();
+    public native String getLabel();
     @Property(selector = "setLabel:")
-    void setLabel(String v);
+    public native void setLabel(String v);
     @Property(selector = "device")
-    MTLDevice getDevice();
+    public native MTLDevice getDevice();
     @Property(selector = "installName")
-    String getInstallName();
+    public native String getInstallName();
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
+    /*<members>*//*</members>*/
     /*<methods>*/
+    public boolean serializeToUR(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = serializeToUR(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "serializeToURL:error:")
-    boolean serializeToUR(NSURL url, NSError.NSErrorPtr error);
+    public native boolean serializeToUR(NSURL url, NSError.NSErrorPtr error);
     /*</methods>*/
-    /*<adapter>*/
-    /*</adapter>*/
 }

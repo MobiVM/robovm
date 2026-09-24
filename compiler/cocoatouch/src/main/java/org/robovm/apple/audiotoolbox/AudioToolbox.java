@@ -45,7 +45,30 @@ import org.robovm.apple.uikit.*;
     /*<ptr>*/
     /*</ptr>*/
     /*<bind>*/static { Bro.bind(AudioToolbox.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
+    public static final double EndOfTrackTimeStamp = Double.MAX_VALUE;
+    public static class InstrumentInfoKeys {
+        public static final String Name = "name";
+        public static final String MSB = "MSB";
+        public static final String LSB = "LSB";
+        public static final String Program = "program";
+    }
+
+    public static class Presets {
+        public static final String VersionKey = "version";
+        public static final String TypeKey = "type";
+        public static final String SubtypeKey = "subtype";
+        public static final String ManufacturerKey = "manufacturer";
+        public static final String DataKey = "data";
+        public static final String NameKey = "name";
+        public static final String NumberKey = "preset-number";
+        public static final String RenderQualityKey = "render-quality";
+        public static final String CPULoadKey = "cpu-load";
+        public static final String ElementNameKey = "element-name";
+        public static final String ExternalFileRefs = "file-references";
+        public static final String PartKey = "part";
+    }
+    /*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/

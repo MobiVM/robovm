@@ -38,7 +38,18 @@ import org.robovm.apple.metalps.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsLongMarshaler.class)/*</annotations>*/
 public enum /*<name>*/MPSGraphRandomDistribution/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    ;
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    Uniform(0L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    Normal(1L),
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    TruncatedNormal(2L);
     /*</values>*/
 
     /*<bind>*/

@@ -184,6 +184,32 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
     /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @WeaklyLinked
+    @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:")
+    public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred, boolean calculateHDRStats);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForIOSurface:")
+    public native void calculateHDRStatsForIOSurface(IOSurface surface);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForCVPixelBuffer:")
+    public native void calculateHDRStatsForCVPixelBuffer(CVPixelBuffer buffer);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForCGImage:")
+    public native CGImage calculateHDRStatsForCGImage(CGImage cgimage);
+    /**
+     * @since Available in iOS 19.0 and later.
+     */
+    @Method(selector = "calculateHDRStatsForImage:")
+    public native CIImage calculateHDRStatsForImage(CIImage image);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "TIFFRepresentationOfImage:format:colorSpace:options:")
@@ -209,6 +235,11 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "PNGRepresentationOfImage:format:colorSpace:options:")
     public native NSData PNGRepresentationOfImage(CIImage image, int format, CGColorSpace colorSpace, CIImageRepresentationOptions options);
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "OpenEXRRepresentationOfImage:options:error:")
+    public native NSData getOpenEXRRepresentation(CIImage image, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
      * @since Available in iOS 10.0 and later.
      */
     @Method(selector = "writeTIFFRepresentationOfImage:toURL:format:colorSpace:options:error:")
@@ -233,6 +264,11 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "writeHEIF10RepresentationOfImage:toURL:colorSpace:options:error:")
     public native boolean writeHEIF10Representation(CIImage image, NSURL url, CGColorSpace colorSpace, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "writeOpenEXRRepresentationOfImage:toURL:options:error:")
+    public native boolean writeOpenEXRRepresentation(CIImage image, NSURL url, CIImageRepresentationOptions options, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 12.0 and later.
      */

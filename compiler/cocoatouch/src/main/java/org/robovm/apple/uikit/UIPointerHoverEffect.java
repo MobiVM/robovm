@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,7 @@ import org.robovm.apple.linkpresentation.*;
     protected UIPointerHoverEffect() {}
     protected UIPointerHoverEffect(Handle h, long handle) { super(h, handle); }
     protected UIPointerHoverEffect(SkipInit skipInit) { super(skipInit); }
+    public UIPointerHoverEffect(UITargetedPreview preview) { super((Handle) null, create(preview)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "preferredTintMode")
@@ -75,6 +77,7 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "effectWithPreview:")
+    protected static native @Pointer long create(UITargetedPreview preview);
     /*</methods>*/
 }

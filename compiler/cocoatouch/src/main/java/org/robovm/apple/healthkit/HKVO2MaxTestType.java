@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,7 +41,11 @@ public enum /*<name>*/HKVO2MaxTestType/*</name>*/ implements ValuedEnum {
     /*<values>*/
     MaxExercise(1L),
     PredictionSubMaxExercise(2L),
-    PredictionNonExercise(3L);
+    PredictionNonExercise(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    PredictionStepTest(4L);
     /*</values>*/
 
     /*<bind>*/

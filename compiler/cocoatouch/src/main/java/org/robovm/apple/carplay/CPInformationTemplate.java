@@ -42,7 +42,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPInformationTemplate/*</name>*/ 
     extends /*<extends>*/CPTemplate/*</extends>*/ 
-    /*<implements>*//*</implements>*/ {
+    /*<implements>*/implements CPBarButtonProviding/*</implements>*/ {
 
     /*<ptr>*/public static class CPInformationTemplatePtr extends Ptr<CPInformationTemplate, CPInformationTemplatePtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CPInformationTemplate.class); }/*</bind>*/
@@ -69,6 +69,18 @@ import org.robovm.apple.coreanimation.*;
     public native NSArray<CPTextButton> getActions();
     @Property(selector = "setActions:")
     public native void setActions(NSArray<CPTextButton> v);
+    @Property(selector = "leadingNavigationBarButtons")
+    public native NSArray<CPBarButton> getLeadingNavigationBarButtons();
+    @Property(selector = "setLeadingNavigationBarButtons:")
+    public native void setLeadingNavigationBarButtons(NSArray<CPBarButton> v);
+    @Property(selector = "trailingNavigationBarButtons")
+    public native NSArray<CPBarButton> getTrailingNavigationBarButtons();
+    @Property(selector = "setTrailingNavigationBarButtons:")
+    public native void setTrailingNavigationBarButtons(NSArray<CPBarButton> v);
+    @Property(selector = "backButton")
+    public native CPBarButton getBackButton();
+    @Property(selector = "setBackButton:")
+    public native void setBackButton(CPBarButton v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

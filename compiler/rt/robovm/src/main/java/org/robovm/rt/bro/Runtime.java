@@ -89,6 +89,10 @@ public final class Runtime {
             if (home != null) {
                 paths.add(new File(home, "lib").getAbsolutePath());
             }
+            if (Bro.IS_IOS) {
+                // support for sideload on m1
+                paths.add("/System/iOSSupport/System/Library/Frameworks");
+            }
         }
         String basePath = System.getProperty("org.robovm.base.path");
         if (basePath != null) {

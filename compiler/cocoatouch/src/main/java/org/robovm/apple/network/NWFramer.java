@@ -47,7 +47,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -61,6 +68,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_framer_create_definition", optional=true)
     public static native NWProtocolDefinition createDefinition(@org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String identifier, int flags, @Block Block1<NWFramer, NWFramerStartResult> start_handler);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Bridge(symbol="nw_framer_options_copy_object_value", optional=true)
+    public static native NSObject optionsCopyObjectValue(NWProtocolOptions options, BytePtr key);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -171,6 +183,11 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_framer_copy_parameters", optional=true)
     public native NWParameters copyParameters();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Bridge(symbol="nw_framer_copy_options", optional=true)
+    public native NWProtocolOptions copyOptions();
     
     
     /*</methods>*/

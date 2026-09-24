@@ -57,6 +57,14 @@ import org.robovm.apple.dispatch.*;
     public native String getLabel();
     @Property(selector = "setLabel:")
     public native void setLabel(String v);
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -109,6 +117,26 @@ import org.robovm.apple.dispatch.*;
     public native void setBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setBuffers:offsets:withRange:")
     protected native void setBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBuffer:offset:attributeStride:atIndex:")
+    public native void setBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBuffers:offsets:attributeStrides:withRange:")
+    public native void setBuffers(MTLBuffer buffers, MachineSizedUIntPtr offsets, MachineSizedUIntPtr strides, @ByVal NSRange range);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBufferOffset:attributeStride:atIndex:")
+    public native void setBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long stride, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setBytes:length:attributeStride:atIndex:")
+    public native void setBytes(VoidPtr bytes, @MachineSizedUInt long length, @MachineSizedUInt long stride, @MachineSizedUInt long index);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -232,6 +260,11 @@ import org.robovm.apple.dispatch.*;
     public native void sampleCountersInBuffer(MTLCounterSampleBuffer sampleBuffer, @MachineSizedUInt long sampleIndex, boolean barrier);
     @Method(selector = "endEncoding")
     public native void endEncoding();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "barrierAfterQueueStages:beforeStages:")
+    public native void barrierAfterQueueStages(MTLStages afterQueueStages, MTLStages beforeStages);
     @Method(selector = "insertDebugSignpost:")
     public native void insertDebugSignpost(String string);
     @Method(selector = "pushDebugGroup:")

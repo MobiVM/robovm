@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,6 +58,7 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated protected AVComposition(long handle) { super(handle); }
     protected AVComposition(Handle h, long handle) { super(h, handle); }
     protected AVComposition(SkipInit skipInit) { super(skipInit); }
+    public AVComposition(NSURL URL) { super((Handle) null, create(URL)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tracks")
@@ -70,6 +73,8 @@ import org.robovm.apple.audiotoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "assetWithURL:")
+    protected static native @Pointer long create(NSURL URL);
     @Method(selector = "trackWithTrackID:")
     public native AVCompositionTrack getTrack(int trackID);
     /**
@@ -91,5 +96,15 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Method(selector = "loadTracksWithMediaCharacteristic:completionHandler:")
     public native void loadTracksWithMediaCharacteristic(String mediaCharacteristic, @Block VoidBlock2<NSArray<?>, NSError> completionHandler);
+    @Method(selector = "metadataForFormat:")
+    public native NSArray<AVMetadataItem> getMetadata(AVMetadataFormat format);
+    @Method(selector = "chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:")
+    public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsContainingItemsWithCommonKeys(NSLocale locale, @org.robovm.rt.bro.annotation.Marshaler(AVMetadataKey.AsListMarshaler.class) List<AVMetadataKey> commonKeys);
+    @Method(selector = "chapterMetadataGroupsBestMatchingPreferredLanguages:")
+    public native NSArray<AVTimedMetadataGroup> getChapterMetadataGroupsBestMatchingPreferredLanguages(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> preferredLanguages);
+    @Method(selector = "mediaSelectionGroupForMediaCharacteristic:")
+    public native AVMediaSelectionGroup getMediaSelectionGroup(AVMediaCharacteristic mediaCharacteristic);
+    @Method(selector = "unusedTrackID")
+    public native int getUnusedTrackID();
     /*</methods>*/
 }

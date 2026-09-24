@@ -62,6 +62,17 @@ import org.robovm.apple.coreanimation.*;
     public SKLabelNode(NSAttributedString attributedText) { super((Handle) null, create(attributedText)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public SKLabelNode(NSCoder coder) { super(coder); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    public SKLabelNode(String filename, NSSet<?> classes) throws NSErrorException {
+       this(filename, classes, new NSError.NSErrorPtr());
+    }
+    private SKLabelNode(String filename, NSSet<?> classes, NSError.NSErrorPtr ptr) throws NSErrorException {
+       super((Handle) null, create(filename, classes, ptr));
+       retain(getHandle());
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+    }
     /*</constructors>*/
     public SKLabelNode(String text, String fontName) {
         this(text);
@@ -156,5 +167,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "labelNodeWithAttributedText:")
     protected static native @Pointer long create(NSAttributedString attributedText);
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @Method(selector = "nodeWithFileNamed:securelyWithClasses:andError:")
+    protected static native @Pointer long create(String filename, NSSet<?> classes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

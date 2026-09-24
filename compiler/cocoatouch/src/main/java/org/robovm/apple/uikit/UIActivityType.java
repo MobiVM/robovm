@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,5 +95,25 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIActivityTypeMarkupAsPDF", optional=true)
     public static native String MarkupAsPDF();
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeSharePlay", optional=true)
+    public static native String SharePlay();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeCollaborationInviteWithLink", optional=true)
+    public static native String CollaborationInviteWithLink();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeCollaborationCopyLink", optional=true)
+    public static native String CollaborationCopyLink();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @GlobalValue(symbol="UIActivityTypeAddToHomeScreen", optional=true)
+    public static native String AddToHomeScreen();
     /*</methods>*/
 }

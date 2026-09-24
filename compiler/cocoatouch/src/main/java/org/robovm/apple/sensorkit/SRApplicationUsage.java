@@ -28,6 +28,10 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.arkit.*;
+import org.robovm.apple.speech.*;
+import org.robovm.apple.soundanalysis.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +67,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "textInputSessions")
     public native NSArray<SRTextInputSession> getTextInputSessions();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "supplementalCategories")
+    public native NSArray<SRSupplementalCategory> getSupplementalCategories();
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    @Property(selector = "relativeStartTime")
+    public native double getRelativeStartTime();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

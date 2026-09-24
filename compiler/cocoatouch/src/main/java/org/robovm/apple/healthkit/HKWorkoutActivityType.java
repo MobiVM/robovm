@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -197,6 +198,18 @@ public enum /*<name>*/HKWorkoutActivityType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 14.0 and later.
      */
     Cooldown(80L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    SwimBikeRun(82L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Transition(83L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    UnderwaterDiving(84L),
     Other(3000L);
     /*</values>*/
 

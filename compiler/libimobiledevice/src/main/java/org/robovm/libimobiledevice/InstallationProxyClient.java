@@ -331,18 +331,16 @@ public class InstallationProxyClient implements AutoCloseable {
             }
             
             if (deviceId == null) {
-                if (deviceId == null) {
-                    String[] udids = IDevice.listUdids();
-                    if (udids.length == 0) {
-                        System.err.println("No device connected");
-                        return;
-                    }
-                    if (udids.length > 1) {
-                        System.err.println("More than 1 device connected (" 
-                                + Arrays.asList(udids) + "). Using " + udids[0]);
-                    }
-                    deviceId = udids[0];
+                String[] udids = IDevice.listUdids();
+                if (udids.length == 0) {
+                    System.err.println("No device connected");
+                    return;
                 }
+                if (udids.length > 1) {
+                    System.err.println("More than 1 device connected ("
+                            + Arrays.asList(udids) + "). Using " + udids[0]);
+                }
+                deviceId = udids[0];
             }
             
             try (IDevice device = new IDevice(deviceId)) {

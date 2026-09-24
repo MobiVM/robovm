@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -25,15 +28,15 @@ public class FloatingPointConstant extends Constant {
     private final Object value;
 
     public FloatingPointConstant(float value) {
-        this(new Float(value), Type.FLOAT);
+        this(value, Type.FLOAT);
     }
     
     public FloatingPointConstant(double value) {
-        this(new Double(value), Type.DOUBLE);
+        this(value, Type.DOUBLE);
     }
     
     public FloatingPointConstant(double value, FloatingPointType type) {
-        this.value = new Double(value);
+        this.value = value;
         this.type = type;
     }
     
@@ -89,5 +92,10 @@ public class FloatingPointConstant extends Constant {
             double d = ((Number) value).doubleValue();
             return "bitcast (i64 " + Double.doubleToLongBits(d) + " to double)";
         }
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.write(toString());
     }
 }

@@ -51,7 +51,6 @@ import org.robovm.apple.metal.*;
     protected MPSCNNNormalizationMeanAndVarianceState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithMean:variance:")
     public MPSCNNNormalizationMeanAndVarianceState(MTLBuffer mean, MTLBuffer variance) { super((SkipInit) null); initObject(init(mean, variance)); }
-    public MPSCNNNormalizationMeanAndVarianceState(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels) { super((Handle) null, create(commandBuffer, numberOfFeatureChannels)); retain(getHandle()); }
     @Method(selector = "initWithDevice:bufferSize:")
     public MPSCNNNormalizationMeanAndVarianceState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
     @Method(selector = "initWithDevice:textureDescriptor:")
@@ -77,6 +76,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithMean:variance:")
     protected native @Pointer long init(MTLBuffer mean, MTLBuffer variance);
     @Method(selector = "temporaryStateWithCommandBuffer:numberOfFeatureChannels:")
-    protected static native @Pointer long create(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
+    public static native MPSCNNNormalizationMeanAndVarianceState createTemporaryStateForNumberOfFeatureChannels(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
+    @Method(selector = "temporaryStateWithCommandBuffer:bufferSize:")
+    public static native MPSCNNNormalizationMeanAndVarianceState createTemporaryState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
+    @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
+    public static native MPSCNNNormalizationMeanAndVarianceState createTemporaryState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
+    @Method(selector = "temporaryStateWithCommandBuffer:")
+    public static native MPSCNNNormalizationMeanAndVarianceState createTemporaryState(MTLCommandBuffer cmdBuf);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSCNNNormalizationMeanAndVarianceState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

@@ -164,12 +164,6 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     @Parameter(property = "robovm.dumpIntermediates")
     protected boolean dumpIntermediates = false;
 
-    /**
-     * Whether the app should be build with bitcode embedded
-     */
-    @Parameter(property = "robovm.enableBitcode")
-    protected boolean enableBitcode = false;
-
     private Logger roboVMLogger;
 
     protected Config.Builder configure(Config.Builder builder) throws MojoExecutionException {
@@ -311,10 +305,6 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
             builder.dumpIntermediates(true);
         }
 
-        if (enableBitcode) {
-            builder.enableBitcode(true);
-        }
-
         builder.clearClasspathEntries();
 
         // configure the runtime classpath
@@ -365,7 +355,7 @@ public abstract class AbstractRoboVMMojo extends AbstractMojo {
     }
 
     protected String getRoboVMVersion() {
-        return Version.getVersion();
+        return Version.getCompilerVersion();
     }
 
     protected File unpackRoboVMDist() throws MojoExecutionException {

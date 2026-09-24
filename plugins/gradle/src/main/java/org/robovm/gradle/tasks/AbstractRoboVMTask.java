@@ -30,14 +30,15 @@ import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.TaskAction;
 import org.gradle.api.tasks.Internal;
+import org.gradle.api.tasks.UntrackedTask;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
-import org.robovm.compiler.config.Environment;
 import org.robovm.compiler.config.OS;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.ios.ProvisioningProfile;
 import org.robovm.compiler.target.ios.SigningIdentity;
+import org.robovm.gradle.RoboVMGradleException;
 import org.robovm.gradle.RoboVMPlugin;
 import org.robovm.gradle.RoboVMPluginExtension;
 import org.sonatype.aether.RepositorySystem;
@@ -58,16 +59,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
 /**
  *
  * @author Junji Takakura
  */
+@UntrackedTask(because = "caching not implemented")
 abstract public class AbstractRoboVMTask extends DefaultTask {
 
     protected final Project project;
@@ -79,6 +79,16 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     protected Logger roboVMLogger;
 
     public AbstractRoboVMTask() {
+        try {
+            // TODO: support configuration cache, disabling as will crash with message
+            // Task `:launchIPhoneSimulator` of type `org.robovm.gradle.tasks.IPhoneSimulatorTask`:
+            // cannot serialize object of type 'org.gradle.api.internal.project.DefaultProject',
+            // a subtype of 'org.gradle.api.Project', as these are not supported with the configuration cache.
+            notCompatibleWithConfigurationCache("Not compatible due internal implementation");
+        } catch (NoSuchMethodError e) {
+            // not available before Gradle 7.4
+        }
+
         project = getProject();
         extension = (RoboVMPluginExtension) project.getExtensions().getByName(RoboVMPluginExtension.NAME);
         repositorySystem = createRepositorySystem();
@@ -106,7 +116,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             getLogger().info("Compile RoboVM app completed.");
             return compiler;
         } catch (IOException e) {
-            throw new GradleException("Error building RoboVM executable for app", e);
+            throw new RoboVMGradleException("Error building RoboVM executable for app", e);
         }
     }
 
@@ -117,42 +127,49 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             File propertiesFile = new File(extension.getPropertiesFile());
 
             if (!propertiesFile.exists()) {
-                throw new GradleException("Invalid 'propertiesFile' specified for RoboVM compile: " + propertiesFile);
+                throw new RoboVMGradleException("Invalid 'propertiesFile' specified for RoboVM compile: " + propertiesFile);
             }
             try {
                 getLogger().debug(
                         "Including properties file in RoboVM compiler config: " + propertiesFile.getAbsolutePath());
                 builder.addProperties(propertiesFile);
             } catch (IOException e) {
-                throw new GradleException("Failed to add properties file to RoboVM config: " + propertiesFile);
+                throw new RoboVMGradleException("Failed to add properties file to RoboVM config: " + propertiesFile);
             }
         } else {
             try {
                 builder.readProjectProperties(project.getProjectDir(), false);
             } catch (IOException e) {
-                throw new GradleException(
+                throw new RoboVMGradleException(
                         "Failed to read RoboVM project properties file(s) in "
                                 + project.getProjectDir().getAbsolutePath(), e);
             }
         }
 
+        // add project properties on top of one read from property file
+        // leave only not nullable string values
+        Map<String, String> gradleProperties = project.getProperties().entrySet().stream()
+                .filter( e -> e.getValue() instanceof String)
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().toString()));
+        builder.addProperties(gradleProperties);
+
         if (extension.getConfigFile() != null) {
             File configFile = new File(extension.getConfigFile());
 
             if (!configFile.exists()) {
-                throw new GradleException("Invalid 'configFile' specified for RoboVM compile: " + configFile);
+                throw new RoboVMGradleException("Invalid 'configFile' specified for RoboVM compile: " + configFile);
             }
             try {
                 getLogger().debug("Loading config file for RoboVM compiler: " + configFile.getAbsolutePath());
                 builder.read(configFile);
             } catch (Exception e) {
-                throw new GradleException("Failed to read RoboVM config file: " + configFile);
+                throw new RoboVMGradleException("Failed to read RoboVM config file: " + configFile);
             }
         } else {
             try {
                 builder.readProjectConfig(project.getProjectDir(), false);
             } catch (Exception e) {
-                throw new GradleException(
+                throw new RoboVMGradleException(
                         "Failed to read project RoboVM config file in "
                                 + project.getProjectDir().getAbsolutePath(), e);
             }
@@ -174,16 +191,22 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         try {
             FileUtils.deleteDirectory(temporaryDirectory);
         } catch (IOException e) {
-            throw new GradleException("Failed to clean output dir " + temporaryDirectory, e);
+            throw new RoboVMGradleException("Failed to clean output dir " + temporaryDirectory, e);
         }
         temporaryDirectory.mkdirs();
 
-        builder.home(new Config.Home(unpack()))
+        Config.Home home = Config.Home.suggestDevHome();
+        if (home == null) home = new Config.Home(extractSdk());
+        builder.home(home)
                 .tmpDir(temporaryDirectory)
                 .skipInstall(true)
                 .installDir(installDir)
                 .cacheDir(cacheDir);
-
+	    if (home.isDev()) {
+            builder.useDebugLibs(true);
+            builder.dumpIntermediates(true);
+            builder.addPluginArgument("debug:logconsole=true");
+        }
         if (project.hasProperty("mainClassName")) {
             builder.mainClass((String) project.property("mainClassName"));
         }
@@ -220,9 +243,6 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
 
         if (extension.isDumpIntermediates())
             builder.dumpIntermediates(true);
-
-        if (extension.isEnableBitcode())
-            builder.enableBitcode(true);
 
         builder.clearClasspathEntries();
 
@@ -262,7 +282,9 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     @TaskAction
     abstract public void invoke();
 
-    protected File unpack() throws GradleException {
+    protected File extractSdk() throws GradleException {
+        getLogger().info("Checking for RoboVM SDK (downloading if required)...");
+
         final Artifact artifact = resolveArtifact("com.mobidevelop.robovm:robovm-dist:tar.gz:nocompiler:"
                 + RoboVMPlugin.getRoboVMVersion());
         final File distTarFile = artifact.getFile();
@@ -277,17 +299,17 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
             getLogger().info("Extracting '" + distTarFile + "' to: " + unpackedDirectory);
 
             if (!unpackedDirectory.exists() && !unpackedDirectory.mkdirs()) {
-                throw new GradleException("Unable to create base directory to unpack into: " + unpackedDirectory);
+                throw new RoboVMGradleException("Unable to create base directory to unpack into: " + unpackedDirectory);
             }
 
             try {
                 extractTarGz(distTarFile, unpackedDirectory);
             } catch (IOException e) {
-                throw new GradleException("Couldn't extract distribution tar.gz", e);
+                throw new RoboVMGradleException("Couldn't extract distribution tar.gz", e);
             }
 
             if (!unpackedDistDirectory.exists()) {
-                throw new GradleException("Unable to unpack archive");
+                throw new RoboVMGradleException("Unable to unpack archive");
             }
         }
 
@@ -315,7 +337,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         try {
             result = repositorySystem.resolveArtifact(repositorySystemSession, request);
         } catch (ArtifactResolutionException e) {
-            throw new GradleException(e.getMessage(), e);
+            throw new RoboVMGradleException(e.getMessage(), e);
         }
 
         getLogger().debug(
@@ -373,7 +395,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         List<RemoteRepository> repositories = new ArrayList<>();
         repositories.add(new RemoteRepository("maven-central", "default", "https://repo1.maven.org/maven2/"));
         repositories.add(new RemoteRepository("oss.sonatype.org-snapshots", "default",
-                "https://oss.sonatype.org/content/repositories/snapshots/"));
+                "https://central.sonatype.com/repository/maven-snapshots/"));
 
         return repositories;
     }

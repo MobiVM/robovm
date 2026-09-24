@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.3 and later.
+ * @deprecated Deprecated in iOS 16.1.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("BusinessChat") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("BusinessChat") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/BCChatButton/*</name>*/ 
     extends /*<extends>*/UIControl/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -52,9 +53,16 @@ import org.robovm.apple.coreanimation.*;
     protected BCChatButton(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
      */
+    @Deprecated
     @Method(selector = "initWithStyle:")
     public BCChatButton(BCChatButtonStyle style) { super((SkipInit) null); initObject(init(style)); }
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
+     */
+    @Deprecated
     @Method(selector = "initWithCoder:")
     public BCChatButton(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     @Method(selector = "initWithFrame:")
@@ -74,9 +82,16 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
      */
+    @Deprecated
     @Method(selector = "initWithStyle:")
     protected native @Pointer long init(BCChatButtonStyle style);
+    /**
+     * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 16.1.
+     */
+    @Deprecated
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     /**

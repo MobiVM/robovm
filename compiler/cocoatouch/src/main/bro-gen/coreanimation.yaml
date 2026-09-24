@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreanimation
-include: [foundation, coregraphics, coreimage, coretext, opengles, metal]
+include: [foundation, coregraphics, coreimage, coretext, opengles, metal, corevideo]
 library: QuartzCore
 framework: QuartzCore
 clang_args: ['-x', 'objective-c']
@@ -210,6 +210,8 @@ classes:
                 name: scrollTo
             '-scrollRectToVisible:':
                 name: scrollTo
+            '+layerWithRemoteClientId:':
+                name: layerWithRemoteClientId
     CAMediaTimingFunction: # DONE
         methods:
             '-initWithControlPoints::::':
@@ -255,7 +257,10 @@ classes:
                 type: CALineCap
             'lineJoin':
                 type: CALineJoin
-    CASpringAnimation: {} # DONE
+    CASpringAnimation:  # DONE
+        methods:
+            '-initWithPerceptualDuration:bounce:':
+                name: init
     CATextLayer: # DONE
         properties:
             'string':
@@ -319,7 +324,30 @@ classes:
                 parameters:
                     name:
                         type: CAValueFunctionName
-
+    CAEDRMetadata: #since 16.0
+        methods:
+            '+HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:':
+                name: createHDR10Metadata
+            '+HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:':
+                name: createHDR10Metadata
+            '+HLGMetadataWithAmbientViewingEnvironment:':
+                name: createHLGMetadata
+    CARenderer: #since 2.0
+        methods:
+            '-beginFrameAtTime:timeStamp:':
+                name: beginFrame
+            '+rendererWithMTLTexture:options:':
+                name: create
+                constructor: true
+    CAMetalDisplayLink: #since 17.0
+        methods:
+            '-initWithMetalLayer:':
+                name: init
+            '-addToRunLoop:forMode:':
+                name: addToRunLoop
+            '-removeFromRunLoop:forMode:':
+                name: removeFromRunLoop
+    CAMetalDisplayLinkUpdate: {} #since 17.0
 protocols:
     CAAction: # DONE
         methods:
@@ -356,7 +384,10 @@ protocols:
         properties:
             'texture':
                 annotations: ['@WeaklyLinked']
-
+    CAMetalDisplayLinkDelegate: #since 17.0
+        methods:
+            '-metalDisplayLink:needsUpdate:':
+                name: needsUpdate
 functions:
     # CATransform3D
     CATransform3DMake(.*):
@@ -500,6 +531,13 @@ values:
         class: CAFrameRateRange
         name: getDefault
 
+    kCARendererColorSpace:
+        class: CARenderer
+        name: getColorSpace
+    kCARendererMetalCommandQueue:
+        class: CARenderer
+        name: getMetalCommandQueue
+
     k?CA(.*):
         class: CoreAnimation
         name: '#{g[0]}'
@@ -526,6 +564,14 @@ typed_enums:
         type: NSString
         kCACornerCurve(.*):
             name: '#{g[0]}'
+    CAToneMapMode:
+        enum: CAToneMapMode
+        type: NSString
+        prefix: CAToneMapMode
+    CADynamicRange:
+        enum: CADynamicRange
+        type: NSString
+        prefix: CADynamicRange
 constants:
     CA_TEST:
         exclude: true

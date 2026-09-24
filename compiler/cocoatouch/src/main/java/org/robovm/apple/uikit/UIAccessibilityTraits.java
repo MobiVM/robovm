@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,6 +47,8 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
 /*<visibility>*/public final/*</visibility>*/ class /*<name>*/UIAccessibilityTraits/*</name>*/ 
     extends /*<extends>*/Bits<UIAccessibilityTraits>/*</extends>*/  {
+
+    /*<bind>*/static { Bro.bind(UIAccessibilityTraits.class); }/*</bind>*/
 
     /*<values>*/
     public static final UIAccessibilityTraits None = new UIAccessibilityTraits(NoneValue());
@@ -83,6 +86,15 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 10.0 and later.
      */
     public static final UIAccessibilityTraits TabBarValue = new UIAccessibilityTraits(TabBarValue());
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIAccessibilityTraits ToggleButtonValue = new UIAccessibilityTraits(ToggleButtonValue());
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final UIAccessibilityTraits SupportsZoomValue = new UIAccessibilityTraits(SupportsZoomValue());
+
     /*</values>*/
 
     private static final /*<name>*/UIAccessibilityTraits/*</name>*/[] values = _values(/*<name>*/UIAccessibilityTraits/*</name>*/.class);
@@ -139,5 +151,15 @@ import org.robovm.apple.linkpresentation.*;
      */
     @GlobalValue(symbol="UIAccessibilityTraitTabBar", optional=true)
     protected static native long TabBarValue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTraitToggleButton", optional=true)
+    protected static native long ToggleButtonValue();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="UIAccessibilityTraitSupportsZoom", optional=true)
+    protected static native long SupportsZoomValue();
     /*</methods>*/
 }

@@ -13,7 +13,10 @@ private_typedefs:
 enums:
     CSIndexErrorCode: { nserror: true} #since 9.0
     CSSearchQueryErrorCode: { nserror: true } #since 10.0
-
+    CSSuggestionKind: {}
+    CSSearchQuerySourceOptions: {}
+    CSSearchableItemUpdateListenerOptions: {prefix: CSSearchableItemUpdateListenerOption} #since 18.4
+    CSUserInteraction: {}
 classes:
     CSCustomAttributeKey: #since 9.0
         methods:
@@ -34,6 +37,8 @@ classes:
         methods:
             '-initWithQueryString:attributes:':
                 name: init
+            '-initWithQueryString:queryContext:':
+                name: init
     CSSearchableIndex: #since 9.0
         methods:
             '-initWithName:protectionClass:':
@@ -48,10 +53,16 @@ classes:
                 name: endIndexBatch
             '-initWithName:':
                 name: init
+            '-initWithName:protectionClass:bundleIdentifier:options:':
+                name: init
             '-deleteAllSearchableItemsWithCompletionHandler:':
                 name: deleteAllSearchableItems
             '-fetchLastClientStateWithCompletionHandler:':
                 name: fetchLastClientState
+            '-fetchDataForBundleIdentifier:itemIdentifier:contentType:completionHandler:':
+                name: fetchDataForBundleIdentifier
+            '-endIndexBatchWithExpectedClientState:newClientState:completionHandler:':
+                name: endIndexBatch
     CSSearchableItem: #since 9.0
         methods:
             '-initWithUniqueIdentifier:domainIdentifier:attributeSet:':
@@ -69,6 +80,21 @@ classes:
             '-updateAttributes:forFileAtURL:error:':
                 name: updateAttributes
                 throws: NSErrorException
+    CSSearchQueryContext: {} #since 10.0
+    CSSuggestion: {} #since 16.0
+    CSUserQuery: #since 16.0
+        methods:
+            '-initWithUserQueryString:userQueryContext:':
+                name: init
+            '-userEngagedWithItem:visibleItems:userInteractionType:':
+                name: userEngaged
+            '-userEngagedWithSuggestion:visibleSuggestions:userInteractionType:':
+                name: userEngaged
+    CSUserQueryContext: #since 16.0
+        methods:
+            '+userQueryContextWithCurrentSuggestion:':
+                constructor: true
+                name: create
 protocols:
     CSSearchableIndexDelegate: #since 9.0
         methods:
@@ -80,6 +106,8 @@ protocols:
                 name: getDataForSearchableIndex
             '-fileURLForSearchableIndex:itemIdentifier:typeIdentifier:inPlace:error:':
                 name: getFileURLForSearchableIndex
+            '-searchableItemsForIdentifiers:searchableItemsHandler:':
+                name: searchableItemsForIdentifiers
 
 
 functions:
@@ -108,6 +136,9 @@ values:
         class: CSSearchableItem
         name: getActionIdentifier
 
+    CSSuggestionHighlightAttributeName:
+        class: CSSuggestion
+        name: getHighlightAttributeName
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CS.*):

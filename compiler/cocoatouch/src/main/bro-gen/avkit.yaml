@@ -1,5 +1,5 @@
 package: org.robovm.apple.avkit
-include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation]
+include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation, avrouting]
 library: AVKit
 framework: AVKit
 clang_args: ['-x', 'objective-c']
@@ -10,7 +10,9 @@ typedefs: {}
 enums:
     AVKitError: {name: AVKitErrorCode}
     AVAudioSessionRouteSelection: {} #since 13.0
-
+    AVVideoFrameAnalysisType: {} #since 17.0
+    AVDisplayDynamicRange: { } #since 26.0
+    AVCaptureEventPhase: { } #since 17.2
 classes:
     AVKitError: # DONE
         annotations: ['@StronglyLinked']
@@ -40,7 +42,27 @@ classes:
             '-initWithActiveVideoCallSourceView:contentViewController:':
                 name: init
     AVPictureInPictureVideoCallViewController: {} #since 15.0
-
+    AVInterstitialTimeRange: {} #since 16.0
+    AVPlaybackSpeed: #since 16.0
+        methods:
+            '-initWithRate:localizedName:':
+                name: init
+    AVCaptureEvent: {} #since 17.2
+    AVCaptureEventInteraction: #since 17.2
+        methods:
+            '-initWithEventHandler:':
+                name: init
+            '-initWithPrimaryEventHandler:secondaryEventHandler:':
+                name: init
+    AVCaptureEventSound: #since 26.0
+        methods:
+            '-initWithURL:error:':
+                name: init
+                throws: NSErrorException
+    AVInputPickerInteraction: #since 26.0
+        methods:
+            '-initWithAudioSession:':
+                name: init
 protocols:
     AVPictureInPictureControllerDelegate: # DONE
         methods:
@@ -78,6 +100,10 @@ protocols:
                 name: willEndFullScreenPresentation
             '-playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:':
                 name: restoreUserInterfaceForFullScreenExit
+            '-playerViewController:willPresentInterstitialTimeRange:':
+                name: willPresentInterstitial
+            '-playerViewController:didPresentInterstitialTimeRange:':
+                name: didPresentInterstitial
     AVRoutePickerViewDelegate:
         methods:
             '-routePickerViewWillBeginPresentingRoutes:':
@@ -92,6 +118,7 @@ protocols:
                 name: didTransitionToRenderSize
             '-pictureInPictureController:skipByInterval:completionHandler:':
                 name: skipByInterval
+    AVInputPickerInteractionDelegate: {} #since 26.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

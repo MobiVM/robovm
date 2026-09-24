@@ -1,9 +1,9 @@
 # RoboVM 
 
-![Build Status](https://github.com/MobiVM/robovm/actions/workflows/build.yml/badge.svg)
+![Build Status](https://github.com/MobiVM/robovm/actions/workflows/snapshot.yml/badge.svg)
 
 
-[**Website**](http://robovm.mobidevelop.com) -
+[**Website**](https://mobivm.github.io) -
 [**Developer Guide**](https://github.com/MobiVM/robovm/wiki/Developer-Guide) -
 [**Changelog**](https://github.com/MobiVM/robovm/wiki/Changelog) -
 [**RoboPods**](https://github.com/MobiVM/robovm-robopods) -
@@ -15,7 +15,7 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Key Features
 
-**iOS 12 and XCode 10** are fully supported.
+**iOS 16 and XCode 14** are fully supported.
 
 **Interface Builder Integration** is also available, details in [this wiki article](https://github.com/MobiVM/robovm/wiki/Is-XCode-interface-builder-supported%3F).
 
@@ -23,7 +23,7 @@ This is a fork of the [last open-source release of RoboVM](https://github.com/ro
 
 ## Using RoboVM
 
-There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://robovm.mobidevelop.com/).
+There are pre-built plugins for Eclipse and IntelliJ IDEA, for installation take a look at the [homepage](http://mobivm.github.io/).
 
 For using the RoboVM Gradle plugin, follow the [README in the repository](https://github.com/MobiVM/robovm/tree/master/plugins/gradle)
 

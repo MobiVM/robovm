@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,6 +64,36 @@ import org.robovm.apple.linkpresentation.*;
     /*<properties>*/
     @Property(selector = "identifier")
     public native NSObject getIdentifier();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "secondaryItemIdentifiers")
+    public native NSSet<?> getSecondaryItemIdentifiers();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSecondaryItemIdentifiers:")
+    public native void setSecondaryItemIdentifiers(NSSet<?> v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "badgeCount")
+    public native @MachineSizedSInt long getBadgeCount();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setBadgeCount:")
+    public native void setBadgeCount(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "preferredMenuElementOrder")
+    public native UIContextMenuConfigurationElementOrder getPreferredMenuElementOrder();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPreferredMenuElementOrder:")
+    public native void setPreferredMenuElementOrder(UIContextMenuConfigurationElementOrder v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

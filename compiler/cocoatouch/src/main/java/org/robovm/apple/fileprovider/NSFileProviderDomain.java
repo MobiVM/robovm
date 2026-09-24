@@ -54,6 +54,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "initWithIdentifier:displayName:pathRelativeToDocumentStorage:")
     public NSFileProviderDomain(String identifier, String displayName, String pathRelativeToDocumentStorage) { super((SkipInit) null); initObject(init(identifier, displayName, pathRelativeToDocumentStorage)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayName:")
+    public NSFileProviderDomain(String identifier, String displayName) { super((SkipInit) null); initObject(init(identifier, displayName)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "identifier")
@@ -65,13 +70,59 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "pathRelativeToDocumentStorage")
     public native String getPathRelativeToDocumentStorage();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "userEnabled")
+    public native boolean isUserEnabled();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isReplicated")
+    public native boolean isReplicated();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "testingModes")
+    public native NSFileProviderDomainTestingModes getTestingModes();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setTestingModes:")
+    public native void setTestingModes(NSFileProviderDomainTestingModes v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "backingStoreIdentity")
+    public native NSData getBackingStoreIdentity();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "supportsSyncingTrash")
+    public native boolean supportsSyncingTrash();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setSupportsSyncingTrash:")
+    public native void setSupportsSyncingTrash(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @GlobalValue(symbol="NSFileProviderUserInfoExperimentIDKey", optional=true)
+    public static native NSString UserInfoExperimentIDKey();
+    
     /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "initWithIdentifier:displayName:pathRelativeToDocumentStorage:")
     protected native @Pointer long init(String identifier, String displayName, String pathRelativeToDocumentStorage);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithIdentifier:displayName:")
+    protected native @Pointer long init(String identifier, String displayName);
     /*</methods>*/
 }

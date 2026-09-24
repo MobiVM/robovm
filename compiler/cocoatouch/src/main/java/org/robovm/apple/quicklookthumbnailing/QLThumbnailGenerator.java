@@ -62,6 +62,13 @@ import org.robovm.apple.uikit.*;
     public native void generateRepresentations(QLThumbnailGenerationRequest request, @Block VoidBlock3<QLThumbnailRepresentation, QLThumbnailRepresentationType, NSError> updateHandler);
     @Method(selector = "cancelRequest:")
     public native void cancelRequest(QLThumbnailGenerationRequest request);
+    @Method(selector = "saveBestRepresentationForRequest:toFileAtURL:asContentType:completionHandler:")
+    public native void saveBestRepresentationAsContentType(QLThumbnailGenerationRequest request, NSURL fileURL, org.robovm.apple.uniformtypeid.UTType contentType, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use saveBestRepresentationForRequest:toFileAtURL:asContentType:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "saveBestRepresentationForRequest:toFileAtURL:withContentType:completionHandler:")
     public native void saveBestRepresentation(QLThumbnailGenerationRequest request, NSURL fileURL, String contentType, @Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/

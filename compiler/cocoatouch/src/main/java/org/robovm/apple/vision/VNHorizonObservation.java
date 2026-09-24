@@ -65,6 +65,10 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "transformForImageWidth:height:")
+    public native @ByVal CGAffineTransform transform(@MachineSizedUInt long width, @MachineSizedUInt long height);
     /*</methods>*/
 }

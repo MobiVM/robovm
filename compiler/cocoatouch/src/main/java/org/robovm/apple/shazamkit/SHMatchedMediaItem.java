@@ -48,6 +48,7 @@ import org.robovm.apple.avfoundation.*;
     protected SHMatchedMediaItem() {}
     protected SHMatchedMediaItem(Handle h, long handle) { super(h, handle); }
     protected SHMatchedMediaItem(SkipInit skipInit) { super(skipInit); }
+    public SHMatchedMediaItem(NSDictionary<NSString, ?> properties) { super((Handle) null, create(properties)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "frequencySkew")
@@ -56,11 +57,18 @@ import org.robovm.apple.avfoundation.*;
     public native double getMatchOffset();
     @Property(selector = "predictedCurrentMatchOffset")
     public native double getPredictedCurrentMatchOffset();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "confidence")
+    public native float getConfidence();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "mediaItemWithProperties:")
+    protected static native @Pointer long create(NSDictionary<NSString, ?> properties);
     @Method(selector = "fetchMediaItemWithShazamID:completionHandler:")
     public static native void fetchMediaItem(String shazamID, @Block VoidBlock2<SHMediaItem, NSError> completionHandler);
     /*</methods>*/

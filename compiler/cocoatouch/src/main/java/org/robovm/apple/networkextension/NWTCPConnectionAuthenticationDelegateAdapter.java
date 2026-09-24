@@ -52,22 +52,30 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @NotImplemented("shouldProvideIdentityForConnection:")
     public boolean shouldProvideIdentityForConnection(NWTCPConnection connection) { return false; }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_challenge_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @NotImplemented("provideIdentityForConnection:completionHandler:")
     public void provideIdentityForConnection(NWTCPConnection connection, @Block VoidBlock2<SecIdentity, NSArray<?>> completion) {}
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @NotImplemented("shouldEvaluateTrustForConnection:")
     public boolean shouldEvaluateTrustForConnection(NWTCPConnection connection) { return false; }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `sec_protocol_options_set_verify_block` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>
      */
+    @Deprecated
     @NotImplemented("evaluateTrustForConnection:peerCertificateChain:completionHandler:")
     public void evaluateTrustForConnection(NWTCPConnection connection, NSArray<?> peerCertificateChain, @Block VoidBlock1<SecTrust> completion) {}
     /*</methods>*/

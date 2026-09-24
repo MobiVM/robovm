@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,8 +87,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setCanOverlapSourceViewRect:")
     public native void setCanOverlapSourceViewRect(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "sourceItem")
+    public native UIPopoverPresentationControllerSourceItem getSourceItem();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setSourceItem:")
+    public native void setSourceItem(UIPopoverPresentationControllerSourceItem v);
+    /**
+     * @deprecated Use sourceItem
+     */
+    @Deprecated
     @Property(selector = "barButtonItem")
     public native UIBarButtonItem getBarButtonItem();
+    /**
+     * @deprecated Use sourceItem
+     */
+    @Deprecated
     @Property(selector = "setBarButtonItem:")
     public native void setBarButtonItem(UIBarButtonItem v);
     @Property(selector = "arrowDirection")

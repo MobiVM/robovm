@@ -30,6 +30,7 @@ import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.OrderEnumerator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
 import org.robovm.ibxcode.IBXcodeProject;
 import org.robovm.idea.RoboVmPlugin;
@@ -62,12 +63,16 @@ public class RoboVmIbXcodeProjectTask {
         Project project = this.module.getProject();
         File moduleBaseDir = RoboVmPlugin.getModuleBaseDir(module);
 
-        // load the robovm.xml file
+        // load the robovm.xml file (it will also merge alls robovm.xmls from robopods)
         try {
-            this.builder = new IBConfigBuilder();
+            this.builder = new Config.Builder();
             this.builder.logger(RoboVmPlugin.getLogger(project));
             this.builder.readProjectProperties(moduleBaseDir, false);
             this.builder.readProjectConfig(moduleBaseDir, false);
+
+            // disable linking/signing to not fail on missing signing identities
+            this.builder.skipLinking(true);
+            this.builder.iosSkipSigning(true);
         } catch (IOException e) {
             this.complete(e);
             return;
@@ -147,7 +152,7 @@ public class RoboVmIbXcodeProjectTask {
     private void complete(@Nullable String errorMessage) {
         // single exit point
         if (errorMessage != null) {
-            Notifications.Bus.notify(new Notification( "XCode project", "XCode project",
+            Notifications.Bus.notify(new Notification( "RoboVM", "XCode project",
                     "Failed due error: " + errorMessage, NotificationType.ERROR));
         }
 
@@ -236,18 +241,5 @@ public class RoboVmIbXcodeProjectTask {
             }
         }
     }
-
-
-    static class IBConfigBuilder extends Config.Builder {
-        IBConfigBuilder() {
-        }
-
-        @Override
-        public Config build() {
-            // do not build any complex config as it is time consuming and not required at all for this task
-            return this.config;
-        }
-    }
 }
-
 

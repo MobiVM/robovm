@@ -32,9 +32,11 @@ import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 16.0. Use MTLBinding
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("Metal") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Metal") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MTLArgument/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -53,7 +55,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "type")
     public native MTLArgumentType getType();
     @Property(selector = "access")
-    public native MTLArgumentAccess getAccess();
+    public native MTLBindingAccess getAccess();
     @Property(selector = "index")
     public native @MachineSizedUInt long getIndex();
     @Property(selector = "isActive")

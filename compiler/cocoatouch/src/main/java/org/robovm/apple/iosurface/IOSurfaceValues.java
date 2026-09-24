@@ -174,6 +174,11 @@ import org.robovm.apple.corefoundation.*;
     @GlobalValue(symbol="kIOSurfacePlaneComponentBitOffsets", optional=true)
     public static native CFString PlaneComponentBitOffsets();
     /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @GlobalValue(symbol="kIOSurfaceName", optional=true)
+    public static native CFString Name();
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @GlobalValue(symbol="kIOSurfacePlaneComponentNames", optional=true)
@@ -203,5 +208,10 @@ import org.robovm.apple.corefoundation.*;
      */
     @GlobalValue(symbol="kIOSurfaceICCProfile", optional=true)
     public static native CFString ICCProfile();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="kIOSurfaceContentHeadroom", optional=true)
+    public static native CFString ContentHeadroom();
     /*</methods>*/
 }

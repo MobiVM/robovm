@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.corefoundation.CFDictionary;
 import org.robovm.apple.coremedia.CMTextMarkupAttributes;
@@ -84,18 +85,6 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
         initObject(init(new NSArray<UIImage>(items)));
     }
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
-     */
-    @Deprecated
-    @Property(selector = "segmentedControlStyle")
-    public native UISegmentedControlStyle getControlStyle();
-    /**
-     * @deprecated Deprecated in iOS 7.0. The segmentedControlStyle property no longer has any effect
-     */
-    @Deprecated
-    @Property(selector = "setSegmentedControlStyle:")
-    public native void setControlStyle(UISegmentedControlStyle v);
     @Property(selector = "isMomentary")
     public native boolean isMomentary();
     @Property(selector = "setMomentary:")
@@ -123,14 +112,8 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "isSpringLoaded")
     public native boolean isSpringLoaded();
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @Property(selector = "setSpringLoaded:")
     public native void setSpringLoaded(boolean v);
     /*</properties>*/

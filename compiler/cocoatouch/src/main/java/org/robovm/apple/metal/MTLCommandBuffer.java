@@ -160,6 +160,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "accelerationStructureCommandEncoder")
     MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "accelerationStructureCommandEncoderWithDescriptor:")
+    MTLAccelerationStructureCommandEncoder accelerationStructureCommandEncoder(MTLAccelerationStructurePassDescriptor descriptor);
+    /**
      * @since Available in iOS 11.0 and later.
      */
     @Method(selector = "pushDebugGroup:")
@@ -169,6 +174,16 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "popDebugGroup")
     void popDebugGroup();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "useResidencySet:")
+    void useResidencySet(MTLResidencySet residencySet);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "useResidencySets:count:")
+    void useResidencySets(MTLResidencySet residencySets, @MachineSizedUInt long count);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

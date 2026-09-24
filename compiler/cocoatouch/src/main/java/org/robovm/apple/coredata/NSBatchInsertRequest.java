@@ -58,7 +58,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initWithEntity:dictionaryHandler:")
-    public static  NSBatchInsertRequest create(NSEntityDescription entity, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
+    public static NSBatchInsertRequest create(NSEntityDescription entity, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
        NSBatchInsertRequest res = new NSBatchInsertRequest((SkipInit) null);
        res.initObject(res.init0(entity, handler));
        return res;
@@ -72,7 +72,7 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 14.0 and later.
      */
     @Method(selector = "initWithEntityName:dictionaryHandler:")
-    public static  NSBatchInsertRequest create(String entityName, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
+    public static NSBatchInsertRequest create(String entityName, @Block Block1<NSMutableDictionary<NSString, ?>, Boolean> handler) {
        NSBatchInsertRequest res = new NSBatchInsertRequest((SkipInit) null);
        res.initObject(res.init0(entityName, handler));
        return res;

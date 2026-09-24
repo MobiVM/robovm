@@ -16,6 +16,8 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Set;
 
@@ -46,7 +48,13 @@ public class Alloca extends Instruction {
     }
 
     @Override
+    public void write(Writer writer) throws IOException {
+        writer.append(result.toString()).append(" = alloca ");
+        type.write(writer);
+    }
+
+    @Override
     public String toString() {
-        return result + " = alloca " + type;
+        return toString(this::write);
     }
 }

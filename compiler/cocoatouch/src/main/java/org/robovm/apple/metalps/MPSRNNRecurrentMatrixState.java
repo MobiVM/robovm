@@ -72,5 +72,16 @@ import org.robovm.apple.metal.*;
     public native MPSMatrix getRecurrentOutputMatrixForLayerIndex(@MachineSizedUInt long layerIndex);
     @Method(selector = "getMemoryCellMatrixForLayerIndex:")
     public native MPSMatrix getMemoryCellMatrixForLayerIndex(@MachineSizedUInt long layerIndex);
+    @Method(selector = "temporaryStateWithCommandBuffer:bufferSize:")
+    public static native MPSRNNRecurrentMatrixState createTemporaryState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
+    @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
+    public static native MPSRNNRecurrentMatrixState createTemporaryState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
+    @Method(selector = "temporaryStateWithCommandBuffer:")
+    public static native MPSRNNRecurrentMatrixState createTemporaryState(MTLCommandBuffer cmdBuf);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSRNNRecurrentMatrixState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

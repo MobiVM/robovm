@@ -34,7 +34,7 @@ import org.robovm.apple.coregraphics.*;
 
 /*<javadoc>*/
 /**
- * @deprecated Deprecated in iOS 10.0.
+ * @deprecated Deprecated in iOS 10.0. No longer supported.
  */
 /*</javadoc>*/
 /*<annotations>*/@Deprecated/*</annotations>*/
@@ -51,7 +51,7 @@ import org.robovm.apple.coregraphics.*;
     /*</properties>*/
     /*<methods>*/
     /**
-     * @deprecated Deprecated in iOS 10.0.
+     * @deprecated Deprecated in iOS 10.0. No longer supported.
      */
     @Deprecated
     @Method(selector = "friendRequestComposeViewControllerDidFinish:")

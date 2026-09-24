@@ -16,6 +16,9 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -40,9 +43,19 @@ public class Fcmp extends BinaryOpInstruction {
         }
         this.cond = cond;
     }
-    
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        writer.append(result.toString()).append(" = fcmp ").append(cond.toString()).append(' ');
+        op1.getType().write(writer);
+        writer.write(' ');
+        op1.write(writer);
+        writer.write(", ");
+        op2.write(writer);
+    }
+
     @Override
     public String toString() {
-        return result + " = fcmp " + cond + " " + op1.getType() + " " + op1 + ", " + op2;
+        return toString(this::write);
     }
 }

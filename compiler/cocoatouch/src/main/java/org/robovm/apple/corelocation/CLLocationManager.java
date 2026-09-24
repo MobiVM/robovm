@@ -185,10 +185,22 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "stopMonitoringLocationPushes")
     public native void stopMonitoringLocationPushes();
+    /**
+     * @deprecated Use CLMonitor to start or stop monitoring constraint
+     */
+    @Deprecated
     @Method(selector = "stopMonitoringForRegion:")
     public native void stopMonitoring(CLRegion region);
+    /**
+     * @deprecated Use CLMonitor to start or stop monitoring constraint
+     */
+    @Deprecated
     @Method(selector = "startMonitoringForRegion:")
     public native void startMonitoring(CLRegion region);
+    /**
+     * @deprecated Use CLMonitor to track and query the state for monitored constraints
+     */
+    @Deprecated
     @Method(selector = "requestStateForRegion:")
     public native void requestState(CLRegion region);
     /**
@@ -233,12 +245,6 @@ import org.robovm.apple.contacts.*;
     public static native boolean isSignificantLocationChangeMonitoringAvailable();
     @Method(selector = "isMonitoringAvailableForClass:")
     public static native boolean isMonitoringAvailable(Class<? extends CLRegion> regionClass);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use +isMonitoringAvailableForClass:
-     */
-    @Deprecated
-    @Method(selector = "regionMonitoringAvailable")
-    public static native boolean isRegionMonitoringAvailable();
     @Method(selector = "isRangingAvailable")
     public static native boolean isRangingAvailable();
     /**

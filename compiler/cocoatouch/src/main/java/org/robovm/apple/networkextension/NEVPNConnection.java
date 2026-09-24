@@ -44,7 +44,7 @@ import org.robovm.apple.network.*;
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObjectProtocol observeStatusDidChange(NEVPNConnection object, final VoidBlock1<NEVPNConnection> block) {
+        public static NSObject overseStatusDidChange(NEVPNConnection object, final VoidBlock1<NEVPNConnection> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(StatusDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -115,5 +115,10 @@ import org.robovm.apple.network.*;
     private native boolean startVPNTunnel(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
     @Method(selector = "stopVPNTunnel")
     public native void stopVPNTunnel();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "fetchLastDisconnectErrorWithCompletionHandler:")
+    public native void fetchLastDisconnectError(@Block VoidBlock1<NSError> handler);
     /*</methods>*/
 }

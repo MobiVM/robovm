@@ -2,11 +2,13 @@ package: org.robovm.apple.corelocation
 include: [foundation.yaml, addressbook.yaml, corebluetooth.yaml, contacts]
 library: CoreLocation
 framework: CoreLocation
+internal_frameworks: [_LocationEssentials]
 clang_args: ['-x', 'objective-c']
 headers:
     - /System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.h
 typedefs:
     CLGeocodeCompletionHandler: '@Block VoidBlock2<NSArray<CLPlacemark>, NSError>'
+    OS_dispatch_queue: org.robovm.apple.dispatch.DispatchQueue
 enums:
     CLActivityType: {}
     CLAuthorizationStatus: {}
@@ -16,6 +18,9 @@ enums:
     CLRegionState: {}
     CLAccuracyAuthorization: {}
     CLLocationPushServiceError: { nserror: true } #since 15.0
+    CLLiveUpdateConfiguration: { }
+    CLMonitoringState: { }
+    CLServiceSessionAuthorizationRequirement: {}
 classes:
     CLError:
         extends: NSError
@@ -56,8 +61,6 @@ classes:
         methods:
             '-initWithCenter:radius:identifier:':
                 name: init
-            '-initCircularRegionWithCenter:radius:identifier:':
-                exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
             '-containsCoordinate:': # Overrides a method in CLRegion
                 exclude: true
     CLFloor: {} # DONE
@@ -177,7 +180,7 @@ classes:
                 name: notifiesOnExit
         methods:
             '-initCircularRegionWithCenter:radius:identifier:':
-                name: init
+                exclude: true # as this method is deprecated and conflicts with initWithCenter:radius:identifier:
             '-containsCoordinate:':
                 trim_after_first_colon: true
     CLVisit: {} # DONE
@@ -193,6 +196,63 @@ classes:
         methods:
             '-initWithSoftwareSimulationState:andExternalAccessoryState:':
                 name: init
+    CLBackgroundActivitySession: #since 17.0
+        methods:
+            '+backgroundActivitySessionWithQueue:handler:':
+                name: backgroundActivitySession
+    CLBeaconIdentityCondition: #since 17.0
+        methods:
+            '-initWithUUID:':
+                name: init
+            '-initWithUUID:major:':
+                name: init
+            '-initWithUUID:major:minor:':
+                name: init
+    CLCircularGeographicCondition: #since 17.0
+        methods:
+            '-initWithCenter:radius:':
+                name: init
+    CLCondition: {} #since 17.0
+    CLLocationUpdater: #since 17.0
+        methods:
+            '+liveUpdaterWithQueue:handler:':
+                constructor: true
+                name: createLiveUpdater
+            '+liveUpdaterWithConfiguration:queue:handler:':
+                constructor: true
+                name: createLiveUpdater
+    CLMonitor: #since 17.0
+        methods:
+            '-addConditionForMonitoring:identifier:':
+                name: addCondition
+            '-addConditionForMonitoring:identifier:assumedState:':
+                name: addCondition
+            '-removeConditionFromMonitoringWithIdentifier:':
+                name: removeCondition
+            '+requestMonitorWithConfiguration:completion:':
+                name: requestMonitor
+    CLMonitorConfiguration: #since 17.0
+        methods:
+            '+configWithMonitorName:queue:eventHandler:':
+                constructor: true
+                name: create
+    CLMonitoringEvent: {} #since 17.0
+    CLMonitoringRecord: {} #since 17.0
+    CLUpdate: #since 17.0
+        properties:
+            isStationary:
+                exclude: true # deprecated on arrival
+
+    CLBackgroundActivitySessionDiagnostic: { } #since 18.0
+    CLServiceSession: #since 18.0
+        methods:
+            '+sessionRequiringAuthorization:queue:handler:':
+                name: createSessionRequiringAuthorization
+            '+sessionRequiringAuthorization:fullAccuracyPurposeKey:':
+                name: createSessionRequiringAuthorization
+            '+sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:':
+                name: createSessionRequiringAuthorization
+    CLServiceSessionDiagnostic: { } #since 18.0
 protocols:
     CLLocationManagerDelegate: # DONE
         methods:
@@ -297,6 +357,8 @@ values:
         name: 'Value__#{g[0]}'
 
 constants:
+    CL_TARGET_SUPPORTS_CONDITIONS:
+        exclude: true
 
     # Make sure we don't miss any constants if new ones are introduced in a later version
     (k?CL.*):

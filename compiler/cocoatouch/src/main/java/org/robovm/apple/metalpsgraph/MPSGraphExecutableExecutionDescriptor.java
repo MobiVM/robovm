@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphExecutableExecutionDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphExecutableExecutionDescriptorPtr extends Ptr<MPSGraphExecutableExecutionDescriptor, MPSGraphExecutableExecutionDescriptorPtr> {}/*</ptr>*/
@@ -66,6 +66,15 @@ import org.robovm.apple.metalps.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "waitForEvent:value:")
+    public native void waitForEvent(MTLSharedEvent event, long value);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "signalEvent:atExecutionEvent:value:")
+    public native void signalEvent(MTLSharedEvent event, MPSGraphExecutionStage executionStage, long value);
     /*</methods>*/
 }

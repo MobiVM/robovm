@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,6 +71,21 @@ import org.robovm.apple.linkpresentation.*;
     public native NSTextRange getElementRange();
     @Property(selector = "setElementRange:")
     public native void setElementRange(NSTextRange v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "childElements")
+    public native NSArray<? extends NSTextElement> getChildElements();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "parentElement")
+    public native NSTextElement getParentElement();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "isRepresentedElement")
+    public native boolean isRepresentedElement();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

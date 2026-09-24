@@ -51,6 +51,11 @@ import org.robovm.apple.coregraphics.*;
     protected GKBasePlayer(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 13.0. Use ``GKPlayer/gamePlayerID`` or ``GKPlayer/teamPlayerID`` instead.
+     */
+    @Deprecated
     @Property(selector = "playerID")
     public native String getPlayerID();
     @Property(selector = "displayName")

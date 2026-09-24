@@ -86,11 +86,31 @@ import org.robovm.apple.fileprovider.*;
     public native CKShareParticipantPermission getPermission();
     @Property(selector = "setPermission:")
     public native void setPermission(CKShareParticipantPermission v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Property(selector = "participantID")
+    public native String getParticipantID();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "isApprovedRequester")
+    public native boolean isApprovedRequester();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "dateAddedToShare")
+    public native NSDate getDateAddedToShare();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "oneTimeURLParticipant")
+    public static native CKShareParticipant oneTimeURLParticipant();
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

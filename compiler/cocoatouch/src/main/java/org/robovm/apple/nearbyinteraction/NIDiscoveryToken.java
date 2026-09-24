@@ -52,6 +52,11 @@ import org.robovm.apple.dispatch.*;
     public NIDiscoveryToken(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "deviceCapabilities")
+    public native NIDeviceCapability getDeviceCapabilities();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

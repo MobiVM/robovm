@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -67,5 +68,7 @@ import org.robovm.apple.linkpresentation.*;
     public boolean shouldPopItem(UINavigationBar navigationBar, UINavigationItem item) { return false; }
     @NotImplemented("navigationBar:didPopItem:")
     public void didPopItem(UINavigationBar navigationBar, UINavigationItem item) {}
+    @NotImplemented("navigationBarNSToolbarSection:")
+    public UINavigationBarNSToolbarSection navigationBarNSToolbarSection(UINavigationBar navigationBar) { return null; }
     /*</methods>*/
 }

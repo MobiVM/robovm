@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,8 +70,17 @@ import org.robovm.apple.linkpresentation.*;
     public void didEndEditing(UISearchBar searchBar) {}
     @NotImplemented("searchBar:textDidChange:")
     public void didChange(UISearchBar searchBar, String searchText) {}
+    /**
+     * @deprecated Use -searchBar:shouldChangeTextInRanges:replacementText:
+     */
+    @Deprecated
     @NotImplemented("searchBar:shouldChangeTextInRange:replacementText:")
     public boolean shouldChange(UISearchBar searchBar, @ByVal NSRange range, String text) { return false; }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @NotImplemented("searchBar:shouldChangeTextInRanges:replacementText:")
+    public boolean shouldChangeText(UISearchBar searchBar, NSArray<NSValue> ranges, String replacementText) { return false; }
     @NotImplemented("searchBarSearchButtonClicked:")
     public void searchButtonClicked(UISearchBar searchBar) {}
     @NotImplemented("searchBarBookmarkButtonClicked:")

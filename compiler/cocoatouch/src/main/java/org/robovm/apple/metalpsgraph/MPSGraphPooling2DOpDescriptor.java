@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphPooling2DOpDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphPooling2DOpDescriptorPtr extends Ptr<MPSGraphPooling2DOpDescriptor, MPSGraphPooling2DOpDescriptorPtr> {}/*</ptr>*/
@@ -101,6 +101,26 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensorNamedDataLayout getDataLayout();
     @Property(selector = "setDataLayout:")
     public native void setDataLayout(MPSGraphTensorNamedDataLayout v);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "returnIndicesMode")
+    public native MPSGraphPoolingReturnIndicesMode getReturnIndicesMode();
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "setReturnIndicesMode:")
+    public native void setReturnIndicesMode(MPSGraphPoolingReturnIndicesMode v);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "returnIndicesDataType")
+    public native MPSDataType getReturnIndicesDataType();
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Property(selector = "setReturnIndicesDataType:")
+    public native void setReturnIndicesDataType(MPSDataType v);
     /**
      * @since Available in iOS 15.0 and later.
      */

@@ -60,7 +60,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -124,6 +131,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_endpoint_get_url", optional=true)
     public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getUrl();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_endpoint_copy_txt_record", optional=true)
+    public native NWTxtRecord copyTxtRecord();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_endpoint_get_signature", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getSignature(MachineSizedUIntPtr out_signature_length);
     
     
     /*</methods>*/

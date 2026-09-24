@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -118,6 +119,16 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setHeaderTopPadding:")
     public native void setHeaderTopPadding(@MachineSizedFloat double v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "contentHuggingElements")
+    public native UICollectionLayoutListContentHuggingElements getContentHuggingElements();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setContentHuggingElements:")
+    public native void setContentHuggingElements(UICollectionLayoutListContentHuggingElements v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

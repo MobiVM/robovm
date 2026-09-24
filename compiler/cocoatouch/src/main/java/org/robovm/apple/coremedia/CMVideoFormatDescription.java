@@ -265,6 +265,16 @@ import org.robovm.apple.audiotoolbox.*;
     @GlobalValue(symbol="kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha", optional=true)
     public static native CFString AlphaChannelModePremultipliedAlpha();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionHeroEye_Left", optional=true)
+    public static native CFString HeroEyeLeft();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @GlobalValue(symbol="kCMFormatDescriptionHeroEye_Right", optional=true)
+    public static native CFString HeroEyeRight();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCMSampleBufferLensStabilizationInfo_Active", optional=true)
@@ -311,6 +321,11 @@ import org.robovm.apple.audiotoolbox.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> getExtensionKeysCommonWithImageBuffers();
     @Bridge(symbol="CMVideoFormatDescriptionMatchesImageBuffer", optional=true)
     public native boolean matchesImageBuffer(CVImageBuffer imageBuffer);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Bridge(symbol="CMVideoFormatDescriptionCopyTagCollectionArray", optional=true)
+    public native OSStatus copyTagCollectionArray(NSArray.NSArrayPtr tagCollectionsOut);
     @Bridge(symbol="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData", optional=true)
     private static native OSStatus createFromBigEndianImageDescriptionData0(CFAllocator allocator, BytePtr imageDescriptionData, @MachineSizedUInt long size, int stringEncoding, String flavor, CMVideoFormatDescription.CMVideoFormatDescriptionPtr formatDescriptionOut);
     @Bridge(symbol="CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer", optional=true)

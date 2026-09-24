@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -89,10 +90,22 @@ import org.robovm.apple.linkpresentation.*;
     @Property(selector = "setActivationConditions:")
     public native void setActivationConditions(UISceneActivationConditions v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "destructionConditions")
+    public native NSSet<UISceneDestructionCondition> getDestructionConditions();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setDestructionConditions:")
+    public native void setDestructionConditions(NSSet<UISceneDestructionCondition> v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "pointerLockState")
     public native UIPointerLockState getPointerLockState();
+    @Property(selector = "systemProtectionManager")
+    public native UISceneSystemProtectionManager getSystemProtectionManager();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

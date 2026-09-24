@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -91,6 +92,26 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean isContinuous();
     @Property(selector = "setContinuous:")
     public native void setContinuous(boolean v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "trackConfiguration")
+    public native UISliderTrackConfiguration getTrackConfiguration();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setTrackConfiguration:")
+    public native void setTrackConfiguration(UISliderTrackConfiguration v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "sliderStyle")
+    public native UISliderStyle getSliderStyle();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setSliderStyle:")
+    public native void setSliderStyle(UISliderStyle v);
     @Property(selector = "minimumTrackTintColor")
     public native UIColor getMinimumTrackTintColor();
     @Property(selector = "setMinimumTrackTintColor:")

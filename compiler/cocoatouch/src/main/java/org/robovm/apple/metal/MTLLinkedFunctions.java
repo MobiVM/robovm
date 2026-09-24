@@ -51,13 +51,19 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "functions")
-    public native NSArray<?> getFunctions();
+    public native NSArray<MTLFunction> getFunctions();
     @Property(selector = "setFunctions:")
-    public native void setFunctions(NSArray<?> v);
+    public native void setFunctions(NSArray<MTLFunction> v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "binaryFunctions")
-    public native NSArray<?> getBinaryFunctions();
+    public native NSArray<MTLFunction> getBinaryFunctions();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setBinaryFunctions:")
-    public native void setBinaryFunctions(NSArray<?> v);
+    public native void setBinaryFunctions(NSArray<MTLFunction> v);
     @Property(selector = "groups")
     public native NSDictionary<?, ?> getGroups();
     @Property(selector = "setGroups:")
@@ -66,12 +72,12 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "privateFunctions")
-    public native NSArray<?> getPrivateFunctions();
+    public native NSArray<MTLFunction> getPrivateFunctions();
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Property(selector = "setPrivateFunctions:")
-    public native void setPrivateFunctions(NSArray<?> v);
+    public native void setPrivateFunctions(NSArray<MTLFunction> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

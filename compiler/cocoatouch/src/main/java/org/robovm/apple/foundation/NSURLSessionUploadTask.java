@@ -59,6 +59,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "cancelByProducingResumeData:")
+    public native void cancelByProducingResumeData(@Block VoidBlock1<NSData> completionHandler);
     /*</methods>*/
 }

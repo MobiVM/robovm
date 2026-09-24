@@ -216,6 +216,9 @@ public class AppCompilerTest {
             }
             throw new IOException();
         }
-        
+
+        @Override
+        public void disposeBuildData() {
+        }
     }
 }

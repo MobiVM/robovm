@@ -65,9 +65,9 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setNonce:")
     public native void setNonce(String v);
     @Property(selector = "requestedOperation")
-    public native String getRequestedOperation();
+    public native ASAuthorizationOpenIDOperation getRequestedOperation();
     @Property(selector = "setRequestedOperation:")
-    public native void setRequestedOperation(String v);
+    public native void setRequestedOperation(ASAuthorizationOpenIDOperation v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

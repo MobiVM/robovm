@@ -40,7 +40,11 @@ public enum /*<name>*/NWParametersExpiredDnsBehavior/*</name>*/ implements Value
     /*<values>*/
     defaultBehaviour(0L),
     allow(1L),
-    prohibit(2L);
+    prohibit(2L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    persistent(3L);
     /*</values>*/
 
     /*<bind>*/

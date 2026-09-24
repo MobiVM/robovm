@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -86,5 +87,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "activityViewControllerLinkMetadata:")
     public native LPLinkMetadata activityViewControllerLinkMetadata(UIActivityViewController activityViewController);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "activityViewControllerShareRecipients:")
+    public native NSArray<INPerson> activityViewControllerShareRecipients(UIActivityViewController activityViewController);
     /*</methods>*/
 }

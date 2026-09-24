@@ -90,6 +90,7 @@ public enum /*<name>*/AUGenericProperty/*</name>*/ implements AUPropertyType {
     MIDIOutputEventListCallback(63L),
     AudioUnitMIDIProtocol(64L),
     HostMIDIProtocol(65L),
+    MIDIOutputBufferSizeHint(66L),
     RemoteControlEventListener(100L),
     IsInterAppConnected(101L),
     PeerURL(102L);

@@ -111,9 +111,53 @@ import org.robovm.apple.dispatch.*;
     public static final NSCalendarIdentifier RepublicOfChina = new NSCalendarIdentifier("RepublicOfChina");
     public static final NSCalendarIdentifier IslamicTabular = new NSCalendarIdentifier("IslamicTabular");
     public static final NSCalendarIdentifier IslamicUmmAlQura = new NSCalendarIdentifier("IslamicUmmAlQura");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Bangla = new NSCalendarIdentifier("Bangla");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Gujarati = new NSCalendarIdentifier("Gujarati");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Kannada = new NSCalendarIdentifier("Kannada");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Malayalam = new NSCalendarIdentifier("Malayalam");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Marathi = new NSCalendarIdentifier("Marathi");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Odia = new NSCalendarIdentifier("Odia");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Tamil = new NSCalendarIdentifier("Tamil");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Telugu = new NSCalendarIdentifier("Telugu");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Vikram = new NSCalendarIdentifier("Vikram");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Dangi = new NSCalendarIdentifier("Dangi");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarIdentifier Vietnamese = new NSCalendarIdentifier("Vietnamese");
     /*</constants>*/
     
-    private static /*<name>*/NSCalendarIdentifier/*</name>*/[] values = new /*<name>*/NSCalendarIdentifier/*</name>*/[] {/*<value_list>*/Gregorian, Buddhist, Chinese, Coptic, EthiopicAmeteMihret, EthiopicAmeteAlem, Hebrew, ISO8601, Indian, Islamic, IslamicCivil, Japanese, Persian, RepublicOfChina, IslamicTabular, IslamicUmmAlQura/*</value_list>*/};
+    private static /*<name>*/NSCalendarIdentifier/*</name>*/[] values = new /*<name>*/NSCalendarIdentifier/*</name>*/[] {/*<value_list>*/Gregorian, Buddhist, Chinese, Coptic, EthiopicAmeteMihret, EthiopicAmeteAlem, Hebrew, ISO8601, Indian, Islamic, IslamicCivil, Japanese, Persian, RepublicOfChina, IslamicTabular, IslamicUmmAlQura, Bangla, Gujarati, Kannada, Malayalam, Marathi, Odia, Tamil, Telugu, Vikram, Dangi, Vietnamese/*</value_list>*/};
     
     /*<name>*/NSCalendarIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -168,6 +212,61 @@ import org.robovm.apple.dispatch.*;
         public static native NSString IslamicTabular();
         @GlobalValue(symbol="NSCalendarIdentifierIslamicUmmAlQura", optional=true)
         public static native NSString IslamicUmmAlQura();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierBangla", optional=true)
+        public static native NSString Bangla();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierGujarati", optional=true)
+        public static native NSString Gujarati();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierKannada", optional=true)
+        public static native NSString Kannada();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierMalayalam", optional=true)
+        public static native NSString Malayalam();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierMarathi", optional=true)
+        public static native NSString Marathi();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierOdia", optional=true)
+        public static native NSString Odia();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierTamil", optional=true)
+        public static native NSString Tamil();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierTelugu", optional=true)
+        public static native NSString Telugu();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierVikram", optional=true)
+        public static native NSString Vikram();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierDangi", optional=true)
+        public static native NSString Dangi();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="NSCalendarIdentifierVietnamese", optional=true)
+        public static native NSString Vietnamese();
         /*</values>*/
     }
 }

@@ -41,14 +41,16 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/PHPickerConfigurationSelection/*</name>*/ implements ValuedEnum {
     /*<values>*/
-    /**
-     * @since Available in iOS 14.0 and later.
-     */
     Default(0L),
+    Ordered(1L),
     /**
-     * @since Available in iOS 14.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
-    Ordered(1L);
+    Continuous(2L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    ContinuousAndOrdered(3L);
     /*</values>*/
 
     /*<bind>*/

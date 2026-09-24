@@ -105,7 +105,10 @@ classes:
             '-initWithVASCommandConfigurations:delegate:queue:':
                 name: init
     NFCVASResponse: {} #since 13.0
-
+    NFCPaymentTagReaderSession: #since 26.0
+        methods:
+            '-initWithDelegate:queue:':
+                name: init
 protocols:
     NFCISO15693Tag: #since 11.0
         skip_adapter: true

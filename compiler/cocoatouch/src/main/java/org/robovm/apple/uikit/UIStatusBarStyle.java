@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,17 +53,7 @@ public enum /*<name>*/UIStatusBarStyle/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    DarkContent(3L),
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use UIStatusBarStyleLightContent
-     */
-    @Deprecated
-    BlackTranslucent(1L),
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use UIStatusBarStyleLightContent
-     */
-    @Deprecated
-    BlackOpaque(2L);
+    DarkContent(3L);
     /*</values>*/
 
     private final long n;

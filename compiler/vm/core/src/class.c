@@ -792,8 +792,11 @@ Class* rvmFindClassUsingLoader(Env* env, const char* className, Object* classLoa
 }
 
 Class* rvmFindLoadedClass(Env* env, const char* className, Object* classLoader) {
+    obtainClassLock();
     Class* clazz = getLoadedClass(env, className);
+    releaseClassLock();
     if (rvmExceptionOccurred(env)) return NULL;
+    if (clazz && !CLASS_IS_STATE_INITIALIZED(clazz)) return NULL;
     return clazz;
 }
 

@@ -43,12 +43,22 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("PassKit")/*</annotations>*/
 public enum /*<name>*/PKAddSecureElementPassErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    GenericError(0L),
+    /**
+     * @since Available in iOS 13.4 and later.
+     * @deprecated Deprecated in iOS 18.0. Use PKAddSecureElementPassGenericError instead.
+     */
+    @Deprecated
     UnknownError(0L),
     UserCanceledError(1L),
     UnavailableError(2L),
     InvalidConfigurationError(3L),
     DeviceNotSupportedError(4L),
-    DeviceNotReadyError(5L);
+    DeviceNotReadyError(5L),
+    OSVersionNotSupportedError(6L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(PKAddSecureElementPassErrorCode.class); }/*</bind>*/

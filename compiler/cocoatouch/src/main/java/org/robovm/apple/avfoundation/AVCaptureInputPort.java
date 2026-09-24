@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,7 +54,7 @@ import org.robovm.apple.audiotoolbox.*;
         /**
          * @since Available in iOS 4.0 and later.
          */
-        public static NSObjectProtocol observeFormatDescriptionDidChange(AVCaptureInputPort object, final VoidBlock1<AVCaptureInputPort> block) {
+        public static NSObject observeFormatDescriptionDidChange(AVCaptureInputPort object, final VoidBlock1<AVCaptureInputPort> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(FormatDescriptionDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

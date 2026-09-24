@@ -109,4 +109,9 @@ public class NullDataBufferReader implements DataBufferReader {
         expectAndAdvance(length);
         Arrays.fill(dst, offset, offset + length, (byte) 0);
     }
+
+    @Override
+    public String toString() {
+        return "NullDataBufferReader{" +  Long.toHexString(bottomLimit) + " ... " + Long.toHexString(limit() - 1) + '}';
+    }
 }

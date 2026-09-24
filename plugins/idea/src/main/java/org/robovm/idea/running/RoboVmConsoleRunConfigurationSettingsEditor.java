@@ -17,6 +17,7 @@
 package org.robovm.idea.running;
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileChooser.FileChooserDialog;
 import com.intellij.openapi.fileChooser.FileChooserFactory;
 import com.intellij.openapi.module.Module;
@@ -25,8 +26,8 @@ import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.robovm.compiler.config.CpuArch;
-import org.robovm.compiler.target.ConsoleTarget;
-import org.robovm.compiler.target.ios.DeviceType;
+import org.robovm.compiler.target.console.ConsoleTarget;
+import org.robovm.compiler.target.ios.simulator.DeviceType;
 import org.robovm.idea.RoboVmPlugin;
 
 import javax.swing.*;
@@ -92,17 +93,8 @@ public class RoboVmConsoleRunConfigurationSettingsEditor extends SettingsEditor<
         }
         this.workingDir.setText(dir);
         this.browseButton.addActionListener(e -> {
-            FileChooserDialog fileChooser = FileChooserFactory.getInstance()
-                    .createFileChooser(new FileChooserDescriptor(true, false, false, false, false, false) {
-                        @Override
-                        public boolean isFileVisible(VirtualFile file, boolean showHiddenFiles) {
-                            return file.isDirectory();
-                        }
-                        @Override
-                        public boolean isFileSelectable(VirtualFile file) {
-                            return file.isDirectory();
-                        }
-                    }, null, panel);
+            FileChooserDescriptor descriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
+            FileChooserDialog fileChooser = FileChooserFactory.getInstance().createFileChooser(descriptor, null, panel);
             VirtualFile[] dir1 = fileChooser.choose(config.getProject());
             if(dir1.length > 0) {
                 workingDir.setText(dir1[0].getCanonicalPath());

@@ -65,6 +65,16 @@ import org.robovm.apple.fileprovider.*;
      */
     @Property(selector = "share")
     public native CKReference getShare();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "encryptionScope")
+    public native CKRecordZoneEncryptionScope getEncryptionScope();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setEncryptionScope:")
+    public native void setEncryptionScope(CKRecordZoneEncryptionScope v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

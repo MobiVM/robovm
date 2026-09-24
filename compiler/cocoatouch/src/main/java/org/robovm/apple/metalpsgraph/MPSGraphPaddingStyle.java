@@ -53,7 +53,11 @@ public enum /*<name>*/MPSGraphPaddingStyle/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 15.0 and later.
      */
-    ExplicitOffset(3L);
+    ExplicitOffset(3L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    ONNX_SAME_LOWER(4L);
     /*</values>*/
 
     /*<bind>*/

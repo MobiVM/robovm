@@ -86,6 +86,10 @@ import org.robovm.apple.imageio.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "supportedNumberOfTrackersAndReturnError:")
+    public native @MachineSizedUInt long supportedNumberOfTrackersAndReturnError(NSError.NSErrorPtr error);
     /*</methods>*/
 }

@@ -77,6 +77,21 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isExplicitContent();
     @Property(selector = "isrc")
     public native String getIsrc();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "timeRanges")
+    public native NSArray<SHRange> getTimeRanges();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "frequencySkewRanges")
+    public native NSArray<SHRange> getFrequencySkewRanges();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "creationDate")
+    public native NSDate getCreationDate();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

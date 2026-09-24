@@ -17,11 +17,14 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
  */
-public class FunctionDeclaration {
+public class FunctionDeclaration implements Writable{
     private final String name;
     private final FunctionType type;
 
@@ -45,27 +48,30 @@ public class FunctionDeclaration {
     public FunctionRef ref() {
         return new FunctionRef(name, type);
     }
-    
+
     @Override
-    public String toString() {
+    public void write(Writer writer) throws IOException {
         Type returnType = type.getReturnType();
         Type[] parameterTypes = type.getParameterTypes();
-        StringBuilder sb = new StringBuilder();
-        sb.append("declare ");
-        sb.append(returnType.toString());
-        sb.append(" @\"");
-        sb.append(name);
-        sb.append("\"(");
+        writer.write("declare ");
+        returnType.write(writer);
+        writer.write(" @\"");
+        writer.write(name);
+        writer.write("\"(");
         for (int i = 0; i < parameterTypes.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append(parameterTypes[i].toString());
+            parameterTypes[i].write(writer);
         }
         if (type.isVarargs()) {
-            sb.append(", ...");
+            writer.write(", ...");
         }
-        sb.append(")");
-        return sb.toString();
+        writer.write(')');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

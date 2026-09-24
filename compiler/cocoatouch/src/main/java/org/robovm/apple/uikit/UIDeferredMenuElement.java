@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +63,11 @@ import org.robovm.apple.linkpresentation.*;
     public UIDeferredMenuElement(NSCoder coder) { super(coder); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native String getIdentifier();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -74,5 +80,10 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "elementWithUncachedProvider:")
     public static native UIDeferredMenuElement elementWithUncachedProvider(@Block("(@Block)") VoidBlock1<VoidBlock1<NSArray<UIMenuElement>>> elementProvider);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "elementUsingFocusWithIdentifier:shouldCacheItems:")
+    public static native UIDeferredMenuElement elementUsingFocus(String identifier, boolean shouldCacheItems);
     /*</methods>*/
 }

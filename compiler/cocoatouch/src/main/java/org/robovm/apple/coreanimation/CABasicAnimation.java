@@ -33,6 +33,7 @@ import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.metal.*;
+import org.robovm.apple.corevideo.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,12 +51,9 @@ import org.robovm.apple.metal.*;
     public CABasicAnimation() {}
     protected CABasicAnimation(Handle h, long handle) { super(h, handle); }
     protected CABasicAnimation(SkipInit skipInit) { super(skipInit); }
+    public CABasicAnimation(String path) { super((Handle) null, create(path)); retain(getHandle()); }
     /*</constructors>*/
-    public CABasicAnimation(String path) {
-        super(create(path));
-        retain(getHandle());
-    }
-    
+
     public double getNumericFromValue() {
         NSObject val = getFromValue();
         if (val instanceof NSNumber) {
@@ -104,9 +102,9 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
 
+    /*<methods>*/
     @Method(selector = "animationWithKeyPath:")
     protected static native @Pointer long create(String path);
-    /*<methods>*/
     @Method(selector = "defaultValueForKey:")
     public static native NSObject getDefaultValue(String key);
     /*</methods>*/

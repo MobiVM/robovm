@@ -9,7 +9,6 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_IEEE_LIBM")
 # library (see their own admission in 'readme'). Without this, we
 # fail StrictMath tests on x86.
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-strict-aliasing")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffloat-store")
 
 # fdlibm expects __LITTLE_ENDIAN to be defined for little endian targets but
 # clang defines __LITTLE_ENDIAN__.

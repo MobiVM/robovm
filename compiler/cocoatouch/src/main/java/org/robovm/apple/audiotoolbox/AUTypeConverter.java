@@ -50,6 +50,10 @@ public enum /*<name>*/AUTypeConverter/*</name>*/ implements AUSubType {
     NewTimePitch(1853191280L),
     AUiPodTimeOther(1768977519L),
     RoundTripAAC(1918984547L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    AUAudioMix(1634560376L),
     TimePitch(1953329268L),
     /**
      * @deprecated Deprecated in iOS 13.0. Use kAudioUnitSubType_NewTimePitch

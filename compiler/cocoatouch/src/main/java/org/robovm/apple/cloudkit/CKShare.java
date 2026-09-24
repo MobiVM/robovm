@@ -75,6 +75,26 @@ import org.robovm.apple.fileprovider.*;
     public native CKShareParticipant getOwner();
     @Property(selector = "currentUserParticipant")
     public native CKShareParticipant getCurrentUserParticipant();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requesters")
+    public native NSArray<CKShareAccessRequester> getRequesters();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "blockedIdentities")
+    public native NSArray<CKShareBlockedIdentity> getBlockedIdentities();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsAccessRequests")
+    public native boolean allowsAccessRequests();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsAccessRequests:")
+    public native void setAllowsAccessRequests(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -116,5 +136,25 @@ import org.robovm.apple.fileprovider.*;
     public native void addParticipant(CKShareParticipant participant);
     @Method(selector = "removeParticipant:")
     public native void removeParticipant(CKShareParticipant participant);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "oneTimeURLForParticipantID:")
+    public native NSURL oneTimeURLForParticipantID(String participantID);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "denyRequesters:")
+    public native void denyRequesters(NSArray<CKShareAccessRequester> requesters);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "blockRequesters:")
+    public native void blockRequesters(NSArray<CKShareAccessRequester> requesters);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "unblockIdentities:")
+    public native void unblockIdentities(NSArray<CKShareBlockedIdentity> blockedIdentities);
     /*</methods>*/
 }

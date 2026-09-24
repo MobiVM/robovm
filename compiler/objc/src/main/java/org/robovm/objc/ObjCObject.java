@@ -104,16 +104,25 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     protected void initObject(long handle) {
-        if (handle == 0) {
-            throw new RuntimeException("Objective-C initialization method returned nil");
-        }
+        // as per Apple doc: Handling Initialization Failure
+        //    > In general, if there is a problem during an initialization method, you should call [self release]
+        //    > and return nil.
+        // this means if handle == 0 old handle was already released and keeping it will cause
+        // EXC_BAD_ACCESS at moment of GC corresponding Java counterpart
+        // to avoid such case in case of receiving 0 -- old references to old handle to be dropped first
+        // and only after this exception to be thrown
         long oldHandle = getHandle();
         if (handle != oldHandle) {
             if (oldHandle != 0) {
                 removePeerObject(this);
             }
             setHandle(handle);
-            setPeerObject(handle, this);
+            if (handle != 0) {
+                setPeerObject(handle, this);
+            }
+        }
+        if (handle == 0) {
+            throw new RuntimeException("Objective-C initialization method returned nil");
         }
     }
 
@@ -173,6 +182,12 @@ public abstract class ObjCObject extends NativeObject {
         synchronized (objcBridgeLock) {
             ObjCObjectRef ref = peers.get(handle);
             T o = ref != null ? (T) ref.get() : null;
+            if (o == null) {
+                // week reference might be empty due GC but there might be Custom object for the peer in
+                // strong ObjectOwnershipHelper registry
+                o = ObjectOwnershipHelper.getPeerObject(handle);
+                if (o != null) peers.put(handle, new ObjCObjectRef(o));
+            }
             return o;
         }
     }
@@ -319,8 +334,16 @@ public abstract class ObjCObject extends NativeObject {
                 }
             }
 
-            ObjCClass objCClass = ObjCClass.getFromObject(handle);
-            if (!expectedType.isAssignableFrom(objCClass.getType())) {
+            // dkimitsa: when ObjCProxy is a target at java level it expected to return Interface/Protocol implementation
+            // But not always is possible to recognizable ObjC object implementing the protocol behind the handle.
+            // For example in case protocol is implemented by pure Swift object.
+            // In this cause case ObjCClass might not be resolved (cause ObjCClassNotFoundException)
+            // or not resolve to one that implement the protocol (not isAssignableFrom).
+            // To workaround -- allow getFromObject to be optional and return Null.
+            // in this case objCClass will be resolved using getByType() from provided $ObjCProxy
+            // it's the case when proper ObjC object that implement the protocol can't be identified
+            ObjCClass objCClass = ObjCClass.getFromObject(handle, expectedType != cls);
+            if (objCClass == null || !expectedType.isAssignableFrom(objCClass.getType())) {
                 /*
                  * If the expected return type is incompatible with the type of
                  * the native instance we have to make sure we return an
@@ -399,7 +422,7 @@ public abstract class ObjCObject extends NativeObject {
     }
 
     static class ObjectOwnershipHelper {
-        private static final LongMap<Object> CUSTOM_OBJECTS = new LongMap<>();
+        private static final LongMap<ObjCObject> CUSTOM_OBJECTS = new LongMap<>();
 
         private static final long retainCount = Selector.register("retainCount").getHandle();
         private static final long retain = Selector.register("retain").getHandle();
@@ -478,7 +501,7 @@ public abstract class ObjCObject extends NativeObject {
          * @param self pointer from native part
          */
         public static void retainObject(long self) {
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
                 ObjCObject obj = ObjCObject.getPeerObject(self);
                 CUSTOM_OBJECTS.put(self, obj);
             }
@@ -505,7 +528,7 @@ public abstract class ObjCObject extends NativeObject {
             // as there is direct retain in afterMarshaled for custom objects
             int count = ObjCRuntime.int_objc_msgSend(self, retainCount);
             if (count <= 2) {
-                synchronized (CUSTOM_OBJECTS) {
+                synchronized (objcBridgeLock) {
                     // at this moment there is no reference kept for java object
                     // and it is subject for GC if not being referenced anywhere
                     // once GC comes it will cause release() to be called in dispose
@@ -528,18 +551,32 @@ public abstract class ObjCObject extends NativeObject {
             // mechanism. So let it to deallow with extra retains
             long cls = ObjCRuntime.object_getClass(self);
             Super sup = new Super(self, getNativeSuper(cls));
-            ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
-
-            // and after this remove this peer (as it could be added again due unexpected retain calls)
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
+                // calling [super dealloc] while locked as it + CUSTOM_OBJECTS.remove(self) should be atomic due
+                // following
+                // 1. custom dealloc code might trigger self to be retained and added back to CUSTOM_OBJECTS
+                //    CUSTOM_OBJECTS has to be done after dealloc
+                // 2. after dealloc and between CUSTOM_OBJECTS.remove another thread might allocate same
+                //    memory and already put into CUSTOM_OBJECTS. As result CUSTOM_OBJECTS.remove(self)
+                //    will drop completely different object. synchronized (getPeerObject) is supposed to
+                //    protect against it (but it might slow things down)
+                ObjCRuntime.void_objc_msgSendSuper(sup.getHandle(), sel);
+                // and after this remove this peer (as it could be added again due unexpected retain calls)
                 CUSTOM_OBJECTS.remove(self);
             }
         }
 
         public static boolean isObjectRetained(ObjCObject object) {
-            synchronized (CUSTOM_OBJECTS) {
+            synchronized (objcBridgeLock) {
                 return CUSTOM_OBJECTS.containsKey(object.getHandle());
             }
+        }
+
+        /**
+         * shall be called with objcBridgeLock locked
+         */
+        static <T extends ObjCObject> T getPeerObject(long handle) {
+            return (T)CUSTOM_OBJECTS.get(handle);
         }
 
         private static long getNativeSuper(final long cls) {

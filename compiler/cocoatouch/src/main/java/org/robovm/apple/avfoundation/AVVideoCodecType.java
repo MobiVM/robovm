@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -110,9 +112,17 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVVideoCodecType AVVideoCodecTypeJPEG = new AVVideoCodecType("AVVideoCodecTypeJPEG");
     /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVVideoCodecType AVVideoCodecTypeJPEGXL = new AVVideoCodecType("AVVideoCodecTypeJPEGXL");
+    /**
      * @since Available in iOS 11.0 and later.
      */
     public static final AVVideoCodecType AVVideoCodecTypeAppleProRes4444 = new AVVideoCodecType("AVVideoCodecTypeAppleProRes4444");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final AVVideoCodecType AVVideoCodecTypeAppleProRes4444XQ = new AVVideoCodecType("AVVideoCodecTypeAppleProRes4444XQ");
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -130,12 +140,20 @@ import org.robovm.apple.audiotoolbox.*;
      */
     public static final AVVideoCodecType AVVideoCodecTypeAppleProRes422Proxy = new AVVideoCodecType("AVVideoCodecTypeAppleProRes422Proxy");
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVVideoCodecType AVVideoCodecTypeAppleProResRAW = new AVVideoCodecType("AVVideoCodecTypeAppleProResRAW");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVVideoCodecType AVVideoCodecTypeAppleProResRAWHQ = new AVVideoCodecType("AVVideoCodecTypeAppleProResRAWHQ");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final AVVideoCodecType AVVideoCodecTypeHEVCWithAlpha = new AVVideoCodecType("AVVideoCodecTypeHEVCWithAlpha");
     /*</constants>*/
     
-    private static /*<name>*/AVVideoCodecType/*</name>*/[] values = new /*<name>*/AVVideoCodecType/*</name>*/[] {/*<value_list>*/AVVideoCodecTypeHEVC, AVVideoCodecTypeH264, AVVideoCodecTypeJPEG, AVVideoCodecTypeAppleProRes4444, AVVideoCodecTypeAppleProRes422, AVVideoCodecTypeAppleProRes422HQ, AVVideoCodecTypeAppleProRes422LT, AVVideoCodecTypeAppleProRes422Proxy, AVVideoCodecTypeHEVCWithAlpha/*</value_list>*/};
+    private static /*<name>*/AVVideoCodecType/*</name>*/[] values = new /*<name>*/AVVideoCodecType/*</name>*/[] {/*<value_list>*/AVVideoCodecTypeHEVC, AVVideoCodecTypeH264, AVVideoCodecTypeJPEG, AVVideoCodecTypeJPEGXL, AVVideoCodecTypeAppleProRes4444, AVVideoCodecTypeAppleProRes4444XQ, AVVideoCodecTypeAppleProRes422, AVVideoCodecTypeAppleProRes422HQ, AVVideoCodecTypeAppleProRes422LT, AVVideoCodecTypeAppleProRes422Proxy, AVVideoCodecTypeAppleProResRAW, AVVideoCodecTypeAppleProResRAWHQ, AVVideoCodecTypeHEVCWithAlpha/*</value_list>*/};
     
     /*<name>*/AVVideoCodecType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -174,10 +192,20 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVVideoCodecTypeJPEG", optional=true)
         public static native NSString AVVideoCodecTypeJPEG();
         /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoCodecTypeJPEGXL", optional=true)
+        public static native NSString AVVideoCodecTypeJPEGXL();
+        /**
          * @since Available in iOS 11.0 and later.
          */
         @GlobalValue(symbol="AVVideoCodecTypeAppleProRes4444", optional=true)
         public static native NSString AVVideoCodecTypeAppleProRes4444();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoCodecTypeAppleProRes4444XQ", optional=true)
+        public static native NSString AVVideoCodecTypeAppleProRes4444XQ();
         /**
          * @since Available in iOS 11.0 and later.
          */
@@ -198,6 +226,16 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVVideoCodecTypeAppleProRes422Proxy", optional=true)
         public static native NSString AVVideoCodecTypeAppleProRes422Proxy();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoCodecTypeAppleProResRAW", optional=true)
+        public static native NSString AVVideoCodecTypeAppleProResRAW();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoCodecTypeAppleProResRAWHQ", optional=true)
+        public static native NSString AVVideoCodecTypeAppleProResRAWHQ();
         /**
          * @since Available in iOS 13.0 and later.
          */

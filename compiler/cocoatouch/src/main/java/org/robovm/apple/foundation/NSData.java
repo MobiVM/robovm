@@ -54,6 +54,26 @@ import org.robovm.apple.dispatch.*;
     public NSData() {}
     protected NSData(Handle h, long handle) { super(h, handle); }
     protected NSData(SkipInit skipInit) { super(skipInit); }
+    @Method(selector = "initWithContentsOfFile:options:error:")
+    public NSData(String path, NSDataReadingOptions readOptionsMask) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(path, readOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    @Method(selector = "initWithContentsOfURL:options:error:")
+    public NSData(NSURL url, NSDataReadingOptions readOptionsMask) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, readOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    @Method(selector = "initWithContentsOfFile:")
+    public NSData(String path) { super((SkipInit) null); initObject(init(path)); }
+    @Method(selector = "initWithContentsOfURL:")
+    public NSData(NSURL url) { super((SkipInit) null); initObject(init(url)); }
     @Method(selector = "initWithData:")
     public NSData(NSData data) { super((SkipInit) null); initObject(init(data)); }
     /*</constructors>*/
@@ -194,6 +214,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "getBytes:length:")
     protected native void getBytes(@Pointer long buffer, @MachineSizedUInt long length);
+    @Method(selector = "getBytes:range:")
+    public native void getBytes(VoidPtr buffer, @ByVal NSRange range);
+    @Method(selector = "isEqualToData:")
+    public native boolean isEqualToData(NSData other);
     @Method(selector = "subdataWithRange:")
     public native NSData getSubdata(@ByVal NSRange range);
     @Method(selector = "writeToFile:atomically:")
@@ -218,12 +242,28 @@ import org.robovm.apple.dispatch.*;
     private native boolean write(NSURL url, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
     @Method(selector = "rangeOfData:options:range:")
     public native @ByVal NSRange find(NSData dataToFind, NSDataSearchOptions mask, @ByVal NSRange searchRange);
+    @Method(selector = "enumerateByteRangesUsingBlock:")
+    public native void enumerateByteRangesUsingBlock(@Block("(,@ByVal,)") VoidBlock3<VoidPtr, NSRange, BooleanPtr> block);
     @Method(selector = "initWithBytes:length:")
     protected native @Pointer long init(@Pointer long bytes, @MachineSizedUInt long length);
+    @Method(selector = "initWithBytesNoCopy:length:")
+    protected native @Pointer long init(VoidPtr bytes, @MachineSizedUInt long length);
     @Method(selector = "initWithBytesNoCopy:length:freeWhenDone:")
     protected native @Pointer long init(@Pointer long bytes, @MachineSizedUInt long length, boolean b);
+    @Method(selector = "initWithBytesNoCopy:length:deallocator:")
+    protected native @Pointer long init(VoidPtr bytes, @MachineSizedUInt long length, @Block("(,@MachineSizedUInt)") VoidBlock2<VoidPtr, Long> deallocator);
+    @Method(selector = "initWithContentsOfFile:options:error:")
+    private native @Pointer long init(String path, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
+    @Method(selector = "initWithContentsOfURL:options:error:")
+    private native @Pointer long init(NSURL url, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
+    @Method(selector = "initWithContentsOfFile:")
+    protected native @Pointer long init(String path);
+    @Method(selector = "initWithContentsOfURL:")
+    protected native @Pointer long init(NSURL url);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
+    @Method(selector = "data")
+    public static native NSData data();
     protected static NSData readFile(String path, NSDataReadingOptions readOptionsMask) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSData result = readFile(path, readOptionsMask, ptr);
@@ -252,6 +292,46 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(NSData base64Data, NSDataBase64DecodingOptions options);
     @Method(selector = "base64EncodedDataWithOptions:")
     public native NSData toBase64EncodedData(NSDataBase64EncodingOptions options);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NSData decompressedData(NSDataCompressionAlgorithm algorithm) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = decompressedData(algorithm, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "decompressedDataUsingAlgorithm:error:")
+    private native NSData decompressedData(NSDataCompressionAlgorithm algorithm, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    public NSData compressedData(NSDataCompressionAlgorithm algorithm) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = compressedData(algorithm, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "compressedDataUsingAlgorithm:error:")
+    private native NSData compressedData(NSDataCompressionAlgorithm algorithm, NSError.NSErrorPtr error);
+    /**
+     * @deprecated Deprecated in iOS 8.0. This method is unsafe because it could potentially cause buffer overruns. Use -getBytes:length: instead.
+     */
+    @Deprecated
+    @Method(selector = "getBytes:")
+    public native void getBytes(VoidPtr buffer);
+    /**
+     * @deprecated Deprecated in iOS 8.0. Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.
+     */
+    @Deprecated
+    @Method(selector = "initWithContentsOfMappedFile:")
+    protected native @Pointer long initWithContentsOfMappedFile(String path);
     /**
      * @deprecated Deprecated in iOS 8.0. Use +dataWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.
      */

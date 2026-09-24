@@ -49,7 +49,7 @@ import org.robovm.apple.avfoundation.*;
     protected CHHapticPattern(Handle h, long handle) { super(h, handle); }
     protected CHHapticPattern(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithEvents:parameters:error:")
-    public static  CHHapticPattern createUsingParameters(NSArray<CHHapticEvent> events, NSArray<CHHapticDynamicParameter> parameters) throws NSErrorException  {
+    public static CHHapticPattern createUsingParameters(NSArray<CHHapticEvent> events, NSArray<CHHapticDynamicParameter> parameters) throws NSErrorException  {
        CHHapticPattern res = new CHHapticPattern((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        res.initObject(res.initUsingParameters(events, parameters, ptr));
@@ -72,6 +72,17 @@ import org.robovm.apple.avfoundation.*;
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
        initObject(handle);
     }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithContentsOfURL:error:")
+    public CHHapticPattern(NSURL ahapURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(ahapURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "duration")
@@ -85,6 +96,11 @@ import org.robovm.apple.avfoundation.*;
     private native @Pointer long init(NSArray<CHHapticEvent> events, NSArray<CHHapticParameterCurve> parameterCurves, NSError.NSErrorPtr outError);
     @Method(selector = "initWithDictionary:error:")
     private native @Pointer long init(CHHapticPatternDict patternDict, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithContentsOfURL:error:")
+    private native @Pointer long init(NSURL ahapURL, NSError.NSErrorPtr outError);
     @Method(selector = "exportDictionaryAndReturnError:")
     public native CHHapticPatternDict exportDictionaryAndReturnError(NSError.NSErrorPtr outError);
     /*</methods>*/

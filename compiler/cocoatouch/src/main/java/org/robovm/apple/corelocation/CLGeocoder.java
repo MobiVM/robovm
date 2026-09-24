@@ -34,9 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 26.0. Use MapKit
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLGeocoder/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -55,39 +57,59 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use MKReverseGeocodingRequest
+     */
+    @Deprecated
     @Method(selector = "reverseGeocodeLocation:completionHandler:")
     public native void reverseGeocodeLocation(CLLocation location, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use MKReverseGeocodingRequest
      */
+    @Deprecated
     @Method(selector = "reverseGeocodeLocation:preferredLocale:completionHandler:")
     public native void reverseGeocodeLocation(CLLocation location, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
-     * @deprecated Deprecated in iOS 11.0. Use -geocodePostalAddress:completionHandler:
+     * @deprecated Deprecated in iOS 11.0. Use MKReverseGeocodingRequest
      */
     @Deprecated
     @WeaklyLinked
     @Method(selector = "geocodeAddressDictionary:completionHandler:")
     public native void geocodeAddress(ABPersonAddress addressDictionary, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
-    @Method(selector = "geocodeAddressString:completionHandler:")
-    public native void geocodeAddress(String addressString, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     @Method(selector = "geocodeAddressString:inRegion:completionHandler:")
     public native void geocodeAddress(String addressString, CLRegion region, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use MKGeocodingRequest
      */
+    @Deprecated
     @Method(selector = "geocodeAddressString:inRegion:preferredLocale:completionHandler:")
     public native void geocodeAddress(String addressString, CLRegion region, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use MKGeocodingRequest
+     */
+    @Deprecated
+    @Method(selector = "geocodeAddressString:completionHandler:")
+    public native void geocodeAddress(String addressString, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use MKGeocodingRequest
+     */
+    @Deprecated
     @Method(selector = "cancelGeocode")
     public native void cancelGeocode();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use MKReverseGeocodingRequest
      */
+    @Deprecated
     @Method(selector = "geocodePostalAddress:completionHandler:")
     public native void geocodePostalAddress(CNPostalAddress postalAddress, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use MKReverseGeocodingRequest
      */
+    @Deprecated
     @Method(selector = "geocodePostalAddress:preferredLocale:completionHandler:")
     public native void geocodePostalAddress(CNPostalAddress postalAddress, NSLocale locale, @Block VoidBlock2<NSArray<CLPlacemark>, NSError> completionHandler);
     /*</methods>*/

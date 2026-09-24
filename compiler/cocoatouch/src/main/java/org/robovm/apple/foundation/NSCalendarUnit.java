@@ -59,8 +59,20 @@ public final class /*<name>*/NSCalendarUnit/*</name>*/ extends Bits</*<name>*/NS
     public static final NSCalendarUnit WeekOfYear = new NSCalendarUnit(8192L);
     public static final NSCalendarUnit YearForWeekOfYear = new NSCalendarUnit(16384L);
     public static final NSCalendarUnit Nanosecond = new NSCalendarUnit(32768L);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final NSCalendarUnit DayOfYear = new NSCalendarUnit(65536L);
     public static final NSCalendarUnit Calendar = new NSCalendarUnit(1048576L);
     public static final NSCalendarUnit TimeZone = new NSCalendarUnit(2097152L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarUnit IsLeapMonth = new NSCalendarUnit(1073741824L);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final NSCalendarUnit IsRepeatedDay = new NSCalendarUnit(2147483648L);
     /*</values>*/
 
     private static final /*<name>*/NSCalendarUnit/*</name>*/[] values = _values(/*<name>*/NSCalendarUnit/*</name>*/.class);

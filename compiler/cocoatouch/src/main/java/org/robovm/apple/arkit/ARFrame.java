@@ -66,6 +66,11 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "capturedImage")
     public native CVPixelBuffer getCapturedImage();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "exifData")
+    public native NSDictionary<NSString, ?> getExifData();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "cameraGrainTexture")

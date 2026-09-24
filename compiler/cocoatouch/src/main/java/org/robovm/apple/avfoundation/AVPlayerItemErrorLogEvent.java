@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -71,6 +73,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native String getErrorDomain();
     @Property(selector = "errorComment")
     public native String getErrorComment();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "allHTTPResponseHeaderFields")
+    public native NSDictionary<NSString, NSString> getAllHTTPResponseHeaderFields();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

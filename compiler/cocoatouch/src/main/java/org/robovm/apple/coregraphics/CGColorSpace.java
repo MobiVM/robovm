@@ -316,6 +316,11 @@ import org.robovm.apple.uikit.*;
     @GlobalValue(symbol="kCGColorSpaceITUR_709_PQ", optional=true)
     public static native String ITUR_709_PQ();
     /**
+     * @since Available in iOS 15.1 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceITUR_709_HLG", optional=true)
+    public static native String ITUR_709_HLG();
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @GlobalValue(symbol="kCGColorSpaceITUR_2020", optional=true)
@@ -443,6 +448,11 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="kCGColorSpaceExtendedLinearGray", optional=true)
     public static native String ExtendedLinearGray();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @GlobalValue(symbol="kCGColorSpaceCoreMedia709", optional=true)
+    public static native String CoreMedia709();
     @GlobalValue(symbol="kCGColorSpaceExtendedRange", optional=true)
     public static native String ExtendedRange();
     
@@ -494,6 +504,11 @@ import org.robovm.apple.uikit.*;
     public native CGColorSpaceModel getModel();
     @Bridge(symbol="CGColorSpaceGetBaseColorSpace", optional=true)
     public native CGColorSpace getBaseColorSpace();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCopyBaseColorSpace", optional=true)
+    public native CGColorSpace copyBaseColorSpace();
     @Bridge(symbol="CGColorSpaceGetColorTableCount", optional=true)
     public native @MachineSizedUInt long getColorTableCount();
     @Bridge(symbol="CGColorSpaceGetColorTable", optional=true)
@@ -510,9 +525,7 @@ import org.robovm.apple.uikit.*;
     public native boolean isWideGamutRGB();
     /**
      * @since Available in iOS 13.0 and later.
-     * @deprecated Deprecated in iOS 13.4. No longer supported
      */
-    @Deprecated
     @Bridge(symbol="CGColorSpaceIsHDR", optional=true)
     public native boolean isHDR();
     /**
@@ -565,6 +578,11 @@ import org.robovm.apple.uikit.*;
      */
     @Bridge(symbol="CGColorSpaceCreateExtendedLinearized", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createExtendedLinearized(CGColorSpace space);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="CGColorSpaceCreateCopyWithStandardRange", optional=true)
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGColorSpace createCopyWithStandardRange(CGColorSpace space);
     /**
      * @deprecated Deprecated in iOS 11.0. No longer supported
      */

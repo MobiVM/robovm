@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -91,6 +93,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native AVAudioEnvironmentReverbParameters getReverbParameters();
     @Property(selector = "applicableRenderingAlgorithms")
     public native @org.robovm.rt.bro.annotation.Marshaler(AVAudio3DMixingRenderingAlgorithm.AsListMarshaler.class) List<AVAudio3DMixingRenderingAlgorithm> getApplicableRenderingAlgorithms();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isListenerHeadTrackingEnabled")
+    public native boolean isListenerHeadTrackingEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setListenerHeadTrackingEnabled:")
+    public native void setListenerHeadTrackingEnabled(boolean v);
     @Property(selector = "volume")
     public native float getVolume();
     @Property(selector = "setVolume:")

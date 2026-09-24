@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -96,6 +97,26 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setSmartInsertDeleteType:")
     void setSmartInsertDeleteType(UITextSmartInsertDeleteType v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "inlinePredictionType")
+    UITextInlinePredictionType getInlinePredictionType();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setInlinePredictionType:")
+    void setInlinePredictionType(UITextInlinePredictionType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "mathExpressionCompletionType")
+    UITextMathExpressionCompletionType getMathExpressionCompletionType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMathExpressionCompletionType:")
+    void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
     @Property(selector = "keyboardType")
     UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -136,6 +157,46 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Property(selector = "setPasswordRules:")
     void setPasswordRules(UITextInputPasswordRules v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "writingToolsBehavior")
+    UIWritingToolsBehavior getWritingToolsBehavior();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setWritingToolsBehavior:")
+    void setWritingToolsBehavior(UIWritingToolsBehavior v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "allowedWritingToolsResultOptions")
+    UIWritingToolsResultOptions getAllowedWritingToolsResultOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setAllowedWritingToolsResultOptions:")
+    void setAllowedWritingToolsResultOptions(UIWritingToolsResultOptions v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "conversationContext")
+    UIConversationContext getConversationContext();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setConversationContext:")
+    void setConversationContext(UIConversationContext v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowsNumberPadPopover")
+    boolean allowsNumberPadPopover();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowsNumberPadPopover:")
+    void setAllowsNumberPadPopover(boolean v);
     /*</properties>*/
     /*<methods>*/
     

@@ -17,13 +17,7 @@
  */
 package org.robovm.compiler.target.ios;
 
-import com.dd.plist.NSArray;
-import com.dd.plist.NSDictionary;
-import com.dd.plist.NSNumber;
-import com.dd.plist.NSObject;
-import com.dd.plist.NSString;
-import com.dd.plist.PropertyListFormatException;
-import com.dd.plist.PropertyListParser;
+import com.dd.plist.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.AndFileFilter;
@@ -33,20 +27,18 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.lang3.tuple.Pair;
 import org.robovm.compiler.CompilerException;
 import org.robovm.compiler.config.*;
+import org.robovm.compiler.launcher.LaunchParameters;
+import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.target.AbstractTarget;
-import org.robovm.compiler.target.LaunchParameters;
-import org.robovm.compiler.target.Launcher;
 import org.robovm.compiler.target.ios.ProvisioningProfile.Type;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLaunchParameters;
+import org.robovm.compiler.target.ios.devicecommon.IOSDeviceLauncher;
+import org.robovm.compiler.target.ios.simulator.IOSSimLauncher;
+import org.robovm.compiler.target.ios.simulator.IOSSimulatorLaunchParameters;
 import org.robovm.compiler.util.Executor;
 import org.robovm.compiler.util.PList;
 import org.robovm.compiler.util.ToolchainUtil;
-import org.robovm.compiler.util.io.OpenOnWriteFileOutputStream;
-import org.robovm.libimobiledevice.AfcClient.UploadProgressCallback;
-import org.robovm.libimobiledevice.IDevice;
-import org.robovm.libimobiledevice.InstallationProxyClient.StatusCallback;
-import org.robovm.libimobiledevice.util.AppLauncher;
-import org.robovm.libimobiledevice.util.AppLauncherCallback;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -54,7 +46,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -94,7 +85,6 @@ public class IOSTarget extends AbstractTarget {
     private File entitlementsPList;
     private SigningIdentity signIdentity;
     private ProvisioningProfile provisioningProfile;
-    private IDevice device;
     private File partialPListDir;
 
     public IOSTarget() {}
@@ -120,13 +110,13 @@ public class IOSTarget extends AbstractTarget {
         Environment env = arch.getEnv();
         CpuArch cpuArch = arch.getCpuArch();
         return env == Environment.Simulator &&
-                (cpuArch == CpuArch.x86 || cpuArch == CpuArch.x86_64 || cpuArch == CpuArch.arm64);
+                (cpuArch == CpuArch.x86_64 || cpuArch == CpuArch.arm64);
     }
 
     public static boolean isDeviceArch(Arch arch) {
         Environment env = arch.getEnv();
         CpuArch cpuArch = arch.getCpuArch();
-        return env == Environment.Native &&  (cpuArch == CpuArch.thumbv7 || cpuArch == CpuArch.arm64);
+        return env == Environment.Native && cpuArch == CpuArch.arm64;
     }
 
     /**
@@ -149,110 +139,13 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    /**
-     * Returns the {@link IDevice} when an app has been launched on a device.
-     * Returns {@code null} before {@link #launch(LaunchParameters)} has been
-     * called or if the app was launched in the simulator.
-     */
-    public IDevice getDevice() {
-        return device;
-    }
-
     @Override
     protected Launcher createLauncher(LaunchParameters launchParameters) throws IOException {
-        if (isSimulatorArch(arch)) {
-            return createIOSSimLauncher(launchParameters);
-        } else {
-            return createIOSDevLauncher(launchParameters);
-        }
-    }
-
-    private Launcher createIOSSimLauncher(LaunchParameters launchParameters) throws IOException {
-        return new SimLauncherProcess(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
-    }
-
-    private Launcher createIOSDevLauncher(LaunchParameters launchParameters)
-            throws IOException {
-
-        IOSDeviceLaunchParameters deviceLaunchParameters = (IOSDeviceLaunchParameters) launchParameters;
-        String deviceId = deviceLaunchParameters.getDeviceId();
-        int forwardPort = deviceLaunchParameters.getForwardPort();
-        AppLauncherCallback callback = deviceLaunchParameters.getAppPathCallback();
-        if (deviceId == null) {
-            String[] udids = IDevice.listUdids();
-            if (udids.length == 0) {
-                throw new RuntimeException("No devices connected");
-            }
-            if (udids.length > 1) {
-                config.getLogger().warn("More than 1 device connected (%s). "
-                        + "Using %s.", Arrays.asList(udids), udids[0]);
-            }
-            deviceId = udids[0];
-        }
-        device = new IDevice(deviceId);
-
-        OutputStream out = null;
-        if (launchParameters.getStdoutFifo() != null) {
-            out = new OpenOnWriteFileOutputStream(launchParameters.getStdoutFifo());
-        } else {
-            out = System.out;
-        }
-
-        Map<String, String> env = launchParameters.getEnvironment();
-        if (env == null) {
-            env = new HashMap<>();
-        }
-        //Fix for #71, see http://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-8-logs
-        env.put("OS_ACTIVITY_DT_MODE", "");
-
-        AppLauncher launcher = new AppLauncher(device, getAppDir()) {
-            protected void log(String s, Object... args) {
-                config.getLogger().info(s, args);
-            }
-        }
-                .stdout(out)
-                .closeOutOnExit(true)
-                .args(launchParameters.getArguments(true).toArray(new String[0]))
-                .env(env)
-                .forward(forwardPort)
-                .appLauncherCallback(callback)
-                .xcodePath(ToolchainUtil.findXcodePath())
-                .uploadProgressCallback(new UploadProgressCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Upload complete");
-                    }
-
-                    public void progress(File path, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning upload...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] Uploading %s...", percentComplete, path);
-                    }
-
-                    public void error(String message) {}
-                })
-                .installStatusCallback(new StatusCallback() {
-                    boolean first = true;
-
-                    public void success() {
-                        config.getLogger().info("[100%%] Install complete");
-                    }
-
-                    public void progress(String status, int percentComplete) {
-                        if (first) {
-                            config.getLogger().info("[  0%%] Beginning installation...");
-                        }
-                        first = false;
-                        config.getLogger().info("[%3d%%] %s", percentComplete, status);
-                    }
-
-                    public void error(String message) {}
-                });
-
-        return new AppLauncherProcess(config.getLogger(), launcher, launchParameters);
+        if (launchParameters instanceof IOSSimulatorLaunchParameters) {
+            return new IOSSimLauncher(config.getLogger(), getAppDir(), getBundleId(), (IOSSimulatorLaunchParameters) launchParameters);
+        } else if (launchParameters instanceof IOSDeviceLaunchParameters) {
+            return new IOSDeviceLauncher(config.getLogger(), getAppDir(),  getBundleId(), (IOSDeviceLaunchParameters) launchParameters);
+        } else throw new IllegalArgumentException("Unexpected launchParametersType: " + launchParameters.getClass().getSimpleName());
     }
 
     @Override
@@ -288,32 +181,21 @@ public class IOSTarget extends AbstractTarget {
         ccArgs.add("--target=" + config.getClangTriple(getMinimumOSVersion()));
 
         if (isDeviceArch(arch)) {
-            if (config.isDebug()) {
-                ccArgs.add("-Wl,-no_pie");
-            }
             if (config.isEnableBitcode()) {
                 // tells clang to keep bitcode while linking
                 ccArgs.add("-fembed-bitcode");
-            }
-        } else {
-            if (config.getArch().getCpuArch() == CpuArch.x86 || config.isDebug()) {
-                ccArgs.add("-Wl,-no_pie");
             }
         }
         ccArgs.add("-isysroot");
         ccArgs.add(sdk.getRoot().getAbsolutePath());
 
-        // specify sdk version for linker
-        libArgs.add("-Xlinker");
-        libArgs.add("-sdk_version");
-        libArgs.add("-Xlinker");
-        libArgs.add(sdk.getVersion());
-
         // add runtime path to swift libs first to support swift-5 libs location
-        libArgs.add("-Xlinker");
-        libArgs.add("-rpath");
-        libArgs.add("-Xlinker");
-        libArgs.add("/usr/lib/swift");
+        if (config.hasSwiftSupport()) {
+            libArgs.add("-Xlinker");
+            libArgs.add("-rpath");
+            libArgs.add("-Xlinker");
+            libArgs.add("/usr/lib/swift");
+        }
         // specify dynamic library loading path
         libArgs.add("-Xlinker");
         libArgs.add("-rpath");
@@ -342,7 +224,7 @@ public class IOSTarget extends AbstractTarget {
 
     protected void prepareInstall(File installDir) throws IOException {
         createInfoPList(installDir);
-        generateDsym(installDir, getExecutable(), false);
+        generateDsym(getDsymDir(installDir), new File(installDir, getExecutable()));
 
         if (isDeviceArch(arch)) {
             // strip local symbols
@@ -395,7 +277,8 @@ public class IOSTarget extends AbstractTarget {
     protected void prepareLaunch(File appDir) throws IOException {
         super.doInstall(appDir, getExecutable(), appDir);
         createInfoPList(appDir);
-        generateDsym(appDir, getExecutable(), true);
+        generateDsym(getDsymDir(appDir), new File(appDir, getExecutable()));
+        copyToIndexedDir(appDir, getExecutable(), getDsymDir(appDir), new File(appDir, getExecutable()));
 
         // strip symbols to reduce application size, all debugger symbols converted into globals
         strip(appDir, getExecutable());
@@ -440,10 +323,10 @@ public class IOSTarget extends AbstractTarget {
         // sign dynamic frameworks first
         File frameworksDir = new File(appDir, "Frameworks");
         if (frameworksDir.exists() && frameworksDir.isDirectory()) {
-            // Sign swift rt libs
-            for (File swiftLib : frameworksDir.listFiles()) {
-                if (swiftLib.getName().endsWith(".dylib")) {
-                    codesignSwiftLib(identity, swiftLib);
+            // Sign swift/dylibs rt libs
+            for (File dylib : frameworksDir.listFiles()) {
+                if (dylib.getName().endsWith(".dylib")) {
+                    codesignDylib(identity, dylib);
                 }
             }
 
@@ -620,8 +503,8 @@ public class IOSTarget extends AbstractTarget {
         codesign(identity, entitlementsPList, false, false, true, appDir);
     }
 
-    private void codesignSwiftLib(SigningIdentity identity, File swiftLib) throws IOException {
-        config.getLogger().info("Code signing swift dylib '%s' using identity '%s' with fingerprint %s", swiftLib.getName(), identity.getName(),
+    private void codesignDylib(SigningIdentity identity, File swiftLib) throws IOException {
+        config.getLogger().info("Code signing dylib '%s' using identity '%s' with fingerprint %s", swiftLib.getName(), identity.getName(),
                 identity.getFingerprint());
         codesign(identity, null, false, true, false, swiftLib);
     }
@@ -767,25 +650,17 @@ public class IOSTarget extends AbstractTarget {
         }
     }
 
-    private void generateDsym(final File dir, final String executable, boolean copyToIndexedDir) throws IOException {
-        final File dsymDir = new File(dir.getParentFile(), dir.getName() + ".dSYM");
-        final File exePath = new File(dir, executable);
+    private File generateDsym(final File dsymDir, final File exePath) throws IOException {
         FileUtils.deleteDirectory(dsymDir);
-        final Process process = new Executor(config.getLogger(), "xcrun")
-                .args("dsymutil", "-o", dsymDir, exePath)
-                .execAsync();
-        if (copyToIndexedDir) {
-            new Thread() {
-                public void run() {
-                    try {
-                        process.waitFor();
-                    } catch (InterruptedException e) {
-                        return;
-                    }
-                    copyToIndexedDir(dir, executable, dsymDir, exePath);
-                }
-            }.start();
-        }
+        ToolchainUtil.generateDsym(config, dsymDir, exePath);
+        return dsymDir;
+    }
+
+    private void dsymToSymbols(File symbolsDir, File dsymDir, String executable) throws IOException {
+        final File dsymExecutable = new File(dsymDir, "/Contents/Resources/DWARF/" + executable);
+        FileUtils.deleteDirectory(symbolsDir);
+        symbolsDir.mkdirs();
+        ToolchainUtil.dsymToSymbols(config, dsymExecutable, symbolsDir);
     }
 
     private void strip(File dir, String executable) throws IOException {
@@ -812,7 +687,7 @@ public class IOSTarget extends AbstractTarget {
 
     @Override
     public List<Arch> getDefaultArchs() {
-        return Arrays.asList(new Arch(CpuArch.thumbv7), new Arch(CpuArch.arm64));
+        return List.of(new Arch(CpuArch.arm64));
     }
 
     public void archive() throws IOException {
@@ -828,6 +703,8 @@ public class IOSTarget extends AbstractTarget {
 
     private void packageApplication(File appDir) throws IOException {
         File ipaFile = new File(config.getInstallDir(), getExecutable() + ".ipa");
+        // remove ipa otherwise its content will get updated
+        FileUtils.deleteQuietly(ipaFile);
         config.getLogger().info("Packaging IPA %s from %s", ipaFile.getName(), appDir.getName());
 
         File tmpDir = new File(config.getInstallDir(), "ipabuild");
@@ -841,8 +718,11 @@ public class IOSTarget extends AbstractTarget {
                 .args("-Rp", appDir, payloadDir)
                 .exec();
 
+        config.getLogger().info("Generating Symbols from dsym");
+        dsymToSymbols(new File(tmpDir, "Symbols"), getDsymDir(appDir), getExecutable());
+
         File frameworksDir = new File(appDir, "Frameworks");
-        if (frameworksDir.exists()){
+        if (frameworksDir.exists() && config.hasSwiftSupport() && config.getSwiftSupport().shouldCopySwiftLibs()){
             String[] swiftLibs = frameworksDir.list(new AndFileFilter(
                     new PrefixFileFilter("libswift"),
                     new SuffixFileFilter(".dylib")));
@@ -860,7 +740,7 @@ public class IOSTarget extends AbstractTarget {
                 }
 
                 swiftSupportDir.mkdirs();
-                copySwiftLibs(Arrays.asList(swiftLibs), swiftSupportDir, false);
+                copySwiftLibs(Arrays.asList(swiftLibs), Collections.emptyList(), swiftSupportDir, false);
             }
         }
 
@@ -1030,6 +910,10 @@ public class IOSTarget extends AbstractTarget {
             }
         }
         return config.getMainClass() != null ? config.getMainClass() : config.getExecutableName();
+    }
+
+    protected File getDsymDir(File appDir) {
+        return new File(appDir.getParentFile(), appDir.getName() + ".dSYM");
     }
 
     protected String getMinimumOSVersion() {

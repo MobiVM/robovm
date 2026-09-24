@@ -93,6 +93,21 @@ import org.robovm.apple.corelocation.*;
     public native NSArray<HMActionSet> getActionSets();
     @Property(selector = "triggers")
     public native NSArray<HMTrigger> getTriggers();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "matterControllerID")
+    public native String getMatterControllerID();
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Property(selector = "matterControllerXPCConnectBlock")
+    public native @Block Block0<NSXPCConnection> getMatterControllerXPCConnectBlock();
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Property(selector = "matterStartupParametersXPCConnectBlock")
+    public native @Block Block0<NSXPCConnection> getMatterStartupParametersXPCConnectBlock();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -110,12 +125,16 @@ import org.robovm.apple.corelocation.*;
     public native void unblockAccessory(HMAccessory accessory, @Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 15.4. Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead
      */
+    @Deprecated
     @Method(selector = "addAndSetupAccessoriesWithCompletionHandler:")
     public native void addAndSetupAccessories(@Block VoidBlock1<NSError> completion);
     /**
      * @since Available in iOS 11.3 and later.
+     * @deprecated Deprecated in iOS 15.0. Use -[HMAccessorySetupManager performAccessorySetupUsingRequest:completionHandler:] instead
      */
+    @Deprecated
     @Method(selector = "addAndSetupAccessoriesWithPayload:completionHandler:")
     public native void addAndSetupAccessories(HMAccessorySetupPayload payload, @Block VoidBlock2<NSArray<HMAccessory>, NSError> completion);
     /**

@@ -46,7 +46,7 @@ public class DICompileUnit extends DIBaseItem {
                         //    i32,       ;; DWARF language identifier (ex. DW_LANG_C89)
                         .add(DwarfConst.SourceLanguage.LANG_Java)
                         //    mdstring,  ;; Producer (ex. "4.0.1 LLVM (LLVM research group)")
-                        .add("RoboVM " + Version.getVersion())
+                        .add("RoboVM " + Version.getCompilerVersion())
                         //    i1,        ;; True if this is optimized.
                         .add(false)
                         //    mdstring,  ;; Flags

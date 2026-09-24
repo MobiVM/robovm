@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -88,14 +89,14 @@ import org.robovm.apple.foundation.*;
 
     /*<constants>*/
     public static final HKVitalSignsQuantityTypeIdentifier HeartRate = new HKVitalSignsQuantityTypeIdentifier("HeartRate");
-    public static final HKVitalSignsQuantityTypeIdentifier BodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BodyTemperature");
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
-    public static final HKVitalSignsQuantityTypeIdentifier BasalBodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BasalBodyTemperature");
-    public static final HKVitalSignsQuantityTypeIdentifier BloodPressureSystolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureSystolic");
-    public static final HKVitalSignsQuantityTypeIdentifier BloodPressureDiastolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureDiastolic");
-    public static final HKVitalSignsQuantityTypeIdentifier RespiratoryRate = new HKVitalSignsQuantityTypeIdentifier("RespiratoryRate");
+    public static final HKVitalSignsQuantityTypeIdentifier HeartRateRecoveryOneMinute = new HKVitalSignsQuantityTypeIdentifier("HeartRateRecoveryOneMinute");
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    public static final HKVitalSignsQuantityTypeIdentifier HeartRateVariabilitySDNN = new HKVitalSignsQuantityTypeIdentifier("HeartRateVariabilitySDNN");
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -104,13 +105,17 @@ import org.robovm.apple.foundation.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final HKVitalSignsQuantityTypeIdentifier WalkingHeartRateAverage = new HKVitalSignsQuantityTypeIdentifier("WalkingHeartRateAverage");
+    public static final HKVitalSignsQuantityTypeIdentifier BloodPressureDiastolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureDiastolic");
+    public static final HKVitalSignsQuantityTypeIdentifier BloodPressureSystolic = new HKVitalSignsQuantityTypeIdentifier("BloodPressureSystolic");
     /**
-     * @since Available in iOS 11.0 and later.
+     * @since Available in iOS 9.0 and later.
      */
-    public static final HKVitalSignsQuantityTypeIdentifier HeartRateVariabilitySDNN = new HKVitalSignsQuantityTypeIdentifier("HeartRateVariabilitySDNN");
+    public static final HKVitalSignsQuantityTypeIdentifier BasalBodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BasalBodyTemperature");
+    public static final HKVitalSignsQuantityTypeIdentifier RespiratoryRate = new HKVitalSignsQuantityTypeIdentifier("RespiratoryRate");
+    public static final HKVitalSignsQuantityTypeIdentifier BodyTemperature = new HKVitalSignsQuantityTypeIdentifier("BodyTemperature");
     /*</constants>*/
     
-    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, BodyTemperature, BasalBodyTemperature, BloodPressureSystolic, BloodPressureDiastolic, RespiratoryRate, RestingHeartRate, WalkingHeartRateAverage, HeartRateVariabilitySDNN/*</value_list>*/};
+    private static /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] values = new /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/[] {/*<value_list>*/HeartRate, HeartRateRecoveryOneMinute, HeartRateVariabilitySDNN, RestingHeartRate, WalkingHeartRateAverage, BloodPressureDiastolic, BloodPressureSystolic, BasalBodyTemperature, RespiratoryRate, BodyTemperature/*</value_list>*/};
     
     /*<name>*/HKVitalSignsQuantityTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -135,19 +140,16 @@ import org.robovm.apple.foundation.*;
         /*<values>*/
         @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRate", optional=true)
         public static native NSString HeartRate();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBodyTemperature", optional=true)
-        public static native NSString BodyTemperature();
         /**
-         * @since Available in iOS 9.0 and later.
+         * @since Available in iOS 16.0 and later.
          */
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBasalBodyTemperature", optional=true)
-        public static native NSString BasalBodyTemperature();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureSystolic", optional=true)
-        public static native NSString BloodPressureSystolic();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureDiastolic", optional=true)
-        public static native NSString BloodPressureDiastolic();
-        @GlobalValue(symbol="HKQuantityTypeIdentifierRespiratoryRate", optional=true)
-        public static native NSString RespiratoryRate();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateRecoveryOneMinute", optional=true)
+        public static native NSString HeartRateRecoveryOneMinute();
+        /**
+         * @since Available in iOS 11.0 and later.
+         */
+        @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateVariabilitySDNN", optional=true)
+        public static native NSString HeartRateVariabilitySDNN();
         /**
          * @since Available in iOS 11.0 and later.
          */
@@ -158,11 +160,19 @@ import org.robovm.apple.foundation.*;
          */
         @GlobalValue(symbol="HKQuantityTypeIdentifierWalkingHeartRateAverage", optional=true)
         public static native NSString WalkingHeartRateAverage();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureDiastolic", optional=true)
+        public static native NSString BloodPressureDiastolic();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBloodPressureSystolic", optional=true)
+        public static native NSString BloodPressureSystolic();
         /**
-         * @since Available in iOS 11.0 and later.
+         * @since Available in iOS 9.0 and later.
          */
-        @GlobalValue(symbol="HKQuantityTypeIdentifierHeartRateVariabilitySDNN", optional=true)
-        public static native NSString HeartRateVariabilitySDNN();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBasalBodyTemperature", optional=true)
+        public static native NSString BasalBodyTemperature();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierRespiratoryRate", optional=true)
+        public static native NSString RespiratoryRate();
+        @GlobalValue(symbol="HKQuantityTypeIdentifierBodyTemperature", optional=true)
+        public static native NSString BodyTemperature();
         /*</values>*/
     }
 }

@@ -316,9 +316,13 @@ import org.robovm.apple.coreml.*;
      * @since Available in iOS 12.0 and later.
      */
     public static final NLLanguage Vietnamese = new NLLanguage("Vietnamese");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final NLLanguage Kazakh = new NLLanguage("Kazakh");
     /*</constants>*/
     
-    private static /*<name>*/NLLanguage/*</name>*/[] values = new /*<name>*/NLLanguage/*</name>*/[] {/*<value_list>*/Undetermined, Amharic, Arabic, Armenian, Bengali, Bulgarian, Burmese, Catalan, Cherokee, Croatian, Czech, Danish, Dutch, English, Finnish, French, Georgian, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Italian, Japanese, Kannada, Khmer, Korean, Lao, Malay, Malayalam, Marathi, Mongolian, Norwegian, Oriya, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, SimplifiedChinese, Sinhalese, Slovak, Spanish, Swedish, Tamil, Telugu, Thai, Tibetan, TraditionalChinese, Turkish, Ukrainian, Urdu, Vietnamese/*</value_list>*/};
+    private static /*<name>*/NLLanguage/*</name>*/[] values = new /*<name>*/NLLanguage/*</name>*/[] {/*<value_list>*/Undetermined, Amharic, Arabic, Armenian, Bengali, Bulgarian, Burmese, Catalan, Cherokee, Croatian, Czech, Danish, Dutch, English, Finnish, French, Georgian, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Italian, Japanese, Kannada, Khmer, Korean, Lao, Malay, Malayalam, Marathi, Mongolian, Norwegian, Oriya, Persian, Polish, Portuguese, Punjabi, Romanian, Russian, SimplifiedChinese, Sinhalese, Slovak, Spanish, Swedish, Tamil, Telugu, Thai, Tibetan, TraditionalChinese, Turkish, Ukrainian, Urdu, Vietnamese, Kazakh/*</value_list>*/};
     
     /*<name>*/NLLanguage/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -626,6 +630,11 @@ import org.robovm.apple.coreml.*;
          */
         @GlobalValue(symbol="NLLanguageVietnamese", optional=true)
         public static native NSString Vietnamese();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="NLLanguageKazakh", optional=true)
+        public static native NSString Kazakh();
         /*</values>*/
     }
 }

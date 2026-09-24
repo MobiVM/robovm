@@ -468,4 +468,48 @@ public abstract class IntBuffer extends Buffer implements Comparable<IntBuffer> 
      * position, limit and mark are independent.
      */
     public abstract IntBuffer slice();
+    
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final IntBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final IntBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final IntBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final IntBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final IntBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final IntBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final IntBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

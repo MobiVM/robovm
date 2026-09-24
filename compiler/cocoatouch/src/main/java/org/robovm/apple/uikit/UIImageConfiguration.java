@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,21 +59,49 @@ import org.robovm.apple.linkpresentation.*;
     protected UIImageConfiguration() {}
     protected UIImageConfiguration(Handle h, long handle) { super(h, handle); }
     protected UIImageConfiguration(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageConfiguration(UITraitCollection traitCollection) { super((Handle) null, create(traitCollection)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public UIImageConfiguration(NSLocale locale) { super((Handle) null, create(locale)); retain(getHandle()); }
     @Method(selector = "initWithCoder:")
     public UIImageConfiguration(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "locale")
+    public native NSLocale getLocale();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "configurationWithTraitCollection:")
-    public native UIImageConfiguration create(UITraitCollection traitCollection);
+    public native UIImageConfiguration applyTraitCollection(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithLocale:")
+    public native UIImageConfiguration applyLocale(NSLocale locale);
     @Method(selector = "configurationByApplyingConfiguration:")
     public native UIImageConfiguration configurationByApplyingConfiguration(UIImageConfiguration otherConfiguration);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithTraitCollection:")
+    protected static native @Pointer long create(UITraitCollection traitCollection);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "configurationWithLocale:")
+    protected static native @Pointer long create(NSLocale locale);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -88,7 +88,7 @@ void rvmThrow(Env* env, Object* e) {
             jint index = 0;
             while ((frame = rvmGetNextCallStackMethod(env, callStack, &index)) != NULL) {
                 Method* m = frame->method;
-                TRACEF("    %s.%s%s", m->clazz->name, m->name, m->desc);
+                TRACEF("    %s.%s%s:%d", m->clazz->name, m->name, m->desc, frame->lineNumber);
             }
         }
     }

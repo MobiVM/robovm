@@ -469,4 +469,48 @@ public abstract class LongBuffer extends Buffer implements
      * position, limit and mark are independent.
      */
     public abstract LongBuffer slice();
+    
+    /// RoboVM Note: Java9 API covariant
+    @Override
+    public final LongBuffer flip() {
+        super.flip();
+        return this;
+    }
+
+    @Override
+    public final LongBuffer clear() {
+        super.clear();
+        return this;
+    }
+
+    @Override
+    public final LongBuffer mark() {
+        super.mark();
+        return this;
+    }
+
+    @Override
+    public final LongBuffer reset() {
+        super.reset();
+        return this;
+    }
+
+    @Override
+    public final LongBuffer rewind() {
+        super.rewind();
+        return this;
+    }
+
+    @Override
+    public final LongBuffer position(int newPosition) {
+        super.position(newPosition);
+        return this;
+    }
+
+    @Override
+    public final LongBuffer limit(int newLimit) {
+        super.limit(newLimit);
+        return this;
+    }
+    /// RoboVM Note: end of Java9 API covariant
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,14 +56,8 @@ import org.robovm.apple.linkpresentation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @NotImplemented("isSpringLoaded")
     public boolean isSpringLoaded() { return false; }
-    /**
-     * @since Available in iOS 11.0 and later.
-     */
     @NotImplemented("setSpringLoaded:")
     public void setSpringLoaded(boolean v) {}
     /*</properties>*/

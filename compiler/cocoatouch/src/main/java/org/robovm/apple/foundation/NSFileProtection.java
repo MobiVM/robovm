@@ -99,9 +99,13 @@ import org.robovm.apple.dispatch.*;
     public static final NSFileProtection Complete = new NSFileProtection("Complete");
     public static final NSFileProtection CompleteUnlessOpen = new NSFileProtection("CompleteUnlessOpen");
     public static final NSFileProtection CompleteUntilFirstUserAuthentication = new NSFileProtection("CompleteUntilFirstUserAuthentication");
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final NSFileProtection CompleteWhenUserInactive = new NSFileProtection("CompleteWhenUserInactive");
     /*</constants>*/
     
-    private static /*<name>*/NSFileProtection/*</name>*/[] values = new /*<name>*/NSFileProtection/*</name>*/[] {/*<value_list>*/None, Complete, CompleteUnlessOpen, CompleteUntilFirstUserAuthentication/*</value_list>*/};
+    private static /*<name>*/NSFileProtection/*</name>*/[] values = new /*<name>*/NSFileProtection/*</name>*/[] {/*<value_list>*/None, Complete, CompleteUnlessOpen, CompleteUntilFirstUserAuthentication, CompleteWhenUserInactive/*</value_list>*/};
     
     /*<name>*/NSFileProtection/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -132,6 +136,11 @@ import org.robovm.apple.dispatch.*;
         public static native NSString CompleteUnlessOpen();
         @GlobalValue(symbol="NSFileProtectionCompleteUntilFirstUserAuthentication", optional=true)
         public static native NSString CompleteUntilFirstUserAuthentication();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="NSFileProtectionCompleteWhenUserInactive", optional=true)
+        public static native NSString CompleteWhenUserInactive();
         /*</values>*/
     }
 }

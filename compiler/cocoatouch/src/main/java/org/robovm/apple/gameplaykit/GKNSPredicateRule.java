@@ -52,6 +52,7 @@ import org.robovm.apple.uikit.*;
     protected GKNSPredicateRule(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPredicate:")
     public GKNSPredicateRule(NSPredicate predicate) { super((SkipInit) null); initObject(init(predicate)); }
+    public GKNSPredicateRule(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action) { super((Handle) null, create(predicate, action)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "predicate")
@@ -67,5 +68,7 @@ import org.robovm.apple.uikit.*;
     public static native GKNSPredicateRule createAssertingFact(NSPredicate predicate, NSObject fact, float grade);
     @Method(selector = "ruleWithPredicate:retractingFact:grade:")
     public static native GKNSPredicateRule createRetractingFact(NSPredicate predicate, NSObject fact, float grade);
+    @Method(selector = "ruleWithBlockPredicate:action:")
+    protected static native @Pointer long create(@Block Block1<GKRuleSystem, Boolean> predicate, @Block VoidBlock1<GKRuleSystem> action);
     /*</methods>*/
 }

@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraph/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphPtr extends Ptr<MPSGraph, MPSGraphPtr> {}/*</ptr>*/
@@ -128,12 +128,27 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor square(MPSGraphTensor tensor, String name);
     @Method(selector = "squareRootWithTensor:name:")
     public native MPSGraphTensor squareRoot(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "reciprocalSquareRootWithTensor:name:")
+    public native MPSGraphTensor reciprocalSquareRoot(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use reciprocalSquareRootWithTensor
+     */
+    @Deprecated
     @Method(selector = "reverseSquareRootWithTensor:name:")
     public native MPSGraphTensor reverseSquareRoot(MPSGraphTensor tensor, String name);
     @Method(selector = "reciprocalWithTensor:name:")
     public native MPSGraphTensor reciprocal(MPSGraphTensor tensor, String name);
     @Method(selector = "absoluteWithTensor:name:")
     public native MPSGraphTensor absolute(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "absoluteSquareWithTensor:name:")
+    public native MPSGraphTensor absoluteSquare(MPSGraphTensor tensor, String name);
     @Method(selector = "negativeWithTensor:name:")
     public native MPSGraphTensor negative(MPSGraphTensor tensor, String name);
     @Method(selector = "signWithTensor:name:")
@@ -182,6 +197,26 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor isNaN(MPSGraphTensor tensor, String name);
     @Method(selector = "erfWithTensor:name:")
     public native MPSGraphTensor erf(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "truncateWithTensor:name:")
+    public native MPSGraphTensor truncate(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseNOTWithTensor:name:")
+    public native MPSGraphTensor bitwiseNOT(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwisePopulationCountWithTensor:name:")
+    public native MPSGraphTensor bitwisePopulationCount(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "conjugateWithTensor:name:")
+    public native MPSGraphTensor conjugate(MPSGraphTensor tensor, String name);
     @Method(selector = "additionWithPrimaryTensor:secondaryTensor:name:")
     public native MPSGraphTensor addition(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
     @Method(selector = "subtractionWithPrimaryTensor:secondaryTensor:name:")
@@ -234,6 +269,31 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor logicalXNOR(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
     @Method(selector = "atan2WithPrimaryTensor:secondaryTensor:name:")
     public native MPSGraphTensor atan2(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseANDWithPrimaryTensor:secondaryTensor:name:")
+    public native MPSGraphTensor bitwiseAND(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseORWithPrimaryTensor:secondaryTensor:name:")
+    public native MPSGraphTensor bitwiseOR(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseXORWithPrimaryTensor:secondaryTensor:name:")
+    public native MPSGraphTensor bitwiseXOR(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseLeftShiftWithPrimaryTensor:secondaryTensor:name:")
+    public native MPSGraphTensor bitwiseLeftShift(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "bitwiseRightShiftWithPrimaryTensor:secondaryTensor:name:")
+    public native MPSGraphTensor bitwiseRightShift(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
     @Method(selector = "selectWithPredicateTensor:truePredicateTensor:falsePredicateTensor:name:")
     public native MPSGraphTensor select(MPSGraphTensor predicateTensor, MPSGraphTensor truePredicateTensor, MPSGraphTensor falseSelectTensor, String name);
     @Method(selector = "clampWithTensor:minValueTensor:maxValueTensor:name:")
@@ -242,6 +302,26 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor divisionNoNaN(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
     @Method(selector = "floorModuloWithPrimaryTensor:secondaryTensor:name:")
     public native MPSGraphTensor floorModulo(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "realPartOfTensor:name:")
+    public native MPSGraphTensor realPart(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "imaginaryPartOfTensor:name:")
+    public native MPSGraphTensor imaginaryPart(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "complexTensorWithRealTensor:imaginaryTensor:name:")
+    public native MPSGraphTensor complexTensorWithRealTensor(MPSGraphTensor realTensor, MPSGraphTensor imaginaryTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "callSymbolName:inputTensors:outputTypes:name:")
+    public native NSArray<MPSGraphTensor> callSymbol(String symbolName, NSArray<MPSGraphTensor> inputTensors, NSArray<MPSGraphType> outputTypes, String name);
     @Method(selector = "convolution2DWithSourceTensor:weightsTensor:descriptor:name:")
     public native MPSGraphTensor convolution2D(MPSGraphTensor source, MPSGraphTensor weights, MPSGraphConvolution2DOpDescriptor descriptor, String name);
     @Method(selector = "convolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:")
@@ -258,6 +338,31 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "convolution2DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:")
     public native MPSGraphTensor convolution2DWeightsGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor outputShapeTensor, MPSGraphConvolution2DOpDescriptor forwardConvolutionDescriptor, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "convolution3DWithSourceTensor:weightsTensor:descriptor:name:")
+    public native MPSGraphTensor convolution3D(MPSGraphTensor source, MPSGraphTensor weights, MPSGraphConvolution3DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:forwardConvolutionDescriptor:name:")
+    public native MPSGraphTensor convolution3DDataGradient(MPSGraphTensor incomingGradient, MPSGraphTensor weights, NSArray<NSNumber> outputShape, MPSGraphConvolution3DOpDescriptor forwardConvolutionDescriptor, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "convolution3DDataGradientWithIncomingGradientTensor:weightsTensor:outputShapeTensor:forwardConvolutionDescriptor:name:")
+    public native MPSGraphTensor convolution3DDataGradient(MPSGraphTensor gradient, MPSGraphTensor weights, MPSGraphTensor outputShapeTensor, MPSGraphConvolution3DOpDescriptor forwardConvolutionDescriptor, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:forwardConvolutionDescriptor:name:")
+    public native MPSGraphTensor convolution3DWeightsGradient(MPSGraphTensor incomingGradient, MPSGraphTensor source, NSArray<NSNumber> outputShape, MPSGraphConvolution3DOpDescriptor forwardConvolutionDescriptor, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "convolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShapeTensor:forwardConvolutionDescriptor:name:")
+    public native MPSGraphTensor convolution3DWeightsGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor outputShapeTensor, MPSGraphConvolution3DOpDescriptor forwardConvolutionDescriptor, String name);
     @Method(selector = "convolutionTranspose2DWithSourceTensor:weightsTensor:outputShape:descriptor:name:")
     public native MPSGraphTensor convolutionTranspose2D(MPSGraphTensor source, MPSGraphTensor weights, NSArray<NSNumber> outputShape, MPSGraphConvolution2DOpDescriptor descriptor, String name);
     /**
@@ -289,6 +394,86 @@ import org.robovm.apple.metalps.*;
     public native NSArray<MPSGraphTensor> forLoop(MPSGraphTensor lowerBound, MPSGraphTensor upperBound, MPSGraphTensor step, NSArray<MPSGraphTensor> initialBodyArguments, @Block Block2<MPSGraphTensor, NSArray<MPSGraphTensor>, NSArray<MPSGraphTensor>> body, String name);
     @Method(selector = "forLoopWithNumberOfIterations:initialBodyArguments:body:name:")
     public native NSArray<MPSGraphTensor> forLoop(MPSGraphTensor numberOfIterations, NSArray<MPSGraphTensor> initialBodyArguments, @Block Block2<MPSGraphTensor, NSArray<MPSGraphTensor>, NSArray<MPSGraphTensor>> body, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeSumWithTensor:axis:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeSum(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeSumWithTensor:axisTensor:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeSum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeSumWithTensor:axis:name:")
+    public native MPSGraphTensor cumulativeSum(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeSumWithTensor:axisTensor:name:")
+    public native MPSGraphTensor cumulativeSum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeProductWithTensor:axis:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeProduct(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeProductWithTensor:axisTensor:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeProduct(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeProductWithTensor:axis:name:")
+    public native MPSGraphTensor cumulativeProduct(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeProductWithTensor:axisTensor:name:")
+    public native MPSGraphTensor cumulativeProduct(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMinimumWithTensor:axis:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeMinimum(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMinimumWithTensor:axisTensor:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeMinimum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMinimumWithTensor:axis:name:")
+    public native MPSGraphTensor cumulativeMinimum(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMinimumWithTensor:axisTensor:name:")
+    public native MPSGraphTensor cumulativeMinimum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMaximumWithTensor:axis:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeMaximum(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMaximumWithTensor:axisTensor:exclusive:reverse:name:")
+    public native MPSGraphTensor cumulativeMaximum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean exclusive, boolean reverse, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMaximumWithTensor:axis:name:")
+    public native MPSGraphTensor cumulativeMaximum(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "cumulativeMaximumWithTensor:axisTensor:name:")
+    public native MPSGraphTensor cumulativeMaximum(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
     @Method(selector = "depthwiseConvolution2DWithSourceTensor:weightsTensor:descriptor:name:")
     public native MPSGraphTensor depthwiseConvolution2D(MPSGraphTensor source, MPSGraphTensor weights, MPSGraphDepthwiseConvolution2DOpDescriptor descriptor, String name);
     @Method(selector = "depthwiseConvolution2DDataGradientWithIncomingGradientTensor:weightsTensor:outputShape:descriptor:name:")
@@ -307,26 +492,84 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor depthwiseConvolution3DDataGradient(MPSGraphTensor incomingGradient, MPSGraphTensor weights, NSArray<NSNumber> outputShape, MPSGraphDepthwiseConvolution3DOpDescriptor descriptor, String name);
     @Method(selector = "depthwiseConvolution3DWeightsGradientWithIncomingGradientTensor:sourceTensor:outputShape:descriptor:name:")
     public native MPSGraphTensor depthwiseConvolution3DWeightsGradient(MPSGraphTensor incomingGradient, MPSGraphTensor source, NSArray<NSNumber> outputShape, MPSGraphDepthwiseConvolution3DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "fastFourierTransformWithTensor:axes:descriptor:name:")
+    public native MPSGraphTensor fastFourierTransformWithTensor$axes$descriptor$name$(MPSGraphTensor tensor, NSArray<NSNumber> axes, MPSGraphFFTDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "fastFourierTransformWithTensor:axesTensor:descriptor:name:")
+    public native MPSGraphTensor fastFourierTransform(MPSGraphTensor tensor, MPSGraphTensor axesTensor, MPSGraphFFTDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "realToHermiteanFFTWithTensor:axes:descriptor:name:")
+    public native MPSGraphTensor realToHermiteanFFT(MPSGraphTensor tensor, NSArray<NSNumber> axes, MPSGraphFFTDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "realToHermiteanFFTWithTensor:axesTensor:descriptor:name:")
+    public native MPSGraphTensor realToHermiteanFFT(MPSGraphTensor tensor, MPSGraphTensor axesTensor, MPSGraphFFTDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "HermiteanToRealFFTWithTensor:axes:descriptor:name:")
+    public native MPSGraphTensor HermiteanToRealFFT(MPSGraphTensor tensor, NSArray<NSNumber> axes, MPSGraphFFTDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:")
+    public native MPSGraphTensor HermiteanToRealFFT(MPSGraphTensor tensor, MPSGraphTensor axesTensor, MPSGraphFFTDescriptor descriptor, String name);
     @Method(selector = "gatherNDWithUpdatesTensor:indicesTensor:batchDimensions:name:")
     public native MPSGraphTensor gatherND(MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, @MachineSizedUInt long batchDimensions, String name);
     @Method(selector = "gatherWithUpdatesTensor:indicesTensor:axis:batchDimensions:name:")
     public native MPSGraphTensor gather(MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, @MachineSizedUInt long axis, @MachineSizedUInt long batchDimensions, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "gatherAlongAxis:withUpdatesTensor:indicesTensor:name:")
+    public native MPSGraphTensor gatherAlongAxis(@MachineSizedSInt long axis, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "gatherAlongAxisTensor:withUpdatesTensor:indicesTensor:name:")
+    public native MPSGraphTensor gatherAlongAxisTensor(MPSGraphTensor axisTensor, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, String name);
+    @Method(selector = "imToColWithSourceTensor:descriptor:name:")
+    public native MPSGraphTensor imToCol(MPSGraphTensor source, MPSGraphImToColOpDescriptor descriptor, String name);
+    @Method(selector = "colToImWithSourceTensor:outputShape:descriptor:name:")
+    public native MPSGraphTensor colToIm(MPSGraphTensor source, NSArray<NSNumber> outputShape, MPSGraphImToColOpDescriptor descriptor, String name);
+    @Method(selector = "bandPartWithTensor:numLower:numUpper:name:")
+    public native MPSGraphTensor bandPart(MPSGraphTensor inputTensor, @MachineSizedSInt long numLower, @MachineSizedSInt long numUpper, String name);
+    @Method(selector = "bandPartWithTensor:numLowerTensor:numUpperTensor:name:")
+    public native MPSGraphTensor bandPart(MPSGraphTensor inputTensor, MPSGraphTensor numLowerTensor, MPSGraphTensor numUpperTensor, String name);
     @Method(selector = "softMaxCrossEntropyWithSourceTensor:labelsTensor:axis:reductionType:name:")
     public native MPSGraphTensor softMaxCrossEntropy(MPSGraphTensor sourceTensor, MPSGraphTensor labelsTensor, @MachineSizedSInt long axis, MPSGraphLossReductionType reductionType, String name);
     @Method(selector = "softMaxCrossEntropyGradientWithIncomingGradientTensor:sourceTensor:labelsTensor:axis:reductionType:name:")
     public native MPSGraphTensor softMaxCrossEntropyGradient(MPSGraphTensor gradientTensor, MPSGraphTensor sourceTensor, MPSGraphTensor labelsTensor, @MachineSizedSInt long axis, MPSGraphLossReductionType reductionType, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "inverseOfTensor:name:")
+    public native MPSGraphTensor inverseOfTensor(MPSGraphTensor inputTensor, String name);
     @Method(selector = "matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:")
     public native MPSGraphTensor matrixMultiplication(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, String name);
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
-    @Method(selector = "sparseTensorWithType:tensors:shape:dataType:name:")
-    public native MPSGraphTensor sparseTensor(MPSGraphSparseStorageType sparseStorageType, NSArray<MPSGraphTensor> inputTensorArray, NSArray<NSNumber> shape, MPSDataType dataType, String name);
+    @Method(selector = "HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:")
+    public native MPSGraphTensor HammingDistance(MPSGraphTensor primaryTensor, MPSGraphTensor secondaryTensor, MPSDataType resultDataType, String name);
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 18.0 and later.
      */
-    @Method(selector = "sparseTensorWithDescriptor:tensors:shape:name:")
-    public native MPSGraphTensor sparseTensor(MPSGraphCreateSparseOpDescriptor sparseDescriptor, NSArray<MPSGraphTensor> inputTensorArray, NSArray<NSNumber> shape, String name);
+    @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:")
+    public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, MPSGraphTensor maskTensor, float scale, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:")
+    public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, float scale, String name);
     @Method(selector = "placeholderWithShape:dataType:name:")
     public native MPSGraphTensor placeholder(NSArray<NSNumber> shape, MPSDataType dataType, String name);
     @Method(selector = "placeholderWithShape:name:")
@@ -337,12 +580,41 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor constant(double scalar, MPSDataType dataType);
     @Method(selector = "constantWithScalar:shape:dataType:")
     public native MPSGraphTensor constant(double scalar, NSArray<NSNumber> shape, MPSDataType dataType);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "constantWithRealPart:imaginaryPart:")
+    public native MPSGraphTensor constant(double realPart, double imaginaryPart);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "constantWithRealPart:imaginaryPart:dataType:")
+    public native MPSGraphTensor constant(double realPart, double imaginaryPart, MPSDataType dataType);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "constantWithRealPart:imaginaryPart:shape:dataType:")
+    public native MPSGraphTensor constant(double realPart, double imaginaryPart, NSArray<NSNumber> shape, MPSDataType dataType);
     @Method(selector = "variableWithData:shape:dataType:name:")
     public native MPSGraphTensor variable(NSData data, NSArray<NSNumber> shape, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "variableFromTensorWithTensor:name:")
+    public native MPSGraphTensor variableFromTensor(MPSGraphTensor tensor, String name);
     @Method(selector = "readVariable:name:")
     public native MPSGraphTensor readVariable(MPSGraphTensor variable, String name);
     @Method(selector = "assignVariable:withValueOfTensor:name:")
     public native MPSGraphOperation assignVariable(MPSGraphTensor variable, MPSGraphTensor tensor, String name);
+    @Method(selector = "nonMaximumSuppressionWithBoxesTensor:scoresTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:")
+    public native MPSGraphTensor nonMaximumSuppression(MPSGraphTensor boxesTensor, MPSGraphTensor scoresTensor, float IOUThreshold, float scoreThreshold, boolean perClassSuppression, MPSGraphNonMaximumSuppressionCoordinateMode coordinateMode, String name);
+    @Method(selector = "nonMaximumSuppressionWithBoxesTensor:scoresTensor:classIndicesTensor:IOUThreshold:scoreThreshold:perClassSuppression:coordinateMode:name:")
+    public native MPSGraphTensor nonMaximumSuppression(MPSGraphTensor boxesTensor, MPSGraphTensor scoresTensor, MPSGraphTensor classIndicesTensor, float IOUThreshold, float scoreThreshold, boolean perClassSuppression, MPSGraphNonMaximumSuppressionCoordinateMode coordinateMode, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "nonZeroIndicesOfTensor:name:")
+    public native MPSGraphTensor nonZeroIndices(MPSGraphTensor tensor, String name);
     @Method(selector = "meanOfTensor:axes:name:")
     public native MPSGraphTensor mean(MPSGraphTensor tensor, NSArray<NSNumber> axes, String name);
     @Method(selector = "varianceOfTensor:meanTensor:axes:name:")
@@ -373,10 +645,29 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor stochasticGradientDescent(MPSGraphTensor learningRateTensor, MPSGraphTensor valuesTensor, MPSGraphTensor gradientTensor, String name);
     @Method(selector = "applyStochasticGradientDescentWithLearningRateTensor:variable:gradientTensor:name:")
     public native MPSGraphOperation applyStochasticGradientDescent(MPSGraphTensor learningRateTensor, MPSGraphVariableOp variable, MPSGraphTensor gradientTensor, String name);
+    @Method(selector = "adamWithLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:beta1PowerTensor:beta2PowerTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:")
+    public native NSArray<MPSGraphTensor> adamWithLearningRateTensor(MPSGraphTensor learningRateTensor, MPSGraphTensor beta1Tensor, MPSGraphTensor beta2Tensor, MPSGraphTensor epsilonTensor, MPSGraphTensor beta1PowerTensor, MPSGraphTensor beta2PowerTensor, MPSGraphTensor valuesTensor, MPSGraphTensor momentumTensor, MPSGraphTensor velocityTensor, MPSGraphTensor maximumVelocityTensor, MPSGraphTensor gradientTensor, String name);
+    @Method(selector = "adamWithCurrentLearningRateTensor:beta1Tensor:beta2Tensor:epsilonTensor:valuesTensor:momentumTensor:velocityTensor:maximumVelocityTensor:gradientTensor:name:")
+    public native NSArray<MPSGraphTensor> adamWithCurrentLearningRateTensor(MPSGraphTensor currentLearningRateTensor, MPSGraphTensor beta1Tensor, MPSGraphTensor beta2Tensor, MPSGraphTensor epsilonTensor, MPSGraphTensor valuesTensor, MPSGraphTensor momentumTensor, MPSGraphTensor velocityTensor, MPSGraphTensor maximumVelocityTensor, MPSGraphTensor gradientTensor, String name);
     @Method(selector = "maxPooling2DWithSourceTensor:descriptor:name:")
     public native MPSGraphTensor maxPooling2D(MPSGraphTensor source, MPSGraphPooling2DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:")
+    public native NSArray<MPSGraphTensor> maxPooling2DReturnIndices(MPSGraphTensor source, MPSGraphPooling2DOpDescriptor descriptor, String name);
     @Method(selector = "maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:")
     public native MPSGraphTensor maxPooling2DGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphPooling2DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:")
+    public native MPSGraphTensor maxPooling2DGradient(MPSGraphTensor gradient, MPSGraphTensor indices, NSArray<NSNumber> outputShape, MPSGraphPooling2DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:")
+    public native MPSGraphTensor maxPooling2DGradient(MPSGraphTensor gradient, MPSGraphTensor indices, MPSGraphTensor outputShape, MPSGraphPooling2DOpDescriptor descriptor, String name);
     @Method(selector = "avgPooling2DWithSourceTensor:descriptor:name:")
     public native MPSGraphTensor avgPooling2D(MPSGraphTensor source, MPSGraphPooling2DOpDescriptor descriptor, String name);
     @Method(selector = "avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:")
@@ -387,10 +678,25 @@ import org.robovm.apple.metalps.*;
     @Method(selector = "maxPooling4DWithSourceTensor:descriptor:name:")
     public native MPSGraphTensor maxPooling4D(MPSGraphTensor source, MPSGraphPooling4DOpDescriptor descriptor, String name);
     /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:")
+    public native NSArray<MPSGraphTensor> maxPooling4DReturnIndices(MPSGraphTensor source, MPSGraphPooling4DOpDescriptor descriptor, String name);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:")
     public native MPSGraphTensor maxPooling4DGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphPooling4DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:")
+    public native MPSGraphTensor maxPooling4DGradient(MPSGraphTensor gradient, MPSGraphTensor indices, NSArray<NSNumber> outputShape, MPSGraphPooling4DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:")
+    public native MPSGraphTensor maxPooling4DGradient(MPSGraphTensor gradient, MPSGraphTensor indices, MPSGraphTensor outputShape, MPSGraphPooling4DOpDescriptor descriptor, String name);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -411,6 +717,56 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:")
     public native MPSGraphTensor L2NormPooling4DGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphPooling4DOpDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "quantizeTensor:scale:zeroPoint:dataType:name:")
+    public native MPSGraphTensor quantizeTensor(MPSGraphTensor tensor, double scale, double zeroPoint, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "dequantizeTensor:scale:zeroPoint:dataType:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, double scale, double zeroPoint, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:")
+    public native MPSGraphTensor quantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, double zeroPoint, MPSDataType dataType, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, double zeroPoint, MPSDataType dataType, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:")
+    public native MPSGraphTensor quantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSGraphTensor zeroPointTensor, MPSDataType dataType, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSGraphTensor zeroPointTensor, MPSDataType dataType, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSGraphTensor zeroPointTensor, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:scaleTensor:dataType:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor scaleTensor, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:LUTTensor:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor LUTTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "dequantizeTensor:LUTTensor:axis:name:")
+    public native MPSGraphTensor dequantizeTensor(MPSGraphTensor tensor, MPSGraphTensor LUTTensor, @MachineSizedSInt long axis, String name);
     @Method(selector = "randomPhiloxStateTensorWithSeed:name:")
     public native MPSGraphTensor randomPhiloxStateTensor(@MachineSizedUInt long seed, String name);
     @Method(selector = "randomPhiloxStateTensorWithCounterLow:counterHigh:key:name:")
@@ -477,6 +833,26 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "reductionArgMinimumWithTensor:axis:name:")
     public native MPSGraphTensor reductionArgMinimum(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "reductionAndWithTensor:axis:name:")
+    public native MPSGraphTensor reductionAnd(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "reductionAndWithTensor:axes:name:")
+    public native MPSGraphTensor reductionAnd(MPSGraphTensor tensor, NSArray<NSNumber> axes, String name);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "reductionOrWithTensor:axis:name:")
+    public native MPSGraphTensor reductionOr(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.3 and later.
+     */
+    @Method(selector = "reductionOrWithTensor:axes:name:")
+    public native MPSGraphTensor reductionOr(MPSGraphTensor tensor, NSArray<NSNumber> axes, String name);
     @Method(selector = "resizeTensor:size:mode:centerResult:alignCorners:layout:name:")
     public native MPSGraphTensor resizeTensor(MPSGraphTensor imagesTensor, NSArray<NSNumber> size, MPSGraphResizeMode mode, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
     /**
@@ -484,8 +860,213 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "resizeTensor:sizeTensor:mode:centerResult:alignCorners:layout:name:")
     public native MPSGraphTensor resizeTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphResizeMode mode, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:")
+    public native MPSGraphTensor resize(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphResizeMode mode, boolean centerResult, boolean alignCorners, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:")
+    public native MPSGraphTensor resizeNearestWithTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphResizeNearestRoundingMode nearestRoundingMode, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:")
+    public native MPSGraphTensor resizeNearest(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphResizeNearestRoundingMode nearestRoundingMode, boolean centerResult, boolean alignCorners, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:")
+    public native MPSGraphTensor resizeBilinearWithTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:")
+    public native MPSGraphTensor resizeBilinear(MPSGraphTensor imagesTensor, MPSGraphTensor size, boolean centerResult, boolean alignCorners, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:")
+    public native MPSGraphTensor resizeTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scaleOffset, MPSGraphResizeMode mode, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:")
+    public native MPSGraphTensor resizeTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scale, MPSGraphTensor offset, MPSGraphResizeMode mode, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:")
+    public native MPSGraphTensor resizeNearestWithTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scaleOffset, MPSGraphResizeNearestRoundingMode nearestRoundingMode, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:")
+    public native MPSGraphTensor resizeNearest(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scale, MPSGraphTensor offset, MPSGraphResizeNearestRoundingMode nearestRoundingMode, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:")
+    public native MPSGraphTensor resizeBilinearWithTensor(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scaleOffset, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:")
+    public native MPSGraphTensor resizeBilinear(MPSGraphTensor imagesTensor, MPSGraphTensor size, MPSGraphTensor scale, MPSGraphTensor offset, String name);
     @Method(selector = "resizeWithGradientTensor:input:mode:centerResult:alignCorners:layout:name:")
     public native MPSGraphTensor resize(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphResizeMode mode, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:")
+    public native MPSGraphTensor resizeNearestWithGradientTensor(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphResizeNearestRoundingMode nearestRoundingMode, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:")
+    public native MPSGraphTensor resizeBilinearWithGradientTensor(MPSGraphTensor gradient, MPSGraphTensor input, boolean centerResult, boolean alignCorners, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:")
+    public native MPSGraphTensor resizeWithGradientTensor(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scaleOffset, MPSGraphResizeMode mode, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:")
+    public native MPSGraphTensor resizeWithGradient(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scale, MPSGraphTensor offset, MPSGraphResizeMode mode, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:")
+    public native MPSGraphTensor resizeNearestWithGradientTensor(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scaleOffset, MPSGraphResizeNearestRoundingMode nearestRoundingMode, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:")
+    public native MPSGraphTensor resizeNearestWithGradient(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scale, MPSGraphTensor offset, MPSGraphResizeNearestRoundingMode nearestRoundingMode, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:")
+    public native MPSGraphTensor resizeBilinearWithGradientTensor(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scaleOffset, MPSGraphTensorNamedDataLayout layout, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:")
+    public native MPSGraphTensor resizeBilinearWithGradient(MPSGraphTensor gradient, MPSGraphTensor input, MPSGraphTensor scale, MPSGraphTensor offset, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor mask, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNWithSourceTensor:recurrentWeight:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor initState, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:stateGradient:inputWeight:bias:initState:mask:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor stateGradient, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor mask, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:mask:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNGradients(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor mask, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:inputWeight:bias:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "singleGateRNNGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> singleGateRNNGradients(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor initState, MPSGraphSingleGateRNNDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphTensor mask, MPSGraphTensor peephole, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMWithSourceTensor:recurrentWeight:inputWeight:bias:initState:initCell:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMWithSourceTensor:recurrentWeight:initState:initCell:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:stateGradient:cellGradient:inputWeight:bias:initState:initCell:mask:peephole:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor cellOutputFwd, MPSGraphTensor stateGradient, MPSGraphTensor cellGradient, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphTensor mask, MPSGraphTensor peephole, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:mask:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor cellOutputFwd, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphTensor mask, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:inputWeight:bias:initState:initCell:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor cellOutputFwd, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor initCell, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "LSTMGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:cellOutputFwd:descriptor:name:")
+    public native NSArray<MPSGraphTensor> LSTMGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor cellOutputFwd, MPSGraphLSTMDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor mask, MPSGraphTensor secondaryBias, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUWithSourceTensor:recurrentWeight:inputWeight:bias:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUWithSourceTensor:recurrentWeight:inputWeight:bias:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:stateGradient:inputWeight:bias:initState:mask:secondaryBias:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor outputFwd, MPSGraphTensor stateGradient, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphTensor mask, MPSGraphTensor secondaryBias, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:initState:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor outputFwd, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphTensor initState, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "GRUGradientsWithSourceTensor:recurrentWeight:sourceGradient:zState:outputFwd:inputWeight:bias:descriptor:name:")
+    public native NSArray<MPSGraphTensor> GRUGradientsWithSourceTensor(MPSGraphTensor source, MPSGraphTensor recurrentWeight, MPSGraphTensor sourceGradient, MPSGraphTensor zState, MPSGraphTensor outputFwd, MPSGraphTensor inputWeight, MPSGraphTensor bias, MPSGraphGRUDescriptor descriptor, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:samplingMode:constantValue:name:")
+    public native MPSGraphTensor sampleGrid(MPSGraphTensor source, MPSGraphTensor coordinates, MPSGraphTensorNamedDataLayout layout, boolean normalizeCoordinates, boolean relativeCoordinates, boolean alignCorners, MPSGraphPaddingMode paddingMode, MPSGraphResizeMode samplingMode, double constantValue, String name);
+    /**
+     * @since Available in iOS 16.2 and later.
+     */
+    @Method(selector = "sampleGridWithSourceTensor:coordinateTensor:layout:normalizeCoordinates:relativeCoordinates:alignCorners:paddingMode:nearestRoundingMode:constantValue:name:")
+    public native MPSGraphTensor sampleGrid(MPSGraphTensor source, MPSGraphTensor coordinates, MPSGraphTensorNamedDataLayout layout, boolean normalizeCoordinates, boolean relativeCoordinates, boolean alignCorners, MPSGraphPaddingMode paddingMode, MPSGraphResizeNearestRoundingMode nearestRoundingMode, double constantValue, String name);
     @Method(selector = "scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:mode:name:")
     public native MPSGraphTensor scatterND(MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, NSArray<NSNumber> shape, @MachineSizedUInt long batchDimensions, MPSGraphScatterMode mode, String name);
     @Method(selector = "scatterNDWithUpdatesTensor:indicesTensor:shape:batchDimensions:name:")
@@ -505,6 +1086,76 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "scatterWithDataTensor:updatesTensor:indicesTensor:axis:mode:name:")
     public native MPSGraphTensor scatter(MPSGraphTensor dataTensor, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, @MachineSizedSInt long axis, MPSGraphScatterMode mode, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "scatterAlongAxis:withUpdatesTensor:indicesTensor:shape:mode:name:")
+    public native MPSGraphTensor scatterAlongAxis(@MachineSizedSInt long axis, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, NSArray<NSNumber> shape, MPSGraphScatterMode mode, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "scatterAlongAxisTensor:withUpdatesTensor:indicesTensor:shape:mode:name:")
+    public native MPSGraphTensor scatterAlongAxisTensor(MPSGraphTensor axisTensor, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, NSArray<NSNumber> shape, MPSGraphScatterMode mode, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "scatterAlongAxis:withDataTensor:updatesTensor:indicesTensor:mode:name:")
+    public native MPSGraphTensor scatterAlongAxis(@MachineSizedSInt long axis, MPSGraphTensor dataTensor, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, MPSGraphScatterMode mode, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "scatterAlongAxisTensor:withDataTensor:updatesTensor:indicesTensor:mode:name:")
+    public native MPSGraphTensor scatterAlongAxisTensor(MPSGraphTensor axisTensor, MPSGraphTensor dataTensor, MPSGraphTensor updatesTensor, MPSGraphTensor indicesTensor, MPSGraphScatterMode mode, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sortWithTensor:axis:descending:name:")
+    public native MPSGraphTensor sort(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean descending, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sortWithTensor:axisTensor:descending:name:")
+    public native MPSGraphTensor sort(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean descending, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sortWithTensor:axis:name:")
+    public native MPSGraphTensor sort(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "sortWithTensor:axisTensor:name:")
+    public native MPSGraphTensor sort(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "argSortWithTensor:axis:descending:name:")
+    public native MPSGraphTensor argSort(MPSGraphTensor tensor, @MachineSizedSInt long axis, boolean descending, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "argSortWithTensor:axisTensor:descending:name:")
+    public native MPSGraphTensor argSort(MPSGraphTensor tensor, MPSGraphTensor axisTensor, boolean descending, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "argSortWithTensor:axis:name:")
+    public native MPSGraphTensor argSort(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "argSortWithTensor:axisTensor:name:")
+    public native MPSGraphTensor argSort(MPSGraphTensor tensor, MPSGraphTensor axisTensor, String name);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "sparseTensorWithType:tensors:shape:dataType:name:")
+    public native MPSGraphTensor sparseTensor(MPSGraphSparseStorageType sparseStorageType, NSArray<MPSGraphTensor> inputTensorArray, NSArray<NSNumber> shape, MPSDataType dataType, String name);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "sparseTensorWithDescriptor:tensors:shape:name:")
+    public native MPSGraphTensor sparseTensor(MPSGraphCreateSparseOpDescriptor sparseDescriptor, NSArray<MPSGraphTensor> inputTensorArray, NSArray<NSNumber> shape, String name);
     @Method(selector = "stencilWithSourceTensor:weightsTensor:descriptor:name:")
     public native MPSGraphTensor stencil(MPSGraphTensor source, MPSGraphTensor weights, MPSGraphStencilOpDescriptor descriptor, String name);
     @Method(selector = "reshapeTensor:withShape:name:")
@@ -516,16 +1167,61 @@ import org.robovm.apple.metalps.*;
     public native MPSGraphTensor reshapeTensor(MPSGraphTensor tensor, MPSGraphTensor shapeTensor, String name);
     @Method(selector = "transposeTensor:dimension:withDimension:name:")
     public native MPSGraphTensor transposeTensor(MPSGraphTensor tensor, @MachineSizedUInt long dimensionIndex, @MachineSizedUInt long dimensionIndex2, String name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "transposeTensor:permutation:name:")
+    public native MPSGraphTensor transposeTensor(MPSGraphTensor tensor, NSArray<NSNumber> permutation, String name);
     @Method(selector = "sliceTensor:dimension:start:length:name:")
     public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, @MachineSizedUInt long dimensionIndex, @MachineSizedSInt long start, @MachineSizedSInt long length, String name);
     @Method(selector = "sliceTensor:starts:ends:strides:name:")
     public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
     @Method(selector = "sliceTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
     public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, MPSGraphTensor startTensor, MPSGraphTensor endTensor, MPSGraphTensor strideTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceTensor:startTensor:sizeTensor:squeezeMask:name:")
+    public native MPSGraphTensor sliceTensor(MPSGraphTensor tensor, MPSGraphTensor startTensor, MPSGraphTensor sizeTensor, int squeezeMask, String name);
     @Method(selector = "sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:")
     public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, MPSGraphTensor startTensor, MPSGraphTensor endTensor, MPSGraphTensor strideTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    @Method(selector = "sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:")
+    public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, MPSGraphTensor startTensor, MPSGraphTensor sizeTensor, int squeezeMask, String name);
     @Method(selector = "sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
     public native MPSGraphTensor sliceGradientTensor(MPSGraphTensor inputGradientTensor, MPSGraphTensor fwdInShapeTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, MPSGraphTensor startsTensor, MPSGraphTensor endsTensor, MPSGraphTensor stridesTensor, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, int startMask, int endMask, int squeezeMask, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, MPSGraphTensor startsTensor, MPSGraphTensor endsTensor, MPSGraphTensor stridesTensor, String name);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:")
+    public native MPSGraphTensor sliceUpdateDataTensor(MPSGraphTensor dataTensor, MPSGraphTensor updateTensor, NSArray<NSNumber> starts, NSArray<NSNumber> ends, NSArray<NSNumber> strides, String name);
     @Method(selector = "concatTensor:withTensor:dimension:name:")
     public native MPSGraphTensor concatTensor(MPSGraphTensor tensor, MPSGraphTensor tensor2, @MachineSizedSInt long dimensionIndex, String name);
     @Method(selector = "concatTensors:dimension:name:")
@@ -543,23 +1239,43 @@ import org.robovm.apple.metalps.*;
     /**
      * @since Available in iOS 15.0 and later.
      */
+    @Method(selector = "spaceToDepth2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor spaceToDepth2DTensor(MPSGraphTensor tensor, @MachineSizedUInt long widthAxis, @MachineSizedUInt long heightAxis, @MachineSizedUInt long depthAxis, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Method(selector = "spaceToDepth2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:")
     public native MPSGraphTensor spaceToDepth2DTensor(MPSGraphTensor tensor, MPSGraphTensor widthAxisTensor, MPSGraphTensor heightAxisTensor, MPSGraphTensor depthAxisTensor, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "depthToSpace2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor depthToSpace2DTensor(MPSGraphTensor tensor, @MachineSizedUInt long widthAxis, @MachineSizedUInt long heightAxis, @MachineSizedUInt long depthAxis, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
     /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "depthToSpace2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:")
     public native MPSGraphTensor depthToSpace2DTensor(MPSGraphTensor tensor, MPSGraphTensor widthAxisTensor, MPSGraphTensor heightAxisTensor, MPSGraphTensor depthAxisTensor, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 16.1 and later.
      */
-    @Method(selector = "spaceToDepth2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:")
-    public native MPSGraphTensor spaceToDepth2DTensor(MPSGraphTensor tensor, @MachineSizedUInt long widthAxis, @MachineSizedUInt long heightAxis, @MachineSizedUInt long depthAxis, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
+    @Method(selector = "spaceToBatchTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor spaceToBatch(MPSGraphTensor tensor, NSArray<NSNumber> spatialAxes, @MachineSizedSInt long batchAxis, NSArray<NSNumber> blockDimensions, boolean usePixelShuffleOrder, String name);
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 16.1 and later.
      */
-    @Method(selector = "depthToSpace2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:")
-    public native MPSGraphTensor depthToSpace2DTensor(MPSGraphTensor tensor, @MachineSizedUInt long widthAxis, @MachineSizedUInt long heightAxis, @MachineSizedUInt long depthAxis, @MachineSizedUInt long blockSize, boolean usePixelShuffleOrder, String name);
+    @Method(selector = "spaceToBatchTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor spaceToBatch(MPSGraphTensor tensor, MPSGraphTensor spatialAxesTensor, MPSGraphTensor batchAxisTensor, MPSGraphTensor blockDimensionsTensor, boolean usePixelShuffleOrder, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "batchToSpaceTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor batchToSpace(MPSGraphTensor tensor, NSArray<NSNumber> spatialAxes, @MachineSizedSInt long batchAxis, NSArray<NSNumber> blockDimensions, boolean usePixelShuffleOrder, String name);
+    /**
+     * @since Available in iOS 16.1 and later.
+     */
+    @Method(selector = "batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:")
+    public native MPSGraphTensor batchToSpace(MPSGraphTensor tensor, MPSGraphTensor spatialAxesTensor, MPSGraphTensor batchAxisTensor, MPSGraphTensor blockDimensionsTensor, boolean usePixelShuffleOrder, String name);
     /**
      * @since Available in iOS 15.0 and later.
      */
@@ -605,13 +1321,133 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "castTensor:toType:name:")
     public native MPSGraphTensor castTensor(MPSGraphTensor tensor, MPSDataType type, String name);
+    /**
+     * @since Available in iOS 16.3 and later.
+     */
+    @Method(selector = "reinterpretCastTensor:toType:name:")
+    public native MPSGraphTensor reinterpretCast(MPSGraphTensor tensor, MPSDataType type, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "stackTensors:axis:name:")
+    public native MPSGraphTensor stackTensors(NSArray<MPSGraphTensor> inputTensors, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "splitTensor:splitSizes:axis:name:")
+    public native NSArray<MPSGraphTensor> splitTensor(MPSGraphTensor tensor, NSArray<NSNumber> splitSizes, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "splitTensor:splitSizesTensor:axis:name:")
+    public native NSArray<MPSGraphTensor> splitTensor(MPSGraphTensor tensor, MPSGraphTensor splitSizesTensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "splitTensor:numSplits:axis:name:")
+    public native NSArray<MPSGraphTensor> splitTensor(MPSGraphTensor tensor, @MachineSizedUInt long numSplits, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "squeezeTensor:name:")
+    public native MPSGraphTensor squeezeTensor(MPSGraphTensor tensor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "squeezeTensor:axis:name:")
+    public native MPSGraphTensor squeezeTensor(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "squeezeTensor:axes:name:")
+    public native MPSGraphTensor squeezeTensor(MPSGraphTensor tensor, NSArray<NSNumber> axes, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "squeezeTensor:axesTensor:name:")
+    public native MPSGraphTensor squeezeTensor(MPSGraphTensor tensor, MPSGraphTensor axesTensor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "expandDimsOfTensor:axis:name:")
+    public native MPSGraphTensor expandDimsOfTensor(MPSGraphTensor tensor, @MachineSizedSInt long axis, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "expandDimsOfTensor:axes:name:")
+    public native MPSGraphTensor expandDimsOfTensor(MPSGraphTensor tensor, NSArray<NSNumber> axes, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "expandDimsOfTensor:axesTensor:name:")
+    public native MPSGraphTensor expandDimsOfTensor(MPSGraphTensor tensor, MPSGraphTensor axesTensor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "coordinateAlongAxis:withShape:name:")
+    public native MPSGraphTensor coordinateAlongAxis(@MachineSizedSInt long axis, NSArray<NSNumber> shape, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "coordinateAlongAxisTensor:withShape:name:")
+    public native MPSGraphTensor coordinateAlongAxisTensor(MPSGraphTensor axisTensor, NSArray<NSNumber> shape, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "coordinateAlongAxis:withShapeTensor:name:")
+    public native MPSGraphTensor coordinateAlongAxis(@MachineSizedSInt long axis, MPSGraphTensor shapeTensor, String name);
+    /**
+     * @since Available in iOS 15.4 and later.
+     */
+    @Method(selector = "coordinateAlongAxisTensor:withShapeTensor:name:")
+    public native MPSGraphTensor coordinateAlongAxisTensor(MPSGraphTensor axisTensor, MPSGraphTensor shapeTensor, String name);
     @Method(selector = "topKWithSourceTensor:k:name:")
     public native NSArray<MPSGraphTensor> topK(MPSGraphTensor source, @MachineSizedUInt long k, String name);
     @Method(selector = "topKWithSourceTensor:kTensor:name:")
     public native NSArray<MPSGraphTensor> topK(MPSGraphTensor source, MPSGraphTensor kTensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "topKWithSourceTensor:axis:k:name:")
+    public native NSArray<MPSGraphTensor> topK(MPSGraphTensor source, @MachineSizedSInt long axis, @MachineSizedUInt long k, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "bottomKWithSourceTensor:axis:k:name:")
+    public native NSArray<MPSGraphTensor> bottomK(MPSGraphTensor source, @MachineSizedSInt long axis, @MachineSizedUInt long k, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "topKWithSourceTensor:axisTensor:kTensor:name:")
+    public native NSArray<MPSGraphTensor> topK(MPSGraphTensor source, MPSGraphTensor axisTensor, MPSGraphTensor kTensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "bottomKWithSourceTensor:axisTensor:kTensor:name:")
+    public native NSArray<MPSGraphTensor> bottomK(MPSGraphTensor source, MPSGraphTensor axisTensor, MPSGraphTensor kTensor, String name);
     @Method(selector = "topKWithGradientTensor:source:k:name:")
-    public native MPSGraphTensor topK(MPSGraphTensor gradient, MPSGraphTensor source, @MachineSizedUInt long k, String name);
+    public native MPSGraphTensor topKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, @MachineSizedUInt long k, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "topKWithGradientTensor:source:axis:k:name:")
+    public native MPSGraphTensor topKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, @MachineSizedSInt long axis, @MachineSizedUInt long k, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "bottomKWithGradientTensor:source:axis:k:name:")
+    public native MPSGraphTensor bottomKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, @MachineSizedSInt long axis, @MachineSizedUInt long k, String name);
     @Method(selector = "topKWithGradientTensor:source:kTensor:name:")
-    public native MPSGraphTensor topK(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor kTensor, String name);
+    public native MPSGraphTensor topKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor kTensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "topKWithGradientTensor:source:axisTensor:kTensor:name:")
+    public native MPSGraphTensor topKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor axisTensor, MPSGraphTensor kTensor, String name);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "bottomKWithGradientTensor:source:axisTensor:kTensor:name:")
+    public native MPSGraphTensor bottomKWithGradient(MPSGraphTensor gradient, MPSGraphTensor source, MPSGraphTensor axisTensor, MPSGraphTensor kTensor, String name);
     /*</methods>*/
 }

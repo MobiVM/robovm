@@ -16,6 +16,12 @@
  */
 package org.robovm.compiler.llvm;
 
+import java.io.IOException;
+import java.io.Writer;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @version $Id$
@@ -34,19 +40,47 @@ public class StructureConstant extends Constant {
         return type;
     }
 
+
+
+    // flatten all contained structs in way removing struct and inserting struct members
+    private static void flattenInto(List<Value> dest, StructureConstant struct) {
+        for (Value v: struct.values) {
+            if (v instanceof StructureConstant)
+                flattenInto(dest, (StructureConstant)v);
+            else
+                dest.add(v);
+        }
+    }
+
+    public StructureConstant flatten() {
+        List<Value> flattenValues = new ArrayList<>();
+        flattenInto(flattenValues, this);
+
+        Type[] types = new Type[flattenValues.size()];
+        int i = 0;
+        for (Value v : flattenValues) {
+            types[i++] = v.getType();
+        }
+
+        return new StructureConstant(new StructureType(types), flattenValues.toArray(new Value[0]));
+    }
+
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append('{');
+    public void write(Writer writer) throws IOException {
+        writer.write('{');
         for (int i = 0; i < values.length; i++) {
             if (i > 0) {
-                sb.append(", ");
+                writer.write(", ");
             }
-            sb.append(values[i].getType());
-            sb.append(' ');
-            sb.append(values[i]);
+            values[i].getType().write(writer);
+            writer.write(' ');
+            values[i].write(writer);
         }
-        sb.append('}');
-        return sb.toString();
+        writer.write('}');
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

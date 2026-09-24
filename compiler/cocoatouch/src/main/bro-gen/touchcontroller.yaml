@@ -1,0 +1,122 @@
+package: org.robovm.apple.touchcontroller
+include: [foundation, coregraphics, metal, metalkit, uikit, gamecontroller]
+library: TouchController
+framework: TouchController
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/TouchController.framework/Headers/TouchController.h
+
+typedefs:
+    
+enums:
+    TCControlLayoutAnchor: {} #since 26.0
+    TCControlLayoutAnchorCoordinateSystem: {} #since 26.0
+    TCColliderShape: {} #since 26.0
+    TCControlLabelRole: {} #since 26.0
+    TCControlContentsButtonShape: {} #since 26.0
+    TCControlContentsDpadDirection: {} #since 26.0
+    TCControlContentsDpadElementStyle: {} #since 26.0
+    TCThrottleOrientation: {} #since 26.0
+
+categories:
+
+classes:
+    TCButton: {} #since 26.0
+    TCButtonDescriptor: {} #since 26.0
+    TCControlContents: #since 26.0
+        methods:
+            '+contentsWithImages:':
+                name: create
+                constructor: true
+            '+buttonContentsForSystemImageNamed:size:shape:controller:':
+                name: buttonContentsForSystemImage
+            '+switchedOnContentsForSystemImageNamed:size:shape:controller:':
+                name: switchedOnContentsForSystemImage
+            '+thumbstickStickContentsOfSize:controller:':
+                name: thumbstickStickContents
+            '+thumbstickBackgroundContentsOfSize:controller:':
+                name: thumbstickBackgroundContents
+            '+throttleIndicatorContentsOfSize:controller:':
+                name: throttleIndicatorContents
+            '+throttleBackgroundContentsOfSize:controller:':
+                name: throttleBackgroundContents
+            '+directionPadContentsForLabel:size:style:direction:controller:':
+                name: directionPadContents
+    TCControlImage: #since 26.0
+        methods:
+            '-initWithTexture:size:':
+                name: init
+            '-initWithTexture:size:highlightTexture:offset:tintColor:':
+                name: init
+            '-initWithCGImage:size:device:':
+                name: init
+            '-initWithUIImage:size:device:':
+                name: init
+    TCControlLabel: #since 26.0
+        methods:
+            '-initWithName:role:':
+                name: init
+    TCDirectionPad: {} #since 26.0
+    TCDirectionPadDescriptor: {} #since 26.0
+    TCSwitch: {} #since 26.0
+    TCSwitchDescriptor: {} #since 26.0
+    TCThrottle: {} #since 26.0
+    TCThrottleDescriptor: {} #since 26.0
+    TCThumbstick: {} #since 26.0
+    TCThumbstickDescriptor: {} #since 26.0
+    TCTouchController: #since 26.0
+        methods:
+            '-initWithDescriptor:':
+                name: init
+            '-addButtonWithDescriptor:':
+                name: addButton
+            '-addSwitchWithDescriptor:':
+                name: addSwitch
+            '-addThumbstickWithDescriptor:':
+                name: addThumbstick
+            '-addDirectionPadWithDescriptor:':
+                name: addDirectionPad
+            '-addThrottleWithDescriptor:':
+                name: addThrottle
+            '-addTouchpadWithDescriptor:':
+                name: addTouchpad
+            '-handleTouchBeganAtPoint:index:':
+                name: handleTouchBegan
+            '-handleTouchMovedAtPoint:index:':
+                name: handleTouchMoved
+            '-handleTouchEndedAtPoint:index:':
+                name: handleTouchEnded
+    TCTouchControllerDescriptor: #since 26.0
+        methods:
+            '-initWithMTKView:':
+                name: init
+    TCTouchpad: {} #since 26.0
+    TCTouchpadDescriptor: {} #since 26.0
+
+protocols:
+    TCControl: {} #since 26.0
+    TCControlLayout: {} #since 26.0
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    TCGameControllerProductCategoryTouchController:
+        class: TCTouchController
+        name: getGameControllerProductCategory
+        type: NSString
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

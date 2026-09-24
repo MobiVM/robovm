@@ -48,28 +48,10 @@ import org.robovm.apple.contacts.*;
     public CLRegion() {}
     protected CLRegion(Handle h, long handle) { super(h, handle); }
     protected CLRegion(SkipInit skipInit) { super(skipInit); }
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    public CLRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super((SkipInit) null); initObject(init(center, radius, identifier)); }
     @Method(selector = "initWithCoder:")
     public CLRegion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Property(selector = "center")
-    public native @ByVal CLLocationCoordinate2D getCenter();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Property(selector = "radius")
-    public native double getRadius();
     @Property(selector = "identifier")
     public native String getIdentifier();
     @Property(selector = "notifyOnEntry")
@@ -85,18 +67,6 @@ import org.robovm.apple.contacts.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    protected native @Pointer long init(@ByVal CLLocationCoordinate2D center, double radius, String identifier);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "containsCoordinate:")
-    public native boolean containsCoordinate(@ByVal CLLocationCoordinate2D coordinate);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

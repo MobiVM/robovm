@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,7 @@ import org.robovm.apple.foundation.*;
         /**
          * @since Available in iOS 8.2 and later.
          */
-        public static NSObjectProtocol observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
+        public static NSObject observeUserPreferencesDidChange(HKHealthStore object, final VoidBlock1<HKHealthStore> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(UserPreferencesDidChangeNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +62,16 @@ import org.robovm.apple.foundation.*;
     protected HKHealthStore(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "workoutSessionMirroringStartHandler")
+    public native @Block VoidBlock1<HKWorkoutSession> getWorkoutSessionMirroringStartHandler();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setWorkoutSessionMirroringStartHandler:")
+    public native void setWorkoutSessionMirroringStartHandler(@Block VoidBlock1<HKWorkoutSession> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -80,6 +90,11 @@ import org.robovm.apple.foundation.*;
     public native HKAuthorizationStatus getAuthorizationStatusForType(HKObjectType type);
     @Method(selector = "requestAuthorizationToShareTypes:readTypes:completion:")
     public native void requestAuthorizationToTypes(NSSet<HKSampleType> typesToShare, NSSet<HKObjectType> typesToRead, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "requestPerObjectReadAuthorizationForType:predicate:completion:")
+    public native void requestPerObjectReadAuthorization(HKObjectType objectType, NSPredicate predicate, @Block VoidBlock2<Boolean, NSError> completion);
     /**
      * @since Available in iOS 12.0 and later.
      */
@@ -203,6 +218,10 @@ import org.robovm.apple.foundation.*;
     public native HKActivityMoveModeObject getActivityMoveMode(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
+     */
+    @Deprecated
     @Method(selector = "addSamples:toWorkout:completion:")
     public native void addSamplesToWorkout(NSArray<HKSample> samples, HKWorkout workout, @Block VoidBlock2<Boolean, NSError> completion);
     /**
@@ -210,6 +229,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "startWatchAppWithWorkoutConfiguration:completion:")
     public native void startWatchApp(HKWorkoutConfiguration workoutConfiguration, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "recoverActiveWorkoutSessionWithCompletion:")
+    public native void recoverActiveWorkoutSession(@Block VoidBlock2<HKWorkoutSession, NSError> completion);
     @Method(selector = "enableBackgroundDeliveryForType:frequency:withCompletion:")
     public native void enableBackgroundDeliveryForType(HKObjectType type, HKUpdateFrequency frequency, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "disableBackgroundDeliveryForType:withCompletion:")
@@ -226,5 +250,15 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "recalibrateEstimatesForSampleType:atDate:completion:")
     public native void recalibrateEstimates(HKSampleType sampleType, NSDate date, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "relateWorkoutEffortSample:withWorkout:activity:completion:")
+    public native void relateWorkoutEffortSample(HKSample sample, HKWorkout workout, HKWorkoutActivity activity, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "unrelateWorkoutEffortSample:fromWorkout:activity:completion:")
+    public native void unrelateWorkoutEffortSample(HKSample sample, HKWorkout workout, HKWorkoutActivity activity, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

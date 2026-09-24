@@ -1,0 +1,55 @@
+package: org.robovm.apple.systemextensions
+include: [foundation]
+library: SystemExtensions
+framework: SystemExtensions
+clang_args: ['-x', 'objective-c']
+headers:
+    - /System/Library/Frameworks/SystemExtensions.framework/Headers/SystemExtensions.h
+
+typedefs:
+    
+enums:
+    OSSystemExtensionErrorCode: {nserror: true, prefix: OSSystemExtensionError} #since 18.4
+categories:
+
+classes:
+    OSSystemExtensionProperties: {} #since 18.4
+    OSSystemExtensionsWorkspace: #since 18.4
+        methods:
+            '-systemExtensionsForApplicationWithBundleID:error:':
+                name: systemExtensionsForApplication
+                throws: NSErrorException
+protocols:
+
+functions:
+
+    # Make sure we don't miss any functions if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Function__#{g[0]}'
+
+values:
+    OSSystemExtensionErrorDomain:
+        class: OSSystemExtensionErrorCode
+        name: getClassDomain
+    NSSystemExtension(.*)Key:
+        class: SystemExtensions
+        static_class: keys
+        type: NSString
+        name: '#{g[0]}'
+    OS(.*)Key:
+        class: SystemExtensions
+        static_class: keys
+        type: NSString
+        name: '#{g[0]}'
+
+    # Make sure we don't miss any values if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Value__#{g[0]}'
+
+constants:
+    # Make sure we don't miss any constants if new ones are introduced in a later version
+    (.*):
+        class: FIXME
+        name: 'Constant__#{g[0]}'

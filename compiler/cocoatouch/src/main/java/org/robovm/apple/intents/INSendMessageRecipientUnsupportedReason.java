@@ -55,7 +55,11 @@ public enum /*<name>*/INSendMessageRecipientUnsupportedReason/*</name>*/ impleme
     /**
      * @since Available in iOS 12.0 and later.
      */
-    NoHandleForLabel(6L);
+    NoHandleForLabel(6L),
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    RequiringInAppAuthentication(7L);
     /*</values>*/
 
     /*<bind>*/

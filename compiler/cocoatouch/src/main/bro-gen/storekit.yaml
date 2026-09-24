@@ -18,6 +18,13 @@ enums:
     SKProductDiscountPaymentMode: {}
     SKProductDiscountType: {} #since 12.2
     SKOverlayPosition: {} #since 14.0
+    SKANError: { nserror: true } #since 15.4
+typed_enums:
+    SKAdNetworkCoarseConversionValue:
+        enum: SKAdNetworkCoarseConversionValue
+        prefix: SKAdNetworkCoarseConversionValue
+        type: NSString
+
 classes:
     SKCloudServiceController: #since 9.3
         methods:
@@ -120,7 +127,8 @@ classes:
                 parameters:
                     parameters:
                         type: SKStoreProductParameters
-
+            '-loadProductWithParameters:impression:completionBlock:':
+                name: loadProduct
     SKCloudServiceSetupViewController:
         methods:
             '-loadWithOptions:completionHandler:':
@@ -145,6 +153,12 @@ classes:
                 name: startImpression
             '+endImpression:completionHandler:':
                 name: endImpression
+            '+updatePostbackConversionValue:completionHandler:':
+                name: updatePostbackConversionValue
+            '+updatePostbackConversionValue:coarseValue:completionHandler:':
+                name: updatePostbackConversionValue
+            '+updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:':
+                name: updatePostbackConversionValue
     SKProductDiscount: {} #since 11.2
     SKProductSubscriptionPeriod: {} #since 11.2
     SKPaymentDiscount: #since 12.2
@@ -176,7 +190,10 @@ classes:
                 name: setAdditionalValue
     SKOverlayConfiguration: {} #since 14.0
     SKOverlayTransitionContext: {} #since 14.0
-    SKAdImpression: {} #since 14.5
+    SKAdImpression: #since 14.5
+        methods:
+            '-initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:':
+                name: init
 protocols:
     SKCloudServiceSetupViewControllerDelegate:
         methods:
@@ -241,6 +258,7 @@ protocols:
                 name: willStartDismissal
             '-storeOverlay:didFinishDismissal:':
                 name: didFinishDismissal
+    SKDownloaderExtension: {} #since 26.0
 functions:
     SK(TerminateForInvalidReceipt):
         class: SKReceiptRefreshRequest
@@ -305,6 +323,10 @@ values:
         dictionary: SKCloudServiceSetupOptions
         name: '#{g[0]}'
         type: NSString
+
+    SKANErrorDomain:
+        class: SKANError
+        name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?SK.*):

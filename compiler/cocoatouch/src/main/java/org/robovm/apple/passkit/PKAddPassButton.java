@@ -63,6 +63,15 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithFrame:primaryAction:")
     public PKAddPassButton(@ByVal org.robovm.apple.coregraphics.CGRect frame, UIAction primaryAction) { super(frame, primaryAction); }
+    public PKAddPassButton(UIButtonType buttonType) { super((Handle) null, create0(buttonType)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public PKAddPassButton(UIButtonType buttonType, UIAction primaryAction) { super((Handle) null, create0(buttonType, primaryAction)); retain(getHandle()); }
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    public PKAddPassButton(UIButtonConfiguration configuration, UIAction primaryAction) { super((Handle) null, create(configuration, primaryAction)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "addPassButtonStyle")
@@ -79,6 +88,8 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(PKAddPassButtonStyle style);
     @Method(selector = "addPassButtonWithStyle:")
     public static native PKAddPassButton addPassButton(PKAddPassButtonStyle addPassButtonStyle);
+    @Method(selector = "buttonWithType:")
+    protected static native @Pointer long create0(UIButtonType buttonType);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -89,6 +100,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "systemButtonWithPrimaryAction:")
     public static native PKAddPassButton getSystemButtonWithPrimaryAction(UIAction primaryAction);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    @Method(selector = "buttonWithType:primaryAction:")
+    protected static native @Pointer long create0(UIButtonType buttonType, UIAction primaryAction);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    @Method(selector = "buttonWithConfiguration:primaryAction:")
+    protected static native @Pointer long create(UIButtonConfiguration configuration, UIAction primaryAction);
     /**
      * @since Available in iOS 9.0 and later.
      */

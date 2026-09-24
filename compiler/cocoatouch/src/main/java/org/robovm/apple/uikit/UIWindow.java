@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeDidBecomeVisible(final VoidBlock1<UIWindow> block) {
+        public static NSObject observeDidBecomeVisible(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeVisibleNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -58,7 +59,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeDidBecomeHidden(final VoidBlock1<UIWindow> block) {
+        public static NSObject observeDidBecomeHidden(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeHiddenNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -66,7 +67,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeDidBecomeKey(final VoidBlock1<UIWindow> block) {
+        public static NSObject observeDidBecomeKey(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidBecomeKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -74,7 +75,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeDidResignKey(final VoidBlock1<UIWindow> block) {
+        public static NSObject observeDidResignKey(final VoidBlock1<UIWindow> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidResignKeyNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -82,7 +83,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeKeyboardWillShow(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardWillShow(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillShowNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -90,7 +91,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeKeyboardDidShow(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardDidShow(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidShowNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -98,7 +99,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeKeyboardWillHide(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardWillHide(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillHideNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -106,7 +107,7 @@ import org.robovm.apple.linkpresentation.*;
                 }
             });
         }
-        public static NSObjectProtocol observeKeyboardDidHide(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardDidHide(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidHideNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -117,7 +118,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeKeyboardWillChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardWillChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardWillChangeFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -128,7 +129,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 5.0 and later.
          */
-        public static NSObjectProtocol observeKeyboardDidChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
+        public static NSObject observeKeyboardDidChangeFrame(final VoidBlock1<UIKeyboardAnimation> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(KeyboardDidChangeFrameNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -149,8 +150,12 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "initWithWindowScene:")
     public UIWindow(UIWindowScene windowScene) { super((SkipInit) null); initObject(init(windowScene)); }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(windowScene:) instead.
+     */
+    @Deprecated
     @Method(selector = "initWithFrame:")
-    public UIWindow(@ByVal CGRect frame) { super(frame); }
+    public UIWindow(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
     @Method(selector = "initWithCoder:")
     public UIWindow(NSCoder coder) { super(coder); }
     /*</constructors>*/
@@ -191,6 +196,11 @@ import org.robovm.apple.linkpresentation.*;
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "safeAreaAspectFitLayoutGuide")
+    public native UILayoutGuide getSafeAreaAspectFitLayoutGuide();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -220,6 +230,12 @@ import org.robovm.apple.linkpresentation.*;
      */
     @Method(selector = "initWithWindowScene:")
     protected native @Pointer long init(UIWindowScene windowScene);
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(windowScene:) instead.
+     */
+    @Deprecated
+    @Method(selector = "initWithFrame:")
+    protected native @Pointer long init(@ByVal CGRect frame);
     @Method(selector = "becomeKeyWindow")
     public native void becomeKeyWindow();
     @Method(selector = "resignKeyWindow")

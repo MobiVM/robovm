@@ -54,26 +54,59 @@ import org.robovm.apple.corehaptic.*;
     public native GCControllerElement getCollection();
     @Property(selector = "isAnalog")
     public native boolean isAnalog();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "isBoundToSystemGesture")
     public native boolean isBoundToSystemGesture();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "preferredSystemGestureState")
     public native GCSystemGestureState getPreferredSystemGestureState();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setPreferredSystemGestureState:")
     public native void setPreferredSystemGestureState(GCSystemGestureState v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "sfSymbolsName")
     public native String getSfSymbolsName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setSfSymbolsName:")
     public native void setSfSymbolsName(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "localizedName")
     public native String getLocalizedName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setLocalizedName:")
     public native void setLocalizedName(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "unmappedSfSymbolsName")
     public native String getUnmappedSfSymbolsName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setUnmappedSfSymbolsName:")
     public native void setUnmappedSfSymbolsName(String v);
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "unmappedLocalizedName")
     public native String getUnmappedLocalizedName();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "setUnmappedLocalizedName:")
     public native void setUnmappedLocalizedName(String v);
     /**

@@ -54,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     public ASAuthorizationSecurityKeyPublicKeyCredentialAssertion(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "appID")
+    public native boolean isAppID();
     @Property(selector = "rawAuthenticatorData")
     public native NSData getRawAuthenticatorData();
     @Property(selector = "userID")

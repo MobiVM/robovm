@@ -1,5 +1,5 @@
 package: org.robovm.apple.healthkit
-include: [foundation.yaml]
+include: [foundation, uniformtypeid]
 library: HealthKit
 framework: HealthKit
 clang_args: ['-x', 'objective-c']
@@ -59,7 +59,31 @@ enums:
     HKCategoryValueProgesteroneTestResult: {} #since 15.0
     HKCategoryValueAppleWalkingSteadinessEvent: {} #since 15.0
     HKAppleWalkingSteadinessClassification: {} #since 15.0
-
+    HKVisionPrescriptionType: {} #since 16.0
+    HKUserMotionContext: {} #since 16.0
+    HKHeartRateRecoveryTestType: {} #since 16.0
+    HKPrismBase: {} #since 16.0
+    HKVisionEye: {} #since 16.0
+    HKWaterSalinity: {} #since 17.0
+    HKCyclingFunctionalThresholdPowerTestType: {} #since 17.0
+    HKPhysicalEffortEstimationType: {} #since 17.0
+    HKWorkoutSessionState: {} #since 17.0
+    HKWorkoutSessionType: {} #since 17.0
+    HKCategoryValueVaginalBleeding: {} #since 18.0
+    HKMedicationDoseEventLogStatus: {} #since 26.0
+    HKMedicationDoseEventScheduleType: {} #since 26.0
+    HKStateOfMindValenceClassification: {} #since 18.0
+    HKStateOfMindLabel: {} #since 18.0
+    HKStateOfMindAssociation: {} #since 18.0
+    HKStateOfMindKind: {} #since 18.0
+    HKAppleSleepingBreathingDisturbancesClassification: {} #since 18.0
+    HKAudiogramConductionType: {} #since 18.1
+    HKAudiogramSensitivityTestSide: {} #since 18.1
+    HKGAD7AssessmentRisk: {} #since 18.0
+    HKGAD7AssessmentAnswer: {} #since 18.0
+    HKPHQ9AssessmentRisk: {} #since 18.0
+    HKPHQ9AssessmentAnswer: {} #since 18.0
+    HKWorkoutEffortRelationshipQueryOptions: {} #since 18.0
 typed_enums:
     HKFHIRResourceType:
         enum: HKFHIRResourceType
@@ -73,6 +97,27 @@ typed_enums:
         enum: HKFHIRRelease
         prefix: HKFHIRRelease
         type: NSString
+    HKVerifiableClinicalRecordSourceType:
+        enum: HKVerifiableClinicalRecordSourceType
+        prefix: HKVerifiableClinicalRecordSourceType
+        type: NSString
+    HKVerifiableClinicalRecordCredentialType:
+        enum: HKVerifiableClinicalRecordCredentialType
+        prefix: HKVerifiableClinicalRecordCredentialType
+        type: NSString
+    HKHealthConceptDomain:
+        enum: HKHealthConceptDomain
+        prefix: HKHealthConceptDomain
+        type: NSString
+    HKScoredAssessmentTypeIdentifier:
+        enum: HKScoredAssessmentTypeIdentifier
+        prefix: HKScoredAssessmentTypeIdentifier
+        type: NSString
+    HKMedicationGeneralForm:
+        enum: HKMedicationGeneralForm
+        prefix: HKMedicationGeneralForm
+        type: NSString
+
 classes:
     HKError:
         extends: NSError
@@ -164,6 +209,15 @@ classes:
                 name: getActivityMoveMode
             '-recalibrateEstimatesForSampleType:atDate:completion:':
                 name: recalibrateEstimates
+            '-requestPerObjectReadAuthorizationForType:predicate:completion:':
+                name: requestPerObjectReadAuthorization
+            '-recoverActiveWorkoutSessionWithCompletion:':
+                name: recoverActiveWorkoutSession
+            '-relateWorkoutEffortSample:withWorkout:activity:completion:':
+                name: relateWorkoutEffortSample
+            '-unrelateWorkoutEffortSample:fromWorkout:activity:completion:':
+                name: unrelateWorkoutEffortSample
+
     HKObject: # DONE
         properties:
             'metadata':
@@ -389,6 +443,58 @@ classes:
                 name: predicateForElectrocardiogramsWithSymptomsStatus
             '+predicateForVerifiableClinicalRecordsWithRelevantDateWithinDateInterval:':
                 name: predicateForVerifiableClinicalRecords
+            '+predicateForWorkoutsWithOperatorType:quantityType:sumQuantity:':
+                name: predicateForWorkoutsSumQuantity
+            '+predicateForWorkoutsWithOperatorType:quantityType:minimumQuantity:':
+                name: predicateForWorkoutsMinimumQuantity
+            '+predicateForWorkoutsWithOperatorType:quantityType:maximumQuantity:':
+                name: predicateForWorkoutsMaximumQuantity
+            '+predicateForWorkoutsWithOperatorType:quantityType:averageQuantity:':
+                name: predicateForWorkoutsAverageQuantity
+            '+predicateForWorkoutActivitiesWithWorkoutActivityType:':
+                name: predicateForWorkoutActivities
+            '+predicateForWorkoutActivitiesWithOperatorType:duration:':
+                name: predicateForWorkoutActivities
+            '+predicateForWorkoutActivitiesWithStartDate:endDate:options:':
+                name: predicateForWorkoutActivities
+            '+predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity:':
+                name: predicateForWorkoutActivitiesSumQuantity
+            '+predicateForWorkoutActivitiesWithOperatorType:quantityType:minimumQuantity:':
+                name: predicateForWorkoutActivitiesMinimumQuantity
+            '+predicateForWorkoutActivitiesWithOperatorType:quantityType:maximumQuantity:':
+                name: predicateForWorkoutActivitiesMaximumQuantity
+            '+predicateForWorkoutActivitiesWithOperatorType:quantityType:averageQuantity:':
+                name: predicateForWorkoutActivitiesAverageQuantity
+            '+predicateForWorkoutsWithActivityPredicate:':
+                name: predicateForWorkouts
+            '+predicateForWorkoutEffortSamplesRelatedToWorkout:activity:':
+                name: predicateForWorkoutEffortSamplesRelatedToWorkout
+            '+predicateForStatesOfMindWithValence:operatorType:':
+                name: predicateForStatesOfMindWithValence
+            '+predicateForStatesOfMindWithKind:':
+                name: predicateForStatesOfMindWithKind
+            '+predicateForStatesOfMindWithLabel:':
+                name: predicateForStatesOfMindWithLabel
+            '+predicateForStatesOfMindWithAssociation:':
+                name: predicateForStatesOfMindWithAssociation
+            '+predicateForMedicationDoseEventWithStatus:':
+                name: predicateForMedicationDoseEventWithStatus
+            '+predicateForMedicationDoseEventWithStatuses:':
+                name: predicateForMedicationDoseEventWithStatuses
+            '+predicateForMedicationDoseEventWithScheduledDate:':
+                name: predicateForMedicationDoseEventWithScheduledDate
+            '+predicateForMedicationDoseEventWithScheduledDates:':
+                name: predicateForMedicationDoseEventWithScheduledDates
+            '+predicateForMedicationDoseEventWithScheduledStartDate:endDate:':
+                name: predicateForMedicationDoseEventWithScheduledRange
+            '+predicateForMedicationDoseEventWithMedicationConceptIdentifier:':
+                name: predicateForMedicationDoseEventWithMedicationConceptIdentifier
+            '+predicateForMedicationDoseEventWithMedicationConceptIdentifiers:':
+                name: predicateForMedicationDoseEventWithMedicationConceptIdentifiers
+            '+predicateForUserAnnotatedMedicationsWithIsArchived:':
+                name: predicateForUserAnnotatedMedicationsWithIsArchived
+            '+predicateForUserAnnotatedMedicationsWithHasSchedule:':
+                name: predicateForUserAnnotatedMedicationsWithHasSchedule
     HKAnchoredObjectQuery: # DONE
         methods:
             '-initWithType:predicate:anchor:limit:completionHandler:':
@@ -582,6 +688,8 @@ classes:
         methods:
             '-initWithRoute:dataHandler:':
                 name: init
+            '-initWithRoute:dateInterval:dataHandler:':
+                name: init
     HKClinicalRecord: {} #since 12.0
     HKClinicalType: {} #since 12.0
     HKCumulativeQuantitySeriesSample: {} #since 12.0
@@ -622,15 +730,27 @@ classes:
                 name: endCollection
             '-finishWorkoutWithCompletion:':
                 name: finishWorkout
+            '-addWorkoutActivity:completion:':
+                name: addWorkoutActivity
+            '-updateActivityWithUUID:endDate:completion:':
+                name: updateActivity
+            '-updateActivityWithUUID:addMedatata:completion:':
+                name: updateActivity
     HKAudiogramSample: #since 13.0
         methods:
             '+audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:':
+                name: create
+                constructor: true
+            '+audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:':
                 name: create
                 constructor: true
     HKAudiogramSampleType: {} #since 13.0
     HKAudiogramSensitivityPoint: #since 13.0
         methods:
             '+sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:':
+                name: create
+                constructor: true
+            '+sensitivityPointWithFrequency:tests:error:':
                 name: create
                 constructor: true
     HKCumulativeQuantitySample: {} #since 13.0
@@ -673,9 +793,158 @@ classes:
         methods:
             '-initWithRecordTypes:predicate:resultsHandler:':
                 name: init
+            '-initWithRecordTypes:sourceTypes:predicate:resultsHandler:':
+                name: init
     HKVerifiableClinicalRecordSubject: {} #since 15.0
+    HKAttachment: {} #since 16.0
+    HKAttachmentStore: #since 16.0
+        methods:
+            '-initWithHealthStore:':
+                name: init
+            '-addAttachmentToObject:name:contentType:URL:metadata:completion:':
+                name: addAttachment
+            '-removeAttachment:fromObject:completion:':
+                name: removeAttachment
+            '-getAttachmentsForObject:completion:':
+                name: getAttachments
+            '-getDataForAttachment:completion:':
+                name: getData
+            '-streamDataForAttachment:dataHandler:':
+                name: streamData
+    HKContactsLensSpecification: #since 16.0
+        methods:
+            '-initWithSphere:cylinder:axis:addPower:baseCurve:diameter:':
+                name: init
+    HKContactsPrescription: #since 16.0
+        methods:
+            '+prescriptionWithRightEyeSpecification:leftEyeSpecification:brand:dateIssued:expirationDate:device:metadata:':
+                constructor: true
+                name: create
+    HKGlassesLensSpecification: #since 16.0
+        methods:
+            '-initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:':
+                name: init
+    HKGlassesPrescription: #since 16.0
+        methods:
+            '+prescriptionWithRightEyeSpecification:leftEyeSpecification:dateIssued:expirationDate:device:metadata:':
+                constructor: true
+                name: create
+    HKLensSpecification: {} #since 16.0
+    HKPrescriptionType: {} #since 16.0
+    HKVisionPrescription: #since 16.0
+        methods:
+            '+prescriptionWithType:dateIssued:expirationDate:device:metadata:':
+                constructor: true
+                name: create
+    HKVisionPrism: #since 16.0
+        methods:
+            '-initWithAmount:angle:eye:':
+                name: init
+            '-initWithVerticalAmount:verticalBase:horizontalAmount:horizontalBase:eye:':
+                name: init
+    HKWorkoutActivity: #since 16.0
+        methods:
+            '-initWithWorkoutConfiguration:startDate:endDate:metadata:':
+                name: init
+    HKWorkoutSession: #since 17.0
+        methods:
+            '-startActivityWithDate:':
+                name: startActivity
+            '-stopActivityWithDate:':
+                name: stopActivity
+            '-beginNewActivityWithConfiguration:date:metadata:':
+                name: beginNewActivity
+            '-sendDataToRemoteWorkoutSession:completion:':
+                name: sendDataToRemoteWorkoutSession
+            '-initWithHealthStore:configuration:error:':
+                name: init
+    HKAudiogramSensitivityPointClampingRange: #since 18.1
+        methods:
+            '+clampingRangeWithLowerBound:upperBound:error:':
+                name: create
+                constructor: true
+    HKAudiogramSensitivityTest: #since 18.1
+        methods:
+            '-initWithSensitivity:type:masked:side:clampingRange:error:':
+                name: init
+    HKClinicalCoding: #since 26.0
+        methods:
+            '-initWithSystem:version:code:':
+                name: init
+    HKGAD7Assessment: #since 18.0
+        methods:
+            '+assessmentWithDate:answers:':
+                name: create
+                constructor: true
+            '+assessmentWithDate:answers:metadata:':
+                name: create
+                constructor: true
+    HKHealthConceptIdentifier: {} #since 26.0
+    HKLiveWorkoutBuilder: {} #since 26.0
+    HKLiveWorkoutDataSource: #since 26.0
+        methods:
+            '-initWithHealthStore:workoutConfiguration:':
+                name: init
+            '-enableCollectionForType:predicate:':
+                name: enableCollection
+    HKMedicationConcept: {} #since 26.0
+    HKMedicationDoseEvent: {} #since 26.0
+    HKMedicationDoseEventType: {} #since 26.0
+    HKPHQ9Assessment: #since 18.0
+        methods:
+            '+assessmentWithDate:answers:':
+                name: create
+                constructor: true
+            '+assessmentWithDate:answers:metadata:':
+                name: create
+                constructor: true
+    HKScoredAssessment: {} #since 18.0
+    HKScoredAssessmentType: {} #since 18.0
+    HKStateOfMind: #since 18.0
+        methods:
+            '+stateOfMindWithDate:kind:valence:labels:associations:':
+                name: create
+                constructor: true
+            '+stateOfMindWithDate:kind:valence:labels:associations:metadata:':
+                name: create
+                constructor: true
+    HKStateOfMindType: {} #since 18.0
+    HKUserAnnotatedMedication: {} #since 26.0
+    HKUserAnnotatedMedicationQuery: #since 26.0
+        methods:
+            '-initWithPredicate:limit:resultsHandler:':
+                name: init
+    HKUserAnnotatedMedicationType: {} #since 26.0
+    HKWorkoutEffortRelationship: {} #since 18.0
+    HKWorkoutEffortRelationshipQuery: #since 18.0
+        methods:
+            '-initWithPredicate:anchor:options:resultsHandler:':
+                name: init
 protocols:
-    HKWorkoutSessionDelegate: {}
+    HKWorkoutSessionDelegate: #since 17.0
+        methods:
+            '-workoutSession:didChangeToState:fromState:date:':
+                name: didChangeToState
+            '-workoutSession:didFailWithError:':
+                name: didFail
+            '-workoutSession:didGenerateEvent:':
+                name: didGenerateEvent
+            '-workoutSession:didBeginActivityWithConfiguration:date:':
+                name: didBeginActivity
+            '-workoutSession:didEndActivityWithConfiguration:date:':
+                name: didEndActivity
+            '-workoutSession:didReceiveDataFromRemoteWorkoutSession:':
+                name: didReceiveDataFromRemoteWorkoutSession
+            '-workoutSession:didDisconnectFromRemoteDeviceWithError:':
+                name: didDisconnectFromRemoteDevice
+    HKLiveWorkoutBuilderDelegate: #since 26.0
+        methods:
+            '-workoutBuilder:didCollectDataOfTypes:':
+                name: didCollectData
+            '-workoutBuilder:didBeginActivity:':
+                name: didBeginActivity
+            '-workoutBuilder:didEndActivity:':
+                name: didEndActivity
 
 functions:
     HKAppleWalkingSteadinessClassificationForQuantity:
@@ -685,6 +954,18 @@ functions:
     HKAppleWalkingSteadiness(MinimumQuantityForClassification|MaximumQuantityForClassification):
         class: HKAppleWalkingSteadinessClassification
         name: '#{g[0]}'
+    HKCategoryValueSleepAnalysisAsleepValues:
+        class: HKCategoryValueSleepAnalysis
+        name: 'asleepValues'
+    HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification:
+        class: HKAppleSleepingBreathingDisturbancesClassification
+        name: minimum
+    HKAppleSleepingBreathingDisturbancesClassificationForQuantity:
+        class: HKAppleSleepingBreathingDisturbancesClassification
+        name: fromQuantity # TODO: it is good to marshal NSNumber to enum entry
+    HKStateOfMind(ValenceClassificationForValence):
+        class: HKStateOfMind
+        name: 'get#{g[0]}'
 
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (HK.*):
@@ -701,17 +982,27 @@ values:
         name: '#{g[0]}'
         type: NSString
 
-    HKQuantityTypeIdentifier(BodyMassIndex|BodyFatPercentage|Height|BodyMass|LeanBodyMass|WaistCircumference):
+    HKQuantityTypeIdentifier(BodyMassIndex|BodyFatPercentage|Height|BodyMass|LeanBodyMass|WaistCircumference|AppleSleepingWristTemperature):
         enum: HKBodyQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(AppleWalkingSteadiness|StepCount|DistanceWalkingRunning|DistanceCycling|DistanceWheelchair|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel|AppleExerciseTime|PushCount|DistanceSwimming|SwimmingStrokeCount|VO2Max|DistanceDownhillSnowSports|AppleStandTime|WalkingSpeed|WalkingDoubleSupportPercentage|WalkingAsymmetryPercentage|WalkingStepLength|SixMinuteWalkTestDistance|StairAscentSpeed|StairDescentSpeed|AppleMoveTime):
+    HKQuantityTypeIdentifier(AppleWalkingSteadiness|StepCount|DistanceWalkingRunning|DistanceCycling|DistanceWheelchair|BasalEnergyBurned|ActiveEnergyBurned|FlightsClimbed|NikeFuel|AppleExerciseTime|PushCount|DistanceSwimming|SwimmingStrokeCount|VO2Max|DistanceDownhillSnowSports|AppleStandTime|WalkingSpeed|WalkingDoubleSupportPercentage|WalkingAsymmetryPercentage|WalkingStepLength|SixMinuteWalkTestDistance|StairAscentSpeed|StairDescentSpeed|AppleMoveTime|RunningStrideLength|RunningVerticalOscillation|RunningGroundContactTime|RunningPower|RunningSpeed):
         enum: HKFitnessQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate|RestingHeartRate|WalkingHeartRateAverage|HeartRateVariabilitySDNN):
+    HKQuantityTypeIdentifier(CyclingCadence|CyclingFunctionalThresholdPower|CyclingPower|CyclingSpeed|PhysicalEffort):
+        enum: HKFitnessQuantityTypeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
+    HKQuantityTypeIdentifier(CrossCountrySkiingSpeed|DistanceCrossCountrySkiing|DistancePaddleSports|DistanceSkatingSports|EstimatedWorkoutEffortScore|PaddleSportsSpeed|RowingSpeed|WorkoutEffortScore|DistanceRowing):
+        enum: HKFitnessQuantityTypeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
+    HKQuantityTypeIdentifier(HeartRate|BodyTemperature|BasalBodyTemperature|BloodPressureSystolic|BloodPressureDiastolic|RespiratoryRate|RestingHeartRate|WalkingHeartRateAverage|HeartRateVariabilitySDNN|HeartRateRecoveryOneMinute):
         enum: HKVitalSignsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
@@ -721,7 +1012,7 @@ values:
         name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
-    HKQuantityTypeIdentifier(BloodAlcoholContent|ForcedVitalCapacity|ForcedExpiratoryVolume1|PeakExpiratoryFlowRate|EnvironmentalAudioExposure|HeadphoneAudioExposure):
+    HKQuantityTypeIdentifier(BloodAlcoholContent|ForcedVitalCapacity|ForcedExpiratoryVolume1|PeakExpiratoryFlowRate|EnvironmentalAudioExposure|EnvironmentalSoundReduction|HeadphoneAudioExposure|AppleSleepingBreathingDisturbances):
         enum: HKResultsQuantityTypeIdentifier
         name: '#{g[0]}'
         type: NSString
@@ -734,6 +1025,11 @@ values:
     HKQuantityTypeIdentifierUVExposure:
         enum: HKUVExposureTypeIdentifier
         name: 'UVExposure'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
+    HKQuantityTypeIdentifier(UnderwaterDepth|WaterTemperature):
+        enum: HKWaterTypeIdentifier
+        name: '#{g[0]}'
         type: NSString
         extends: HKQuantityTypeIdentifier
     HKDocumentTypeIdentifier(.*):
@@ -761,7 +1057,12 @@ values:
         name: Workout
         type: NSString
         extends: HKTypeIdentifier
-        
+    HKVisionPrescriptionTypeIdentifier:
+        enum: HKVisionPrescriptionTypeIdentifier
+        name: Prescription
+        type: NSString
+        extends: HKTypeIdentifier
+
     HKMetadataKey(.*):
         enum: HKMetadataKey
         name: '#{g[0]}'
@@ -795,8 +1096,15 @@ values:
     HKDeviceProperty(.*):
         class: HKDevice
         name: 'Property#{g[0]}'
+
+    HKQuantityTypeIdentifier(AtrialFibrillationBurden|TimeInDaylight):
+        enum: HKOtherQuantityTypeIdentifier
+        name: '#{g[0]}'
+        type: NSString
+        extends: HKQuantityTypeIdentifier
+
     HKQuantityTypeIdentifier(.*): # since ios 11
-        class: !!FIXME  # dkimitsa: these probably should be put in different locations
+        class: FIXME  # dkimitsa: these probably should be put in different locations
         name: '#{g[0]}'
     HKSourceRevision(.*): # since ios 11
         class: HKSourceRevision
@@ -807,6 +1115,20 @@ values:
     HKDataTypeIdentifierHeartbeatSeries:
         class: HKSeriesSample
         name: getDataTypeIdentifier
+    HKDataTypeIdentifierStateOfMind:
+        class: HKStateOfMind
+        name: getDataTypeIdentifier
+    HKMedicationDoseEventTypeIdentifierMedicationDoseEvent:
+        class: HKMedicationDoseEvent
+        name: getDataTypeIdentifier
+    HKDataTypeIdentifierUserAnnotatedMedicationConcept:
+        class: HKUserAnnotatedMedication
+        name: getDataTypeIdentifier
+
+    HKUserAnnotatedMedicationPredicateKeyPath(.*):
+        class: HKUserAnnotatedMedication
+        static_class: PredicateKeys
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (HK.*):

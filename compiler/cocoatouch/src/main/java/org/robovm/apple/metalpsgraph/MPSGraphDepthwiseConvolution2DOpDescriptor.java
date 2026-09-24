@@ -39,7 +39,7 @@ import org.robovm.apple.metalps.*;
 /*</javadoc>*/
 /*<annotations>*/@Library("MetalPerformanceShadersGraph") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MPSGraphDepthwiseConvolution2DOpDescriptor/*</name>*/ 
-    extends /*<extends>*/NSObject/*</extends>*/ 
+    extends /*<extends>*/MPSGraphObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
 
     /*<ptr>*/public static class MPSGraphDepthwiseConvolution2DOpDescriptorPtr extends Ptr<MPSGraphDepthwiseConvolution2DOpDescriptor, MPSGraphDepthwiseConvolution2DOpDescriptorPtr> {}/*</ptr>*/

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stddef.h>
 #include <string.h>
 #include <robovm.h>
 
@@ -24,15 +25,6 @@
 #define RUNTIME_VISIBLE_ANNOTATIONS 6
 #define RUNTIME_VISIBLE_PARAMETER_ANNOTATIONS 7
 #define ANNOTATION_DEFAULT 8
-
-typedef union {
-    jshort s;
-    jint i;
-    jlong j;
-    jfloat f;
-    jdouble d;
-    void* p;
-} unaligned __attribute__ ((aligned (1)));
 
 static Class* java_lang_TypeNotPresentException = NULL;
 static Class* java_lang_annotation_AnnotationFormatError = NULL;
@@ -61,6 +53,9 @@ static jboolean throwFormatError(Env* env, char* expectedType) {
     return FALSE;
 }
 
+#define ALIGN_OF(t) offsetof(struct { char c; t m; }, m)
+#define ALIGN(pp, t) (void*)(((uintptr_t) (pp) + ALIGN_OF(t) - 1) & ~(ALIGN_OF(t) - 1))
+
 static inline jbyte getByte(void** attributes) {
     jbyte v = *(jbyte*) *attributes;
     *attributes += sizeof(jbyte);
@@ -68,38 +63,51 @@ static inline jbyte getByte(void** attributes) {
 }
 
 static inline jchar getChar(void** attributes) {
+    *attributes = ALIGN(*attributes, jchar);
     jchar v = *(jchar*) *attributes;
     *attributes += sizeof(jchar);
     return v;
 }
 
 static inline jint getInt(void** attributes) {
-    jint v = ((unaligned*) *attributes)->i;
+    *attributes = ALIGN(*attributes, jint);
+    jint v = *(jint*) *attributes;
     *attributes += sizeof(jint);
     return v;
 }
 
 static inline jlong getLong(void** attributes) {
-    jlong v = ((unaligned*) *attributes)->j;
+    *attributes = ALIGN(*attributes, jlong);
+    jlong v = *(jlong*) *attributes;
     *attributes += sizeof(jlong);
     return v;
 }
 
 static inline jfloat getFloat(void** attributes) {
-    jfloat v = ((unaligned*) *attributes)->f;
+    *attributes = ALIGN(*attributes, jfloat);
+    jfloat v = *(jfloat*) *attributes;
     *attributes += sizeof(jfloat);
     return v;
 }
 
 static inline jdouble getDouble(void** attributes) {
-    jdouble v = ((unaligned*) *attributes)->d;
+    *attributes = ALIGN(*attributes, jdouble);
+    jdouble v = *(jdouble*) *attributes;
     *attributes += sizeof(jdouble);
     return v;
 }
 
 static inline char* getString(void** attributes) {
-    char* v = (char*) ((unaligned*) *attributes)->p;
+    *attributes = ALIGN(*attributes, char*);
+    char* v = *(char**) *attributes;
     *attributes += sizeof(char*);
+    return v;
+}
+
+static inline char* getPtr(void** attributes) {
+    *attributes = ALIGN(*attributes, void*);
+    void* v = *(void**) *attributes;
+    *attributes += sizeof(void*);
     return v;
 }
 
@@ -178,17 +186,27 @@ static void iterateAttributes(Env* env, void* attributes, jboolean (*f)(Env*, jb
         switch (type) {
         case SOURCE_FILE:
         case SIGNATURE:
-            attributes += sizeof(char*);
+            // attributes += sizeof(char*);
+            getPtr(&attributes);
             break;
         case INNER_CLASS:
-            attributes += 3 * sizeof(char*) + sizeof(jint);
+            // attributes += 3 * sizeof(char*) + sizeof(jint);
+            getPtr(&attributes);
+            getPtr(&attributes);
+            getPtr(&attributes);
+            getInt(&attributes);
             break;
         case ENCLOSING_METHOD:
-            attributes += 3 * sizeof(char*);
+            //attributes += 3 * sizeof(char*);
+            getPtr(&attributes);
+            getPtr(&attributes);
+            getPtr(&attributes);
             break;
         case EXCEPTIONS:
             length = getInt(&attributes);
-            attributes += length * sizeof(char*);
+            //attributes += length * sizeof(char*);
+            while (length--)
+                getPtr(&attributes);
             break;
         case ANNOTATION_DEFAULT:
             skipElementValue(&attributes);

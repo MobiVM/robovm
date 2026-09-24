@@ -101,9 +101,6 @@ classes:
                 name: init
             '-valueForKey:':
                 name: getValue
-            '-setValue:forKey:':
-                name: setValue
-                visibility: private # arguments switched
     NSAttributeDescription: {} # DONE
     NSBatchDeleteRequest: # DONE
         methods:
@@ -337,9 +334,6 @@ classes:
                 trim_after_first_colon: true
             '-valueForKey:':
                 name: getValue
-            '-setValue:forKey:':
-                trim_after_first_colon: true
-                visibility: private # switched arguments
             '-primitiveValueForKey:':
                 name: getPrimitiveValue
             '-setPrimitiveValue:forKey:':
@@ -357,10 +351,6 @@ classes:
             '-changedValuesForCurrentEvent':
                 property: true
                 return_type: 'NSDictionary<NSString, ?>'
-            '-validateValue:forKey:error:':
-                name: validateValue
-                throws: NSErrorException
-                visibility: private # switched arguments
             '-validateFor.*':
                 trim_after_first_colon: true
                 throws: NSErrorException
@@ -495,6 +485,10 @@ classes:
                         type: NSArray<NSManagedObjectModel>
                     metadata:
                         type: NSPersistentStoreMetadata
+            '+checksumsForVersionedModelAtURL:error:':
+                name: getChecksumsForVersionedModel
+                throws: NSErrorException
+
     NSMappingModel: # DONE
         properties:
             'entityMappings':
@@ -712,6 +706,13 @@ classes:
                 parameters:
                     options:
                         type: NSPersistentStoreOptions
+            '-finishDeferredLightweightMigrationTask:':
+                throws: NSErrorException
+            '-finishDeferredLightweightMigration:':
+                throws: NSErrorException
+            '-managedObjectIDFromUTF8String:length:':
+                name: managedObjectIDFromUTF8String
+
     NSPersistentStoreRequest: # DONE
         properties:
             'affectedStores':
@@ -849,6 +850,30 @@ classes:
     NSPersistentCloudKitContainerEvent: {} #since 14.0
     NSPersistentCloudKitContainerEventRequest: {} #since 14.0
     NSPersistentCloudKitContainerEventResult: {} #since 14.0
+    NSCompositeAttributeDescription: {} #since 17.0
+    NSCustomMigrationStage: #since 17.0
+        methods:
+            '-initWithCurrentModelReference:nextModelReference:':
+                name: init
+    NSLightweightMigrationStage: #since 17.0
+        methods:
+            '-initWithVersionChecksums:':
+                name: init
+    NSManagedObjectModelReference: #since 17.0
+        methods:
+            '-initWithModel:versionChecksum:':
+                name: init
+            '-initWithFileURL:versionChecksum:':
+                name: init
+            '-initWithEntityVersionHashes:inBundle:versionChecksum:':
+                name: init
+            '-initWithName:inBundle:versionChecksum:':
+                name: init
+    NSMigrationStage: {} #since 17.0
+    NSStagedMigrationManager: #since 17.0
+        methods:
+            '-initWithMigrationStages:':
+                name: init
 protocols:
     NSFetchedResultsControllerDelegate: # DONE
         methods:
@@ -864,6 +889,10 @@ protocols:
                 name: getSectionIndexTitle
             '-controller:didChangeContentWithSnapshot:':
                 name: didChangeContent
+                parameters:
+                    snapshot:
+                        type: NSDiffableDataSourceSnapshot<NSString, NSManagedObjectID> # as its declared in UIKit and template parameters are not picked from cursor_obj_c_class_ref
+
             '-controller:didChangeContentWithDifference:':
                 name: didChangeContent
     NSFetchedResultsSectionInfo: # DONE

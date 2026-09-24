@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -307,6 +309,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native NSString ExpectedSourceFrameRate();
         @GlobalValue(symbol="AVVideoAverageNonDroppableFrameRateKey", optional=true)
         public static native NSString AverageNonDroppableFrameRate();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoDecompressionPropertiesKey", optional=true)
+        public static native NSString DecompressionProperties();
     }
     /*</keys>*/
 }

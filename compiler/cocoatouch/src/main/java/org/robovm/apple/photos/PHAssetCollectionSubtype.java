@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,6 +93,18 @@ public enum /*<name>*/PHAssetCollectionSubtype/*</name>*/ implements ValuedEnum 
      * @since Available in iOS 15.0 and later.
      */
     SmartAlbumRAW(217L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
+    SmartAlbumCinematic(218L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    SmartAlbumSpatial(219L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    SmartAlbumScreenRecordings(220L),
     Any(Bro.IS_32BIT ? Integer.MAX_VALUE : Long.MAX_VALUE);
     /*</values>*/
 

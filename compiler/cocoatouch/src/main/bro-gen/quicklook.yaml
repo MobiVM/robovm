@@ -56,6 +56,10 @@ classes:
             '-initWithItemsAtURLs:options:':
                 name: init
     QLPreviewSceneOptions: {} #since 15.0
+    ARQuickLookPreviewItem: #since 13.0
+        methods:
+            '-initWithFileAtURL:':
+                name: init
 protocols:
     QLPreviewItem: # DONE
         properties:

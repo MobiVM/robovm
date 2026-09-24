@@ -1,10 +1,11 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.2.0"
+    id "org.jetbrains.kotlin.jvm" version "2.1.20"
+    id "org.jetbrains.intellij.platform" version "2.16.0"
 }
 
 ext {
-    roboVMVersion = '2.3.16-SNAPSHOT'
+    roboVMVersion = '2.3.27-SNAPSHOT'
 }
 
 group 'com.mobidevelop.robovm'
@@ -14,6 +15,10 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://central.sonatype.com/repository/maven-snapshots'}
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 configurations {
@@ -36,23 +41,41 @@ dependencies {
         exclude group: 'com.mobidevelop.robovm', module: 'robovm-templates-console'
     }
     robovm_dist "com.mobidevelop.robovm:robovm-dist:${roboVMVersion}:nocompiler@tar.gz"
+
+    implementation 'org.apache.commons:commons-compress:1.25.0'
+
+    intellijPlatform {
+        intellijIdeaCommunity('2025.2')
+        bundledPlugins('com.intellij.java', 'org.jetbrains.idea.maven', 'com.intellij.gradle')
+
+        pluginVerifier()
+    }
 }
 
-intellij {
-    version '2020.1'   // we are compiles against this API version
-    plugins = ['java', 'maven', 'gradle']
-    updateSinceUntilBuild = false
+kotlin {
+    jvmToolchain(21)
 }
 
-task copyRoboVmDist(type: Copy) {
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            // allow to run on any recent version of IntelliJ IDEA since version specified in intellijIdeaCommunity
+            untilBuild = provider { null }
+        }
+    }
+}
+
+def copyRoboVmDist = tasks.register("copyRoboVmDist", Copy) {
     from configurations.robovm_dist
     into "src/main/resources/"
     rename "robovm-dist-${roboVMVersion}-nocompiler.tar.gz", "robovm-dist"
 }
 
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-compileJava {
+tasks.named("patchPluginXml").configure {
     dependsOn copyRoboVmDist
 }

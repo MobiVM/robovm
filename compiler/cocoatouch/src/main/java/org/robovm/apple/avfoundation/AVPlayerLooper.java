@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -59,6 +61,11 @@ import org.robovm.apple.audiotoolbox.*;
     protected AVPlayerLooper(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithPlayer:templateItem:timeRange:")
     public AVPlayerLooper(AVQueuePlayer player, AVPlayerItem itemToLoop, @ByVal CMTimeRange loopRange) { super((SkipInit) null); initObject(init(player, itemToLoop, loopRange)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPlayer:templateItem:timeRange:existingItemsOrdering:")
+    public AVPlayerLooper(AVQueuePlayer player, AVPlayerItem itemToLoop, @ByVal CMTimeRange loopRange, AVPlayerLooperItemOrdering itemOrdering) { super((SkipInit) null); initObject(init(player, itemToLoop, loopRange, itemOrdering)); }
     public AVPlayerLooper(AVQueuePlayer player, AVPlayerItem itemToLoop) { super((Handle) null, create(player, itemToLoop)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
@@ -75,6 +82,11 @@ import org.robovm.apple.audiotoolbox.*;
     /*<methods>*/
     @Method(selector = "initWithPlayer:templateItem:timeRange:")
     protected native @Pointer long init(AVQueuePlayer player, AVPlayerItem itemToLoop, @ByVal CMTimeRange loopRange);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "initWithPlayer:templateItem:timeRange:existingItemsOrdering:")
+    protected native @Pointer long init(AVQueuePlayer player, AVPlayerItem itemToLoop, @ByVal CMTimeRange loopRange, AVPlayerLooperItemOrdering itemOrdering);
     @Method(selector = "disableLooping")
     public native void disableLooping();
     @Method(selector = "playerLooperWithPlayer:templateItem:")

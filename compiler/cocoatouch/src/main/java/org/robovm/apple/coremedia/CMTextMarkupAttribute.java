@@ -99,6 +99,10 @@ import org.robovm.apple.audiotoolbox.*;
     public static final CMTextMarkupAttribute ItalicStyle = new CMTextMarkupAttribute("ItalicStyle");
     public static final CMTextMarkupAttribute UnderlineStyle = new CMTextMarkupAttribute("UnderlineStyle");
     public static final CMTextMarkupAttribute FontFamilyName = new CMTextMarkupAttribute("FontFamilyName");
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public static final CMTextMarkupAttribute FontFamilyNameList = new CMTextMarkupAttribute("FontFamilyNameList");
     public static final CMTextMarkupAttribute GenericFontFamilyName = new CMTextMarkupAttribute("GenericFontFamilyName");
     public static final CMTextMarkupAttribute BaseFontSizePercentageRelativeToVideoHeight = new CMTextMarkupAttribute("BaseFontSizePercentageRelativeToVideoHeight");
     public static final CMTextMarkupAttribute RelativeFontSize = new CMTextMarkupAttribute("RelativeFontSize");
@@ -110,7 +114,7 @@ import org.robovm.apple.audiotoolbox.*;
     public static final CMTextMarkupAttribute CharacterEdgeStyle = new CMTextMarkupAttribute("CharacterEdgeStyle");
     /*</constants>*/
     
-    private static /*<name>*/CMTextMarkupAttribute/*</name>*/[] values = new /*<name>*/CMTextMarkupAttribute/*</name>*/[] {/*<value_list>*/ForegroundColorARGB, BackgroundColorARGB, CharacterBackgroundColorARGB, BoldStyle, ItalicStyle, UnderlineStyle, FontFamilyName, GenericFontFamilyName, BaseFontSizePercentageRelativeToVideoHeight, RelativeFontSize, VerticalLayout, Alignment, TextPositionPercentageRelativeToWritingDirection, OrthogonalLinePositionPercentageRelativeToWritingDirection, WritingDirectionSizePercentage, CharacterEdgeStyle/*</value_list>*/};
+    private static /*<name>*/CMTextMarkupAttribute/*</name>*/[] values = new /*<name>*/CMTextMarkupAttribute/*</name>*/[] {/*<value_list>*/ForegroundColorARGB, BackgroundColorARGB, CharacterBackgroundColorARGB, BoldStyle, ItalicStyle, UnderlineStyle, FontFamilyName, FontFamilyNameList, GenericFontFamilyName, BaseFontSizePercentageRelativeToVideoHeight, RelativeFontSize, VerticalLayout, Alignment, TextPositionPercentageRelativeToWritingDirection, OrthogonalLinePositionPercentageRelativeToWritingDirection, WritingDirectionSizePercentage, CharacterEdgeStyle/*</value_list>*/};
     
     /*<name>*/CMTextMarkupAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -147,6 +151,11 @@ import org.robovm.apple.audiotoolbox.*;
         public static native CFString UnderlineStyle();
         @GlobalValue(symbol="kCMTextMarkupAttribute_FontFamilyName", optional=true)
         public static native CFString FontFamilyName();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="kCMTextMarkupAttribute_FontFamilyNameList", optional=true)
+        public static native CFString FontFamilyNameList();
         @GlobalValue(symbol="kCMTextMarkupAttribute_GenericFontFamilyName", optional=true)
         public static native CFString GenericFontFamilyName();
         @GlobalValue(symbol="kCMTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight", optional=true)

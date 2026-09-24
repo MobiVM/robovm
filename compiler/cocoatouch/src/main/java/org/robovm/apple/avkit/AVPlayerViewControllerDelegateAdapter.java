@@ -34,6 +34,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.iad.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.avrouting.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,19 +70,50 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("playerViewController:restoreUserInterfaceForFullScreenExitWithCompletionHandler:")
     public void restoreUserInterfaceForFullScreenExit(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewControllerWillStartPictureInPicture:")
     public void willStartPictureInPicture(AVPlayerViewController playerViewController) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewControllerDidStartPictureInPicture:")
     public void didStartPictureInPicture(AVPlayerViewController playerViewController) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewController:failedToStartPictureInPictureWithError:")
     public void failedToStartPictureInPicture(AVPlayerViewController playerViewController, NSError error) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewControllerWillStopPictureInPicture:")
     public void willStopPictureInPicture(AVPlayerViewController playerViewController) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewControllerDidStopPictureInPicture:")
     public void didStopPictureInPicture(AVPlayerViewController playerViewController) {}
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewControllerShouldAutomaticallyDismissAtPictureInPictureStart:")
     public boolean shouldAutomaticallyDismissAtPictureInPictureStart(AVPlayerViewController playerViewController) { return false; }
+    /**
+     * @since Available in iOS 9.0 and later.
+     */
     @NotImplemented("playerViewController:restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:")
     public void restoreUserInterfaceForPictureInPictureStop(AVPlayerViewController playerViewController, @Block VoidBooleanBlock completionHandler) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("playerViewController:willPresentInterstitialTimeRange:")
+    public void willPresentInterstitial(AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("playerViewController:didPresentInterstitialTimeRange:")
+    public void didPresentInterstitial(AVPlayerViewController playerViewController, AVInterstitialTimeRange interstitial) {}
     /*</methods>*/
 }

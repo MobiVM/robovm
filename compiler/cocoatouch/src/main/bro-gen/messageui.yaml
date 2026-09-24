@@ -11,7 +11,7 @@ enums:
     MFMailComposeResult: {}
     MFMailComposeErrorCode: {prefix: MFMailComposeErrorCode}
     MFMessageComposeResult: {first: MessageComposeResultCancelled}
-
+    MFMailComposeControllerDeferredAction: {}
 classes:
     MFMailComposeError:
         extends: NSError
@@ -38,6 +38,8 @@ classes:
                     toRecipients:
                         type: List<String>
                         marshaler: NSArray.AsStringListMarshaler
+            '-insertCollaborationItemProvider:completionHandler:':
+                name: insertCollaboration
     MFMessageComposeViewController: # DONE
         properties:
             'recipients':

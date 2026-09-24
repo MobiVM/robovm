@@ -46,7 +46,11 @@ import org.robovm.apple.dispatch.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "gpuResourceID")
+    @ByVal MTLResourceID getGpuResourceID();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setBuffer:offset:atIndex:")
@@ -61,6 +65,10 @@ import org.robovm.apple.dispatch.*;
     void setOpaqueTriangleIntersectionFunction(MTLIntersectionFunctionSignature signature, @MachineSizedUInt long index);
     @Method(selector = "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:")
     void setOpaqueTriangleIntersectionFunction(MTLIntersectionFunctionSignature signature, @ByVal NSRange range);
+    @Method(selector = "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:")
+    void setOpaqueCurveIntersectionFunction(MTLIntersectionFunctionSignature signature, @MachineSizedUInt long index);
+    @Method(selector = "setOpaqueCurveIntersectionFunctionWithSignature:withRange:")
+    void setOpaqueCurveIntersectionFunction(MTLIntersectionFunctionSignature signature, @ByVal NSRange range);
     @Method(selector = "setVisibleFunctionTable:atBufferIndex:")
     void setVisibleFunctionTable(MTLVisibleFunctionTable functionTable, @MachineSizedUInt long bufferIndex);
     @Method(selector = "setVisibleFunctionTables:withBufferRange:")

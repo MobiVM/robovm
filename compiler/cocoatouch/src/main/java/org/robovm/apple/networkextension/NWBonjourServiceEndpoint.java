@@ -35,9 +35,10 @@ import org.robovm.apple.network.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("NetworkExtension") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("NetworkExtension") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NWBonjourServiceEndpoint/*</name>*/ 
     extends /*<extends>*/NWEndpoint/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -51,23 +52,31 @@ import org.robovm.apple.network.*;
     protected NWBonjourServiceEndpoint(SkipInit skipInit) { super(skipInit); }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_create_bonjour_service` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
      */
+    @Deprecated
     public NWBonjourServiceEndpoint(String name, String type, String domain) { super((Handle) null, create(name, type, domain)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_get_bonjour_service_name` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
      */
+    @Deprecated
     @Property(selector = "name")
     public native String getName();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_get_bonjour_service_type` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
      */
+    @Deprecated
     @Property(selector = "type")
     public native String getType();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_get_bonjour_service_domain` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
      */
+    @Deprecated
     @Property(selector = "domain")
     public native String getDomain();
     @Property(selector = "supportsSecureCoding")
@@ -77,7 +86,9 @@ import org.robovm.apple.network.*;
     /*<methods>*/
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use `nw_endpoint_create_bonjour_service` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>
      */
+    @Deprecated
     @Method(selector = "endpointWithName:type:domain:")
     protected static native @Pointer long create(String name, String type, String domain);
     /*</methods>*/

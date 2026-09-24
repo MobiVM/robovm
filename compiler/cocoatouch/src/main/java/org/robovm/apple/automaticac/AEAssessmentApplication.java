@@ -47,12 +47,25 @@ import org.robovm.apple.foundation.*;
     protected AEAssessmentApplication() {}
     protected AEAssessmentApplication(Handle h, long handle) { super(h, handle); }
     protected AEAssessmentApplication(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:")
+    public AEAssessmentApplication(String bundleIdentifier) { super((SkipInit) null); initObject(init(bundleIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Property(selector = "bundleIdentifier")
+    public native String getBundleIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:")
+    protected native @Pointer long init(String bundleIdentifier);
     /*</methods>*/
 }

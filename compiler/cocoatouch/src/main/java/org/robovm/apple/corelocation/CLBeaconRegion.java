@@ -34,9 +34,11 @@ import org.robovm.apple.contacts.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Use CLBeaconIdentityCondition
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreLocation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("CoreLocation") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CLBeaconRegion/*</name>*/ 
     extends /*<extends>*/CLRegion/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -52,7 +54,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, identifier));
        return res;
@@ -67,7 +69,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:major:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, short major, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, major, identifier));
        return res;
@@ -82,7 +84,7 @@ import org.robovm.apple.contacts.*;
      * @since Available in iOS 13.0 and later.
      */
     @Method(selector = "initWithUUID:major:minor:identifier:")
-    public static  CLBeaconRegion createUsingUUID(NSUUID uuid, short major, short minor, String identifier) {
+    public static CLBeaconRegion createUsingUUID(NSUUID uuid, short major, short minor, String identifier) {
        CLBeaconRegion res = new CLBeaconRegion((SkipInit) null);
        res.initObject(res.createUsingUUID0(uuid, major, minor, identifier));
        return res;
@@ -98,12 +100,6 @@ import org.robovm.apple.contacts.*;
      */
     @Method(selector = "initWithBeaconIdentityConstraint:identifier:")
     public CLBeaconRegion(CLBeaconIdentityConstraint beaconIdentityConstraint, String identifier) { super((SkipInit) null); initObject(init(beaconIdentityConstraint, identifier)); }
-    /**
-     * @deprecated Deprecated in iOS 7.0. Please see CLCircularRegion
-     */
-    @Deprecated
-    @Method(selector = "initCircularRegionWithCenter:radius:identifier:")
-    public CLBeaconRegion(@ByVal CLLocationCoordinate2D center, double radius, String identifier) { super(center, radius, identifier); }
     /*</constructors>*/
     /*<properties>*/
     /**

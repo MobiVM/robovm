@@ -47,7 +47,15 @@ public enum /*<name>*/MTLFunctionType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 14.0 and later.
      */
-    Intersection(6L);
+    Intersection(6L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Mesh(7L),
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    Object(8L);
     /*</values>*/
 
     /*<bind>*/

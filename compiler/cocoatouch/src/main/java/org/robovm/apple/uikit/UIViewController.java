@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 import org.robovm.apple.iad.ADInterstitialPresentationPolicy;
 import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
@@ -49,13 +50,13 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIViewController/*</name>*/ 
     extends /*<extends>*/UIResponder/*</extends>*/ 
-    /*<implements>*/implements NSCoding, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment, UIStateRestoring, NSExtensionRequestHandling/*</implements>*/ {
+    /*<implements>*/implements NSCoding, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment, UIStateRestoring, NSExtensionRequestHandling, UITraitChangeObservable/*</implements>*/ {
 
     public static class Notifications {
         /**
          * @since Available in iOS 8.0 and later.
          */
-        public static NSObjectProtocol observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
+        public static NSObject observeDidEnterBackground(UIViewController object, final VoidBlock1<UIViewController> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ShowDetailTargetDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -134,6 +135,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setFocusGroupIdentifier:")
     public native void setFocusGroupIdentifier(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "interactionActivityTrackingBaseName")
+    public native String getInteractionActivityTrackingBaseName();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setInteractionActivityTrackingBaseName:")
+    public native void setInteractionActivityTrackingBaseName(String v);
     @Property(selector = "isBeingPresented")
     public native boolean isBeingPresented();
     @Property(selector = "isBeingDismissed")
@@ -146,6 +157,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIModalTransitionStyle getModalTransitionStyle();
     @Property(selector = "setModalTransitionStyle:")
     public native void setModalTransitionStyle(UIModalTransitionStyle v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "preferredTransition")
+    public native UIViewControllerTransition getPreferredTransition();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPreferredTransition:")
+    public native void setPreferredTransition(UIViewControllerTransition v);
     @Property(selector = "modalPresentationStyle")
     public native UIModalPresentationStyle getModalPresentationStyle();
     @Property(selector = "setModalPresentationStyle:")
@@ -156,18 +177,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setModalPresentationCapturesStatusBarAppearance(boolean v);
     @Property(selector = "disablesAutomaticKeyboardDismissal")
     public native boolean disablesAutomaticKeyboardDismissal();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "wantsFullScreenLayout")
-    public native boolean wantsFullScreenLayout();
-    /**
-     * @deprecated Deprecated in iOS 7.0.
-     */
-    @Deprecated
-    @Property(selector = "setWantsFullScreenLayout:")
-    public native void setWantsFullScreenLayout(boolean v);
     @Property(selector = "edgesForExtendedLayout")
     public native UIRectEdge getEdgesForExtendedLayout();
     @Property(selector = "setEdgesForExtendedLayout:")
@@ -208,6 +217,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Property(selector = "setOverrideUserInterfaceStyle:")
     public native void setOverrideUserInterfaceStyle(UIUserInterfaceStyle v);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Update supported interface orientations and call setNeedsUpdateOfSupportedInterfaceOrientations to indicate a change.
+     */
+    @Deprecated
     @Property(selector = "shouldAutorotate")
     public native boolean shouldAutorotate();
     @Property(selector = "supportedInterfaceOrientations")
@@ -306,6 +319,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "popoverPresentationController")
     public native UIPopoverPresentationController getPopoverPresentationController();
     /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "activePresentationController")
+    public native UIPresentationController getActivePresentationController();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "isModalInPresentation")
@@ -346,12 +364,42 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Property(selector = "prefersPointerLocked")
     public native boolean prefersPointerLocked();
     /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "contentUnavailableConfiguration")
+    public native UIContentConfiguration getContentUnavailableConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setContentUnavailableConfiguration:")
+    public native void setContentUnavailableConfiguration(UIContentConfiguration v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "contentUnavailableConfigurationState")
+    public native UIContentUnavailableConfigurationState getContentUnavailableConfigurationState();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "childViewControllerForInterfaceOrientationLock")
+    public native UIViewController getChildViewControllerForInterfaceOrientationLock();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "prefersInterfaceOrientationLocked")
+    public native boolean prefersInterfaceOrientationLocked();
+    /**
      * @since Available in iOS 9.0 and later.
      * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Property(selector = "previewActionItems")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<UIPreviewActionItem> getPreviewActionItems();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
     @Property(selector = "navigationItem")
     public native UINavigationItem getNavigationItem();
     @Property(selector = "hidesBottomBarWhenPushed")
@@ -376,18 +424,6 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Property(selector = "setModalInPopover:")
     public native void setModalInPopover(boolean v);
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
-     */
-    @Deprecated
-    @Property(selector = "contentSizeForViewInPopover")
-    public native @ByVal CGSize getContentSizeForViewInPopover();
-    /**
-     * @deprecated Deprecated in iOS 7.0. Use preferredContentSize
-     */
-    @Deprecated
-    @Property(selector = "setContentSizeForViewInPopover:")
-    public native void setContentSizeForViewInPopover(@ByVal CGSize v);
     @Property(selector = "transitionCoordinator")
     public native UIViewControllerTransitionCoordinator getTransitionCoordinator();
     @Property(selector = "splitViewController")
@@ -398,6 +434,8 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void setTabBarItem(UITabBarItem v);
     @Property(selector = "tabBarController")
     public native UITabBarController getTabBarController();
+    @Property(selector = "tab")
+    public native UITab getTab();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
     @Property(selector = "preferredFocusEnvironments")
@@ -571,12 +609,32 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIStoryboardSegue getSegueForUnwinding(UIViewController toViewController, UIViewController fromViewController, String identifier);
     @Method(selector = "viewWillAppear:")
     public native void viewWillAppear(boolean animated);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Method(selector = "viewIsAppearing:")
+    public native void viewIsAppearing(boolean animated);
     @Method(selector = "viewDidAppear:")
     public native void viewDidAppear(boolean animated);
     @Method(selector = "viewWillDisappear:")
     public native void viewWillDisappear(boolean animated);
     @Method(selector = "viewDidDisappear:")
     public native void viewDidDisappear(boolean animated);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateProperties")
+    public native void setNeedsUpdateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updateProperties")
+    public native void updateProperties();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "updatePropertiesIfNeeded")
+    public native void updatePropertiesIfNeeded();
     @Method(selector = "viewWillLayoutSubviews")
     public native void viewWillLayoutSubviews();
     @Method(selector = "viewDidLayoutSubviews")
@@ -605,6 +663,11 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void showViewController(UIViewController vc, NSObject sender);
     @Method(selector = "showDetailViewController:sender:")
     public native void showDetailViewController(UIViewController vc, NSObject sender);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfSupportedInterfaceOrientations")
+    public native void setNeedsUpdateOfSupportedInterfaceOrientations();
     /**
      * @deprecated Deprecated in iOS 8.0. Header views are animated along with the rest of the view hierarchy
      */
@@ -635,6 +698,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Deprecated
     @Method(selector = "willAnimateRotationToInterfaceOrientation:duration:")
     public native void willAnimateRotation(UIInterfaceOrientation toInterfaceOrientation, double duration);
+    /**
+     * @deprecated Deprecated in iOS 16.0. Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`.
+     */
+    @Deprecated
     @Method(selector = "attemptRotationToDeviceOrientation")
     public static native void attemptRotationToDeviceOrientation();
     @Method(selector = "setEditing:animated:")
@@ -649,8 +716,16 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void beginAppearanceTransition(boolean isAppearing, boolean animated);
     @Method(selector = "endAppearanceTransition")
     public native void endAppearanceTransition();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the traitOverrides property on the child view controller instead
+     */
+    @Deprecated
     @Method(selector = "setOverrideTraitCollection:forChildViewController:")
     public native void setOverrideTraitCollection(UITraitCollection collection, UIViewController childViewController);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the traitOverrides property on the child view controller instead
+     */
+    @Deprecated
     @Method(selector = "overrideTraitCollectionForChildViewController:")
     public native UITraitCollection getOverrideTraitCollection(UIViewController childViewController);
     /**
@@ -693,14 +768,14 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void removeKeyCommand(UIKeyCommand keyCommand);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Method(selector = "registerForPreviewingWithDelegate:sourceView:")
     public native UIViewControllerPreviewing registerForPreviewing(UIViewControllerPreviewingDelegate delegate, UIView sourceView);
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Deprecated in iOS 13.0. Use UIContextMenuInteraction
+     * @deprecated Deprecated in iOS 13.0. UIViewControllerPreviewing is deprecated. Please use UIContextMenuInteraction.
      */
     @Deprecated
     @Method(selector = "unregisterForPreviewingWithContext:")
@@ -720,6 +795,26 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      */
     @Method(selector = "setNeedsUpdateOfPrefersPointerLocked")
     public native void setNeedsUpdateOfPrefersPointerLocked();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateContentUnavailableConfiguration")
+    public native void setNeedsUpdateContentUnavailableConfiguration();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "updateContentUnavailableConfigurationUsingState:")
+    public native void updateContentUnavailableConfigurationUsingState(UIContentUnavailableConfigurationState state);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "setNeedsUpdateOfPrefersInterfaceOrientationLocked")
+    public native void setNeedsUpdateOfPrefersInterfaceOrientationLocked();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Method(selector = "updateTraitsIfNeeded")
+    public native void updateTraitsIfNeeded();
     @Method(selector = "setToolbarItems:animated:")
     public native void setToolbarItems(NSArray<UIBarButtonItem> toolbarItems, boolean animated);
     @Method(selector = "collapseSecondaryViewController:forSplitViewController:")
@@ -728,6 +823,10 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native UIViewController separateSecondaryViewController(UISplitViewController splitViewController);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     @Method(selector = "preferredContentSizeDidChangeForChildContentContainer:")
@@ -750,5 +849,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
     @Method(selector = "beginRequestWithExtensionContext:")
     public native void beginRequest(NSExtensionContext context);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
     /*</methods>*/
 }

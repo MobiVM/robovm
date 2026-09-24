@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,51 +52,98 @@ import org.robovm.apple.foundation.*;
     public native HKWorkoutActivityType getWorkoutActivityType();
     @Property(selector = "workoutEvents")
     public native NSArray<HKWorkoutEvent> getWorkoutEvents();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "workoutActivities")
+    public native NSArray<HKWorkoutActivity> getWorkoutActivities();
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned
+     */
+    @Deprecated
     @Property(selector = "totalEnergyBurned")
     public native HKQuantity getTotalEnergyBurned();
+    /**
+     * @deprecated Use statisticsForType: passing the HKQuantityType for the desired distance type
+     */
+    @Deprecated
     @Property(selector = "totalDistance")
     public native HKQuantity getTotalDistance();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount
      */
+    @Deprecated
     @Property(selector = "totalSwimmingStrokeCount")
     public native HKQuantity getTotalSwimmingStrokeCount();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 18.0. Use statisticsForType: passing the HKQuantityType for HKQuantityTypeIdentifierFlightClimbed
      */
+    @Deprecated
     @Property(selector = "totalFlightsClimbed")
     public native HKQuantity getTotalFlightsClimbed();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "allStatistics")
+    public native NSDictionary<HKQuantityType, HKStatistics> getAllStatistics();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "statisticsForType:")
+    public native HKStatistics statisticsForType(HKQuantityType quantityType);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
+     */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
+     */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKMetadata metadata);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
      */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:device:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKDevice device, HKMetadata metadata);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
+     */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, double duration, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKMetadata metadata);
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
      */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:device:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, double duration, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKDevice device, HKMetadata metadata);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
      */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalSwimmingStrokeCount:device:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKQuantity totalSwimmingStrokeCount, HKDevice device, HKMetadata metadata);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use HKWorkoutBuilder
      */
+    @Deprecated
     @Method(selector = "workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:totalFlightsClimbed:device:metadata:")
     public static native HKWorkout create(HKWorkoutActivityType workoutActivityType, NSDate startDate, NSDate endDate, NSArray<HKWorkoutEvent> workoutEvents, HKQuantity totalEnergyBurned, HKQuantity totalDistance, HKQuantity totalFlightsClimbed, HKDevice device, NSDictionary<NSString, ?> metadata);
     /*</methods>*/

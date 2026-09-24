@@ -414,6 +414,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="kCMFormatDescriptionExtension_ContentLightLevelInfo", optional=true)
         public static native CFString ContentLightLevelInfo();
         /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ContentColorVolume", optional=true)
+        public static native CFString ContentColorVolume();
+        /**
          * @since Available in iOS 12.0 and later.
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_AlternativeTransferCharacteristics", optional=true)
@@ -443,6 +448,56 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionExtension_HorizontalFieldOfView", optional=true)
         public static native CFString HorizontalFieldOfView();
+        /**
+         * @since Available in iOS 17.2 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_LogTransferFunction", optional=true)
+        public static native CFString LogTransferFunction();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_StereoCameraBaseline", optional=true)
+        public static native CFString StereoCameraBaseline();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HorizontalDisparityAdjustment", optional=true)
+        public static native CFString HorizontalDisparityAdjustment();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HasLeftStereoEyeView", optional=true)
+        public static native CFString HasLeftStereoEyeView();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HasRightStereoEyeView", optional=true)
+        public static native CFString HasRightStereoEyeView();
+        /**
+         * @since Available in iOS 17.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_HasAdditionalViews", optional=true)
+        public static native CFString HasAdditionalViews();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ProjectionKind", optional=true)
+        public static native CFString ProjectionKind();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ViewPackingKind", optional=true)
+        public static native CFString ViewPackingKind();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection", optional=true)
+        public static native CFString CameraCalibrationDataLensCollection();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags", optional=true)
+        public static native CFString ConvertedFromExternalSphericalTags();
         /**
          * @since Available in iOS 15.0 and later.
          */

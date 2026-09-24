@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,7 +48,7 @@ import org.robovm.apple.linkpresentation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIPresentationController/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment/*</implements>*/ {
+    /*<implements>*/implements UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment, UITraitChangeObservable/*</implements>*/ {
 
     /*<ptr>*/public static class UIPresentationControllerPtr extends Ptr<UIPresentationController, UIPresentationControllerPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIPresentationController.class); }/*</bind>*/
@@ -82,10 +83,33 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean shouldPresentInFullscreen();
     @Property(selector = "shouldRemovePresentersView")
     public native boolean shouldRemovePresentersView();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the traitOverrides property instead
+     */
+    @Deprecated
     @Property(selector = "overrideTraitCollection")
     public native UITraitCollection getOverrideTraitCollection();
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the traitOverrides property instead
+     */
+    @Deprecated
     @Property(selector = "setOverrideTraitCollection:")
     public native void setOverrideTraitCollection(UITraitCollection v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "backgroundEffect")
+    public native UIVisualEffect getBackgroundEffect();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setBackgroundEffect:")
+    public native void setBackgroundEffect(UIVisualEffect v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "traitOverrides")
+    public native UITraitOverrides getTraitOverrides();
     @Property(selector = "traitCollection")
     public native UITraitCollection getTraitCollection();
     @Property(selector = "preferredContentSize")
@@ -136,6 +160,10 @@ import org.robovm.apple.linkpresentation.*;
     public native void dismissalTransitionWillBegin();
     @Method(selector = "dismissalTransitionDidEnd:")
     public native void dismissalTransitionDidEnd(boolean completed);
+    /**
+     * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
+     */
+    @Deprecated
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     @Method(selector = "preferredContentSizeDidChangeForChildContentContainer:")
@@ -156,5 +184,7 @@ import org.robovm.apple.linkpresentation.*;
     public native boolean shouldUpdateFocus(UIFocusUpdateContext context);
     @Method(selector = "didUpdateFocusInContext:withAnimationCoordinator:")
     public native void didUpdateFocus(UIFocusUpdateContext context, UIFocusAnimationCoordinator coordinator);
+    @Method(selector = "unregisterForTraitChanges:")
+    public native void unregisterForTraitChanges(UITraitChangeRegistration registration);
     /*</methods>*/
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -78,7 +79,11 @@ public enum /*<name>*/UIBarButtonSystemItem/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 13.0 and later.
      */
-    Close(24L);
+    Close(24L),
+    /**
+     * @since Available in iOS 18.2 and later.
+     */
+    WritingTools(25L);
     /*</values>*/
 
     private final long n;

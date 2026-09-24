@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,5 +67,15 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "selectionChanged")
     public native void selectionChanged();
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "selectionChangedAtLocation:")
+    public native void selectionChangedAtLocation(@ByVal CGPoint location);
+    /**
+     * @since Available in iOS 17.5 and later.
+     */
+    @Method(selector = "feedbackGeneratorForView:")
+    public static native UISelectionFeedbackGenerator feedbackGeneratorForView(UIView view);
     /*</methods>*/
 }

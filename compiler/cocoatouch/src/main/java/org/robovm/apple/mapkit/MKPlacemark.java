@@ -36,9 +36,11 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 26.0. Use MKMapItem's location, address and addressRepresentations properties instead. Use MKAddressRepresentations for formatted address strings for MapKit provided MKMapItems
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("MapKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MapKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MKPlacemark/*</name>*/ 
     extends /*<extends>*/CLPlacemark/*</extends>*/ 
     /*<implements>*/implements MKAnnotation/*</implements>*/ {

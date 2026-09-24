@@ -116,6 +116,16 @@ import org.robovm.apple.network.*;
     @Property(selector = "setEnablePFS:")
     public native void setEnablePFS(boolean v);
     /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "allowPostQuantumKeyExchangeFallback")
+    public native boolean isAllowPostQuantumKeyExchangeFallback();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setAllowPostQuantumKeyExchangeFallback:")
+    public native void setAllowPostQuantumKeyExchangeFallback(boolean v);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Property(selector = "enableRevocationCheck")
@@ -175,6 +185,16 @@ import org.robovm.apple.network.*;
      */
     @Property(selector = "setMtu:")
     public native void setMtu(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "ppkConfiguration")
+    public native NEVPNIKEv2PPKConfiguration getPpkConfiguration();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setPpkConfiguration:")
+    public native void setPpkConfiguration(NEVPNIKEv2PPKConfiguration v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

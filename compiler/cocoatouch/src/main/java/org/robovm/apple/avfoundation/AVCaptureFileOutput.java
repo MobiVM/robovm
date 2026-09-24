@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +63,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native NSURL getOutputFileURL();
     @Property(selector = "isRecording")
     public native boolean isRecording();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isRecordingPaused")
+    public native boolean isRecordingPaused();
     @Property(selector = "recordedDuration")
     public native @ByVal CMTime getRecordedDuration();
     @Property(selector = "recordedFileSize")
@@ -84,5 +91,15 @@ import org.robovm.apple.audiotoolbox.*;
     public native void startRecording(NSURL outputFileURL, AVCaptureFileOutputRecordingDelegate delegate);
     @Method(selector = "stopRecording")
     public native void stopRecording();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "pauseRecording")
+    public native void pauseRecording();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Method(selector = "resumeRecording")
+    public native void resumeRecording();
     /*</methods>*/
 }

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,8 @@ import org.robovm.apple.linkpresentation.*;
     protected NSCollectionLayoutGroup() {}
     protected NSCollectionLayoutGroup(Handle h, long handle) { super(h, handle); }
     protected NSCollectionLayoutGroup(SkipInit skipInit) { super(skipInit); }
+    public NSCollectionLayoutGroup(NSCollectionLayoutSize layoutSize) { super((Handle) null, create(layoutSize)); retain(getHandle()); }
+    public NSCollectionLayoutGroup(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems) { super((Handle) null, create(layoutSize, supplementaryItems)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "supplementaryItems")
@@ -75,15 +78,39 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "visualDescription")
     public native String visualDescription();
-    @Method(selector = "horizontalGroupWithLayoutSize:subitem:count:")
-    public static native NSCollectionLayoutGroup createHorizontalGroup(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "horizontalGroupWithLayoutSize:repeatingSubitem:count:")
+    public static native NSCollectionLayoutGroup createHorizontalGroupRepeatingSubitem(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
     @Method(selector = "horizontalGroupWithLayoutSize:subitems:")
     public static native NSCollectionLayoutGroup createHorizontalGroup(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutItem> subitems);
-    @Method(selector = "verticalGroupWithLayoutSize:subitem:count:")
-    public static native NSCollectionLayoutGroup createVerticalGroup(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "verticalGroupWithLayoutSize:repeatingSubitem:count:")
+    public static native NSCollectionLayoutGroup createVerticalGroupRepeatingSubitem(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
     @Method(selector = "verticalGroupWithLayoutSize:subitems:")
     public static native NSCollectionLayoutGroup createVerticalGroup(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutItem> subitems);
     @Method(selector = "customGroupWithLayoutSize:itemProvider:")
     public static native NSCollectionLayoutGroup createCustomGroup(NSCollectionLayoutSize layoutSize, @Block Block1<NSCollectionLayoutEnvironment, NSArray<NSCollectionLayoutGroupCustomItem>> itemProvider);
+    @Method(selector = "itemWithLayoutSize:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize);
+    @Method(selector = "itemWithLayoutSize:supplementaryItems:")
+    protected static native @Pointer long create(NSCollectionLayoutSize layoutSize, NSArray<NSCollectionLayoutSupplementaryItem> supplementaryItems);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use +horizontalGroupWithLayoutSize:repeatingSubitem:count:
+     */
+    @Deprecated
+    @Method(selector = "horizontalGroupWithLayoutSize:subitem:count:")
+    public static native NSCollectionLayoutGroup createHorizontalGroup(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use +verticalGroupWithLayoutSize:repeatingSubitem:count:
+     */
+    @Deprecated
+    @Method(selector = "verticalGroupWithLayoutSize:subitem:count:")
+    public static native NSCollectionLayoutGroup createVerticalGroup(NSCollectionLayoutSize layoutSize, NSCollectionLayoutItem subitem, @MachineSizedSInt long count);
     /*</methods>*/
 }

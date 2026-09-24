@@ -61,7 +61,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void setValue(String key, NSObject value) {
-        setValue(value, key);
+        setValueForKey(value, key);
     }
     /*<methods>*/
     @Method(selector = "initWithObjectID:")
@@ -69,6 +69,6 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "valueForKey:")
     public native NSObject getValue(String key);
     @Method(selector = "setValue:forKey:")
-    private native void setValue(NSObject value, String key);
+    public native void setValueForKey(NSObject value, String key);
     /*</methods>*/
 }

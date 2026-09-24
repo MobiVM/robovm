@@ -55,9 +55,29 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setFunctionGraphs:")
     public native void setFunctionGraphs(NSArray<MTLFunctionStitchingGraph> v);
     @Property(selector = "functions")
-    public native NSArray<?> getFunctions();
+    public native NSArray<MTLFunction> getFunctions();
     @Property(selector = "setFunctions:")
-    public native void setFunctions(NSArray<?> v);
+    public native void setFunctions(NSArray<MTLFunction> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "binaryArchives")
+    public native NSArray<?> getBinaryArchives();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setBinaryArchives:")
+    public native void setBinaryArchives(NSArray<?> v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "options")
+    public native MTLStitchedLibraryOptions getOptions();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setOptions:")
+    public native void setOptions(MTLStitchedLibraryOptions v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

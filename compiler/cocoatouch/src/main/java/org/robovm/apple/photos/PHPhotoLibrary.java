@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -55,13 +56,37 @@ import org.robovm.apple.imageio.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "isUploadJobExtensionEnabled")
+    public native boolean isUploadJobExtensionEnabled();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "unavailabilityReason")
     public native NSError getUnavailabilityReason();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "currentChangeToken")
+    public native PHPersistentChangeToken getCurrentChangeToken();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    public boolean setUploadJobExtensionEnabled(boolean enable) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setUploadJobExtensionEnabled(enable, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Method(selector = "setUploadJobExtensionEnabled:error:")
+    private native boolean setUploadJobExtensionEnabled(boolean enable, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -86,6 +111,20 @@ import org.robovm.apple.imageio.*;
     public native void registerChangeObserver(PHPhotoLibraryChangeObserver observer);
     @Method(selector = "unregisterChangeObserver:")
     public native void unregisterChangeObserver(PHPhotoLibraryChangeObserver observer);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    public PHPersistentChangeFetchResult fetchPersistentChangesSinceToken(PHPersistentChangeToken token) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       PHPersistentChangeFetchResult result = fetchPersistentChangesSinceToken(token, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "fetchPersistentChangesSinceToken:error:")
+    private native PHPersistentChangeFetchResult fetchPersistentChangesSinceToken(PHPersistentChangeToken token, NSError.NSErrorPtr error);
     @Method(selector = "sharedPhotoLibrary")
     public static native PHPhotoLibrary getSharedPhotoLibrary();
     /**

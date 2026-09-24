@@ -33,9 +33,11 @@ import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 26.0. Use Replaced by developer defined challenges, see ``GKChallengeDefinition``
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("GameKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("GameKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/GKScoreChallenge/*</name>*/ 
     extends /*<extends>*/GKChallenge/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,8 +51,17 @@ import org.robovm.apple.coregraphics.*;
     protected GKScoreChallenge(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 17.4. Use ``GKChallenge/leaderboardEntry`` instead
+     */
+    @Deprecated
     @Property(selector = "score")
     public native GKScore getScore();
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Property(selector = "leaderboardEntry")
+    public native GKLeaderboardEntry getLeaderboardEntry();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

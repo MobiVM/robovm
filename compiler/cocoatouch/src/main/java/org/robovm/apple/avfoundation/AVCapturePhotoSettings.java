@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -71,6 +73,16 @@ import org.robovm.apple.audiotoolbox.*;
     public native long getUniqueID();
     @Property(selector = "format")
     public native NSDictionary<NSString, ?> getFormat();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "rawFileFormat")
+    public native NSDictionary<NSString, ?> getRawFileFormat();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setRawFileFormat:")
+    public native void setRawFileFormat(NSDictionary<NSString, ?> v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -169,10 +181,30 @@ import org.robovm.apple.audiotoolbox.*;
     @Deprecated
     @Property(selector = "setDualCameraDualPhotoDeliveryEnabled:")
     public native void setDualCameraDualPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "isHighResolutionPhotoEnabled")
     public native boolean isHighResolutionPhotoEnabled();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 16.0. Use maxPhotoDimensions instead.
+     */
+    @Deprecated
     @Property(selector = "setHighResolutionPhotoEnabled:")
     public native void setHighResolutionPhotoEnabled(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "maxPhotoDimensions")
+    public native @ByVal CMVideoDimensions getMaxPhotoDimensions();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setMaxPhotoDimensions:")
+    public native void setMaxPhotoDimensions(@ByVal CMVideoDimensions v);
     /**
      * @since Available in iOS 11.0 and later.
      */
@@ -327,6 +359,36 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "setAutoContentAwareDistortionCorrectionEnabled:")
     public native void setAutoContentAwareDistortionCorrectionEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorEnabled")
+    public native boolean isConstantColorEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConstantColorEnabled:")
+    public native void setConstantColorEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isConstantColorFallbackPhotoDeliveryEnabled")
+    public native boolean isConstantColorFallbackPhotoDeliveryEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setConstantColorFallbackPhotoDeliveryEnabled:")
+    public native void setConstantColorFallbackPhotoDeliveryEnabled(boolean v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "isShutterSoundSuppressionEnabled")
+    public native boolean isShutterSoundSuppressionEnabled();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setShutterSoundSuppressionEnabled:")
+    public native void setShutterSoundSuppressionEnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

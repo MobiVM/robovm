@@ -50,7 +50,7 @@ import org.robovm.apple.dispatch.*;
         /**
          * @since Available in iOS 2.0 and later.
          */
-        public static NSObjectProtocol observeCurrentLocaleDidChange(final Runnable block) {
+        public static NSObject observeCurrentLocaleDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(CurrentLocaleDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -86,10 +86,22 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "languageCode")
     private native String getLanguageCode0();
     /**
-     * @since Available in iOS 10.0 and later.
+     * @since Available in iOS 17.0 and later.
      */
+    @Property(selector = "languageIdentifier")
+    public native String getLanguageIdentifier();
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Use regionCode
+     */
+    @Deprecated
     @Property(selector = "countryCode")
     private native String getCountryCode0();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "regionCode")
+    public native String getRegionCode();
     /**
      * @since Available in iOS 10.0 and later.
      */
@@ -371,6 +383,53 @@ import org.robovm.apple.dispatch.*;
     public native String getComponentDisplayName(NSLocaleComponent key, NSObject value);
     @Method(selector = "initWithLocaleIdentifier:")
     protected native @Pointer long init(String string);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder coder);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForLocaleIdentifier:")
+    public native String localizedStringForLocaleIdentifier(String localeIdentifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForLanguageCode:")
+    public native String localizedStringForLanguageCode(String languageCode);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForCountryCode:")
+    public native String localizedStringForCountryCode(String countryCode);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForScriptCode:")
+    public native String localizedStringForScriptCode(String scriptCode);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForVariantCode:")
+    public native String localizedStringForVariantCode(String variantCode);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForCalendarIdentifier:")
+    public native String localizedStringForCalendarIdentifier(String calendarIdentifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForCollationIdentifier:")
+    public native String localizedStringForCollationIdentifier(String collationIdentifier);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForCurrencyCode:")
+    public native String localizedStringForCurrencyCode(String currencyCode);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
+    @Method(selector = "localizedStringForCollatorIdentifier:")
+    public native String localizedStringForCollatorIdentifier(String collatorIdentifier);
     @Method(selector = "componentsFromLocaleIdentifier:")
     public static native NSLocaleComponents getComponentsFromLocaleIdentifier(String string);
     @Method(selector = "localeIdentifierFromComponents:")
@@ -389,7 +448,5 @@ import org.robovm.apple.dispatch.*;
     public static native NSLocaleLanguageDirection getLineDirection(String isoLangCode);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
-    @Method(selector = "initWithCoder:")
-    protected native @Pointer long init(NSCoder coder);
     /*</methods>*/
 }

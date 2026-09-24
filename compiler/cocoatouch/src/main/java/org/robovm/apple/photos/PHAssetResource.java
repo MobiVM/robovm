@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -69,13 +70,30 @@ import org.robovm.apple.imageio.*;
     /**
      * @since Available in iOS 9.0 and later.
      */
+    @Property(selector = "originalFilename")
+    public native String getOriginalFilename();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "contentType")
+    public native UTType getContentType();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Use contentType instead
+     */
+    @Deprecated
     @Property(selector = "uniformTypeIdentifier")
     public native String getUniformTypeIdentifier();
     /**
-     * @since Available in iOS 9.0 and later.
+     * @since Available in iOS 16.0 and later.
      */
-    @Property(selector = "originalFilename")
-    public native String getOriginalFilename();
+    @Property(selector = "pixelWidth")
+    public native @MachineSizedSInt long getPixelWidth();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "pixelHeight")
+    public native @MachineSizedSInt long getPixelHeight();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

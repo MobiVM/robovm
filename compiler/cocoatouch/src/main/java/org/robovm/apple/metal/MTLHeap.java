@@ -38,7 +38,7 @@ import org.robovm.apple.dispatch.*;
 /*</javadoc>*/
 /*<annotations>*//*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/MTLHeap/*</name>*/ 
-    /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
+    /*<implements>*/extends MTLAllocation/*</implements>*/ {
 
     /*<ptr>*/
     /*</ptr>*/
@@ -87,7 +87,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "newBufferWithLength:options:")
     MTLBuffer newBuffer(@MachineSizedUInt long length, MTLResourceOptions options);
     @Method(selector = "newTextureWithDescriptor:")
-    MTLTexture newTexture(MTLTextureDescriptor desc);
+    MTLTexture newTexture(MTLTextureDescriptor descriptor);
     @Method(selector = "setPurgeableState:")
     MTLPurgeableState setPurgeableState(MTLPurgeableState state);
     /**
@@ -100,6 +100,26 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newTextureWithDescriptor:offset:")
     MTLTexture newTexture(MTLTextureDescriptor descriptor, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithSize:")
+    MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithDescriptor:")
+    MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithSize:offset:")
+    MTLAccelerationStructure newAccelerationStructure(@MachineSizedUInt long size, @MachineSizedUInt long offset);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "newAccelerationStructureWithDescriptor:offset:")
+    MTLAccelerationStructure newAccelerationStructure(MTLAccelerationStructureDescriptor descriptor, @MachineSizedUInt long offset);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

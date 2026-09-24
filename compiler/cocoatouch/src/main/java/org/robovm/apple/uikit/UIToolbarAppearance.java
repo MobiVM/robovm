@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,8 +71,28 @@ import org.robovm.apple.linkpresentation.*;
     public native UIBarButtonItemAppearance getButtonAppearance();
     @Property(selector = "setButtonAppearance:")
     public native void setButtonAppearance(UIBarButtonItemAppearance v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "prominentButtonAppearance")
+    public native UIBarButtonItemAppearance getProminentButtonAppearance();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "setProminentButtonAppearance:")
+    public native void setProminentButtonAppearance(UIBarButtonItemAppearance v);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use prominentButtonAppearance
+     */
+    @Deprecated
     @Property(selector = "doneButtonAppearance")
     public native UIBarButtonItemAppearance getDoneButtonAppearance();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use prominentButtonAppearance
+     */
+    @Deprecated
     @Property(selector = "setDoneButtonAppearance:")
     public native void setDoneButtonAppearance(UIBarButtonItemAppearance v);
     @Property(selector = "supportsSecureCoding")

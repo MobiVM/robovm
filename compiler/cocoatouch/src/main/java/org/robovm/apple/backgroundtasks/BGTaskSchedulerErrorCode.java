@@ -41,7 +41,8 @@ public enum /*<name>*/BGTaskSchedulerErrorCode/*</name>*/ implements NSErrorCode
     /*<values>*/
     Unavailable(1L),
     TooManyPendingTaskRequests(2L),
-    NotPermitted(3L);
+    NotPermitted(3L),
+    ImmediateRunIneligible(4L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(BGTaskSchedulerErrorCode.class); }/*</bind>*/

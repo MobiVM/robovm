@@ -17,6 +17,9 @@
 package org.robovm.compiler.llvm;
 
 
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @version $Id$
@@ -29,13 +32,16 @@ public class MetadataValue extends Metadata {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public void write(Writer writer) throws IOException {
         if (value.getType() != Type.METADATA) {
-            sb.append(value.getType());
-            sb.append(' ');
+            value.getType().write(writer);
+            writer.write(' ');
         }
-        sb.append(value);
-        return sb.toString();
+        value.write(writer);
+    }
+
+    @Override
+    public String toString() {
+        return toString(this::write);
     }
 }

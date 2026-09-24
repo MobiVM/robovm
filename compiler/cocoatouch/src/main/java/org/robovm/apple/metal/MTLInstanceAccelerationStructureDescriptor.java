@@ -110,6 +110,36 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setMotionTransformCount:")
     public native void setMotionTransformCount(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "instanceTransformationMatrixLayout")
+    public native MTLMatrixLayout getInstanceTransformationMatrixLayout();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setInstanceTransformationMatrixLayout:")
+    public native void setInstanceTransformationMatrixLayout(MTLMatrixLayout v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "motionTransformType")
+    public native MTLTransformType getMotionTransformType();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMotionTransformType:")
+    public native void setMotionTransformType(MTLTransformType v);
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "motionTransformStride")
+    public native @MachineSizedUInt long getMotionTransformStride();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "setMotionTransformStride:")
+    public native void setMotionTransformStride(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -72,6 +72,46 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "setLabel:")
     public native void setLabel(String v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "primitiveDataBuffer")
+    public native MTLBuffer getPrimitiveDataBuffer();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPrimitiveDataBuffer:")
+    public native void setPrimitiveDataBuffer(MTLBuffer v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "primitiveDataBufferOffset")
+    public native @MachineSizedUInt long getPrimitiveDataBufferOffset();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPrimitiveDataBufferOffset:")
+    public native void setPrimitiveDataBufferOffset(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "primitiveDataStride")
+    public native @MachineSizedUInt long getPrimitiveDataStride();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPrimitiveDataStride:")
+    public native void setPrimitiveDataStride(@MachineSizedUInt long v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "primitiveDataElementSize")
+    public native @MachineSizedUInt long getPrimitiveDataElementSize();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPrimitiveDataElementSize:")
+    public native void setPrimitiveDataElementSize(@MachineSizedUInt long v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

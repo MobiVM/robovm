@@ -48,6 +48,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*<properties>*/
     @NotImplemented("serviceName")
     public NSString getServiceName() { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("isRestricted")
+    public boolean isRestricted() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

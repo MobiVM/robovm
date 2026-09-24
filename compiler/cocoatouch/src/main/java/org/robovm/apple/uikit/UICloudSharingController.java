@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,11 @@ import org.robovm.apple.linkpresentation.*;
     public UICloudSharingController() {}
     protected UICloudSharingController(Handle h, long handle) { super(h, handle); }
     protected UICloudSharingController(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use -[UIActivityViewController initWithActivityItemsConfiguration:] and pass it a UIActivityItemsConfigurationReading-conforming object with an NSItemProvider and registered preparation handler
+     */
+    @Deprecated
     @Method(selector = "initWithPreparationHandler:")
     public UICloudSharingController(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler) { super((SkipInit) null); initObject(init(preparationHandler)); }
     @Method(selector = "initWithShare:container:")
@@ -77,6 +83,11 @@ import org.robovm.apple.linkpresentation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 17.0. Use -[UIActivityViewController initWithActivityItemsConfiguration:] and pass it a UIActivityItemsConfigurationReading-conforming object with an NSItemProvider and registered preparation handler
+     */
+    @Deprecated
     @Method(selector = "initWithPreparationHandler:")
     protected native @Pointer long init(@Block("(,@Block)") VoidBlock2<UICloudSharingController, VoidBlock3<CKShare, CKContainer, NSError>> preparationHandler);
     @Method(selector = "initWithShare:container:")

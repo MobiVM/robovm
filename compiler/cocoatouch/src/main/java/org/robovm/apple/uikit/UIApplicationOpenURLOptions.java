@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -119,7 +120,9 @@ import org.robovm.apple.linkpresentation.*;
 
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.sourceApplication from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public String getSourceApplication() {
         if (has(Keys.SourceApplication())) {
             NSString val = (NSString) get(Keys.SourceApplication());
@@ -129,14 +132,18 @@ import org.robovm.apple.linkpresentation.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.sourceApplication from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public UIApplicationOpenURLOptions setSourceApplication(String sourceApplication) {
         set(Keys.SourceApplication(), new NSString(sourceApplication));
         return this;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.annotation from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public NSObject getAnnotation() {
         if (has(Keys.Annotation())) {
             NSObject val = (NSObject) get(Keys.Annotation());
@@ -146,14 +153,18 @@ import org.robovm.apple.linkpresentation.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.annotation from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public UIApplicationOpenURLOptions setAnnotation(NSObject annotation) {
         set(Keys.Annotation(), annotation);
         return this;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.openInPlace from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public boolean opensInPlace() {
         if (has(Keys.OpenInPlace())) {
             NSNumber val = (NSNumber) get(Keys.OpenInPlace());
@@ -163,7 +174,9 @@ import org.robovm.apple.linkpresentation.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.openInPlace from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
      */
+    @Deprecated
     public UIApplicationOpenURLOptions setOpensInPlace(boolean opensInPlace) {
         set(Keys.OpenInPlace(), NSNumber.valueOf(opensInPlace));
         return this;
@@ -193,22 +206,30 @@ import org.robovm.apple.linkpresentation.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.sourceApplication from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationOpenURLOptionsSourceApplicationKey", optional=true)
         public static native NSString SourceApplication();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.annotation from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationOpenURLOptionsAnnotationKey", optional=true)
         public static native NSString Annotation();
         /**
          * @since Available in iOS 9.0 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.openInPlace from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationOpenURLOptionsOpenInPlaceKey", optional=true)
         public static native NSString OpenInPlace();
         /**
          * @since Available in iOS 14.5 and later.
+         * @deprecated Deprecated in iOS 26.0. Use UIScene lifecycle and UISceneOpenURLOptions.eventAttribution from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead.
          */
+        @Deprecated
         @GlobalValue(symbol="UIApplicationOpenURLOptionsEventAttributionKey", optional=true)
         public static native NSString EventAttribution();
         /**

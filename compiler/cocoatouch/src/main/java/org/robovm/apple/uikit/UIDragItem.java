@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -77,5 +78,10 @@ import org.robovm.apple.linkpresentation.*;
     /*<methods>*/
     @Method(selector = "initWithItemProvider:")
     protected native @Pointer long init(NSItemProvider itemProvider);
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @Method(selector = "setNeedsDropPreviewUpdate")
+    public native void setNeedsDropPreviewUpdate();
     /*</methods>*/
 }

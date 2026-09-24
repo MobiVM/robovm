@@ -35,6 +35,7 @@ import org.robovm.apple.avfoundation.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,8 +55,16 @@ import org.robovm.apple.imageio.*;
     protected PHCachingImageManager(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @deprecated Deprecated in iOS 26.0. This property is unused and will be removed in a future release
+     */
+    @Deprecated
     @Property(selector = "allowsCachingHighQualityImages")
     public native boolean allowsCachingHighQualityImages();
+    /**
+     * @deprecated Deprecated in iOS 26.0. This property is unused and will be removed in a future release
+     */
+    @Deprecated
     @Property(selector = "setAllowsCachingHighQualityImages:")
     public native void setAllowsCachingHighQualityImages(boolean v);
     /*</properties>*/

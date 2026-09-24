@@ -53,7 +53,7 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 12.0 and later.
      */
     @Method(selector = "initForReadingFromData:device:error:")
-    public static  MPSKeyedUnarchiver create(NSData data, MTLDevice device) throws NSErrorException  {
+    public static MPSKeyedUnarchiver create(NSData data, MTLDevice device) throws NSErrorException  {
        MPSKeyedUnarchiver res = new MPSKeyedUnarchiver((SkipInit) null);
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        res.initObject(res.init(data, device, ptr));

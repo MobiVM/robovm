@@ -50,16 +50,54 @@ import org.robovm.apple.coreanimation.*;
     public MKMapItem() {}
     protected MKMapItem(Handle h, long handle) { super(h, handle); }
     protected MKMapItem(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(location:address:)
+     */
+    @Deprecated
     @Method(selector = "initWithPlacemark:")
     public MKMapItem(MKPlacemark placemark) { super((SkipInit) null); initObject(init(placemark)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithLocation:address:")
+    public MKMapItem(CLLocation location, MKAddress address) { super((SkipInit) null); initObject(init(location, address)); }
     @Method(selector = "initWithCoder:")
     public MKMapItem(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "identifier")
+    public native MKMapItemIdentifier getIdentifier();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "alternateIdentifiers")
+    public native NSSet<MKMapItemIdentifier> getAlternateIdentifiers();
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use location, address and addressRepresentations instead
+     */
+    @Deprecated
     @Property(selector = "placemark")
     public native MKPlacemark getPlacemark();
     @Property(selector = "isCurrentLocation")
     public native boolean isCurrentLocation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "location")
+    public native CLLocation getLocation();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "address")
+    public native MKAddress getAddress();
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "addressRepresentations")
+    public native MKAddressRepresentations getAddressRepresentations();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "setName:")
@@ -109,8 +147,17 @@ import org.robovm.apple.coreanimation.*;
     @GlobalValue(symbol="MKMapItemTypeIdentifier", optional=true)
     public static native String getTypeIdentifier();
     
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use init(location:address:)
+     */
+    @Deprecated
     @Method(selector = "initWithPlacemark:")
     protected native @Pointer long init(MKPlacemark placemark);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Method(selector = "initWithLocation:address:")
+    protected native @Pointer long init(CLLocation location, MKAddress address);
     @Method(selector = "openInMapsWithLaunchOptions:")
     public native boolean openInMaps(MKLaunchOptions launchOptions);
     /**

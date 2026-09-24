@@ -46,7 +46,11 @@ import org.robovm.apple.uniformtypeid.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
-    
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("suggestedPageSize")
+    public @MachineSizedSInt long getSuggestedPageSize() { return 0; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -51,13 +51,22 @@ import org.robovm.apple.coregraphics.*;
     protected SKOverlayTransitionContext(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "startFrame")
     public native @ByVal CGRect getStartFrame();
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Property(selector = "endFrame")
     public native @ByVal CGRect getEndFrame();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     @Method(selector = "addAnimationBlock:")
     public native void addAnimationBlock(@Block Runnable block);
     /*</methods>*/

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -102,9 +103,13 @@ import org.robovm.apple.linkpresentation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final UIActivityItemsConfigurationInteraction Share = new UIActivityItemsConfigurationInteraction("Share");
+    /**
+     * @since Available in iOS 16.4 and later.
+     */
+    public static final UIActivityItemsConfigurationInteraction Copy = new UIActivityItemsConfigurationInteraction("Copy");
     /*</constants>*/
     
-    private static /*<name>*/UIActivityItemsConfigurationInteraction/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationInteraction/*</name>*/[] {/*<value_list>*/Share/*</value_list>*/};
+    private static /*<name>*/UIActivityItemsConfigurationInteraction/*</name>*/[] values = new /*<name>*/UIActivityItemsConfigurationInteraction/*</name>*/[] {/*<value_list>*/Share, Copy/*</value_list>*/};
     
     /*<name>*/UIActivityItemsConfigurationInteraction/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -132,6 +137,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="UIActivityItemsConfigurationInteractionShare", optional=true)
         public static native NSString Share();
+        /**
+         * @since Available in iOS 16.4 and later.
+         */
+        @GlobalValue(symbol="UIActivityItemsConfigurationInteractionCopy", optional=true)
+        public static native NSString Copy();
         /*</values>*/
     }
 }

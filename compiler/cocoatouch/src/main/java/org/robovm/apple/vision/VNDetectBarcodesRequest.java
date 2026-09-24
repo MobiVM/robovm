@@ -51,6 +51,9 @@ import org.robovm.apple.imageio.*;
     /*<bind>*/static { ObjCRuntime.bind(VNDetectBarcodesRequest.class); }/*</bind>*/
     /*<constants>*/
     public static final int Revision1 = 1;
+    public static final int Revision2 = 2;
+    public static final int Revision3 = 3;
+    public static final int Revision4 = 4;
     /*</constants>*/
     /*<constructors>*/
     public VNDetectBarcodesRequest() {}
@@ -71,6 +74,16 @@ import org.robovm.apple.imageio.*;
     public native NSArray<NSString> getSymbologies();
     @Property(selector = "setSymbologies:")
     public native void setSymbologies(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "coalesceCompositeSymbologies")
+    public native boolean isCoalesceCompositeSymbologies();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setCoalesceCompositeSymbologies:")
+    public native void setCoalesceCompositeSymbologies(boolean v);
     @Property(selector = "results")
     public native NSArray<VNBarcodeObservation> getResults();
     /**

@@ -32,7 +32,9 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("CryptoTokenKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/TKSmartCardATR/*</name>*/ 
@@ -58,6 +60,9 @@ import org.robovm.apple.security.*;
     public native NSArray<NSNumber> getProtocols();
     @Property(selector = "historicalBytes")
     public native NSData getHistoricalBytes();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "historicalRecords")
     public native NSArray<TKCompactTLVRecord> getHistoricalRecords();
     /*</properties>*/

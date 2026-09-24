@@ -51,7 +51,6 @@ import org.robovm.apple.metal.*;
     protected MPSCNNNormalizationGammaAndBetaState(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithGamma:beta:")
     public MPSCNNNormalizationGammaAndBetaState(MTLBuffer gamma, MTLBuffer beta) { super((SkipInit) null); initObject(init(gamma, beta)); }
-    public MPSCNNNormalizationGammaAndBetaState(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels) { super((Handle) null, createTemporaryState(commandBuffer, numberOfFeatureChannels)); retain(getHandle()); }
     @Method(selector = "initWithDevice:bufferSize:")
     public MPSCNNNormalizationGammaAndBetaState(MTLDevice device, @MachineSizedUInt long bufferSize) { super(device, bufferSize); }
     @Method(selector = "initWithDevice:textureDescriptor:")
@@ -77,6 +76,17 @@ import org.robovm.apple.metal.*;
     @Method(selector = "initWithGamma:beta:")
     protected native @Pointer long init(MTLBuffer gamma, MTLBuffer beta);
     @Method(selector = "temporaryStateWithCommandBuffer:numberOfFeatureChannels:")
-    protected static native @Pointer long createTemporaryState(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
+    public static native MPSCNNNormalizationGammaAndBetaState createTemporaryStateForNumberOfFeatureChannels(MTLCommandBuffer commandBuffer, @MachineSizedUInt long numberOfFeatureChannels);
+    @Method(selector = "temporaryStateWithCommandBuffer:bufferSize:")
+    public static native MPSCNNNormalizationGammaAndBetaState createTemporaryState(MTLCommandBuffer cmdBuf, @MachineSizedUInt long bufferSize);
+    @Method(selector = "temporaryStateWithCommandBuffer:textureDescriptor:")
+    public static native MPSCNNNormalizationGammaAndBetaState createTemporaryState(MTLCommandBuffer cmdBuf, MTLTextureDescriptor descriptor);
+    @Method(selector = "temporaryStateWithCommandBuffer:")
+    public static native MPSCNNNormalizationGammaAndBetaState createTemporaryState(MTLCommandBuffer cmdBuf);
+    /**
+     * @since Available in iOS 11.3 and later.
+     */
+    @Method(selector = "temporaryStateWithCommandBuffer:resourceList:")
+    public static native MPSCNNNormalizationGammaAndBetaState createTemporaryState(MTLCommandBuffer commandBuffer, MPSStateResourceList resourceList);
     /*</methods>*/
 }

@@ -45,7 +45,8 @@ public enum /*<name>*/CSIndexErrorCode/*</name>*/ implements NSErrorCode {
     InvalidClientStateError(-1002L),
     RemoteConnectionError(-1003L),
     QuotaExceeded(-1004L),
-    IndexingUnsupported(-1005L);
+    IndexingUnsupported(-1005L),
+    MismatchedClientState(-1006L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CSIndexErrorCode.class); }/*</bind>*/

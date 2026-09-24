@@ -52,6 +52,10 @@ public final class /*<name>*/PKMerchantCapability/*</name>*/ extends Bits</*<nam
      * @since Available in iOS 9.0 and later.
      */
     public static final PKMerchantCapability Debit = new PKMerchantCapability(8L);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    public static final PKMerchantCapability InstantFundsOut = new PKMerchantCapability(128L);
     /*</values>*/
 
     /*<bind>*/

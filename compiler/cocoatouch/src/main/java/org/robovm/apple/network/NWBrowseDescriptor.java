@@ -52,7 +52,14 @@ import org.robovm.apple.security.*;
     
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    public native @MachineSizedUInt long getHash();
+    @Property(selector = "superclass")
+    public native Class<?> getSuperclass();
+    @Property(selector = "description")
+    public native String getDescription();
+    @Property(selector = "debugDescription")
+    public native String getDebugDescription();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -81,6 +88,16 @@ import org.robovm.apple.security.*;
      */
     @Bridge(symbol="nw_browse_descriptor_get_include_txt_record", optional=true)
     public native boolean getIncludeTxtRecord();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_browse_descriptor_create_application_service", optional=true)
+    public static native NWBrowseDescriptor createApplicationService(BytePtr application_service_name);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Bridge(symbol="nw_browse_descriptor_get_application_service_name", optional=true)
+    public native @org.robovm.rt.bro.annotation.Marshaler(StringMarshalers.AsAsciiZMarshaler.class) String getApplicationServiceName();
     
     
     /*</methods>*/

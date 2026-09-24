@@ -79,6 +79,16 @@ import org.robovm.apple.avfoundation.*;
     public native boolean isPlaysHapticsOnly();
     @Property(selector = "setPlaysHapticsOnly:")
     public native void setPlaysHapticsOnly(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "playsAudioOnly")
+    public native boolean isPlaysAudioOnly();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setPlaysAudioOnly:")
+    public native void setPlaysAudioOnly(boolean v);
     @Property(selector = "isMutedForAudio")
     public native boolean isMutedForAudio();
     @Property(selector = "setIsMutedForAudio:")
@@ -103,6 +113,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="CHHapticAudioResourceKeyUseVolumeEnvelope", optional=true)
         public static native String UseVolumeEnvelope();
+        /**
+         * @since Available in iOS 16.0 and later.
+         */
+        @GlobalValue(symbol="CHHapticAudioResourceKeyLoopEnabled", optional=true)
+        public static native String LoopEnabled();
     }
     
     @Method(selector = "initAndReturnError:")

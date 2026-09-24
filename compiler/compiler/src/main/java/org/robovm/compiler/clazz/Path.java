@@ -58,4 +58,9 @@ public interface Path {
     boolean contains(String file);
     
     InputStream open(String file) throws IOException;
+
+    /**
+     * Dispose any cached data to reduce memory footprint
+     */
+    void disposeBuildData();
 }

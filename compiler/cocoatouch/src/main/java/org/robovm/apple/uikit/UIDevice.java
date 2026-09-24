@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,7 +51,7 @@ import org.robovm.apple.linkpresentation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObjectProtocol observeOrientationDidChange(final Runnable block) {
+        public static NSObject observeOrientationDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(OrientationDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -61,7 +62,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeBatteryStateDidChange(final Runnable block) {
+        public static NSObject observeBatteryStateDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(BatteryStateDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -72,7 +73,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeBatteryLevelDidChange(final Runnable block) {
+        public static NSObject observeBatteryLevelDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(BatteryLevelDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
@@ -83,7 +84,7 @@ import org.robovm.apple.linkpresentation.*;
         /**
          * @since Available in iOS 3.0 and later.
          */
-        public static NSObjectProtocol observeProximityStateDidChange(final Runnable block) {
+        public static NSObject observeProximityStateDidChange(final Runnable block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ProximityStateDidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {

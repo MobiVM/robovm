@@ -48,6 +48,7 @@ import org.robovm.apple.fileprovider.*;
     protected CKQueryNotification() {}
     protected CKQueryNotification(Handle h, long handle) { super(h, handle); }
     protected CKQueryNotification(SkipInit skipInit) { super(skipInit); }
+    public CKQueryNotification(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary) { super((Handle) null, create(notificationDictionary)); retain(getHandle()); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "queryNotificationReason")
@@ -64,6 +65,7 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
-    
+    @Method(selector = "notificationFromRemoteNotificationDictionary:")
+    protected static native @Pointer long create(org.robovm.apple.uikit.UIRemoteNotification notificationDictionary);
     /*</methods>*/
 }

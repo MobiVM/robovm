@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -83,6 +84,21 @@ import org.robovm.apple.linkpresentation.*;
     public void setSelectionAffinity(UITextStorageDirection v) {}
     @NotImplemented("insertDictationResultPlaceholder")
     public NSObject getInsertDictationResultPlaceholder() { return null; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("supportsAdaptiveImageGlyph")
+    public boolean supportsAdaptiveImageGlyph() { return false; }
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("setSupportsAdaptiveImageGlyph:")
+    public void setSupportsAdaptiveImageGlyph(boolean v) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("isEditable")
+    public boolean isEditable() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -165,5 +181,60 @@ import org.robovm.apple.linkpresentation.*;
      */
     @NotImplemented("endFloatingCursor")
     public void endFloatingCursor() {}
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    @NotImplemented("caretTransformForPosition:")
+    public @ByVal CGAffineTransform caretTransformForPosition(UITextPosition position) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("editMenuForTextRange:suggestedActions:")
+    public UIMenu getEditMenu(UITextRange textRange, NSArray<UIMenuElement> suggestedActions) { return null; }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("willPresentEditMenuWithAnimator:")
+    public void willPresentEditMenu(UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @NotImplemented("willDismissEditMenuWithAnimator:")
+    public void willDismissEditMenu(UIEditMenuInteractionAnimating animator) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("insertAdaptiveImageGlyph:replacementRange:")
+    public void insertAdaptiveImageGlyph(NSAdaptiveImageGlyph adaptiveImageGlyph, UITextRange replacementRange) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("insertAttributedText:")
+    public void insertAttributedText(NSAttributedString string) {}
+    /**
+     * @since Available in iOS 12.0 and later.
+     */
+    @NotImplemented("attributedTextInRange:")
+    public NSAttributedString attributedTextInRange(UITextRange range) { return null; }
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @NotImplemented("replaceRange:withAttributedText:")
+    public void replaceRange(UITextRange range, NSAttributedString attributedText) {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("willPresentWritingTools")
+    public void willPresentWritingTools() {}
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @NotImplemented("didDismissWritingTools")
+    public void didDismissWritingTools() {}
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @NotImplemented("insertInputSuggestion:")
+    public void insertInputSuggestion(UIInputSuggestion inputSuggestion) {}
     /*</methods>*/
 }

@@ -178,6 +178,14 @@ classes:
                 throws: NSErrorException
             '+authorizationStatusForEntityType:':
                 name: getAuthorizationStatusForEntityType
+            '-initWithSources:':
+                name: init
+            '-requestFullAccessToEventsWithCompletion:':
+                name: requestFullAccessToEvents
+            '-requestWriteOnlyAccessToEventsWithCompletion:':
+                name: requestWriteOnlyAccessToEventsWithCompletion
+            '-requestFullAccessToRemindersWithCompletion:':
+                name: requestFullAccessToReminders
     EKObject: # DONE
         skip_handle_constructor: false
     EKParticipant: # DONE

@@ -39,6 +39,7 @@ import org.robovm.apple.fileprovider.*;
 import org.robovm.apple.intents.*;
 import org.robovm.apple.usernotifications.*;
 import org.robovm.apple.linkpresentation.*;
+import org.robovm.apple.symbols.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -137,6 +138,11 @@ import org.robovm.apple.linkpresentation.*;
          */
         @GlobalValue(symbol="NSSourceTextScalingDocumentOption", optional=true)
         public static native NSString NSSourceTextScalingDocumentOption();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="NSTextKit1ListMarkerFormatDocumentOption", optional=true)
+        public static native NSString NSTextKit1ListMarkerFormatDocumentOption();
     }
     /*</keys>*/
 }

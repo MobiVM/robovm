@@ -139,9 +139,13 @@ import org.robovm.apple.uikit.*;
     public static final CTAttributedStringAttribute BaselineOffset = new CTAttributedStringAttribute("BaselineOffset");
     public static final CTAttributedStringAttribute WritingDirection = new CTAttributedStringAttribute("WritingDirection");
     public static final CTAttributedStringAttribute RubyAnnotation = new CTAttributedStringAttribute("RubyAnnotation");
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    public static final CTAttributedStringAttribute AdaptiveImageProvider = new CTAttributedStringAttribute("AdaptiveImageProvider");
     /*</constants>*/
     
-    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Tracking, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation/*</value_list>*/};
+    private static /*<name>*/CTAttributedStringAttribute/*</name>*/[] values = new /*<name>*/CTAttributedStringAttribute/*</name>*/[] {/*<value_list>*/RubyAnnotationSizeFactor, RubyAnnotationScaleToFit, Font, ForegroundColorFromContext, Kern, Tracking, Ligature, ForegroundColor, BackgroundColor, ParagraphStyle, StrokeWidth, StrokeColor, UnderlineStyle, Superscript, UnderlineColor, VerticalForms, HorizontalInVerticalForms, GlyphInfo, CharacterShape, Language, RunDelegate, BaselineClass, BaselineInfo, BaselineReferenceInfo, BaselineOffset, WritingDirection, RubyAnnotation, AdaptiveImageProvider/*</value_list>*/};
     
     /*<name>*/CTAttributedStringAttribute/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -240,6 +244,11 @@ import org.robovm.apple.uikit.*;
         public static native CFString WritingDirection();
         @GlobalValue(symbol="kCTRubyAnnotationAttributeName", optional=true)
         public static native CFString RubyAnnotation();
+        /**
+         * @since Available in iOS 18.0 and later.
+         */
+        @GlobalValue(symbol="kCTAdaptiveImageProviderAttributeName", optional=true)
+        public static native CFString AdaptiveImageProvider();
         /*</values>*/
     }
 }

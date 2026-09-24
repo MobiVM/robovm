@@ -28,6 +28,7 @@ import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.uniformtypeid.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -49,6 +50,11 @@ import org.robovm.apple.foundation.*;
     protected HKWorkoutRouteQuery(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithRoute:dataHandler:")
     public HKWorkoutRouteQuery(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler) { super((SkipInit) null); initObject(init(workoutRoute, dataHandler)); }
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithRoute:dateInterval:dataHandler:")
+    public HKWorkoutRouteQuery(HKWorkoutRoute workoutRoute, NSDateInterval dateInterval, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler) { super((SkipInit) null); initObject(init(workoutRoute, dateInterval, dataHandler)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -57,5 +63,10 @@ import org.robovm.apple.foundation.*;
     /*<methods>*/
     @Method(selector = "initWithRoute:dataHandler:")
     protected native @Pointer long init(HKWorkoutRoute workoutRoute, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Method(selector = "initWithRoute:dateInterval:dataHandler:")
+    protected native @Pointer long init(HKWorkoutRoute workoutRoute, NSDateInterval dateInterval, @Block VoidBlock4<HKWorkoutRouteQuery, NSArray<org.robovm.apple.corelocation.CLLocation>, Boolean, NSError> dataHandler);
     /*</methods>*/
 }

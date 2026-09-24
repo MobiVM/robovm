@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -106,6 +108,10 @@ import org.robovm.apple.audiotoolbox.*;
     public static final AVMediaType Metadata = new AVMediaType("Metadata");
     public static final AVMediaType Muxed = new AVMediaType("Muxed");
     /**
+     * @since Available in iOS 10.0 and later.
+     */
+    public static final AVMediaType Haptic = new AVMediaType("Haptic");
+    /**
      * @since Available in iOS 9.0 and later.
      */
     public static final AVMediaType MetadataObject = new AVMediaType("MetadataObject");
@@ -113,9 +119,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 11.0 and later.
      */
     public static final AVMediaType DepthData = new AVMediaType("DepthData");
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
+    public static final AVMediaType AuxiliaryPicture = new AVMediaType("AuxiliaryPicture");
     /*</constants>*/
     
-    private static /*<name>*/AVMediaType/*</name>*/[] values = new /*<name>*/AVMediaType/*</name>*/[] {/*<value_list>*/Video, Audio, Text, ClosedCaption, Subtitle, Timecode, Metadata, Muxed, MetadataObject, DepthData/*</value_list>*/};
+    private static /*<name>*/AVMediaType/*</name>*/[] values = new /*<name>*/AVMediaType/*</name>*/[] {/*<value_list>*/Video, Audio, Text, ClosedCaption, Subtitle, Timecode, Metadata, Muxed, Haptic, MetadataObject, DepthData, AuxiliaryPicture/*</value_list>*/};
     
     /*<name>*/AVMediaType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -155,6 +165,11 @@ import org.robovm.apple.audiotoolbox.*;
         @GlobalValue(symbol="AVMediaTypeMuxed", optional=true)
         public static native NSString Muxed();
         /**
+         * @since Available in iOS 10.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaTypeHaptic", optional=true)
+        public static native NSString Haptic();
+        /**
          * @since Available in iOS 9.0 and later.
          */
         @GlobalValue(symbol="AVMediaTypeMetadataObject", optional=true)
@@ -164,6 +179,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="AVMediaTypeDepthData", optional=true)
         public static native NSString DepthData();
+        /**
+         * @since Available in iOS 14.0 and later.
+         */
+        @GlobalValue(symbol="AVMediaTypeAuxiliaryPicture", optional=true)
+        public static native NSString AuxiliaryPicture();
         /*</values>*/
     }
 }

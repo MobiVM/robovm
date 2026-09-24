@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -72,6 +74,11 @@ import org.robovm.apple.audiotoolbox.*;
     public native @ByVal CGRect getRectOfInterest();
     @Property(selector = "setRectOfInterest:")
     public native void setRectOfInterest(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    @Property(selector = "requiredMetadataObjectTypesForCinematicVideoCapture")
+    public native NSArray<NSString> getRequiredMetadataObjectTypesForCinematicVideoCapture();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

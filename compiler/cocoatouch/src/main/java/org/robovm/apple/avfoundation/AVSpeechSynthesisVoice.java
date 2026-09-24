@@ -38,6 +38,8 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.coremidi.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -91,6 +93,11 @@ import org.robovm.apple.audiotoolbox.*;
      */
     @Property(selector = "audioFileSettings")
     public native NSDictionary<NSString, ?> getAudioFileSettings();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "voiceTraits")
+    public native AVSpeechSynthesisVoiceTraits getVoiceTraits();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

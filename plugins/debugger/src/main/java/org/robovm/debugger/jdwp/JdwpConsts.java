@@ -144,6 +144,7 @@ public class JdwpConsts {
     }
 
     public static class SuspendStatus {
+        public static final int SUSPEND_STATUS_NOT_SUSPENDED = 0x0;
         public static final int SUSPEND_STATUS_SUSPENDED = 0x1;
     }
 

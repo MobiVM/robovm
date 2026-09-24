@@ -56,6 +56,10 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     NotSupported(16L),
     InvalidParameter(17L),
     UnexpectedConnection(18L),
+    /**
+     * @deprecated Deprecated in iOS 26.0. Use Replaced by developer defined challenges, see ``GKChallengeDefinition``
+     */
+    @Deprecated
     ChallengeInvalid(19L),
     TurnBasedMatchDataTooLarge(20L),
     TurnBasedTooManySessions(21L),
@@ -65,16 +69,65 @@ public enum /*<name>*/GKErrorCode/*</name>*/ implements NSErrorCode {
     InvitationsDisabled(25L),
     PlayerPhotoFailure(26L),
     UbiquityContainerUnavailable(27L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     MatchNotConnected(28L),
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     GameSessionRequestInvalid(29L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     RestrictedToAutomatch(30L),
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
     APINotAvailable(31L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     NotAuthorized(32L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     ConnectionTimeout(33L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     */
     APIObsolete(34L),
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    ICloudUnavailable(35L),
+    /**
+     * @since Available in iOS 17.2 and later.
+     */
+    LockdownMode(36L),
+    /**
+     * @since Available in iOS 17.4 and later.
+     */
+    AppUnlisted(37L),
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    DebugMode(38L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
     FriendListDescriptionMissing(100L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
     FriendListRestricted(101L),
+    /**
+     * @since Available in iOS 14.5 and later.
+     */
     FriendListDenied(102L),
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     FriendRequestNotAvailable(103L);
     /*</values>*/
 

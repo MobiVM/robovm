@@ -52,6 +52,7 @@ import org.robovm.apple.imageio.*;
     /*<constants>*/
     public static final int Revision1 = 1;
     public static final int Revision2 = 2;
+    public static final int Revision3 = 3;
     /*</constants>*/
     /*<constructors>*/
     public VNRecognizeTextRequest() {}
@@ -77,6 +78,16 @@ import org.robovm.apple.imageio.*;
     public native boolean usesLanguageCorrection();
     @Property(selector = "setUsesLanguageCorrection:")
     public native void setUsesLanguageCorrection(boolean v);
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "automaticallyDetectsLanguage")
+    public native boolean automaticallyDetectsLanguage();
+    /**
+     * @since Available in iOS 16.0 and later.
+     */
+    @Property(selector = "setAutomaticallyDetectsLanguage:")
+    public native void setAutomaticallyDetectsLanguage(boolean v);
     @Property(selector = "minimumTextHeight")
     public native float getMinimumTextHeight();
     @Property(selector = "setMinimumTextHeight:")

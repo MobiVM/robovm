@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mobidevelop.robovm</groupId>
-    <version>2.3.16-SNAPSHOT</version>
+    <version>2.3.27-SNAPSHOT</version>
     <artifactId>robovm-parent</artifactId>
     <organization>
         <name>com.mobidevelop.robovm</name>
@@ -46,7 +46,6 @@
 
 
     <properties>
-        <sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</sonatypeOssDistMgmtSnapshotsUrl>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -71,6 +70,10 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
@@ -146,7 +149,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
-                <version>1.21</version>
+                <version>1.25.0</version>
             </dependency>
             <dependency>
                 <groupId>com.googlecode.plist</groupId>
@@ -173,7 +176,7 @@
             <dependency>
                 <groupId>org.simpleframework</groupId>
                 <artifactId>simple-xml</artifactId>
-                <version>2.7</version>
+                <version>2.7.1</version>
             </dependency>
             <dependency>
                 <groupId>org.bouncycastle</groupId>
@@ -181,9 +184,9 @@
                 <version>1.49</version>
             </dependency>
             <dependency>
-                <groupId>com.googlecode.json-simple</groupId>
+                <groupId>com.github.cliftonlabs</groupId>
                 <artifactId>json-simple</artifactId>
-                <version>1.1.1</version>
+                <version>4.0.1</version>
             </dependency>
             <dependency>
                 <groupId>org.ow2.asm</groupId>
@@ -239,7 +242,7 @@
                 <artifactId>robovm-rt</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- FIXME: -->
+            <!-- robovm-rt sources used in dist -->
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-rt</artifactId>
@@ -250,6 +253,13 @@
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-objc</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <!-- robovm-objc sources used in dist -->
+            <dependency>
+                <groupId>com.mobidevelop.robovm</groupId>
+                <artifactId>robovm-objc</artifactId>
+                <version>${project.version}</version>
+                <classifier>sources</classifier>
             </dependency>
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
@@ -285,7 +295,7 @@
             <dependency>
                 <groupId>com.mobidevelop.robovm</groupId>
                 <artifactId>robovm-soot</artifactId>
-                <version>2.5.0-7</version>
+                <version>2.5.0-9</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -307,7 +317,7 @@
         <repository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -320,13 +330,8 @@
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>${sonatypeOssDistMgmtSnapshotsUrl}</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
         </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
     </distributionManagement>
     <!-- end of: entries from sonatype oss-parent-->
 
@@ -342,9 +347,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <release>8</release>
+                        <release>9</release>
                         <debug>true</debug>
-                        <optimize>true</optimize>
                         <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
@@ -379,7 +383,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.12.0</version>
                 </plugin>
 
                 <plugin>
@@ -402,7 +406,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
-                    <version>1.6</version>
+                    <version>3.2.4</version>
                 </plugin>
 
                 <plugin>
@@ -455,7 +459,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.8.0</version>
                     <configuration>
                         <!-- FIXME: this one is to fix "single failed: group id 'SOME BIG ID' is too big" when mac is in NT domain -->
                         <!-- FIXME: this adds PaxHeaders.X in this case, check if it will be adding it for normal user -->
@@ -474,6 +478,17 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.6.0</version>
                 </plugin>
+                <!-- Central publishing -->
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.8.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                       <publishingServerId>sonatype-nexus-snapshots</publishingServerId>
+                       <autoPublish>false</autoPublish>
+                    </configuration>
+                </plugin> 
             </plugins>
         </pluginManagement>
 
@@ -503,9 +518,13 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <quiet>true</quiet>
                     <doclint>none</doclint>
-                    <release>8</release>
+                    <release>9</release>
                     <detectJavaApiLink>false</detectJavaApiLink>
+                    <notree>true</notree>
+                    <noindex>true</noindex>
+                    <nodeprecated>true</nodeprecated>
                 </configuration>
             </plugin>
         </plugins>
