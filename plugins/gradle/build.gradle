@@ -10,7 +10,7 @@ plugins {
 }
 
 ext {
-    roboVMVersion = '3.0.0-SNAPSHOT'
+    roboVMVersion = '3.0.0'
     nexusUsername = System.getenv('MAVEN_USERNAME')
     nexusPassword = System.getenv('MAVEN_PASSWORD')
 }

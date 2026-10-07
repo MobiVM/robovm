@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>robovm-templates-parent</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
   </parent>
 
   <artifactId>robovm-templates-ios-framework</artifactId>
