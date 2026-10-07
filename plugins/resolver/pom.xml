@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.mobidevelop.robovm</groupId>
     <artifactId>robovm-parent</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <relativePath>../../</relativePath>
   </parent>
 

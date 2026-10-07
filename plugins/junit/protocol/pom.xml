@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.mobidevelop.robovm</groupId>
         <artifactId>robovm-junit-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1</version>
     </parent>
 
     <name>RoboVM JUnit Protocol</name>

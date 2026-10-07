@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mobidevelop.robovm</groupId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <artifactId>robovm-parent</artifactId>
     <organization>
         <name>com.mobidevelop.robovm</name>
