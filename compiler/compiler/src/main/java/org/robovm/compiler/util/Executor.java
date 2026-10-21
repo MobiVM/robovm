@@ -29,6 +29,7 @@ import java.util.function.Consumer;
  * execution.
  */
 public class Executor {
+    private static final long OUTPUT_DRAIN_TIMEOUT_MS = 5000;
     private final String cmd;
     private final Logger logger;
     private final List<String> args = new ArrayList<>();
@@ -316,7 +317,7 @@ public class Executor {
             pb.redirectOutput(ProcessBuilder.Redirect.PIPE);
             // custom stream provided, pump process output to it in a separate thread
             if (out != PIPE_OUTPUT)
-                threads.add(p -> pumpStreams(p.getInputStream(), out, closeOutputStreams));
+                threads.add((OutputConsumer) p -> pumpStreams(p.getInputStream(), out, closeOutputStreams));
         }
 
         if (err == null || err == DISCARD_OUTPUT) {
@@ -327,7 +328,7 @@ public class Executor {
             pb.redirectError(ProcessBuilder.Redirect.PIPE);
             // custom stream provided, pump process err to it in a separate thread
             if (err != PIPE_OUTPUT)
-                threads.add(p -> pumpStreams(p.getErrorStream(), err, closeOutputStreams));
+                threads.add((OutputConsumer) p -> pumpStreams(p.getErrorStream(), err, closeOutputStreams));
         }
 
         if (in == null) {
@@ -368,17 +369,21 @@ public class Executor {
 
         Process process = pb.start();
         try {
-            // start pump threads for custom streams if there are any
-            // no need to bother for their completion:
-            // these will terminate as soon as stream ends, also these are daemon threads so they
-            // won't prevent JVM from exiting if something goes wrong
+            // start pump threads for custom streams if there are any,
+            // these are daemon threads so they won't prevent JVM from exiting if something goes wrong
+            List<Thread> outputPumps = new ArrayList<>();
             for (Consumer<Process> task : pumpTasks) {
                 Thread t = new Thread(() -> task.accept(process));
                 t.setDaemon(true);
                 t.start();
+                if (task instanceof OutputConsumer) outputPumps.add(t);
             }
 
             int code = process.waitFor();
+            // The process has exited, but its output may still be in the pipe: let the pumps
+            // copy it, otherwise e.g. execCapture() can return empty output. Bounded, as a
+            // detached child process may keep the pipe open.
+            for (Thread t : outputPumps) t.join(OUTPUT_DRAIN_TIMEOUT_MS);
             if (code != 0) throw new ExecuteException(code, "Command '" +  String.join(" ",  commandLine) + "' failed ");
             return code;
         } catch (InterruptedException e) {
@@ -420,6 +425,10 @@ public class Executor {
         }
 
         return process;
+    }
+
+    /** Pumps process stdout/stderr; exec() waits for these to finish. */
+    private interface OutputConsumer extends Consumer<Process> {
     }
 
     public String execCapture() throws IOException {
