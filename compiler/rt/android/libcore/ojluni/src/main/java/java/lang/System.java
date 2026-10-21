@@ -1188,7 +1188,9 @@ public final class System {
         // We check first if the property has not been set already: note that it
         // can only be set from the command line through the '-Djava.io.tmpdir=' option.
         if (!unchangeableProps.containsKey("java.io.tmpdir")) {
-            p.put("java.io.tmpdir", "/tmp");
+            // RoboVM note: Use value of $TMPDIR if set (app's sandbox tmp dir on iOS). Otherwise use /tmp as Android does.
+            String tmpdir = getenv("TMPDIR");
+            p.put("java.io.tmpdir", tmpdir != null ? tmpdir : "/tmp");
         }
 
         // Android has always had an empty "user.home" (see docs for getProperty).
