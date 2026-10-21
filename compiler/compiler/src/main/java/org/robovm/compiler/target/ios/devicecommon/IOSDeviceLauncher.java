@@ -20,17 +20,23 @@ import org.robovm.compiler.Version;
 import org.robovm.compiler.launcher.Launcher;
 import org.robovm.compiler.launcher.ProcessProxy;
 import org.robovm.compiler.log.Logger;
+import org.robovm.compiler.target.ios.devicectl.DeviceCtl;
 import org.robovm.compiler.target.ios.devicectl.DeviceCtlLauncherDelegate;
 import org.robovm.compiler.target.ios.libimobiledevice.AppLauncherDelegate;
 import org.robovm.libimobiledevice.IDevice;
+import org.robovm.libimobiledevice.LibIMobileDeviceException;
 import org.robovm.libimobiledevice.LockdowndClient;
 import org.robovm.libimobiledevice.util.AppLauncher;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * {@link Launcher} IOS device launcher, uses libimobiledevice to list devices and pick the on to launch.
@@ -82,29 +88,29 @@ public class IOSDeviceLauncher implements Launcher {
 
         boolean runningIOS17;
         try {
-            IDevice selectedDevice = AppLauncher.waitForDevice(
-                deviceUdid,
-                20,
-                1,
-                log::info
-            );
+            DeviceResp selectedDevice = waitForDevice(deviceUdid, log::info);
 
             // check cache first before querying device
             Boolean cachedRunningIOS17;
             synchronized (resolvedDevicesCache) {
-                cachedRunningIOS17 = resolvedDevicesCache.get(selectedDevice.getUdid());
+                if (selectedDevice.ios17OrAbove) {
+                    cachedRunningIOS17 = true;
+                    resolvedDevicesCache.put(selectedDevice.udid, true);
+                } else {
+                    cachedRunningIOS17 = resolvedDevicesCache.get(selectedDevice.udid);
+                }
             }
             if (cachedRunningIOS17 != null) {
                 runningIOS17 = cachedRunningIOS17;
             } else {
                 // get device's IOS version
-                try (LockdowndClient lockdowndClient = new LockdowndClient(selectedDevice, "IOSDeviceLauncher", true)) {
+                try (LockdowndClient lockdowndClient = new LockdowndClient(new IDevice(selectedDevice.udid), "IOSDeviceLauncher", true)) {
                     String productVersion = lockdowndClient.getValue(null, "ProductVersion").toString(); // E.g. 7.0.2
                     Version version = Version.parse(productVersion);
                     runningIOS17 = version.getMajor() >= 17;
                     // update cache
                     synchronized (resolvedDevicesCache) {
-                        resolvedDevicesCache.put(selectedDevice.getUdid(), runningIOS17);
+                        resolvedDevicesCache.put(selectedDevice.udid, runningIOS17);
                     }
                 }
             }
@@ -137,6 +143,78 @@ public class IOSDeviceLauncher implements Launcher {
         } catch (Throwable t) {
             log.error("iOS DeviceLauncher failed with an exception: %s", t.getMessage());
             throw t;
+        }
+    }
+
+    /**
+     * look for a specific device or wait for a single device to be connected, with retries.
+     * look in both DeviceCtl and libimobiledevice for connected devices.
+     */
+    private DeviceResp waitForDevice(String deviceUdid, AppLauncher.Logger logger) throws Exception{
+        final int retries = 20;
+        final int secondsBetweenRetries = 1;
+        int retriesLeft = retries;
+
+        while (true) {
+            List<DeviceResp> udids = Stream.concat(
+                DeviceCtl.listDevices().stream().map(d -> new DeviceResp(d.hardwareProperties.udid, true)),
+                Arrays.stream(IDevice.listUdids()).map(s -> new DeviceResp(s, false))
+            ).distinct().collect(Collectors.toList());
+            if (udids.size() == 1 && (deviceUdid == null || deviceUdid.equals(udids.get(0).udid))) {
+                // single device and it's a match
+                return udids.get(0);
+            } else if (udids.size() > 1 && deviceUdid != null) {
+                int idx = udids.indexOf(new DeviceResp(deviceUdid, false));
+                if (idx >= 0) {
+                    // multiple devices connected but specified is there
+                    return udids.get(idx);
+                }
+            }
+
+            String message;
+            if (udids.isEmpty()) {
+                message = "No devices connected";
+            } else if (deviceUdid != null) {
+                message = String.format("Required %s is not connected (%s)", deviceUdid, udids);
+            } else {
+                message = String.format("More than 1 device connected (%s)", udids);
+            }
+
+            if (retriesLeft > 0) {
+                retriesLeft -= 1;
+                logger.log(String.format("Waiting for device: %s. (retry %d of %d)...", message, (retries - retriesLeft), retries));
+                Thread.sleep(secondsBetweenRetries * 1000L);
+            } else throw new LibIMobileDeviceException(message);
+        }
+    }
+
+    // response from waitForDevice, contains device udid and whether it is running iOS 17 or above
+    private static class DeviceResp {
+        private final String udid;
+        private final boolean ios17OrAbove;
+
+        public DeviceResp(String udid, boolean ios17OrAbove) {
+            this.udid = udid;
+            this.ios17OrAbove = ios17OrAbove;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj instanceof DeviceResp) {
+                DeviceResp otherResp = (DeviceResp) obj;
+                return this.udid.equals(otherResp.udid);
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return udid.hashCode();
+        }
+
+        @Override
+        public String toString() {
+            return udid;
         }
     }
 }
