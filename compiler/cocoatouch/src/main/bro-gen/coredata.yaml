@@ -712,7 +712,9 @@ classes:
                 throws: NSErrorException
             '-managedObjectIDFromUTF8String:length:':
                 name: managedObjectIDFromUTF8String
-
+            '+cachedModelForPersistentStoreAtURL:options:error:':
+                name: getCachedModelForPersistentStore
+                throws: NSErrorException
     NSPersistentStoreRequest: # DONE
         properties:
             'affectedStores':

@@ -43,7 +43,11 @@ public enum /*<name>*/CLLiveUpdateConfiguration/*</name>*/ implements ValuedEnum
     AutomotiveNavigation(1L),
     OtherNavigation(2L),
     Fitness(3L),
-    Airborne(4L);
+    Airborne(4L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Maritime(5L);
     /*</values>*/
 
     /*<bind>*/

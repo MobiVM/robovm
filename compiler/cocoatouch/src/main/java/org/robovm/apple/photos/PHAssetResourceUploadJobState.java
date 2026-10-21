@@ -49,7 +49,11 @@ public enum /*<name>*/PHAssetResourceUploadJobState/*</name>*/ implements Valued
     Registered(1L),
     Pending(2L),
     Failed(3L),
-    Succeeded(4L);
+    Succeeded(4L),
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    Cancelled(5L);
     /*</values>*/
 
     /*<bind>*/

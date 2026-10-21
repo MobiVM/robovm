@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -63,8 +64,23 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithTitle:sections:assistantCellConfiguration:headerGridButtons:")
     public CPListTemplate(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration, NSArray<CPGridButton> headerGridButtons) { super((SkipInit) null); initObject(init(title, sections, assistantCellConfiguration, headerGridButtons)); }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithTitle:listHeader:sections:assistantCellConfiguration:")
+    public CPListTemplate(String title, CPListTemplateDetailsHeader listHeader, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration) { super((SkipInit) null); initObject(init(title, listHeader, sections, assistantCellConfiguration)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "listHeader")
+    public native CPListTemplateDetailsHeader getListHeader();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setListHeader:")
+    public native void setListHeader(CPListTemplateDetailsHeader v);
     /**
      * @since Available in iOS 12.0 and later.
      * @deprecated Deprecated in iOS 14.0. Use -[CPListItem handler]
@@ -192,6 +208,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "initWithTitle:sections:assistantCellConfiguration:headerGridButtons:")
     protected native @Pointer long init(String title, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration, NSArray<CPGridButton> headerGridButtons);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithTitle:listHeader:sections:assistantCellConfiguration:")
+    protected native @Pointer long init(String title, CPListTemplateDetailsHeader listHeader, NSArray<CPListSection> sections, CPAssistantCellConfiguration assistantCellConfiguration);
     @Method(selector = "updateSections:")
     public native void updateSections(NSArray<CPListSection> sections);
     /**

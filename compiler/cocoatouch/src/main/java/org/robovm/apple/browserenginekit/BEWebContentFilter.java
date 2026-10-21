@@ -61,7 +61,17 @@ import org.robovm.apple.avfoundation.*;
     /*<methods>*/
     @Method(selector = "evaluateURL:completionHandler:")
     public native void evaluateURL(NSURL url, @Block VoidBlock2<Boolean, NSData> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "evaluateURL:mainFrameURL:isMainFrame:completionHandler:")
+    public native void evaluateURL(NSURL url, NSURL mainFrameURL, boolean isMainFrame, @Block VoidBlock2<Boolean, NSData> completionHandler);
     @Method(selector = "allowURL:completionHandler:")
     public native void allowURL(NSURL url, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "requestPermissionForURL:referrerURL:presentingView:completionHandler:")
+    public native void requestPermissionForURL(NSURL url, NSURL referrerURL, UIView presentingView, @Block VoidBlock2<BEWebContentFilterPermissionDecision, NSError> completionHandler);
     /*</methods>*/
 }

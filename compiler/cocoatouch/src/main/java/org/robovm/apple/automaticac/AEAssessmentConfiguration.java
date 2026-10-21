@@ -131,14 +131,28 @@ import org.robovm.apple.foundation.*;
     public native void setAllowsAccessibilityReader(boolean v);
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use allowsAccessibilitySpokenContent
      */
+    @Deprecated
     @Property(selector = "allowsAccessibilitySpeech")
     public native boolean allowsAccessibilitySpeech();
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use allowsAccessibilitySpokenContent
      */
+    @Deprecated
     @Property(selector = "setAllowsAccessibilitySpeech:")
     public native void setAllowsAccessibilitySpeech(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsAccessibilitySpokenContent")
+    public native boolean allowsAccessibilitySpokenContent();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsAccessibilitySpokenContent:")
+    public native void setAllowsAccessibilitySpokenContent(boolean v);
     /**
      * @since Available in iOS 26.0 and later.
      */
@@ -149,6 +163,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setAllowsAccessibilityTypingFeedback:")
     public native void setAllowsAccessibilityTypingFeedback(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsAccessibilityVoiceOver")
+    public native boolean allowsAccessibilityVoiceOver();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsAccessibilityVoiceOver:")
+    public native void setAllowsAccessibilityVoiceOver(boolean v);
     /**
      * @since Available in iOS 14.0 and later.
      */
@@ -169,6 +193,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setAllowsContinuousPathKeyboard:")
     public native void setAllowsContinuousPathKeyboard(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "allowsEmojiKeyboard")
+    public native boolean allowsEmojiKeyboard();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setAllowsEmojiKeyboard:")
+    public native void setAllowsEmojiKeyboard(boolean v);
     /**
      * @since Available in iOS 17.5 and later.
      */

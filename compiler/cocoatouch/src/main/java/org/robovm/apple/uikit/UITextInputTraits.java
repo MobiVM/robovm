@@ -117,6 +117,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setMathExpressionCompletionType:")
     void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "grammarCheckingType")
+    UITextGrammarCheckingType getGrammarCheckingType();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setGrammarCheckingType:")
+    void setGrammarCheckingType(UITextGrammarCheckingType v);
     @Property(selector = "keyboardType")
     UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")

@@ -24,7 +24,8 @@ classes:
             '-initWithQueue:':
                 name: init      
                 annotations: ['@WeaklyLinked']
-    
+    PKVoIPPushMetadata: {} #since 26.4
+
 protocols:
     PKPushRegistryDelegate: # DONE
         methods:
@@ -36,7 +37,8 @@ protocols:
                 name: didInvalidatePushToken
             '-pushRegistry:didReceiveIncomingPushWithPayload:forType:withCompletionHandler:':
                 name: didReceiveIncomingPushWithPayload
-
+            '-pushRegistry:didReceiveIncomingVoIPPushWithPayload:metadata:withCompletionHandler:':
+                name: didReceiveIncomingVoIPPush
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (PK.*):

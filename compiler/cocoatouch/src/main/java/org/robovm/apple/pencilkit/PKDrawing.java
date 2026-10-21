@@ -110,6 +110,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "drawingByAppendingStrokes:")
     public native PKDrawing drawingByAppendingStrokes(NSArray<PKStroke> strokes);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "drawingByErasingStrokePath:mask:transform:")
+    public native PKDrawing drawingByErasingStrokePath(PKStrokePath eraserPath, UIBezierPath mask, @ByVal CGAffineTransform transform);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

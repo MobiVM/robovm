@@ -59,6 +59,11 @@ import org.robovm.apple.dispatch.*;
     public MTLTensorDataType getDataType() { return null; }
     @NotImplemented("usage")
     public MTLTensorUsage getUsage() { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("auxiliaryPlanes")
+    public NSArray<?> getAuxiliaryPlanes() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -66,5 +71,15 @@ import org.robovm.apple.dispatch.*;
     public void replaceSliceOrigin(MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, VoidPtr bytes, MTLTensorExtents strides) {}
     @NotImplemented("getBytes:strides:fromSliceOrigin:sliceDimensions:")
     public void getBytes(VoidPtr bytes, MTLTensorExtents strides, MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("getBytes:strides:fromSliceOrigin:sliceDimensions:plane:")
+    public void getBytes(VoidPtr bytes, MTLTensorExtents strides, MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, MTLTensorPlaneType plane) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("replaceSliceOrigin:sliceDimensions:plane:withBytes:strides:")
+    public void replaceSliceOrigin(MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, MTLTensorPlaneType plane, VoidPtr bytes, MTLTensorExtents strides) {}
     /*</methods>*/
 }

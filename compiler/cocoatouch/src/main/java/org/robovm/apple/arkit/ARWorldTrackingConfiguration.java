@@ -146,6 +146,16 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "setDetectionObjects:")
     public native void setDetectionObjects(NSSet<ARReferenceObject> v);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "trackingObjects")
+    public native NSSet<ARReferenceObject> getTrackingObjects();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setTrackingObjects:")
+    public native void setTrackingObjects(NSSet<ARReferenceObject> v);
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "isCollaborationEnabled")

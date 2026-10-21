@@ -77,6 +77,26 @@ import org.robovm.apple.symbols.*;
     public native void setSubtitle(String v);
     @Property(selector = "image")
     public native UIImage getImage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredImageVisibility")
+    public native UIMenuElementImageVisibility getPreferredImageVisibility();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredImageVisibility:")
+    public native void setPreferredImageVisibility(UIMenuElementImageVisibility v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "highlightStateUpdateHandler")
+    public native @Block VoidBlock2<UIMenuElement, Boolean> getHighlightStateUpdateHandler();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setHighlightStateUpdateHandler:")
+    public native void setHighlightStateUpdateHandler(@Block VoidBlock2<UIMenuElement, Boolean> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "accessibilityIdentifier")

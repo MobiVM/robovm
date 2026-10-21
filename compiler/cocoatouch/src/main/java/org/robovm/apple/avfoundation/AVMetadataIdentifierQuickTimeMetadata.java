@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -244,9 +245,17 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 14.0 and later.
      */
     public static final AVMetadataIdentifierQuickTimeMetadata LocationHorizontalAccuracyInMeters = new AVMetadataIdentifierQuickTimeMetadata("LocationHorizontalAccuracyInMeters");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata AIMEData = new AVMetadataIdentifierQuickTimeMetadata("AIMEData");
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
+    public static final AVMetadataIdentifierQuickTimeMetadata PresentationImmersiveMedia = new AVMetadataIdentifierQuickTimeMetadata("PresentationImmersiveMedia");
     /*</constants>*/
     
-    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, IsMontage, FullFrameRatePlaybackIntent, CinematicVideoIntent, CameraISOSensitivity, CameraWhiteBalance, WhiteBalanceByCCTWhiteBalanceFactors, WhiteBalanceByCCTColorMatrices, CameraShutterSpeedAngle, CameraShutterSpeedTime, CameraLensIrisFNumber, CameraLensModel, CameraFocalLength35mmEquivalent, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters/*</value_list>*/};
+    private static /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] values = new /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/[] {/*<value_list>*/Author, Comment, Copyright, CreationDate, Director, DisplayName, Information, Keywords, Producer, Publisher, Album, Artist, Artwork, Description, Software, Year, Genre, iXML, LocationISO6709, Make, Model, Arranger, EncodedBy, OriginalArtist, Performer, Composer, Credits, PhonogramRights, CameraIdentifier, CameraFrameReadoutTime, Title, CollectionUser, RatingUser, LocationName, LocationBody, LocationNote, LocationRole, LocationDate, DirectionFacing, DirectionMotion, PreferredAffineTransform, DetectedFace, DetectedHumanBody, DetectedCatBody, DetectedDogBody, DetectedSalientObject, VideoOrientation, ContentIdentifier, AccessibilityDescription, IsMontage, FullFrameRatePlaybackIntent, CinematicVideoIntent, CameraISOSensitivity, CameraWhiteBalance, WhiteBalanceByCCTWhiteBalanceFactors, WhiteBalanceByCCTColorMatrices, CameraShutterSpeedAngle, CameraShutterSpeedTime, CameraLensIrisFNumber, CameraLensModel, CameraFocalLength35mmEquivalent, AutoLivePhoto, LivePhotoVitalityScore, LivePhotoVitalityScoringVersion, SpatialOverCaptureQualityScore, SpatialOverCaptureQualityScoringVersion, LocationHorizontalAccuracyInMeters, AIMEData, PresentationImmersiveMedia/*</value_list>*/};
     
     /*<name>*/AVMetadataIdentifierQuickTimeMetadata/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -481,6 +490,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters", optional=true)
         public static native NSString LocationHorizontalAccuracyInMeters();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataAIMEData", optional=true)
+        public static native NSString AIMEData();
+        /**
+         * @since Available in iOS 26.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia", optional=true)
+        public static native NSString PresentationImmersiveMedia();
         /*</values>*/
     }
 }

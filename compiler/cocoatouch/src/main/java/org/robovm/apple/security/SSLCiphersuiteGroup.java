@@ -42,7 +42,11 @@ public enum /*<name>*/SSLCiphersuiteGroup/*</name>*/ implements ValuedEnum {
     Compatibility(1L),
     Legacy(2L),
     ATS(3L),
-    ATSCompatibility(4L);
+    ATSCompatibility(4L),
+    /**
+     * @since Available in iOS 26.5 and later.
+     */
+    ATSFCP_v2_1(5L);
     /*</values>*/
 
     /*<bind>*/

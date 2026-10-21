@@ -57,7 +57,8 @@ import org.robovm.apple.uniformtypeid.*;
     protected PHAssetResourceUploadJobChangeRequest(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    
+    @Property(selector = "placeholderForCreatedAssetResourceUploadJob")
+    public native PHObjectPlaceholder getPlaceholderForCreatedAssetResourceUploadJob();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -65,8 +66,28 @@ import org.robovm.apple.uniformtypeid.*;
     public native void acknowledge();
     @Method(selector = "retryWithDestination:")
     public native void retry(NSURLRequest destination);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "cancel")
+    public native void cancel();
+    /**
+     * @since Available in iOS 26.1 and later.
+     * @deprecated Deprecated in iOS 26.4. Use creationRequestForJobWithDestination:resource:
+     */
+    @Deprecated
     @Method(selector = "createJobWithDestination:resource:")
     public static native void createJob(NSURLRequest destination, PHAssetResource resource);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "creationRequestForJobWithDestination:resource:")
+    public static native PHAssetResourceUploadJobChangeRequest creationRequestForJob(NSURLRequest destination, PHAssetResource resource);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "creationRequestForDownloadJobWithResource:")
+    public static native PHAssetResourceUploadJobChangeRequest creationRequestForDownloadJob(PHAssetResource resource);
     @Method(selector = "changeRequestForUploadJob:")
     public static native PHAssetResourceUploadJobChangeRequest changeRequestForUploadJob(PHAssetResourceUploadJob job);
     /*</methods>*/

@@ -43,6 +43,11 @@ public enum /*<name>*/MTL4CommandQueueError/*</name>*/ implements ValuedEnum {
     Timeout(1L),
     NotPermitted(2L),
     OutOfMemory(3L),
+    /**
+     * @since Available in iOS 26.0 and later.
+     * @deprecated Deprecated in iOS 27.0. MTL4CommandQueueErrorDeviceRemoved cannot occur on Apple Silicon
+     */
+    @Deprecated
     DeviceRemoved(4L),
     AccessRevoked(5L),
     Internal(6L);

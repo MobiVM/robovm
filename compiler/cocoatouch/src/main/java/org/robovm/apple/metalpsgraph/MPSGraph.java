@@ -77,6 +77,16 @@ import org.robovm.apple.metalps.*;
     public native NSDictionary<MPSGraphTensor, MPSGraphTensorData> runAsync(MTLCommandQueue commandQueue, NSDictionary<MPSGraphTensor, MPSGraphTensorData> feeds, NSArray<MPSGraphTensor> targetTensors, NSArray<MPSGraphOperation> targetOperations, MPSGraphExecutionDescriptor executionDescriptor);
     @Method(selector = "runAsyncWithMTLCommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:")
     public native void runAsync(MTLCommandQueue commandQueue, NSDictionary<MPSGraphTensor, MPSGraphTensorData> feeds, NSArray<MPSGraphOperation> targetOperations, NSDictionary<MPSGraphTensor, MPSGraphTensorData> resultsDictionary, MPSGraphExecutionDescriptor executionDescriptor);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "runAsyncWithMTL4CommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:")
+    public native NSDictionary<MPSGraphTensor, MPSGraphTensorData> runAsync(MTL4CommandQueue commandQueue, NSDictionary<MPSGraphTensor, MPSGraphTensorData> feeds, NSArray<MPSGraphTensor> targetTensors, NSArray<MPSGraphOperation> targetOperations, MPSGraphExecutionDescriptor executionDescriptor);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "runAsyncWithMTL4CommandQueue:feeds:targetOperations:resultsDictionary:executionDescriptor:")
+    public native void runAsync(MTL4CommandQueue commandQueue, NSDictionary<MPSGraphTensor, MPSGraphTensorData> feeds, NSArray<MPSGraphOperation> targetOperations, NSDictionary<MPSGraphTensor, MPSGraphTensorData> resultsDictionary, MPSGraphExecutionDescriptor executionDescriptor);
     @Method(selector = "encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:")
     public native NSDictionary<MPSGraphTensor, MPSGraphTensorData> encodeToCommandBuffer(MPSCommandBuffer commandBuffer, NSDictionary<MPSGraphTensor, MPSGraphTensorData> feeds, NSArray<MPSGraphTensor> targetTensors, NSArray<MPSGraphOperation> targetOperations, MPSGraphExecutionDescriptor executionDescriptor);
     @Method(selector = "encodeToCommandBuffer:feeds:targetOperations:resultsDictionary:executionDescriptor:")
@@ -317,6 +327,11 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "complexTensorWithRealTensor:imaginaryTensor:name:")
     public native MPSGraphTensor complexTensorWithRealTensor(MPSGraphTensor realTensor, MPSGraphTensor imaginaryTensor, String name);
+    /**
+     * @since Available in iOS 26.3 and later.
+     */
+    @Method(selector = "planarTensorWithComplexTensor:name:")
+    public native MPSGraphTensor planarTensor(MPSGraphTensor tensor, String name);
     /**
      * @since Available in iOS 18.0 and later.
      */
@@ -570,6 +585,11 @@ import org.robovm.apple.metalps.*;
      */
     @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:")
     public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, float scale, String name);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:descriptor:name:")
+    public native MPSGraphTensor scaledDotProductAttention(MPSGraphTensor queryTensor, MPSGraphTensor keyTensor, MPSGraphTensor valueTensor, MPSGraphSDPADescriptor descriptor, String name);
     @Method(selector = "placeholderWithShape:dataType:name:")
     public native MPSGraphTensor placeholder(NSArray<NSNumber> shape, MPSDataType dataType, String name);
     @Method(selector = "placeholderWithShape:name:")

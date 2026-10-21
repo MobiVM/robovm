@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.0 and later.
+ * @deprecated Use MetricManager.LaunchTaskError instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("MetricKit")/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated @Library("MetricKit")/*</annotations>*/
 public enum /*<name>*/MXErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     InvalidID(0L),
@@ -52,7 +53,9 @@ public enum /*<name>*/MXErrorCode/*</name>*/ implements NSErrorCode {
     /*<methods>*/
     /**
      * @since Available in iOS 16.0 and later.
+     * @deprecated Use MetricManager.LaunchTaskError instead.
      */
+    @Deprecated
     @GlobalValue(symbol="MXErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

@@ -88,8 +88,14 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSData getThumbnailData();
     @Property(selector = "setThumbnailData:")
     public native void setThumbnailData(NSData v);
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "darkThumbnailURL")
     public native NSURL getDarkThumbnailURL();
+    /**
+     * @since Available in iOS 15.0 and later.
+     */
     @Property(selector = "setDarkThumbnailURL:")
     public native void setDarkThumbnailURL(NSURL v);
     @Property(selector = "relatedUniqueIdentifier")
@@ -180,6 +186,21 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "setDomainIdentifier:")
     public native void setDomainIdentifier(String v);
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "textContentSummary")
+    public native String getTextContentSummary();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "transcribedTextContent")
+    public native String getTranscribedTextContent();
+    /**
+     * @since Available in iOS 18.4 and later.
+     */
+    @Property(selector = "setTranscribedTextContent:")
+    public native void setTranscribedTextContent(String v);
     @Property(selector = "supportsPhoneCall")
     public native NSNumber getSupportsPhoneCall();
     @Property(selector = "setSupportsPhoneCall:")
@@ -419,21 +440,6 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "isPriority")
     public native NSNumber getIsPriority();
-    /**
-     * @since Available in iOS 18.4 and later.
-     */
-    @Property(selector = "textContentSummary")
-    public native String getTextContentSummary();
-    /**
-     * @since Available in iOS 18.4 and later.
-     */
-    @Property(selector = "transcribedTextContent")
-    public native String getTranscribedTextContent();
-    /**
-     * @since Available in iOS 18.4 and later.
-     */
-    @Property(selector = "setTranscribedTextContent:")
-    public native void setTranscribedTextContent(String v);
     @Property(selector = "editors")
     public native NSArray<NSString> getEditors();
     @Property(selector = "setEditors:")
@@ -446,10 +452,6 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSArray<NSString> getProjects();
     @Property(selector = "setProjects:")
     public native void setProjects(NSArray<NSString> v);
-    @Property(selector = "downloadedDate")
-    public native NSDate getDownloadedDate();
-    @Property(selector = "setDownloadedDate:")
-    public native void setDownloadedDate(NSDate v);
     @Property(selector = "contentSources")
     public native NSArray<NSString> getContentSources();
     @Property(selector = "setContentSources:")
@@ -478,6 +480,10 @@ import org.robovm.apple.uniformtypeid.*;
     public native NSDate getAddedDate();
     @Property(selector = "setAddedDate:")
     public native void setAddedDate(NSDate v);
+    @Property(selector = "downloadedDate")
+    public native NSDate getDownloadedDate();
+    @Property(selector = "setDownloadedDate:")
+    public native void setDownloadedDate(NSDate v);
     @Property(selector = "duration")
     public native NSNumber getDuration();
     @Property(selector = "setDuration:")
@@ -790,16 +796,34 @@ import org.robovm.apple.uniformtypeid.*;
     public native String getInstructions();
     @Property(selector = "setInstructions:")
     public native void setInstructions(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "thoroughfare")
     public native String getThoroughfare();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setThoroughfare:")
     public native void setThoroughfare(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "subThoroughfare")
     public native String getSubThoroughfare();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setSubThoroughfare:")
     public native void setSubThoroughfare(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "postalCode")
     public native String getPostalCode();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setPostalCode:")
     public native void setPostalCode(String v);
     @Property(selector = "city")
@@ -814,8 +838,14 @@ import org.robovm.apple.uniformtypeid.*;
     public native String getCountry();
     @Property(selector = "setCountry:")
     public native void setCountry(String v);
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "fullyFormattedAddress")
     public native String getFullyFormattedAddress();
+    /**
+     * @since Available in iOS 10.0 and later.
+     */
     @Property(selector = "setFullyFormattedAddress:")
     public native void setFullyFormattedAddress(String v);
     @Property(selector = "altitude")
@@ -950,8 +980,6 @@ import org.robovm.apple.uniformtypeid.*;
     public native void setValue(NSSecureCoding value, CSCustomAttributeKey key);
     @Method(selector = "valueForCustomKey:")
     public native NSSecureCoding valueForCustomKey(CSCustomAttributeKey key);
-    @Method(selector = "moveFrom:")
-    public native void moveFrom(CSSearchableItemAttributeSet sourceAttributeSet);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 public final class /*<name>*/ENActivityFlags/*</name>*/ extends Bits</*<name>*/ENActivityFlags/*</name>*/> {
     /*<values>*/
     public static final ENActivityFlags None = new ENActivityFlags(0L);

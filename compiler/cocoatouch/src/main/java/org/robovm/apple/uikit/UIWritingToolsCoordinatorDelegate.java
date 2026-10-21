@@ -83,6 +83,21 @@ import org.robovm.apple.symbols.*;
     @Method(selector = "writingToolsCoordinator:willChangeToState:completion:")
     void willChangeToState(UIWritingToolsCoordinator writingToolsCoordinator, UIWritingToolsCoordinatorState newState, @Block Runnable completion);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:textDecoration:completion:")
+    void requestsPreviewForTextAnimation(UIWritingToolsCoordinator writingToolsCoordinator, UIWritingToolsCoordinatorTextAnimation textAnimation, @ByVal NSRange range, UIWritingToolsCoordinatorContext context, UIWritingToolsCoordinatorTextDecoration textDecoration, @Block VoidBlock1<UITargetedPreview> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "writingToolsCoordinator:requestsGrammarResultsForContext:completion:")
+    void requestsGrammarResults(UIWritingToolsCoordinator writingToolsCoordinator, UIWritingToolsCoordinatorContext context, @Block VoidBlock1<NSArray<NSTextCheckingResult>> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "writingToolsCoordinator:setGrammarCheckingEnabled:")
+    void setGrammarCheckingEnabled(UIWritingToolsCoordinator writingToolsCoordinator, boolean enabled);
+    /**
      * @since Available in iOS 18.2 and later.
      * @deprecated Deprecated in iOS 18.4. In iOS 18.4 and later and visionOS 2.4 and later, UIWritingToolsCoordinator automatically determines the location of the character at the specified point in your view's coordinate system and no longer calls this method.
      */

@@ -42,6 +42,11 @@ enums:
     PHObjectType: {} #since 16.0
     PHAssetResourceUploadJobState: {} #since 26.1
     PHAssetResourceUploadJobAction: {} #since 26.1
+    PHAssetPlaybackVariation: {} #since 11.0
+    PHOriginalResourceChoice: {} #since 27.0
+    PHAssetAdjustmentsState: {} #since 18.0
+    PHAssetResourceUploadJobType: {} #since 26.4
+    PHAssetRating: {} #since 27.0
 classes:
     PHLivePhotoRequestOptions: {}
     PHLivePhoto:
@@ -186,6 +191,7 @@ classes:
             '+defaultManager':
                 property: true
     PHAssetResourceRequestOptions: {} # DONE
+    PHAssetExtendedMetadata: {} #since 27.0
     PHCachingImageManager: # DONE
         methods:
             '-startCachingImagesForAssets:targetSize:contentMode:options:':
@@ -376,6 +382,15 @@ classes:
             '-setUploadJobExtensionEnabled:error:':
                 name: setUploadJobExtensionEnabled
                 throws: NSErrorException
+            '-enableUploadJobExtensionWithOptions:error:': #since 27.0
+                name: enableUploadJobExtension
+                throws: NSErrorException
+            '-disableUploadJobExtensionWithError:': #since 27.0
+                name: disableUploadJobExtension
+                throws: NSErrorException
+            '-setUploadJobExtensionOptions:error:': #since 27.0
+                name: setUploadJobExtensionOptions
+                throws: NSErrorException
     PHVideoRequestOptions: {} # DONE
     PHLivePhotoEditingContext:
         methods:
@@ -390,6 +405,9 @@ classes:
         methods:
             '-initWithStringValue:':
                 name: init
+            '-initWithArchivalStringValue:': #since 18.2
+                name: initWithArchivalStringValue
+                static_constructor_name: createWithArchivalStringValue
     PHCloudIdentifierMapping: {} #since 15.0
     PHLocalIdentifierMapping: {} #since 15.0
     PHPersistentChange: #since 16.0
@@ -412,6 +430,11 @@ classes:
                 name: retry
             '+createJobWithDestination:resource:':
                 name: createJob
+            '+creationRequestForJobWithDestination:resource:': #since 26.4
+                name: creationRequestForJob
+            '+creationRequestForDownloadJobWithResource:': #since 26.4
+                name: creationRequestForDownloadJob
+    PHAssetResourceUploadJobOptions: {} #since 27.0
 protocols:
     PHLivePhotoFrame: {}
 
@@ -423,6 +446,10 @@ protocols:
         methods:
             '-photoLibraryDidBecomeUnavailable:':
                 name: didBecomeUnavailable
+    PHPhotoLibraryPersistentChangesObserver: #since 27.0
+        methods:
+            '-photoLibraryPersistentChangesDidUpdate:':
+                name: persistentChangesDidUpdate
 
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version

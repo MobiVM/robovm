@@ -43,7 +43,19 @@ public enum /*<name>*/MTRTransportType/*</name>*/ implements ValuedEnum {
     Undefined(0L),
     UDP(1L),
     BLE(2L),
-    TCP(3L);
+    TCP(3L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    WiFiPAF(4L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    NFC(5L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    ThreadMeshcop(6L);
     /*</values>*/
 
     /*<bind>*/

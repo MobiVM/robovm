@@ -88,16 +88,53 @@ import org.robovm.apple.coreanimation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use projectionMatrixForViewRotationAngle:viewportSize:zNear:zFar:
+     */
+    @Deprecated
     @Method(selector = "projectionMatrixForOrientation:viewportSize:zNear:zFar:")
     public native @ByVal MatrixFloat4x4 getProjectionMatrix(UIInterfaceOrientation orientation, @ByVal CGSize viewportSize, @MachineSizedFloat double zNear, @MachineSizedFloat double zFar);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "projectionMatrixForViewRotationAngle:viewportSize:zNear:zFar:")
+    public native @ByVal MatrixFloat4x4 getProjectionMatrix(@MachineSizedFloat double viewRotationAngle, @ByVal CGSize viewportSize, @MachineSizedFloat double zNear, @MachineSizedFloat double zFar);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use projectPoint:viewRotationAngle:viewportSize:
+     */
+    @Deprecated
     @Method(selector = "projectPoint:orientation:viewportSize:")
     public native @ByVal CGPoint projectPoint(@ByVal VectorFloat3 point, UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
     /**
-     * @since Available in iOS 12.0 and later.
+     * @since Available in iOS 27.0 and later.
      */
+    @Method(selector = "projectPoint:viewRotationAngle:viewportSize:")
+    public native @ByVal CGPoint projectPoint(@ByVal VectorFloat3 point, @MachineSizedFloat double viewRotationAngle, @ByVal CGSize viewportSize);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use unprojectPoint:ontoPlaneWithTransform:viewRotationAngle:viewportSize:
+     */
+    @Deprecated
     @Method(selector = "unprojectPoint:ontoPlaneWithTransform:orientation:viewportSize:")
     public native @ByVal VectorFloat3 unprojectPoint(@ByVal CGPoint point, @ByVal MatrixFloat4x4 planeTransform, UIInterfaceOrientation orientation, @ByVal CGSize viewportSize);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "unprojectPoint:ontoPlaneWithTransform:viewRotationAngle:viewportSize:")
+    public native @ByVal VectorFloat3 unprojectPoint(@ByVal CGPoint point, @ByVal MatrixFloat4x4 planeTransform, @MachineSizedFloat double viewRotationAngle, @ByVal CGSize viewportSize);
+    /**
+     * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use viewMatrixForViewRotationAngle:
+     */
+    @Deprecated
     @Method(selector = "viewMatrixForOrientation:")
     public native @ByVal MatrixFloat4x4 viewMatrixForOrientation(UIInterfaceOrientation orientation);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "viewMatrixForViewRotationAngle:")
+    public native @ByVal MatrixFloat4x4 viewMatrixForViewRotationAngle(@MachineSizedFloat double viewRotationAngle);
     /*</methods>*/
 }

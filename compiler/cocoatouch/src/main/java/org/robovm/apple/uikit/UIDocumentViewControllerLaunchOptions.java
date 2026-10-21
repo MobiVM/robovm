@@ -69,6 +69,16 @@ import org.robovm.apple.symbols.*;
     public native String getTitle();
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "subtitle")
+    public native String getSubtitle();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSubtitle:")
+    public native void setSubtitle(String v);
     @Property(selector = "primaryAction")
     public native UIAction getPrimaryAction();
     @Property(selector = "setPrimaryAction:")

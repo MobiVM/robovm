@@ -301,6 +301,7 @@ protocols:
         methods:
             '-didReceiveLocationPushPayload:completion:':
                 name: didReceiveLocationPushPayload
+    CLBodyIdentifiable: {} #since 27.0
 functions:
     CLLocationCoordinate2DMake:
         exclude: true

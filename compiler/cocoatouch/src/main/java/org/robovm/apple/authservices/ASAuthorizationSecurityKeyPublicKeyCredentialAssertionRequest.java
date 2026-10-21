@@ -66,6 +66,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setAppID:")
     public native void setAppID(String v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFAssertionInput getPrf();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setPrf:")
+    public native void setPrf(ASAuthorizationPublicKeyCredentialPRFAssertionInput v);
     @Property(selector = "challenge")
     public native NSData getChallenge();
     @Property(selector = "setChallenge:")

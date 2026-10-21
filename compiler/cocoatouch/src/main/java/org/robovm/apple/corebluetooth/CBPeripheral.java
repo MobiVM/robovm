@@ -108,5 +108,15 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "openL2CAPChannel:")
     public native void openL2CAPChannel(short PSM);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "startChannelSoundingSession:")
+    public native void startChannelSoundingSession(CBChannelSoundingSessionConfiguration configuration);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "cancelChannelSoundingSession")
+    public native void cancelChannelSoundingSession();
     /*</methods>*/
 }

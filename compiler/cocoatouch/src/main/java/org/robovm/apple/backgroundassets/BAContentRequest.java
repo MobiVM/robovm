@@ -31,14 +31,20 @@ import org.robovm.apple.foundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 16.1 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/BAContentRequest/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Install(1L),
     Update(2L),
-    Periodic(3L);
+    Periodic(3L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    LanguageChange(4L);
     /*</values>*/
 
     /*<bind>*/

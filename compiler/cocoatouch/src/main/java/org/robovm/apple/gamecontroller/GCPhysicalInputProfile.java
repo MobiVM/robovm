@@ -230,6 +230,16 @@ import org.robovm.apple.corehaptic.*;
         @GlobalValue(symbol="GCInputRightTrigger", optional=true)
         public static native NSString RightTrigger();
         /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="GCInputLeftSideButton", optional=true)
+        public static native NSString LeftSideButton();
+        /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="GCInputRightSideButton", optional=true)
+        public static native NSString RightSideButton();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="GCInputButtonHome", optional=true)

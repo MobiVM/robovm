@@ -51,6 +51,16 @@ import org.robovm.apple.coreanimation.*;
     /*<properties>*/
     @NotImplemented("elements")
     public NSArray<PKIdentityElement> getElements() { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("issuerIdentifiers")
+    public NSArray<NSData> getIssuerIdentifiers() { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("setIssuerIdentifiers:")
+    public void setIssuerIdentifiers(NSArray<NSData> v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

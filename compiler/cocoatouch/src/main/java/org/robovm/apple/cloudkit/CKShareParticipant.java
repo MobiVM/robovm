@@ -106,6 +106,8 @@ import org.robovm.apple.fileprovider.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Method(selector = "isEqual:")
+    public native boolean isEqual(NSObject object);
     /**
      * @since Available in iOS 18.0 and later.
      */

@@ -75,6 +75,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "windowScene:didUpdateEffectiveGeometry:")
     void didUpdateEffectiveGeometry(UIWindowScene windowScene, UIWindowSceneGeometry previousEffectiveGeometry);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "supportedInterfaceOrientationsForWindowScene:")
+    UIInterfaceOrientationMask supportedInterfaceOrientationsForWindowScene(UIWindowScene windowScene);
     @Method(selector = "windowScene:performActionForShortcutItem:completionHandler:")
     void performAction(UIWindowScene windowScene, UIApplicationShortcutItem shortcutItem, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "windowScene:userDidAcceptCloudKitShareWithMetadata:")

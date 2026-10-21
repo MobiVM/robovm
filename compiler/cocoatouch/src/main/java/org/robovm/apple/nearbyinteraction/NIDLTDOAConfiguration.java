@@ -50,12 +50,27 @@ import org.robovm.apple.dispatch.*;
     protected NIDLTDOAConfiguration(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithNetworkIdentifier:")
     public NIDLTDOAConfiguration(@MachineSizedSInt long networkIdentifier) { super((SkipInit) null); initObject(init(networkIdentifier)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithNetworkIdentifier:discoveryMethod:")
+    public NIDLTDOAConfiguration(@MachineSizedSInt long networkIdentifier, NIDLTDOADiscoveryMethod discoveryMethod) { super((SkipInit) null); initObject(init(networkIdentifier, discoveryMethod)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "networkIdentifier")
     public native @MachineSizedSInt long getNetworkIdentifier();
     @Property(selector = "setNetworkIdentifier:")
     public native void setNetworkIdentifier(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "discoveryMethod")
+    public native NIDLTDOADiscoveryMethod getDiscoveryMethod();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setDiscoveryMethod:")
+    public native void setDiscoveryMethod(NIDLTDOADiscoveryMethod v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -63,5 +78,10 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "initWithNetworkIdentifier:")
     protected native @Pointer long init(@MachineSizedSInt long networkIdentifier);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithNetworkIdentifier:discoveryMethod:")
+    protected native @Pointer long init(@MachineSizedSInt long networkIdentifier, NIDLTDOADiscoveryMethod discoveryMethod);
     /*</methods>*/
 }

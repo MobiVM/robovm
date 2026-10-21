@@ -77,11 +77,23 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal VectorFloat3 getScale();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
      */
+    @Deprecated
     @Property(selector = "resourceGroupName")
     public native String getResourceGroupName();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
+     */
+    @Deprecated
     @Property(selector = "rawFeaturePoints")
     public native ARPointCloud getRawFeaturePoints();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "usdzFile")
+    public native NSURL getUsdzFile();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -95,12 +107,32 @@ import org.robovm.apple.coreanimation.*;
     
     @Method(selector = "initWithArchiveURL:error:")
     protected native @Pointer long init(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
+     */
+    @Deprecated
     @Method(selector = "exportObjectToURL:previewImage:error:")
     public native boolean exportObject(NSURL url, UIImage previewImage, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
+     */
+    @Deprecated
     @Method(selector = "referenceObjectByApplyingTransform:")
     public native ARReferenceObject referenceObjectByApplyingTransform(@ByVal MatrixFloat4x4 transform);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
+     */
+    @Deprecated
     @Method(selector = "referenceObjectByMergingObject:error:")
     public native ARReferenceObject referenceObjectByMerging(ARReferenceObject object, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Only supported for legacy reference objects.
+     */
+    @Deprecated
     @Method(selector = "referenceObjectsInGroupNamed:bundle:")
     public static native NSSet<ARReferenceObject> referenceObjectsInGroup(String name, NSBundle bundle);
     @Method(selector = "encodeWithCoder:")

@@ -50,7 +50,7 @@ import org.robovm.apple.symbols.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSTextLayoutFragment/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements NSSecureCoding/*</implements>*/ {
+    /*<implements>*/implements NSSecureCoding, NSTextViewportRenderingSurfaceKey/*</implements>*/ {
 
     /*<ptr>*/public static class NSTextLayoutFragmentPtr extends Ptr<NSTextLayoutFragment, NSTextLayoutFragmentPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSTextLayoutFragment.class); }/*</bind>*/

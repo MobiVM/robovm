@@ -83,6 +83,16 @@ import org.robovm.apple.symbols.*;
     public native UIImage getImage();
     @Property(selector = "setImage:")
     public native void setImage(UIImage v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "selectedImage")
+    public native UIImage getSelectedImage();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setSelectedImage:")
+    public native void setSelectedImage(UIImage v);
     @Property(selector = "subtitle")
     public native String getSubtitle();
     @Property(selector = "setSubtitle:")

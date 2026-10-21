@@ -52,6 +52,11 @@ import org.robovm.apple.dispatch.*;
     MTLDataType getIndexType();
     @Property(selector = "dimensions")
     MTLTensorExtents getDimensions();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "auxiliaryPlanes")
+    NSArray<MTLTensorAuxiliaryPlaneType> getAuxiliaryPlanes();
     /*</properties>*/
     /*<methods>*/
     

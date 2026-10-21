@@ -1627,6 +1627,8 @@ protocols:
                 name: readCommissioningInfo
             '-controller:commissioningComplete:nodeID:metrics:':
                 name: commissioningComplete
+            '-controller:commissioningComplete:nodeID:metrics:context:': #since 27.0
+                name: commissioningComplete
             '-controller:readCommissioneeInfo:':
                 name: readCommissioneeInfo
             '-controller:suspendedChangedTo:':
@@ -1781,6 +1783,8 @@ protocols:
                 name: failed
             '-commissioning:succeededForNodeID:metrics:':
                 name: succeededForNodeID
+            '-commissioning:succeededForNodeID:metrics:context:': #since 27.0
+                name: succeededForNodeID
 functions:
     MTRSetLogCallback:
         class: MTRLogging
@@ -1839,6 +1843,11 @@ values:
         class: MTRXPCServerProtocol
         static_class: Keys
         name: 'Registration#{g[0]}'
+
+    MTR(CommissioningSessionTransportType|UnpoweredInitialPhase):
+        class: MTRCommissioningDelegate
+        static_class: Keys
+        name: '#{g[0]}'
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

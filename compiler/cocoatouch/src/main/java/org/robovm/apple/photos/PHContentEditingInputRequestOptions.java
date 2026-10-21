@@ -67,6 +67,26 @@ import org.robovm.apple.uniformtypeid.*;
     public native @Block VoidBlock2<Double, BooleanPtr> getProgressHandler();
     @Property(selector = "setProgressHandler:")
     public native void setProgressHandler(@Block VoidBlock2<Double, BooleanPtr> v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "skipsDisplaySizeImage")
+    public native boolean isSkipsDisplaySizeImage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSkipsDisplaySizeImage:")
+    public native void setSkipsDisplaySizeImage(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "originalResourceChoice")
+    public native PHOriginalResourceChoice getOriginalResourceChoice();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOriginalResourceChoice:")
+    public native void setOriginalResourceChoice(PHOriginalResourceChoice v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

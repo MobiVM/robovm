@@ -82,17 +82,23 @@ import org.robovm.apple.dispatch.*;
     public native void setStencilStoreAction(MTLStoreAction storeAction);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
      */
+    @Deprecated
     @Method(selector = "setColorStoreActionOptions:atIndex:")
     public native void setColorStoreActionOptions(MTLStoreActionOptions storeActionOptions, @MachineSizedUInt long colorAttachmentIndex);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
      */
+    @Deprecated
     @Method(selector = "setDepthStoreActionOptions:")
     public native void setDepthStoreActionOptions(MTLStoreActionOptions storeActionOptions);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
      */
+    @Deprecated
     @Method(selector = "setStencilStoreActionOptions:")
     public native void setStencilStoreActionOptions(MTLStoreActionOptions storeActionOptions);
     @Method(selector = "endEncoding")

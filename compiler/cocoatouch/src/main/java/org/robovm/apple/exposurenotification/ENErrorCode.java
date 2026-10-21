@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Library("ExposureNotification")/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated @Library("ExposureNotification")/*</annotations>*/
 public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(1L),
@@ -64,7 +65,9 @@ public enum /*<name>*/ENErrorCode/*</name>*/ implements NSErrorCode {
     /*<methods>*/
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @GlobalValue(symbol="ENErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

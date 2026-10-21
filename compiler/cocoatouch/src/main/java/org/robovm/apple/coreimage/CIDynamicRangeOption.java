@@ -97,15 +97,15 @@ import org.robovm.apple.avfoundation.*;
 
     /*<constants>*/
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     public static final CIDynamicRangeOption Standard = new CIDynamicRangeOption("Standard");
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     public static final CIDynamicRangeOption ConstrainedHigh = new CIDynamicRangeOption("ConstrainedHigh");
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     public static final CIDynamicRangeOption High = new CIDynamicRangeOption("High");
     /*</constants>*/
@@ -134,17 +134,17 @@ import org.robovm.apple.avfoundation.*;
 
         /*<values>*/
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIDynamicRangeStandard", optional=true)
         public static native NSString Standard();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIDynamicRangeConstrainedHigh", optional=true)
         public static native NSString ConstrainedHigh();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIDynamicRangeHigh", optional=true)
         public static native NSString High();

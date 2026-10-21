@@ -55,7 +55,11 @@ public enum /*<name>*/AXSettingsFeature/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 26.0 and later.
      */
-    DwellControl(5L);
+    DwellControl(5L),
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    CaptionStyles(6L);
     /*</values>*/
 
     /*<bind>*/

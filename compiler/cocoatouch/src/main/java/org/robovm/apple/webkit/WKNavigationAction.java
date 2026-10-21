@@ -70,6 +70,11 @@ import org.robovm.apple.coreanimation.*;
     @Property(selector = "isContentRuleListRedirect")
     public native boolean isContentRuleListRedirect();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "mainFrameNavigation")
+    public native WKNavigation getMainFrameNavigation();
+    /**
      * @since Available in iOS 18.4 and later.
      */
     @Property(selector = "modifierFlags")

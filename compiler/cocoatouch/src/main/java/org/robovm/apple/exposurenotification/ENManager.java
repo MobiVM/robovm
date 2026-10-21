@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ExposureNotification") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ENManager/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -52,12 +53,16 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "activityHandler")
     public native @Block VoidBlock1<ENActivityFlags> getActivityHandler();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setActivityHandler:")
     public native void setActivityHandler(@Block VoidBlock1<ENActivityFlags> v);
     @Property(selector = "dispatchQueue")
@@ -76,12 +81,16 @@ import org.robovm.apple.dispatch.*;
     public native boolean isExposureNotificationEnabled();
     /**
      * @since Available in iOS 14.4 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "diagnosisKeysAvailableHandler")
     public native @Block VoidBlock1<NSArray<ENTemporaryExposureKey>> getDiagnosisKeysAvailableHandler();
     /**
      * @since Available in iOS 14.4 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setDiagnosisKeysAvailableHandler:")
     public native void setDiagnosisKeysAvailableHandler(@Block VoidBlock1<NSArray<ENTemporaryExposureKey>> v);
     /*</properties>*/
@@ -93,14 +102,18 @@ import org.robovm.apple.dispatch.*;
     public native void invalidate();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Method(selector = "getUserTraveledWithCompletionHandler:")
     public native void getUserTraveled(@Block VoidBlock2<Boolean, NSError> completionHandler);
     @Method(selector = "setExposureNotificationEnabled:completionHandler:")
     public native void setExposureNotificationEnabled(boolean enabled, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Method(selector = "detectExposuresWithConfiguration:completionHandler:")
     public native NSProgress detectExposures(ENExposureConfiguration configuration, @Block VoidBlock2<ENExposureDetectionSummary, NSError> completionHandler);
     @Method(selector = "detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:")
@@ -114,7 +127,9 @@ import org.robovm.apple.dispatch.*;
     public native NSProgress getExposureInfo(ENExposureDetectionSummary summary, String userExplanation, @Block VoidBlock2<NSArray<ENExposureInfo>, NSError> completionHandler);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Method(selector = "getExposureWindowsFromSummary:completionHandler:")
     public native NSProgress getExposureWindows(ENExposureDetectionSummary summary, @Block VoidBlock2<NSArray<ENExposureWindow>, NSError> completionHandler);
     @Method(selector = "getDiagnosisKeysWithCompletionHandler:")
@@ -123,12 +138,16 @@ import org.robovm.apple.dispatch.*;
     public native void getTestDiagnosisKeys(@Block VoidBlock2<NSArray<ENTemporaryExposureKey>, NSError> completionHandler);
     /**
      * @since Available in iOS 14.4 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Method(selector = "preAuthorizeDiagnosisKeysWithCompletionHandler:")
     public native void preAuthorizeDiagnosisKeys(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 14.4 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Method(selector = "requestPreAuthorizedDiagnosisKeysWithCompletionHandler:")
     public native void requestPreAuthorizedDiagnosisKeys(@Block VoidBlock1<NSError> completionHandler);
     /*</methods>*/
