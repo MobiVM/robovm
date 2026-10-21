@@ -106,13 +106,25 @@ static jint getUnicodeLengthOfUtf8(const char* utf8) {
     unsigned char ch;
     unsigned char ch2;
     unsigned char ch3;
+    unsigned char ch4;
     while ((ch = *utf8++)) {
         len++;
-        if (ch & 0x80) { // 2 or 3 byte encoding
+        if (ch & 0x80) { // 2, 3 or 4 byte encoding
             if (! (ch & 0x40))
                 return -1;
             ch2 = *utf8++;
-            if (ch & 0x20) { // 3 byte encoding
+            if ((ch & 0xf8) == 0xf0) { // 4 byte encoding
+                ch3 = *utf8++;
+                ch4 = *utf8++;
+                if ((ch2 & 0xc0) != 0x80 ||
+                    (ch3 & 0xc0) != 0x80 ||
+                    (ch4 & 0xc0) != 0x80)
+                    return -1;
+                uint32_t codePoint = ((ch & 0x07) << 18) | ((ch2 & 0x3f) << 12) | ((ch3 & 0x3f) << 6) | (ch4 & 0x3f);
+                if (codePoint < 0x10000 || codePoint > 0x10ffff)
+                    return -1;
+                len++;
+            } else if (ch & 0x20) { // 3 byte encoding
                 ch3 = *utf8++;
                 if ((ch  & 0xf0) != 0xe0  ||  // check first byte high bits
                     (ch2 & 0xc0) != 0x80  ||  // check second byte high bits
@@ -156,7 +168,16 @@ static void utf8ToUnicode(jchar* unicode, const char* utf8String) {
     while ((ch = (jchar) *utf8++)) {
         if (ch & 0x80) {
 //            assert(ch & 0x40);
-            if (ch & 0x20) {
+            if ((ch & 0xf8) == 0xf0) { // 4 byte encoding
+                jchar x = ch;
+                jchar y = (jchar) *utf8++;
+                jchar z = (jchar) *utf8++;
+                jchar w = (jchar) *utf8++;
+                uint32_t codePoint = ((x & 0x07) << 18) | ((y & 0x3f) << 12) | ((z & 0x3f) << 6) | (w & 0x3f);
+                codePoint -= 0x10000;
+                *unicode++ = (jchar) (0xd800 + (codePoint >> 10));
+                *unicode++ = (jchar) (0xdc00 + (codePoint & 0x3ff));
+            } else if (ch & 0x20) {
                 jchar x = ch;
                 jchar y = (jchar) *utf8++;
                 jchar z = (jchar) *utf8++;
@@ -235,6 +256,9 @@ Object* rvmNewStringUTF(Env* env, const char* s, jint length) {
     if (length == 0) s = "";
     if (!s) return NULL;
     length = (length == -1) ? getUnicodeLengthOfUtf8(s) : length;
+    if (length < 0) {
+        return NULL;
+    }
     CharArray* value = rvmNewCharArray(env, length);
     if (!value) return NULL;
     utf8ToUnicode(value->values, s);
@@ -260,6 +284,10 @@ Object* rvmNewInternedStringUTF(Env* env, const char* s, jint length) {
     Object* string = findInternedString(env, s);
     if (!string) {
         length = (length == -1) ? getUnicodeLengthOfUtf8(s) : length;
+        if (length < 0) {
+            releaseInternedStringsLock();
+            return NULL;
+        }
         CharArray* value = rvmNewCharArray(env, length);
         if (value) {
             utf8ToUnicode(value->values, s);
