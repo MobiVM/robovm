@@ -566,6 +566,69 @@ public class ConfigTest {
     }
 
     @Test
+    public void testForcedXCFrameworkResolvedIntoForcedStaticLib() throws Exception {
+        // <framework force="true"> resolved to a static lib in an xcframework keeps the force flag
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File xcFramework = new File(workingDirectory, "libs/candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+        File configXml = new File(workingDirectory, "robovm.xml");
+        FileUtils.writeStringToFile(configXml, "<config>"
+                + "<frameworks><framework force=\"true\">candidate</framework></frameworks>"
+                + "<frameworkPaths><path>libs</path></frameworkPaths>"
+                + "</config>", "UTF-8");
+
+        Config.Builder builder = new Config.Builder();
+        builder.read(configXml);
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        assertEquals(Collections.emptyList(), config.getFrameworks());
+        assertEquals(Arrays.asList(
+                new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), true)),
+                config.getLibs());
+    }
+
+    @Test
+    public void testForcedXCFrameworkPathResolvedIntoForcedStaticLib() throws Exception {
+        // <xcFrameworks><path force="true"> resolved to a static lib keeps the force flag
+        File testDir = createTempDir();
+        File tmpDir = new File(testDir, "tmp");
+        File workingDirectory = new File(tmpDir, "wd");
+        File xcFramework = new File(workingDirectory, "libs/candidate.xcframework");
+        xcFramework.mkdirs();
+        byte[] data = IOUtils.toByteArray(getClass().getResourceAsStream("ConfigTest.xcframework.plist.xml"));
+        FileUtils.writeByteArrayToFile(new File(xcFramework, "Info.plist"), data);
+        String configText = "<config><xcFrameworks>"
+                + "<path force=\"true\">libs/candidate.xcframework</path>"
+                + "</xcFrameworks></config>";
+
+        Config.Builder builder = new Config.Builder();
+        builder.read(new StringReader(configText), workingDirectory);
+        builder.tmpDir(tmpDir);
+        builder.os(OS.ios);
+        builder.arch(new Arch(CpuArch.x86_64, Environment.Simulator));
+        builder.targetType(IOSTarget.TYPE);
+        builder.mainClass("Main");
+        builder.home(fakeHome);
+        builder.addClasspathEntry(new File(tmpDir, "cp1"));
+        Config config = builder.build();
+
+        assertEquals(Arrays.asList(
+                new Lib(new File(xcFramework, "ios-x86_64-simulator/library-static3.a").getAbsolutePath(), true)),
+                config.getLibs());
+    }
+
+    @Test
     public void testXCFrameworkResolved() throws Exception {
         // test that stand-alon <xcframeworks><path> parameter is resolved into static lib
         File testDir = createTempDir();
