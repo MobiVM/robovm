@@ -517,8 +517,15 @@ static jobject makeStructTimespec(JNIEnv* env, const struct timespec& ts) {
     if (ctor == NULL) {
         return NULL;
     }
-    return env->NewObject(JniConstants::GetStructTimespecClass(env), ctor,
-            static_cast<jlong>(ts.tv_sec), static_cast<jlong>(ts.tv_nsec));
+    // XNU might report negative tv_nsec for timestamps before epoch (e.g. sec=-19, nsec=-350912000),
+    // normalize to [0, 999999999] as StructTimespec expects
+    jlong tv_sec = static_cast<jlong>(ts.tv_sec) + static_cast<jlong>(ts.tv_nsec) / 1000000000LL;
+    jlong tv_nsec = static_cast<jlong>(ts.tv_nsec) % 1000000000LL;
+    if (tv_nsec < 0) {
+        tv_sec -= 1;
+        tv_nsec += 1000000000LL;
+    }
+    return env->NewObject(JniConstants::GetStructTimespecClass(env), ctor, tv_sec, tv_nsec);
 }
 
 static jobject makeStructStat(JNIEnv* env, const struct stat64& sb) {
