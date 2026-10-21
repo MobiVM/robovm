@@ -1,5 +1,7 @@
 package org.robovm.compiler.config;
 
+import org.robovm.compiler.config.ConfigXmlEntries.FrameworkEntry;
+import org.robovm.compiler.config.ConfigXmlEntries.XcFrameworkEntry;
 import org.robovm.compiler.config.Config.QualifiedEntry;
 import org.robovm.compiler.config.Config.QualifiedFile;
 import org.robovm.compiler.util.XCFrameworkPlist;
@@ -40,11 +42,11 @@ final class ResolvedLocations {
         private final Arch arch;
         private List<QualifiedFile> frameworkPaths;
         private List<Config.Lib> libs;
-        private List<QualifiedEntry> frameworks;
+        private List<FrameworkEntry> frameworks;
         private List<QualifiedEntry> weakFrameworks;
         private Predicate<Qualified> qualifier = v -> true;
         private boolean xcFrameworkLookup;
-        private List<QualifiedFile> xcFrameworks;
+        private List<XcFrameworkEntry> xcFrameworks;
 
         //
         // intermediate data
@@ -69,7 +71,7 @@ final class ResolvedLocations {
             return this;
         }
 
-        Resolver setFrameworks(List<QualifiedEntry> frameworks) {
+        Resolver setFrameworks(List<FrameworkEntry> frameworks) {
             this.frameworks = frameworks;
             return this;
         }
@@ -89,7 +91,7 @@ final class ResolvedLocations {
             return this;
         }
 
-        Resolver setXcFrameworks(List<QualifiedFile> xcFrameworks) {
+        Resolver setXcFrameworks(List<XcFrameworkEntry> xcFrameworks) {
             this.xcFrameworks = xcFrameworks;
             return this;
         }
@@ -153,6 +155,8 @@ final class ResolvedLocations {
                     .collect(Collectors.toList());
 
             List<String> frameworkNames = new ArrayList<>(resolvedFrameworks);
+            Set<String> forcedFrameworks = frameworks.stream().filter(qualifier).filter(FrameworkEntry::isForce)
+                    .map(f -> f.entry).collect(Collectors.toSet());
             resolvedFrameworks.clear();
             for (String frameworkName : frameworkNames) {
                 boolean xcFrameworkFound = false;
@@ -166,7 +170,8 @@ final class ResolvedLocations {
                     guess = new File(path, frameworkName + ".xcframework");
                     if (guess.isDirectory()) {
                         // xc framework found, process it stop resolving
-                        processXCFramework(guess, pathChain, resolvedFrameworks, resolvedLibs);
+                        processXCFramework(guess, pathChain, resolvedFrameworks, resolvedLibs,
+                                forcedFrameworks.contains(frameworkName));
                         xcFrameworkFound = true;
                         break;
                     }
@@ -190,16 +195,16 @@ final class ResolvedLocations {
 
         private void handleXCFrameworks() {
             // qualify for given constraints (e.g. specific path etc)
-            List<File> xcFrameworkLocations = xcFrameworks.stream()
+            List<XcFrameworkEntry> xcFrameworkEntries = xcFrameworks.stream()
                     .filter(qualifier)
-                    .map(f -> f.entry)
                     .collect(Collectors.toList());
-            for (File xcFrameworkLocation : xcFrameworkLocations)
-                processXCFramework(xcFrameworkLocation, resolvedFrameworkPaths, resolvedFrameworks, resolvedLibs);
+            for (XcFrameworkEntry xcFramework : xcFrameworkEntries)
+                processXCFramework(xcFramework.entry, resolvedFrameworkPaths, resolvedFrameworks, resolvedLibs,
+                        xcFramework.isForce());
         }
 
         private void processXCFramework(File xcFrameworkLocation, List<File> destLocations, List<String> destFrameworks,
-                                        List<Config.Lib> destLibs) {
+                                        List<Config.Lib> destLibs, boolean forceStaticLib) {
             try {
                 String frameworkName = xcFrameworkLocation.getName();
                 XCFrameworkPlist plist = XCFrameworkPlist.load(xcFrameworkLocation);
@@ -224,7 +229,7 @@ final class ResolvedLocations {
                     } else if (libPath.endsWith(".a")) {
                         // static library inside .xcframework, add it to libs
                         File staticLibFile = new File(new File(xcFrameworkLocation, library.getIdentifier()), libPath);
-                        destLibs.add(new Config.Lib(staticLibFile.getAbsolutePath(), false));
+                        destLibs.add(new Config.Lib(staticLibFile.getAbsolutePath(), forceStaticLib));
                     } else {
                         String message = String.format(
                                 "Unsupported library type %s matched %s %s, in '%s'",

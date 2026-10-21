@@ -84,6 +84,7 @@ public final class DeveloperImageResolver {
         File bestMatchDmgFile= null;
         File bestMatchSignatureFile= null;
         File[] dirs = dsDir.listFiles();
+        if (dirs == null) dirs = new File[0];
         for (File dir : dirs) {
             if (dir.isDirectory()) {
                 Matcher matcher = pattern.matcher(dir.getName());
