@@ -18,6 +18,8 @@
 package org.robovm.compiler.config;
 
 import org.robovm.compiler.config.Config.QualifiedEntry;
+import org.robovm.compiler.config.Config.QualifiedFile;
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -62,14 +64,45 @@ final class ConfigXmlEntries {
     }
 
     /**
+     * Framework entry
+     * if force == true will use --force_load for static framework
+     */
+    static final class FrameworkEntry extends QualifiedEntry {
+        @Attribute(name = "force", required = false) Boolean force;
+
+        FrameworkEntry() {
+        }
+
+        FrameworkEntry(String entry) {
+            super(entry);
+        }
+
+        boolean isForce() {
+            return force != null && force;
+        }
+    }
+
+    /**
      * Replacement for
      * @ElementList(required = false, entry = "framework")
-     * private ArrayList<QualifiedEntry> frameworks;
+     * private ArrayList<FrameworkEntry> frameworks;
+     */
+    @Root
+    static class FrameworksList extends BaseArrayList<FrameworkEntry> {
+        @ElementList(required = false, entry = "framework", inline = true)
+        void setItems(List<FrameworkEntry> items) { super.setItems(items); }
+
+        @ElementList(required = false, entry = "framework", inline = true)
+        private List<FrameworkEntry> getItems() { return this; }
+    }
+
+    /**
+     * Replacement for
      * @ElementList(required = false, entry = "framework")
      * private ArrayList<QualifiedEntry> weakFrameworks;
      */
     @Root
-    static class FrameworksList extends BaseArrayList<QualifiedEntry> {
+    static class WeakFrameworksList extends BaseArrayList<QualifiedEntry> {
         @ElementList(required = false, entry = "framework", inline = true)
         void setItems(List<QualifiedEntry> items) { super.setItems(items); }
 
@@ -78,11 +111,42 @@ final class ConfigXmlEntries {
     }
 
     /**
+     * XCFramework path entry
+     * if force == true will use --force_load for static framework
+     */
+    static final class XcFrameworkEntry extends QualifiedFile {
+        @Attribute(name = "force", required = false) Boolean force;
+
+        XcFrameworkEntry() {
+        }
+
+        XcFrameworkEntry(File file) {
+            super(file);
+        }
+
+        boolean isForce() {
+            return force != null && force;
+        }
+    }
+
+    /**
+     * Replacement for
+     * @ElementList(required = false, entry = "path")
+     * private ArrayList<XcFrameworkEntry> xcFrameworks;
+     */
+    @Root
+    static class XcFrameworksList extends BaseArrayList<XcFrameworkEntry> {
+        @ElementList(required = false, entry = "path", inline = true)
+        void setItems(List<XcFrameworkEntry> items) { super.setItems(items); }
+
+        @ElementList(required = false, entry = "path", inline = true)
+        private List<XcFrameworkEntry> getItems() { return this; }
+    }
+
+    /**
      * replacement for
-     * private ArrayList<QualifiedEntry> weakFrameworks;
      * @ElementList(required = false, entry = "path")
      * private ArrayList<QualifiedFile> frameworkPaths;
-     * @ElementList(required = false, entry = "path")
      * @ElementList(required = false, entry = "path")
      * private ArrayList<QualifiedFile> appExtensionPaths;
      */
