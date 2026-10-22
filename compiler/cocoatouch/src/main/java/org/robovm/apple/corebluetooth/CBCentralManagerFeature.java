@@ -43,6 +43,10 @@ public final class /*<name>*/CBCentralManagerFeature/*</name>*/ extends Bits</*<
      * @since Available in iOS 13.0 and later.
      */
     public static final CBCentralManagerFeature ExtendedScanAndConnect = new CBCentralManagerFeature(1L);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final CBCentralManagerFeature ChannelSounding = new CBCentralManagerFeature(1024L);
     /*</values>*/
 
     /*<bind>*/

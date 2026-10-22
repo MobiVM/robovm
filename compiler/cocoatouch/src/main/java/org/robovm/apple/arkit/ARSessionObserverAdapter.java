@@ -85,5 +85,10 @@ import org.robovm.apple.coreanimation.*;
      */
     @NotImplemented("session:didChangeGeoTrackingStatus:")
     public void didChangeGeoTrackingStatus(ARSession session, ARGeoTrackingStatus geoTrackingStatus) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("session:didChangeViewRotationAngle:")
+    public void didChangeViewRotationAngle(ARSession session, @MachineSizedFloat double viewRotationAngle) {}
     /*</methods>*/
 }

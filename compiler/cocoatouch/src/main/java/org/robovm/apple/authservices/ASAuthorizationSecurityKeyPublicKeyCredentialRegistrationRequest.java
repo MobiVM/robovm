@@ -64,6 +64,16 @@ import org.robovm.apple.coreanimation.*;
     public native ASAuthorizationPublicKeyCredentialResidentKeyPreference getResidentKeyPreference();
     @Property(selector = "setResidentKeyPreference:")
     public native void setResidentKeyPreference(ASAuthorizationPublicKeyCredentialResidentKeyPreference v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "prf")
+    public native ASAuthorizationPublicKeyCredentialPRFRegistrationInput getPrf();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setPrf:")
+    public native void setPrf(ASAuthorizationPublicKeyCredentialPRFRegistrationInput v);
     @Property(selector = "relyingPartyIdentifier")
     public native String getRelyingPartyIdentifier();
     @Property(selector = "userID")

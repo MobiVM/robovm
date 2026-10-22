@@ -105,17 +105,17 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setBoostShadowAmount:")
     public native void setBoostShadowAmount(float v);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "isHighlightRecoverySupported")
     public native boolean isHighlightRecoverySupported();
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "isHighlightRecoveryEnabled")
     public native boolean isHighlightRecoveryEnabled();
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "setHighlightRecoveryEnabled:")
     public native void setHighlightRecoveryEnabled(boolean v);
@@ -165,6 +165,12 @@ import org.robovm.apple.avfoundation.*;
     public native float getMoireReductionAmount();
     @Property(selector = "setMoireReductionAmount:")
     public native void setMoireReductionAmount(float v);
+    @Property(selector = "isDespeckleSupported")
+    public native boolean isDespeckleSupported();
+    @Property(selector = "despeckleAmount")
+    public native float getDespeckleAmount();
+    @Property(selector = "setDespeckleAmount:")
+    public native void setDespeckleAmount(float v);
     @Property(selector = "isLocalToneMapSupported")
     public native boolean isLocalToneMapSupported();
     @Property(selector = "localToneMapAmount")
@@ -214,6 +220,16 @@ import org.robovm.apple.avfoundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "downloadResourcesWithTimeout:completionHandler:")
+    public native NSProgress downloadResources(double timeout, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "supportedCameraModelsWithVersion:")
+    public static native NSArray<NSString> supportedCameraModels(CIRAWDecoderVersion version);
     @Method(selector = "filterWithImageURL:")
     protected static native @Pointer long create(NSURL url);
     @Method(selector = "filterWithImageData:identifierHint:")

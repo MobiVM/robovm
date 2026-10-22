@@ -235,9 +235,41 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 26.2 and later.
      */
     public static final PKPaymentNetwork Conecs = new PKPaymentNetwork("Conecs");
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    public static final PKPaymentNetwork ElCorteIngles = new PKPaymentNetwork("ElCorteIngles");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork RuPay = new PKPaymentNetwork("RuPay");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork Verve = new PKPaymentNetwork("Verve");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork Humo = new PKPaymentNetwork("Humo");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork UzCard = new PKPaymentNetwork("UzCard");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork PayPak = new PKPaymentNetwork("PayPak");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork Maal = new PKPaymentNetwork("Maal");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final PKPaymentNetwork Elcard = new PKPaymentNetwork("Elcard");
     /*</constants>*/
     
-    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Bancomat, PagoBancomat, Bancontact, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco, PostFinance, Tmoney, Meeza, NAPAS, BankAxept, Himyan, Jaywan, MyDebit, Conecs/*</value_list>*/};
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, Bancomat, PagoBancomat, Bancontact, CarteBancaire, CarteBancaires, CartesBancaires, ChinaUnionPay, Dankort, Discover, Eftpos, Electron, Elo, IDCredit, Interac, JCB, Mada, Maestro, MasterCard, Mir, PrivateLabel, QuicPay, Suica, Visa, VPay, Barcode, Girocard, Waon, Nanaco, PostFinance, Tmoney, Meeza, NAPAS, BankAxept, Himyan, Jaywan, MyDebit, Conecs, ElCorteIngles, RuPay, Verve, Humo, UzCard, PayPak, Maal, Elcard/*</value_list>*/};
     
     /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -441,6 +473,46 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="PKPaymentNetworkConecs", optional=true)
         public static native NSString Conecs();
+        /**
+         * @since Available in iOS 26.4 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkElCorteIngles", optional=true)
+        public static native NSString ElCorteIngles();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkRuPay", optional=true)
+        public static native NSString RuPay();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkVerve", optional=true)
+        public static native NSString Verve();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkHumo", optional=true)
+        public static native NSString Humo();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkUzCard", optional=true)
+        public static native NSString UzCard();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkPayPak", optional=true)
+        public static native NSString PayPak();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkMaal", optional=true)
+        public static native NSString Maal();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkElcard", optional=true)
+        public static native NSString Elcard();
         /*</values>*/
     }
 }

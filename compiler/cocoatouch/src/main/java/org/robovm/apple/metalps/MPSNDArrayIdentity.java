@@ -72,5 +72,20 @@ import org.robovm.apple.metal.*;
     public native MPSNDArray reshape(MTLComputeCommandEncoder encoder, MTLCommandBuffer cmdBuf, MPSNDArray sourceArray, NSArray<NSNumber> shape, MPSNDArray destinationArray);
     @Method(selector = "reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:")
     public native MPSNDArray reshape(MTLComputeCommandEncoder encoder, MTLCommandBuffer cmdBuf, MPSNDArray sourceArray, @MachineSizedUInt long numberOfDimensions, MachineSizedUIntPtr dimensionSizes, MPSNDArray destinationArray);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "reshapeWithSourceArray:shape:")
+    public native MPSNDArray reshape(MPSNDArray sourceArray, NSArray<NSNumber> shape);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "reshapeWithMTL4CommandEncoder:sourceArray:shape:destinationArray:")
+    public native void reshape(MTL4ComputeCommandEncoder encoder, MPSNDArray sourceArray, NSArray<NSNumber> shape, MPSNDArray destinationArray);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "reshapeWithMTL4CommandEncoder:sourceArray:dimensionCount:dimensionSizes:destinationArray:")
+    public native void reshape(MTL4ComputeCommandEncoder encoder, MPSNDArray sourceArray, @MachineSizedUInt long numberOfDimensions, MachineSizedUIntPtr dimensionSizes, MPSNDArray destinationArray);
     /*</methods>*/
 }

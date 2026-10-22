@@ -95,6 +95,14 @@ import org.robovm.apple.audiotoolbox.*;
     public static final CMMetadataBaseDataType RawData = new CMMetadataBaseDataType("RawData");
     public static final CMMetadataBaseDataType UTF8 = new CMMetadataBaseDataType("UTF8");
     public static final CMMetadataBaseDataType UTF16 = new CMMetadataBaseDataType("UTF16");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final CMMetadataBaseDataType MacRoman = new CMMetadataBaseDataType("MacRoman");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final CMMetadataBaseDataType ISOLatin1 = new CMMetadataBaseDataType("ISOLatin1");
     public static final CMMetadataBaseDataType GIF = new CMMetadataBaseDataType("GIF");
     public static final CMMetadataBaseDataType JPEG = new CMMetadataBaseDataType("JPEG");
     public static final CMMetadataBaseDataType PNG = new CMMetadataBaseDataType("PNG");
@@ -147,9 +155,13 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 18.0 and later.
      */
     public static final CMMetadataBaseDataType QuickTimeMetadataMilliLux = new CMMetadataBaseDataType("QuickTimeMetadataMilliLux");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final CMMetadataBaseDataType QuickTimeMetadataSMPTE2094_50 = new CMMetadataBaseDataType("QuickTimeMetadataSMPTE2094_50");
     /*</constants>*/
     
-    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, RasterRectangleValue, ExtendedRasterRectangleValue, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection, QuickTimeMetadataUUID, QuickTimeMetadataMilliLux/*</value_list>*/};
+    private static /*<name>*/CMMetadataBaseDataType/*</name>*/[] values = new /*<name>*/CMMetadataBaseDataType/*</name>*/[] {/*<value_list>*/RawData, UTF8, UTF16, MacRoman, ISOLatin1, GIF, JPEG, PNG, BMP, Float32, Float64, SInt8, SInt16, SInt32, SInt64, UInt8, UInt16, UInt32, UInt64, PointF32, DimensionsF32, RectF32, AffineTransformF64, PolygonF32, PolylineF32, JSON, PerspectiveTransformF64, RasterRectangleValue, ExtendedRasterRectangleValue, QuickTimeMetadataLocation_ISO6709, QuickTimeMetadataDirection, QuickTimeMetadataUUID, QuickTimeMetadataMilliLux, QuickTimeMetadataSMPTE2094_50/*</value_list>*/};
     
     /*<name>*/CMMetadataBaseDataType/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -178,6 +190,16 @@ import org.robovm.apple.audiotoolbox.*;
         public static native CFString UTF8();
         @GlobalValue(symbol="kCMMetadataBaseDataType_UTF16", optional=true)
         public static native CFString UTF16();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_MacRoman", optional=true)
+        public static native CFString MacRoman();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataBaseDataType_ISOLatin1", optional=true)
+        public static native CFString ISOLatin1();
         @GlobalValue(symbol="kCMMetadataBaseDataType_GIF", optional=true)
         public static native CFString GIF();
         @GlobalValue(symbol="kCMMetadataBaseDataType_JPEG", optional=true)
@@ -258,6 +280,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataMilliLux", optional=true)
         public static native CFString QuickTimeMetadataMilliLux();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMMetadataDataType_QuickTimeMetadataSMPTE2094_50", optional=true)
+        public static native CFString QuickTimeMetadataSMPTE2094_50();
         /*</values>*/
     }
 }

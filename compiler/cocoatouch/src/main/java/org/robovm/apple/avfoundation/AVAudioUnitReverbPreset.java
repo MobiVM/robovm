@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -60,7 +61,11 @@ public enum /*<name>*/AVAudioUnitReverbPreset/*</name>*/ implements ValuedEnum {
     LargeRoom2(9L),
     MediumHall2(10L),
     MediumHall3(11L),
-    LargeHall2(12L);
+    LargeHall2(12L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    OutdoorGeneral(24L);
     /*</values>*/
 
     /*<bind>*/

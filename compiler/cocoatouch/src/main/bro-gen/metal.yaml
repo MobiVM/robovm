@@ -147,6 +147,11 @@ enums:
     MTL4LogicalToPhysicalColorAttachmentMappingState: {}
     MTL4PipelineDataSetSerializerConfiguration: {} #since 26.0
     MTL4BinaryFunctionOptions: {prefix: MTL4BinaryFunctionOption} #since 26.0
+    MTLDeviceError: {nserror: true} #since 26.4
+    MTLContentionRelief: {} #since 27.0
+    MTLTensorPlaneType: {} #since 27.0
+    MTLFloatingPointConversionRoundingMode: {} #since 27.0
+    MTLForwardProgressUsage: {} #since 27.0
 classes:
     MTLAttribute: {}
     MTLFunctionConstant: {}
@@ -536,6 +541,16 @@ classes:
                 name: init
     MTLTensorReferenceType: {} #since 26.0
     MTLTextureViewDescriptor: {} #since 26.0
+    MTLTensorAuxiliaryPlaneDescriptor: {} #since 27.0
+    MTLTensorAuxiliaryPlaneDescriptorMap: #since 27.0
+        methods:
+            '-setDescriptor:forPlane:':
+                name: setDescriptor
+    MTLTensorAuxiliaryPlaneType: {} #since 27.0
+    MTLTensorBufferAttachments: #since 27.0
+        methods:
+            '-setBuffer:offset:forPlane:':
+                name: setBuffer
 protocols:
     MTLHeap:
         methods:
@@ -596,6 +611,8 @@ protocols:
             '-resolveCounters:inRange:destinationBuffer:destinationOffset:':
                 name: resolveCounters
             '-copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:':
+                name: copyFromTensor
+            '-copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:':
                 name: copyFromTensor
             '-barrierAfterQueueStages:beforeStages:':
                 name: barrierAfterQueueStages
@@ -951,6 +968,9 @@ protocols:
                 name: tensorSizeAndAlign
             '-newTensorWithDescriptor:error:':
                 name: newTensor
+            '-newTensorWithDescriptor:attachments:error:':
+                name: newTensor
+                throws: NSErrorException
             '-functionHandleWithFunction:':
                 name: functionHandle
             '-newCommandAllocatorWithDescriptor:error:':
@@ -1752,6 +1772,8 @@ protocols:
                 name: copyFromBuffer
             '-copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:':
                 name: copyFromTensor
+            '-copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:':
+                name: copyFromTensor
             '-fillBuffer:range:value:':
                 name: fillBuffer
             '-optimizeContentsForGPUAccess:slice:level:':
@@ -1860,8 +1882,13 @@ protocols:
         methods:
             '-replaceSliceOrigin:sliceDimensions:withBytes:strides:':
                 name: replaceSliceOrigin
+            '-replaceSliceOrigin:sliceDimensions:plane:withBytes:strides:':
+                name: replaceSliceOrigin
             '-getBytes:strides:fromSliceOrigin:sliceDimensions:':
                 name: getBytes
+            '-getBytes:strides:fromSliceOrigin:sliceDimensions:plane:':
+                name: getBytes
+    MTLTensorAuxiliaryPlane: {} #since 27.0
     MTLTensorBinding: { } #since 26.0
     MTLTextureViewPool: #since 26.0
         methods:
@@ -1941,6 +1968,9 @@ values:
         name: getClassDomain
     MTL4CommandQueueErrorDomain:
         class: MTL4CommandQueueError
+        name: getClassDomain
+    MTLDeviceErrorDomain: #since 26.4
+        class: MTLDeviceError
         name: getClassDomain
 
     # Make sure we don't miss any values if new ones are introduced in a later version

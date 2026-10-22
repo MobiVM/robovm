@@ -42,8 +42,13 @@ import org.robovm.apple.corehaptic.*;
 public enum /*<name>*/GCSystemGestureState/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Enabled(0L),
-    AlwaysReceive(1L),
-    Disabled(2L);
+    Disabled(2L),
+    /**
+     * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use GCSystemGestureStateDisabled
+     */
+    @Deprecated
+    AlwaysReceive(1L);
     /*</values>*/
 
     /*<bind>*/

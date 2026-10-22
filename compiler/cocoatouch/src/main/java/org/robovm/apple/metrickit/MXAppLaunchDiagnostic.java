@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 16.0 and later.
+ * @deprecated Use DiagnosticResult instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXAppLaunchDiagnostic/*</name>*/ 
     extends /*<extends>*/MXDiagnostic/*</extends>*/ 
     /*<implements>*//*</implements>*/ {

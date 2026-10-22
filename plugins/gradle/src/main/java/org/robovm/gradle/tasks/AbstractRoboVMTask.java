@@ -27,10 +27,9 @@ import org.apache.maven.wagon.providers.http.HttpWagon;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.GradleException;
 import org.gradle.api.Project;
+import org.gradle.api.file.FileCollection;
 import org.gradle.api.plugins.JavaPlugin;
-import org.gradle.api.tasks.TaskAction;
-import org.gradle.api.tasks.Internal;
-import org.gradle.api.tasks.UntrackedTask;
+import org.gradle.api.tasks.*;
 import org.robovm.compiler.AppCompiler;
 import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.Config;
@@ -55,12 +54,11 @@ import org.sonatype.aether.resolution.ArtifactResult;
 import org.sonatype.aether.spi.connector.RepositoryConnectorFactory;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 
@@ -78,6 +76,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
     protected final List<RemoteRepository> remoteRepositories;
     @Internal
     protected Logger roboVMLogger;
+    protected FileCollection classpath;
 
     public AbstractRoboVMTask() {
         try {
@@ -180,7 +179,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         if (extension.getInstallDir() != null) {
             installDir = new File(extension.getInstallDir());
         } else {
-            installDir = RoboVmLocations.inBuildDir(project.getBuildDir(), "tmp/");
+            installDir = RoboVmLocations.inBuildDir(projectBuildDir(), "robovm/");
         }
         File cacheDir = null;
         if(extension.getCacheDir() != null) {
@@ -188,7 +187,7 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         } else {
             cacheDir = RoboVmLocations.roboVmCacheDir;
         }
-        File temporaryDirectory = RoboVmLocations.inBuildDir(project.getBuildDir(), "tmp/");
+        File temporaryDirectory = RoboVmLocations.inBuildDir(projectBuildDir(), "robovm.tmp/");
         try {
             FileUtils.deleteDirectory(temporaryDirectory);
         } catch (IOException e) {
@@ -248,28 +247,75 @@ abstract public class AbstractRoboVMTask extends DefaultTask {
         builder.clearClasspathEntries();
 
         // configure the runtime classpath
-        Set<File> classpathEntries = project.getConfigurations().getByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME).getFiles();
-        classpathEntries.add(new File(project.getBuildDir(), "classes/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/java/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/groovy/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/scala/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "classes/kotlin/main"));
-        classpathEntries.add(new File(project.getBuildDir(), "resources/main"));
-
-        if (project.hasProperty("output.classesDir")) {
-            classpathEntries.add((File) project.property("output.classesDir"));
-        }
-
-        for (File classpathEntry : classpathEntries) {
-            if (getLogger().isDebugEnabled()) {
-                getLogger().debug("Including classpath element for RoboVM app: " + classpathEntry.getAbsolutePath());
+        FileCollection appClasspath = getClassPath();
+        if (appClasspath != null) {
+            for (File classpathEntry : appClasspath) {
+                getLogger().info("Including classpath element for RoboVM app: " + classpathEntry.getAbsolutePath());
+                if(classpathEntry.exists()) {
+                    builder.addClasspathEntry(classpathEntry);
+                }
             }
-            if(classpathEntry.exists()) {
-                builder.addClasspathEntry(classpathEntry);
+        }
+        if (project.hasProperty("output.classesDir")) {
+            File outputClassesDir = (File) project.property("output.classesDir");
+            getLogger().info("Including classpath element for RoboVM app: " + outputClassesDir.getAbsolutePath());
+            if (outputClassesDir != null && outputClassesDir.exists()) {
+                builder.addClasspathEntry(outputClassesDir);
             }
         }
 
         return builder;
+    }
+
+    @Internal
+    public FileCollection getClassPath() {
+        return classpath != null ? classpath : defaultClassPath();
+    }
+
+    public void setClassPath(FileCollection classpath) {
+        this.classpath = classpath;
+    }
+
+    public void setClasspath(Object classpath) {
+        this.classpath = project.files(classpath);
+    }
+
+    public AbstractRoboVMTask classpath(Object ...path) {
+        FileCollection newFiles = project.files(path);
+        if (this.classpath == null) {
+            this.classpath = getClassPath().plus(newFiles);
+        } else {
+            this.classpath = this.classpath.plus(newFiles);
+        }
+        return this;
+    }
+
+    protected FileCollection defaultClassPath() {
+        SourceSetContainer sourceSets = project.getExtensions().findByType(SourceSetContainer.class);
+        if (sourceSets != null) {
+            SourceSet main = sourceSets.findByName(SourceSet.MAIN_SOURCE_SET_NAME);
+            if (main != null) {
+                return main.getRuntimeClasspath();
+            }
+        }
+        // Fallback for non-standard setups where SourceSetContainer is not present
+        if (project.getConfigurations().findByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME) != null) {
+            File buildDir = projectBuildDir();
+            return project.files(
+                    project.getConfigurations().getByName(JavaPlugin.RUNTIME_CLASSPATH_CONFIGURATION_NAME),
+                    new File(buildDir, "classes/main"),
+                    new File(buildDir, "classes/java/main"),
+                    new File(buildDir, "classes/groovy/main"),
+                    new File(buildDir, "classes/scala/main"),
+                    new File(buildDir, "classes/kotlin/main"),
+                    new File(buildDir, "resources/main")
+            );
+        }
+        return project.files();
+    }
+
+    protected File projectBuildDir() {
+        return project.getLayout().getBuildDirectory().getAsFile().get();
     }
 
     @TaskAction

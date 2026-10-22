@@ -57,7 +57,8 @@ import org.robovm.apple.symbols.*;
     /*</bind>*/
     /*<constants>*//*</constants>*/
     /*<properties>*/
-    
+    @Property(selector = "hash")
+    @MachineSizedUInt long getHash();
     /*</properties>*/
     /*<methods>*/
     /**
@@ -65,6 +66,8 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "compare:")
     NSComparisonResult compare(NSTextLocation location);
+    @Method(selector = "isEqual:")
+    boolean isEqual(NSObject location);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

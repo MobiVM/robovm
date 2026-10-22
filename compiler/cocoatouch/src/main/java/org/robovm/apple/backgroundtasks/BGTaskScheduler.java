@@ -62,8 +62,18 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "registerForTaskWithIdentifier:usingQueue:launchHandler:")
     public native boolean registerForTask(String identifier, DispatchQueue queue, @Block VoidBlock1<BGTask> launchHandler);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -submitTaskRequest:completionHandler: (Swift: submitTaskRequest(_:completionHandler:), or 'try await submitTaskRequest(_:)') to capture all error conditions
+     */
+    @Deprecated
     @Method(selector = "submitTaskRequest:error:")
     public native boolean submitTaskRequest(BGTaskRequest taskRequest, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "submitTaskRequest:completionHandler:")
+    public native void submitTaskRequest(BGTaskRequest taskRequest, @Block VoidBlock1<NSError> completionHandler);
     @Method(selector = "cancelTaskRequestWithIdentifier:")
     public native void cancelTaskRequest(String identifier);
     @Method(selector = "cancelAllTaskRequests")

@@ -52,6 +52,11 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "initWithBundleIdentifier:")
     public AEAssessmentApplication(String bundleIdentifier) { super((SkipInit) null); initObject(init(bundleIdentifier)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:teamIdentifier:")
+    public AEAssessmentApplication(String bundleIdentifier, String teamIdentifier) { super((SkipInit) null); initObject(init(bundleIdentifier, teamIdentifier)); }
     /*</constructors>*/
     /*<properties>*/
     /**
@@ -59,6 +64,11 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "bundleIdentifier")
     public native String getBundleIdentifier();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "teamIdentifier")
+    public native String getTeamIdentifier();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -67,5 +77,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "initWithBundleIdentifier:")
     protected native @Pointer long init(String bundleIdentifier);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithBundleIdentifier:teamIdentifier:")
+    protected native @Pointer long init(String bundleIdentifier, String teamIdentifier);
     /*</methods>*/
 }

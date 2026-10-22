@@ -143,6 +143,11 @@ import org.robovm.apple.uikit.*;
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont create(CTFontDescriptor descriptor, @MachineSizedFloat double size, CGAffineTransform matrix, CTFontOptions options);
     @Bridge(symbol="CTFontCreateUIFontForLanguage", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont createUIFont(CTFontUIFontType uiType, @MachineSizedFloat double size, String language);
+    /**
+     * @since Available in iOS 13.0 and later.
+     */
+    @Bridge(symbol="CTFontGetUIFontType", optional=true)
+    public native CTFontUIFontType getUIFontType();
     @Bridge(symbol="CTFontCreateCopyWithAttributes", optional=true)
     public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CTFont createCopy(CTFont font, @MachineSizedFloat double size, CGAffineTransform matrix, CTFontDescriptor attributes);
     @Bridge(symbol="CTFontCreateCopyWithSymbolicTraits", optional=true)

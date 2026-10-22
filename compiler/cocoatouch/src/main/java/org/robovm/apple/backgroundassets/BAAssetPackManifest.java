@@ -55,6 +55,26 @@ import org.robovm.apple.foundation.*;
     /*<properties>*/
     @Property(selector = "assetPacks")
     public native NSSet<BAAssetPack> getAssetPacks();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "primaryLanguage")
+    public native String getPrimaryLanguage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "availableLanguages")
+    public native NSArray<NSString> getAvailableLanguages();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "resolvedLanguage")
+    public native String getResolvedLanguage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "localizedAssetPacks")
+    public native NSSet<BAAssetPack> getLocalizedAssetPacks();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -62,6 +82,16 @@ import org.robovm.apple.foundation.*;
     protected native @Pointer long init(NSURL URL, String applicationGroupIdentifier, NSError.NSErrorPtr error);
     @Method(selector = "initFromData:applicationGroupIdentifier:error:")
     protected native @Pointer long init(NSData data, String applicationGroupIdentifier, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "assetPackWithIdentifier:")
+    public native BAAssetPack getAssetPack(String assetPackIdentifier);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "localizedAssetPacksForLanguage:")
+    public native NSSet<BAAssetPack> localizedAssetPacksForLanguage(String languageIdentifier);
     @Method(selector = "allDownloads")
     public native NSSet<BADownload> allDownloads();
     @Method(selector = "allDownloadsForContentRequest:")

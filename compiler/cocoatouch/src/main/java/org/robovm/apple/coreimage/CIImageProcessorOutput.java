@@ -77,7 +77,16 @@ import org.robovm.apple.avfoundation.*;
     long getDigest();
     /*</properties>*/
     /*<methods>*/
-    
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "temporarySurfaceWithIdentifier:format:width:height:")
+    IOSurface temporarySurface(String identifier, int format, @MachineSizedUInt long width, @MachineSizedUInt long height);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "temporaryPixelBufferWithIdentifier:format:width:height:attributes:")
+    CVPixelBuffer temporaryPixelBuffer(String identifier, int format, @MachineSizedUInt long width, @MachineSizedUInt long height, NSDictionary<?, ?> attributes);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -128,11 +128,11 @@ public class Config {
     @Element(required = false)
     private FrameworksList frameworks;
     @Element(required = false)
-    private FrameworksList weakFrameworks;
+    private WeakFrameworksList weakFrameworks;
     @Element(required = false)
     private PathsList frameworkPaths;
     @Element(required = false)
-    private PathsList xcFrameworks;
+    private XcFrameworksList xcFrameworks;
     @Element(required = false)
     private AppExtensionsList appExtensions;
     @Element(required = false)
@@ -827,11 +827,11 @@ public class Config {
         to.forceLinkClasses = mergeLists(from.forceLinkClasses, to.forceLinkClasses, ForceLinkClassesList::new);
         to.forceLinkMethods = mergeLists(from.forceLinkMethods, to.forceLinkMethods, ForceLinkMethodsList::new);
         to.frameworkPaths = mergeLists(from.frameworkPaths, to.frameworkPaths, PathsList::new);
-        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks, PathsList::new);
+        to.xcFrameworks = mergeLists(from.xcFrameworks, to.xcFrameworks, XcFrameworksList::new);
         to.frameworks = mergeLists(from.frameworks, to.frameworks, FrameworksList::new);
         to.libs = mergeLists(from.libs, to.libs, LibsList::new);
         to.resources = mergeLists(from.resources, to.resources, ResourcesList::new);
-        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks, FrameworksList::new);
+        to.weakFrameworks = mergeLists(from.weakFrameworks, to.weakFrameworks, WeakFrameworksList::new);
     }
 
     private void mergeConfigsFromClasspath() throws IOException {
@@ -1474,15 +1474,15 @@ public class Config {
             if (config.frameworks == null) {
                 config.frameworks = new FrameworksList();
             }
-            config.frameworks.add(new QualifiedEntry(framework));
+            config.frameworks.add(new FrameworkEntry(framework));
             return this;
         }
 
         public Builder addXCFramework(File xcFramework) {
             if (config.xcFrameworks == null) {
-                config.xcFrameworks = new PathsList();
+                config.xcFrameworks = new XcFrameworksList();
             }
-            config.xcFrameworks.add(new QualifiedFile(xcFramework));
+            config.xcFrameworks.add(new XcFrameworkEntry(xcFramework));
             return this;
         }
 
@@ -1495,7 +1495,7 @@ public class Config {
 
         public Builder addWeakFramework(String framework) {
             if (config.weakFrameworks == null) {
-                config.weakFrameworks = new FrameworksList();
+                config.weakFrameworks = new WeakFrameworksList();
             }
             config.weakFrameworks.add(new QualifiedEntry(framework));
             return this;
@@ -1943,7 +1943,7 @@ public class Config {
     /**
      * Container for text entry with platform/arch constraints
      */
-    public static final class QualifiedEntry extends AbstractQualified {
+    public static class QualifiedEntry extends AbstractQualified {
         @Text String entry;
 
         protected QualifiedEntry() {
@@ -1966,7 +1966,7 @@ public class Config {
     /**
      * Container for file entry with platform/arch constraints
      */
-    public static final class QualifiedFile extends AbstractQualified {
+    public static class QualifiedFile extends AbstractQualified {
         @Text File entry;
 
         protected QualifiedFile() {

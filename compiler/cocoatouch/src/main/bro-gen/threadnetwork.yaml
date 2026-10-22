@@ -27,6 +27,10 @@ classes:
                 name: checkPreferredNetworkForActiveOperationalDataset
             '-isPreferredNetworkAvailableWithCompletion:':
                 name: isPreferredNetworkAvailable
+            '-retrieveActiveCredentialsForNearbyNetworksWithCompletion:':
+                name: retrieveActiveCredentialsForNearbyNetworks
+            '-enableCredentialSharingModeForExtendedPANID:completion:':
+                name: enableCredentialSharingModeForExtendedPANID
     THCredentials: {} #since 15.0
 
 protocols:

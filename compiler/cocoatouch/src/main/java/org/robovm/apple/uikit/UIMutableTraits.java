@@ -177,6 +177,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setResolvesNaturalAlignmentWithBaseWritingDirection:")
     void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "systemPrefersReducedResourceUsage")
+    boolean isSystemPrefersReducedResourceUsage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSystemPrefersReducedResourceUsage:")
+    void setSystemPrefersReducedResourceUsage(boolean v);
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "setCGFloatValue:forTrait:")

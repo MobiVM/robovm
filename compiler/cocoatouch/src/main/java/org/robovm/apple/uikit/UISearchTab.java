@@ -66,6 +66,11 @@ import org.robovm.apple.symbols.*;
     /*</constructors>*/
     /*<properties>*/
     /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "identifier")
+    public static native String getSystemIdentifier();
+    /**
      * @since Available in iOS 26.0 and later.
      */
     @Property(selector = "automaticallyActivatesSearch")

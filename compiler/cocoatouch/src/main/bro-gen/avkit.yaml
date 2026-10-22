@@ -1,5 +1,5 @@
 package: org.robovm.apple.avkit
-include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation, avrouting]
+include: [foundation, uikit, avfoundation, coremedia, coregraphics, iad, coreanimation, avrouting, uniformtypeid]
 library: AVKit
 framework: AVKit
 clang_args: ['-x', 'objective-c']
@@ -13,6 +13,11 @@ enums:
     AVVideoFrameAnalysisType: {} #since 17.0
     AVDisplayDynamicRange: { } #since 26.0
     AVCaptureEventPhase: { } #since 17.2
+    AVLegibleMediaOptionsMenuStateChangeReason: {} #since 26.4
+    AVLegibleMediaOptionsMenuContents: {} #since 26.4
+    AVPlaybackUserInterfacePlaybackState: {} #since 27.0
+    AVPlaybackUserInterfaceSeekCapabilities: {} #since 27.0
+    AVPlaybackUserInterfaceTimelineSegmentType: {} #since 27.0
 classes:
     AVKitError: # DONE
         annotations: ['@StronglyLinked']
@@ -62,6 +67,41 @@ classes:
     AVInputPickerInteraction: #since 26.0
         methods:
             '-initWithAudioSession:':
+                name: init
+    AVLegibleMediaOptionsMenuState: {} #since 26.4
+    AVLegibleMediaOptionsMenuController: #since 26.4
+        methods:
+            '-initWithPlayer:':
+                name: init
+            '-menuWithContents:':
+                name: menu
+    AVPlaybackUserInterfaceContentArtwork: #since 27.0
+        methods:
+            '+artworkWithURL:contentType:size:':
+                name: artwork
+    AVPlaybackUserInterfaceContentMetadata: #since 27.0
+        methods:
+            '-initWithVideoProperties:title:subtitle:artworkRepresentations:':
+                name: init
+            '-initWithTemplate:':
+                name: init
+    AVPlaybackUserInterfaceContentMetadataTemplate: {} #since 27.0
+    AVPlaybackUserInterfaceContentURLArtwork: {} #since 27.0
+    AVPlaybackUserInterfaceContentVideoProperties: #since 27.0
+        methods:
+            '-initWithPresentationSize:':
+                name: init
+    AVPlaybackUserInterfaceMediaSelectionOption: #since 27.0
+        methods:
+            '-initWithDisplayName:identifier:extendedLanguageTag:mediaCharacteristics:':
+                name: init
+    AVPlaybackUserInterfacePlaybackPosition: #since 27.0
+        methods:
+            '-initWithPosition:hostTime:rate:':
+                name: init
+    AVPlaybackUserInterfaceTimelineSegment: #since 27.0
+        methods:
+            '-initWithTimeRange:segmentType:marked:requiresLinearPlayback:identifier:':
                 name: init
 protocols:
     AVPictureInPictureControllerDelegate: # DONE
@@ -119,6 +159,21 @@ protocols:
             '-pictureInPictureController:skipByInterval:completionHandler:':
                 name: skipByInterval
     AVInputPickerInteractionDelegate: {} #since 26.0
+    AVLegibleMediaOptionsMenuControllerDelegate: #since 26.4
+        methods:
+            '-legibleMenuController:didChangeMenuState:':
+                name: didChangeMenuState
+            '-legibleMenuController:didRequestCaptionPreviewForProfileID:':
+                name: didRequestCaptionPreview
+    AVPlaybackUserInterfaceControllable: {} #since 27.0
+    AVPlaybackUserInterfaceMediaSelectionControllable: {} #since 27.0
+    AVPlaybackUserInterfaceMetadataProviding: {} #since 27.0
+    AVPlaybackUserInterfacePlaybackControllable: {} #since 27.0
+    AVPlaybackUserInterfaceTimeControllable: #since 27.0
+        methods:
+            '-seekToPosition:tolerance:':
+                name: seekToPosition
+    AVPlaybackUserInterfaceVolumeControllable: {} #since 27.0
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?AV.*):

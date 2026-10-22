@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -58,6 +59,10 @@ public final class /*<name>*/AVCaptureSystemPressureFactors/*</name>*/ extends B
      * @since Available in iOS 17.0 and later.
      */
     public static final AVCaptureSystemPressureFactors CameraTemperature = new AVCaptureSystemPressureFactors(8L);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final AVCaptureSystemPressureFactors BatteryStress = new AVCaptureSystemPressureFactors(16L);
     /*</values>*/
 
     /*<bind>*/

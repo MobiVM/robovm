@@ -87,7 +87,15 @@ public enum /*<name>*/VNErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 17.0 and later.
      */
-    UnsupportedComputeDevice(22L);
+    UnsupportedComputeDevice(22L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    ResourceUnavailable(23L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    ResourceCorrupted(24L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(VNErrorCode.class); }/*</bind>*/

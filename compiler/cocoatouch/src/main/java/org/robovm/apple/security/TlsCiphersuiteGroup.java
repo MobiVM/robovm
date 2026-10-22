@@ -42,7 +42,11 @@ public enum /*<name>*/TlsCiphersuiteGroup/*</name>*/ implements ValuedEnum {
     compatibility(1L),
     legacy(2L),
     ats(3L),
-    ats_compatibility(4L);
+    ats_compatibility(4L),
+    /**
+     * @since Available in iOS 26.5 and later.
+     */
+    ats_fcp_v2_1(5L);
     /*</values>*/
 
     /*<bind>*/

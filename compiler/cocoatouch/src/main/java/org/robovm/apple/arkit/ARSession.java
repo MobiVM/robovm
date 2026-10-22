@@ -78,6 +78,21 @@ import org.robovm.apple.coreanimation.*;
     public native ARFrame getCurrentFrame();
     @Property(selector = "configuration")
     public native ARConfiguration getConfiguration();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "viewLayer")
+    public native CALayer getViewLayer();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setViewLayer:", strongRef = true)
+    public native void setViewLayer(CALayer v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "viewRotationAngle")
+    public native @MachineSizedFloat double getViewRotationAngle();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -103,7 +118,9 @@ import org.robovm.apple.coreanimation.*;
     public native void getCurrentWorldMap(@Block VoidBlock2<ARWorldMap, NSError> completionHandler);
     /**
      * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Please consider migrating to the new reference object format.
      */
+    @Deprecated
     @Method(selector = "createReferenceObjectWithTransform:center:extent:completionHandler:")
     public native void createReferenceObject(@ByVal MatrixFloat4x4 transform, @ByVal VectorFloat3 center, @ByVal VectorFloat3 extent, @Block VoidBlock2<ARReferenceObject, NSError> completionHandler);
     /**

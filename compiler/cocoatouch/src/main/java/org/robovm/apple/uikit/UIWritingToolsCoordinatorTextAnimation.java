@@ -52,7 +52,11 @@ public enum /*<name>*/UIWritingToolsCoordinatorTextAnimation/*</name>*/ implemen
     /*<values>*/
     Anticipate(0L),
     Remove(1L),
-    Insert(2L);
+    Insert(2L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    IndicateGrammar(10L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(UIWritingToolsCoordinatorTextAnimation.class); }/*</bind>*/

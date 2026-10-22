@@ -47,7 +47,11 @@ import org.robovm.apple.uniformtypeid.*;
 public enum /*<name>*/PHAssetResourceUploadJobAction/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Acknowledge(1L),
-    Retry(2L);
+    Retry(2L),
+    /**
+     * @since Available in iOS 26.5 and later.
+     */
+    Process(3L);
     /*</values>*/
 
     /*<bind>*/

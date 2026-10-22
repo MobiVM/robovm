@@ -46,7 +46,11 @@ public enum /*<name>*/CLActivityType/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 12.0 and later.
      */
-    Airborne(5L);
+    Airborne(5L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Maritime(6L);
     /*</values>*/
 
     /*<bind>*/

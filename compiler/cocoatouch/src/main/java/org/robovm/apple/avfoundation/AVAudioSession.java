@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -329,6 +330,21 @@ import org.robovm.apple.uikit.*;
      */
     @GlobalValue(symbol="AVAudioSessionUserIntentToUnmuteOutputNotification", optional=true)
     public static native NSString UserIntentToUnmuteOutputNotification();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionDidBecomeActiveNotification", optional=true)
+    public static native NSString DidBecomeActiveNotification();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionDidBecomeInactiveNotification", optional=true)
+    public static native NSString DidBecomeInactiveNotification();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="AVAudioSessionResumptionRecommendationNotification", optional=true)
+    public static native NSString ResumptionRecommendationNotification();
     @GlobalValue(symbol="AVAudioSessionSilenceSecondaryAudioHintTypeKey", optional=true)
     protected static native NSString SilenceSecondaryAudioHintTypeKey();
     /**
@@ -360,6 +376,16 @@ import org.robovm.apple.uikit.*;
          */
         @GlobalValue(symbol="AVAudioSessionMicrophoneInjectionIsAvailableKey", optional=true)
         public static native NSString MicrophoneInjectionIsAvailable();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionDeactivationContextKey", optional=true)
+        public static native NSString DeactivationContext();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionResumptionContextKey", optional=true)
+        public static native NSString ResumptionContext();
     }
     
     public boolean setCategory(AVAudioSessionCategory category) throws NSErrorException {
@@ -510,6 +536,16 @@ import org.robovm.apple.uikit.*;
     }
     @Method(selector = "setActive:withOptions:error:")
     private native boolean setActive(boolean active, AVAudioSessionSetActiveOptions options, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "activateWithOptions:completionHandler:")
+    public native void activate(AVAudioSessionActivationOptions options, @Block VoidBlock2<Boolean, NSError> handler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "deactivateWithOptions:completionHandler:")
+    public native void deactivate(AVAudioSessionDeactivationOptions options, @Block VoidBlock2<Boolean, NSError> handler);
     public boolean setPreferredSampleRate(double sampleRate) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setPreferredSampleRate(sampleRate, ptr);

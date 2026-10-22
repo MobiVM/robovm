@@ -259,6 +259,11 @@ import org.robovm.apple.coreanimation.*;
     @Method(selector = "loadRequest:")
     public native WKNavigation loadRequest(NSURLRequest request);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "loadURL:")
+    public native WKNavigation loadURL(NSURL url);
+    /**
      * @since Available in iOS 9.0 and later.
      */
     @Method(selector = "loadFileURL:allowingReadAccessToURL:")

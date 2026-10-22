@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -62,6 +63,11 @@ import org.robovm.apple.coreanimation.*;
     public CPNavigationAlert(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, CPImageSet imageSet, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration) { super((SkipInit) null); initObject(init(titleVariants, subtitleVariants, imageSet, primaryAction, secondaryAction, duration)); }
     @Method(selector = "initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:")
     public CPNavigationAlert(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage image, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration) { super((SkipInit) null); initObject(init(titleVariants, subtitleVariants, image, primaryAction, secondaryAction, duration)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:")
+    public CPNavigationAlert(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage avatarImage, UIImage alertImage, NSArray<CPAlertAction> actions, double duration) { super((SkipInit) null); initObject(init(titleVariants, subtitleVariants, avatarImage, alertImage, actions, duration)); }
     @Method(selector = "initWithCoder:")
     public CPNavigationAlert(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -74,12 +80,52 @@ import org.robovm.apple.coreanimation.*;
     public native CPImageSet getImageSet();
     @Property(selector = "image")
     public native UIImage getImage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "avatarImage")
+    public native UIImage getAvatarImage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "alertImage")
+    public native UIImage getAlertImage();
     @Property(selector = "primaryAction")
     public native CPAlertAction getPrimaryAction();
     @Property(selector = "secondaryAction")
     public native CPAlertAction getSecondaryAction();
     @Property(selector = "duration")
     public native double getDuration();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "actions")
+    public native NSArray<CPAlertAction> getActions();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "maximumActionsCount")
+    public static native @MachineSizedSInt long getMaximumActionsCount();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "maximumAlertImageSize")
+    public static native @ByVal CGSize getMaximumAlertImageSize();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "maximumAvatarImageSize")
+    public static native @ByVal CGSize getMaximumAvatarImageSize();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "showsCloseButton")
+    public native boolean showsCloseButton();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setShowsCloseButton:")
+    public native void setShowsCloseButton(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -94,8 +140,18 @@ import org.robovm.apple.coreanimation.*;
     protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, CPImageSet imageSet, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration);
     @Method(selector = "initWithTitleVariants:subtitleVariants:image:primaryAction:secondaryAction:duration:")
     protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage image, CPAlertAction primaryAction, CPAlertAction secondaryAction, double duration);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:")
+    protected native @Pointer long init(NSArray<NSString> titleVariants, NSArray<NSString> subtitleVariants, UIImage avatarImage, UIImage alertImage, NSArray<CPAlertAction> actions, double duration);
     @Method(selector = "updateTitleVariants:subtitleVariants:")
     public native void updateTitleVariants(NSArray<NSString> newTitleVariants, NSArray<NSString> newSubtitleVariants);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "updateTitleVariants:subtitleVariants:avatarImage:alertImage:actions:duration:")
+    public native void updateTitleVariants(NSArray<NSString> newTitleVariants, NSArray<NSString> newSubtitleVariants, UIImage avatarImage, UIImage alertImage, NSArray<CPAlertAction> actions, double duration);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

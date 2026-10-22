@@ -62,6 +62,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Property(selector = "supportsDLTDOAMeasurement")
     boolean supportsDLTDOAMeasurement();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "supportsBluetoothChannelSounding")
+    boolean supportsBluetoothChannelSounding();
     /*</properties>*/
     /*<methods>*/
     

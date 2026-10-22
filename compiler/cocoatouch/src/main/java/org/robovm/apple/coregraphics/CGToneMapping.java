@@ -42,6 +42,10 @@ public enum /*<name>*/CGToneMapping/*</name>*/ implements ValuedEnum {
     /*<values>*/
     Default(0L),
     ImageSpecificLumaScaling(1L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    HeadroomAdaptiveGainCurve(6L),
     ReferenceWhiteBased(2L),
     ITURecommended(3L),
     EXRGamma(4L),

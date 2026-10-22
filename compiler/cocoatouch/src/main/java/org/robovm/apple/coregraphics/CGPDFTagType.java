@@ -89,7 +89,11 @@ public enum /*<name>*/CGPDFTagType/*</name>*/ implements ValuedEnum {
     Figure(700L),
     Formula(701L),
     Form(702L),
-    Object(800L);
+    Object(800L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Artifact(900L);
     /*</values>*/
 
     /*<bind>*/static { Bro.bind(CGPDFTagType.class); }/*</bind>*/

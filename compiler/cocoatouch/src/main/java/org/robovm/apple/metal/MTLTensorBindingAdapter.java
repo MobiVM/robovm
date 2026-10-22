@@ -51,6 +51,11 @@ import org.robovm.apple.dispatch.*;
     public MTLDataType getIndexType() { return null; }
     @NotImplemented("dimensions")
     public MTLTensorExtents getDimensions() { return null; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("auxiliaryPlanes")
+    public NSArray<MTLTensorAuxiliaryPlaneType> getAuxiliaryPlanes() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

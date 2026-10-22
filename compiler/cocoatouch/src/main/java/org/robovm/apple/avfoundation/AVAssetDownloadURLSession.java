@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -76,14 +77,14 @@ import org.robovm.apple.uikit.*;
     public native AVAssetDownloadTask newAssetDownloadTask(AVURLAsset URLAsset, NSURL destinationURL, AVAssetDownloadTaskOptions options);
     /**
      * @since Available in iOS 10.0 and later.
-     * @deprecated Use assetDownloadTaskWithConfiguration: instead
+     * @deprecated Deprecated in iOS 27.0. Use assetDownloadTaskWithConfiguration: instead
      */
     @Deprecated
     @Method(selector = "assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:")
     public native AVAssetDownloadTask newAssetDownloadTask(AVURLAsset URLAsset, String title, NSData artworkData, AVAssetDownloadTaskOptions options);
     /**
      * @since Available in iOS 11.0 and later.
-     * @deprecated Use assetDownloadTaskWithConfiguration: instead
+     * @deprecated Deprecated in iOS 27.0. Use assetDownloadTaskWithConfiguration: instead
      */
     @Deprecated
     @Method(selector = "aggregateAssetDownloadTaskWithURLAsset:mediaSelections:assetTitle:assetArtworkData:options:")

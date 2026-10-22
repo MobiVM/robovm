@@ -116,6 +116,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "isFullScreen")
     public native boolean isFullScreen();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "closureConfirmation")
+    public native UISceneClosureConfirmation getClosureConfirmation();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setClosureConfirmation:")
+    public native void setClosureConfirmation(UISceneClosureConfirmation v);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "traitOverrides")
@@ -140,6 +150,11 @@ import org.robovm.apple.symbols.*;
      */
     @Method(selector = "requestGeometryUpdateWithPreferences:errorHandler:")
     public native void requestGeometryUpdate(UIWindowSceneGeometryPreferences geometryPreferences, @Block VoidBlock1<NSError> errorHandler);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "displayLinkWithTarget:selector:")
+    public native CADisplayLink displayLink(NSObject target, Selector sel);
     /**
      * @deprecated Deprecated in iOS 17.0. Use the trait change registration APIs declared in the UITraitChangeObservable protocol
      */

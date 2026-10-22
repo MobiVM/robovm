@@ -62,12 +62,27 @@ import org.robovm.apple.dispatch.*;
     MTLTensorDataType getDataType();
     @Property(selector = "usage")
     MTLTensorUsage getUsage();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "auxiliaryPlanes")
+    NSArray<?> getAuxiliaryPlanes();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "replaceSliceOrigin:sliceDimensions:withBytes:strides:")
     void replaceSliceOrigin(MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, VoidPtr bytes, MTLTensorExtents strides);
     @Method(selector = "getBytes:strides:fromSliceOrigin:sliceDimensions:")
     void getBytes(VoidPtr bytes, MTLTensorExtents strides, MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "getBytes:strides:fromSliceOrigin:sliceDimensions:plane:")
+    void getBytes(VoidPtr bytes, MTLTensorExtents strides, MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, MTLTensorPlaneType plane);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "replaceSliceOrigin:sliceDimensions:plane:withBytes:strides:")
+    void replaceSliceOrigin(MTLTensorExtents sliceOrigin, MTLTensorExtents sliceDimensions, MTLTensorPlaneType plane, VoidPtr bytes, MTLTensorExtents strides);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

@@ -88,6 +88,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setProvisioningTemplateIdentifier:")
     public native void setProvisioningTemplateIdentifier(String v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "productPlanIdentifier")
+    public native String getProductPlanIdentifier();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setProductPlanIdentifier:")
+    public native void setProductPlanIdentifier(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

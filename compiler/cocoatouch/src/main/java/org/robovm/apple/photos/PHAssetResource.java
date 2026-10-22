@@ -69,9 +69,16 @@ import org.robovm.apple.uniformtypeid.*;
     public native String getAssetLocalIdentifier();
     /**
      * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use filename instead
      */
+    @Deprecated
     @Property(selector = "originalFilename")
     public native String getOriginalFilename();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "filename")
+    public native String getFilename();
     /**
      * @since Available in iOS 26.0 and later.
      */
@@ -94,6 +101,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "pixelHeight")
     public native @MachineSizedSInt long getPixelHeight();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "dataSize")
+    public native NSNumber getDataSize();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -107,5 +119,10 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "assetResourcesForLivePhoto:")
     public static native NSArray<PHAssetResource> assetResourcesForLivePhoto(PHLivePhoto livePhoto);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "assetResourceForUploadJob:")
+    public static native PHAssetResource assetResourceForUploadJob(PHAssetResourceUploadJob job);
     /*</methods>*/
 }

@@ -20,7 +20,9 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsoner;
 import org.robovm.compiler.log.Logger;
 import org.robovm.compiler.util.Executor;
+import org.robovm.compiler.util.ToolchainUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -64,8 +66,18 @@ public final class SimCtl {
     }
 
     public static void show(Logger log, String udid) throws IOException {
+        File xcodeApps = new File(ToolchainUtil.findXcodePath(), "../Applications");
+        File deviceHub = new File(xcodeApps, "DeviceHub.app");
         Executor executor = new Executor(log, "open");
-        executor.args("-a", "Simulator", "--args", "-CurrentDeviceUDID", udid);
+        if (deviceHub.isDirectory()) {
+            // Xcode 27+: Simulator.app was replaced by DeviceHub
+            executor.args(deviceHub.getCanonicalPath(), "devices://manage/select?id=" + udid);
+        } else {
+            // older Xcode: prefer Simulator.app of selected Xcode, fall back to lookup by name
+            File simulator = new File(xcodeApps, "Simulator.app");
+            executor.args("-a", simulator.isDirectory() ? simulator.getCanonicalPath() : "Simulator",
+                    "--args", "-CurrentDeviceUDID", udid);
+        }
         executor.exec();
     }
 

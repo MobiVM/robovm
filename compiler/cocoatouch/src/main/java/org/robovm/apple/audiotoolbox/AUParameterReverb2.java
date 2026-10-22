@@ -47,7 +47,8 @@ public enum /*<name>*/AUParameterReverb2/*</name>*/ implements AUParameterType {
     MaxDelayTime(3L),
     DecayTimeAt0Hz(4L),
     DecayTimeAtNyquist(5L),
-    RandomizeReflections(6L);
+    RandomizeReflections(6L),
+    LegacyMode(7L);
     /*</values>*/
 
     /*<bind>*/

@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -124,6 +125,11 @@ import org.robovm.apple.uikit.*;
      */
     @Property(selector = "assetListResponse")
     public native NSDictionary<?, ?> getAssetListResponse();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "scheduleIdentifier")
+    public native String getScheduleIdentifier();
     /**
      * @since Available in iOS 18.0 and later.
      */

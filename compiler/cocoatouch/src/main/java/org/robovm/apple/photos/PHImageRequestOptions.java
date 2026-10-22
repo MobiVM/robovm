@@ -93,6 +93,26 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "setAllowSecondaryDegradedImage:")
     public native void setAllowSecondaryDegradedImage(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "preferHDR")
+    public native boolean isPreferHDR();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setPreferHDR:")
+    public native void setPreferHDR(boolean v);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "targetHDRHeadroom")
+    public native @MachineSizedFloat double getTargetHDRHeadroom();
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
+    @Property(selector = "setTargetHDRHeadroom:")
+    public native void setTargetHDRHeadroom(@MachineSizedFloat double v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

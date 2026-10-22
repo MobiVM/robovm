@@ -60,6 +60,16 @@ import org.robovm.apple.metal.*;
     /*<methods>*/
     @Method(selector = "insertTimeRange:ofCinematicAssetInfo:atTime:error:")
     public native boolean insert(@ByVal CMTimeRange timeRange, CNAssetInfo assetInfo, @ByVal CMTime startTime, NSError.NSErrorPtr outError);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "checkCinematicCapabilityForAsset:completionHandler:")
+    public static native void checkCinematicCapability(AVAsset asset, @Block VoidBlock1<CNCinematicCapability> completionHandler);
+    /**
+     * @since Available in iOS 17.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use checkCinematicCapabilityForAsset:completionHandler:
+     */
+    @Deprecated
     @Method(selector = "checkIfCinematic:completionHandler:")
     public static native void checkIfCinematic(AVAsset asset, @Block VoidBooleanBlock completionHandler);
     @Method(selector = "loadFromAsset:completionHandler:")

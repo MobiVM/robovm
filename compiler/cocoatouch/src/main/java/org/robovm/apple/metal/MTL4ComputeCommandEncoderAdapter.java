@@ -87,6 +87,11 @@ import org.robovm.apple.dispatch.*;
     public void copyFromBuffer(MTLBuffer sourceBuffer, @MachineSizedUInt long sourceOffset, @MachineSizedUInt long sourceBytesPerRow, @MachineSizedUInt long sourceBytesPerImage, @ByVal MTLSize sourceSize, MTLTexture destinationTexture, @MachineSizedUInt long destinationSlice, @MachineSizedUInt long destinationLevel, @ByVal MTLOrigin destinationOrigin, MTLBlitOption options) {}
     @NotImplemented("copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:")
     public void copyFromTensor(MTLTensor sourceTensor, MTLTensorExtents sourceOrigin, MTLTensorExtents sourceDimensions, MTLTensor destinationTensor, MTLTensorExtents destinationOrigin, MTLTensorExtents destinationDimensions) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:")
+    public void copyFromTensor(MTLTensor sourceTensor, MTLTensorExtents sourceOrigin, MTLTensorExtents sourceDimensions, MTLTensorPlaneType sourcePlane, MTLTensor destinationTensor, MTLTensorExtents destinationOrigin, MTLTensorExtents destinationDimensions, MTLTensorPlaneType destinationPlane) {}
     @NotImplemented("generateMipmapsForTexture:")
     public void generateMipmapsForTexture(MTLTexture texture) {}
     @NotImplemented("fillBuffer:range:value:")

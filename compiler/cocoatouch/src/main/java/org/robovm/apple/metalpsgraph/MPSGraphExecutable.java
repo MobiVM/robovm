@@ -91,6 +91,16 @@ import org.robovm.apple.metalps.*;
     public native NSArray<MPSGraphTensorData> run(MTLCommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
     @Method(selector = "runAsyncWithMTLCommandQueue:inputsArray:resultsArray:executionDescriptor:")
     public native NSArray<MPSGraphTensorData> runAsync(MTLCommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "runWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:")
+    public native NSArray<MPSGraphTensorData> run(MTL4CommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "runAsyncWithMTL4CommandQueue:inputsArray:resultsArray:executionDescriptor:")
+    public native NSArray<MPSGraphTensorData> runAsync(MTL4CommandQueue commandQueue, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
     @Method(selector = "encodeToCommandBuffer:inputsArray:resultsArray:executionDescriptor:")
     public native NSArray<MPSGraphTensorData> encodeToCommandBuffer(MPSCommandBuffer commandBuffer, NSArray<MPSGraphTensorData> inputsArray, NSArray<MPSGraphTensorData> resultsArray, MPSGraphExecutableExecutionDescriptor executionDescriptor);
     /**

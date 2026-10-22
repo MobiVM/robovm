@@ -61,6 +61,11 @@ import org.robovm.apple.dispatch.*;
      */
     @NotImplemented("supportsDLTDOAMeasurement")
     public boolean supportsDLTDOAMeasurement() { return false; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("supportsBluetoothChannelSounding")
+    public boolean supportsBluetoothChannelSounding() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

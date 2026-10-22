@@ -33,10 +33,12 @@ import org.robovm.apple.security.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @deprecated Deprecated in iOS 27.0. Use Network Framework instead
+ */
 /*</javadoc>*/
 @ForceLinkClass(MCError.class)
-/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class) @Deprecated/*</annotations>*/
 public enum /*<name>*/MCErrorCode/*</name>*/ implements NSErrorCode {
     /*<values>*/
     Unknown(0L),

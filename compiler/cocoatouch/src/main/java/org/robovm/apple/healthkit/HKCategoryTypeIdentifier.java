@@ -137,6 +137,10 @@ import org.robovm.apple.uniformtypeid.*;
      */
     public static final HKCategoryTypeIdentifier ToothbrushingEvent = new HKCategoryTypeIdentifier("ToothbrushingEvent");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier BleedingAfterMenopause = new HKCategoryTypeIdentifier("BleedingAfterMenopause");
+    /**
      * @since Available in iOS 18.0 and later.
      */
     public static final HKCategoryTypeIdentifier BleedingAfterPregnancy = new HKCategoryTypeIdentifier("BleedingAfterPregnancy");
@@ -168,6 +172,10 @@ import org.robovm.apple.uniformtypeid.*;
      * @since Available in iOS 14.3 and later.
      */
     public static final HKCategoryTypeIdentifier Lactation = new HKCategoryTypeIdentifier("Lactation");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final HKCategoryTypeIdentifier MenopausalState = new HKCategoryTypeIdentifier("MenopausalState");
     /**
      * @since Available in iOS 9.0 and later.
      */
@@ -369,7 +377,7 @@ import org.robovm.apple.uniformtypeid.*;
     public static final HKCategoryTypeIdentifier AudioExposureEvent = new HKCategoryTypeIdentifier("AudioExposureEvent");
     /*</constants>*/
     
-    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleStandHour, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HighHeartRateEvent, HypertensionEvent, IrregularHeartRhythmEvent, LowCardioFitnessEvent, LowHeartRateEvent, MindfulSession, AppleWalkingSteadinessEvent, HandwashingEvent, ToothbrushingEvent, BleedingAfterPregnancy, BleedingDuringPregnancy, CervicalMucusQuality, Contraceptive, InfrequentMenstrualCycles, IntermenstrualBleeding, IrregularMenstrualCycles, Lactation, MenstrualFlow, OvulationTestResult, PersistentIntermenstrualBleeding, Pregnancy, PregnancyTestResult, ProgesteroneTestResult, ProlongedMenstrualPeriods, SexualActivity, SleepApneaEvent, SleepAnalysis, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing, AudioExposureEvent/*</value_list>*/};
+    private static /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] values = new /*<name>*/HKCategoryTypeIdentifier/*</name>*/[] {/*<value_list>*/AppleStandHour, EnvironmentalAudioExposureEvent, HeadphoneAudioExposureEvent, HighHeartRateEvent, HypertensionEvent, IrregularHeartRhythmEvent, LowCardioFitnessEvent, LowHeartRateEvent, MindfulSession, AppleWalkingSteadinessEvent, HandwashingEvent, ToothbrushingEvent, BleedingAfterMenopause, BleedingAfterPregnancy, BleedingDuringPregnancy, CervicalMucusQuality, Contraceptive, InfrequentMenstrualCycles, IntermenstrualBleeding, IrregularMenstrualCycles, Lactation, MenopausalState, MenstrualFlow, OvulationTestResult, PersistentIntermenstrualBleeding, Pregnancy, PregnancyTestResult, ProgesteroneTestResult, ProlongedMenstrualPeriods, SexualActivity, SleepApneaEvent, SleepAnalysis, AbdominalCramps, Acne, AppetiteChanges, BladderIncontinence, Bloating, BreastPain, ChestTightnessOrPain, Chills, Constipation, Coughing, Diarrhea, Dizziness, DrySkin, Fainting, Fatigue, Fever, GeneralizedBodyAche, HairLoss, Headache, Heartburn, HotFlashes, LossOfSmell, LossOfTaste, LowerBackPain, MemoryLapse, MoodChanges, Nausea, NightSweats, PelvicPain, RapidPoundingOrFlutteringHeartbeat, RunnyNose, ShortnessOfBreath, SinusCongestion, SkippedHeartbeat, SleepChanges, SoreThroat, VaginalDryness, Vomiting, Wheezing, AudioExposureEvent/*</value_list>*/};
     
     /*<name>*/HKCategoryTypeIdentifier/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -453,6 +461,11 @@ import org.robovm.apple.uniformtypeid.*;
         @GlobalValue(symbol="HKCategoryTypeIdentifierToothbrushingEvent", optional=true)
         public static native NSString ToothbrushingEvent();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierBleedingAfterMenopause", optional=true)
+        public static native NSString BleedingAfterMenopause();
+        /**
          * @since Available in iOS 18.0 and later.
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierBleedingAfterPregnancy", optional=true)
@@ -492,6 +505,11 @@ import org.robovm.apple.uniformtypeid.*;
          */
         @GlobalValue(symbol="HKCategoryTypeIdentifierLactation", optional=true)
         public static native NSString Lactation();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="HKCategoryTypeIdentifierMenopausalState", optional=true)
+        public static native NSString MenopausalState();
         /**
          * @since Available in iOS 9.0 and later.
          */

@@ -95,6 +95,16 @@ import org.robovm.apple.uniformtypeid.*;
     public native boolean wantsIncrementalChangeDetails();
     @Property(selector = "setWantsIncrementalChangeDetails:")
     public native void setWantsIncrementalChangeDetails(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "prefetchAssetExtendedMetadata")
+    public native boolean isPrefetchAssetExtendedMetadata();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPrefetchAssetExtendedMetadata:")
+    public native void setPrefetchAssetExtendedMetadata(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

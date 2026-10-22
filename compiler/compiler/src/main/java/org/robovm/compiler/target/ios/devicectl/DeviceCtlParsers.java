@@ -106,6 +106,7 @@ public final class DeviceCtlParsers {
      *   "marketingName" : "iPhone XR",
      *   "platform" : "iOS",
      *   "productType" : "iPhone11,8",
+     *   "reality" : "physical",
      *   "serialNumber" : "1234567",
      *   "supportedCPUTypes" : [
      *     { "name" : "arm64e" },
@@ -125,6 +126,7 @@ public final class DeviceCtlParsers {
         String marketingName = asString(json, "marketingName");
         String platform = asString(json, "platform");
         String productType = asString(json, "productType");
+        HardwareProperties.Reality reality = HardwareProperties.Reality.of(asString(json, "reality"));
         String serialNumber = asString(json, "serialNumber");
         Set<HardwareProperties.CPUType> supportedCPUTypes = asObjectStream(json, "supportedCPUTypes", Stream.empty())
             .map( js -> HardwareProperties.CPUType.of(asString(js, "name"))).collect(Collectors.toSet());
@@ -137,6 +139,7 @@ public final class DeviceCtlParsers {
             marketingName,
             platform,
             productType,
+            reality,
             serialNumber,
             supportedCPUTypes,
             udid
@@ -175,6 +178,9 @@ public final class DeviceCtlParsers {
         JsonObject result = asJson(json, "result");
         return asObjectStream(result, "devices", Stream.empty())
             .map(DeviceCtlParsers::parseAppleDevice)
+            // Xcode 27+ also lists simulators, keep physical devices only. Missing field (older Xcode) is kept
+            .filter(d -> d.hardwareProperties.reality == HardwareProperties.Reality.PHYSICAL ||
+                    d.hardwareProperties.reality == HardwareProperties.Reality.UNSPECIFIED)
             .filter(d ->
                 // DISCONNECTED means device is discoverable but tunnel is not established
                 d.connectionProperties.tunnelState == TunnelState.CONNECTED || d.connectionProperties.tunnelState == TunnelState.DISCONNECTED

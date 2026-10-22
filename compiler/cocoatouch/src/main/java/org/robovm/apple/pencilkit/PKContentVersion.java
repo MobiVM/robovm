@@ -49,7 +49,11 @@ public enum /*<name>*/PKContentVersion/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 26.0 and later.
      */
     _4(4L),
-    Latest(4L);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    _5(5L),
+    Latest(5L);
     /*</values>*/
 
     /*<bind>*/

@@ -61,6 +61,10 @@ import org.robovm.apple.security.*;
         return code;
     }
     /*<methods>*/
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use Network Framework instead
+     */
+    @Deprecated
     @GlobalValue(symbol="MCErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

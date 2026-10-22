@@ -76,6 +76,13 @@ classes:
                 parameters:
                     passes:
                         type: NSArray<PKPass>
+            '-initWithPassesData:':
+                name: initWithPassesData
+                static_constructor_name: createWithPassesData
+            '-initWithPassesArchiveAtFileURL:':
+                name: init
+            '-initWithPassesArchiveData:':
+                name: init
             '-initWithIssuerData:signature:error:':
                 name: init
     PKAddPaymentPassRequest: {} # DONE
@@ -114,6 +121,12 @@ classes:
                 parameters:
                     passes:
                         type: NSArray<PKPass>
+            '-addPassesWithData:completionHandler:':
+                name: addPassesWithData
+            '-addPassesFromArchiveAtFileURL:completionHandler:':
+                name: addPassesFromArchive
+            '-addPassesFromArchiveWithData:completionHandler:':
+                name: addPassesFromArchive
             '-passesOfType:':
                 name: getPassesOfType
                 return_type: NSArray<PKPass>
@@ -124,6 +137,8 @@ classes:
                 trim_after_first_colon: true
             '-canAddPaymentPassWithPrimaryAccountIdentifier:':
                 name: canAddPaymentPass
+            '-openPaymentSetupWithMerchantIdentifier:':
+                name: openPaymentSetup
             '+requestAutomaticPassPresentationSuppressionWithResponseHandler:':
                 name: requestAutomaticPassPresentationSuppression
                 parameters:

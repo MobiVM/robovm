@@ -58,6 +58,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "initWithPollingOption:delegate:queue:")
     public NFCPaymentTagReaderSession(NFCPollingOption pollingOption, NFCTagReaderSessionDelegate delegate, DispatchQueue queue) { super(pollingOption, delegate, queue); }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithConfiguration:delegate:queue:")
+    public NFCPaymentTagReaderSession(NFCTagReaderSessionConfiguration configuration, NFCTagReaderSessionDelegate delegate, DispatchQueue queue) { super(configuration, delegate, queue); }
     /*</constructors>*/
     /*<properties>*/
     /**

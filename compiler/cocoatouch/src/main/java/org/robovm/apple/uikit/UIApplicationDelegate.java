@@ -227,6 +227,10 @@ import org.robovm.apple.symbols.*;
     void protectedDataWillBecomeUnavailable(UIApplication application);
     @Method(selector = "applicationProtectedDataDidBecomeAvailable:")
     void protectedDataDidBecomeAvailable(UIApplication application);
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use UIWindowSceneDelegate.supportedInterfaceOrientations(for:) instead
+     */
+    @Deprecated
     @Method(selector = "application:supportedInterfaceOrientationsForWindow:")
     UIInterfaceOrientationMask getSupportedInterfaceOrientations(UIApplication application, UIWindow window);
     @Method(selector = "application:shouldAllowExtensionPointIdentifier:")
