@@ -47,7 +47,7 @@ import org.robovm.apple.corehaptic.*;
     /*<bind>*/static { ObjCRuntime.bind(GCDeviceHaptics.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     /*<constructors>*/
-    protected GCDeviceHaptics() {}
+    public GCDeviceHaptics() {}
     protected GCDeviceHaptics(Handle h, long handle) { super(h, handle); }
     protected GCDeviceHaptics(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/

@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,6 +54,11 @@ import org.robovm.apple.coreanimation.*;
     protected CPRouteChoice(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:")
     public CPRouteChoice(NSArray<NSString> summaryVariants, NSArray<NSString> additionalInformationVariants, NSArray<NSString> selectionSummaryVariants) { super((SkipInit) null); initObject(init(summaryVariants, additionalInformationVariants, selectionSummaryVariants)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:travelEstimates:")
+    public CPRouteChoice(NSArray<NSString> summaryVariants, NSArray<NSString> additionalInformationVariants, NSArray<NSString> selectionSummaryVariants, CPTravelEstimates travelEstimates) { super((SkipInit) null); initObject(init(summaryVariants, additionalInformationVariants, selectionSummaryVariants, travelEstimates)); }
     @Method(selector = "initWithCoder:")
     public CPRouteChoice(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
@@ -67,6 +73,11 @@ import org.robovm.apple.coreanimation.*;
     public native NSObject getUserInfo();
     @Property(selector = "setUserInfo:")
     public native void setUserInfo(NSObject v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "travelEstimates")
+    public native CPTravelEstimates getTravelEstimates();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
@@ -74,6 +85,11 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     @Method(selector = "initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:")
     protected native @Pointer long init(NSArray<NSString> summaryVariants, NSArray<NSString> additionalInformationVariants, NSArray<NSString> selectionSummaryVariants);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithSummaryVariants:additionalInformationVariants:selectionSummaryVariants:travelEstimates:")
+    protected native @Pointer long init(NSArray<NSString> summaryVariants, NSArray<NSString> additionalInformationVariants, NSArray<NSString> selectionSummaryVariants, CPTravelEstimates travelEstimates);
     @Method(selector = "encodeWithCoder:")
     public native void encode(NSCoder coder);
     @Method(selector = "initWithCoder:")

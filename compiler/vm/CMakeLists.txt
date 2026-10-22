@@ -134,6 +134,11 @@ endif()
 # Set up global C and C++ compiler flags
 set(C_FLAGS "${C_FLAGS} -std=gnu99 -fPIC")
 set(CXX_FLAGS "${CXX_FLAGS} -std=gnu++11 -fPIC")
+if((MACOSX AND MACOSX_MIN_VERSION VERSION_LESS 11.0) OR (IOS AND IOS_MIN_VERSION VERSION_LESS 15.0))
+  # libc++ (Xcode 27) emits `#warning "The selected platform is no longer supported by libc++."`
+  # for deployment targets below macOS 11/iOS 15
+  set(CXX_FLAGS "${CXX_FLAGS} -Wno-#warnings")
+endif()
 set(C_CXX_FLAGS "${C_CXX_FLAGS} -Wall -fPIC")
 if(NOT IOS)
   set(C_CXX_FLAGS "${C_CXX_FLAGS} -fdata-sections -ffunction-sections")

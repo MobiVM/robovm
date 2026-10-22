@@ -82,6 +82,16 @@ import org.robovm.apple.corefoundation.*;
      */
     @Property(selector = "setSupportedRegionCodes:")
     public native void setSupportedRegionCodes(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "lifecycleProperties")
+    public native CTCellularPlanLifecycleProperties getLifecycleProperties();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setLifecycleProperties:")
+    public native void setLifecycleProperties(CTCellularPlanLifecycleProperties v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

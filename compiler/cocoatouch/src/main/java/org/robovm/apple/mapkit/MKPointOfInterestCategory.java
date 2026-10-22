@@ -101,6 +101,10 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final MKPointOfInterestCategory Airport = new MKPointOfInterestCategory("Airport");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory AirportTerminal = new MKPointOfInterestCategory("AirportTerminal");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final MKPointOfInterestCategory AmusementPark = new MKPointOfInterestCategory("AmusementPark");
@@ -112,6 +116,10 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 13.0 and later.
      */
     public static final MKPointOfInterestCategory ATM = new MKPointOfInterestCategory("ATM");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory AutomotiveDealership = new MKPointOfInterestCategory("AutomotiveDealership");
     /**
      * @since Available in iOS 18.0 and later.
      */
@@ -164,6 +172,10 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 18.0 and later.
      */
     public static final MKPointOfInterestCategory Castle = new MKPointOfInterestCategory("Castle");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory CommercialVehicleDealership = new MKPointOfInterestCategory("CommercialVehicleDealership");
     /**
      * @since Available in iOS 18.0 and later.
      */
@@ -225,6 +237,10 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final MKPointOfInterestCategory Hotel = new MKPointOfInterestCategory("Hotel");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory InformationBooth = new MKPointOfInterestCategory("InformationBooth");
+    /**
      * @since Available in iOS 18.0 and later.
      */
     public static final MKPointOfInterestCategory Kayaking = new MKPointOfInterestCategory("Kayaking");
@@ -252,6 +268,10 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 18.0 and later.
      */
     public static final MKPointOfInterestCategory MiniGolf = new MKPointOfInterestCategory("MiniGolf");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory MotorbikeDealership = new MKPointOfInterestCategory("MotorbikeDealership");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -289,6 +309,10 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final MKPointOfInterestCategory Pharmacy = new MKPointOfInterestCategory("Pharmacy");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory PicnicArea = new MKPointOfInterestCategory("PicnicArea");
+    /**
      * @since Available in iOS 18.0 and later.
      */
     public static final MKPointOfInterestCategory Planetarium = new MKPointOfInterestCategory("Planetarium");
@@ -305,6 +329,14 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final MKPointOfInterestCategory PublicTransport = new MKPointOfInterestCategory("PublicTransport");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory RangerStation = new MKPointOfInterestCategory("RangerStation");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory RestArea = new MKPointOfInterestCategory("RestArea");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final MKPointOfInterestCategory Restaurant = new MKPointOfInterestCategory("Restaurant");
@@ -320,6 +352,10 @@ import org.robovm.apple.coreanimation.*;
      * @since Available in iOS 18.0 and later.
      */
     public static final MKPointOfInterestCategory RVPark = new MKPointOfInterestCategory("RVPark");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory ScenicView = new MKPointOfInterestCategory("ScenicView");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -369,9 +405,17 @@ import org.robovm.apple.coreanimation.*;
      */
     public static final MKPointOfInterestCategory Theater = new MKPointOfInterestCategory("Theater");
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory TicketOffice = new MKPointOfInterestCategory("TicketOffice");
+    /**
      * @since Available in iOS 13.0 and later.
      */
     public static final MKPointOfInterestCategory University = new MKPointOfInterestCategory("University");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final MKPointOfInterestCategory VisitorCenter = new MKPointOfInterestCategory("VisitorCenter");
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -386,7 +430,7 @@ import org.robovm.apple.coreanimation.*;
     public static final MKPointOfInterestCategory Zoo = new MKPointOfInterestCategory("Zoo");
     /*</constants>*/
     
-    private static /*<name>*/MKPointOfInterestCategory/*</name>*/[] values = new /*<name>*/MKPointOfInterestCategory/*</name>*/[] {/*<value_list>*/AnimalService, Airport, AmusementPark, Aquarium, ATM, AutomotiveRepair, Bakery, Bank, Baseball, Basketball, Beach, Beauty, Bowling, Brewery, Cafe, Campground, CarRental, Castle, ConventionCenter, Distillery, EVCharger, Fairground, FireStation, Fishing, FitnessCenter, FoodMarket, Fortress, GasStation, Golf, GoKart, Hiking, Hospital, Hotel, Kayaking, Landmark, Laundry, Library, Mailbox, Marina, MiniGolf, MovieTheater, Museum, MusicVenue, NationalMonument, NationalPark, Nightlife, Park, Parking, Pharmacy, Planetarium, Police, PostOffice, PublicTransport, Restaurant, Restroom, RockClimbing, RVPark, School, SkatePark, Skating, Skiing, Soccer, Spa, Stadium, Store, Surfing, Swimming, Tennis, Theater, University, Winery, Volleyball, Zoo/*</value_list>*/};
+    private static /*<name>*/MKPointOfInterestCategory/*</name>*/[] values = new /*<name>*/MKPointOfInterestCategory/*</name>*/[] {/*<value_list>*/AnimalService, Airport, AirportTerminal, AmusementPark, Aquarium, ATM, AutomotiveDealership, AutomotiveRepair, Bakery, Bank, Baseball, Basketball, Beach, Beauty, Bowling, Brewery, Cafe, Campground, CarRental, Castle, CommercialVehicleDealership, ConventionCenter, Distillery, EVCharger, Fairground, FireStation, Fishing, FitnessCenter, FoodMarket, Fortress, GasStation, Golf, GoKart, Hiking, Hospital, Hotel, InformationBooth, Kayaking, Landmark, Laundry, Library, Mailbox, Marina, MiniGolf, MotorbikeDealership, MovieTheater, Museum, MusicVenue, NationalMonument, NationalPark, Nightlife, Park, Parking, Pharmacy, PicnicArea, Planetarium, Police, PostOffice, PublicTransport, RangerStation, RestArea, Restaurant, Restroom, RockClimbing, RVPark, ScenicView, School, SkatePark, Skating, Skiing, Soccer, Spa, Stadium, Store, Surfing, Swimming, Tennis, Theater, TicketOffice, University, VisitorCenter, Winery, Volleyball, Zoo/*</value_list>*/};
     
     /*<name>*/MKPointOfInterestCategory/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -420,6 +464,11 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MKPointOfInterestCategoryAirport", optional=true)
         public static native NSString Airport();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryAirportTerminal", optional=true)
+        public static native NSString AirportTerminal();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryAmusementPark", optional=true)
@@ -434,6 +483,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryATM", optional=true)
         public static native NSString ATM();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryAutomotiveDealership", optional=true)
+        public static native NSString AutomotiveDealership();
         /**
          * @since Available in iOS 18.0 and later.
          */
@@ -499,6 +553,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryCastle", optional=true)
         public static native NSString Castle();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryCommercialVehicleDealership", optional=true)
+        public static native NSString CommercialVehicleDealership();
         /**
          * @since Available in iOS 18.0 and later.
          */
@@ -575,6 +634,11 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MKPointOfInterestCategoryHotel", optional=true)
         public static native NSString Hotel();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryInformationBooth", optional=true)
+        public static native NSString InformationBooth();
+        /**
          * @since Available in iOS 18.0 and later.
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryKayaking", optional=true)
@@ -609,6 +673,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryMiniGolf", optional=true)
         public static native NSString MiniGolf();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryMotorbikeDealership", optional=true)
+        public static native NSString MotorbikeDealership();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -655,6 +724,11 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MKPointOfInterestCategoryPharmacy", optional=true)
         public static native NSString Pharmacy();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryPicnicArea", optional=true)
+        public static native NSString PicnicArea();
+        /**
          * @since Available in iOS 18.0 and later.
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryPlanetarium", optional=true)
@@ -675,6 +749,16 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MKPointOfInterestCategoryPublicTransport", optional=true)
         public static native NSString PublicTransport();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryRangerStation", optional=true)
+        public static native NSString RangerStation();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryRestArea", optional=true)
+        public static native NSString RestArea();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryRestaurant", optional=true)
@@ -694,6 +778,11 @@ import org.robovm.apple.coreanimation.*;
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryRVPark", optional=true)
         public static native NSString RVPark();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryScenicView", optional=true)
+        public static native NSString ScenicView();
         /**
          * @since Available in iOS 13.0 and later.
          */
@@ -755,10 +844,20 @@ import org.robovm.apple.coreanimation.*;
         @GlobalValue(symbol="MKPointOfInterestCategoryTheater", optional=true)
         public static native NSString Theater();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryTicketOffice", optional=true)
+        public static native NSString TicketOffice();
+        /**
          * @since Available in iOS 13.0 and later.
          */
         @GlobalValue(symbol="MKPointOfInterestCategoryUniversity", optional=true)
         public static native NSString University();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MKPointOfInterestCategoryVisitorCenter", optional=true)
+        public static native NSString VisitorCenter();
         /**
          * @since Available in iOS 13.0 and later.
          */

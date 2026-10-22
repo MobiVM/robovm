@@ -43,6 +43,8 @@ classes:
                 name: save
             '-fetchActivityForURL:completion:':
                 name: fetchActivity
+            '-checkIsAssignedDocument:completion:':
+                name: checkIsAssignedDocument
     CLSObject: {} #since 11.3
     CLSQuantityItem: #since 11.3
         methods:

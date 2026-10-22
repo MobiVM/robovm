@@ -75,6 +75,11 @@ import org.robovm.apple.symbols.*;
     public native UIApplicationShortcutItem getShortcutItem();
     @Property(selector = "cloudKitShareMetadata")
     public native CKShareMetadata getCloudKitShareMetadata();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "sceneAccessoryUserInfo")
+    public native NSObject getSceneAccessoryUserInfo();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -18,6 +18,8 @@ enums:
     PHPickerConfigurationSelection: {} #since 15.0
     PHPickerMode: { } #since 17.0
     PHPickerCapabilities: { } #since 17.0
+    PHPickerMetadataOptions: {} #since 27.0
+    PHSharedAlbumCreationSharingPolicy: {} #since 27.0
 classes:
     PHLivePhotoView: #since 9.1
         methods:
@@ -41,6 +43,29 @@ classes:
             '-moveAssetWithIdentifier:afterAssetWithIdentifier:':
                 name: moveAsset
     PHPickerUpdateConfiguration: {} #since 17.0
+    PHPickerSearchText: #since 27.0
+        methods:
+            '-initWithString:':
+                name: init
+            '-initWithPhotoSearchSuggestion:':
+                name: init
+    PHSharedAlbumCreationConfiguration: #since 27.0
+        methods:
+            '-initWithPhotoLibrary:':
+                name: init
+    PHSharedAlbumCreationResult: {} #since 27.0
+    PHSharedAlbumCreationViewController: #since 27.0
+        methods:
+            '-initWithConfiguration:':
+                name: init
+    PHSharedAlbumCustomizationViewController: #since 27.0
+        methods:
+            '-initWithAlbumIdentifier:photoLibrary:':
+                name: init
+    PHSharedAlbumPostingViewController: #since 27.0
+        methods:
+            '-initWithItems:defaultAlbumIdentifier:photoLibrary:':
+                name: init
 protocols:
     PHLivePhotoViewDelegate:
         methods:
@@ -67,6 +92,18 @@ protocols:
         methods:
             '-picker:didFinishPicking:':
                 name: didFinishPicking
+    PHSharedAlbumCreationViewControllerDelegate: #since 27.0
+        methods:
+            '-sharedAlbumCreationViewController:didCompleteWithError:':
+                name: didComplete
+    PHSharedAlbumCustomizationViewControllerDelegate: #since 27.0
+        methods:
+            '-sharedAlbumCustomizationViewController:didCompleteWithError:':
+                name: didComplete
+    PHSharedAlbumPostingViewControllerDelegate: #since 27.0
+        methods:
+            '-sharedAlbumPostingViewController:didCompleteWithError:':
+                name: didComplete
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?PH.*):

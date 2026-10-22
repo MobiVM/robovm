@@ -61,6 +61,11 @@ import org.robovm.apple.coreanimation.*;
     }
     
     /*<methods>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+     */
+    @Deprecated
     @GlobalValue(symbol="RPRecordingErrorDomain", optional=true)
     public static native String getClassDomain();
     /*</methods>*/

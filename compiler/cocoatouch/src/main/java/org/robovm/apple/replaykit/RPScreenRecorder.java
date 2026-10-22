@@ -34,9 +34,12 @@ import org.robovm.apple.coreanimation.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+ */
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPScreenRecorder/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -49,41 +52,81 @@ import org.robovm.apple.coreanimation.*;
     protected RPScreenRecorder(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+     */
+    @Deprecated
     @Property(selector = "delegate")
     public native RPScreenRecorderDelegate getDelegate();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+     */
+    @Deprecated
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(RPScreenRecorderDelegate v);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCContentSharingPicker isAvailable instead
+     */
+    @Deprecated
     @Property(selector = "isAvailable")
     public native boolean isAvailable();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCStream isCapturing instead
+     */
+    @Deprecated
     @Property(selector = "isRecording")
     public native boolean isRecording();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCContentSharingPickerConfiguration showsMicrophoneControl instead
+     */
+    @Deprecated
     @Property(selector = "isMicrophoneEnabled")
     public native boolean isMicrophoneEnabled();
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCContentSharingPickerConfiguration showsMicrophoneControl instead
+     */
+    @Deprecated
     @Property(selector = "setMicrophoneEnabled:")
     public native void setMicrophoneEnabled(boolean v);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCContentSharingPickerConfiguration showsCameraControl instead
      */
+    @Deprecated
     @Property(selector = "isCameraEnabled")
     public native boolean isCameraEnabled();
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCContentSharingPickerConfiguration showsCameraControl instead
      */
+    @Deprecated
     @Property(selector = "setCameraEnabled:")
     public native void setCameraEnabled(boolean v);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCVideoEffectOutput cameraDevice instead
      */
+    @Deprecated
     @Property(selector = "cameraPosition")
     public native RPCameraPosition getCameraPosition();
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use SCVideoEffectOutput cameraDevice instead
      */
+    @Deprecated
     @Property(selector = "setCameraPosition:")
     public native void setCameraPosition(RPCameraPosition v);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCVideoEffectOutput instead
      */
+    @Deprecated
     @Property(selector = "cameraPreviewView")
     public native UIView getCameraPreviewView();
     /*</properties>*/
@@ -98,43 +141,72 @@ import org.robovm.apple.coreanimation.*;
     public native void startRecording(boolean microphoneEnabled, @Block VoidBlock1<NSError> handler);
     /**
      * @since Available in iOS 10.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCRecordingOutput instead
      */
+    @Deprecated
     @Method(selector = "startRecordingWithHandler:")
     public native void startRecording(@Block VoidBlock1<NSError> handler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCRecordingOutput instead
+     */
+    @Deprecated
     @Method(selector = "stopRecordingWithHandler:")
     public native void stopRecording(@Block VoidBlock2<RPPreviewViewController, NSError> handler);
     /**
      * @since Available in iOS 14.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCRecordingOutput instead
      */
+    @Deprecated
     @Method(selector = "stopRecordingWithOutputURL:completionHandler:")
     public native void stopRecording(NSURL url, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCRecordingOutput instead
+     */
+    @Deprecated
     @Method(selector = "discardRecordingWithHandler:")
     public native void discardRecording(@Block Runnable handler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCStreamOutput instead
      */
+    @Deprecated
     @Method(selector = "startCaptureWithHandler:completionHandler:")
     public native void startCapture(@Block VoidBlock3<CMSampleBuffer, RPSampleBufferType, NSError> captureHandler, @Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream stopCaptureWithCompletionHandler: instead
      */
+    @Deprecated
     @Method(selector = "stopCaptureWithHandler:")
     public native void stopCapture(@Block VoidBlock1<NSError> handler);
     /**
      * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead
      */
+    @Deprecated
     @Method(selector = "startClipBufferingWithCompletionHandler:")
     public native void startClipBuffering(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead
      */
+    @Deprecated
     @Method(selector = "stopClipBufferingWithCompletionHandler:")
     public native void stopClipBuffering(@Block VoidBlock1<NSError> completionHandler);
     /**
      * @since Available in iOS 15.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCClipBufferingOutput instead
      */
+    @Deprecated
     @Method(selector = "exportClipToURL:duration:completionHandler:")
     public native void exportClipToURL(NSURL url, double duration, @Block VoidBlock1<NSError> completionHandler);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+     */
+    @Deprecated
     @Method(selector = "sharedRecorder")
     public static native RPScreenRecorder getSharedRecorder();
     /*</methods>*/

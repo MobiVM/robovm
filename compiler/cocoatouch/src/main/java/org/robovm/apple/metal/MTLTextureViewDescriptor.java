@@ -70,6 +70,16 @@ import org.robovm.apple.dispatch.*;
     public native @ByVal MTLTextureSwizzleChannels getSwizzle();
     @Property(selector = "setSwizzle:")
     public native void setSwizzle(@ByVal MTLTextureSwizzleChannels v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "minLOD")
+    public native float getMinLOD();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setMinLOD:")
+    public native void setMinLOD(float v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

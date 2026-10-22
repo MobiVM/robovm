@@ -68,5 +68,11 @@ import org.robovm.apple.symbols.*;
     public void textViewportLayoutControllerWillLayout(NSTextViewportLayoutController textViewportLayoutController) {}
     @NotImplemented("textViewportLayoutControllerDidLayout:")
     public void textViewportLayoutControllerDidLayout(NSTextViewportLayoutController textViewportLayoutController) {}
+    @NotImplemented("textViewportLayoutController:cacheRenderingSurface:forKey:")
+    public void cacheRenderingSurface(NSTextViewportLayoutController textViewportLayoutController, NSTextViewportRenderingSurface renderingSurface, NSTextViewportRenderingSurfaceKey renderingSurfaceKey) {}
+    @NotImplemented("textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:")
+    public NSTextViewportRenderingSurface retrieveCachedRenderingSurfaceForKey(NSTextViewportLayoutController textViewportLayoutController, NSTextViewportRenderingSurfaceKey renderingSurfaceKey) { return null; }
+    @NotImplemented("textViewportLayoutControllerReceivedSetNeedsLayout:")
+    public void textViewportLayoutControllerReceivedSetNeedsLayout(NSTextViewportLayoutController textViewportLayoutController) {}
     /*</methods>*/
 }

@@ -48,7 +48,39 @@ public enum /*<name>*/MTLTensorDataType/*</name>*/ implements ValuedEnum {
     Int16(37L),
     UInt16(41L),
     Int32(29L),
-    UInt32(33L);
+    UInt32(33L),
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    Int4(143L),
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    UInt4(144L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    MetalFloat8UE8M0(145L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    UInt2(149L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Int2(150L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    MetalFloat8E5M2(141L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    MetalFloat8E4M3(142L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    MetalFloat4E2M1(148L);
     /*</values>*/
 
     /*<bind>*/

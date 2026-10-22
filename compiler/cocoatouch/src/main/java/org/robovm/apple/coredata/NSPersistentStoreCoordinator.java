@@ -361,6 +361,20 @@ import org.robovm.apple.uikit.*;
     @Method(selector = "setMetadata:forPersistentStoreOfType:URL:options:error:")
     private static native boolean setMetadataForPersistentStoreType(NSPersistentStoreMetadata metadata, String storeType, NSURL url, NSPersistentStoreOptions options, NSError.NSErrorPtr error);
     /**
+     * @since Available in iOS 26.4 and later.
+     */
+    public static NSManagedObjectModel getCachedModelForPersistentStore(NSURL url, NSDictionary<?, ?> options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSManagedObjectModel result = getCachedModelForPersistentStore(url, options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "cachedModelForPersistentStoreAtURL:options:error:")
+    private static native NSManagedObjectModel getCachedModelForPersistentStore(NSURL url, NSDictionary<?, ?> options, NSError.NSErrorPtr error);
+    /**
      * @deprecated Deprecated in iOS 9.0. Use -metadataForPersistentStoreOfType:URL:options:error: and pass in an options dictionary matching addPersistentStoreWithType
      */
     @Deprecated

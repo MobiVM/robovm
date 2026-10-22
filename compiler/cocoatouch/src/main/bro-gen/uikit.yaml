@@ -396,10 +396,24 @@ enums:
     UIMessageConversationEntryDataKind: {} #since 18.4
     UIActivityCollaborationMode: {} #since 18.0
     UIActivitySectionTypes: {} #since 18.0
+    NSTextBlockValueType: {} #since 6.0
+    NSTextBlockDimension: {} #since 6.0
+    NSTextBlockLayer: {} #since 6.0
+    NSTextBlockVerticalAlignment: {} #since 6.0
+    NSTextTableLayoutAlgorithm: {} #since 6.0
+    UIMenuElementImageVisibility: {} #since 27.0
+    UITextGrammarCheckingType: {} #since 27.0
+    UIDragLiftBehavior: {} #since 27.0
+    UIBarMinimizationBehavior: {} #since 27.0
+    UIBarMinimizationSafeAreaAdjustment: {} #since 27.0
+    UIBarMinimizationRestorationBehavior: {} #since 27.0
+    UITextAttachmentViewProviderReusePolicy: {}
+    UISheetPresentationControllerPlacement: {} #since 27.0
+    UITabBarControllerSidebarPlacement: {} #since 27.0
+    UIWritingToolsCoordinatorTextDecoration: {} #since 27.0
 
 #    EXCLUDE1: {exclude: true, first: NSAttachmentCharacter} -- don't exclude it as value will be picked up as constant
     EXCLUDE3_AS_DEPRECATED: {exclude: true, first: NSControlCharacterZeroAdvancementAction}
-
 categories:
     CIColor: # DONE
         annotations: ['@WeaklyLinked']
@@ -3289,6 +3303,8 @@ classes:
                 name: setTabBarHidden
             '-setBottomAccessory:animated:':
                 name: setBottomAccessory
+            '-setProminentTabIdentifier:animated:':
+                name: setProminentTabIdentifier
     UITabBarItem: # DONE
         methods:
             '-initWithTitle:image:tag:':
@@ -3449,6 +3465,10 @@ classes:
                 type: List<String>
                 marshaler: NSArray.AsStringListMarshaler
         methods:
+            '-requestGrammarCheckingOfString:range:waitForAllResults:completionHandler:':
+                name: requestGrammarCheckingOfString
+            '-ignoreGrammarRange:inSentence:':
+                name: ignoreGrammarRange
             '-rangeOfMisspelledWordInString:range:startingAt:wrap:language:':
                 name: getRangeOfMisspelledWordInString
             '-guessesForWordRange:inString:language:':
@@ -3536,6 +3556,8 @@ classes:
                 trim_after_first_colon: true
             '-drawTextHighlightBackgroundForTextRange:origin:':
                 name: drawTextHighlightBackground
+            '-registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:':
+                name: registerTextAttachmentViewProviderReusePolicy
     UIToolbar: # DONE
         properties:
             'items':
@@ -3666,6 +3688,8 @@ classes:
             '+traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:':
                 name: create
                 constructor: true
+            '+traitCollectionWithSystemPrefersReducedResourceUsage:':
+                name: createWithSystemPrefersReducedResourceUsage
     UIMutableApplicationShortcutItem: # DONE
         skip_def_constructor: true
     UIMutableUserNotificationAction: {} # DONE
@@ -4545,6 +4569,8 @@ classes:
     UISceneActivationRequestOptions: {} #since 13.0
     UISceneConfiguration: #since 13.0
         methods:
+            '-initWithName:':
+                name: init
             '-initWithName:sessionRole:':
                 name: init
             '+configurationWithName:sessionRole:':
@@ -4611,6 +4637,8 @@ classes:
         methods:
             '-requestGeometryUpdateWithPreferences:errorHandler:':
                 name: requestGeometryUpdate
+            '-displayLinkWithTarget:selector:':
+                name: displayLink
     UIWindowSceneDestructionRequestOptions: {} #since 13.0
     UIKey:  #since 13.4
         properties:
@@ -5293,6 +5321,9 @@ classes:
     UIScrollEdgeEffectStyle: {} #since 26.0
     UIScrollEdgeElementContainerInteraction: {} #since 26.0
     UISearchTab: #since 18.0
+        properties:
+            '+identifier':
+                name: systemIdentifier
         methods:
             '-initWithViewControllerProvider:':
                 name: init
@@ -5424,6 +5455,12 @@ classes:
                 name: update
             '-updateForReflowedTextInContextWithIdentifier:':
                 name: updateForReflowedTextInContext
+            '-startTextAnimation:forRange:inContext:writingDirection:':
+                name: startTextAnimation
+            '-cancelTextAnimationsWithIdentifiers:':
+                name: cancelTextAnimations
+            '-showGrammarPresentationForRange:inContext:':
+                name: showGrammarPresentation
     UIWritingToolsCoordinatorAnimationParameters: {} #since 18.2
     UIWritingToolsCoordinatorContext: #since 18.2
         methods:
@@ -5438,6 +5475,43 @@ classes:
             '+effectWithColor:':
                 name: create
                 constructor: true
+    NSTextBlock: #since 6.0
+        methods:
+            '-initWithCoder:':
+                name: init
+            '-setValue:type:forDimension:':
+                name: setValue
+            '-setContentWidth:type:':
+                name: setContentWidth
+            '-setWidth:type:forLayer:':
+                name: setWidth
+            '-setWidth:type:forLayer:rectEdge:':
+                name: setWidth
+            '-widthForLayer:rectEdge:':
+                name: widthForLayer
+            '-widthValueTypeForLayer:rectEdge:':
+                name: widthValueTypeForLayer
+            '-setBorderColor:rectEdge:':
+                name: setBorderColor
+    NSTextTable: {} #since 6.0
+    NSTextTableBlock: #since 6.0
+        methods:
+            '-initWithTable:startingRow:rowSpan:startingColumn:columnSpan:':
+                name: init
+    UIBarMinimization: {} #since 27.0
+    UIPhotoSearchSuggestion: {} #since 27.0
+    UISceneAccessory: #since 27.0
+        methods:
+            '+externalNonInteractiveSceneAccessoryWithConfiguration:':
+                name: externalNonInteractiveSceneAccessory
+            '+externalNonInteractiveSceneAccessoryWithConfiguration:userInfo:':
+                name: externalNonInteractiveSceneAccessory
+    UISceneAccessoryRegistration: {} #since 27.0
+    UISceneClosureConfirmation: #since 27.0
+        methods:
+            '+confirmationWithTitle:message:actions:':
+                name: confirmation
+    UITraitSystemPrefersReducedResourceUsage: {} #since 27.0
 protocols:
     NSLayoutManagerDelegate: # DONE
         methods:
@@ -7373,9 +7447,15 @@ protocols:
                 name: shouldBreakLineBeforeLocation
             '-textLayoutManager:renderingAttributesForLink:atLocation:defaultAttributes:':
                 name: renderingAttributesForLink
+            '-textLayoutManager:cacheTextAttachmentViewProvider:forTextAttachment:':
+                name: cacheTextAttachmentViewProvider
+            '-textLayoutManager:retrieveCachedTextAttachmentViewProviderForTextAttachment:':
+                name: retrieveCachedTextAttachmentViewProvider
     NSTextLocation: {} #since 15.0
     NSTextSelectionDataSource: #since 15.0
         methods:
+            '-convertInteractionPoint:toContainerAtLocation:':
+                name: convertInteractionPoint
             '-enumerateSubstringsFromLocation:options:usingBlock:':
                 name: enumerateSubstringsFromLocation
             '-textRangeForSelectionGranularity:enclosingLocation:':
@@ -7400,6 +7480,10 @@ protocols:
         methods:
             '-textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:':
                 name: configureRenderingSurfaceForTextLayoutFragment
+            '-textViewportLayoutController:cacheRenderingSurface:forKey:':
+                name: cacheRenderingSurface
+            '-textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:':
+                name: retrieveCachedRenderingSurfaceForKey
     UIActivityItemsConfigurationProviding: {} #since 15.0
     UISheetPresentationControllerDelegate: {} #since 15.0
     UIToolTipInteractionDelegate: #since 15.0
@@ -7554,6 +7638,8 @@ protocols:
     UITabBarControllerSidebarAnimating: {} #since 18.0
     UITabBarControllerSidebarDelegate: #since 18.0
         methods:
+            '-tabBarController:sidebarAvailabilityDidChange:':
+                name: sidebarAvailabilityDidChange
             '-tabBarController:sidebarVisibilityWillChange:animator:':
                 name: sidebarVisibilityWillChange
             '-tabBarController:sidebar:itemForRequest:':
@@ -7602,6 +7688,12 @@ protocols:
                 name: prepareForTextAnimation
             '-writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:':
                 name: requestsPreviewForTextAnimation
+            '-writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:textDecoration:completion:':
+                name: requestsPreviewForTextAnimation
+            '-writingToolsCoordinator:requestsGrammarResultsForContext:completion:':
+                name: requestsGrammarResults
+            '-writingToolsCoordinator:setGrammarCheckingEnabled:':
+                name: setGrammarCheckingEnabled
             '-writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:':
                 name: finishTextAnimation
             '-writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:':
@@ -7612,6 +7704,9 @@ protocols:
                 name: willChangeToState
             '-writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:':
                 name: requestsRangeInContext
+
+    NSTextViewportRenderingSurface: {} #since 27.0
+    NSTextViewportRenderingSurfaceKey: {} #since 18.0
 
     # skipped
     UIAppearance: {exclude: true, skip_implements: true, skip_methods: true} # as functionality is implemented in UIAppearance
@@ -7868,16 +7963,19 @@ values:
     NS(.*)AttributeName:
         dictionary: NSAttributedStringAttributes
         enum: NSAttributedStringAttribute
+        constructor_visibility: public
         name: '#{g[0]}'
         type: NSString
     UITextAttribute(Font):
         dictionary: NSAttributedStringAttributes
         enum: NSAttributedStringAttribute
+        constructor_visibility: public
         name: 'Text#{g[0]}'
         type: NSString
     UITextAttribute(.*):
         dictionary: NSAttributedStringAttributes
         enum: NSAttributedStringAttribute
+        constructor_visibility: public
         name: '#{g[0]}'
         type: NSString
     NSTextEffect(.*):
@@ -8529,6 +8627,10 @@ values:
         static_class: ErrorKeys
         name: '#{g[0]}'
 
+    UIBarButtonItemVisibilityPriority(.*):
+        class: UIBarButtonItem
+        static_class: VisibilityPriority
+        name: '#{g[0]}'
 
     # Make sure we don't miss any values if new ones are introduced in a later UIKit
     (NS.*):

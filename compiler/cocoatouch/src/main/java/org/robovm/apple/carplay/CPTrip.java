@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -51,16 +52,46 @@ import org.robovm.apple.coreanimation.*;
     protected CPTrip() {}
     protected CPTrip(Handle h, long handle) { super(h, handle); }
     protected CPTrip(SkipInit skipInit) { super(skipInit); }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithOriginWaypoint:destinationWaypoint:routeChoices:")
+    public CPTrip(CPNavigationWaypoint origin, CPNavigationWaypoint destination, NSArray<CPRouteChoice> routeChoices) { super((SkipInit) null); initObject(init(origin, destination, routeChoices)); }
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Use initWithOriginWaypoint:destinationWaypoint:routeChoices:
+     */
+    @Deprecated
     @Method(selector = "initWithOrigin:destination:routeChoices:")
     public CPTrip(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices) { super((SkipInit) null); initObject(init(origin, destination, routeChoices)); }
     @Method(selector = "initWithCoder:")
     public CPTrip(NSCoder coder) { super((SkipInit) null); initObject(init(coder)); }
     /*</constructors>*/
     /*<properties>*/
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Use originWaypoint
+     */
+    @Deprecated
     @Property(selector = "origin")
     public native MKMapItem getOrigin();
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Use destinationWaypoint
+     */
+    @Deprecated
     @Property(selector = "destination")
     public native MKMapItem getDestination();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "originWaypoint")
+    public native CPNavigationWaypoint getOriginWaypoint();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "destinationWaypoint")
+    public native CPNavigationWaypoint getDestinationWaypoint();
     @Property(selector = "routeChoices")
     public native NSArray<CPRouteChoice> getRouteChoices();
     @Property(selector = "userInfo")
@@ -69,19 +100,53 @@ import org.robovm.apple.coreanimation.*;
     public native void setUserInfo(NSObject v);
     /**
      * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use destinationWaypoint.nameVariants
      */
+    @Deprecated
     @Property(selector = "destinationNameVariants")
     public native NSArray<NSString> getDestinationNameVariants();
     /**
      * @since Available in iOS 17.4 and later.
+     * @deprecated Deprecated in iOS 27.0. Use destinationWaypoint.nameVariants
      */
+    @Deprecated
     @Property(selector = "setDestinationNameVariants:")
     public native void setDestinationNameVariants(NSArray<NSString> v);
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "hasShareableDestination")
+    public native boolean hasShareableDestination();
+    /**
+     * @since Available in iOS 26.1 and later.
+     */
+    @Property(selector = "setHasShareableDestination:")
+    public native void setHasShareableDestination(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "routeSegmentsAvailableForRegion")
+    public native boolean isRouteSegmentsAvailableForRegion();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setRouteSegmentsAvailableForRegion:")
+    public native void setRouteSegmentsAvailableForRegion(boolean v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "initWithOriginWaypoint:destinationWaypoint:routeChoices:")
+    protected native @Pointer long init(CPNavigationWaypoint origin, CPNavigationWaypoint destination, NSArray<CPRouteChoice> routeChoices);
+    /**
+     * @since Available in iOS 12.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Use initWithOriginWaypoint:destinationWaypoint:routeChoices:
+     */
+    @Deprecated
     @Method(selector = "initWithOrigin:destination:routeChoices:")
     protected native @Pointer long init(MKMapItem origin, MKMapItem destination, NSArray<CPRouteChoice> routeChoices);
     @Method(selector = "encodeWithCoder:")

@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,6 +95,16 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "copyDisplayedPixelBuffer")
     public native CVPixelBuffer copyDisplayedPixelBuffer();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "setCaptionPreviewProfileID:position:text:")
+    public native void setCaptionPreview(String profileID, @ByVal CGPoint position, String text);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "stopShowingCaptionPreview")
+    public native void stopShowingCaptionPreview();
     @Method(selector = "playerLayerWithPlayer:")
     protected static native @Pointer long create(AVPlayer player);
     @Method(selector = "defaultValueForKey:")

@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -42,7 +43,7 @@ import org.robovm.apple.coreanimation.*;
 /*<annotations>*/@Library("CarPlay") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CPListItem/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements CPSelectableListItem/*</implements>*/ {
+    /*<implements>*/implements CPSelectableListItem, CPPlayableItem/*</implements>*/ {
 
     /*<ptr>*/public static class CPListItemPtr extends Ptr<CPListItem, CPListItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(CPListItem.class); }/*</bind>*/
@@ -185,6 +186,16 @@ import org.robovm.apple.coreanimation.*;
     @Deprecated
     @Property(selector = "setShowsExplicitLabel:")
     public native void setShowsExplicitLabel(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "playbackConfiguration")
+    public native CPPlaybackConfiguration getPlaybackConfiguration();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setPlaybackConfiguration:")
+    public native void setPlaybackConfiguration(CPPlaybackConfiguration v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

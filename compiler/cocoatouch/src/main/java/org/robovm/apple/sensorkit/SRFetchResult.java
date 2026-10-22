@@ -57,6 +57,11 @@ import org.robovm.apple.soundanalysis.*;
     public native SampleType getSample();
     @Property(selector = "timestamp")
     public native double getTimestamp();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "sourceDevice")
+    public native SRSourceDevice getSourceDevice();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

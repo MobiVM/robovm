@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 12.5 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ExposureNotification") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ExposureNotification") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/ENExposureConfiguration/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -52,122 +53,170 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "immediateDurationWeight")
     public native double getImmediateDurationWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setImmediateDurationWeight:")
     public native void setImmediateDurationWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "nearDurationWeight")
     public native double getNearDurationWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setNearDurationWeight:")
     public native void setNearDurationWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "mediumDurationWeight")
     public native double getMediumDurationWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setMediumDurationWeight:")
     public native void setMediumDurationWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "otherDurationWeight")
     public native double getOtherDurationWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setOtherDurationWeight:")
     public native void setOtherDurationWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "infectiousnessForDaysSinceOnsetOfSymptoms")
     public native NSDictionary<NSNumber, NSNumber> getInfectiousnessForDaysSinceOnsetOfSymptoms();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setInfectiousnessForDaysSinceOnsetOfSymptoms:")
     public native void setInfectiousnessForDaysSinceOnsetOfSymptoms(NSDictionary<NSNumber, NSNumber> v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "infectiousnessStandardWeight")
     public native double getInfectiousnessStandardWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setInfectiousnessStandardWeight:")
     public native void setInfectiousnessStandardWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "infectiousnessHighWeight")
     public native double getInfectiousnessHighWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setInfectiousnessHighWeight:")
     public native void setInfectiousnessHighWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "reportTypeConfirmedTestWeight")
     public native double getReportTypeConfirmedTestWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setReportTypeConfirmedTestWeight:")
     public native void setReportTypeConfirmedTestWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "reportTypeConfirmedClinicalDiagnosisWeight")
     public native double getReportTypeConfirmedClinicalDiagnosisWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setReportTypeConfirmedClinicalDiagnosisWeight:")
     public native void setReportTypeConfirmedClinicalDiagnosisWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "reportTypeSelfReportedWeight")
     public native double getReportTypeSelfReportedWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setReportTypeSelfReportedWeight:")
     public native void setReportTypeSelfReportedWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "reportTypeRecursiveWeight")
     public native double getReportTypeRecursiveWeight();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setReportTypeRecursiveWeight:")
     public native void setReportTypeRecursiveWeight(double v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "reportTypeNoneMap")
     public native ENDiagnosisReportType getReportTypeNoneMap();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setReportTypeNoneMap:")
     public native void setReportTypeNoneMap(ENDiagnosisReportType v);
     @Property(selector = "attenuationDurationThresholds")
@@ -176,12 +225,16 @@ import org.robovm.apple.dispatch.*;
     public native void setAttenuationDurationThresholds(NSArray<NSNumber> v);
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "daysSinceLastExposureThreshold")
     public native @MachineSizedSInt long getDaysSinceLastExposureThreshold();
     /**
      * @since Available in iOS 12.5 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported.
      */
+    @Deprecated
     @Property(selector = "setDaysSinceLastExposureThreshold:")
     public native void setDaysSinceLastExposureThreshold(@MachineSizedSInt long v);
     @Property(selector = "minimumRiskScoreFullRange")

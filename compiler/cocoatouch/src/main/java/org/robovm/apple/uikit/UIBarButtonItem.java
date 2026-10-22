@@ -288,6 +288,26 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setSymbolAnimationEnabled:")
     public native void setSymbolAnimationEnabled(boolean v);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "visibilityPriority")
+    public native @MachineSizedSInt long getVisibilityPriority();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setVisibilityPriority:")
+    public native void setVisibilityPriority(@MachineSizedSInt long v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isPaddingRemoved")
+    public native boolean isPaddingRemoved();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPaddingRemoved:")
+    public native void setPaddingRemoved(boolean v);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Property(selector = "menuRepresentation")
@@ -353,6 +373,27 @@ import org.robovm.apple.symbols.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @Library("UIKit")
+    public static class VisibilityPriority {
+        static { Bro.bind(VisibilityPriority.class); }
+
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="UIBarButtonItemVisibilityPriorityStandard", optional=true)
+        public static native @MachineSizedSInt long Standard();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="UIBarButtonItemVisibilityPriorityLow", optional=true)
+        public static native @MachineSizedSInt long Low();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="UIBarButtonItemVisibilityPriorityHigh", optional=true)
+        public static native @MachineSizedSInt long High();
+    }
+    
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder coder);
     @Method(selector = "initWithImage:style:target:action:")

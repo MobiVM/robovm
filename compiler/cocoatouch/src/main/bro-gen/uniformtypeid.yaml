@@ -27,6 +27,8 @@ classes:
         methods:
             '+typeWithIdentifier:':
                 name: createUsingIdentifier
+            '+typeWithIdentifier:allowUndeclared:':
+                name: createUsingIdentifier
             '+typeWithFilenameExtension:':
                 name: createUsingFilenameExtension
             '+typeWithFilenameExtension:conformingToType:':

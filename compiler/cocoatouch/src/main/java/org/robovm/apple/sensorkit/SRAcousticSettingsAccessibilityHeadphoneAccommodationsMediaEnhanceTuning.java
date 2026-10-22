@@ -42,6 +42,10 @@ import org.robovm.apple.soundanalysis.*;
 /*<annotations>*/@Marshaler(ValuedEnum.AsMachineSizedSIntMarshaler.class)/*</annotations>*/
 public enum /*<name>*/SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning/*</name>*/ implements ValuedEnum {
     /*<values>*/
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    None(0L),
     BalancedTone(1L),
     VocalRange(2L),
     Brightness(3L);

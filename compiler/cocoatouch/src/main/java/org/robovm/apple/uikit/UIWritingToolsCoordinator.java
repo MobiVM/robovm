@@ -112,6 +112,21 @@ import org.robovm.apple.symbols.*;
     public native void update(@ByVal NSRange range, NSAttributedString replacementText, UIWritingToolsCoordinatorTextUpdateReason reason, NSUUID contextID);
     @Method(selector = "updateForReflowedTextInContextWithIdentifier:")
     public native void updateForReflowedTextInContext(NSUUID contextID);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "startTextAnimation:forRange:inContext:writingDirection:")
+    public native NSUUID startTextAnimation(UIWritingToolsCoordinatorTextAnimation textAnimation, @ByVal NSRange range, UIWritingToolsCoordinatorContext context, NSWritingDirection writingDirection);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "cancelTextAnimationsWithIdentifiers:")
+    public native void cancelTextAnimations(NSArray<NSUUID> identifiers);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "showGrammarPresentationForRange:inContext:")
+    public native boolean showGrammarPresentation(@ByVal NSRange range, UIWritingToolsCoordinatorContext context);
     @Method(selector = "willMoveToView:")
     public native void willMoveToView(UIView view);
     @Method(selector = "didMoveToView:")

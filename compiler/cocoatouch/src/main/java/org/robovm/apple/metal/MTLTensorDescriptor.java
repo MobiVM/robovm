@@ -66,6 +66,16 @@ import org.robovm.apple.dispatch.*;
     public native MTLTensorUsage getUsage();
     @Property(selector = "setUsage:")
     public native void setUsage(MTLTensorUsage v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "auxiliaryPlanes")
+    public native MTLTensorAuxiliaryPlaneDescriptorMap getAuxiliaryPlanes();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAuxiliaryPlanes:")
+    public native void setAuxiliaryPlanes(MTLTensorAuxiliaryPlaneDescriptorMap v);
     @Property(selector = "resourceOptions")
     public native MTLResourceOptions getResourceOptions();
     @Property(selector = "setResourceOptions:")

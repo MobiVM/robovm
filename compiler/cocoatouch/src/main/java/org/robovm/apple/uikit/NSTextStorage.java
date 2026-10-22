@@ -83,8 +83,6 @@ import org.robovm.apple.symbols.*;
     protected NSTextStorage(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
-    @Property(selector = "layoutManagers")
-    public native NSArray<NSLayoutManager> getLayoutManagers();
     @Property(selector = "editedMask")
     public native NSTextStorageEditActions getEditedMask();
     @Property(selector = "editedRange")
@@ -107,6 +105,8 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setTextStorageObserver:", strongRef = true)
     public native void setTextStorageObserver(NSTextStorageObserving v);
+    @Property(selector = "layoutManagers")
+    public native NSArray<NSLayoutManager> getLayoutManagers();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "readableTypeIdentifiersForItemProvider")
@@ -121,10 +121,6 @@ import org.robovm.apple.symbols.*;
     @GlobalValue(symbol="NSTextStorageDidProcessEditingNotification", optional=true)
     public static native NSString DidProcessEditingNotification();
     
-    @Method(selector = "addLayoutManager:")
-    public native void addLayoutManager(NSLayoutManager aLayoutManager);
-    @Method(selector = "removeLayoutManager:")
-    public native void removeLayoutManager(NSLayoutManager aLayoutManager);
     @Method(selector = "edited:range:changeInLength:")
     public native void edited(NSTextStorageEditActions editedMask, @ByVal NSRange editedRange, @MachineSizedSInt long delta);
     @Method(selector = "processEditing")
@@ -133,6 +129,10 @@ import org.robovm.apple.symbols.*;
     public native void invalidateAttributes(@ByVal NSRange range);
     @Method(selector = "ensureAttributesAreFixedInRange:")
     public native void ensureAttributesAreFixed(@ByVal NSRange range);
+    @Method(selector = "addLayoutManager:")
+    public native void addLayoutManager(NSLayoutManager aLayoutManager);
+    @Method(selector = "removeLayoutManager:")
+    public native void removeLayoutManager(NSLayoutManager aLayoutManager);
     public static NSTextStorage createProviderDataObject(NSData data, String typeIdentifier) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        NSTextStorage result = createProviderDataObject(data, typeIdentifier, ptr);

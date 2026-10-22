@@ -281,7 +281,19 @@ classes:
     NSKeyValueOperator: { visibility: 'public final' }
 
     NS.*Internal: { exclude: true }
-
+    # exclude block: just to not have these in suggestion
+    NSHashEnumerator: { exclude: true }
+    NSHashTableCallBacks: { exclude: true }
+    NSMapEnumerator: { exclude: true }
+    NSMapTableKeyCallBacks: { exclude: true }
+    NSMapTableValueCallBacks: { exclude: true }
+    NSSwappedDouble: { exclude: true }
+    NSSwappedFloat: { exclude: true }
+    _NSRange: { exclude: true }
+    objc_class: { exclude: true }
+    objc_object: { exclude: true }
+    objc_selector: { exclude: true }
+    # exclude block: end
     NSCocoaError:
         extends: NSError
         annotations: ['@StronglyLinked']
@@ -1338,6 +1350,8 @@ classes:
             'recoveryAttempter':
                 type: NSErrorRecoveryAttempting
         methods:
+            '+new':
+                exclude: true
             '+errorWithDomain:code:userInfo:':
                 exclude: true
             '-initWithDomain:code:userInfo:':
@@ -3452,6 +3466,9 @@ classes:
                 parameters:
                     variables:
                         type: 'NSDictionary<NSString, ?>'
+            '-allowEvaluationWithValidator:error:':
+                name: allowEvaluation
+                throws: NSErrorException
     NSProcessInfo: # DONE
         skip_def_constructor: true
         properties:
@@ -5437,6 +5454,16 @@ protocols:
                 name: didOpen
             '-URLSession:webSocketTask:didCloseWithCode:reason:':
                 name: didClose
+    NSPredicateValidating: #since 26.4
+        methods:
+            '-visitPredicate:error:':
+                name: visitPredicate
+            '-visitExpression:error:':
+                name: visitExpression
+            '-visitOperatorType:error:':
+                name: visitOperatorType
+            '-visitExpressionKeyPath:scope:key:error:':
+                name: visitExpressionKeyPath
     NSDiscardableContent: {}
     NSCopying: {exclude: true, skip_implements: true, skip_methods: true}
     NSMutableCopying: {exclude: true, skip_implements: true, skip_methods: true}

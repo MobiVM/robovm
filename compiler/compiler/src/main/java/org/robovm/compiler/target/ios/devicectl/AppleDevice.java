@@ -145,6 +145,8 @@ public class AppleDevice {
 
             // known constants
             public static TunnelState CONNECTED = of("connected");
+            public static TunnelState DISCONNECTED = of("disconnected");
+            public static TunnelState UNAVAILABLE = of("unavailable");
         }
 
         public final AuthenticationType authenticationType;
@@ -230,6 +232,24 @@ public class AppleDevice {
             public static CPUType ARMV8 = of("armv8");
         }
 
+        ///  value of field "reality" : "physical",
+        public static final class Reality extends ValueEnumEntry<String> {
+            private Reality(String rawValue) {
+                super(rawValue);
+            }
+
+            private static final Producer<String, Reality> producer = new Producer<>(Reality::new);
+
+            public static Reality of(String id) {
+                return producer.of(id == null ? "null" : id);
+            }
+
+            // known constants
+            public static Reality PHYSICAL = of("physical");
+            public static Reality SIMULATED = of("simulated");
+            public static Reality UNSPECIFIED = of(null); // field is missing (older Xcode)
+        }
+
         public final CPUType cpuType;       // "cpuType" : { "name" : "arm64e" }
         public final String deviceType;     // "deviceType" : "iPhone",
         public final long ecid;           // "ecid" : 1813464338726958,
@@ -237,6 +257,7 @@ public class AppleDevice {
         public final String marketingName;  // "marketingName" : "iPhone XR",
         public final String platform;       // "platform" : "iOS",
         public final String productType;    // "productType" : "iPhone11,8"
+        public final Reality reality;       // "reality" : "physical"
         public final String serialNumber;   // "serialNumber" : "DX123456789"
         public final Set<CPUType> supportedCPUTypes;  // "supportedCPUTypes" : [ { "name" : "arm64e" } ]
         public final String udid;           // "udid" : "00001234-000123456789012"
@@ -249,6 +270,7 @@ public class AppleDevice {
                 String marketingName,
                 String platform,
                 String productType,
+                Reality reality,
                 String serialNumber,
                 Set<CPUType> supportedCPUTypes,
                 String udid
@@ -260,6 +282,7 @@ public class AppleDevice {
             this.marketingName = marketingName;
             this.platform = platform;
             this.productType = productType;
+            this.reality = reality;
             this.serialNumber = serialNumber;
             this.supportedCPUTypes = supportedCPUTypes;
             this.udid = udid;
@@ -275,6 +298,7 @@ public class AppleDevice {
                     ", marketingName='" + marketingName + '\'' +
                     ", platform='" + platform + '\'' +
                     ", productType='" + productType + '\'' +
+                    ", reality=" + reality +
                     ", serialNumber='" + serialNumber + '\'' +
                     ", supportedCPUTypes=" + supportedCPUTypes +
                     ", udid='" + udid + '\'' +

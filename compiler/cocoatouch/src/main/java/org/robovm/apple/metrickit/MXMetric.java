@@ -33,9 +33,10 @@ import org.robovm.apple.foundation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 13.0 and later.
+ * @deprecated Use MetricResult instead.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("MetricKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("MetricKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/MXMetric/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSSecureCoding/*</implements>*/ {
@@ -56,6 +57,11 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricResult instead.
+     */
+    @Deprecated
     @Method(selector = "JSONRepresentation")
     public native NSData JSONRepresentation();
     /**
@@ -67,7 +73,9 @@ import org.robovm.apple.foundation.*;
     public native NSDictionary<?, ?> DictionaryRepresentation();
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Use MetricResult instead.
      */
+    @Deprecated
     @Method(selector = "dictionaryRepresentation")
     public native NSDictionary<?, ?> dictionaryRepresentation();
     @Method(selector = "encodeWithCoder:")

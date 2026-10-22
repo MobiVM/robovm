@@ -176,6 +176,16 @@ import org.robovm.apple.symbols.*;
      */
     @NotImplemented("setResolvesNaturalAlignmentWithBaseWritingDirection:")
     public void setResolvesNaturalAlignmentWithBaseWritingDirection(boolean v) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("systemPrefersReducedResourceUsage")
+    public boolean isSystemPrefersReducedResourceUsage() { return false; }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("setSystemPrefersReducedResourceUsage:")
+    public void setSystemPrefersReducedResourceUsage(boolean v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

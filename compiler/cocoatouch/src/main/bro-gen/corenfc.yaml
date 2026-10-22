@@ -94,8 +94,16 @@ classes:
         methods:
             '-initWithPollingOption:delegate:queue:':
                 name: init
+            '-initWithConfiguration:delegate:queue:': #since 26.4
+                name: init
+            '-restartPollingWithConfiguration:': #since 26.4
+                name: restartPolling
             '-connectToTag:completionHandler:':
                 name: connectToTag
+    NFCTagReaderSessionConfiguration: #since 26.4
+        methods:
+            '-initWithPollingOption:iso7816SelectIdentifiers:felicaSystemCodes:':
+                name: init
     NFCVASCommandConfiguration: #since 13.0
         methods:
             '-initWithVASMode:passTypeIdentifier:url:':

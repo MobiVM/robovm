@@ -43,6 +43,7 @@ enums:
     WKWebExtensionWindowState: {} #since 18.4
     WKWebExtensionDataRecordError: {} #since 18.4
     WKWebExtensionMessagePortError: { nserror: true } #since 18.4
+    WKSecurityRestrictionMode: { } #since 26.4
 categories:
     NSAttributedString:
         methods:
@@ -100,6 +101,10 @@ classes:
                 name: addScriptMessageHandler
             '-removeScriptMessageHandlerForName:contentWorld:':
                 name: removeScriptMessageHandler
+            '-addBuffer:name:contentWorld:':
+                name: addBuffer
+            '-removeBufferWithName:contentWorld:':
+                name: removeBuffer
     WKUserScript: # DONE
         methods:
             '-init.*':
@@ -261,6 +266,8 @@ classes:
                 name: setCookiePolicy
             '-setCookies:completionHandler:':
                 name: setCookies
+            '-getCookiesForURL:completionHandler:':
+                name: getCookies
     WKSnapshotConfiguration: {} #since 11.0
     WKContextMenuElementInfo: {} #since 13.0
     WKWebpagePreferences: {} #since 13.0
@@ -270,6 +277,9 @@ classes:
     WKContentWorld: #since 14.0
         methods:
             '+worldWithName:':
+                name: create
+                constructor: true
+            '+worldWithConfiguration:':
                 name: create
                 constructor: true
     WKDownload: {} #since 14.5
@@ -376,6 +386,13 @@ classes:
                 name: disconnect
     WKWebExtensionTabConfiguration: {} #since 18.4
     WKWebExtensionWindowConfiguration: {} #since 18.4
+    WKContentWorldConfiguration: {} #since 27.0
+    WKDOMNodeSnapshot: {} #since 27.0
+    WKFormInfo: {} #since 27.0
+    WKJSHandle: #since 27.0
+        methods:
+            '-getWindowProxyFrameWithCompletionHandler:':
+                name: getWindowProxyFrame
 protocols:
     WKNavigationDelegate: # DONE
         methods:
@@ -409,6 +426,8 @@ protocols:
                 name: didBecomeDownload
             '-webView:shouldGoToBackForwardListItem:willUseInstantBack:completionHandler:':
                 name: shouldGoToBackForwardListItem
+            '-webView:willSubmitForm:submissionHandler:':
+                name: willSubmitForm
     WKScriptMessageHandler: # DONE
         methods:
             '-userContentController:didReceiveScriptMessage:':
@@ -453,6 +472,8 @@ protocols:
                 name: runOpenPanel
             '-webView:insertInputSuggestion:':
                 name: insertInputSuggestion
+            '-webView:requestGeolocationPermissionForOrigin:initiatedByFrame:decisionHandler:':
+                name: requestGeolocationPermission
     WKHTTPCookieStoreObserver: {} #since 11.0
     WKPreviewActionItem: {} #since 10.0
     WKURLSchemeHandler: #since 11.0

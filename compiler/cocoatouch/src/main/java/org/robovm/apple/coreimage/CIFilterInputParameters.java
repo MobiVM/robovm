@@ -196,12 +196,12 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputAmountKey", optional=true)
         public static native NSString Amount();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputCountKey", optional=true)
         public static native NSString Count();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputThresholdKey", optional=true)
         public static native NSString Threshold();
@@ -218,12 +218,12 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputRadiusKey", optional=true)
         public static native NSString Radius();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputRadius0Key", optional=true)
         public static native NSString Radius0();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputRadius1Key", optional=true)
         public static native NSString Radius1();
@@ -247,17 +247,17 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputColorKey", optional=true)
         public static native NSString Color();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputColor0Key", optional=true)
         public static native NSString Color0();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputColor1Key", optional=true)
         public static native NSString Color1();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputColorSpaceKey", optional=true)
         public static native NSString ColorSpace();
@@ -266,12 +266,12 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputContrastKey", optional=true)
         public static native NSString Contrast();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputExtrapolateKey", optional=true)
         public static native NSString Extrapolate();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputPerceptualKey", optional=true)
         public static native NSString Perceptual();
@@ -281,7 +281,7 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputBiasKey", optional=true)
         public static native NSString Bias();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputBiasVectorKey", optional=true)
         public static native NSString BiasVector();
@@ -310,24 +310,24 @@ import org.robovm.apple.avfoundation.*;
         @GlobalValue(symbol="kCIInputTargetImageKey", optional=true)
         public static native NSString TargetImage();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputBacksideImageKey", optional=true)
         public static native NSString BacksideImage();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputPaletteImageKey", optional=true)
         public static native NSString PaletteImage();
         @GlobalValue(symbol="kCIInputExtentKey", optional=true)
         public static native NSString Extent();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputPoint0Key", optional=true)
         public static native NSString Point0();
         /**
-         * @since Available in iOS 19.0 and later.
+         * @since Available in iOS 26.0 and later.
          */
         @GlobalValue(symbol="kCIInputPoint1Key", optional=true)
         public static native NSString Point1();

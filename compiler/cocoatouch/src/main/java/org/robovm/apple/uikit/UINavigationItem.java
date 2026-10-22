@@ -428,6 +428,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setCompactScrollEdgeAppearance:")
     public native void setCompactScrollEdgeAppearance(UINavigationBarAppearance v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "navigationBarMinimization")
+    public native UIBarMinimization getNavigationBarMinimization();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setNavigationBarMinimization:")
+    public native void setNavigationBarMinimization(UIBarMinimization v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

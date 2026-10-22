@@ -247,6 +247,10 @@ import org.robovm.apple.symbols.*;
     @GlobalValue(symbol="UIScreenReferenceDisplayModeStatusDidChangeNotification", optional=true)
     public static native NSString ReferenceDisplayModeStatusDidChangeNotification();
     
+    /**
+     * @deprecated Deprecated in iOS 27.0. Use the equivalent display link API on UIWindowScene
+     */
+    @Deprecated
     @WeaklyLinked
     @Method(selector = "displayLinkWithTarget:selector:")
     public native CADisplayLink getDisplayLink(NSObject target, Selector sel);

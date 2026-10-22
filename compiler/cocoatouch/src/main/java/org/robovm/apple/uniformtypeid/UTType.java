@@ -362,6 +362,11 @@ import org.robovm.apple.uikit.*;
         @GlobalValue(symbol="UTTypeJSON", optional=true)
         public static native UTType JSON();
         /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="UTTypeMarkdown", optional=true)
+        public static native UTType Markdown();
+        /**
          * @since Available in iOS 14.0 and later.
          */
         @GlobalValue(symbol="UTTypePropertyList", optional=true)
@@ -839,6 +844,11 @@ import org.robovm.apple.uikit.*;
      */
     @Method(selector = "typeWithIdentifier:")
     public static native UTType createUsingIdentifier(String identifier);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "typeWithIdentifier:allowUndeclared:")
+    public static native UTType createUsingIdentifier(String identifier, boolean allowUndeclared);
     /**
      * @since Available in iOS 14.0 and later.
      */

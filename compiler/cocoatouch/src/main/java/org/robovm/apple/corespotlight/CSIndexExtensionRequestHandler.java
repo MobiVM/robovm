@@ -80,6 +80,11 @@ import org.robovm.apple.uniformtypeid.*;
     @Method(selector = "searchableItemsForIdentifiers:searchableItemsHandler:")
     public native void searchableItemsForIdentifiers(NSArray<NSString> identifiers, @Block VoidBlock1<NSArray<CSSearchableItem>> searchableItemsHandler);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "searchableItemsForIdentifiers:protectionClass:searchableItemsHandler:")
+    public native void searchableItemsForIdentifiers(NSArray<NSString> identifiers, NSString protectionClass, @Block VoidBlock1<NSArray<CSSearchableItem>> searchableItemsHandler);
+    /**
      * @since Available in iOS 18.4 and later.
      */
     @Method(selector = "searchableItemsDidUpdate:")

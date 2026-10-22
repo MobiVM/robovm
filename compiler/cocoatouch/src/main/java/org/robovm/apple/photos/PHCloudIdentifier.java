@@ -56,8 +56,19 @@ import org.robovm.apple.uniformtypeid.*;
     protected PHCloudIdentifier(Handle h, long handle) { super(h, handle); }
     protected PHCloudIdentifier(SkipInit skipInit) { super(skipInit); }
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 18.2 and later.
      */
+    @Method(selector = "initWithArchivalStringValue:")
+    public static PHCloudIdentifier createWithArchivalStringValue(String archivalString) {
+       PHCloudIdentifier res = new PHCloudIdentifier((SkipInit) null);
+       res.initObject(res.initWithArchivalStringValue(archivalString));
+       return res;
+    }
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use initWithArchivalStringValue: instead
+     */
+    @Deprecated
     @Method(selector = "initWithStringValue:")
     public PHCloudIdentifier(String stringValue) { super((SkipInit) null); initObject(init(stringValue)); }
     @Method(selector = "initWithCoder:")
@@ -65,8 +76,15 @@ import org.robovm.apple.uniformtypeid.*;
     /*</constructors>*/
     /*<properties>*/
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 18.2 and later.
      */
+    @Property(selector = "archivalStringValue")
+    public native String getArchivalStringValue();
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use archivalStringValue
+     */
+    @Deprecated
     @Property(selector = "stringValue")
     public native String getStringValue();
     @Property(selector = "supportsSecureCoding")
@@ -75,8 +93,15 @@ import org.robovm.apple.uniformtypeid.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     /**
-     * @since Available in iOS 15.0 and later.
+     * @since Available in iOS 18.2 and later.
      */
+    @Method(selector = "initWithArchivalStringValue:")
+    protected native @Pointer long initWithArchivalStringValue(String archivalString);
+    /**
+     * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use initWithArchivalStringValue: instead
+     */
+    @Deprecated
     @Method(selector = "initWithStringValue:")
     protected native @Pointer long init(String stringValue);
     @Method(selector = "encodeWithCoder:")

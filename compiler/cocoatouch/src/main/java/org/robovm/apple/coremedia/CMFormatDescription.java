@@ -215,6 +215,11 @@ import org.robovm.apple.audiotoolbox.*;
          */
         @GlobalValue(symbol="kCMFormatDescriptionLogTransferFunction_AppleLog", optional=true)
         public static native CFString AppleLog();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="kCMFormatDescriptionLogTransferFunction_AppleLog2", optional=true)
+        public static native CFString AppleLog2();
     }
 
     @Library("CoreMedia")
