@@ -54,20 +54,45 @@ import org.robovm.apple.dispatch.*;
     /*<properties>*/
     @Property(selector = "address")
     public native @MachineSizedUInt long getAddress();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "clusterInitiatorAddress")
+    public native @MachineSizedUInt long getClusterInitiatorAddress();
     @Property(selector = "measurementType")
     public native NIDLTDOAMeasurementType getMeasurementType();
     @Property(selector = "transmitTime")
     public native double getTransmitTime();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "rawTransmitTime")
+    public native long getRawTransmitTime();
     @Property(selector = "receiveTime")
     public native double getReceiveTime();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "rawReceiveTime")
+    public native long getRawReceiveTime();
     @Property(selector = "signalStrength")
     public native double getSignalStrength();
     @Property(selector = "carrierFrequencyOffset")
     public native double getCarrierFrequencyOffset();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "responderClockFrequencyOffset")
+    public native NSNumber getResponderClockFrequencyOffset();
     @Property(selector = "coordinatesType")
     public native NIDLTDOACoordinatesType getCoordinatesType();
     @Property(selector = "coordinates")
     public native @ByVal VectorDouble3 getCoordinates();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "floorElevation")
+    public native NIDLTDOAMeasurementFloorElevation getFloorElevation();
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     /*</properties>*/

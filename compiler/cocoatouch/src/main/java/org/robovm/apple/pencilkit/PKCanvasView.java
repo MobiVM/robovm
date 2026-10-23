@@ -119,6 +119,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setMaximumSupportedContentVersion:")
     public native void setMaximumSupportedContentVersion(PKContentVersion v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "selectedStrokeIDs")
+    public native NSSet<NSUUID> getSelectedStrokeIDs();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setSelectedStrokeIDs:")
+    public native void setSelectedStrokeIDs(NSSet<NSUUID> v);
     @WeaklyLinked
     @Property(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();

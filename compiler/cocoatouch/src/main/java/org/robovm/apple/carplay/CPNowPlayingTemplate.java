@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +62,16 @@ import org.robovm.apple.coreanimation.*;
     public native boolean isUpNextButtonEnabled();
     @Property(selector = "setUpNextButtonEnabled:")
     public native void setUpNextButtonEnabled(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsMiniPlayer")
+    public native boolean allowsMiniPlayer();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsMiniPlayer:")
+    public native void setAllowsMiniPlayer(boolean v);
     @Property(selector = "upNextTitle")
     public native String getUpNextTitle();
     @Property(selector = "setUpNextTitle:")

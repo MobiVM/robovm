@@ -88,6 +88,11 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "requiredThreadsPerThreadgroup")
     public native @ByVal MTLSize getRequiredThreadsPerThreadgroup();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "forwardProgressUsage")
+    public native MTLForwardProgressUsage getForwardProgressUsage();
+    /**
      * @since Available in iOS 18.0 and later.
      */
     @Property(selector = "allocatedSize")
@@ -143,5 +148,10 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "newIntersectionFunctionTableWithDescriptor:")
     public native MTLIntersectionFunctionTable newIntersectionFunctionTable(MTLIntersectionFunctionTableDescriptor descriptor);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup:")
+    public native @MachineSizedUInt long recommendedPersistentThreadgroupsPerGridForThreadsPerThreadgroup(@ByVal MTLSize threadsPerThreadgroup);
     /*</methods>*/
 }

@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 9.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
  */
 /*</javadoc>*/
-/*<annotations>*//*</annotations>*/
+/*<annotations>*/@Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ interface /*<name>*/RPScreenRecorderDelegate/*</name>*/ 
     /*<implements>*/extends NSObjectProtocol/*</implements>*/ {
 
@@ -60,9 +61,16 @@ import org.robovm.apple.coreanimation.*;
     void didStopRecording(RPScreenRecorder screenRecorder, NSError error, RPPreviewViewController previewViewController);
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit SCStream with SCRecordingOutput instead
      */
+    @Deprecated
     @Method(selector = "screenRecorder:didStopRecordingWithPreviewViewController:error:")
     void didStopRecording(RPScreenRecorder screenRecorder, RPPreviewViewController previewViewController, NSError error);
+    /**
+     * @since Available in iOS 9.0 and later.
+     * @deprecated Deprecated in iOS 27.0. Use ScreenCaptureKit instead
+     */
+    @Deprecated
     @Method(selector = "screenRecorderDidChangeAvailability:")
     void didChangeAvailability(RPScreenRecorder screenRecorder);
     /*</methods>*/

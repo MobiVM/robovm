@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -66,6 +67,11 @@ import org.robovm.apple.coreanimation.*;
     public native CPSessionConfigurationDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(CPSessionConfigurationDelegate v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "supportsVideoPlayback")
+    public native boolean supportsVideoPlayback();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

@@ -64,6 +64,11 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "retrieveAllActiveCredentials:")
     public native void retrieveAllActiveCredentials(@Block VoidBlock2<NSSet<THCredentials>, NSError> completion);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "retrieveActiveCredentialsForNearbyNetworksWithCompletion:")
+    public native void retrieveActiveCredentialsForNearbyNetworks(@Block VoidBlock2<NSSet<THCredentials>, NSError> completion);
+    /**
      * @since Available in iOS 15.0 and later.
      */
     @Method(selector = "deleteCredentialsForBorderAgent:completion:")
@@ -98,5 +103,10 @@ import org.robovm.apple.foundation.*;
      */
     @Method(selector = "isPreferredNetworkAvailableWithCompletion:")
     public native void isPreferredNetworkAvailable(@Block VoidBooleanBlock completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "enableCredentialSharingModeForExtendedPANID:completion:")
+    public native void enableCredentialSharingModeForExtendedPANID(NSData extendedPANID, @Block VoidBlock1<NSError> completion);
     /*</methods>*/
 }

@@ -50,7 +50,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UITextView/*</name>*/ 
     extends /*<extends>*/UIScrollView/*</extends>*/ 
-    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, UITextSearching/*</implements>*/ {
+    /*<implements>*/implements UITextInput, UIContentSizeCategoryAdjusting, UILetterformAwareAdjusting, NSTextViewportLayoutControllerDelegate, UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, UITextSearching/*</implements>*/ {
 
     public static class Notifications {
         public static NSObject observeDidBeginEditing(UITextView object, final VoidBlock1<UITextView> block) {
@@ -450,6 +450,11 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setSupportsAdaptiveImageGlyph:")
     public native void setSupportsAdaptiveImageGlyph(boolean v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "unobscuredContentRect")
+    public native @ByVal CGRect getUnobscuredContentRect();
     @Property(selector = "hasText")
     public native boolean hasText();
     @Property(selector = "autocapitalizationType")
@@ -514,6 +519,16 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Property(selector = "setMathExpressionCompletionType:")
     public native void setMathExpressionCompletionType(UITextMathExpressionCompletionType v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "grammarCheckingType")
+    public native UITextGrammarCheckingType getGrammarCheckingType();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setGrammarCheckingType:")
+    public native void setGrammarCheckingType(UITextGrammarCheckingType v);
     @Property(selector = "keyboardType")
     public native UIKeyboardType getKeyboardType();
     @Property(selector = "setKeyboardType:")
@@ -631,6 +646,36 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      */
     @Method(selector = "drawTextHighlightBackgroundForTextRange:origin:")
     public native void drawTextHighlightBackground(NSTextRange textRange, @ByVal CGPoint origin);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "registerTextAttachmentViewProviderReusePolicy:forTextAttachmentViewProviderType:")
+    public native void registerTextAttachmentViewProviderReusePolicy(UITextAttachmentViewProviderReusePolicy policy, Class<?> viewProviderType);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:")
+    public native void configureRenderingSurfaceForTextLayoutFragment(NSTextViewportLayoutController textViewportLayoutController, NSTextLayoutFragment textLayoutFragment);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "viewportBoundsForTextViewportLayoutController:")
+    public native @ByVal CGRect viewportBoundsForTextViewportLayoutController(NSTextViewportLayoutController textViewportLayoutController);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "textViewportLayoutControllerWillLayout:")
+    public native void textViewportLayoutControllerWillLayout(NSTextViewportLayoutController textViewportLayoutController);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "textViewportLayoutControllerDidLayout:")
+    public native void textViewportLayoutControllerDidLayout(NSTextViewportLayoutController textViewportLayoutController);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "textViewportLayoutControllerReceivedSetNeedsLayout:")
+    public native void textViewportLayoutControllerReceivedSetNeedsLayout(NSTextViewportLayoutController textViewportLayoutController);
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -784,6 +829,10 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     public native void insertText(String text);
     @Method(selector = "deleteBackward")
     public native void deleteBackward();
+    @Method(selector = "textViewportLayoutController:cacheRenderingSurface:forKey:")
+    public native void cacheRenderingSurface(NSTextViewportLayoutController textViewportLayoutController, NSTextViewportRenderingSurface renderingSurface, NSTextViewportRenderingSurfaceKey renderingSurfaceKey);
+    @Method(selector = "textViewportLayoutController:retrieveCachedRenderingSurfaceForKey:")
+    public native NSTextViewportRenderingSurface retrieveCachedRenderingSurfaceForKey(NSTextViewportLayoutController textViewportLayoutController, NSTextViewportRenderingSurfaceKey renderingSurfaceKey);
     @Method(selector = "findInteraction:sessionForView:")
     public native UIFindSession getSession(UIFindInteraction interaction, UIView view);
     @Method(selector = "findInteraction:didBeginFindSession:")

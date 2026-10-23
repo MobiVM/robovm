@@ -66,5 +66,10 @@ import org.robovm.apple.security.*;
     public void failed(MTRCommissioningOperation commissioning, NSError error, MTRMetrics metrics) {}
     @NotImplemented("commissioning:succeededForNodeID:metrics:")
     public void succeededForNodeID(MTRCommissioningOperation commissioning, NSNumber nodeID, MTRMetrics metrics) {}
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @NotImplemented("commissioning:succeededForNodeID:metrics:context:")
+    public void succeededForNodeID(MTRCommissioningOperation commissioning, NSNumber nodeID, MTRMetrics metrics, NSDictionary<NSString, ?> context) {}
     /*</methods>*/
 }

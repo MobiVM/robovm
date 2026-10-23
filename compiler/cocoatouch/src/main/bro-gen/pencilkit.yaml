@@ -34,6 +34,8 @@ classes:
                 name: init
             '-imageFromRect:scale:':
                 name: getImageFromRect
+            '-drawingByErasingStrokePath:mask:transform:':
+                name: drawingByErasingStrokePath
     PKEraserTool: #since 13.0
         methods:
             '-initWithEraserType:':
@@ -74,9 +76,17 @@ classes:
                 name: init
             '-initWithInk:strokePath:transform:mask:randomSeed:':
                 name: init
+            '-initWithInk:strokePath:transform:mask:randomSeed:strokeID:renderGroupID:renderState:':
+                name: init
+            '-substrokeWithRange:':
+                name: substroke
     PKStrokePath: #since 14.0
         methods:
             '-initWithControlPoints:creationDate:':
+                name: init
+            '-initWithControlPoints:creationDate:strokePathID:':
+                name: init
+            '-initWithBezierPath:creationDate:pointProvider:':
                 name: init
             '-enumerateInterpolatedPointsInRange:strideByDistance:usingBlock:':
                 name: enumerateInterpolatedPointsStrideByDistance
@@ -88,6 +98,8 @@ classes:
                 name: getParametricValueOffsetByDistance
             '-parametricValue:offsetByTime:':
                 name: getParametricValueOffsetByTime
+            '-subpathWithRange:':
+                name: subpath
     PKStrokePoint: #since 14.0
         methods:
             '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:':
@@ -96,6 +108,10 @@ classes:
                 name: init
             '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:':
                 name: init
+            '-initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:lateralJitter:':
+                name: init
+    PKConvertedBezierPoint: {} #since 27.0
+    PKStrokeRenderState: {} #since 27.0
     PKResponderState: {} #since 26.0
     PKToolPickerCustomItem: #since 18.0
         methods:

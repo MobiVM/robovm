@@ -60,6 +60,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "playbackStyle")
     public native PHAssetPlaybackStyle getPlaybackStyle();
+    /**
+     * @since Available in iOS 11.0 and later.
+     */
+    @Property(selector = "playbackVariation")
+    public native PHAssetPlaybackVariation getPlaybackVariation();
     @Property(selector = "mediaType")
     public native PHAssetMediaType getMediaType();
     @Property(selector = "mediaSubtypes")
@@ -91,6 +96,11 @@ import org.robovm.apple.uniformtypeid.*;
     public native boolean isHidden();
     @Property(selector = "isFavorite")
     public native boolean isFavorite();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "rating")
+    public native PHAssetRating getRating();
     @Property(selector = "burstIdentifier")
     public native String getBurstIdentifier();
     @Property(selector = "burstSelectionTypes")
@@ -112,6 +122,26 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Property(selector = "adjustmentFormatIdentifier")
     public native String getAdjustmentFormatIdentifier();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "originalResourceChoice")
+    public native PHOriginalResourceChoice getOriginalResourceChoice();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "extendedMetadata")
+    public native PHAssetExtendedMetadata getExtendedMetadata();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "adjustmentsState")
+    public native PHAssetAdjustmentsState getAdjustmentsState();
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
+    @Property(selector = "adjustmentTimestamp")
+    public native NSDate getAdjustmentTimestamp();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

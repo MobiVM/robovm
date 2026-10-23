@@ -67,12 +67,41 @@ classes:
                 throws: NSErrorException
             '-removeAssetPackWithIdentifier:completionHandler:':
                 name: removeAssetPack
+            '-getManifestWithCompletionHandler:':
+                name: getManifest
+            '-getStatusRelativeToAssetPack:completionHandler:':
+                name: getStatusRelativeToAssetPack
+            '-getLocalStatusOfAssetPackWithIdentifier:completionHandler:':
+                name: getLocalStatusOfAssetPack
+            '-assetPackIsAvailableLocallyWithIdentifier:':
+                name: assetPackIsAvailableLocally
+            '-getLocallyAvailableLanguagesWithCompletionHandler:':
+                name: getLocallyAvailableLanguages
+            '-reconcilePreferredLanguagesWithCompletionHandler:':
+                name: reconcilePreferredLanguages
+            '-ensureLocalAvailabilityOfAssetPack:requireLatestVersion:completionHandler:':
+                name: ensureLocalAvailabilityOfAssetPack
+            '-ensureLocalAvailabilityOfAssetPacks:completionHandler:':
+                name: ensureLocalAvailabilityOfAssetPacks
+            '-ensureLocalAvailabilityOfAssetPacks:requireLatestVersions:completionHandler:':
+                name: ensureLocalAvailabilityOfAssetPacks
+            '-contentsAtPath:asLocalizedForLanguage:options:error:':
+                name: getContentsAsLocalizedForLanguage
+                throws: NSErrorException
+            '-fileDescriptorForPath:asLocalizedForLanguage:error:':
+                name: getFileDescriptorAsLocalizedForLanguage
+                throws: NSErrorException
+            '-URLForPath:asLocalizedForLanguage:error:':
+                name: getURL
+                throws: NSErrorException
     BAAssetPackManifest: #since 26.0
         methods:
             '-initWithContentsOfURL:applicationGroupIdentifier:error:':
                 name: init
             '-initFromData:applicationGroupIdentifier:error:':
                 name: init
+            '-assetPackWithIdentifier:':
+                name: getAssetPack
 protocols:
     BADownloadManagerDelegate: #since 16.1
         methods:
@@ -121,6 +150,12 @@ values:
     BAAssetPackIdentifierErrorKey:
         class: BAManagedErrorCode
         name: getPackIdentifierErrorKey
+    BASuccessesErrorKey:
+        class: BAManagedErrorCode
+        name: getSuccessesErrorKey
+    BAFailuresErrorKey:
+        class: BAManagedErrorCode
+        name: getFailuresErrorKey
 
 
     # Make sure we don't miss any values if new ones are introduced in a later version

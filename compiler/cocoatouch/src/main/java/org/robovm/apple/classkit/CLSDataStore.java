@@ -83,5 +83,10 @@ import org.robovm.apple.coregraphics.*;
      */
     @Method(selector = "fetchActivityForURL:completion:")
     public native void fetchActivity(NSURL url, @Block VoidBlock2<CLSActivity, NSError> completion);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "checkIsAssignedDocument:completion:")
+    public native void checkIsAssignedDocument(NSURL documentURL, @Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

@@ -71,11 +71,6 @@ import org.robovm.apple.coregraphics.*;
     public void resolvePriorityForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTaskPriorityResolutionResult> completion) {}
     @NotImplemented("resolveSpatialEventTriggerForSetTaskAttribute:withCompletion:")
     public void resolveSpatialEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INSpatialEventTriggerResolutionResult> completion) {}
-    /**
-     * @since Available in iOS 11.0 and later.
-     * @deprecated Deprecated in iOS 13.0. resolveTemporalEventTriggerForSetTaskAttribute:withCompletion: is deprecated. Use resolveTemporalEventTriggerForSetTaskAttribute:completion: instead
-     */
-    @Deprecated
     @NotImplemented("resolveTemporalEventTriggerForSetTaskAttribute:withCompletion:")
     public void resolveTemporalEventTriggerForSetTaskAttribute(INSetTaskAttributeIntent intent, @Block VoidBlock1<INTemporalEventTriggerResolutionResult> completion) {}
     /**

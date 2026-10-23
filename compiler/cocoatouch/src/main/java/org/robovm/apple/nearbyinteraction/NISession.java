@@ -89,6 +89,11 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setARSession:")
     public native void setARSession(org.robovm.apple.arkit.ARSession session);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "updateMotionState:forObjectWithToken:")
+    public native void updateMotionState(NIMotionActivityState motionState, NIDiscoveryToken token);
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @Method(selector = "worldTransformForObject:")

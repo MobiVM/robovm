@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -89,6 +90,41 @@ import org.robovm.apple.coreanimation.*;
     public native void setManeuverState(CPManeuverState v);
     @Property(selector = "trip")
     public native CPTrip getTrip();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "optionsPanel")
+    public native CPMapPanel getOptionsPanel();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setOptionsPanel:")
+    public native void setOptionsPanel(CPMapPanel v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "routeSegments")
+    public native NSArray<CPRouteSegment> getRouteSegments();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "currentSegment")
+    public native CPRouteSegment getCurrentSegment();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setCurrentSegment:")
+    public native void setCurrentSegment(CPRouteSegment v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isRouteSharingEnabled")
+    public native boolean isRouteSharingEnabled();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isRouteSharingSupported")
+    public native boolean isRouteSharingSupported();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -104,6 +140,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "resumeTripWithUpdatedRouteInformation:")
     public native void resumeTrip(CPRouteInformation routeInformation);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "resumeTripWithUpdatedRouteSegments:currentSegment:rerouteReason:")
+    public native void resumeTrip(NSArray<CPRouteSegment> routeSegments, CPRouteSegment currentSegment, CPRerouteReason rerouteReason);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "resumeNavigationWithUpdatedTrip:routeSegments:currentSegment:rerouteReason:")
+    public native void resumeNavigation(CPTrip trip, NSArray<CPRouteSegment> routeSegments, CPRouteSegment currentSegment, CPRerouteReason rerouteReason);
     @Method(selector = "finishTrip")
     public native void finishTrip();
     @Method(selector = "cancelTrip")
@@ -118,6 +164,11 @@ import org.robovm.apple.coreanimation.*;
      */
     @Method(selector = "addLaneGuidances:")
     public native void addLaneGuidances(NSArray<CPLaneGuidance> laneGuidances);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "addRouteSegments:")
+    public native void addRouteSegments(NSArray<CPRouteSegment> routeSegments);
     @Method(selector = "updateTravelEstimates:forManeuver:")
     public native void updateTravelEstimates(CPTravelEstimates estimates, CPManeuver maneuver);
     /*</methods>*/

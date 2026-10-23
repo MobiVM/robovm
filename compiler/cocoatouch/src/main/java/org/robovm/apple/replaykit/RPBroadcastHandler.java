@@ -36,9 +36,10 @@ import org.robovm.apple.coreanimation.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 10.0 and later.
+ * @deprecated Deprecated in iOS 27.0. No longer supported
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("ReplayKit") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("ReplayKit") @NativeClass @Deprecated/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/RPBroadcastHandler/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
     /*<implements>*/implements NSExtensionRequestHandling/*</implements>*/ {
@@ -58,12 +59,16 @@ import org.robovm.apple.coreanimation.*;
     /*<methods>*/
     /**
      * @since Available in iOS 11.0 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported
      */
+    @Deprecated
     @GlobalValue(symbol="RPVideoSampleOrientationKey", optional=true)
     public static native String getVideoSampleOrientationKey();
     /**
      * @since Available in iOS 11.2 and later.
+     * @deprecated Deprecated in iOS 27.0. No longer supported
      */
+    @Deprecated
     @GlobalValue(symbol="RPApplicationInfoBundleIdentifierKey", optional=true)
     public static native String getApplicationInfoBundleIdentifierKey();
     

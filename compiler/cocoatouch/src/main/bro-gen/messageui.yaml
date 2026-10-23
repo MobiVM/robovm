@@ -55,7 +55,14 @@ classes:
                 name: addAttachment
             '+isSupportedAttachmentUTI:':
                 trim_after_first_colon: true
-
+    MFComposeAssistantViewController:
+        methods:
+            '-initWithDelegate:':
+                name: init
+    MFMailDraft:
+        methods:
+            '-initWithSubject:body:from:to:cc:':
+                name: init
 protocols:
     MFMailComposeViewControllerDelegate: # DONE
         methods:
@@ -68,7 +75,10 @@ protocols:
                 parameters:
                     result:
                         type: MFMessageComposeResult
-
+    MFComposeAssistantViewControllerDelegate:
+        methods:
+            '-composeAssistantViewController:didComposeDraft:':
+                name: composeAssistant
 functions:
     # Make sure we don't miss any functions if new ones are introduced in a later version
     (k?MF.*):

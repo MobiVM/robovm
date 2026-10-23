@@ -82,6 +82,16 @@ import org.robovm.apple.network.*;
     @Property(selector = "setMatchEthernet:")
     public native void setMatchEthernet(boolean v);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "matchMissionCriticalService")
+    public native boolean isMatchMissionCriticalService();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setMatchMissionCriticalService:")
+    public native void setMatchMissionCriticalService(boolean v);
+    /**
      * @since Available in iOS 14.0 and later.
      */
     @Property(selector = "providerConfiguration")

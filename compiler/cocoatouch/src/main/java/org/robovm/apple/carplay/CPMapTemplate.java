@@ -32,6 +32,7 @@ import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.mapkit.*;
 import org.robovm.apple.coreanimation.*;
+import org.robovm.apple.coremedia.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -123,5 +124,25 @@ import org.robovm.apple.coreanimation.*;
     public native void presentNavigationAlert(CPNavigationAlert navigationAlert, boolean animated);
     @Method(selector = "dismissNavigationAlertAnimated:completion:")
     public native void dismissNavigationAlertAnimated(boolean animated, @Block VoidBooleanBlock completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "showPanel:completion:")
+    public native void showPanel(CPMapPanel panel, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "pushPanel:completion:")
+    public native void pushPanel(CPMapPanel panel, @Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "popPanelWithCompletion:")
+    public native void popPanel(@Block VoidBlock2<Boolean, NSError> completion);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "hidePanelWithCompletion:")
+    public native void hidePanel(@Block VoidBlock2<Boolean, NSError> completion);
     /*</methods>*/
 }

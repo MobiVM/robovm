@@ -35,6 +35,7 @@ public class XCFrameworkPlist {
     private static final String KEY_SUPPORTED_ARCHITECTURES = "SupportedArchitectures";
     private static final String KEY_SUPPORTED_PLATFORM = "SupportedPlatform";
     private static final String KEY_SUPPORTED_PLATFORM_VARIANT = "SupportedPlatformVariant";
+    private static final String PLATFORM_MACOS = "macos";
     private static final String KEY_DEBUG_SYMBOLS_PATH = "DebugSymbolsPath";
     private static final String KEY_CFBUNDLE_PACKAGE_TYPE = "CFBundlePackageType";
     private static final String KEY_XCFRAMEWORK_FORMAT_VERSION = "XCFrameworkFormatVersion";
@@ -121,7 +122,7 @@ public class XCFrameworkPlist {
                 NSDictionary dictLib = new NSDictionary();
                 dictLib.put(KEY_LIBRARY_IDENTIFIER, lib.identifier);
                 dictLib.put(KEY_LIBRARY_PATH, lib.path);
-                dictLib.put(KEY_SUPPORTED_PLATFORM, lib.platform.toString());
+                dictLib.put(KEY_SUPPORTED_PLATFORM, toPlatformStr(lib.platform));
                 if (lib.variant != Environment.Native)
                     dictLib.put(KEY_SUPPORTED_PLATFORM_VARIANT, lib.variant.getLlvmName());
                 if (lib.debugSymbolPath != null)
@@ -162,12 +163,12 @@ public class XCFrameworkPlist {
                     NSArray arrayArches = (NSArray) dictLib.get(KEY_SUPPORTED_ARCHITECTURES);
 
                     // parse
-                    OS os = OS.valueOf(supportedPlatform);
+                    OS os = parsePlatform(supportedPlatform);
                     Environment env = supportedPlatformVariant != null ? Environment.parse(supportedPlatformVariant)
-                            : Environment.Native;
+                        : Environment.Native;
                     Set<CpuArch> arches = new LinkedHashSet<>();
                     for (NSObject archO: arrayArches.getArray()) {
-                        CpuArch arch = parse(archO.toString());
+                        CpuArch arch = parseCpuArch(archO.toString());
                         if (arch != null)
                             arches.add(arch);
                     }
@@ -175,7 +176,7 @@ public class XCFrameworkPlist {
                     // if there are all object add library
                     if (!arches.isEmpty())
                         libraries.add(new Library(identifier, libraryPath, os, arches.toArray(new CpuArch[0]), env,
-                                debugSymbolsPath));
+                            debugSymbolsPath));
                 } catch (Throwable ignored) {
                 }
             }
@@ -195,11 +196,20 @@ public class XCFrameworkPlist {
         return loadPlist(new File(xcFramework, "Info.plist"));
     }
 
-    private static CpuArch parse(String s) {
+    private static CpuArch parseCpuArch(String s) {
         for (CpuArch v: CpuArch.values())
             if (s.equals(v.getClangName()))
                 return v;
         return null;
+    }
+
+    /** Apple names macOS 'macos', RoboVM 'macosx' */
+    private static OS parsePlatform(String s) {
+        return PLATFORM_MACOS.equals(s) ? OS.macosx : OS.valueOf(s);
+    }
+
+    private static String toPlatformStr(OS os) {
+        return os == OS.macosx ? PLATFORM_MACOS : os.toString();
     }
 
     private static String toStringOrNull(Object o) {

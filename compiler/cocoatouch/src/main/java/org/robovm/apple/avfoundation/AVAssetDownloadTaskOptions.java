@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -120,7 +121,7 @@ import org.robovm.apple.uikit.*;
 
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
+     * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
      */
     @Deprecated
     public long getMinimumRequiredMediaBitrate() {
@@ -132,7 +133,7 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
+     * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
      */
     @Deprecated
     public AVAssetDownloadTaskOptions setMinimumRequiredMediaBitrate(long minimumRequiredMediaBitrate) {
@@ -141,7 +142,7 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
+     * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:mediaSelections instead
      */
     @Deprecated
     public AVMediaSelection getMediaSelection() {
@@ -153,7 +154,7 @@ import org.robovm.apple.uikit.*;
     }
     /**
      * @since Available in iOS 9.0 and later.
-     * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
+     * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:mediaSelections instead
      */
     @Deprecated
     public AVAssetDownloadTaskOptions setMediaSelection(AVMediaSelection mediaSelection) {
@@ -168,42 +169,42 @@ import org.robovm.apple.uikit.*;
         static { Bro.bind(Keys.class); }
         /**
          * @since Available in iOS 9.0 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using desired comparison value against averageBitRate/peakBitRate instead
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredMediaBitrateKey", optional=true)
         public static native NSString MinimumRequiredMediaBitrate();
         /**
          * @since Available in iOS 14.0 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with predicateForPresentationWidth and predicateForPresentationHeight instead
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with predicateForPresentationWidth and predicateForPresentationHeight instead
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMinimumRequiredPresentationSizeKey", optional=true)
         public static native NSString MinimumRequiredPresentationSize();
         /**
          * @since Available in iOS 9.0 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:mediaSelections instead
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:mediaSelections instead
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionKey", optional=true)
         public static native NSString MediaSelection();
         /**
          * @since Available in iOS 13.0 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with predicateForChannelCount instead
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with predicateForChannelCount instead
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskMediaSelectionPrefersMultichannelKey", optional=true)
         public static native NSString MediaSelectionPrefersMultichannel();
         /**
          * @since Available in iOS 14.5 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'%d in audioAttributes.formatIDs', kAudioFormatAppleLossless]
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'%d in audioAttributes.formatIDs', kAudioFormatAppleLossless]
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskPrefersLosslessAudioKey", optional=true)
         public static native NSString PrefersLosslessAudio();
         /**
          * @since Available in iOS 14.0 and later.
-         * @deprecated Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'videoAttributes.videoRange == %@', AVVideoRangePQ]
+         * @deprecated Deprecated in iOS 27.0. Use AVAssetDownloadConfiguration:variantQualifiers with assetVariantQualifierWithPredicate using [NSPredicate predicateWithFormat:@'videoAttributes.videoRange == %@', AVVideoRangePQ]
          */
         @Deprecated
         @GlobalValue(symbol="AVAssetDownloadTaskPrefersHDRKey", optional=true)

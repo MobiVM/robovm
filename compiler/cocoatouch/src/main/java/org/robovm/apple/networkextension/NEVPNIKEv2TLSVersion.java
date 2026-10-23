@@ -43,7 +43,11 @@ public enum /*<name>*/NEVPNIKEv2TLSVersion/*</name>*/ implements ValuedEnum {
     Default(0L),
     _1_0(1L),
     _1_1(2L),
-    _1_2(3L);
+    _1_2(3L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    _1_3(4L);
     /*</values>*/
 
     /*<bind>*/

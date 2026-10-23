@@ -91,6 +91,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setWorldTrackingEnabled:")
     public native void setWorldTrackingEnabled(boolean v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "isEnvironmentTexturingEnabled")
+    public native boolean isEnvironmentTexturingEnabled();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setEnvironmentTexturingEnabled:")
+    public native void setEnvironmentTexturingEnabled(boolean v);
     @Property(selector = "isSupported")
     public static native boolean isSupported();
     /**

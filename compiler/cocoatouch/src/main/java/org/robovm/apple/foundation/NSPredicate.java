@@ -118,6 +118,20 @@ import org.robovm.apple.dispatch.*;
     public native boolean evaluate(NSObject object, NSDictionary<NSString, ?> variables);
     @Method(selector = "allowEvaluation")
     public native void allowEvaluation();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    public boolean allowEvaluation(NSPredicateValidating validator) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = allowEvaluation(validator, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Method(selector = "allowEvaluationWithValidator:error:")
+    private native boolean allowEvaluation(NSPredicateValidating validator, NSError.NSErrorPtr error);
     @Method(selector = "predicateWithFormat:argumentArray:")
     protected static native @Pointer long create(String predicateFormat, NSArray<?> arguments);
     @Method(selector = "predicateWithValue:")

@@ -143,7 +143,7 @@ import org.robovm.apple.coregraphics.*;
     @Method(selector = "triggerAccessPointForFriendingWithHandler:")
     public native void triggerAccessPointForFriending(@Block Runnable handler);
     /**
-     * @since Available in iOS 26.0 and later.
+     * @since Available in iOS 26.2 and later.
      */
     @Method(selector = "triggerAccessPointForArcadeWithHandler:")
     public native void triggerAccessPointForArcade(@Block Runnable handler);

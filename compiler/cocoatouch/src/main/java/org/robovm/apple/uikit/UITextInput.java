@@ -97,6 +97,11 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "isEditable")
     boolean isEditable();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "unobscuredContentRect")
+    @ByVal CGRect getUnobscuredContentRect();
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "textInRange:")

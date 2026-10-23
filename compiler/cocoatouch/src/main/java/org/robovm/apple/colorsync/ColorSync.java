@@ -369,6 +369,131 @@ import org.robovm.apple.corefoundation.*;
     @GlobalValue(symbol="kColorSyncProfileCacheSeed", optional=true)
     public static native CFString ProfileCacheSeed();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncHeadroomAdaptiveGainCurveApplicationVersion", optional=true)
+    public static native CFString HeadroomAdaptiveGainCurveApplicationVersion();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncHeadroomAdaptiveGainCurveColorVolumeTransform", optional=true)
+    public static native CFString HeadroomAdaptiveGainCurveColorVolumeTransform();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCustomHDRReferenceWhite", optional=true)
+    public static native CFString CustomHDRReferenceWhite();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncHeadroomAdaptiveToneMappingInfo", optional=true)
+    public static native CFString HeadroomAdaptiveToneMappingInfo();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncBaselineHeadroomStops", optional=true)
+    public static native CFString BaselineHeadroomStops();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncHeadroomAdaptiveGainCurveInfo", optional=true)
+    public static native CFString HeadroomAdaptiveGainCurveInfo();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncAlternateCurveCount", optional=true)
+    public static native CFString AlternateCurveCount();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncAlternateGainCurveInfo", optional=true)
+    public static native CFString AlternateGainCurveInfo();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncGainCurveChromaticities", optional=true)
+    public static native CFString GainCurveChromaticities();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCommonComponentMixing", optional=true)
+    public static native CFString CommonComponentMixing();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCommonCurveParameters", optional=true)
+    public static native CFString CommonCurveParameters();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncAlternateCurveHeadroomStops", optional=true)
+    public static native CFString AlternateCurveHeadroomStops();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncComponentMix", optional=true)
+    public static native CFString ComponentMix();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncComponentCoefficients", optional=true)
+    public static native CFString ComponentCoefficients();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientRed", optional=true)
+    public static native CFString CoefficientRed();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientGreen", optional=true)
+    public static native CFString CoefficientGreen();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientBlue", optional=true)
+    public static native CFString CoefficientBlue();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientMaxRGB", optional=true)
+    public static native CFString CoefficientMaxRGB();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientMinRGB", optional=true)
+    public static native CFString CoefficientMinRGB();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncCoefficientComponent", optional=true)
+    public static native CFString CoefficientComponent();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncMaxControlPointIndex", optional=true)
+    public static native CFString MaxControlPointIndex();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncInterpolateSlopes", optional=true)
+    public static native CFString InterpolateSlopes();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncControlPointsX", optional=true)
+    public static native CFString ControlPointsX();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncControlPointsY", optional=true)
+    public static native CFString ControlPointsY();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @GlobalValue(symbol="kColorSyncControlPointSlopes", optional=true)
+    public static native CFString ControlPointSlopes();
+    /**
      * @since Available in iOS 16.0 and later.
      */
     @GlobalValue(symbol="kColorSyncProfile", optional=true)

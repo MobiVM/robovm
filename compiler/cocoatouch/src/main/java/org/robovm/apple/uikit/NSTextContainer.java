@@ -76,6 +76,10 @@ import org.robovm.apple.symbols.*;
     public native NSLineBreakMode getLineBreakMode();
     @Property(selector = "setLineBreakMode:")
     public native void setLineBreakMode(NSLineBreakMode v);
+    @Property(selector = "exclusionPaths")
+    public native NSArray<UIBezierPath> getExclusionPaths();
+    @Property(selector = "setExclusionPaths:")
+    public native void setExclusionPaths(NSArray<UIBezierPath> v);
     @Property(selector = "lineFragmentPadding")
     public native @MachineSizedFloat double getLineFragmentPadding();
     @Property(selector = "setLineFragmentPadding:")
@@ -107,10 +111,6 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setLayoutManager:", strongRef = true)
     public native void setLayoutManager(NSLayoutManager v);
-    @Property(selector = "exclusionPaths")
-    public native NSArray<UIBezierPath> getExclusionPaths();
-    @Property(selector = "setExclusionPaths:")
-    public native void setExclusionPaths(NSArray<UIBezierPath> v);
     @Property(selector = "supportsSecureCoding")
     public static native boolean supportsSecureCoding();
     @Property(selector = "layoutOrientation")

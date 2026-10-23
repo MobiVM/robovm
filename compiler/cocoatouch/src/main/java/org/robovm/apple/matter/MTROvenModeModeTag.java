@@ -115,7 +115,11 @@ public enum /*<name>*/MTROvenModeModeTag/*</name>*/ implements ValuedEnum {
     /**
      * @since Available in iOS 18.4 and later.
      */
-    Proofing(16392L);
+    Proofing(16392L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    Steam(16393L);
     /*</values>*/
 
     /*<bind>*/

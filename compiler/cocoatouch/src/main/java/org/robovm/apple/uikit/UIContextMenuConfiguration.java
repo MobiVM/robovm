@@ -94,6 +94,16 @@ import org.robovm.apple.symbols.*;
      */
     @Property(selector = "setPreferredMenuElementOrder:")
     public native void setPreferredMenuElementOrder(UIContextMenuConfigurationElementOrder v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "allowsTypeSelect")
+    public native boolean allowsTypeSelect();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setAllowsTypeSelect:")
+    public native void setAllowsTypeSelect(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

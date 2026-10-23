@@ -60,6 +60,11 @@ import org.robovm.apple.symbols.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "tabBarController:sidebarAvailabilityDidChange:")
+    void sidebarAvailabilityDidChange(UITabBarController tabBarController, UITabBarControllerSidebar sidebar);
     @Method(selector = "tabBarController:sidebarVisibilityWillChange:animator:")
     void sidebarVisibilityWillChange(UITabBarController tabBarController, UITabBarControllerSidebar sidebar, UITabBarControllerSidebarAnimating animator);
     @Method(selector = "tabBarController:sidebar:itemForRequest:")

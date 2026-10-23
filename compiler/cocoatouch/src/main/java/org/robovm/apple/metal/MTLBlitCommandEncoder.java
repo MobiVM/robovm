@@ -107,12 +107,16 @@ import org.robovm.apple.dispatch.*;
     public native void waitForFence(MTLFence fence);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Access counters are no longer supported in Metal
      */
+    @Deprecated
     @Method(selector = "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:")
     public native void getTextureAccessCounters(MTLTexture texture, @ByVal MTLRegion region, @MachineSizedUInt long mipLevel, @MachineSizedUInt long slice, boolean resetCounters, MTLBuffer countersBuffer, @MachineSizedUInt long countersBufferOffset);
     /**
      * @since Available in iOS 13.0 and later.
+     * @deprecated Deprecated in iOS 26.4. Access counters are no longer supported in Metal
      */
+    @Deprecated
     @Method(selector = "resetTextureAccessCounters:region:mipLevel:slice:")
     public native void resetTextureAccessCounters(MTLTexture texture, @ByVal MTLRegion region, @MachineSizedUInt long mipLevel, @MachineSizedUInt long slice);
     /**
@@ -165,6 +169,11 @@ import org.robovm.apple.dispatch.*;
      */
     @Method(selector = "copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:")
     public native void copyFromTensor(MTLTensor sourceTensor, MTLTensorExtents sourceOrigin, MTLTensorExtents sourceDimensions, MTLTensor destinationTensor, MTLTensorExtents destinationOrigin, MTLTensorExtents destinationDimensions);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "copyFromTensor:sourceOrigin:sourceDimensions:sourcePlane:toTensor:destinationOrigin:destinationDimensions:destinationPlane:")
+    public native void copyFromTensor(MTLTensor sourceTensor, MTLTensorExtents sourceOrigin, MTLTensorExtents sourceDimensions, MTLTensorPlaneType sourcePlane, MTLTensor destinationTensor, MTLTensorExtents destinationOrigin, MTLTensorExtents destinationDimensions, MTLTensorPlaneType destinationPlane);
     @Method(selector = "endEncoding")
     public native void endEncoding();
     /**

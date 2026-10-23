@@ -42,6 +42,7 @@ public final class /*<name>*/MPSGraphReducedPrecisionFastMath/*</name>*/ extends
     /*<values>*/
     public static final MPSGraphReducedPrecisionFastMath None = new MPSGraphReducedPrecisionFastMath(0L);
     public static final MPSGraphReducedPrecisionFastMath AllowFP16Conv2DWinogradTransformIntermediate = new MPSGraphReducedPrecisionFastMath(2L);
+    public static final MPSGraphReducedPrecisionFastMath AllowConvertingOperandsFromFP32ToFP19 = new MPSGraphReducedPrecisionFastMath(4L);
     public static final MPSGraphReducedPrecisionFastMath AllowFP16Intermediates = new MPSGraphReducedPrecisionFastMath(2L);
     public static final MPSGraphReducedPrecisionFastMath Default = new MPSGraphReducedPrecisionFastMath(0L);
     /*</values>*/

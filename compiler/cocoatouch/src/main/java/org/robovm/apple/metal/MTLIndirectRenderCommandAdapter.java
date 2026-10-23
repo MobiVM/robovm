@@ -130,7 +130,7 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 26.0 and later.
      */
     @NotImplemented("setFrontFacingWinding:")
-    public void setFrontFacingWinding(MTLWinding frontFacingWindning) {}
+    public void setFrontFacingWinding(MTLWinding frontFacingWinding) {}
     /**
      * @since Available in iOS 26.0 and later.
      */

@@ -74,6 +74,16 @@ import org.robovm.apple.coreanimation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(PKPaymentNetwork.AsListMarshaler.class) List<PKPaymentNetwork> getSupportedNetworks();
     @Property(selector = "setSupportedNetworks:")
     public native void setSupportedNetworks(@org.robovm.rt.bro.annotation.Marshaler(PKPaymentNetwork.AsListMarshaler.class) List<PKPaymentNetwork> v);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "unsupportedPrimaryAccountIdentifiers")
+    public native NSArray<NSString> getUnsupportedPrimaryAccountIdentifiers();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setUnsupportedPrimaryAccountIdentifiers:")
+    public native void setUnsupportedPrimaryAccountIdentifiers(NSArray<NSString> v);
     @Property(selector = "merchantCapabilities")
     public native PKMerchantCapability getMerchantCapabilities();
     @Property(selector = "setMerchantCapabilities:")
@@ -292,6 +302,16 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "setApplePayLaterAvailability:")
     public native void setApplePayLaterAvailability(PKApplePayLaterAvailability v);
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "isDelegatedRequest")
+    public native boolean isDelegatedRequest();
+    /**
+     * @since Available in iOS 26.4 and later.
+     */
+    @Property(selector = "setIsDelegatedRequest:")
+    public native void setIsDelegatedRequest(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

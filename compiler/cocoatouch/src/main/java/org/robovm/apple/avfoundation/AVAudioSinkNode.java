@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +62,15 @@ import org.robovm.apple.uikit.*;
     protected AVAudioSinkNode(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithReceiverBlock:")
     public AVAudioSinkNode(@Block Block3<AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) { super((SkipInit) null); initObject(init(block)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithRealtimeSafeReceiverBlock:")
+    public static AVAudioSinkNode createWithRealtimeSafeReceiverBlock(@Block Block3<AudioTimeStamp, Integer, AudioBufferList, OSStatus> block) {
+       AVAudioSinkNode res = new AVAudioSinkNode((SkipInit) null);
+       res.initObject(res.initWithRealtimeSafeReceiverBlock(block));
+       return res;
+    }
     /*</constructors>*/
     /*<properties>*/
     
@@ -69,5 +79,10 @@ import org.robovm.apple.uikit.*;
     /*<methods>*/
     @Method(selector = "initWithReceiverBlock:")
     protected native @Pointer long init(@Block Block3<AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithRealtimeSafeReceiverBlock:")
+    protected native @Pointer long initWithRealtimeSafeReceiverBlock(@Block Block3<AudioTimeStamp, Integer, AudioBufferList, OSStatus> block);
     /*</methods>*/
 }

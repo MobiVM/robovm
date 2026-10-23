@@ -75,6 +75,6 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 18.0 and later.
      */
     @Bridge(symbol="CGColorConversionInfoCreateForToneMapping", optional=true)
-    public static native CGColorConversionInfo createForToneMapping(CGColorSpace from, float source_headroom, CGColorSpace to, float target_headroom, CGToneMapping method, NSDictionary options, CFError.CFErrorPtr error);
+    public static native CGColorConversionInfo createForToneMapping(CGColorSpace source, float source_headroom, CGColorSpace target, float target_headroom, CGToneMapping method, NSDictionary options, CFError.CFErrorPtr error);
     /*</methods>*/
 }

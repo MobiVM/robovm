@@ -34,9 +34,10 @@ import org.robovm.apple.dispatch.*;
 /*<javadoc>*/
 /**
  * @since Available in iOS 11.0 and later.
+ * @deprecated Deprecated in iOS 27.0. Store action options have no effect on Apple Silicon
  */
 /*</javadoc>*/
-/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class)/*</annotations>*/
+/*<annotations>*/@Marshaler(Bits.AsMachineSizedIntMarshaler.class) @Deprecated/*</annotations>*/
 public final class /*<name>*/MTLStoreActionOptions/*</name>*/ extends Bits</*<name>*/MTLStoreActionOptions/*</name>*/> {
     /*<values>*/
     public static final MTLStoreActionOptions None = new MTLStoreActionOptions(0L);

@@ -46,6 +46,9 @@ public enum /*<name>*/CSIndexErrorCode/*</name>*/ implements NSErrorCode {
     RemoteConnectionError(-1003L),
     QuotaExceeded(-1004L),
     IndexingUnsupported(-1005L),
+    /**
+     * @since Available in iOS 18.0 and later.
+     */
     MismatchedClientState(-1006L);
     /*</values>*/
 

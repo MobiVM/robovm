@@ -184,28 +184,28 @@ import org.robovm.apple.avfoundation.*;
     @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @WeaklyLinked
     @Method(selector = "createCGImage:fromRect:format:colorSpace:deferred:calculateHDRStats:")
     public native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImage createCGImage(CIImage image, @ByVal CGRect fromRect, int format, CGColorSpace colorSpace, boolean deferred, boolean calculateHDRStats);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "calculateHDRStatsForIOSurface:")
     public native void calculateHDRStatsForIOSurface(IOSurface surface);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "calculateHDRStatsForCVPixelBuffer:")
     public native void calculateHDRStatsForCVPixelBuffer(CVPixelBuffer buffer);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "calculateHDRStatsForCGImage:")
     public native CGImage calculateHDRStatsForCGImage(CGImage cgimage);
     /**
-     * @since Available in iOS 19.0 and later.
+     * @since Available in iOS 26.0 and later.
      */
     @Method(selector = "calculateHDRStatsForImage:")
     public native CIImage calculateHDRStatsForImage(CIImage image);
@@ -309,6 +309,20 @@ import org.robovm.apple.avfoundation.*;
      */
     @Method(selector = "prepareRender:fromRect:toDestination:atPoint:error:")
     public native boolean prepareRender(CIImage image, @ByVal CGRect fromRect, CIRenderDestination destination, @ByVal CGPoint atPoint, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public CIRenderTask estimateRender(CIImage image, @ByVal CGRect fromRect, CIRenderDestination destination, @ByVal CGPoint atPoint) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       CIRenderTask result = estimateRender(image, fromRect, destination, atPoint, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "estimateRender:fromRect:toDestination:atPoint:error:")
+    private native CIRenderTask estimateRender(CIImage image, @ByVal CGRect fromRect, CIRenderDestination destination, @ByVal CGPoint atPoint, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 11.0 and later.
      */

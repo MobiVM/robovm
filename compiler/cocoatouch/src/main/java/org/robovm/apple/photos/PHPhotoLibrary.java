@@ -61,6 +61,11 @@ import org.robovm.apple.uniformtypeid.*;
     @Property(selector = "isUploadJobExtensionEnabled")
     public native boolean isUploadJobExtensionEnabled();
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "uploadJobExtensionOptions")
+    public native PHAssetResourceUploadJobOptions getUploadJobExtensionOptions();
+    /**
      * @since Available in iOS 13.0 and later.
      */
     @Property(selector = "unavailabilityReason")
@@ -75,7 +80,9 @@ import org.robovm.apple.uniformtypeid.*;
     /*<methods>*/
     /**
      * @since Available in iOS 26.1 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -enableUploadJobExtensionWithOptions:error: and -disableUploadJobExtensionWithError: instead
      */
+    @Deprecated
     public boolean setUploadJobExtensionEnabled(boolean enable) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        boolean result = setUploadJobExtensionEnabled(enable, ptr);
@@ -84,9 +91,53 @@ import org.robovm.apple.uniformtypeid.*;
     }
     /**
      * @since Available in iOS 26.1 and later.
+     * @deprecated Deprecated in iOS 27.0. Use -enableUploadJobExtensionWithOptions:error: and -disableUploadJobExtensionWithError: instead
      */
+    @Deprecated
     @Method(selector = "setUploadJobExtensionEnabled:error:")
     private native boolean setUploadJobExtensionEnabled(boolean enable, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean enableUploadJobExtension(PHAssetResourceUploadJobOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = enableUploadJobExtension(options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "enableUploadJobExtensionWithOptions:error:")
+    private native boolean enableUploadJobExtension(PHAssetResourceUploadJobOptions options, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean disableUploadJobExtension() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = disableUploadJobExtension(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "disableUploadJobExtensionWithError:")
+    private native boolean disableUploadJobExtension(NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public boolean setUploadJobExtensionOptions(PHAssetResourceUploadJobOptions options) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setUploadJobExtensionOptions(options, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "setUploadJobExtensionOptions:error:")
+    private native boolean setUploadJobExtensionOptions(PHAssetResourceUploadJobOptions options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 13.0 and later.
      */
@@ -111,6 +162,16 @@ import org.robovm.apple.uniformtypeid.*;
     public native void registerChangeObserver(PHPhotoLibraryChangeObserver observer);
     @Method(selector = "unregisterChangeObserver:")
     public native void unregisterChangeObserver(PHPhotoLibraryChangeObserver observer);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "registerPersistentChangesObserver:")
+    public native void registerPersistentChangesObserver(PHPhotoLibraryPersistentChangesObserver observer);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "unregisterPersistentChangesObserver:")
+    public native void unregisterPersistentChangesObserver(PHPhotoLibraryPersistentChangesObserver observer);
     /**
      * @since Available in iOS 16.0 and later.
      */
@@ -154,6 +215,11 @@ import org.robovm.apple.uniformtypeid.*;
      */
     @Method(selector = "localIdentifierMappingsForCloudIdentifiers:")
     public native NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping> localIdentifierMappingsForCloudIdentifiers(NSArray<PHCloudIdentifier> cloudIdentifiers);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "localIdentifierMappingsForSyncedCloudIdentifiers:")
+    public native NSDictionary<PHCloudIdentifier, PHLocalIdentifierMapping> localIdentifierMappingsForSyncedCloudIdentifiers(NSArray<PHCloudIdentifier> cloudIdentifiers);
     /**
      * @since Available in iOS 15.0 and later.
      */

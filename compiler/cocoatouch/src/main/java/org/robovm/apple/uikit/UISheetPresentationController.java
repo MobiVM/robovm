@@ -72,6 +72,16 @@ import org.robovm.apple.symbols.*;
     @Property(selector = "setSourceView:")
     public native void setSourceView(UIView v);
     /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "preferredPlacement")
+    public native UISheetPresentationControllerPlacement getPreferredPlacement();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "setPreferredPlacement:")
+    public native void setPreferredPlacement(UISheetPresentationControllerPlacement v);
+    /**
      * @since Available in iOS 17.0 and later.
      */
     @Property(selector = "prefersPageSizing")

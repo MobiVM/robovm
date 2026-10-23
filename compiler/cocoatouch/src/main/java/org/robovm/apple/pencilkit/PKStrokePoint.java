@@ -52,10 +52,21 @@ import org.robovm.apple.coreanimation.*;
     protected PKStrokePoint(SkipInit skipInit) { super(skipInit); }
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:")
     public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude)); }
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:")
     public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale)); }
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:")
     public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale, @MachineSizedFloat double threshold) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold)); }
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:lateralJitter:")
+    public PKStrokePoint(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale, @MachineSizedFloat double threshold, @MachineSizedFloat double lateralJitter) { super((SkipInit) null); initObject(init(location, timeOffset, size, opacity, force, azimuth, altitude, secondaryScale, threshold, lateralJitter)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "location")
@@ -66,10 +77,10 @@ import org.robovm.apple.coreanimation.*;
     public native @ByVal CGSize getSize();
     @Property(selector = "opacity")
     public native @MachineSizedFloat double getOpacity();
-    @Property(selector = "azimuth")
-    public native @MachineSizedFloat double getAzimuth();
     @Property(selector = "force")
     public native @MachineSizedFloat double getForce();
+    @Property(selector = "azimuth")
+    public native @MachineSizedFloat double getAzimuth();
     @Property(selector = "altitude")
     public native @MachineSizedFloat double getAltitude();
     /**
@@ -82,14 +93,30 @@ import org.robovm.apple.coreanimation.*;
      */
     @Property(selector = "threshold")
     public native @MachineSizedFloat double getThreshold();
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Property(selector = "lateralJitter")
+    public native @MachineSizedFloat double getLateralJitter();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:")
     protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude);
+    /**
+     * @since Available in iOS 17.0 and later.
+     */
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:")
     protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale);
+    /**
+     * @since Available in iOS 26.0 and later.
+     */
     @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:")
     protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale, @MachineSizedFloat double threshold);
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    @Method(selector = "initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:lateralJitter:")
+    protected native @Pointer long init(@ByVal CGPoint location, double timeOffset, @ByVal CGSize size, @MachineSizedFloat double opacity, @MachineSizedFloat double force, @MachineSizedFloat double azimuth, @MachineSizedFloat double altitude, @MachineSizedFloat double secondaryScale, @MachineSizedFloat double threshold, @MachineSizedFloat double lateralJitter);
     /*</methods>*/
 }

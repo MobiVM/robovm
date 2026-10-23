@@ -55,6 +55,10 @@ public enum /*<name>*/AUType/*</name>*/ implements ValuedEnum {
      * @since Available in iOS 16.0 and later.
      */
     SpeechSynthesizer(1635087216L),
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    HeadTrackingBinauralRenderer(1635084404L),
     RemoteEffect(1635086968L),
     RemoteGenerator(1635086951L),
     RemoteInstrument(1635086953L),

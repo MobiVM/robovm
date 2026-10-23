@@ -439,6 +439,11 @@ import org.robovm.apple.avfoundation.*;
          */
         @GlobalValue(symbol="MPNowPlayingInfoProperty3x4AnimatedArtwork", optional=true)
         public static native NSString _3x4AnimatedArtwork();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="MPNowPlayingInfoPropertyAppEntityIdentifiers", optional=true)
+        public static native NSString AppEntityIdentifiers();
     }
     /*</keys>*/
 }

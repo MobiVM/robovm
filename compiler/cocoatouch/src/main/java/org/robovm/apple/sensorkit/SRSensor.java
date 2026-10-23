@@ -179,9 +179,17 @@ import org.robovm.apple.soundanalysis.*;
      * @since Available in iOS 26.0 and later.
      */
     public static final SRSensor SleepSessions = new SRSensor("SleepSessions");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final SRSensor HeadphoneMotion = new SRSensor("HeadphoneMotion");
+    /**
+     * @since Available in iOS 27.0 and later.
+     */
+    public static final SRSensor HeadphoneSettings = new SRSensor("HeadphoneSettings");
     /*</constants>*/
     
-    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure, MediaEvents, WristTemperature, HeartRate, FaceMetrics, Odometer, Electrocardiogram, Photoplethysmogram, AcousticSettings, SleepSessions/*</value_list>*/};
+    private static /*<name>*/SRSensor/*</name>*/[] values = new /*<name>*/SRSensor/*</name>*/[] {/*<value_list>*/AmbientLightSensor, Accelerometer, RotationRate, Visits, PedometerData, DeviceUsageReport, MessagesUsageReport, PhoneUsageReport, OnWristState, KeyboardMetrics, SiriSpeechMetrics, TelephonySpeechMetrics, AmbientPressure, MediaEvents, WristTemperature, HeartRate, FaceMetrics, Odometer, Electrocardiogram, Photoplethysmogram, AcousticSettings, SleepSessions, HeadphoneMotion, HeadphoneSettings/*</value_list>*/};
     
     /*<name>*/SRSensor/*</name>*/ (String getterName) {
         super(Values.class, getterName);
@@ -314,6 +322,16 @@ import org.robovm.apple.soundanalysis.*;
          */
         @GlobalValue(symbol="SRSensorSleepSessions", optional=true)
         public static native NSString SleepSessions();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorHeadphoneMotion", optional=true)
+        public static native NSString HeadphoneMotion();
+        /**
+         * @since Available in iOS 27.0 and later.
+         */
+        @GlobalValue(symbol="SRSensorHeadphoneSettings", optional=true)
+        public static native NSString HeadphoneSettings();
         /*</values>*/
     }
 }

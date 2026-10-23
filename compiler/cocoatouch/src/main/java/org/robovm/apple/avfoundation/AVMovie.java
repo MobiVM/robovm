@@ -40,6 +40,7 @@ import org.robovm.apple.mediatoolbox.*;
 import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.coremidi.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.videotoolbox.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -104,7 +105,9 @@ import org.robovm.apple.uikit.*;
 
         /**
          * @since Available in iOS 13.0 and later.
+         * @deprecated Deprecated in iOS 27.0. AVMovieShouldSupportAliasDataReferencesKey is not supported on this platform
          */
+        @Deprecated
         @GlobalValue(symbol="AVMovieShouldSupportAliasDataReferencesKey", optional=true)
         public static native NSString ShouldSupportAliasDataReferences();
     }

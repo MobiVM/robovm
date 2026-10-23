@@ -104,7 +104,11 @@ public enum /*<name>*/SKErrorCode/*</name>*/ implements NSErrorCode {
     /**
      * @since Available in iOS 14.5 and later.
      */
-    OverlayPresentedInBackgroundScene(20L);
+    OverlayPresentedInBackgroundScene(20L),
+    /**
+     * @since Available in iOS 26.5 and later.
+     */
+    PaymentMethodBindingConfigurationRequired(21L);
     /*</values>*/
 
     /*<bind>*/
