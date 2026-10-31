@@ -16,7 +16,6 @@
  */
 package org.robovm.compiler.target.ios.devicectl;
 
-import com.github.cliftonlabs.json_simple.JsonArray;
 import com.github.cliftonlabs.json_simple.JsonObject;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.Capability;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.ConnectionProperties;
@@ -27,12 +26,12 @@ import org.robovm.compiler.target.ios.devicectl.AppleDevice.ConnectionProperties
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.DeviceProperties;
 import org.robovm.compiler.target.ios.devicectl.AppleDevice.HardwareProperties;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.robovm.compiler.util.JsonUtils.*;
 
 /**
  * parsers for output of `devicectl` utility
@@ -199,59 +198,6 @@ public final class DeviceCtlParsers {
         JsonObject result = asJson(json, "result");
         if (result == null) throw new IllegalStateException("Unexpected JSON response: result is missing!");
         return parseAppleDevice(result);
-    }
-
-    //
-    // Internal annotations for visibility
-    //
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Required {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Optional {
-    }
-
-    //
-    // JSON utilities bellow
-    //
-
-    public static Stream<JsonObject> toObjectStream(@Required JsonArray arr) {
-        return ((List<?>) arr).stream()
-            .filter(o -> o instanceof JsonObject)
-            .map(o -> (JsonObject)o);
-    }
-
-    public static Stream<JsonObject> asObjectStream(@Optional JsonObject json, String key, Stream<JsonObject> defaultValue) {
-        if (json == null) return defaultValue;
-        Object o = json.get(key);
-        if (o instanceof JsonArray) return toObjectStream((JsonArray) o);
-        return defaultValue;
-    }
-
-    public static String asString(@Optional JsonObject json, String key, String defaultValue) {
-        if (json == null) return defaultValue;
-        Object o = json.get(key);
-        if (o instanceof String) return (String) o;
-        return defaultValue;
-    }
-
-    public static String asString(@Optional JsonObject json, String key) {
-        return asString(json, key, null);
-    }
-
-    public static JsonObject asJson(@Optional JsonObject json, String key) {
-        if (json == null) return null;
-        Object o = json.get(key);
-        if (o instanceof JsonObject) return (JsonObject) o;
-        return null;
-    }
-
-    public static long asLong(@Optional JsonObject json, String key, long defaultValue) {
-        if (json == null) return defaultValue;
-        Object o = json.get(key);
-        if (o instanceof Number) return ((Number) o).longValue();
-        return defaultValue;
     }
 
 }
