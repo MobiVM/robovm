@@ -20,13 +20,12 @@ import org.robovm.compiler.config.Arch;
 import org.robovm.compiler.config.CpuArch;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Simulator device types, consisting of the device type id and SDK version as
- * listed by xcrun simctl devices -j list.
+ * listed by xcrun simctl list devices devicetypes runtimes pairs -j.
  */
 public class DeviceType implements Comparable<DeviceType> {
     public static final String PREFERRED_IPHONE_SIM_NAME = "iPhone SE";
@@ -34,8 +33,45 @@ public class DeviceType implements Comparable<DeviceType> {
 
     public enum DeviceFamily {
         iPhone,
-        iPad
+        iPad,
+        // next are not directly supported by used during parsing
+        AppleWatch,
+        AppleTV,
+        AppleVision
     }
+
+    public enum SimPlatform {
+        iOS,
+        tvOS,
+        watchOS,
+        visionOS
+    }
+
+    static final class SimDeviceModel {
+        final DeviceFamily productFamily;
+        final String modelIdentifier;
+        final String name;
+
+        SimDeviceModel(DeviceFamily productFamily, String modelIdentifier, String name) {
+            this.productFamily = productFamily;
+            this.modelIdentifier = modelIdentifier;
+            this.name = name;
+        }
+    }
+
+    /// represents a runtime entry in the simctl list response
+    static final class SimRuntime {
+        final SimPlatform platform;
+        final Version version;
+        final Set<Arch> archs;
+
+        SimRuntime(SimPlatform platform, Version version, Set<Arch> archs) {
+            this.platform = platform;
+            this.version = version;
+            this.archs = archs;
+        }
+    }
+
 
     // depending on x86_64 or m1 CPU use different host simulator arches
     public final static CpuArch DEFAULT_HOST_ARCH;
@@ -51,17 +87,21 @@ public class DeviceType implements Comparable<DeviceType> {
     private final String deviceName;
     private final String udid;
     private final String state;
-    private final Version version;
-    private final Set<Arch> archs;
-    private final DeviceType pair;
+    final SimRuntime runtime;
+    final SimDeviceModel model;
+    final DeviceType pair;
 
-    DeviceType(String deviceName, String udid, String state, Version version, Set<Arch> archs, DeviceType pair) {
+    DeviceType(String deviceName, String udid, String state, SimRuntime runtime, SimDeviceModel model, DeviceType pair) {
         this.deviceName = deviceName;
         this.udid = udid;
         this.state = state;
-        this.version = version;
-        this.archs = archs;
+        this.runtime = runtime;
+        this.model = model;
         this.pair = pair;
+    }
+
+    DeviceType(DeviceType device, DeviceType pair) {
+        this(device.deviceName, device.udid, device.state, device.runtime, device.model, pair);
     }
 
     public String getDeviceName() {
@@ -69,11 +109,11 @@ public class DeviceType implements Comparable<DeviceType> {
     }
 
     public Version getVersion() {
-        return version;
+        return runtime.version;
     }
 
     public Set<Arch> getArchs() {
-        return Collections.unmodifiableSet(archs);
+        return runtime.archs;
     }
 
     public DeviceType getPair() {
@@ -92,11 +132,7 @@ public class DeviceType implements Comparable<DeviceType> {
     }
 
     public DeviceFamily getFamily() {
-        if (deviceName.contains("iPhone")) {
-            return DeviceFamily.iPhone;
-        } else {
-            return DeviceFamily.iPad;
-        }
+        return model.productFamily;
     }
 
     public String getUdid() {
@@ -113,7 +149,7 @@ public class DeviceType implements Comparable<DeviceType> {
 
     @Override
     public int compareTo(DeviceType that) {
-        int c = this.version.compareTo(that.version);
+        int c = this.runtime.version.compareTo(that.runtime.version);
         if (c == 0) {
             c = this.getFamily().compareTo(that.getFamily());
             if (c == 0) {
@@ -133,7 +169,7 @@ public class DeviceType implements Comparable<DeviceType> {
             if (arch == null || type.getArchs().contains(arch)) {
                 if (family == null || family == type.getFamily()) {
                     if (deviceName == null || type.getDeviceName().toLowerCase().contains(deviceName)) {
-                        if (simVersion == null || type.version.isSameOrBetter(simVersion)) {
+                        if (simVersion == null || type.runtime.version.isSameOrBetter(simVersion)) {
                             result.add(type);
                         }
                     }
@@ -184,11 +220,8 @@ public class DeviceType implements Comparable<DeviceType> {
         if (deviceName == null && family == null) {
             family = DeviceFamily.iPhone;
         }
-        String preferredDeviceName = PREFERRED_IPHONE_SIM_NAME;
-        if (family == DeviceFamily.iPad) {
-            preferredDeviceName = PREFERRED_IPAD_SIM_NAME;
-        }
-
+        String preferredDeviceName = family == DeviceFamily.iPad
+                ? PREFERRED_IPAD_SIM_NAME : PREFERRED_IPHONE_SIM_NAME;
 
         // set simulator types and find one that matches version and name
         DeviceType exact = null;
@@ -199,15 +232,15 @@ public class DeviceType implements Comparable<DeviceType> {
         for (DeviceType type : devices) {
             if (type.getDeviceName().equals(deviceName)) {
                 // match for specified device
-                if (exact == null || (version == null && type.version.versionCode > exact.version.versionCode))
+                if (exact == null || (version == null && type.runtime.version.versionCode > exact.runtime.version.versionCode))
                     exact = type;
-            } else if (deviceName == null && type.getDeviceName().startsWith(preferredDeviceName)) {
-                // match for preferable device
-                if (bestDefault == null || (version == null && type.version.versionCode > bestDefault.version.versionCode))
+            } else if (deviceName == null && type.model.name.startsWith(preferredDeviceName)) {
+                // Apply the default preference to the canonical model name, even for renamed instances.
+                if (bestDefault == null || (version == null && type.runtime.version.versionCode > bestDefault.runtime.version.versionCode))
                     bestDefault = type;
             } else {
                 // just pick one with best version
-                if (bestAny == null || (version == null && type.version.versionCode > bestAny.version.versionCode))
+                if (bestAny == null || (version == null && type.runtime.version.versionCode > bestAny.runtime.version.versionCode))
                     bestAny = type;
             }
         }
@@ -226,7 +259,7 @@ public class DeviceType implements Comparable<DeviceType> {
 
     @Override
     public String toString() {
-        return "DeviceType [deviceName=" + deviceName + ", version=" + version + ", archs=" + archs + "]";
+        return "DeviceType [deviceName=" + deviceName + ", version=" + runtime.version + ", archs=" + runtime.archs + "]";
     }
 
     /**

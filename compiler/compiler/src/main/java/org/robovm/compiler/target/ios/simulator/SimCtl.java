@@ -49,7 +49,7 @@ public final class SimCtl {
     public static List<DeviceType> list() {
         try {
             String capture = new Executor(Logger.NULL_LOGGER, "xcrun").args(
-                    "simctl", "list", "devices", "pairs", "-j").execCapture();
+                    "simctl", "list", "devices", "devicetypes", "runtimes", "pairs", "-j").execCapture();
 
             JsonObject root = (JsonObject) Jsoner.deserialize(capture);
             return SimCtlParsers.parseListResponse(root);
