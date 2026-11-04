@@ -215,30 +215,32 @@ Java_sun_nio_ch_FileChannelImpl_transferTo0(JNIEnv *env, jobject this,
     }
     return result;
 #elif defined(__APPLE__)
-    off_t numBytes;
-    int result;
-
-    numBytes = count;
-
-    result = sendfile(srcFD, dstFD, position, &numBytes, NULL, 0);
-
-    if (numBytes > 0)
-        return numBytes;
-
-    if (result == -1) {
-        if (errno == EAGAIN)
-            return IOS_UNAVAILABLE;
-        if (errno == EOPNOTSUPP || errno == ENOTSOCK || errno == ENOTCONN)
-            return IOS_UNSUPPORTED_CASE;
-        if ((errno == EINVAL) && ((ssize_t)count >= 0))
-            return IOS_UNSUPPORTED_CASE;
-        if (errno == EINTR)
-            return IOS_INTERRUPTED;
-        JNU_ThrowIOExceptionWithLastError(env, "Transfer failed");
-        return IOS_THROWN;
-    }
-
-    return result;
+    // RoboVM Note: sendfile crashes with SIGNAL 12 on ios(device, not sim) instead of returning unsupported
+    return IOS_UNSUPPORTED_CASE;
+//    off_t numBytes;
+//    int result;
+//
+//    numBytes = count;
+//
+//    result = sendfile(srcFD, dstFD, position, &numBytes, NULL, 0);
+//
+//    if (numBytes > 0)
+//        return numBytes;
+//
+//    if (result == -1) {
+//        if (errno == EAGAIN)
+//            return IOS_UNAVAILABLE;
+//        if (errno == EOPNOTSUPP || errno == ENOTSOCK || errno == ENOTCONN)
+//            return IOS_UNSUPPORTED_CASE;
+//        if ((errno == EINVAL) && ((ssize_t)count >= 0))
+//            return IOS_UNSUPPORTED_CASE;
+//        if (errno == EINTR)
+//            return IOS_INTERRUPTED;
+//        JNU_ThrowIOExceptionWithLastError(env, "Transfer failed");
+//        return IOS_THROWN;
+//    }
+//
+//    return result;
 
 #elif defined(_AIX)
     jlong max = (jlong)java_lang_Integer_MAX_VALUE;
