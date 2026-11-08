@@ -26,7 +26,6 @@ jobs:
       MAVEN_ARGS: -Dmaven.resolver.transport=wagon
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
-      NEXT_DEVELOPMENT_VERSION: ${{ github.event.inputs.nextDevVersion }}
       JRELEASER_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.GPG_PUBLIC_KEY }}
       JRELEASER_GPG_SECRET_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -69,11 +68,6 @@ jobs:
         env:
           GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
         run: cd plugins/gradle && ./gradlew clean build publish && ./gradlew jreleaserDeploy
-
-      - name: change version to next dev  (and commit)
-        run: |
-          DEVELOPMENT_VERSION=$NEXT_DEVELOPMENT_VERSION ./setversion.sh
-          git commit -am "Set next development version, $NEXT_DEVELOPMENT_VERSION"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
