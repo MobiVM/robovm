@@ -40,25 +40,11 @@ import org.robovm.apple.corefoundation.*;
 
     /*<ptr>*/public static class CFHTTPMessagePtr extends Ptr<CFHTTPMessage, CFHTTPMessagePtr> {}/*</ptr>*/
     
-    private static final int EFFECTIVE_DIRECT_ADDRESS_OFFSET;
-
-    static {
-        try {
-            java.lang.reflect.Field f1 = Buffer.class.getDeclaredField("effectiveDirectAddress");
-            if (f1.getType() != long.class) {
-                throw new Error("java.nio.Buffer.effectiveDirectAddress should be a long");
-            }
-            EFFECTIVE_DIRECT_ADDRESS_OFFSET = VM.getInstanceFieldOffset(VM.getFieldAddress(f1));
-        } catch (NoSuchFieldException e) {
-            throw new Error(e);
-        }
-    }
-    
     static long getEffectiveAddress(ByteBuffer bytes) {
         if (!bytes.isDirect()) {
             throw new IllegalArgumentException("Direct ByteBuffer expected");
         }
-        return VM.getLong(VM.getObjectAddress(bytes) + EFFECTIVE_DIRECT_ADDRESS_OFFSET);
+        return BufferMarshalers.BufferMarshaler.getBufferAddress(bytes);
     }
     /*<bind>*/static { Bro.bind(CFHTTPMessage.class); }/*</bind>*/
     /*<constants>*//*</constants>*/

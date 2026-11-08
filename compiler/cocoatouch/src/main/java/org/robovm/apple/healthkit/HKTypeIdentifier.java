@@ -60,12 +60,12 @@ public abstract class HKTypeIdentifier extends GlobalValueEnumeration<NSString> 
             for (Class<?> clazz : allClasses) {
                 try {
                     java.lang.reflect.Method m = clazz.getMethod("valueOf", args);
-                    HKTypeIdentifier type = (HKTypeIdentifier) m.invoke(o);
+                    HKTypeIdentifier type = (HKTypeIdentifier) m.invoke(null, o);
                     if (type != null)
                         return type;
                 } catch (Throwable e) {
                     System.err.println("WARN: Failed to call valueOf() for "
-                            + "the HKTypeIdentifier subclass " + cls.getName());
+                            + "the HKTypeIdentifier subclass " + clazz.getName());
                 }
             }
 

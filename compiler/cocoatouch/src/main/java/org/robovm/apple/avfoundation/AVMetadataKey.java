@@ -123,7 +123,7 @@ import org.robovm.apple.mediatoolbox.*;
             try {
                 Bro.bind(cls); // Global values need to be bound.
                 java.lang.reflect.Method m = cls.getMethod("valueOf", args);
-                AVMetadataKey key = (AVMetadataKey) m.invoke(null);
+                AVMetadataKey key = (AVMetadataKey) m.invoke(null, value);
                 if (key != null) return key;
             } catch (Throwable e) {
                 System.err.println("WARN: Failed to call valueOf() for " 
