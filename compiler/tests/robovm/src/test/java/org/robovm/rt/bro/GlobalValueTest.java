@@ -109,9 +109,9 @@ public class GlobalValueTest {
 
     static {
         try {
-            Field f1 = Buffer.class.getDeclaredField("effectiveDirectAddress");
+            Field f1 = Buffer.class.getDeclaredField("address");
             if (f1.getType() != long.class) {
-                throw new Error("java.nio.Buffer.effectiveDirectAddress should be a long");
+                throw new Error("java.nio.Buffer.address should be a long");
             }
             EFFECTIVE_DIRECT_ADDRESS_OFFSET = VM.getInstanceFieldOffset(VM.getFieldAddress(f1));
         } catch (NoSuchFieldException e) {
