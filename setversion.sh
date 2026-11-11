@@ -10,8 +10,8 @@ export TIMESTAMP=`date +"%Y%m%d%H%M"`
 #
 # set maven version everywhere 
 #
-mvn versions:set -DnewVersion="$DEVELOPMENT_VERSION"
-mvn versions:commit
+./mvnw versions:set -DnewVersion="$DEVELOPMENT_VERSION"
+./mvnw versions:commit
 
 
 #
@@ -19,7 +19,7 @@ mvn versions:commit
 #
 pushd plugins/eclipse
 ## Set the pom version to the next development version
-mvn org.eclipse.tycho:tycho-versions-plugin:1.5.1:set-version -DnewVersion="$DEVELOPMENT_VERSION"
+../../mvnw org.eclipse.tycho:tycho-versions-plugin:1.5.1:set-version -DnewVersion="$DEVELOPMENT_VERSION"
 mv pom.xml pom.xml.bak && sed "s/<robovm.version>.*<\/robovm.version>/<robovm.version>$DEVELOPMENT_VERSION<\/robovm.version>/" pom.xml.bak > pom.xml
 rm pom.xml.bak
 popd
@@ -29,8 +29,8 @@ popd
 #
 # Set the pom version to the next development version (it always have to be development)
 pushd plugins/idea
-mvn versions:set -DnewVersion=$DEVELOPMENT_VERSION
-mvn versions:commit
+../../mvnw versions:set -DnewVersion=$DEVELOPMENT_VERSION
+../../mvnw versions:commit
 mv pom.xml pom.xml.bak && sed "s/<robovm.version>.*<\/robovm.version>/<robovm.version>$DEVELOPMENT_VERSION<\/robovm.version>/" pom.xml.bak > pom.xml
 rm pom.xml.bak
 sed "s/roboVMVersion *=.*/roboVMVersion = '$DEVELOPMENT_VERSION'/" build.gradle > build.gradle.tmp
