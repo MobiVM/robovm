@@ -11,9 +11,6 @@ on:
       releaseVersion:
         description: 'Release version'
         required: true
-      nextDevVersion:
-        description: 'Next development version'
-        required: true
       releaseMessage:
         required: true
         description: 'Release message'
