@@ -1102,6 +1102,17 @@ extern "C" JNIEXPORT jobject Java_libcore_io_Linux_accept(JNIEnv* env, jobject, 
         close(clientFd);
         return NULL;
     }
+#if defined(__APPLE__)
+    // RoboVM note: On Darwin, accept() inherits file status flags like O_NONBLOCK from the
+    // listening socket (unlike Linux / POSIX). In Java and POSIX, newly accepted sockets are
+    // expected to be blocking.
+    int flags = TEMP_FAILURE_RETRY(fcntl(clientFd, F_GETFL));
+    if (flags == -1 || ((flags & O_NONBLOCK) && TEMP_FAILURE_RETRY(fcntl(clientFd, F_SETFL, flags & ~O_NONBLOCK)) == -1)) {
+        throwErrnoException(env, "fcntl");
+        close(clientFd);
+        return NULL;
+    }
+#endif
     return createFileDescriptorIfOpen(env, clientFd);
 }
 
